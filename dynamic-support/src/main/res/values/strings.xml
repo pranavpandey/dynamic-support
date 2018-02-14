@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<resources>
+
+    <!-- Dynamic activity -->
+    <string name="ads_navigation_drawer_open">Open navigation drawer</string>
+    <string name="ads_navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- String formats -->
+    <string name="ads_format_join">%1$s%2$s</string>
+    <string name="ads_format_blank_space">%1$s %2$s</string>
+    <string name="ads_format_separator">%1$s | %2$s</string>
+    <string name="ads_format_braces">%1$s (%2$s)</string>
+    <string name="ads_format_version">Version %1$s</string>
+
+    <!-- Labels -->
+    <string name="ads_i_got_it">OK, Got it</string>
+    <string name="ads_not_now">Not now</string>
+    <string name="ads_yes_in">Yes, I\'m in</string>
+    <string name="ads_more_info">More info</string>
+    <string name="ads_select">Select</string>
+    <string name="ads_save">Save</string>
+    <string name="ads_load">Load</string>
+    <string name="ads_create">Create</string>
+    <string name="ads_previous">Previous</string>
+    <string name="ads_next">Next</string>
+    <string name="ads_skip">Skip</string>
+    <string name="ads_loading">Loading&#8230;</string>
+    <string name="ads_finish">Finish</string>
+
+    <!-- Headings -->
+    <string name="ads_app">App</string>
+    <string name="ads_icon">Icon</string>
+    <string name="ads_size">Size</string>
+    <string name="ads_value">Value</string>
+    <string name="ads_notification">Notification</string>
+    <string name="ads_widgets">Widgets</string>
+    <string name="ads_instructions">Instructions</string>
+    <string name="ads_tutorial">Tutorial</string>
+    <string name="ads_troubleshoot">Troubleshoot</string>
+    <string name="ads_about">About</string>
+    <string name="ads_overview">Overview</string>
+    <string name="ads_general">General</string>
+    <string name="ads_advanced">Advanced</string>
+    <string name="ads_fixes">Fixes</string>
+
+    <!-- Labels -->
+    <string name="ads_recents">Recents</string>
+    <string name="ads_custom">Custom</string>
+    <string name="ads_edit">Edit</string>
+    <string name="ads_reset">Reset</string>
+    <string name="ads_default">Default</string>
+    <string name="ads_sort">Sort</string>
+    <string name="ads_sort_category">Category</string>
+    <string name="ads_sort_name">Name</string>
+    <string name="ads_search">Search</string>
+    <string name="ads_enable">Enable</string>
+    <string name="ads_enabled">Enabled</string>
+    <string name="ads_disable">Disable</string>
+    <string name="ads_disabled">Disabled</string>
+    <string name="ads_toggle">Toggle</string>
+    <string name="ads_shortcut">Shortcut</string>
+    <string name="ads_shortcuts">Shortcuts</string>
+    <string name="ads_shortcut_created">Shortcut created</string>
+    <string name="ads_shortcuts_desc">Pick a shortcut to add it on the home screen.</string>
+
+    <!-- Navigation drawer and menu -->
+    <string name="ads_nav_category_features">Menu</string>
+    <string name="ads_nav_category_support">Support development</string>
+    <string name="ads_nav_category_contribute">Contribute</string>
+    <string name="ads_nav_home">Home</string>
+    <string name="ads_nav_settings">Settings</string>
+    <string name="ads_nav_help">Help</string>
+    <string name="ads_nav_support">Support</string>
+    <string name="ads_nav_about">About</string>
+    <string name="ads_nav_buy">Buy</string>
+    <string name="ads_nav_rate">Rate</string>
+    <string name="ads_nav_share">Share</string>
+    <string name="ads_nav_uninstall">Uninstall</string>
+    <string name="ads_menu_info">Info</string>
+    <string name="ads_menu_app_info">App info</string>
+
+    <!-- Runtime permissions -->
+    <string name="ads_permissions">Permissions</string>
+    <string name="ads_permissions_subtitle">Please allow the required permissions.</string>
+    <string name="ads_permissions_subtitle_single">Please allow the required permission.</string>
+    <string name="ads_perm_info_grant_all">Please allow all the permissions to make the app working properly.</string>
+    <string name="ads_perm_request">Request</string>
+    <string name="ads_perm_request_desc">This permission is not granted. Tap to request.</string>
+    <string name="ads_perm_granted">Granted</string>
+    <string name="ads_perm_granted_desc">This permission has been granted.</string>
+    <string name="ads_perm_denied">Denied</string>
+    <string name="ads_perm_denied_desc">To grant this permission, go to App info > Permissions. Tap to go to the App info.</string>
+    <string name="ads_perm_default">Permission</string>
+    <string name="ads_perm_default_desc">This permission is required to perform some actions.</string>
+    <string name="ads_perm_default_explain">Explanation.</string>
+    <string name="ads_perm_write_system_settings">Write system settings</string>
+    <string name="ads_perm_write_system_settings_desc">allow write system settings</string>
+    <string name="ads_perm_overlay">Draw over other apps</string>
+    <string name="ads_perm_overlay_desc">permit drawing over other apps</string>
+    <string name="ads_perm_usage_access">Usage access</string>
+    <string name="ads_perm_usage_access_desc">permit usage access</string>
+
+    <!-- Backup and Restore -->
+    <string name="ads_data">Data</string>
+    <string name="ads_data_operations">Data operations</string>
+    <string name="ads_backup_and_restore">Backup &amp; Restore</string>
+    <string name="ads_backup">Backup</string>
+    <string name="ads_backup_desc">Widget settings will not be backed up, please configure them manually after performing the restore operation.</string>
+    <string name="ads_backup_title">Create backup</string>
+    <string name="ads_backup_select">Select</string>
+    <string name="ads_backup_summary">Save or share the current app settings.</string>
+    <string name="ads_backup_new">New</string>
+    <string name="ads_backup_create_new_info">Please create a new backup.</string>
+    <string name="ads_backup_import_info">Please try to import backup from the device storage.</string>
+    <string name="ads_backup_name">Backup name</string>
+    <string name="ads_backup_rename">Rename backup</string>
+    <string name="ads_backup_complete">Backup has been created successfully</string>
+    <string name="ads_backup_error">Unable to create backup</string>
+    <string name="ads_backup_restore">Restore</string>
+    <string name="ads_backup_restore_title">Restore backup</string>
+    <string name="ads_backup_error_save">Unable to save backup</string>
+    <string name="ads_backup_error_rename">Unable to rename backup</string>
+    <string name="ads_backup_restore_summary">Load or manage the previously saved backups.</string>
+    <string name="ads_backup_restore_desc">Select a backup to restore.</string>
+    <string name="ads_backup_restore_backup">Restore backup</string>
+    <string name="ads_backup_restore_backup_desc">This will delete all the current settings (except for widgets) and restore them from the selected backup. Do you want to continue?</string>
+    <string name="ads_backup_restore_backup_verify_error">Unable to verify this backup. Please select some other backup.</string>
+    <string name="ads_backup_modify">Modify</string>
+    <string name="ads_backup_modify_desc">Select a backup to modify.</string>
+    <string name="ads_backup_restore_done">Backup has been restored successfully</string>
+    <string name="ads_backup_restore_error">Unable to restore backup</string>
+    <string name="ads_backup_not_found">No backup is found.</string>
+    <string name="ads_backup_modify_complete">Backup has been modified successfully</string>
+    <string name="ads_backup_delete_all">Delete all</string>
+    <string name="ads_backup_delete_all_title">Delete all backups</string>
+    <string name="ads_backup_delete_all_desc">This will delete all the backups saved in the app storage. Do you want to continue?</string>
+    <string name="ads_backup_delete_all_done">All backups have been deleted successfully</string>
+    <string name="ads_backup_import">Import</string>
+    <string name="ads_backup_import_title">Import backup</string>
+    <string name="ads_backup_import_summary">Start form a previous app state</string>
+    <string name="ads_backup_import_desc">Import a backup from the device or other storage.</string>
+    <string name="ads_backup_format_location">Backup location: %1$s</string>
+    <string name="ads_backup_format_created">Backup created: %1$s</string>
+    <string name="ads_backup_format_saved">Backup saved: %1$s</string>
+    <string name="ads_backup_format_last">Last backup: %1$s</string>
+    <string name="ads_backup_format_modified">Backup modified: %1$s</string>
+    <string name="ads_backup_format_last_modified">Last modified: %1$s</string>
+    <string name="ads_backup_format_renamed">Backup renamed: %1$s</string>
+    <string name="ads_backup_format_deleted">Backup deleted: %1$s</string>
+    <string name="ads_backup_format_restored">Backup restored: %1$s</string>
+
+    <!-- Backup options -->
+    <string name="ads_backup_storage_app">App storage</string>
+    <string name="ads_backup_storage_device">Device storage</string>
+    <string name="ads_backup_option_rename">Rename</string>
+    <string name="ads_backup_option_delete">Delete</string>
+    <string name="ads_backup_send">Send backup</string>
+
+    <!-- Theme -->
+    <string name="ads_theme">Theme</string>
+    <string name="ads_theme_adjust_desc">Theme will be adjusted automatically according to the current Android version.</string>
+    <string name="ads_theme_color_palette">Color palette</string>
+    <string name="ads_theme_color_palette_summary">Primary and accent color presets.</string>
+    <string name="ads_theme_color_background">Background color</string>
+    <string name="ads_theme_color_background_summary">Background color of the theme.</string>
+    <string name="ads_theme_color_primary">Primary color</string>
+    <string name="ads_theme_color_primary_summary">Color used by the primary elements.</string>
+    <string name="ads_theme_color_accent">Accent color</string>
+    <string name="ads_theme_color_accent_summary">Color used by the secondary elements.</string>
+    <string name="ads_theme_background">Background aware</string>
+    <string name="ads_theme_background_aware_desc">Some colors will change automatically according to the background to provide best visibility.</string>
+    <string name="ads_theme_app">App theme</string>
+    <string name="ads_theme_app_summary">Base style of the app.</string>
+    <string name="ads_theme_app_desc">Select auto to use the day and night themes.</string>
+    <string name="ads_theme_app_day">Day theme</string>
+    <string name="ads_theme_app_day_summary">Base style of the app during the day.</string>
+    <string name="ads_theme_app_night">Night theme</string>
+    <string name="ads_theme_app_night_summary">Base style of the app at night.</string>
+    <string name="ads_theme_app_day_night_desc">This will only work when the auto theme is applied.</string>
+    <string name="ads_theme_toast">Toast messages theme</string>
+    <string name="ads_theme_toast_summary">Show themed toast messages according to the app primary color.</string>
+    <string name="ads_theme_toast_summary_unchecked">Show default system toast messages.</string>
+    <string name="ads_theme_navigation_bar">Navigation bar theme</string>
+    <string name="ads_theme_navigation_bar_summary">Show themed navigation bar according to the app primary color.</string>
+    <string name="ads_theme_navigation_bar_summary_unchecked">Show black navigation bar.</string>
+    <string name="ads_theme_navigation_bar_desc">Navigation bar theme will not be visible on some places to provide best visual experience.</string>
+    <string name="ads_theme_notification">Notification theme</string>
+    <string name="ads_theme_notification_summary">Color palette for the notification.</string>
+    <string name="ads_theme_notification_style">Notification style</string>
+    <string name="ads_theme_notification_style_summary">Layout style for the notification.</string>
+    <string name="ads_theme_style_classic_desc">Select classic style to use the color palette as background.</string>
+    <string name="ads_theme_widget">Widget theme</string>
+    <string name="ads_theme_widget_summary">Color palette for the widget.</string>
+    <string name="ads_theme_app_shortcuts">App shortcuts theme</string>
+    <string name="ads_theme_app_shortcuts_summary">Show themed app shortcuts according to the app primary color.</string>
+    <string name="ads_theme_app_shortcuts_summary_unchecked">Show default app shortcuts according to the app theme and brand color.</string>
+    <string name="ads_theme_app_shortcuts_desc">Long press on the launcher icon to show app shortcuts, supported launcher is required.</string>
+
+    <!-- Theme entries and labels-->
+    <string name="ads_theme_toast_default">Default toast message</string>
+    <string name="ads_theme_toast_themed">Themed toast message</string>
+    <string name="ads_theme_entry_auto">Auto</string>
+    <string name="ads_theme_entry_auto_desc">Select auto to use the app color palette.</string>
+    <string name="ads_theme_entry_light">Light</string>
+    <string name="ads_theme_entry_dark">Dark</string>
+    <string name="ads_theme_entry_custom">Custom</string>
+    <string name="ads_theme_entry_classic">Classic</string>
+    <string name="ads_theme_entry_true_dark">True dark</string>
+    <string name="ads_theme_entry_light_indigo">Light indigo</string>
+    <string name="ads_theme_entry_light_red">Light red</string>
+    <string name="ads_theme_entry_light_blue">Light blue</string>
+    <string name="ads_theme_entry_light_green">Light green</string>
+    <string name="ads_theme_entry_light_yellow">Light yellow</string>
+    <string name="ads_theme_entry_light_purple">Light purple</string>
+    <string name="ads_theme_entry_light_orange">Light orange</string>
+    <string name="ads_theme_entry_light_brown">Light brown</string>
+    <string name="ads_theme_entry_light_grey">Light grey</string>
+    <string name="ads_theme_entry_dark_indigo">Dark indigo</string>
+    <string name="ads_theme_entry_dark_red">Dark red</string>
+    <string name="ads_theme_entry_dark_blue">Dark blue</string>
+    <string name="ads_theme_entry_dark_green">Dark green</string>
+    <string name="ads_theme_entry_dark_teal">Dark teal</string>
+    <string name="ads_theme_entry_dark_purple">Dark purple</string>
+    <string name="ads_theme_entry_dark_orange">Dark Orange</string>
+    <string name="ads_theme_entry_dark_brown">Dark brown</string>
+    <string name="ads_theme_entry_dark_grey">Dark grey</string>
+
+    <!-- Picker -->
+    <string name="ads_picker_all">All</string>
+    <string name="ads_picker_pick">Pick</string>
+    <string name="ads_picker_more_colors">More colors</string>
+    <string name="ads_picker_presets">Presets</string>
+
+    <!-- Language selector -->
+    <string name="ads_language">Language</string>
+    <string name="ads_language_summary">Language used by the app.</string>
+    <string name="ads_language_system">System</string>
+
+    <!-- Notification and channel -->
+    <string name="ads_notification_priority">Notification priority</string>
+    <string name="ads_notification_priority_summary">Select priority to determine its order in the notification drawer.</string>
+    <string name="ads_notification_priority_desc">Select low priority to hide notification from the status bar and lock screen.</string>
+    <string name="ads_notification_priority_high">High</string>
+    <string name="ads_notification_priority_normal">Normal</string>
+    <string name="ads_notification_priority_low">Low</string>
+    <string name="ads_notification_category">Notification category</string>
+    <string name="ads_notification_category_summary">Configure notification shown by the app.</string>
+    <string name="ads_notification_category_desc">Set low category importance to hide notification from the status bar and lock screen.</string>
+
+    <!-- App widget -->
+    <string name="ads_widget_customise">Customise</string>
+    <string name="ads_widget_customise_desc">Configure the widget below.</string>
+    <string name="ads_widget_preview">Preview</string>
+    <string name="ads_widget_preview_desc">Widget layout might change automatically according to the actual size in use to provide best experience.</string>
+    <string name="ads_widget_opacity_bg">Background opacity</string>
+    <string name="ads_widget_opacity_bg_summary">Opacity of the widget background.</string>
+    <string name="ads_widget_reset_desc">Widget has been reset to default.</string>
+    <string name="ads_widget_not_added">No widgets have been added.</string>
+
+    <!-- About and Support -->
+    <string name="ads_rate">Rate</string>
+    <string name="ads_support_contact">Contact</string>
+    <string name="ads_support_report">Report</string>
+    <string name="ads_support_report_bug">Submit bug report</string>
+    <string name="ads_support_report_bug_summary">Contact developer via email.</string>
+    <string name="ads_support_report_bug_desc">If you have any issue or question about this app, please contact via email.</string>
+    <string name="ads_support_donate">Donate</string>
+    <string name="ads_support_donate_paypal">Donate via PayPal.</string>
+    <string name="ads_support_donate_desc">Send payment to developer as a token of appreciation and to support the development of other projects. Donation is not necessary, you can always buy paid version to support development.</string>
+    <string name="ads_support_reset_to_default">Reset to default</string>
+    <string name="ads_support_reset_to_default_alert">This will reset all the user settings to default. Do you want to continue?</string>
+    <string name="ads_support_reset_to_default_summary">Reset all the settings to default.</string>
+    <string name="ads_support_reset_to_default_desc">It can fix some general issues caused due to the app or system update. All user settings (except for widgets) will be lost after performing this operation.</string>
+    <string name="ads_support_restart_app">Restart application</string>
+    <string name="ads_support_restart_app_summary">Restart application and service to refresh the app state.</string>
+    <string name="ads_support_restart_app_desc">Use if service is not starting or app is not behaving properly. All settings will remain unchanged after performing this operation.</string>
+
+    <!-- Developer and App info -->
+    <string name="ads_info_me">&#169; Pranav Pandey</string>
+    <string name="ads_info_made_by">Written and designed by</string>
+    <string name="ads_info_made_in">Made in India</string>
+    <string name="ads_info_quote">Nothing is perfect but can be better. Developing such better things!</string>
+    <string name="ads_info_privacy_policy">Privacy Policy</string>
+    <string name="ads_info_privacy_policy_desc">View complete privacy policy of this product.</string>
+    <string name="ads_info_terms_of_use">Terms of Use</string>
+    <string name="ads_info_terms_of_use_desc">View complete terms of use of this product.</string>
+    <string name="ads_info_privacy_policy_terms_desc">Privacy policy and terms of use.</string>
+    <string name="ads_info_apps">More apps</string>
+    <string name="ads_info_gplus">Google+</string>
+    <string name="ads_info_gplus_desc">Join official community to try the test releases.</string>
+    <string name="ads_info_facebook">Facebook</string>
+    <string name="ads_info_facebook_desc">Like official page to get the latest news and updates.</string>
+    <string name="ads_info_xda">XDA-Developers</string>
+    <string name="ads_info_xda_desc">Follow the official support forum on XDA.</string>
+    <string name="ads_info_website">Website</string>
+    <string name="ads_info_github">GitHub</string>
+    <string name="ads_info_linkedin">LinkedIn</string>
+    <string name="ads_info_twitter">Twitter</string>
+    <string name="ads_info_website_me_desc">A place for me on the web.</string>
+    <string name="ads_info_twitter_me_desc">Get latest tweets about my life and work.</string>
+    <string name="ads_info_facebook_me_desc">Become a friend or follow to know more about me.</string>
+    <string name="ads_info_gplus_me_desc">Circle or follow to grow the community.</string>
+    <string name="ads_info_linkedin_me_desc">Anything good for me? Reach me via LinkedIn.</string>
+    <string name="ads_info_github_me_desc">Giving back to the community by open sourcing some of my projects.</string>
+
+    <!-- Contributors and Translators -->
+    <string name="ads_contributors">Contributors</string>
+    <string name="ads_contributors_desc">Huge thanks for their great support.</string>
+    <string name="ads_translations">Translations</string>
+    <string name="ads_translators">Translators</string>
+    <string name="ads_translators_translate">Translate</string>
+    <string name="ads_translators_contact">Contact via email if you want to translate.</string>
+
+    <!-- Licenses -->
+    <string name="ads_license_android">Android Compat Support Library
+        \nAndroid Compatibility Library v4
+        \nAndroid Compatibility Library v7
+        \nAndroid Core UI Support Library
+        \nAndroid Core Utils Support Library
+        \nAndroid Design Support Library
+        \nAndroid Fragments Support Library</string>
+    <string name="ads_license_sas">Small App Support</string>
+    <string name="ads_license_ads_modules">Dynamic Utils
+        \nDynamic Toasts
+        \nDynamic Engine</string>
+    <string name="ads_license_ads">Dynamic Support</string>
+    <string name="ads_license_plaid">Plaid</string>
+    <string name="ads_license_copy_android_google">&#169; 2005&#8211;2011 The Android Open Source Project</string>
+    <string name="ads_license_copy_google_15">&#169; 2015 Google, Inc.</string>
+    <string name="ads_license_copy_me_16">&#169; 2016 Pranav Pandey</string>
+    <string name="ads_license_copy_me_17">&#169; 2017 Pranav Pandey</string>
+    <string name="ads_license_copy_me_18">&#169; 2018 Pranav Pandey</string>
+    <string name="ads_licenses">Licenses</string>
+    <string name="ads_license">License</string>
+    <string name="ads_license_apache">Apache 2.0</string>
+    <string name="ads_license_desc">View full license.</string>
+    <string name="ads_license_sources">Sources</string>
+    <string name="ads_license_sources_desc">View sources on GitHub.</string>
+
+</resources>

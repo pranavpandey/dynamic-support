@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ads_color_picker"
+    style="@style/Widget.DynamicApp.Scroller.Vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/ads_dialog_margin_start_end_small"
+        android:paddingRight="@dimen/ads_dialog_margin_start_end_small"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ads_color_picker_presets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/ads_margin_extra_tiny"
+            android:paddingBottom="@dimen/ads_margin_tiny"
+            android:orientation="vertical">
+
+            <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
+                android:id="@+id/ads_color_picker_colors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cacheColorHint="@android:color/transparent"
+                android:columnWidth="@dimen/ads_picker_colors_size"
+                android:horizontalSpacing="@dimen/ads_margin_tiny"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="auto_fit"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="@dimen/ads_margin_small" />
+
+            <LinearLayout
+                android:id="@+id/ads_color_picker_shades_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/ads_margin_regular"
+                    android:layout_marginBottom="@dimen/ads_margin_regular"
+                    android:layout_marginLeft="@dimen/ads_margin_extra_tiny"
+                    android:layout_marginRight="@dimen/ads_margin_extra_tiny"
+                    android:background="?android:attr/dividerVertical"/>
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
+                    android:id="@+id/ads_color_picker_shades"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:columnWidth="@dimen/ads_picker_shades_size"
+                    android:horizontalSpacing="@dimen/ads_margin_tiny"
+                    android:listSelector="@android:color/transparent"
+                    android:numColumns="auto_fit"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="@dimen/ads_margin_small" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ads_color_picker_recents_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                    android:id="@+id/ads_header_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ads_margin_regular"
+                    android:layout_marginBottom="@dimen/ads_margin_regular"
+                    android:layout_marginLeft="@dimen/ads_margin_extra_tiny"
+                    android:layout_marginRight="@dimen/ads_margin_extra_tiny"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/ads_font_size_small"
+                    android:text="@string/ads_recents"
+                    app:ads_colorType="primary" />
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
+                    android:id="@+id/ads_color_picker_recents"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:columnWidth="@dimen/ads_picker_recents_size"
+                    android:horizontalSpacing="@dimen/ads_margin_tiny"
+                    android:listSelector="@android:color/transparent"
+                    android:numColumns="auto_fit"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="@dimen/ads_margin_small" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ads_color_picker_custom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/ads_margin_tiny"
+            android:paddingBottom="@dimen/ads_margin_extra_tiny"
+            android:paddingLeft="@dimen/ads_margin_extra_tiny"
+            android:paddingRight="@dimen/ads_margin_extra_tiny"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/ads_margin_small"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:gravity="center">
+
+                <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView
+                    android:id="@+id/ads_color_picker_color"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    app:ads_dynamicColorView_shape="rectangle"
+                    app:ads_dynamicColorView_color= "#123456" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/ads_margin_medium"
+                        android:layout_marginStart="@dimen/ads_margin_medium"
+                        android:textSize="@dimen/ads_picker_font_size_medium"
+                        android:textAllCaps="true"
+                        android:text="#"
+                        tools:ignore="HardcodedText,TextViewEdits" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicEditText
+                        android:id="@+id/ads_color_picker_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="@dimen/ads_icon_big"
+                        android:inputType="textNoSuggestions"
+                        android:digits="0123456789abcdefABCDEF"
+                        android:focusable="true"
+                        android:hint="FF123456"
+                        android:textSize="@dimen/ads_picker_font_size_medium"
+                        app:ads_colorType="accent"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                    android:id="@+id/ads_color_picker_button_all"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:text="@string/ads_picker_all"
+                    style="@style/Widget.DynamicApp.Button.Borderless.Primary" />
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                    android:id="@+id/ads_color_picker_button_hsv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:text="HSV"
+                    style="@style/Widget.DynamicApp.Button.Borderless.Primary" />
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                    android:id="@+id/ads_color_picker_button_rgb"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:text="RGB"
+                    style="@style/Widget.DynamicApp.Button.Borderless.Primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ads_color_picker_view_hsv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
+                    android:id="@+id/ads_color_picker_seek_hue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_dynamicPreference_title="H"
+                    app:ads_dynamicPreference_min="0"
+                    app:ads_dynamicPreference_max="360"
+                    app:ads_dynamicPreference_interval="1"
+                    app:ads_dynamicPreference_controls="true" />
+
+                <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
+                    android:id="@+id/ads_color_picker_seek_saturation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_dynamicPreference_title="S"
+                    app:ads_dynamicPreference_min="0"
+                    app:ads_dynamicPreference_max="100"
+                    app:ads_dynamicPreference_interval="1"
+                    app:ads_dynamicPreference_controls="true" />
+
+                <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
+                    android:id="@+id/ads_color_picker_seek_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_dynamicPreference_title="V"
+                    app:ads_dynamicPreference_min="0"
+                    app:ads_dynamicPreference_max="100"
+                    app:ads_dynamicPreference_interval="1"
+                    app:ads_dynamicPreference_controls="true" />
+
+            </LinearLayout>
+
+            <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
+                android:id="@+id/ads_color_picker_seek_alpha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ads_dynamicPreference_title="A"
+                app:ads_dynamicPreference_min="0"
+                app:ads_dynamicPreference_max="255"
+                app:ads_dynamicPreference_interval="1"
+                app:ads_dynamicPreference_controls="true" />
+
+            <LinearLayout
+                android:id="@+id/ads_color_picker_view_rgb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
+                    android:id="@+id/ads_color_picker_seek_red"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_dynamicPreference_title="R"
+                    app:ads_dynamicPreference_min="0"
+                    app:ads_dynamicPreference_max="255"
+                    app:ads_dynamicPreference_interval="1"
+                    app:ads_dynamicPreference_controls="true" />
+
+                <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
+                    android:id="@+id/ads_color_picker_seek_green"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_dynamicPreference_title="G"
+                    app:ads_dynamicPreference_min="0"
+                    app:ads_dynamicPreference_max="255"
+                    app:ads_dynamicPreference_interval="1"
+                    app:ads_dynamicPreference_controls="true" />
+
+                <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
+                    android:id="@+id/ads_color_picker_seek_blue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_dynamicPreference_title="B"
+                    app:ads_dynamicPreference_min="0"
+                    app:ads_dynamicPreference_max="255"
+                    app:ads_dynamicPreference_interval="1"
+                    app:ads_dynamicPreference_controls="true" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView>

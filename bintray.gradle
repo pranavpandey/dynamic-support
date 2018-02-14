@@ -1,0 +1,40 @@
+apply plugin: 'com.jfrog.bintray'
+
+version = mavenVersion
+
+// Bintray
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.key")
+
+    configurations = ['archives']
+    archivesBaseName = mavenArtifactId
+
+    pkg {
+        repo = bintrayRepo
+        name = mavenArtifactId
+        desc = projectDesc
+        websiteUrl = siteUrl
+        vcsUrl = "${gitUrl}.git"
+        issueTrackerUrl = issueUrl
+        licenses = allLicenses
+        publish = true
+        publicDownloadNumbers = true
+
+        githubRepo = githubUrl
+
+        version {
+            name = mavenVersion
+            desc = versionDesc
+            released = new Date()
+
+            gpg {
+                sign = true
+                passphrase = properties.getProperty("bintray.passphrase")
+            }
+        }
+    }
+}

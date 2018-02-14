@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<resources>
+
+    <!-- Dynamic activity -->
+    <string name="ads_navigation_drawer_close">关闭导航抽屉</string>
+    <string name="ads_navigation_drawer_open">打开导航抽屉</string>
+
+    <!-- String formats -->
+    <string name="ads_format_version">版本%1$s</string>
+
+    <!-- Labels -->
+    <string name="ads_i_got_it">好的！</string>
+    <string name="ads_not_now">不是现在</string>
+    <string name="ads_yes_in">是的，我进来了</string>
+    <string name="ads_more_info">更多信息</string>
+    <string name="ads_select">选择</string>
+    <string name="ads_save">保存</string>
+    <string name="ads_load">加载</string>
+    <string name="ads_create">创建</string>
+    <string name="ads_previous">以前</string>
+    <string name="ads_next">下一个</string>
+    <string name="ads_skip">跳过</string>
+    <string name="ads_loading">载入中&#8230;</string>
+    <string name="ads_finish">完</string>
+
+    <!-- Headings -->
+    <string name="ads_app">应用</string>
+    <string name="ads_icon">图标</string>
+    <string name="ads_size">尺寸</string>
+    <string name="ads_value">值</string>
+    <string name="ads_notification">通知</string>
+    <string name="ads_widgets">小部件</string>
+    <string name="ads_instructions">说明</string>
+    <string name="ads_tutorial">教程</string>
+    <string name="ads_troubleshoot">疑难解答</string>
+    <string name="ads_about">关于</string>
+    <string name="ads_overview">概述</string>
+    <string name="ads_general">一般</string>
+    <string name="ads_advanced">高级</string>
+    <string name="ads_fixes">修复</string>
+
+    <!-- Labels -->
+    <string name="ads_recents">近期]</string>
+    <string name="ads_custom">自定义</string>
+    <string name="ads_edit">编辑</string>
+    <string name="ads_reset">重启</string>
+    <string name="ads_default">默认</string>
+    <string name="ads_sort">排序</string>
+    <string name="ads_sort_category">类别</string>
+    <string name="ads_sort_name">名称</string>
+    <string name="ads_search">搜索</string>
+    <string name="ads_enable">启用</string>
+    <string name="ads_enabled">启用</string>
+    <string name="ads_disable">禁用</string>
+    <string name="ads_disabled">已禁用</string>
+    <string name="ads_toggle">切换</string>
+    <string name="ads_shortcut">快捷方式</string>
+    <string name="ads_shortcuts">快捷方式</string>
+    <string name="ads_shortcut_created">创建快捷方式</string>
+    <string name="ads_shortcuts_desc">选择一个快捷方式将其添加到主屏幕上。</string>
+
+    <!-- Navigation drawer and menu -->
+    <string name="ads_nav_category_features">菜单</string>
+    <string name="ads_nav_category_support">支持发展</string>
+    <string name="ads_nav_category_contribute">有助于</string>
+    <string name="ads_nav_home">主页</string>
+    <string name="ads_nav_settings">设置</string>
+    <string name="ads_nav_help">帮助</string>
+    <string name="ads_nav_support">支持</string>
+    <string name="ads_nav_about">关于</string>
+    <string name="ads_nav_buy">购买</string>
+    <string name="ads_nav_rate">评价</string>
+    <string name="ads_nav_share">分享</string>
+    <string name="ads_nav_uninstall">卸载</string>
+    <string name="ads_menu_info">信息</string>
+    <string name="ads_menu_app_info">应用程序信息</string>
+
+    <!-- Runtime permissions -->
+    <string name="ads_permissions">权限</string>
+    <string name="ads_permissions_subtitle">请允许所需的权限。</string>
+    <string name="ads_permissions_subtitle_single">请允许所需的权限。</string>
+    <string name="ads_perm_info_grant_all">请允许所有的权限，使应用程序正常工作。</string>
+    <string name="ads_perm_request">请求</string>
+    <string name="ads_perm_request_desc">此权限不被允许。点按即可请求。</string>
+    <string name="ads_perm_granted">允许</string>
+    <string name="ads_perm_granted_desc">此权限已被允许。</string>
+    <string name="ads_perm_denied">被拒绝</string>
+    <string name="ads_perm_denied_desc">要允许此权限，请转至应用程序信息\\u003e权限。点击转到应用程序信息。</string>
+    <string name="ads_perm_default">允许</string>
+    <string name="ads_perm_default_desc">执行一些操作需要此权限。</string>
+    <string name="ads_perm_default_explain">说明。</string>
+    <string name="ads_perm_write_system_settings">编写系统设置</string>
+    <string name="ads_perm_write_system_settings_desc">允许写入系统设置</string>
+    <string name="ads_perm_overlay">绘制其他应用程序</string>
+    <string name="ads_perm_overlay_desc">允许绘制其他应用程序</string>
+    <string name="ads_perm_usage_access">使用权限</string>
+    <string name="ads_perm_usage_access_desc">允许使用访问</string>
+
+    <!-- Backup and Restore -->
+    <string name="ads_data">数据</string>
+    <string name="ads_data_operations">数据操作</string>
+    <string name="ads_backup_and_restore">备份和恢复</string>
+    <string name="ads_backup">备份</string>
+    <string name="ads_backup_desc">小部件设置将不会被备份，请在执行还原操作后手动配置它们。</string>
+    <string name="ads_backup_title">创建备份</string>
+    <string name="ads_backup_select">选择</string>
+    <string name="ads_backup_summary">保存或分享当前的应用程序设置。</string>
+    <string name="ads_backup_new">新</string>
+    <string name="ads_backup_create_new_info">请创建一个新的备份。</string>
+    <string name="ads_backup_import_info">请尝试从设备存储导入备份。</string>
+    <string name="ads_backup_name">备份名称</string>
+    <string name="ads_backup_rename">重命名备份</string>
+    <string name="ads_backup_complete">备份已成功创建</string>
+    <string name="ads_backup_error">无法创建备份</string>
+    <string name="ads_backup_restore">恢复</string>
+    <string name="ads_backup_restore_title">恢复备份</string>
+    <string name="ads_backup_error_save">无法保存备份</string>
+    <string name="ads_backup_error_rename">无法重命名备份</string>
+    <string name="ads_backup_restore_summary">加载或管理以前保存的备份。</string>
+    <string name="ads_backup_restore_desc">选择要还原的备份。</string>
+    <string name="ads_backup_restore_backup">恢复备份</string>
+    <string name="ads_backup_restore_backup_desc">这将删除所有当前的设置（小部件除外），并从选定的备份中恢复它们。你想继续吗？</string>
+    <string name="ads_backup_restore_backup_verify_error">无法验证此备份。请选择其他备份。</string>
+    <string name="ads_backup_modify">修改</string>
+    <string name="ads_backup_modify_desc">选择要修改的备份。</string>
+    <string name="ads_backup_restore_done">备份已成功恢复</string>
+    <string name="ads_backup_restore_error">无法恢复备份</string>
+    <string name="ads_backup_not_found">没有找到备份。</string>
+    <string name="ads_backup_modify_complete">备份已成功修改</string>
+    <string name="ads_backup_delete_all">删除所有</string>
+    <string name="ads_backup_delete_all_title">删除所有备份</string>
+    <string name="ads_backup_delete_all_desc">这将删除保存在应用程序存储中的所有备份。你想继续吗？</string>
+    <string name="ads_backup_delete_all_done">所有备份已成功删除</string>
+    <string name="ads_backup_import">入口</string>
+    <string name="ads_backup_import_title">导入备份</string>
+    <string name="ads_backup_import_summary">从以前的应用程序状态开始</string>
+    <string name="ads_backup_import_desc">从设备或其他存储中导入备份。</string>
+    <string name="ads_backup_format_location">备份位置：%1$s</string>
+    <string name="ads_backup_format_created">已创建备份：%1$s</string>
+    <string name="ads_backup_format_saved">备份保存：%1$s</string>
+    <string name="ads_backup_format_last">上次备份：%1$s</string>
+    <string name="ads_backup_format_modified">备份修改：%1$s</string>
+    <string name="ads_backup_format_last_modified">上次修改时间：%1$s</string>
+    <string name="ads_backup_format_renamed">备份重命名为：%1$s</string>
+    <string name="ads_backup_format_deleted">备份已删除：%1$s</string>
+    <string name="ads_backup_format_restored">备份已恢复：%1$s</string>
+
+    <!-- Backup options -->
+    <string name="ads_backup_storage_app">应用程序存储</string>
+    <string name="ads_backup_storage_device">设备存储</string>
+    <string name="ads_backup_option_rename">重命名</string>
+    <string name="ads_backup_option_delete">删除</string>
+    <string name="ads_backup_send">发送备份</string>
+
+    <!-- Theme -->
+    <string name="ads_theme">主题</string>
+    <string name="ads_theme_adjust_desc">主题会根据当前的Android版本自动调整。</string>
+    <string name="ads_theme_color_palette">调色板</string>
+    <string name="ads_theme_color_palette_summary">主颜色和强调色预设。</string>
+    <string name="ads_theme_color_background">背景色</string>
+    <string name="ads_theme_color_background_summary">主题背景色。</string>
+    <string name="ads_theme_color_primary">主题色</string>
+    <string name="ads_theme_color_primary_summary">主要元素使用的颜色。</string>
+    <string name="ads_theme_color_accent">强调色</string>
+    <string name="ads_theme_color_accent_summary">辅助元素使用的颜色。</string>
+    <string name="ads_theme_background">背景知晓</string>
+    <string name="ads_theme_background_aware_desc">有些颜色会根据背景自动改变，以提供最佳的可见度。</string>
+    <string name="ads_theme_app">应用主题</string>
+    <string name="ads_theme_app_summary">应用程序主题。</string>
+    <string name="ads_theme_app_desc">选择自动使用日间和夜间主题。</string>
+    <string name="ads_theme_app_day">日间主题</string>
+    <string name="ads_theme_app_day_summary">应用在日间的主题。</string>
+    <string name="ads_theme_app_night">主题</string>
+    <string name="ads_theme_app_night_summary">应用在夜间的主题。</string>
+    <string name="ads_theme_app_day_night_desc">这只适用于自动主题被应用。</string>
+    <string name="ads_theme_toast">Toast消息主题</string>
+    <string name="ads_theme_toast_summary">根据应用主题色显示主题Toast消息。</string>
+    <string name="ads_theme_toast_summary_unchecked">显示默认的系统Toast消息。</string>
+    <string name="ads_theme_navigation_bar">导航栏主题</string>
+    <string name="ads_theme_navigation_bar_summary">显示主题导航栏根据应用程序的主颜色。</string>
+    <string name="ads_theme_navigation_bar_summary_unchecked">显示黑色导航栏。</string>
+    <string name="ads_theme_navigation_bar_desc">导航栏主题在某些地方不可见，以提供最佳的视觉体验。</string>
+    <string name="ads_theme_notification">通知主题</string>
+    <string name="ads_theme_notification_summary">通知调色板。</string>
+    <string name="ads_theme_notification_style">通知样式</string>
+    <string name="ads_theme_notification_style_summary">通知布局样式。</string>
+    <string name="ads_theme_style_classic_desc">选择经典样式，以调色板作为背景。</string>
+    <string name="ads_theme_widget">小部件主题</string>
+    <string name="ads_theme_widget_summary">小部件调色板。</string>
+    <string name="ads_theme_app_shortcuts">应用快捷方式主题</string>
+    <string name="ads_theme_app_shortcuts_summary">根据应用主题色显示主题应用快捷方式。</string>
+    <string name="ads_theme_app_shortcuts_summary_unchecked">根据应用主题和品牌颜色显示默认应用快捷方式。</string>
+    <string name="ads_theme_app_shortcuts_desc">长按启动器图标以显示应用快捷方式，支持的启动器是必需的。</string>
+
+    <!-- Theme entries and labels-->
+    <string name="ads_theme_toast_default">默认的Toast消息</string>
+    <string name="ads_theme_toast_themed">主题Toast消息</string>
+    <string name="ads_theme_entry_auto">自动</string>
+    <string name="ads_theme_entry_auto_desc">选择自动使用应用程序调色板。</string>
+    <string name="ads_theme_entry_light">亮色</string>
+    <string name="ads_theme_entry_dark">暗色</string>
+    <string name="ads_theme_entry_custom">自定义</string>
+    <string name="ads_theme_entry_classic">经典</string>
+    <string name="ads_theme_entry_true_dark">真·黑</string>
+    <string name="ads_theme_entry_light_indigo">淡蓝</string>
+    <string name="ads_theme_entry_light_red">浅红色</string>
+    <string name="ads_theme_entry_light_blue">浅蓝色</string>
+    <string name="ads_theme_entry_light_green">浅绿色</string>
+    <string name="ads_theme_entry_light_yellow">淡黄色</string>
+    <string name="ads_theme_entry_light_purple">淡紫色的</string>
+    <string name="ads_theme_entry_light_orange">浅橙色</string>
+    <string name="ads_theme_entry_light_brown">浅棕色</string>
+    <string name="ads_theme_entry_light_grey">浅灰色</string>
+    <string name="ads_theme_entry_dark_indigo">暗蓝</string>
+    <string name="ads_theme_entry_dark_red">深红</string>
+    <string name="ads_theme_entry_dark_blue">深蓝</string>
+    <string name="ads_theme_entry_dark_green">深绿色</string>
+    <string name="ads_theme_entry_dark_teal">深绿色</string>
+    <string name="ads_theme_entry_dark_purple">深紫色</string>
+    <string name="ads_theme_entry_dark_orange">深橙色</string>
+    <string name="ads_theme_entry_dark_brown">深棕色</string>
+    <string name="ads_theme_entry_dark_grey">深灰色</string>
+
+    <!-- Picker -->
+    <string name="ads_picker_all">所有</string>
+    <string name="ads_picker_more_colors">更多的颜色</string>
+    <string name="ads_picker_pick">挑</string>
+    <string name="ads_picker_presets">预置</string>
+
+    <!-- Language selector -->
+    <string name="ads_language">语言</string>
+    <string name="ads_language_summary">应用程序使用的语言。</string>
+    <string name="ads_language_system">系统</string>
+
+    <!-- Notification and channel -->
+    <string name="ads_notification_priority">通知优先权</string>
+    <string name="ads_notification_priority_summary">选择优先级来确定通知抽屉中的顺序。</string>
+    <string name="ads_notification_priority_desc">选择低优先级隐藏状态栏和锁定屏幕通知。</string>
+    <string name="ads_notification_priority_high">高</string>
+    <string name="ads_notification_priority_normal">正常</string>
+    <string name="ads_notification_priority_low">低</string>
+    <string name="ads_notification_category">通知类别</string>
+    <string name="ads_notification_category_summary">配置应用程序显示的通知。</string>
+    <string name="ads_notification_category_desc">设置低优先级以隐藏状态栏和锁定屏幕通知。</string>
+
+    <!-- App widget -->
+    <string name="ads_widget_customise">定制</string>
+    <string name="ads_widget_customise_desc">配置下面的小部件。</string>
+    <string name="ads_widget_preview">预习</string>
+    <string name="ads_widget_preview_desc">小部件布局可能会根据实际使用的大小自动更改以提供最佳体验。</string>
+    <string name="ads_widget_opacity_bg">背景不透明</string>
+    <string name="ads_widget_opacity_bg_summary">小部件背景的不透明度。</string>
+    <string name="ads_widget_reset_desc">小部件已被重置为默认值。</string>
+    <string name="ads_widget_not_added">没有添加小部件。</string>
+
+    <!-- About and Support -->
+    <string name="ads_rate">评价</string>
+    <string name="ads_support_contact">联系</string>
+    <string name="ads_support_report">报告</string>
+    <string name="ads_support_report_bug">提交错误报告</string>
+    <string name="ads_support_report_bug_summary">通过电子邮件联系开发</string>
+    <string name="ads_support_report_bug_desc">如果您对此应用程序有任何问题或疑问，请通过电子邮件联系。</string>
+    <string name="ads_support_donate">捐赠</string>
+    <string name="ads_support_donate_paypal">通过PayPal捐赠。</string>
+    <string name="ads_support_donate_desc">向开发者支付款项是为了表示赞赏，并支持其他项目的开发。捐赠是不是必须得，你可以随时购买付费版本，以支持发展。</string>
+    <string name="ads_support_reset_to_default">重置为默认</string>
+    <string name="ads_support_reset_to_default_alert">这会将所有用户设置重置为默认值。你想继续吗？</string>
+    <string name="ads_support_reset_to_default_summary">将所有设置重置为默认设置。</string>
+    <string name="ads_support_reset_to_default_desc">它可以修复由于应用程序或系统更新而导致的一些常见问题。执行此操作后，所有用户设置（小部件除外）都将丢失。</string>
+    <string name="ads_support_restart_app">重新启动应用程序</string>
+    <string name="ads_support_restart_app_summary">重新启动应用程序和服务以刷新应用程序状态。</string>
+    <string name="ads_support_restart_app_desc">如果服务未启动或应用程序运行不正常，请使用此选项。执行此操作后，所有设置将保持不变。</string>
+
+    <!-- Developer and App info -->
+    <string name="ads_info_made_by">书面和设计</string>
+    <string name="ads_info_made_in">印度制造</string>
+    <string name="ads_info_quote">没有什么是完美的，但可以更好。开发这样更好的东西！</string>
+    <string name="ads_info_privacy_policy">隐私政策</string>
+    <string name="ads_info_privacy_policy_desc">查看该产品的完整隐私政策。</string>
+    <string name="ads_info_terms_of_use">使用条款</string>
+    <string name="ads_info_terms_of_use_desc">查看此产品的完整使用条款。</string>
+    <string name="ads_info_privacy_policy_terms_desc">隐私政策和使用条款。</string>
+    <string name="ads_info_apps">更多应用程序</string>
+    <string name="ads_info_gplus_desc">加入官方社区尝试测试版本。</string>
+    <string name="ads_info_facebook_desc">收藏官方页面，获取最新的新闻和更新。</string>
+    <string name="ads_info_xda_desc">在XDA跟进官方支持。</string>
+    <string name="ads_info_website">WEB</string>
+    <string name="ads_info_website_me_desc">网络上的一个地方。</string>
+    <string name="ads_info_twitter_me_desc">获取有关我的生活和工作的最新消息。</string>
+    <string name="ads_info_facebook_me_desc">成为朋友或关注我，获得我的更多信息。</string>
+    <string name="ads_info_gplus_me_desc">圈出或跟随来发展社区。</string>
+    <string name="ads_info_linkedin_me_desc">对我有好处吗？通过LinkedIn联系我。</string>
+    <string name="ads_info_github_me_desc">通过开源购买我的一些项目回馈社区。</string>
+
+    <!-- Contributors and Translators -->
+    <string name="ads_contributors">贡献者</string>
+    <string name="ads_contributors_desc">非常感谢他们的大力支持。</string>
+    <string name="ads_translations">翻译</string>
+    <string name="ads_translators">译者</string>
+    <string name="ads_translators_translate">翻译</string>
+    <string name="ads_translators_contact">如果您想翻译，请通过电子邮件联系。</string>
+
+    <!-- Licenses -->
+    <string name="ads_licenses">许可证</string>
+    <string name="ads_license">执照</string>
+    <string name="ads_license_desc">查看完整许可证。</string>
+    <string name="ads_license_sources">来源</string>
+    <string name="ads_license_sources_desc">在GitHub上查看源代码。</string>
+
+</resources>

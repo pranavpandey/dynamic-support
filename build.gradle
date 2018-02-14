@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.0-alpha02'
+
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    projectName = 'dynamic-support'
+    projectDesc = 'A complete library to build Android apps with a built-in theme engine.'
+    versionDesc = 'A complete library to build apps for Android 14+ (ICS or above) devices ' +
+            'with a built-in theme engine.'
+    siteUrl = 'https://github.com/pranavpandey/dynamic-support'
+    gitUrl = 'https://github.com/pranavpandey/dynamic-support'
+    issueUrl = 'https://github.com/pranavpandey/dynamic-support/issues'
+
+    githubUrl = 'pranavpandey/dynamic-support'
+
+    mavenGroup = 'com.pranavpandey.android'
+    mavenVersion = '0.9.0'
+    mavenInceptionYear = 2018
+    mavenArtifactId = 'dynamic-support'
+    bintrayRepo = 'android'
+
+    developerId = 'pranavpandey'
+    developerName = 'Pranav Pandey'
+    developerEmail = 'pranavpande92@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    licenseDistribution = 'repo'
+    allLicenses = ["Apache-2.0"]
+
+    versionCode = 9
+
+    buildTools = '27.0.3'
+    minSdk = 14
+    compileSdk = 27
+    targetSdk = 27
+
+    androidSupport = '27.0.2'
+}

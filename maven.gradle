@@ -1,0 +1,66 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = mavenGroup
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            name projectName
+            description projectDesc
+            url siteUrl
+            inceptionYear mavenInceptionYear
+
+            packaging 'aar'
+            groupId mavenGroup
+            artifactId mavenArtifactId
+            version mavenVersion
+
+            licenses {
+                license {
+                    name licenseName
+                    url licenseUrl
+                    distribution licenseDistribution
+                }
+            }
+
+            scm {
+                connection "${gitUrl}.git"
+                developerConnection gitUrl
+                url siteUrl
+            }
+
+            developers {
+                developer {
+                    id developerId
+                    name developerName
+                    email developerEmail
+                }
+            }
+        }
+    }
+
+    task sourcesJar(type: Jar) {
+        from android.sourceSets.main.java.srcDirs
+        classifier = 'sources'
+    }
+
+    task javadoc(type: Javadoc) {
+        failOnError = false
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+
+        if (JavaVersion.current().isJava8Compatible()) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    artifacts {
+        archives sourcesJar
+        archives javadocJar
+    }
+}

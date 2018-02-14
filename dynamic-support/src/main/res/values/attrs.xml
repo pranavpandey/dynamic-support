@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<resources>
+
+    <!-- Default contrast with color from the theme. Generally, it should
+         be a background color so that widgets can change their color accordingly
+         if they are background aware. -->
+    <attr name="ads_contrastWithDefault" format="color" />
+
+    <!-- Default color control disabled color to generate the color state list
+         dynamically. -->
+    <attr name="ads_controlDisabledDefault" format="color" />
+
+    <!-- Color attributes used by the theme and widgets across the whole
+         library. -->
+    <declare-styleable name="DynamicTheme">
+        <!-- Color options to tint the widgets dynamically. -->
+        <attr name="ads_colorType" format="enum">
+            <!-- Constant for the no color. -->
+            <enum name="none" value="0" />
+            <!-- Constant for the primary color. -->
+            <enum name="primary" value="1" />
+            <!-- Constant for the dark primary color. -->
+            <enum name="primary_dark" value="2" />
+            <!-- Constant for the accent color. -->
+            <enum name="accent" value="3" />
+            <!-- Constant for the dark accent color. -->
+            <enum name="accent_dark" value="4" />
+            <!-- Constant for the primary tint color. -->
+            <enum name="tint_primary" value="5" />
+            <!-- Constant for the dark primary tint color. -->
+            <enum name="tint_primary_dark" value="6" />
+            <!-- Constant for the accent tint color. -->
+            <enum name="tint_accent" value="7" />
+            <!-- Constant for the dark accent tint color. -->
+            <enum name="tint_accent_dark" value="8" />
+            <!-- Constant for the custom color. It must be supplied via
+                 ads_color attribute. -->
+            <enum name="custom" value="9" />
+            <!-- Constant for the background color. -->
+            <enum name="background" value="10" />
+            <!-- Constant for the tint background color. -->
+            <enum name="tint_background" value="11" />
+        </attr>
+        <!-- Color options to tint the scroll bar of the scrollable widgets
+             dynamically. -->
+        <attr name="ads_scrollBarColorType" format="enum">
+            <!-- Constant for the no color. -->
+            <enum name="none" value="0" />
+            <!-- Constant for the primary color. -->
+            <enum name="primary" value="1" />
+            <!-- Constant for the dark primary color. -->
+            <enum name="primary_dark" value="2" />
+            <!-- Constant for the accent color. -->
+            <enum name="accent" value="3" />
+            <!-- Constant for the dark accent color. -->
+            <enum name="accent_dark" value="4" />
+            <!-- Constant for the primary tint color. -->
+            <enum name="tint_primary" value="5" />
+            <!-- Constant for the dark primary tint color. -->
+            <enum name="tint_primary_dark" value="6" />
+            <!-- Constant for the accent tint color. -->
+            <enum name="tint_accent" value="7" />
+            <!-- Constant for the dark accent tint color. -->
+            <enum name="tint_accent_dark" value="8" />
+            <!-- Constant for the custom color. It must be supplied via
+                 ads_color attribute. -->
+            <enum name="custom" value="9" />
+            <!-- Constant for the background color. -->
+            <enum name="background" value="10" />
+            <!-- Constant for the tint background color. -->
+            <enum name="tint_background" value="11" />
+        </attr>
+        <!-- Color options to change the text color of supported widgets. -->
+        <attr name="ads_textColorType" format="enum">
+            <!-- Constant for the no color. -->
+            <enum name="none" value="0" />
+            <!-- Constant for the primary color. -->
+            <enum name="primary" value="1" />
+            <!-- Constant for the dark primary color. -->
+            <enum name="primary_dark" value="2" />
+            <!-- Constant for the accent color. -->
+            <enum name="accent" value="3" />
+            <!-- Constant for the dark accent color. -->
+            <enum name="accent_dark" value="4" />
+            <!-- Constant for the primary tint color. -->
+            <enum name="tint_primary" value="5" />
+            <!-- Constant for the dark primary tint color. -->
+            <enum name="tint_primary_dark" value="6" />
+            <!-- Constant for the accent tint color. -->
+            <enum name="tint_accent" value="7" />
+            <!-- Constant for the dark accent tint color. -->
+            <enum name="tint_accent_dark" value="8" />
+            <!-- Constant for the custom color. It must be supplied via
+                 ads_textColor attribute. -->
+            <enum name="custom" value="9" />
+            <!-- Constant for the background color. -->
+            <enum name="background" value="10" />
+            <!-- Constant for the tint background color. -->
+            <enum name="tint_background" value="11" />
+        </attr>
+        <!-- Color options to change the selected item color of supported widgets. -->
+        <attr name="ads_itemSelectedColorType" format="enum">
+            <!-- Constant for the no color. -->
+            <enum name="none" value="0" />
+            <!-- Constant for the primary color. -->
+            <enum name="primary" value="1" />
+            <!-- Constant for the dark primary color. -->
+            <enum name="primary_dark" value="2" />
+            <!-- Constant for the accent color. -->
+            <enum name="accent" value="3" />
+            <!-- Constant for the dark accent color. -->
+            <enum name="accent_dark" value="4" />
+            <!-- Constant for the primary tint color. -->
+            <enum name="tint_primary" value="5" />
+            <!-- Constant for the dark primary tint color. -->
+            <enum name="tint_primary_dark" value="6" />
+            <!-- Constant for the accent tint color. -->
+            <enum name="tint_accent" value="7" />
+            <!-- Constant for the dark accent tint color. -->
+            <enum name="tint_accent_dark" value="8" />
+            <!-- Constant for the custom color. It must be supplied via
+                 ads_itemSelectedColor attribute. -->
+            <enum name="custom" value="9" />
+            <!-- Constant for the background color. -->
+            <enum name="background" value="10" />
+            <!-- Constant for the tint background color. -->
+            <enum name="tint_background" value="11" />
+        </attr>
+        <!-- Color options to change the contrast with color of supported widgets. -->
+        <attr name="ads_contrastWithColorType" format="enum">
+            <!-- Constant for the no color. -->
+            <enum name="none" value="0" />
+            <!-- Constant for the primary color. -->
+            <enum name="primary" value="1" />
+            <!-- Constant for the dark primary color. -->
+            <enum name="primary_dark" value="2" />
+            <!-- Constant for the accent color. -->
+            <enum name="accent" value="3" />
+            <!-- Constant for the dark accent color. -->
+            <enum name="accent_dark" value="4" />
+            <!-- Constant for the primary tint color. -->
+            <enum name="tint_primary" value="5" />
+            <!-- Constant for the dark primary tint color. -->
+            <enum name="tint_primary_dark" value="6" />
+            <!-- Constant for the accent tint color. -->
+            <enum name="tint_accent" value="7" />
+            <!-- Constant for the dark accent tint color. -->
+            <enum name="tint_accent_dark" value="8" />
+            <!-- Constant for the custom color. It must be supplied via
+                 ads_contrastWithColor attribute. -->
+            <enum name="custom" value="9" />
+            <!-- Constant for the background color. -->
+            <enum name="background" value="10" />
+            <!-- Constant for the tint background color. -->
+            <enum name="tint_background" value="11" />
+        </attr>
+        <!-- Color options to change the normal state color of supported widgets. -->
+        <attr name="ads_stateNormalColorType" format="enum">
+            <!-- Constant for the no color. -->
+            <enum name="none" value="0" />
+            <!-- Constant for the primary color. -->
+            <enum name="primary" value="1" />
+            <!-- Constant for the dark primary color. -->
+            <enum name="primary_dark" value="2" />
+            <!-- Constant for the accent color. -->
+            <enum name="accent" value="3" />
+            <!-- Constant for the dark accent color. -->
+            <enum name="accent_dark" value="4" />
+            <!-- Constant for the primary tint color. -->
+            <enum name="tint_primary" value="5" />
+            <!-- Constant for the dark primary tint color. -->
+            <enum name="tint_primary_dark" value="6" />
+            <!-- Constant for the accent tint color. -->
+            <enum name="tint_accent" value="7" />
+            <!-- Constant for the dark accent tint color. -->
+            <enum name="tint_accent_dark" value="8" />
+            <!-- Constant for the custom color. It must be supplied via
+                 ads_contrastWithColor attribute. -->
+            <enum name="custom" value="9" />
+            <!-- Constant for the background color. -->
+            <enum name="background" value="10" />
+            <!-- Constant for the tint background color. -->
+            <enum name="tint_background" value="11" />
+        </attr>
+        <!-- Color value if the color type is set to custom. -->
+        <attr name="ads_color" format="color" />
+        <!-- Scroll bar color value if the scroll bar color type is set
+             to custom. -->
+        <attr name="ads_scrollBarColor" format="color" />
+        <!-- Color value if the text color type is set to custom. -->
+        <attr name="ads_textColor" format="color" />
+        <!-- Color value if the selected item color type is set to custom. -->
+        <attr name="ads_itemSelectedColor" format="color" />
+        <!-- Color value if the contrast with color type is set to custom. -->
+        <attr name="ads_contrastWithColor" format="color" />
+        <!-- Color value if the normal state color type is set to custom. -->
+        <attr name="ads_stateNormalColor" format="color" />
+        <!-- Color alpha value for the supported widgets. -->
+        <attr name="ads_colorAlpha" format="integer" />
+        <!-- true if the widget is background aware and can change its color
+             accordingly for the best visibility. -->
+        <attr name="ads_backgroundAware" format="boolean" />
+        <!-- true if the button is borderless to tint it accordingly. -->
+        <attr name="ads_styleBorderless" format="boolean" />
+    </declare-styleable>
+
+</resources>

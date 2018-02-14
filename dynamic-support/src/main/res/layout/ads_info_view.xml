@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ads_info_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            style="@style/Widget.DynamicApp.Content.Card">
+
+            <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+                android:id="@+id/ads_info_view_icon"
+                android:layout_width="@dimen/ads_icon_large"
+                android:layout_height="@dimen/ads_icon_large"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/ads_icon_avatar_card_margin_end_medium"
+                android:layout_marginEnd="@dimen/ads_icon_avatar_card_margin_end_medium" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                    android:id="@+id/ads_info_view_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.DynamicApp.Title.Card.Info" />
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                    android:id="@+id/ads_info_view_subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextAppearance.DynamicApp.Subtitle" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/ads_info_view_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ads_margin_tiny"
+                    style="@style/TextAppearance.DynamicApp.Description" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewNested
+            android:id="@+id/ads_info_links"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/ads_info_view_icon_frame"
+        android:layout_width="@dimen/ads_icon_card_permission_frame"
+        android:layout_height="@dimen/ads_icon_card_permission_frame"
+        android:layout_gravity="end|bottom">
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+            android:id="@+id/ads_info_view_icon_big"
+            android:layout_width="@dimen/ads_icon_card_permission"
+            android:layout_height="@dimen/ads_icon_card_permission"
+            style="@style/Widget.DynamicApp.Image.Card.Big" />
+
+    </FrameLayout>
+
+</FrameLayout>

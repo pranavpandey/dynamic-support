@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<resources>
+
+    <!-- Notification priorities for the notification settings. -->
+    <string-array name="ads_notification_priority_entries">
+        <item>@string/ads_notification_priority_high</item>
+        <item>@string/ads_notification_priority_normal</item>
+        <item>@string/ads_notification_priority_low</item>
+    </string-array>
+
+    <!-- Notification priorities values for the notification settings. -->
+    <string-array name="ads_notification_priority_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!-- Backup options to modify a saved backup. -->
+    <string-array name="ads_backup_options">
+        <item>@string/ads_backup_option_rename</item>
+        <item>@string/ads_backup_option_delete</item>
+        <item>@string/ads_backup_option_share</item>
+    </string-array>
+
+    <!-- String array with with titles for author links. -->
+    <string-array name="ads_about_author_links">
+        <item>@string/ads_info_website</item>
+        <item>@string/ads_info_twitter</item>
+        <item>@string/ads_info_facebook</item>
+        <item>@string/ads_info_gplus</item>
+        <item>@string/ads_info_linkedin</item>
+        <item>@string/ads_info_github</item>
+    </string-array>
+
+    <!-- String array with with subtitles for author links. -->
+    <string-array name="ads_about_author_links_subtitles">
+        <item>@string/ads_info_website_me_desc</item>
+        <item>@string/ads_info_twitter_me_desc</item>
+        <item>@string/ads_info_facebook_me_desc</item>
+        <item>@string/ads_info_gplus_me_desc</item>
+        <item>@string/ads_info_linkedin_me_desc</item>
+        <item>@string/ads_info_github_me_desc</item>
+    </string-array>
+
+    <!-- String array with with urls for author links. -->
+    <string-array name="ads_about_author_links_urls">
+        <item>https://www.pranavpandey.com</item>
+        <item>https://twitter.com/intent/follow?screen_name=pranavpandeydev</item>
+        <item>https://www.facebook.com/pranavpandeydev</item>
+        <item>https://plus.google.com/+pranavpandeydev</item>
+        <item>https://in.linkedin.com/in/pranav-pandey-09032974</item>
+        <item>https://github.com/pranavpandey</item>
+    </string-array>
+
+    <!-- Integer array with with drawables for author links. -->
+    <integer-array name="ads_about_author_links_icons">
+        <item>@drawable/ads_ic_public_small</item>
+        <item>@drawable/ads_ic_social_twitter</item>
+        <item>@drawable/ads_ic_social_facebook</item>
+        <item>@drawable/ads_ic_social_gplus</item>
+        <item>@drawable/ads_ic_social_linkedin</item>
+        <item>@drawable/ads_ic_social_github</item>
+    </integer-array>
+
+    <!-- Integer array with with colors for author links. -->
+    <integer-array name="ads_about_author_links_colors">
+        <item>@color/ads_social_website</item>
+        <item>@color/ads_social_twitter</item>
+        <item>@color/ads_social_facebook</item>
+        <item>@color/ads_social_gplus</item>
+        <item>@color/ads_social_linkedin</item>
+        <item>@color/ads_social_github</item>
+    </integer-array>
+
+    <!-- Drawables array with licence and github icons for dynamic
+         support modules. -->
+    <integer-array name="ads_license_links_icons_ads_modules">
+        <item>@drawable/ads_ic_license_small</item>
+        <item>@drawable/ads_ic_social_github</item>
+        <item>@drawable/ads_ic_social_github</item>
+        <item>@drawable/ads_ic_social_github</item>
+    </integer-array>
+
+    <!-- Drawables array with licence and github icons. -->
+    <integer-array name="ads_license_links_icons">
+        <item>@drawable/ads_ic_license_small</item>
+        <item>@drawable/ads_ic_social_github</item>
+    </integer-array>
+
+    <!-- Drawables array with licence icon. -->
+    <integer-array name="ads_license_links_icons_license">
+        <item>@drawable/ads_ic_license_small</item>
+    </integer-array>
+
+    <!-- Colors array with licence and github colors. -->
+    <integer-array name="ads_license_links_colors">
+        <item>@color/ads_link_license</item>
+        <item>@color/ads_social_github</item>
+    </integer-array>
+
+    <!-- Colors array with licence and github colors for dynamic support
+         modules. -->
+    <integer-array name="ads_license_links_colors_ads_modules">
+        <item>@color/ads_link_license</item>
+        <item>@color/ads_social_github</item>
+        <item>@color/ads_social_github</item>
+        <item>@color/ads_social_github</item>
+    </integer-array>
+
+    <!-- Colors array with licence color. -->
+    <integer-array name="ads_license_links_colors_license">
+        <item>@color/ads_link_license</item>
+    </integer-array>
+
+    <!-- String array with Apache 2.0 licence and sources titles. -->
+    <string-array name="ads_license_links_apache">
+        <item>@string/ads_license_apache</item>
+        <item>@string/ads_license_sources</item>
+    </string-array>
+
+    <!-- String array with Apache 2.0 licence and dynamic support
+         modules titles. -->
+    <string-array name="ads_license_links_ads_modules">
+        <item>@string/ads_license_apache</item>
+        <item>Dynamic Utils</item>
+        <item>Dynamic Toasts</item>
+        <item>Dynamic Engine</item>
+    </string-array>
+
+    <!-- String array with licence and sources subtitles. -->
+    <string-array name="ads_license_links_subtitles">
+        <item>@string/ads_license_desc</item>
+        <item>@string/ads_license_sources_desc</item>
+    </string-array>
+
+    <!-- String array with licence and sources subtitles. -->
+    <string-array name="ads_license_links_subtitles_ads_modules">
+        <item>@string/ads_license_desc</item>
+        <item>@string/ads_license_sources_desc</item>
+        <item>@string/ads_license_sources_desc</item>
+        <item>@string/ads_license_sources_desc</item>
+    </string-array>
+
+    <!-- String array with Apache 2.0 licence titles. -->
+    <string-array name="ads_license_links_apache_only">
+        <item>@string/ads_license_apache</item>
+    </string-array>
+
+    <!-- String array with licence subtitle. -->
+    <string-array name="ads_license_links_subtitles_license">
+        <item>@string/ads_license_desc</item>
+    </string-array>
+
+    <!-- String array with Apache 2.0 licence link. -->
+    <string-array name="ads_license_links_urls_apache_only">
+        <item>http://www.apache.org/licenses/LICENSE-2.0</item>
+    </string-array>
+
+    <!-- String array with Apache 2.0 licence and plaid links. -->
+    <string-array name="ads_license_links_urls_plaid">
+        <item>http://www.apache.org/licenses/LICENSE-2.0</item>
+        <item>https://github.com/nickbutcher/plaid</item>
+    </string-array>
+
+    <!-- String array with Apache 2.0 licence and small app support
+         links. -->
+    <string-array name="ads_license_links_urls_sas">
+        <item>http://www.apache.org/licenses/LICENSE-2.0</item>
+        <item>https://github.com/pranavpandey/small-app-support</item>
+    </string-array>
+
+    <!-- String array with Apache 2.0 licence and dynamic support
+         links. -->
+    <string-array name="ads_license_links_urls_ads">
+        <item>http://www.apache.org/licenses/LICENSE-2.0</item>
+        <item>https://github.com/pranavpandey/dynamic-support</item>
+    </string-array>
+
+    <!-- String array with Apache 2.0 licence and dynamic support
+         modules links. -->
+    <string-array name="ads_license_links_urls_ads_modules">
+        <item>http://www.apache.org/licenses/LICENSE-2.0</item>
+        <item>https://github.com/pranavpandey/dynamic-utils</item>
+        <item>https://github.com/pranavpandey/dynamic-toasts</item>
+        <item>https://github.com/pranavpandey/dynamic-engine</item>
+    </string-array>
+
+</resources>

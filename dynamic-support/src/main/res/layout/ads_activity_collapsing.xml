@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/ads_coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ads_footer_frame"
+        android:fitsSystemWindows="true">
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicAppBarLayout
+            android:id="@+id/ads_app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:animateLayoutChanges="true"
+            app:elevation="0dp"
+            app:ads_backgroundAware="false">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/ads_collapsing_toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ads_collapsing_toolbar_height"
+                app:expandedTitleMarginEnd="64dp"
+                android:clipChildren="false"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                android:fitsSystemWindows="true">
+
+                <FrameLayout
+                    android:id="@+id/ads_backdrop_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_collapseMode="parallax"
+                    android:fitsSystemWindows="true" />
+
+                <include
+                    layout="@layout/ads_toolbar_pin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+            <FrameLayout
+                android:id="@+id/ads_header_frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true">
+
+            </FrameLayout>
+
+        </com.pranavpandey.android.dynamic.support.widget.DynamicAppBarLayout>
+
+        <include layout="@layout/ads_content_dynamic" />
+
+        <include layout="@layout/ads_layout_fab_bottom" />
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <FrameLayout
+        android:id="@+id/ads_footer_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:animateLayoutChanges="true">
+
+    </FrameLayout>
+
+</RelativeLayout>

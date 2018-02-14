@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<resources>
+
+    <!-- Locales -->
+    <string name="ads_locale_system">@string/ads_language_system</string>
+    <string name="ads_locale_system_value" translatable="false">ads_locale_system</string>
+    <string name="ads_locale_en" translatable="false">English</string>
+    <string name="ads_locale_en_value" translatable="false">en</string>
+    <string name="ads_locale_de" translatable="false">Deutsch</string>
+    <string name="ads_locale_de_value" translatable="false">de</string>
+    <string name="ads_locale_zh_rCN" translatable="false">中文 (简体)</string>
+    <string name="ads_locale_zh_rCN_value" translatable="false">zh,CN</string>
+
+    <!-- FAB behavior -->
+    <string name="ads_fab_behavior" translatable="false">com.pranavpandey.android.dynamic.support.behavior.DynamicFABScrollBehavior</string>
+
+    <!-- String formats -->
+    <string name="ads_format_next_line" translatable="false">%1$s\n%2$s</string>
+    <string name="ads_format_line_break_two" translatable="false">%1$s\n\n%2$s</string>
+
+    <!-- Labels -->
+    <string name="ads_yes">@android:string/yes</string>
+    <string name="ads_cancel">@android:string/cancel</string>
+
+    <!-- Backup and Restore -->
+    <string name="ads_backup_save">@string/ads_save</string>
+    <string name="ads_backup_create">@string/ads_create</string>
+    <string name="ads_backup_load">@string/ads_load</string>
+
+    <!-- Backup options -->
+    <string name="ads_backup_storage_share">@string/ads_nav_share</string>
+    <string name="ads_backup_option_share">@string/ads_backup_storage_share</string>
+
+</resources>

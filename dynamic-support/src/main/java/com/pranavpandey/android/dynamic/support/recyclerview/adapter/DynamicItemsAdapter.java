@@ -1,0 +1,80 @@
+/*
+ * Copyright 2018 Pranav Pandey
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.pranavpandey.android.dynamic.support.recyclerview.adapter;
+
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
+
+import com.pranavpandey.android.dynamic.support.model.DynamicItem;
+import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicItemBinder;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+/**
+ * A DynamicSimpleBinderAdapter to display the list of {@link DynamicItem}
+ * inside a recycler view.
+ */
+public class DynamicItemsAdapter extends DynamicSimpleBinderAdapter {
+
+    /**
+     * The data set used by this adapter. A list of
+     * {@link DynamicItem}.
+     */
+    private List<DynamicItem> mDataSet;
+
+    public DynamicItemsAdapter(@NonNull Collection<? extends DynamicItem> dataSet) {
+        this.mDataSet = new ArrayList<>(dataSet);
+
+        addDataBinder(new DynamicItemBinder(this));
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return 0;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+        ((DynamicItemBinder) getDataBinder(
+                getItemViewType(position))).setData(getItem(position));
+
+        super.onBindViewHolder(viewHolder, position);
+    }
+
+    @Override
+    public int getItemCount() {
+        return mDataSet.size();
+    }
+
+    /**
+     * Getter for {@link #mDataSet}.
+     */
+    public @NonNull List<DynamicItem> getDataSet() {
+        return mDataSet;
+    }
+
+    /**
+     * @return The item inside {@link #mDataSet} at the supplied
+     * position.
+     */
+    public @Nullable DynamicItem getItem(int position) {
+        return mDataSet.get(position);
+    }
+}
