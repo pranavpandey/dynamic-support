@@ -28,7 +28,6 @@ import android.view.View;
 
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 /**
@@ -44,28 +43,24 @@ public class DynamicTintUtils {
      */
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void setViewBackgroundTint(@NonNull View view, @ColorInt int color) {
+        @ColorInt int pressedColor = DynamicColorUtils.getStateColor(color,
+                WidgetDefaults.ADS_STATE_PRESSED, WidgetDefaults.ADS_STATE_PRESSED);
+
         if (view instanceof FloatingActionButton) {
             ((FloatingActionButton) view).setBackgroundTintList(
-                    DynamicResourceUtils.getColorStateListButton(color,
-                            DynamicColorUtils.getStateColor(
-                                    color, WidgetDefaults.ADS_STATE_PRESSED,
-                                    WidgetDefaults.ADS_STATE_PRESSED)));
+                    DynamicResourceUtils.getColorStateListButton(color, pressedColor));
         } else if (view instanceof TintableBackgroundView) {
             ((TintableBackgroundView) view).setSupportBackgroundTintList(
-                    DynamicResourceUtils.getColorStateListButton(color,
-                            DynamicColorUtils.getStateColor(
-                                    color, WidgetDefaults.ADS_STATE_PRESSED,
-                                    WidgetDefaults.ADS_STATE_PRESSED)));
+                    DynamicResourceUtils.getColorStateListButton(color, pressedColor));
         }
 
         if (DynamicVersionUtils.isLollipop()
                 && view.getBackground() instanceof RippleDrawable) {
-            DynamicDrawableUtils.colorizeDrawable(view.getBackground(), color);
             RippleDrawable rippleDrawable = (RippleDrawable) view.getBackground();
             rippleDrawable.setColor(ColorStateList.valueOf(
-                    DynamicColorUtils.getStateColor(
-                            color, WidgetDefaults.ADS_STATE_LIGHT,
-                            WidgetDefaults.ADS_STATE_DARK)));
+                    DynamicColorUtils.getStateColor(pressedColor,
+                            WidgetDefaults.ADS_STATE_PRESSED,
+                            WidgetDefaults.ADS_STATE_PRESSED)));
         }
     }
 }

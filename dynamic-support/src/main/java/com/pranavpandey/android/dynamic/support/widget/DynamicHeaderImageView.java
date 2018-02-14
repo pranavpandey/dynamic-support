@@ -25,21 +25,20 @@ import android.util.AttributeSet;
 import com.pranavpandey.android.dynamic.support.R;
 
 /**
- * An ImageView to apply color filter according to the
- * supplied {@link R.attr#ads_colorType}.
+ * A DynamicImageView to apply color filter as {@link PorterDuff.Mode#SRC_ATOP}.
  */
-public class HeaderImageView extends DynamicImageView {
+public class DynamicHeaderImageView extends DynamicImageView {
 
-    public HeaderImageView(@NonNull Context context) {
+    public DynamicHeaderImageView(@NonNull Context context) {
         super(context);
     }
 
-    public HeaderImageView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicHeaderImageView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public HeaderImageView(@NonNull Context context,
-                           @Nullable AttributeSet attrs, int defStyleAttr) {
+    public DynamicHeaderImageView(@NonNull Context context,
+                                  @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
