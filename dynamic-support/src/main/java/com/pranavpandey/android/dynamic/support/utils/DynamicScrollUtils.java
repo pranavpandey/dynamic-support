@@ -36,6 +36,7 @@ import android.widget.AbsListView;
 import android.widget.EdgeEffect;
 import android.widget.ScrollView;
 
+import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
@@ -607,6 +608,7 @@ public final class DynamicScrollUtils {
      */
     public static void setScrollBarColor(@NonNull View view, @ColorInt int color) {
         initializeScrollBarFields(view);
+        color = DynamicColorUtils.getLessVisibleColor(color);
 
         if (ADS_VIEW_SCROLL_BAR_FIELD_CACHE == null) {
             return;
@@ -614,12 +616,15 @@ public final class DynamicScrollUtils {
 
         try {
             Object mScrollCache = ADS_VIEW_SCROLL_BAR_FIELD_CACHE.get(view);
-            ADS_VIEW_SCROLL_BAR_FIELD = mScrollCache.getClass().getDeclaredField("scrollBar");
+            ADS_VIEW_SCROLL_BAR_FIELD =
+                    mScrollCache.getClass().getDeclaredField("scrollBar");
             ADS_VIEW_SCROLL_BAR_FIELD.setAccessible(true);
             Object scrollBar = ADS_VIEW_SCROLL_BAR_FIELD.get(mScrollCache);
-            ADS_VIEW_SCROLL_BAR_VERTICAL_THUMB = scrollBar.getClass().getDeclaredField("mVerticalThumb");
+            ADS_VIEW_SCROLL_BAR_VERTICAL_THUMB =
+                    scrollBar.getClass().getDeclaredField("mVerticalThumb");
             ADS_VIEW_SCROLL_BAR_VERTICAL_THUMB.setAccessible(true);
-            ADS_VIEW_SCROLL_BAR_HORIZONTAL_THUMB = scrollBar.getClass().getDeclaredField("mHorizontalThumb");
+            ADS_VIEW_SCROLL_BAR_HORIZONTAL_THUMB =
+                    scrollBar.getClass().getDeclaredField("mHorizontalThumb");
             ADS_VIEW_SCROLL_BAR_HORIZONTAL_THUMB.setAccessible(true);
 
             if (ADS_VIEW_SCROLL_BAR_VERTICAL_THUMB != null) {
@@ -634,5 +639,4 @@ public final class DynamicScrollUtils {
         } catch(Exception ignored) {
         }
     }
-
 }

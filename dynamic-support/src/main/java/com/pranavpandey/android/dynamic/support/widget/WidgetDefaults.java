@@ -74,7 +74,7 @@ public class WidgetDefaults {
     /**
      * Default scroll bar used by the scrollable widgets.
      */
-    public static final int ADS_COLOR_SCROLL_BAR = DynamicColorType.ACCENT;
+    public static final int ADS_COLOR_SCROLL_BAR = DynamicColorType.TINT_BACKGROUND;
 
     /**
      * Default value to make widgets background aware so that they can
