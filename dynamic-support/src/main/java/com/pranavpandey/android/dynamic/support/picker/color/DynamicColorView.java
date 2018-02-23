@@ -22,6 +22,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
@@ -158,7 +160,7 @@ public class DynamicColorView extends FrameLayout {
         }
 
         mSelectorBitmap = DynamicBitmapUtils.getBitmapFormDrawable(
-                DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_brush));
+                DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_check));
 
         mColorPaint = new Paint();
         mColorStrokePaint = new Paint();
@@ -198,6 +200,8 @@ public class DynamicColorView extends FrameLayout {
         }
 
         mSelectorPaint.setColor(mColorStrokePaint.getColor());
+        mSelectorPaint.setColorFilter(new PorterDuffColorFilter(
+                mColorStrokePaint.getColor(), PorterDuff.Mode.SRC_ATOP));
     }
 
     @Override
@@ -232,7 +236,6 @@ public class DynamicColorView extends FrameLayout {
             mSelectorBitmap = DynamicBitmapUtils
                     .resizeBitmap(mSelectorBitmap, selectorSize, selectorSize);
 
-            DynamicBitmapUtils.applyColorFilter(mSelectorBitmap, mSelectorPaint.getColor());
             canvas.drawBitmap(mSelectorBitmap, (getMeasuredWidth() - mSelectorBitmap.getWidth()) / 2,
                     (getMeasuredWidth() - mSelectorBitmap.getHeight()) / 2, mSelectorPaint);
         }
@@ -309,7 +312,7 @@ public class DynamicColorView extends FrameLayout {
 
         if (mSelected) {
             toast = DynamicHint.make(getContext(), getColorString(),
-                    DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_brush),
+                    DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_check),
                     tintColor, color);
         } else {
             toast = DynamicHint.make(getContext(), getColorString(),
