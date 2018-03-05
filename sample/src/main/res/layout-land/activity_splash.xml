@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/ads_page_vertical_margin"
+    app:ads_colorType="primary"
+    app:ads_backgroundAware="false">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+                android:id="@+id/splash_image"
+                android:layout_width="@dimen/ads_icon_splash"
+                android:layout_height="@dimen/ads_icon_splash"
+                android:layout_marginEnd="@dimen/ads_margin_splash_bottom_end"
+                android:layout_marginRight="@dimen/ads_margin_splash_bottom_end"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_sample_splash_animated"
+                app:ads_colorType="tint_primary"
+                app:ads_backgroundAware="false" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:gravity="center"
+                    style="@style/TextAppearance.DynamicApp.Title.Bold.Splash"
+                    app:ads_backgroundAware="false" />
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_subtitle"
+                    android:gravity="center"
+                    style="@style/TextAppearance.DynamicApp.Subtitle.Splash"
+                    app:ads_backgroundAware="false" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout>

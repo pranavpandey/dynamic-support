@@ -58,6 +58,7 @@ import static com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtil
  * <p>Just extend this activity and implement the various functions
  * according to the need.</p>
  */
+@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public abstract class DynamicSystemActivity extends AppCompatActivity implements
         DynamicLocale, DynamicListener,
         SharedPreferences.OnSharedPreferenceChangeListener {
@@ -281,7 +282,6 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      *
      * @param color Color to be applied on the status bar.
      */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void setStatusBarColor(@ColorInt int color) {
         if (DynamicVersionUtils.isLollipop()) {
             mStatusBarColor = color;
@@ -295,7 +295,6 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      *
      * @param colorRes Color resource to be applied on the status bar.
      */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void setStatusBarColorRes(@ColorRes int colorRes) {
         setStatusBarColor(ContextCompat.getColor(this, colorRes));
     }
@@ -335,7 +334,6 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      *
      * @param color Color to be applied on the navigation bar.
      */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void setNavigationBarColor(@ColorInt int color) {
         if (!DynamicVersionUtils.isOreo()) {
             color = DynamicColorUtils.getContrastColor(
@@ -369,7 +367,6 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      *
      * @param colorRes Color resource to be applied on the navigation bar.
      */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void setNavigationBarColorRes(@ColorRes int colorRes) {
         setNavigationBarColor(ContextCompat.getColor(this, colorRes));
     }

@@ -32,7 +32,9 @@ dependencies {
 
 ## Usage
 This library is fully commented so, please check the individual classes or files for the 
-documentation. Usage guide and sample are coming soon.
+documentation.
+
+Checkout the `sample` to know more about the basic implementation. 
 
 ---
 
