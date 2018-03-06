@@ -18,6 +18,6 @@
 <resources>
 
     <!-- Splash duration -->
-    <integer name="animation_duration_splash">700</integer>
+    <integer name="animation_duration_splash">500</integer>
 
 </resources>

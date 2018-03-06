@@ -82,7 +82,7 @@ public class SplashActivity extends DynamicSplashActivity {
     @Override
     public long getMinSplashTime() {
         // TODO: Return minimum splash duration according to the requirement.
-        return 750;
+        return 550;
     }
 
     @Override

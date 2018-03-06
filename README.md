@@ -42,7 +42,7 @@ Checkout the `sample` to know more about the basic implementation.
 
 All of my apps are using some or all part of this library. You can download them from Play Store. 
 Please email me if you are using this library and want to feature your app here. Also, please 
-checkout the `Rotation` app to experience the full potential of `dynamic-support`. 
+checkout the `Rotation` app to experience the full potential of this library. 
 
 - [Rotation - Orientation Manager](https://play.google.com/store/apps/details?id=com.pranavpandey.rotation)
 

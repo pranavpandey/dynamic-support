@@ -5,7 +5,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0-alpha04'
+        classpath 'com.android.tools.build:gradle:3.2.0-alpha05'
 
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
@@ -56,5 +56,5 @@ ext {
     compileSdk = 27
     targetSdk = 27
 
-    androidSupport = '27.0.2'
+    androidSupport = '27.1.0'
 }
