@@ -59,7 +59,6 @@ public class DynamicRecyclerViewNested extends DynamicRecyclerViewFrame {
     public @Nullable RecyclerView.LayoutManager getRecyclerViewLayoutManager() {
         RecyclerView.LayoutManager layoutManager = DynamicLayoutUtils
                 .getLinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL);
-        layoutManager.setAutoMeasureEnabled(true);
 
         return layoutManager;
     }

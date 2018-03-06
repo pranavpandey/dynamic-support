@@ -32,7 +32,6 @@
             android:id="@+id/ads_app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
             app:elevation="0dp"
             app:ads_backgroundAware="false">
 
@@ -44,8 +43,7 @@
             <FrameLayout
                 android:id="@+id/ads_header_frame"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:animateLayoutChanges="true">
+                android:layout_height="wrap_content">
 
             </FrameLayout>
 
@@ -61,8 +59,7 @@
         android:id="@+id/ads_footer_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:animateLayoutChanges="true">
+        android:layout_alignParentBottom="true">
 
     </FrameLayout>
 

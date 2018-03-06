@@ -531,6 +531,13 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
+     * Getter for {@link #mFrameHeader}.
+     */
+    public @Nullable ViewGroup getFrameHeader() {
+        return mFrameHeader;
+    }
+
+    /**
      * Add header view just below the app bar. Useful to add tabs or hints
      * dynamically. Multiple views can be added and the default background
      * will be the app bar background (theme primary color). Please check
@@ -563,6 +570,13 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     public void addHeader(@LayoutRes int layoutId, boolean removePrevious) {
         addHeader(LayoutInflater.from(this).inflate(layoutId,
                 new LinearLayout(this), false), removePrevious);
+    }
+
+    /**
+     * Getter for {@link #mFrameFooter}.
+     */
+    public @Nullable ViewGroup getFrameFooter() {
+        return mFrameFooter;
     }
 
     /**

@@ -27,6 +27,11 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 public class Constants {
 
     /**
+     * Google Play publisher name.
+     */
+    public static final String ME = "Pranav Pandey";
+
+    /**
      * Open source repository url.
      */
     public static final String URL_GITHUB =

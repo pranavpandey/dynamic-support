@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.DynamicApp.Card">
+
+    <com.pranavpandey.android.dynamic.support.view.DynamicInfoViewBig
+        android:id="@+id/info_translators"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ads_dynamicInfo_icon="@drawable/ads_ic_language"
+        app:ads_dynamicInfo_iconBig="@drawable/ads_ic_translate"
+        app:ads_dynamicInfo_title="@string/ads_translators"
+        app:ads_dynamicInfo_description="@string/ads_contributors_desc"
+        app:ads_dynamicInfo_links="@array/info_translators_languages"
+        app:ads_dynamicInfo_linksSubtitles="@array/info_translators_authors"
+        app:ads_dynamicInfo_linksUrls="@array/info_translators_urls"
+        app:ads_dynamicInfo_linksIcons="@array/info_translators_flags"
+        app:ads_dynamicInfo_linksColors="@array/info_translators_colors" />
+
+</com.pranavpandey.android.dynamic.support.widget.DynamicCardView>

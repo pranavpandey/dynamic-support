@@ -31,6 +31,7 @@ import com.pranavpandey.android.dynamic.support.sample.R;
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants;
 import com.pranavpandey.android.dynamic.support.sample.controller.SampleController;
 import com.pranavpandey.android.dynamic.support.sample.controller.SampleTheme;
+import com.pranavpandey.android.dynamic.support.sample.fragment.AboutFragment;
 import com.pranavpandey.android.dynamic.support.sample.fragment.HomeFragment;
 import com.pranavpandey.android.dynamic.support.sample.fragment.SettingsFragment;
 import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
@@ -140,6 +141,9 @@ public class DrawerActivity extends DynamicDrawerActivity {
                 }
                 break;
             case R.id.nav_about:
+                if (!(getContentFragment() instanceof AboutFragment)) {
+                    switchFragment(AboutFragment.newInstance(0), false);
+                }
                 break;
             case R.id.nav_donate:
                 DynamicLinkUtils.viewUrl(this, Constants.URL_DONATE);
