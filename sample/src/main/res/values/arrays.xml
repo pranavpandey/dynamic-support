@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<resources>
+
+    <string-array name="pref_locale_entries">
+        <item>@string/ads_language_system</item>
+        <item>@string/ads_locale_en</item>
+        <item>@string/ads_locale_de</item>
+        <item>@string/ads_locale_zh_rCN</item>
+    </string-array>
+
+    <string-array name="pref_locale_values">
+        <item>@string/ads_locale_system_value</item>
+        <item>@string/ads_locale_en_value</item>
+        <item>@string/ads_locale_de_value</item>
+        <item>@string/ads_locale_zh_rCN_value</item>
+    </string-array>
+
+    <integer-array name="pref_app_theme_colors">
+        <item>0</item>
+        <item>@color/ads_window_background_light</item>
+        <item>@color/ads_window_background</item>
+        <item>@color/window_background_yellow</item>
+        <item>@color/window_background_indigo_light</item>
+        <item>@color/window_background_red_light</item>
+        <item>@color/window_background_green_light</item>
+        <item>@color/window_background_blue_light</item>
+        <item>@color/window_background_teal_light</item>
+        <item>@color/window_background_purple_light</item>
+        <item>@color/window_background_orange_light</item>
+        <item>@color/window_background_brown_light</item>
+        <item>@color/window_background_grey_light</item>
+        <item>@color/ads_window_background_dark</item>
+        <item>@color/window_background_indigo</item>
+        <item>@color/window_background_red</item>
+        <item>@color/window_background_green</item>
+        <item>@color/window_background_blue</item>
+        <item>@color/window_background_teal</item>
+        <item>@color/window_background_purple</item>
+        <item>@color/window_background_orange</item>
+        <item>@color/window_background_brown</item>
+        <item>@color/window_background_grey</item>
+    </integer-array>
+
+    <integer-array name="pref_app_theme_day_colors">
+        <item>@color/ads_window_background_light</item>
+        <item>@color/window_background_yellow</item>
+        <item>@color/window_background_indigo_light</item>
+        <item>@color/window_background_red_light</item>
+        <item>@color/window_background_green_light</item>
+        <item>@color/window_background_blue_light</item>
+        <item>@color/window_background_teal_light</item>
+        <item>@color/window_background_purple_light</item>
+        <item>@color/window_background_orange_light</item>
+        <item>@color/window_background_brown_light</item>
+        <item>@color/window_background_grey_light</item>
+    </integer-array>
+
+    <integer-array name="pref_app_theme_night_colors">
+        <item>@color/ads_window_background</item>
+        <item>@color/ads_window_background_dark</item>
+        <item>@color/window_background_indigo</item>
+        <item>@color/window_background_red</item>
+        <item>@color/window_background_green</item>
+        <item>@color/window_background_blue</item>
+        <item>@color/window_background_teal</item>
+        <item>@color/window_background_purple</item>
+        <item>@color/window_background_orange</item>
+        <item>@color/window_background_brown</item>
+        <item>@color/window_background_grey</item>
+    </integer-array>
+
+</resources>

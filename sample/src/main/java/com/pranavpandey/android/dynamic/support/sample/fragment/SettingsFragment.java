@@ -26,38 +26,49 @@ import android.view.ViewGroup;
 
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment;
 import com.pranavpandey.android.dynamic.support.sample.R;
-import com.pranavpandey.android.dynamic.support.view.DynamicItemView;
-import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils;
+import com.pranavpandey.android.dynamic.support.sample.controller.SampleTheme;
+import com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference;
+import com.pranavpandey.android.dynamic.utils.DynamicWindowUtils;
 
 /**
- * Home fragment to show some of the features of dynamic-support
- * library by using {@link DynamicFragment}.
+ * Settings fragment to control theme settings by using
+ * {@link DynamicFragment}.
  */
-public class HomeFragment extends DynamicFragment {
+public class SettingsFragment extends DynamicFragment {
 
     /**
-     * @return The new instance of {@link HomeFragment}.
+     * Dynamic color preference for day theme.
      */
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
+    private DynamicColorPreference mAppThemeDay;
+
+    /**
+     * Dynamic color preference for night theme.
+     */
+    private DynamicColorPreference mAppThemeNight;
+
+    /**
+     * @return The new instance of {@link SettingsFragment}.
+     */
+    public static SettingsFragment newInstance() {
+        return new SettingsFragment();
     }
 
     @Override
     protected CharSequence getSubtitle() {
         // Set subtitle for the app compat activity.
-        return getString(R.string.ads_nav_home);
+        return getString(R.string.ads_nav_settings);
     }
 
     @Override
     protected int setNavigationViewCheckedItem() {
         // Select navigation menu item.
-        return R.id.nav_home;
+        return R.id.nav_settings;
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 
     @Override
@@ -68,9 +79,33 @@ public class HomeFragment extends DynamicFragment {
         getDynamicActivity().setToolbarLayoutFlags(
                 AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP);
 
-        // Set subtitle for the dynamic item view.
-        ((DynamicItemView) view.findViewById(R.id.item_gradle)).setSubtitle(
-                String.format(getString(R.string.format_version),
-                DynamicPackageUtils.getAppVersion(getContext())));
+        mAppThemeDay = view.findViewById(R.id.pref_app_theme_day);
+        mAppThemeNight = view.findViewById(R.id.pref_app_theme_night);
+
+        // Hide navigation bar theme if not supported by the device.
+        if (!DynamicWindowUtils.isNavigationBarThemeSupported(getContext())) {
+            view.findViewById(R.id.pref_navigation_bar_theme).setVisibility(View.GONE);
+        }
+    }
+
+    public void onResume() {
+        super.onResume();
+
+        // Update preferences on resume.
+        updatePreferences();
+    }
+
+    /**
+     * Enable or disable day and night theme according to
+     * the app theme.
+     */
+    private void updatePreferences() {
+        if (SampleTheme.isAutoTheme()) {
+            mAppThemeDay.setEnabled(true);
+            mAppThemeNight.setEnabled(true);
+        } else {
+            mAppThemeDay.setEnabled(false);
+            mAppThemeNight.setEnabled(false);
+        }
     }
 }

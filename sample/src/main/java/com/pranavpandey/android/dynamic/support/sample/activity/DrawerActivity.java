@@ -32,6 +32,7 @@ import com.pranavpandey.android.dynamic.support.sample.controller.Constants;
 import com.pranavpandey.android.dynamic.support.sample.controller.SampleController;
 import com.pranavpandey.android.dynamic.support.sample.controller.SampleTheme;
 import com.pranavpandey.android.dynamic.support.sample.fragment.HomeFragment;
+import com.pranavpandey.android.dynamic.support.sample.fragment.SettingsFragment;
 import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
 
 import java.util.Locale;
@@ -134,6 +135,9 @@ public class DrawerActivity extends DynamicDrawerActivity {
                 }
                 break;
             case R.id.nav_settings:
+                if (!(getContentFragment() instanceof SettingsFragment)) {
+                    switchFragment(SettingsFragment.newInstance(), false);
+                }
                 break;
             case R.id.nav_about:
                 break;
