@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright Google Inc.
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -15,12 +15,16 @@
 	limitations under the License.
 -->
 
-<resources>
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="24dp"
+    android:width="24dp"
+    android:viewportHeight="24"
+    android:viewportWidth="24"
+    android:autoMirrored="true">
 
-    <string name="app_name">Dynamic Support</string>
-    <string name="app_subtitle">A library to build apps</string>
-    <string name="app_share">Checkout the Dynamic Support library to build Android apps.</string>
-    <string name="gradle">Gradle dependency</string>
-    <string name="format_version">com.pranavpandey.android:dynamic-support:%1$s</string>
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M12,2C6.48,2 2,6.48 2,12s4.48,10 10,10 10,-4.48 10,-10S17.52,2 12,2zm1,15h-2v-6h2v6zm0,-8h-2V7h2v2z" />
 
-</resources>
+</vector>

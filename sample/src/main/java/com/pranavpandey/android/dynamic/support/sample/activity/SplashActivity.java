@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.sample.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.Animatable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -106,6 +107,8 @@ public class SplashActivity extends DynamicSplashActivity {
     @Override
     public void onPostSplash() {
         // TODO: Do any operation on post splash.
+        startActivity(new Intent(this, DrawerActivity.class));
+        finish();
     }
 
     @Override

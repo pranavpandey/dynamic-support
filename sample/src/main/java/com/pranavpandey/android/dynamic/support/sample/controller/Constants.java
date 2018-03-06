@@ -27,6 +27,17 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 public class Constants {
 
     /**
+     * Open source repository url.
+     */
+    public static final String URL_GITHUB =
+            "https://github.com/pranavpandey/dynamic-support";
+
+    /**
+     * Url to donate via PayPal.
+     */
+    public static final String URL_DONATE = "https://www.paypal.me/pranavpandeydev";
+
+    /**
      * Default value for app theme color.
      * <p>{@code Auto} to use day and night themes.</p>
      */

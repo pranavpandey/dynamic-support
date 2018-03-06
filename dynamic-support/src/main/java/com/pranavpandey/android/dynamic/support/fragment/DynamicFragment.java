@@ -26,6 +26,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.pranavpandey.android.dynamic.support.activity.DynamicActivity;
 import com.pranavpandey.android.dynamic.support.activity.DynamicDrawerActivity;
+import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 
 /**
  * Base fragment class to provide basic functionality and to work
@@ -62,7 +63,7 @@ public abstract class DynamicFragment extends Fragment {
      * is a {@link DynamicDrawerActivity}.
      */
     protected @IdRes int setNavigationViewCheckedItem() {
-        return -1;
+        return DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
     }
 
     @Override
@@ -76,7 +77,8 @@ public abstract class DynamicFragment extends Fragment {
                     .getSupportActionBar().setSubtitle(getSubtitle());
         }
 
-        if (setNavigationViewCheckedItem() != -1
+        if (setNavigationViewCheckedItem()
+                != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID
                 && getActivity() instanceof DynamicDrawerActivity) {
             ((DynamicDrawerActivity) getActivity()).getNavigationView()
                     .setCheckedItem(setNavigationViewCheckedItem());

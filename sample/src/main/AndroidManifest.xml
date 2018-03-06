@@ -38,6 +38,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".activity.DrawerActivity"
+            android:label="@string/app_name" />
+
     </application>
 
 </manifest>
