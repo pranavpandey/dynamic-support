@@ -623,19 +623,21 @@ public final class DynamicScrollUtils {
             ADS_VIEW_SCROLL_BAR_VERTICAL_THUMB =
                     scrollBar.getClass().getDeclaredField("mVerticalThumb");
             ADS_VIEW_SCROLL_BAR_VERTICAL_THUMB.setAccessible(true);
-            ADS_VIEW_SCROLL_BAR_HORIZONTAL_THUMB =
-                    scrollBar.getClass().getDeclaredField("mHorizontalThumb");
-            ADS_VIEW_SCROLL_BAR_HORIZONTAL_THUMB.setAccessible(true);
 
             if (ADS_VIEW_SCROLL_BAR_VERTICAL_THUMB != null) {
                 DynamicDrawableUtils.colorizeDrawable((Drawable)
                         ADS_VIEW_SCROLL_BAR_VERTICAL_THUMB.get(scrollBar), color);
             }
 
-            if (ADS_VIEW_SCROLL_BAR_HORIZONTAL_THUMB != null) {
-                DynamicDrawableUtils.colorizeDrawable((Drawable)
-                        ADS_VIEW_SCROLL_BAR_HORIZONTAL_THUMB.get(scrollBar), color);
-            }
+            // Fix for Android P developer preview. For more info, please
+            // visit g.co/dev/appcompat.
+//            ADS_VIEW_SCROLL_BAR_HORIZONTAL_THUMB =
+//                    scrollBar.getClass().getDeclaredField("mHorizontalThumb");
+//            ADS_VIEW_SCROLL_BAR_HORIZONTAL_THUMB.setAccessible(true);
+//            if (ADS_VIEW_SCROLL_BAR_HORIZONTAL_THUMB != null) {
+//                DynamicDrawableUtils.colorizeDrawable((Drawable)
+//                        ADS_VIEW_SCROLL_BAR_HORIZONTAL_THUMB.get(scrollBar), color);
+//            }
         } catch(Exception ignored) {
         }
     }
