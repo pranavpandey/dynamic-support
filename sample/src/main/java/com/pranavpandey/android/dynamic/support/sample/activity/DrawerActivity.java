@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.sample.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.IdRes;
@@ -74,13 +75,13 @@ public class DrawerActivity extends DynamicDrawerActivity {
 
     @Override
     protected boolean setNavigationBarTheme() {
-        // Return true to apply the navigation bar theme.
+        // TODO: Return true to apply the navigation bar theme.
         return SampleController.getInstance().isThemeNavigationBar();
     }
 
     @Override
     public boolean isPersistentDrawer() {
-        // Return true to make navigation drawer persistent or opened.
+        // TODO: Return true to make navigation drawer persistent or opened.
         return getResources().getBoolean(R.bool.ads_persistent_drawer);
     }
 
@@ -109,6 +110,12 @@ public class DrawerActivity extends DynamicDrawerActivity {
                 DynamicLinkUtils.viewUrl(DrawerActivity.this, Constants.URL_GITHUB);
             }
         });
+
+        // Show tutorial on first launch.
+        if (SampleController.getInstance().isFirstLaunch()) {
+            SampleController.getInstance().setFirstLaunch(false);
+            startActivity(new Intent(this, TutorialActivity.class));
+        }
     }
 
     @Override

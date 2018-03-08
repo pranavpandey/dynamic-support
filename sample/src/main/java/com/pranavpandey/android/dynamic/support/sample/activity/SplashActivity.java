@@ -38,12 +38,10 @@ import java.util.Locale;
  */
 public class SplashActivity extends DynamicSplashActivity {
 
+    /**
+     * Splash image view to start animations.
+     */
     private AppCompatImageView mSplash;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public @Nullable Locale getLocale() {
@@ -67,6 +65,7 @@ public class SplashActivity extends DynamicSplashActivity {
 
     @Override
     protected boolean setNavigationBarTheme() {
+        // TODO: Return true to apply the navigation bar theme.
         return SampleController.getInstance().isThemeNavigationBar();
     }
 
@@ -88,6 +87,7 @@ public class SplashActivity extends DynamicSplashActivity {
 
     @Override
     public void onViewCreated(@NonNull View view) {
+        // TODO: Get any view reference here.
         mSplash = view.findViewById(R.id.splash_image);
     }
 
@@ -115,6 +115,7 @@ public class SplashActivity extends DynamicSplashActivity {
     public void finish() {
         super.finish();
 
+        // TODO: Enter and exit animation according ot the need.
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

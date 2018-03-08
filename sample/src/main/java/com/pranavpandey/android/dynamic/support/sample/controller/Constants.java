@@ -74,6 +74,12 @@ public class Constants {
             Color.parseColor("#E91E63");
 
     /**
+     * Shared preferences key for first launch of the app.
+     */
+    public static final String PREF_FIRST_LAUNCH =
+            "pref_first_launch";
+
+    /**
      * Shared preferences key for app theme color.
      */
     public static final String PREF_SETTINGS_APP_THEME_COLOR =
@@ -108,6 +114,11 @@ public class Constants {
      */
     public static final String PREF_SETTINGS_NAVIGATION_BAR_THEME =
             "pref_settings_navigation_bar_theme";
+
+    /**
+     * Shared preferences default value for first launch of the app.
+     */
+    public static final boolean PREF_FIRST_LAUNCH_DEFAULT = true;
 
     /**
      * Shared preferences default value for app theme color.

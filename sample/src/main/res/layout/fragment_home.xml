@@ -29,7 +29,6 @@
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/rotation_key_view"
             style="@style/Widget.DynamicApp.Card">
 
             <com.pranavpandey.android.dynamic.support.view.DynamicItemView
@@ -40,6 +39,33 @@
                 app:ads_dynamicInfo_title="@string/gradle"
                 app:ads_dynamicInfo_subtitle="@string/format_version"
                 app:ads_dynamicInfo_colorType="primary" />
+
+        </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            style="@style/Widget.DynamicApp.Card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.pranavpandey.android.dynamic.support.view.DynamicHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_dynamicHeader_title="@string/ads_general" />
+
+                <com.pranavpandey.android.dynamic.support.setting.DynamicScreenPreference
+                    android:id="@+id/pref_tutorial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_dynamicPreference_icon="@drawable/ads_ic_tutorial"
+                    app:ads_dynamicPreference_title="@string/tutorial"
+                    app:ads_dynamicPreference_summary="@string/tutorial_activity_subtitle" />
+
+            </LinearLayout>
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 

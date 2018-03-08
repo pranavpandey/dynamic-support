@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.sample.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,6 +27,8 @@ import android.view.ViewGroup;
 
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment;
 import com.pranavpandey.android.dynamic.support.sample.R;
+import com.pranavpandey.android.dynamic.support.sample.activity.TutorialActivity;
+import com.pranavpandey.android.dynamic.support.setting.DynamicScreenPreference;
 import com.pranavpandey.android.dynamic.support.view.DynamicItemView;
 import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils;
 
@@ -72,5 +75,14 @@ public class HomeFragment extends DynamicFragment {
         ((DynamicItemView) view.findViewById(R.id.item_gradle)).setSubtitle(
                 String.format(getString(R.string.format_version),
                 DynamicPackageUtils.getAppVersion(getContext())));
+
+        // Set on preference click listeners.
+        ((DynamicScreenPreference) view.findViewById(R.id.pref_tutorial))
+                .setOnPreferenceClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(), TutorialActivity.class));
+                    }
+                });
     }
 }

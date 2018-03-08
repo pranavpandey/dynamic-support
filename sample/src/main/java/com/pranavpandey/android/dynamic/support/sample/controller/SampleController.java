@@ -98,6 +98,24 @@ public class SampleController {
     }
 
     /**
+     * @return {@code true} if app is launched for the first time.
+     */
+    public boolean isFirstLaunch() {
+        return DynamicPreferences.getInstance().loadPrefs(
+                Constants.PREF_FIRST_LAUNCH,
+                Constants.PREF_FIRST_LAUNCH_DEFAULT);
+    }
+
+    /**
+     * Set the value for {@link Constants#PREF_FIRST_LAUNCH}
+     * shared preference.
+     */
+    public void setFirstLaunch(boolean firstLaunch) {
+        DynamicPreferences.getInstance().savePrefs(
+                Constants.PREF_FIRST_LAUNCH, firstLaunch);
+    }
+
+    /**
      * @return The app theme primary color.
      */
     public @ColorInt int getColorPrimaryApp() {
