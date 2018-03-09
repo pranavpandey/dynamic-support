@@ -28,6 +28,7 @@ import android.support.v4.view.LayoutInflaterCompat;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
+import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
@@ -40,6 +41,16 @@ import java.util.HashSet;
  * heavily dependent on this class to generate colors dynamically.
  */
 public class DynamicTheme implements DynamicListener {
+
+    /**
+     * Dynamic theme shared preferences.
+     */
+    public static final String ADS_PREF_THEME = "ads_dynamic_theme";
+
+    /**
+     * Key for the theme preference.
+     */
+    public static final String ADS_PREF_THEME_KEY = "ads_theme_";
 
     /**
      * Constant for the auto theme.
@@ -193,6 +204,12 @@ public class DynamicTheme implements DynamicListener {
      * Tint color according to the {@link #mWidgetAccentColor}.
      */
     private @ColorInt int mTintWidgetAccentColor;
+
+    /**
+     * Theme resource used by the {@link #mLocalContext}, generally an
+     * activity.
+     */
+    private @ColorInt int mLocalThemeRes;
 
     /**
      * Background color used by the {@link #mLocalContext}, generally an
@@ -364,6 +381,7 @@ public class DynamicTheme implements DynamicListener {
      */
     public DynamicTheme setTheme(@StyleRes int theme, boolean initializeRemoteColors) {
         mContext.getTheme().applyStyle(theme, true);
+
         this.mBackgroundColor = DynamicResourceUtils.resolveColor(mContext,
                 android.R.attr.windowBackground, DynamicColorType.NONE);
         this.mPrimaryColor = DynamicResourceUtils.resolveColor(mContext,
@@ -397,6 +415,8 @@ public class DynamicTheme implements DynamicListener {
         if (mLocalContext == null) {
             throw new IllegalStateException("Not attached to a local mContext.");
         }
+
+        this.mLocalThemeRes = localTheme;
         mLocalContext.getTheme().applyStyle(localTheme, true);
         this.mLocalBackgroundColor = DynamicResourceUtils.resolveColor(mLocalContext,
                 android.R.attr.windowBackground, DynamicColorType.NONE);
@@ -1474,6 +1494,7 @@ public class DynamicTheme implements DynamicListener {
             return;
         }
 
+        saveLocalTheme();
         removeDynamicThemeListener(mLocalContext);
         mLocalContext = null;
     }
@@ -1524,5 +1545,79 @@ public class DynamicTheme implements DynamicListener {
         for (DynamicListener dynamicListener : mDynamicListeners) {
             dynamicListener.onDynamicChange(context, recreate);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "DynamicTheme{" +
+                "mBackgroundColor=" + mBackgroundColor +
+                ", mPrimaryColor=" + mPrimaryColor +
+                ", mPrimaryColorDark=" + mPrimaryColorDark +
+                ", mAccentColor=" + mAccentColor +
+                ", mAccentColorDark=" + mAccentColorDark +
+                ", mTintBackgroundColor=" + mTintBackgroundColor +
+                ", mTintPrimaryColor=" + mTintPrimaryColor +
+                ", mTintPrimaryColorDark=" + mTintPrimaryColorDark +
+                ", mTintAccentColor=" + mTintAccentColor +
+                ", mTintAccentColorDark=" + mTintAccentColorDark +
+                ", mRemoteBackgroundColor=" + mRemoteBackgroundColor +
+                ", mRemotePrimaryColor=" + mRemotePrimaryColor +
+                ", mRemoteAccentColor=" + mRemoteAccentColor +
+                ", mTintRemotePrimaryColor=" + mTintRemotePrimaryColor +
+                ", mTintRemoteAccentColor=" + mTintRemoteAccentColor +
+                ", mNotificationBackgroundColor=" + mNotificationBackgroundColor +
+                ", mNotificationPrimaryColor=" + mNotificationPrimaryColor +
+                ", mNotificationAccentColor=" + mNotificationAccentColor +
+                ", mTintNotificationPrimaryColor=" + mTintNotificationPrimaryColor +
+                ", mTintNotificationAccentColor=" + mTintNotificationAccentColor +
+                ", mWidgetBackgroundColor=" + mWidgetBackgroundColor +
+                ", mWidgetPrimaryColor=" + mWidgetPrimaryColor +
+                ", mWidgetAccentColor=" + mWidgetAccentColor +
+                ", mTintWidgetPrimaryColor=" + mTintWidgetPrimaryColor +
+                ", mTintWidgetAccentColor=" + mTintWidgetAccentColor +
+                ", mLocalThemeRes=" + mLocalThemeRes +
+                ", mLocalBackgroundColor=" + mLocalBackgroundColor +
+                ", mLocalPrimaryColor=" + mLocalPrimaryColor +
+                ", mLocalPrimaryColorDark=" + mLocalPrimaryColorDark +
+                ", mLocalAccentColor=" + mLocalAccentColor +
+                ", mLocalAccentColorDark=" + mLocalAccentColorDark +
+                ", mTintLocalBackgroundColor=" + mTintLocalBackgroundColor +
+                ", mTintLocalPrimaryColor=" + mTintLocalPrimaryColor +
+                ", mTintLocalPrimaryColorDark=" + mTintLocalPrimaryColorDark +
+                ", mTintLocalAccentColor=" + mTintLocalAccentColor +
+                ", mTintLocalAccentColorDark=" + mTintLocalAccentColorDark +
+                '}';
+    }
+
+    /**
+     * Save the {@link #mLocalContext} in shared preferences.
+     */
+    public void saveLocalTheme() {
+        if (mLocalContext != null) {
+            DynamicPreferences.getInstance().savePrefs(ADS_PREF_THEME,
+                    ADS_PREF_THEME_KEY + mLocalContext.getClass().getName(), toString());
+        }
+    }
+
+    /**
+     * Get the supplied context theme from shared preferences.
+     *
+     * @param context The context to retrieve the theme.
+     *
+     * @return The supplied context theme from the shared preferences.
+     */
+    public @Nullable String getLocalTheme(@NonNull Context context) {
+        return DynamicPreferences.getInstance().loadPrefs(ADS_PREF_THEME,
+                ADS_PREF_THEME_KEY + context.getClass().getName(), null);
+    }
+
+    /**
+     * Delete the supplied context theme from shared preferences.
+     *
+     * @param context The context to delete the theme.
+     */
+    public void deleteLocalTheme(@NonNull Context context) {
+        DynamicPreferences.getInstance().deletePrefs(ADS_PREF_THEME,
+                ADS_PREF_THEME_KEY + context.getClass().getName());
     }
 }

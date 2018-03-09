@@ -61,6 +61,14 @@
                     app:ads_dynamicPreference_title="@string/tutorial"
                     app:ads_dynamicPreference_summary="@string/tutorial_activity_subtitle" />
 
+                <com.pranavpandey.android.dynamic.support.setting.DynamicScreenPreference
+                    android:id="@+id/pref_collapsing_app_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_dynamicPreference_icon="@drawable/ic_collapsing_app_bar"
+                    app:ads_dynamicPreference_title="@string/collapsing_app_bar"
+                    app:ads_dynamicPreference_summary="@string/collapsing_app_bar_subtitle" />
+
             </LinearLayout>
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>

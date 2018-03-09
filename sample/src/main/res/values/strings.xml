@@ -22,6 +22,8 @@
     <string name="app_share">Checkout the Dynamic Support library to build Android apps.</string>
     <string name="gradle">Gradle dependency</string>
     <string name="format_version">com.pranavpandey.android:dynamic-support:%1$s</string>
+    <string name="color_primary">Primary</string>
+    <string name="color_accent">Accent</string>
 
     <string name="tutorial">Tutorial</string>
     <string name="tutorial_sample">Sample Tutorial</string>
@@ -33,9 +35,9 @@
     <string name="tutorial_finish">Thank you!</string>
     <string name="tutorial_finish_subtitle">Checkout the sources on GitHub</string>
     <string name="tutorial_finish_desc">This sample only implements the basic features of the library. Keep exploring the sources to find out the hidden gems of Dynamic Support.</string>
+    <string name="collapsing_app_bar">Collapsing App Bar</string>
+    <string name="collapsing_app_bar_subtitle">A collapsing app bar layout using dynamic activity.</string>
 
-    <string name="color_primary">Primary</string>
-    <string name="color_accent">Accent</string>
     <string name="widget_buttons">Buttons</string>
     <string name="widget_button_raised">Raised</string>
     <string name="widget_button_flat">Flat</string>

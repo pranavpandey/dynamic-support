@@ -52,15 +52,15 @@ public class DrawerActivity extends DynamicDrawerActivity {
     private static final int NAV_DRAWER_LAUNCH_DELAY = 250;
 
     @Override
-    protected int getContentRes() {
-        // Returning default dynamic support drawer layout.
-        return ADS_DEFAULT_LAYOUT_RES;
-    }
-
-    @Override
     public @Nullable Locale getLocale() {
         // TODO: Not implementing multiple locales so, returning null.
         return null;
+    }
+
+    @Override
+    protected int getContentRes() {
+        // Returning default dynamic support drawer layout.
+        return ADS_DEFAULT_LAYOUT_RES;
     }
 
     @Override
@@ -91,7 +91,7 @@ public class DrawerActivity extends DynamicDrawerActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Set app bar title.
+        // TODO: Set app bar title.
         setTitle(R.string.app_name);
 
         // Set navigation drawer header and menu.

@@ -46,6 +46,10 @@
             android:name=".activity.TutorialActivity"
             android:label="@string/tutorial_sample" />
 
+        <activity
+            android:name=".activity.CollapsingAppBarActivity"
+            android:label="@string/collapsing_app_bar" />
+
     </application>
 
 </manifest>

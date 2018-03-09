@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment;
 import com.pranavpandey.android.dynamic.support.sample.R;
+import com.pranavpandey.android.dynamic.support.sample.activity.CollapsingAppBarActivity;
 import com.pranavpandey.android.dynamic.support.sample.activity.TutorialActivity;
 import com.pranavpandey.android.dynamic.support.setting.DynamicScreenPreference;
 import com.pranavpandey.android.dynamic.support.view.DynamicItemView;
@@ -82,6 +83,13 @@ public class HomeFragment extends DynamicFragment {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(getActivity(), TutorialActivity.class));
+                    }
+                });
+        ((DynamicScreenPreference) view.findViewById(R.id.pref_collapsing_app_bar))
+                .setOnPreferenceClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(), CollapsingAppBarActivity.class));
                     }
                 });
     }

@@ -68,6 +68,12 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     protected Context mContext = this;
 
     /**
+     * Dynamic theme key to maintain its state.
+     */
+    protected static final String ADS_STATE_DYNAMIC_THEME =
+            "ads_state_dynamic_theme";
+
+    /**
      * Status bar color key to maintain its state.
      */
     protected static final String ADS_STATE_STATUS_BAR_COLOR =
@@ -101,11 +107,6 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
             Color.parseColor("#1A000000");
 
     /**
-     * Current theme resource applied to this activity.
-     */
-    private @StyleRes int mCurrentThemeRes;
-
-    /**
      * Current locale used by this activity.
      */
     private Locale mCurrentLocale;
@@ -124,6 +125,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * Applied navigation bar color.
      */
     protected @ColorInt int mAppliedNavigationBarColor;
+
+    /**
+     * {@code true} if navigation bar theme is applied.
+     */
+    protected boolean mNavigationBarTheme;
 
     @Override
     public void attachBaseContext(@NonNull Context base) {
@@ -203,10 +209,8 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * Set the current theme resource for this activity.
      */
     private void setThemeRes() {
-        mCurrentThemeRes = getThemeRes();
-
-        if (mCurrentThemeRes != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
-            DynamicTheme.getInstance().attach(this).setLocalTheme(mCurrentThemeRes);
+        if (getThemeRes() != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
+            DynamicTheme.getInstance().attach(this).setLocalTheme(getThemeRes());
         }
     }
 
@@ -221,6 +225,13 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      */
     protected boolean setNavigationBarTheme() {
         return false;
+    }
+
+    /**
+     * Getter for {@link #mNavigationBarTheme}
+     */
+    public boolean isNavigationBarTheme() {
+        return mNavigationBarTheme;
     }
 
     /**
@@ -350,7 +361,9 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
 
         this.mNavigationBarColor = color;
         if (DynamicVersionUtils.isLollipop()) {
-            mAppliedNavigationBarColor = color = setNavigationBarTheme()
+            this.mNavigationBarTheme = setNavigationBarTheme();
+
+            mAppliedNavigationBarColor = color = mNavigationBarTheme
                     ? color : ADS_DEFAULT_SYSTEM_BG_COLOR;
             getWindow().setNavigationBarColor(color);
         } else {
@@ -422,11 +435,12 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
                     .registerOnSharedPreferenceChangeListener(this);
         }
 
-        final @StyleRes int themeRes = mCurrentThemeRes;
         setThemeRes();
         onCustomiseTheme();
+        setNavigationBarColor(mNavigationBarColor);
 
-        if (themeRes != getThemeRes()) {
+        final String theme = DynamicTheme.getInstance().getLocalTheme(this);
+        if (theme != null && !theme.equals(DynamicTheme.getInstance().toString())) {
             DynamicTheme.getInstance().onDynamicChange(false, true);
         } else if (mCurrentLocale != null) {
             if (!mCurrentLocale.equals(DynamicLocaleUtils.getLocale(
@@ -445,6 +459,12 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
             PreferenceManager.getDefaultSharedPreferences(this)
                     .unregisterOnSharedPreferenceChangeListener(this);
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        DynamicTheme.getInstance().deleteLocalTheme(this);
+        super.onDestroy();
     }
 
     @Override
