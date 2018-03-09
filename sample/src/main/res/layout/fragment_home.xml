@@ -81,6 +81,20 @@
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
+        <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+            style="@style/Widget.DynamicApp.Card">
+
+            <com.pranavpandey.android.dynamic.support.view.DynamicItemView
+                android:id="@+id/item_rotation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ads_dynamicInfo_icon="@drawable/ic_rotation"
+                app:ads_dynamicInfo_title="@string/rotation"
+                app:ads_dynamicInfo_subtitle="@string/rotation_subtitle"
+                app:ads_dynamicInfo_colorType="primary" />
+
+        </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
     </LinearLayout>
 
 </com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView>

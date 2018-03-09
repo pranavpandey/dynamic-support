@@ -32,6 +32,11 @@ public class Constants {
     public static final String ME = "Pranav Pandey";
 
     /**
+     * Rotation package name.
+     */
+    public static final String PACKAGE_ROTATION = "com.pranavpandey.rotation";
+
+    /**
      * Open source repository url.
      */
     public static final String URL_GITHUB =

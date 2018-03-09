@@ -162,7 +162,8 @@ public class BottomNavigationActivity extends DynamicActivity {
      */
     private void themeBottomNavigationView() {
         if (mBottomNavigationView != null) {
-            if (mAppliedNavigationBarColor != ADS_DEFAULT_SYSTEM_BG_COLOR) {
+            if (isNavigationBarTheme()
+                    && mAppliedNavigationBarColor != ADS_DEFAULT_SYSTEM_BG_COLOR) {
                 mBottomNavigationView.setColor(mNavigationBarColor);
                 mBottomNavigationView.setTextColor(
                         DynamicColorUtils.getTintColor(mNavigationBarColor));

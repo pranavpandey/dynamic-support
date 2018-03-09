@@ -30,8 +30,10 @@ import com.pranavpandey.android.dynamic.support.sample.R;
 import com.pranavpandey.android.dynamic.support.sample.activity.BottomNavigationActivity;
 import com.pranavpandey.android.dynamic.support.sample.activity.CollapsingAppBarActivity;
 import com.pranavpandey.android.dynamic.support.sample.activity.TutorialActivity;
+import com.pranavpandey.android.dynamic.support.sample.controller.Constants;
 import com.pranavpandey.android.dynamic.support.setting.DynamicScreenPreference;
 import com.pranavpandey.android.dynamic.support.view.DynamicItemView;
+import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils;
 
 /**
@@ -77,6 +79,16 @@ public class HomeFragment extends DynamicFragment {
         ((DynamicItemView) view.findViewById(R.id.item_gradle)).setSubtitle(
                 String.format(getString(R.string.format_version),
                 DynamicPackageUtils.getAppVersion(getContext())));
+
+        // Set subtitle for the dynamic item view.
+        ((DynamicItemView) view.findViewById(R.id.item_rotation))
+                .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // View an app in Google Play by supplying the package name.
+                DynamicLinkUtils.viewInGooglePlay(getContext(), Constants.PACKAGE_ROTATION);
+            }
+        });
 
         // Set on preference click listeners.
         // Start tutorial activity.

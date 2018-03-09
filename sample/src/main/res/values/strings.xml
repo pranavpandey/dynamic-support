@@ -41,6 +41,8 @@
     <string name="collapsing_app_bar_subtitle">A collapsing app bar layout by using dynamic activity.</string>
     <string name="bottom_navigation">Bottom navigation</string>
     <string name="bottom_navigation_subtitle">A bottom navigation view by using dynamic activity.</string>
+    <string name="rotation">Rotation - Orientation Manager</string>
+    <string name="rotation_subtitle">An app completely built by using this library. It covers some more advanced use cases like multiple locales, runtime permissions, etc. and can motivate to implement similar kind of functionality by exploring the sources of Dynamic Support.</string>
 
     <!-- Widgets -->
     <string name="widget_buttons">Buttons</string>
