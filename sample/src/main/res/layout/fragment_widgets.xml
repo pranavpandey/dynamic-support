@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scroll_home"
+    style="@style/Widget.DynamicApp.Scroller.Padding.Vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+            style="@style/Widget.DynamicApp.Card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.pranavpandey.android.dynamic.support.view.DynamicHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_dynamicHeader_title="@string/widget_buttons" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/ads_margin_small"
+                    android:orientation="horizontal">
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="@string/widget_button_raised"
+                        style="@style/Widget.DynamicApp.Button.Colored" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="@string/ads_disabled"
+                        android:enabled="false"
+                        style="@style/Widget.DynamicApp.Button.Colored" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="@string/color_primary"
+                        style="@style/Widget.DynamicApp.Button.Colored.Primary" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/ads_margin_small"
+                    android:orientation="horizontal">
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="@string/widget_button_flat"
+                        style="@style/Widget.DynamicApp.Button.Borderless" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="@string/ads_disabled"
+                        android:enabled="false"
+                        style="@style/Widget.DynamicApp.Button.Borderless" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="@string/color_primary"
+                        style="@style/Widget.DynamicApp.Button.Borderless.Primary" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+            style="@style/Widget.DynamicApp.Card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.pranavpandey.android.dynamic.support.view.DynamicHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_dynamicHeader_title="@string/widget_checked" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/ads_margin_small"
+                    android:orientation="horizontal">
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicSwitchCompat
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:padding="@dimen/ads_margin_small"
+                        android:text="@string/widget_switch" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicSwitchCompat
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:padding="@dimen/ads_margin_small"
+                        android:enabled="false"
+                        android:text="@string/ads_disabled"/>
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicSwitchCompat
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:padding="@dimen/ads_margin_small"
+                        android:checked="true"
+                        android:enabled="false"
+                        app:ads_colorType="primary"
+                        android:text="@string/color_primary" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/ads_margin_small"
+                    android:orientation="horizontal">
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicCheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:padding="@dimen/ads_margin_small"
+                        android:text="@string/widget_checkbox" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicCheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:enabled="false"
+                        android:padding="@dimen/ads_margin_small"
+                        android:text="@string/ads_disabled" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicCheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:padding="@dimen/ads_margin_small"
+                        android:checked="true"
+                        android:enabled="false"
+                        app:ads_colorType="primary"
+                        android:text="@string/color_primary" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/ads_margin_small"
+                    android:orientation="horizontal">
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicRadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:padding="@dimen/ads_margin_small"
+                        android:text="@string/widget_radio" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicRadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:enabled="false"
+                        android:padding="@dimen/ads_margin_small"
+                        android:text="@string/ads_disabled" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicRadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:padding="@dimen/ads_margin_small"
+                        android:checked="true"
+                        android:enabled="false"
+                        app:ads_colorType="primary"
+                        android:text="@string/color_primary" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+            style="@style/Widget.DynamicApp.Card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.pranavpandey.android.dynamic.support.view.DynamicHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_dynamicHeader_title="@string/widget_input" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/ads_margin_small"
+                    android:orientation="vertical">
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/widget_edit_text" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ads_margin_tiny">
+
+                        <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/widget_text_input_layout" />
+
+                    </com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+            style="@style/Widget.DynamicApp.Card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.pranavpandey.android.dynamic.support.view.DynamicHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_dynamicHeader_title="@string/widget_progress" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/ads_margin_small"
+                    android:orientation="vertical">
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicSeekBar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:progress="75" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicSeekBar
+                        android:id="@+id/seek_bar_disabled"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ads_margin_small"
+                        android:max="100"
+                        android:progress="25"
+                        app:ads_colorType="background" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicSeekBar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ads_margin_small"
+                        android:max="100"
+                        android:progress="50"
+                        app:ads_colorType="primary" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/ads_margin_small"
+                        android:orientation="horizontal">
+
+                        <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/ads_icon_normal"
+                            android:layout_weight="1.0"
+                            android:layout_gravity="center"
+                            android:indeterminate="true"
+                            style="?android:attr/progressBarStyle" />
+
+                        <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/ads_icon_normal"
+                            android:layout_weight="1.0"
+                            android:layout_gravity="center"
+                            android:indeterminate="true"
+                            app:ads_colorType="background"
+                            style="?android:attr/progressBarStyle" />
+
+                        <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/ads_icon_normal"
+                            android:layout_weight="1.0"
+                            android:layout_gravity="center"
+                            android:indeterminate="true"
+                            app:ads_colorType="primary"
+                            style="?android:attr/progressBarStyle" />
+
+                    </LinearLayout>
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        style="?android:attr/progressBarStyleHorizontal" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:progress="50"
+                        app:ads_colorType="background"
+                        style="?android:attr/progressBarStyleHorizontal" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        app:ads_colorType="primary"
+                        style="?android:attr/progressBarStyleHorizontal" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+            style="@style/Widget.DynamicApp.Card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.pranavpandey.android.dynamic.support.view.DynamicHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_dynamicHeader_title="@string/widget_spinner" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/ads_margin_tiny"
+                    android:orientation="vertical">
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicSpinner
+                        android:id="@+id/spinner_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicSpinner
+                        android:id="@+id/spinner_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ads_margin_small"
+                        app:ads_colorType="background" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicSpinner
+                        android:id="@+id/spinner_three"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ads_margin_small"
+                        app:ads_colorType="primary" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
+    </LinearLayout>
+
+</com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView>

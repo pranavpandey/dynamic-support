@@ -16,9 +16,11 @@
 
 package com.pranavpandey.android.dynamic.support.utils;
 
+import android.annotation.TargetApi;
 import android.app.Service;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.RestrictTo;
@@ -46,6 +48,7 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  * the app's theme.
  */
 @RestrictTo(LIBRARY_GROUP)
+@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public final class DynamicInputUtils {
 
     /**
@@ -176,6 +179,9 @@ public final class DynamicInputUtils {
                             + t.getLocalizedMessage(), t);
         }
 
+        if (textInputLayout.getEditText() != null) {
+            setColor(textInputLayout.getEditText(), color);
+        }
         setHint(textInputLayout, color);
     }
 

@@ -34,4 +34,20 @@
     <string name="tutorial_finish_subtitle">Checkout the sources on GitHub</string>
     <string name="tutorial_finish_desc">This sample only implements the basic features of the library. Keep exploring the sources to find out the hidden gems of Dynamic Support.</string>
 
+    <string name="color_primary">Primary</string>
+    <string name="color_accent">Accent</string>
+    <string name="widget_buttons">Buttons</string>
+    <string name="widget_button_raised">Raised</string>
+    <string name="widget_button_flat">Flat</string>
+    <string name="widget_checked">Checked</string>
+    <string name="widget_switch">Switch</string>
+    <string name="widget_checkbox">Checkbox</string>
+    <string name="widget_radio">Radio</string>
+    <string name="widget_input">Input</string>
+    <string name="widget_edit_text">Edit Text</string>
+    <string name="widget_text_input_layout">Text Input Layout</string>
+    <string name="widget_progress">Progress</string>
+    <string name="widget_spinner">Spinner</string>
+    <string name="widget_icon">Icon</string>
+
 </resources>

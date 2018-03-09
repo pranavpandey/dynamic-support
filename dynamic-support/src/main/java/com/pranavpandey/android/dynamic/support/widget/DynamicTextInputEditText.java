@@ -18,15 +18,17 @@ package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Rect;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
@@ -199,6 +201,16 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
         super.setEnabled(enabled);
 
         setAlpha(enabled ? WidgetDefaults.ADS_ALPHA_ENABLED : WidgetDefaults.ADS_ALPHA_DISABLED);
+    }
+
+    @Override
+    protected void onFocusChanged(boolean gainFocus, @ViewCompat.FocusDirection int direction,
+                                  @Nullable Rect previouslyFocusedRect) {
+        super.onFocusChanged(gainFocus, direction, previouslyFocusedRect);
+
+        if (gainFocus) {
+            setColor();
+        }
     }
 
     @Override

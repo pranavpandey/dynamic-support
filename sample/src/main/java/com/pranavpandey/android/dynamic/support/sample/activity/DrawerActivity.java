@@ -19,6 +19,7 @@ package com.pranavpandey.android.dynamic.support.sample.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -34,6 +35,7 @@ import com.pranavpandey.android.dynamic.support.sample.controller.SampleControll
 import com.pranavpandey.android.dynamic.support.sample.controller.SampleTheme;
 import com.pranavpandey.android.dynamic.support.sample.fragment.AboutFragment;
 import com.pranavpandey.android.dynamic.support.sample.fragment.HomeFragment;
+import com.pranavpandey.android.dynamic.support.sample.fragment.AppSettingsFragment;
 import com.pranavpandey.android.dynamic.support.sample.fragment.SettingsFragment;
 import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
 
@@ -144,7 +146,7 @@ public class DrawerActivity extends DynamicDrawerActivity {
                 break;
             case R.id.nav_settings:
                 if (!(getContentFragment() instanceof SettingsFragment)) {
-                    switchFragment(SettingsFragment.newInstance(), false);
+                    switchFragment(SettingsFragment.newInstance(0), false);
                 }
                 break;
             case R.id.nav_about:

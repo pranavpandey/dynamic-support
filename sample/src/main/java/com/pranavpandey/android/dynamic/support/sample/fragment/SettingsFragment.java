@@ -17,40 +17,34 @@
 package com.pranavpandey.android.dynamic.support.sample.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.v4.app.Fragment;
 
-import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment;
+import com.pranavpandey.android.dynamic.support.fragment.DynamicViewPagerFragment;
 import com.pranavpandey.android.dynamic.support.sample.R;
-import com.pranavpandey.android.dynamic.support.sample.controller.SampleTheme;
-import com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference;
-import com.pranavpandey.android.dynamic.utils.DynamicWindowUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Settings fragment to control theme settings by using
- * {@link DynamicFragment}.
+ * Settings fragment to show app settings and widgets by using
+ * {@link DynamicViewPagerFragment}.
  */
-public class SettingsFragment extends DynamicFragment {
-
-    /**
-     * Dynamic color preference for day theme.
-     */
-    private DynamicColorPreference mAppThemeDay;
-
-    /**
-     * Dynamic color preference for night theme.
-     */
-    private DynamicColorPreference mAppThemeNight;
+public class SettingsFragment extends DynamicViewPagerFragment {
 
     /**
      * @return The new instance of {@link SettingsFragment}.
+     *
+     * @param page The default selected page.
      */
-    public static SettingsFragment newInstance() {
-        return new SettingsFragment();
+    public static Fragment newInstance(int page) {
+        SettingsFragment fragment = new SettingsFragment();
+        Bundle args = new Bundle();
+        args.putInt(ADS_ARGS_VIEW_PAGER_PAGE, page);
+        fragment.setArguments(args);
+
+        return fragment;
     }
 
     @Override
@@ -66,46 +60,51 @@ public class SettingsFragment extends DynamicFragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+    protected List<String> getTitles() {
+        // Initialize an empty string array for tab titles.
+        List<String> titles = new ArrayList<>();
+
+        // Add tab titles.
+        titles.add(getString(R.string.ads_app));
+        titles.add(getString(R.string.ads_widgets));
+
+        // Return all the added tab titles.
+        return titles;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected List<Fragment> getPages() {
+        // Initialize an empty fragment array for view pages pages.
+        List<Fragment> pages = new ArrayList<>();
 
-        // Do not scroll toolbar for this fragment.
+        // TODO: Add view pager fragments.
+        pages.add(AppSettingsFragment.newInstance());
+        pages.add(WidgetsFragment.newInstance());
+
+        // Return all the added fragments.
+        return pages;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        // Scroll toolbar for this fragment.
         getDynamicActivity().setToolbarLayoutFlags(
-                AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP);
+                AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+                        | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
 
-        mAppThemeDay = view.findViewById(R.id.pref_app_theme_day);
-        mAppThemeNight = view.findViewById(R.id.pref_app_theme_night);
-
-        // Hide navigation bar theme if not supported by the device.
-        if (!DynamicWindowUtils.isNavigationBarThemeSupported(getContext())) {
-            view.findViewById(R.id.pref_navigation_bar_theme).setVisibility(View.GONE);
+        // Select current page from the bundle arguments.
+        if (getArguments() != null && getArguments().containsKey(ADS_ARGS_VIEW_PAGER_PAGE)) {
+            setPage(getArguments().getInt(ADS_ARGS_VIEW_PAGER_PAGE));
         }
     }
 
-    public void onResume() {
-        super.onResume();
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
 
-        // Update preferences on resume.
-        updatePreferences();
-    }
-
-    /**
-     * Enable or disable day and night theme according to
-     * the app theme.
-     */
-    private void updatePreferences() {
-        if (SampleTheme.isAutoTheme()) {
-            mAppThemeDay.setEnabled(true);
-            mAppThemeNight.setEnabled(true);
-        } else {
-            mAppThemeDay.setEnabled(false);
-            mAppThemeNight.setEnabled(false);
-        }
+        // Remove tab layout from the header.
+        getDynamicActivity().addHeader(null, true);
     }
 }

@@ -68,19 +68,27 @@ public class AboutFragment extends DynamicViewPagerFragment {
 
     @Override
     protected List<String> getTitles() {
+        // Initialize an empty string array for tab titles.
         List<String> titles = new ArrayList<>();
+
+        // TODO: Add tab titles.
         titles.add(getString(R.string.ads_menu_info));
         titles.add(getString(R.string.ads_licenses));
 
+        // Return all the added tab titles.
         return titles;
     }
 
     @Override
     protected List<Fragment> getPages() {
+        // Initialize an empty fragment array for view pages pages.
         List<Fragment> pages = new ArrayList<>();
+
+        // TODO: Add view pager fragments.
         pages.add(AppInfoFragment.newInstance());
         pages.add(LicensesFragment.newInstance());
 
+        // Return all the added fragments.
         return pages;
     }
 
@@ -88,6 +96,7 @@ public class AboutFragment extends DynamicViewPagerFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // TODO: Enable app bar options menu.
         setHasOptionsMenu(true);
     }
 
@@ -110,6 +119,7 @@ public class AboutFragment extends DynamicViewPagerFragment {
     public void onCreateOptionsMenu(@Nullable Menu menu, @Nullable MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
+        // TODO: Inflate menu for this fragment.
         inflater.inflate(R.menu.ads_menu_about, menu);
     }
 

@@ -27,8 +27,6 @@
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             style="@style/Widget.DynamicApp.Card">
 
             <com.pranavpandey.android.dynamic.support.view.DynamicItemView
@@ -43,8 +41,6 @@
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             style="@style/Widget.DynamicApp.Card">
 
             <LinearLayout

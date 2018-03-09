@@ -31,10 +31,9 @@ import com.pranavpandey.android.dynamic.support.locale.DynamicLocale;
 import com.pranavpandey.android.dynamic.support.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 
 import java.util.Locale;
-
-import static com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
 
 /**
  * Base application class which can be extended to initialize the
@@ -90,7 +89,7 @@ public abstract class DynamicApplication extends Application implements
      * Set the current theme resource for this application.
      */
     protected void setThemeRes() {
-        if (getThemeRes() != ADS_DEFAULT_RESOURCE_ID) {
+        if (getThemeRes() != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
             DynamicTheme.getInstance().setTheme(getThemeRes(), true);
         }
     }
@@ -108,7 +107,7 @@ public abstract class DynamicApplication extends Application implements
      * @return Style resource to be applied on this activity.
      */
     protected @StyleRes int getThemeRes() {
-        return ADS_DEFAULT_RESOURCE_ID;
+        return DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
     }
 
     /**

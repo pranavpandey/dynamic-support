@@ -40,7 +40,6 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
 
-import static com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
 import static com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE;
 
 /**
@@ -144,7 +143,7 @@ public class DynamicColorPreference extends DynamicSimplePreference
                     false);
             mColorsResId = c.getResourceId(
                     R.styleable.DynamicColorPicker_ads_dynamicColorPicker_colors,
-                    ADS_DEFAULT_RESOURCE_ID);
+                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID);
         } finally {
             a.recycle();
             b.recycle();
@@ -254,7 +253,7 @@ public class DynamicColorPreference extends DynamicSimplePreference
      * Getter for {@link #mColors}.
      */
     public @NonNull @ColorInt Integer[] getColors() {
-        if (mColorsResId != ADS_DEFAULT_RESOURCE_ID) {
+        if (mColorsResId != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
             mColors = DynamicResourceUtils
                     .convertToColorArray(getContext(), mColorsResId);
         }
@@ -271,7 +270,7 @@ public class DynamicColorPreference extends DynamicSimplePreference
      */
     public void setColors(@Nullable @ColorInt Integer[] colors) {
         this.mColors = colors;
-        this.mColorsResId = ADS_DEFAULT_RESOURCE_ID;
+        this.mColorsResId = DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
     }
 
     /**

@@ -64,18 +64,22 @@ public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicSpinnerItem>
 
         DynamicSpinnerItem item = getItem(position);
         if (item != null) {
-            if (item.getIcon() != null) {
-                imageView.setImageDrawable(item.getIcon());
-                imageView.setVisibility(View.VISIBLE);
-            } else {
-                imageView.setVisibility(View.GONE);
+            if (imageView != null) {
+                if (item.getIcon() != null) {
+                    imageView.setImageDrawable(item.getIcon());
+                    imageView.setVisibility(View.VISIBLE);
+                } else {
+                    imageView.setVisibility(View.GONE);
+                }
             }
 
-            if (item.getText() != null) {
-                textView.setText(item.getText());
-                textView.setVisibility(View.VISIBLE);
-            } else {
-                textView.setVisibility(View.GONE);
+            if (textView != null) {
+                if (item.getText() != null) {
+                    textView.setText(item.getText());
+                    textView.setVisibility(View.VISIBLE);
+                } else {
+                    textView.setVisibility(View.GONE);
+                }
             }
         }
 

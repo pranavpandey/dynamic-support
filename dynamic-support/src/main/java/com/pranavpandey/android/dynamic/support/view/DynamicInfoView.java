@@ -43,7 +43,6 @@ import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
 import static com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE;
 
 /**
@@ -184,9 +183,11 @@ public class DynamicInfoView extends FrameLayout {
             mLinksSubtitles = a.getTextArray(R.styleable.DynamicInfo_ads_dynamicInfo_linksSubtitles);
             mLinksUrls = a.getTextArray(R.styleable.DynamicInfo_ads_dynamicInfo_linksUrls);
             mLinksIconsResId = a.getResourceId(
-                    R.styleable.DynamicInfo_ads_dynamicInfo_linksIcons, ADS_DEFAULT_RESOURCE_ID);
+                    R.styleable.DynamicInfo_ads_dynamicInfo_linksIcons,
+                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID);
             mLinksColorsResId = a.getResourceId(
-                    R.styleable.DynamicInfo_ads_dynamicInfo_linksColors, ADS_DEFAULT_RESOURCE_ID);
+                    R.styleable.DynamicInfo_ads_dynamicInfo_linksColors,
+                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID);
         } finally {
             a.recycle();
         }
@@ -261,12 +262,14 @@ public class DynamicInfoView extends FrameLayout {
 
         mDynamicItems.clear();
         if (mLinks != null) {
-            if (mLinksIconsResId != ADS_DEFAULT_RESOURCE_ID && mLinksDrawables == null) {
+            if (mLinksIconsResId != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID
+                    && mLinksDrawables == null) {
                 mLinksDrawables = DynamicResourceUtils.convertToDrawableArray(
                         getContext(), mLinksIconsResId);
             }
 
-            if (mLinksColorsResId != ADS_DEFAULT_RESOURCE_ID && mLinksColors == null) {
+            if (mLinksColorsResId != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID
+                    && mLinksColors == null) {
                 mLinksColors = DynamicResourceUtils.convertToColorArray(
                         getContext(), mLinksColorsResId);
             }

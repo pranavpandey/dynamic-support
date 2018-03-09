@@ -40,14 +40,13 @@ import com.pranavpandey.android.dynamic.support.locale.DynamicLocale;
 import com.pranavpandey.android.dynamic.support.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicWindowUtils;
 
 import java.util.Locale;
-
-import static com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
 
 /**
  * Base activity to perform all the system UI related tasks like status
@@ -183,7 +182,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * @return Style resource to be applied on this activity.
      */
     protected @StyleRes int getThemeRes() {
-        return ADS_DEFAULT_RESOURCE_ID;
+        return DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
     }
 
     /**
@@ -206,7 +205,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     private void setThemeRes() {
         mCurrentThemeRes = getThemeRes();
 
-        if (mCurrentThemeRes != ADS_DEFAULT_RESOURCE_ID) {
+        if (mCurrentThemeRes != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
             DynamicTheme.getInstance().attach(this).setLocalTheme(mCurrentThemeRes);
         }
     }
