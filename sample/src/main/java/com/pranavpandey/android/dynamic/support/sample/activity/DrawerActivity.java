@@ -42,7 +42,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
 import java.util.Locale;
 
 /**
- * Implementing a navigation drawer using {@link DynamicDrawerActivity}.
+ * Implementing a navigation drawer by using {@link DynamicDrawerActivity}.
  */
 public class DrawerActivity extends DynamicDrawerActivity {
 

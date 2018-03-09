@@ -169,6 +169,14 @@ public class WidgetsFragment extends DynamicFragment implements
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        // Disable options menu on destroy.
+        setHasOptionsMenu(false);
+    }
+
+    @Override
     public void onSearchViewExpanded() {
         // Animate drawer toggle icon hamburger to back.
         if (getDynamicActivity() instanceof DynamicDrawerActivity) {

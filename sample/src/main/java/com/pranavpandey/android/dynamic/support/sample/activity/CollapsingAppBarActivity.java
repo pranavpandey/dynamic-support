@@ -31,6 +31,10 @@ import com.pranavpandey.android.dynamic.support.sample.fragment.AppSettingsFragm
 
 import java.util.Locale;
 
+/**
+ * Implementing a collapsing app bar layout by using
+ * {@link DynamicActivity}.
+ */
 public class CollapsingAppBarActivity extends DynamicActivity {
 
     @Override

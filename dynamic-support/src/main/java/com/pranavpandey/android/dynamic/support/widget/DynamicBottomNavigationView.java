@@ -125,7 +125,7 @@ public class DynamicBottomNavigationView extends BottomNavigationView
                     WidgetDefaults.getDefaultContrastWithColor(getContext()));
             mBackgroundAware = a.getBoolean(
                     R.styleable.DynamicTheme_ads_backgroundAware,
-                    WidgetDefaults.ADS_BACKGROUND_AWARE);
+                    WidgetDefaults.ADS_NON_BACKGROUND_AWARE);
         } finally {
             a.recycle();
         }

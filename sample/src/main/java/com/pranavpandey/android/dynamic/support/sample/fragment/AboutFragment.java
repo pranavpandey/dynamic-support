@@ -140,6 +140,9 @@ public class AboutFragment extends DynamicViewPagerFragment {
     public void onDestroy() {
         super.onDestroy();
 
+        // Disable options menu on destroy.
+        setHasOptionsMenu(false);
+
         // Remove tab layout from the header.
         getDynamicActivity().addHeader(null, true);
     }

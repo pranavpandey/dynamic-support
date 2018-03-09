@@ -34,7 +34,7 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import java.util.Locale;
 
 /**
- * Implementing a splash screen using {@link DynamicSplashActivity}.
+ * Implementing a splash screen by using {@link DynamicSplashActivity}.
  */
 public class SplashActivity extends DynamicSplashActivity {
 

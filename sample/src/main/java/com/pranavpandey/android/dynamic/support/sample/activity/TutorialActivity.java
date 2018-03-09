@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 /**
- * Implementing a into screen using {@link DynamicTutorialActivity}.
+ * Implementing a into screen by using {@link DynamicTutorialActivity}.
  */
 public class TutorialActivity extends DynamicTutorialActivity {
 

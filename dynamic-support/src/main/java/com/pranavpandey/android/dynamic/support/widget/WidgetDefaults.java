@@ -86,13 +86,14 @@ public class WidgetDefaults {
     public static final boolean ADS_BACKGROUND_AWARE = true;
 
     /**
-     * Default value to make cards background aware so that they can
-     * change color according to the theme background to provide best
-     * visibility.
+     * Default value to make widgets non background aware so that they
+     * cannot change color according to the theme background. It will
+     * be useful for some views like toolbar, card view,
+     * bottom navigation view, etc.
      * <p>
-     * {@code true} to make widgets background aware.</p>
+     * {@code false} to make widgets non background aware.</p>
      */
-    public static final boolean ADS_BACKGROUND_AWARE_CARD = false;
+    public static final boolean ADS_NON_BACKGROUND_AWARE = false;
 
     /**
      * Default value to show a divider below the widgets.

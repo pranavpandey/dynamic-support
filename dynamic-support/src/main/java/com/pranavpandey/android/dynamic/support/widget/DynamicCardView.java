@@ -107,7 +107,7 @@ public class DynamicCardView extends CardView implements DynamicWidget {
                     WidgetDefaults.getDefaultContrastWithColor(getContext()));
             mBackgroundAware = a.getBoolean(
                     R.styleable.DynamicTheme_ads_backgroundAware,
-                    WidgetDefaults.ADS_BACKGROUND_AWARE_CARD);
+                    WidgetDefaults.ADS_NON_BACKGROUND_AWARE);
         } finally {
             a.recycle();
         }

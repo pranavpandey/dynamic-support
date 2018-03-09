@@ -69,6 +69,14 @@
                     app:ads_dynamicPreference_title="@string/collapsing_app_bar"
                     app:ads_dynamicPreference_summary="@string/collapsing_app_bar_subtitle" />
 
+                <com.pranavpandey.android.dynamic.support.setting.DynamicScreenPreference
+                    android:id="@+id/pref_bottom_navigation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_dynamicPreference_icon="@drawable/ic_bottom_navigation"
+                    app:ads_dynamicPreference_title="@string/bottom_navigation"
+                    app:ads_dynamicPreference_summary="@string/bottom_navigation_subtitle" />
+
             </LinearLayout>
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>

@@ -24,6 +24,7 @@
         <item name="colorAccent">@color/color_accent</item>
     </style>
 
+    <!-- Dark splash theme -->
     <style name="Sample.Splash">
         <item name="android:windowBackground">?colorPrimary</item>
     </style>
@@ -35,6 +36,7 @@
         <item name="colorAccent">@color/color_accent</item>
     </style>
 
+    <!-- Light splash theme -->
     <style name="Sample.Light.Splash">
         <item name="android:windowBackground">?colorPrimary</item>
     </style>

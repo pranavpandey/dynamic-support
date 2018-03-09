@@ -50,6 +50,10 @@
             android:name=".activity.CollapsingAppBarActivity"
             android:label="@string/collapsing_app_bar" />
 
+        <activity
+            android:name=".activity.BottomNavigationActivity"
+            android:label="@string/collapsing_app_bar" />
+
     </application>
 
 </manifest>

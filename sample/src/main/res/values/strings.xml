@@ -17,6 +17,7 @@
 
 <resources>
 
+    <!-- App -->
     <string name="app_name">Dynamic Support</string>
     <string name="app_subtitle">A library to build apps</string>
     <string name="app_share">Checkout the Dynamic Support library to build Android apps.</string>
@@ -25,6 +26,7 @@
     <string name="color_primary">Primary</string>
     <string name="color_accent">Accent</string>
 
+    <!-- Home -->
     <string name="tutorial">Tutorial</string>
     <string name="tutorial_sample">Sample Tutorial</string>
     <string name="tutorial_activity">Tutorial activity</string>
@@ -36,8 +38,11 @@
     <string name="tutorial_finish_subtitle">Checkout the sources on GitHub</string>
     <string name="tutorial_finish_desc">This sample only implements the basic features of the library. Keep exploring the sources to find out the hidden gems of Dynamic Support.</string>
     <string name="collapsing_app_bar">Collapsing App Bar</string>
-    <string name="collapsing_app_bar_subtitle">A collapsing app bar layout using dynamic activity.</string>
+    <string name="collapsing_app_bar_subtitle">A collapsing app bar layout by using dynamic activity.</string>
+    <string name="bottom_navigation">Bottom navigation</string>
+    <string name="bottom_navigation_subtitle">A bottom navigation view by using dynamic activity.</string>
 
+    <!-- Widgets -->
     <string name="widget_buttons">Buttons</string>
     <string name="widget_button_raised">Raised</string>
     <string name="widget_button_flat">Flat</string>
