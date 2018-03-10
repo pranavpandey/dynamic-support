@@ -1,2 +1,1 @@
-include ':sample'
-include 'dynamic-support'
+include ':sample', 'dynamic-support'

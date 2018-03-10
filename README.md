@@ -4,9 +4,14 @@
 
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![Build Status](https://travis-ci.org/pranavpandey/dynamic-support.svg?branch=master)](https://travis-ci.org/pranavpandey/dynamic-support)
+[![Download](https://api.bintray.com/packages/pranavpandey/android/dynamic-support/images/download.svg)](https://bintray.com/pranavpandey/android/dynamic-support/_latestVersion)
 
 A complete library to build apps for Android 14+ (ICS or above) devices with a built-in theme 
 engine.
+
+<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-1.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-3.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-4.png" width="280" height="486">
+
+<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-5.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-6.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-7.png" width="280" height="486">
 
 ---
 
@@ -24,7 +29,7 @@ It can be installed by adding the following dependency to your `build.gradle` fi
 
 ```groovy
 dependencies {
-    implementation 'com.pranavpandey.android:dynamic-support:coming-soon'
+    implementation 'com.pranavpandey.android:dynamic-support:1.0.0'
 }
 ```
 

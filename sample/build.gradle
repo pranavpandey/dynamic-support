@@ -24,5 +24,4 @@ android {
 
 dependencies {
     implementation project(':dynamic-support')
-    implementation "com.pranavpandey.android:dynamic-dialogs:$mavenVersion"
 }
