@@ -7,7 +7,8 @@
 [![Download](https://api.bintray.com/packages/pranavpandey/android/dynamic-support/images/download.svg)](https://bintray.com/pranavpandey/android/dynamic-support/_latestVersion)
 
 A complete library to build apps for Android 14+ (ICS or above) devices with a built-in theme 
-engine.
+engine. It is built on top of the latest [app compat library](https://developer.android.com/topic/libraries/support-library/features.html) 
+to provide best compatibility. 
 
 <img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-1.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-3.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-4.png" width="280" height="486">
 
@@ -19,6 +20,9 @@ engine.
 
 - [Installation](https://github.com/pranavpandey/dynamic-support#installation)
 - [Usage](https://github.com/pranavpandey/dynamic-support#usage)
+    - [Theme engine](https://github.com/pranavpandey/dynamic-support#theme-engine)
+    - [Background aware](https://github.com/pranavpandey/dynamic-support#background-aware)
+    - [Sample](https://github.com/pranavpandey/dynamic-support#sample)
 - [License](https://github.com/pranavpandey/dynamic-support#license)
 
 ---
@@ -36,8 +40,26 @@ dependencies {
 ---
 
 ## Usage
+It is a collection of activities, fragments, widgets, views and some utility functions required to 
+build a standard Android app. It also provides some in-built use cases like an intro screen, 
+drawer activity, about screen, collapsing app bar, bottom navigation, color picker, multiple 
+locales, runtime permissions, etc. which can be used and customised according to the need.
+
+### Theme engine
+Each activity and widget can be themed by using the in-built theme engine with background aware 
+functionality to avoid any visibility issues. Colors can be selected by using the provided 
+[material design colors](https://material.io/guidelines/style/color.html) or by selecting a custom 
+color from the in-built picker which supports HEX, HSV and ARGB values.
+
+### Background aware
+Below are the same colors applied on the light and dark backgrounds respectively. But the final 
+color is adjusted according to the colored view background to provide best visibility.
+
+<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-bg-aware-1.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-bg-aware-2.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-bg-aware-3.png" width="280" height="486">
+
+### Sample
 This library is fully commented so, please check the individual classes or files for the 
-documentation.
+documentation. Basic documentation will be available soon.
 
 Checkout the `sample` to know more about the basic implementation. 
 
