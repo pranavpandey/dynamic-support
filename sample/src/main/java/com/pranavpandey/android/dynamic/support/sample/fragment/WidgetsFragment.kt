@@ -1,0 +1,211 @@
+/*
+ * Copyright 2018 Pranav Pandey
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.pranavpandey.android.dynamic.support.sample.fragment
+
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.*
+import android.widget.Spinner
+import com.pranavpandey.android.dynamic.support.activity.DynamicDrawerActivity
+import com.pranavpandey.android.dynamic.support.adapter.DynamicSpinnerImageAdapter
+import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment
+import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener
+import com.pranavpandey.android.dynamic.support.model.DynamicSpinnerItem
+import com.pranavpandey.android.dynamic.support.sample.R
+import com.pranavpandey.android.dynamic.support.utils.DynamicMenuUtils
+import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils
+import java.util.*
+
+/**
+ * Widgets fragment to show various widgets and their states
+ * by using [DynamicFragment].
+ */
+class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
+
+    /**
+     * First spinner o attach an adapter.
+     */
+    private var mSpinnerOne: Spinner? = null
+
+    /**
+     * Second spinner to attach an adapter.
+     */
+    private var mSpinnerTwo: Spinner? = null
+
+    /**
+     * Third spinner to attach an adapter.
+     */
+    private var mSpinnerThree: Spinner? = null
+
+    companion object {
+
+        /**
+         * @return The new instance of [WidgetsFragment].
+         */
+        fun newInstance(): WidgetsFragment {
+            return WidgetsFragment()
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // TODO: Enable app bar options menu.
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_widgets, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mSpinnerOne = view.findViewById(R.id.spinner_one)
+        mSpinnerTwo = view.findViewById(R.id.spinner_two)
+        mSpinnerThree = view.findViewById(R.id.spinner_three)
+
+        // Disable the seek bar.
+        view.findViewById<View>(R.id.seek_bar_disabled).isEnabled = false
+
+        // Register search view listener for this fragment.
+        dynamicActivity.searchViewListener = this
+
+        // Array list for spinner items with icon.
+        val spinnerItemsIcon = ArrayList<DynamicSpinnerItem>()
+        spinnerItemsIcon.add(DynamicSpinnerItem(DynamicResourceUtils.getDrawable(context!!,
+                R.drawable.ads_ic_extension), "Spinner one"))
+        spinnerItemsIcon.add(DynamicSpinnerItem(DynamicResourceUtils.getDrawable(context!!,
+                R.drawable.ads_ic_android), "Spinner two"))
+        spinnerItemsIcon.add(DynamicSpinnerItem(DynamicResourceUtils.getDrawable(context!!,
+                R.drawable.ads_ic_check), "Spinner three"))
+        spinnerItemsIcon.add(DynamicSpinnerItem(DynamicResourceUtils.getDrawable(context!!,
+                R.drawable.ads_ic_close), "Spinner four"))
+
+        // Set dynamic spinner image adapter with text and image view ids.
+        mSpinnerOne!!.adapter = DynamicSpinnerImageAdapter(context!!,
+                R.layout.ads_layout_spinner_item, R.id.ads_spinner_item_icon,
+                R.id.ads_spinner_item_text, spinnerItemsIcon)
+
+        // Set dynamic spinner image adapter with text view id. Setting a
+        // default image view id to disable icons.
+        mSpinnerTwo!!.adapter = DynamicSpinnerImageAdapter(context!!,
+                R.layout.ads_layout_spinner_item,
+                DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID,
+                R.id.ads_spinner_item_text, spinnerItemsIcon)
+
+        // Array list for spinner items without icon.
+        val spinnerItems = ArrayList<DynamicSpinnerItem>()
+        spinnerItems.add(DynamicSpinnerItem(null, "Spinner one"))
+        spinnerItems.add(DynamicSpinnerItem(null, "Spinner two"))
+        spinnerItems.add(DynamicSpinnerItem(null, "Spinner three"))
+        spinnerItems.add(DynamicSpinnerItem(null, "Spinner four"))
+
+        // Set dynamic spinner image adapter with text and image view ids.
+        // Now, passing an array without icons to dide the image view.
+        mSpinnerThree!!.adapter = DynamicSpinnerImageAdapter(context!!,
+                R.layout.ads_layout_spinner_item,
+                R.id.ads_spinner_item_icon,
+                R.id.ads_spinner_item_text, spinnerItems)
+
+        mSpinnerTwo!!.setSelection(1)
+        mSpinnerThree!!.setSelection(2)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?) {
+        super.onPrepareOptionsMenu(menu)
+
+        // Try to force the menu icons.
+        DynamicMenuUtils.forceMenuIcons(menu!!)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        // Inflate menu for this fragment.
+        inflater!!.inflate(R.menu.menu_widgets, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item != null) {
+            when (item.itemId) {
+                R.id.menu_search ->
+                    // Expand search view on search menu selected.
+                    dynamicActivity.expandSearchView(true)
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // Disable options menu on destroy.
+        setHasOptionsMenu(false)
+    }
+
+    override fun onSearchViewExpanded() {
+        // Animate drawer toggle icon hamburger to back.
+        if (dynamicActivity is DynamicDrawerActivity) {
+            if ((dynamicActivity as DynamicDrawerActivity).isPersistentDrawer) {
+                dynamicActivity.setNavigationClickListener(
+                        R.drawable.ads_ic_back, null)
+            }
+
+            (dynamicActivity as DynamicDrawerActivity).animateDrawerToggle(0f, 1f)
+        }
+
+        // Show menu on search view expanded.
+        setMenuVisibility(false)
+
+        // Add on text changed listener for the search view.
+        dynamicActivity.searchViewEditText!!.addTextChangedListener(this)
+    }
+
+    override fun onSearchViewCollapsed() {
+        // Show menu on search view collapsed.
+        setMenuVisibility(true)
+
+        // Remove on text changed listener for the search view.
+        dynamicActivity.searchViewEditText!!.removeTextChangedListener(this)
+
+        // Animate drawer toggle icon back to hamburger.
+        if (dynamicActivity is DynamicDrawerActivity) {
+            (dynamicActivity as DynamicDrawerActivity).animateDrawerToggle(1f, 0f)
+
+            if ((dynamicActivity as DynamicDrawerActivity).isPersistentDrawer) {
+                dynamicActivity.setNavigationClickListener(
+                        R.drawable.ads_ic_extension, null)
+            }
+        }
+    }
+
+    override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+        // TODO: Do something before search view text changed.
+    }
+
+    override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+        // TODO: Do something on search view text changed.
+    }
+
+    override fun afterTextChanged(editable: Editable) {
+        // TODO: Do something after search view text changed.
+    }
+}
