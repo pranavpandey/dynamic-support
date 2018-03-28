@@ -191,18 +191,18 @@ class DynamicAlertController {
         mWindow = window;
         mHandler = new DynamicAlertController.ButtonHandler(di);
 
-        final TypedArray a = context.obtainStyledAttributes(null, android.support.v7.appcompat.R.styleable.AlertDialog,
+        final TypedArray a = context.obtainStyledAttributes(null, R.styleable.DynamicDialog,
                 android.support.v7.appcompat.R.attr.alertDialogStyle, 0);
 
-        mAlertDialogLayout = a.getResourceId(android.support.v7.appcompat.R.styleable.AlertDialog_android_layout, 0);
-        mButtonPanelSideLayout = a.getResourceId(android.support.v7.appcompat.R.styleable.AlertDialog_buttonPanelSideLayout, 0);
+        mAlertDialogLayout = a.getResourceId(R.styleable.DynamicDialog_android_layout, 0);
+        mButtonPanelSideLayout = a.getResourceId(R.styleable.DynamicDialog_buttonPanelSideLayout, 0);
 
-        mListLayout = a.getResourceId(android.support.v7.appcompat.R.styleable.AlertDialog_listLayout, 0);
-        mMultiChoiceItemLayout = a.getResourceId(android.support.v7.appcompat.R.styleable.AlertDialog_multiChoiceItemLayout, 0);
+        mListLayout = a.getResourceId(R.styleable.DynamicDialog_listLayout, 0);
+        mMultiChoiceItemLayout = a.getResourceId(R.styleable.DynamicDialog_multiChoiceItemLayout, 0);
         mSingleChoiceItemLayout = a
-                .getResourceId(android.support.v7.appcompat.R.styleable.AlertDialog_singleChoiceItemLayout, 0);
-        mListItemLayout = a.getResourceId(android.support.v7.appcompat.R.styleable.AlertDialog_listItemLayout, 0);
-        mShowTitle = a.getBoolean(android.support.v7.appcompat.R.styleable.AlertDialog_showTitle, true);
+                .getResourceId(R.styleable.DynamicDialog_singleChoiceItemLayout, 0);
+        mListItemLayout = a.getResourceId(R.styleable.DynamicDialog_listItemLayout, 0);
+        mShowTitle = a.getBoolean(R.styleable.DynamicDialog_showTitle, true);
 
         a.recycle();
 
@@ -930,11 +930,11 @@ class DynamicAlertController {
             setBackgroundAware(true);
 
             final TypedArray ta = context.obtainStyledAttributes(
-                    attrs, android.support.v7.appcompat.R.styleable.RecycleListView);
+                    attrs, R.styleable.RecycleListView);
             mPaddingBottomNoButtons = ta.getDimensionPixelOffset(
-                    android.support.v7.appcompat.R.styleable.RecycleListView_paddingBottomNoButtons, -1);
+                    R.styleable.RecycleListView_paddingBottomNoButtons, -1);
             mPaddingTopNoTitle = ta.getDimensionPixelOffset(
-                    android.support.v7.appcompat.R.styleable.RecycleListView_paddingTopNoTitle, -1);
+                    R.styleable.RecycleListView_paddingTopNoTitle, -1);
         }
 
         public void setHasDecor(boolean hasTitle, boolean hasButtons) {

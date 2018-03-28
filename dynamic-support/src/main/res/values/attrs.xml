@@ -220,4 +220,22 @@
         <attr name="ads_styleBorderless" format="boolean" />
     </declare-styleable>
 
+    <!-- The set of attributes that describe a DynamicDialog's theme. -->
+    <declare-styleable name="DynamicDialog">
+        <attr name="android:layout" />
+        <attr name="buttonPanelSideLayout" format="reference" />
+        <attr name="listLayout" format="reference" />
+        <attr name="multiChoiceItemLayout" format="reference" />
+        <attr name="singleChoiceItemLayout" format="reference" />
+        <attr name="listItemLayout" format="reference" />
+        <attr name="showTitle" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="RecycleListView">
+        <!-- Bottom padding to use when no buttons are present. -->
+        <attr name="paddingBottomNoButtons" format="dimension" />
+        <!-- Top padding to use when no title is present. -->
+        <attr name="paddingTopNoTitle" format="dimension" />
+    </declare-styleable>
+
 </resources>
