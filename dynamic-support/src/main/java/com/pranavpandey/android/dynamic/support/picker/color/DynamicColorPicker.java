@@ -37,6 +37,7 @@ import com.pranavpandey.android.dynamic.support.picker.DynamicPickerType;
 import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorPalette;
+import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.DynamicEditText;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
@@ -88,8 +89,7 @@ public class DynamicColorPicker extends FrameLayout {
     /**
      * Color picker view type.
      */
-    private @DynamicPickerType
-    int mType;
+    private @DynamicPickerType int mType;
 
     /**
      * Color picker view control.
@@ -120,6 +120,11 @@ public class DynamicColorPicker extends FrameLayout {
      * Recent array list to perform calculations.
      */
     private ArrayList<Integer> mRecentsList;
+
+    /**
+     * The previous color.
+     */
+    private @ColorInt int mPreviousColor;
 
     /**
      * The selected color.
@@ -177,6 +182,11 @@ public class DynamicColorPicker extends FrameLayout {
      * Grid view to display the recently selected colors.
      */
     private GridView mRecentsGridView;
+
+    /**
+     * Color view to display the previous color.
+     */
+    private DynamicColorView mPreviousColorView;
 
     /**
      * Color view to display the custom color.
@@ -297,6 +307,7 @@ public class DynamicColorPicker extends FrameLayout {
         mColorsGridView = findViewById(R.id.ads_color_picker_colors);
         mShadesGridView = findViewById(R.id.ads_color_picker_shades);
         mRecentsGridView = findViewById(R.id.ads_color_picker_recents);
+        mPreviousColorView = findViewById(R.id.ads_color_picker_color_previous);
         mColorView = findViewById(R.id.ads_color_picker_color);
         mEditText = findViewById(R.id.ads_color_picker_edit);
         mControlAll = findViewById(R.id.ads_color_picker_button_all);
@@ -436,6 +447,7 @@ public class DynamicColorPicker extends FrameLayout {
         mSeekBarBlue.setOnSeekBarControlListener(mRGBSeekBarListener);
 
         mUpdatingCustomColor = true;
+        mPreviousColor = DynamicColorType.UNKNOWN;
         mColorShape = DynamicColorShape.CIRCLE;
         mType = DynamicPickerType.PRESETS;
         mControl = DynamicPreferences.getInstance().loadPrefs(
@@ -448,6 +460,13 @@ public class DynamicColorPicker extends FrameLayout {
      * Load this view according to the supplied parameters.
      */
     public void update() {
+        if (mPreviousColor != DynamicColorType.UNKNOWN) {
+            mPreviousColorView.setColor(mPreviousColor);
+            mPreviousColorView.setVisibility(VISIBLE);
+        } else {
+            mPreviousColorView.setVisibility(GONE);
+        }
+
         if (mColors == null) {
             mColors = DynamicColorPalette.MATERIAL_COLORS;
         }
@@ -774,9 +793,10 @@ public class DynamicColorPicker extends FrameLayout {
     /**
      * Setter for {@link #mColors} and {@link #mShades}.
      */
-    public void setColors(@NonNull Integer[] mColors, @Nullable Integer[][] mShades) {
-        this.mColors = mColors;
-        this.mShades = mShades;
+    public void setColors(@NonNull @ColorInt Integer[] colors,
+                          @Nullable @ColorInt Integer[][] shades) {
+        this.mColors = colors;
+        this.mShades = shades;
     }
 
     /**
@@ -795,9 +815,23 @@ public class DynamicColorPicker extends FrameLayout {
     }
 
     /**
+     * Getter for {@link #mPreviousColor}.
+     */
+    public @ColorInt int getPreviousColor() {
+        return mPreviousColor;
+    }
+
+    /**
+     * Setter for {@link #mPreviousColor}.
+     */
+    public void setPreviousColor(@ColorInt int previousColor) {
+        this.mPreviousColor = previousColor;
+    }
+
+    /**
      * Getter for {@link #mSelectedColor}.
      */
-    public int getSelectedColor() {
+    public @ColorInt int getSelectedColor() {
         return mSelectedColor;
     }
 
@@ -811,7 +845,7 @@ public class DynamicColorPicker extends FrameLayout {
     /**
      * Getter for {@link #mColorShape}.
      */
-    public int getColorShape() {
+    public @DynamicColorShape int getColorShape() {
         return mColorShape;
     }
 

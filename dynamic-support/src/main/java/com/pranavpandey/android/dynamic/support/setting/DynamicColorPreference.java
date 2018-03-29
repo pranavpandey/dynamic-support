@@ -207,6 +207,7 @@ public class DynamicColorPreference extends DynamicSimplePreference
         dynamicColorPopup.setAlpha(mAlpha);
         dynamicColorPopup.setTitle(getTitle());
         dynamicColorPopup.setDefaultColor(mDefaultColor);
+        dynamicColorPopup.setPreviousColor(mColor);
         dynamicColorPopup.setSelectedColor(mColor);
 
         dynamicColorPopup.setOnMoreColorsListener(new OnClickListener() {
@@ -231,12 +232,14 @@ public class DynamicColorPreference extends DynamicSimplePreference
      * @see DynamicColorDialog
      */
     private void showColorDialog() {
+        @ColorInt int color = mColor == DynamicTheme.ADS_THEME_AUTO
+                ? DynamicTheme.getInstance().getBackgroundColor() : mColor;
+
         DynamicColorDialog.newInstance().setColors(getColors(), getShades())
                 .setColorShape(mColorShape)
                 .setAlpha(mAlpha)
-                .setSelectedColor(mColor == DynamicTheme.ADS_THEME_AUTO
-                        ? DynamicTheme.getInstance().getBackgroundColor()
-                        : mColor)
+                .setPreviousColor(color)
+                .setSelectedColor(color)
                 .setOnColorSelectedListener(this)
                 .setBuilder(new DynamicDialog.Builder(getContext()).setTitle(getTitle()))
                 .showDialog((FragmentActivity) getContext());
@@ -294,14 +297,14 @@ public class DynamicColorPreference extends DynamicSimplePreference
     /**
      * Getter for {@link #mColorShape}.
      */
-    public int getColorShape() {
+    public @DynamicColorShape int getColorShape() {
         return mColorShape;
     }
 
     /**
      * Setter for {@link #mColorShape}.
      */
-    public void setColorShape(int colorShape) {
+    public void setColorShape(@DynamicColorShape int colorShape) {
         this.mColorShape = colorShape;
 
         mColorView.setColorShape(mColorShape);

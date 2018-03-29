@@ -75,6 +75,11 @@ public class DynamicColorPopup extends DynamicPopup {
     private @ColorInt int mDefaultColor;
 
     /**
+     * The previous color.
+     */
+    private @ColorInt int mPreviousColor;
+
+    /**
      * The selected color.
      */
     private @ColorInt int mSelectedColor;
@@ -106,7 +111,7 @@ public class DynamicColorPopup extends DynamicPopup {
      * anchor, entries, and on color selected DynamicTutorialListener.
      */
     public DynamicColorPopup(
-            @NonNull View anchor, @NonNull Integer[] entries,
+            @NonNull View anchor, @NonNull @ColorInt Integer[] entries,
             @NonNull DynamicColorsAdapter.OnColorSelectedListener onItemClickListener) {
         this.mAnchor = anchor;
         this.mEntries = entries;
@@ -158,6 +163,7 @@ public class DynamicColorPopup extends DynamicPopup {
                                     DynamicColorPalette.MATERIAL_COLORS_SHADES)
                                     .setColorShape(mColorShape)
                                     .setAlpha(mAlpha)
+                                    .setPreviousColor(mPreviousColor)
                                     .setSelectedColor(mSelectedColor == DynamicTheme.ADS_THEME_AUTO
                                             ? DynamicTheme.getInstance().getBackgroundColor()
                                             : mSelectedColor)
@@ -256,14 +262,14 @@ public class DynamicColorPopup extends DynamicPopup {
     /**
      * Getter for {@link #mEntries}.
      */
-    public Integer[] getEntries() {
+    public @NonNull @ColorInt Integer[] getEntries() {
         return mEntries;
     }
 
     /**
      * Setter for {@link #mEntries}.
      */
-    public void setEntries(Integer[] entries) {
+    public void setEntries(@NonNull @ColorInt Integer[] entries) {
         this.mEntries = entries;
     }
 
@@ -300,7 +306,7 @@ public class DynamicColorPopup extends DynamicPopup {
     /**
      * Getter for {@link #mDefaultColor}.
      */
-    public int getDefaultColor() {
+    public @ColorInt int getDefaultColor() {
         return mDefaultColor;
     }
 
@@ -312,9 +318,23 @@ public class DynamicColorPopup extends DynamicPopup {
     }
 
     /**
+     * Getter for {@link #mPreviousColor}.
+     */
+    public @ColorInt int getPreviousColor() {
+        return mPreviousColor;
+    }
+
+    /**
+     * Setter for {@link #mPreviousColor}.
+     */
+    public void setPreviousColor(@ColorInt int previousColor) {
+        this.mPreviousColor = previousColor;
+    }
+
+    /**
      * Getter for {@link #mSelectedColor}.
      */
-    public int getSelectedColor() {
+    public @ColorInt int getSelectedColor() {
         return mSelectedColor;
     }
 
@@ -328,7 +348,7 @@ public class DynamicColorPopup extends DynamicPopup {
     /**
      * Getter for {@link #mColorShape}.
      */
-    public int getColorShape() {
+    public @ColorInt int getColorShape() {
         return mColorShape;
     }
 

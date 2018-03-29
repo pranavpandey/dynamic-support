@@ -133,10 +133,20 @@
                 android:gravity="center">
 
                 <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView
+                    android:id="@+id/ads_color_picker_color_previous"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:layout_marginRight="@dimen/ads_margin_small"
+                    android:layout_marginEnd="@dimen/ads_margin_small"
+                    app:ads_dynamicColorView_shape="rectangle"
+                    app:ads_dynamicColorView_color= "#123456" />
+
+                <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView
                     android:id="@+id/ads_color_picker_color"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.0"
+                    android:layout_weight="0.7"
                     app:ads_dynamicColorView_shape="rectangle"
                     app:ads_dynamicColorView_color= "#123456" />
 
