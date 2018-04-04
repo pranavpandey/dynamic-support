@@ -33,8 +33,6 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 
-import static com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE;
-
 /**
  * Base preference to provide the basic interface for the extending
  * preference with a icon, title, summary, description, value and an
@@ -185,7 +183,7 @@ public abstract class DynamicPreference extends FrameLayout
         try {
             mIcon = DynamicResourceUtils.getDrawable(getContext(), a.getResourceId(
                     R.styleable.DynamicPreference_ads_dynamicPreference_icon,
-                    ADS_DEFAULT_RESOURCE_VALUE));
+                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
             mTitle = a.getString(R.styleable.DynamicPreference_ads_dynamicPreference_title);
             mSummary = a.getString(R.styleable.DynamicPreference_ads_dynamicPreference_summary);
             mDescription = a.getString(R.styleable.DynamicPreference_ads_dynamicPreference_description);

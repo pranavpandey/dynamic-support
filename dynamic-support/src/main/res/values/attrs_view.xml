@@ -173,6 +173,8 @@
         <attr name="ads_dynamicColorPicker_colors" format="reference" />
         <!-- True to enable alpha for the colors. -->
         <attr name="ads_dynamicColorPicker_alpha" format="boolean" />
+        <!-- An array of colors to be displayed in the picker popup. -->
+        <attr name="ads_dynamicColorPicker_popupColors" format="reference" />
     </declare-styleable>
 
 </resources>

@@ -324,7 +324,8 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     /**
      * Getter for {@link #mColorShape}.
      */
-    public @DynamicColorShape int getColorShape() {
+    public @DynamicColorShape
+    int getColorShape() {
         return mColorShape;
     }
 

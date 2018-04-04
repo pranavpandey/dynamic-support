@@ -36,9 +36,6 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 
-import static com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE;
-import static com.pranavpandey.android.dynamic.support.widget.WidgetDefaults.ADS_SHOW_DIVIDER;
-
 /**
  * A {@link FrameLayout} with a icon, title and subtitle functionality
  * which can be used to show various informations according to the requirement.
@@ -128,7 +125,8 @@ public class DynamicItemView extends FrameLayout {
 
         try {
             mIcon = DynamicResourceUtils.getDrawable(getContext(), a.getResourceId(
-                    R.styleable.DynamicInfo_ads_dynamicInfo_icon, ADS_DEFAULT_RESOURCE_VALUE));
+                    R.styleable.DynamicInfo_ads_dynamicInfo_icon,
+                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
             mTitle = a.getString(R.styleable.DynamicInfo_ads_dynamicInfo_title);
             mSubtitle = a.getString(R.styleable.DynamicInfo_ads_dynamicInfo_subtitle);
             mColor = a.getColor(R.styleable.DynamicInfo_ads_dynamicInfo_color,
@@ -137,7 +135,7 @@ public class DynamicItemView extends FrameLayout {
                     R.styleable.DynamicInfo_ads_dynamicInfo_colorType,
                     DynamicColorType.NONE);
             mShowDivider = a.getBoolean(R.styleable.DynamicInfo_ads_dynamicInfo_showDivider,
-                    ADS_SHOW_DIVIDER);
+                    WidgetDefaults.ADS_SHOW_DIVIDER);
         } finally {
             a.recycle();
         }
@@ -200,7 +198,7 @@ public class DynamicItemView extends FrameLayout {
             mIconView.setImageDrawable(mIcon);
         }
 
-        if (mColor != ADS_DEFAULT_RESOURCE_VALUE) {
+        if (mColor != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE) {
             mIconView.setColor(mColor);
         } else {
             mIconView.clearColorFilter();

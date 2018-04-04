@@ -29,8 +29,6 @@ import android.widget.ImageView;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 
-import static com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE;
-
 /**
  * A DynamicSimplePreference with a secondary image view to
  * represent data according to the need.
@@ -70,7 +68,7 @@ public class DynamicImagePreference extends DynamicSimplePreference {
         try {
             mImageDrawable = DynamicResourceUtils.getDrawable(getContext(), a.getResourceId(
                     R.styleable.DynamicPreference_ads_dynamicPreference_image,
-                    ADS_DEFAULT_RESOURCE_VALUE));
+                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
         } finally {
             a.recycle();
         }

@@ -49,7 +49,7 @@
                     app:ads_dynamicPreference_description="@string/ads_theme_app_desc"
                     app:ads_dynamicColorView_shape="square"
                     app:ads_dynamicPreference_popup="true"
-                    app:ads_dynamicColorPicker_colors="@array/pref_app_theme_colors" />
+                    app:ads_dynamicColorPicker_popupColors="@array/pref_app_theme_colors" />
 
                 <com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
                     android:id="@+id/pref_app_theme_day"
@@ -63,7 +63,7 @@
                     app:ads_dynamicPreference_color="@color/ads_window_background_light"
                     app:ads_dynamicColorView_shape="square"
                     app:ads_dynamicPreference_popup="true"
-                    app:ads_dynamicColorPicker_colors="@array/pref_app_theme_day_colors" />
+                    app:ads_dynamicColorPicker_popupColors="@array/pref_app_theme_day_colors" />
 
                 <com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
                     android:id="@+id/pref_app_theme_night"
@@ -77,7 +77,7 @@
                     app:ads_dynamicPreference_color="@color/ads_window_background"
                     app:ads_dynamicColorView_shape="square"
                     app:ads_dynamicPreference_popup="true"
-                    app:ads_dynamicColorPicker_colors="@array/pref_app_theme_night_colors" />
+                    app:ads_dynamicColorPicker_popupColors="@array/pref_app_theme_night_colors" />
 
                 <com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
                     android:layout_width="match_parent"

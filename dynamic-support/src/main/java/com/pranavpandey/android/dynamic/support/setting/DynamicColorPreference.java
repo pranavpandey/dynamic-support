@@ -40,8 +40,6 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
 
-import static com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE;
-
 /**
  * A DynamicPreference to implement the functionality of a color
  * picker by using the {@link DynamicColorPopup} and
@@ -56,9 +54,19 @@ public class DynamicColorPreference extends DynamicSimplePreference
     private @ArrayRes int mColorsResId;
 
     /**
+     * Resource id of the popup colors array.
+     */
+    private @ArrayRes int mPopupColorsResId;
+
+    /**
      * Array to store the primary colors.
      */
     private @ColorInt Integer[] mColors;
+
+    /**
+     * Array to store the popup colors.
+     */
+    private @ColorInt Integer[] mPopupColors;
 
     /**
      * Array to store the shades of primary colors.
@@ -131,7 +139,7 @@ public class DynamicColorPreference extends DynamicSimplePreference
         try {
             mDefaultColor = a.getColor(
                     R.styleable.DynamicPreference_ads_dynamicPreference_color,
-                    ADS_DEFAULT_RESOURCE_VALUE);
+                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE);
             mShowColorPopup = a.getBoolean(
                     R.styleable.DynamicPreference_ads_dynamicPreference_popup,
                     false);
@@ -143,6 +151,9 @@ public class DynamicColorPreference extends DynamicSimplePreference
                     false);
             mColorsResId = c.getResourceId(
                     R.styleable.DynamicColorPicker_ads_dynamicColorPicker_colors,
+                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID);
+            mPopupColorsResId = c.getResourceId(
+                    R.styleable.DynamicColorPicker_ads_dynamicColorPicker_popupColors,
                     DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID);
         } finally {
             a.recycle();
@@ -202,7 +213,7 @@ public class DynamicColorPreference extends DynamicSimplePreference
      */
     private void showColorPopup(@NonNull final View view) {
         DynamicColorPopup dynamicColorPopup = new DynamicColorPopup(
-                view, getColors(), this);
+                view, getPopupColors(), this);
         dynamicColorPopup.setColorShape(mColorShape);
         dynamicColorPopup.setAlpha(mAlpha);
         dynamicColorPopup.setTitle(getTitle());
@@ -277,6 +288,30 @@ public class DynamicColorPreference extends DynamicSimplePreference
     }
 
     /**
+     * Getter for {@link #mPopupColors}.
+     */
+    public @NonNull @ColorInt Integer[] getPopupColors() {
+        if (mPopupColorsResId != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
+            mPopupColors = DynamicResourceUtils
+                    .convertToColorArray(getContext(), mPopupColorsResId);
+        }
+
+        if (mPopupColors == null) {
+            mPopupColors = getColors();
+        }
+
+        return mPopupColors;
+    }
+
+    /**
+     * Setter for {@link #mPopupColors}.
+     */
+    public void setPopupColors(@Nullable @ColorInt Integer[] popupColors) {
+        this.mPopupColors = popupColors;
+        this.mPopupColorsResId = DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
+    }
+
+    /**
      * Getter for {@link #mShades}.
      */
     public @Nullable @ColorInt Integer[][] getShades() {
@@ -297,14 +332,14 @@ public class DynamicColorPreference extends DynamicSimplePreference
     /**
      * Getter for {@link #mColorShape}.
      */
-    public @DynamicColorShape int getColorShape() {
+    public int getColorShape() {
         return mColorShape;
     }
 
     /**
      * Setter for {@link #mColorShape}.
      */
-    public void setColorShape(@DynamicColorShape int colorShape) {
+    public void setColorShape(int colorShape) {
         this.mColorShape = colorShape;
 
         mColorView.setColorShape(mColorShape);

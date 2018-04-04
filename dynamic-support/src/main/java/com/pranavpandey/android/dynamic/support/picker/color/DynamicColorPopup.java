@@ -111,7 +111,7 @@ public class DynamicColorPopup extends DynamicPopup {
      * anchor, entries, and on color selected DynamicTutorialListener.
      */
     public DynamicColorPopup(
-            @NonNull View anchor, @NonNull @ColorInt Integer[] entries,
+            @NonNull View anchor, @NonNull Integer[] entries,
             @NonNull DynamicColorsAdapter.OnColorSelectedListener onItemClickListener) {
         this.mAnchor = anchor;
         this.mEntries = entries;
@@ -262,14 +262,14 @@ public class DynamicColorPopup extends DynamicPopup {
     /**
      * Getter for {@link #mEntries}.
      */
-    public @NonNull @ColorInt Integer[] getEntries() {
+    public Integer[] getEntries() {
         return mEntries;
     }
 
     /**
      * Setter for {@link #mEntries}.
      */
-    public void setEntries(@NonNull @ColorInt Integer[] entries) {
+    public void setEntries(Integer[] entries) {
         this.mEntries = entries;
     }
 
@@ -348,7 +348,7 @@ public class DynamicColorPopup extends DynamicPopup {
     /**
      * Getter for {@link #mColorShape}.
      */
-    public @ColorInt int getColorShape() {
+    public @DynamicColorShape int getColorShape() {
         return mColorShape;
     }
 

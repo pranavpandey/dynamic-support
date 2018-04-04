@@ -43,8 +43,6 @@ import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE;
-
 /**
  * A {@link FrameLayout} with a icon, title and subtitle, description
  * and links functionality which can be used to show various information
@@ -173,12 +171,14 @@ public class DynamicInfoView extends FrameLayout {
 
         try {
             mIcon = DynamicResourceUtils.getDrawable(getContext(), a.getResourceId(
-                    R.styleable.DynamicInfo_ads_dynamicInfo_icon, ADS_DEFAULT_RESOURCE_VALUE));
+                    R.styleable.DynamicInfo_ads_dynamicInfo_icon,
+                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
             mTitle = a.getString(R.styleable.DynamicInfo_ads_dynamicInfo_title);
             mSubtitle = a.getString(R.styleable.DynamicInfo_ads_dynamicInfo_subtitle);
             mDescription = a.getString(R.styleable.DynamicInfo_ads_dynamicInfo_description);
             mIconBig = DynamicResourceUtils.getDrawable(getContext(), a.getResourceId(
-                    R.styleable.DynamicInfo_ads_dynamicInfo_iconBig, ADS_DEFAULT_RESOURCE_VALUE));
+                    R.styleable.DynamicInfo_ads_dynamicInfo_iconBig,
+                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
             mLinks = a.getTextArray(R.styleable.DynamicInfo_ads_dynamicInfo_links);
             mLinksSubtitles = a.getTextArray(R.styleable.DynamicInfo_ads_dynamicInfo_linksSubtitles);
             mLinksUrls = a.getTextArray(R.styleable.DynamicInfo_ads_dynamicInfo_linksUrls);
@@ -305,7 +305,8 @@ public class DynamicInfoView extends FrameLayout {
                     icon = null;
                 }
 
-                if (mLinksColors != null && mLinksColors[i] != ADS_DEFAULT_RESOURCE_VALUE) {
+                if (mLinksColors != null && mLinksColors[i] !=
+                        DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE) {
                     color = mLinksColors[i];
                 } else {
                     color = WidgetDefaults.ADS_COLOR_UNKNOWN;
