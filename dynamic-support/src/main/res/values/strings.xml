@@ -21,13 +21,6 @@
     <string name="ads_navigation_drawer_open">Open navigation drawer</string>
     <string name="ads_navigation_drawer_close">Close navigation drawer</string>
 
-    <!-- String formats -->
-    <string name="ads_format_join">%1$s%2$s</string>
-    <string name="ads_format_blank_space">%1$s %2$s</string>
-    <string name="ads_format_separator">%1$s | %2$s</string>
-    <string name="ads_format_braces">%1$s (%2$s)</string>
-    <string name="ads_format_version">Version %1$s</string>
-
     <!-- Labels -->
     <string name="ads_i_got_it">OK, Got it</string>
     <string name="ads_not_now">Not now</string>
@@ -292,7 +285,6 @@
     <string name="ads_support_restart_app_desc">Use if service is not starting or app is not behaving properly. All settings will remain unchanged after performing this operation.</string>
 
     <!-- Developer and App info -->
-    <string name="ads_info_me">&#169; Pranav Pandey</string>
     <string name="ads_info_made_by">Written and designed by</string>
     <string name="ads_info_made_in">Made in India</string>
     <string name="ads_info_quote">Nothing is perfect but can be better. Developing such better things!</string>
@@ -302,16 +294,10 @@
     <string name="ads_info_terms_of_use_desc">View complete terms of use of this product.</string>
     <string name="ads_info_privacy_policy_terms_desc">Privacy policy and terms of use.</string>
     <string name="ads_info_apps">More apps</string>
-    <string name="ads_info_gplus">Google+</string>
     <string name="ads_info_gplus_desc">Join official community to try the test releases.</string>
-    <string name="ads_info_facebook">Facebook</string>
     <string name="ads_info_facebook_desc">Like official page to get the latest news and updates.</string>
-    <string name="ads_info_xda">XDA-Developers</string>
     <string name="ads_info_xda_desc">Follow the official support forum on XDA.</string>
     <string name="ads_info_website">Website</string>
-    <string name="ads_info_github">GitHub</string>
-    <string name="ads_info_linkedin">LinkedIn</string>
-    <string name="ads_info_twitter">Twitter</string>
     <string name="ads_info_website_me_desc">A place for me on the web.</string>
     <string name="ads_info_twitter_me_desc">Get latest tweets about my life and work.</string>
     <string name="ads_info_facebook_me_desc">Become a friend or follow to know more about me.</string>
@@ -328,27 +314,8 @@
     <string name="ads_translators_contact">Contact via email if you want to translate.</string>
 
     <!-- Licenses -->
-    <string name="ads_license_android">Android Compat Support Library
-        \nAndroid Compatibility Library v4
-        \nAndroid Compatibility Library v7
-        \nAndroid Core UI Support Library
-        \nAndroid Core Utils Support Library
-        \nAndroid Design Support Library
-        \nAndroid Fragments Support Library</string>
-    <string name="ads_license_sas">Small App Support</string>
-    <string name="ads_license_ads_modules">Dynamic Utils
-        \nDynamic Toasts
-        \nDynamic Engine</string>
-    <string name="ads_license_ads">Dynamic Support</string>
-    <string name="ads_license_plaid">Plaid</string>
-    <string name="ads_license_copy_android_google">&#169; 2005&#8211;2011 The Android Open Source Project</string>
-    <string name="ads_license_copy_google_15">&#169; 2015 Google, Inc.</string>
-    <string name="ads_license_copy_me_16">&#169; 2016 Pranav Pandey</string>
-    <string name="ads_license_copy_me_17">&#169; 2017 Pranav Pandey</string>
-    <string name="ads_license_copy_me_18">&#169; 2018 Pranav Pandey</string>
     <string name="ads_licenses">Licenses</string>
     <string name="ads_license">License</string>
-    <string name="ads_license_apache">Apache 2.0</string>
     <string name="ads_license_desc">View full license.</string>
     <string name="ads_license_sources">Sources</string>
     <string name="ads_license_sources_desc">View sources on GitHub.</string>
