@@ -75,5 +75,5 @@ ext {
     compileSdk = 27
     targetSdk = 27
 
-    androidSupport = '27.1.0'
+    androidSupport = '27.1.1'
 }
