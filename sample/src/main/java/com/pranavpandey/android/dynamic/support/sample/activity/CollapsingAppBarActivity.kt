@@ -78,7 +78,7 @@ class CollapsingAppBarActivity : DynamicActivity() {
         setAppBarBackDrop(R.drawable.ads_ic_extension)
 
         // Add an optional header with an icon, title and subtitle.
-        addHeader(R.layout.ads_layout_header_toolbar, true)
+        addHeader(R.layout.ads_layout_header_appbar, true)
         (findViewById<View>(R.id.ads_header_toolbar_icon) as ImageView)
                 .setImageDrawable(applicationInfo.loadIcon(packageManager))
         (findViewById<View>(R.id.ads_header_toolbar_title) as TextView)

@@ -54,7 +54,7 @@ public abstract class DynamicPermissionsActivity extends DynamicActivity {
 
         setAppBarBackDrop(R.drawable.ads_ic_security);
 
-        addHeader(R.layout.ads_layout_header_toolbar, true);
+        addHeader(R.layout.ads_layout_header_appbar, true);
         ((ImageView) findViewById(R.id.ads_header_toolbar_icon))
                 .setImageDrawable(getApplicationInfo().loadIcon(getPackageManager()));
         ((TextView) findViewById(R.id.ads_header_toolbar_title))

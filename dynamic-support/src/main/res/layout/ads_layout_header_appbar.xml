@@ -28,11 +28,11 @@
 
     <ImageView
         android:id="@+id/ads_header_toolbar_icon"
-        android:layout_width="@dimen/ads_icon_normal"
-        android:layout_height="@dimen/ads_icon_normal"
-        android:layout_gravity="center_vertical"
-        android:layout_marginRight="@dimen/ads_icon_avatar_header_margin_end"
-        android:layout_marginEnd="@dimen/ads_icon_avatar_header_margin_end" />
+        android:layout_width="@dimen/ads_icon_header_appbar"
+        android:layout_height="@dimen/ads_icon_header_appbar"
+        android:layout_marginRight="@dimen/ads_margin_normal"
+        android:layout_marginEnd="@dimen/ads_margin_normal"
+        android:layout_gravity="center_vertical" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
             android:id="@+id/ads_header_toolbar_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textAppearance="@style/TextAppearance.DynamicApp.Title.Bold"
             app:ads_colorType="tint_primary"
             app:ads_backgroundAware="false" />
 
@@ -52,7 +52,7 @@
             android:id="@+id/ads_header_toolbar_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle"
             app:ads_colorType="tint_primary"
             app:ads_backgroundAware="false" />
 

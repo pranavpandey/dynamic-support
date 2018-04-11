@@ -65,6 +65,9 @@
 
     <!-- Toolbar -->
     <dimen name="ads_toolbar_inset_start">72dp</dimen>
+    <dimen name="ads_toolbar_inset_start_collapsing">68dp</dimen>
+    <dimen name="ads_toolbar_margin_start_collapsing">20dp</dimen>
+    <dimen name="ads_toolbar_margin_end_collapsing">@dimen/ads_toolbar_inset_start_collapsing</dimen>
     <dimen name="ads_tab_height">44dp</dimen>
     <dimen name="ads_tab_min_width">48dp</dimen>
     <dimen name="ads_tab_inset_start">@dimen/ads_toolbar_inset_start</dimen>
@@ -99,11 +102,10 @@
     <dimen name="ads_icon_toolbar_header_info">32dp</dimen>
     <dimen name="ads_icon_splash">160dp</dimen>
     <dimen name="ads_icon_tutorial">200dp</dimen>
-    <dimen name="ads_icon_nav_header">64dp</dimen>
-    <dimen name="ads_btn_min_height">56dp</dimen>
-    <dimen name="ads_size_notification">64dp</dimen>
-    <dimen name="ads_circular_progress_size">60dp</dimen>
     <dimen name="ads_icon_header">20dp</dimen>
+    <dimen name="ads_icon_header_drawer">64dp</dimen>
+    <dimen name="ads_icon_header_appbar">32dp</dimen>
+    <dimen name="ads_icon_header_card_margin_end">@dimen/ads_margin_large</dimen>
     <dimen name="ads_icon_preference">@dimen/ads_icon_small</dimen>
     <dimen name="ads_icon_preference_big">@dimen/ads_icon_medium</dimen>
     <dimen name="ads_icon_avatar_card">@dimen/ads_icon_normal</dimen>
@@ -111,7 +113,6 @@
     <dimen name="ads_icon_avatar_card_small">@dimen/ads_icon_small</dimen>
     <dimen name="ads_icon_avatar_card_divider_small">64dp</dimen>
     <dimen name="ads_icon_avatar_card_medium">@dimen/ads_icon_medium</dimen>
-    <dimen name="ads_icon_header_card_margin_end">@dimen/ads_margin_large</dimen>
     <dimen name="ads_icon_preference_card_margin_end">@dimen/ads_margin_normal</dimen>
     <dimen name="ads_icon_avatar_card_margin_end">@dimen/ads_margin_normal</dimen>
     <dimen name="ads_icon_avatar_card_margin_end_medium">@dimen/ads_margin_normal</dimen>
@@ -119,12 +120,15 @@
     <dimen name="ads_icon_avatar_header_margin_end">28dp</dimen>
 
     <!-- Button -->
+    <dimen name="ads_button_padding">@dimen/ads_margin_small</dimen>
+    <dimen name="ads_button_min_height">56dp</dimen>
     <dimen name="ads_button_preference_card_margin_start">@dimen/ads_icon_normal</dimen>
 
     <!-- List -->
     <dimen name="ads_list_avatar_height_small">28dp</dimen>
     <dimen name="ads_list_avatar_width_small">28dp</dimen>
     <dimen name="ads_list_subtitle_margin_top">2dp</dimen>
+    <dimen name="ads_circular_progress_size">60dp</dimen>
 
     <!-- Dialog -->
     <dimen name="ads_dialog_margin_start_end">24dp</dimen>
@@ -142,9 +146,6 @@
 
     <!-- Popup -->
     <dimen name="ads_popup_selector_icon_size">24dp</dimen>
-
-    <!-- Button -->
-    <dimen name="ads_padding_button">@dimen/ads_margin_small</dimen>
 
     <!-- Picker -->
     <dimen name="ads_picker_colors_size">@dimen/ads_icon_medium</dimen>
@@ -167,6 +168,7 @@
     <dimen name="ads_widget_icon_size_customise">26dp</dimen>
 
     <!-- Notification -->
+    <dimen name="ads_notification_size">64dp</dimen>
     <dimen name="ads_notification_margin_vertical">12dp</dimen>
     <dimen name="ads_notification_margin_horizontal">@dimen/ads_notification_margin_vertical</dimen>
     <dimen name="ads_notification_icon">16dp</dimen>

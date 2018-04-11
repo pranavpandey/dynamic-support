@@ -40,10 +40,11 @@
                 android:id="@+id/ads_collapsing_toolbar_layout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ads_collapsing_toolbar_height"
-                app:expandedTitleMarginEnd="64dp"
                 android:clipChildren="false"
-                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-                android:fitsSystemWindows="true">
+                android:fitsSystemWindows="true"
+                app:expandedTitleMarginStart="@dimen/ads_toolbar_margin_start_collapsing"
+                app:expandedTitleMarginEnd="@dimen/ads_toolbar_inset_start_collapsing"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
                 <FrameLayout
                     android:id="@+id/ads_backdrop_frame"
@@ -53,7 +54,7 @@
                     android:fitsSystemWindows="true" />
 
                 <include
-                    layout="@layout/ads_toolbar_pin"
+                    layout="@layout/ads_toolbar_collapsing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

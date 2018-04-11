@@ -36,8 +36,8 @@
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
             android:id="@+id/ads_header_drawer_icon"
-            android:layout_width="@dimen/ads_icon_nav_header"
-            android:layout_height="@dimen/ads_icon_nav_header"
+            android:layout_width="@dimen/ads_icon_header_drawer"
+            android:layout_height="@dimen/ads_icon_header_drawer"
             android:layout_gravity="start"
             app:ads_colorType="tint_primary"
             app:ads_backgroundAware="false" />
