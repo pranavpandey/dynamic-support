@@ -54,7 +54,7 @@ ext {
     githubUrl = 'pranavpandey/dynamic-support'
 
     mavenGroup = 'com.pranavpandey.android'
-    mavenVersion = '1.0.0'
+    mavenVersion = '1.1.0'
     mavenInceptionYear = 2018
     mavenArtifactId = 'dynamic-support'
     bintrayRepo = 'android'
@@ -68,7 +68,7 @@ ext {
     licenseDistribution = 'repo'
     allLicenses = ["Apache-2.0"]
 
-    versionCode = 10
+    versionCode = 11
 
     buildTools = '27.0.3'
     minSdk = 14
