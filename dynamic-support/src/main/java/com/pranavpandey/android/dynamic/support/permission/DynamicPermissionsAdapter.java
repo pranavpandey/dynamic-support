@@ -95,14 +95,14 @@ public class DynamicPermissionsAdapter extends
         public ViewHolder(@NonNull View view) {
             super(view);
 
-            layout = view.findViewById(R.id.ads_permission_layout);
-            icon = view.findViewById(R.id.ads_permission_icon);
-            statusIcon = view.findViewById(R.id.ads_permission_status_icon);
-            title = view.findViewById(R.id.ads_permission_title);
-            subtitle = view.findViewById(R.id.ads_permission_subtitle);
-            info = view.findViewById(R.id.ads_permission_status_desc);
-            description = view.findViewById(R.id.ads_permission_description);
-            status = view.findViewById(R.id.ads_permission_status);
+            layout = view.findViewById(R.id.ads_info_layout);
+            icon = view.findViewById(R.id.ads_info_icon_big);
+            statusIcon = view.findViewById(R.id.ads_info_icon);
+            title = view.findViewById(R.id.ads_info_title);
+            subtitle = view.findViewById(R.id.ads_info_subtitle);
+            info = view.findViewById(R.id.ads_info_status_description);
+            description = view.findViewById(R.id.ads_info_description);
+            status = view.findViewById(R.id.ads_info_status);
         }
 
         /**
@@ -174,7 +174,7 @@ public class DynamicPermissionsAdapter extends
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         return new ViewHolder(LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.ads_layout_row_permission, viewGroup, false));
+                .inflate(R.layout.ads_layout_info, viewGroup, false));
     }
 
     @Override
