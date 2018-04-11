@@ -34,11 +34,11 @@
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                 android:id="@+id/ads_info_view_icon"
-                android:layout_width="@dimen/ads_icon_large"
-                android:layout_height="@dimen/ads_icon_large"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="@dimen/ads_icon_avatar_card_margin_end_medium"
-                android:layout_marginEnd="@dimen/ads_icon_avatar_card_margin_end_medium" />
+                android:layout_width="@dimen/ads_icon_avatar_card"
+                android:layout_height="@dimen/ads_icon_avatar_card"
+                android:layout_marginRight="@dimen/ads_icon_avatar_card_margin_end"
+                android:layout_marginEnd="@dimen/ads_icon_avatar_card_margin_end"
+                android:layout_gravity="center_vertical" />
 
             <LinearLayout
                 android:layout_width="match_parent"
