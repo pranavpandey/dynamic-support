@@ -21,21 +21,6 @@
     <string name="ads_navigation_drawer_open">Open navigation drawer</string>
     <string name="ads_navigation_drawer_close">Close navigation drawer</string>
 
-    <!-- Labels -->
-    <string name="ads_i_got_it">OK, Got it</string>
-    <string name="ads_not_now">Not now</string>
-    <string name="ads_yes_in">Yes, I\'m in</string>
-    <string name="ads_more_info">More info</string>
-    <string name="ads_select">Select</string>
-    <string name="ads_save">Save</string>
-    <string name="ads_load">Load</string>
-    <string name="ads_create">Create</string>
-    <string name="ads_previous">Previous</string>
-    <string name="ads_next">Next</string>
-    <string name="ads_skip">Skip</string>
-    <string name="ads_loading">Loading&#8230;</string>
-    <string name="ads_finish">Finish</string>
-
     <!-- Headings -->
     <string name="ads_app">App</string>
     <string name="ads_icon">Icon</string>
@@ -53,6 +38,19 @@
     <string name="ads_fixes">Fixes</string>
 
     <!-- Labels -->
+    <string name="ads_i_got_it">OK, Got it</string>
+    <string name="ads_not_now">Not now</string>
+    <string name="ads_yes_in">Yes, I\'m in</string>
+    <string name="ads_more_info">More info</string>
+    <string name="ads_select">Select</string>
+    <string name="ads_save">Save</string>
+    <string name="ads_load">Load</string>
+    <string name="ads_create">Create</string>
+    <string name="ads_previous">Previous</string>
+    <string name="ads_next">Next</string>
+    <string name="ads_skip">Skip</string>
+    <string name="ads_loading">Loading&#8230;</string>
+    <string name="ads_finish">Finish</string>
     <string name="ads_recents">Recents</string>
     <string name="ads_custom">Custom</string>
     <string name="ads_edit">Edit</string>

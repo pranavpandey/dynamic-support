@@ -77,6 +77,8 @@ checkout the `Rotation` app to experience the full potential of this library.
 
 ## Translations
 - German (de) - Flubberlutsch
+- Spanish (es) - Dave
+- Turkish (tr) - Fatih Fırıncı
 - Chinese (Simplified) (zh-rCN) - John Canny
 
 ---
