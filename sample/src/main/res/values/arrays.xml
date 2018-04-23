@@ -102,6 +102,8 @@
     <!-- Supported locales titles. -->
     <string-array name="info_translators_languages">
         <item>@string/ads_locale_de</item>
+        <item>@string/ads_locale_es</item>
+        <item>@string/ads_locale_tr</item>
         <item>@string/ads_locale_zh_rCN</item>
         <item>@string/ads_translators_translate</item>
     </string-array>
@@ -109,6 +111,8 @@
     <!-- Supported locales translators. -->
     <string-array name="info_translators_authors">
         <item>Flubberlutsch</item>
+        <item>Dave</item>
+        <item>Fatih Fırıncı</item>
         <item>残念</item>
         <item>@string/ads_translators_contact</item>
     </string-array>
@@ -116,6 +120,8 @@
     <!-- Supported locales flags. -->
     <string-array name="info_translators_flags">
         <item>@drawable/ads_ic_flag_de</item>
+        <item>@drawable/ads_ic_flag_es</item>
+        <item>@drawable/ads_ic_flag_tr</item>
         <item>@drawable/ads_ic_flag_cn</item>
         <item>@drawable/ads_ic_translate</item>
     </string-array>
@@ -124,11 +130,15 @@
     <string-array name="info_translators_urls">
         <item>@null</item>
         <item>@null</item>
+        <item>@null</item>
+        <item>@null</item>
         <item>https://github.com/pranavpandey/dynamic-support</item>
     </string-array>
 
     <!-- Supported locales tint colors. -->
     <integer-array name="info_translators_colors">
+        <item>0</item>
+        <item>0</item>
         <item>0</item>
         <item>0</item>
         <item>@color/color_accent</item>

@@ -37,6 +37,16 @@ public class DynamicLocaleUtils {
     public static final String ADS_LOCALE_SYSTEM = "ads_locale_system";
 
     /**
+     * Constant value for the Spanish (Español) locale.
+     */
+    public static final String ADS_LOCALE_SPANISH = "es";
+
+    /**
+     * Constant value for the Turkish (Türkçe) locale.
+     */
+    public static final String ADS_LOCALE_TURKISH = "tr";
+
+    /**
      * Dynamic locale splitter to separate language, country, etc.
      */
     public static final String ADE_LOCALE_SPLIT = ",";

@@ -31,6 +31,10 @@
     <string name="ads_locale_en_value">en</string>
     <string name="ads_locale_de">Deutsch</string>
     <string name="ads_locale_de_value">de</string>
+    <string name="ads_locale_es">Español</string>
+    <string name="ads_locale_es_value">es</string>
+    <string name="ads_locale_tr">Türkçe</string>
+    <string name="ads_locale_tr_value">tr</string>
     <string name="ads_locale_zh_rCN">中文 (简体)</string>
     <string name="ads_locale_zh_rCN_value">zh,CN</string>
 
