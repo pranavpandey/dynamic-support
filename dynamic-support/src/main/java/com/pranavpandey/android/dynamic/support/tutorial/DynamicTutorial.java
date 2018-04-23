@@ -28,6 +28,11 @@ import android.support.v4.view.ViewPager;
 public interface DynamicTutorial extends ViewPager.OnPageChangeListener {
 
     /**
+     * @return The tutorial object.
+     */
+    Object getTutorial();
+
+    /**
      * @return The id of this tutorial.
      */
     int getTutorialId();

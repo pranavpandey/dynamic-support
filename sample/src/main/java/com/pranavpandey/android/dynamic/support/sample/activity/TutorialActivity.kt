@@ -92,6 +92,16 @@ class TutorialActivity : DynamicTutorialActivity() {
         setSkipAction()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        // Update action button after performing some action like
+        // granting a permission.
+        if (viewPagerAdapter != null) {
+            setTutorialAction(viewPager.currentItem)
+        }
+    }
+
     /**
      * TODO: Set an action button according to the tutorial id.
      */

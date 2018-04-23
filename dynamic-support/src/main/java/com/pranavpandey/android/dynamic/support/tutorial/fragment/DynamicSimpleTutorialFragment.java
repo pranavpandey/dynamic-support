@@ -103,6 +103,11 @@ public class DynamicSimpleTutorialFragment extends DynamicTutorialFragment {
     public void onPageScrollStateChanged(int state) { }
 
     @Override
+    public DynamicSimpleTutorial getTutorial() {
+        return mDynamicSimpleTutorial;
+    }
+
+    @Override
     public int getTutorialId() {
         return mDynamicSimpleTutorial.getId();
     }
