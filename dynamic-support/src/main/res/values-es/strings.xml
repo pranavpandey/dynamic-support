@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright (C) 2018 Pranav Pandey
+    Copyright (C) 2018 Pranav Pandey
 
-	Licensed under the Apache License, Version 2.0 (the "License");
-	you may not use this file except in compliance with the License.
-	You may obtain a copy of the License at
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-	   http://www.apache.org/licenses/LICENSE-2.0
+       http://www.apache.org/licenses/LICENSE-2.0
 
-	Unless required by applicable law or agreed to in writing, software
-	distributed under the License is distributed on an "AS IS" BASIS,
-	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	See the License for the specific language governing permissions and
-	limitations under the License.
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 -->
 
 <resources>
@@ -91,12 +91,12 @@
 
     <!-- Runtime permissions -->
     <string name="ads_permissions">Permisos</string>
-    <string name="ads_permissions_subtitle_single">Por favor activar el permiso requerido.</string>
-    <string name="ads_permissions_subtitle">Por favor activar los permisos requeridos.</string>
+    <string name="ads_permissions_subtitle_single">Por favor activa el permiso requerido.</string>
+    <string name="ads_permissions_subtitle">Por favor activa los permisos requeridos.</string>
     <string name="ads_perm_default">Permiso</string>
-    <string name="ads_perm_info_grant_all">Por favor activar todos los permisos para que la aplicación funcione correctamente.</string>
+    <string name="ads_perm_info_grant_all">Por favor activa todos los permisos para que la aplicación funcione correctamente.</string>
     <string name="ads_perm_request">Solicitar</string>
-    <string name="ads_perm_request_desc">Este permiso no está activado. Presionar para activarlo.</string>
+    <string name="ads_perm_request_desc">Este permiso no está activado. Presiona para activarlo.</string>
     <string name="ads_perm_granted">Activado</string>
     <string name="ads_perm_granted_desc">Este permiso ha sido activado</string>
     <string name="ads_perm_denied">Desactivado</string>
@@ -115,7 +115,7 @@
     <string name="ads_data_operations">Operaciones de datos</string>
     <string name="ads_backup_and_restore">Respaldar y restaurar</string>
     <string name="ads_backup">Respaldar</string>
-    <string name="ads_backup_desc">La configuración de los widgets no se respaldará, por favor configurarlos manualmente después de restaurar.</string>
+    <string name="ads_backup_desc">La configuración de los widgets no se respaldará, por favor configúralos manualmente después de restaurar.</string>
     <string name="ads_backup_title">Crear respaldo</string>
     <string name="ads_backup_select">Seleccionar</string>
     <string name="ads_backup_summary">Guardar o compartir la configuración actual de la aplicación.</string>
@@ -188,29 +188,29 @@
     <string name="ads_theme_app_night_summary">Tema base de la aplicación durante la noche.</string>
     <string name="ads_theme_app_day_night_desc">Esto funcionará únicamente cuando se aplique el tema auto.</string>
     <string name="ads_theme_toast">Tema de los mensajes toast</string>
-    <string name="ads_theme_toast_summary">Mostrar mensajes toast coloreados según el color primario de la aplicación.</string>
-    <string name="ads_theme_toast_summary_unchecked">Mostrar mensajes toast con el estilo del sistema.</string>
+    <string name="ads_theme_toast_summary">Mostrar los mensajes toast coloreados según el color primario de la aplicación.</string>
+    <string name="ads_theme_toast_summary_unchecked">Mostrar los mensajes toast con el estilo del sistema.</string>
     <string name="ads_theme_navigation_bar">Tema de la barra de navegación</string>
-    <string name="ads_theme_navigation_bar_summary">Mostrar barra de navegación coloreada según el color primario de la aplicación.</string>
-    <string name="ads_theme_navigation_bar_summary_unchecked">Mostrar barra de navegación negra.</string>
+    <string name="ads_theme_navigation_bar_summary">Mostrar la barra de navegación coloreada según el color primario de la aplicación.</string>
+    <string name="ads_theme_navigation_bar_summary_unchecked">Mostrar la barra de navegación de color negro.</string>
     <string name="ads_theme_navigation_bar_desc">El tema de la barra de navegación no será visible en algunos lugares para una mejor experiencia visual.</string>
     <string name="ads_theme_notification">Tema de la notificación</string>
     <string name="ads_theme_notification_summary">Paleta de colores para la notificación.</string>
     <string name="ads_theme_notification_style">Estilo de la notificación</string>
     <string name="ads_theme_notification_style_summary">Estilo del diseño de la notificación</string>
-    <string name="ads_theme_style_classic_desc">Elegir clásico para usar la paleta de colores como fondo</string>
+    <string name="ads_theme_style_classic_desc">Elige el estilo clásico para usar la paleta de colores como fondo</string>
     <string name="ads_theme_widget">Tema del widget</string>
     <string name="ads_theme_widget_summary">Paleta de colores para el widget</string>
     <string name="ads_theme_app_shortcuts">Tema de los atajos del launcher</string>
-    <string name="ads_theme_app_shortcuts_summary">Mostrar atajos del launcher coloreados según el color primario de la aplicación.</string>
+    <string name="ads_theme_app_shortcuts_summary">Mostrar los atajos del launcher coloreados según el color primario de la aplicación.</string>
     <string name="ads_theme_app_shortcuts_summary_unchecked">Mostrar los atajos de la aplicación por defecto según el tema de la aplicación y el color del ícono de Rotation.</string>
-    <string name="ads_theme_app_shortcuts_desc">Realizar una pulsación larga en el ícono del launcher para mostrar los atajos de la aplicación, se requiere un launcher con soporte para atajos.</string>
+    <string name="ads_theme_app_shortcuts_desc">Mantén presionado el ícono del launcher para mostrar los atajos de la aplicación. Se requiere un launcher con soporte para atajos.</string>
 
     <!-- Theme entries and labels-->
     <string name="ads_theme_toast_themed">Mensaje toast coloreado</string>
     <string name="ads_theme_toast_default">Mensaje toast por defecto</string>
     <string name="ads_theme_entry_auto">Auto</string>
-    <string name="ads_theme_entry_auto_desc">Seleccionar auto para usar la paleta de colores de la aplicación.</string>
+    <string name="ads_theme_entry_auto_desc">Elige el estilo auto para usar la paleta de colores de la aplicación.</string>
     <string name="ads_theme_entry_light">Claro</string>
     <string name="ads_theme_entry_dark">Oscuro</string>
     <string name="ads_theme_entry_custom">Personalizado</string>
@@ -248,14 +248,14 @@
 
     <!-- Notification and channel -->
     <string name="ads_notification_priority">Prioridad de la notificación</string>
-    <string name="ads_notification_priority_summary">Escoger una prioridad para determinar el orden de la notificación en el cajón de notificaciones.</string>
-    <string name="ads_notification_priority_desc">Escoger prioridad baja para esconder la notificación en la barra de estado y la pantalla de bloqueo.</string>
+    <string name="ads_notification_priority_summary">Escoge una prioridad para determinar el orden de la notificación en el cajón de notificaciones.</string>
+    <string name="ads_notification_priority_desc">Escoge la prioridad baja para esconder la notificación en la barra de estado y la pantalla de bloqueo.</string>
     <string name="ads_notification_priority_high">Alta</string>
     <string name="ads_notification_priority_normal">Normal</string>
     <string name="ads_notification_priority_low">Baja</string>
     <string name="ads_notification_category">Categoría de la notificación</string>
     <string name="ads_notification_category_summary">Configurar la notificación de la aplicación.</string>
-    <string name="ads_notification_category_desc">Escoger categoría de baja importancia para esconder la notificación en la barra de estado y la pantalla de bloqueo.</string>
+    <string name="ads_notification_category_desc">Escoge la categoría de baja importancia para esconder la notificación en la barra de estado y la pantalla de bloqueo.</string>
 
     <!-- App widget -->
     <string name="ads_widget_customise">Personalizar</string>
@@ -273,38 +273,43 @@
     <string name="ads_support_report">Reportar</string>
     <string name="ads_support_report_bug">Enviar reporte de error</string>
     <string name="ads_support_report_bug_summary">Contactar al desarrollador por correo</string>
-    <string name="ads_support_report_bug_desc">Si tiene una dificultad o pregunta acerca de esta aplicación, por favor contácteme por correo electrónico.</string>
+    <string name="ads_support_report_bug_desc">Si tienes una dificultad o pregunta acerca de esta aplicación, por favor contáctame por correo electrónico.</string>
     <string name="ads_support_donate">Donar</string>
     <string name="ads_support_donate_paypal">Donar usando PayPal.</string>
-    <string name="ads_support_donate_desc">Enviar un pago al desarrollador como un gesto de apreciación y para apoyar el desarrollo de otros proyectos. Donar no es necesario, puede comprar la versión de pago de la aplicación para apoyar el desarrollo.</string>
+    <string name="ads_support_donate_desc">Envía un pago al desarrollador como un gesto de apreciación y para apoyar el desarrollo de otros proyectos. Donar no es necesario, puedes comprar la versión de pago de la aplicación para apoyar su desarrollo.</string>
     <string name="ads_support_reset_to_default">Restablecer la configuración por defecto</string>
     <string name="ads_support_reset_to_default_alert">Esto restablecerá la configuración de usuario a su estado por defecto. ¿Continuar?</string>
     <string name="ads_support_reset_to_default_summary">Restablecer la configuración por defecto.</string>
     <string name="ads_support_reset_to_default_desc">Esto puede arreglar algunos problemas generales causados por una actualización de la aplicación o del sistema. La configuración del usuario (exceptuando los widgets) se perderá al realizar esta operación.</string>
     <string name="ads_support_restart_app">Reiniciar la aplicación</string>
     <string name="ads_support_restart_app_summary">Reiniciar la aplicación y el servicio para actualizar el estado de la aplicación.</string>
-    <string name="ads_support_restart_app_desc">Usar si el servicio no está en funcionamiento o si la aplicación no se comporta apropiadamente. La configuración permanecerá intacta al realizar esta operación.</string>
+    <string name="ads_support_restart_app_desc">Úsalo si el servicio no está en funcionamiento o si la aplicación no se comporta apropiadamente. La configuración permanecerá intacta al realizar esta operación.</string>
 
     <!-- Developer and App info -->
     <string name="ads_info_made_in">Hecho en India</string>
     <string name="ads_info_made_by">Escrito y diseñado por</string>
-    <string name="ads_info_quote">Nada es perfecto, pero puede mejorar. ¡Desarrollando cosas mejores!</string>
+    <string name="ads_info_quote">Nada es perfecto, pero todo puede mejorar. ¡Desarrollando cosas mejores!</string>
     <string name="ads_info_privacy_policy_desc">Ver la política de privacidad completa de este producto.</string>
     <string name="ads_info_privacy_policy">Política de privacidad</string>
     <string name="ads_info_terms_of_use">Términos de Uso</string>
     <string name="ads_info_terms_of_use_desc">Ver los términos de uso de este producto.</string>
     <string name="ads_info_privacy_policy_terms_desc">Política de privacidad y términos de uso.</string>
     <string name="ads_info_apps">Más aplicaciones</string>
-    <string name="ads_info_gplus_desc">Unirse a la comunidad oficial para probar las versiones de prueba.</string>
+    <string name="ads_info_gplus">Google+</string>
+    <string name="ads_info_gplus_desc">Únete a la comunidad oficial para probar las versiones de prueba.</string>
     <string name="ads_info_facebook">Facebook</string>
-    <string name="ads_info_facebook_desc">Seguir la página oficial para recibir las últimas noticias y actualizaciones.</string>
-    <string name="ads_info_xda_desc">Seguir el foro de soporte oficial de XDA.</string>
+    <string name="ads_info_facebook_desc">Sigue la página oficial para recibir las últimas noticias y actualizaciones.</string>
+    <string name="ads_info_xda">XDA-Developers</string>
+    <string name="ads_info_xda_desc">Sigue el foro de soporte oficial de XDA.</string>
     <string name="ads_info_website">Sitio web</string>
+    <string name="ads_info_github">GitHub</string>
+    <string name="ads_info_linkedin">LinkedIn</string>
+    <string name="ads_info_twitter">Twitter</string>
     <string name="ads_info_website_me_desc">Un lugar para mí en la web.</string>
-    <string name="ads_info_twitter_me_desc">Obtener los últimos tweets sobre mi vida y mi trabajo.</string>
-    <string name="ads_info_facebook_me_desc">Hacerse amigo o seguirme para conocer más sobre mí.</string>
-    <string name="ads_info_gplus_me_desc">Añadir a un círculo o seguir para hacer crecer la comunidad.</string>
-    <string name="ads_info_linkedin_me_desc">¿Algo bueno para mí? Búsqueme en LinkedIn.</string>
+    <string name="ads_info_twitter_me_desc">Obtén los últimos tweets sobre mi vida y mi trabajo.</string>
+    <string name="ads_info_facebook_me_desc">Hazte amigo o sígueme para conocer más sobre mí.</string>
+    <string name="ads_info_gplus_me_desc">Añádeme a un círculo o sígueme para hacer crecer la comunidad.</string>
+    <string name="ads_info_linkedin_me_desc">¿Algo bueno para mí? Búscame en LinkedIn.</string>
     <string name="ads_info_github_me_desc">Devolviendo un poco a la comunidad convirtiendo algunos de mis proyectos a código abierto.</string>
 
     <!-- Contributors and Translators -->
