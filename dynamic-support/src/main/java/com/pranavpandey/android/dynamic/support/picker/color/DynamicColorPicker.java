@@ -327,6 +327,14 @@ public class DynamicColorPicker extends FrameLayout {
         mSeekBarGreen.setColor(Color.GREEN);
         mSeekBarBlue.setColor(Color.BLUE);
 
+        mPreviousColorView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setSelectedColor(mPreviousColorView.getColor());
+                update();
+            }
+        });
+
         mEditTextWatcher =
                 new TextWatcher() {
                     @Override
