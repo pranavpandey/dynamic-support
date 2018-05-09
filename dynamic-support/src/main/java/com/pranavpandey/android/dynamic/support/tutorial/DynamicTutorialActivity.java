@@ -225,8 +225,7 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
      * @param color The activity color to be applied.
      */
     private void setColor(int position, @ColorInt int color) {
-        setStatusBarColor(DynamicColorUtils.shiftColor(
-                color, DynamicTheme.ADS_COLOR_SHIFT_DARK_DEFAULT));
+        setStatusBarColor(color);
         setNavigationBarColor(color);
         mCoordinatorLayout.setBackgroundColor(color);
         mCoordinatorLayout.setStatusBarBackgroundColor(getStatusBarColor());

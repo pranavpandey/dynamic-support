@@ -130,16 +130,9 @@ class BottomNavigationActivity : DynamicActivity() {
      */
     private fun themeBottomNavigationView() {
         if (mBottomNavigationView != null) {
-            if (isNavigationBarTheme
-                    && mAppliedNavigationBarColor != ADS_DEFAULT_SYSTEM_BG_COLOR) {
-                mBottomNavigationView!!.color = mNavigationBarColor
-                mBottomNavigationView!!.textColor =
-                        DynamicColorUtils.getTintColor(mNavigationBarColor)
-            } else {
-                mBottomNavigationView!!.color = DynamicTheme.getInstance().primaryColor
-                mBottomNavigationView!!.textColor = DynamicColorUtils.getTintColor(
-                        DynamicTheme.getInstance().primaryColor)
-            }
+            mBottomNavigationView!!.color = DynamicTheme.getInstance().primaryColor
+            mBottomNavigationView!!.textColor = DynamicColorUtils.getTintColor(
+                    DynamicTheme.getInstance().primaryColor)
         }
     }
 

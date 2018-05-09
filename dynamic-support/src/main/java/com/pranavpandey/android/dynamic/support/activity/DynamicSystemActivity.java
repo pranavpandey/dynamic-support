@@ -90,7 +90,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * etc.
      */
     protected static final @ColorInt int ADS_DEFAULT_SYSTEM_UI_COLOR =
-            Color.parseColor("#FFFFFF");
+            Color.parseColor("#F5F5F5");
 
     /**
      * Default background color for the system UI elements like
@@ -143,7 +143,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
 
         mStatusBarColor = DynamicTheme.getInstance().getPrimaryColorDark();
-        mNavigationBarColor = DynamicTheme.getInstance().getPrimaryColor();
+        mNavigationBarColor = DynamicTheme.getInstance().getPrimaryColorDark();
     }
 
     @Override
@@ -249,7 +249,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
 
     /**
      * @return {@code true} to register a
-     * {@link android.content.SharedPreferences.OnSharedPreferenceChangeListener}
+     * {@link SharedPreferences.OnSharedPreferenceChangeListener}
      * to receive preference change callback.
      */
     protected boolean setSharedPreferenceChangeListener() {
@@ -329,8 +329,8 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     protected void updateStatusBar() {
         if (!DynamicColorUtils.isColorDark(mStatusBarColor)) {
             if (!DynamicVersionUtils.isMarshmallow()) {
-                mStatusBarColor = DynamicColorUtils.getContrastColor(mStatusBarColor,
-                        ADS_DEFAULT_SYSTEM_UI_COLOR);
+                mStatusBarColor = DynamicColorUtils.getContrastColor(
+                        mStatusBarColor, ADS_DEFAULT_SYSTEM_UI_COLOR);
             }
         }
 
@@ -495,9 +495,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
             @ColorInt int color = mStatusBarColor;
             color = Color.rgb(Color.red(color), Color.green(color), Color.blue(color));
 
-            ActivityManager.TaskDescription td = new ActivityManager.TaskDescription(
-                    null, null, color);
-            setTaskDescription(td);
+            setTaskDescription(new ActivityManager.TaskDescription(null, null, color));
         }
     }
 }
