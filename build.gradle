@@ -23,7 +23,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0-alpha15'
+        classpath 'com.android.tools.build:gradle:3.2.0-alpha16'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
@@ -54,7 +54,7 @@ ext {
     githubUrl = 'pranavpandey/dynamic-support'
 
     mavenGroup = 'com.pranavpandey.android'
-    mavenVersion = '1.1.0'
+    mavenVersion = '1.1.1'
     mavenInceptionYear = 2018
     mavenArtifactId = 'dynamic-support'
     bintrayRepo = 'android'
@@ -68,7 +68,7 @@ ext {
     licenseDistribution = 'repo'
     allLicenses = ["Apache-2.0"]
 
-    versionCode = 11
+    versionCode = 12
 
     buildTools = '27.0.3'
     minSdk = 14
