@@ -25,6 +25,7 @@ import java.lang.annotation.RetentionPolicy;
 
 import static com.pranavpandey.android.dynamic.support.permission.DynamicPermissionsAction.NONE;
 import static com.pranavpandey.android.dynamic.support.permission.DynamicPermissionsAction.START_ACTIVITY;
+import static com.pranavpandey.android.dynamic.support.permission.DynamicPermissionsAction.START_FOREGROUND_SERVICE;
 import static com.pranavpandey.android.dynamic.support.permission.DynamicPermissionsAction.START_SERVICE;
 
 /**
@@ -32,7 +33,7 @@ import static com.pranavpandey.android.dynamic.support.permission.DynamicPermiss
  * the permissions are granted.
  */
 @Retention(RetentionPolicy.SOURCE)
-@IntDef(value = {NONE, START_ACTIVITY, START_SERVICE })
+@IntDef(value = {NONE, START_SERVICE, START_FOREGROUND_SERVICE, START_ACTIVITY })
 public @interface DynamicPermissionsAction {
 
     /**
@@ -48,9 +49,16 @@ public @interface DynamicPermissionsAction {
     int START_SERVICE = 0;
 
     /**
+     * Constant to start a foreground service.
+     *
+     * @see android.support.v4.content.ContextCompat#startForegroundService(Context, Intent)
+     */
+    int START_FOREGROUND_SERVICE = 1;
+
+    /**
      * Constant to start an service.
      *
-     * @see Context#startService(Intent)
+     * @see Context#startActivity(Intent)
      */
-    int START_ACTIVITY = 1;
+    int START_ACTIVITY = 2;
 }

@@ -27,6 +27,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -346,6 +347,9 @@ public class DynamicPermissionsFragment extends DynamicFragment {
                     ADS_INTENT_EXTRA_ACTION, DynamicPermissionsAction.NONE)) {
                 case DynamicPermissionsAction.START_SERVICE:
                     getContext().startService(actionIntent);
+                    break;
+                case DynamicPermissionsAction.START_FOREGROUND_SERVICE:
+                    ContextCompat.startForegroundService(getContext(), actionIntent);
                     break;
                 case DynamicPermissionsAction.START_ACTIVITY:
                     getContext().startActivity(actionIntent);
