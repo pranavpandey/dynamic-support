@@ -396,10 +396,6 @@ public class DynamicTheme implements DynamicListener {
             initializeRemoteColors(true);
         }
 
-        if (mLocalContext == null) {
-            attach(mContext).setLocalTheme(theme);
-        }
-
         return this;
     }
 
@@ -1461,7 +1457,7 @@ public class DynamicTheme implements DynamicListener {
      */
     public void recreateLocal() {
         if (mLocalContext == null) {
-            throw new IllegalStateException("Not attached to a local mContext");
+            throw new IllegalStateException("Not attached to a local context");
         }
 
         if (!(mLocalContext instanceof Activity)) {
@@ -1480,9 +1476,13 @@ public class DynamicTheme implements DynamicListener {
             return;
         }
 
+        mContext = null;
+        mLocalContext = null;
         sInstance.mContext = null;
         sInstance.mLocalContext = null;
         sInstance = null;
+
+        clearDynamicThemeListener();
     }
 
     /**
@@ -1516,7 +1516,7 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Add DynamicTutorialListener to {@link #mDynamicListeners}.
+     * Add DynamicThemeListener to {@link #mDynamicListeners}.
      */
     public void addDynamicThemeListener(@NonNull Context dynamicThemeListener) {
         if (dynamicThemeListener instanceof DynamicListener) {
@@ -1525,11 +1525,20 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Remove DynamicTutorialListener from {@link #mDynamicListeners}.
+     * Remove DynamicThemeListener from {@link #mDynamicListeners}.
      */
     public void removeDynamicThemeListener(@NonNull Context dynamicThemeListener) {
         if (dynamicThemeListener instanceof DynamicListener) {
             mDynamicListeners.remove(dynamicThemeListener);
+        }
+    }
+
+    /**
+     * Remove all the DynamicThemeListeners from {@link #mDynamicListeners}.
+     */
+    public void clearDynamicThemeListener() {
+        if (!mDynamicListeners.isEmpty()) {
+            mDynamicListeners.clear();
         }
     }
 

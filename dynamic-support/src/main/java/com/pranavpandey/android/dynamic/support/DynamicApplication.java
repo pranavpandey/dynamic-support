@@ -64,7 +64,7 @@ public abstract class DynamicApplication extends Application implements
         super.onCreate();
 
         mConfiguration = new Configuration(getResources().getConfiguration());
-        DynamicTheme.initializeInstance(getContext());
+        DynamicTheme.initializeInstance(this);
         DynamicTheme.getInstance().addDynamicThemeListener(this);
         PreferenceManager.getDefaultSharedPreferences(this)
                 .registerOnSharedPreferenceChangeListener(this);
