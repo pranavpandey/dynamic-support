@@ -43,6 +43,7 @@ public class DynamicAppWidgetUtils {
     @Retention(RetentionPolicy.SOURCE)
     @StringDef(value = { THEME_AUTO, THEME_CUSTOM })
     public @interface Theme {
+
         /**
          * Constant for automatic widget theme.
          */

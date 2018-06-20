@@ -34,6 +34,9 @@ import java.util.Locale;
  */
 public class DynamicLocaleUtils {
 
+    /**
+     * Constant value for the system locale.
+     */
     public static final String ADS_LOCALE_SYSTEM = "ads_locale_system";
 
     /**
@@ -148,8 +151,8 @@ public class DynamicLocaleUtils {
         configuration.setLayoutDirection(locale);
         context.createConfigurationContext(configuration);
 
-        // Hack to fix the dialog fragment layout issue on configuration
-        // change.
+        // Hack to fix the dialog fragment layout issue on
+        // configuration change.
         context.getResources().updateConfiguration(configuration,
                 context.getResources().getDisplayMetrics());
 

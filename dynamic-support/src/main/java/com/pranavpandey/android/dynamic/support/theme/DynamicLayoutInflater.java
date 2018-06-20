@@ -63,8 +63,8 @@ import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
- * A layout inflater factory2 to inflate replace original views with
- * the dynamic support views during inflation.
+ * A layout inflater factory2 to replace original views with the
+ * dynamic support views during inflation.
  */
 @RestrictTo(LIBRARY_GROUP)
 final class DynamicLayoutInflater implements LayoutInflater.Factory2 {
