@@ -25,7 +25,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewFrame;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicInfoView;
 
@@ -57,9 +56,7 @@ public class DynamicRecyclerViewNested extends DynamicRecyclerViewFrame {
 
     @Override
     public @Nullable RecyclerView.LayoutManager getRecyclerViewLayoutManager() {
-        RecyclerView.LayoutManager layoutManager = DynamicLayoutUtils
-                .getLinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL);
-
-        return layoutManager;
+        return DynamicLayoutUtils.getLinearLayoutManager(
+                getContext(), LinearLayoutManager.VERTICAL);
     }
 }

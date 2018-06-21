@@ -17,10 +17,9 @@
 package com.pranavpandey.android.dynamic.support.sample.view
 
 import android.content.Context
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
 import android.util.AttributeSet
-
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewFrame
 import com.pranavpandey.android.dynamic.support.sample.adapter.AppInfoAdapter
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils
@@ -43,7 +42,7 @@ class AppInfoView : DynamicRecyclerViewFrame {
 
     override fun getRecyclerViewLayoutManager(): RecyclerView.LayoutManager? {
         return DynamicLayoutUtils.getLinearLayoutManager(
-                context, StaggeredGridLayoutManager.VERTICAL)
+                context, LinearLayoutManager.VERTICAL)
     }
 
     private fun setAdapter(): AppInfoView {
