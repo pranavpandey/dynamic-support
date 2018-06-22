@@ -21,5 +21,4 @@
     android:stretchMode="columnWidth"
     android:numColumns="auto_fit"
     android:clipChildren="true"
-    android:alwaysDrawnWithCache="true"
     style="@style/Widget.DynamicApp.Scroller.Vertical" />

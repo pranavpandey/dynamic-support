@@ -36,8 +36,8 @@
             android:verticalSpacing="@dimen/ads_margin_small"
             android:numColumns="auto_fit"
             android:stretchMode="columnWidth"
-            android:listSelector="@android:color/transparent"
-            android:cacheColorHint="@android:color/transparent"
+            android:listSelector="@null"
+            android:cacheColorHint="@null"
             style="@style/Widget.DynamicApp.Scroller.Nested" />
 
     </LinearLayout>
