@@ -1519,7 +1519,8 @@ public class DynamicTheme implements DynamicListener {
      * Add DynamicThemeListener to {@link #mDynamicListeners}.
      */
     public void addDynamicThemeListener(@NonNull Context dynamicThemeListener) {
-        if (dynamicThemeListener instanceof DynamicListener) {
+        if (dynamicThemeListener instanceof DynamicListener
+                && !mDynamicListeners.contains(dynamicThemeListener)) {
             mDynamicListeners.add((DynamicListener) dynamicThemeListener);
         }
     }
