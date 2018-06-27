@@ -118,7 +118,7 @@ public abstract class DynamicApplication extends Application implements
     protected void onCustomiseTheme() { }
 
     /**
-     * Getter for {@link #mContext}.
+     * @return The dynamic context used by this application.
      */
     public @NonNull Context getContext() {
         return mContext;

@@ -178,28 +178,28 @@ public class DynamicSimplePreference extends DynamicPreference {
     }
 
     /**
-     * Getter for {@link #mPreferenceView}.
+     * @return The preference root view.
      */
     public ViewGroup getPreferenceView() {
         return mPreferenceView;
     }
 
     /**
-     * Getter for {@link #mValueView}.
+     * @return The image view to show the icon.
      */
     public TextView getValueView() {
         return mValueView;
     }
 
     /**
-     * Getter for {@link #mViewFrame}.
+     * @return The text view to show the title.
      */
     public ViewGroup getViewFrame() {
         return mViewFrame;
     }
 
     /**
-     * Add a view in {@link #mViewFrame}.
+     * Add a view in the view frame.
      *
      * @param view The view to be added.
      * @param removePrevious {@code true} to remove all the previous

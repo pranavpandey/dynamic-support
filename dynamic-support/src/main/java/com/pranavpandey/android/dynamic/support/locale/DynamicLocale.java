@@ -30,7 +30,7 @@ import java.util.Locale;
 public interface DynamicLocale {
 
     /**
-     * @return An array of supported locales.
+     * @return The array of supported locales.
      *
      * @see android.support.v4.os.ConfigurationCompat#getLocales(Configuration)
      */
@@ -38,7 +38,7 @@ public interface DynamicLocale {
 
     /**
      * @return The default locale to be used if no dynamic locale
-     * support is provided.
+     *         support is provided.
      *
      * @param context The context to get configuration.
      *
@@ -57,6 +57,8 @@ public interface DynamicLocale {
      * Apply the locale according to the configuration.
      *
      * @param context The context to set the locale.
+     *
+     * @return The modified context after applying the locale.
      */
     @NonNull Context setLocale(@NonNull Context context);
 }

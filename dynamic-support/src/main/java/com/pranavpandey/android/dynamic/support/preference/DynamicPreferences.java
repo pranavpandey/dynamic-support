@@ -23,7 +23,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 /**
- * Base class to handle shared preferences operations like saving or
+ * Helper class to handle shared preferences operations like saving or
  * retrieving the values from default shared preferences. It must be
  * initialized once before accessing its methods.
  */
@@ -35,7 +35,7 @@ public class DynamicPreferences {
     private static DynamicPreferences sInstance;
 
     /**
-     * Context of activity or application to retrieve resources.
+     * Context to retrieve the resources.
      */
     protected Context mContext;
 
@@ -46,19 +46,19 @@ public class DynamicPreferences {
     private DynamicPreferences() { }
 
     /**
-     * Cannot be called directly, use {@link #initializeInstance(Context)}.
-     * Constructor using a context to initialize theme when application
-     * starts.
+     * Constructor to initialize an object of this class.
+     *
+     * @param context The context to retrieve the resources.
      */
-    public DynamicPreferences(@NonNull Context context) {
+    private DynamicPreferences(@NonNull Context context) {
         this.mContext = context;
     }
 
     /**
-     * Initialize preferences when application starts. Must be initialize
-     * once.
+     * Initialize preferences when application starts.
+     * Must be initialized once.
      *
-     * @param context Context to retrieve resources.
+     * @param context The context to retrieve resources.
      */
     public static synchronized void initializeInstance(@Nullable Context context) {
         if (context == null) {
@@ -71,11 +71,10 @@ public class DynamicPreferences {
     }
 
     /**
-     * Get instance to access public methods. Must be called before accessing
-     * methods.
+     * Get instance to access public methods. Must be called before
+     * accessing the methods.
      *
-     * @return {@link #sInstance} Singleton {@link DynamicPreferences}
-     *         instance.
+     * @return The singleton instance of this class.
      */
     public static synchronized DynamicPreferences getInstance() {
         if (sInstance == null) {
@@ -87,7 +86,7 @@ public class DynamicPreferences {
     }
 
     /**
-     * Getter for {@link #mContext}.
+     * @return The context to retrieve the resources.
      */
     public Context getContext() {
         return mContext;

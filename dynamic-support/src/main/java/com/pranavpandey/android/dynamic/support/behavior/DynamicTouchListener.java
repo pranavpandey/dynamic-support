@@ -33,8 +33,9 @@ public class DynamicTouchListener extends ItemTouchHelper.Callback {
     private final DynamicTouchAdapter mAdapter;
 
     /**
-     * Default constructor to create an object with the supplied
-     * adapter.
+     * Constructor to initialize an object of this class.
+     *
+     * @param adapter The adapter to receive callbacks on touch.
      */
     public DynamicTouchListener(DynamicTouchAdapter adapter) {
         mAdapter = adapter;

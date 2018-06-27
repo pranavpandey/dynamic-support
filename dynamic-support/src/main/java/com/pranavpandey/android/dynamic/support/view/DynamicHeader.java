@@ -106,6 +106,8 @@ public class DynamicHeader extends FrameLayout {
 
     /**
      * Load values from the supplied attribute set.
+     *
+     * @param attrs The supplied attribute set to load the values.
      */
     protected void loadFromAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(
@@ -162,14 +164,19 @@ public class DynamicHeader extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mIcon}.
+     * @return The icon used by this view.
      */
     public Drawable getIcon() {
         return mIcon;
     }
 
     /**
-     * Setter for {@link #mIcon}.
+     * Set the icon for this view.
+     *
+     * @param icon The icon to be set.
+     *
+     * @return The {@link DynamicHeader} object to allow for
+     *         chaining of calls to set methods.
      */
     public DynamicHeader setIcon(@Nullable Drawable icon) {
         this.mIcon = icon;
@@ -179,14 +186,19 @@ public class DynamicHeader extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mTitle}.
+     * @return The title used by this view.
      */
     public CharSequence getTitle() {
         return mTitle;
     }
 
     /**
-     * Setter for {@link #mTitle}.
+     * Set the title for this view.
+     *
+     * @param title The title to be set.
+     *
+     * @return The {@link DynamicHeader} object to allow for
+     *         chaining of calls to set methods.*
      */
     public DynamicHeader setTitle(@Nullable CharSequence title) {
         this.mTitle = title;
@@ -196,14 +208,19 @@ public class DynamicHeader extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mSubtitle}.
+     * @return The subtitle used by this view.
      */
     public CharSequence getSubtitle() {
         return mSubtitle;
     }
 
     /**
-     * Setter for {@link #mSubtitle}.
+     * Set the subtitle for this view.
+     *
+     * @param subtitle The subtitle to be set.
+     *
+     * @return The {@link DynamicHeader} object to allow for
+     *         chaining of calls to set methods.
      */
     public DynamicHeader setSubtitle(@Nullable CharSequence subtitle) {
         this.mSubtitle = subtitle;
@@ -213,14 +230,19 @@ public class DynamicHeader extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mShowIcon}.
+     * @return {@code true} to show the icon.
      */
     public boolean isShowIcon() {
         return mShowIcon;
     }
 
     /**
-     * Setter for {@link #mShowIcon}.
+     * Set the icon visibility for this view.
+     *
+     * @param showIcon {@code true} to show the icon.
+     *
+     * @return The {@link DynamicHeader} object to allow for
+     *         chaining of calls to set methods.
      */
     public DynamicHeader setShowIcon(boolean showIcon) {
         this.mShowIcon = showIcon;

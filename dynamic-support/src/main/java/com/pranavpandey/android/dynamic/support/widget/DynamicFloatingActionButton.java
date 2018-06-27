@@ -33,7 +33,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * A FloatingActionButton to change its color according to the
- * supplied {@link R.attr#ads_colorType}.
+ * supplied parameters.
  */
 public class DynamicFloatingActionButton extends FloatingActionButton implements DynamicWidget {
 

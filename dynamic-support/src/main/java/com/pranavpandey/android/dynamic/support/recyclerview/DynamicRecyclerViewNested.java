@@ -29,10 +29,7 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicInfoView;
 
 /**
- * A DynamicRecyclerViewFrame to display the DynamicInfoView links.
- *
- * @see DynamicRecyclerViewFrame
- * @see DynamicInfoView
+ * A DynamicRecyclerViewFrame to display the nested content.
  */
 public class DynamicRecyclerViewNested extends DynamicRecyclerViewFrame {
 

@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.recyclerview.binder;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,9 +63,9 @@ public class DynamicInfoBinder extends DynamicRecyclerViewBinder {
         viewHolderInfo.getDynamicInfoView().setLinks(dynamicInfo.getLinks());
         viewHolderInfo.getDynamicInfoView().setLinksSubtitles(dynamicInfo.getLinksSubtitles());
         viewHolderInfo.getDynamicInfoView().setLinksUrls(dynamicInfo.getLinksUrls());
-        viewHolderInfo.getDynamicInfoView().setLinksIconsId(dynamicInfo.getLinksIconsId());
+        viewHolderInfo.getDynamicInfoView().setLinksIconsId(dynamicInfo.getLinksIconsResId());
         viewHolderInfo.getDynamicInfoView().setLinksDrawables(dynamicInfo.getLinksDrawables());
-        viewHolderInfo.getDynamicInfoView().setLinksColorsId(dynamicInfo.getLinksColorsId());
+        viewHolderInfo.getDynamicInfoView().setLinksColorsId(dynamicInfo.getLinksColorsResId());
         viewHolderInfo.getDynamicInfoView().setLinksColors(dynamicInfo.getLinksColors());
 
         viewHolderInfo.getDynamicInfoView().update();
@@ -76,16 +77,18 @@ public class DynamicInfoBinder extends DynamicRecyclerViewBinder {
     }
 
     /**
-     * Getter for {@link #mData}.
+     * @return The data used by this binder.
      */
-    public DynamicInfo getData() {
+    public @Nullable DynamicInfo getData() {
         return mData;
     }
 
     /**
-     * Setter for {@link #mData}.
+     * Set the data for this binder.
+     *
+     * @param data The data to be set.
      */
-    public void setData(DynamicInfo data) {
+    public void setData(@Nullable DynamicInfo data) {
         this.mData = data;
 
         if (!getRecyclerViewAdapter().isComputingLayout()) {
@@ -99,10 +102,15 @@ public class DynamicInfoBinder extends DynamicRecyclerViewBinder {
     protected static class ViewHolder extends RecyclerView.ViewHolder {
 
         /**
-         * Dynamic view view for this view holder.
+         * Dynamic info view for this view holder.
          */
         private final DynamicInfoView dynamicInfoView;
 
+        /**
+         * Constructor to initialize views from the supplied layout.
+         *
+         * @param view The view for this view holder.
+         */
         public ViewHolder(View view) {
             super(view);
 
@@ -110,7 +118,7 @@ public class DynamicInfoBinder extends DynamicRecyclerViewBinder {
         }
 
         /**
-         * Getter for {@link #dynamicInfoView}.
+         * @return The dynamic info view for this view holder.
          */
         public DynamicInfoView getDynamicInfoView() {
             return dynamicInfoView;

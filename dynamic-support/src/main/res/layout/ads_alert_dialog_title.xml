@@ -52,7 +52,8 @@
             android:textSize="@dimen/ads_dialog_font_size_title"
             android:ellipsize="end"
             android:singleLine="true"
-            android:textAlignment="viewStart"/>
+            android:textAlignment="viewStart"
+            android:gravity="start" />
 
     </LinearLayout>
 

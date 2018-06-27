@@ -200,7 +200,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"
-                    android:text="HSV"
+                    android:text="@string/ads_picker_hsv"
                     style="@style/Widget.DynamicApp.Button.Borderless.Primary" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicButton
@@ -208,7 +208,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"
-                    android:text="RGB"
+                    android:text="@string/ads_picker_rgb"
                     style="@style/Widget.DynamicApp.Button.Borderless.Primary" />
 
             </LinearLayout>

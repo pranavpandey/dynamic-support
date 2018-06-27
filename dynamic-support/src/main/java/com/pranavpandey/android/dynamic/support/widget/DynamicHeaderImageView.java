@@ -25,7 +25,8 @@ import android.util.AttributeSet;
 import com.pranavpandey.android.dynamic.support.R;
 
 /**
- * A DynamicImageView to apply color filter as {@link PorterDuff.Mode#SRC_ATOP}.
+ * A DynamicImageView to apply color filter as
+ * {@link PorterDuff.Mode#SRC_ATOP}.
  */
 public class DynamicHeaderImageView extends DynamicImageView {
 

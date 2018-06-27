@@ -41,8 +41,8 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
 
 /**
- * A DynamicPreference to implement the functionality of a color
- * picker by using the {@link DynamicColorPopup} and
+ * A DynamicPreference to implement the functionality of a
+ * color picker by using the {@link DynamicColorPopup} and
  * {@link DynamicColorDialog}.
  */
 public class DynamicColorPreference extends DynamicSimplePreference
@@ -59,22 +59,22 @@ public class DynamicColorPreference extends DynamicSimplePreference
     private @ArrayRes int mPopupColorsResId;
 
     /**
-     * Array to store the primary colors.
+     * Color entries used by this preference.
      */
     private @ColorInt Integer[] mColors;
 
     /**
-     * Array to store the popup colors.
+     * Popup color entries used by this preference.
      */
     private @ColorInt Integer[] mPopupColors;
 
     /**
-     * Array to store the shades of primary colors.
+     * Shade color entries used by this preference.
      */
     private @ColorInt Integer[][] mShades;
 
     /**
-     * Shape for the {@link #mColorView}.
+     * Shape for the color view.
      *
      * @see DynamicColorShape
      */
@@ -91,20 +91,20 @@ public class DynamicColorPreference extends DynamicSimplePreference
     private @ColorInt int mColor;
 
     /**
-     * {@code true} to show color popup before requesting for
-     * the dialog.
+     * {@code true} to enable alpha component for the
+     * custom color.
+     */
+    private boolean mAlpha;
+
+    /**
+     * {@code true} to show color popup before requesting
+     * for the dialog.
      *
      * @see DynamicColorPopup
      * @see DynamicColorDialog
      * @see DynamicPreference.OnPromptListener
      */
     private boolean mShowColorPopup;
-
-    /**
-     * {@code true} to enable alpha component for the custom
-     * color.
-     */
-    private boolean mAlpha;
 
     /**
      * Color view used by this preference to display the
@@ -264,7 +264,7 @@ public class DynamicColorPreference extends DynamicSimplePreference
     }
 
     /**
-     * Getter for {@link #mColors}.
+     * @return The color entries used by this preference.
      */
     public @NonNull @ColorInt Integer[] getColors() {
         if (mColorsResId != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
@@ -280,7 +280,9 @@ public class DynamicColorPreference extends DynamicSimplePreference
     }
 
     /**
-     * Setter for {@link #mColors}.
+     * Set the color entries used by this preference.
+     *
+     * @param colors The color entries to be set.
      */
     public void setColors(@Nullable @ColorInt Integer[] colors) {
         this.mColors = colors;
@@ -288,7 +290,7 @@ public class DynamicColorPreference extends DynamicSimplePreference
     }
 
     /**
-     * Getter for {@link #mPopupColors}.
+     * @return The popup color entries used by this preference.
      */
     public @NonNull @ColorInt Integer[] getPopupColors() {
         if (mPopupColorsResId != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
@@ -304,7 +306,9 @@ public class DynamicColorPreference extends DynamicSimplePreference
     }
 
     /**
-     * Setter for {@link #mPopupColors}.
+     * Set the popup color entries used by this preference.
+     *
+     * @param popupColors The popup color entries to be set.
      */
     public void setPopupColors(@Nullable @ColorInt Integer[] popupColors) {
         this.mPopupColors = popupColors;
@@ -312,7 +316,7 @@ public class DynamicColorPreference extends DynamicSimplePreference
     }
 
     /**
-     * Getter for {@link #mShades}.
+     * @return The shade color entries used by this preference.
      */
     public @Nullable @ColorInt Integer[][] getShades() {
         if (mColors == DynamicColorPalette.MATERIAL_COLORS) {
@@ -323,21 +327,25 @@ public class DynamicColorPreference extends DynamicSimplePreference
     }
 
     /**
-     * Setter for {@link #mShades}.
+     * Set the shade color entries used by this preference.
+     *
+     * @param shades The shade color entries to be set.
      */
     public void setShades(@Nullable @ColorInt Integer[][] shades) {
         this.mShades = shades;
     }
 
     /**
-     * Getter for {@link #mColorShape}.
+     * @return The shape for the color view.
      */
     public int getColorShape() {
         return mColorShape;
     }
 
     /**
-     * Setter for {@link #mColorShape}.
+     * Set the shape for the color view.
+     *
+     * @param colorShape The color shape to be set.
      */
     public void setColorShape(int colorShape) {
         this.mColorShape = colorShape;
@@ -346,14 +354,16 @@ public class DynamicColorPreference extends DynamicSimplePreference
     }
 
     /**
-     * Getter for {@link #mDefaultColor}.
+     * @return The default color for this preference.
      */
     public @ColorInt int getDefaultColor() {
         return mDefaultColor;
     }
 
     /**
-     * Setter for {@link #mDefaultColor}.
+     * Set the default color for this preference.
+     *
+     * @param defaultColor The default color to be set.
      */
     public void setDefaultColor(@ColorInt int defaultColor) {
         this.mDefaultColor = defaultColor;
@@ -362,17 +372,18 @@ public class DynamicColorPreference extends DynamicSimplePreference
     }
 
     /**
-     * Getter for {@link #mColor}.
+     * @return The current color value of this preference.
      */
     public @ColorInt int getColor() {
         return mColor;
     }
 
     /**
-     * Setter for {@link #mColor}.
+     * Set the current color value of this preference.
      *
-     * @param color The color to be set.
-     * @param save {@code true} to update the shared preferences.
+     * @param color The color value to be set.
+     * @param save {@code true} to update the shared
+     *             preferences.
      */
     public void setColor(@ColorInt int color, boolean save) {
         this.mColor = color;
@@ -387,25 +398,37 @@ public class DynamicColorPreference extends DynamicSimplePreference
     }
 
     /**
-     * Setter for {@link #mColor}.
+     * Set the current color value of this preference.
+     *
+     * @param color The color value to be set.
      */
     public void setColor(@ColorInt int color) {
         setColor(color, true);
     }
 
     /**
-     * Getter for {@link #mAlpha}.
+     * @return {@code true} to enable alpha component for the
+     *         custom color.
      */
     public boolean isAlpha() {
         return mAlpha;
     }
 
     /**
-     * Setter for {@link #mAlpha}.
+     * Set the alpha support for the custom color.
      *
-     * @param alpha {@code true} to enable alpha component for this
-     *              preference.
-     * @param save {@code true} to update the shared preferences.
+     * @param alpha {@code true} to enable alpha.
+     */
+    public void setAlpha(boolean alpha) {
+        setAlpha(alpha, true);
+    }
+
+    /**
+     * Set the alpha support for the custom color.
+     *
+     * @param alpha {@code true} to enable alpha.
+     * @param save {@code true} to update the shared
+     *             preferences.
      */
     private void setAlpha(boolean alpha, boolean save) {
         this.mAlpha = alpha;
@@ -415,22 +438,20 @@ public class DynamicColorPreference extends DynamicSimplePreference
             setColor(mColorView.getColor());
         }
     }
-    /**
-     * Setter for {@link #mAlpha}.
-     */
-    public void setAlpha(boolean alpha) {
-        setAlpha(alpha, true);
-    }
 
     /**
-     * Getter for {@link #mShowColorPopup}.
+     * @return {@code true} to show color popup before requesting
+     *         for the dialog.
      */
     public boolean isShowColorPopup() {
         return mShowColorPopup;
     }
 
     /**
-     * Setter for {@link #mShowColorPopup}.
+     * Set the popup to be enabled or disabled.
+     *
+     * @param showColorPopup {@code true} to show color popup
+     *                       before requesting for the dialog.
      */
     public void setShowColorPopup(boolean showColorPopup) {
         this.mShowColorPopup = showColorPopup;

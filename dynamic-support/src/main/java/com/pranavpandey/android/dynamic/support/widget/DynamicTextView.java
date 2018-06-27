@@ -31,7 +31,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * A TextView to change its color according to the
- * supplied {@link com.pranavpandey.android.dynamic.support.R.attr#ads_colorType}.
+ * supplied parameters.
  */
 public class DynamicTextView extends AppCompatTextView implements DynamicWidget {
 

@@ -122,18 +122,21 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>>
     /**
      * Get the item type enum associated with position the position.
      *
-     * @param position Position to get the corresponding {@code enum}.
+     * @param position The position to get the corresponding
+     *                 {@code enum}.
      *
-     * @return {@code enum} corresponding to the given position.
+     * @return The {@code enum} corresponding to the given position.
      */
     public abstract E getEnumFromPosition(int position);
 
     /**
      * Get the item type enum according to the ordinal.
      *
-     * @param ordinal Ordinal to get the corresponding {@code enum}.
+     * @param ordinal The ordinal to get the corresponding
+     *                {@code enum}.
      *
-     * @return {@code enum} corresponding to the given ordinal.
+     * @return The {@code enum} corresponding to the given
+     *         ordinal.
      */
     public abstract E getEnumFromOrdinal(int ordinal);
 
@@ -148,14 +151,18 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>>
     }
 
     /**
-     * Get dynamic data binder according to the supplied {@code enum}.
+     * @return The dynamic data binder according to the supplied
+     *         {@code enum}.
+     *
+     * @param e The data binder enum.
+     * @param <T> The dynamic recycler view binder.
      */
     public <T extends DynamicRecyclerViewBinder> T getDataBinderBinder(E e) {
         return (T) mDataBinderMap.get(e);
     }
 
     /**
-     * Getter for {@link #mDataBinderMap}
+     * @return The map to hold the data binders.
      */
     public Map<E, DynamicRecyclerViewBinder> getDataBinderMap() {
         return mDataBinderMap;
@@ -164,7 +171,8 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>>
     /**
      * Add data binders to display in this adapter.
      *
-     * @param binder DynamicTheme data binder to be added in this adapter.
+     * @param e The data binder enum.
+     * @param binder The data binder to be added in this adapter.
      *
      * @see #mDataBinderMap
      */

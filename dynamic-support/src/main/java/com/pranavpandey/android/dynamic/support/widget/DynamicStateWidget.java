@@ -22,8 +22,8 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 
 /**
- * Interface to create dynamic widgets with a normal and checked state
- * according to the {@link DynamicTheme}.
+ * Interface to create dynamic widgets with a normal and checked
+ * state according to the {@link DynamicTheme}.
  */
 public interface DynamicStateWidget extends DynamicWidget {
 

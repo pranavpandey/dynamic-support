@@ -32,7 +32,7 @@ import java.util.List;
 public class DynamicSimpleBinderAdapter extends DynamicBinderAdapter {
 
     /**
-     * A list of data binders displayed by this adapter.
+     * List of data binders displayed by this adapter.
      */
     private List<DynamicRecyclerViewBinder> mDataBinders = new ArrayList<>();
 
@@ -113,7 +113,7 @@ public class DynamicSimpleBinderAdapter extends DynamicBinderAdapter {
     }
 
     /**
-     * Getter for {@link #mDataBinders}.
+     * @return The list of data binders displayed by this adapter.
      */
     public List<DynamicRecyclerViewBinder> getBinderList() {
         return mDataBinders;
@@ -122,9 +122,7 @@ public class DynamicSimpleBinderAdapter extends DynamicBinderAdapter {
     /**
      * Add data binder to display in this adapter.
      *
-     * @param binder DynamicTheme data binder to be added in this adapter.
-     *
-     * @see #mDataBinders
+     * @param binder The data binder to be added in this adapter
      */
     public void addDataBinder(@NonNull DynamicRecyclerViewBinder binder) {
         mDataBinders.add(binder);
@@ -133,22 +131,19 @@ public class DynamicSimpleBinderAdapter extends DynamicBinderAdapter {
     /**
      * Add data binders to display in this adapter.
      *
-     * @param binders A list of dynamic data binders to be added in this
-     *                adapter.
-     *
-     * @see #mDataBinders
+     * @param binders The array of dynamic data binders to be added
+     *                in this adapter.
      */
-    public void addDataBinders(@NonNull Collection<? extends DynamicRecyclerViewBinder> binders) {
+    public void addDataBinders(
+            @NonNull Collection<? extends DynamicRecyclerViewBinder> binders) {
         mDataBinders.addAll(binders);
     }
 
     /**
      * Add data binders to display in this adapter.
      *
-     * @param binders An array of dynamic data binders to be added in this
-     *                adapter.
-     *
-     * @see #mDataBinders
+     * @param binders The array of dynamic data binders to be added
+     *                in this adapter.
      */
     public void addDataBinders(@NonNull DynamicRecyclerViewBinder... binders) {
         mDataBinders.addAll(Arrays.asList(binders));

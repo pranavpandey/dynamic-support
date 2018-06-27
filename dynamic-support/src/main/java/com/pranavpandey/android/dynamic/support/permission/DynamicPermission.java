@@ -83,7 +83,10 @@ public class DynamicPermission implements Parcelable {
     public DynamicPermission() { }
 
     /**
-     * Constructor to initialize dynamic permission with a description.
+     * Constructor to initialize an object of this class.
+     *
+     * @param permission The permission string.
+     * @param description The description for this permission.
      */
     public DynamicPermission(@NonNull String permission, @Nullable String description) {
         this.permission = permission;
@@ -91,8 +94,12 @@ public class DynamicPermission implements Parcelable {
     }
 
     /**
-     * Constructor to initialize dynamic permission with a icon, tile
-     * and subtitle.
+     * Constructor to initialize an object of this class.
+     *
+     * @param permission The permission string.
+     * @param icon The icon used for this permission.
+     * @param title The title for this permission.
+     * @param subtitle The subtitle for this permission.
      */
     public DynamicPermission(@NonNull String permission, @Nullable Drawable icon,
                              @NonNull String title, @Nullable String subtitle) {
@@ -103,112 +110,131 @@ public class DynamicPermission implements Parcelable {
     }
 
     /**
-     * Getter for {@link #permission}.
+     * @return The permission string.
      */
     public @NonNull String getPermission() {
         return permission;
     }
 
     /**
-     * Setter for {@link #permission}.
+     * Sets the permission string.
+     *
+     * @param permission The permission to be set.
      */
     public void setPermission(@NonNull String permission) {
         this.permission = permission;
     }
 
     /**
-     * Getter for {@link #icon}.
+     * @return The icon used by this permission.
      */
     public @Nullable Drawable getIcon() {
         return icon;
     }
 
     /**
-     * Setter for {@link #icon}.
+     * Sets the icon for this permission.
+     *
+     * @param icon The icon to be set.
      */
     public void setIcon(@Nullable Drawable icon) {
         this.icon = icon;
     }
 
     /**
-     * Getter for {@link #title}.
+     * @return The title used by this permission.
      */
     public @Nullable String getTitle() {
         return title;
     }
 
     /**
-     * Setter for {@link #title}.
+     * Sets the title for this permission.
+     *
+     * @param title The title to be set.
      */
     public void setTitle(@Nullable String title) {
         this.title = title;
     }
 
     /**
-     * Getter for {@link #subtitle}.
+     * @return The subtitle used by this permission.
      */
     public @Nullable String getSubtitle() {
         return subtitle;
     }
 
     /**
-     * Setter for {@link #subtitle}.
+     * Sets the subtitle for this permission.
+     *
+     * @param subtitle The subtitle to be set.
      */
     public void setSubtitle(@Nullable String subtitle) {
         this.subtitle = subtitle;
     }
 
     /**
-     * Getter for {@link #description}.
+     * @return The description used by this permission.
      */
     public @Nullable String getDescription() {
         return description;
     }
 
     /**
-     * Setter for {@link #description}.
+     * Sets the description for this permission.
+     *
+     * @param description The description to be set.
      */
     public void setDescription(@NonNull String description) {
         this.description = description;
     }
 
     /**
-     * Getter for {@link #dangerous}.
+     * @return {@code true} if the permission is dangerous.
      */
     public boolean isDangerous() {
         return dangerous;
     }
 
     /**
-     * Setter for {@link #dangerous}.
+     * Sets this permission as dangerous or normal.
+     *
+     * @param dangerous {@code true} if the permission is
+     *                  dangerous.
      */
     public void setDangerous(boolean dangerous) {
         this.dangerous = dangerous;
     }
 
     /**
-     * Getter for {@link #granted}.
+     * @return {@code true} if the permission is granted.
      */
     public boolean isGranted() {
         return granted;
     }
 
     /**
-     * Setter for {@link #granted}.
+     * Sets this permission as granted or denied.
+     *
+     * @param granted {@code true} if the permission is
+     *                granted.
      */
     public void setGranted(boolean granted) {
         this.granted = granted;
     }
 
     /**
-     * Getter for {@link #askAgain}.
+     * @return {@code true} if request this permission again.
      */
     public boolean isAskAgain() {
         return askAgain;
     }
 
     /**
-     * Setter for {@link #askAgain}.
+     * Sets this permission to request again or not.
+     *
+     * @param askAgain {@code true} if request this
+     *                 permission again.
      */
     public void setAskAgain(boolean askAgain) {
         this.askAgain = askAgain;
@@ -247,6 +273,8 @@ public class DynamicPermission implements Parcelable {
 
     /**
      * De-parcel {@link DynamicPermission} object.
+     *
+     * @param in The parcel to read the values.
      */
     public DynamicPermission(Parcel in) {
         this.permission = in.readString();

@@ -22,8 +22,8 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 
 /**
- * Interface to create dynamic widgets with a text view which can be tinted
- * according to the {@link DynamicTheme}.
+ * Interface to create dynamic widgets with a text view which
+ * can be tinted according to the {@link DynamicTheme}.
  */
 public interface DynamicTextWidget extends DynamicWidget {
 

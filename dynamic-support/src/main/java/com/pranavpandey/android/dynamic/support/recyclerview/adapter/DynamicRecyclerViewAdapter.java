@@ -55,9 +55,9 @@ public abstract class DynamicRecyclerViewAdapter
      * Valid item types for this adapter.
      *
      * <p>0. {@link #TYPE_EMPTY_VIEW}
-     * <br />1. {@link #TYPE_SECTION_HEADER}
-     * <br />2. {@link #TYPE_ITEM}
-     * <br />3. {@link #TYPE_SECTION_DIVIDER}</p>
+     * <br>1. {@link #TYPE_SECTION_HEADER}
+     * <br>2. {@link #TYPE_ITEM}
+     * <br>3. {@link #TYPE_SECTION_DIVIDER}</p>
      */
     @Retention(RetentionPolicy.SOURCE)
     @IntDef(value = { TYPE_EMPTY_VIEW, TYPE_SECTION_HEADER, TYPE_ITEM, TYPE_SECTION_DIVIDER })

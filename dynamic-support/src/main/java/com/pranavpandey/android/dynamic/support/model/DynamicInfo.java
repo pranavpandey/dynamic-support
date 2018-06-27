@@ -28,77 +28,81 @@ import android.support.annotation.Nullable;
 public class DynamicInfo {
 
     /**
-     * Icon used by this view.
+     * Icon used by this info.
      */
     private Drawable icon;
 
     /**
-     * Big fallback icon used by this view.
+     * Big fallback icon used by this info.
      */
     private Drawable iconBig;
 
     /**
-     * Title used by this view.
+     * Title used by this info.
      */
     private CharSequence title;
 
     /**
-     * Subtitle used by this view.
+     * Subtitle used by this info.
      */
     private CharSequence subtitle;
 
     /**
-     * Description used by this view.
+     * Description used by this info.
      */
     private CharSequence description;
 
     /**
-     * Title for the links used by this view.
+     * Title for the links used by this info.
      */
     private CharSequence[] links;
 
     /**
-     * Subtitle for the links used by this view.
+     * Subtitle for the links used by this info.
      */
     private CharSequence[] linksSubtitles;
 
     /**
-     * Url for the links used by this view.
+     * Url for the links used by this info.
      */
     private CharSequence[] linksUrls;
 
     /**
-     * Icon for the links used by this view.
+     * Icon drawables array resource for the links 
+     * used by this info.
      */
-    private @ArrayRes int linksIconsId;
+    private @ArrayRes int linksIconsResId;
 
     /**
-     * Icon tint color for the links used by this view.
+     * Icon tint colors array resource for the links 
+     * used by this info.
      */
-    private @ArrayRes int linksColorsId;
+    private @ArrayRes int linksColorsResId;
 
     /**
-     * Array to store links drawable.
+     * Icon drawable for the links used by this info.
      */
     private Drawable[] linksDrawables;
 
     /**
-     * Array to store links tint color.
+     * Icon tint color for the links used by this info.
      */
     private @ColorInt Integer[] linksColors;
 
     /**
-     * Getter for {@link #icon}.
+     * @return The icon used by this info.
      */
     public @Nullable Drawable getIcon() {
         return icon;
     }
 
     /**
-     * Setter for {@link #icon}.
+     * Set the icon for this info.
      *
-     * @return {@link DynamicInfo} object to allow for chaining of
-     *         calls to set methods.
+     * @param icon The icon to be set.
+     *
+     * @return The {@link DynamicInfo} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicInfo setIcon(@Nullable Drawable icon) {
         this.icon = icon;
@@ -107,17 +111,19 @@ public class DynamicInfo {
     }
 
     /**
-     * Getter for {@link #iconBig}.
+     * @return The big fallback icon used by this info.
      */
     public @Nullable Drawable getIconBig() {
         return iconBig;
     }
 
     /**
-     * Setter for {@link #iconBig}.
+     * Set the big fallback icon for this info.
+     * 
+     * @param iconBig The big fallback icon to be set.
      *
-     * @return {@link DynamicInfo} object to allow for chaining of
-     *         calls to set methods.
+     * @return The {@link DynamicInfo} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicInfo setIconBig(@Nullable Drawable iconBig) {
         this.iconBig = iconBig;
@@ -126,17 +132,19 @@ public class DynamicInfo {
     }
 
     /**
-     * Getter for {@link #title}.
+     * @return The title used by this info.
      */
     public @Nullable CharSequence getTitle() {
         return title;
     }
 
     /**
-     * Setter for {@link #title}.
+     * Set the title for this info.
      *
-     * @return {@link DynamicInfo} object to allow for chaining of
-     *         calls to set methods.
+     * @param title The title to be set.
+     *
+     * @return The {@link DynamicInfo} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicInfo setTitle(@Nullable CharSequence title) {
         this.title = title;
@@ -145,17 +153,19 @@ public class DynamicInfo {
     }
 
     /**
-     * Getter for {@link #subtitle}.
+     * @return The subtitle used by this info.
      */
     public @Nullable CharSequence getSubtitle() {
         return subtitle;
     }
 
     /**
-     * Setter for {@link #subtitle}.
+     * Set the subtitle for this info.
      *
-     * @return {@link DynamicInfo} object to allow for chaining of
-     *         calls to set methods.
+     * @param subtitle The subtitle to be set.
+     *
+     * @return The {@link DynamicInfo} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicInfo setSubtitle(@Nullable CharSequence subtitle) {
         this.subtitle = subtitle;
@@ -164,17 +174,19 @@ public class DynamicInfo {
     }
 
     /**
-     * Getter for {@link #description}.
+     * @return The description used by this info.
      */
     public @Nullable CharSequence getDescription() {
         return description;
     }
 
     /**
-     * Setter for {@link #description}.
+     * Set the description for this info.
      *
-     * @return {@link DynamicInfo} object to allow for chaining of
-     *         calls to set methods.
+     * @param description The description to be set.
+     *
+     * @return The {@link DynamicInfo} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicInfo setDescription(@Nullable CharSequence description) {
         this.description = description;
@@ -183,17 +195,19 @@ public class DynamicInfo {
     }
 
     /**
-     * Getter for {@link #links}.
+     * @return The title for the links used by this info.
      */
     public @Nullable CharSequence[] getLinks() {
         return links;
     }
 
     /**
-     * Setter for {@link #links}.
+     * Set the title for the links used by this info.
      *
-     * @return {@link DynamicInfo} object to allow for chaining of
-     *         calls to set methods.
+     * @param links The titles for the links to be set.
+     *
+     * @return The {@link DynamicInfo} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicInfo setLinks(@Nullable CharSequence[] links) {
         this.links = links;
@@ -202,17 +216,19 @@ public class DynamicInfo {
     }
 
     /**
-     * Getter for {@link #linksSubtitles}.
+     * @return The subtitle for the links used by this info.
      */
     public @Nullable CharSequence[] getLinksSubtitles() {
         return linksSubtitles;
     }
 
     /**
-     * Setter for {@link #linksSubtitles}.
+     * Set the subtitle for the links used by this info.
      *
-     * @return {@link DynamicInfo} object to allow for chaining of
-     *         calls to set methods.
+     * @param linksSubtitles The subtitles for the links to be set.
+     *
+     * @return The {@link DynamicInfo} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicInfo setLinksSubtitles(@Nullable CharSequence[] linksSubtitles) {
         this.linksSubtitles = linksSubtitles;
@@ -221,17 +237,19 @@ public class DynamicInfo {
     }
 
     /**
-     * Getter for {@link #linksUrls}.
+     * @return The url for the links used by this info.
      */
     public @Nullable CharSequence[] getLinksUrls() {
         return linksUrls;
     }
 
     /**
-     * Setter for {@link #linksUrls}.
+     * Set the url for the links used by this info.
      *
-     * @return {@link DynamicInfo} object to allow for chaining of
-     *         calls to set methods.
+     * @param linksUrls The urls for the links to be set.
+     *
+     * @return The {@link DynamicInfo} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicInfo setLinksUrls(@Nullable CharSequence[] linksUrls) {
         this.linksUrls = linksUrls;
@@ -240,55 +258,68 @@ public class DynamicInfo {
     }
 
     /**
-     * Getter for {@link #linksIconsId}.
+     * @return The icons array resource for the links 
+     *         used by this info.
      */
-    public @ArrayRes int getLinksIconsId() {
-        return linksIconsId;
+    public @ArrayRes int getLinksIconsResId() {
+        return linksIconsResId;
     }
 
     /**
-     * Setter for {@link #linksIconsId}.
+     * Set the icons array resource for the links
+     * used by this info.
      *
-     * @return {@link DynamicInfo} object to allow for chaining of
-     *         calls to set methods.
+     * @param linksIconsResId The icon drawables array resource for
+     *                     the links to be set.
+     *
+     * @return The {@link DynamicInfo} object to allow for chaining
+     *         of calls to set methods.
      */
-    public DynamicInfo setLinksIconsId(@ArrayRes int linksIconsId) {
-        this.linksIconsId = linksIconsId;
+    public DynamicInfo setLinksIconsResId(@ArrayRes int linksIconsResId) {
+        this.linksIconsResId = linksIconsResId;
 
         return this;
     }
 
     /**
-     * Getter for {@link #linksColorsId}.
+     * @return The icon tint colors array resource for the links 
+     *         used by this info.
      */
-    public @ArrayRes int getLinksColorsId() {
-        return linksColorsId;
+    public @ArrayRes int getLinksColorsResId() {
+        return linksColorsResId;
     }
 
     /**
-     * Setter for {@link #linksColorsId}.
+     * Set the icon tint colors array resource for the links
+     * used by this info.
      *
-     * @return {@link DynamicInfo} object to allow for chaining of
-     *         calls to set methods.
+     * @param linksColorsResId The icon tint colors array resource for
+     *                      the links to be set.
+     *
+     * @return The {@link DynamicInfo} object to allow for chaining
+     *         of calls to set methods.
      */
-    public DynamicInfo setLinksColorsId(@ArrayRes int linksColorsId) {
-        this.linksColorsId = linksColorsId;
+    public DynamicInfo setLinksColorsResId(@ArrayRes int linksColorsResId) {
+        this.linksColorsResId = linksColorsResId;
 
         return this;
     }
 
     /**
-     * Getter for {@link #linksDrawables}.
+     * @return The icon for the links used by this info.
      */
     public @Nullable Drawable[] getLinksDrawables() {
         return linksDrawables;
     }
 
     /**
-     * Setter for {@link #linksDrawables}.
+     * Set the icon for the links used by this info.
      *
-     * @return {@link DynamicInfo} object to allow for chaining of
-     *         calls to set methods.
+     * @param linksDrawables The icon drawables for the links
+     *                       to be set.
+     *
+     * @return The {@link DynamicInfo} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicInfo setLinksDrawables(@Nullable Drawable[] linksDrawables) {
         this.linksDrawables = linksDrawables;
@@ -297,17 +328,20 @@ public class DynamicInfo {
     }
 
     /**
-     * Getter for {@link #linksColors}.
+     * @return The icon tint color for the links used by this info.
      */
     public @Nullable @ColorInt Integer[] getLinksColors() {
         return linksColors;
     }
 
     /**
-     * Setter for {@link #linksColors}.
+     * Set the icon tint color for the links used by this info.
      *
-     * @return {@link DynamicInfo} object to allow for chaining of
-     *         calls to set methods.
+     * @param linksColors The icon tint color for the links 
+     *                       to be set.
+     *
+     * @return The {@link DynamicInfo} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicInfo setLinksColors(@Nullable @ColorInt Integer[] linksColors) {
         this.linksColors = linksColors;

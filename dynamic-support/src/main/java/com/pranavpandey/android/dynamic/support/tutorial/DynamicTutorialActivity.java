@@ -279,7 +279,7 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
      * Set an action for the custom action button.
      *
      * @param text The text for the action button.
-     * @param onClickListener The on click DynamicTutorialListener for the action button.
+     * @param onClickListener The on click listener for the action button.
      */
     protected void setAction(final @Nullable String text,
                              final @Nullable View.OnClickListener onClickListener) {
@@ -298,14 +298,14 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
     }
 
     /**
-     * Getter for {@link #mViewPager}.
+     * @return The view pager used by this activity.
      */
     protected DynamicViewPager getViewPager() {
         return mViewPager;
     }
 
     /**
-     * Getter for {@link #mAdapter}.
+     * @return The view pager adapter used by this activity.
      */
     protected DynamicTutorialsAdapter getViewPagerAdapter() {
         return mAdapter;

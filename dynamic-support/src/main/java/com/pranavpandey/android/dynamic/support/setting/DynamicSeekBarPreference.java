@@ -51,27 +51,27 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     public static final int ANIMATION_DURATION = 500;
 
     /**
-     * Default value for the {@link #mDefaultValue}.
+     * Default value for the seek bar.
      */
     public static final int DEFAULT_SEEK_VALUE = 0;
 
     /**
-     * Default value for the {@link #mMinValue}.
+     * Default value for the minimum seek value.
      */
     public static final int DEFAULT_MIN_VALUE = 0;
 
     /**
-     * Default value for the {@link #mMaxValue}.
+     * Default value for the maximum seek value.
      */
     public static final int DEFAULT_MAX_VALUE = 100;
 
     /**
-     * Default value for the {@link #mSeekInterval}.
+     * Default value for the seek interval.
      */
     public static final int DEFAULT_SEEK_INTERVAL = 1;
 
     /**
-     * Default value for the {@link #mControls}.
+     * Default value for the seek controls.
      */
     public static final boolean DEFAULT_SEEK_CONTROLS = false;
 
@@ -81,7 +81,7 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     private int mDefaultValue;
 
     /**
-     * The current {@link #mSeekBar} progress.
+     * The current seek bar progress.
      */
     private int mProgress;
 
@@ -96,7 +96,7 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     private int mMinValue;
 
     /**
-     * Seek interval for the {@link #mSeekBar}.
+     * Seek interval for the seek bar.
      */
     private int mSeekInterval;
 
@@ -400,14 +400,34 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
-     * Getter for {@link #mMaxValue}.
+     * @return The default value for this preference.
+     */
+    public int getDefaultValue() {
+        return mDefaultValue;
+    }
+
+    /**
+     * Set the default value for this preference.
+     *
+     * @param defaultValue The default value to be set.
+     */
+    public void setDefaultValue(int defaultValue) {
+        this.mDefaultValue = defaultValue;
+
+        onUpdate();
+    }
+
+    /**
+     * @return The maximum value for this preference.
      */
     public int getMaxValue() {
         return mMaxValue;
     }
 
     /**
-     * Setter for {@link #mMaxValue}.
+     * Set the maximum value for this preference.
+     *
+     * @param maxValue The maximum value to be set.
      */
     public void setMaxValue(int maxValue) {
         this.mMaxValue = maxValue;
@@ -416,14 +436,16 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
-     * Getter for {@link #mMinValue}.
+     * @return The minimum value for this preference.
      */
     public int getMinValue() {
         return mMinValue;
     }
 
     /**
-     * Setter for {@link #mMinValue}.
+     * Set the minimum value for this preference.
+     *
+     * @param minValue The minimum value to be set.
      */
     public void setMinValue(int minValue) {
         this.mMinValue = minValue;
@@ -432,14 +454,16 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
-     * Getter for {@link #mProgress}.
+     * @return The current seek bar progress.
      */
     public int getProgress() {
         return mProgress;
     }
 
     /**
-     * Setter for {@link #mProgress}.
+     * Set the current seek bar progress.
+     *
+     * @param progress The progress to be set.
      */
     public void setProgress(int progress) {
         this.mProgress = progress;
@@ -453,14 +477,34 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
-     * Getter for {@link #mUnit}.
+     * @return The seek interval for the seek bar.
+     */
+    public int getSeekInterval() {
+        return mSeekInterval;
+    }
+
+    /**
+     * Set the seek interval for the seek bar.
+     *
+     * @param seekInterval The seek interval to be set.
+     */
+    public void setSeekInterval(int seekInterval) {
+        this.mSeekInterval = seekInterval;
+
+        onUpdate();
+    }
+
+    /**
+     * @return The optional unit text for the preference value.
      */
     public @Nullable CharSequence getUnit() {
         return mUnit;
     }
 
     /**
-     * Setter for {@link #mUnit}.
+     * Set the optional unit text for the preference value.
+     *
+     * @param unit The unit to be set.
      */
     public void setUnit(@Nullable CharSequence unit) {
         this.mUnit = unit;
@@ -469,51 +513,27 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
-     * Getter for {@link #mSeekInterval}.
+     * Set the value for this preference.
+     *
+     * @param value The value to be set.
      */
-    public int getSeekInterval() {
-        return mSeekInterval;
-    }
-
-    /**
-     * Setter for {@link #mSeekInterval}.
-     */
-    public void setSeekInterval(int seekInterval) {
-        this.mSeekInterval = seekInterval;
-
-        onUpdate();
-    }
-
-
     public void setValue(int value) {
         setProgress(getProgressFromValue(value));
     }
 
     /**
-     * Getter for {@link #mDefaultValue}.
-     */
-    public int getDefaultValue() {
-        return mDefaultValue;
-    }
-
-    /**
-     * Setter for {@link #mDefaultValue}.
-     */
-    public void setDefaultValue(int defaultValue) {
-        this.mDefaultValue = defaultValue;
-
-        onUpdate();
-    }
-
-    /**
-     * Getter for {@link #mControls}.
+     * @return {@code true} to show seek bar buttons to increase
+     *         or decrease the value.
      */
     public boolean isControls() {
         return mControls;
     }
 
     /**
-     * Setter for {@link #mControls}.
+     * Set the seek bar controls to be enabled or disabled.
+     *
+     * @param controls {@code true} to show seek bar buttons
+     *                 to increase or decrease the value.
      */
     public void setControls(boolean controls) {
         this.mControls = controls;
@@ -522,14 +542,18 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
-     * Getter for {@link #mOnSeekBarChangeListener}.
+     * @return The seek bar change listener to get the callback for
+     *         seek events.
      */
     public @Nullable SeekBar.OnSeekBarChangeListener getOnSeekBarChangeListener() {
         return mOnSeekBarChangeListener;
     }
 
     /**
-     * Setter for {@link #mOnSeekBarChangeListener}.
+     * Set the seek bar change listener to get the callback for
+     * seek events.
+     *
+     * @param onSeekBarChangeListener The listener to be set.
      */
     public void setOnSeekBarChangeListener(
             @Nullable SeekBar.OnSeekBarChangeListener onSeekBarChangeListener) {
@@ -537,14 +561,18 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
-     * Getter for {@link #mOnSeekBarControlListener}.
+     * @return The seek bar change listener to get the callback for
+     *         control events.
      */
     public @Nullable SeekBar.OnSeekBarChangeListener getOnSeekBarControlListener() {
         return mOnSeekBarControlListener;
     }
 
     /**
-     * Setter for {@link #mOnSeekBarControlListener}.
+     * Set the seek bar change listener to get the callback for
+     * control events.
+     *
+     * @param onSeekBarControlListener The listener to be set.
      */
     public void setOnSeekBarControlListener(
             @Nullable SeekBar.OnSeekBarChangeListener onSeekBarControlListener) {
@@ -560,8 +588,8 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
-     * @return The {@link #mSeekBar} progress according to the
-     *         supplied value.
+     * @return The seek bar progress according to the supplied
+     *         value.
      *
      * @param value The value to converted into seek bar progress.
      */
@@ -570,7 +598,7 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
-     * @return The preference value according to the {@link #mSeekBar}
+     * @return The preference value according to the seek bar
      *         progress.
      */
     public int getValueFromProgress() {
@@ -578,14 +606,17 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
-     * Getter for {@link #mSeekBar}.
+     * @return The seek bar to display and modify the preference
+     *         value.
      */
     public AppCompatSeekBar getSeekBar() {
         return mSeekBar;
     }
 
     /**
-     * Set color for {@link #mSeekBar} and {@link #mValueView}.
+     * Set the color for seek bar and value view.
+     *
+     * @param color The color to be set.
      */
     public void setColor(@ColorInt int color) {
         ((DynamicSeekBar) mSeekBar).setColor(color);

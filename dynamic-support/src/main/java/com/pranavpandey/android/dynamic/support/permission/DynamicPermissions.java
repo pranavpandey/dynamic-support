@@ -123,9 +123,10 @@ public class DynamicPermissions {
     }
 
     /**
-     * Initialize manger when application starts. Must be initialize once.
+     * Initialize permissions when application starts. 
+     * Must be initialized once.
      *
-     * @param context Context to request and manage permissions.
+     * @param context The context to request and manage permissions.
      */
     public static synchronized void initializeInstance(@Nullable Context context) {
         if (context == null) {
@@ -138,24 +139,26 @@ public class DynamicPermissions {
     }
 
     /**
-     * Getter for {@link #mContext}.
+     * @return The context used by this instance.
      */
     public @NonNull Context getContext() {
         return mContext;
     }
 
     /**
-     * Setter for {@link #mContext}.
+     * Sets the context used by this instance.
+     *
+     * @param context The context to be set.
      */
     public void setContext(@NonNull Context context) {
         this.mContext = context;
     }
 
     /**
-     * Get instance to access public methods. Must be called before accessing
-     * methods.
+     * Get instance to access public methods. Must be called before
+     * accessing the methods.
      *
-     * @return {@link #sInstance} Singleton {@link DynamicPermissions} instance.
+     * @return The singleton instance of this class.
      */
     public static synchronized DynamicPermissions getInstance() {
         if (sInstance == null) {
@@ -167,17 +170,20 @@ public class DynamicPermissions {
     }
 
     /**
-     * Getter for {@link #mPermissionActivity}.
+     * @return The permission activity used by this manager.
      */
     public Class<?> getPermissionActivity() {
         return mPermissionActivity;
     }
 
     /**
-     * Setter for {@link #mPermissionActivity}.
+     * Sets the permission activity for this instance.
+     *
+     * @param permissionActivity The permission activity class
+     *                           to be set.
      */
-    public void setPermissionActivity(Class<?> mPermissionActivity) {
-        this.mPermissionActivity = mPermissionActivity;
+    public void setPermissionActivity(Class<?> permissionActivity) {
+        this.mPermissionActivity = permissionActivity;
     }
 
     /**
@@ -185,14 +191,14 @@ public class DynamicPermissions {
      * It can also be used to automatically request the permissions those are
      * denied or not requested yet by using the {@link #mPermissionActivity}.
      *
-     * @param permissions An array of permissions to be requested.
+     * @param permissions The array of permissions to be requested.
      * @param request {@code true} to automatically request the permissions
      *                  if not granted.
      * @param actionIntent The intent which should be called after all the
      *                     permissions has been granted.
      * @param action The intent action, either start an activity or a service.
      */
-    public boolean isGranted(String[] permissions, boolean request,
+    public boolean isGranted(@NonNull String[] permissions, boolean request,
                              @Nullable Intent actionIntent, @DynamicPermissionsAction int action) {
         String[] permissionsNotGranted = isGranted(permissions);
 
@@ -208,11 +214,11 @@ public class DynamicPermissions {
      * It can also be used to automatically request the permissions those are
      * denied or not requested yet by using the {@link #mPermissionActivity}.
      *
-     * @param permissions An array of permissions to be requested.
+     * @param permissions The array of permissions to be requested.
      * @param request {@code true} to automatically request the permissions
      *                  if not granted.
      */
-    public boolean isGranted(String[] permissions, boolean request) {
+    public boolean isGranted(@NonNull String[] permissions, boolean request) {
         return isGranted(permissions, request,
                 null, DynamicPermissionsAction.NONE);
     }
@@ -220,9 +226,9 @@ public class DynamicPermissions {
     /**
      * @return {@code true} if all the supplied permissions has been granted.
      *
-     * @param permissions An array of permissions to be requested.
+     * @param permissions The array of permissions to be requested.
      */
-    private String[] isGranted(String[] permissions) {
+    private String[] isGranted(@NonNull String[] permissions) {
         final ArrayList<String> permissionsNotGranted = new ArrayList<String>();
 
         for (String permission: permissions) {
@@ -257,7 +263,7 @@ public class DynamicPermissions {
     /**
      * Request the supplied permissions if not granted.
      *
-     * @param permissions An array of permissions to be requested.
+     * @param permissions The array of permissions to be requested.
      * @param history {@code false} to exclude the system settings activity
      *                from the recents.
      * @param actionIntent The intent which should be called after all the
@@ -331,12 +337,15 @@ public class DynamicPermissions {
     }
 
     /**
-     * Convert an array of permissions to the array list of
+     * Convert The array of permissions to the array list of
      * {@link DynamicPermissions}.
      *
-     * @return An array list containing {@link DynamicPermissions}.
+     * @param permissions The permissions array to be converted.
+     * 
+     * @return The array list containing {@link DynamicPermissions}.
      */
-    public ArrayList<DynamicPermission> getPermissionItemArrayList(String[] permissions) {
+    public ArrayList<DynamicPermission> getPermissionItemArrayList(
+            @NonNull String[] permissions) {
         ArrayList<DynamicPermission> permissionsList = new ArrayList<>();
         PackageManager packageManager = mContext.getPackageManager();
 

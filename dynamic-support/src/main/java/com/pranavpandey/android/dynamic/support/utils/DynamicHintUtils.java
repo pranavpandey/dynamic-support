@@ -41,8 +41,9 @@ public class DynamicHintUtils {
      * color from the theme and it will automatically use its tint color for
      * the text and icon to provide best visibility.
      *
-     * @param context The context to use. Usually your {@link android.app.Application}
-     *                or {@link android.app.Activity} object.
+     * @param context The context to use. Usually the
+     *                {@link android.app.Application} or
+     *                {@link android.app.Activity} object.
      * @param text The text to show. Can be formatted text.
      * @param icon The toast icon to show.
      *
@@ -64,11 +65,12 @@ public class DynamicHintUtils {
      * @param view View to show the snack bar.
      * @param text The text to show. Can be formatted text.
      *
-     * @return Snack bar with the supplied parameters. Use {@link Snackbar#show()}
-     *         to display the snack bar.
+     * @return Snack bar with the supplied parameters.
+     *         Use {@link Snackbar#show()} to display the snack bar.
      */
     @SuppressLint("Range")
-    public static @NonNull Snackbar getSnackBar(@NonNull View view, @NonNull CharSequence text) {
+    public static @NonNull Snackbar getSnackBar(
+            @NonNull View view, @NonNull CharSequence text) {
         return getSnackBar(view, text, DynamicTheme.getInstance().getPrimaryColor(),
                 DynamicTheme.getInstance().getTintPrimaryColor(), Snackbar.LENGTH_LONG);
     }
@@ -80,11 +82,13 @@ public class DynamicHintUtils {
      *
      * @param view View to show the snack bar.
      * @param text The text to show. Can be formatted text.
-     * @param duration How long to display the message. Can be {@link Snackbar#LENGTH_SHORT},
-     *                 {@link Snackbar#LENGTH_LONG} or {@link Snackbar#LENGTH_INDEFINITE}.
+     * @param duration The duration of the snack bar. Can be
+     *                 {@link Snackbar#LENGTH_SHORT},
+     *                 {@link Snackbar#LENGTH_LONG} or
+     *                 {@link Snackbar#LENGTH_INDEFINITE}.
      *
-     * @return Snack bar with the supplied parameters. Use {@link Snackbar#show()}
-     *         to display the snack bar.
+     * @return Snack bar with the supplied parameters.
+     *         Use {@link Snackbar#show()} to display the snack bar.
      */
     public static @NonNull Snackbar getSnackBar(@NonNull View view, @NonNull CharSequence text,
                                                 @Snackbar.Duration int duration) {
@@ -98,14 +102,16 @@ public class DynamicHintUtils {
      * @param view View to show the snack bar.
      * @param text The text to show. Can be formatted text.
      * @param backgroundColor The snack bar background color.
-     * @param tintColor The snack bar tint color based on the background. It will
-     *                  automatically check for the contrast to provide best
-     *                  visibility.
-     * @param duration How long to display the message. Can be {@link Snackbar#LENGTH_SHORT},
-     *                 {@link Snackbar#LENGTH_LONG} or {@link Snackbar#LENGTH_INDEFINITE}.
+     * @param tintColor The snack bar tint color based on the
+     *                  background. It will automatically check
+     *                  for the contrast to provide bes visibility.
+     * @param duration The duration of the snack bar. Can be
+     *                 {@link Snackbar#LENGTH_SHORT},
+     *                 {@link Snackbar#LENGTH_LONG} or
+     *                 {@link Snackbar#LENGTH_INDEFINITE}.
      *
-     * @return Snack bar with the supplied parameters. Use {@link Snackbar#show()}
-     *         to display the snack bar.
+     * @return Snack bar with the supplied parameters.
+     *         Use {@link Snackbar#show()} to display the snack bar.
      */
     public static @NonNull Snackbar getSnackBar(@NonNull View view, @NonNull CharSequence text,
                                                 @ColorInt int backgroundColor,

@@ -17,9 +17,11 @@
 package com.pranavpandey.android.dynamic.support.utils;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.v7.view.menu.ActionMenuItemView;
@@ -80,7 +82,11 @@ public class DynamicMenuUtils {
      * Set other items color of this view according to the supplied values.
      * Generally, it should be a tint color so that items will be visible on
      * this view background.
+     *
+     * @param view The view to set its items color.
+     * @param color The tint color to be applied.
      */
+    @TargetApi(Build.VERSION_CODES.M)
     public static void setViewItemsTint(@NonNull final View view, @ColorInt final int color) {
         final PorterDuffColorFilter colorFilter
                 = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);

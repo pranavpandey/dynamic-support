@@ -264,13 +264,13 @@ public class DynamicColorPicker extends FrameLayout {
     private TextWatcher mEditTextWatcher;
 
     /**
-     * Seek bar DynamicTutorialListener for HSV color space to update the values
+     * Seek bar listener for HSV color space to update the values
      * accordingly.
      */
     private SeekBar.OnSeekBarChangeListener mHSVSeekBarListener;
 
     /**
-     * Seek bar DynamicTutorialListener for RGB color space to update the values
+     * Seek bar listener for RGB color space to update the values
      * accordingly.
      */
     private SeekBar.OnSeekBarChangeListener mRGBSeekBarListener;
@@ -537,7 +537,8 @@ public class DynamicColorPicker extends FrameLayout {
 
     /**
      * Select the color and call
-     * {@link #mOnColorSelectedListener#onColorSelected(int, int)} function.
+     * {@link DynamicColorsAdapter.OnColorSelectedListener#onColorSelected(int, int)}
+     * method.
      *
      * @param position Position of the parent color.
      * @param color The selected color.
@@ -555,6 +556,8 @@ public class DynamicColorPicker extends FrameLayout {
      * Set color string according to the selected color.
      *
      * @param color The selected color.
+     * @param setHSV {@code true} to set HSV vales.
+     * @param setRGB {@code true} to set RGB values.
      */
     protected void setCustom(@ColorInt int color, boolean setHSV, boolean setRGB) {
         mUpdatingCustomColor = true;
@@ -739,28 +742,33 @@ public class DynamicColorPicker extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mType}.
+     * @return The color picker view type.
      */
     public @DynamicPickerType int getType() {
         return mType;
     }
 
     /**
-     * Setter for {@link #mType}.
+     * Set the color picker view type.
+     *
+     * @param type The color picker view type to be set.
      */
     public void setType(@DynamicPickerType int type) {
         this.mType = type;
     }
 
     /**
-     * Getter for {@link #mControl}.
+     * @return The color picker view control.
      */
     public @DynamicColorControl int getControl() {
         return mControl;
     }
 
     /**
-     * Setter for {@link #mControl}.
+     * Set the color picker view control.
+     *
+     * @param control The color picker view control to
+     *                be set.
      */
     public void setControl(@DynamicColorControl int control) {
         this.mControl = control;
@@ -785,21 +793,24 @@ public class DynamicColorPicker extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mColors}.
+     * @return The color entries used by the picker.
      */
     public Integer[] getColors() {
         return mColors;
     }
 
     /**
-     * Getter for {@link #mShades}.
+     * @return The shade entries used by the picker.
      */
     public Integer[][] getShades() {
         return mShades;
     }
 
     /**
-     * Setter for {@link #mColors} and {@link #mShades}.
+     * Set the colors and their shades.
+     *
+     * @param colors The color entries to be set.
+     * @param shades The shade entries to be set.
      */
     public void setColors(@NonNull @ColorInt Integer[] colors,
                           @Nullable @ColorInt Integer[][] shades) {
@@ -808,74 +819,84 @@ public class DynamicColorPicker extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mOnColorSelectedListener}.
-     */
-    public @NonNull DynamicColorsAdapter.OnColorSelectedListener getOnColorSelectedListener() {
-        return mOnColorSelectedListener;
-    }
-
-    /**
-     * Setter for {@link #mOnColorSelectedListener}.
-     */
-    public void setOnColorSelectedListener(
-            @NonNull DynamicColorsAdapter.OnColorSelectedListener onItemClickListener) {
-        this.mOnColorSelectedListener = onItemClickListener;
-    }
-
-    /**
-     * Getter for {@link #mPreviousColor}.
+     * @return The previous color.
      */
     public @ColorInt int getPreviousColor() {
         return mPreviousColor;
     }
 
     /**
-     * Setter for {@link #mPreviousColor}.
+     * Set the previous color.
+     *
+     * @param previousColor The previous color to be set.
      */
     public void setPreviousColor(@ColorInt int previousColor) {
         this.mPreviousColor = previousColor;
     }
 
     /**
-     * Getter for {@link #mSelectedColor}.
+     * @return The selected color.
      */
     public @ColorInt int getSelectedColor() {
         return mSelectedColor;
     }
 
     /**
-     * Setter for {@link #mSelectedColor}.
+     * Set the selected color.
+     *
+     * @param selectedColor The color to be selected.
      */
     public void setSelectedColor(@ColorInt int selectedColor) {
         this.mSelectedColor = selectedColor;
     }
 
     /**
-     * Getter for {@link #mColorShape}.
+     * @return The shape of the color swatches.
      */
     public @DynamicColorShape int getColorShape() {
         return mColorShape;
     }
 
     /**
-     * Setter for {@link #mColorShape}.
+     * Set the shape of the color swatches.
+     *
+     * @param colorShape The color shape to be set.
      */
     public void setColorShape(@DynamicColorShape int colorShape) {
         this.mColorShape = colorShape;
     }
 
     /**
-     * Getter for {@link #mAlpha}.
+     * @return {@code true} to enable alpha for the custom color.
      */
     public boolean isAlpha() {
         return mAlpha;
     }
 
     /**
-     * Setter for {@link #mAlpha}.
+     * Set the alpha support for the custom color.
+     *
+     * @param alpha {@code true} to enable alpha.
      */
     public void setAlpha(boolean alpha) {
         this.mAlpha = alpha;
+    }
+
+    /**
+     * @return The color listener to get the selected color.
+     */
+    public @NonNull DynamicColorsAdapter.OnColorSelectedListener getOnColorSelectedListener() {
+        return mOnColorSelectedListener;
+    }
+
+    /**
+     * Set the color listener to get the selected color.
+     *
+     * @param onColorSelectedListener The listener to be set.
+     */
+    public void setOnColorSelectedListener(
+            @NonNull DynamicColorsAdapter.OnColorSelectedListener onColorSelectedListener) {
+        this.mOnColorSelectedListener = onColorSelectedListener;
     }
 
     /**
@@ -924,7 +945,7 @@ public class DynamicColorPicker extends FrameLayout {
     }
 
     /**
-     * Get the saved recent colors from the shared preferences.
+     * @return The saved recent colors from the shared preferences.
      */
     protected Integer[] getRecents() {
         String recentsString;

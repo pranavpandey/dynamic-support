@@ -20,24 +20,26 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 
 /**
- * A model class to store {@link android.widget.Spinner} item information
- * with a icon and a text.
+ * A model class to store {@link android.widget.Spinner} item
+ * information with a icon and a text.
  */
 public class DynamicSpinnerItem {
 
     /**
-     * Icon used by this item view.
+     * Icon used by this item.
      */
     private Drawable icon;
 
     /**
-     * Text used by this item view.
+     * Text used by this item.
      */
     private CharSequence text;
 
     /**
-     * Constructor to initialize an object of this class by supplying
-     * an icon and a text.
+     * Constructor to initialize an object of this class.
+     *
+     * @param icon The icon for this item.
+     * @param text The text for this item.
      */
     public DynamicSpinnerItem(@Nullable Drawable icon, @Nullable CharSequence text) {
         this.icon = icon;
@@ -45,17 +47,19 @@ public class DynamicSpinnerItem {
     }
 
     /**
-     * Getter for {@link #icon}.
+     * @return The icon used by this item.
      */
     public @Nullable Drawable getIcon() {
         return icon;
     }
 
     /**
-     * Setter for {@link #icon}.
+     * Set the icon used by this item.
      *
-     * @return {@link DynamicSpinnerItem} object to allow for chaining of
-     *         calls to set methods.
+     * @param icon The icon to be set.
+     *
+     * @return The {@link DynamicSpinnerItem} object to allow
+     *         for chaining of calls to set methods.
      */
     public DynamicSpinnerItem setIcon(@Nullable Drawable icon) {
         this.icon = icon;
@@ -64,17 +68,19 @@ public class DynamicSpinnerItem {
     }
 
     /**
-     * Getter for {@link #text}.
+     * @return The text used by this item.
      */
     public @Nullable CharSequence getText() {
         return text;
     }
 
     /**
-     * Setter for {@link #text}.
+     * Set the text used by this item.
      *
-     * @return {@link DynamicSpinnerItem} object to allow for chaining of
-     *         calls to set methods.
+     * @param text The text to be set.
+     *
+     * @return The {@link DynamicSpinnerItem} object to allow
+     *         for chaining of calls to set methods.
      */
     public DynamicSpinnerItem setText(@Nullable CharSequence text) {
         this.text = text;

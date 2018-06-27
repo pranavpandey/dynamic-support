@@ -124,14 +124,14 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment {
     }
 
     /**
-     * Getter for {@link #mTabLayout}.
+     * @return The tab layout used by this fragment.
      */
     public TabLayout getTabLayout() {
         return mTabLayout;
     }
 
     /**
-     * Getter for {@link #mViewPager}.
+     * @return The view pager used by this fragment.
      */
     public ViewPager getViewPager() {
         return mViewPager;

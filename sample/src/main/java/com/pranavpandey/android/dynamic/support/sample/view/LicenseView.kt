@@ -60,8 +60,8 @@ class LicenseView : DynamicRecyclerViewFrame {
                         R.array.ads_license_links_subtitles_license))
                 .setLinksUrls(resources.getStringArray(
                         R.array.ads_license_links_urls_apache_only))
-                .setLinksIconsId(R.array.ads_license_links_icons_license)
-                .setLinksColorsId(R.array.ads_license_links_colors_license)
+                .setLinksIconsResId(R.array.ads_license_links_icons_license)
+                .setLinksColorsResId(R.array.ads_license_links_colors_license)
                 .setIconBig(DynamicResourceUtils.getDrawable(
                         context, R.drawable.ads_ic_android)))
         licenses.add(DynamicInfo()
@@ -74,8 +74,8 @@ class LicenseView : DynamicRecyclerViewFrame {
                         R.array.ads_license_links_subtitles))
                 .setLinksUrls(resources.getStringArray(
                         R.array.ads_license_links_urls_plaid))
-                .setLinksIconsId(R.array.ads_license_links_icons)
-                .setLinksColorsId(R.array.ads_license_links_colors)
+                .setLinksIconsResId(R.array.ads_license_links_icons)
+                .setLinksColorsResId(R.array.ads_license_links_colors)
                 .setIconBig(DynamicResourceUtils.getDrawable(
                         context, R.drawable.ads_ic_android)))
         licenses.add(DynamicInfo()
@@ -86,8 +86,8 @@ class LicenseView : DynamicRecyclerViewFrame {
                         R.array.ads_license_links_subtitles))
                 .setLinksUrls(resources.getStringArray(
                         R.array.ads_license_links_urls_sas))
-                .setLinksIconsId(R.array.ads_license_links_icons)
-                .setLinksColorsId(R.array.ads_license_links_colors)
+                .setLinksIconsResId(R.array.ads_license_links_icons)
+                .setLinksColorsResId(R.array.ads_license_links_colors)
                 .setIconBig(DynamicResourceUtils.getDrawable(
                         context, R.drawable.ads_ic_extension)))
         licenses.add(DynamicInfo()
@@ -100,8 +100,8 @@ class LicenseView : DynamicRecyclerViewFrame {
                         R.array.ads_license_links_subtitles_ads_modules))
                 .setLinksUrls(resources.getStringArray(
                         R.array.ads_license_links_urls_ads_modules))
-                .setLinksIconsId(R.array.ads_license_links_icons_ads_modules)
-                .setLinksColorsId(R.array.ads_license_links_colors_ads_modules)
+                .setLinksIconsResId(R.array.ads_license_links_icons_ads_modules)
+                .setLinksColorsResId(R.array.ads_license_links_colors_ads_modules)
                 .setIconBig(DynamicResourceUtils.getDrawable(
                         context, R.drawable.ads_ic_extension)))
         licenses.add(DynamicInfo()
@@ -114,8 +114,8 @@ class LicenseView : DynamicRecyclerViewFrame {
                         R.array.ads_license_links_subtitles))
                 .setLinksUrls(resources.getStringArray(
                         R.array.ads_license_links_urls_ads))
-                .setLinksIconsId(R.array.ads_license_links_icons)
-                .setLinksColorsId(R.array.ads_license_links_colors)
+                .setLinksIconsResId(R.array.ads_license_links_icons)
+                .setLinksColorsResId(R.array.ads_license_links_colors)
                 .setIconBig(DynamicResourceUtils.getDrawable(
                         context, R.drawable.ads_ic_extension)))
 

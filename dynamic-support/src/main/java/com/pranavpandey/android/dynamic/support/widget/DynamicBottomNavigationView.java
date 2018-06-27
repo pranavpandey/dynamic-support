@@ -31,8 +31,8 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * A BottomNavigationView to change its text and indicator color according to the
- * supplied {@link R.attr#ads_colorType}.
+ * A BottomNavigationView to change its text and indicator
+ * color according to the supplied parameters.
  */
 public class DynamicBottomNavigationView extends BottomNavigationView
         implements DynamicTextWidget {

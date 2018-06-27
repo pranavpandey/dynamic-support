@@ -90,7 +90,7 @@ class SampleController {
          * Initialize this controller when application starts. Must be
          * initialize once.
          *
-         * @param context Context to retrieve resources.
+         * @param context The context to retrieve resources.
          */
         @Synchronized
         fun initializeInstance(context: Application?) {

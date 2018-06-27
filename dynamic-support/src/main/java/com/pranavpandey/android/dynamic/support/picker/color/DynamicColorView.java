@@ -142,6 +142,8 @@ public class DynamicColorView extends FrameLayout {
 
     /**
      * Load values from the supplied attribute set.
+     *
+     * @param attrs The supplied attribute set to load the values.
      */
     protected void loadFromAttributes(@Nullable AttributeSet attrs) {
         setLayerType(View.LAYER_TYPE_SOFTWARE, null);
@@ -323,14 +325,16 @@ public class DynamicColorView extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mColor}.
+     * @return The color used by this color view.
      */
     public @ColorInt int getColor() {
         return mColor;
     }
 
     /**
-     * Setter for {@link #mColor}.
+     * Set the color for this color view.
+     *
+     * @param color The color to be set.
      */
     public void setColor(final @ColorInt int color) {
         new Handler().post(new Runnable() {
@@ -344,31 +348,35 @@ public class DynamicColorView extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mColorShape}.
+     * @return The shape used by this color view.
      */
     public @DynamicColorShape int getColorShape() {
         return mColorShape;
     }
 
     /**
-     * Setter for {@link #mColorShape}.
+     * Set the shape used by this color view.
+     *
+     * @param colorShape The color shape to be set.
      */
-    public void setColorShape(@DynamicColorShape int mColorShape) {
-        this.mColorShape = mColorShape;
+    public void setColorShape(@DynamicColorShape int colorShape) {
+        this.mColorShape = colorShape;
 
         requestLayout();
         invalidate();
     }
 
     /**
-     * Getter for {@link #mSelected}.
+     * @return {@code true} if this color view is selected.
      */
     public boolean isSelected() {
         return mSelected;
     }
 
     /**
-     * Setter for {@link #mSelected}.
+     * Set this color view selected or unselected.
+     *
+     * @param selected {@code true} to make it selected.
      */
     public void setSelected(boolean selected) {
         this.mSelected = selected;
@@ -378,14 +386,16 @@ public class DynamicColorView extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mAlpha}.
+     * @return {@code true} to enable alpha for the color.
      */
     public boolean isAlpha() {
         return mAlpha;
     }
 
     /**
-     * Setter for {@link #mAlpha}.
+     * Set the alpha support for the color.
+     *
+     * @param alpha {@code true} to enable alpha.
      */
     public void setAlpha(boolean alpha) {
         this.mAlpha = alpha;

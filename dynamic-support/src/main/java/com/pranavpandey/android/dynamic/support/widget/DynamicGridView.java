@@ -32,7 +32,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * A GridView to apply color filter according to the supplied
- * {@link R.attr#ads_colorType}.
+ * parameters.
  */
 public class DynamicGridView extends GridView implements DynamicWidget {
 

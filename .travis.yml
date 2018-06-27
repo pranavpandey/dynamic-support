@@ -1,8 +1,11 @@
 language: android
 jdk: oraclejdk8
 sudo: required
+
 before_install:
   - yes | sdkmanager "platforms;android-28"
+  - yes | sdkmanager "sources;android-27"
+  - yes | sdkmanager "docs"
 
 android:
   components:
@@ -13,17 +16,25 @@ android:
     - extra-android-support
     - extra-android-m2repository
     - extra-google-m2repository
-
-    # Additional components
-    #- extra-google-google_play_services
-    #- addon-google_apis-google-19
-
-    # Specify at least one system image, if you need to run emulator(s) during your tests
-    #- sys-img-armeabi-v7a-android-19
-    #- sys-img-x86-android-17
 licenses:
   - '.+'
 before_script:
   - chmod +x gradlew
 script:
   - ./gradlew build
+
+after_success:
+  - ./gradlew javadocRelease
+
+deploy:
+  # Fix broken deployment due to the below issue:
+  # https://github.com/travis-ci/travis-ci/issues/9312
+  edge:
+    branch: v1.8.47
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  local-dir: dynamic-support/build/docs/javadoc/release
+  on:
+    branch: master

@@ -104,7 +104,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     protected ImageView mSearchViewClear;
 
     /**
-     * Interface to listen search view expand and collapse callbacks.
+     * Listener to listen search view expand and collapse callbacks.
      */
     protected DynamicSearchListener mDynamicSearchListener;
 
@@ -146,16 +146,17 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     protected ViewGroup mFrameBackDrop;
 
     /**
-     * Header frame just below the app toolbar to add custom  views
+     * Header frame just below the app toolbar to add custom views
      * like tabs, hints, etc. Use the methods {@link #addHeader(int, boolean)}
      * or {@link #addHeader(View, boolean)} to add the views.
       */
     protected ViewGroup mFrameHeader;
 
     /**
-     * Footer frame at the bottom of the screen to add custom views like bottom
-     * navigation bar, ads, etc. Use the methods {@link #addFooter(int, boolean)}
-     * or {@link #addFooter(View, boolean)} to add the views.
+     * Footer frame at the bottom of the screen to add custom views
+     * like bottom navigation bar, ads, etc. Use the methods
+     * {@link #addFooter(int, boolean)} or {@link #addFooter(View, boolean)}
+     * to add the views.
      */
     protected ViewGroup mFrameFooter;
 
@@ -243,7 +244,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * {@code true} if this activity is a drawer activity.
+     * @return {@code true} if this activity is a drawer activity.
      */
     protected boolean isDrawerActivity() {
         return false;
@@ -315,11 +316,11 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     protected abstract @LayoutRes int getContentRes();
 
     /**
-     * Set the icon and on click DynamicTutorialListener for the back or up button in the
+     * Set the icon and on click listener for the back or up button in the
      * app bar.
      *
      * @param icon Drawable used for the back or up button.
-     * @param onClickListener On click DynamicTutorialListener for the back or up button.
+     * @param onClickListener On click listener for the back or up button.
      */
     public void setNavigationClickListener(@Nullable Drawable icon,
                                            @Nullable View.OnClickListener onClickListener) {
@@ -336,11 +337,11 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Set the icon and on click DynamicTutorialListener for the back or up button in the
+     * Set the icon and on click listener for the back or up button in the
      * app bar.
      *
      * @param iconRes Drawable resource id used for the back or up button.
-     * @param onClickListener On click DynamicTutorialListener for the back or up button.
+     * @param onClickListener On click listener for the back or up button.
      */
     public void setNavigationClickListener(@DrawableRes int iconRes,
                                            @Nullable View.OnClickListener onClickListener) {
@@ -349,10 +350,10 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Set the on click DynamicTutorialListener for the back or up button in the app bar.
-     * If no DynamicTutorialListener is supplied then, it will automatically hide the button.
+     * Sets the on click listener for the back or up button in the app bar.
+     * If no listener is supplied then, it will automatically hide the button.
      *
-     * @param onClickListener On click DynamicTutorialListener for the back or up button.
+     * @param onClickListener On click listener for the back or up button.
      */
     public void setNavigationClickListener(@Nullable View.OnClickListener onClickListener) {
         setNavigationClickListener(onClickListener != null
@@ -361,7 +362,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Getter for {@link #mToolbar}.
+     * @return The app toolbar used by this activity.
      */
     public @Nullable Toolbar getToolbar() {
         return mToolbar;
@@ -376,14 +377,14 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Getter for {@link #mCoordinatorLayout}.
+     * @return The coordinator layout used by this activity.
      */
     public @Nullable CoordinatorLayout getCoordinatorLayout() {
         return mCoordinatorLayout;
     }
 
     /**
-     * Getter for {@link #mCollapsingToolbarLayout}.
+     * @return The collapsing toolbar layout used by this activity.
      */
     public CollapsingToolbarLayout getCollapsingToolbarLayout() {
         return mCollapsingToolbarLayout;
@@ -481,8 +482,8 @@ public abstract class DynamicActivity extends DynamicStateActivity {
 
     /**
      * Set the drawable for backdrop image used by the
-     * {@link #mCollapsingToolbarLayout} which will be shown when it is expanded
-     * and will be hidden on collapsing the toolbar.
+     * {@link #mCollapsingToolbarLayout} which will be shown when it is
+     * expanded and will be hidden on collapsing the toolbar.
      *
      * @param drawable Drawable for the backdrop image.
      */
@@ -531,7 +532,9 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Getter for {@link #mFrameHeader}.
+     * @return The header frame just below the app toolbar to add custom views
+     *         like tabs, hints, etc. Use the methods {@link #addHeader(int, boolean)}
+     *         or {@link #addHeader(View, boolean)} to add the views.
      */
     public @Nullable ViewGroup getFrameHeader() {
         return mFrameHeader;
@@ -573,7 +576,10 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Getter for {@link #mFrameFooter}.
+     * @return The footer frame at the bottom of the screen to add custom views
+     *         like bottom navigation bar, ads, etc. Use the methods
+     *         {@link #addFooter(int, boolean)} or {@link #addFooter(View, boolean)}
+     *         to add the views.
      */
     public @Nullable ViewGroup getFrameFooter() {
         return mFrameFooter;
@@ -694,7 +700,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     /**
      * Expand search view to start searching.
      *
-     * @param requestSoftInput {@code true) to request the soft input
+     * @param requestSoftInput {@code true} to request the soft input
      *                         keyboard.
      */
     public void expandSearchView(boolean requestSoftInput) {
@@ -727,7 +733,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Getter for {@link #mSearchViewEditText}.
+     * @return The toolbar edit text used by this activity.
      */
     public @Nullable EditText getSearchViewEditText() {
         return mSearchViewEditText;
@@ -741,14 +747,18 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Getter for {@link #mDynamicSearchListener}.
+     * @return The listener to listen search view expand and collapse
+     *         callbacks.
      */
     public @Nullable DynamicSearchListener getSearchViewListener() {
         return mDynamicSearchListener;
     }
 
     /**
-     * Setter for {@link #mDynamicSearchListener}.
+     * Sets the listener to listen search view expand and collapse
+     * callbacks.
+     *
+     * @param dynamicSearchListener The listener to be set.
      */
     public void setSearchViewListener(@Nullable DynamicSearchListener dynamicSearchListener) {
         this.mDynamicSearchListener = dynamicSearchListener;
@@ -764,7 +774,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Getter for {@link #mFAB}.
+     * @return The floating action button used by this activity.
      */
     public @Nullable FloatingActionButton getFAB() {
         return mFAB;
@@ -773,7 +783,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     /**
      * Set a floating action button ({@link #mFAB}) used by this activity
      * by supplying an image drawable, current visibility and a click
-     * DynamicTutorialListener. FAB will be tinted automatically according to the accent
+     * listener. FAB will be tinted automatically according to the accent
      * color used by this activity.
      *
      * <p>Please use {@link #getFAB()} method to perform more operations
@@ -797,7 +807,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     /**
      * Set a floating action button ({@link #mFAB}) used by this activity
      * by supplying an image drawable resource, current visibility and a
-     * click DynamicTutorialListener. FAB will be tinted automatically according to the
+     * click listener. FAB will be tinted automatically according to the
      * accent color used by this activity.
      *
      * <p>Please use {@link #getFAB()} method to perform more operations
@@ -888,12 +898,13 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * best visibility.
      *
      * @param text The text to show. Can be formatted text.
-     * @param duration @param duration How long to display the message. Can be
-     *                 {@link Snackbar#LENGTH_SHORT}, {@link Snackbar#LENGTH_LONG}
-     *                 or {@link Snackbar#LENGTH_INDEFINITE}.
+     * @param duration The duration of the snack bar. Can be
+     *                 {@link Snackbar#LENGTH_SHORT},
+     *                 {@link Snackbar#LENGTH_LONG} or
+     *                 {@link Snackbar#LENGTH_INDEFINITE}.
      *
-     * @return Snack bar with the supplied parameters. Use {@link Snackbar#show()}
-     *         to display the snack bar.
+     * @return Snack bar with the supplied parameters.
+     *         Use {@link Snackbar#show()} to display the snack bar.
      */
     public @NonNull Snackbar getSnackBar(@NonNull CharSequence text,
                                 @BaseTransientBottomBar.Duration int duration) {
@@ -910,11 +921,13 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * best visibility.
      *
      * @param stringId The string resource id.
-     * @param duration How long to display the message. Can be {@link Snackbar#LENGTH_SHORT},
-     *                 {@link Snackbar#LENGTH_LONG} or {@link Snackbar#LENGTH_INDEFINITE}.
+     * @param duration The duration of the snack bar. Can be
+     *                 {@link Snackbar#LENGTH_SHORT},
+     *                 {@link Snackbar#LENGTH_LONG} or
+     *                 {@link Snackbar#LENGTH_INDEFINITE}.
      *
-     * @return Snack bar with the supplied parameters. Use {@link Snackbar#show()}
-     *         to display the snack bar.
+     * @return Snack bar with the supplied parameters.
+     *         Use {@link Snackbar#show()} to display the snack bar.
      */
     public @Nullable Snackbar getSnackBar(@StringRes int stringId,
                                 @BaseTransientBottomBar.Duration  int duration) {
@@ -929,8 +942,8 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      *
      * @param text The text to show. Can be formatted text.
      *
-     * @return Snack bar with the supplied parameters. Use {@link Snackbar#show()}
-     *         to display the snack bar.
+     * @return Snack bar with the supplied parameters.
+     *         Use {@link Snackbar#show()} to display the snack bar.
      */
     @SuppressLint("Range")
     public @NonNull Snackbar getSnackBar(@NonNull CharSequence text) {
@@ -945,8 +958,8 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      *
      * @param stringId The string resource id.
      *
-     * @return Snack bar with the supplied parameters. Use {@link Snackbar#show()}
-     *         to display the snack bar.
+     * @return Snack bar with the supplied parameters.
+     *         Use {@link Snackbar#show()} to display the snack bar.
      */
     public @NonNull Snackbar getSnackBar(@StringRes int stringId) {
         return getSnackBar(getString(stringId));

@@ -86,8 +86,8 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
             "ads_state_navigation_bar_color";
 
     /**
-     * Default tint color for the system UI elements like snack bars,
-     * etc.
+     * Default tint color for the system UI elements like snack
+     * bars, etc.
      */
     protected static final @ColorInt int ADS_DEFAULT_SYSTEM_UI_COLOR =
             Color.parseColor("#F5F5F5");
@@ -185,21 +185,21 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * Get the style resource file to apply theme on ths activity.
      * Override this method to supply your own customised style.
      *
-     * @return Style resource to be applied on this activity.
+     * @return The style resource to be applied on this activity.
      */
     protected @StyleRes int getThemeRes() {
         return DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
     }
 
     /**
-     * This method will be called just before the {@link super#onCreate(Bundle)}
+     * This method will be called just before the {@link #onCreate(Bundle)}
      * after applying the theme. Override this method to customise the theme
      * further.
      */
     protected void onCustomiseTheme() { }
 
     /**
-     * Getter for {@link #mContext}.
+     * @return The dynamic context used by this activity.
      */
     public @NonNull Context getContext() {
         return mContext;
@@ -228,7 +228,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     }
 
     /**
-     * Getter for {@link #mNavigationBarTheme}
+     * @return {@code true} if navigation bar theme is applied.
      */
     public boolean isNavigationBarTheme() {
         return mNavigationBarTheme;
@@ -266,9 +266,10 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     }
 
     /**
-     * Called after the navigation bar theme has been changed. Override
-     * this function to perform operations after the navigation bar theme
-     * has been changed like update it with new colors.
+     * Called after the navigation bar theme has been changed.
+     * Override this method to perform operations after the
+     * navigation bar theme has been changed like update it with
+     * new colors.
      */
     protected void navigationBarThemeChange() {
         setNavigationBarColor(getNavigationBarColor());
@@ -406,21 +407,21 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     }
 
     /**
-     * Getter for {@link #mStatusBarColor}.
+     * @return The current status bar color.
      */
     public int getStatusBarColor() {
         return mStatusBarColor;
     }
 
     /**
-     * Getter for {@link #mNavigationBarColor}.
+     * @return The current navigation bar color.
      */
     public int getNavigationBarColor() {
         return mNavigationBarColor;
     }
 
     /**
-     * Getter for {@link #mAppliedNavigationBarColor}.
+     * @return The applied navigation bar color.
      */
     public int getAppliedNavigationBarColor() {
         return mAppliedNavigationBarColor;

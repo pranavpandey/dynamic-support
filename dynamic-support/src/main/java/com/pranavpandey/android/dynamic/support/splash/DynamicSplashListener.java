@@ -35,6 +35,8 @@ public interface DynamicSplashListener {
      * This method will be called just after creating the splash fragment
      * with the supplied layout resource. Do any modifications in
      * the splash layout here.
+     *
+     * @param view The view created from the layout resource.
      */
     void onViewCreated(@NonNull View view);
 

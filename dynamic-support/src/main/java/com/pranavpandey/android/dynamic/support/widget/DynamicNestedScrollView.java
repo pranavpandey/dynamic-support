@@ -31,8 +31,8 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * A NestedScrollView to apply color filter according to the supplied
- * {@link R.attr#ads_colorType}.
+ * A NestedScrollView to apply color filter according to the
+ * supplied parameters.
  */
 public class DynamicNestedScrollView extends NestedScrollView
         implements DynamicScrollableWidget {

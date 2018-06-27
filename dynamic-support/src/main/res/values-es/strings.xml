@@ -295,16 +295,10 @@
     <string name="ads_info_terms_of_use_desc">Ver los términos de uso de este producto.</string>
     <string name="ads_info_privacy_policy_terms_desc">Política de privacidad y términos de uso.</string>
     <string name="ads_info_apps">Más aplicaciones</string>
-    <string name="ads_info_gplus">Google+</string>
     <string name="ads_info_gplus_desc">Únete a la comunidad oficial para probar las versiones de prueba.</string>
-    <string name="ads_info_facebook">Facebook</string>
     <string name="ads_info_facebook_desc">Sigue la página oficial para recibir las últimas noticias y actualizaciones.</string>
-    <string name="ads_info_xda">XDA-Developers</string>
     <string name="ads_info_xda_desc">Sigue el foro de soporte oficial de XDA.</string>
     <string name="ads_info_website">Sitio web</string>
-    <string name="ads_info_github">GitHub</string>
-    <string name="ads_info_linkedin">LinkedIn</string>
-    <string name="ads_info_twitter">Twitter</string>
     <string name="ads_info_website_me_desc">Un lugar para mí en la web.</string>
     <string name="ads_info_twitter_me_desc">Obtén los últimos tweets sobre mi vida y mi trabajo.</string>
     <string name="ads_info_facebook_me_desc">Hazte amigo o sígueme para conocer más sobre mí.</string>

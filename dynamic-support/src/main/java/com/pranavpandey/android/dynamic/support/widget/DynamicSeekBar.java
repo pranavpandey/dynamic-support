@@ -36,7 +36,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 /**
  * A SeekBar to change its color according to the supplied
- * {@link R.attr#ads_colorType}.
+ * parameters.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class DynamicSeekBar extends AppCompatSeekBar implements DynamicWidget {

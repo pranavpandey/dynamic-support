@@ -31,9 +31,8 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicMenuUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * A Toolbar to change its background and text color according to the
- * supplied {@link R.attr#ads_colorType} and {@link R.attr#ads_textColorType}
- * respectively.
+ * A Toolbar to change its background and text color according
+ * to the supplied parameters.
  */
 public class DynamicToolbar extends Toolbar implements DynamicTextWidget {
 

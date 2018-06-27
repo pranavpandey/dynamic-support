@@ -57,7 +57,6 @@ public abstract class DynamicFragment extends Fragment {
         return null;
     }
 
-
     /**
      * @return The menu item id to make it checked if the parent activity
      * is a {@link DynamicDrawerActivity}.

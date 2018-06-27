@@ -22,7 +22,6 @@
     <string name="ads_format_blank_space">%1$s %2$s</string>
     <string name="ads_format_separator">%1$s | %2$s</string>
     <string name="ads_format_braces">%1$s (%2$s)</string>
-    <string name="ads_format_version">Version %1$s</string>
 
     <!-- Locales -->
     <string name="ads_locale_system">@string/ads_language_system</string>
@@ -48,6 +47,10 @@
     <!-- Labels -->
     <string name="ads_yes">@android:string/yes</string>
     <string name="ads_cancel">@android:string/cancel</string>
+
+    <!-- Picker -->
+    <string name="ads_picker_hsv">HSV</string>
+    <string name="ads_picker_rgb">RGB</string>
 
     <!-- Backup and Restore -->
     <string name="ads_backup_save">@string/ads_save</string>

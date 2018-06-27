@@ -32,7 +32,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * A ScrollView to apply color filter according to the supplied
- * {@link R.attr#ads_colorType}.
+ * parameters.
  */
 public class DynamicScrollView extends ScrollView implements DynamicScrollableWidget {
 

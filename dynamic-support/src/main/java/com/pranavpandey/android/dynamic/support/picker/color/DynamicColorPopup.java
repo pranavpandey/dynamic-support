@@ -65,12 +65,12 @@ public class DynamicColorPopup extends DynamicPopup {
     private CharSequence mTitle;
 
     /**
-     * List entries used by this popup.
+     * Color entries used by this popup.
      */
     private @ColorInt Integer[] mEntries;
 
     /**
-     * The default color to be shown with the title.
+     * The default color to be shown in footer.
      */
     private @ColorInt int mDefaultColor;
 
@@ -107,15 +107,19 @@ public class DynamicColorPopup extends DynamicPopup {
     private View.OnClickListener mOnMoreColorsListener;
 
     /**
-     * Constructor to initialize an object of this class by supplying
-     * anchor, entries, and on color selected DynamicTutorialListener.
+     * Constructor to initialize an object of this class.
+     *
+     * @param anchor The anchor view for this popup.
+     * @param entries The color entries for this popup.
+     * @param onColorSelectedListener The color listener to
+     *                                get the selected color.
      */
     public DynamicColorPopup(
             @NonNull View anchor, @NonNull Integer[] entries,
-            @NonNull DynamicColorsAdapter.OnColorSelectedListener onItemClickListener) {
+            @NonNull DynamicColorsAdapter.OnColorSelectedListener onColorSelectedListener) {
         this.mAnchor = anchor;
         this.mEntries = entries;
-        this.mOnColorSelectedListener = onItemClickListener;
+        this.mOnColorSelectedListener = onColorSelectedListener;
         this.mDefaultColor = DynamicColorType.UNKNOWN;
         this.mSelectedColor = DynamicColorType.UNKNOWN;
         this.mColorShape = DynamicColorShape.CIRCLE;
@@ -203,6 +207,12 @@ public class DynamicColorPopup extends DynamicPopup {
         return this;
     }
 
+    /**
+     * Set color view according to the supplied parameters.
+     *
+     * @param colorView The color view to be set.
+     * @param color The color to be applied.
+     */
     private void setColorView(final @NonNull DynamicColorView colorView,
                               final @ColorInt int color) {
         colorView.setVisibility(View.VISIBLE);
@@ -246,130 +256,144 @@ public class DynamicColorPopup extends DynamicPopup {
     }
 
     /**
-     * Getter for {@link #mTitle}.
+     * @return The title used by this popup.
      */
     public @Nullable CharSequence getTitle() {
         return mTitle;
     }
 
     /**
-     * Setter for {@link #mTitle}.
+     * Set the title used by this popup.
+     *
+     * @param title The title to be set.
      */
     public void setTitle(@Nullable CharSequence title) {
         this.mTitle = title;
     }
 
     /**
-     * Getter for {@link #mEntries}.
+     * @return The color entries used by this popup.
      */
     public Integer[] getEntries() {
         return mEntries;
     }
 
     /**
-     * Setter for {@link #mEntries}.
+     * Set the color entries for this popup.
+     *
+     * @param entries The color entries to be set.
      */
     public void setEntries(Integer[] entries) {
         this.mEntries = entries;
     }
 
     /**
-     * Getter for {@link #mOnColorSelectedListener}.
-     */
-    public @NonNull DynamicColorsAdapter.OnColorSelectedListener getOnColorSelectedListener() {
-        return mOnColorSelectedListener;
-    }
-
-    /**
-     * Setter for {@link #mOnColorSelectedListener}.
-     */
-    public void setOnColorSelectedListener(
-            @NonNull DynamicColorsAdapter.OnColorSelectedListener onItemClickListener) {
-        this.mOnColorSelectedListener = onItemClickListener;
-    }
-
-    /**
-     * Getter for {@link #mOnMoreColorsListener}.
-     */
-    public @Nullable View.OnClickListener getOnMoreColorsListener() {
-        return mOnMoreColorsListener;
-    }
-
-    /**
-     * Setter for {@link #mOnMoreColorsListener}.
-     */
-    public void setOnMoreColorsListener(
-            @Nullable View.OnClickListener onMoreColorsListener) {
-        this.mOnMoreColorsListener = onMoreColorsListener;
-    }
-
-    /**
-     * Getter for {@link #mDefaultColor}.
+     * @return The default color to be shown in footer.
      */
     public @ColorInt int getDefaultColor() {
         return mDefaultColor;
     }
 
     /**
-     * Setter for {@link #mDefaultColor}.
+     * Set the default color to be shown in footer.
+     *
+     * @param defaultColor The default color to be set.
      */
     public void setDefaultColor(@ColorInt int defaultColor) {
         this.mDefaultColor = defaultColor;
     }
 
     /**
-     * Getter for {@link #mPreviousColor}.
-     */
-    public @ColorInt int getPreviousColor() {
-        return mPreviousColor;
-    }
-
-    /**
-     * Setter for {@link #mPreviousColor}.
+     * Set the previous color.
+     *
+     * @param previousColor The previous color to be set.
      */
     public void setPreviousColor(@ColorInt int previousColor) {
         this.mPreviousColor = previousColor;
     }
 
     /**
-     * Getter for {@link #mSelectedColor}.
+     * @return The selected color.
      */
     public @ColorInt int getSelectedColor() {
         return mSelectedColor;
     }
 
     /**
-     * Setter for {@link #mSelectedColor}.
+     * Set the selected color.
+     *
+     * @param selectedColor The color to be selected.
      */
     public void setSelectedColor(@ColorInt int selectedColor) {
         this.mSelectedColor = selectedColor;
     }
 
     /**
-     * Getter for {@link #mColorShape}.
+     * @return The shape of the color swatches.
      */
     public @DynamicColorShape int getColorShape() {
         return mColorShape;
     }
 
     /**
-     * Setter for {@link #mColorShape}.
+     * Set the shape of the color swatches.
+     *
+     * @param colorShape The color shape to be set.
      */
     public void setColorShape(@DynamicColorShape int colorShape) {
         this.mColorShape = colorShape;
     }
 
     /**
-     * Getter for {@link #mAlpha}.
+     * @return {@code true} to enable alpha for the custom color.
      */
     public boolean isAlpha() {
         return mAlpha;
     }
 
     /**
-     * Setter for {@link #mAlpha}.
+     * Set the alpha support for the custom color.
+     *
+     * @param alpha {@code true} to enable alpha.
      */
     public void setAlpha(boolean alpha) {
         this.mAlpha = alpha;
+    }
+
+    /**
+     * @return The color listener to get the selected color.
+     */
+    public @NonNull DynamicColorsAdapter.OnColorSelectedListener getOnColorSelectedListener() {
+        return mOnColorSelectedListener;
+    }
+
+    /**
+     * Set the color listener to get the selected color.
+     *
+     * @param onColorSelectedListener The listener to be set.
+     */
+    public void setOnColorSelectedListener(
+            @NonNull DynamicColorsAdapter.OnColorSelectedListener onColorSelectedListener) {
+        this.mOnColorSelectedListener = onColorSelectedListener;
+    }
+
+    /**
+     * @return The on click listener to get the more colors
+     *         callback.
+     */
+    public @Nullable View.OnClickListener getOnMoreColorsListener() {
+        return mOnMoreColorsListener;
+    }
+
+    /**
+     * Set the on click listener to get the more colors
+     * callback.
+     *
+     * @param onMoreColorsListener The on click listener
+     *                             to be set.
+     */
+    public void setOnMoreColorsListener(
+            @Nullable View.OnClickListener onMoreColorsListener) {
+        this.mOnMoreColorsListener = onMoreColorsListener;
     }
 }

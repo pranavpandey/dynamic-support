@@ -32,11 +32,13 @@ import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
 public class DynamicDialogUtils {
 
     /**
-     * Set custom view to a dialog with top padding to maintain uniform
-     * layout on all Android versions.
+     * Set custom view to a dialog with top padding to maintain
+     * uniform layout on all Android versions.
      *
      * @param alertDialog AlertDialog to set the custom view.
      * @param view View to be used as the custom view.
+     *
+     * @return The alert dialog after setting the custom view.
      */
     public static DynamicDialog setView(@NonNull DynamicDialog alertDialog,
                                         @NonNull View view) {
@@ -51,7 +53,7 @@ public class DynamicDialogUtils {
      * Android versions. Generally, it is required in case of custom view
      * in the dialog.
      *
-     * @param context Context to get the resources.
+     * @param context The context to get the resources.
      *
      * @return Top padding of the dialog.
      */

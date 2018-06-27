@@ -25,7 +25,7 @@ import android.util.AttributeSet;
 import com.pranavpandey.android.dynamic.support.R;
 
 /**
- * {@link DynamicInfoView} with bigger fallback icon. Useful for
+ * A DynamicInfoView with bigger fallback icon. Useful for
  * showing app info like about, author, etc.
  */
 public class DynamicInfoViewBig extends DynamicInfoView {

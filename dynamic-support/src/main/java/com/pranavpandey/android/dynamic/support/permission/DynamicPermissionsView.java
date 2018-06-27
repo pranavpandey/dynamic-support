@@ -44,7 +44,8 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
         /**
          * This method will be called when a permission is selected.
          *
-         * @param view The permission view.
+         * @param view The selected permission view.
+         * @param position The selected position.
          * @param dynamicPermission The selected permission.
          */
         void onPermissionSelected(@NonNull View view, int position,
@@ -104,7 +105,7 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
      * be the required permissions to perform a particular action.
      *
      * @param permissions The permissions to be shown by this view.
-     * @param permissionListener The DynamicTutorialListener to receive callback when a
+     * @param permissionListener The listener to receive callback when a
      *                           permission is selected.
      *
      */
@@ -141,7 +142,7 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
     }
 
     /**
-     * @return An array of all the dangerous permissions.
+     * @return The array of all the dangerous permissions.
      */
     public String[] getDangerousPermissions() {
         String[] permissions = new String[mDangerousPermissions.size()];
@@ -153,7 +154,7 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
     }
 
     /**
-     * @return An array of unrequested or denied dangerous permissions.
+     * @return The array of unrequested or denied dangerous permissions.
      */
     public String[] getDangerousPermissionsLeft() {
         String[] permissions = new String[mDangerousPermissionsLeft.size()];
@@ -165,7 +166,8 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
     }
 
     /**
-     * Getter for {@link #mSpecialPermissionsLeft}.
+     * @return The list to store the unrequested or denied special
+     *         permissions.
      */
     public ArrayList<DynamicPermission> getSpecialPermissionsLeft() {
         return mSpecialPermissionsLeft;

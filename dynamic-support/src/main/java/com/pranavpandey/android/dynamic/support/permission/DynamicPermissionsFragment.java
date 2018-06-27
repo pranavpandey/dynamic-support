@@ -284,14 +284,15 @@ public class DynamicPermissionsFragment extends DynamicFragment {
     }
 
     /**
-     * Get the permissions to be requested from the supplied arguments.
+     * @return The permissions to be requested from the supplied
+     *         arguments.
      */
     public String[] getPermissions() {
         return getIntent().getStringArrayExtra(ADS_INTENT_EXTRA_PERMISSIONS);
     }
 
     /**
-     * Get permissions extra from the fragment arguments.
+     * @return The permissions extra from the fragment arguments.
      *
      * @see Fragment#getArguments()
      */

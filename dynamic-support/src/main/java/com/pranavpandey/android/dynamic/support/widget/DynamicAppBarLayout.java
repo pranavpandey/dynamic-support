@@ -31,7 +31,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * An AppBarLayout to apply color filter according to the
- * supplied {@link R.attr#ads_colorType}.
+ * supplied parameters.
  */
 public class DynamicAppBarLayout extends AppBarLayout implements DynamicWidget {
 

@@ -30,9 +30,8 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * A TabLayout to change its indicator and text color according to the
- * supplied {@link R.attr#ads_colorType} and {@link R.attr#ads_textColorType}
- * respectively.
+ * A TabLayout to change its indicator and text color
+ * according to the supplied parameters.
  */
 public class DynamicTabLayout extends TabLayout implements DynamicTextWidget {
 

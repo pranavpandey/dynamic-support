@@ -59,7 +59,8 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
         this(entries, DEFAULT_SELECTED_POSITION, onItemClickListener);
     }
 
-    public DynamicSpinnerChoiceAdapter(CharSequence[] entries, @ColorInt int selectedPosition,
+    public DynamicSpinnerChoiceAdapter(@NonNull CharSequence[] entries,
+                                       @ColorInt int selectedPosition,
                                        @NonNull AdapterView.OnItemClickListener onItemClickListener) {
         this.mDataSet = entries;
         this.mSelectedPosition = selectedPosition;
@@ -114,12 +115,19 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
     }
 
     /**
-     * Getter for {@link #mDataSet}.
+     * @return The array of char sequences handled by this
+     *         adapter.
      */
     public CharSequence[] getDataSet() {
         return mDataSet;
     }
 
+    /**
+     * Sets the array of char sequences to be handled by
+     * this adapter.
+     *
+     * @param dataSet The array of char sequences to be set.
+     */
     public void setDataSet(@NonNull CharSequence[] dataSet) {
         this.mDataSet = dataSet;
 
@@ -127,31 +135,37 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
     }
 
     /**
-     * Getter for {@link #mOnItemClickListener}.
+     * @return The listener to get the callback when an
+     *         item is clicked.
      */
     public AdapterView.OnItemClickListener getOnItemClickListener() {
         return mOnItemClickListener;
     }
 
     /**
-     * Setter for {@link #mOnItemClickListener}.
+     * Sets the listener to get the callback when an
+     * item is clicked.
+     *
+     * @param onItemClickListener The listener to be set.
      */
     public void setOnItemClickListener(
-            @NonNull AdapterView.OnItemClickListener mOnItemClickListener) {
-        this.mOnItemClickListener = mOnItemClickListener;
+            @NonNull AdapterView.OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListener = onItemClickListener;
 
         notifyDataSetChanged();
     }
 
     /**
-     * Getter for {@link #mSelectedPosition}.
+     * @return The selected position.
      */
     public int getSelectedPosition() {
         return mSelectedPosition;
     }
 
     /**
-     * Setter for {@link #mSelectedPosition}.
+     * Sets the selected position.
+     *
+     * @param selectedPosition The position to be selected.
      */
     public void setSelectedPosition(int selectedPosition) {
         this.mSelectedPosition = selectedPosition;
@@ -181,6 +195,8 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
 
         /**
          * Constructor to initialize views from the supplied layout.
+         *
+         * @param view The view for this view holder.
          */
     	public ViewHolder(@NonNull View view) {
     	    itemView = view.findViewById(R.id.ads_array_item);
@@ -189,21 +205,21 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
     	}
 
         /**
-         * Getter for {@link #itemView}.
+         * @return The item view root.
          */
         ViewGroup getItemView() {
             return itemView;
         }
 
         /**
-         * Getter for {@link #textView}.
+         * @return The text view to display the entry.
          */
         TextView getTextView() {
             return textView;
         }
 
         /**
-         * Getter for {@link #selectorView}.
+         * @return The image view to show the selected item.
          */
         ImageView getSelectorView() {
             return selectorView;

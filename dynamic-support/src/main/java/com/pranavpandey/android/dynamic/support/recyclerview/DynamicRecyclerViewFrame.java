@@ -69,9 +69,9 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      * Valid item types for this adapter.
      *
      * <p>0. {@link #TYPE_EMPTY_VIEW}
-     * <br />1. {@link #TYPE_SECTION_HEADER}
-     * <br />2. {@link #TYPE_ITEM}
-     * <br />3. {@link #TYPE_SECTION_DIVIDER}</p>
+     * <br>1. {@link #TYPE_SECTION_HEADER}
+     * <br>2. {@link #TYPE_ITEM}
+     * <br>3. {@link #TYPE_SECTION_DIVIDER}</p>
      */
     @Retention(RetentionPolicy.SOURCE)
     @IntDef(value = { TYPE_EMPTY_VIEW, TYPE_SECTION_HEADER, TYPE_ITEM, TYPE_SECTION_DIVIDER })
@@ -102,21 +102,21 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     private int mShortAnimationDuration;
 
     /**
-     * SwipeRefreshLayout to provide pull ro refresh functionality.
+     * Swipe refresh layout to provide pull to refresh functionality.
      *
      * @see #setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener)
      */
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
     /**
-     * Use this DynamicTutorialListener to get callbacks from the SwipeRefreshLayout.
+     * Use this listener to get callbacks from the SwipeRefreshLayout.
      *
      * @see #setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener)
      */
     private SwipeRefreshLayout.OnRefreshListener mOnRefreshListener;
 
     /**
-     * Recycler view object to display the data.
+     * Recycler view to display the data.
      *
      * @see #onCreateRecyclerView(RecyclerView)
      */
@@ -181,7 +181,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     /**
-     * Get layout manager for the recycler view.
+     * @return The layout manager for the recycler view.
      */
     public abstract @Nullable RecyclerView.LayoutManager getRecyclerViewLayoutManager();
 
@@ -208,7 +208,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     /**
-     * Set an adapter fo the recycler view.
+     * Set an adapter for the recycler view.
      *
      * @param adapter The recycler view adapter.
      *
@@ -237,7 +237,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     /**
-     * @return Adapter used byt hte recycler view.
+     * @return Adapter used by the recycler view.
      *
      * @see #mRecyclerView
      */
@@ -247,17 +247,17 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
 
     /**
      * Override this method to perform other operations on the
-     * RecyclerView.
+     * recycler view.
      *
-     * @param recyclerView The RecyclerView inside this view.
+     * @param recyclerView The recycler view inside this view.
      */
     protected void onCreateRecyclerView(@NonNull RecyclerView recyclerView) { }
 
     /**
-     * Override this method to set {@link #mOnRefreshListener} immediately
-     * after initializing the view.
+     * Override this method to set swipe refresh layout listener
+     * immediately after initializing the view.
      *
-     * @return OnRefreshListener for the SwipeRefreshLayout.
+     * @return The on refresh listener for the swipe refresh layout.
      *
      * @see #setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener)
      */
@@ -266,10 +266,33 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     /**
-     * Setter for {@link #mOnRefreshListener}. Pass null to disable pull
-     * to refresh.
+     * @return The recycler view to display the data.
+     */
+    public RecyclerView getRecyclerView() {
+        return mRecyclerView;
+    }
+
+    /**
+     * @return The swipe refresh layout to provide pull to refresh
+     *         functionality.
+     */
+    public SwipeRefreshLayout getSwipeRefreshLayout() {
+        return mSwipeRefreshLayout;
+    }
+
+    /**
+     * @return The swipe refresh layout to provide pull ro refresh
+     *         functionality.
+     */
+    public SwipeRefreshLayout.OnRefreshListener getOnRefreshListener() {
+        return mOnRefreshListener;
+    }
+
+    /**
+     * Set the swipe refresh layout listener to provide pull to
+     * refresh functionality.
      *
-     * @param onRefreshListener OnRefreshListener for the SwipeRefreshLayout.
+     * @param onRefreshListener The listener to be set.
      */
     public void setOnRefreshListener(
             @Nullable SwipeRefreshLayout.OnRefreshListener onRefreshListener) {
@@ -286,32 +309,8 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mRecyclerView}. Use it to perform other
-     * operations on the RecyclerView. Although it is recommended
-     * to use {@link #onCreateRecyclerView(RecyclerView)} method.
-     */
-    public RecyclerView getRecyclerView() {
-        return mRecyclerView;
-    }
-
-    /**
-     * Getter for {@link #mSwipeRefreshLayout}. Use it to perform other
-     * operations on the SwipeRefreshLayout.
-     */
-    public SwipeRefreshLayout getSwipeRefreshLayout() {
-        return mSwipeRefreshLayout;
-    }
-
-    /**
-     * Getter for {@link #mOnRefreshListener}.
-     */
-    public SwipeRefreshLayout.OnRefreshListener getOnRefreshListener() {
-        return mOnRefreshListener;
-    }
-
-    /**
-     * Getter for {@link #mProgressBar}. Use it to perform other
-     * operations on the ProgressBar.
+     * @return The progress bar which can be shown while the data
+     *         is loading in the background.
      */
     public ContentLoadingProgressBar getProgressBar() {
         return mProgressBar;

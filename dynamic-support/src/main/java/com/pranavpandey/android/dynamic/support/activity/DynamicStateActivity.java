@@ -91,7 +91,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     private boolean mAppBarCollapsed;
 
     /**
-     * App bar off set change DynamicTutorialListener to identify whether it is in
+     * App bar off set change listener to identify whether it is in
      * the collapsed state or not.
      */
     protected AppBarLayout.OnOffsetChangedListener mAppBarStateListener =
@@ -216,7 +216,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     }
 
     /**
-     * Getter for {@link #mContentFragment}.
+     * @return The content fragment used by this activity.
      */
     public @Nullable Fragment getContentFragment() {
         return mContentFragment;
@@ -234,21 +234,23 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     }
 
     /**
-     * Getter for {@link #mFABVisibility}.
+     * @return The current FAB visibility.
      */
     public int getFABVisibility() {
         return mFABVisibility;
     }
 
     /**
-     * Setter for {@link #mFABVisibility}.
+     * Sets the current FAB visibility.
+     *
+     * @param visibility The FAB visibility to be set.
      */
     public void setFABVisibility(int visibility) {
         this.mFABVisibility = visibility;
     }
 
     /**
-     * Getter for {@link #mAppBarCollapsed}.
+     * @return {@code true} if the app bar is in collapsed state.
      */
     public boolean isAppBarCollapsed() {
         return mAppBarCollapsed;

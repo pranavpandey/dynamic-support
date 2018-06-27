@@ -219,7 +219,7 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
     }
 
     /**
-     * Getter for {@link #mDrawer}.
+     * @return The drawer layout used by this activity.
      */
     public @NonNull DrawerLayout getDrawer() {
         return mDrawer;
@@ -262,7 +262,7 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
     }
 
     /**
-     * Getter for {@link #mDrawerToggle}.
+     * @return The action bar drawer toggle used by this activity.
      */
     public ActionBarDrawerToggle getDrawerToggle() {
         return mDrawerToggle;
@@ -346,7 +346,7 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
     }
 
     /**
-     * Getter for {@link #mNavigationView}.
+     * @return The navigation view used by this activity.
      */
     public @NonNull NavigationView getNavigationView() {
         return mNavigationView;

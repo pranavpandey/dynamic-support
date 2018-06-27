@@ -117,7 +117,8 @@ public abstract class DynamicFragmentsAdapter extends FragmentStatePagerAdapter 
      * {@inheritDoc}
      *
      * @param position position of the item in the adapter
-     * @return fragment instance
+     *
+     * @return The fragment instance.
      */
     @Override
     public Fragment getItem(int position) {
@@ -138,8 +139,9 @@ public abstract class DynamicFragmentsAdapter extends FragmentStatePagerAdapter 
     /**
      * Get the item at the specified position in the adapter.
      *
-     * @param position position of the item in the adapter
-     * @return fragment instance
+     * @param position position of the item in the adapter.
+     *
+     * @return The fragment instance.
      */
     public Fragment getItemAt(int position) {
         return mPages.get(position);

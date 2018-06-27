@@ -32,7 +32,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * A SwitchCompat to change its color according to the supplied
- * {@link R.attr#ads_colorType}.
+ * parameters.
  */
 public class DynamicSwitchCompat extends SwitchCompat implements DynamicStateWidget {
 

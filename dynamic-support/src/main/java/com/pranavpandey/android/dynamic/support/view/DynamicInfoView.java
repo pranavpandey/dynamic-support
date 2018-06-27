@@ -44,10 +44,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A {@link FrameLayout} with a icon, title and subtitle, description
- * and links functionality which can be used to show various information
- * according to the requirement. Links can be clickable or pass {@code null}
- * url to just show or completely hide them.
+ * A FrameLayout with a icon, title and subtitle, description and
+ * links functionality which can be used to show various information
+ * according to the requirement. Links can be clickable or pass
+ * {@code null} url to just show or completely hide them.
  */
 public class DynamicInfoView extends FrameLayout {
 
@@ -77,37 +77,39 @@ public class DynamicInfoView extends FrameLayout {
     private CharSequence mDescription;
 
     /**
-     * Titles for the links used by this view.
+     * Title for the links used by this view.
      */
     private CharSequence[] mLinks;
 
     /**
-     * Subtitles for the links used by this view.
+     * Subtitle for the links used by this view.
      */
     private CharSequence[] mLinksSubtitles;
 
     /**
-     * Urls for the links used by this view.
+     * Url for the links used by this view.
      */
     private CharSequence[] mLinksUrls;
 
     /**
-     * Icons for the links used by this view.
+     * Icon drawables array resource for the links
+     * used by this view.
      */
     private @ArrayRes int mLinksIconsResId;
 
     /**
-     * Icons tint color for the links used by this view.
+     * Icon tint colors array resource for the links
+     * used by this view.
      */
     private @ArrayRes int mLinksColorsResId;
 
     /**
-     * Array to store links drawable.
+     * Icon drawable for the links used by this view.
      */
     private Drawable[] mLinksDrawables;
 
     /**
-     * Array to store links tint color.
+     * Icon tint color for the links used by this view.
      */
     private @ColorInt Integer[] mLinksColors;
 
@@ -137,12 +139,13 @@ public class DynamicInfoView extends FrameLayout {
     private TextView mDescriptionView;
 
     /**
-     * RecyclerView to show the links associated with this view.
+     * Recycler view to show the links associated with
+     * this view.
      */
     private DynamicRecyclerViewNested mLinksView;
 
     /**
-     * RecyclerView to show the links associated with this view.
+     * A list to hold the dynamic items used by this view.
      */
     private List<DynamicItem> mDynamicItems;
 
@@ -165,6 +168,8 @@ public class DynamicInfoView extends FrameLayout {
 
     /**
      * Load values from the supplied attribute set.
+     *
+     * @param attrs The supplied attribute set to load the values.
      */
     protected void loadFromAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DynamicInfo);
@@ -334,14 +339,16 @@ public class DynamicInfoView extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mIcon}.
+     * @return The icon used by this view.
      */
     public @Nullable Drawable getIcon() {
         return mIcon;
     }
 
     /**
-     * Setter for {@link #mIcon}.
+     * Set the icon for this view.
+     *
+     * @param icon The icon to be set.
      */
     public void setIcon(@Nullable Drawable icon) {
         this.mIcon = icon;
@@ -350,14 +357,16 @@ public class DynamicInfoView extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mIconBig}.
+     * @return The big fallback icon used by this view.
      */
     public @Nullable Drawable getIconBig() {
         return mIconBig;
     }
 
     /**
-     * Setter for {@link #mIconBig}.
+     * Set the big fallback icon for this view.
+     *
+     * @param iconBig The big fallback icon to be set.
      */
     public void setIconBig(@Nullable Drawable iconBig) {
         this.mIconBig = iconBig;
@@ -366,14 +375,16 @@ public class DynamicInfoView extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mTitle}.
+     * @return The title used by this view.
      */
     public @Nullable CharSequence getTitle() {
         return mTitle;
     }
 
     /**
-     * Setter for {@link #mTitle}.
+     * Set the title for this view.
+     *
+     * @param title The title to be set.
      */
     public void setTitle(@Nullable CharSequence title) {
         this.mTitle = title;
@@ -382,14 +393,16 @@ public class DynamicInfoView extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mSubtitle}.
+     * @return The subtitle used by this view.
      */
     public @Nullable CharSequence getSubtitle() {
         return mSubtitle;
     }
 
     /**
-     * Setter for {@link #mSubtitle}.
+     * Set the subtitle for this view.
+     *
+     * @param subtitle The subtitle to be set.
      */
     public void setSubtitle(@Nullable CharSequence subtitle) {
         this.mSubtitle = subtitle;
@@ -398,14 +411,16 @@ public class DynamicInfoView extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mDescription}.
+     * @return The description used by this view.
      */
     public @Nullable CharSequence getDescription() {
         return mDescription;
     }
 
     /**
-     * Setter for {@link #mDescription}.
+     * Set the description for this view.
+     *
+     * @param description The description to be set.
      */
     public void setDescription(@Nullable CharSequence description) {
         this.mDescription = description;
@@ -414,154 +429,182 @@ public class DynamicInfoView extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mLinks}.
+     * @return The title for the links used by this view.
      */
     public @Nullable CharSequence[] getLinks() {
         return mLinks;
     }
 
     /**
-     * Setter for {@link #mLinks}. Automatic refresh is disabled due to
-     * the stability reasons. Please call {@link #update()} to refresh
+     * Set the title for the links used by this view.
+     * Automatic refresh is disabled due to the stability
+     * reasons. Please call {@link #update()} to refresh
      * the view.
+     *
+     * @param links The titles for the links to be set.
      */
     public void setLinks(@Nullable CharSequence[] links) {
         this.mLinks = links;
     }
 
     /**
-     * Getter for {@link #mLinksSubtitles}.
+     * @return The subtitle for the links used by this view.
      */
     public @Nullable CharSequence[] getLinksSubtitles() {
         return mLinksSubtitles;
     }
 
     /**
-     * Setter for {@link #mLinksSubtitles}. Automatic refresh is disabled
-     * due to the stability reasons. Please call {@link #update()} to
-     * refresh the view.
+     * Set the subtitle for the links used by this view.
+     * Automatic refresh is disabled due to the stability
+     * reasons. Please call {@link #update()} to refresh
+     * the view.
+     *
+     * @param linksSubtitles The subtitles for the links to be set.
      */
     public void setLinksSubtitles(@Nullable CharSequence[] linksSubtitles) {
         this.mLinksSubtitles = linksSubtitles;
     }
 
     /**
-     * Getter for {@link #mLinksUrls}.
+     * @return The url for the links used by this view.
      */
     public @Nullable CharSequence[] getLinksUrls() {
         return mLinksUrls;
     }
 
     /**
-     * Setter for {@link #mLinksUrls}. Automatic refresh is disabled due to
-     * the stability reasons. Please call {@link #update()} to refresh the
-     * view.
+     * Set the url for the links used by this view.
+     * Automatic refresh is disabled due to the stability
+     * reasons. Please call {@link #update()} to refresh
+     * the view.
+     *
+     * @param linksUrls The urls for the links to be set.
      */
     public void setLinksUrls(@Nullable CharSequence[] linksUrls) {
         this.mLinksUrls = linksUrls;
     }
 
     /**
-     * Getter for {@link #mLinksIconsResId}.
+     * @return The icons array resource for the links
+     *         used by this view.
      */
     public @ArrayRes int getLinksIconsId() {
         return mLinksIconsResId;
     }
 
     /**
-     * Setter for {@link #mLinksIconsResId}. Automatic refresh is disabled
-     * due to the stability reasons. Please call {@link #update()} to
+     * Set the icons array resource for the links used by
+     * this view. Automatic refresh is disabled due to the
+     * stability reasons. Please call {@link #update()} to
      * refresh the view.
+     *
+     * @param linksIconsResId The icon drawables array resource for
+     *                        the links to be set.
      */
-    public void setLinksIconsId(@ArrayRes int linksIconsId) {
-        this.mLinksIconsResId = linksIconsId;
+    public void setLinksIconsId(@ArrayRes int linksIconsResId) {
+        this.mLinksIconsResId = linksIconsResId;
     }
 
     /**
-     * Getter for {@link #mLinksColorsResId}.
+     * @return The icon tint colors array resource for the links
+     *         used by this view.
      */
     public @ArrayRes int getLinksColorsId() {
         return mLinksColorsResId;
     }
 
     /**
-     * Setter for {@link #mLinksColorsResId}. Automatic refresh is disabled
-     * due to the stability reasons. Please call {@link #update()} to
+     * Set the icon tint colors array resource for the links
+     * used by this view. Automatic refresh is disabled due to
+     * the stability reasons. Please call {@link #update()} to
      * refresh the view.
+     *
+     * @param linksColorsResId The icon tint colors array resource for
+     *                         the links to be set.
      */
-    public void setLinksColorsId(@ArrayRes int linksColorsId) {
-        this.mLinksColorsResId = linksColorsId;
+    public void setLinksColorsId(@ArrayRes int linksColorsResId) {
+        this.mLinksColorsResId = linksColorsResId;
     }
 
     /**
-     * Getter for {@link #mLinksDrawables}.
+     * @return The icon for the links used by this view.
      */
     public @Nullable Drawable[] getLinksDrawables() {
         return mLinksDrawables;
     }
 
     /**
-     * Setter for {@link #mLinksDrawables}. Automatic refresh is disabled
-     * due to the stability reasons. Please call {@link #update()} to
-     * refresh the view.
+     * Set the icon for the links used by this view.
+     * Automatic refresh is disabled due to the stability
+     * reasons. Please call {@link #update()} to refresh
+     * the view.
+     *
+     * @param linksDrawables The icon drawables for the links
+     *                       to be set.
      */
     public void setLinksDrawables(@Nullable Drawable[] linksDrawables) {
         this.mLinksDrawables = linksDrawables;
     }
 
     /**
-     * Getter for {@link #mLinksColors}.
+     * @return The icon tint color for the links used by this view.
      */
     public @Nullable @ColorInt Integer[] getLinksColors() {
         return mLinksColors;
     }
 
     /**
-     * Setter for {@link #mLinksColors}. Automatic refresh is disabled
-     * due to the stability reasons. Please call {@link #update()} to
-     * refresh the view.
+     * Set the icon tint color for the links used by this
+     * view. Automatic refresh is disabled due to the stability
+     * reasons. Please call {@link #update()} to refresh
+     * the view.
+     *
+     * @param linksColors The icon tint color for the links
+     *                       to be set.
      */
     public void setLinksColors(@Nullable @ColorInt Integer[] linksColors) {
         this.mLinksColors = linksColors;
     }
 
     /**
-     * Getter for {@link #mIconView}.
+     * @return The image view to show the icon.
      */
     public ImageView getIconView() {
         return mIconView;
     }
 
     /**
-     * Getter for {@link #mIconBigView}.
+     * @return The image view to show big fallback icon.
      */
     public ImageView getIconBigView() {
         return mIconBigView;
     }
 
     /**
-     * Getter for {@link #mTitleView}.
+     * @return The text view to show the title.
      */
     public TextView getTitleView() {
         return mTitleView;
     }
 
     /**
-     * Getter for {@link #mSubtitleView}.
+     * @return The text view to show the subtitle.
      */
     public TextView getSubtitleView() {
         return mSubtitleView;
     }
 
     /**
-     * Getter for {@link #mDescriptionView}.
+     * @return The text view to show the description.
      */
     public TextView getDescriptionView() {
         return mDescriptionView;
     }
 
     /**
-     * Getter for {@link #mLinksView}.
+     * @return The recycler view to show the links associated 
+     *         with this view.
      */
     public DynamicRecyclerViewFrame getLinksView() {
         return mLinksView;

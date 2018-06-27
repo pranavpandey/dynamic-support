@@ -53,7 +53,7 @@ public class DynamicPermissionsAdapter extends
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         /**
-         * Layout used by this holder.
+         * Layout used by this view holder.
          */
         private final ViewGroup layout;
 
@@ -92,6 +92,11 @@ public class DynamicPermissionsAdapter extends
          */
         private final TextView status;
 
+        /**
+         * Constructor to initialize views from the supplied layout.
+         *
+         * @param view The view for this view holder.
+         */
         public ViewHolder(@NonNull View view) {
             super(view);
 
@@ -106,56 +111,56 @@ public class DynamicPermissionsAdapter extends
         }
 
         /**
-         * Getter for {@link #layout}.
+         * @return The layout used by this view holder.
          */
         public ViewGroup getLayout() {
             return layout;
         }
 
         /**
-         * Getter for {@link #statusIcon}.
+         * @return The image view to show the permission status icon.
          */
         public ImageView getStatusIcon() {
             return statusIcon;
         }
 
         /**
-         * Getter for {@link #icon}.
+         * @return The image view to show the permission icon.
          */
         public ImageView getIcon() {
             return icon;
         }
 
         /**
-         * Getter for {@link #title}.
+         * @return The text view to show the permission title.
          */
         public TextView getTitle() {
             return title;
         }
 
         /**
-         * Getter for {@link #subtitle}.
+         * @return The text view to show the permission subtitle.
          */
         public TextView getSubtitle() {
             return subtitle;
         }
 
         /**
-         * Getter for {@link #info}.
+         * @return The text view to show the permission info.
          */
         public TextView getInfo() {
             return info;
         }
 
         /**
-         * Getter for {@link #description}.
+         * @return The text view to show the permission description.
          */
         public TextView getDescription() {
             return description;
         }
 
         /**
-         * Getter for {@link #status}.
+         * @return The text view to show the permission status.
          */
         public TextView getStatus() {
             return status;
@@ -172,7 +177,7 @@ public class DynamicPermissionsAdapter extends
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public @NonNull ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         return new ViewHolder(LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.ads_layout_info, viewGroup, false));
     }
@@ -251,12 +256,12 @@ public class DynamicPermissionsAdapter extends
     }
 
     /**
-     * Get dynamic permission for a given position.
+     * Get the dynamic permission for a given position.
      *
-     * @param position The position of the adapter
+     * @param position The position of the adapter.
      *
-     * @return The dynamic permission according to the supplied
-     *         position.
+     * @return The dynamic permission according to the
+     *         supplied position.
      */
     public DynamicPermission getItem(int position) {
         return mPermissions.get(position);

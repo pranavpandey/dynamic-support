@@ -72,11 +72,12 @@ public class DynamicResourceUtils {
     /**
      * Extract the supplied color attribute value from the theme.
      *
-     * @param attr Color attribute whose value should be extracted.
-     * @param defValue Value to return if the attribute is not defined or
-     *                 not a resource.
+     * @param context The context to retrieve resources.
+     * @param attr The color attribute whose value should be extracted.
+     * @param defValue The value to return if the attribute is not 
+     *                 defined or not a resource.
      *
-     * @return Value of the supplied attribute.
+     * @return The value of the supplied attribute.
      */
     public static @ColorInt int resolveColor(@NonNull Context context,
                                              @AttrRes int attr, int defValue) {
@@ -89,9 +90,11 @@ public class DynamicResourceUtils {
     /**
      * Extract the supplied drawable attribute value from the theme.
      *
-     * @param attr Drawable attribute whose value should be extracted.
+     * @param context The context to retrieve resources.
+     * @param attr The drawable attribute whose value should be 
+     *             extracted.
      *
-     * @return Value of the supplied attribute.
+     * @return The value of the supplied attribute.
      */
     public static @Nullable Drawable resolveDrawable(
             @NonNull Context context, @AttrRes int attr) {
@@ -102,12 +105,13 @@ public class DynamicResourceUtils {
     }
 
     /**
-     * Get the drawable from the supplied id.
+     * Get the drawable from the supplied resource.
      *
-     * @param context Context to retrieve resources.
-     * @param drawableRes Drawable id to get the drawable.
+     * @param context The context to retrieve resources.
+     * @param drawableRes The drawable resource to get the 
+     *                    drawable.
      *
-     * @return Drawable retrieved from the id.
+     * @return The drawable retrieved from the resource.
      */
     public static @Nullable Drawable getDrawable(@NonNull Context context,
                                        @DrawableRes int drawableRes) {
@@ -121,10 +125,10 @@ public class DynamicResourceUtils {
     /**
      * Get the bitmap from the vector drawable.
      *
-     * @param drawable Instance of vector drawable to be converted
-     *                 into bitmap.
+     * @param drawable The instance of vector drawable to
+     *                 be converted into bitmap.
      *
-     * @return Bitmap converted from the vector drawable.
+     * @return The bitmap converted from the vector drawable.
      */
     public static @Nullable Bitmap getBitmapFromVectorDrawable(@Nullable Drawable drawable) {
         if (drawable == null) {
@@ -149,22 +153,24 @@ public class DynamicResourceUtils {
     /**
      * Get the bitmap drawable from the drawable.
      *
-     * @param drawable Drawable to be converted into bitmap drawable.
+     * @param drawable The drawable to be converted into
+     *                 bitmap drawable.
      *
-     * @return Bitmap drawable converted from the drawable.
+     * @return The bitmap drawable converted from the drawable.
      */
     public static @Nullable Bitmap getBitmap(@Nullable Drawable drawable) {
         return getBitmapFromVectorDrawable(drawable);
     }
 
     /**
-     * Colorize and return the mutated drawable so that, all other references
-     * do not change.
+     * Colorize and return the mutated drawable so that, all other 
+     * references do not change.
      *
      * @param drawable The drawable to be colorized.
-     * @param colorFilter Color filter to be applied on the drawable.
+     * @param colorFilter The color filter to be applied 
+     *                    on the drawable.
      *
-     * @return Colorized drawable.
+     * @return The colorized drawable.
      */
     public static @Nullable Drawable colorizeDrawable(
             @Nullable Drawable drawable, @NonNull ColorFilter colorFilter) {
@@ -176,30 +182,31 @@ public class DynamicResourceUtils {
     }
 
     /**
-     * Colorize and return the mutated drawable so that, all other references
-     * do not change.
+     * Colorize and return the mutated drawable so that, all other 
+     * references do not change.
      *
-     * @param context Context to retrieve drawable resource.
-     * @param drawableId Id of the drawable to be colorized.
-     * @param colorFilter Color filter to be applied on the drawable.
+     * @param context The context to retrieve drawable resource.
+     * @param drawableRes The drawable resource to be colorized.
+     * @param colorFilter The color filter to be applied on the 
+     *                    drawable.
      *
-     * @return Colorized drawable.
+     * @return The colorized drawable.
      */
     public static @Nullable Drawable colorizeDrawableRes(
-            @NonNull Context context, @DrawableRes int drawableId,
+            @NonNull Context context, @DrawableRes int drawableRes,
             @NonNull ColorFilter colorFilter) {
-        return colorizeDrawable(getDrawable(context, drawableId), colorFilter);
+        return colorizeDrawable(getDrawable(context, drawableRes), colorFilter);
     }
 
     /**
-     * Colorize and return the mutated drawable so that, all other references
-     * do not change.
+     * Colorize and return the mutated drawable so that, all other
+     * references do not change.
      *
      * @param drawable The drawable to be colorized.
-     * @param color Color to colorize the drawable.
-     * @param mode PorterDuff mode.
+     * @param color The color to colorize the drawable.
+     * @param mode The porter duff mode.
      *
-     * @return Colorized drawable.
+     * @return The colorized drawable.
      */
     public static @Nullable Drawable colorizeDrawable(
             @Nullable Drawable drawable, @ColorInt int color, @Nullable PorterDuff.Mode mode) {
@@ -214,43 +221,44 @@ public class DynamicResourceUtils {
      * Colorize and return the mutated drawable so that, all other references
      * do not change.
      *
-     * @param context Context to retrieve drawable resource.
-     * @param drawableId Id of the drawable to be colorized.
-     * @param color Color to colorize the drawable.
-     * @param mode PorterDuff mode.
+     * @param context The context to retrieve drawable resource.
+     * @param drawableRes The drawable resource to be colorized.
+     * @param color The color to colorize the drawable.
+     * @param mode The porter duff mode.
      *
-     * @return Colorized drawable.
+     * @return The colorized drawable.
      */
     public static @Nullable Drawable colorizeDrawableRes(
-            @NonNull Context context, @DrawableRes int drawableId,
+            @NonNull Context context, @DrawableRes int drawableRes,
             @ColorInt int color, @Nullable PorterDuff.Mode mode) {
-        return colorizeDrawable(getDrawable(context, drawableId), color, mode);
+        return colorizeDrawable(getDrawable(context, drawableRes), color, mode);
     }
 
     /**
      * Colorize and return the mutated drawable so that, all other references
      * do not change.
      *
-     * @param context Context to retrieve drawable resource.
+     * @param context The context to retrieve drawable resource.
      * @param drawableId Id of the drawable to be colorized.
-     * @param color Color to colorize the drawable.
+     * @param color The color to colorize the drawable.
      *
-     * @return Colorized drawable.
+     * @return The colorized drawable.
      */
     public static @Nullable Drawable colorizeDrawableRes(
             @NonNull Context context, @DrawableRes int drawableId, @ColorInt int color) {
-        return colorizeDrawable(getDrawable(context, drawableId), color, PorterDuff.Mode.SRC_IN);
+        return colorizeDrawable(getDrawable(
+                context, drawableId), color, PorterDuff.Mode.SRC_IN);
     }
 
     /**
-     * Highlight the query text within a TextView. Suitable for notifying
+     * Highlight the query text within a text view. Suitable for notifying
      * user about the searched query found in the adapter. TextView should
      * not be empty. Please set your default text first then, highlight the
-     * query text by using this function.
+     * query text by using this method.
      *
-     * @param query String to be highlighted.
-     * @param textView to set the highlighted text.
-     * @param color of the highlighted text.
+     * @param query The string to be highlighted.
+     * @param textView The text view to set the highlighted text.
+     * @param color The color of the highlighted text.
      *
      * @see Spannable
      */
@@ -272,32 +280,33 @@ public class DynamicResourceUtils {
     }
 
     /**
-     * Highlight the query text within a TextView. Suitable for notifying
+     * Highlight the query text within a text view. Suitable for notifying
      * user about the searched query found in the adapter. TextView should
      * not be empty. Please set your default text first then, highlight the
-     * query text by using this function.
+     * query text by using this method.
      *
-     * @param query String to be highlighted.
-     * @param textView to set the highlighted text.
-     * @param colorId Color id of the highlighted text.
+     * @param query The string to be highlighted.
+     * @param textView The text view to set the highlighted text.
+     * @param colorRes The color resource of the highlighted text.
      *
      * @see Spannable
      */
     public static void highlightQueryTextColorRes(
-            @NonNull String query, @NonNull TextView textView, @ColorRes int colorId) {
+            @NonNull String query, @NonNull TextView textView, @ColorRes int colorRes) {
         highlightQueryTextColor(query, textView,
-                ContextCompat.getColor(textView.getContext(), colorId));
+                ContextCompat.getColor(textView.getContext(), colorRes));
     }
 
     /**
      * Create a new color state list from the supplied one by
      * changing its tint color.
      * 
-     * @param context Context to retrieve resources.
-     * @param colorStateList Drawable to be converted.
-     * @param color Color to be applied.
+     * @param context The context to retrieve resources.
+     * @param colorStateList The state list drawable to
+     *                       be converted.
+     * @param color The color to be applied.
      *
-     * @return New color state list with the applied color.
+     * @return The new color state list with the applied color.
      */
     public static @NonNull ColorStateList convertColorStateList(
             @NonNull Context context, @NonNull ColorStateList colorStateList,
@@ -330,13 +339,15 @@ public class DynamicResourceUtils {
      * Create a new color state list from the supplied one by
      * changing its tint color.
      *
-     * @param context Context to retrieve resources.
-     * @param colorStateList Drawable to be converted.
-     * @param color Color to be applied.
-     * @param contrastWith Contrast color to make sure that it will
-     *                     always be visible on this background.
+     * @param context The context to retrieve resources.
+     * @param colorStateList The state list drawable to
+     *                       be converted.
+     * @param color The color to be applied.
+     * @param contrastWith The contrast color to make sure
+     *                     that it will always be visible on
+     *                     this background.
      *
-     * @return New color state list with the applied color.
+     * @return The new color state list with the applied color.
      */
     public static @NonNull ColorStateList convertColorStateList(
             @NonNull Context context, @NonNull ColorStateList colorStateList,
@@ -349,9 +360,9 @@ public class DynamicResourceUtils {
      * Create a new color state list from the supplied tint color.
      * Tint color will be applied on all the states.
      *
-     * @param color Tint color to be applied.
+     * @param color The tint color to be applied.
      *
-     * @return New color state list with the applied tint color.
+     * @return The new color state list with the applied tint color.
      */
     public static @NonNull ColorStateList getColorStateList(@ColorInt int color) {
         return new ColorStateList(
@@ -367,10 +378,10 @@ public class DynamicResourceUtils {
      * tint colors. Tint color will be applied on the states like
      * checked, enabled, etc.
      *
-     * @param normal Normal color to be applied.
-     * @param color Tint color to be applied.
+     * @param normal The normal color to be applied.
+     * @param color The tint color to be applied.
      *
-     * @return New color state list with the applied normal
+     * @return The new color state list with the applied normal
      *         and tint colors.
      */
     public static @NonNull ColorStateList getColorStateList(
@@ -395,10 +406,10 @@ public class DynamicResourceUtils {
      * and tint colors. Tint color will be applied on the states like
      * pressed, focused, etc.
      *
-     * @param normal Normal color to be applied.
-     * @param pressed Pressed color to be applied.
+     * @param normal The normal color to be applied.
+     * @param pressed The pressed color to be applied.
      *
-     * @return New color state list with the applied normal
+     * @return The new color state list with the applied normal
      *         and tint colors.
      */
     public static @NonNull ColorStateList getColorStateListButton(
@@ -416,9 +427,9 @@ public class DynamicResourceUtils {
      * Create a new color state list from the supplied tint color.
      * Tint color will be applied on all the states.
      *
-     * @param color Tint color to be applied.
+     * @param color The tint color to be applied.
      *
-     * @return New color state list with the applied tint color.
+     * @return The new color state list with the applied tint color.
      */
     public static @NonNull ColorStateList getColorStateListWithStates(@ColorInt int color) {
         final @ColorInt int normalColor = DynamicTheme.getInstance().getTintBackgroundColor();
@@ -444,10 +455,10 @@ public class DynamicResourceUtils {
     /**
      * Get drawable array from the its resource id.
      *
-     * @param context Context to retrieve resources.
-     * @param arrayRes Resource id of the drawable array.
+     * @param context The context to retrieve resources.
+     * @param arrayRes The resource id of the drawable array.
      *
-     * @return Drawable array from its resource id.
+     * @return The drawable array from its resource id.
      */
     public static @Nullable Drawable[] convertToDrawableArray(
             @NonNull Context context, @ArrayRes int arrayRes) {
@@ -475,10 +486,10 @@ public class DynamicResourceUtils {
     /**
      * Get color array from the its resource id.
      *
-     * @param context Context to retrieve resources.
-     * @param arrayRes Resource id of the color array.
+     * @param context The context to retrieve resources.
+     * @param arrayRes The resource id of the color array.
      *
-     * @return Color array from its resource id.
+     * @return The color array from its resource id.
      */
     public static @Nullable @ColorInt Integer[] convertToColorArray(
             @NonNull Context context, @ArrayRes int arrayRes) {
@@ -503,8 +514,8 @@ public class DynamicResourceUtils {
     }
 
     /**
-     * @return {@code true} if it is night. Useful to apply themes
-     * based on the day and night.
+     * @return {@code true} if it is night. Useful to
+     *         apply themes based on the day and night.
      */
     @SuppressLint("WrongConstant")
     public static boolean isNight() {

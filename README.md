@@ -45,6 +45,8 @@ build a standard Android app. It also provides some in-built use cases like an i
 drawer activity, about screen, collapsing app bar, bottom navigation, color picker, multiple 
 locales, runtime permissions, etc. which can be used and customised according to the need.
 
+> For complete reference, please read the [documentation](https://pranavpandey.github.io/dynamic-support).
+
 ### Theme engine
 Each activity and widget can be themed by using the in-built theme engine with background aware 
 functionality to avoid any visibility issues. Colors can be selected by using the provided 

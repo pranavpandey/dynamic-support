@@ -16,9 +16,11 @@
 
 package com.pranavpandey.android.dynamic.support.widget;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,8 +28,8 @@ import android.support.v7.widget.AppCompatCheckedTextView;
 import android.util.AttributeSet;
 
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
@@ -35,7 +37,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 /**
  * A CheckedTextView to change its color according to the
- * supplied {@link R.attr#ads_colorType}.
+ * supplied parameters.
  */
 public class DynamicCheckedTextView extends AppCompatCheckedTextView implements DynamicWidget {
 
@@ -209,6 +211,7 @@ public class DynamicCheckedTextView extends AppCompatCheckedTextView implements 
         setColor();
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void setColor() {
         if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {

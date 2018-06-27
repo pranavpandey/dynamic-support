@@ -63,9 +63,9 @@ public class DynamicInfoBigBinder extends DynamicRecyclerViewBinder {
         viewHolderInfo.getDynamicInfoViewBig().setLinks(dynamicInfo.getLinks());
         viewHolderInfo.getDynamicInfoViewBig().setLinksSubtitles(dynamicInfo.getLinksSubtitles());
         viewHolderInfo.getDynamicInfoViewBig().setLinksUrls(dynamicInfo.getLinksUrls());
-        viewHolderInfo.getDynamicInfoViewBig().setLinksIconsId(dynamicInfo.getLinksIconsId());
+        viewHolderInfo.getDynamicInfoViewBig().setLinksIconsId(dynamicInfo.getLinksIconsResId());
         viewHolderInfo.getDynamicInfoViewBig().setLinksDrawables(dynamicInfo.getLinksDrawables());
-        viewHolderInfo.getDynamicInfoViewBig().setLinksColorsId(dynamicInfo.getLinksColorsId());
+        viewHolderInfo.getDynamicInfoViewBig().setLinksColorsId(dynamicInfo.getLinksColorsResId());
         viewHolderInfo.getDynamicInfoViewBig().setLinksColors(dynamicInfo.getLinksColors());
 
         viewHolderInfo.getDynamicInfoViewBig().update();
@@ -77,14 +77,16 @@ public class DynamicInfoBigBinder extends DynamicRecyclerViewBinder {
     }
 
     /**
-     * Getter for {@link #mData}.
+     * @return The data used by this binder.
      */
     public @Nullable DynamicInfo getData() {
         return mData;
     }
 
     /**
-     * Setter for {@link #mData}.
+     * Set the data for this binder.
+     *
+     * @param data The data to be set.
      */
     public void setData(@Nullable DynamicInfo data) {
         this.mData = data;
@@ -104,6 +106,11 @@ public class DynamicInfoBigBinder extends DynamicRecyclerViewBinder {
          */
         private final DynamicInfoViewBig dynamicInfoViewBig;
 
+        /**
+         * Constructor to initialize views from the supplied layout.
+         *
+         * @param view The view for this view holder.
+         */
         public ViewHolder(View view) {
             super(view);
 
@@ -111,7 +118,7 @@ public class DynamicInfoBigBinder extends DynamicRecyclerViewBinder {
         }
 
         /**
-         * Getter for {@link #dynamicInfoViewBig}.
+         * @return The dynamic info view for this view holder.
          */
         public DynamicInfoView getDynamicInfoViewBig() {
             return dynamicInfoViewBig;

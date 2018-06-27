@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.utils;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -46,6 +47,7 @@ public class DynamicLayoutUtils {
      * @return The column count according to the current device
      *         configurations.
      */
+    @TargetApi(Build.VERSION_CODES.N)
     public static int getLayoutColumns(@NonNull Context context, int defaultCount,
                                        int maxCount) {
         int columns = defaultCount;
@@ -131,6 +133,9 @@ public class DynamicLayoutUtils {
      *         context.
      *
      * @param context The context to instantiate layout manager.
+     * @param orientation The orientation of the layout manager.
+     *                    {@link StaggeredGridLayoutManager#VERTICAL} or
+     *                    {@link StaggeredGridLayoutManager#HORIZONTAL}
      */
     public static LinearLayoutManager getLinearLayoutManager(
             @NonNull Context context, int orientation) {

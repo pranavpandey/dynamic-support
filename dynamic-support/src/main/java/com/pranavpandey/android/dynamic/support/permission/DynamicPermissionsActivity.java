@@ -36,8 +36,8 @@ import com.pranavpandey.android.dynamic.support.activity.DynamicActivity;
  * will be handled by the {@link DynamicPermissionsFragment}.</p>
  *
  * <p>To request permissions, just call
- * {@link DynamicPermissions#requestPermissions(String[], boolean, Intent, int)} method
- * anywhere within the app.</p>
+ * {@link DynamicPermissions#requestPermissions(String[], boolean, Intent, int)}
+ * method anywhere within the app.</p>
  */
 public abstract class DynamicPermissionsActivity extends DynamicActivity {
 
@@ -78,11 +78,13 @@ public abstract class DynamicPermissionsActivity extends DynamicActivity {
     /**
      * Update subtitle according to the permissions count.
      *
-     * @param count No. of permissions shown by this activity.
+     * @param count The no. of permissions shown by this
+     *              activity.
      */
     public void updateSubtitle(int count) {
-        ((TextView) findViewById(R.id.ads_header_toolbar_subtitle)).setText(count == 1
-                ? R.string.ads_permissions_subtitle_single
-                : R.string.ads_permissions_subtitle);
+        ((TextView) findViewById(R.id.ads_header_toolbar_subtitle))
+                .setText(count == 1
+                        ? R.string.ads_permissions_subtitle_single
+                        : R.string.ads_permissions_subtitle);
     }
 }

@@ -32,7 +32,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * A SwipeRefreshLayout to apply color filter according to the
- * supplied {@link R.attr#ads_colorType}.
+ * supplied parameters.
  */
 public class DynamicSwipeRefreshLayout extends SwipeRefreshLayout implements DynamicWidget {
 

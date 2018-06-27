@@ -26,13 +26,13 @@ import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * An ImageView to apply color filter according to the supplied
- * {@link com.pranavpandey.android.dynamic.support.R.attr#ads_colorType}.
+ * parameters.
  */
 public class DynamicImageView extends AppCompatImageView implements DynamicWidget {
 
@@ -92,7 +92,7 @@ public class DynamicImageView extends AppCompatImageView implements DynamicWidge
     }
 
     /**
-     * Get filter mode to be used to tint this view.
+     * @return The filter mode to be used to tint this view.
      */
     public PorterDuff.Mode getFilterMode() {
         return PorterDuff.Mode.SRC_IN;

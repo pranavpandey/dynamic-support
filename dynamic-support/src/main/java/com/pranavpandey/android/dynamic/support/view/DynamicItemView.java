@@ -37,8 +37,8 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 
 /**
- * A {@link FrameLayout} with a icon, title and subtitle functionality
- * which can be used to show various informations according to the requirement.
+ * A FrameLayout with a icon, title and subtitle functionality which
+ * can be used to show various informations according to the requirement.
  * Use {@link #getItemView()} method to set click listeners or to perform
  * other operations.
  */
@@ -58,11 +58,6 @@ public class DynamicItemView extends FrameLayout {
      * Subtitle used by this view.
      */
     private CharSequence mSubtitle;
-    
-    /**
-     * Icon tint color used by this view.
-     */
-    private @ColorInt int mColor;
 
     /**
      * Icon tint color type used by this view.
@@ -70,8 +65,13 @@ public class DynamicItemView extends FrameLayout {
     private @DynamicColorType int mColorType;
 
     /**
-     * {@code true} to show horizontal divider. Useful to display 
-     * in a list view.
+     * Icon tint color used by this view.
+     */
+    private @ColorInt int mColor;
+
+    /**
+     * {@code true} to show horizontal divider.
+     * Useful to display in a list view.
      */
     private boolean mShowDivider;
 
@@ -119,6 +119,8 @@ public class DynamicItemView extends FrameLayout {
 
     /**
      * Load values from the supplied attribute set.
+     *
+     * @param attrs The supplied attribute set to load the values.
      */
     protected void loadFromAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DynamicInfo);
@@ -144,9 +146,14 @@ public class DynamicItemView extends FrameLayout {
     }
 
     /**
-     * Constructor to initialize an object of this view by supplying
-     * context, icon, title, subtitle, tint color and boolean to show
-     * the divider.
+     * Constructor to initialize an object of this class.
+     *
+     * @param context The context for this view.
+     * @param icon The icon for this view.
+     * @param title The title for this view.
+     * @param subtitle The subtitle for this view.
+     * @param color The icon tint color for this view.
+     * @param showDivider {@code true} to show horizontal divider.
      */
     public DynamicItemView(@NonNull Context context, @Nullable Drawable icon,
                            @Nullable CharSequence title, @Nullable CharSequence subtitle,
@@ -163,8 +170,8 @@ public class DynamicItemView extends FrameLayout {
     }
 
     /**
-     * @return The layout used by this view. Override this to supply a
-     *         different layout.
+     * @return The layout used by this view. Override this method to
+     *         supply a different layout.
      */
     protected @LayoutRes int getLayoutRes() {
         return R.layout.ads_item_view;
@@ -222,14 +229,16 @@ public class DynamicItemView extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mIcon}.
+     * @return The icon used by this view.
      */
     public @Nullable Drawable getIcon() {
         return mIcon;
     }
 
     /**
-     * Setter for {@link #mIcon}.
+     * Set the icon used by this view.
+     *
+     * @param icon The icon to be set.
      */
     public void setIcon(@Nullable Drawable icon) {
         this.mIcon = icon;
@@ -238,14 +247,16 @@ public class DynamicItemView extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mTitle}.
+     * @return The title used by this view.
      */
     public @Nullable CharSequence getTitle() {
         return mTitle;
     }
 
     /**
-     * Setter for {@link #mTitle}.
+     * Set the title used by this view.
+     *
+     * @param title The title to be set.
      */
     public void setTitle(@Nullable CharSequence title) {
         this.mTitle = title;
@@ -254,14 +265,16 @@ public class DynamicItemView extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mSubtitle}.
+     * @return The subtitle used by this view.
      */
     public @Nullable CharSequence getSubtitle() {
         return mSubtitle;
     }
 
     /**
-     * Setter for {@link #mSubtitle}.
+     * Set the subtitle used by this view.
+     *
+     * @param subtitle The subtitle to be set.
      */
     public void setSubtitle(@Nullable CharSequence subtitle) {
         this.mSubtitle = subtitle;
@@ -270,16 +283,38 @@ public class DynamicItemView extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mColorType}.
+     * @return The icon tint color type used by this view.
      */
     public @DynamicColorType int getColorType() {
         return mColorType;
     }
 
     /**
-     * Setter for {@link #mColorType}.
+     * Set the icon tint color type used by this view.
+     *
+     * @param colorType The icon tint color type to be set.
+     *
+     * @see DynamicColorType
      */
-    public void setColorType(@DynamicColorType int color) {
+    public void setColorType(@DynamicColorType int colorType) {
+        this.mColorType = colorType;
+
+        update();
+    }
+
+    /**
+     * @return The icon tint color used by this view.
+     */
+    public @ColorInt int getColor() {
+        return mColor;
+    }
+
+    /**
+     * Set the icon tint color used by this view.
+     *
+     * @param color The icon tint color to be set.
+     */
+    public void setColor(@ColorInt int color) {
         this.mColorType = DynamicColorType.CUSTOM;
         this.mColor = color;
 
@@ -287,30 +322,19 @@ public class DynamicItemView extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mColor}.
-     */
-    public @ColorInt int getColor() {
-        return mColor;
-    }
-
-    /**
-     * Setter for {@link #mColor}.
-     */
-    public void setColor(@ColorInt int color) {
-        this.mColor = color;
-
-        update();
-    }
-
-    /**
-     * Getter for {@link #mShowDivider}.
+     * @return {@code true} to show horizontal divider.
+     *         Useful to display in a list view.
      */
     public boolean isShowDivider() {
         return mShowDivider;
     }
 
     /**
-     * Setter for {@link #mShowDivider}.
+     * Set the horizontal divider fro this view.
+     * Useful to display in a list view.
+     *
+     * @param showDivider {@code true} to show horizontal
+     *                    divider.
      */
     public void setShowDivider(boolean showDivider) {
         this.mShowDivider = showDivider;
@@ -319,35 +343,35 @@ public class DynamicItemView extends FrameLayout {
     }
 
     /**
-     * Getter for {@link #mItemView}.
+     * @return The root element of this view.
      */
     public ViewGroup getItemView() {
         return mItemView;
     }
 
     /**
-     * Getter for {@link #mIconView}.
+     * @return The image view to show the icon.
      */
     public DynamicImageView getIconView() {
         return mIconView;
     }
 
     /**
-     * Getter for {@link #mTitleView}.
+     * @return The text view to show the title.
      */
     public TextView getTitleView() {
         return mTitleView;
     }
 
     /**
-     * Getter for {@link #mSubtitleView}.
+     * @return The text view to show the subtitle.
      */
     public TextView getSubtitleView() {
         return mSubtitleView;
     }
 
     /**
-     * Getter for {@link #mDivider}.
+     * @return The view to show the divider.
      */
     public View getDivider() {
         return mDivider;

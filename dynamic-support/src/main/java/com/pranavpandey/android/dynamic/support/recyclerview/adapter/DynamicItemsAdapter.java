@@ -64,15 +64,17 @@ public class DynamicItemsAdapter extends DynamicSimpleBinderAdapter {
     }
 
     /**
-     * Getter for {@link #mDataSet}.
+     * @return The data set used by this adapter. A list of
+     *         {@link DynamicItem}.
      */
     public @NonNull List<DynamicItem> getDataSet() {
         return mDataSet;
     }
 
     /**
-     * @return The item inside {@link #mDataSet} at the supplied
-     * position.
+     * @return The item according to the supplied position.
+     *
+     * @param position The position to get the item.
      */
     public @Nullable DynamicItem getItem(int position) {
         return mDataSet.get(position);

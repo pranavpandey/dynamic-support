@@ -118,11 +118,6 @@ public abstract class DynamicPreference extends FrameLayout
     private CharSequence mValueString;
 
     /**
-     * Action string used by this preference.
-     */
-    private CharSequence mActionString;
-
-    /**
      * Shared preferences key for this preference.
      */
     private String mPreferenceKey;
@@ -138,6 +133,11 @@ public abstract class DynamicPreference extends FrameLayout
      * click events.
      */
     private boolean mEnabled;
+
+    /**
+     * Action string used by this preference.
+     */
+    private CharSequence mActionString;
 
     /**
      * On click listener to receive preference click events.
@@ -175,6 +175,8 @@ public abstract class DynamicPreference extends FrameLayout
 
     /**
      * Load values from the supplied attribute set.
+     *
+     * @param attrs The supplied attribute set to load the values.
      */
     private void loadFromAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(
@@ -226,7 +228,7 @@ public abstract class DynamicPreference extends FrameLayout
     protected abstract void onLoadAttributes(@Nullable AttributeSet attrs);
 
     /**
-     * Get layout resource id for this preference.
+     * @return The layout resource id for this preference.
      */
     protected abstract @LayoutRes int getLayoutRes();
 
@@ -250,9 +252,15 @@ public abstract class DynamicPreference extends FrameLayout
      * {@code disabled}, preference views like icon, title, value,
      * etc. must be updated here to reflect the overall preference
      * state.
+     *
+     * @param enabled {@code true} if this widget is enabled and
+     *                can receive click events.
      */
     protected abstract void onEnabled(boolean enabled);
 
+    /**
+     * Update this preference according to the dependency.
+     */
     private void updateDependency() {
         if (mDependency != null) {
             setEnabled(DynamicPreferences.getInstance()
@@ -261,14 +269,16 @@ public abstract class DynamicPreference extends FrameLayout
     }
 
     /**
-     * Getter for {@link #mIcon}.
+     * @return The icon used by this preference.
      */
     public @Nullable Drawable getIcon() {
         return mIcon;
     }
 
     /**
-     * Setter for {@link #mIcon}.
+     * Set the icon used by this preference.
+     *
+     * @param icon The icon drawable to be set.
      */
     public void setIcon(@Nullable Drawable icon) {
         this.mIcon = icon;
@@ -277,14 +287,16 @@ public abstract class DynamicPreference extends FrameLayout
     }
 
     /**
-     * Getter for {@link #mTitle}.
+     * @return The title used by this preference.
      */
     public @Nullable CharSequence getTitle() {
         return mTitle;
     }
 
     /**
-     * Setter for {@link #mTitle}.
+     * Set the title used by this preference.
+     *
+     * @param title The title to be set.
      */
     public void setTitle(@Nullable String title) {
         this.mTitle = title;
@@ -293,14 +305,16 @@ public abstract class DynamicPreference extends FrameLayout
     }
 
     /**
-     * Getter for {@link #mSummary}.
+     * @return The summary used by this preference.
      */
     public @Nullable CharSequence getSummary() {
         return mSummary;
     }
 
     /**
-     * Setter for {@link #mSummary}.
+     * Set the summary used by this preference.
+     *
+     * @param summary The summary to be set.
      */
     public void setSummary(@Nullable String summary) {
         this.mSummary = summary;
@@ -309,14 +323,16 @@ public abstract class DynamicPreference extends FrameLayout
     }
 
     /**
-     * Getter for {@link #mDescription}.
+     * @return The description used by this preference.
      */
     public @Nullable CharSequence getDescription() {
         return mDescription;
     }
 
     /**
-     * Setter for {@link #mDescription}.
+     * Set the description used by this preference.
+     *
+     * @param description The description to be set.
      */
     public void setDescription(@Nullable String description) {
         this.mDescription = description;
@@ -325,14 +341,16 @@ public abstract class DynamicPreference extends FrameLayout
     }
 
     /**
-     * Getter for {@link #mValueString}.
+     * @return The value string used by this preference.
      */
     public @Nullable CharSequence getValueString() {
         return mValueString;
     }
 
     /**
-     * Setter for {@link #mValueString}.
+     * Set the value string used by this preference.
+     *
+     * @param valueString The value string to be set.
      */
     public void setValueString(@Nullable CharSequence valueString) {
         this.mValueString = valueString;
@@ -341,14 +359,16 @@ public abstract class DynamicPreference extends FrameLayout
     }
 
     /**
-     * Setter for {@link #mPreferenceKey}.
+     * @return The shared preferences key used by this preference.
      */
     public @Nullable String getPreferenceKey() {
         return mPreferenceKey;
     }
 
     /**
-     * Setter for {@link #mPreferenceKey}.
+     * Set the shared preferences key used by this preference.
+     *
+     * @param preferenceKey The shared preferences key to be set.
      */
     public void setPreferenceKey(@Nullable String preferenceKey) {
         this.mPreferenceKey = preferenceKey;
@@ -357,30 +377,18 @@ public abstract class DynamicPreference extends FrameLayout
     }
 
     /**
-     * Getter for {@link #mEnabled}.
-     */
-    public boolean isEnabled() {
-        return mEnabled;
-    }
-
-    /**
-     * Setter for {@link #mEnabled}.
-     */
-    public void setEnabled(boolean enabled) {
-        this.mEnabled = enabled;
-
-        onEnabled(enabled);
-    }
-
-    /**
-     * Getter for {@link #mDependency}.
+     * @return The shared preferences key on which this preference
+     *         is dependent.
      */
     public @Nullable String getDependency() {
         return mDependency;
     }
 
     /**
-     * Setter for {@link #mDependency}.
+     * Set the shared preferences key on which this preference
+     * is dependent.
+     *
+     * @param dependency The shared preferences key to be set.
      */
     public void setDependency(@Nullable String dependency) {
         this.mDependency = dependency;
@@ -389,14 +397,46 @@ public abstract class DynamicPreference extends FrameLayout
     }
 
     /**
-     * Getter for {@link #mOnPreferenceClickListener}.
+     * @return {@code true} if this preference is enabled and can
+     *         accept click events.
+     */
+    public boolean isEnabled() {
+        return mEnabled;
+    }
+
+    /**
+     * Set this preference enabled or disabled.
+     *
+     * @param enabled {@code true} if this preference
+     *                is enabled.
+     */
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+
+        this.mEnabled = enabled;
+        onEnabled(enabled);
+    }
+
+    /**
+     * @return The action string used by this preference.
+     */
+    public @Nullable CharSequence getActionString() {
+        return mActionString;
+    }
+
+    /**
+     * @return The on click listener to receive preference click
+     *         events.
      */
     public @Nullable View.OnClickListener getOnPreferenceClickListener() {
         return mOnPreferenceClickListener;
     }
 
     /**
-     * Setter for {@link #mOnPreferenceClickListener}.
+     * Set the on click listener to receive preference click
+     * events.
+     *
+     * @param onPreferenceClickListener The listener to be set.
      */
     public void setOnPreferenceClickListener(
             @Nullable View.OnClickListener onPreferenceClickListener) {
@@ -424,28 +464,27 @@ public abstract class DynamicPreference extends FrameLayout
     }
 
     /**
-     * Getter for {@link #mActionString}.
-     */
-    public @Nullable CharSequence getActionString() {
-        return mActionString;
-    }
-
-    /**
-     * Getter for {@link #mOnActionClickListener}.
+     * @return The on click listener to receive action click events.
      */
     public @Nullable OnClickListener getOnActionClickListener() {
         return mOnActionClickListener;
     }
 
     /**
-     * Getter for {@link #mOnPromptListener}.
+     * @return The listener to get various callbacks related to the
+     *         popup and dialog.
      */
     public @Nullable OnPromptListener getOnPromptListener() {
         return mOnPromptListener;
     }
 
     /**
-     * Setter for {@link #mOnPromptListener}.
+     * Set the listener to get various callbacks related to the
+     * popup and dialog. It will be useful if this preference
+     * is displaying a popup or dialog and we have to restrict
+     * it from doing that.
+     *
+     * @param onPromptListener The listener to be set.
      */
     public void setOnPromptListener(@Nullable OnPromptListener onPromptListener) {
         this.mOnPromptListener = onPromptListener;

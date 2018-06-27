@@ -44,7 +44,7 @@ public class DynamicSplashFragment extends Fragment {
     private SplashTask mSplashTask;
 
     /**
-     * Interface to implement the splash screen and to get various
+     * Listener to implement the splash screen and to get various
      * callbacks while showing the splash.
      */
     private static DynamicSplashListener mDynamicSplashListener;
@@ -112,22 +112,26 @@ public class DynamicSplashFragment extends Fragment {
     }
 
     /**
-     * Getter for {@link #mDynamicSplashListener}.
+     * @return The listener to implement the splash screen and to get
+     *         various callbacks while showing the splash.
      */
     public DynamicSplashListener getOnSplashListener() {
         return mDynamicSplashListener;
     }
 
     /**
-     * Setter for {@link #mDynamicSplashListener}.
+     * Set the listener to implement the splash screen and to get
+     * various callbacks while showing the splash.
+     *
+     * @param dynamicSplashListener The listener to be set.
      */
     public void setOnSplashListener(DynamicSplashListener dynamicSplashListener) {
         mDynamicSplashListener = dynamicSplashListener;
     }
 
     /**
-     * Async task to perform any background operation whiling showing the
-     * splash.
+     * Async task to perform any background operation while showing
+     * the splash.
      */
     static class SplashTask extends AsyncTask<Void, String, Void> {
 

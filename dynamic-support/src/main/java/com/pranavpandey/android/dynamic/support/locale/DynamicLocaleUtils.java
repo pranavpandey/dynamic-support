@@ -60,8 +60,8 @@ public class DynamicLocaleUtils {
      *
      * @param locale The locale string to be converted.
      *
-     * @return The converted locale from the locale string. Return
-     * null for the default locale value.
+     * @return The converted locale from the locale string.
+     *         Return {@code null} for the default locale value.
      *
      * @see #ADS_LOCALE_SYSTEM
      */
@@ -117,6 +117,8 @@ public class DynamicLocaleUtils {
      *
      * @param context The context to set locale
      * @param locale The locale to be used for the context.
+     *
+     * @return The modified context after applying the locale.
      */
     public static @NonNull Context setLocale(
             @NonNull Context context, @Nullable Locale locale) {
@@ -139,6 +141,8 @@ public class DynamicLocaleUtils {
      * @param context The context to set update resources.
      * @param locale The locale to be used for the context
      *               resources.
+     *
+     * @return The modified context after applying the locale.
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private static @NonNull Context updateResources(
@@ -167,8 +171,11 @@ public class DynamicLocaleUtils {
      * @param context The context to set update resources.
      * @param locale The locale to be used for the context
      *               resources.
+     *
+     * @return The modified context after applying the locale.
      */
     @SuppressWarnings("deprecation")
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private static @NonNull Context updateResourcesLegacy(
             @NonNull Context context, @NonNull Locale locale) {
         Locale.setDefault(locale);

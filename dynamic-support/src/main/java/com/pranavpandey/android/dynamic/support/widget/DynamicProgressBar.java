@@ -16,8 +16,10 @@
 
 package com.pranavpandey.android.dynamic.support.widget;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,8 +27,8 @@ import android.support.v4.widget.ContentLoadingProgressBar;
 import android.util.AttributeSet;
 
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
@@ -34,7 +36,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 /**
  * A ContentLoadingProgressBar to apply color filter according to the
- * supplied {@link R.attr#ads_colorType}.
+ * supplied parameters.
  */
 public class DynamicProgressBar extends ContentLoadingProgressBar implements DynamicWidget {
 
@@ -196,6 +198,7 @@ public class DynamicProgressBar extends ContentLoadingProgressBar implements Dyn
         setAlpha(enabled ? WidgetDefaults.ADS_ALPHA_ENABLED : WidgetDefaults.ADS_ALPHA_DISABLED);
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void setColor() {
         if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {

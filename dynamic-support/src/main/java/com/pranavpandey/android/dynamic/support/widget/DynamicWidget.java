@@ -24,13 +24,15 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 
 /**
- * Interface to create dynamic widgets which can be tinted according
- * to the {@link DynamicTheme}.
+ * Interface to create dynamic widgets which can be tinted
+ * according to the {@link DynamicTheme}.
  */
 public interface DynamicWidget {
 
     /**
      * Load values from the supplied attribute set.
+     *
+     * @param attrs The supplied attribute set to load the values.
      */
     void loadFromAttributes(@Nullable AttributeSet attrs);
 
@@ -69,7 +71,8 @@ public interface DynamicWidget {
     /**
      * Set the contrast with color type to this view.
      *
-     * @param contrastWithColorType Contrast with Color type for this view.
+     * @param contrastWithColorType Contrast with Color type for
+     *                              this view.
      *
      * @see DynamicColorType
      */
@@ -108,14 +111,18 @@ public interface DynamicWidget {
     /**
      * Set the value to make this view background aware or not.
      *
-     * @param backgroundAware {@code true} to make this view background aware.
+     * @param backgroundAware {@code true} to make this view
+     *                        background aware.
      */
     void setBackgroundAware(boolean backgroundAware);
 
     /**
-     * Override this method to handle state changes for this view. For
-     * example, change alpha according to the enabled or disabled state of
-     * this view.
+     * Override this method to handle state changes for this view.
+     * For example, change alpha according to the enabled or disabled
+     * state of this view.
+     *
+     * @param enabled {@code true} if this widget is enabled and can
+     *                receive click events.
      */
     void setEnabled(boolean enabled);
 

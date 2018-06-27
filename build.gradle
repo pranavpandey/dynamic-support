@@ -24,10 +24,9 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.0-alpha18'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
@@ -52,6 +51,7 @@ ext {
     issueUrl = 'https://github.com/pranavpandey/dynamic-support/issues'
 
     githubUrl = 'pranavpandey/dynamic-support'
+    referenceTitle = 'Dynamic Support Reference'
 
     mavenGroup = 'com.pranavpandey.android'
     mavenVersion = '1.1.1'

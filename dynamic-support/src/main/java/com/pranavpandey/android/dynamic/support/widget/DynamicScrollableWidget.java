@@ -22,7 +22,7 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 
 /**
- * Interface to create dynamic widgets with a normal and checked state
+ * Interface to create dynamic widgets with a scroll bar
  * according to the {@link DynamicTheme}.
  */
 public interface DynamicScrollableWidget extends DynamicWidget {

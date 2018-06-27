@@ -29,14 +29,9 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
-    lintOptions {
-        abortOnError false
-        checkReleaseBuilds false
-    }
-
     sourceSets {
         main.res.srcDirs = [
-                'src/main/res'
+            'src/main/res'
         ]
     }
 }
@@ -48,6 +43,26 @@ dependencies {
 }
 
 if (project.rootProject.file('local.properties').exists()) {
-    apply from: '../maven.gradle'
-    apply from: '../bintray.gradle'
+    apply from: 'maven.gradle'
+    apply from: 'bintray.gradle'
+}
+
+project.afterEvaluate {
+    android.libraryVariants.all { variant ->
+        if (variant.name == 'release') {
+            task javadocRelease(type: Javadoc) {
+                description = "Generates javadocs"
+                failOnError = false
+                destinationDir = new File(destinationDir, variant.baseName)
+                source = files(variant.javaCompiler.source)
+                classpath = files(variant.javaCompiler.classpath.files) + files(android.bootClasspath)
+                options.windowTitle(referenceTitle)
+                options.docTitle(referenceTitle)
+                options.header(referenceTitle)
+                options.links('http://docs.oracle.com/javase/8/docs/api')
+                options.linksOffline('https://developer.android.com/reference', "${android.sdkDirectory}/docs/reference")
+                exclude '**/R.java', '**/BuildConfig.java'
+            }
+        }
+    }
 }

@@ -325,8 +325,8 @@ class DynamicAlertController {
     }
 
     /**
-     * Sets a click DynamicTutorialListener or a message to be sent when the button is clicked.
-     * You only need to pass one of {@code DynamicTutorialListener} or {@code msg}.
+     * Sets a click listener or a message to be sent when the button is clicked.
+     * You only need to pass one of {@code listener} or {@code msg}.
      *
      * @param whichButton Which button, can be one of
      *                    {@link DialogInterface#BUTTON_POSITIVE},
@@ -614,7 +614,7 @@ class DynamicAlertController {
                 final View bottom = indicatorDown;
 
                 if (mMessage != null) {
-                    // We're just showing the ScrollView, set up DynamicTutorialListener.
+                    // We're just showing the ScrollView, set up listener.
                     mScrollView.setOnScrollChangeListener(
                             new NestedScrollView.OnScrollChangeListener() {
                                 @Override
@@ -632,7 +632,7 @@ class DynamicAlertController {
                         }
                     });
                 } else if (mListView != null) {
-                    // We're just showing the AbsListView, set up DynamicTutorialListener.
+                    // We're just showing the AbsListView, set up listener.
                     mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
                         @Override
                         public void onScrollStateChanged(AbsListView view, int scrollState) {}
@@ -935,6 +935,8 @@ class DynamicAlertController {
                     R.styleable.RecycleListView_paddingBottomNoButtons, -1);
             mPaddingTopNoTitle = ta.getDimensionPixelOffset(
                     R.styleable.RecycleListView_paddingTopNoTitle, -1);
+
+            ta.recycle();
         }
 
         public void setHasDecor(boolean hasTitle, boolean hasButtons) {

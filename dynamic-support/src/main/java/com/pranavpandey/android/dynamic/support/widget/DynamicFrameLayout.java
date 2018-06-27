@@ -33,7 +33,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 
 /**
  * A FrameLayout to apply background color according to the supplied
- * {@link R.attr#ads_colorType}.
+ * parameters.
  */
 public class DynamicFrameLayout extends FrameLayout implements DynamicWidget {
 

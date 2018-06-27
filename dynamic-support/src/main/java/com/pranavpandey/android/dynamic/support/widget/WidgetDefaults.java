@@ -105,9 +105,9 @@ public class WidgetDefaults {
      * be a background color so that widgets can change their color accordingly
      * if they are background aware.
      *
-     * @param context Context to retrieve theme and resources.
+     * @param context The context to retrieve theme and resources.
      *
-     * @return Default contrast with color.
+     * @return The default contrast with color.
      *
      * @see com.pranavpandey.android.dynamic.support.R.attr#ads_contrastWithDefault
      */

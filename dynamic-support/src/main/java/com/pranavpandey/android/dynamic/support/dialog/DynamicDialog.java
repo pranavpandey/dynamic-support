@@ -17,6 +17,7 @@
 
 package com.pranavpandey.android.dynamic.support.dialog;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -107,6 +108,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
         setOnCancelListener(cancelListener);
     }
 
+    @SuppressLint("ResourceType")
     static int resolveDialogTheme(@NonNull Context context, @StyleRes int resid) {
         if (resid >= 0x01000000) {   // start of real resource IDs.
             return resid;
@@ -156,7 +158,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
     }
 
     /**
-     * Sets the message to display.
+     * Set the message to display.
      *
      * @param message The message to display in the dialog.
      */
@@ -218,10 +220,10 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
     }
 
     /**
-     * Sets a DynamicTutorialListener to be invoked when the positive button of the dialog is pressed. This method
+     * Sets a listener to be invoked when the positive button of the dialog is pressed. This method
      * has no effect if called after {@link #show()}.
      *
-     * @param whichButton Which button to set the DynamicTutorialListener on, can be one of
+     * @param whichButton Which button to set the listener on, can be one of
      *                    {@link DialogInterface#BUTTON_POSITIVE},
      *                    {@link DialogInterface#BUTTON_NEGATIVE}, or
      *                    {@link DialogInterface#BUTTON_NEUTRAL}
@@ -451,7 +453,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
         }
 
         /**
-         * Set a DynamicTutorialListener to be invoked when the positive button of the dialog is pressed.
+         * Set a listener to be invoked when the positive button of the dialog is pressed.
          * @param textId The resource id of the text to display in the positive button
          * @param listener The {@link DialogInterface.OnClickListener} to use.
          *
@@ -464,7 +466,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
         }
 
         /**
-         * Set a DynamicTutorialListener to be invoked when the positive button of the dialog is pressed.
+         * Set a listener to be invoked when the positive button of the dialog is pressed.
          * @param text The text to display in the positive button
          * @param listener The {@link DialogInterface.OnClickListener} to use.
          *
@@ -477,7 +479,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
         }
 
         /**
-         * Set a DynamicTutorialListener to be invoked when the negative button of the dialog is pressed.
+         * Set a listener to be invoked when the negative button of the dialog is pressed.
          * @param textId The resource id of the text to display in the negative button
          * @param listener The {@link DialogInterface.OnClickListener} to use.
          *
@@ -490,7 +492,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
         }
 
         /**
-         * Set a DynamicTutorialListener to be invoked when the negative button of the dialog is pressed.
+         * Set a listener to be invoked when the negative button of the dialog is pressed.
          * @param text The text to display in the negative button
          * @param listener The {@link DialogInterface.OnClickListener} to use.
          *
@@ -503,7 +505,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
         }
 
         /**
-         * Set a DynamicTutorialListener to be invoked when the neutral button of the dialog is pressed.
+         * Set a listener to be invoked when the neutral button of the dialog is pressed.
          * @param textId The resource id of the text to display in the neutral button
          * @param listener The {@link DialogInterface.OnClickListener} to use.
          *
@@ -516,7 +518,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
         }
 
         /**
-         * Set a DynamicTutorialListener to be invoked when the neutral button of the dialog is pressed.
+         * Set a listener to be invoked when the neutral button of the dialog is pressed.
          * @param text The text to display in the neutral button
          * @param listener The {@link DialogInterface.OnClickListener} to use.
          *
@@ -581,7 +583,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
 
         /**
          * Set a list of items to be displayed in the dialog as the content, you will be notified of the
-         * selected item via the supplied DynamicTutorialListener. This should be an array type i.e. R.array.foo
+         * selected item via the supplied listener. This should be an array type i.e. R.array.foo
          *
          * @return This Builder object to allow for chaining of calls to set methods
          */
@@ -593,7 +595,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
 
         /**
          * Set a list of items to be displayed in the dialog as the content, you will be notified of the
-         * selected item via the supplied DynamicTutorialListener.
+         * selected item via the supplied listener.
          *
          * @return This Builder object to allow for chaining of calls to set methods
          */
@@ -606,10 +608,10 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
         /**
          * Set a list of items, which are supplied by the given {@link ListAdapter}, to be
          * displayed in the dialog as the content, you will be notified of the
-         * selected item via the supplied DynamicTutorialListener.
+         * selected item via the supplied listener.
          *
          * @param adapter The {@link ListAdapter} to supply the list of items
-         * @param listener The DynamicTutorialListener that will be called when an item is clicked.
+         * @param listener The listener that will be called when an item is clicked.
          *
          * @return This Builder object to allow for chaining of calls to set methods
          */
@@ -622,10 +624,10 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
         /**
          * Set a list of items, which are supplied by the given {@link Cursor}, to be
          * displayed in the dialog as the content, you will be notified of the
-         * selected item via the supplied DynamicTutorialListener.
+         * selected item via the supplied listener.
          *
          * @param cursor The {@link Cursor} to supply the list of items
-         * @param listener The DynamicTutorialListener that will be called when an item is clicked.
+         * @param listener The listener that will be called when an item is clicked.
          * @param labelColumn The column name on the cursor containing the string to display
          *          in the label.
          *
@@ -641,7 +643,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
 
         /**
          * Set a list of items to be displayed in the dialog as the content,
-         * you will be notified of the selected item via the supplied DynamicTutorialListener.
+         * you will be notified of the selected item via the supplied listener.
          * This should be an array type, e.g. R.array.foo. The list will have
          * a check mark displayed to the right of the text for each checked
          * item. Clicking on an item in the list will not dismiss the dialog.
@@ -668,7 +670,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
 
         /**
          * Set a list of items to be displayed in the dialog as the content,
-         * you will be notified of the selected item via the supplied DynamicTutorialListener.
+         * you will be notified of the selected item via the supplied listener.
          * The list will have a check mark displayed to the right of the text
          * for each checked item. Clicking on an item in the list will not
          * dismiss the dialog. Clicking on a button will dismiss the dialog.
@@ -694,7 +696,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
 
         /**
          * Set a list of items to be displayed in the dialog as the content,
-         * you will be notified of the selected item via the supplied DynamicTutorialListener.
+         * you will be notified of the selected item via the supplied listener.
          * The list will have a check mark displayed to the right of the text
          * for each checked item. Clicking on an item in the list will not
          * dismiss the dialog. Clicking on a button will dismiss the dialog.
@@ -723,7 +725,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
 
         /**
          * Set a list of items to be displayed in the dialog as the content, you will be notified of
-         * the selected item via the supplied DynamicTutorialListener. This should be an array type i.e.
+         * the selected item via the supplied listener. This should be an array type i.e.
          * R.array.foo The list will have a check mark displayed to the right of the text for the
          * checked item. Clicking on an item in the list will not dismiss the dialog. Clicking on a
          * button will dismiss the dialog.
@@ -747,7 +749,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
 
         /**
          * Set a list of items to be displayed in the dialog as the content, you will be notified of
-         * the selected item via the supplied DynamicTutorialListener. The list will have a check mark displayed to
+         * the selected item via the supplied listener. The list will have a check mark displayed to
          * the right of the text for the checked item. Clicking on an item in the list will not
          * dismiss the dialog. Clicking on a button will dismiss the dialog.
          *
@@ -773,7 +775,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
 
         /**
          * Set a list of items to be displayed in the dialog as the content, you will be notified of
-         * the selected item via the supplied DynamicTutorialListener. The list will have a check mark displayed to
+         * the selected item via the supplied listener. The list will have a check mark displayed to
          * the right of the text for the checked item. Clicking on an item in the list will not
          * dismiss the dialog. Clicking on a button will dismiss the dialog.
          *
@@ -796,7 +798,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
 
         /**
          * Set a list of items to be displayed in the dialog as the content, you will be notified of
-         * the selected item via the supplied DynamicTutorialListener. The list will have a check mark displayed to
+         * the selected item via the supplied listener. The list will have a check mark displayed to
          * the right of the text for the checked item. Clicking on an item in the list will not
          * dismiss the dialog. Clicking on a button will dismiss the dialog.
          *
@@ -818,9 +820,9 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
         }
 
         /**
-         * Sets a DynamicTutorialListener to be invoked when an item in the list is selected.
+         * Sets a listener to be invoked when an item in the list is selected.
          *
-         * @param listener the DynamicTutorialListener to be invoked
+         * @param listener the listener to be invoked
          * @return this Builder object to allow for chaining of calls to set methods
          * @see AdapterView#setOnItemSelectedListener(android.widget.AdapterView.OnItemSelectedListener)
          */

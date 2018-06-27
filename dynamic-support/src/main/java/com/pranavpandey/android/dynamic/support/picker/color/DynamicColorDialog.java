@@ -200,6 +200,10 @@ public class DynamicColorDialog extends DynamicDialogFragment {
 
     /**
      * Switch view according to the dialog type.
+     *
+     * @param type The type for the dynamic color picker.
+     *
+     * @see DynamicPickerType
      */
     protected void showView(@DynamicPickerType int type) {
         if (type == DynamicPickerType.CUSTOM) {
@@ -239,62 +243,50 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     }
 
     /**
-     * Getter for {@link #mColors}.
+     * @return The color entries used by the picker.
      */
     public Integer[] getColors() {
         return mColors;
     }
 
     /**
-     * Getter for {@link #mShades}.
+     * @return The shade entries used by the picker.
      */
     public Integer[][] getShades() {
         return mShades;
     }
 
     /**
-     * Setter for {@link #mColors} and {@link #mShades}.
+     * Set the colors and their shades.
      *
-     * @return {@link DynamicColorDialog} object to allow for chaining of
-     *         calls to set methods.
+     * @param colors The color entries to be set.
+     * @param shades The shade entries to be set.
+     *
+     * @return The {@link DynamicColorDialog} object to allow for
+     *         chaining of calls to set methods.
      */
-    public DynamicColorDialog setColors(@NonNull @ColorInt Integer[] mColors,
-                                        @Nullable @ColorInt Integer[][] mShades) {
-        this.mColors = mColors;
-        this.mShades = mShades;
+    public DynamicColorDialog setColors(@NonNull @ColorInt Integer[] colors,
+                                        @Nullable @ColorInt Integer[][] shades) {
+        this.mColors = colors;
+        this.mShades = shades;
 
         return this;
     }
 
     /**
-     * Getter for {@link #mOnColorSelectedListener}.
-     */
-    public @NonNull DynamicColorsAdapter.OnColorSelectedListener getOnColorSelectedListener() {
-        return mOnColorSelectedListener;
-    }
-
-    /**
-     * Setter for {@link #mOnColorSelectedListener}.
-     *
-     * @return {@link DynamicColorDialog} object to allow for chaining of
-     *         calls to set methods.
-     */
-    public DynamicColorDialog setOnColorSelectedListener(
-            @NonNull DynamicColorsAdapter.OnColorSelectedListener onItemClickListener) {
-        this.mOnColorSelectedListener = onItemClickListener;
-
-        return this;
-    }
-
-    /**
-     * Getter for {@link #mPreviousColor}.
+     * @return The previous color.
      */
     public @ColorInt int getPreviousColor() {
         return mPreviousColor;
     }
 
     /**
-     * Setter for {@link #mPreviousColor}.
+     * Set the previous color.
+     *
+     * @param previousColor The previous color to be set.
+     *
+     * @return The {@link DynamicColorDialog} object to allow for
+     *         chaining of calls to set methods.
      */
     public DynamicColorDialog setPreviousColor(@ColorInt int previousColor) {
         this.mPreviousColor = previousColor;
@@ -303,17 +295,19 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     }
 
     /**
-     * Getter for {@link #mSelectedColor}.
+     * @return The selected color.
      */
     public @ColorInt int getSelectedColor() {
         return mSelectedColor;
     }
 
     /**
-     * Setter for {@link #mSelectedColor}.
+     * Set the selected color.
      *
-     * @return {@link DynamicColorDialog} object to allow for chaining of
-     *         calls to set methods.
+     * @param selectedColor The color to be selected.
+     *
+     * @return The {@link DynamicColorDialog} object to allow for
+     *         chaining of calls to set methods.
      */
     public DynamicColorDialog setSelectedColor(@ColorInt int selectedColor) {
         this.mSelectedColor = selectedColor;
@@ -322,18 +316,19 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     }
 
     /**
-     * Getter for {@link #mColorShape}.
+     * @return The shape of the color swatches.
      */
-    public @DynamicColorShape
-    int getColorShape() {
+    public @DynamicColorShape int getColorShape() {
         return mColorShape;
     }
 
     /**
-     * Setter for {@link #mColorShape}.
+     * Set the shape of the color swatches.
      *
-     * @return {@link DynamicColorDialog} object to allow for chaining of
-     *         calls to set methods.
+     * @param colorShape The color shape to be set.
+     *
+     * @return The {@link DynamicColorDialog} object to allow for
+     *         chaining of calls to set methods.
      */
     public DynamicColorDialog setColorShape(@DynamicColorShape int colorShape) {
         this.mColorShape = colorShape;
@@ -342,17 +337,44 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     }
 
     /**
-     * Getter for {@link #mAlpha}.
+     * @return {@code true} to enable alpha for the custom color.
      */
     public boolean isAlpha() {
         return mAlpha;
     }
 
     /**
-     * Setter for {@link #mAlpha}.
+     * Set the alpha support for the custom color.
+     *
+     * @param alpha {@code true} to enable alpha.
+     *
+     * @return The {@link DynamicColorDialog} object to allow for
+     *         chaining of calls to set methods.
      */
     public DynamicColorDialog setAlpha(boolean alpha) {
         this.mAlpha = alpha;
+
+        return this;
+    }
+
+    /**
+     * @return The color listener to get the selected color.
+     */
+    public @NonNull DynamicColorsAdapter.OnColorSelectedListener getOnColorSelectedListener() {
+        return mOnColorSelectedListener;
+    }
+
+    /**
+     * Set the color listener to get the selected color.
+     *
+     * @param onColorSelectedListener The listener to be set.
+     *
+     * @return The {@link DynamicColorDialog} object to allow for
+     *         chaining of calls to set methods.
+     */
+    public DynamicColorDialog setOnColorSelectedListener(
+            @NonNull DynamicColorsAdapter.OnColorSelectedListener onColorSelectedListener) {
+        this.mOnColorSelectedListener = onColorSelectedListener;
 
         return this;
     }

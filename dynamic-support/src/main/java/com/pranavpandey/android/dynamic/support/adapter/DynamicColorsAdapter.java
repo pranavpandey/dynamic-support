@@ -29,8 +29,8 @@ import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
 
 /**
- * A simple base adapter to hold an array of colors and displays them
- * in a adapter view.
+ * A simple base adapter to hold an array of colors and displays
+ * them in a adapter view.
  */
 public class DynamicColorsAdapter extends BaseAdapter {
 
@@ -42,6 +42,7 @@ public class DynamicColorsAdapter extends BaseAdapter {
         /**
          * Called when a color is selected.
          *
+         * @param position The selected position.
          * @param color The selected color.
          */
         void onColorSelected(int position, @ColorInt int color);
@@ -70,16 +71,37 @@ public class DynamicColorsAdapter extends BaseAdapter {
     private @DynamicColorShape int mColorShape;
 
     /**
-     * {@code true} to enable alpha for the color.
+     * {@code true} to enable alpha for the colors.
      */
     private boolean mAlpha;
 
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param colors The array of colors to be handled by this
+     *               adapter.
+     * @param colorShape The shape of the color swatches.
+     * @param alpha {@code true} to enable alpha for the color.
+     * @param onColorSelectedListener The listener to get the callback
+     *                                when a color is selected.
+     */
     public DynamicColorsAdapter(@NonNull @ColorInt Integer[] colors,
                                 @DynamicColorShape int colorShape, boolean alpha,
                                 @NonNull OnColorSelectedListener onColorSelectedListener) {
         this(colors, DynamicColorType.UNKNOWN, colorShape, alpha, onColorSelectedListener);
     }
 
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param colors The array of colors to be handled by this
+     *               adapter.
+     * @param selectedColor The selected color.
+     * @param colorShape The shape of the color swatches.
+     * @param alpha {@code true} to enable alpha for the color.
+     * @param onColorSelectedListener The listener to get the callback
+     *                                when a color is selected.
+     */
     public DynamicColorsAdapter(@NonNull @ColorInt Integer[] colors, @ColorInt int selectedColor,
                                 @DynamicColorShape int colorShape, boolean alpha,
                                 @NonNull OnColorSelectedListener onColorSelectedListener) {
@@ -89,7 +111,8 @@ public class DynamicColorsAdapter extends BaseAdapter {
         this.mAlpha = alpha;
         this.mOnColorSelectedListener = onColorSelectedListener;
     }
- 
+
+    @Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		ViewHolder viewHolder;
 
@@ -150,14 +173,16 @@ public class DynamicColorsAdapter extends BaseAdapter {
     }
 
     /**
-     * Getter for {@link #mDataSet}.
+     * @return The array of colors to be handled by this adapter.
      */
     public @NonNull @ColorInt Integer[] getDataSet() {
         return mDataSet;
     }
 
     /**
-     * Setter for {@link #mDataSet}.
+     * Sets array of colors to be handled by this adapter.
+     *
+     * @param dataSet The array of colors to be set.
      */
     public void setDataSet(@NonNull @ColorInt Integer[] dataSet) {
         this.mDataSet = dataSet;
@@ -166,14 +191,18 @@ public class DynamicColorsAdapter extends BaseAdapter {
     }
 
     /**
-     * Getter for {@link #mOnColorSelectedListener}.
+     * @return The listener to get the callback when a color is
+     *         selected.
      */
     public OnColorSelectedListener getOnColorSelectedListener() {
         return mOnColorSelectedListener;
     }
 
     /**
-     * Setter for {@link #mOnColorSelectedListener}.
+     * Sets the listener to get the callback when a color
+     * is selected.
+     *
+     * @param onColorSelectedListener The listener to be set.
      */
     public void setOnColorSelectedListener(
             @NonNull OnColorSelectedListener onColorSelectedListener) {
@@ -183,14 +212,16 @@ public class DynamicColorsAdapter extends BaseAdapter {
     }
 
     /**
-     * Getter for {@link #mSelectedColor}.
+     * @return The selected color.
      */
     public int getSelectedColor() {
         return mSelectedColor;
     }
 
     /**
-     * Setter for {@link #mSelectedColor}.
+     * Sets the selected color.
+     *
+     * @param selectedColor The color to be selected.
      */
     public void setSelectedColor(@ColorInt int selectedColor) {
         this.mSelectedColor = selectedColor;
@@ -199,17 +230,37 @@ public class DynamicColorsAdapter extends BaseAdapter {
     }
 
     /**
-     * Getter for {@link #mColorShape}.
+     * @return The shape of the color swatches.
      */
     public int getColorShape() {
         return mColorShape;
     }
 
     /**
-     * Setter for {@link #mColorShape}.
+     * Sets the shape of the color swatches.
+     *
+     * @param colorShape The color shape to be set.
      */
     public void setColorShape(@DynamicColorShape int colorShape) {
         this.mColorShape = colorShape;
+
+        notifyDataSetChanged();
+    }
+
+    /**
+     * @return {@code true} to enable alpha for the colors.
+     */
+    public boolean isAlpha() {
+        return mAlpha;
+    }
+
+    /**
+     * Sets the alpha support for the colors.
+     *
+     * @param alpha {@code true} to enable alpha.
+     */
+    public void setAlpha(boolean alpha) {
+        this.mAlpha = alpha;
 
         notifyDataSetChanged();
     }
@@ -226,13 +277,15 @@ public class DynamicColorsAdapter extends BaseAdapter {
 
         /**
          * Constructor to initialize views from the supplied layout.
+         *
+         * @param view The view for this view holder.
          */
     	public ViewHolder(@NonNull View view) {
     	    dynamicColorView = view.findViewById(R.id.ads_color_item_view);
     	}
 
         /**
-         * Getter for {@link #dynamicColorView}.
+         * @return The color view to display color on the adapter view.
          */
         DynamicColorView getDynamicColorView() {
             return dynamicColorView;

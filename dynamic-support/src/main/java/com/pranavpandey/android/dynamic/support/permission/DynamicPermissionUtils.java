@@ -39,10 +39,14 @@ public class DynamicPermissionUtils {
     private static final String SCHEME = "package";
 
     /**
-     * Open the settings activity according to the permission name.
+     * Open the settings activity according to the permission
+     * name.
      *
-     * @param context Context to start the activity.
+     * @param context The context to start the activity.
      * @param permission The permission name.
+     *
+     * @return {@code true} if permissions settings activity can
+     *          be opened successfully. Otherwise, {@code false}.
      */
     public static boolean openPermissionSettings(
             @NonNull Context context, @NonNull String permission) {
@@ -63,10 +67,13 @@ public class DynamicPermissionUtils {
     }
 
     /**
-     * Launch app info by extracting the package name from the supplied
-     * context.
+     * Launch app info by extracting the package name from the
+     * supplied context.
      *
-     * @param context Context to start the activity.
+     * @param context The context to start the activity.
+     *
+     * @return {@code true} if application info activity can
+     *          be opened successfully. Otherwise, {@code false}.
      */
     public static boolean launchAppInfo(@NonNull Context context) {
         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);

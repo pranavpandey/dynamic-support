@@ -106,27 +106,27 @@ public class DynamicTheme implements DynamicListener {
     private @ColorInt int mAccentColorDark;
 
     /**
-     * Tint color according to the {@link #mBackgroundColor}.
+     * Tint color according to the background color.
      */
     private @ColorInt int mTintBackgroundColor;
 
     /**
-     * Tint color according to the {@link #mPrimaryColor}.
+     * Tint color according to the primary color.
      */
     private @ColorInt int mTintPrimaryColor;
 
     /**
-     * Tint color according to the {@link #mPrimaryColorDark}.
+     * Tint color according to the dark primary color.
      */
     private @ColorInt int mTintPrimaryColorDark;
 
     /**
-     * Tint color according to the {@link #mAccentColor}.
+     * Tint color according to the accent color.
      */
     private @ColorInt int mTintAccentColor;
 
     /**
-     * Tint color according to the {@link #mAccentColorDark}.
+     * Tint color according to the dark accent color.
      */
     private @ColorInt int mTintAccentColorDark;
 
@@ -146,12 +146,17 @@ public class DynamicTheme implements DynamicListener {
     private @ColorInt int mRemoteAccentColor;
 
     /**
-     * Tint color according to the {@link #mRemotePrimaryColor}.
+     * Tint color according to the remote background color.
+     */
+    private @ColorInt int mTintRemoteBackgroundColor;
+
+    /**
+     * Tint color according to the remote primary color.
      */
     private @ColorInt int mTintRemotePrimaryColor;
 
     /**
-     * Tint color according to the {@link #mRemoteAccentColor}.
+     * Tint color according to the remote accent color.
      */
     private @ColorInt int mTintRemoteAccentColor;
 
@@ -171,12 +176,17 @@ public class DynamicTheme implements DynamicListener {
     private @ColorInt int mNotificationAccentColor;
 
     /**
-     * Tint color according to the {@link #mNotificationPrimaryColor}.
+     * Tint color according to the notification background color.
+     */
+    private @ColorInt int mTintNotificationBackgroundColor;
+
+    /**
+     * Tint color according to the notification primary color.
      */
     private @ColorInt int mTintNotificationPrimaryColor;
 
     /**
-     * Tint color according to the {@link #mNotificationAccentColor}.
+     * Tint color according to the notification accent color.
      */
     private @ColorInt int mTintNotificationAccentColor;
 
@@ -196,73 +206,72 @@ public class DynamicTheme implements DynamicListener {
     private @ColorInt int mWidgetAccentColor;
 
     /**
-     * Tint color according to the {@link #mWidgetPrimaryColor}.
+     * Tint color according to the widget background color.
+     */
+    private @ColorInt int mTintWidgetBackgroundColor;
+
+    /**
+     * Tint color according to the widget primary color.
      */
     private @ColorInt int mTintWidgetPrimaryColor;
 
     /**
-     * Tint color according to the {@link #mWidgetAccentColor}.
+     * Tint color according to the widget accent color.
      */
     private @ColorInt int mTintWidgetAccentColor;
 
     /**
-     * Theme resource used by the {@link #mLocalContext}, generally an
-     * activity.
+     * Theme resource used by the local context.
      */
     private @ColorInt int mLocalThemeRes;
 
     /**
-     * Background color used by the {@link #mLocalContext}, generally an
-     * activity.
+     * Background color used by the local context.
      */
     private @ColorInt int mLocalBackgroundColor;
 
     /**
-     * Primary color used by the {@link #mLocalContext}, generally an
-     * activity.
+     * Primary color used by the local context.
      */
     private @ColorInt int mLocalPrimaryColor;
 
     /**
-     * Dark primary color used by the {@link #mLocalContext}, generally an
-     * activity.
+     * Dark primary color used by the local context.
      */
     private @ColorInt int mLocalPrimaryColorDark;
 
     /**
-     * Accent color used by the {@link #mLocalContext}, generally an
-     * activity.
+     * Accent color used by the local context.
      */
     private @ColorInt int mLocalAccentColor;
 
     /**
-     * Dark accent color used by the {@link #mLocalContext}, generally an
-     * activity.
+     * Dark accent color used by the local context.
      */
     private @ColorInt int mLocalAccentColorDark;
 
     /**
-     * Tint color according to the {@link #mLocalBackgroundColor}.
+     * Tint color according to the local background color.
      */
     private @ColorInt int mTintLocalBackgroundColor;
 
     /**
-     * Tint color according to the {@link #mLocalPrimaryColor}.
+     * Tint color according to the local primary color.
      */
     private @ColorInt int mTintLocalPrimaryColor;
 
     /**
-     * Tint color according to the {@link #mLocalPrimaryColorDark}.
+     * Tint color according to the local dark primary color.
      */
     private @ColorInt int mTintLocalPrimaryColorDark;
 
     /**
-     * Tint color according to the {@link #mLocalAccentColor}.
+     * Tint color according to the local accent color.
      */
     private @ColorInt int mTintLocalAccentColor;
 
     /**
-     * Tint color according to the {@link #mLocalAccentColorDark}.
+     * Tint color according to the local dark accent color.
      */
     private @ColorInt int mTintLocalAccentColorDark;
 
@@ -282,7 +291,7 @@ public class DynamicTheme implements DynamicListener {
     private Context mLocalContext;
 
     /**
-     * Collection of dynamic theme listeners to send them event callback.
+     * Collection of dynamic listeners to send them event callback.
      */
     private HashSet<DynamicListener> mDynamicListeners;
 
@@ -293,7 +302,10 @@ public class DynamicTheme implements DynamicListener {
     private DynamicTheme() { }
 
     /**
-     * Default constructor to initialize base colors.
+     * Constructor to initialize an object of this class.
+     *
+     * @param context The application context to be attached
+     *                with this theme.
      */
     private DynamicTheme(@NonNull Context context) {
         this.mContext = context;
@@ -307,10 +319,10 @@ public class DynamicTheme implements DynamicListener {
      * Attach a local context to this theme. It can be an activity in
      * case different themes are required for different activities.
      *
-     * @param localContext Context to be attached with this theme.
+     * @param localContext The context to be attached with this theme.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme attach(@NonNull Context localContext) {
         this.mLocalContext = localContext;
@@ -318,18 +330,19 @@ public class DynamicTheme implements DynamicListener {
         this.mLocalPrimaryColorDark = ADS_COLOR_PRIMARY_DARK_DEFAULT;
         this.mLocalAccentColor = ADS_COLOR_ACCENT_DEFAULT;
 
-        if (localContext instanceof Activity
-                && ((Activity) localContext).getLayoutInflater().getFactory2() == null) {
-            LayoutInflaterCompat.setFactory2(
-                    ((Activity) localContext).getLayoutInflater(), new DynamicLayoutInflater());
+        if (localContext instanceof Activity && ((Activity) localContext)
+                .getLayoutInflater().getFactory2() == null) {
+            LayoutInflaterCompat.setFactory2(((Activity) localContext)
+                    .getLayoutInflater(), new DynamicLayoutInflater());
         }
         return this;
     }
 
     /**
-     * Initialize theme when application starts. Must be initialize once.
+     * Initialize theme when application starts.
+     * Must be initialized once.
      *
-     * @param context Context to retrieve resources.
+     * @param context The context to retrieve resources.
      */
     public static synchronized void initializeInstance(@Nullable Context context) {
         if (context == null) {
@@ -342,10 +355,10 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Get instance to access public methods. Must be called before accessing
-     * methods.
+     * Get instance to access public methods. Must be called before
+     * accessing methods.
      *
-     * @return {@link #sInstance} Singleton {@link DynamicTheme} instance.
+     * @return The singleton instance of this class.
      */
     public static synchronized DynamicTheme getInstance() {
         if (sInstance == null) {
@@ -357,27 +370,14 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Setter for {@link #mContext}.
-     */
-    public void setContext(@NonNull Context context) {
-        this.mContext = context;
-    }
-
-    /**
-     * Getter for {@link #mContext}.
-     */
-    public @NonNull Context getContext() {
-        return mContext;
-    }
-
-    /**
      * Initialize colors form the supplied theme resource.
      *
-     * @param theme Theme resource to initialize colors.
-     * @param initializeRemoteColors {@code true} to initialize remote colors also.
+     * @param theme The theme resource to initialize colors.
+     * @param initializeRemoteColors {@code true} to initialize remote
+     *                               colors also.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme setTheme(@StyleRes int theme, boolean initializeRemoteColors) {
         mContext.getTheme().applyStyle(theme, true);
@@ -402,10 +402,10 @@ public class DynamicTheme implements DynamicListener {
     /**
      * Initialize colors form the supplied local theme resource.
      *
-     * @param localTheme Local theme resource to initialize colors.
+     * @param localTheme The local theme resource to initialize colors.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme setLocalTheme(@StyleRes int localTheme) {
         if (mLocalContext == null) {
@@ -432,16 +432,16 @@ public class DynamicTheme implements DynamicListener {
      * Initialize other colors according to the base colors. They can
      * be set individually by calling the appropriate functions.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme initializeColors() {
         this.mAccentColorDark = mAccentColor;
-        this.mTintBackgroundColor = DynamicColorUtils.getTintColor(mBackgroundColor);
-        this.mTintPrimaryColor = DynamicColorUtils.getTintColor(mPrimaryColor);
-        this.mTintPrimaryColorDark = DynamicColorUtils.getTintColor(mPrimaryColorDark);
-        this.mTintAccentColor = DynamicColorUtils.getTintColor(mAccentColor);
-        this.mTintAccentColorDark = DynamicColorUtils.getTintColor(mAccentColorDark);
+        setTintBackgroundColor(DynamicColorUtils.getTintColor(mBackgroundColor));
+        setTintPrimaryColor(DynamicColorUtils.getTintColor(mPrimaryColor));
+        setTintPrimaryColorDark(DynamicColorUtils.getTintColor(mPrimaryColorDark));
+        setTintAccentColor(DynamicColorUtils.getTintColor(mAccentColor));
+        setTintAccentColorDark(DynamicColorUtils.getTintColor(mAccentColorDark));
 
         return this;
     }
@@ -450,16 +450,16 @@ public class DynamicTheme implements DynamicListener {
      * Initialize other local colors according to the base local colors.
      * They can be set individually by calling the appropriate functions.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme initializeLocalColors() {
         this.mLocalAccentColorDark = mLocalAccentColor;
-        this.mTintLocalBackgroundColor = DynamicColorUtils.getTintColor(mLocalBackgroundColor);
-        this.mTintLocalPrimaryColor = DynamicColorUtils.getTintColor(mLocalPrimaryColor);
-        this.mTintLocalPrimaryColorDark = DynamicColorUtils.getTintColor(mLocalPrimaryColorDark);
-        this.mTintLocalAccentColor = DynamicColorUtils.getTintColor(mLocalAccentColor);
-        this.mTintLocalAccentColorDark = DynamicColorUtils.getTintColor(mLocalAccentColorDark);
+        setTintLocalBackgroundColor(DynamicColorUtils.getTintColor(mLocalBackgroundColor));
+        setTintLocalPrimaryColor(DynamicColorUtils.getTintColor(mLocalPrimaryColor));
+        setTintLocalPrimaryColorDark(DynamicColorUtils.getTintColor(mLocalPrimaryColorDark));
+        setTintLocalAccentColor(DynamicColorUtils.getTintColor(mLocalAccentColor));
+        setTintLocalAccentColorDark(DynamicColorUtils.getTintColor(mLocalAccentColorDark));
 
         return this;
     }
@@ -470,8 +470,8 @@ public class DynamicTheme implements DynamicListener {
      *
      * @param reset {@code true} to reset the previously set remote colors.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme initializeRemoteColors(boolean reset) {
         if (reset) {
@@ -480,31 +480,35 @@ public class DynamicTheme implements DynamicListener {
                             : R.color.notification_background_light);
             this.mRemotePrimaryColor = mPrimaryColor;
             this.mRemoteAccentColor = mAccentColor;
+            this.mNotificationBackgroundColor = mRemoteBackgroundColor;
             this.mNotificationPrimaryColor = mPrimaryColor;
             this.mNotificationAccentColor = mAccentColor;
+            this.mWidgetBackgroundColor = mRemoteBackgroundColor;
             this.mWidgetPrimaryColor = mPrimaryColor;
             this.mWidgetAccentColor = mAccentColor;
         }
 
-        this.mNotificationBackgroundColor = mRemoteBackgroundColor;
-        this.mWidgetBackgroundColor = mRemoteBackgroundColor;
-        this.mTintRemotePrimaryColor = DynamicColorUtils.getTintColor(mRemotePrimaryColor);
-        this.mTintRemoteAccentColor = DynamicColorUtils.getTintColor(mRemoteAccentColor);
-        this.mTintNotificationPrimaryColor = DynamicColorUtils.getTintColor(mNotificationPrimaryColor);
-        this.mTintNotificationAccentColor = DynamicColorUtils.getTintColor(mNotificationAccentColor);
-        this.mTintWidgetPrimaryColor = DynamicColorUtils.getTintColor(mWidgetPrimaryColor);
-        this.mTintWidgetAccentColor = DynamicColorUtils.getTintColor(mWidgetAccentColor);
+        setTintRemoteBackgroundColor(DynamicColorUtils.getTintColor(mRemoteBackgroundColor));
+        setTintRemotePrimaryColor(DynamicColorUtils.getTintColor(mRemotePrimaryColor));
+        setTintRemoteAccentColor(DynamicColorUtils.getTintColor(mRemoteAccentColor));
+        setTintNotificationBackgroundColor(DynamicColorUtils.getTintColor(mNotificationBackgroundColor));
+        setTintNotificationPrimaryColor(DynamicColorUtils.getTintColor(mNotificationPrimaryColor));
+        setTintNotificationAccentColor(DynamicColorUtils.getTintColor(mNotificationAccentColor));
+        setTintWidgetBackgroundColor(DynamicColorUtils.getTintColor(mWidgetBackgroundColor));
+        setTintWidgetPrimaryColor(DynamicColorUtils.getTintColor(mWidgetPrimaryColor));
+        setTintWidgetAccentColor(DynamicColorUtils.getTintColor(mWidgetAccentColor));
 
         return this;
     }
 
     /**
-     * Get color according to the {@link DynamicColorType}.
+     * Get color according to the dynamic color type.
      *
-     * @param colorType Color attribute from
-     * {@link com.pranavpandey.android.dynamic.support.R.attr#ads_colorType}.
+     * @param colorType The color type to be retrieved.
      *
-     * @return Color based on the attribute.
+     * @return The color according to the type.
+     *
+     * @see DynamicColorType
      */
     public @ColorInt int getColorFromType(@DynamicColorType int colorType) {
         switch (colorType) {
@@ -523,192 +527,263 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Getter for {@link #mBackgroundColor}.
+     * @return The application context.
+     */
+    public @NonNull Context getContext() {
+        return mContext;
+    }
+
+    /**
+     * Set the application context for this theme.
+     *
+     * @param context The application context to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     */
+    public DynamicTheme setContext(@NonNull Context context) {
+        this.mContext = context;
+
+        return this;
+    }
+
+    /**
+     * @return The background color used by the application.
      */
     public @ColorInt int getBackgroundColor() {
         return mLocalContext != null ? mLocalBackgroundColor : mBackgroundColor;
     }
 
     /**
-     * Setter for {@link #mBackgroundColor}.
+     * Set the background color used by the application.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @param backgroundColor The background color to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintBackgroundColor(int)
      */
     public DynamicTheme setBackgroundColor(@ColorInt int backgroundColor,
                                            boolean generateTint) {
         this.mBackgroundColor = backgroundColor;
         if (generateTint) {
-            this.mTintBackgroundColor = DynamicColorUtils.getTintColor(backgroundColor);
+            setTintBackgroundColor(DynamicColorUtils.getTintColor(backgroundColor));
         }
 
         return this;
     }
 
     /**
-     * Setter for {@link #mBackgroundColor}. It will automatically generate
-     * tint color also.
+     * Set the background color used by the application.
+     * It will automatically generate the tint color also.
      *
-     * @see #setBackgroundColor(int)
+     * @param backgroundColor The background color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setBackgroundColor(int, boolean)
+     * @see #setTintBackgroundColor(int)
      */
     public DynamicTheme setBackgroundColor(@ColorInt int backgroundColor) {
         return setBackgroundColor(backgroundColor, true);
     }
 
     /**
-     * Getter for {@link #mPrimaryColor}.
+     * @return The primary color used by the application.
      */
     public @ColorInt int getPrimaryColor() {
         return mLocalContext != null ? mLocalPrimaryColor : mPrimaryColor;
     }
 
     /**
-     * Setter for {@link #mPrimaryColor}.
+     * Set the primary color used by the application.
      *
-     * @param primaryColor Color to set.
-     * @param generateTint {@code true} to generate tint color automatically.
+     * @param primaryColor The primary color to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintPrimaryColor(int)
      */
     public DynamicTheme setPrimaryColor(@ColorInt int primaryColor, boolean generateTint) {
         this.mPrimaryColor = primaryColor;
         if (generateTint) {
-            this.mTintPrimaryColor = DynamicColorUtils.getTintColor(primaryColor);
+            setTintPrimaryColor(DynamicColorUtils.getTintColor(primaryColor));
         }
 
         return this;
     }
 
     /**
-     * Setter for {@link #mPrimaryColor}. It will automatically generate
-     * tint color also.
+     * Set the primary color used by the application.
+     * It will automatically generate the tint color also.
      *
-     * @see #setPrimaryColor(int)
+     * @param primaryColor The primary color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setPrimaryColor(int, boolean)
+     * @see #setTintPrimaryColor(int)
      */
     public DynamicTheme setPrimaryColor(@ColorInt int primaryColor) {
         return setPrimaryColor(primaryColor, true);
     }
 
     /**
-     * Getter for {@link #mPrimaryColorDark}.
+     * @return The dark primary color used by the application.
      */
     public @ColorInt int getPrimaryColorDark() {
         return mLocalContext != null ? mLocalPrimaryColorDark : mPrimaryColorDark;
     }
 
     /**
-     * Setter for {@link #mPrimaryColorDark}.
+     * Set the dark primary color used by the application.
      *
-     * @param primaryColorDark Color to set.
-     * @param generateTint {@code true} to generate tint color automatically.
+     * @param primaryColorDark The dark primary color to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintPrimaryColorDark(int)
      */
     public DynamicTheme setPrimaryColorDark(@ColorInt int primaryColorDark,
                                             boolean generateTint) {
         this.mPrimaryColorDark = primaryColorDark;
         if (generateTint) {
-            this.mTintPrimaryColorDark = DynamicColorUtils.getTintColor(primaryColorDark);
+            setTintPrimaryColorDark(DynamicColorUtils.getTintColor(primaryColorDark));
         }
 
         return this;
     }
 
     /**
-     * Setter for {@link #mPrimaryColorDark}. It will automatically generate
-     * tint color also.
+     * Set the dark primary color used by the application.
+     * It will automatically generate the tint color also.
+     *
+     * @param primaryColorDark The dark primary color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      *
      * @see #setPrimaryColorDark(int, boolean)
+     * @see #setTintPrimaryColorDark(int)
      */
     public DynamicTheme setPrimaryColorDark(@ColorInt int primaryColorDark) {
         return setPrimaryColorDark(primaryColorDark, true);
     }
 
     /**
-     * Getter for {@link #mAccentColor}.
+     * @return The accent color used by the application.
      */
     public @ColorInt int getAccentColor() {
         return mLocalContext != null ? mLocalAccentColor : mAccentColor;
     }
 
     /**
-     * Setter for {@link #mAccentColor}.
+     * Set the accent color used by the application.
      *
-     * @param accentColor Color to set.
-     * @param generateTint {@code true} to generate tint color automatically.
+     * @param accentColor The accent color to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintAccentColor(int)
      */
     public DynamicTheme setAccentColor(@ColorInt int accentColor, boolean generateTint) {
         this.mAccentColor = accentColor;
         if (generateTint) {
-            this.mTintAccentColor = DynamicColorUtils.getTintColor(accentColor);
+            setTintAccentColor(DynamicColorUtils.getTintColor(accentColor));
         }
 
         return this;
     }
 
     /**
-     * Setter for {@link #mAccentColor}. It will automatically generate
-     * tint color also.
+     * Set the accent color used by the application.
+     * It will automatically generate the tint color also.
+     *
+     * @param accentColor The accent color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      *
      * @see #setAccentColor(int, boolean)
+     * @see #setTintAccentColor(int)
      */
     public DynamicTheme setAccentColor(@ColorInt int accentColor) {
         return setAccentColor(accentColor, true);
     }
 
     /**
-     * Getter for {@link #mAccentColorDark}.
+     * @return The dark accent color used by the application.
      */
     public @ColorInt int getAccentColorDark() {
         return mLocalContext != null ? mLocalAccentColorDark : mAccentColorDark;
     }
 
     /**
-     * Setter for {@link #mAccentColorDark}.
+     * Set the dark accent color used by the application.
      *
-     * @param accentColorDark Color to set.
-     * @param generateTint {@code true} to generate tint color automatically.
+     * @param accentColorDark The dark accent color to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintAccentColorDark(int)
      */
     public DynamicTheme setAccentColorDark(@ColorInt int accentColorDark,
                                            boolean generateTint) {
         this.mAccentColorDark = accentColorDark;
         if (generateTint) {
-            this.mTintAccentColorDark = DynamicColorUtils.getTintColor(accentColorDark);
+            setTintAccentColorDark(DynamicColorUtils.getTintColor(accentColorDark));
         }
 
         return this;
     }
 
     /**
-     * Setter for {@link #mTintRemoteAccentColor}. It will automatically generate
-     * tint color also.
+     * Set the dark accent color used by the application.
+     * It will automatically generate the tint color also.
+     *
+     * @param accentColorDark The dark accent color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      *
      * @see #setAccentColorDark(int, boolean)
+     * @see #setTintAccentColorDark(int)
      */
     public DynamicTheme setAccentColorDark(@ColorInt int accentColorDark) {
         return setAccentColorDark(accentColorDark, true);
     }
 
     /**
-     * Getter for {@link #mTintBackgroundColor}.
+     * @return The background tint color used by the application.
      */
     public @ColorInt int getTintBackgroundColor() {
         return mLocalContext != null ? mTintLocalBackgroundColor : mTintBackgroundColor;
     }
 
     /**
-     * Setter for {@link #mTintBackgroundColor}.
+     * Set the background tint color used by the application.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @param tintBackgroundColor The background tint color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme setTintBackgroundColor(@ColorInt int tintBackgroundColor) {
         this.mTintBackgroundColor = tintBackgroundColor;
@@ -717,17 +792,19 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Getter for {@link #mTintPrimaryColor}.
+     * @return The primary tint color used by the application.
      */
     public @ColorInt int getTintPrimaryColor() {
         return mLocalContext != null ? mTintLocalPrimaryColor : mTintPrimaryColor;
     }
 
     /**
-     * Setter for {@link #mTintPrimaryColor}.
+     * Set the primary tint color used by the application.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @param tintPrimaryColor The primary tint color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme setTintPrimaryColor(@ColorInt int tintPrimaryColor) {
         this.mTintPrimaryColor = tintPrimaryColor;
@@ -736,17 +813,19 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Getter for {@link #mTintPrimaryColorDark}.
+     * @return The dark primary tint color used by the application.
      */
     public @ColorInt int getTintPrimaryColorDark() {
         return mLocalContext != null ? mTintLocalPrimaryColorDark : mTintPrimaryColorDark;
     }
 
     /**
-     * Setter for {@link #mTintPrimaryColorDark}.
+     * Set the dark primary tint color used by the application.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @param tintPrimaryColorDark The dark primary tint color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme setTintPrimaryColorDark(@ColorInt int tintPrimaryColorDark) {
         this.mTintPrimaryColorDark = tintPrimaryColorDark;
@@ -755,17 +834,19 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Getter for {@link #mTintAccentColor}.
+     * @return The accent tint color used by the application.
      */
     public @ColorInt int getTintAccentColor() {
         return mLocalContext != null ? mTintLocalAccentColor : mTintAccentColor;
     }
 
     /**
-     * Setter for {@link #mTintAccentColor}.
+     * Set the accent tint color used by the application.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @param tintAccentColor The accent tint color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme setTintAccentColor(@ColorInt int tintAccentColor) {
         this.mTintAccentColor = tintAccentColor;
@@ -774,7 +855,7 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Getter for {@link #mTintAccentColorDark}.
+     * @return The dark accent tint color used by the application.
      */
     public @ColorInt int getTintAccentColorDark() {
         return mLocalContext != null ? mTintLocalAccentColorDark : mTintAccentColorDark;
@@ -782,10 +863,12 @@ public class DynamicTheme implements DynamicListener {
 
 
     /**
-     * Setter for {@link #mLocalAccentColorDark}.
+     * Set the dark accent tint color used by the application.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @param tintAccentColorDark The dark accent tint color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme setTintAccentColorDark(@ColorInt int tintAccentColorDark) {
         this.mTintAccentColorDark = tintAccentColorDark;
@@ -794,108 +877,179 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Getter for {@link #mRemoteBackgroundColor}.
+     * @return The remote background color used by the application.
      */
     public @ColorInt int getRemoteBackgroundColor() {
         return mRemoteBackgroundColor;
     }
 
     /**
-     * Setter for {@link #mRemoteBackgroundColor}.
+     * Set the remote background color used by the application.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @param remoteBackgroundColor The remote background color
+     *                              to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintRemoteBackgroundColor(int)
      */
-    public DynamicTheme setRemoteBackgroundColor(int remoteBackgroundColor) {
+    public DynamicTheme setRemoteBackgroundColor(@ColorInt int remoteBackgroundColor,
+                                                 boolean generateTint) {
         this.mRemoteBackgroundColor = remoteBackgroundColor;
+        if (generateTint) {
+            setTintRemoteBackgroundColor(DynamicColorUtils.getTintColor(remoteBackgroundColor));
+        }
 
         return this;
     }
 
     /**
-     * Getter for {@link #mRemotePrimaryColor}.
+     * Set the remote background color used by the application.
+     * It will automatically generate the tint color also.
+     *
+     * @param remoteBackgroundColor The remote background color to
+     *                              be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setRemoteBackgroundColor(int, boolean)
+     * @see #setTintRemoteBackgroundColor(int)
+     */
+    public DynamicTheme setRemoteBackgroundColor(@ColorInt int remoteBackgroundColor) {
+        return setRemoteBackgroundColor(remoteBackgroundColor, true);
+    }
+
+    /**
+     * @return The remote primary color used by the application.
      */
     public @ColorInt int getRemotePrimaryColor() {
         return mRemotePrimaryColor;
     }
 
     /**
-     * Setter for {@link #mRemotePrimaryColor}.
+     * Set the remote primary color used by the application.
      *
-     * @param remotePrimaryColor Color to set.
-     * @param generateTint {@code true} to generate tint color automatically.
+     * @param remotePrimaryColor The remote primary color to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintRemotePrimaryColor(int)
      */
     public DynamicTheme setRemotePrimaryColor(
             @ColorInt int remotePrimaryColor, boolean generateTint) {
         this.mRemotePrimaryColor = remotePrimaryColor;
         if (generateTint) {
-            this.mTintRemotePrimaryColor = DynamicColorUtils.getTintColor(remotePrimaryColor);
+            setTintRemotePrimaryColor(DynamicColorUtils.getTintColor(remotePrimaryColor));
         }
 
         return this;
     }
 
     /**
-     * Setter for {@link #mRemotePrimaryColor}. It will automatically generate
-     * tint color also.
+     * Set the remote primary color used by the application.
+     * It will automatically generate the tint color also.
+     *
+     * @param remotePrimaryColor The remote primary color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      *
      * @see #setRemotePrimaryColor(int, boolean)
+     * @see #setTintRemotePrimaryColor(int)
      */
     public DynamicTheme setRemotePrimaryColor(@ColorInt int remotePrimaryColor) {
         return setRemotePrimaryColor(remotePrimaryColor, true);
     }
 
     /**
-     * Getter for {@link #mRemoteAccentColor}.
+     * @return The remote accent color used by the application.
      */
     public @ColorInt int getRemoteAccentColor() {
         return mRemoteAccentColor;
     }
 
     /**
-     * Setter for {@link #mRemoteAccentColor}.
+     * Set the remote accent color used by the application.
      *
-     * @param remoteAccentColor Color to set.
-     * @param generateTint {@code true} to generate tint color automatically.
+     * @param remoteAccentColor The remote accent color to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintRemoteAccentColor(int)
      */
     public DynamicTheme setRemoteAccentColor(@ColorInt int remoteAccentColor,
                                              boolean generateTint) {
         this.mRemoteAccentColor = remoteAccentColor;
         if (generateTint) {
-            this.mTintRemoteAccentColor = DynamicColorUtils.getTintColor(remoteAccentColor);
+            setTintRemoteAccentColor(DynamicColorUtils.getTintColor(remoteAccentColor));
         }
 
         return this;
     }
 
     /**
-     * Setter for {@link #mRemoteAccentColor}. It will automatically generate
-     * tint color also.
+     * Set the remote accent color used by the application.
+     * It will automatically generate the tint color also.
+     *
+     * @param remoteAccentColor The remote accent color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      *
      * @see #setRemoteAccentColor(int, boolean)
+     * @see #setTintRemoteAccentColor(int)
      */
     public DynamicTheme setRemoteAccentColor(@ColorInt int remoteAccentColor) {
         return setRemoteAccentColor(remoteAccentColor, true);
     }
 
     /**
-     * Getter for {@link #mTintRemotePrimaryColor}.
+     * @return The remote background tint color used by the application.
+     */
+    public @ColorInt int getTintRemoteBackgroundColor() {
+        return mTintRemoteBackgroundColor;
+    }
+
+    /**
+     * Set the remote background tint color used by the application.
+     *
+     * @param tintRemoteBackgroundColor The remote background tint
+     *                                  color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     */
+    public DynamicTheme setTintRemoteBackgroundColor(@ColorInt int tintRemoteBackgroundColor) {
+        this.mTintRemoteBackgroundColor = tintRemoteBackgroundColor;
+
+        return this;
+    }
+
+    /**
+     * @return The remote primary tint color used by the application.
      */
     public @ColorInt int getTintRemotePrimaryColor() {
         return mTintRemotePrimaryColor;
     }
 
     /**
-     * Setter for {@link #mTintRemotePrimaryColor}.
+     * Set the remote primary tint color used by the application.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @param tintRemotePrimaryColor The remote primary tint color
+     *                               to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme setTintRemotePrimaryColor(@ColorInt int tintRemotePrimaryColor) {
         this.mTintRemotePrimaryColor = tintRemotePrimaryColor;
@@ -904,17 +1058,20 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Getter for {@link #mTintRemoteAccentColor}.
+     * @return The remote accent tint color used by the application.
      */
     public @ColorInt int getTintRemoteAccentColor() {
         return mTintRemoteAccentColor;
     }
 
     /**
-     * Setter for {@link #mTintRemoteAccentColor}.
+     * Set the remote accent tint color used by the application.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @param tintRemoteAccentColor The remote accent tint color
+     *                              to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme setTintRemoteAccentColor(@ColorInt int tintRemoteAccentColor) {
         this.mTintRemoteAccentColor = tintRemoteAccentColor;
@@ -923,39 +1080,74 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Getter for {@link #mNotificationBackgroundColor}.
+     * @return The background color used by the notification.
      */
     public @ColorInt int getNotificationBackgroundColor() {
         return mNotificationBackgroundColor;
     }
 
     /**
-     * Setter for {@link #mNotificationBackgroundColor}.
+     * Set the background color used by the notification.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @param notificationBackgroundColor The notification background
+     *                                    color to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintNotificationBackgroundColor(int)
      */
-    public DynamicTheme setNotificationBackgroundColor(int notificationBackgroundColor) {
+    public DynamicTheme setNotificationBackgroundColor(
+            @ColorInt int notificationBackgroundColor, boolean generateTint) {
         this.mNotificationBackgroundColor = notificationBackgroundColor;
+        if (generateTint) {
+            setTintNotificationBackgroundColor(
+                    DynamicColorUtils.getTintColor(notificationBackgroundColor));
+        }
 
         return this;
     }
 
     /**
-     * Getter for {@link #mNotificationPrimaryColor}.
+     * Set the background color used by the notification.
+     * It will automatically generate the tint color also.
+     *
+     * @param notificationBackgroundColor The notification background
+     *                                    color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setNotificationBackgroundColor(int, boolean)
+     * @see #setTintNotificationBackgroundColor(int)
+     */
+    public DynamicTheme setNotificationBackgroundColor(
+            @ColorInt int notificationBackgroundColor) {
+        return setNotificationBackgroundColor(
+                notificationBackgroundColor, true);
+    }
+
+    /**
+     * @return The primary color used by the notification.
      */
     public @ColorInt int getNotificationPrimaryColor() {
         return mNotificationPrimaryColor;
     }
 
     /**
-     * Setter for {@link #mNotificationPrimaryColor}.
+     * Set the primary color used by the notification.
      *
-     * @param notificationPrimaryColor Color to set.
-     * @param generateTint {@code true} to generate tint color automatically.
+     * @param notificationPrimaryColor The notification primary
+     *                                 color to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintNotificationPrimaryColor(int)
      */
     public DynamicTheme setNotificationPrimaryColor(@ColorInt int notificationPrimaryColor,
                                                     boolean generateTint) {
@@ -969,30 +1161,41 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Setter for {@link #mNotificationPrimaryColor}. It will automatically generate
-     * tint color also.
+     * Set the primary color used by the notification.
+     * It will automatically generate the tint color also.
+     *
+     * @param notificationPrimaryColor The notification primary
+     *                                 color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      *
      * @see #setNotificationPrimaryColor(int, boolean)
+     * @see #setTintNotificationPrimaryColor(int)
      */
     public DynamicTheme setNotificationPrimaryColor(@ColorInt int notificationPrimaryColor) {
         return setNotificationPrimaryColor(notificationPrimaryColor, true);
     }
 
     /**
-     * Getter for {@link #mNotificationAccentColor}.
+     * @return The accent color used by the notification.
      */
     public @ColorInt int getNotificationAccentColor() {
         return mNotificationAccentColor;
     }
 
     /**
-     * Setter for {@link #mNotificationAccentColor}.
+     * Set the accent color used by the notification.
      *
-     * @param notificationAccentColor Color to set.
-     * @param generateTint {@code true} to generate tint color automatically.
+     * @param notificationAccentColor The notification accent
+     *                                color to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintNotificationAccentColor(int)
      */
     public DynamicTheme setNotificationAccentColor(@ColorInt int notificationAccentColor,
                                                    boolean generateTint) {
@@ -1006,27 +1209,60 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Setter for {@link #mNotificationAccentColor}. It will automatically generate
-     * tint color also.
+     * Set the accent color used by the notification.
+     * It will automatically generate the tint color also.
+     *
+     * @param notificationAccentColor The notification accent
+     *                                color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      *
      * @see #setNotificationAccentColor(int, boolean)
+     * @see #setTintNotificationAccentColor(int)
      */
     public DynamicTheme setNotificationAccentColor(@ColorInt int notificationAccentColor) {
         return setNotificationAccentColor(notificationAccentColor, true);
     }
 
     /**
-     * Getter for {@link #mTintNotificationPrimaryColor}.
+     * @return The background tint color used by the notification.
+     */
+    public @ColorInt int getTintNotificationBackgroundColor() {
+        return mTintNotificationBackgroundColor;
+    }
+
+    /**
+     * Sets background tint color used by the notification.
+     *
+     * @param tintNotificationBackgroundColor The background tint color
+     *                                        to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     */
+    public DynamicTheme setTintNotificationBackgroundColor(
+            @ColorInt int tintNotificationBackgroundColor) {
+        this.mTintNotificationBackgroundColor = tintNotificationBackgroundColor;
+
+        return this;
+    }
+
+    /**
+     * @return The primary tint color used by the notification.
      */
     public @ColorInt int getTintNotificationPrimaryColor() {
         return mTintNotificationPrimaryColor;
     }
 
     /**
-     * Setter for {@link #mTintNotificationPrimaryColor}.
+     * Sets primary tint color used by the notification.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @param tintNotificationPrimaryColor The primary tint color
+     *                                     to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme setTintNotificationPrimaryColor(
             @ColorInt int tintNotificationPrimaryColor) {
@@ -1036,17 +1272,20 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Getter for {@link #mTintNotificationAccentColor}.
+     * @return The accent tint color used by the notification.
      */
     public @ColorInt int getTintNotificationAccentColor() {
         return mTintNotificationAccentColor;
     }
 
     /**
-     * Setter for {@link #mTintNotificationAccentColor}.
+     * Sets accent tint color used by the notification.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @param tintNotificationAccentColor The accent tint color
+     *                                    to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme setTintNotificationAccentColor(
             @ColorInt int tintNotificationAccentColor) {
@@ -1056,110 +1295,180 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Getter for {@link #mWidgetBackgroundColor}.
+     * @return The background color used by the widget.
      */
     public @ColorInt int getWidgetBackgroundColor() {
         return mWidgetBackgroundColor;
     }
 
     /**
-     * Setter for {@link #mWidgetBackgroundColor}.
+     * Set the background color used by the widget.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @param widgetBackgroundColor The widget background color
+     *                              to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintWidgetBackgroundColor(int)
      */
-    public DynamicTheme setWidgetBackgroundColor(int widgetBackgroundColor) {
+    public DynamicTheme setWidgetBackgroundColor(@ColorInt int widgetBackgroundColor,
+                                                 boolean generateTint) {
         this.mWidgetBackgroundColor = widgetBackgroundColor;
+        if (generateTint) {
+            setTintWidgetBackgroundColor(DynamicColorUtils.getTintColor(widgetBackgroundColor));
+        }
 
         return this;
     }
 
     /**
-     * Getter for {@link #mWidgetPrimaryColor}.
+     * Set the background color used by the widget.
+     * It will automatically generate the tint color also.
+     *
+     * @param widgetBackgroundColor The widget background color to
+     *                              be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setWidgetBackgroundColor(int, boolean)
+     * @see #setTintWidgetBackgroundColor(int)
+     */
+    public DynamicTheme setWidgetBackgroundColor(@ColorInt int widgetBackgroundColor) {
+        return setWidgetBackgroundColor(widgetBackgroundColor, true);
+    }
+
+    /**
+     * @return The primary color used by the widget.
      */
     public @ColorInt int getWidgetPrimaryColor() {
         return mWidgetPrimaryColor;
     }
 
     /**
-     * Setter for {@link #mWidgetPrimaryColor}.
+     * Set the primary color used by the widget.
      *
-     * @param widgetPrimaryColor Color to set.
-     * @param generateTint {@code true} to generate tint color automatically.
+     * @param widgetPrimaryColor The widget primary color
+     *                           to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintWidgetPrimaryColor(int)
      */
     public DynamicTheme setWidgetPrimaryColor(@ColorInt int widgetPrimaryColor,
                                               boolean generateTint) {
         this.mWidgetPrimaryColor = widgetPrimaryColor;
         if (generateTint) {
-            this.mTintWidgetPrimaryColor =
-                    DynamicColorUtils.getTintColor(widgetPrimaryColor);
+            setTintWidgetPrimaryColor(DynamicColorUtils.getTintColor(widgetPrimaryColor));
         }
 
         return this;
     }
 
     /**
-     * Setter for {@link #mWidgetPrimaryColor}. It will automatically generate
-     * tint color also.
+     * Set the primary color used by the widget.
+     * It will automatically generate the tint color also.
+     *
+     * @param widgetPrimaryColor The widget primary color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      *
      * @see #setWidgetPrimaryColor(int, boolean)
+     * @see #setTintWidgetPrimaryColor(int)
      */
     public DynamicTheme setWidgetPrimaryColor(@ColorInt int widgetPrimaryColor) {
         return setWidgetPrimaryColor(widgetPrimaryColor, true);
     }
 
     /**
-     * Getter for {@link #mWidgetAccentColor}.
+     * @return The accent color used by the widget.
      */
     public @ColorInt int getWidgetAccentColor() {
         return mWidgetAccentColor;
     }
 
     /**
-     * Setter for {@link #mWidgetAccentColor}.
+     * Set the accent color used by the widget.
      *
-     * @param widgetAccentColor Color to set.
-     * @param generateTint {@code true} to generate tint color automatically.
+     * @param widgetAccentColor The widget accent color to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintWidgetAccentColor(int)
      */
     public DynamicTheme setWidgetAccentColor(@ColorInt int widgetAccentColor,
                                              boolean generateTint) {
         this.mWidgetAccentColor = widgetAccentColor;
         if (generateTint) {
-            this.mTintWidgetAccentColor =
-                    DynamicColorUtils.getTintColor(widgetAccentColor);
+            setTintWidgetAccentColor(DynamicColorUtils.getTintColor(widgetAccentColor));
         }
 
         return this;
     }
 
     /**
-     * Setter for {@link #mWidgetAccentColor}. It will automatically generate
-     * tint color also.
+     * Set the accent color used by the widget.
+     * It will automatically generate the tint color also.
+     *
+     * @param widgetAccentColor The widget accent color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      *
      * @see #setWidgetAccentColor(int, boolean)
+     * @see #setTintWidgetAccentColor(int)
      */
     public DynamicTheme setWidgetAccentColor(@ColorInt int widgetAccentColor) {
         return setWidgetAccentColor(widgetAccentColor, true);
     }
 
     /**
-     * Getter for {@link #mTintWidgetPrimaryColor}.
+     * @return The background tint color used by the widget.
+     */
+    public @ColorInt int getTintWidgetBackgroundColor() {
+        return mTintWidgetBackgroundColor;
+    }
+
+    /**
+     * Sets background tint color used by the widget.
+     *
+     * @param tintWidgetBackgroundColor The background tint color
+     *                                  to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     */
+    public DynamicTheme setTintWidgetBackgroundColor(@ColorInt int tintWidgetBackgroundColor) {
+        this.mTintWidgetBackgroundColor = tintWidgetBackgroundColor;
+
+        return this;
+    }
+
+    /**
+     * @return The primary tint color used by the widget.
      */
     public @ColorInt int getTintWidgetPrimaryColor() {
         return mTintWidgetPrimaryColor;
     }
 
     /**
-     * Setter for {@link #mTintWidgetPrimaryColor}.
+     * Sets primary tint color used by the widget.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @param tintWidgetPrimaryColor The primary tint color
+     *                               to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme setTintWidgetPrimaryColor(@ColorInt int tintWidgetPrimaryColor) {
         this.mTintWidgetPrimaryColor = tintWidgetPrimaryColor;
@@ -1168,17 +1477,20 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Getter for {@link #mTintWidgetAccentColor}.
+     * @return The accent tint color used by the widget.
      */
     public @ColorInt int getTintWidgetAccentColor() {
         return mTintWidgetAccentColor;
     }
 
     /**
-     * Setter for {@link #mTintWidgetAccentColor}.
+     * Sets accent tint color used by the widget.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @param tintWidgetAccentColor The accent tint color
+     *                              to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme setTintWidgetAccentColor(@ColorInt int tintWidgetAccentColor) {
         this.mTintWidgetAccentColor = tintWidgetAccentColor;
@@ -1187,17 +1499,23 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Getter for {@link #mLocalBackgroundColor}.
+     * @return The background color used by the local context.
      */
     public @ColorInt int getLocalBackgroundColor() {
         return mLocalBackgroundColor;
     }
 
     /**
-     * Setter for {@link #mLocalBackgroundColor}.
+     * Set the background color used by the local context.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @param localBackgroundColor The background color to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintLocalBackgroundColor(int)
      */
     public DynamicTheme setLocalBackgroundColor(@ColorInt int localBackgroundColor,
                                                 boolean generateTint) {
@@ -1211,49 +1529,39 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Setter for {@link #mLocalBackgroundColor}. It will automatically generate
-     * tint color also.
+     * Set the background color used by the local context.
+     * It will automatically generate the tint color also.
      *
-     * @see #setLocalBackgroundColor(int)
+     * @param localBackgroundColor The background color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setLocalBackgroundColor(int, boolean)
+     * @see #setTintLocalBackgroundColor(int)
      */
     public DynamicTheme setLocalBackgroundColor(@ColorInt int localBackgroundColor) {
         return setLocalBackgroundColor(localBackgroundColor, true);
     }
 
     /**
-     * Getter for {@link #mTintLocalBackgroundColor}.
-     */
-    public @ColorInt int getTintLocalBackgroundColor() {
-        return mTintLocalBackgroundColor;
-    }
-
-    /**
-     * Setter for {@link #mTintLocalBackgroundColor}.
-     *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
-     */
-    public DynamicTheme setTintLocalBackgroundColor(@ColorInt int tintLocalBackgroundColor) {
-        this.mTintLocalBackgroundColor = tintLocalBackgroundColor;
-
-        return this;
-    }
-
-    /**
-     * Getter for {@link #mLocalPrimaryColor}.
+     * @return The primary color used by the local context.
      */
     public @ColorInt int getLocalPrimaryColor() {
         return mLocalPrimaryColor;
     }
 
     /**
-     * Setter for {@link #mLocalPrimaryColor}.
+     * Set the primary color used by the local context.
      *
-     * @param localPrimaryColor Color to set.
-     * @param generateTint {@code true} to generate tint color automatically.
+     * @param localPrimaryColor The primary color to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintLocalPrimaryColor(int)
      */
     public DynamicTheme setLocalPrimaryColor(@ColorInt int localPrimaryColor,
                                              boolean generateTint) {
@@ -1266,30 +1574,39 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Setter for {@link #mLocalPrimaryColor}. It will automatically generate
-     * tint color also.
+     * Set the primary color used by the local context.
+     * It will automatically generate the tint color also.
      *
-     * @see #setLocalAccentColor(int, boolean)
+     * @param localPrimaryColor The primary color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setLocalPrimaryColor(int, boolean)
+     * @see #setTintLocalPrimaryColor(int)
      */
     public DynamicTheme setLocalPrimaryColor(@ColorInt int localPrimaryColor) {
         return setLocalPrimaryColor(localPrimaryColor, true);
     }
 
     /**
-     * Getter for {@link #mLocalPrimaryColorDark}.
+     * @return The dark primary color used by the local context.
      */
     public @ColorInt int getLocalPrimaryColorDark() {
         return mLocalPrimaryColorDark;
     }
 
     /**
-     * Setter for {@link #mLocalPrimaryColorDark}.
+     * Set the dark primary color used by the local context.
      *
-     * @param localPrimaryColorDark Color to set.
-     * @param generateTint {@code true} to generate tint color automatically.
+     * @param localPrimaryColorDark The dark primary color to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintLocalPrimaryColorDark(int)
      */
     public DynamicTheme setLocalPrimaryColorDark(@ColorInt int localPrimaryColorDark,
                                                  boolean generateTint) {
@@ -1303,30 +1620,39 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Setter for {@link #mLocalPrimaryColorDark}. It will automatically generate
-     * tint color also.
+     * Set the dark primary color used by the local context.
+     * It will automatically generate the tint color also.
      *
-     * @see #setLocalAccentColor(int, boolean)
+     * @param localPrimaryColorDark The dark primary color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setLocalPrimaryColorDark(int, boolean)
+     * @see #setTintLocalPrimaryColorDark(int)
      */
     public DynamicTheme setLocalPrimaryColorDark(@ColorInt int localPrimaryColorDark) {
         return setLocalPrimaryColorDark(localPrimaryColorDark, true);
     }
 
     /**
-     * Getter for {@link #mLocalAccentColor}.
+     * @return The accent color used by the local context.
      */
     public @ColorInt int getLocalAccentColor() {
         return mLocalAccentColor;
     }
 
     /**
-     * Setter for {@link #mLocalAccentColor}.
+     * Set the accent color used by the local context.
      *
-     * @param localAccentColor Color to set.
-     * @param generateTint {@code true} to generate tint color automatically.
+     * @param localAccentColor The accent color to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintLocalAccentColor(int)
      */
     public DynamicTheme setLocalAccentColor(@ColorInt int localAccentColor,
                                             boolean generateTint) {
@@ -1339,30 +1665,39 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Setter for {@link #mLocalAccentColor}. It will automatically generate
-     * tint color also.
+     * Set the accent color used by the local context.
+     * It will automatically generate the tint color also.
+     *
+     * @param localAccentColor The accent color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      *
      * @see #setLocalAccentColor(int, boolean)
+     * @see #setTintLocalAccentColor(int)
      */
     public DynamicTheme setLocalAccentColor(@ColorInt int localAccentColor) {
         return setLocalAccentColor(localAccentColor, true);
     }
 
     /**
-     * Getter for {@link #mLocalAccentColorDark}.
+     * @return The dark accent color used by the local context.
      */
     public @ColorInt int getLocalAccentColorDark() {
         return mLocalAccentColorDark;
     }
 
     /**
-     * Setter for {@link #mLocalAccentColorDark}.
+     * Set the dark accent color used by the local context.
      *
-     * @param localAccentColorDark Color to set.
-     * @param generateTint {@code true} to generate tint color automatically.
+     * @param localAccentColorDark The dark accent color to be set.
+     * @param generateTint {@code true} to automatically generate
+     *                     the tint color also.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     *
+     * @see #setTintLocalAccentColorDark(int)
      */
     public DynamicTheme setLocalAccentColorDark(@ColorInt int localAccentColorDark,
                                                 boolean generateTint) {
@@ -1376,27 +1711,56 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Setter for {@link #mLocalAccentColorDark}. It will automatically generate
-     * tint color also.
+     * Set the dark accent color used by the local context.
+     * It will automatically generate the tint color also.
+     *
+     * @param localAccentColorDark The dark accent color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      *
      * @see #setLocalAccentColorDark(int, boolean)
+     * @see #setTintLocalAccentColorDark(int)
      */
     public DynamicTheme setLocalAccentColorDark(@ColorInt int localAccentColorDark) {
         return setLocalAccentColorDark(localAccentColorDark, true);
     }
 
     /**
-     * Getter for {@link #mTintLocalPrimaryColor}.
+     * @return The background tint color used by the local context.
+     */
+    public @ColorInt int getTintLocalBackgroundColor() {
+        return mTintLocalBackgroundColor;
+    }
+
+    /**
+     * Set the background tint color used by the local context.
+     *
+     * @param tintLocalBackgroundColor The background tint color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
+     */
+    public DynamicTheme setTintLocalBackgroundColor(@ColorInt int tintLocalBackgroundColor) {
+        this.mTintLocalBackgroundColor = tintLocalBackgroundColor;
+
+        return this;
+    }
+
+    /**
+     * @return The primary tint color used by the local context.
      */
     public @ColorInt int getTintLocalPrimaryColor() {
         return mTintLocalPrimaryColor;
     }
 
     /**
-     * Setter for {@link #mTintLocalPrimaryColor}.
+     * Set the primary tint color used by the local context.
      *
-     * @return {@link DynamicTheme} object to allow for chaining of calls
-     *         to set methods.
+     * @param tintLocalPrimaryColor The primary tint color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme setTintLocalPrimaryColor(@ColorInt int tintLocalPrimaryColor) {
         this.mTintLocalPrimaryColor = tintLocalPrimaryColor;
@@ -1405,14 +1769,20 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Getter for {@link #mTintLocalPrimaryColorDark}.
+     * @return The dark primary tint color used by the local context.
      */
     public @ColorInt int getTintLocalPrimaryColorDark() {
         return mTintLocalPrimaryColorDark;
     }
 
     /**
-     * Setter for {@link #mTintLocalPrimaryColorDark}.
+     * Set the dark primary tint color used by the local context.
+     *
+     * @param tintLocalPrimaryColorDark The dark primary tint color
+     *                                  to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme setTintLocalPrimaryColorDark(@ColorInt int tintLocalPrimaryColorDark) {
         this.mTintLocalPrimaryColorDark = tintLocalPrimaryColorDark;
@@ -1421,14 +1791,19 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Getter for {@link #mTintLocalAccentColor}.
+     * @return The accent tint color used by the local context.
      */
     public @ColorInt int getTintLocalAccentColor() {
         return mTintLocalAccentColor;
     }
 
     /**
-     * Setter for {@link #mTintLocalAccentColor}.
+     * Set the accent tint color used by the local context.
+     *
+     * @param tintLocalAccentColor The accent tint color to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme setTintLocalAccentColor(@ColorInt int tintLocalAccentColor) {
         this.mTintLocalAccentColor = tintLocalAccentColor;
@@ -1437,14 +1812,20 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Getter for {@link #mTintLocalAccentColorDark}.
+     * @return The dark accent tint color used by the local context.
      */
     public @ColorInt int getTintLocalAccentColorDark() {
         return mTintLocalAccentColorDark;
     }
 
     /**
-     * Setter for {@link #mLocalPrimaryColor}.
+     * Set the dark accent tint color used by the local context.
+     *
+     * @param tintLocalAccentColorDark The dark accent tint color
+     *                                 to be set.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining
+     *         of calls to set methods.
      */
     public DynamicTheme setTintLocalAccentColorDark(@ColorInt int tintLocalAccentColorDark) {
         this.mTintLocalAccentColorDark = tintLocalAccentColorDark;
@@ -1453,7 +1834,7 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Re-create local activity to update all the views with new theme.
+     * Recreate local activity to update all the views with new theme.
      */
     public void recreateLocal() {
         if (mLocalContext == null) {
@@ -1468,8 +1849,8 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Set {@link #sInstance} to null when app exits for better theme
-     * results when theme is changed.
+     * Set the initialized instance to {@code null} when app
+     * terminates for better theme results when theme is changed.
      */
     public void onDestroy() {
         if (sInstance == null) {
@@ -1486,8 +1867,8 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Set {@link #sInstance} to null when app exits for better theme
-     * results when theme is changed.
+     * Set the initialized instance to {@code null} when local
+     * destroys for better theme results when theme is changed.
      */
     public void onLocalDestroy() {
         if (sInstance == null) {
@@ -1500,23 +1881,28 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Get the currently used context. Generally either the application or
-     * an activity
+     * @return The currently used context. Generally either the
+     *         application or an activity
      */
     private Context getResolvedContext() {
         return mLocalContext != null ? mLocalContext : mContext;
     }
 
     /**
-     * Get the default contrast with color to tint the background aware views
-     * accordingly.
+     * @return The default contrast with color to tint the background
+     *         aware views accordingly.
      */
     public @ColorInt int getDefaultContrastWith() {
         return mLocalContext != null ? mLocalBackgroundColor : mBackgroundColor;
     }
 
     /**
-     * Add DynamicThemeListener to {@link #mDynamicListeners}.
+     * Add a dynamic listener to receive the various callbacks.
+     *
+     * @param dynamicThemeListener The dynamic listener to be
+     *                             added.
+     *
+     * @see DynamicListener
      */
     public void addDynamicThemeListener(@NonNull Context dynamicThemeListener) {
         if (dynamicThemeListener instanceof DynamicListener
@@ -1526,7 +1912,12 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Remove DynamicThemeListener from {@link #mDynamicListeners}.
+     * Remove a dynamic listener.
+     *
+     * @param dynamicThemeListener The dynamic listener to be
+     *                             removed.
+     *
+     * @see DynamicListener
      */
     public void removeDynamicThemeListener(@NonNull Context dynamicThemeListener) {
         if (dynamicThemeListener instanceof DynamicListener) {
@@ -1535,7 +1926,7 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Remove all the DynamicThemeListeners from {@link #mDynamicListeners}.
+     * Remove all the dynamic listeners.
      */
     public void clearDynamicThemeListener() {
         if (!mDynamicListeners.isEmpty()) {
@@ -1600,7 +1991,7 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Save the {@link #mLocalContext} in shared preferences.
+     * Save the local context theme in shared preferences.
      */
     public void saveLocalTheme() {
         if (mLocalContext != null) {
@@ -1610,11 +2001,9 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
-     * Get the supplied context theme from shared preferences.
+     * @return The supplied context theme from shared preferences.
      *
      * @param context The context to retrieve the theme.
-     *
-     * @return The supplied context theme from the shared preferences.
      */
     public @Nullable String getLocalTheme(@NonNull Context context) {
         return DynamicPreferences.getInstance().loadPrefs(ADS_PREF_THEME,

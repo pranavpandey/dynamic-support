@@ -31,7 +31,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * A CardView to change its background color according to the
- * supplied {@link R.attr#ads_colorType}.
+ * supplied parameters.
  */
 public class DynamicCardView extends CardView implements DynamicWidget {
 

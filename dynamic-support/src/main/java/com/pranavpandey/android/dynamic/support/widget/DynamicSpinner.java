@@ -34,7 +34,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 /**
  * An AppCompatSpinner to change its color according to the
- * supplied {@link R.attr#ads_colorType}.
+ * supplied parameters.
  */
 public class DynamicSpinner extends AppCompatSpinner implements DynamicWidget {
 

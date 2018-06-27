@@ -439,7 +439,7 @@ public final class DynamicScrollUtils {
      *
      * @param recyclerView Recycler view to set the edge effect color.
      * @param color The edge effect color.
-     * @param scrollListener Scroll DynamicTutorialListener to set color on over scroll.
+     * @param scrollListener Scroll listener to set color on over scroll.
      */
     private static void setEdgeEffectColor(
             @NonNull RecyclerView recyclerView, final @ColorInt int color,

@@ -34,7 +34,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * An AppCompatButton to change its color according to the
- * supplied {@link R.attr#ads_colorType}.
+ * supplied parameters.
  */
 public class DynamicButton extends AppCompatButton implements DynamicWidget {
 

@@ -33,7 +33,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * A NavigationView to change its selected item and edge effect color
- * according to the supplied {@link R.attr#ads_colorType}.
+ * according to the supplied parameters.
  */
 public class DynamicNavigationView extends NavigationView implements DynamicScrollableWidget {
 

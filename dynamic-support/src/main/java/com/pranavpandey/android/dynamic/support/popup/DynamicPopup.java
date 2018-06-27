@@ -50,8 +50,9 @@ import static com.pranavpandey.android.dynamic.support.popup.DynamicPopup.Dynami
 import static com.pranavpandey.android.dynamic.support.popup.DynamicPopup.DynamicPopupType.NONE;
 
 /**
- * Base {@link PopupWindow} to provide the basic functionality to its descendants.
- * Extend this class to create popup windows according to the need.
+ * Base {@link PopupWindow} to provide the basic functionality to
+ * its descendants. Extend this class to create popup windows
+ * according to the need.
  */
 public abstract class DynamicPopup {
 
@@ -79,8 +80,8 @@ public abstract class DynamicPopup {
     }
 
     /**
-     * View root to add scroll indicators if the content can be
-     * scrolled.
+     * View root to add scroll indicators if the content
+     * can be scrolled.
      */
     private View mViewRoot;
 
@@ -100,18 +101,20 @@ public abstract class DynamicPopup {
     private PopupWindow mPopupWindow;
 
     /**
-     * Setter for {@link #mAnchor}.
-     */
-    public void setAnchor(@NonNull View anchor) {
-        this.mAnchor = anchor;
-    }
-
-    /**
      * @return The anchor view to display the popup.
      */
     public @NonNull View getAnchor() {
         return mAnchor;
     };
+
+    /**
+     * Set the anchor view to display the popup.
+     *
+     * @param anchor The anchor view to be set.
+     */
+    public void setAnchor(@NonNull View anchor) {
+        this.mAnchor = anchor;
+    }
 
     /**
      * @return The header view for the popup.
@@ -133,35 +136,40 @@ public abstract class DynamicPopup {
     }
 
     /**
-     * Getter for {@link #mPopupWindow}.
+     * @return The popup window displayed by this class.
      */
     public PopupWindow getPopupWindow() {
         return mPopupWindow;
     }
 
     /**
-     * Getter for {@link #mViewRoot}.
+     * @return The view root to add scroll indicators if
+     *         the content can be scrolled.
      */
     public @Nullable View getViewRoot() {
         return mViewRoot;
     }
 
     /**
-     * Setter for {@link #mViewRoot}.
+     * Set the view root for this this popup.
+     *
+     * @param viewRoot The view root to be set.
      */
-    public void setViewRoot(@NonNull View rootView) {
-        this.mViewRoot = rootView;
+    public void setViewRoot(@NonNull View viewRoot) {
+        this.mViewRoot = viewRoot;
     }
 
     /**
-     * Getter for {@link #mViewType}.
+     * @return The view type used by this popup.
      */
     public @DynamicPopupType int getViewType() {
         return mViewType;
     }
 
     /**
-     * Setter for {@link #mViewType}.
+     * Set the view type used by this popup.
+     *
+     * @param viewType The view type to be set.
      */
     public void setViewType(@DynamicPopupType int viewType) {
         this.mViewType = viewType;
@@ -170,6 +178,9 @@ public abstract class DynamicPopup {
     /**
      * Build this popup and make it ready to show. Please call
      * {@link #show()} method to show the popup.
+     *
+     * @return The popup after building it according to the
+     *         supplied parameters.
      */
     protected abstract @NonNull DynamicPopup build();
 

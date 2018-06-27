@@ -34,7 +34,7 @@ public interface DynamicListener {
      * @param context {@code true} if there is a context change and it
      *                must be reinitialized.
      *
-     * @param recreate {@code true} if DynamicTutorialListener must be
+     * @param recreate {@code true} if listener must be
      *                 recreated to adapt the changes.
      */
     void onDynamicChange(boolean context, boolean recreate);

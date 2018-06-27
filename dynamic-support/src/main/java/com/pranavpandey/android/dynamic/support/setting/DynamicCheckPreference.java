@@ -42,7 +42,7 @@ import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
 public class DynamicCheckPreference extends DynamicPreference {
 
     /**
-     * Default value for {@link #mChecked}.
+     * Default value for the checked state.
      */
     public static final boolean DEFAULT_CHECK_STATE = false;
 
@@ -57,7 +57,7 @@ public class DynamicCheckPreference extends DynamicPreference {
     private CharSequence mSummaryUnchecked;
 
     /**
-     * Checked change listener to get the callback if {@link #mSwitchCompat}
+     * Checked change listener to get the callback if switch
      * state is changed.
      */
     private CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener;
@@ -219,14 +219,18 @@ public class DynamicCheckPreference extends DynamicPreference {
     }
 
     /**
-     * Getter for {@link #mChecked}.
+     * @return {@code true} if this preference is checked.
      */
     public boolean isChecked() {
         return mChecked;
     }
 
     /**
-     * Setter for {@link #mChecked}.
+     * Set the state of the switch to be checked or
+     * unchecked.
+     *
+     * @param checked {@code true} if this preference
+     *                is checked.
      */
     public void setChecked(boolean checked) {
         this.mChecked = checked;
@@ -237,14 +241,16 @@ public class DynamicCheckPreference extends DynamicPreference {
     }
 
     /**
-     * Getter for {@link #mSummaryUnchecked}.
+     * @return The optional summary for the unchecked state.
      */
     public @Nullable CharSequence getSummaryUnchecked() {
         return mSummaryUnchecked;
     }
 
     /**
-     * Setter for {@link #mSummaryUnchecked}.
+     * Set the optional summary for the unchecked state.
+     *
+     * @param summaryUnchecked The unchecked summary to be set.
      */
     public void setSummaryUnchecked(@Nullable String summaryUnchecked) {
         this.mSummaryUnchecked = summaryUnchecked;
@@ -253,14 +259,18 @@ public class DynamicCheckPreference extends DynamicPreference {
     }
 
     /**
-     * Getter for {@link #mOnCheckedChangeListener}.
+     * @return The checked change listener to get the callback if
+     *         switch state is changed.
      */
     public @Nullable CompoundButton.OnCheckedChangeListener getOnCheckedChangeListener() {
         return mOnCheckedChangeListener;
     }
 
     /**
-     * Setter for {@link #mOnCheckedChangeListener}.
+     * Set the checked change listener to get the callback if
+     * switch state is changed.
+     *
+     * @param onCheckedChangeListener The listener to be set.
      */
     public void setOnCheckedChangeListener(
             @Nullable CompoundButton.OnCheckedChangeListener onCheckedChangeListener) {
@@ -268,7 +278,8 @@ public class DynamicCheckPreference extends DynamicPreference {
     }
 
     /**
-     * Getter for {@link #mActionView}.
+     * @return The button to provide a secondary action like
+     *         permission request, etc.
      */
     public Button getActionView() {
         return mActionView;

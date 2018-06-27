@@ -97,21 +97,23 @@ public class DynamicImagePreference extends DynamicSimplePreference {
     }
 
     /**
-     * Getter for {@link #mImageView}.
+     * @return The secondary image view to show the drawable.
      */
     public ImageView getImageView() {
         return mImageView;
     }
 
     /**
-     * Getter for {@link #mImageDrawable}.
+     * @return The drawable for the image view.
      */
     public @Nullable Drawable getImageDrawable() {
         return mImageDrawable;
     }
 
     /**
-     * Setter for {@link #mImageDrawable}.
+     * Set the drawable for the image view.
+     *
+     * @param imageDrawable The image drawable to be set.
      */
     public void setImageDrawable(@Nullable Drawable imageDrawable) {
         this.mImageDrawable = imageDrawable;
@@ -120,7 +122,9 @@ public class DynamicImagePreference extends DynamicSimplePreference {
     }
 
     /**
-     * Setter for {@link #mImageDrawable} via its resource id.
+     * Set the drawable for the image view.
+     *
+     * @param drawableRes The drawable resource to be set.
      */
     public void setImageResource(@DrawableRes int drawableRes) {
         setImageDrawable(DynamicResourceUtils.getDrawable(getContext(), drawableRes));

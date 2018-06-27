@@ -30,13 +30,15 @@ import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBind
 public abstract class DynamicRecyclerViewBinder<T extends RecyclerView.ViewHolder> {
 
     /**
-     * Recycler view notify about the data events.
+     * The dynamic binder adapter for the recycler view.
      */
     private DynamicBinderAdapter mDataBindAdapter;
 
     /**
-     * Default constructor to create a dynamic data binder instance for
-     * the supplied {@link DynamicBinderAdapter}.
+     * Constructor to initialize an object of this class.
+     *
+     * @param dataBindAdapter The dynamic binder adapter for
+     *                        the recycler view.
      */
     public DynamicRecyclerViewBinder(@NonNull DynamicBinderAdapter dataBindAdapter) {
         mDataBindAdapter = dataBindAdapter;
@@ -45,31 +47,32 @@ public abstract class DynamicRecyclerViewBinder<T extends RecyclerView.ViewHolde
     /**
      * Get the {@link RecyclerView.ViewHolder} for this data binder.
      *
-     * @param parent Parent for this view holder.
-     * @param viewType Type of the view to create the view holder.
+     * @param parent The parent for this view holder.
+     * @param viewType The type of the view to create the view holder.
      *
-     * @return View holder associated with this data binder.
+     * @return The view holder associated with this data binder.
      */
     public abstract T onCreateViewHolder(@NonNull ViewGroup parent, int viewType);
 
     /**
      * Bind {@link RecyclerView.ViewHolder} at a particular position.
      *
+     * @param viewHolder The view holder for the recycler view.
      * @param position Position to bind the view holder.
      */
     public abstract void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder,
                                           int position);
 
     /**
-     * @return Get the recycler view adapter associated with this data
-     * binder.
+     * @return The recycler view adapter associated with this
+     *         data binder.
      */
     public DynamicBinderAdapter getRecyclerViewAdapter() {
         return mDataBindAdapter;
     }
 
     /**
-     * @return Get the total no. of items in this data binder.
+     * @return The total no. of items in this data binder.
      */
     public abstract int getItemCount();
 

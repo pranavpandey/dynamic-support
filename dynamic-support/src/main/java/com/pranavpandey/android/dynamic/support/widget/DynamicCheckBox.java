@@ -17,8 +17,10 @@
 package com.pranavpandey.android.dynamic.support.widget;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -35,7 +37,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 /**
  * A CheckBox to apply color filter according to the supplied
- * {@link R.attr#ads_colorType}.
+ * parameters.
  */
 public class DynamicCheckBox extends AppCompatCheckBox implements DynamicWidget {
 
@@ -205,6 +207,7 @@ public class DynamicCheckBox extends AppCompatCheckBox implements DynamicWidget 
     }
 
     @SuppressLint("PrivateResource")
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void setColor() {
         if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {

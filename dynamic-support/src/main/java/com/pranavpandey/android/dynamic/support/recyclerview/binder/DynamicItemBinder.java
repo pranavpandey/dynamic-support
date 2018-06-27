@@ -77,14 +77,16 @@ public class DynamicItemBinder extends DynamicRecyclerViewBinder {
     }
 
     /**
-     * Getter for {@link #mData}.
+     * @return The data used by this binder.
      */
     public @Nullable DynamicItem getData() {
         return mData;
     }
 
     /**
-     * Setter for {@link #mData}.
+     * Set the data for this binder.
+     *
+     * @param data The data to be set.
      */
     public void setData(@Nullable DynamicItem data) {
         this.mData = data;
@@ -104,6 +106,11 @@ public class DynamicItemBinder extends DynamicRecyclerViewBinder {
          */
         private final DynamicItemView dynamicItemView;
 
+        /**
+         * Constructor to initialize views from the supplied layout.
+         *
+         * @param view The view for this view holder.
+         */
         public ViewHolder(View view) {
             super(view);
 
@@ -111,7 +118,7 @@ public class DynamicItemBinder extends DynamicRecyclerViewBinder {
         }
 
         /**
-         * Getter for {@link #dynamicItemView}.
+         * @return The dynamic item view for this view holder.
          */
         public DynamicItemView getDynamicItemView() {
             return dynamicItemView;

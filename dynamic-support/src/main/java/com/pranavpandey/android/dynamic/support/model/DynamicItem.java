@@ -30,38 +30,51 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
 public class DynamicItem {
 
     /**
-     * Icon used by the item view.
+     * Icon used by this item.
      */
     private Drawable icon;
 
     /**
-     * Title used by the item view.
+     * Title used by this item.
      */
     private CharSequence title;
 
     /**
-     * Subtitle used by the item view.
+     * Subtitle used by this item.
      */
     private CharSequence subtitle;
     
     /**
-     * Icon tint color used by the item view.
+     * Icon tint color used by this item.
      */
     private @ColorInt int color;
 
     /**
-     * Icon tint color type used by the item view.
+     * Icon tint color type used by this item.
      */
     private @DynamicColorType int colorType;
 
     /**
-     * {@code true} to show horizontal divider. Useful to display 
-     * in a list view.
+     * {@code true} to show horizontal divider. 
+     * Useful to display in a list view.
      */
     private boolean showDivider;
 
+    /**
+     * On click listener used by this item.
+     */
     private View.OnClickListener onClickListener;
 
+    /**
+     * Constructor to initialize an object of this class.
+     * 
+     * @param icon The icon for this item.
+     * @param title The title for this item.
+     * @param subtitle The subtitle for this item.
+     * @param color The icon tint color for this item.
+     * @param colorType The icon tint color type for this item.
+     * @param showDivider {@code true} to show horizontal divider.
+     */
     public DynamicItem(@Nullable Drawable icon, @Nullable CharSequence title,
                        @Nullable CharSequence subtitle, int color,
                        @DynamicColorType int colorType, boolean showDivider) {
@@ -74,17 +87,19 @@ public class DynamicItem {
     }
 
     /**
-     * Getter for {@link #icon}.
+     * @return The icon used by this item.
      */
     public @Nullable Drawable getIcon() {
         return icon;
     }
 
     /**
-     * Setter for {@link #icon}.
+     * Set the icon used by this item.
+     * 
+     * @param icon The icon to be set.
      *
-     * @return {@link DynamicItem} object to allow for chaining of
-     *         calls to set methods.
+     * @return The {@link DynamicItem} object to allow for chaining 
+     *         of calls to set methods.
      */
     public DynamicItem setIcon(@Nullable Drawable icon) {
         this.icon = icon;
@@ -93,17 +108,19 @@ public class DynamicItem {
     }
 
     /**
-     * Getter for {@link #title}.
+     * @return The title used by this item.
      */
     public @Nullable CharSequence getTitle() {
         return title;
     }
 
     /**
-     * Setter for {@link #title}.
+     * Set the title used by this item.
      *
-     * @return {@link DynamicItem} object to allow for chaining of
-     *         calls to set methods.
+     * @param title The title to be set.
+     *
+     * @return The {@link DynamicItem} object to allow for chaining 
+     *         of calls to set methods.
      */
     public DynamicItem setTitle(@Nullable CharSequence title) {
         this.title = title;
@@ -112,17 +129,19 @@ public class DynamicItem {
     }
 
     /**
-     * Getter for {@link #subtitle}.
+     * @return The subtitle used by this item.
      */
     public @Nullable CharSequence getSubtitle() {
         return subtitle;
     }
 
     /**
-     * Setter for {@link #subtitle}.
+     * Set the subtitle used by this item.
      *
-     * @return {@link DynamicItem} object to allow for chaining of
-     *         calls to set methods.
+     * @param subtitle The subtitle to be set.
+     *
+     * @return The {@link DynamicItem} object to allow for chaining 
+     *         of calls to set methods.
      */
     public DynamicItem setSubtitle(@Nullable CharSequence subtitle) {
         this.subtitle = subtitle;
@@ -131,19 +150,46 @@ public class DynamicItem {
     }
 
     /**
-     * Getter for {@link #colorType}.
+     * @return The icon tint color type used by this item.
+     * 
+     * @see DynamicColorType
      */
     public @DynamicColorType int getColorType() {
         return colorType;
     }
 
     /**
-     * Setter for {@link #colorType}.
+     * Set the icon tint color type used by this item.
      *
-     * @return {@link DynamicItem} object to allow for chaining of
-     *         calls to set methods.
+     * @param colorType The icon tint color type to be set.
+     *
+     * @return The {@link DynamicItem} object to allow for chaining 
+     *         of calls to set methods.
+     *         
+     * @see DynamicColorType        
      */
-    public DynamicItem setColorType(@DynamicColorType int color) {
+    public DynamicItem setColorType(@DynamicColorType int colorType) {
+        this.colorType = colorType;
+
+        return this;
+    }
+
+    /**
+     * @return The icon tint color used by this item.
+     */
+    public @ColorInt int getColor() {
+        return color;
+    }
+
+    /**
+     * Set the icon tint color used by this item.
+     *
+     * @param color The icon tint color to be set.
+     *
+     * @return The {@link DynamicItem} object to allow for chaining 
+     *         of calls to set methods.
+     */
+    public DynamicItem setColor(@ColorInt int color) {
         this.colorType = DynamicColorType.CUSTOM;
         this.color = color;
 
@@ -151,36 +197,22 @@ public class DynamicItem {
     }
 
     /**
-     * Getter for {@link #color}.
-     */
-    public @ColorInt int getColor() {
-        return color;
-    }
-
-    /**
-     * Setter for {@link #color}.
-     *
-     * @return {@link DynamicItem} object to allow for chaining of
-     *         calls to set methods.
-     */
-    public DynamicItem setColor(@ColorInt int color) {
-        this.color = color;
-
-        return this;
-    }
-
-    /**
-     * Getter for {@link #showDivider}.
+     * @return {@code true} to show horizontal divider. 
+     *         Useful to display in a list view.
      */
     public boolean isShowDivider() {
         return showDivider;
     }
 
     /**
-     * Setter for {@link #showDivider}.
+     * Set the horizontal divider fro this item.
+     * Useful to display in a list view.
      *
-     * @return {@link DynamicItem} object to allow for chaining of
-     *         calls to set methods.
+     * @param showDivider {@code true} to show horizontal 
+     *                    divider.
+     *
+     * @return The {@link DynamicItem} object to allow for chaining 
+     *         of calls to set methods.
      */
     public DynamicItem setShowDivider(boolean showDivider) {
         this.showDivider = showDivider;
@@ -189,17 +221,19 @@ public class DynamicItem {
     }
 
     /**
-     * Getter for {@link #onClickListener}.
+     * @return The on click listener used by this item.
      */
     public @Nullable View.OnClickListener getOnClickListener() {
         return onClickListener;
     }
 
     /**
-     * Setter for {@link #onClickListener}.
+     * Set the on click listener used by this item.
      *
-     * @return {@link DynamicItem} object to allow for chaining of
-     *         calls to set methods.
+     * @param onClickListener The on click listener to be set.
+     *
+     * @return The {@link DynamicItem} object to allow for chaining 
+     *         of calls to set methods.
      */
     public DynamicItem setOnClickListener(@Nullable View.OnClickListener onClickListener) {
         this.onClickListener = onClickListener;

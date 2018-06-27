@@ -59,18 +59,22 @@ public class DynamicArrayPopup extends DynamicPopup {
     private CharSequence[] mEntries;
 
     /**
-     * Click DynamicTutorialListener used by the list view.
-     */
-    private AdapterView.OnItemClickListener mOnItemClickListener;
-
-    /**
      * The selected position.
      */
     private int mSelectedPosition;
 
     /**
-     * Constructor to initialize an object of this class by supplying
-     * anchor, entries, and list item click DynamicTutorialListener.
+     * On click listener used by the list view.
+     */
+    private AdapterView.OnItemClickListener mOnItemClickListener;
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param anchor The anchor view used for this popup.
+     * @param entries The list entries for this popup.
+     * @param onItemClickListener The on click listener
+     *                            for the list view.
      */
     public DynamicArrayPopup(@NonNull View anchor, @NonNull CharSequence[] entries,
                              @NonNull AdapterView.OnItemClickListener onItemClickListener) {
@@ -137,59 +141,67 @@ public class DynamicArrayPopup extends DynamicPopup {
     }
 
     /**
-     * Getter for {@link #mTitle}.
+     * @return The title used by this popup.
      */
     public @Nullable CharSequence getTitle() {
         return mTitle;
     }
 
     /**
-     * Setter for {@link #mTitle}.
+     * Set the title used by this popup.
+     *
+     * @param title The title to be set.
      */
     public void setTitle(@Nullable CharSequence title) {
         this.mTitle = title;
     }
 
     /**
-     * Getter for {@link #mEntries}.
+     * @return The list entries used by this popup.
      */
     public @Nullable CharSequence[] getEntries() {
         return mEntries;
     }
 
     /**
-     * Setter for {@link #mEntries}.
+     * Set the list entries for this popup.
+     *
+     * @param entries The list entries to be set.
      */
     public void setEntries(@NonNull CharSequence[] entries) {
         this.mEntries = entries;
     }
 
     /**
-     * Getter for {@link #mOnItemClickListener}.
-     */
-    public @NonNull AdapterView.OnItemClickListener getOnItemClickListener() {
-        return mOnItemClickListener;
-    }
-
-    /**
-     * Setter for {@link #mOnItemClickListener}.
-     */
-    public void setOnItemClickListener(
-            @NonNull AdapterView.OnItemClickListener onItemClickListener) {
-        this.mOnItemClickListener = onItemClickListener;
-    }
-
-    /**
-     * Getter for {@link #mSelectedPosition}.
+     * @return The the selected position.
      */
     public int getSelectedPosition() {
         return mSelectedPosition;
     }
 
     /**
-     * Setter for {@link #mSelectedPosition}.
+     * Set the selected position.
+     *
+     * @param selectedPosition The position to be selected.
      */
     public void setSelectedPosition(int selectedPosition) {
         this.mSelectedPosition = selectedPosition;
+    }
+
+    /**
+     * @return The on click listener used by the list view.
+     */
+    public @NonNull AdapterView.OnItemClickListener getOnItemClickListener() {
+        return mOnItemClickListener;
+    }
+
+    /**
+     * Set the on click listener used by the list view.
+     *
+     * @param onItemClickListener The listener to be set.
+     */
+    public void setOnItemClickListener(
+            @NonNull AdapterView.OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListener = onItemClickListener;
     }
 }

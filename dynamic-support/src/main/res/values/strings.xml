@@ -21,6 +21,9 @@
     <string name="ads_navigation_drawer_open">Open navigation drawer</string>
     <string name="ads_navigation_drawer_close">Close navigation drawer</string>
 
+    <!-- String formats -->
+    <string name="ads_format_version">Version %1$s</string>
+
     <!-- Headings -->
     <string name="ads_app">App</string>
     <string name="ads_icon">Icon</string>

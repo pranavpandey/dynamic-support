@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2017 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,35 +36,36 @@ import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
  * customise it further by overriding the supported methods.
  *
  * @see #onCustomiseBuilder(DynamicDialog.Builder, Bundle)
- * @see #onCustomiseDialog(DynamicDialog, Bundle)
+ * @see #onCustomiseBuilder(DynamicDialog.Builder, Bundle)
  */
 public class DynamicDialogFragment extends AppCompatDialogFragment {
 
     /**
-     * Default button color. it will be used internally if there is
-     * no button color is applied.
+     * Default button color. it will be used internally
+     * if there is no button color is applied.
      */
     public static final int ADS_DEFAULT_BUTTON_COLOR = -1;
 
     /**
-     * Custom button color to be used by this dialog fragment.
+     * Button color used by this dialog fragment.
      */
     private @ColorInt int mButtonColor = ADS_DEFAULT_BUTTON_COLOR;
 
     /**
-     * {@code true} to make the dialog cancelable. The default value
-     * is {@code true}.
+     * {@code true} to make the dialog cancelable.
+     * The default value is {@code true}.
      */
     private boolean mIsCancelable = true;
 
     /**
-     * {@code true} to dismiss the dialog in pause state. The default
-     * value is {@code false}.
+     * {@code true} to dismiss the dialog in pause state.
+     * The default value is {@code false}.
      */
     private boolean mAutoDismiss = false;
 
     /**
-     * Dialog builder to customise this fragment according to the need.
+     * Dialog builder to customise this fragment according
+     * to the need.
      */
     private DynamicDialog.Builder mDynamicDialogBuilder;
 
@@ -231,10 +232,19 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
     }
 
     /**
-     * Setter for {@link #mButtonColor}.
+     * @return The button color used by this dialog fragment.
+     */
+    public int getButtonColor() {
+        return mButtonColor;
+    }
+
+    /**
+     * Sets the button color for this dialog fragment.
      *
-     * @return {@link DynamicDialogFragment} object to allow for chaining of
-     *         calls to set methods.
+     * @param buttonColor The button color to be set.
+     *
+     * @return {@link DynamicDialogFragment} object to allow for
+     *         chaining of calls to set methods.
      */
     public DynamicDialogFragment setButtonColor(@ColorInt int buttonColor) {
         this.mButtonColor = buttonColor;
@@ -243,17 +253,21 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
     }
 
     /**
-     * Getter for {@link #mIsCancelable}.
+     * @return {@code true} to make the dialog cancelable.
+     *         The default value is {@code true}.
      */
     public boolean isCancelable() {
         return mIsCancelable;
     }
 
     /**
-     * Setter for {@link #mIsCancelable}.
+     * Sets this dialog fragment cancellable or not.
      *
-     * @return {@link DynamicDialogFragment} object to allow for chaining of
-     *         calls to set methods.
+     * @param cancelable {@code true} to make the dialog
+     *                   cancelable.
+     *
+     * @return {@link DynamicDialogFragment} object to allow for
+     *         chaining of calls to set methods.
      */
     public DynamicDialogFragment setIsCancelable(boolean cancelable) {
         this.mIsCancelable = cancelable;
@@ -263,17 +277,21 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
     }
 
     /**
-     * Getter for {@link #mAutoDismiss}.
+     * @return {@code true} to dismiss the dialog in pause state.
+     *         The default value is {@code false}.
      */
     protected boolean isAutoDismiss() {
         return mAutoDismiss;
     }
 
     /**
-     * Setter for {@link #mAutoDismiss}.
+     * Sets this dialog fragment auto dismissible or not.
      *
-     * @return {@link DynamicDialogFragment} object to allow for chaining of
-     *         calls to set methods.
+     * @param autoDismiss {@code true} to dismiss the dialog in
+     *                    pause state.
+     *
+     * @return {@link DynamicDialogFragment} object to allow for
+     *         chaining of calls to set methods.
      */
     public DynamicDialogFragment setAutoDismiss(boolean autoDismiss) {
         this.mAutoDismiss = autoDismiss;
@@ -282,17 +300,21 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
     }
 
     /**
-     * Getter for {@link #mDynamicDialogBuilder}.
+     * @return The dialog builder to customise this fragment
+     *         according to the need.
      */
     protected @Nullable DynamicDialog.Builder getBuilder() {
         return mDynamicDialogBuilder;
     }
 
     /**
-     * Setter for {@link #mDynamicDialogBuilder}.
+     * Sets a dynamic dialog builder for this dialog fragment.
      *
-     * @return {@link DynamicDialogFragment} object to allow for chaining of
-     *         calls to set methods.
+     * @param dynamicAlertDialogBuilder The dynamic dialog builder
+     *                                  to be set.
+     *
+     * @return {@link DynamicDialogFragment} object to allow for
+     *         chaining of calls to set methods.
      */
     public DynamicDialogFragment setBuilder(
             @NonNull DynamicDialog.Builder dynamicAlertDialogBuilder) {
@@ -302,17 +324,19 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
     }
 
     /**
-     * Getter for {@link #mOnShowListener}.
+     * @return The callback when this dialog fragment is displayed.
      */
     protected @Nullable DynamicDialog.OnShowListener getOnShowListener() {
         return mOnShowListener;
     }
 
     /**
-     * Setter for {@link #mOnShowListener}.
+     * Sets on show listener for this dialog fragment.
      *
-     * @return {@link DynamicDialogFragment} object to allow for chaining of
-     *         calls to set methods.
+     * @param onShowListener The on show listener to be set.
+     *
+     * @return {@link DynamicDialogFragment} object to allow for
+     *         chaining of calls to set methods.
      */
     public DynamicDialogFragment setOnShowListener(
             @Nullable DynamicDialog.OnShowListener onShowListener) {
@@ -322,17 +346,20 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
     }
 
     /**
-     * Getter for {@link #mOnDismissListener}.
+     * @return The callback when this dialog fragment has been
+     *         dismissed.
      */
     protected @Nullable DynamicDialog.OnDismissListener getOnDismissListener() {
         return mOnDismissListener;
     }
 
     /**
-     * Setter for {@link #mOnDismissListener}.
+     * Sets on dismiss listener for this dialog fragment.
      *
-     * @return {@link DynamicDialogFragment} object to allow for chaining of
-     *         calls to set methods.
+     * @param onDismissListener The on dismiss listener to be set.
+     *
+     * @return {@link DynamicDialogFragment} object to allow for
+     *         chaining of calls to set methods.
      */
     public DynamicDialogFragment setOnDismissListener(
             @Nullable DynamicDialog.OnDismissListener onDismissListener) {
@@ -342,17 +369,20 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
     }
 
     /**
-     * Getter for {@link #mOnCancelListener}.
+     * @return The callback when this dialog fragment has been
+     *         cancelled.
      */
     protected @Nullable DynamicDialog.OnCancelListener getOnCancelListener() {
         return mOnCancelListener;
     }
 
     /**
-     * Setter for {@link #mOnCancelListener}.
+     * Sets on cancel listener for this dialog fragment.
      *
-     * @return {@link DynamicDialogFragment} object to allow for chaining of
-     *         calls to set methods.
+     * @param onCancelListener The on cancel listener to be set.
+     *
+     * @return {@link DynamicDialogFragment} object to allow for
+     *         chaining of calls to set methods.
      */
     public DynamicDialogFragment setOnCancelListener(
             @Nullable DynamicDialog.OnCancelListener onCancelListener) {
@@ -362,17 +392,20 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
     }
 
     /**
-     * Getter for {@link #mOnKeyListener}.
+     * @return The callback when a key is pressed in this dialog
+     *         fragment.
      */
     protected @Nullable DynamicDialog.OnKeyListener getOnKeyListener() {
         return mOnKeyListener;
     }
 
     /**
-     * Setter for {@link #mOnKeyListener}.
+     * Sets on key listener for this dialog fragment.
      *
-     * @return {@link DynamicDialogFragment} object to allow for chaining of
-     *         calls to set methods.
+     * @param onKeyListener The on key listener to be set.
+     *
+     * @return {@link DynamicDialogFragment} object to allow for
+     *         chaining of calls to set methods.
      */
     public DynamicDialogFragment setOnKeyListener(
             @Nullable DynamicDialog.OnKeyListener onKeyListener) {
@@ -382,7 +415,11 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
     }
 
     /**
-     * Show this dialog fragment and attach it to the supplied activity.
+     * Show this dialog fragment and attach it to the supplied
+     * activity.
+     *
+     * @param fragmentActivity The fragment activity to attach this
+     *                         dialog fragment.
      */
     public void showDialog(@NonNull FragmentActivity fragmentActivity) {
         show(fragmentActivity.getSupportFragmentManager(), getClass().getName());
@@ -395,4 +432,3 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
         return (DynamicDialog) getDialog();
     }
 }
-
