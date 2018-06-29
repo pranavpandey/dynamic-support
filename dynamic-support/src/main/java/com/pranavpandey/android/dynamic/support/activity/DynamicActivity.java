@@ -674,7 +674,8 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      */
     private void setSearchViewClearButton() {
         if (mSearchViewEditText != null) {
-            if (mSearchViewEditText.getText().length() != 0) {
+            if (mSearchViewEditText.getText() != null
+                    && mSearchViewEditText.getText().length() != 0) {
                 mSearchViewClear.setVisibility(View.VISIBLE);
             } else {
                 mSearchViewClear.setVisibility(View.GONE);
@@ -692,7 +693,10 @@ public abstract class DynamicActivity extends DynamicStateActivity {
             public void run() {
                 expandSearchView(false);
                 mSearchViewEditText.setText(mSearchViewEditText.getText());
-                mSearchViewEditText.setSelection(mSearchViewEditText.getText().length());
+
+                if (mSearchViewEditText.getText() != null) {
+                    mSearchViewEditText.setSelection(mSearchViewEditText.getText().length());
+                }
             }
         });
     }
