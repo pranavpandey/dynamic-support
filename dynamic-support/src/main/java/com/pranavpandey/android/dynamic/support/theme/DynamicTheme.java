@@ -33,7 +33,8 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Helper class to manage theme for the whole application and its activities.
@@ -293,7 +294,7 @@ public class DynamicTheme implements DynamicListener {
     /**
      * Collection of dynamic listeners to send them event callback.
      */
-    private HashSet<DynamicListener> mDynamicListeners;
+    private List<DynamicListener> mDynamicListeners;
 
     /**
      * Making default constructor private so that it cannot be initialized
@@ -312,7 +313,7 @@ public class DynamicTheme implements DynamicListener {
         this.mPrimaryColor = ADS_COLOR_PRIMARY_DEFAULT;
         this.mPrimaryColorDark = ADS_COLOR_PRIMARY_DARK_DEFAULT;
         this.mAccentColor = ADS_COLOR_ACCENT_DEFAULT;
-        this.mDynamicListeners = new HashSet<>();
+        this.mDynamicListeners = new ArrayList<>();
     }
 
     /**
