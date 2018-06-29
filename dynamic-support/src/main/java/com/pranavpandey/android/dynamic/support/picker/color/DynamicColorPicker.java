@@ -574,7 +574,8 @@ public class DynamicColorPicker extends FrameLayout {
 
         setHSVColor(color, setHSV);
 
-        mSeekBarHue.setColor(Color.HSVToColor(new float[] { mHSVHue, 1f, 1f }));
+        mSeekBarHue.setColor(Color.HSVToColor(
+                new float[] { mSeekBarHue.getProgress(), 1f, 1f }));
         mSeekBarSaturation.setColor(
                 Color.HSVToColor(new float[] { mHSVHue, mHSVSaturation, 1f }));
         mSeekBarValue.setColor(color);
