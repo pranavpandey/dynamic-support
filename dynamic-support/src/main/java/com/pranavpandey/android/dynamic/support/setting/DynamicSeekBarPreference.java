@@ -614,6 +614,13 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
+     * @return The text view to show the value.
+     */
+    public TextView getValueView() {
+        return mValueView;
+    }
+
+    /**
      * Set the color for seek bar and value view.
      *
      * @param color The color to be set.

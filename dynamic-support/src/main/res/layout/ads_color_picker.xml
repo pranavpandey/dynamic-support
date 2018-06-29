@@ -219,7 +219,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
+                <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarHue
                     android:id="@+id/ads_color_picker_seek_hue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

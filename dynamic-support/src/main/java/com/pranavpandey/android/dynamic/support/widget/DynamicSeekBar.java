@@ -27,8 +27,8 @@ import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
 
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
@@ -39,7 +39,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
  * parameters.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class DynamicSeekBar extends AppCompatSeekBar implements DynamicWidget {
+public class DynamicSeekBar extends AppCompatSeekBar implements DynamicProgressWidget {
 
     /**
      * Color type applied to this view.
@@ -213,16 +213,28 @@ public class DynamicSeekBar extends AppCompatSeekBar implements DynamicWidget {
                 mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
-            if (DynamicVersionUtils.isLollipop()) {
-                setProgressTintList(DynamicResourceUtils.getColorStateList(mColor));
-                setThumbTintList(DynamicResourceUtils.getColorStateList(mColor));
-            } else {
-                setProgressDrawable(DynamicDrawableUtils.colorizeDrawable(getProgressDrawable(), mColor));
+            setProgressBarColor();
+            setThumbColor();
+        }
+    }
 
-                if (DynamicVersionUtils.isJellyBean()) {
-                    setThumb(DynamicDrawableUtils.colorizeDrawable(getThumb(), mColor));
-                }
-            }
+
+    @Override
+    public void setProgressBarColor() {
+        if (DynamicVersionUtils.isLollipop()) {
+            setProgressTintList(DynamicResourceUtils.getColorStateList(mColor));
+        } else {
+            setProgressDrawable(DynamicDrawableUtils
+                    .colorizeDrawable(getProgressDrawable(), mColor));
+        }
+    }
+
+    @Override
+    public void setThumbColor() {
+        if (DynamicVersionUtils.isLollipop()) {
+            setThumbTintList(DynamicResourceUtils.getColorStateList(mColor));
+        } else {
+            setThumb(DynamicDrawableUtils.colorizeDrawable(getThumb(), mColor));
         }
     }
 }

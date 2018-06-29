@@ -16,15 +16,16 @@
 
 package com.pranavpandey.android.dynamic.support.utils;
 
+import android.annotation.TargetApi;
 import android.graphics.LinearGradient;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.widget.SeekBar;
 
-import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 /**
@@ -37,6 +38,7 @@ public class DynamicSeekBarUtils {
      *
      * @param seekBar The seek bar to set the hue gradient.
      */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void setHueDrawable(@NonNull SeekBar seekBar) {
         if (DynamicVersionUtils.isLollipop()) {
             seekBar.setProgressTintList(null);

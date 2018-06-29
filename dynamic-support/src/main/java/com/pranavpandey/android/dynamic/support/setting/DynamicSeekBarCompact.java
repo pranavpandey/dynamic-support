@@ -27,8 +27,8 @@ import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPicker;
 
 /**
  * A compact version of the DynamicSeekBarPreference for the
- * {@link DynamicColorPicker}.
- * It can also be used in other scenarios.
+ * {@link DynamicColorPicker}. It can also be used in other 
+ * scenarios.
  */
 public class DynamicSeekBarCompact extends DynamicSeekBarPreference {
 
