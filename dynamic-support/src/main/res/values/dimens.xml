@@ -149,7 +149,7 @@
 
     <!-- Picker -->
     <dimen name="ads_picker_colors_size">@dimen/ads_icon_medium</dimen>
-    <dimen name="ads_picker_shades_size">42dp</dimen>
+    <dimen name="ads_picker_shades_size">40dp</dimen>
     <dimen name="ads_picker_recents_size">@dimen/ads_icon_medium</dimen>
     <dimen name="ads_picker_title_width">16dp</dimen>
     <dimen name="ads_picker_value_width">30dp</dimen>
