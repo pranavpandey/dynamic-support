@@ -29,6 +29,7 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicScrollableWidget;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**

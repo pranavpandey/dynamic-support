@@ -27,7 +27,7 @@ import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorialActivity;
-import com.pranavpandey.android.dynamic.support.widget.DynamicWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 
 /**
  * A tutorial fragment which will be used with the {@link DynamicTutorialActivity}

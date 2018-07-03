@@ -27,6 +27,7 @@ import android.util.AttributeSet;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicTextWidget;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**

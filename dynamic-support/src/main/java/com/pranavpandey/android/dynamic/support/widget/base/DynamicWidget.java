@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.widget;
+package com.pranavpandey.android.dynamic.support.widget.base;
 
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;

@@ -27,14 +27,13 @@ import android.view.View;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
-import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.tutorial.adapter.DynamicTutorialsAdapter;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator;
 import com.pranavpandey.android.dynamic.support.widget.DynamicViewPager;
-import com.pranavpandey.android.dynamic.support.widget.DynamicWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.toasts.DynamicHint;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
