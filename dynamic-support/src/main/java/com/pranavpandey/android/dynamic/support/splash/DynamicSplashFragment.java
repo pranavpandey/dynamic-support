@@ -47,7 +47,7 @@ public class DynamicSplashFragment extends Fragment {
      * Listener to implement the splash screen and to get various
      * callbacks while showing the splash.
      */
-    private static DynamicSplashListener mDynamicSplashListener;
+    private DynamicSplashListener mDynamicSplashListener;
 
     /**
      * View used by this fragment.
@@ -80,7 +80,9 @@ public class DynamicSplashFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mDynamicSplashListener.onViewCreated(mView);
+        if (mDynamicSplashListener != null) {
+            mDynamicSplashListener.onViewCreated(mView);
+        }
     }
 
     @Override
@@ -98,7 +100,7 @@ public class DynamicSplashFragment extends Fragment {
      * Start the splash background task.
      */
     public void show() {
-        mSplashTask = new SplashTask();
+        mSplashTask = new SplashTask(mDynamicSplashListener);
         mSplashTask.execute();
     }
 
@@ -135,25 +137,52 @@ public class DynamicSplashFragment extends Fragment {
      */
     static class SplashTask extends AsyncTask<Void, String, Void> {
 
+        /**
+         * Start time for this task.
+         */
         long taskStartTime;
+
+        /**
+         * Time elapsed while executing this task.
+         */
         long taskTimeElapsed;
+
+        /**
+         * Listener to implement the splash screen and to get various
+         * callbacks while showing the splash.
+         */
+        private DynamicSplashListener dynamicSplashListener;
+
+        /**
+         * Constructor to initialize an object of this class.
+         *
+         * @param dynamicSplashListener The splash listener to get the
+         *                              various callbacks.
+         */
+        SplashTask(@Nullable DynamicSplashListener dynamicSplashListener) {
+            this.dynamicSplashListener = dynamicSplashListener;
+        }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
             taskStartTime = System.currentTimeMillis();
-            mDynamicSplashListener.onPreSplash();
+            if (dynamicSplashListener != null) {
+                dynamicSplashListener.onPreSplash();
+            }
         }
 
         @Override
         protected Void doInBackground(Void... params) {
-            mDynamicSplashListener.doBehindSplash();
+            if (dynamicSplashListener != null) {
+                dynamicSplashListener.doBehindSplash();
+            }
 
             taskTimeElapsed = System.currentTimeMillis() - taskStartTime;
-            if (taskTimeElapsed < mDynamicSplashListener.getMinSplashTime()) {
+            if (taskTimeElapsed < dynamicSplashListener.getMinSplashTime()) {
                 try {
-                    Thread.sleep(mDynamicSplashListener.getMinSplashTime() - taskTimeElapsed);
+                    Thread.sleep(dynamicSplashListener.getMinSplashTime() - taskTimeElapsed);
                 } catch (InterruptedException ignored) {
                 }
             }
@@ -165,7 +194,9 @@ public class DynamicSplashFragment extends Fragment {
         protected void onPostExecute(Void param) {
             super.onPostExecute(param);
 
-            mDynamicSplashListener.onPostSplash();
+            if (dynamicSplashListener != null) {
+                dynamicSplashListener.onPostSplash();
+            }
         }
     }
 }
