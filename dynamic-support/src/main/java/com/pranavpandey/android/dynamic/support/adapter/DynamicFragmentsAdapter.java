@@ -108,15 +108,15 @@ public abstract class DynamicFragmentsAdapter extends FragmentStatePagerAdapter 
     }
 
     /**
-     * Get a new Fragment instance.
+     * Get a new fragment instance.
      * Each fragments are automatically cached in this method,
      * so you don't have to do it by yourself.
-     * If you want to implement instantiation of Fragments,
+     * If you want to implement instantiation of fragments,
      * you should override {@link #createItem(int)} instead.
      *
      * {@inheritDoc}
      *
-     * @param position position of the item in the adapter
+     * @param position The position of the item in the adapter.
      *
      * @return The fragment instance.
      */
@@ -139,7 +139,7 @@ public abstract class DynamicFragmentsAdapter extends FragmentStatePagerAdapter 
     /**
      * Get the item at the specified position in the adapter.
      *
-     * @param position position of the item in the adapter.
+     * @param position The position of the item in the adapter.
      *
      * @return The fragment instance.
      */
@@ -148,29 +148,32 @@ public abstract class DynamicFragmentsAdapter extends FragmentStatePagerAdapter 
     }
 
     /**
-     * Create a new Fragment instance.
-     * This is called inside {@link #getItem(int)}.
+     * Create a new fragment instance.
+     * This will be called inside {@link #getItem(int)}.
      *
-     * @param position position of the item in the adapter
-     * @return fragment instance
+     * @param position The position of the item in the adapter.
+     *
+     * @return The fragment instance.
      */
     protected abstract Fragment createItem(int position);
 
     /**
-     * Create an index string for caching Fragment pages.
+     * Create an index string for caching fragment pages.
      *
-     * @param index index of the item in the adapter
-     * @return key string for caching Fragment pages
+     * @param index The index of the item in the adapter.
+     *
+     * @return The key string for caching fragment pages.
      */
     protected String createCacheIndex(int index) {
         return ADS_FRAGMENT_STATE_PAGE_INDEX_PREFIX + index;
     }
 
     /**
-     * Create a key string for caching Fragment pages.
+     * Create a key string for caching fragment pages.
      *
-     * @param position position of the item in the adapter
-     * @return key string for caching Fragment pages
+     * @param position The position of the item in the adapter.
+     *
+     * @return The key string for caching fragment pages.
      */
     protected String createCacheKey(int position) {
         return ADS_FRAGMENT_STATE_PAGE_KEY_PREFIX + position;

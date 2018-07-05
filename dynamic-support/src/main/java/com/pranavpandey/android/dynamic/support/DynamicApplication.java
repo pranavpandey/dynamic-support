@@ -65,7 +65,7 @@ public abstract class DynamicApplication extends Application implements
 
         mConfiguration = new Configuration(getResources().getConfiguration());
         DynamicTheme.initializeInstance(this);
-        DynamicTheme.getInstance().addDynamicThemeListener(this);
+        DynamicTheme.getInstance().addDynamicListener(this);
         PreferenceManager.getDefaultSharedPreferences(this)
                 .registerOnSharedPreferenceChangeListener(this);
 

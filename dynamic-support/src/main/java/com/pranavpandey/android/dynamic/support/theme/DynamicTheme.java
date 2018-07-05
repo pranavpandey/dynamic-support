@@ -425,7 +425,7 @@ public class DynamicTheme implements DynamicListener {
                 android.support.v7.appcompat.R.attr.colorAccent, mLocalAccentColor);
         initializeLocalColors();
 
-        addDynamicThemeListener(mLocalContext);
+        addDynamicListener(mLocalContext);
         return this;
     }
 
@@ -1864,7 +1864,7 @@ public class DynamicTheme implements DynamicListener {
         sInstance.mLocalContext = null;
         sInstance = null;
 
-        clearDynamicThemeListener();
+        clearDynamicListeners();
     }
 
     /**
@@ -1877,7 +1877,7 @@ public class DynamicTheme implements DynamicListener {
         }
 
         saveLocalTheme();
-        removeDynamicThemeListener(mLocalContext);
+        removeDynamicListener(mLocalContext);
         mLocalContext = null;
     }
 
@@ -1900,36 +1900,34 @@ public class DynamicTheme implements DynamicListener {
     /**
      * Add a dynamic listener to receive the various callbacks.
      *
-     * @param dynamicThemeListener The dynamic listener to be
-     *                             added.
+     * @param dynamicListener The dynamic listener to be added.
      *
      * @see DynamicListener
      */
-    public void addDynamicThemeListener(@NonNull Context dynamicThemeListener) {
-        if (dynamicThemeListener instanceof DynamicListener
-                && !mDynamicListeners.contains(dynamicThemeListener)) {
-            mDynamicListeners.add((DynamicListener) dynamicThemeListener);
+    public void addDynamicListener(@Nullable Context dynamicListener) {
+        if (dynamicListener instanceof DynamicListener
+                && !mDynamicListeners.contains(dynamicListener)) {
+            mDynamicListeners.add((DynamicListener) dynamicListener);
         }
     }
 
     /**
      * Remove a dynamic listener.
      *
-     * @param dynamicThemeListener The dynamic listener to be
-     *                             removed.
+     * @param dynamicListener The dynamic listener to be removed.
      *
      * @see DynamicListener
      */
-    public void removeDynamicThemeListener(@NonNull Context dynamicThemeListener) {
-        if (dynamicThemeListener instanceof DynamicListener) {
-            mDynamicListeners.remove(dynamicThemeListener);
+    public void removeDynamicListener(@Nullable Context dynamicListener) {
+        if (dynamicListener instanceof DynamicListener) {
+            mDynamicListeners.remove(dynamicListener);
         }
     }
 
     /**
      * Remove all the dynamic listeners.
      */
-    public void clearDynamicThemeListener() {
+    public void clearDynamicListeners() {
         if (!mDynamicListeners.isEmpty()) {
             mDynamicListeners.clear();
         }
