@@ -73,11 +73,6 @@ class DrawerActivity : DynamicDrawerActivity() {
         return SampleController.instance.isThemeNavigationBar
     }
 
-    override fun isPersistentDrawer(): Boolean {
-        // TODO: Return true to make navigation drawer persistent or opened.
-        return resources.getBoolean(R.bool.ads_persistent_drawer)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

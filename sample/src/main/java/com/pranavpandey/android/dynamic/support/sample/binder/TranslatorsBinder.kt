@@ -58,10 +58,9 @@ class TranslatorsBinder(dynamicBinderAdapter: DynamicBinderAdapter)
         private val dynamicInfoView: DynamicInfoView = view.findViewById(R.id.info_translators)
 
         init {
-
-            val layoutManager = DynamicLayoutUtils
-                    .getGridLayoutManager(dynamicInfoView.context)
-            dynamicInfoView.linksView.recyclerViewLayoutManager = layoutManager
+            dynamicInfoView.linksView.recyclerViewLayoutManager =
+                    DynamicLayoutUtils.getGridLayoutManager(dynamicInfoView.context,
+                            DynamicLayoutUtils.getGridCount(dynamicInfoView.context))
 
             (dynamicInfoView.iconView as DynamicImageView).color =
                     DynamicTheme.getInstance().primaryColor

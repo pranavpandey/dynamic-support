@@ -39,6 +39,7 @@ import android.widget.TextView;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 
@@ -210,12 +211,13 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
 
     /**
      * @return {@code true} to make the drawer persistent by locking
-     * it in the open mode.
+     *         it in the open mode.
      *
      * @see DrawerLayout#LOCK_MODE_LOCKED_OPEN
      */
     public boolean isPersistentDrawer() {
-        return false;
+        return !DynamicLayoutUtils.isInMultiWindowMode(this)
+                && getResources().getBoolean(R.bool.ads_persistent_drawer);
     }
 
     /**

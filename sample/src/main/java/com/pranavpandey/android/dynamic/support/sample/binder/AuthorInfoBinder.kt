@@ -55,10 +55,9 @@ class AuthorInfoBinder(dynamicBinderAdapter: DynamicBinderAdapter)
         private val dynamicInfoView: DynamicInfoView = view.findViewById(R.id.info_author)
 
         init {
-
-            val layoutManager = DynamicLayoutUtils
-                    .getGridLayoutManager(dynamicInfoView.context)
-            dynamicInfoView.linksView.recyclerViewLayoutManager = layoutManager
+            dynamicInfoView.linksView.recyclerViewLayoutManager =
+                    DynamicLayoutUtils.getGridLayoutManager(dynamicInfoView.context,
+                            DynamicLayoutUtils.getGridCount(dynamicInfoView.context))
         }
     }
 }

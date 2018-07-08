@@ -46,7 +46,8 @@ class LicenseView : DynamicRecyclerViewFrame {
 
     override fun getRecyclerViewLayoutManager(): RecyclerView.LayoutManager? {
         return DynamicLayoutUtils.getStaggeredGridLayoutManager(
-                context, StaggeredGridLayoutManager.VERTICAL)
+                DynamicLayoutUtils.getGridCount(context),
+                StaggeredGridLayoutManager.VERTICAL)
     }
 
     private fun setAdapter(): LicenseView {
