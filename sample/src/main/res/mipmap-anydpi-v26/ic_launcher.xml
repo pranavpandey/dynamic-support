@@ -20,6 +20,12 @@
 
     <background android:drawable="@android:color/white" />
 
-    <foreground android:drawable="@mipmap/ic_launcher_foreground" />
+    <foreground>
+
+        <inset
+            android:drawable="@drawable/ic_launcher_foreground"
+            android:inset="27.92%" />
+
+    </foreground>
 
 </adaptive-icon>
