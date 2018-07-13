@@ -493,10 +493,9 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      */
     private void updateTaskDescription() {
         if (DynamicVersionUtils.isLollipop()) {
-            @ColorInt int color = mStatusBarColor;
-            color = Color.rgb(Color.red(color), Color.green(color), Color.blue(color));
-
-            setTaskDescription(new ActivityManager.TaskDescription(null, null, color));
+            setTaskDescription(new ActivityManager.TaskDescription(null, null,
+                    DynamicColorUtils.removeAlpha(
+                            DynamicTheme.getInstance().getPrimaryColor())));
         }
     }
 }
