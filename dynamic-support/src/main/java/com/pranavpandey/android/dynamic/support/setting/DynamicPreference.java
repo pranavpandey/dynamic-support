@@ -264,7 +264,7 @@ public abstract class DynamicPreference extends FrameLayout
     private void updateDependency() {
         if (mDependency != null) {
             setEnabled(DynamicPreferences.getInstance()
-                    .loadPrefs(mDependency, mEnabled));
+                    .loadPrefs(mDependency, isEnabled()));
         }
     }
 
@@ -397,14 +397,6 @@ public abstract class DynamicPreference extends FrameLayout
     }
 
     /**
-     * @return {@code true} if this preference is enabled and can
-     *         accept click events.
-     */
-    public boolean isEnabled() {
-        return mEnabled;
-    }
-
-    /**
      * Set this preference enabled or disabled.
      *
      * @param enabled {@code true} if this preference
@@ -493,7 +485,7 @@ public abstract class DynamicPreference extends FrameLayout
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(mDependency)) {
-            setEnabled(DynamicPreferences.getInstance().loadPrefs(key, mEnabled));
+            setEnabled(DynamicPreferences.getInstance().loadPrefs(key, isEnabled()));
         }
     }
 }

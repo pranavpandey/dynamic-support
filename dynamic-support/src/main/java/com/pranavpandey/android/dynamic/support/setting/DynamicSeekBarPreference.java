@@ -391,10 +391,13 @@ public class DynamicSeekBarPreference extends DynamicPreference {
         mSummaryView.setEnabled(enabled);
         mDescriptionView.setEnabled(enabled);
         mSeekBar.setEnabled(enabled);
-        mValueView.setEnabled(enabled);
-        mSeekLeftView.setEnabled(enabled);
-        mSeekRightView.setEnabled(enabled);
-        mActionView.setEnabled(enabled);
+
+        if (!enabled) {
+            mValueView.setEnabled(enabled);
+            mSeekLeftView.setEnabled(enabled);
+            mSeekRightView.setEnabled(enabled);
+            mActionView.setEnabled(enabled);
+        }
 
         onUpdate();
     }
