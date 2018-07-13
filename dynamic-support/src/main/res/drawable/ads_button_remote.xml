@@ -15,15 +15,18 @@
 	limitations under the License.
 -->
 
-<resources>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:exitFadeDuration="@android:integer/config_shortAnimTime">
 
-    <!-- Window -->
-    <color name="ads_window_background_day_night">@color/ads_window_background</color>
+    <item
+        android:state_pressed="true"
+        android:drawable="@drawable/ads_button_pressed_remote" />
 
-    <!-- Card -->
-    <color name="ads_card_background_day_night">@color/ads_card_background</color>
+    <item
+        android:state_focused="true"
+        android:drawable="@drawable/ads_button_pressed_remote"/>
 
-    <!-- Widget -->
-    <color name="ads_contrast_with_day_night">@color/ads_window_background</color>
+    <item android:drawable="@android:color/transparent"/>
 
-</resources>
+</selector>

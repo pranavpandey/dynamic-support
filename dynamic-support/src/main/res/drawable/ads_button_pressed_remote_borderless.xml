@@ -15,15 +15,17 @@
 	limitations under the License.
 -->
 
-<resources>
+<layer-list
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Window -->
-    <color name="ads_window_background_day_night">@color/ads_window_background</color>
+	<item>
 
-    <!-- Card -->
-    <color name="ads_card_background_day_night">@color/ads_card_background</color>
+		<shape android:shape="oval">
 
-    <!-- Widget -->
-    <color name="ads_contrast_with_day_night">@color/ads_window_background</color>
+			<solid android:color="@color/ads_color_control_remote" />
 
-</resources>
+		</shape>
+
+	</item>
+
+</layer-list>

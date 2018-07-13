@@ -72,7 +72,7 @@
     <dimen name="ads_tab_min_width">48dp</dimen>
     <dimen name="ads_tab_inset_start">@dimen/ads_toolbar_inset_start</dimen>
 
-    <!-- CardView -->
+    <!-- Card -->
     <dimen name="ads_card_view_margin">@dimen/ads_margin_tiny</dimen>
     <dimen name="ads_card_view_content_margin">@dimen/ads_margin_regular</dimen>
     <dimen name="ads_card_view_content_margin_small">@dimen/ads_margin_small</dimen>
@@ -156,16 +156,16 @@
     <dimen name="ads_picker_font_size_normal">14sp</dimen>
     <dimen name="ads_picker_font_size_medium">15sp</dimen>
 
-    <!-- Widget -->
+    <!-- App widget -->
     <dimen name="ads_widget_corner_radius">@dimen/ads_card_view_corner_radius</dimen>
     <dimen name="ads_widget_margin_small">10dp</dimen>
     <dimen name="ads_widget_margin_end">@dimen/ads_margin_small</dimen>
-    <dimen name="ads_widget_preview_height">136dp</dimen>
+    <dimen name="ads_widget_preview_height">124dp</dimen>
     <dimen name="ads_widget_font_size_extra_small">12dp</dimen>
     <dimen name="ads_widget_font_size_small">14dp</dimen>
     <dimen name="ads_widget_font_size">16dp</dimen>
     <dimen name="ads_widget_font_size_big">17dp</dimen>
-    <dimen name="ads_widget_icon_size_customise">26dp</dimen>
+    <dimen name="ads_widget_icon_size">@dimen/ads_icon_small</dimen>
 
     <!-- Notification -->
     <dimen name="ads_notification_size">64dp</dimen>

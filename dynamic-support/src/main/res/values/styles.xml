@@ -32,7 +32,7 @@
         <item name="buttonBarNeutralButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
         <item name="buttonBarPositiveButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
         <item name="buttonBarNegativeButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
-        <item name="ads_contrastWithDefault">@color/ads_contrast_with_default</item>
+        <item name="ads_contrastWithDefault">@color/ads_contrast_with</item>
         <item name="ads_cardBackgroundColor">@color/ads_card_background</item>
         <item name="ads_cardCornerRadius">@dimen/ads_card_view_corner_radius</item>
         <item name="ads_cardElevation">@dimen/ads_card_view_elevation</item>
@@ -43,7 +43,7 @@
         <item name="android:windowBackground">@color/ads_window_background_dark</item>
         <item name="android:colorBackground">@color/ads_window_background_dark</item>
         <item name="background">@color/ads_window_background_dark</item>
-        <item name="ads_contrastWithDefault">@color/ads_contrast_with_default_dark</item>
+        <item name="ads_contrastWithDefault">@color/ads_contrast_with_dark</item>
         <item name="ads_cardBackgroundColor">@color/ads_card_background_dark</item>
     </style>
 
@@ -59,7 +59,7 @@
         <item name="buttonBarNeutralButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
         <item name="buttonBarPositiveButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
         <item name="buttonBarNegativeButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
-        <item name="ads_contrastWithDefault">@color/ads_contrast_with_default_light</item>
+        <item name="ads_contrastWithDefault">@color/ads_contrast_with_light</item>
         <item name="ads_cardBackgroundColor">@color/ads_card_background_light</item>
         <item name="ads_cardCornerRadius">@dimen/ads_card_view_corner_radius</item>
         <item name="ads_cardElevation">@dimen/ads_card_view_elevation</item>
@@ -77,7 +77,7 @@
         <item name="buttonBarNeutralButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
         <item name="buttonBarPositiveButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
         <item name="buttonBarNegativeButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
-        <item name="ads_contrastWithDefault">@color/ads_contrast_with_default_day_night</item>
+        <item name="ads_contrastWithDefault">@color/ads_contrast_with_day_night</item>
         <item name="ads_cardBackgroundColor">@color/ads_card_background_day_night</item>
         <item name="ads_cardCornerRadius">@dimen/ads_card_view_corner_radius</item>
         <item name="ads_cardElevation">@dimen/ads_card_view_elevation</item>
@@ -382,11 +382,11 @@
     <style name="Widget.DynamicApp.Button.Remote">
         <item name="android:layout_margin">0dp</item>
         <item name="android:padding">@dimen/ads_margin_tiny</item>
-        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:background">@drawable/ads_button_remote</item>
     </style>
 
     <style name="Widget.DynamicApp.Button.Remote.Borderless">
-        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:background">@drawable/ads_button_remote_borderless</item>
     </style>
 
 </resources>
