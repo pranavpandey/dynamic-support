@@ -22,12 +22,11 @@
     android:id="@+id/ads_color_picker"
     style="@style/Widget.DynamicApp.Scroller.Vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/ads_dialog_margin_start_end_small"
-        android:paddingRight="@dimen/ads_dialog_margin_start_end_small"
-        android:orientation="vertical">
+        android:paddingRight="@dimen/ads_dialog_margin_start_end_small">
 
         <LinearLayout
             android:id="@+id/ads_color_picker_presets"
@@ -301,6 +300,6 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView>

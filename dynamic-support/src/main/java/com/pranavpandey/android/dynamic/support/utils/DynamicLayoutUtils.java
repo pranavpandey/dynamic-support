@@ -27,6 +27,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
+import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewFrame;
 import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
@@ -41,6 +42,9 @@ public class DynamicLayoutUtils {
      * It will also consider multi-window mode on {@link Build.VERSION_CODES#N}
      * or above devices.
      *
+     * <p>It is not recommended to do this calculation at runtime.
+     * So, please define all the span counts in xml.</p>
+     *
      * @param context The context to get configuration.
      * @param defaultCount The default column count.
      * @param maxCount The maximum column count up to which we can
@@ -51,6 +55,7 @@ public class DynamicLayoutUtils {
      *
      * @return The column count according to the current device
      *         configurations.
+     *
      */
     @TargetApi(Build.VERSION_CODES.N)
     public static int getLayoutColumns(@NonNull Context context, int defaultCount,
@@ -104,12 +109,6 @@ public class DynamicLayoutUtils {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.N)
-    public static int getLayoutColumns(@NonNull Context context,
-                                       int defaultCount, int maxCount) {
-        return getLayoutColumns(context, defaultCount, maxCount, false);
-    }
-
     /**
      * @return The screen size category for the supplied context.
      *
@@ -124,24 +123,40 @@ public class DynamicLayoutUtils {
      * @return The grid count for the supplied context with default
      *         count 1 and max count 2.
      *
-     * @param context The context to get configuration.
-     *
-     * @see #getLayoutColumns(Context, int, int)
+     * @param context The context to get the span count.
      */
     public static int getGridCount(@NonNull Context context) {
-        return getLayoutColumns(context, 1, 2);
+        return context.getResources().getInteger(R.integer.ads_span_normal);
     }
 
     /**
      * @return The grid count for the supplied context with default
      *         count 1 and max count 3.
      *
-     * @param context The context to get configuration.
-     *
-     * @see #getLayoutColumns(Context, int, int)
+     * @param context The context to get the span count.
      */
     public static int getGridCountNoDrawer(@NonNull Context context) {
-        return getLayoutColumns(context, 1, 3);
+        return context.getResources().getInteger(R.integer.ads_span_no_drawer);
+    }
+
+    /**
+     * @return The grid count for the supplied context with default
+     *         count 1 or 2 and max count 3.
+     *
+     * @param context The context to get the span count.
+     */
+    public static int getGridCountCompact(@NonNull Context context) {
+        return context.getResources().getInteger(R.integer.ads_span_compact);
+    }
+
+    /**
+     * @return The grid count for the supplied context with default
+     *         count 1 or 2 and max count 3.
+     *
+     * @param context The context to get the span count.
+     */
+    public static int getGridCountCompactDialog(@NonNull Context context) {
+        return context.getResources().getInteger(R.integer.ads_span_compact_dialog);
     }
 
     /**
@@ -163,66 +178,11 @@ public class DynamicLayoutUtils {
      *         context.
      *
      * @param context The context to instantiate layout manager.
-     * @param defaultCount The default column count.
-     * @param maxCount The maximum column count up to which we can
-     *                 scale.
-     * @param compact {@code true} if the layout is compact and
-     *                disable the auto increase of columns in
-     *                multi-window mode.
-     *
-     * @see #getLayoutColumns(Context, int, int)
+     * @param count The column count for the grid layout.
      */
     public static GridLayoutManager getGridLayoutManager(
-            @NonNull Context context, int defaultCount, int maxCount, boolean compact) {
-        return new GridLayoutManager(context, getLayoutColumns(
-                context, defaultCount, maxCount, compact));
-    }
-
-    /**
-     * @return The {@link GridLayoutManager} object for a given
-     *         context.
-     *
-     * @param context The context to instantiate layout manager.
-     * @param defaultCount The default column count.
-     * @param maxCount The maximum column count up to which we can
-     *                 scale.
-     *
-     * @see #getLayoutColumns(Context, int, int, boolean)
-     */
-    public static GridLayoutManager getGridLayoutManager(
-            @NonNull Context context, int defaultCount, int maxCount) {
-        return new GridLayoutManager(context, getLayoutColumns(
-                context, defaultCount, maxCount, true));
-    }
-
-    /**
-     * @return The {@link GridLayoutManager} object for a given
-     *         context.
-     *
-     * @param context The context to instantiate layout manager.
-     * @param count The default and max column count.
-     * @param compact {@code true} if the layout is compact and
-     *                disable the auto increase of columns in
-     *                multi-window mode.
-     *
-     * @see #getLayoutColumns(Context, int, int)
-     */
-    public static GridLayoutManager getGridLayoutManager(
-            @NonNull Context context, int count, boolean compact) {
-        return getGridLayoutManager(context, count, count, compact);
-    }
-
-    /**
-     * @return The {@link GridLayoutManager} object for a given
-     *         context.
-     *
-     * @param context The context to instantiate layout manager.
-     * @param count The default and max column count.
-     *
-     * @see #getLayoutColumns(Context, int, int)
-     */
-    public static GridLayoutManager getGridLayoutManager(@NonNull Context context, int count) {
-        return getGridLayoutManager(context, count, false);
+            @NonNull Context context, int count) {
+        return new GridLayoutManager(context, count);
     }
 
     /**

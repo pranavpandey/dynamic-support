@@ -180,7 +180,7 @@
     <style name="TextAppearance.DynamicApp.Title.Bold.Splash">
         <item name="android:textSize">@dimen/ads_font_size_splash_title</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:alpha">0.6</item>
+        <item name="android:alpha">0.8</item>
         <item name="ads_colorType">tint_primary</item>
     </style>
 
@@ -206,7 +206,7 @@
 
     <style name="TextAppearance.DynamicApp.Subtitle.Splash">
         <item name="android:textSize">@dimen/ads_font_size_splash_subtitle</item>
-        <item name="android:alpha">0.6</item>
+        <item name="android:alpha">0.8</item>
         <item name="ads_colorType">tint_primary</item>
     </style>
 
@@ -296,7 +296,7 @@
     </style>
 
     <style name="Widget.DynamicApp.Scroller.Nested">
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:paddingTop">0dp</item>
         <item name="android:paddingLeft">0dp</item>
         <item name="android:paddingRight">0dp</item>
@@ -326,6 +326,13 @@
     <style name="Widget.DynamicApp.Content.Card.Small.Clickable">
         <item name="android:clickable">true</item>
         <item name="android:foreground">?selectableItemBackground</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Image.WidgetBackground">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:src">@drawable/ads_widget_frame</item>
+        <item name="android:scaleType">fitXY</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.Header">

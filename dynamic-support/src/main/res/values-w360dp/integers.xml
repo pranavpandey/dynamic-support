@@ -17,8 +17,7 @@
 
 <resources>
 
-    <!-- Activity -->
-    <bool name="ads_navigation_bar_theme_landscape">true</bool>
-    <bool name="ads_persistent_drawer">true</bool>
+    <!-- Span counts -->
+    <integer name="ads_span_compact">2</integer>
 
 </resources>

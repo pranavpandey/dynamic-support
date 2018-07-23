@@ -95,8 +95,8 @@ public class DynamicArrayPopup extends DynamicPopup {
         AbsListView listView = mView.findViewById(R.id.ads_selector_list_view);
 
         if (listView instanceof GridView) {
-            ((GridView) listView).setNumColumns(DynamicLayoutUtils.getLayoutColumns(
-                    mView.getContext(), 2, 2));
+            ((GridView) listView).setNumColumns(
+                    DynamicLayoutUtils.getGridCount(mView.getContext()));
         }
 
         if (mTitle != null) {

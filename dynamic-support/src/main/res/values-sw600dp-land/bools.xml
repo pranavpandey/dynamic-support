@@ -18,6 +18,6 @@
 <resources>
 
     <!-- Activity -->
-    <bool name="ads_navigation_bar_theme_landscape">true</bool>
+    <bool name="ads_persistent_drawer">true</bool>
 
 </resources>

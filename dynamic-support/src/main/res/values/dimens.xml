@@ -32,6 +32,9 @@
     <dimen name="ads_margin_huge">64dp</dimen>
     <dimen name="ads_margin_fab">76dp</dimen>
     <dimen name="ads_padding_icon_small">3dp</dimen>
+    <dimen name="ads_margin_app_shortcut_background">2dp</dimen>
+    <dimen name="ads_margin_app_shortcut_icon">12dp</dimen>
+    <dimen name="ads_margin_app_shortcut_icon_large">16dp</dimen>
 
     <!-- Dynamic activity -->
     <dimen name="ads_drawer_size">280dp</dimen>
@@ -83,6 +86,7 @@
     <dimen name="ads_card_view_margin_vertical">@dimen/ads_card_view_margin</dimen>
     <dimen name="ads_card_view_margin_bottom">1dp</dimen>
 
+    <!-- Scroller -->
     <dimen name="ads_scroller_margin">5dp</dimen>
     <dimen name="ads_scroller_margin_card">3dp</dimen>
     <dimen name="ads_scroller_margin_small">1dp</dimen>
@@ -103,8 +107,8 @@
     <dimen name="ads_icon_splash">160dp</dimen>
     <dimen name="ads_icon_tutorial">200dp</dimen>
     <dimen name="ads_icon_header">20dp</dimen>
-    <dimen name="ads_icon_header_drawer">64dp</dimen>
     <dimen name="ads_icon_header_appbar">32dp</dimen>
+    <dimen name="ads_icon_header_drawer">64dp</dimen>
     <dimen name="ads_icon_header_card_margin_end">@dimen/ads_margin_large</dimen>
     <dimen name="ads_icon_preference">@dimen/ads_icon_small</dimen>
     <dimen name="ads_icon_preference_big">@dimen/ads_icon_medium</dimen>
@@ -146,10 +150,11 @@
 
     <!-- Popup -->
     <dimen name="ads_popup_selector_icon_size">24dp</dimen>
+    <dimen name="ads_popup_max_width">320dp</dimen>
 
     <!-- Picker -->
     <dimen name="ads_picker_colors_size">@dimen/ads_icon_medium</dimen>
-    <dimen name="ads_picker_shades_size">40dp</dimen>
+    <dimen name="ads_picker_shades_size">38dp</dimen>
     <dimen name="ads_picker_recents_size">@dimen/ads_icon_medium</dimen>
     <dimen name="ads_picker_title_width">16dp</dimen>
     <dimen name="ads_picker_value_width">30dp</dimen>
@@ -157,9 +162,10 @@
     <dimen name="ads_picker_font_size_medium">15sp</dimen>
 
     <!-- App widget -->
-    <dimen name="ads_widget_corner_radius">@dimen/ads_card_view_corner_radius</dimen>
+    <dimen name="ads_widget_margin">0dp</dimen>
     <dimen name="ads_widget_margin_small">10dp</dimen>
     <dimen name="ads_widget_margin_end">@dimen/ads_margin_small</dimen>
+    <dimen name="ads_widget_corner_radius">@dimen/ads_card_view_corner_radius</dimen>
     <dimen name="ads_widget_preview_height">124dp</dimen>
     <dimen name="ads_widget_font_size_extra_small">12dp</dimen>
     <dimen name="ads_widget_font_size_small">14dp</dimen>

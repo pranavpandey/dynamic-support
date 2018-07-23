@@ -307,7 +307,8 @@ public abstract class DynamicPopup {
         }
 
         mPopupWindow = new PopupWindow(view,
-                LinearLayout.LayoutParams.WRAP_CONTENT,
+                (int) view.getContext().getResources()
+                        .getDimension(R.dimen.ads_popup_max_width),
                 LinearLayout.LayoutParams.WRAP_CONTENT, true);
         PopupWindowCompat.setWindowLayoutType(mPopupWindow,
                 WindowManager.LayoutParams.TYPE_APPLICATION_SUB_PANEL);

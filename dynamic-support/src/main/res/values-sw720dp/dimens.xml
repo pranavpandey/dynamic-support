@@ -17,14 +17,7 @@
 
 <resources>
 
-    <!-- Tutorial -->
-    <item name="ads_weight_tutorial_image" type="integer" format="float">0.4</item>
-    <item name="ads_weight_tutorial_text" type="integer" format="float">0.6</item>
-
-    <!-- Span counts -->
-    <integer name="ads_span_normal">1</integer>
-    <integer name="ads_span_no_drawer">1</integer>
-    <integer name="ads_span_compact">1</integer>
-    <integer name="ads_span_compact_dialog">1</integer>
+    <!-- Activity -->
+    <dimen name="ads_drawer_size">300dp</dimen>
 
 </resources>
