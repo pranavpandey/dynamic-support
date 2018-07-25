@@ -198,7 +198,7 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
 
     /**
      * @return A list of {@link DynamicTutorial} to be shown by this
-     * activity.
+     *         activity.
      */
     protected ArrayList<DynamicTutorial> getTutorials() {
         return new ArrayList<>();
@@ -260,7 +260,7 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
 
     /**
      * @return {@code true} if view pager can be moved to the
-     * previous tutorial or item.
+     *         previous tutorial or item.
      */
     private boolean hasTutorialPrevious() {
         return mViewPager.getCurrentItem() != 0;
@@ -268,7 +268,7 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
 
     /**
      * @return {@code true} if view pager can be moved to the
-     * next tutorial or item.
+     *         next tutorial or item.
      */
     private boolean hasTutorialNext() {
         return mAdapter != null && mViewPager.getCurrentItem() < mAdapter.getCount() - 1;
