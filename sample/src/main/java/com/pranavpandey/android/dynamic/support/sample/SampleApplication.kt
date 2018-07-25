@@ -16,14 +16,29 @@
 
 package com.pranavpandey.android.dynamic.support.sample
 
+import android.annotation.TargetApi
+import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.ShortcutInfo
+import android.content.pm.ShortcutManager
+import android.graphics.drawable.Icon
+import android.graphics.drawable.LayerDrawable
+import android.os.Build
+import android.os.Handler
+import android.support.annotation.ColorInt
+import android.support.annotation.DrawableRes
 import android.support.annotation.StyleRes
+import android.support.v4.graphics.drawable.IconCompat
 import com.pranavpandey.android.dynamic.support.DynamicApplication
+import com.pranavpandey.android.dynamic.support.sample.activity.ActionActivity
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
 import com.pranavpandey.android.dynamic.support.sample.controller.SampleController
 import com.pranavpandey.android.dynamic.support.sample.controller.SampleTheme
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils
+import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils
+import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils
 import java.util.*
 
 /**
@@ -35,6 +50,15 @@ import java.util.*
  * attribute of the `application` tag.
  */
 class SampleApplication : DynamicApplication() {
+
+    companion object {
+
+        /**
+         * Theme change delay to apply correct app shortcuts
+         * theme.
+         */
+        const val THEME_CHANGE_DELAY = 150
+    }
 
     override fun onInitialize() {
         // Do any startup work here like initializing the other
@@ -50,6 +74,11 @@ class SampleApplication : DynamicApplication() {
     override fun onCustomiseTheme() {
         // Customise application theme after applying the base style.
         SampleTheme.setApplicationTheme(context)
+
+        Handler().postDelayed({
+            // Add dynamic app shortcuts after the delay.
+            setShortcuts()
+        }, THEME_CHANGE_DELAY.toLong())
     }
 
     override fun onNavigationBarThemeChange() {
@@ -80,6 +109,78 @@ class SampleApplication : DynamicApplication() {
                 DynamicTheme.getInstance().onDynamicChange(false, true)
             Constants.PREF_SETTINGS_NAVIGATION_BAR_THEME ->
                 DynamicTheme.getInstance().onNavigationBarThemeChange()
+            Constants.PREF_SETTINGS_APP_SHORTCUTS_THEME ->
+                setShortcuts()
         }
+    }
+
+    /**
+     * Set dynamic app shortcuts for this application.
+     */
+    @TargetApi(Build.VERSION_CODES.N_MR1)
+    private fun setShortcuts() {
+        // Set in API 25 or above devices.
+        if (DynamicVersionUtils.isNougatMR1()) {
+            // Initialize ShortcutManager.
+            val shortcutManager = getSystemService(ShortcutManager::class.java)
+            // Initialize ShortcutInfo list.
+            val shortcuts = ArrayList<ShortcutInfo>()
+
+            // Sources app shortcut intent.
+            val intent = Intent(context, ActionActivity::class.java);
+            intent.action = Constants.ACTION_APP_SHORTCUT
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+            // Add Sources app shortcut to open GitHub page.
+            shortcuts.add(ShortcutInfo.Builder(context,
+                    Constants.APP_SHORTCUT_SOURCES)
+                    .setShortLabel(context.getString(R.string.ads_license_sources))
+                    .setLongLabel(context.getString(R.string.ads_license_sources))
+                    .setIcon(getShortcutIcon(context, R.drawable.ic_app_shortcut_sources))
+                    .setIntent(intent)
+                    .build())
+
+            // Add and update app shortcuts.
+            if (shortcutManager != null) {
+                shortcutManager.removeAllDynamicShortcuts()
+                shortcutManager.addDynamicShortcuts(shortcuts)
+                shortcutManager.updateShortcuts(shortcuts)
+            }
+        }
+    }
+
+    /**
+     * Generate a dynamic app shortcut icon from the supplied
+     * drawable resource and theme it according the app colors.
+     * It must contain a background and foreground layers with
+     * the appropriate ids.
+     *
+     * @param context The context to retrieve the resources.
+     * @param drawableRes The drawable resource for the icon.
+     */
+    @TargetApi(Build.VERSION_CODES.M)
+    private fun getShortcutIcon(context: Context, @DrawableRes drawableRes: Int): Icon? {
+        @ColorInt var primaryColor = DynamicTheme.getInstance().primaryColor
+        @ColorInt var tintPrimaryColor = DynamicTheme.getInstance().tintPrimaryColor
+        val drawable = DynamicResourceUtils.getDrawable(context, drawableRes)
+
+        if (!SampleController.instance.isThemeAppShortcuts) {
+            primaryColor = DynamicTheme.getInstance().backgroundColor
+            tintPrimaryColor = DynamicTheme.getInstance().tintBackgroundColor
+        }
+
+        if (drawable != null) {
+            DynamicDrawableUtils.colorizeDrawable((drawable as LayerDrawable)
+                    .findDrawableByLayerId(R.id.background), primaryColor)
+            DynamicDrawableUtils.colorizeDrawable(drawable
+                    .findDrawableByLayerId(R.id.foreground), tintPrimaryColor)
+
+            // Use IconCompat to support adaptive icons on Android O
+            // or above devices.
+            return IconCompat.createWithAdaptiveBitmap(DynamicResourceUtils
+                    .getBitmapFromVectorDrawable(drawable)!!).toIcon()
+        }
+
+        return null
     }
 }

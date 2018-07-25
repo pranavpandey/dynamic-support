@@ -67,6 +67,14 @@ class SampleController {
                 Constants.PREF_SETTINGS_NAVIGATION_BAR_THEME_DEFAULT)
 
     /**
+     * @return `true` to apply the app shortcuts theme.
+     */
+    val isThemeAppShortcuts: Boolean
+        get() = DynamicPreferences.getInstance().loadPrefs(
+                Constants.PREF_SETTINGS_APP_SHORTCUTS_THEME,
+                Constants.PREF_SETTINGS_APP_SHORTCUTS_THEME_DEFAULT)
+
+    /**
      * Making default constructor private so that it cannot be initialized
      * without a context. Use [.initializeInstance] instead.
      */

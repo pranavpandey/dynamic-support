@@ -114,6 +114,18 @@
                     app:ads_dynamicPreference_unchecked="@string/ads_theme_navigation_bar_summary_unchecked"
                     app:ads_dynamicPreference_description="@string/ads_theme_navigation_bar_desc" />
 
+                <com.pranavpandey.android.dynamic.support.setting.DynamicCheckPreference
+                    android:id="@+id/pref_app_shortcuts_theme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_dynamicPreference_key="pref_settings_app_shortcuts_theme"
+                    app:ads_dynamicPreference_icon="@drawable/ic_shortcut"
+                    app:ads_dynamicPreference_title="@string/ads_theme_app_shortcuts"
+                    app:ads_dynamicPreference_summary="@string/ads_theme_app_shortcuts_summary"
+                    app:ads_dynamicPreference_unchecked="@string/ads_theme_app_shortcuts_summary_unchecked"
+                    app:ads_dynamicPreference_description="@string/ads_theme_app_shortcuts_desc"
+                    app:ads_dynamicPreference_checked="true" />
+
             </LinearLayout>
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>

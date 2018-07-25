@@ -34,6 +34,7 @@
             android:theme="@style/Sample.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -53,6 +54,15 @@
         <activity
             android:name=".activity.BottomNavigationActivity"
             android:label="@string/collapsing_app_bar" />
+
+        <activity
+            android:name=".activity.ActionActivity"
+            android:theme="@android:style/Theme.NoDisplay"
+            android:launchMode="singleInstance"
+            android:taskAffinity="${applicationId}.action"
+            android:screenOrientation="behind"
+            android:noHistory="true"
+            android:exported="true" />
 
     </application>
 

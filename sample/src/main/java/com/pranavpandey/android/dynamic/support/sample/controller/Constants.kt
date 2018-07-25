@@ -47,6 +47,17 @@ object Constants {
     const val URL_DONATE = "https://www.paypal.me/pranavpandeydev"
 
     /**
+     * Action for app shortcut intent.
+     */
+    val ACTION_APP_SHORTCUT =
+            "com.pranavpandey.android.dynamic.support.sample.intent.action.APP_SHORTCUT"
+
+    /**
+     * Constant for Sources app shortcut.
+     */
+    val APP_SHORTCUT_SOURCES = "app_shortcut_sources"
+
+    /**
      * Default value for app theme color.
      *
      * `Auto` to use day and night themes.
@@ -109,6 +120,11 @@ object Constants {
     const val PREF_SETTINGS_NAVIGATION_BAR_THEME = "pref_settings_navigation_bar_theme"
 
     /**
+     * Shared preferences key for app shortcuts theme.
+     */
+    const val PREF_SETTINGS_APP_SHORTCUTS_THEME = "pref_settings_app_shortcuts_theme"
+
+    /**
      * Shared preferences default value for first launch of the app.
      */
     const val PREF_FIRST_LAUNCH_DEFAULT = true
@@ -142,4 +158,9 @@ object Constants {
      * Shared preferences default value for navigation bar theme.
      */
     const val PREF_SETTINGS_NAVIGATION_BAR_THEME_DEFAULT = false
+
+    /**
+     * Shared preferences default value for app shortcuts theme.
+     */
+    const val PREF_SETTINGS_APP_SHORTCUTS_THEME_DEFAULT = true
 }
