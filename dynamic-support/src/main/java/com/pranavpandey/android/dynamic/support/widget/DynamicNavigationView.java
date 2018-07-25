@@ -352,11 +352,13 @@ public class DynamicNavigationView extends NavigationView implements DynamicScro
                         mItemSelectedColor, mContrastWithColor);
             }
 
-            setItemIconTintList(DynamicResourceUtils.convertColorStateList(
-                    getContext(), getItemIconTintList(), mItemSelectedColor));
+            setItemIconTintList(DynamicResourceUtils.convertColorStateListWithNormal(
+                    getItemIconTintList(),
+                    DynamicTheme.getInstance().getTintLocalBackgroundColor(),
+                    mItemSelectedColor));
 
             setItemTextColor(DynamicResourceUtils.convertColorStateList(
-                    getContext(), getItemTextColor(), mItemSelectedColor));
+                    getItemTextColor(), mItemSelectedColor));
         }
     }
 }

@@ -299,9 +299,64 @@ public class DynamicResourceUtils {
 
     /**
      * Create a new color state list from the supplied one by
+     * changing its normal and tint colors.
+     *
+     * @param colorStateList The state list drawable to
+     *                       be converted.
+     * @param normalColor The normal color to be applied.
+     * @param tintColor The color to be applied.
+     *
+     * @return The new color state list with the applied color.
+     */
+    public static @NonNull ColorStateList convertColorStateListWithNormal(
+            @NonNull ColorStateList colorStateList,
+            @ColorInt int normalColor, @ColorInt int tintColor) {
+
+        int[][] states = new int[][] {
+                new int[] { android.R.attr.state_checked },
+                new int[] { android.R.attr.state_enabled },
+                new int[] { android.R.attr.state_pressed },
+                new int[] { android.R.attr.state_focused },
+                new int[] { android.R.attr.state_pressed }
+        };
+
+        int[] colors = new int[] {
+                tintColor,
+                normalColor,
+                normalColor,
+                normalColor,
+                normalColor,
+        };
+
+        return new ColorStateList(states, colors);
+    }
+
+    /**
+     * Create a new color state list from the supplied one by
+     * changing its normal and tint colors.
+     *
+     * @param colorStateList The state list drawable to
+     *                       be converted.
+     * @param normalColor The normal color to be applied.
+     * @param tintColor The color to be applied.
+     * @param contrastWith The contrast color to make sure
+     *                     that it will always be visible on
+     *                     this background.
+     *
+     * @return The new color state list with the applied color.
+     */
+    public static @NonNull ColorStateList convertColorStateListWithNormal(
+            @NonNull ColorStateList colorStateList, @ColorInt int normalColor,
+            @ColorInt int tintColor, @ColorInt int contrastWith) {
+        return convertColorStateList(colorStateList,
+                DynamicColorUtils.getContrastColor(normalColor, contrastWith),
+                DynamicColorUtils.getContrastColor(tintColor, contrastWith));
+    }
+
+    /**
+     * Create a new color state list from the supplied one by
      * changing its tint color.
-     * 
-     * @param context The context to retrieve resources.
+     *
      * @param colorStateList The state list drawable to
      *                       be converted.
      * @param color The color to be applied.
@@ -309,8 +364,7 @@ public class DynamicResourceUtils {
      * @return The new color state list with the applied color.
      */
     public static @NonNull ColorStateList convertColorStateList(
-            @NonNull Context context, @NonNull ColorStateList colorStateList,
-            @ColorInt int color) {
+            @NonNull ColorStateList colorStateList, @ColorInt int color) {
 
         int[][] states = new int[][] {
                 new int[] { android.R.attr.state_checked },
@@ -339,7 +393,6 @@ public class DynamicResourceUtils {
      * Create a new color state list from the supplied one by
      * changing its tint color.
      *
-     * @param context The context to retrieve resources.
      * @param colorStateList The state list drawable to
      *                       be converted.
      * @param color The color to be applied.
@@ -350,9 +403,9 @@ public class DynamicResourceUtils {
      * @return The new color state list with the applied color.
      */
     public static @NonNull ColorStateList convertColorStateList(
-            @NonNull Context context, @NonNull ColorStateList colorStateList,
+            @NonNull ColorStateList colorStateList,
             @ColorInt int color, @ColorInt int contrastWith) {
-        return convertColorStateList(context, colorStateList,
+        return convertColorStateList(colorStateList,
                 DynamicColorUtils.getContrastColor(color, contrastWith));
     }
 
