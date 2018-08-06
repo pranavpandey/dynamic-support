@@ -21,6 +21,7 @@
     android:id="@+id/ads_header_drawer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
     app:ads_colorType="primary"
     app:ads_backgroundAware="false">
 

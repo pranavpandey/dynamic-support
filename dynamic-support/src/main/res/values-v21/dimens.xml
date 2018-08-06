@@ -17,9 +17,6 @@
 
 <resources>
 
-    <!-- Activity -->
-    <dimen name="ads_nav_header_spacing_top">@dimen/ads_margin_large</dimen>
-
     <!-- App widget -->
     <dimen name="ads_widget_margin_end">@dimen/ads_margin_tiny</dimen>
 

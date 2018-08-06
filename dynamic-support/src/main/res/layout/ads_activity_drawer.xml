@@ -39,6 +39,7 @@
         android:id="@+id/ads_navigation_view"
         android:layout_width="@dimen/ads_drawer_size"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         android:layout_gravity="start"
         app:headerLayout="@layout/ads_header_drawer" />
 
