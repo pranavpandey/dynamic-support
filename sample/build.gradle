@@ -18,14 +18,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion compileSdk
-    buildToolsVersion buildTools
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
 
     defaultConfig {
         applicationId "com.pranavpandey.android.dynamic.support.sample"
-        minSdkVersion minSdk
-        targetSdkVersion targetSdk
-        versionCode versionCode
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode mavenVersionCode
         versionName mavenVersion
 
         vectorDrawables.useSupportLibrary = true
@@ -41,5 +41,5 @@ android {
 
 dependencies {
     implementation project(':dynamic-support')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
 }

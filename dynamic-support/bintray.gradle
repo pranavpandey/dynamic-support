@@ -60,7 +60,7 @@ bintray {
     configurations = ['archives']
 
     pkg {
-        repo = bintrayRepo
+        repo = mavenRepo
         name = mavenArtifactId
         desc = projectDesc
         websiteUrl = siteUrl

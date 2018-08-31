@@ -15,7 +15,14 @@
  */
 
 buildscript {
-    ext.kotlin_version = '1.2.61'
+    ext.versions = [
+            'compileSdk'    : 28,
+            'minSdk'        : 14,
+            'targetSdk'     : 28,
+            'buildTools'    : '28.0.2',
+            'androidSupport': '27.1.1',
+            'kotlin'        : '1.2.61'
+    ]
 
     repositories {
         jcenter()
@@ -26,7 +33,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:3.3.0-alpha08'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
     }
 }
 
@@ -46,18 +53,19 @@ ext {
     projectDesc = 'A complete library to build Android apps with a built-in theme engine.'
     versionDesc = 'A complete library to build apps for Android 14+ (ICS or above) devices ' +
             'with a built-in theme engine.'
+    referenceTitle = 'Dynamic Support Reference'
+
     siteUrl = 'https://github.com/pranavpandey/dynamic-support'
     gitUrl = 'https://github.com/pranavpandey/dynamic-support'
     issueUrl = 'https://github.com/pranavpandey/dynamic-support/issues'
-
     githubUrl = 'pranavpandey/dynamic-support'
-    referenceTitle = 'Dynamic Support Reference'
 
+    mavenRepo = 'android'
     mavenGroup = 'com.pranavpandey.android'
-    mavenVersion = '1.2.0'
-    mavenInceptionYear = 2018
     mavenArtifactId = 'dynamic-support'
-    bintrayRepo = 'android'
+    mavenInceptionYear = 2018
+    mavenVersion = '1.2.0'
+    mavenVersionCode = 13
 
     developerId = 'pranavpandey'
     developerName = 'Pranav Pandey'
@@ -67,13 +75,4 @@ ext {
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     licenseDistribution = 'repo'
     allLicenses = ["Apache-2.0"]
-
-    versionCode = 13
-
-    buildTools = '28.0.2'
-    minSdk = 14
-    compileSdk = 28
-    targetSdk = 28
-
-    androidSupport = '27.1.1'
 }
