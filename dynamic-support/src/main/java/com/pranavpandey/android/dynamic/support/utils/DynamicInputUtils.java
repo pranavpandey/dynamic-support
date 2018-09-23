@@ -39,6 +39,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
@@ -74,16 +75,6 @@ public final class DynamicInputUtils {
             fCursorDrawableRes.setAccessible(true);
             int mCursorDrawableRes = fCursorDrawableRes.getInt(editText);
             Class<?> clazz = editor.getClass();
-            Field fCursorDrawable = clazz.getDeclaredField("mCursorDrawable");
-            fCursorDrawable.setAccessible(true);
-            Drawable[] drawables = new Drawable[2];
-            drawables[0] = DynamicResourceUtils.getDrawable(
-                    editText.getContext(), mCursorDrawableRes);
-            drawables[0] = DynamicDrawableUtils.colorizeDrawable(drawables[0], color);
-            drawables[1] = DynamicResourceUtils.getDrawable(
-                    editText.getContext(), mCursorDrawableRes);
-            drawables[1] = DynamicDrawableUtils.colorizeDrawable(drawables[1], color);
-            fCursorDrawable.set(editor, drawables);
 
             String[] resFieldNames = { "mTextSelectHandleLeftRes",
                     "mTextSelectHandleRightRes", "mTextSelectHandleRes" };
@@ -105,6 +96,19 @@ public final class DynamicInputUtils {
                 fEditor = editor.getClass().getDeclaredField(drawableFieldName);
                 fEditor.setAccessible(true);
                 fEditor.set(editor, selectHandleDrawable);
+            }
+
+            if (Arrays.toString(clazz.getDeclaredFields()).contains("mCursorDrawable")) {
+                Field fCursorDrawable = clazz.getDeclaredField("mCursorDrawable");
+                fCursorDrawable.setAccessible(true);
+                Drawable[] drawables = new Drawable[2];
+                drawables[0] = DynamicResourceUtils.getDrawable(
+                        editText.getContext(), mCursorDrawableRes);
+                drawables[0] = DynamicDrawableUtils.colorizeDrawable(drawables[0], color);
+                drawables[1] = DynamicResourceUtils.getDrawable(
+                        editText.getContext(), mCursorDrawableRes);
+                drawables[1] = DynamicDrawableUtils.colorizeDrawable(drawables[1], color);
+                fCursorDrawable.set(editor, drawables);
             }
         } catch (Exception ignored) {
         }
@@ -139,10 +143,10 @@ public final class DynamicInputUtils {
      */
     public static void setHint(@NonNull TextInputLayout textInputLayout, @ColorInt int color) {
         try {
-            final Field mDefaultTextColorField =
-                    TextInputLayout.class.getDeclaredField("mDefaultTextColor");
-            mDefaultTextColorField.setAccessible(true);
-            mDefaultTextColorField.set(textInputLayout, ColorStateList.valueOf(color));
+            final Field defaultHintTextColorField =
+                    TextInputLayout.class.getDeclaredField("defaultHintTextColor");
+            defaultHintTextColorField.setAccessible(true);
+            defaultHintTextColorField.set(textInputLayout, ColorStateList.valueOf(color));
             final Method updateLabelStateMethod =
                     TextInputLayout.class.getDeclaredMethod(
                             "updateLabelState", boolean.class, boolean.class);
@@ -164,10 +168,10 @@ public final class DynamicInputUtils {
      */
     public static void setColor(@NonNull TextInputLayout textInputLayout, @ColorInt int color) {
         try {
-            final Field mFocusedTextColorField =
-                    TextInputLayout.class.getDeclaredField("mFocusedTextColor");
-            mFocusedTextColorField.setAccessible(true);
-            mFocusedTextColorField.set(textInputLayout, ColorStateList.valueOf(color));
+            final Field focusedTextColorField =
+                    TextInputLayout.class.getDeclaredField("focusedTextColor");
+            focusedTextColorField.setAccessible(true);
+            focusedTextColorField.set(textInputLayout, ColorStateList.valueOf(color));
             final Method updateLabelStateMethod =
                     TextInputLayout.class.getDeclaredMethod(
                             "updateLabelState", boolean.class, boolean.class);

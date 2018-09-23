@@ -360,7 +360,7 @@ public final class DynamicScrollUtils {
         Class<?> clazz = NavigationView.class;
         for (Field field : clazz.getDeclaredFields()) {
             switch (field.getName()) {
-                case "mPresenter":
+                case "presenter":
                     field.setAccessible(true);
                     ADS_NAVIGATION_VIEW_FIELD_PRESENTER = field;
                     break;
@@ -370,7 +370,7 @@ public final class DynamicScrollUtils {
         Class<?> clazz1 = NavigationMenuPresenter.class;
         for (Field field : clazz1.getDeclaredFields()) {
             switch (field.getName()) {
-                case "mMenuView":
+                case "menuView":
                     field.setAccessible(true);
                     ADS_NAVIGATION_VIEW_FIELD_RECYCLER_VIEW = field;
                     break;

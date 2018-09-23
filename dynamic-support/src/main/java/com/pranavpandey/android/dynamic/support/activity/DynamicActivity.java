@@ -862,7 +862,15 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      */
     public void setFABVisibility(int visibility) {
         if (mFAB != null && visibility != ADS_VISIBILITY_FAB_NO_CHANGE) {
-            mFAB.setVisibility(visibility);
+            switch (visibility) {
+                case View.VISIBLE:
+                    DynamicFABUtils.show(mFAB);
+                    break;
+                case View.INVISIBLE:
+                case View.GONE:
+                    DynamicFABUtils.show(mFAB);
+                    break;
+            }
         }
     }
 

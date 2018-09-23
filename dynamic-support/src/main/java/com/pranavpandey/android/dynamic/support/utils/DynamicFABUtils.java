@@ -16,23 +16,13 @@
 
 package com.pranavpandey.android.dynamic.support.utils;
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPropertyAnimatorListener;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Interpolator;
-
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 /**
  * Helper class to perform various {@link FloatingActionButton} operations.
  */
 public class DynamicFABUtils {
-
-    private static final Interpolator INTERPOLATOR = new FastOutSlowInInterpolator();
 
     /**
      * Same animation that FloatingActionButton.Behavior uses to hide the
@@ -40,41 +30,8 @@ public class DynamicFABUtils {
      *
      * @param fab FAB to set hide animation.
      */
-    public static void hide(final FloatingActionButton fab) {
-        if (DynamicVersionUtils.isIceCreamSandwich()) {
-            ViewCompat.animate(fab).scaleX(0.0F).scaleY(0.0F)
-                    .alpha(0.0F).setInterpolator(INTERPOLATOR).withLayer()
-                    .setListener(new ViewPropertyAnimatorListener() {
-                        @Override
-                        public void onAnimationStart(View view) { }
-
-                        @Override
-                        public void onAnimationCancel(View view) { }
-
-                        @Override
-                        public void onAnimationEnd(View view) {
-                            view.setVisibility(View.GONE);
-                        }
-                    }).start();
-        } else {
-            Animation anim = AnimationUtils.loadAnimation(
-                    fab.getContext(), android.support.design.R.anim.abc_fade_out);
-            anim.setInterpolator(INTERPOLATOR);
-            anim.setDuration(200L);
-            anim.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) { }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    fab.setVisibility(View.GONE);
-                }
-
-                @Override
-                public void onAnimationRepeat(final Animation animation) { }
-            });
-            fab.startAnimation(anim);
-        }
+    public static void hide(@NonNull FloatingActionButton fab) {
+        fab.hide();
     }
 
     /**
@@ -83,18 +40,7 @@ public class DynamicFABUtils {
      *
      * @param fab FAB to set show animation.
      */
-    public static void show(FloatingActionButton fab) {
-        fab.setVisibility(View.VISIBLE);
-        if (DynamicVersionUtils.isIceCreamSandwich()) {
-            ViewCompat.animate(fab).scaleX(1.0F).scaleY(1.0F).alpha(1.0F)
-                    .setInterpolator(INTERPOLATOR).withLayer().setListener(null)
-                    .start();
-        } else {
-            Animation anim = AnimationUtils.loadAnimation(
-                    fab.getContext(), android.support.design.R.anim.abc_fade_in);
-            anim.setDuration(200L);
-            anim.setInterpolator(INTERPOLATOR);
-            fab.startAnimation(anim);
-        }
+    public static void show(@NonNull FloatingActionButton fab) {
+        fab.show();
     }
 }

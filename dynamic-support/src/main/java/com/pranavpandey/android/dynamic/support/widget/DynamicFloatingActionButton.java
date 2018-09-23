@@ -19,6 +19,7 @@ package com.pranavpandey.android.dynamic.support.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -194,6 +195,16 @@ public class DynamicFloatingActionButton extends FloatingActionButton implements
         this.mBackgroundAware = backgroundAware;
 
         setColor();
+    }
+
+    @Override
+    public void setImageDrawable(@Nullable Drawable drawable) {
+        super.setImageDrawable(drawable);
+
+        if (drawable != null && getVisibility() == VISIBLE) {
+            hide();
+            show();
+        }
     }
 
     @Override
