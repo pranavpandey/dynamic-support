@@ -137,8 +137,13 @@
     <!-- Dialog -->
     <dimen name="ads_dialog_margin_start_end">24dp</dimen>
     <dimen name="ads_dialog_margin_start_end_small">22dp</dimen>
+    <dimen name="ads_dialog_margin_select_start">20dp</dimen>
+    <dimen name="add_dialog_margin_title_top">18dp</dimen>
+    <dimen name="add_dialog_margin_title_bottom">12dp</dimen>
     <dimen name="ads_dialog_margin_input">20dp</dimen>
     <dimen name="ads_dialog_margin_small">10dp</dimen>
+    <dimen name="ads_dialog_list_margin_no_title_top">8dp</dimen>
+    <dimen name="ads_dialog_list_margin_no_buttons_button">8dp</dimen>
     <dimen name="ads_dialog_font_size">@dimen/ads_font_size_small</dimen>
     <dimen name="ads_dialog_font_size_title">@dimen/ads_font_size_medium</dimen>
     <dimen name="ads_dialog_font_size_large_fixed">12dp</dimen>

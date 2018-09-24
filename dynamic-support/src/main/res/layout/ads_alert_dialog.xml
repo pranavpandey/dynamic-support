@@ -21,7 +21,7 @@
     android:id="@+id/parentPanel"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="start|left|top"
+    android:gravity="start|top"
     android:orientation="vertical">
 
     <include layout="@layout/ads_alert_dialog_title" />
@@ -40,7 +40,7 @@
             <android.support.v4.widget.Space
                 android:id="@+id/textSpacerNoTitle"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/abc_dialog_padding_top_material"
+                android:layout_height="@dimen/add_dialog_margin_title_top"
                 android:visibility="gone" />
 
             <View
@@ -86,7 +86,7 @@
             <android.support.v4.widget.Space
                 android:id="@+id/textSpacerNoButtons"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/abc_dialog_padding_top_material"
+                android:layout_height="@dimen/add_dialog_margin_title_top"
                 android:visibility="gone" />
 
         </LinearLayout>

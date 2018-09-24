@@ -29,11 +29,11 @@
         android:id="@+id/title_template"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical|start|left"
+        android:gravity="center_vertical|start"
         android:orientation="horizontal"
         android:paddingLeft="?attr/dialogPreferredPadding"
         android:paddingRight="?attr/dialogPreferredPadding"
-        android:paddingTop="@dimen/abc_dialog_padding_top_material">
+        android:paddingTop="@dimen/add_dialog_margin_title_top">
 
         <ImageView
             android:id="@android:id/icon"
@@ -41,8 +41,9 @@
             android:layout_height="32dip"
             android:layout_marginEnd="8dip"
             android:layout_marginRight="8dip"
+            android:contentDescription="@null"
             android:scaleType="fitCenter"
-            android:src="@null"/>
+            android:src="@null" />
 
         <android.support.v7.widget.DialogTitle
             android:id="@+id/alertTitle"
@@ -60,7 +61,7 @@
     <android.support.v4.widget.Space
         android:id="@+id/titleDividerNoCustom"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/abc_dialog_title_divider_material"
-        android:visibility="gone"/>
+        android:layout_height="@dimen/add_dialog_margin_title_bottom"
+        android:visibility="gone" />
 
 </LinearLayout>

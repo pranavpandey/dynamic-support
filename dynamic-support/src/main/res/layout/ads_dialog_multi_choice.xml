@@ -18,7 +18,6 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicCheckedTextView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@android:id/text1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -26,11 +25,11 @@
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:textColor="?attr/textColorAlertDialogListItem"
     android:gravity="center_vertical"
-    android:paddingLeft="@dimen/abc_select_dialog_padding_start_material"
+    android:paddingLeft="@dimen/ads_dialog_margin_select_start"
     android:paddingRight="?attr/dialogPreferredPadding"
-    android:paddingStart="@dimen/abc_select_dialog_padding_start_material"
+    android:paddingStart="@dimen/ads_dialog_margin_select_start"
     android:paddingEnd="?attr/dialogPreferredPadding"
     android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
     android:drawableStart="?android:attr/listChoiceIndicatorMultiple"
-    android:drawablePadding="20dp"
+    android:drawablePadding="@dimen/ads_dialog_margin_select_start"
     android:ellipsize="marquee" />

@@ -121,10 +121,10 @@
 
     <style name="Base.DynamicApp.AlertDialog" parent="android:Widget">
         <item name="android:layout">@layout/ads_alert_dialog</item>
-        <item name="listLayout">@layout/ads_alert_dialog_list</item>
-        <item name="listItemLayout">@layout/select_dialog_item_material</item>
-        <item name="multiChoiceItemLayout">@layout/ads_alert_dialog_multi_choice</item>
-        <item name="singleChoiceItemLayout">@layout/ads_alert_dialog_single_choice</item>
+        <item name="listLayout">@layout/ads_dialog_list</item>
+        <item name="listItemLayout">@layout/ads_dialog_select_item</item>
+        <item name="multiChoiceItemLayout">@layout/ads_dialog_multi_choice</item>
+        <item name="singleChoiceItemLayout">@layout/ads_dialog_single_choice</item>
     </style>
 
     <style name="Theme.DynamicApp" parent="Base.DynamicApp.NoActionBar" />
