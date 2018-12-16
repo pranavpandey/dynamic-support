@@ -19,38 +19,42 @@ package com.pranavpandey.android.dynamic.support.widget;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.android.material.button.MaterialButton;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicCornerWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * An AppCompatButton to change its color according to the
- * supplied parameters.
+ * An AppCompatButton to change its color according to the supplied parameters.
  */
-public class DynamicButton extends AppCompatButton implements DynamicWidget {
+public class DynamicButton extends MaterialButton implements
+        DynamicWidget, DynamicCornerWidget<Integer>, DynamicTintWidget {
 
     /**
      * Color type applied to this view.
      *
-     * @see DynamicColorType
+     * @see Theme.ColorType
      */
-    private @DynamicColorType int mColorType;
+    private @Theme.ColorType int mColorType;
 
     /**
-     * Background color type for this view so that it will remain in
-     * contrast with this color type.
+     * Background color type for this view so that it will remain in contrast with this
+     * color type.
      */
-    private @DynamicColorType int mContrastWithColorType;
+    private @Theme.ColorType int mContrastWithColorType;
 
     /**
      * Color applied to this view.
@@ -58,29 +62,34 @@ public class DynamicButton extends AppCompatButton implements DynamicWidget {
     private @ColorInt int mColor;
 
     /**
-     * Background color for this view so that it will remain in
-     * contrast with this color.
+     * Background color for this view so that it will remain in contrast with this color.
      */
     private @ColorInt int mContrastWithColor;
 
     /**
-     * {@code true} if this view will change its color according
-     * to the background. It was introduced to provide better legibility for
-     * colored texts and to avoid dark text on dark background like situations.
+     * The background aware functionality to change this view color according to the background.
+     * It was introduced to provide better legibility for colored views and to avoid dark view
+     * on dark background like situations.
      *
-     * <p>If this boolean is set then, it will check for the contrast color and
-     * do color calculations according to that color so that this text view will
-     * always be visible on that background. If no contrast color is found then,
-     * it will take default background color.</p>
+     * <p><p>If this is enabled then, it will check for the contrast color and do color
+     * calculations according to that color so that this text view will always be visible on
+     * that background. If no contrast color is found then, it will take the default
+     * background color.
      *
+     * @see Theme.BackgroundAware
      * @see #mContrastWithColor
      */
-    private boolean mBackgroundAware;
+    private @Theme.BackgroundAware int mBackgroundAware;
 
     /**
      * {@code true} if style applied to this view is borderless.
      */
     private boolean mStyleBorderless;
+
+    /**
+     * {@code true} to tint background according to the widget color.
+     */
+    private boolean mTintBackground;
 
     public DynamicButton(@NonNull Context context) {
         this(context, null);
@@ -93,7 +102,7 @@ public class DynamicButton extends AppCompatButton implements DynamicWidget {
     }
 
     public DynamicButton(@NonNull Context context,
-                         @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         loadFromAttributes(attrs);
@@ -124,20 +133,27 @@ public class DynamicButton extends AppCompatButton implements DynamicWidget {
                 attrs, R.styleable.DynamicTheme);
 
         try {
-            mColorType = a.getInt(R.styleable.DynamicTheme_ads_colorType,
-                    DynamicColorType.NONE);
+            mColorType = a.getInt(
+                    R.styleable.DynamicTheme_ads_colorType,
+                    Theme.ColorType.TINT_BACKGROUND);
             mContrastWithColorType = a.getInt(
                     R.styleable.DynamicTheme_ads_contrastWithColorType,
-                    DynamicColorType.BACKGROUND);
-            mColor = a.getColor(R.styleable.DynamicTheme_ads_color,
+                    Theme.ColorType.BACKGROUND);
+            mColor = a.getColor(
+                    R.styleable.DynamicTheme_ads_color,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
-            mContrastWithColor = a.getColor(R.styleable.DynamicTheme_ads_contrastWithColor,
-                    WidgetDefaults.getDefaultContrastWithColor(getContext()));
-            mBackgroundAware = a.getBoolean(
+            mContrastWithColor = a.getColor(
+                    R.styleable.DynamicTheme_ads_contrastWithColor,
+                    WidgetDefaults.getContrastWithColor(getContext()));
+            mBackgroundAware = a.getInteger(
                     R.styleable.DynamicTheme_ads_backgroundAware,
-                    WidgetDefaults.ADS_BACKGROUND_AWARE);
+                    WidgetDefaults.getBackgroundAware());
             mStyleBorderless = a.getBoolean(
-                    R.styleable.DynamicTheme_ads_styleBorderless, false);
+                    R.styleable.DynamicTheme_ads_styleBorderless,
+                    WidgetDefaults.ADS_STYLE_BORDERLESS);
+            mTintBackground = a.getBoolean(
+                    R.styleable.DynamicTheme_ads_tintBackground,
+                    WidgetDefaults.ADS_TINT_BACKGROUND);
         } finally {
             a.recycle();
         }
@@ -147,39 +163,40 @@ public class DynamicButton extends AppCompatButton implements DynamicWidget {
 
     @Override
     public void initialize() {
-        if (mColorType != DynamicColorType.NONE
-                && mColorType != DynamicColorType.CUSTOM) {
-            mColor = DynamicTheme.getInstance().getColorFromType(mColorType);
+        if (mColorType != Theme.ColorType.NONE
+                && mColorType != Theme.ColorType.CUSTOM) {
+            mColor = DynamicTheme.getInstance().resolveColorType(mColorType);
         }
 
-        if (mContrastWithColorType != DynamicColorType.NONE
-                && mContrastWithColorType != DynamicColorType.CUSTOM) {
+        if (mContrastWithColorType != Theme.ColorType.NONE
+                && mContrastWithColorType != Theme.ColorType.CUSTOM) {
             mContrastWithColor = DynamicTheme.getInstance()
-                    .getColorFromType(mContrastWithColorType);
+                    .resolveColorType(mContrastWithColorType);
         }
 
+        setCorner(DynamicTheme.getInstance().get().getCornerRadius());
         setColor();
     }
 
     @Override
-    public @DynamicColorType int getColorType() {
+    public @Theme.ColorType int getColorType() {
         return mColorType;
     }
 
     @Override
-    public void setColorType(@DynamicColorType int colorType) {
+    public void setColorType(@Theme.ColorType int colorType) {
         this.mColorType = colorType;
 
         initialize();
     }
 
     @Override
-    public @DynamicColorType int getContrastWithColorType() {
+    public @Theme.ColorType int getContrastWithColorType() {
         return mContrastWithColorType;
     }
 
     @Override
-    public void setContrastWithColorType(@DynamicColorType int contrastWithColorType) {
+    public void setContrastWithColorType(@Theme.ColorType int contrastWithColorType) {
         this.mContrastWithColorType = contrastWithColorType;
 
         initialize();
@@ -192,7 +209,7 @@ public class DynamicButton extends AppCompatButton implements DynamicWidget {
 
     @Override
     public void setColor(@ColorInt int color) {
-        this.mColorType = DynamicColorType.CUSTOM;
+        this.mColorType = Theme.ColorType.CUSTOM;
         this.mColor = color;
 
         setColor();
@@ -205,20 +222,38 @@ public class DynamicButton extends AppCompatButton implements DynamicWidget {
 
     @Override
     public void setContrastWithColor(@ColorInt int contrastWithColor) {
-        this.mContrastWithColorType = DynamicColorType.CUSTOM;
+        this.mContrastWithColorType = Theme.ColorType.CUSTOM;
         this.mContrastWithColor = contrastWithColor;
 
         setColor();
     }
 
     @Override
-    public boolean isBackgroundAware() {
+    public void setBackgroundAware(@Theme.BackgroundAware int backgroundAware) {
+        this.mBackgroundAware = backgroundAware;
+
+        setColor();
+    }
+
+    @Override
+    public @Theme.BackgroundAware int getBackgroundAware() {
         return mBackgroundAware;
     }
 
     @Override
-    public void setBackgroundAware(boolean backgroundAware) {
-        this.mBackgroundAware = backgroundAware;
+    public boolean isBackgroundAware() {
+        return DynamicTheme.getInstance().resolveBackgroundAware(
+                mBackgroundAware) != Theme.BackgroundAware.DISABLE;
+    }
+
+    @Override
+    public boolean isTintBackground() {
+        return mTintBackground;
+    }
+
+    @Override
+    public void setTintBackground(boolean tintBackground) {
+        this.mTintBackground = tintBackground;
 
         setColor();
     }
@@ -230,20 +265,47 @@ public class DynamicButton extends AppCompatButton implements DynamicWidget {
         setAlpha(enabled ? WidgetDefaults.ADS_ALPHA_ENABLED : WidgetDefaults.ADS_ALPHA_DISABLED);
     }
 
+    @Override
+    public void setCorner(Integer cornerRadius) {
+        setCornerRadius(cornerRadius);
+    }
+
+    @Override
+    public Integer getCorner() {
+        return getCornerRadius();
+    }
+
     @SuppressLint("RestrictedApi")
     @Override
     public void setColor() {
         if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (mBackgroundAware && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
+            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
                 mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
+            DynamicTintUtils.setViewBackgroundTint(this, mContrastWithColor,
+                    mTintBackground ? mColor : DynamicColorUtils.getTintColor(
+                            mContrastWithColor), mStyleBorderless, false);
+
             if (!mStyleBorderless) {
-                DynamicTintUtils.setViewBackgroundTint(this, mColor);
-                setTextColor(DynamicResourceUtils.getColorStateList(
-                        DynamicColorUtils.getTintColor(mColor)));
+                if (mTintBackground) {
+                    setTextColor(DynamicResourceUtils.getColorStateList(
+                            mContrastWithColor,
+                            DynamicColorUtils.getTintColor(mColor),
+                            DynamicColorUtils.getTintColor(mColor), false));
+                } else {
+                    setTextColor(DynamicResourceUtils.getColorStateList(
+                            mContrastWithColor,
+                            DynamicColorUtils.getContrastColor(mColor,
+                                    DynamicColorUtils.getTintColor(mContrastWithColor)),
+                            DynamicColorUtils.getContrastColor(mColor,
+                                    DynamicColorUtils.getTintColor(mContrastWithColor)),
+                            false));
+                }
             } else {
-                setTextColor(DynamicResourceUtils.getColorStateList(mColor));
+                setTextColor(DynamicResourceUtils.getColorStateList(
+                        DynamicColorUtils.getTintColor(mContrastWithColor),
+                        mColor, mColor, false));
             }
         }
     }

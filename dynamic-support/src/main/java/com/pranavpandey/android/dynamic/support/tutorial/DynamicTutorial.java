@@ -16,37 +16,42 @@
 
 package com.pranavpandey.android.dynamic.support.tutorial;
 
-import android.support.annotation.ColorInt;
-import android.support.v4.view.ViewPager;
+import androidx.annotation.ColorInt;
+import androidx.viewpager.widget.ViewPager;
 
 /**
- * Interface for the dynamic tutorial having useful functions which
- * will be called by the {@link DynamicTutorialActivity} to perform
- * color transitions.
- * <p>Any child view or fragment must implement this
- * interface to support any color transitions.</p>
+ * Interface for the dynamic tutorial having useful functions which will be called by the
+ * {@link DynamicTutorialActivity} to perform color transitions.
+ *
+ * <p><p>Any child view or fragment must implement this interface to support any color
+ * transitions.
  */
 public interface DynamicTutorial extends ViewPager.OnPageChangeListener {
 
     /**
+     * Returns the tutorial object.
+     *
      * @return The tutorial object.
      */
     Object getTutorial();
 
     /**
+     * Returns the id for this tutorial.
+     *
      * @return The id of this tutorial.
      */
     int getTutorialId();
 
     /**
+     * Returns the background color for this tutorial.
+     *
      * @return The background color used by this tutorial.
      */
     @ColorInt int getBackgroundColor();
 
     /**
-     * This method will be called when there is a change in the
-     * background color of the activity. Implement this method to
-     * update any views during the transition.
+     * This method will be called when there is a change in the background color of the activity.
+     * <p>Implement this method to update any views during the transition.
      *
      * @param color The color of the background.
      */

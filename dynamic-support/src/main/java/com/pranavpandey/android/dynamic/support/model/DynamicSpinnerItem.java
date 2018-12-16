@@ -17,11 +17,11 @@
 package com.pranavpandey.android.dynamic.support.model;
 
 import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 /**
- * A model class to store {@link android.widget.Spinner} item
- * information with a icon and a text.
+ * A model class to store {@link android.widget.Spinner} item information with an icon and a text.
  */
 public class DynamicSpinnerItem {
 
@@ -47,6 +47,8 @@ public class DynamicSpinnerItem {
     }
 
     /**
+     * Get the icon used by this item.
+     *
      * @return The icon used by this item.
      */
     public @Nullable Drawable getIcon() {
@@ -58,8 +60,7 @@ public class DynamicSpinnerItem {
      *
      * @param icon The icon to be set.
      *
-     * @return The {@link DynamicSpinnerItem} object to allow
-     *         for chaining of calls to set methods.
+     * @return The {@link DynamicSpinnerItem} object to allow for chaining of calls to set methods.
      */
     public DynamicSpinnerItem setIcon(@Nullable Drawable icon) {
         this.icon = icon;
@@ -68,6 +69,8 @@ public class DynamicSpinnerItem {
     }
 
     /**
+     * Get the text used by this item.
+     *
      * @return The text used by this item.
      */
     public @Nullable CharSequence getText() {
@@ -79,8 +82,7 @@ public class DynamicSpinnerItem {
      *
      * @param text The text to be set.
      *
-     * @return The {@link DynamicSpinnerItem} object to allow
-     *         for chaining of calls to set methods.
+     * @return The {@link DynamicSpinnerItem} object to allow for chaining of calls to set methods.
      */
     public DynamicSpinnerItem setText(@Nullable CharSequence text) {
         this.text = text;

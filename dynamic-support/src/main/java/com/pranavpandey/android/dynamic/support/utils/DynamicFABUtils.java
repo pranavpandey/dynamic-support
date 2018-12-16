@@ -16,8 +16,9 @@
 
 package com.pranavpandey.android.dynamic.support.utils;
 
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
+import androidx.annotation.NonNull;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * Helper class to perform various {@link FloatingActionButton} operations.
@@ -25,20 +26,20 @@ import android.support.design.widget.FloatingActionButton;
 public class DynamicFABUtils {
 
     /**
-     * Same animation that FloatingActionButton.Behavior uses to hide the
-     * FAB when the AppBarLayout exits.
+     * Same animation that FloatingActionButton.Behavior uses to hide the FAB when the
+     * AppBarLayout exits.
      *
-     * @param fab FAB to set hide animation.
+     * @param fab The FAB to set hide animation.
      */
     public static void hide(@NonNull FloatingActionButton fab) {
         fab.hide();
     }
 
     /**
-     * Same animation that FloatingActionButton.Behavior uses to show the
-     * FAB when the AppBarLayout enters.
+     * Same animation that FloatingActionButton.Behavior uses to show the FAB when the
+     * AppBarLayout enters.
      *
-     * @param fab FAB to set show animation.
+     * @param fab The FAB to set show animation.
      */
     public static void show(@NonNull FloatingActionButton fab) {
         fab.show();

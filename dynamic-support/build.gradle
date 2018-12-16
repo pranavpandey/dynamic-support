@@ -27,19 +27,18 @@ android {
         versionName mavenVersion
 
         vectorDrawables.useSupportLibrary = true
+        consumerProguardFiles 'proguard-rules.pro'
     }
 
     sourceSets {
-        main.res.srcDirs = [
-            'src/main/res'
-        ]
+        main.res.srcDirs 'res'
     }
 }
 
 dependencies {
-    api "com.pranavpandey.android:dynamic-toasts:$mavenVersion"
-    api "com.android.support:design:${versions.androidSupport}"
-    api "com.android.support:cardview-v7:${versions.androidSupport}"
+    api "com.pranavpandey.android:dynamic-toasts:${versions.dynamic}"
+    api "com.google.android.material:material:${versions.material}"
+    api "com.google.code.gson:gson:${versions.gson}"
 }
 
 if (project.rootProject.file('local.properties').exists()) {
@@ -54,8 +53,9 @@ project.afterEvaluate {
                 description = "Generates javadocs"
                 failOnError = false
                 destinationDir = new File(destinationDir, variant.baseName)
-                source = files(variant.javaCompiler.source)
-                classpath = files(variant.javaCompiler.classpath.files) + files(android.bootClasspath)
+                source = android.sourceSets.main.java.srcDirs
+                classpath += configurations.compile
+                classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
                 options.windowTitle(referenceTitle)
                 options.docTitle(referenceTitle)
                 options.header(referenceTitle)

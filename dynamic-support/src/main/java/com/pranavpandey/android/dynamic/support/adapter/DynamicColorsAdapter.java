@@ -16,42 +16,31 @@
 
 package com.pranavpandey.android.dynamic.support.adapter;
 
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
-import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
+import com.pranavpandey.android.dynamic.support.theme.Theme;
+import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 
 /**
- * A simple base adapter to hold an array of colors and displays
- * them in a adapter view.
+ * A simple base adapter to hold an array of colors and displays them in a adapter view.
  */
 public class DynamicColorsAdapter extends BaseAdapter {
 
     /**
      * Listener to get the callback when a color is selected.
      */
-    public interface OnColorSelectedListener {
-
-        /**
-         * Called when a color is selected.
-         *
-         * @param position The selected position.
-         * @param color The selected color.
-         */
-        void onColorSelected(int position, @ColorInt int color);
-    }
-
-    /**
-     * Listener to get the callback when a color is selected.
-     */
-    private OnColorSelectedListener mOnColorSelectedListener;
+    private DynamicColorListener mDynamicColorListener;
 
     /**
      * Array of colors to be handled by this adapter.
@@ -78,42 +67,39 @@ public class DynamicColorsAdapter extends BaseAdapter {
     /**
      * Constructor to initialize an object of this class.
      *
-     * @param colors The array of colors to be handled by this
-     *               adapter.
+     * @param colors The array of colors to be handled by this adapter.
      * @param colorShape The shape of the color swatches.
      * @param alpha {@code true} to enable alpha for the color.
-     * @param onColorSelectedListener The listener to get the callback
-     *                                when a color is selected.
+     * @param dynamicColorListener The listener to get the callback when a color is selected.
      */
     public DynamicColorsAdapter(@NonNull @ColorInt Integer[] colors,
-                                @DynamicColorShape int colorShape, boolean alpha,
-                                @NonNull OnColorSelectedListener onColorSelectedListener) {
-        this(colors, DynamicColorType.UNKNOWN, colorShape, alpha, onColorSelectedListener);
+            @DynamicColorShape int colorShape, boolean alpha,
+            @NonNull DynamicColorListener dynamicColorListener) {
+        this(colors, Theme.ColorType.UNKNOWN, colorShape, alpha, dynamicColorListener);
     }
 
     /**
      * Constructor to initialize an object of this class.
      *
-     * @param colors The array of colors to be handled by this
-     *               adapter.
+     * @param colors The array of colors to be handled by this adapter.
      * @param selectedColor The selected color.
      * @param colorShape The shape of the color swatches.
      * @param alpha {@code true} to enable alpha for the color.
-     * @param onColorSelectedListener The listener to get the callback
-     *                                when a color is selected.
+     * @param dynamicColorListener The listener to get the callback when a color is selected.
      */
-    public DynamicColorsAdapter(@NonNull @ColorInt Integer[] colors, @ColorInt int selectedColor,
-                                @DynamicColorShape int colorShape, boolean alpha,
-                                @NonNull OnColorSelectedListener onColorSelectedListener) {
+    public DynamicColorsAdapter(@NonNull @ColorInt Integer[] colors,
+            @ColorInt int selectedColor, @DynamicColorShape int colorShape, boolean alpha,
+            @NonNull DynamicColorListener dynamicColorListener) {
         this.mDataSet = colors;
         this.mSelectedColor = selectedColor;
         this.mColorShape = colorShape;
         this.mAlpha = alpha;
-        this.mOnColorSelectedListener = onColorSelectedListener;
+        this.mDynamicColorListener = dynamicColorListener;
     }
 
     @Override
-	public View getView(final int position, View convertView, ViewGroup parent) {
+	public View getView(final int position,
+            @Nullable View convertView, @NonNull ViewGroup parent) {
 		ViewHolder viewHolder;
 
         if (convertView == null) {
@@ -125,20 +111,21 @@ public class DynamicColorsAdapter extends BaseAdapter {
         	viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        final int color = (int) getItem(position);
+        int color = (int) getItem(position);
         final DynamicColorView dynamicColorView = viewHolder.getDynamicColorView();
         dynamicColorView.setColor(color);
         dynamicColorView.setColorShape(mColorShape);
         dynamicColorView.setAlpha(mAlpha);
-        if (mSelectedColor != DynamicColorType.UNKNOWN) {
+        if (mSelectedColor != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE) {
             dynamicColorView.setSelected(mSelectedColor == color);
         }
 
         dynamicColorView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mOnColorSelectedListener != null) {
-                    mOnColorSelectedListener.onColorSelected(position, dynamicColorView.getColor());
+                if (mDynamicColorListener != null) {
+                    mDynamicColorListener.onColorSelected(
+                            null, position, dynamicColorView.getColor());
                     mSelectedColor = dynamicColorView.getColor();
 
                     notifyDataSetChanged();
@@ -173,6 +160,8 @@ public class DynamicColorsAdapter extends BaseAdapter {
     }
 
     /**
+     * Get the data set handled by this adapter.
+     *
      * @return The array of colors to be handled by this adapter.
      */
     public @NonNull @ColorInt Integer[] getDataSet() {
@@ -191,27 +180,29 @@ public class DynamicColorsAdapter extends BaseAdapter {
     }
 
     /**
-     * @return The listener to get the callback when a color is
-     *         selected.
+     * Get the dynamic color listener.
+     *
+     * @return The listener to get the callback when a color is selected.
      */
-    public OnColorSelectedListener getOnColorSelectedListener() {
-        return mOnColorSelectedListener;
+    public DynamicColorListener getDynamicColorListener() {
+        return mDynamicColorListener;
     }
 
     /**
-     * Sets the listener to get the callback when a color
-     * is selected.
+     * Sets the listener to get the callback when a color is selected.
      *
-     * @param onColorSelectedListener The listener to be set.
+     * @param dynamicColorListener The listener to be set.
      */
-    public void setOnColorSelectedListener(
-            @NonNull OnColorSelectedListener onColorSelectedListener) {
-        this.mOnColorSelectedListener = onColorSelectedListener;
+    public void setDynamicColorListener(
+            @NonNull DynamicColorListener dynamicColorListener) {
+        this.mDynamicColorListener = dynamicColorListener;
 
         notifyDataSetChanged();
     }
 
     /**
+     * Get the selected color.
+     *
      * @return The selected color.
      */
     public int getSelectedColor() {
@@ -230,9 +221,11 @@ public class DynamicColorsAdapter extends BaseAdapter {
     }
 
     /**
+     * Get the shape of the color swatches.
+     *
      * @return The shape of the color swatches.
      */
-    public int getColorShape() {
+    public @DynamicColorShape int getColorShape() {
         return mColorShape;
     }
 
@@ -248,6 +241,8 @@ public class DynamicColorsAdapter extends BaseAdapter {
     }
 
     /**
+     * Checks whether alpha is enabled for the colors.
+     *
      * @return {@code true} to enable alpha for the colors.
      */
     public boolean isAlpha() {
@@ -280,11 +275,13 @@ public class DynamicColorsAdapter extends BaseAdapter {
          *
          * @param view The view for this view holder.
          */
-    	public ViewHolder(@NonNull View view) {
+    	ViewHolder(@NonNull View view) {
     	    dynamicColorView = view.findViewById(R.id.ads_color_item_view);
     	}
 
         /**
+         * Get the color view to display color on the adapter view.
+         *
          * @return The color view to display color on the adapter view.
          */
         DynamicColorView getDynamicColorView() {

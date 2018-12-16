@@ -16,7 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.picker.color;
 
-import android.support.annotation.IntDef;
+import androidx.annotation.IntDef;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -27,8 +27,7 @@ import static com.pranavpandey.android.dynamic.support.picker.color.DynamicColor
 import static com.pranavpandey.android.dynamic.support.picker.color.DynamicColorControl.RGB;
 
 /**
- * Interface to hold the color control constant values to provide
- * color sliders accordingly.
+ * Interface to hold the color control constant values to provide color sliders accordingly.
  */
 @Retention(RetentionPolicy.SOURCE)
 @IntDef(value = { ALL, HSV, RGB, CMYK })

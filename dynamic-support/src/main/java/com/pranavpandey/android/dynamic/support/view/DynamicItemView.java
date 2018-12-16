@@ -19,30 +19,31 @@ package com.pranavpandey.android.dynamic.support.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 
 /**
- * A FrameLayout with a icon, title and subtitle functionality which
- * can be used to show various informations according to the requirement.
- * Use {@link #getItemView()} method to set click listeners or to perform
- * other operations.
+ * A DynamicView with an icon, title and subtitle functionality which can be used to show various
+ * information according to the requirement.
+ *
+ * <p><p>Use {@link #getItemView()} method to set click listeners or to perform other operations.
  */
-public class DynamicItemView extends FrameLayout {
+public class DynamicItemView extends DynamicView {
 
     /**
      * Icon used by this view.
@@ -62,7 +63,7 @@ public class DynamicItemView extends FrameLayout {
     /**
      * Icon tint color type used by this view.
      */
-    private @DynamicColorType int mColorType;
+    private @Theme.ColorType int mColorType;
 
     /**
      * Icon tint color used by this view.
@@ -71,9 +72,14 @@ public class DynamicItemView extends FrameLayout {
 
     /**
      * {@code true} to show horizontal divider.
-     * Useful to display in a list view.
+     * <p>Useful to display in a list view.
      */
     private boolean mShowDivider;
+
+    /**
+     * {@code true} to fill the empty icon space if applicable.
+     */
+    private boolean mFillSpace;
 
     /**
      * Root element of this view.
@@ -101,48 +107,16 @@ public class DynamicItemView extends FrameLayout {
     private View mDivider;
 
     public DynamicItemView(@NonNull Context context) {
-        this(context, null);
+        super(context);
     }
 
     public DynamicItemView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-
-        loadFromAttributes(attrs);
     }
 
     public DynamicItemView(@NonNull Context context,
-                           @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-        loadFromAttributes(attrs);
-    }
-
-    /**
-     * Load values from the supplied attribute set.
-     *
-     * @param attrs The supplied attribute set to load the values.
-     */
-    protected void loadFromAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DynamicInfo);
-
-        try {
-            mIcon = DynamicResourceUtils.getDrawable(getContext(), a.getResourceId(
-                    R.styleable.DynamicInfo_ads_dynamicInfo_icon,
-                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
-            mTitle = a.getString(R.styleable.DynamicInfo_ads_dynamicInfo_title);
-            mSubtitle = a.getString(R.styleable.DynamicInfo_ads_dynamicInfo_subtitle);
-            mColor = a.getColor(R.styleable.DynamicInfo_ads_dynamicInfo_color,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
-            mColorType = a.getInt(
-                    R.styleable.DynamicInfo_ads_dynamicInfo_colorType,
-                    DynamicColorType.NONE);
-            mShowDivider = a.getBoolean(R.styleable.DynamicInfo_ads_dynamicInfo_showDivider,
-                    WidgetDefaults.ADS_SHOW_DIVIDER);
-        } finally {
-            a.recycle();
-        }
-
-        initialize();
     }
 
     /**
@@ -156,8 +130,8 @@ public class DynamicItemView extends FrameLayout {
      * @param showDivider {@code true} to show horizontal divider.
      */
     public DynamicItemView(@NonNull Context context, @Nullable Drawable icon,
-                           @Nullable CharSequence title, @Nullable CharSequence subtitle,
-                           @ColorInt int color, boolean showDivider) {
+            @Nullable CharSequence title, @Nullable CharSequence subtitle,
+            @ColorInt int color, boolean showDivider) {
         super(context);
 
         this.mIcon = icon;
@@ -166,21 +140,39 @@ public class DynamicItemView extends FrameLayout {
         this.mColor = color;
         this.mShowDivider = showDivider;
 
-        initialize();
+        onUpdate();
     }
 
-    /**
-     * @return The layout used by this view. Override this method to
-     *         supply a different layout.
-     */
+    @Override
+    protected void onLoadAttributes(@Nullable AttributeSet attrs) {
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DynamicInfo);
+
+        try {
+            mIcon = DynamicResourceUtils.getDrawable(getContext(), a.getResourceId(
+                    R.styleable.DynamicInfo_ads_icon,
+                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
+            mTitle = a.getString(R.styleable.DynamicInfo_ads_title);
+            mSubtitle = a.getString(R.styleable.DynamicInfo_ads_subtitle);
+            mColor = a.getColor(R.styleable.DynamicInfo_ads_color,
+                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+            mColorType = a.getInt(R.styleable.DynamicInfo_ads_colorType,
+                    Theme.ColorType.NONE);
+            mShowDivider = a.getBoolean(R.styleable.DynamicInfo_ads_showDivider,
+                    WidgetDefaults.ADS_SHOW_DIVIDER);
+            mFillSpace = a.getBoolean(R.styleable.DynamicInfo_ads_fillSpace,
+                    WidgetDefaults.ADS_FILL_SPACE);
+        } finally {
+            a.recycle();
+        }
+    }
+
+    @Override
     protected @LayoutRes int getLayoutRes() {
         return R.layout.ads_item_view;
     }
 
-    /**
-     * Initialize the layout for this view.
-     */
-    private void initialize() {
+    @Override
+    protected void onInflate() {
         inflate(getContext(), getLayoutRes(), this);
 
         mItemView = findViewById(R.id.ads_item_view);
@@ -189,26 +181,30 @@ public class DynamicItemView extends FrameLayout {
         mSubtitleView = findViewById(R.id.ads_item_view_subtitle);
         mDivider = findViewById(R.id.ads_item_view_divider);
 
-        update();
+        onUpdate();
     }
 
-    /**
-     * Load this view according to the supplied parameters.
-     */
-    public void update() {
-        if (mColorType != DynamicColorType.NONE
-                && mColorType != DynamicColorType.CUSTOM) {
-            mColor = DynamicTheme.getInstance().getColorFromType(mColorType);
+    @Override
+    public void onUpdate() {
+        if (mColorType != Theme.ColorType.NONE && mColorType != Theme.ColorType.CUSTOM) {
+            mColor = DynamicTheme.getInstance().resolveColorType(mColorType);
         }
 
         if (mIcon != null) {
             mIconView.setImageDrawable(mIcon);
+            mIconView.setVisibility(VISIBLE);
+        } else {
+            if (mFillSpace) {
+                mIconView.setVisibility(GONE);
+            }
         }
 
-        if (mColor != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE) {
-            mIconView.setColor(mColor);
-        } else {
-            mIconView.clearColorFilter();
+        if (mIconView != null) {
+            if (mColor != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE) {
+                mIconView.setColor(mColor);
+            } else {
+                mIconView.clearColorFilter();
+            }
         }
 
         if (mTitle != null) {
@@ -225,10 +221,22 @@ public class DynamicItemView extends FrameLayout {
             mSubtitleView.setVisibility(GONE);
         }
 
-        mDivider.setVisibility(mShowDivider ? VISIBLE : GONE);
+        if (mDivider != null) {
+            mDivider.setVisibility(mShowDivider ? VISIBLE : GONE);
+        }
+    }
+
+    @Override
+    protected void onEnabled(boolean enabled) {
+        mItemView.setEnabled(enabled);
+        mIconView.setEnabled(enabled);
+        mTitleView.setEnabled(enabled);
+        mSubtitleView.setEnabled(enabled);
     }
 
     /**
+     * Get the icon used by this view.
+     *
      * @return The icon used by this view.
      */
     public @Nullable Drawable getIcon() {
@@ -243,10 +251,12 @@ public class DynamicItemView extends FrameLayout {
     public void setIcon(@Nullable Drawable icon) {
         this.mIcon = icon;
 
-        update();
+        onUpdate();
     }
 
     /**
+     * Get the title used by this view.
+     *
      * @return The title used by this view.
      */
     public @Nullable CharSequence getTitle() {
@@ -261,10 +271,12 @@ public class DynamicItemView extends FrameLayout {
     public void setTitle(@Nullable CharSequence title) {
         this.mTitle = title;
 
-        update();
+        onUpdate();
     }
 
     /**
+     * Get the subtitle used by this view.
+     *
      * @return The subtitle used by this view.
      */
     public @Nullable CharSequence getSubtitle() {
@@ -279,13 +291,15 @@ public class DynamicItemView extends FrameLayout {
     public void setSubtitle(@Nullable CharSequence subtitle) {
         this.mSubtitle = subtitle;
 
-        update();
+        onUpdate();
     }
 
     /**
+     * Get the icon tint color type used by this view.
+     *
      * @return The icon tint color type used by this view.
      */
-    public @DynamicColorType int getColorType() {
+    public @Theme.ColorType int getColorType() {
         return mColorType;
     }
 
@@ -294,15 +308,17 @@ public class DynamicItemView extends FrameLayout {
      *
      * @param colorType The icon tint color type to be set.
      *
-     * @see DynamicColorType
+     * @see Theme.ColorType
      */
-    public void setColorType(@DynamicColorType int colorType) {
+    public void setColorType(@Theme.ColorType int colorType) {
         this.mColorType = colorType;
 
-        update();
+        onUpdate();
     }
 
     /**
+     * Get the icon tint color used by this view.
+     *
      * @return The icon tint color used by this view.
      */
     public @ColorInt int getColor() {
@@ -315,15 +331,17 @@ public class DynamicItemView extends FrameLayout {
      * @param color The icon tint color to be set.
      */
     public void setColor(@ColorInt int color) {
-        this.mColorType = DynamicColorType.CUSTOM;
+        this.mColorType = Theme.ColorType.CUSTOM;
         this.mColor = color;
 
-        update();
+        onUpdate();
     }
 
     /**
-     * @return {@code true} to show horizontal divider.
-     *         Useful to display in a list view.
+     * Returns whether to show the horizontal divider.
+     * <p>Useful to display in a list view.
+     *
+     * @return {@code true} to show the horizontal divider.
      */
     public boolean isShowDivider() {
         return mShowDivider;
@@ -331,18 +349,39 @@ public class DynamicItemView extends FrameLayout {
 
     /**
      * Set the horizontal divider fro this view.
-     * Useful to display in a list view.
+     * <p>Useful to display in a list view.
      *
-     * @param showDivider {@code true} to show horizontal
-     *                    divider.
+     * @param showDivider {@code true} to show the horizontal divider.
      */
     public void setShowDivider(boolean showDivider) {
         this.mShowDivider = showDivider;
 
-        update();
+        onUpdate();
     }
 
     /**
+     * Returns whether to fill the empty icon space if applicable.
+     *
+     * @return {@code true} to fill the empty icon space if applicable.
+     */
+    public boolean isFillSpace() {
+        return mFillSpace;
+    }
+
+    /**
+     * Controls the fill empty space behavior for this view.
+     *
+     * @param fillSpace {@code true} to fill the empty icon space.
+     */
+    public void setFillSpace(boolean fillSpace) {
+        this.mFillSpace = fillSpace;
+
+        onUpdate();
+    }
+
+    /**
+     * Get the root element of this view.
+     *
      * @return The root element of this view.
      */
     public ViewGroup getItemView() {
@@ -350,6 +389,8 @@ public class DynamicItemView extends FrameLayout {
     }
 
     /**
+     * Get the image view to show the icon.
+     *
      * @return The image view to show the icon.
      */
     public DynamicImageView getIconView() {
@@ -357,6 +398,8 @@ public class DynamicItemView extends FrameLayout {
     }
 
     /**
+     * Get the text view to show the title.
+     *
      * @return The text view to show the title.
      */
     public TextView getTitleView() {
@@ -364,6 +407,8 @@ public class DynamicItemView extends FrameLayout {
     }
 
     /**
+     * Get the text view to show the subtitle.
+     *
      * @return The text view to show the subtitle.
      */
     public TextView getSubtitleView() {
@@ -371,6 +416,8 @@ public class DynamicItemView extends FrameLayout {
     }
 
     /**
+     * Get the view to show the divider.
+     *
      * @return The view to show the divider.
      */
     public View getDivider() {

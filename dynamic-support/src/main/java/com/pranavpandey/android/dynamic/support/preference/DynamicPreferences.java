@@ -19,13 +19,13 @@ package com.pranavpandey.android.dynamic.support.preference;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
- * Helper class to handle shared preferences operations like saving or
- * retrieving the values from default shared preferences. It must be
- * initialized once before accessing its methods.
+ * Helper class to handle shared preferences operations like saving or retrieving the values from
+ * default shared preferences. It must be initialized once before accessing its methods.
  */
 public class DynamicPreferences {
 
@@ -40,8 +40,8 @@ public class DynamicPreferences {
     protected Context mContext;
 
     /**
-     * Making default constructor private so that it cannot be initialized
-     * without a context. Use {@link #initializeInstance(Context)} instead.
+     * Making default constructor private so that it cannot be initialized without a context.
+     * <p>Use {@link #initializeInstance(Context)} instead.
      */
     private DynamicPreferences() { }
 
@@ -56,7 +56,7 @@ public class DynamicPreferences {
 
     /**
      * Initialize preferences when application starts.
-     * Must be initialized once.
+     * <p>Must be initialized once.
      *
      * @param context The context to retrieve resources.
      */
@@ -71,8 +71,7 @@ public class DynamicPreferences {
     }
 
     /**
-     * Get instance to access public methods. Must be called before
-     * accessing the methods.
+     * Get instance to access public methods. Must be called before accessing the methods.
      *
      * @return The singleton instance of this class.
      */
@@ -86,6 +85,8 @@ public class DynamicPreferences {
     }
 
     /**
+     * Returns the context used by this instance.
+     *
      * @return The context to retrieve the resources.
      */
     public Context getContext() {
@@ -94,8 +95,7 @@ public class DynamicPreferences {
 
     /**
      * Set a boolean value in the supplied preferences editor and call
-     * {@link SharedPreferences.Editor#apply()} to apply changes
-     * back from this editor.
+     * {@link SharedPreferences.Editor#apply()} to apply changes back from this editor.
      *
      * @param preferences The preferences name to store the key.
      * @param key The preference key to modify.
@@ -110,8 +110,7 @@ public class DynamicPreferences {
 
     /**
      * Set a boolean value in the default preferences editor and call
-     * {@link SharedPreferences.Editor#apply()} to apply changes
-     * back from this editor.
+     * {@link SharedPreferences.Editor#apply()} to apply changes back from this editor.
      *
      * @param key The preference key to modify.
      * @param value The value for the preference.
@@ -125,8 +124,7 @@ public class DynamicPreferences {
 
     /**
      * Set a integer value in the supplied preferences editor and call
-     * {@link SharedPreferences.Editor#apply()} to apply changes
-     * back from this editor.
+     * {@link SharedPreferences.Editor#apply()} to apply changes back from this editor.
      *
      * @param preferences The preferences name to store the key.
      * @param key The preference key to modify.
@@ -141,8 +139,7 @@ public class DynamicPreferences {
 
     /**
      * Set an integer value in the default preferences editor and call
-     * {@link SharedPreferences.Editor#apply()} to apply changes
-     * back from this editor.
+     * {@link SharedPreferences.Editor#apply()} to apply changes back from this editor.
      *
      * @param key The preference key to modify.
      * @param value The value for the preference.
@@ -156,8 +153,7 @@ public class DynamicPreferences {
 
     /**
      * Set a float value in the supplied preferences editor and call
-     * {@link SharedPreferences.Editor#apply()} to apply changes
-     * back from this editor.
+     * {@link SharedPreferences.Editor#apply()} to apply changes back from this editor.
      *
      * @param preferences The preferences name to store the key.
      * @param key The preference key to modify.
@@ -172,8 +168,7 @@ public class DynamicPreferences {
     
     /**
      * Set a float value in the default preferences editor and call
-     * {@link SharedPreferences.Editor#apply()} to apply changes
-     * back from this editor.
+     * {@link SharedPreferences.Editor#apply()} to apply changes back from this editor.
      *
      * @param key The preference key to modify.
      * @param value The value for the preference.
@@ -187,8 +182,7 @@ public class DynamicPreferences {
 
     /**
      * Set a string value in the supplied preferences editor and call
-     * {@link SharedPreferences.Editor#apply()} to apply changes
-     * back from this editor.
+     * {@link SharedPreferences.Editor#apply()} to apply changes back from this editor.
      *
      * @param preferences The preferences name to store the key.
      * @param key The preference key to modify.
@@ -196,16 +190,15 @@ public class DynamicPreferences {
      *
      * @see Context#getSharedPreferences(String, int)
      */
-    public void savePrefs(@NonNull String preferences, @NonNull String key, 
-                          @Nullable String value) {
+    public void savePrefs(@NonNull String preferences,
+            @NonNull String key, @Nullable String value) {
         mContext.getSharedPreferences(preferences, Context.MODE_PRIVATE)
                 .edit().putString(key, value).apply();
     }
 
     /**
      * Set a string value in the default preferences editor and call
-     * {@link SharedPreferences.Editor#apply()} to apply changes
-     * back from this editor.
+     * {@link SharedPreferences.Editor#apply()} to apply changes back from this editor.
      *
      * @param key The preference key to modify.
      * @param value The value for the preference.
@@ -224,15 +217,15 @@ public class DynamicPreferences {
      * @param key The preference key to modify.
      * @param value The value for the preference.
      *
-     * @return Returns the preference value if it exists, or defValue. Throws
-     *         ClassCastException if there is a preference with this name that
-     *         is not a boolean.
+     * @return Returns the preference value if it exists, or the default value.
+     *         <p>Throws {@link ClassCastException} if there is a preference with this name
+     *         that is not a boolean.
      *
      * @see Context#getSharedPreferences(String, int)
      */
     public boolean loadPrefs(@NonNull String preferences, @NonNull String key, boolean value) {
-        return mContext.getSharedPreferences(
-                preferences, Context.MODE_PRIVATE).getBoolean(key, value);
+        return mContext.getSharedPreferences(preferences,
+                Context.MODE_PRIVATE).getBoolean(key, value);
     }
 
     /**
@@ -241,9 +234,9 @@ public class DynamicPreferences {
      * @param key The preference key to modify.
      * @param value The value for the preference.
      *
-     * @return Returns the preference value if it exists, or defValue. Throws
-     *         ClassCastException if there is a preference with this name that
-     *         is not a boolean.
+     * @return Returns the preference value if it exists, or the default value.
+     *         <p>Throws {@link ClassCastException} if there is a preference with this name
+     *         that is not a boolean.
      *
      * @see PreferenceManager#getDefaultSharedPreferences(Context)
      */
@@ -252,21 +245,21 @@ public class DynamicPreferences {
     }
 
     /**
-     * Retrieve a integer value from the supplied preferences.
+     * Retrieve an integer value from the supplied preferences.
      *
      * @param preferences The preferences name to find the key.
      * @param key The preference key to modify.
      * @param value The value for the preference.
      *
-     * @return Returns the preference value if it exists, or defValue. Throws
-     *         ClassCastException if there is a preference with this name that
-     *         is not a boolean.
+     * @return Returns the preference value if it exists, or the default value.
+     *         <p>Throws {@link ClassCastException} if there is a preference with this name
+     *         that is not an integer.
      *
      * @see Context#getSharedPreferences(String, int)
      */
     public int loadPrefs(@NonNull String preferences, @NonNull String key, int value) {
-        return mContext.getSharedPreferences(
-                preferences, Context.MODE_PRIVATE).getInt(key, value);
+        return mContext.getSharedPreferences(preferences,
+                Context.MODE_PRIVATE).getInt(key, value);
     }
 
     /**
@@ -275,9 +268,9 @@ public class DynamicPreferences {
      * @param key The preference key to retrieve.
      * @param value Value to return if this preference does not exist.
      *
-     * @return Returns the preference value if it exists, or defValue. Throws
-     *         ClassCastException if there is a preference with this name that
-     *         is not an integer.
+     * @return Returns the preference value if it exists, or the default value.
+     *         <p>Throws {@link ClassCastException} if there is a preference with this name
+     *         that is not an integer.
      *
      * @see PreferenceManager#getDefaultSharedPreferences(Context)
      */
@@ -292,15 +285,15 @@ public class DynamicPreferences {
      * @param key The preference key to modify.
      * @param value The value for the preference.
      *
-     * @return Returns the preference value if it exists, or defValue. Throws
-     *         ClassCastException if there is a preference with this name that
-     *         is not a boolean.
+     * @return Returns the preference value if it exists, or the default value.
+     *         <p>Throws {@link ClassCastException} if there is a preference with this name
+     *         that is not a float.
      *
      * @see Context#getSharedPreferences(String, int)
      */
     public float loadPrefs(@NonNull String preferences, @NonNull String key, float value) {
-        return mContext.getSharedPreferences(
-                preferences, Context.MODE_PRIVATE).getFloat(key, value);
+        return mContext.getSharedPreferences(preferences,
+                Context.MODE_PRIVATE).getFloat(key, value);
     }
 
     /**
@@ -309,9 +302,9 @@ public class DynamicPreferences {
      * @param key The preference key to retrieve.
      * @param value Value to return if this preference does not exist.
      *
-     * @return Returns the preference value if it exists, or defValue. Throws
-     *         ClassCastException if there is a preference with this name that
-     *         is not an integer.
+     * @return Returns the preference value if it exists, or the default value.
+     *         <p>Throws {@link ClassCastException} if there is a preference with this name
+     *         that is not a float.
      *
      * @see PreferenceManager#getDefaultSharedPreferences(Context)
      */
@@ -326,16 +319,16 @@ public class DynamicPreferences {
      * @param key The preference key to modify.
      * @param value The value for the preference.
      *
-     * @return Returns the preference value if it exists, or defValue. Throws
-     *         ClassCastException if there is a preference with this name that
-     *         is not a boolean.
+     * @return Returns the preference value if it exists, or the default value.
+     *         <p>Throws {@link ClassCastException} if there is a preference with this name
+     *         that is not a string.
      *
      * @see Context#getSharedPreferences(String, int)
      */
-    public @Nullable String loadPrefs(@NonNull String preferences, @NonNull String key,
-                                      @Nullable String value) {
-        return mContext.getSharedPreferences(
-                preferences, Context.MODE_PRIVATE).getString(key, value);
+    public @Nullable String loadPrefs(@NonNull String preferences,
+            @NonNull String key, @Nullable String value) {
+        return mContext.getSharedPreferences(preferences,
+                Context.MODE_PRIVATE).getString(key, value);
     }
 
     /**
@@ -344,9 +337,9 @@ public class DynamicPreferences {
      * @param key The preference key to retrieve.
      * @param value Value to return if this preference does not exist.
      *
-     * @return Returns the preference value if it exists, or defValue. Throws
-     *         ClassCastException if there is a preference with this name that
-     *         is not a string.
+     * @return Returns the preference value if it exists, or the default value.
+     *         <p>Throws {@link ClassCastException} if there is a preference with this name
+     *         that is not a string.
      *
      * @see PreferenceManager#getDefaultSharedPreferences(Context)
      */
@@ -355,8 +348,7 @@ public class DynamicPreferences {
     }
 
     /**
-     * Get default shared preferences name to perform other operations
-     * like backup and restore.
+     * Get default shared preferences name to perform other operations like backup and restore.
      *
      * @return The default shared preferences name.
      *
@@ -375,8 +367,8 @@ public class DynamicPreferences {
      * @see Context#getSharedPreferences(String, int)
      */
     public void deletePrefs(@NonNull String preferences, @NonNull String key) {
-        mContext.getSharedPreferences(
-                preferences, Context.MODE_PRIVATE).edit().remove(key).apply();
+        mContext.getSharedPreferences(preferences,
+                Context.MODE_PRIVATE).edit().remove(key).apply();
     }
 
     /**

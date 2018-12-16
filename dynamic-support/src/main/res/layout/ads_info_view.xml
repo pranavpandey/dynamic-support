@@ -50,20 +50,20 @@
                     android:id="@+id/ads_info_view_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/TextAppearance.DynamicApp.Title.Card.Info" />
+                    style="@style/TextAppearance.DynamicApp.Headline5.Card.Info" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                     android:id="@+id/ads_info_view_subtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/TextAppearance.DynamicApp.Subtitle" />
+                    style="@style/TextAppearance.DynamicApp.Subtitle1" />
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/ads_info_view_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/ads_margin_tiny"
-                    style="@style/TextAppearance.DynamicApp.Description" />
+                    style="@style/TextAppearance.DynamicApp.Body1" />
 
             </LinearLayout>
 

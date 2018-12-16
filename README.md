@@ -10,6 +10,9 @@ A complete library to build apps for Android 14+ (ICS or above) devices with a b
 engine. It is built on top of the latest [app compat library](https://developer.android.com/topic/libraries/support-library/features.html) 
 to provide best compatibility. 
 
+>Since v2.0.0, it uses [AndroidX](https://developer.android.com/jetpack/androidx/) so, first
+[migrate](https://developer.android.com/jetpack/androidx/migrate) your project to AndroidX.
+ 
 <img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-1.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-3.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-4.png" width="280" height="486">
 
 <img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-5.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-6.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-7.png" width="280" height="486">
@@ -23,6 +26,7 @@ to provide best compatibility.
     - [Theme engine](https://github.com/pranavpandey/dynamic-support#theme-engine)
     - [Background aware](https://github.com/pranavpandey/dynamic-support#background-aware)
     - [Sample](https://github.com/pranavpandey/dynamic-support#sample)
+    - [Proguard](https://github.com/pranavpandey/dynamic-support#proguard)
 - [License](https://github.com/pranavpandey/dynamic-support#license)
 
 ---
@@ -33,7 +37,11 @@ It can be installed by adding the following dependency to your `build.gradle` fi
 
 ```groovy
 dependencies {
-    implementation 'com.pranavpandey.android:dynamic-support:1.3.0'
+    // For AndroidX enabled projects.
+    implementation 'com.pranavpandey.android:dynamic-utils:2.0.0'
+
+    // For legacy projects.
+    implementation 'com.pranavpandey.android:dynamic-utils:1.3.0'
 }
 ```
 
@@ -64,6 +72,57 @@ This library is fully commented so, please check the individual classes or files
 documentation. Basic documentation will be available soon.
 
 Checkout the `sample` to know more about the basic implementation. 
+
+### Proguard
+This library uses reflection at some places to theme widgets at runtime. So, their original name
+must be preserved to theme them properly. It will automatically apply the appropriate rules if 
+proguard is enabled in the project.
+
+The following rules will be applied by this library:
+
+```yml
+dependencies {
+    # Keep application class.
+    -keep public class * extends android.app.Application
+    
+    # Keep methods in Activity that could be used in the XML.
+    -keepclassmembers class * extends android.app.Activity {
+       public void *(android.view.View);
+    }
+    
+    # Keep support library classes.
+    #-keep class androidx.appcompat.widget.** { *; }
+    #-keep class android.support.v4.widget.** { *; }
+    #-keep class android.support.v7.widget.** { *; }
+    #-keep class android.support.design.widget.** { *; }
+    #-keep class android.support.design.internal.** { *; }
+    
+    # Keep AndroidX classes.
+    -keep class androidx.core.widget.** { *; }
+    -keep class androidx.appcompat.view.menu.** { *; }
+    -keep class androidx.recyclerview.widget.** { *; }
+    -keep class androidx.viewpager.widget.** { *; }
+    
+    # Keep Material Components classes.
+    -keep class com.google.android.material.internal.** { *; }
+    -keep class com.google.android.material.navigation.** { *; }
+    -keep class com.google.android.material.textfield.** { *; }
+    
+    # Keep all the Dynamic Support models.
+    -keep class com.pranavpandey.android.dynamic.support.model.** { *; }
+    
+    # Gson uses generic type information stored in a class file when working with fields.
+    # Proguard removes such information by default, so configure it to keep all of it.
+    -keepattributes Signature
+    
+    # For using GSON @Expose annotation
+    -keepattributes *Annotation*
+    
+    # Gson specific classes
+    -keep class sun.misc.Unsafe { *; }
+    -keep class com.google.gson.** { *; }
+}
+```
 
 ---
 

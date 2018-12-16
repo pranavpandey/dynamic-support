@@ -24,15 +24,15 @@
         android:id="@+id/info_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:ads_dynamicInfo_icon="@drawable/ic_author_logo"
-        app:ads_dynamicInfo_iconBig="@drawable/ads_ic_person"
-        app:ads_dynamicInfo_title="@string/ads_info_made_by"
-        app:ads_dynamicInfo_subtitle="@string/ads_info_me"
-        app:ads_dynamicInfo_description="@string/ads_info_quote"
-        app:ads_dynamicInfo_links="@array/ads_about_author_links"
-        app:ads_dynamicInfo_linksSubtitles="@array/ads_about_author_links_subtitles"
-        app:ads_dynamicInfo_linksUrls="@array/ads_about_author_links_urls"
-        app:ads_dynamicInfo_linksIcons="@array/ads_about_author_links_icons"
-        app:ads_dynamicInfo_linksColors="@array/ads_about_author_links_colors" />
+        app:ads_icon="@drawable/ic_author_logo"
+        app:ads_iconBig="@drawable/ads_ic_person"
+        app:ads_title="@string/ads_info_made_by"
+        app:ads_subtitle="@string/ads_info_me"
+        app:ads_description="@string/ads_info_quote"
+        app:ads_links="@array/ads_about_author_links"
+        app:ads_subtitles="@array/ads_about_author_links_subtitles"
+        app:ads_urls="@array/ads_about_author_links_urls"
+        app:ads_icons="@array/ads_about_author_links_icons"
+        app:ads_colors="@array/ads_about_author_links_colors" />
 
 </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>

@@ -18,9 +18,9 @@ package com.pranavpandey.android.dynamic.support.sample.activity
 
 import android.content.Intent
 import android.graphics.drawable.Animatable
-import android.support.annotation.StyleRes
-import android.support.v7.widget.AppCompatImageView
 import android.view.View
+import androidx.annotation.StyleRes
+import androidx.appcompat.widget.AppCompatImageView
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.controller.SampleController
 import com.pranavpandey.android.dynamic.support.sample.controller.SampleTheme
@@ -52,8 +52,8 @@ class SplashActivity : DynamicSplashActivity() {
     override fun onCustomiseTheme() {
         // Customise activity theme after applying the base style.
         SampleTheme.setLocalTheme(this)
-        DynamicTheme.getInstance().setLocalPrimaryColorDark(
-                DynamicTheme.getInstance().localPrimaryColor, true)
+        DynamicTheme.getInstance().get().setPrimaryColorDark(
+                DynamicTheme.getInstance().get().primaryColor, true)
     }
 
     override fun setNavigationBarTheme(): Boolean {

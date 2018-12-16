@@ -19,27 +19,24 @@ package com.pranavpandey.android.dynamic.support.setting;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.SwitchCompat;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.TextView;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
 
 /**
- * A DynamicPreference to provide the functionality of a
- * {@link android.preference.SwitchPreference} with an action
- * button.
+ * A DynamicSimplePreference to provide the functionality of a
+ * {@link android.preference.SwitchPreference}.
  */
-public class DynamicCheckPreference extends DynamicPreference {
+public class DynamicCheckPreference extends DynamicSimplePreference {
 
     /**
      * Default value for the checked state.
@@ -57,46 +54,14 @@ public class DynamicCheckPreference extends DynamicPreference {
     private CharSequence mSummaryUnchecked;
 
     /**
-     * Checked change listener to get the callback if switch
-     * state is changed.
+     * Checked change listener to get the callback if switch state is changed.
      */
     private CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener;
-
-    /**
-     * The preference root view.
-     */
-    private ViewGroup mPreferenceView;
-
-    /**
-     * Image view to show the icon.
-     */
-    private ImageView mIconView;
-
-    /**
-     * Text view to show the title.
-     */
-    private TextView mTitleView;
-
-    /**
-     * Text view to show the summary.
-     */
-    private TextView mSummaryView;
-
-    /**
-     * Text view to show the description.
-     */
-    private TextView mDescriptionView;
 
     /**
      * Switch compat to show the checked state.
      */
     private SwitchCompat mSwitchCompat;
-
-    /**
-     * Button to provide a secondary action like permission
-     * request, etc.
-     */
-    private Button mActionView;
 
     public DynamicCheckPreference(@NonNull Context context) {
         super(context);
@@ -107,7 +72,7 @@ public class DynamicCheckPreference extends DynamicPreference {
     }
 
     public DynamicCheckPreference(@NonNull Context context,
-                                  @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -116,42 +81,32 @@ public class DynamicCheckPreference extends DynamicPreference {
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DynamicPreference);
 
         try {
-            mChecked = a.getBoolean(R.styleable.DynamicPreference_ads_dynamicPreference_checked,
+            mChecked = a.getBoolean(R.styleable.DynamicPreference_ads_checked,
                     DEFAULT_CHECK_STATE);
             mSummaryUnchecked = a.getString(
-                    R.styleable.DynamicPreference_ads_dynamicPreference_unchecked);
+                    R.styleable.DynamicPreference_ads_unchecked);
         } finally {
             a.recycle();
         }
     }
 
     @Override
-    protected @LayoutRes int getLayoutRes() {
-        return R.layout.ads_preference_check;
-    }
-
-    @Override
     protected void onInflate() {
-        inflate(getContext(), getLayoutRes(), this);
+        super.onInflate();
 
-        mPreferenceView = findViewById(R.id.ads_preference_checked);
-        mIconView = findViewById(R.id.ads_preference_checked_icon);
-        mTitleView = findViewById(R.id.ads_preference_checked_title);
-        mSummaryView = findViewById(R.id.ads_preference_checked_summary);
-        mDescriptionView = findViewById(R.id.ads_preference_checked_description);
-        mSwitchCompat = findViewById(R.id.ads_preference_checked_switch);
-        mActionView = findViewById(R.id.ads_preference_action_button);
+        mSwitchCompat = LayoutInflater.from(getContext()).inflate(
+                R.layout.ads_preference_check, this, false)
+                .findViewById(R.id.ads_preference_check_switch);
 
-        mPreferenceView.setOnClickListener(new OnClickListener() {
+        setViewFrame(mSwitchCompat, true);
+
+        setOnPreferenceClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 setChecked(!mChecked);
-
-                if (getOnPreferenceClickListener() != null) {
-                    getOnPreferenceClickListener().onClick(v);
-                }
             }
-        });
+        }, false);
+
 
         mChecked = DynamicPreferences.getInstance()
                 .loadPrefs(getPreferenceKey(), mChecked);
@@ -159,66 +114,34 @@ public class DynamicCheckPreference extends DynamicPreference {
 
     @Override
     protected void onUpdate() {
-        mIconView.setImageDrawable(getIcon());
+        super.onUpdate();
 
-        if (getTitle() != null) {
-            mTitleView.setText(getTitle());
-            mTitleView.setVisibility(VISIBLE);
-        } else {
-            mTitleView.setVisibility(GONE);
-        }
-
-        if (getSummary() != null) {
-            mSummaryView.setText(getSummary());
-            mSummaryView.setVisibility(VISIBLE);
-        } else {
-            mSummaryView.setVisibility(GONE);
-        }
-
-        if (getDescription() != null) {
-            mDescriptionView.setText(getDescription());
-            mDescriptionView.setVisibility(VISIBLE);
-        } else {
-            mDescriptionView.setVisibility(GONE);
-        }
-
-        if (getOnActionClickListener() != null) {
-            mActionView.setText(getActionString());
-            mActionView.setOnClickListener(getOnActionClickListener());
-            mActionView.setVisibility(VISIBLE);
-        } else {
-            mActionView.setVisibility(GONE);
-        }
-
-        mSwitchCompat.post(new Runnable() {
-            @Override
-            public void run() {
-                mSwitchCompat.setChecked(mChecked);
+        if (mSwitchCompat != null) {
+            if (!mChecked) {
+                if (mSummaryUnchecked != null) {
+                    setTextView(getSummaryView(), mSummaryUnchecked);
+                }
             }
-        });
 
-        if (!mChecked) {
-            if (mSummaryUnchecked != null) {
-                mSummaryView.setText(mSummaryUnchecked);
-                mSummaryView.setVisibility(VISIBLE);
-            }
+            mSwitchCompat.post(new Runnable() {
+                @Override
+                public void run() {
+                    mSwitchCompat.setChecked(mChecked);
+                }
+            });
         }
     }
 
     @Override
     protected void onEnabled(boolean enabled) {
-        mPreferenceView.setEnabled(enabled);
-        mIconView.setEnabled(enabled);
-        mTitleView.setEnabled(enabled);
-        mSummaryView.setEnabled(enabled);
-        mDescriptionView.setEnabled(enabled);
-        mSwitchCompat.setEnabled(enabled);
-        mActionView.setEnabled(enabled);
+        super.onEnabled(enabled);
 
-        onUpdate();
+        setViewEnabled(mSwitchCompat, enabled);
     }
 
     /**
+     * Returns whether this preference is checked.
+     *
      * @return {@code true} if this preference is checked.
      */
     public boolean isChecked() {
@@ -226,11 +149,9 @@ public class DynamicCheckPreference extends DynamicPreference {
     }
 
     /**
-     * Set the state of the switch to be checked or
-     * unchecked.
+     * Set the state of the switch to be checked or unchecked.
      *
-     * @param checked {@code true} if this preference
-     *                is checked.
+     * @param checked {@code true} if this preference is checked.
      */
     public void setChecked(boolean checked) {
         this.mChecked = checked;
@@ -241,6 +162,8 @@ public class DynamicCheckPreference extends DynamicPreference {
     }
 
     /**
+     * Get the optional summary for the unchecked state.
+     *
      * @return The optional summary for the unchecked state.
      */
     public @Nullable CharSequence getSummaryUnchecked() {
@@ -259,16 +182,16 @@ public class DynamicCheckPreference extends DynamicPreference {
     }
 
     /**
-     * @return The checked change listener to get the callback if
-     *         switch state is changed.
+     * Returns the checked change listener.
+     *
+     * @return The checked change listener to get the callback if switch state is changed.
      */
     public @Nullable CompoundButton.OnCheckedChangeListener getOnCheckedChangeListener() {
         return mOnCheckedChangeListener;
     }
 
     /**
-     * Set the checked change listener to get the callback if
-     * switch state is changed.
+     * Set the checked change listener to get the callback if switch state is changed.
      *
      * @param onCheckedChangeListener The listener to be set.
      */
@@ -277,25 +200,15 @@ public class DynamicCheckPreference extends DynamicPreference {
         this.mOnCheckedChangeListener = onCheckedChangeListener;
     }
 
-    /**
-     * @return The button to provide a secondary action like
-     *         permission request, etc.
-     */
-    public Button getActionView() {
-        return mActionView;
-    }
-
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         super.onSharedPreferenceChanged(sharedPreferences, key);
 
         if (key.equals(getPreferenceKey())) {
-            boolean checked = DynamicPreferences.getInstance()
-                    .loadPrefs(key, mChecked);
-            mChecked = checked;
+            mChecked = DynamicPreferences.getInstance().loadPrefs(key, mChecked);
 
             if (mOnCheckedChangeListener != null) {
-                mOnCheckedChangeListener.onCheckedChanged(mSwitchCompat, checked);
+                mOnCheckedChangeListener.onCheckedChanged(mSwitchCompat, mChecked);
             }
 
             onUpdate();

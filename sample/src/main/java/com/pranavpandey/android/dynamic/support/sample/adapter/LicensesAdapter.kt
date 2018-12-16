@@ -16,7 +16,6 @@
 
 package com.pranavpandey.android.dynamic.support.sample.adapter
 
-import android.support.v7.widget.RecyclerView
 import com.pranavpandey.android.dynamic.support.model.DynamicInfo
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicSimpleBinderAdapter
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicInfoBigBinder
@@ -24,14 +23,12 @@ import com.pranavpandey.android.dynamic.support.sample.binder.LicenseBinder
 import java.util.*
 
 /**
- * A binder adapter to display a list of [DynamicInfo] by
- * using [DynamicSimpleBinderAdapter].
+ * A binder adapter to display a list of [DynamicInfo] by using [DynamicSimpleBinderAdapter].
  */
 class LicensesAdapter(
 
     /**
      * Data set used by this adapter.
-     * Getter for [.mDataSet].
      */
     private val dataSet: ArrayList<DynamicInfo>?) : DynamicSimpleBinderAdapter() {
 
@@ -45,7 +42,7 @@ class LicensesAdapter(
         return 0
     }
 
-    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         (getDataBinder(getItemViewType(position))
                 as DynamicInfoBigBinder).data = getItem(position)
 
@@ -57,9 +54,11 @@ class LicensesAdapter(
     }
 
     /**
-     * @return The item according the position.
+     * Returns the item according the position.
      *
      * @param position The position to retrieve the item.
+     *
+     * @return The item according the position.
      */
     private fun getItem(position: Int): DynamicInfo {
         return dataSet!![position]

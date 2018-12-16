@@ -20,134 +20,133 @@ import android.annotation.TargetApi;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RestrictTo;
-import android.support.design.internal.NavigationMenuPresenter;
-import android.support.design.internal.NavigationMenuView;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.EdgeEffectCompat;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.EdgeEffect;
 import android.widget.ScrollView;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+import androidx.core.widget.EdgeEffectCompat;
+import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.internal.NavigationMenuPresenter;
+import com.google.android.material.internal.NavigationMenuView;
+import com.google.android.material.navigation.NavigationView;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 import java.lang.reflect.Field;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
- * Helper class to set {@link EdgeEffect} or glow color and scroll bar
- * color for the supported views dynamically by using reflection. It
- * will be used to match the color with the app's theme.
+ * Helper class to set {@link EdgeEffect} or glow color and scroll bar color for the supported 
+ * views dynamically by using reflection. It will be used to match the color with the app's theme.
  */
 @RestrictTo(LIBRARY_GROUP)
 public final class DynamicScrollUtils {
 
     /**
-     * {@link EdgeEffect} field constant for edge.
+     * {@link EdgeEffect} field constant for the edge.
      */
     private static Field ADS_EDGE_EFFECT_FIELD_EDGE;
     /**
-     * {@link EdgeEffect} field constant for glow.
+     * {@link EdgeEffect} field constant for the glow.
      */
     private static Field ADS_EDGE_EFFECT_FIELD_GLOW;
     /**
-     * {@link EdgeEffectCompat} field constant for edge effect.
+     * {@link EdgeEffectCompat} field constant for the edge effect.
      */
     private static Field ADS_EDGE_EFFECT_COMPAT_FIELD_EDGE_EFFECT;
 
     /**
-     * {@link AbsListView} field constant for top glow.
+     * {@link AbsListView} field constant for the top glow.
      */
     private static Field ADS_LIST_VIEW_FIELD_EDGE_GLOW_TOP;
     /**
-     * {@link AbsListView} field constant for bottom glow.
+     * {@link AbsListView} field constant for the bottom glow.
      */
     private static Field ADS_LIST_VIEW_FIELD_EDGE_GLOW_BOTTOM;
     /**
-     * {@link RecyclerView} field constant for top glow.
+     * {@link RecyclerView} field constant for the top glow.
      */
     private static Field ADS_RECYCLER_VIEW_FIELD_EDGE_GLOW_TOP;
     /**
-     * {@link RecyclerView} field constant for left glow.
+     * {@link RecyclerView} field constant for the left glow.
      */
     private static Field ADS_RECYCLER_VIEW_FIELD_EDGE_GLOW_LEFT;
     /**
-     * {@link RecyclerView} field constant for right glow.
+     * {@link RecyclerView} field constant for the right glow.
      */
     private static Field ADS_RECYCLER_VIEW_FIELD_EDGE_GLOW_RIGHT;
     /**
-     * {@link RecyclerView} field constant for bottom glow.
+     * {@link RecyclerView} field constant for the bottom glow.
      */
     private static Field ADS_RECYCLER_VIEW_FIELD_EDGE_GLOW_BOTTOM;
 
     /**
-     * {@link ScrollView} field constant for top glow.
+     * {@link ScrollView} field constant for the top glow.
      */
     private static Field ADS_SCROLL_VIEW_FIELD_EDGE_GLOW_TOP;
     /**
-     * {@link ScrollView} field constant for bottom glow.
+     * {@link ScrollView} field constant for the bottom glow.
      */
     private static Field ADS_SCROLL_VIEW_FIELD_EDGE_GLOW_BOTTOM;
     /**
-     * {@link NestedScrollView} field constant for top glow.
+     * {@link NestedScrollView} field constant for the top glow.
      */
     private static Field ADS_NESTED_SCROLL_VIEW_FIELD_EDGE_GLOW_TOP;
     /**
-     * {@link NestedScrollView} field constant for bottom glow.
+     * {@link NestedScrollView} field constant for the bottom glow.
      */
     private static Field ADS_NESTED_SCROLL_VIEW_FIELD_EDGE_GLOW_BOTTOM;
 
     /**
-     * {@link ViewPager} field constant for left glow.
+     * {@link ViewPager} field constant for the left glow.
      */
     private static Field ADS_VIEW_PAGER_FIELD_EDGE_GLOW_LEFT;
     /**
-     * {@link ViewPager} field constant for right glow.
+     * {@link ViewPager} field constant for the right glow.
      */
     private static Field ADS_VIEW_PAGER_FIELD_EDGE_GLOW_RIGHT;
 
     /**
-     * {@link NavigationView} field constant for presenter.
+     * {@link NavigationView} field constant for the presenter.
      */
     private static Field ADS_NAVIGATION_VIEW_FIELD_PRESENTER;
     /**
-     * {@link NavigationView} field constant for recycler view.
+     * {@link NavigationView} field constant for the recycler view.
      */
     private static Field ADS_NAVIGATION_VIEW_FIELD_RECYCLER_VIEW;
 
     /**
-     * Scroll bar field constant for view.
+     * Scroll bar field constant for the view.
      */
     private static Field ADS_VIEW_SCROLL_BAR_FIELD;
 
     /**
-     * Scroll bar cache constant for view.
+     * Scroll bar cache constant for the view.
      */
     private static Field ADS_VIEW_SCROLL_BAR_FIELD_CACHE;
 
     /**
-     * Scroll bar vertical thumb constant for view.
+     * Scroll bar vertical thumb constant for the view.
      */
     private static Field ADS_VIEW_SCROLL_BAR_VERTICAL_THUMB;
 
     /**
-     * Scroll bar horizontal thumb constant for view.
+     * Scroll bar horizontal thumb constant for the view.
      */
     private static Field ADS_VIEW_SCROLL_BAR_HORIZONTAL_THUMB;
 
     /**
-     * Initialize edge effect or glow fields so that we can access them
-     * via reflection.
+     * Initialize edge effect or glow fields so that we can access them via reflection.
      */
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     private static void initializeEdgeEffectFields() {
@@ -193,8 +192,7 @@ public final class DynamicScrollUtils {
     }
 
     /**
-     * Initialize recycler view fields so that we can access them via
-     * reflection.
+     * Initialize recycler view fields so that we can access them via reflection.
      */
     private static void initializeRecyclerViewFields() {
         if (ADS_RECYCLER_VIEW_FIELD_EDGE_GLOW_TOP != null
@@ -233,8 +231,7 @@ public final class DynamicScrollUtils {
     }
 
     /**
-     * Initialize abs list view fields so that we can access them via
-     * reflection.
+     * Initialize abs list view fields so that we can access them via reflection.
      */
     private static void initializeListViewFields() {
         if (ADS_LIST_VIEW_FIELD_EDGE_GLOW_TOP != null
@@ -261,8 +258,7 @@ public final class DynamicScrollUtils {
     }
 
     /**
-     * Initialize scroll view fields so that we can access them via
-     * reflection.
+     * Initialize scroll view fields so that we can access them via reflection.
      */
     private static void initializeScrollViewFields() {
         if (ADS_SCROLL_VIEW_FIELD_EDGE_GLOW_TOP != null
@@ -289,8 +285,7 @@ public final class DynamicScrollUtils {
     }
 
     /**
-     * Initialize nested scroll view fields so that we can access them
-     * via reflection.
+     * Initialize nested scroll view fields so that we can access them via reflection.
      */
     private static void initializeNestedScrollViewFields() {
         if (ADS_NESTED_SCROLL_VIEW_FIELD_EDGE_GLOW_TOP != null
@@ -317,8 +312,7 @@ public final class DynamicScrollUtils {
     }
 
     /**
-     * Initialize view pager fields so that we can access them via
-     * reflection.
+     * Initialize view pager fields so that we can access them via reflection.
      */
     private static void initializeViewPagerFields() {
         if (ADS_VIEW_PAGER_FIELD_EDGE_GLOW_LEFT != null
@@ -345,8 +339,7 @@ public final class DynamicScrollUtils {
     }
 
     /**
-     * Initialize navigation view fields so that we can access them via
-     * reflection.
+     * Initialize navigation view fields so that we can access them via reflection.
      */
     private static void initializeNavigationViewFields() {
         if (ADS_NAVIGATION_VIEW_FIELD_PRESENTER != null
@@ -379,8 +372,7 @@ public final class DynamicScrollUtils {
     }
 
     /**
-     * Initialize scroll bar fields so that we can access them via
-     * reflection.
+     * Initialize scroll bar fields so that we can access them via reflection.
      */
     private static void initializeScrollBarFields(@NonNull View view) {
         try {
@@ -393,13 +385,12 @@ public final class DynamicScrollUtils {
     }
 
     /**
-     * Set edge effect or glow color dynamically.
+     * Set edge effect or glow color for list view.
      *
-     * @param listView List view to set the edge effect color.
-     * @param color The edge effect color.
+     * @param listView The list view to set the edge effect color.
+     * @param color The edge effect color to be set.
      */
-    public static void setEdgeEffectColor(
-            @NonNull AbsListView listView, @ColorInt int color) {
+    public static void setEdgeEffectColor(@NonNull AbsListView listView, @ColorInt int color) {
         initializeListViewFields();
 
         try {
@@ -412,13 +403,12 @@ public final class DynamicScrollUtils {
     }
 
     /**
-     * Set edge effect or glow color dynamically.
+     * Set edge effect or glow color for recycler view.
      *
-     * @param recyclerView Recycler view to set the edge effect color.
-     * @param color The edge effect color.
+     * @param recyclerView The recycler view to set the edge effect color.
+     * @param color The edge effect color to be set.
      */
-    public static void setEdgeEffectColor(
-            @NonNull RecyclerView recyclerView, final @ColorInt int color) {
+    public static void setEdgeEffectColor(@NonNull RecyclerView recyclerView, @ColorInt int color) {
         initializeRecyclerViewFields();
 
         try {
@@ -435,21 +425,20 @@ public final class DynamicScrollUtils {
     }
 
     /**
-     * Set edge effect or glow color dynamically.
+     * Set edge effect or glow color for recycler view.
      *
-     * @param recyclerView Recycler view to set the edge effect color.
-     * @param color The edge effect color.
+     * @param recyclerView The recycler view to set the edge effect color.
+     * @param color The edge effect color to be set.
      * @param scrollListener Scroll listener to set color on over scroll.
      */
-    private static void setEdgeEffectColor(
-            @NonNull RecyclerView recyclerView, final @ColorInt int color,
-            @Nullable RecyclerView.OnScrollListener scrollListener) {
+    private static void setEdgeEffectColor(@NonNull RecyclerView recyclerView, 
+            final @ColorInt int color, @Nullable RecyclerView.OnScrollListener scrollListener) {
         if (scrollListener == null) {
             scrollListener =
                     new RecyclerView.OnScrollListener() {
                         @Override
-                        public void onScrollStateChanged(
-                                RecyclerView recyclerView, int newState) {
+                        public void onScrollStateChanged(@NonNull RecyclerView recyclerView, 
+                                int newState) {
                             super.onScrollStateChanged(recyclerView, newState);
 
                             setEdgeEffectColor(recyclerView, color);
@@ -462,13 +451,12 @@ public final class DynamicScrollUtils {
     }
 
     /**
-     * Set edge effect or glow color dynamically.
+     * Set edge effect or glow color for scroll view.
      *
-     * @param scrollView Scroll view to set the edge effect color.
-     * @param color The edge effect color.
+     * @param scrollView The scroll view to set the edge effect color.
+     * @param color The edge effect color to be set.
      */
-    public static void setEdgeEffectColor(
-            @NonNull ScrollView scrollView, @ColorInt int color) {
+    public static void setEdgeEffectColor(@NonNull ScrollView scrollView, @ColorInt int color) {
         initializeScrollViewFields();
 
         try {
@@ -481,10 +469,10 @@ public final class DynamicScrollUtils {
     }
 
     /**
-     * Set edge effect or glow color dynamically.
+     * Set edge effect or glow color for nested scroll view.
      *
-     * @param nestedScrollView Nested scroll view to set the edge effect color.
-     * @param color The edge effect color.
+     * @param nestedScrollView The nested scroll view to set the edge effect color.
+     * @param color The edge effect color to be set.
      */
     public static void setEdgeEffectColor(
             @NonNull NestedScrollView nestedScrollView, @ColorInt int color) {
@@ -502,13 +490,12 @@ public final class DynamicScrollUtils {
     }
 
     /**
-     * Set edge effect or glow color dynamically.
+     * Set edge effect or glow color for view pager.
      *
-     * @param viewPager View pager to set the edge effect color.
-     * @param color The edge effect color.
+     * @param viewPager The view pager to set the edge effect color.
+     * @param color The edge effect color to be set.
      */
-    public static void setEdgeEffectColor(
-            @NonNull ViewPager viewPager, @ColorInt int color) {
+    public static void setEdgeEffectColor(@NonNull ViewPager viewPager, @ColorInt int color) {
         initializeViewPagerFields();
 
         try {
@@ -521,10 +508,10 @@ public final class DynamicScrollUtils {
     }
 
     /**
-     * Set edge effect or glow color dynamically.
+     * Set edge effect or glow color for navigation view.
      *
-     * @param navigationView Navigation view to set the edge effect color.
-     * @param color The edge effect color.
+     * @param navigationView The navigation view to set the edge effect color.
+     * @param color The edge effect color to be set.
      */
     public static void setEdgeEffectColor(
             @NonNull NavigationView navigationView, @ColorInt int color) {
@@ -543,8 +530,8 @@ public final class DynamicScrollUtils {
     /**
      * Set color of the supplied edge effect object.
      *
-     * @param edgeEffect Edge effect object to set the color.
-     * @param color The edge effect color.
+     * @param edgeEffect The edge effect object to set the color.
+     * @param color The edge effect color to be set.
      */
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void setEdgeEffectColor(@Nullable Object edgeEffect, @ColorInt int color) {
@@ -581,10 +568,10 @@ public final class DynamicScrollUtils {
     }
 
     /**
-     * Set scroll bar color dynamically.
+     * Set scroll bar color for navigation view.
      *
-     * @param navigationView Navigation view to set the scroll bar color.
-     * @param color The edge effect color.
+     * @param navigationView The navigation view to set the scroll bar color.
+     * @param color The edge effect color to be set.
      */
     public static void setScrollBarColor(
             @NonNull NavigationView navigationView, @ColorInt int color) {
@@ -601,9 +588,9 @@ public final class DynamicScrollUtils {
     }
 
     /**
-     * Set scroll bar color dynamically.
+     * Set scroll bar color for view.
      *
-     * @param view View to set the scroll bar color.
+     * @param view The view to set the scroll bar color.
      * @param color The scroll bar color.
      */
     public static void setScrollBarColor(@NonNull View view, @ColorInt int color) {

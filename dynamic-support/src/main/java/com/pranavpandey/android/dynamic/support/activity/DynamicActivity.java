@@ -16,31 +16,11 @@
 
 package com.pranavpandey.android.dynamic.support.activity;
 
-import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.BaseTransientBottomBar;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -51,26 +31,43 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener;
-import com.pranavpandey.android.dynamic.support.splash.DynamicSplashFragment;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicFABUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicHintUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 
 /**
- * Base activity to handle everything related to design support and
- * the app compat library. It has a fragment container to add fragments
- * dynamically with many other useful methods to provide a good looking
- * material design UI.
+ * Base activity to handle everything related to design support and the app compat library.
+ * It has a fragment container to add fragments dynamically with many other useful methods to
+ * provide a good looking material design UI.
  *
- * <p>If {@link android.support.design.internal.NavigationMenu} is required
- * then, please check {@link DynamicDrawerActivity}.</p>
+ * <p>If {@link com.google.android.material.internal.NavigationMenu} is required then,
+ * please check {@link DynamicDrawerActivity}.
  */
 public abstract class DynamicActivity extends DynamicStateActivity {
 
@@ -91,15 +88,11 @@ public abstract class DynamicActivity extends DynamicStateActivity {
 
     /**
      * Root view of the toolbar search view.
-     *
-     * @see #mSearchViewEditText
      */
     protected ViewGroup mSearchViewRoot;
 
     /**
      * Button to clear the toolbar search view edit text.
-     *
-     * @see #mSearchViewEditText
      */
     protected ImageView mSearchViewClear;
 
@@ -109,13 +102,8 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     protected DynamicSearchListener mDynamicSearchListener;
 
     /**
-     * Title used by the app toolbar.
-     */
-    protected TextView mTitle;
-
-    /**
-     * Floating action button used by this activity. Use the methods
-     * {@link #setFAB(Drawable, int, View.OnClickListener)} or
+     * Floating action button used by this activity.
+     * <p>Use the methods {@link #setFAB(Drawable, int, View.OnClickListener)} or
      * {@link #setFAB(int, int, View.OnClickListener)} to enable it.
      */
     protected FloatingActionButton mFAB;
@@ -141,31 +129,31 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     protected Menu mMenu;
 
     /**
-     * Back drop frame for the {@link CollapsingToolbarLayout}.
+     * Back drop frame for the collapsing toolbar layout.
      */
     protected ViewGroup mFrameBackDrop;
 
     /**
-     * Header frame just below the app toolbar to add custom views
-     * like tabs, hints, etc. Use the methods {@link #addHeader(int, boolean)}
-     * or {@link #addHeader(View, boolean)} to add the views.
-      */
+     * Header frame just below the app toolbar to add custom views like tabs, hints, etc.
+     * <p>Use the methods {@link #addHeader(int, boolean)} or {@link #addHeader(View, boolean)}
+     * to add the views.
+     */
     protected ViewGroup mFrameHeader;
 
     /**
-     * Footer frame at the bottom of the screen to add custom views
-     * like bottom navigation bar, ads, etc. Use the methods
-     * {@link #addFooter(int, boolean)} or {@link #addFooter(View, boolean)}
+     * Footer frame at the bottom of the screen to add custom views like
+     * bottom navigation bar, ads, etc.
+     * <p>Use the methods {@link #addFooter(int, boolean)} or {@link #addFooter(View, boolean)}
      * to add the views.
      */
     protected ViewGroup mFrameFooter;
 
     /**
-     * Frame layout to hold the content fragment. Use the methods
-     * {@link #switchFragment(Fragment, boolean, String)} or
+     * Frame layout to hold the content fragment.
+     * <p>Use the methods {@link #switchFragment(Fragment, boolean, String)} or
      * {@link #switchFragment(Fragment, boolean)} ot
-     * {@link #switchFragment(FragmentTransaction, Fragment, boolean, String)}
-     * to add or change the fragments.
+     * {@link #switchFragment(FragmentTransaction, Fragment, boolean, String)} to add or
+     * change the fragments.
      */
     protected FrameLayout mFrameContent;
 
@@ -192,7 +180,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
         mCoordinatorLayout = findViewById(R.id.ads_coordinator_layout);
         mAppBarLayout = findViewById(R.id.ads_app_bar_layout);
 
-        mFrameContent.setBackgroundColor(DynamicTheme.getInstance().getBackgroundColor());
+        mFrameContent.setBackgroundColor(DynamicTheme.getInstance().get().getBackgroundColor());
         mAppBarLayout.addOnOffsetChangedListener(mAppBarStateListener);
 
         if (getContentRes() != ADS_DEFAULT_LAYOUT_RES) {
@@ -203,7 +191,6 @@ public abstract class DynamicActivity extends DynamicStateActivity {
         if (setCollapsingToolbarLayout()) {
             mCollapsingToolbarLayout = findViewById(R.id.ads_collapsing_toolbar_layout);
             mFrameBackDrop = findViewById(R.id.ads_backdrop_frame);
-            //mTitle = findViewById(R.id.ads_text_app_title);
         }
 
         setSupportActionBar(mToolbar);
@@ -230,20 +217,22 @@ public abstract class DynamicActivity extends DynamicStateActivity {
 
         if (!isDrawerActivity()) {
             if (mCoordinatorLayout != null) {
-                mCoordinatorLayout.setStatusBarBackgroundColor(color);
+                mCoordinatorLayout.setStatusBarBackgroundColor(getStatusBarColor());
             }
 
             if (mCollapsingToolbarLayout != null) {
-                mCollapsingToolbarLayout.setStatusBarScrimColor(color);
+                mCollapsingToolbarLayout.setStatusBarScrimColor(getStatusBarColor());
                 mCollapsingToolbarLayout.setContentScrimColor(
-                        DynamicTheme.getInstance().getPrimaryColor());
+                        DynamicTheme.getInstance().get().getPrimaryColor());
             } else {
-                setWindowStatusBarColor(color);
+                setWindowStatusBarColor(getStatusBarColor());
             }
         }
     }
 
     /**
+     * Checks whether the navigation drawer is added.
+     *
      * @return {@code true} if this activity is a drawer activity.
      */
     protected boolean isDrawerActivity() {
@@ -251,14 +240,14 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     @Override
-    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
 
-        savedInstanceState.putBoolean(ADS_STATE_APP_BAR_COLLAPSED, isAppBarCollapsed());
-        savedInstanceState.putInt(ADS_STATE_FAB_VISIBLE, mFAB.getVisibility());
+        outState.putBoolean(ADS_STATE_APP_BAR_COLLAPSED, isAppBarCollapsed());
+        outState.putInt(ADS_STATE_FAB_VISIBLE, mFAB.getVisibility());
 
         if (mSearchViewRoot != null) {
-            savedInstanceState.putBoolean(ADS_STATE_SEARCH_VIEW_VISIBLE,
+            outState.putBoolean(ADS_STATE_SEARCH_VIEW_VISIBLE,
                     mSearchViewRoot.getVisibility() == View.VISIBLE);
         }
     }
@@ -267,6 +256,15 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         mMenu = menu;
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onActionModeStarted(@NonNull android.view.ActionMode mode) {
+        super.onActionModeStarted(mode);
+
+        DynamicDrawableUtils.setBackground(mode.getCustomView(),
+                DynamicDrawableUtils.colorizeDrawable(mode.getCustomView().getBackground(),
+                        DynamicTheme.getInstance().get().getBackgroundColor()));
     }
 
     @Override
@@ -279,13 +277,12 @@ public abstract class DynamicActivity extends DynamicStateActivity {
 
         if (mCollapsingToolbarLayout != null) {
             mCollapsingToolbarLayout.setTitle(title);
-            //mTitle.setText(title);
         }
     }
 
     @Override
-    public void setTitle(@StringRes int titleId) {
-        setTitle(getText(titleId));
+    public void setTitle(@StringRes int titleRes) {
+        setTitle(getText(titleRes));
     }
 
     @Override
@@ -301,8 +298,8 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * @return The custom layout resource id. Just return
-     * {@link #ADS_DEFAULT_LAYOUT_RES} to use the default inbuilt layouts.
+     * @return The custom layout resource. Just return {@link #ADS_DEFAULT_LAYOUT_RES} to use
+     *         the default inbuilt layouts.
      */
     protected @LayoutRes int getLayoutRes() {
         return setCollapsingToolbarLayout()
@@ -310,20 +307,19 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * @return The custom content resource id if no fragment is required.
-     * It will automatically add this layout in the {@link #mFrameContent}.
+     * @return The custom content resource if no fragment is required. It will automatically
+     *         add this layout in the {@link #mFrameContent}.
      */
     protected abstract @LayoutRes int getContentRes();
 
     /**
-     * Set the icon and on click listener for the back or up button in the
-     * app bar.
+     * Set the icon and on click listener for the back or up button in the app bar.
      *
-     * @param icon Drawable used for the back or up button.
-     * @param onClickListener On click listener for the back or up button.
+     * @param icon The drawable used for the back or up button.
+     * @param onClickListener The click listener for the back or up button.
      */
     public void setNavigationClickListener(@Nullable Drawable icon,
-                                           @Nullable View.OnClickListener onClickListener) {
+            @Nullable View.OnClickListener onClickListener) {
         mToolbar.setNavigationIcon(icon);
         setSupportActionBar(mToolbar);
 
@@ -337,23 +333,22 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Set the icon and on click listener for the back or up button in the
-     * app bar.
+     * Set the icon and on click listener for the back or up button in the app bar.
      *
-     * @param iconRes Drawable resource id used for the back or up button.
-     * @param onClickListener On click listener for the back or up button.
+     * @param iconRes The drawable resource used for the back or up button.
+     * @param onClickListener The click listener for the back or up button.
      */
     public void setNavigationClickListener(@DrawableRes int iconRes,
-                                           @Nullable View.OnClickListener onClickListener) {
+            @Nullable View.OnClickListener onClickListener) {
         setNavigationClickListener(DynamicResourceUtils.getDrawable(
                 this, iconRes), onClickListener);
     }
 
     /**
      * Sets the on click listener for the back or up button in the app bar.
-     * If no listener is supplied then, it will automatically hide the button.
+     * <p>If no listener is supplied then, it will automatically hide the button.
      *
-     * @param onClickListener On click listener for the back or up button.
+     * @param onClickListener The click listener for the back or up button.
      */
     public void setNavigationClickListener(@Nullable View.OnClickListener onClickListener) {
         setNavigationClickListener(onClickListener != null
@@ -362,6 +357,8 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
+     * Returns the app toolbar used by this activity.
+     *
      * @return The app toolbar used by this activity.
      */
     public @Nullable Toolbar getToolbar() {
@@ -369,14 +366,18 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * @return {@code true} if the app bar is visible. It will be used
-     * internally to maintain the app bar state.
+     * Returns whether the app bar is visible.
+     *
+     * @return {@code true} if the app bar is visible. It will be used internally to maintain
+     *         the app bar state.
      */
     public boolean isAppBarVisible() {
         return mAppBarVisible;
     }
 
     /**
+     * Returns the coordinator layout used by this activity.
+     *
      * @return The coordinator layout used by this activity.
      */
     public @Nullable CoordinatorLayout getCoordinatorLayout() {
@@ -384,6 +385,8 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
+     * Returns the collapsing toolbar layout used by this activity.
+     *
      * @return The collapsing toolbar layout used by this activity.
      */
     public CollapsingToolbarLayout getCollapsingToolbarLayout() {
@@ -391,13 +394,12 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Set layout scroll flags for the {@link #mCollapsingToolbarLayout}.
-     * Useful to change the collapse mode dynamically.
+     * Set layout scroll flags for the collapsing toolbar layout.
+     * <p>Useful to change the collapse mode dynamically.
      *
-     * @param flags Scroll flags for the collapsing toolbar layout.
+     * @param flags The scroll flags for the collapsing toolbar layout.
      */
-    public void setCollapsingToolbarLayoutFlags(
-            @AppBarLayout.LayoutParams.ScrollFlags int flags) {
+    public void setCollapsingToolbarLayoutFlags(@AppBarLayout.LayoutParams.ScrollFlags int flags) {
         if (mCollapsingToolbarLayout != null) {
             AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams)
                     mCollapsingToolbarLayout.getLayoutParams();
@@ -407,13 +409,12 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Set layout scroll flags for the {@link #mToolbar}. Useful to
-     * change the collapse mode dynamically.
+     * Set layout scroll flags for the toolbar.
+     * <p>Useful to change the collapse mode dynamically.
      *
-     * @param flags Scroll flags for the collapsing toolbar layout.
+     * @param flags The scroll flags for the collapsing toolbar layout.
      */
-    public void setToolbarLayoutFlags(
-            @AppBarLayout.LayoutParams.ScrollFlags int flags) {
+    public void setToolbarLayoutFlags(@AppBarLayout.LayoutParams.ScrollFlags int flags) {
         if (mToolbar != null) {
             AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams)
                     mToolbar.getLayoutParams();
@@ -423,8 +424,8 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Set the {@link #mToolbar} or {@link #mCollapsingToolbarLayout}
-     * visibility (collectively known as app bar) if available.
+     * Set the toolbar or collapsing toolbar layout visibility (collectively known as app bar)
+     * if available.
      *
      * @param appBarVisible {@code true} to make the app bar visible.
      */
@@ -439,14 +440,18 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Add a backdrop view for the {@link #mCollapsingToolbarLayout} which
-     * will be shown when it is expanded and will be hidden on collapsing
-     * the toolbar.
+     * Add a backdrop view for the collapsing toolbar layout which will be shown when it is
+     * expanded and will be hidden on collapsing the toolbar.
      *
-     * @param view View to be added as the backdrop frame.
-     * @param expandedTitleColor Title color when the toolbar is expanded.
+     * @param view The view to be added as the backdrop frame.
+     * @param expandedTitleColor The title color when the toolbar is expanded.
      */
     public void setAppBarBackDrop(@Nullable View view, @ColorInt int expandedTitleColor) {
+        if (DynamicTheme.getInstance().get().isBackgroundAware()) {
+            expandedTitleColor = DynamicColorUtils.getContrastColor(
+                    expandedTitleColor, DynamicTheme.getInstance().get().getPrimaryColor());
+        }
+
         if (mCollapsingToolbarLayout != null) {
             if (mFrameBackDrop.getChildCount() > 0) {
                 mFrameBackDrop.removeAllViews();
@@ -455,37 +460,31 @@ public abstract class DynamicActivity extends DynamicStateActivity {
             if (view != null) {
                 mFrameBackDrop.addView(view);
                 setAppBarTransparent(true);
-                mCollapsingToolbarLayout
-                        .setExpandedTitleColor(expandedTitleColor);
-                mCollapsingToolbarLayout
-                        .setCollapsedTitleTextColor(expandedTitleColor);
-                //mTitle.setVisibility(View.GONE);
+                mCollapsingToolbarLayout.setExpandedTitleColor(expandedTitleColor);
+                mCollapsingToolbarLayout.setCollapsedTitleTextColor(expandedTitleColor);
             }
         }
     }
 
     /**
-     * Add a backdrop view for the {@link #mCollapsingToolbarLayout} which
-     * will be shown when it is expanded and will be hidden on collapsing
-     * the toolbar.
+     * Add a backdrop view for the collapsing toolbar layout which will be shown when it is
+     * expanded and will be hidden on collapsing the toolbar.
      *
-     * @param layoutId Layout resource id to be added as the backdrop frame.
-     * @param expandedTitleColorRes Title color resource id when the toolbar
-     *                              is expanded.
+     * @param layoutRes The layout resource to be added as the backdrop frame.
+     * @param expandedTitleColorRes The title color resource when the toolbar is expanded.
      */
-    public void setAppBarBackDropRes(@LayoutRes int layoutId,
-                                     @ColorRes int expandedTitleColorRes) {
-        setAppBarBackDrop(LayoutInflater.from(this).inflate(layoutId,
+    public void setAppBarBackDropRes(@LayoutRes int layoutRes,
+            @ColorRes int expandedTitleColorRes) {
+        setAppBarBackDrop(LayoutInflater.from(this).inflate(layoutRes,
                 new LinearLayout(this), false),
                 ContextCompat.getColor(this, expandedTitleColorRes));
     }
 
     /**
-     * Set the drawable for backdrop image used by the
-     * {@link #mCollapsingToolbarLayout} which will be shown when it is
-     * expanded and will be hidden on collapsing the toolbar.
+     * Set the drawable for backdrop image used by the collapsing toolbar layout which will be
+     * shown when it is expanded and will be hidden on collapsing the toolbar.
      *
-     * @param drawable Drawable for the backdrop image.
+     * @param drawable The drawable for the backdrop image.
      */
     public void setAppBarBackDrop(@Nullable Drawable drawable) {
         View view = LayoutInflater.from(this).inflate(R.layout.ads_appbar_backdrop_image,
@@ -493,23 +492,22 @@ public abstract class DynamicActivity extends DynamicStateActivity {
         ((ImageView) view.findViewById(R.id.ads_image_backdrop))
                 .setImageDrawable(drawable);
 
-        setAppBarBackDrop(view, DynamicTheme.getInstance().getTintPrimaryColor());
+        setAppBarBackDrop(view, DynamicTheme.getInstance().get().getTintPrimaryColor());
     }
 
     /**
-     * Set the drawable id for backdrop image used by the
-     * {@link #mCollapsingToolbarLayout} hich will be shown when it is expanded
-     * and will be hidden on collapsing the toolbar.
+     * Set the drawable id for backdrop image used by the collapsing toolbar layout which will be
+     * shown when it is expanded and will be hidden on collapsing the toolbar.
      *
-     * @param drawableRes Drawable resource id for the backdrop image.
+     * @param drawableRes The drawable resource for the backdrop image.
      */
     public void setAppBarBackDrop(@DrawableRes int drawableRes) {
         setAppBarBackDrop(DynamicResourceUtils.getDrawable(this, drawableRes));
     }
 
     /**
-     * Make the app bar transparent or translucent. Useful to make it
-     * transparent if a backdrop view has been added.
+     * Make the app bar transparent or translucent.
+     * <p>Useful to make it transparent if a backdrop view has been added.
      *
      * @param transparent {@code true} to make the app bar transparent.
      */
@@ -517,7 +515,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setBackgroundDrawable(
                     new ColorDrawable(transparent ? Color.TRANSPARENT
-                            : DynamicTheme.getInstance().getPrimaryColor()));
+                            : DynamicTheme.getInstance().get().getPrimaryColor()));
         }
     }
 
@@ -532,22 +530,25 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * @return The header frame just below the app toolbar to add custom views
-     *         like tabs, hints, etc. Use the methods {@link #addHeader(int, boolean)}
-     *         or {@link #addHeader(View, boolean)} to add the views.
+     * Get the header frame just below the app toolbar to add custom views like tabs, hints, etc.
+     * <p>Use the methods {@link #addHeader(int, boolean)} or {@link #addHeader(View, boolean)}
+     * to add the views.
+     *
+     * @return The header frame just below the app toolbar to add custom views like tabs,
+     *         hints, etc.
      */
     public @Nullable ViewGroup getFrameHeader() {
         return mFrameHeader;
     }
 
     /**
-     * Add header view just below the app bar. Useful to add tabs or hints
-     * dynamically. Multiple views can be added and the default background
-     * will be the app bar background (theme primary color). Please check
-     * {@link DynamicSplashFragment}
-     * to add the tabs automatically.
+     * Add header view just below the app bar.
+     * <p>Useful to add tabs or hints dynamically. Multiple views can be added and the default
+     * background will be the app bar background (theme primary color). Please check
+     * {@link com.pranavpandey.android.dynamic.support.fragment.DynamicViewPagerFragment} to
+     * add the tabs automatically.
      *
-     * @param view View to be added in the header frame.
+     * @param view The view to be added in the header frame.
      * @param removePrevious {@code true} to remove the previously added views.
      */
     public void addHeader(@Nullable View view, boolean removePrevious) {
@@ -561,38 +562,39 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Add header view just below the app bar. Useful to add tabs or hints
-     * dynamically. Multiple views can be added and the default background
-     * will be the app bar background (theme primary color). Please check
-     * {@link DynamicSplashFragment}
-     * to add the tabs automatically.
+     * Add header view just below the app bar.
+     * <p>Useful to add tabs or hints dynamically. Multiple views can be added and the default
+     * background will be the app bar background (theme primary color). Please check
+     * {@link com.pranavpandey.android.dynamic.support.fragment.DynamicViewPagerFragment} to
+     * add the tabs automatically.
      *
-     * @param layoutId Layout resource id to be added in the header frame.
+     * @param layoutRes The layout resource to be added in the header frame.
      * @param removePrevious {@code true} to remove the previously added views.
      */
-    public void addHeader(@LayoutRes int layoutId, boolean removePrevious) {
-        addHeader(LayoutInflater.from(this).inflate(layoutId,
+    public void addHeader(@LayoutRes int layoutRes, boolean removePrevious) {
+        addHeader(LayoutInflater.from(this).inflate(layoutRes,
                 new LinearLayout(this), false), removePrevious);
     }
 
     /**
-     * @return The footer frame at the bottom of the screen to add custom views
-     *         like bottom navigation bar, ads, etc. Use the methods
-     *         {@link #addFooter(int, boolean)} or {@link #addFooter(View, boolean)}
-     *         to add the views.
+     * Get the footer frame at the bottom of the screen to add custom views like
+     * bottom navigation bar, ads, etc.
+     * <p>Use the methods {@link #addFooter(int, boolean)} or {@link #addFooter(View, boolean)}
+     * to add the views.
+     *
+     * @return The footer frame at the bottom of the screen to add custom views like
+     *         bottom navigation bar, ads, etc.
      */
     public @Nullable ViewGroup getFrameFooter() {
         return mFrameFooter;
     }
 
     /**
-     * Add footer view at the bottom of the screen. Useful to add bottom navigation
-     * bar, ads, etc. dynamically. Multiple views can be added and the default
-     * background will be the app bar background (theme primary color). Please
-     * check {@link DynamicSplashFragment}
-     * to add the tabs automatically.
+     * Add footer view at the bottom of the screen.
+     * <p>Useful to add bottom navigation bar, ads, etc. dynamically. Multiple views can be
+     * added and the default background will be the app bar background (theme primary color).
      *
-     * @param view View to be added in the header frame.
+     * @param view The view to be added in the header frame.
      * @param removePrevious {@code true} to remove the previously added views.
      */
     public void addFooter(@Nullable View view, boolean removePrevious) {
@@ -606,17 +608,15 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Add footer view at the bottom of the screen. Useful to add bottom navigation
-     * bar, ads, etc. dynamically. Multiple views can be added and the default
-     * background will be the app bar background (theme primary color). Please
-     * check {@link DynamicSplashFragment}
-     * to add the tabs automatically.
+     * Add footer view at the bottom of the screen.
+     * <p>Useful to add bottom navigation bar, ads, etc. dynamically. Multiple views can be
+     * added and the default background will be the app bar background (theme primary color).
      *
-     * @param layoutId Layout resource id to be added in the header frame.
+     * @param layoutRes The layout resource to be added in the header frame.
      * @param removePrevious {@code true} to remove the previously added views.
      */
-    public void addFooter(@LayoutRes int layoutId, boolean removePrevious) {
-        addFooter(LayoutInflater.from(this).inflate(layoutId,
+    public void addFooter(@LayoutRes int layoutRes, boolean removePrevious) {
+        addFooter(LayoutInflater.from(this).inflate(layoutRes,
                 new LinearLayout(this), false), removePrevious);
     }
 
@@ -653,8 +653,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
         if (mSearchViewEditText != null) {
             mSearchViewEditText.addTextChangedListener(new TextWatcher() {
                 @Override
-                public void beforeTextChanged(CharSequence charSequence,
-                                              int i, int i1, int i2) { }
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -684,8 +683,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Restore the search view state after the configuration
-     * change.
+     * Restore the search view state after the configuration change.
      */
     public void restoreSearchViewState() {
         mSearchViewEditText.post(new Runnable() {
@@ -704,8 +702,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     /**
      * Expand search view to start searching.
      *
-     * @param requestSoftInput {@code true} to request the soft input
-     *                         keyboard.
+     * @param requestSoftInput {@code true} to request the soft input keyboard.
      */
     public void expandSearchView(boolean requestSoftInput) {
         if (mSearchViewRoot != null && mSearchViewRoot.getVisibility() == View.GONE) {
@@ -751,16 +748,14 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * @return The listener to listen search view expand and collapse
-     *         callbacks.
+     * @return The listener to listen search view expand and collapse callbacks.
      */
     public @Nullable DynamicSearchListener getSearchViewListener() {
         return mDynamicSearchListener;
     }
 
     /**
-     * Sets the listener to listen search view expand and collapse
-     * callbacks.
+     * Sets the listener to listen search view expand and collapse callbacks.
      *
      * @param dynamicSearchListener The listener to be set.
      */
@@ -785,22 +780,19 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Set a floating action button ({@link #mFAB}) used by this activity
-     * by supplying an image drawable, current visibility and a click
-     * listener. FAB will be tinted automatically according to the accent
-     * color used by this activity.
+     * Set a floating action button (FAB) used by this activity by supplying an image drawable,
+     * current visibility and a click listener. FAB will be tinted automatically according to the
+     * accent color used by this activity.
      *
-     * <p>Please use {@link #getFAB()} method to perform more operations
-     * dynamically.</p>
+     * <p><p>Please use {@link #getFAB()} method to perform more operations dynamically.
      *
-     * @param drawable Image drawable for the floating action button.
-     * @param visibility Current FAB visibility. {@link View#VISIBLE},
-     *                   {@link View#INVISIBLE} or {@link View#GONE}.
-     * @param onClickListener Callback that will run when this view is
-     *                        clicked.
+     * @param drawable The image drawable to be set.
+     * @param visibility The visibility to be set.
+     *                   <p>C{@link View#VISIBLE}, {@link View#INVISIBLE} or {@link View#GONE}.
+     * @param onClickListener Callback that will run when this view is clicked.
      */
     public void setFAB(@Nullable Drawable drawable, int visibility,
-                       @Nullable View.OnClickListener onClickListener) {
+            @Nullable View.OnClickListener onClickListener) {
         if (mFAB != null) {
             setFABImageDrawable(drawable);
             mFAB.setOnClickListener(onClickListener);
@@ -809,56 +801,53 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Set a floating action button ({@link #mFAB}) used by this activity
-     * by supplying an image drawable resource, current visibility and a
-     * click listener. FAB will be tinted automatically according to the
+     * Set a floating action button (FAB) used by this activity by supplying an image drawable,
+     * current visibility and a click listener. FAB will be tinted automatically according to the
      * accent color used by this activity.
      *
-     * <p>Please use {@link #getFAB()} method to perform more operations
-     * dynamically.</p>
+     * <p><p>Please use {@link #getFAB()} method to perform more operations dynamically.
      *
-     * @param drawableRes Image drawable resource for the floating action
-     *                    button.
-     * @param visibility Current FAB visibility. {@link View#VISIBLE},
-     *                   {@link View#INVISIBLE} or {@link View#GONE}.
-     * @param onClickListener Callback that will run when this view is
-     *                        clicked.
+     * @param drawableRes The image drawable resource to be set.
+     * @param visibility The visibility to be set.
+     *                   <p>{@link View#VISIBLE}, {@link View#INVISIBLE} or {@link View#GONE}.
+     * @param onClickListener Callback that will run when this view is clicked.
      */
     public void setFAB(@DrawableRes int drawableRes, int visibility,
-                       @Nullable View.OnClickListener onClickListener) {
+            @Nullable View.OnClickListener onClickListener) {
         setFAB(DynamicResourceUtils.getDrawable(
                 this, drawableRes), visibility, onClickListener);
     }
 
     /**
-     * Set the {@link #mFAB} image drawable. Image will be tinted automatically
-     * according to its background color to provide best visibility.
+     * Set the FAB image drawable resource.
+     * <p>Image will be tinted automatically according to its background color to provide
+     * best visibility.
      *
-     * @param drawable Image drawable for the floating action button.
+     * @param drawable The image drawable for the floating action button.
      */
-    public void setFABImageDrawable(@Nullable Drawable drawable) {
+    public void setFABImageDrawable(final @Nullable Drawable drawable) {
         if (mFAB != null) {
-            if (drawable != null) {
-                mFAB.setImageDrawable(drawable);
+            mFAB.setImageDrawable(drawable);
+
+            if (drawable == null) {
+                hideFAB();
             }
         }
     }
 
     /**
-     * Set the {@link #mFAB} image drawable resource. Image will be tinted
-     * automatically according to its background color to provide best
-     * visibility.
+     * Set the FAB image drawable resource.
+     * <p>Image will be tinted automatically according to its background color to provide
+     * best visibility.
      *
-     * @param drawableRes Image drawable resource for the floating action
-     *                    button.
+     * @param drawableRes The image drawable resource for the floating action button.
      */
     public void setFABImageDrawable(@DrawableRes int drawableRes) {
         setFABImageDrawable(DynamicResourceUtils.getDrawable(this, drawableRes));
     }
 
     /**
-     * Set the {@link #mFAB} visibility to {@link View#VISIBLE},
-     * {@link View#INVISIBLE} or {@link View#GONE}
+     * Set the FAB visibility to {@link View#VISIBLE}, {@link View#INVISIBLE} or {@link View#GONE}.
      */
     public void setFABVisibility(int visibility) {
         if (mFAB != null && visibility != ADS_VISIBILITY_FAB_NO_CHANGE) {
@@ -868,31 +857,29 @@ public abstract class DynamicActivity extends DynamicStateActivity {
                     break;
                 case View.INVISIBLE:
                 case View.GONE:
-                    DynamicFABUtils.show(mFAB);
+                    DynamicFABUtils.hide(mFAB);
                     break;
             }
         }
     }
 
     /**
-     * Show the {@link #mFAB} by setting its visibility to
-     * {@link View#VISIBLE}.
+     * Show the FAB by setting its visibility to {@link View#VISIBLE}.
      */
     public void showFAB() {
         setFABVisibility(View.VISIBLE);
     }
 
     /**
-     * Hide the {@link #mFAB} by setting its visibility to
-     * {@link View#GONE}.
+     * Hide the FAB by setting its visibility to {@link View#GONE}.
      */
     public void hideFAB() {
-        setFABVisibility(View.INVISIBLE);
+        setFABVisibility(View.GONE);
     }
 
     /**
-     * Remove the {@link #mFAB} associated with this activity. Please call
-     * the methods {@link #setFAB(int, int, View.OnClickListener)} or
+     * Remove the FAB associated with this activity.
+     * <p>Please call the methods {@link #setFAB(int, int, View.OnClickListener)} or
      * {@link #setFAB(Drawable, int, View.OnClickListener)} to set it again.
      */
     public void removeFAB() {
@@ -904,76 +891,69 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * Make a themed snack bar with text and action. Background will be
-     * the current navigation bar color to blend it smoothly and it will
-     * automatically use its tint color for the text and action to provide
-     * best visibility.
+     * Make a themed snack bar with text and action. Background will be the tint background color
+     * to blend it smoothly and it will automatically use its tint color for the text and action
+     * to provide best visibility.
      *
      * @param text The text to show. Can be formatted text.
-     * @param duration The duration of the snack bar. Can be
-     *                 {@link Snackbar#LENGTH_SHORT},
-     *                 {@link Snackbar#LENGTH_LONG} or
-     *                 {@link Snackbar#LENGTH_INDEFINITE}.
+     * @param duration The duration of the snack bar.
+     *                 <p>{@link Snackbar#LENGTH_SHORT}, {@link Snackbar#LENGTH_LONG}
+     *                 or {@link Snackbar#LENGTH_INDEFINITE}.
      *
-     * @return Snack bar with the supplied parameters.
-     *         Use {@link Snackbar#show()} to display the snack bar.
+     * @return The snack bar with the supplied parameters.
+     *         <p>Use {@link Snackbar#show()} to display the snack bar.
      */
     public @NonNull Snackbar getSnackBar(@NonNull CharSequence text,
-                                @BaseTransientBottomBar.Duration int duration) {
+            @Snackbar.Duration int duration) {
         return DynamicHintUtils.getSnackBar(mCoordinatorLayout, text,
-                getAppliedNavigationBarColor(), DynamicColorUtils.getTintColor(
-                        getAppliedNavigationBarColor()), duration);
+                DynamicTheme.getInstance().get().getTintBackgroundColor(),
+                DynamicTheme.getInstance().get().getBackgroundColor(), duration);
     }
 
 
     /**
-     * Make a themed snack bar with text and action. Background will be
-     * the current navigation bar color to blend it smoothly and it will
-     * automatically use its tint color for the text and action to provide
-     * best visibility.
+     * Make a themed snack bar with text and action. Background will be the tint background color
+     * to blend it smoothly and it will automatically use its tint color for the text and action
+     * to provide best visibility.
      *
-     * @param stringId The string resource id.
-     * @param duration The duration of the snack bar. Can be
-     *                 {@link Snackbar#LENGTH_SHORT},
-     *                 {@link Snackbar#LENGTH_LONG} or
-     *                 {@link Snackbar#LENGTH_INDEFINITE}.
+     * @param stringRes The string resource for the snack bar.
+     * @param duration The duration of the snack bar.
+     *                 <p>{@link Snackbar#LENGTH_SHORT}, {@link Snackbar#LENGTH_LONG}
+     *                 or {@link Snackbar#LENGTH_INDEFINITE}.
      *
-     * @return Snack bar with the supplied parameters.
-     *         Use {@link Snackbar#show()} to display the snack bar.
+     * @return The snack bar with the supplied parameters.
+     *         <p>Use {@link Snackbar#show()} to display the snack bar.
      */
-    public @Nullable Snackbar getSnackBar(@StringRes int stringId,
-                                @BaseTransientBottomBar.Duration  int duration) {
-        return getSnackBar(getString(stringId), duration);
+    public @NonNull Snackbar getSnackBar(@StringRes int stringRes,
+            @Snackbar.Duration int duration) {
+        return getSnackBar(getString(stringRes), duration);
     }
 
     /**
-     * Make a themed snack bar with text and action. Background will be
-     * the current navigation bar color to blend it smoothly and it will
-     * automatically use its tint color for the text and action to provide
-     * best visibility.
+     * Make a themed snack bar with text and action. Background will be the tint background color
+     * to blend it smoothly and it will automatically use its tint color for the text and action
+     * to provide best visibility.
      *
      * @param text The text to show. Can be formatted text.
      *
-     * @return Snack bar with the supplied parameters.
-     *         Use {@link Snackbar#show()} to display the snack bar.
+     * @return The snack bar with the supplied parameters.
+     *         <p>Use {@link Snackbar#show()} to display the snack bar.
      */
-    @SuppressLint("Range")
     public @NonNull Snackbar getSnackBar(@NonNull CharSequence text) {
         return getSnackBar(text, Snackbar.LENGTH_LONG);
     }
 
     /**
-     * Make a themed snack bar with text and action. Background will be
-     * the current navigation bar color to blend it smoothly and it will
-     * automatically use its tint color for the text and action to provide
-     * best visibility.
+     * Make a themed snack bar with text and action. Background will be the tint background color
+     * to blend it smoothly and it will automatically use its tint color for the text and action
+     * to provide best visibility.
      *
-     * @param stringId The string resource id.
+     * @param stringRes The string resource for the snack bar.
      *
-     * @return Snack bar with the supplied parameters.
-     *         Use {@link Snackbar#show()} to display the snack bar.
+     * @return The snack bar with the supplied parameters.
+     *         <p>Use {@link Snackbar#show()} to display the snack bar.
      */
-    public @NonNull Snackbar getSnackBar(@StringRes int stringId) {
-        return getSnackBar(getString(stringId));
+    public @NonNull Snackbar getSnackBar(@StringRes int stringRes) {
+        return getSnackBar(getString(stringRes));
     }
 }

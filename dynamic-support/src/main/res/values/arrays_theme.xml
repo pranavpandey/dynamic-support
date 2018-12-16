@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<resources>
+
+    <!-- Theme entries for auto and custom. -->
+    <string-array name="ads_theme_entries_auto">
+        <item>@string/ads_theme_entry_auto</item>
+        <item>@string/ads_theme_entry_custom</item>
+    </string-array>
+
+    <!-- Theme values for auto and custom. -->
+    <string-array name="ads_theme_values_auto">
+        <!-- Auto -->
+        <item>-3</item>
+        <!-- Custom -->
+        <item>-2</item>
+    </string-array>
+
+    <!-- Visibility entries for the settings like widget header, etc. -->
+    <string-array name="ads_visibility_entries">
+        <item>@string/ads_theme_entry_auto</item>
+        <item>@string/ads_visibility_hide</item>
+        <item>@string/ads_visibility_show</item>
+    </string-array>
+
+    <!-- Visibility values for the settings like widget header, etc. -->
+    <string-array name="ads_visibility_values">
+        <!-- Auto -->
+        <item>-3</item>
+        <!-- Hide -->
+        <item>0</item>
+        <!-- Show -->
+        <item>1</item>
+    </string-array>
+
+    <!-- Background aware entries. -->
+    <string-array name="ads_background_aware_entries">
+        <item>@string/ads_theme_entry_auto</item>
+        <item>@string/ads_disable</item>
+        <item>@string/ads_enable</item>
+    </string-array>
+
+    <!-- Background aware values. -->
+    <string-array name="ads_background_aware_values">
+        <!-- Auto -->
+        <item>-3</item>
+        <!-- Disable -->
+        <item>0</item>
+        <!-- Enable -->
+        <item>1</item>
+    </string-array>
+
+    <!-- App theme colors. -->
+    <integer-array name="ads_app_theme_colors">
+        <!-- Auto -->
+        <item>-3</item>
+        <item>@color/ads_window_background_red_light</item>
+        <item>@color/ads_window_background_purple_light</item>
+        <item>@color/ads_window_background_indigo_light</item>
+        <item>@color/ads_window_background_light_blue_light</item>
+        <item>@color/ads_window_background_teal_light</item>
+        <item>@color/ads_window_background_light_green_light</item>
+        <item>@color/ads_window_background_yellow_light</item>
+        <item>@color/ads_window_background_orange_light</item>
+        <item>@color/ads_window_background_brown_light</item>
+        <item>@color/ads_window_background_blue_grey_light</item>
+        <item>@color/ads_window_background_white_light</item>
+        <item>@color/ads_window_background_red</item>
+        <item>@color/ads_window_background_purple</item>
+        <item>@color/ads_window_background_indigo</item>
+        <item>@color/ads_window_background_light_blue</item>
+        <item>@color/ads_window_background_teal</item>
+        <item>@color/ads_window_background_light_green</item>
+        <item>@color/ads_window_background_yellow</item>
+        <item>@color/ads_window_background_orange</item>
+        <item>@color/ads_window_background_brown</item>
+        <item>@color/ads_window_background_blue_grey</item>
+        <item>@color/ads_window_background_black_light</item>
+        <item>@color/ads_window_background_black</item>
+    </integer-array>
+
+    <!-- App theme day colors. -->
+    <integer-array name="ads_app_theme_day_colors">
+        <item>@color/ads_window_background_red_light</item>
+        <item>@color/ads_window_background_pink_light</item>
+        <item>@color/ads_window_background_purple_light</item>
+        <item>@color/ads_window_background_deep_purple_light</item>
+        <item>@color/ads_window_background_indigo_light</item>
+        <item>@color/ads_window_background_blue_light</item>
+        <item>@color/ads_window_background_light_blue_light</item>
+        <item>@color/ads_window_background_cyan_light</item>
+        <item>@color/ads_window_background_teal_light</item>
+        <item>@color/ads_window_background_green_light</item>
+        <item>@color/ads_window_background_light_green_light</item>
+        <item>@color/ads_window_background_lime_light</item>
+        <item>@color/ads_window_background_yellow_light</item>
+        <item>@color/ads_window_background_amber_light</item>
+        <item>@color/ads_window_background_orange_light</item>
+        <item>@color/ads_window_background_deep_orange_light</item>
+        <item>@color/ads_window_background_brown_light</item>
+        <item>@color/ads_window_background_grey_light</item>
+        <item>@color/ads_window_background_blue_grey_light</item>
+        <item>@color/ads_window_background_white_light</item>
+        <item>@color/ads_window_background_white</item>
+    </integer-array>
+
+    <!-- App theme night colors. -->
+    <integer-array name="ads_app_theme_night_colors">
+        <item>@color/ads_window_background_red</item>
+        <item>@color/ads_window_background_pink</item>
+        <item>@color/ads_window_background_purple</item>
+        <item>@color/ads_window_background_deep_purple</item>
+        <item>@color/ads_window_background_indigo</item>
+        <item>@color/ads_window_background_blue</item>
+        <item>@color/ads_window_background_light_blue</item>
+        <item>@color/ads_window_background_cyan</item>
+        <item>@color/ads_window_background_teal</item>
+        <item>@color/ads_window_background_green</item>
+        <item>@color/ads_window_background_light_green</item>
+        <item>@color/ads_window_background_lime</item>
+        <item>@color/ads_window_background_yellow</item>
+        <item>@color/ads_window_background_amber</item>
+        <item>@color/ads_window_background_orange</item>
+        <item>@color/ads_window_background_deep_orange</item>
+        <item>@color/ads_window_background_brown</item>
+        <item>@color/ads_window_background_grey</item>
+        <item>@color/ads_window_background_blue_grey</item>
+        <item>@color/ads_window_background_black_light</item>
+        <item>@color/ads_window_background_black</item>
+    </integer-array>
+
+    <!-- App theme colors. -->
+    <integer-array name="ads_app_colors">
+        <!-- Auto -->
+        <item>-3</item>
+        <item>@color/ads_color_red</item>
+        <item>@color/ads_color_pink</item>
+        <item>@color/ads_color_purple</item>
+        <item>@color/ads_color_deep_purple</item>
+        <item>@color/ads_color_indigo</item>
+        <item>@color/ads_color_blue</item>
+        <item>@color/ads_color_light_blue</item>
+        <item>@color/ads_color_cyan</item>
+        <item>@color/ads_color_teal</item>
+        <item>@color/ads_color_green</item>
+        <item>@color/ads_color_light_green</item>
+        <item>@color/ads_color_lime</item>
+        <item>@color/ads_color_yellow</item>
+        <item>@color/ads_color_amber</item>
+        <item>@color/ads_color_orange</item>
+        <item>@color/ads_color_deep_orange</item>
+        <item>@color/ads_color_brown</item>
+        <item>@color/ads_color_grey</item>
+        <item>@color/ads_color_blue_grey</item>
+        <item>@color/ads_color_white</item>
+        <item>@color/ads_color_black</item>
+    </integer-array>
+
+    <!-- App theme dark colors. -->
+    <integer-array name="ads_app_colors_dark">
+        <!-- Auto -->
+        <item>-3</item>
+        <item>@color/ads_color_red_dark</item>
+        <item>@color/ads_color_pink_dark</item>
+        <item>@color/ads_color_purple_dark</item>
+        <item>@color/ads_color_deep_purple_dark</item>
+        <item>@color/ads_color_indigo_dark</item>
+        <item>@color/ads_color_blue_dark</item>
+        <item>@color/ads_color_light_blue_dark</item>
+        <item>@color/ads_color_cyan_dark</item>
+        <item>@color/ads_color_teal_dark</item>
+        <item>@color/ads_color_green_dark</item>
+        <item>@color/ads_color_light_green_dark</item>
+        <item>@color/ads_color_lime_dark</item>
+        <item>@color/ads_color_yellow_dark</item>
+        <item>@color/ads_color_amber_dark</item>
+        <item>@color/ads_color_orange_dark</item>
+        <item>@color/ads_color_deep_orange_dark</item>
+        <item>@color/ads_color_brown_dark</item>
+        <item>@color/ads_color_grey_dark</item>
+        <item>@color/ads_color_blue_grey_dark</item>
+        <item>@color/ads_color_white_dark</item>
+        <item>@color/ads_color_black_dark</item>
+    </integer-array>
+
+    <!-- App theme text colors. -->
+    <integer-array name="ads_app_colors_text">
+        <!-- Auto -->
+        <item>-3</item>
+        <item>@color/ads_color_red_text</item>
+        <item>@color/ads_color_pink_text</item>
+        <item>@color/ads_color_purple_text</item>
+        <item>@color/ads_color_deep_purple_text</item>
+        <item>@color/ads_color_indigo_text</item>
+        <item>@color/ads_color_blue_text</item>
+        <item>@color/ads_color_light_blue_text</item>
+        <item>@color/ads_color_cyan_text</item>
+        <item>@color/ads_color_teal_text</item>
+        <item>@color/ads_color_green_text</item>
+        <item>@color/ads_color_light_green_text</item>
+        <item>@color/ads_color_lime_text</item>
+        <item>@color/ads_color_yellow_text</item>
+        <item>@color/ads_color_amber_text</item>
+        <item>@color/ads_color_orange_text</item>
+        <item>@color/ads_color_deep_orange_text</item>
+        <item>@color/ads_color_brown_text</item>
+        <item>@color/ads_color_grey_text</item>
+        <item>@color/ads_color_blue_grey_text</item>
+        <item>@color/ads_color_white_text</item>
+        <item>@color/ads_color_black_text</item>
+    </integer-array>
+
+    <!-- App theme dark text colors. -->
+    <integer-array name="ads_app_colors_text_dark">
+        <!-- Auto -->
+        <item>-3</item>
+        <item>@color/ads_color_red_text_dark</item>
+        <item>@color/ads_color_pink_text_dark</item>
+        <item>@color/ads_color_purple_text_dark</item>
+        <item>@color/ads_color_deep_purple_text_dark</item>
+        <item>@color/ads_color_indigo_text_dark</item>
+        <item>@color/ads_color_blue_text_dark</item>
+        <item>@color/ads_color_light_blue_text_dark</item>
+        <item>@color/ads_color_cyan_text_dark</item>
+        <item>@color/ads_color_teal_text_dark</item>
+        <item>@color/ads_color_green_text_dark</item>
+        <item>@color/ads_color_light_green_text_dark</item>
+        <item>@color/ads_color_lime_text_dark</item>
+        <item>@color/ads_color_yellow_text_dark</item>
+        <item>@color/ads_color_amber_text_dark</item>
+        <item>@color/ads_color_orange_text_dark</item>
+        <item>@color/ads_color_deep_orange_text_dark</item>
+        <item>@color/ads_color_brown_text_dark</item>
+        <item>@color/ads_color_grey_text_dark</item>
+        <item>@color/ads_color_blue_grey_text_dark</item>
+        <item>@color/ads_color_white_text_dark</item>
+        <item>@color/ads_color_black_text_dark</item>
+    </integer-array>
+
+</resources>

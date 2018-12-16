@@ -17,25 +17,27 @@
 package com.pranavpandey.android.dynamic.support.behavior;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.view.ViewCompat;
+
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.pranavpandey.android.dynamic.support.utils.DynamicFABUtils;
 
 import java.util.List;
 
 /**
- * A {@link FloatingActionButton} behavior to automatically show or hide it
- * according to the nested scroll. Set this behavior in the layout file having
- * {@link CoordinatorLayout} as root element to show or hide the FAB according
- * to the scroll direction.
+ * A {@link FloatingActionButton} behavior to automatically show or hide it according to the
+ * nested scroll. Set this behavior in the layout file having {@link CoordinatorLayout} as root
+ * element to show or hide the FAB according to the scroll direction.
  *
- * <p>Scrolling in upwards direction will hide the FAB and scrolling in downwards
- * direction will make it visible.</p>
+ * <p><p>Scrolling in upwards direction will hide the FAB and scrolling in downwards direction
+ * will make it visible.
  */
 public class DynamicFABScrollBehavior extends AppBarLayout.ScrollingViewBehavior {
 
@@ -51,8 +53,8 @@ public class DynamicFABScrollBehavior extends AppBarLayout.ScrollingViewBehavior
 
     @Override
     public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout,
-                                       @NonNull View child, @NonNull View directTargetChild,
-                                       @NonNull View target, int nestedScrollAxes, final int type) {
+            @NonNull View child, @NonNull View directTargetChild,
+            @NonNull View target, int nestedScrollAxes, final int type) {
         // Ensure we react to vertical scrolling
         return nestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL
                 || super.onStartNestedScroll(coordinatorLayout, child,
@@ -60,25 +62,27 @@ public class DynamicFABScrollBehavior extends AppBarLayout.ScrollingViewBehavior
     }
 
     @Override
-    public void onNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View child,
-                               @NonNull View target, int dxConsumed, int dyConsumed,
-                               int dxUnconsumed, int dyUnconsumed, int type) {
+    public void onNestedScroll(@NonNull CoordinatorLayout coordinatorLayout,
+            @NonNull View child, @NonNull View target, int dxConsumed, int dyConsumed,
+            int dxUnconsumed, int dyUnconsumed, int type) {
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed,
                 dxUnconsumed, dyUnconsumed, type);
         if (dyConsumed > 0) {
             // User scrolled down -> hide the FAB
             List<View> dependencies = coordinatorLayout.getDependencies(child);
             for (View view : dependencies) {
-                if (view instanceof FloatingActionButton) {
-                    ((FloatingActionButton) view).hide();
+                if (view instanceof FloatingActionButton
+                        && ((FloatingActionButton) view).getDrawable() != null) {
+                    DynamicFABUtils.hide((FloatingActionButton) view);
                 }
             }
         } else if (dyConsumed < 0) {
             // User scrolled up -> show the FAB
             List<View> dependencies = coordinatorLayout.getDependencies(child);
             for (View view : dependencies) {
-                if (view instanceof FloatingActionButton && view.getVisibility() == View.GONE) {
-                    ((FloatingActionButton) view).show();
+                if (view instanceof FloatingActionButton
+                        && ((FloatingActionButton) view).getDrawable() != null) {
+                    DynamicFABUtils.show((FloatingActionButton) view);
                 }
             }
         }

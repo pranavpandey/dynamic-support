@@ -16,21 +16,22 @@
 
 package com.pranavpandey.android.dynamic.support.recyclerview.adapter;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder;
 
 /**
- * Simple recycler view adapter to display different types of items or views
- * in a recycler view. Each section can have a header or a completely different
- * item. Extend this adapter and use {@link DynamicRecyclerViewBinder} to create
- * binding logic for the each type of views.
+ * Simple recycler view adapter to display different types of items or views in a recycler view.
+ * <p>Each section can have a header or a completely different item.
+ *
+ * <p><p>Extend this adapter and use {@link DynamicRecyclerViewBinder} to create binding logic
+ * for the each type of views.
  */
-public abstract class DynamicBinderAdapter
-        extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public abstract class DynamicBinderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     /**
      * Recycler view displaying this adapter.
@@ -38,17 +39,14 @@ public abstract class DynamicBinderAdapter
     private RecyclerView mRecyclerView;
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(
-            @NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return getDataBinder(viewType).onCreateViewHolder(parent, viewType);
     }
 
     @Override
-    public void onBindViewHolder(
-            @NonNull RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         int binderPosition = getBinderPosition(position);
-        getDataBinder(viewHolder.getItemViewType())
-                .onBindViewHolder(viewHolder, binderPosition);
+        getDataBinder(viewHolder.getItemViewType()).onBindViewHolder(viewHolder, binderPosition);
     }
 
     @Override
@@ -56,11 +54,18 @@ public abstract class DynamicBinderAdapter
         this.mRecyclerView = recyclerView;
     }
 
+    /**
+     * Checks whether the recycler view associated with this adapter is computing layout.
+     *
+     * @return {@code true} if the recycler view is computing layout.
+     */
     public boolean isComputingLayout() {
         return mRecyclerView != null && mRecyclerView.isComputingLayout();
     }
 
     /**
+     * Get the recycler view displaying this adapter.
+     *
      * @return The recycler view displaying this adapter.
      */
     public RecyclerView getRecyclerView() {
@@ -91,98 +96,87 @@ public abstract class DynamicBinderAdapter
      * @param binder The data binder inside the recycler view.
      * @param position The position of the data binder item.
      *
-     * @return The position of the data binder item inside the
-     *         recycler view.
+     * @return The position of the data binder item inside the recycler view.
      */
-    public abstract int getPosition(
-            @NonNull DynamicRecyclerViewBinder binder, int position);
+    public abstract int getPosition(@NonNull DynamicRecyclerViewBinder binder, int position);
 
     /**
      * Get the position of a data binder inside the recycler view.
      *
      * @param position The position of the data binder.
      *
-     * @return The position of the data binder inside the
-     *         recycler view.
+     * @return The position of the data binder inside the recycler view.
      */
     public abstract int getBinderPosition(int position);
 
     /**
-     * Called when an item has been changed in the data binder.
+     * This method will be called when an item has been changed in the data binder.
      *
      * @param binder The data binder inside the recycler view.
-     * @param position The position at which the item has
-     *                 been changed.
+     * @param position The position at which the item has been changed.
      */
-    public void notifyBinderItemChanged(
-            @NonNull DynamicRecyclerViewBinder binder, int position) {
+    public void notifyBinderItemChanged(@NonNull DynamicRecyclerViewBinder binder, int position) {
         notifyItemChanged(getPosition(binder, position));
     }
 
     /**
-     * Called when an item has been inserted in the data binder.
+     * This method will be called when an item has been inserted in the data binder.
      *
      * @param binder The data binder inside the recycler view.
      * @param position The position at which the item is inserted.
      */
-    public void notifyBinderItemInserted(
-            @NonNull DynamicRecyclerViewBinder binder, int position) {
+    public void notifyBinderItemInserted(@NonNull DynamicRecyclerViewBinder binder, int position) {
         notifyItemInserted(getPosition(binder, position));
     }
 
     /**
-     * Called when an item has been removed in the data binder.
+     * This method will be called when an item has been removed in the data binder.
      *
      * @param binder The data binder inside the recycler view.
-     * @param position The position at which the item has
-     *                 been removed.
+     * @param position The position at which the item has been removed.
      */
-    public void notifyBinderItemRemoved(
-            @NonNull DynamicRecyclerViewBinder binder, int position) {
+    public void notifyBinderItemRemoved(@NonNull DynamicRecyclerViewBinder binder, int position) {
         notifyItemRemoved(getPosition(binder, position));
     }
 
     /**
-     * Called when an item has been moved in the data binder.
+     * This method will be called when an item has been moved in the data binder.
      *
      * @param binder The data binder inside the recycler view.
      * @param fromPosition Initial position of the moved item.
      * @param toPosition Final position of the moved item.
      */
     public void notifyBinderItemMoved(@NonNull DynamicRecyclerViewBinder binder,
-                                      int fromPosition, int toPosition) {
+            int fromPosition, int toPosition) {
         notifyItemMoved(getPosition(binder, fromPosition),
                 getPosition(binder, toPosition));
     }
 
     /**
-     * Called when the item range of a data binder has been changed.
+     * This method will be called when the item range of a data binder has been changed.
      *
      * @param binder The data binder inside the recycler view.
-     * @param position The position at which the first item has
-     *                 been changed.
+     * @param position The position at which the first item has been changed.
      * @param itemCount Total no. of items has been changed.
      */
     public abstract void notifyBinderItemRangeChanged(
             @NonNull DynamicRecyclerViewBinder binder, int position, int itemCount);
 
     /**
-     * Called when a set of items has been inserted in a data binder.
+     * This method will be called when a set of items has been inserted in a data binder.
      *
      * @param binder The data binder inside the recycler view.
-     * @param position The position at which the first item has
-     *                 been inserted.
+     * @param position The position at which the first item has been inserted.
      * @param itemCount Total no. of items has been inserted.
      */
     public abstract void notifyBinderItemRangeInserted(
             @NonNull DynamicRecyclerViewBinder binder, int position, int itemCount);
 
     /**
-     * Called when a set of items has been removed in a data binder.
+     * This method will be called when a set of items has been removed in a data binder.
      *
      * @param binder The data binder inside the recycler view.
-     * @param position The position at which the first item
-     *                 has been removed.
+     * @param position The position at which the first item has been removed.
      * @param itemCount Total no. of items has been removed.
      */
     public abstract void notifyBinderItemRangeRemoved(

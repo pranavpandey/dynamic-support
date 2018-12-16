@@ -19,9 +19,11 @@ package com.pranavpandey.android.dynamic.support.widget;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.utils.DynamicSeekBarUtils;
 
@@ -40,7 +42,7 @@ public class DynamicHueSeekBar extends DynamicSeekBar {
     }
 
     public DynamicHueSeekBar(@NonNull Context context,
-                             @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -52,5 +54,7 @@ public class DynamicHueSeekBar extends DynamicSeekBar {
     }
 
     @Override
-    public void setProgressBarColor() { }
+    public void setProgressBarColor() {
+        // Do nothing as we are using the custom drawable.
+    }
 }

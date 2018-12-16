@@ -19,23 +19,24 @@ package com.pranavpandey.android.dynamic.support.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ArrayRes;
-import android.support.annotation.ColorInt;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.ArrayRes;
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicItem;
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewFrame;
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewNested;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicItemsAdapter;
-import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
+import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
@@ -44,12 +45,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A FrameLayout with a icon, title and subtitle, description and
- * links functionality which can be used to show various information
- * according to the requirement. Links can be clickable or pass
- * {@code null} url to just show or completely hide them.
+ * A DynamicView with an icon, title and subtitle, description and links functionality which
+ * can be used to show various information according to the requirement. 
+ * <p>Links can be clickable or pass {@code null} url to just show or completely hide them.
  */
-public class DynamicInfoView extends FrameLayout {
+public class DynamicInfoView extends DynamicView {
 
     /**
      * Icon used by this view.
@@ -92,14 +92,12 @@ public class DynamicInfoView extends FrameLayout {
     private CharSequence[] mLinksUrls;
 
     /**
-     * Icon drawables array resource for the links
-     * used by this view.
+     * Icon drawables array resource for the links used by this view.
      */
     private @ArrayRes int mLinksIconsResId;
 
     /**
-     * Icon tint colors array resource for the links
-     * used by this view.
+     * Icon tint colors array resource for the links used by this view.
      */
     private @ArrayRes int mLinksColorsResId;
 
@@ -139,8 +137,7 @@ public class DynamicInfoView extends FrameLayout {
     private TextView mDescriptionView;
 
     /**
-     * Recycler view to show the links associated with
-     * this view.
+     * Recycler view to show the links associated with this view.
      */
     private DynamicRecyclerViewNested mLinksView;
 
@@ -150,68 +147,53 @@ public class DynamicInfoView extends FrameLayout {
     private List<DynamicItem> mDynamicItems;
 
     public DynamicInfoView(@NonNull Context context) {
-        this(context, null);
+        super(context);
     }
 
     public DynamicInfoView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-
-        loadFromAttributes(attrs);
     }
 
-    public DynamicInfoView(@NonNull Context context,
-                           @Nullable AttributeSet attrs, int defStyleAttr) {
+    public DynamicInfoView(@NonNull Context context, 
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-        loadFromAttributes(attrs);
     }
 
-    /**
-     * Load values from the supplied attribute set.
-     *
-     * @param attrs The supplied attribute set to load the values.
-     */
-    protected void loadFromAttributes(@Nullable AttributeSet attrs) {
+    @Override
+    protected void onLoadAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DynamicInfo);
 
         try {
             mIcon = DynamicResourceUtils.getDrawable(getContext(), a.getResourceId(
-                    R.styleable.DynamicInfo_ads_dynamicInfo_icon,
+                    R.styleable.DynamicInfo_ads_icon,
                     DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
-            mTitle = a.getString(R.styleable.DynamicInfo_ads_dynamicInfo_title);
-            mSubtitle = a.getString(R.styleable.DynamicInfo_ads_dynamicInfo_subtitle);
-            mDescription = a.getString(R.styleable.DynamicInfo_ads_dynamicInfo_description);
+            mTitle = a.getString(R.styleable.DynamicInfo_ads_title);
+            mSubtitle = a.getString(R.styleable.DynamicInfo_ads_subtitle);
+            mDescription = a.getString(R.styleable.DynamicInfo_ads_description);
             mIconBig = DynamicResourceUtils.getDrawable(getContext(), a.getResourceId(
-                    R.styleable.DynamicInfo_ads_dynamicInfo_iconBig,
+                    R.styleable.DynamicInfo_ads_iconBig,
                     DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
-            mLinks = a.getTextArray(R.styleable.DynamicInfo_ads_dynamicInfo_links);
-            mLinksSubtitles = a.getTextArray(R.styleable.DynamicInfo_ads_dynamicInfo_linksSubtitles);
-            mLinksUrls = a.getTextArray(R.styleable.DynamicInfo_ads_dynamicInfo_linksUrls);
+            mLinks = a.getTextArray(R.styleable.DynamicInfo_ads_links);
+            mLinksSubtitles = a.getTextArray(R.styleable.DynamicInfo_ads_subtitles);
+            mLinksUrls = a.getTextArray(R.styleable.DynamicInfo_ads_urls);
             mLinksIconsResId = a.getResourceId(
-                    R.styleable.DynamicInfo_ads_dynamicInfo_linksIcons,
+                    R.styleable.DynamicInfo_ads_icons,
                     DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID);
             mLinksColorsResId = a.getResourceId(
-                    R.styleable.DynamicInfo_ads_dynamicInfo_linksColors,
+                    R.styleable.DynamicInfo_ads_colors,
                     DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID);
         } finally {
             a.recycle();
         }
-
-        initialize();
     }
 
-    /**
-     * @return The layout used by this view. Override this to supply a
-     *         different layout.
-     */
+    @Override
     protected @LayoutRes int getLayoutRes() {
         return R.layout.ads_info_view;
     }
 
-    /**
-     * Initialize the layout for this view.
-     */
-    private void initialize() {
+    @Override
+    protected void onInflate() {
         inflate(getContext(), getLayoutRes(), this);
 
         mIconView = findViewById(R.id.ads_info_view_icon);
@@ -223,13 +205,12 @@ public class DynamicInfoView extends FrameLayout {
 
         mLinksView.getRecyclerView().setNestedScrollingEnabled(false);
         mDynamicItems = new ArrayList<>();
-        update();
+        
+        onUpdate();
     }
 
-    /**
-     * Load this view according to the supplied parameters.
-     */
-    public void update() {
+    @Override
+    public void onUpdate() {
         if (mIcon != null) {
             mIconView.setImageDrawable(mIcon);
             mIconView.setVisibility(VISIBLE);
@@ -286,7 +267,7 @@ public class DynamicInfoView extends FrameLayout {
                 final Drawable icon;
                 final @ColorInt int color;
 
-                if (mLinks != null && mLinks[i] != null) {
+                if (mLinks[i] != null) {
                     title = mLinks[i].toString();
                 } else {
                     title = null;
@@ -318,7 +299,7 @@ public class DynamicInfoView extends FrameLayout {
                 }
 
                 DynamicItem dynamicItem = new DynamicItem(icon, title, subtitle, color,
-                        DynamicColorType.CUSTOM, false);
+                        Theme.ColorType.CUSTOM, false);
 
                 if (url != null) {
                     dynamicItem.setOnClickListener(new OnClickListener() {
@@ -339,6 +320,8 @@ public class DynamicInfoView extends FrameLayout {
     }
 
     /**
+     * Get the icon used by this view.
+     *
      * @return The icon used by this view.
      */
     public @Nullable Drawable getIcon() {
@@ -353,10 +336,12 @@ public class DynamicInfoView extends FrameLayout {
     public void setIcon(@Nullable Drawable icon) {
         this.mIcon = icon;
 
-        update();
+        onUpdate();
     }
 
     /**
+     * Ge the big fallback icon used by this view.
+     *
      * @return The big fallback icon used by this view.
      */
     public @Nullable Drawable getIconBig() {
@@ -371,10 +356,12 @@ public class DynamicInfoView extends FrameLayout {
     public void setIconBig(@Nullable Drawable iconBig) {
         this.mIconBig = iconBig;
 
-        update();
+        onUpdate();
     }
 
     /**
+     * Get the title used by this view.
+     *
      * @return The title used by this view.
      */
     public @Nullable CharSequence getTitle() {
@@ -389,10 +376,12 @@ public class DynamicInfoView extends FrameLayout {
     public void setTitle(@Nullable CharSequence title) {
         this.mTitle = title;
 
-        update();
+        onUpdate();
     }
 
     /**
+     * Get the subtitle used by this view.
+     *
      * @return The subtitle used by this view.
      */
     public @Nullable CharSequence getSubtitle() {
@@ -407,10 +396,12 @@ public class DynamicInfoView extends FrameLayout {
     public void setSubtitle(@Nullable CharSequence subtitle) {
         this.mSubtitle = subtitle;
 
-        update();
+        onUpdate();
     }
 
     /**
+     * Get the description used by this view.
+     *
      * @return The description used by this view.
      */
     public @Nullable CharSequence getDescription() {
@@ -425,10 +416,12 @@ public class DynamicInfoView extends FrameLayout {
     public void setDescription(@Nullable CharSequence description) {
         this.mDescription = description;
 
-        update();
+        onUpdate();
     }
 
     /**
+     * Get the title for the links used by this view.
+     *
      * @return The title for the links used by this view.
      */
     public @Nullable CharSequence[] getLinks() {
@@ -437,9 +430,9 @@ public class DynamicInfoView extends FrameLayout {
 
     /**
      * Set the title for the links used by this view.
-     * Automatic refresh is disabled due to the stability
-     * reasons. Please call {@link #update()} to refresh
-     * the view.
+     *
+     * <p><p>Automatic refresh is disabled due to the stability reasons.
+     * <p>Please call {@link #onUpdate()} to refresh the view.
      *
      * @param links The titles for the links to be set.
      */
@@ -448,6 +441,8 @@ public class DynamicInfoView extends FrameLayout {
     }
 
     /**
+     * Get the subtitle for the links used by this view.
+     *
      * @return The subtitle for the links used by this view.
      */
     public @Nullable CharSequence[] getLinksSubtitles() {
@@ -456,9 +451,9 @@ public class DynamicInfoView extends FrameLayout {
 
     /**
      * Set the subtitle for the links used by this view.
-     * Automatic refresh is disabled due to the stability
-     * reasons. Please call {@link #update()} to refresh
-     * the view.
+     *
+     * <p><p>Automatic refresh is disabled due to the stability reasons.
+     * <p>Please call {@link #onUpdate()} to refresh the view.
      *
      * @param linksSubtitles The subtitles for the links to be set.
      */
@@ -467,6 +462,8 @@ public class DynamicInfoView extends FrameLayout {
     }
 
     /**
+     * Get the url for the links used by this view.
+     *
      * @return The url for the links used by this view.
      */
     public @Nullable CharSequence[] getLinksUrls() {
@@ -475,9 +472,9 @@ public class DynamicInfoView extends FrameLayout {
 
     /**
      * Set the url for the links used by this view.
-     * Automatic refresh is disabled due to the stability
-     * reasons. Please call {@link #update()} to refresh
-     * the view.
+     *
+     * <p><p>Automatic refresh is disabled due to the stability reasons.
+     * <p>Please call {@link #onUpdate()} to refresh the view.
      *
      * @param linksUrls The urls for the links to be set.
      */
@@ -486,48 +483,50 @@ public class DynamicInfoView extends FrameLayout {
     }
 
     /**
-     * @return The icons array resource for the links
-     *         used by this view.
+     * Get the icons array resource for the links used by this view.
+     *
+     * @return The icons array resource for the links used by this view.
      */
     public @ArrayRes int getLinksIconsId() {
         return mLinksIconsResId;
     }
 
     /**
-     * Set the icons array resource for the links used by
-     * this view. Automatic refresh is disabled due to the
-     * stability reasons. Please call {@link #update()} to
-     * refresh the view.
+     * Set the icons array resource for the links used by this view.
      *
-     * @param linksIconsResId The icon drawables array resource for
-     *                        the links to be set.
+     * <p><p>Automatic refresh is disabled due to the stability reasons.
+     * <p>Please call {@link #onUpdate()} to refresh the view.
+     *
+     * @param linksIconsResId The icon drawables array resource for the links to be set.
      */
     public void setLinksIconsId(@ArrayRes int linksIconsResId) {
         this.mLinksIconsResId = linksIconsResId;
     }
 
     /**
-     * @return The icon tint colors array resource for the links
-     *         used by this view.
+     * Get the icon tint colors array resource for the links used by this view.
+     *
+     * @return The icon tint colors array resource for the links used by this view.
      */
     public @ArrayRes int getLinksColorsId() {
         return mLinksColorsResId;
     }
 
     /**
-     * Set the icon tint colors array resource for the links
-     * used by this view. Automatic refresh is disabled due to
-     * the stability reasons. Please call {@link #update()} to
-     * refresh the view.
+     * Set the icon tint colors array resource for the links used by this view.
      *
-     * @param linksColorsResId The icon tint colors array resource for
-     *                         the links to be set.
+     * <p><p>Automatic refresh is disabled due to the stability reasons.
+     * <p>Please call {@link #onUpdate()} to refresh the view.
+     *
+     * @param linksColorsResId The icon tint colors array resource for the links to be set.
      */
     public void setLinksColorsId(@ArrayRes int linksColorsResId) {
         this.mLinksColorsResId = linksColorsResId;
     }
 
     /**
+     * Get the icon for the links used by this view.
+     *
      * @return The icon for the links used by this view.
      */
     public @Nullable Drawable[] getLinksDrawables() {
@@ -536,18 +535,19 @@ public class DynamicInfoView extends FrameLayout {
 
     /**
      * Set the icon for the links used by this view.
-     * Automatic refresh is disabled due to the stability
-     * reasons. Please call {@link #update()} to refresh
-     * the view.
      *
-     * @param linksDrawables The icon drawables for the links
-     *                       to be set.
+     * <p><p>Automatic refresh is disabled due to the stability reasons.
+     * <p>Please call {@link #onUpdate()} to refresh the view.
+     *
+     * @param linksDrawables The icon drawables for the links to be set.
      */
     public void setLinksDrawables(@Nullable Drawable[] linksDrawables) {
         this.mLinksDrawables = linksDrawables;
     }
 
     /**
+     * Get the icon tint color for the links used by this view.
+     *
      * @return The icon tint color for the links used by this view.
      */
     public @Nullable @ColorInt Integer[] getLinksColors() {
@@ -555,19 +555,20 @@ public class DynamicInfoView extends FrameLayout {
     }
 
     /**
-     * Set the icon tint color for the links used by this
-     * view. Automatic refresh is disabled due to the stability
-     * reasons. Please call {@link #update()} to refresh
-     * the view.
+     * Set the icon tint color for the links used by this view.
      *
-     * @param linksColors The icon tint color for the links
-     *                       to be set.
+     * <p><p>Automatic refresh is disabled due to the stability reasons.
+     * <p>Please call {@link #onUpdate()} to refresh the view.
+     *
+     * @param linksColors The icon tint color for the links to be set.
      */
     public void setLinksColors(@Nullable @ColorInt Integer[] linksColors) {
         this.mLinksColors = linksColors;
     }
 
     /**
+     * Get the image view to show the icon.
+     *
      * @return The image view to show the icon.
      */
     public ImageView getIconView() {
@@ -575,6 +576,8 @@ public class DynamicInfoView extends FrameLayout {
     }
 
     /**
+     * Get the image view to show big fallback icon.
+     *
      * @return The image view to show big fallback icon.
      */
     public ImageView getIconBigView() {
@@ -582,6 +585,8 @@ public class DynamicInfoView extends FrameLayout {
     }
 
     /**
+     * Get the text view to show the title.
+     *
      * @return The text view to show the title.
      */
     public TextView getTitleView() {
@@ -589,6 +594,8 @@ public class DynamicInfoView extends FrameLayout {
     }
 
     /**
+     * Get the text view to show the subtitle.
+     *
      * @return The text view to show the subtitle.
      */
     public TextView getSubtitleView() {
@@ -596,6 +603,8 @@ public class DynamicInfoView extends FrameLayout {
     }
 
     /**
+     * Get the text view to show the description.
+     *
      * @return The text view to show the description.
      */
     public TextView getDescriptionView() {
@@ -603,8 +612,9 @@ public class DynamicInfoView extends FrameLayout {
     }
 
     /**
-     * @return The recycler view to show the links associated 
-     *         with this view.
+     * Get the recycler view to show the links associated  with this view.
+     *
+     * @return The recycler view to show the links associated  with this view.
      */
     public DynamicRecyclerViewFrame getLinksView() {
         return mLinksView;

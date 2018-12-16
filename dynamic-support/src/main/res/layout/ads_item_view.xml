@@ -51,13 +51,13 @@
                     android:id="@+id/ads_item_view_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle.Caps" />
+                    android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle1.Caps" />
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/ads_item_view_subtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/TextAppearance.DynamicApp.Description" />
+                    style="@style/TextAppearance.DynamicApp.Body1" />
 
             </LinearLayout>
 

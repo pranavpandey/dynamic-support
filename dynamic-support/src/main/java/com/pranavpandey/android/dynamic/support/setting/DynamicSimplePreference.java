@@ -17,22 +17,26 @@
 package com.pranavpandey.android.dynamic.support.setting;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.content.SharedPreferences;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.widget.DynamicButton;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 
 /**
  * A DynamicPreference to implement the basic functionality
- * It can be extended to modify according to the need.
+ *
+ * <p><p>It can be extended to modify according to the need.
  */
 public class DynamicSimplePreference extends DynamicPreference {
 
@@ -67,16 +71,14 @@ public class DynamicSimplePreference extends DynamicPreference {
     private TextView mValueView;
 
     /**
-     * Frame to add a secondary view like another image,
-     * etc.
+     * Frame to add a secondary view like another image, etc.
      */
     private ViewGroup mViewFrame;
 
     /**
-     * Button to provide a secondary action like permission
-     * request, etc.
+     * Button to provide a secondary action like permission request, etc.
      */
-    private Button mActionView;
+    private DynamicButton mActionView;
 
     public DynamicSimplePreference(@NonNull Context context) {
         super(context);
@@ -87,12 +89,12 @@ public class DynamicSimplePreference extends DynamicPreference {
     }
 
     public DynamicSimplePreference(@NonNull Context context,
-                                   @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
-    protected void onLoadAttributes(AttributeSet attrs) { }
+    protected void onLoadAttributes(@Nullable AttributeSet attrs) { }
 
     @Override
     protected @LayoutRes int getLayoutRes() {
@@ -103,13 +105,13 @@ public class DynamicSimplePreference extends DynamicPreference {
     protected void onInflate() {
         inflate(getContext(), getLayoutRes(), this);
 
-        mPreferenceView = findViewById(R.id.ads_preference_simple);
-        mIconView = findViewById(R.id.ads_preference_simple_icon);
-        mTitleView = findViewById(R.id.ads_preference_simple_title);
-        mSummaryView = findViewById(R.id.ads_preference_simple_summary);
-        mDescriptionView = findViewById(R.id.ads_preference_simple_description);
-        mValueView = findViewById(R.id.ads_preference_simple_value);
-        mViewFrame = findViewById(R.id.ads_preference_simple_view);
+        mPreferenceView = findViewById(R.id.ads_preference);
+        mIconView = findViewById(R.id.ads_preference_icon);
+        mTitleView = findViewById(R.id.ads_preference_title);
+        mSummaryView = findViewById(R.id.ads_preference_summary);
+        mDescriptionView = findViewById(R.id.ads_preference_description);
+        mValueView = findViewById(R.id.ads_preference_value);
+        mViewFrame = findViewById(R.id.ads_preference_view);
         mActionView = findViewById(R.id.ads_preference_action_button);
 
         setViewFrame(null, true);
@@ -117,67 +119,47 @@ public class DynamicSimplePreference extends DynamicPreference {
 
     @Override
     protected void onUpdate() {
-        if (getOnPreferenceClickListener() != null) {
+        if (mPreferenceView != null) {
             mPreferenceView.setOnClickListener(getOnPreferenceClickListener());
         }
 
-        mIconView.setImageDrawable(getIcon());
+        setImageView(mIconView, getIcon());
+        setTextView(mTitleView, getTitle());
+        setTextView(mSummaryView, getSummary());
+        setTextView(mValueView, getValueString());
+        setTextView(mDescriptionView, getDescription());
 
-        if (getTitle() != null) {
-            mTitleView.setText(getTitle());
-            mTitleView.setVisibility(View.VISIBLE);
-        } else {
-            mTitleView.setVisibility(View.GONE);
-        }
-
-        if (getSummary() != null) {
-            mSummaryView.setText(getSummary());
-            mSummaryView.setVisibility(View.VISIBLE);
-        } else {
-            mSummaryView.setVisibility(View.GONE);
-        }
-
-        if (getDescription() != null) {
-            mDescriptionView.setText(getDescription());
-            mDescriptionView.setVisibility(View.VISIBLE);
-        } else {
-            mDescriptionView.setVisibility(View.GONE);
-        }
-
-        if (getValueString() != null) {
-            mValueView.setText(getValueString());
-            mValueView.setVisibility(View.VISIBLE);
-        } else {
-            mValueView.setVisibility(View.GONE);
-        }
-
-        if (getOnActionClickListener() != null) {
-            mActionView.setText(getActionString());
-            mActionView.setOnClickListener(getOnActionClickListener());
-            mActionView.setVisibility(View.VISIBLE);
-        } else {
-            mActionView.setVisibility(View.GONE);
+        if (mActionView != null) {
+            if (getOnActionClickListener() != null) {
+                mActionView.setText(getActionString());
+                mActionView.setOnClickListener(getOnActionClickListener());
+                mActionView.setVisibility(View.VISIBLE);
+            } else {
+                mActionView.setVisibility(View.GONE);
+            }
         }
     }
 
     @Override
     protected void onEnabled(boolean enabled) {
-        mPreferenceView.setEnabled(enabled);
-        mIconView.setEnabled(enabled);
-        mTitleView.setEnabled(enabled);
-        mSummaryView.setEnabled(enabled);
-        mDescriptionView.setEnabled(enabled);
-        mValueView.setEnabled(enabled);
-        mActionView.setEnabled(enabled);
+        setViewEnabled(mPreferenceView, enabled);
+        setViewEnabled(mIconView, enabled);
+        setViewEnabled(mTitleView, enabled);
+        setViewEnabled(mSummaryView, enabled);
+        setViewEnabled(mDescriptionView, enabled);
+        setViewEnabled(mValueView, enabled);
+        setViewEnabled(mActionView, enabled);
 
-        if (mViewFrame.getChildCount() > 0) {
-            mViewFrame.getChildAt(0).setEnabled(enabled);
+        if (mViewFrame != null && mViewFrame.getChildCount() > 0) {
+            setViewEnabled(mViewFrame.getChildAt(0), enabled);
         }
 
         onUpdate();
     }
 
     /**
+     * Get the preference root view.
+     *
      * @return The preference root view.
      */
     public ViewGroup getPreferenceView() {
@@ -185,13 +167,44 @@ public class DynamicSimplePreference extends DynamicPreference {
     }
 
     /**
-     * @return The image view to show the icon.
+     * Get the text view to show the title.
+     *
+     * @return The text view to show the title.
+     */
+    public TextView getTitleView() {
+        return mTitleView;
+    }
+
+    /**
+     * Get the text view to show the summary.
+     *
+     * @return The text view to show the summary.
+     */
+    public TextView getSummaryView() {
+        return mSummaryView;
+    }
+
+    /**
+     * Get the text view to show the value.
+     *
+     * @return The text view to show the value.
      */
     public TextView getValueView() {
         return mValueView;
     }
 
     /**
+     * Get the text view to show the description.
+     *
+     * @return The text view to show the description.
+     */
+    public TextView getDescriptionView() {
+        return mDescriptionView;
+    }
+
+    /**
+     * Get the text view to show the title.
+     *
      * @return The text view to show the title.
      */
     public ViewGroup getViewFrame() {
@@ -202,15 +215,34 @@ public class DynamicSimplePreference extends DynamicPreference {
      * Add a view in the view frame.
      *
      * @param view The view to be added.
-     * @param removePrevious {@code true} to remove all the previous
-     *                       views of the view group.
+     * @param removePrevious {@code true} to remove all the previous views of the view group.
      */
     public void setViewFrame(@Nullable View view, boolean removePrevious) {
-        if (view != null) {
-            mViewFrame.setVisibility(View.VISIBLE);
-            DynamicViewUtils.addView(mViewFrame, view, removePrevious);
-        } else {
-            mViewFrame.setVisibility(View.GONE);
+        if (mViewFrame != null) {
+            if (view != null) {
+                mViewFrame.setVisibility(View.VISIBLE);
+                DynamicViewUtils.addView(mViewFrame, view, removePrevious);
+            } else {
+                mViewFrame.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    /**
+     * Get the button to provide a secondary action like permission request, etc.
+     *
+     * @return The button to provide a secondary action like permission request, etc.
+     */
+    public DynamicButton getActionView() {
+        return mActionView;
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        super.onSharedPreferenceChanged(sharedPreferences, key);
+
+        if (key != null && key.equals(getPreferenceKey())) {
+            onUpdate();
         }
     }
 }

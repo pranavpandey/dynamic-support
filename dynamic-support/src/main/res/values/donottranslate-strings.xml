@@ -32,6 +32,10 @@
     <string name="ads_locale_de_value">de</string>
     <string name="ads_locale_es">Español</string>
     <string name="ads_locale_es_value">es</string>
+    <string name="ads_locale_in">Indonesia</string>
+    <string name="ads_locale_in_value">in</string>
+    <string name="ads_locale_it">Italiano</string>
+    <string name="ads_locale_it_value">it</string>
     <string name="ads_locale_tr">Türkçe</string>
     <string name="ads_locale_tr_value">tr</string>
     <string name="ads_locale_zh_rCN">中文 (简体)</string>
@@ -77,14 +81,19 @@
         \nAndroid Core UI Support Library
         \nAndroid Core Utils Support Library
         \nAndroid Design Support Library
-        \nAndroid Fragments Support Library</string>
+        \nAndroid Fragments Support Library
+        \nAndroidX Extension Libraries
+        \nMaterial Components for Android</string>
     <string name="ads_license_sas">Small App Support</string>
     <string name="ads_license_ads_modules">Dynamic Utils
         \nDynamic Toasts
         \nDynamic Engine</string>
     <string name="ads_license_ads">Dynamic Support</string>
-    <string name="ads_license_plaid">Plaid</string>
-    <string name="ads_license_copy_android_google">&#169; 2005&#8211;2011 The Android Open Source Project</string>
+    <string name="ads_license_gson_plaid">Gson
+        \nPlaid</string>
+    <string name="ads_license_copy_android_google">&#169; 2005&#8211;2018 The Android Open Source Project</string>
+    <string name="ads_license_copy_google_08_15">&#169; 2008 Google, Inc.
+        \n&#169; 2015 Google, Inc.</string>
     <string name="ads_license_copy_google_15">&#169; 2015 Google, Inc.</string>
     <string name="ads_license_copy_me_16">&#169; 2016 Pranav Pandey</string>
     <string name="ads_license_copy_me_17">&#169; 2017 Pranav Pandey</string>

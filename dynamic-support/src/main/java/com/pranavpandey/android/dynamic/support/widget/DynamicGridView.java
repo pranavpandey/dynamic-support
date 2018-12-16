@@ -18,37 +18,38 @@ package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.GridView;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
+import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * A GridView to apply color filter according to the supplied
- * parameters.
+ * A GridView to apply color filter according to the supplied parameters.
  */
 public class DynamicGridView extends GridView implements DynamicWidget {
 
     /**
      * Color type applied to this view.
      *
-     * @see DynamicColorType
+     * @see Theme.ColorType
      */
-    private @DynamicColorType int mColorType;
+    private @Theme.ColorType int mColorType;
 
     /**
-     * Background color type for this view so that it will remain in
-     * contrast with this color type.
+     * Background color type for this view so that it will remain in contrast with this
+     * color type.
      */
-    private @DynamicColorType int mContrastWithColorType;
+    private @Theme.ColorType int mContrastWithColorType;
 
     /**
      * Color applied to this view.
@@ -56,24 +57,24 @@ public class DynamicGridView extends GridView implements DynamicWidget {
     private @ColorInt int mColor;
 
     /**
-     * Background color for this view so that it will remain in
-     * contrast with this color.
+     * Background color for this view so that it will remain in contrast with this color.
      */
     private @ColorInt int mContrastWithColor;
 
     /**
-     * {@code true} if this view will change its color according
-     * to the background. It was introduced to provide better legibility for
-     * colored texts and to avoid dark text on dark background like situations.
+     * The background aware functionality to change this view color according to the background.
+     * It was introduced to provide better legibility for colored views and to avoid dark view
+     * on dark background like situations.
      *
-     * <p>If this boolean is set then, it will check for the contrast color and
-     * do color calculations according to that color so that this text view will
-     * always be visible on that background. If no contrast color is found then,
-     * it will take default background color.</p>
+     * <p><p>If this is enabled then, it will check for the contrast color and do color
+     * calculations according to that color so that this text view will always be visible on
+     * that background. If no contrast color is found then, it will take the default
+     * background color.
      *
+     * @see Theme.BackgroundAware
      * @see #mContrastWithColor
      */
-    private boolean mBackgroundAware;
+    private @Theme.BackgroundAware int mBackgroundAware;
 
     public DynamicGridView(@NonNull Context context) {
         this(context, null);
@@ -86,7 +87,7 @@ public class DynamicGridView extends GridView implements DynamicWidget {
     }
 
     public DynamicGridView(@NonNull Context context,
-                           @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         loadFromAttributes(attrs);
@@ -98,18 +99,21 @@ public class DynamicGridView extends GridView implements DynamicWidget {
                 attrs, R.styleable.DynamicTheme);
 
         try {
-            mColorType = a.getInt(R.styleable.DynamicTheme_ads_colorType,
+            mColorType = a.getInt(
+                    R.styleable.DynamicTheme_ads_colorType,
                     WidgetDefaults.ADS_COLOR_EDGE_EFFECT);
             mContrastWithColorType = a.getInt(
                     R.styleable.DynamicTheme_ads_contrastWithColorType,
-                    DynamicColorType.BACKGROUND);
-            mColor = a.getColor(R.styleable.DynamicTheme_ads_color,
+                    Theme.ColorType.BACKGROUND);
+            mColor = a.getColor(
+                    R.styleable.DynamicTheme_ads_color,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
-            mContrastWithColor = a.getColor(R.styleable.DynamicTheme_ads_contrastWithColor,
-                    WidgetDefaults.getDefaultContrastWithColor(getContext()));
-            mBackgroundAware = a.getBoolean(
+            mContrastWithColor = a.getColor(
+                    R.styleable.DynamicTheme_ads_contrastWithColor,
+                    WidgetDefaults.getContrastWithColor(getContext()));
+            mBackgroundAware = a.getInteger(
                     R.styleable.DynamicTheme_ads_backgroundAware,
-                    WidgetDefaults.ADS_BACKGROUND_AWARE);
+                    WidgetDefaults.getBackgroundAware());
         } finally {
             a.recycle();
         }
@@ -119,39 +123,39 @@ public class DynamicGridView extends GridView implements DynamicWidget {
 
     @Override
     public void initialize() {
-        if (mColorType != DynamicColorType.NONE
-                && mColorType != DynamicColorType.CUSTOM) {
-            mColor = DynamicTheme.getInstance().getColorFromType(mColorType);
+        if (mColorType != Theme.ColorType.NONE
+                && mColorType != Theme.ColorType.CUSTOM) {
+            mColor = DynamicTheme.getInstance().resolveColorType(mColorType);
         }
 
-        if (mContrastWithColorType != DynamicColorType.NONE
-                && mContrastWithColorType != DynamicColorType.CUSTOM) {
+        if (mContrastWithColorType != Theme.ColorType.NONE
+                && mContrastWithColorType != Theme.ColorType.CUSTOM) {
             mContrastWithColor = DynamicTheme.getInstance()
-                    .getColorFromType(mContrastWithColorType);
+                    .resolveColorType(mContrastWithColorType);
         }
 
         setColor();
     }
 
     @Override
-    public @DynamicColorType int getColorType() {
+    public @Theme.ColorType int getColorType() {
         return mColorType;
     }
 
     @Override
-    public void setColorType(@DynamicColorType int colorType) {
+    public void setColorType(@Theme.ColorType int colorType) {
         this.mColorType = colorType;
 
         initialize();
     }
 
     @Override
-    public @DynamicColorType int getContrastWithColorType() {
+    public @Theme.ColorType int getContrastWithColorType() {
         return mContrastWithColorType;
     }
 
     @Override
-    public void setContrastWithColorType(@DynamicColorType int contrastWithColorType) {
+    public void setContrastWithColorType(@Theme.ColorType int contrastWithColorType) {
         this.mContrastWithColorType = contrastWithColorType;
 
         initialize();
@@ -164,7 +168,7 @@ public class DynamicGridView extends GridView implements DynamicWidget {
 
     @Override
     public void setColor(@ColorInt int color) {
-        this.mColorType = DynamicColorType.CUSTOM;
+        this.mColorType = Theme.ColorType.CUSTOM;
         this.mColor = color;
 
         setColor();
@@ -177,28 +181,34 @@ public class DynamicGridView extends GridView implements DynamicWidget {
 
     @Override
     public void setContrastWithColor(@ColorInt int contrastWithColor) {
-        this.mContrastWithColorType = DynamicColorType.CUSTOM;
+        this.mContrastWithColorType = Theme.ColorType.CUSTOM;
         this.mContrastWithColor = contrastWithColor;
 
         setColor();
     }
 
     @Override
-    public boolean isBackgroundAware() {
-        return mBackgroundAware;
-    }
-
-    @Override
-    public void setBackgroundAware(boolean backgroundAware) {
+    public void setBackgroundAware(@Theme.BackgroundAware int backgroundAware) {
         this.mBackgroundAware = backgroundAware;
 
         setColor();
     }
 
     @Override
+    public @Theme.BackgroundAware int getBackgroundAware() {
+        return mBackgroundAware;
+    }
+
+    @Override
+    public boolean isBackgroundAware() {
+        return DynamicTheme.getInstance().resolveBackgroundAware(
+                mBackgroundAware) != Theme.BackgroundAware.DISABLE;
+    }
+
+    @Override
     public void setColor() {
         if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (mBackgroundAware && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
+            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
                 mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 

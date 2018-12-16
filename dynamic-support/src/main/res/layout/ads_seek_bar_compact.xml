@@ -18,7 +18,7 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ads_preference_seek_bar"
+    android:id="@+id/ads_preference"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="@dimen/ads_margin_small"
@@ -35,7 +35,7 @@
             android:orientation="horizontal">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-                android:id="@+id/ads_preference_seek_bar_icon"
+                android:id="@+id/ads_preference_icon"
                 android:visibility="gone"
                 style="@style/Widget.DynamicApp.Image.Preference" />
 
@@ -47,18 +47,18 @@
                 android:layout_gravity="center_vertical"
                 android:visibility="gone">
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/ads_preference_seek_bar_summary"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ads_preference_summary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/TextAppearance.DynamicApp.Subtitle" />
+                    style="@style/TextAppearance.DynamicApp.Subtitle1" />
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/ads_preference_seek_bar_description"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ads_preference_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/ads_margin_tiny"
-                    style="@style/TextAppearance.DynamicApp.Description" />
+                    style="@style/TextAppearance.DynamicApp.Body1" />
 
             </LinearLayout>
 
@@ -71,8 +71,8 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/ads_preference_seek_bar_title"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ads_preference_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/ads_margin_small"
@@ -80,11 +80,11 @@
                 android:gravity="center"
                 android:textSize="@dimen/ads_picker_font_size_normal" />
 
-            <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+            <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
                 android:id="@+id/ads_preference_seek_bar_left"
                 android:layout_width="@dimen/ads_icon_preference"
                 android:layout_height="@dimen/ads_icon_preference"
-                style="@style/Widget.DynamicApp.Button.Borderless.Image"
+                style="@style/Widget.DynamicApp.Button.ImageButton"
                 app:srcCompat="@drawable/ads_ic_chevron_left"
                 app:ads_colorType="primary" />
 
@@ -94,11 +94,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0" />
 
-            <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+            <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
                 android:id="@+id/ads_preference_seek_bar_right"
                 android:layout_width="@dimen/ads_icon_preference"
                 android:layout_height="@dimen/ads_icon_preference"
-                style="@style/Widget.DynamicApp.Button.Borderless.Image"
+                style="@style/Widget.DynamicApp.Button.ImageButton"
                 app:srcCompat="@drawable/ads_ic_chevron_right"
                 app:ads_colorType="primary" />
 

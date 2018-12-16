@@ -17,17 +17,20 @@
 
 <resources>
 
-    <!-- Notification priorities for the notification settings. -->
+    <!-- Priority entries for the notification. -->
     <string-array name="ads_notification_priority_entries">
         <item>@string/ads_notification_priority_high</item>
         <item>@string/ads_notification_priority_normal</item>
         <item>@string/ads_notification_priority_low</item>
     </string-array>
 
-    <!-- Notification priorities values for the notification settings. -->
+    <!-- Priority values for the notification. -->
     <string-array name="ads_notification_priority_values">
+        <!-- High -->
         <item>0</item>
+        <!-- Normal -->
         <item>1</item>
+        <!-- Low -->
         <item>2</item>
     </string-array>
 
@@ -70,7 +73,7 @@
 
     <!-- Integer array with with drawables for author links. -->
     <integer-array name="ads_about_author_links_icons">
-        <item>@drawable/ads_ic_public_small</item>
+        <item>@drawable/ads_ic_public</item>
         <item>@drawable/ads_ic_social_twitter</item>
         <item>@drawable/ads_ic_social_facebook</item>
         <item>@drawable/ads_ic_social_gplus</item>
@@ -88,34 +91,51 @@
         <item>@color/ads_social_github</item>
     </integer-array>
 
-    <!-- Drawables array with licence and github icons for dynamic
-         support modules. -->
-    <integer-array name="ads_license_links_icons_ads_modules">
-        <item>@drawable/ads_ic_license_small</item>
-        <item>@drawable/ads_ic_social_github</item>
-        <item>@drawable/ads_ic_social_github</item>
-        <item>@drawable/ads_ic_social_github</item>
-    </integer-array>
-
-    <!-- Drawables array with licence and github icons. -->
-    <integer-array name="ads_license_links_icons">
-        <item>@drawable/ads_ic_license_small</item>
-        <item>@drawable/ads_ic_social_github</item>
-    </integer-array>
-
-    <!-- Drawables array with licence icon. -->
+    <!-- Drawables array with license icon. -->
     <integer-array name="ads_license_links_icons_license">
-        <item>@drawable/ads_ic_license_small</item>
+        <item>@drawable/ads_ic_license</item>
     </integer-array>
 
-    <!-- Colors array with licence and github colors. -->
+    <!-- Drawables array with license and github icons for dynamic support modules. -->
+    <integer-array name="ads_license_links_icons_ads_modules">
+        <item>@drawable/ads_ic_license</item>
+        <item>@drawable/ads_ic_social_github</item>
+        <item>@drawable/ads_ic_social_github</item>
+        <item>@drawable/ads_ic_social_github</item>
+    </integer-array>
+
+    <!-- Drawables array for gson and plaid. -->
+    <integer-array name="ads_license_links_icons_gson_plaid">
+        <item>@drawable/ads_ic_license</item>
+        <item>@drawable/ads_ic_social_github</item>
+        <item>@drawable/ads_ic_social_github</item>
+    </integer-array>
+
+    <!-- Drawables array with license and github icons. -->
+    <integer-array name="ads_license_links_icons">
+        <item>@drawable/ads_ic_license</item>
+        <item>@drawable/ads_ic_social_github</item>
+    </integer-array>
+
+    <!-- Colors array with license color. -->
+    <integer-array name="ads_license_links_colors_license">
+        <item>@color/ads_link_license</item>
+    </integer-array>
+
+    <!-- Colors array with license and github colors. -->
     <integer-array name="ads_license_links_colors">
         <item>@color/ads_link_license</item>
         <item>@color/ads_social_github</item>
     </integer-array>
 
-    <!-- Colors array with licence and github colors for dynamic support
-         modules. -->
+    <!-- Colors array for gson and plaid. -->
+    <integer-array name="ads_license_links_colors_gson_plaid">
+        <item>@color/ads_link_license</item>
+        <item>@color/ads_social_github</item>
+        <item>@color/ads_social_github</item>
+    </integer-array>
+
+    <!-- Colors array with license and github colors for dynamic support modules. -->
     <integer-array name="ads_license_links_colors_ads_modules">
         <item>@color/ads_link_license</item>
         <item>@color/ads_social_github</item>
@@ -123,19 +143,25 @@
         <item>@color/ads_social_github</item>
     </integer-array>
 
-    <!-- Colors array with licence color. -->
-    <integer-array name="ads_license_links_colors_license">
-        <item>@color/ads_link_license</item>
-    </integer-array>
+    <!-- String array with Apache 2.0 license titles. -->
+    <string-array name="ads_license_links_apache_only">
+        <item>@string/ads_license_apache</item>
+    </string-array>
 
-    <!-- String array with Apache 2.0 licence and sources titles. -->
+    <!-- String array with Apache 2.0 license and sources titles. -->
     <string-array name="ads_license_links_apache">
         <item>@string/ads_license_apache</item>
         <item>@string/ads_license_sources</item>
     </string-array>
 
-    <!-- String array with Apache 2.0 licence and dynamic support
-         modules titles. -->
+    !-- String array with Apache 2.0 license, gson and plaid. -->
+    <string-array name="ads_license_links_gson_plaid">
+        <item>@string/ads_license_apache</item>
+        <item>Gson</item>
+        <item>Plaid</item>
+    </string-array>
+
+    <!-- String array with Apache 2.0 license and dynamic support modules titles. -->
     <string-array name="ads_license_links_ads_modules">
         <item>@string/ads_license_apache</item>
         <item>Dynamic Utils</item>
@@ -143,13 +169,25 @@
         <item>Dynamic Engine</item>
     </string-array>
 
-    <!-- String array with licence and sources subtitles. -->
+    <!-- String array with license subtitle. -->
+    <string-array name="ads_license_links_subtitles_license">
+        <item>@string/ads_license_desc</item>
+    </string-array>
+
+    <!-- String array with license and sources subtitles. -->
     <string-array name="ads_license_links_subtitles">
         <item>@string/ads_license_desc</item>
         <item>@string/ads_license_sources_desc</item>
     </string-array>
 
-    <!-- String array with licence and sources subtitles. -->
+    <!-- String array with license and sources subtitles for gson and plaid. -->
+    <string-array name="ads_license_links_subtitles_gson_plaid">
+        <item>@string/ads_license_desc</item>
+        <item>@string/ads_license_sources_desc</item>
+        <item>@string/ads_license_sources_desc</item>
+    </string-array>
+
+    <!-- String array with license and sources subtitles. -->
     <string-array name="ads_license_links_subtitles_ads_modules">
         <item>@string/ads_license_desc</item>
         <item>@string/ads_license_sources_desc</item>
@@ -157,42 +195,33 @@
         <item>@string/ads_license_sources_desc</item>
     </string-array>
 
-    <!-- String array with Apache 2.0 licence titles. -->
-    <string-array name="ads_license_links_apache_only">
-        <item>@string/ads_license_apache</item>
-    </string-array>
-
-    <!-- String array with licence subtitle. -->
-    <string-array name="ads_license_links_subtitles_license">
-        <item>@string/ads_license_desc</item>
-    </string-array>
-
-    <!-- String array with Apache 2.0 licence link. -->
+    <!-- String array with Apache 2.0 license link. -->
     <string-array name="ads_license_links_urls_apache_only">
         <item>http://www.apache.org/licenses/LICENSE-2.0</item>
     </string-array>
 
-    <!-- String array with Apache 2.0 licence and plaid links. -->
-    <string-array name="ads_license_links_urls_plaid">
+    <!-- String array with Apache 2.0 license, gson and plaid links. -->
+    <string-array name="ads_license_links_urls_gson_plaid">
         <item>http://www.apache.org/licenses/LICENSE-2.0</item>
+        <item>https://github.com/google/gson</item>
         <item>https://github.com/nickbutcher/plaid</item>
     </string-array>
 
-    <!-- String array with Apache 2.0 licence and small app support
+    <!-- String array with Apache 2.0 license and small app support
          links. -->
     <string-array name="ads_license_links_urls_sas">
         <item>http://www.apache.org/licenses/LICENSE-2.0</item>
         <item>https://github.com/pranavpandey/small-app-support</item>
     </string-array>
 
-    <!-- String array with Apache 2.0 licence and dynamic support
+    <!-- String array with Apache 2.0 license and dynamic support
          links. -->
     <string-array name="ads_license_links_urls_ads">
         <item>http://www.apache.org/licenses/LICENSE-2.0</item>
         <item>https://github.com/pranavpandey/dynamic-support</item>
     </string-array>
 
-    <!-- String array with Apache 2.0 licence and dynamic support
+    <!-- String array with Apache 2.0 license and dynamic support
          modules links. -->
     <string-array name="ads_license_links_urls_ads_modules">
         <item>http://www.apache.org/licenses/LICENSE-2.0</item>

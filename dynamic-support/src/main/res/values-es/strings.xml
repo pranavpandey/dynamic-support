@@ -23,9 +23,11 @@
 
     <!-- String formats -->
     <string name="ads_format_version">Versión %1$s</string>
+    <string name="ads_search_empty">No se encontraron resultados para \"%1$s\".</string>
 
     <!-- Headings -->
     <string name="ads_app">Aplicación</string>
+    <string name="ads_text">Texto</string>
     <string name="ads_icon">Ícono</string>
     <string name="ads_size">Tamaño</string>
     <string name="ads_value">Valor</string>
@@ -46,6 +48,7 @@
     <string name="ads_yes_in">Sí, acepto</string>
     <string name="ads_more_info">Más información</string>
     <string name="ads_select">Seleccionar</string>
+    <string name="ads_copy">Dupdo</string>
     <string name="ads_save">Guardar</string>
     <string name="ads_load">Cargar</string>
     <string name="ads_create">Crear</string>
@@ -57,6 +60,7 @@
     <string name="ads_recents">Recientes</string>
     <string name="ads_custom">Personalizados</string>
     <string name="ads_edit">Editar</string>
+    <string name="ads_refresh">Actualizar</string>
     <string name="ads_reset">Reiniciar</string>
     <string name="ads_default">Por defecto</string>
     <string name="ads_sort">Organizar</string>
@@ -73,7 +77,7 @@
     <string name="ads_shortcut_created">Atajo creado</string>
     <string name="ads_shortcuts_desc">Escoge un atajo para añadirlo a la pantalla de inicio.</string>
 
-    <!-- Navigation drawer and menu -->
+    <!-- Navigation drawer and Menu -->
     <string name="ads_nav_category_features">Menú</string>
     <string name="ads_nav_home">Inicio</string>
     <string name="ads_nav_settings">Configuración</string>
@@ -126,6 +130,7 @@
     <string name="ads_backup_rename">Renombrar respaldo</string>
     <string name="ads_backup_complete">El respaldo se creó exitosamente</string>
     <string name="ads_backup_error">No se pudo crear el respaldo</string>
+    <string name="ads_backup_invalid">Copia de respaldo inválida</string>
     <string name="ads_backup_restore">Restaurar</string>
     <string name="ads_backup_restore_title">Restaurar respaldo</string>
     <string name="ads_backup_error_save">No se pudo guardar el respaldo</string>
@@ -166,26 +171,36 @@
     <string name="ads_backup_option_delete">Eliminar</string>
     <string name="ads_backup_send">Enviar respaldo</string>
 
-    <!-- Theme -->
+    <!-- App theme -->
     <string name="ads_theme">Tema</string>
+    <string name="ads_theme_customise_desc">Configurar el tema abajo.</string>
     <string name="ads_theme_adjust_desc">El tema se ajustará automáticamente según la versión actual de Android.</string>
+    <string name="ads_theme_invalid">Tema inválido</string>
+    <string name="ads_theme_invalid_desc">Este tema no pudo ser verificado. Por favor, intente de nuevo con los datos apropiados.</string>
     <string name="ads_theme_color_palette">Paleta de colores</string>
     <string name="ads_theme_color_palette_summary">Color primario y de acento.</string>
     <string name="ads_theme_color_background">Color de fondo</string>
     <string name="ads_theme_color_background_summary">Color de fondo del tema.</string>
     <string name="ads_theme_color_primary">Color principal</string>
     <string name="ads_theme_color_primary_summary">Color utilizado por los elementos principales.</string>
+    <string name="ads_theme_color_primary_dark">Color del sistema</string>
+    <string name="ads_theme_color_primary_summary_dark">Color utilizado por los elementos del sistema.</string>
     <string name="ads_theme_color_accent">Color de énfasis</string>
+    <string name="ads_theme_color_secondary">Color secundario</string>
     <string name="ads_theme_color_accent_summary">Color usado por los elementos secundarios.</string>
-    <string name="ads_theme_background">Color automático</string>
-    <string name="ads_theme_background_aware_desc">Algunos colores cambiarán automáticamente dependiendo del fondo para mejorar la visibilidad.</string>
+    <string name="ads_theme_color_tint">Tinte de color</string>
+    <string name="ads_theme_color_inverse">Inverso de color</string>
+    <string name="ads_theme_corner_size">Tamaño de la esquina</string>
+    <string name="ads_theme_corner_size_summary">Radio de la esquina del aplicación.</string>
+    <string name="ads_theme_background_aware">Color automático</string>
+    <string name="ads_theme_background_aware_desc">Ajuste los colores dependiendo del fondo para mejorar la visibilidad.</string>
     <string name="ads_theme_app">Tema de la aplicación</string>
-    <string name="ads_theme_app_summary">Tema base de la aplicación.</string>
+    <string name="ads_theme_app_summary">Estilo de la aplicación.</string>
     <string name="ads_theme_app_desc">Selecciona auto para usar los temas diurno y nocturno.</string>
     <string name="ads_theme_app_day">Tema diurno</string>
-    <string name="ads_theme_app_day_summary">Tema base de la aplicación durante el día.</string>
+    <string name="ads_theme_app_day_summary">Estilo de la aplicación durante el día.</string>
     <string name="ads_theme_app_night">Tema nocturno</string>
-    <string name="ads_theme_app_night_summary">Tema base de la aplicación durante la noche.</string>
+    <string name="ads_theme_app_night_summary">Estilo de la aplicación durante la noche.</string>
     <string name="ads_theme_app_day_night_desc">Esto funcionará únicamente cuando se aplique el tema auto.</string>
     <string name="ads_theme_toast">Tema de los mensajes toast</string>
     <string name="ads_theme_toast_summary">Mostrar los mensajes toast coloreados según el color primario de la aplicación.</string>
@@ -198,19 +213,26 @@
     <string name="ads_theme_notification_summary">Paleta de colores para la notificación.</string>
     <string name="ads_theme_notification_style">Estilo de la notificación</string>
     <string name="ads_theme_notification_style_summary">Estilo del diseño de la notificación</string>
-    <string name="ads_theme_style_classic_desc">Elige el estilo clásico para usar la paleta de colores como fondo</string>
+    <string name="ads_theme_style_classic_desc">Elige clásico para usar la paleta de colores como fondo</string>
     <string name="ads_theme_widget">Tema del widget</string>
     <string name="ads_theme_widget_summary">Paleta de colores para el widget</string>
     <string name="ads_theme_app_shortcuts">Tema de los atajos del launcher</string>
     <string name="ads_theme_app_shortcuts_summary">Mostrar los atajos del launcher coloreados según el color primario de la aplicación.</string>
     <string name="ads_theme_app_shortcuts_summary_unchecked">Mostrar los atajos de la aplicación por defecto según el tema de la aplicación y el color del ícono de Rotation.</string>
     <string name="ads_theme_app_shortcuts_desc">Mantén presionado el ícono del launcher para mostrar los atajos de la aplicación. Se requiere un launcher con soporte para atajos.</string>
+    <string name="ads_theme_reset_desc">El tema se ha restablecido a su configuración por defecto.</string>
+    <string name="ads_theme_import_done">El tema ha sido importado con éxito.</string>
+    <string name="ads_theme_copy_done">El tema ha sido copiado con éxito.</string>
 
-    <!-- Theme entries and labels-->
-    <string name="ads_theme_toast_themed">Mensaje toast coloreado</string>
+    <!-- Theme and Labels -->
     <string name="ads_theme_toast_default">Mensaje toast por defecto</string>
+    <string name="ads_theme_toast_themed">Mensaje toast coloreado</string>
     <string name="ads_theme_entry_auto">Auto</string>
-    <string name="ads_theme_entry_auto_desc">Elige el estilo auto para usar la paleta de colores de la aplicación.</string>
+    <string name="ads_theme_settings_auto_desc">Elige auto para usar la configuración de la aplicación.</string>
+    <string name="ads_theme_settings_default_desc">Elige auto para usar la configuración de la defecto.</string>
+    <string name="ads_theme_color_auto_desc">Elige auto para usar la paleta de colores de la aplicación.</string>
+    <string name="ads_theme_color_default_desc">Elige auto para usar la paleta de colores de la defecto.</string>
+    <string name="ads_theme_entry_auto_background_aware_desc">Elige auto para usar la paleta de colores de la aplicación. Ajuste los colores dependiendo del fondo para mejorar la visibilidad.</string>
     <string name="ads_theme_entry_light">Claro</string>
     <string name="ads_theme_entry_dark">Oscuro</string>
     <string name="ads_theme_entry_custom">Personalizado</string>
@@ -235,6 +257,10 @@
     <string name="ads_theme_entry_dark_brown">Café oscuro</string>
     <string name="ads_theme_entry_dark_grey">Gris oscuro</string>
 
+    <!-- Visibility -->
+    <string name="ads_visibility_show">Mostrar</string>
+    <string name="ads_visibility_hide">Esconder</string>
+
     <!-- Picker -->
     <string name="ads_picker_all">Todo</string>
     <string name="ads_picker_pick">Escoger</string>
@@ -246,7 +272,7 @@
     <string name="ads_language_summary">Idioma utilizado por la aplicación.</string>
     <string name="ads_language_system">Sistema</string>
 
-    <!-- Notification and channel -->
+    <!-- Notification and Channel -->
     <string name="ads_notification_priority">Prioridad de la notificación</string>
     <string name="ads_notification_priority_summary">Escoge una prioridad para determinar el orden de la notificación en el cajón de notificaciones.</string>
     <string name="ads_notification_priority_desc">Escoge la prioridad baja para esconder la notificación en la barra de estado y la pantalla de bloqueo.</string>
@@ -259,9 +285,14 @@
 
     <!-- App widget -->
     <string name="ads_widget_customise">Personalizar</string>
+    <string name="ads_widget_customise_desc">Configurar el widget abajo.</string>
     <string name="ads_widget_preview">Previsualización</string>
     <string name="ads_widget_preview_desc">El diseño del widget puede cambiar automáticamente según su tamaño real para una mejor experiencia.</string>
-    <string name="ads_widget_customise_desc">Configurar el widget abajo.</string>
+    <string name="ads_widget_header">Encabezamiento</string>
+    <string name="ads_widget_header_summary">Visibilidad del encabezado del widget.</string>
+    <string name="ads_widget_header_desc">Selecciona auto para mostrar el encabezado si hay suficiente espacio disponible.</string>
+    <string name="ads_widget_corner_size_bg_summary">Radio de la esquina del fondo del widget.</string>
+    <string name="ads_widget_corner_size_bg_desc">Elige auto para usar la tamaño de la esquina de la aplicación.</string>
     <string name="ads_widget_opacity_bg">Opacidad del fondo</string>
     <string name="ads_widget_opacity_bg_summary">Opacidad del fondo del widget.</string>
     <string name="ads_widget_reset_desc">El widget se ha restablecido a su configuración por defecto.</string>
@@ -270,6 +301,7 @@
     <!-- About and Support -->
     <string name="ads_rate">Calificar</string>
     <string name="ads_support_contact">Contacto</string>
+    <string name="ads_support_feedback">Realimentación</string>
     <string name="ads_support_report">Reportar</string>
     <string name="ads_support_report_bug">Enviar reporte de error</string>
     <string name="ads_support_report_bug_summary">Contactar al desarrollador por correo</string>
@@ -312,6 +344,8 @@
     <string name="ads_translations">Traducciones</string>
     <string name="ads_translators">Traductores</string>
     <string name="ads_translators_translate">Traducir</string>
+    <string name="ads_translators_translate_summary">Conviértete en un traductor.</string>
+    <string name="ads_translators_translate_desc">Contribuye para que esta aplicación esté disponible en más idiomas.</string>
     <string name="ads_translators_contact">Contácteme por correo si desea traducir.</string>
 
     <!-- Licenses -->

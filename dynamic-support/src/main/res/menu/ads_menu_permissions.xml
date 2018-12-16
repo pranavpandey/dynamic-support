@@ -22,7 +22,7 @@
     <item
         android:id="@+id/ads_menu_app_info"
         android:title="@string/ads_menu_app_info"
-        android:icon="@drawable/ads_ic_info"
+        android:icon="@drawable/ads_ic_info_outline"
         android:orderInCategory="1"
         app:showAsAction="always" />
 

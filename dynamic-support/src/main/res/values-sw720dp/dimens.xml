@@ -18,6 +18,6 @@
 <resources>
 
     <!-- Activity -->
-    <dimen name="ads_drawer_size">300dp</dimen>
+    <dimen name="ads_drawer_size">320dp</dimen>
 
 </resources>

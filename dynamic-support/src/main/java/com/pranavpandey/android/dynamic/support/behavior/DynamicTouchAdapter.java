@@ -17,27 +17,25 @@
 package com.pranavpandey.android.dynamic.support.behavior;
 
 /**
- * Interface to listen movement of an item inside the recycler view
- * adapter. Implement this interface in the adapter class to receive
- * item movement callbacks.
+ * Interface to listen movement of an item inside the recycler view adapter.
+ * <p>Implement this interface in the adapter class to receive item movement callbacks.
  */
 public interface DynamicTouchAdapter {
 
     /**
-     * Called when item starts moving from one position to other.
+     * This method will be called when item starts moving from one position to other.
      *
-     * @param fromPosition Current position of the item.
-     * @param toPosition New position of the item.
+     * @param fromPosition The current position of the item.
+     * @param toPosition The new position of the item.
      *
      * @return {@code true} if item starts moving.
      */
     boolean onItemMove(int fromPosition, int toPosition);
 
     /**
-     * Called when item is dismissed or removed from a particular
-     * position.
+     * This method will be called when item is dismissed or removed from a particular position.
      *
-     * @param position Position of the dismissed item.
+     * @param position The position of the dismissed item.
      */
     void onItemDismiss(int position);
 }

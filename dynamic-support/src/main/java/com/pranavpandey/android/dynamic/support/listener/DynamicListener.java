@@ -22,20 +22,17 @@ package com.pranavpandey.android.dynamic.support.listener;
 public interface DynamicListener {
 
     /**
-     * Called when the navigation bar theme has been changed.
+     * This method will be called when the navigation bar theme has been changed.
      */
     void onNavigationBarThemeChange();
 
     /**
-     * Called when the dynamic change event occurs (like theme or locale
-     * change). Re-create the activity or application here to adapt
-     * changes.
+     * This method will be called when the dynamic change event occurs (like theme, locale, etc.).
+     * <p>Re-create the activity or application here to adapt changes.
      *
-     * @param context {@code true} if there is a context change and it
-     *                must be reinitialized.
+     * @param context {@code true} if there is a context change and it must be reinitialized.
      *
-     * @param recreate {@code true} if listener must be
-     *                 recreated to adapt the changes.
+     * @param recreate {@code true} if listener must be recreated to adapt the changes.
      */
     void onDynamicChange(boolean context, boolean recreate);
 }

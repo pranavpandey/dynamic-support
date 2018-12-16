@@ -17,20 +17,21 @@
 package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.DrawerLayout;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 /**
- * A fixed drawer layout when in persistent or locked open state.
+ * A fixed DrawerLayout when in persistent or locked open state.
  */
 public class DynamicDrawerLayout extends DrawerLayout {
 
     /**
-     * Boolean to disallow the intercept if the drawer is in locked
-     * state.
+     * Boolean to disallow the intercept if the drawer is in locked state.
      */
     private boolean mDisallowIntercept;
 
@@ -43,7 +44,7 @@ public class DynamicDrawerLayout extends DrawerLayout {
     }
 
     public DynamicDrawerLayout(@NonNull Context context,
-                               @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

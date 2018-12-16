@@ -17,16 +17,18 @@
 package com.pranavpandey.android.dynamic.support.view;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
 
 /**
- * A DynamicInfoView with bigger fallback icon. Useful for
- * showing app info like about, author, etc.
+ * A DynamicInfoView with bigger fallback icon.
+ * <p>Useful for showing the app info like about, author, etc.
  */
 public class DynamicInfoViewBig extends DynamicInfoView {
 
@@ -39,7 +41,7 @@ public class DynamicInfoViewBig extends DynamicInfoView {
     }
 
     public DynamicInfoViewBig(@NonNull Context context,
-                              @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

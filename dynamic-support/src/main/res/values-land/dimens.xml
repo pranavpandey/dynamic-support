@@ -18,7 +18,7 @@
 <resources>
 
     <!-- Activity-->
-    <dimen name="ads_drawer_size">300dp</dimen>
+    <dimen name="ads_drawer_size">320dp</dimen>
     <dimen name="ads_collapsing_toolbar_height">160dp</dimen>
 
     <!-- Icon sizes -->

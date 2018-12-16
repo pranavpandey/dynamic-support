@@ -1,6 +1,6 @@
 package com.pranavpandey.android.dynamic.support.recyclerview.adapter;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder;
 
@@ -8,11 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A recycler view adapter to display different type of
- * {@link DynamicRecyclerViewBinder} inside a recycler view.
+ * A recycler view adapter to display different type of {@link DynamicRecyclerViewBinder}
+ * inside a recycler view.
  */
-public abstract class DynamicTypeBinderAdapter<E extends Enum<E>>
-        extends DynamicBinderAdapter {
+public abstract class DynamicTypeBinderAdapter<E extends Enum<E>> extends DynamicBinderAdapter {
 
     /**
      * Default item type {@code enums} for this adapter.
@@ -97,7 +96,7 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>>
 
     @Override
     public void notifyBinderItemRangeChanged(@NonNull DynamicRecyclerViewBinder binder,
-                                             int positionStart, int itemCount) {
+            int positionStart, int itemCount) {
         for (int i = positionStart; i <= itemCount; i++) {
             notifyItemChanged(getPosition(binder, i));
         }
@@ -105,7 +104,7 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>>
 
     @Override
     public void notifyBinderItemRangeInserted(@NonNull DynamicRecyclerViewBinder binder,
-                                              int positionStart, int itemCount) {
+            int positionStart, int itemCount) {
         for (int i = positionStart; i <= itemCount; i++) {
             notifyItemInserted(getPosition(binder, i));
         }
@@ -113,7 +112,7 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>>
 
     @Override
     public void notifyBinderItemRangeRemoved(@NonNull DynamicRecyclerViewBinder binder,
-                                             int positionStart, int itemCount) {
+            int positionStart, int itemCount) {
         for (int i = positionStart; i <= itemCount; i++) {
             notifyItemRemoved(getPosition(binder, i));
         }
@@ -122,8 +121,7 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>>
     /**
      * Get the item type enum associated with position the position.
      *
-     * @param position The position to get the corresponding
-     *                 {@code enum}.
+     * @param position The position to get the corresponding {@code enum}.
      *
      * @return The {@code enum} corresponding to the given position.
      */
@@ -132,11 +130,9 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>>
     /**
      * Get the item type enum according to the ordinal.
      *
-     * @param ordinal The ordinal to get the corresponding
-     *                {@code enum}.
+     * @param ordinal The ordinal to get the corresponding {@code enum}.
      *
-     * @return The {@code enum} corresponding to the given
-     *         ordinal.
+     * @return The {@code enum} corresponding to the given ordinal.
      */
     public abstract E getEnumFromOrdinal(int ordinal);
 
@@ -151,17 +147,20 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>>
     }
 
     /**
-     * @return The dynamic data binder according to the supplied
-     *         {@code enum}.
+     * Returns the dynamic data binder according to the supplied {@code enum}.
      *
      * @param e The data binder enum.
      * @param <T> The dynamic recycler view binder.
+     *
+     * @return The dynamic data binder according to the supplied {@code enum}.
      */
     public <T extends DynamicRecyclerViewBinder> T getDataBinderBinder(E e) {
         return (T) mDataBinderMap.get(e);
     }
 
     /**
+     * Get the map to hold the data binders.
+     *
      * @return The map to hold the data binders.
      */
     public Map<E, DynamicRecyclerViewBinder> getDataBinderMap() {
@@ -173,8 +172,6 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>>
      *
      * @param e The data binder enum.
      * @param binder The data binder to be added in this adapter.
-     *
-     * @see #mDataBinderMap
      */
     public void putDataBinder(E e, DynamicRecyclerViewBinder binder) {
         mDataBinderMap.put(e, binder);

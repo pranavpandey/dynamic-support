@@ -39,7 +39,7 @@
                 <com.pranavpandey.android.dynamic.support.view.DynamicHeader
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:ads_dynamicHeader_title="@string/widget_buttons" />
+                    app:ads_title="@string/widget_buttons" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -52,7 +52,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:text="@string/widget_button_raised"
-                        style="@style/Widget.DynamicApp.Button.Colored" />
+                        style="@style/Widget.DynamicApp.Button" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
                         android:layout_width="0dp"
@@ -60,14 +60,15 @@
                         android:layout_weight="1.0"
                         android:text="@string/ads_disabled"
                         android:enabled="false"
-                        style="@style/Widget.DynamicApp.Button.Colored" />
+                        style="@style/Widget.DynamicApp.Button" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:text="@string/color_primary"
-                        style="@style/Widget.DynamicApp.Button.Colored.Primary" />
+                        app:ads_colorType="primary"
+                        style="@style/Widget.DynamicApp.Button" />
 
                 </LinearLayout>
 
@@ -82,7 +83,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:text="@string/widget_button_flat"
-                        style="@style/Widget.DynamicApp.Button.Borderless" />
+                        style="@style/Widget.DynamicApp.Button.TextButton" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
                         android:layout_width="0dp"
@@ -90,14 +91,15 @@
                         android:layout_weight="1.0"
                         android:text="@string/ads_disabled"
                         android:enabled="false"
-                        style="@style/Widget.DynamicApp.Button.Borderless" />
+                        style="@style/Widget.DynamicApp.Button.TextButton" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:text="@string/color_primary"
-                        style="@style/Widget.DynamicApp.Button.Borderless.Primary" />
+                        app:ads_colorType="primary"
+                        style="@style/Widget.DynamicApp.Button.TextButton" />
 
                 </LinearLayout>
 
@@ -116,7 +118,7 @@
                 <com.pranavpandey.android.dynamic.support.view.DynamicHeader
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:ads_dynamicHeader_title="@string/widget_checked" />
+                    app:ads_title="@string/widget_checked" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -232,7 +234,7 @@
                 <com.pranavpandey.android.dynamic.support.view.DynamicHeader
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:ads_dynamicHeader_title="@string/widget_input" />
+                    app:ads_title="@string/widget_input" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -274,7 +276,7 @@
                 <com.pranavpandey.android.dynamic.support.view.DynamicHeader
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:ads_dynamicHeader_title="@string/widget_progress" />
+                    app:ads_title="@string/widget_progress" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -376,7 +378,7 @@
                 <com.pranavpandey.android.dynamic.support.view.DynamicHeader
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:ads_dynamicHeader_title="@string/widget_spinner" />
+                    app:ads_title="@string/widget_spinner" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -24,4 +24,4 @@
     app:tabMinWidth="@dimen/ads_tab_min_width"
     app:tabMode="scrollable"
     app:tabContentStart="@dimen/ads_tab_inset_start"
-    app:ads_contrastWithColorType="primary" />
+    app:tabIndicatorHeight="@dimen/ads_tab_indicator_height" />

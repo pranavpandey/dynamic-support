@@ -30,14 +30,14 @@
         android:layout_weight="1.0"
         android:padding="@dimen/ads_margin_medium"
         android:layout_gravity="center_vertical"
-        app:ads_backgroundAware="false" />
+        app:ads_backgroundAware="disable" />
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
         android:id="@+id/ads_tutorial_simple_scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        app:ads_backgroundAware="false"
+        app:ads_backgroundAware="disable"
         style="@style/Widget.DynamicApp.Scroller.Vertical">
 
         <LinearLayout
@@ -50,23 +50,23 @@
                 android:id="@+id/ads_tutorial_simple_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.DynamicApp.Title.Tutorial"
-                app:ads_backgroundAware="false" />
+                style="@style/TextAppearance.DynamicApp.Headline5.Tutorial"
+                app:ads_backgroundAware="disable" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                 android:id="@+id/ads_tutorial_simple_subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.DynamicApp.Subtitle.Tutorial"
-                app:ads_backgroundAware="false" />
+                style="@style/TextAppearance.DynamicApp.Subtitle1.Tutorial"
+                app:ads_backgroundAware="disable" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                 android:id="@+id/ads_tutorial_simple_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ads_margin_tiny"
-                style="@style/TextAppearance.DynamicApp.Description.Tutorial"
-                app:ads_backgroundAware="false" />
+                style="@style/TextAppearance.DynamicApp.Body1.Tutorial"
+                app:ads_backgroundAware="disable" />
 
         </LinearLayout>
 

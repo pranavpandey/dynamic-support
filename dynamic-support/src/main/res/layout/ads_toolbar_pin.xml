@@ -24,20 +24,13 @@
     <com.pranavpandey.android.dynamic.support.widget.DynamicToolbar
         android:id="@+id/ads_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
         app:layout_collapseMode="pin"
         app:contentInsetStartWithNavigation="@dimen/ads_toolbar_inset_start"
-        app:ads_colorType="none"
-        app:ads_backgroundAware="false">
+        app:ads_colorType="none">
 
         <include layout="@layout/ads_toolbar_search_view" />
-
-        <TextView
-            android:id="@+id/ads_text_app_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
 
     </com.pranavpandey.android.dynamic.support.widget.DynamicToolbar>
 

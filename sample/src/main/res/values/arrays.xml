@@ -19,7 +19,7 @@
 
     <!-- Default app theme colors. -->
     <integer-array name="pref_app_theme_colors">
-        <item>0</item>
+        <item>-3</item>
         <item>@color/ads_window_background_light</item>
         <item>@color/ads_window_background</item>
         <item>@color/window_background_yellow</item>
@@ -80,22 +80,22 @@
     </string-array>
 
     <!-- App links subtitles. -->
-    <string-array name="info_app_links_subtitles">
+    <string-array name="info_app_subtitles">
         <item>@string/ads_license_sources_desc</item>
     </string-array>
 
     <!-- App links urls. -->
-    <string-array name="info_app_links_urls">
+    <string-array name="info_app_urls">
         <item>https://github.com/pranavpandey/dynamic-support</item>
     </string-array>
 
     <!-- App links icons. -->
-    <integer-array name="info_app_links_icons">
+    <integer-array name="info_app_icons">
         <item>@drawable/ads_ic_social_github</item>
     </integer-array>
 
     <!-- App links tint colors. -->
-    <integer-array name="info_app_links_colors">
+    <integer-array name="info_app_colors">
         <item>@color/ads_social_github</item>
     </integer-array>
 
@@ -114,7 +114,7 @@
         <item>Dave</item>
         <item>Fatih Fırıncı</item>
         <item>残念</item>
-        <item>@string/ads_translators_contact</item>
+        <item>@string/ads_translators_translate_summary</item>
     </string-array>
 
     <!-- Supported locales flags. -->

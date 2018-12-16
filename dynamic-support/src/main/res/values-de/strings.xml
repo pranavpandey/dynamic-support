@@ -23,9 +23,11 @@
 
     <!-- String formats -->
     <string name="ads_format_version">Version %1$s</string>
+    <string name="ads_search_empty">Keine Ergebnisse für \"%1$s\" gefunden.</string>
 
     <!-- Headings -->
     <string name="ads_app">App</string>
+    <string name="ads_text">Text</string>
     <string name="ads_icon">Symbol</string>
     <string name="ads_size">Größe</string>
     <string name="ads_value">Wert</string>
@@ -46,6 +48,7 @@
     <string name="ads_yes_in">Ja, bin dabei</string>
     <string name="ads_more_info">Mehr Info</string>
     <string name="ads_select">Auswählen</string>
+    <string name="ads_copy">Kopieren</string>
     <string name="ads_save">Speichern</string>
     <string name="ads_load">Laden</string>
     <string name="ads_create">Erstellen</string>
@@ -56,6 +59,7 @@
     <string name="ads_finish">Fertig</string>
     <string name="ads_recents">Letzte</string>
     <string name="ads_custom">Eigene</string>
+    <string name="ads_refresh">Aktualisieren</string>
     <string name="ads_edit">Bearbeiten</string>
     <string name="ads_reset">Zurücksetzen</string>
     <string name="ads_default">Standard</string>
@@ -73,7 +77,7 @@
     <string name="ads_shortcut_created">Verknüpfung erstellt</string>
     <string name="ads_shortcuts_desc">Wähle eine Verknüpfung, um sie auf deine Startseite hinzuzufügen.</string>
 
-    <!-- Navigation drawer and menu -->
+    <!-- Navigation drawer and Menu -->
     <string name="ads_nav_category_features">Menü</string>
     <string name="ads_nav_category_support">Unterstütze die Entwicklung</string>
     <string name="ads_nav_category_contribute">Beitragen</string>
@@ -126,6 +130,7 @@
     <string name="ads_backup_rename">Sicherung umbenennen</string>
     <string name="ads_backup_complete">Sicherung wurde erfolgreich erstellt</string>
     <string name="ads_backup_error">Sicherung kann nicht erstellt werden</string>
+    <string name="ads_backup_invalid">Ungültige Sicherung</string>
     <string name="ads_backup_restore">Wiederherstellen</string>
     <string name="ads_backup_restore_title">Sicherung wiederherstellen</string>
     <string name="ads_backup_error_save">Sicherung kann nicht gespeichert werden</string>
@@ -166,26 +171,36 @@
     <string name="ads_backup_option_delete">Löschen</string>
     <string name="ads_backup_send">Sicherung senden</string>
 
-    <!-- Theme -->
+    <!-- App theme -->
     <string name="ads_theme">Thema</string>
+    <string name="ads_theme_customise_desc">Konfiguriere das Thema unten.</string>
     <string name="ads_theme_adjust_desc">Thema wird automatisch entsprechend der aktuellen Android-Version angepasst.</string>
+    <string name="ads_theme_invalid">Ungültiges Thema</string>
+    <string name="ads_theme_invalid_desc">Dieses Thema konnte nicht verifiziert werden. Bitte versuchen Sie es erneut mit den entsprechenden Daten.</string>
     <string name="ads_theme_color_palette">Farbpalette</string>
     <string name="ads_theme_color_palette_summary">Primäre und Akzent Farb-Voreinstellungen.</string>
     <string name="ads_theme_color_background">Hintergrundfarbe</string>
     <string name="ads_theme_color_background_summary">Hintergrundfarbe des Themas.</string>
     <string name="ads_theme_color_primary">Primärfarbe</string>
     <string name="ads_theme_color_primary_summary">In primären Elementen genutzte Farbe.</string>
+    <string name="ads_theme_color_primary_dark">Systemfarbe</string>
+    <string name="ads_theme_color_primary_summary_dark">In systemelementen Elementen genutzte Farbe.</string>
     <string name="ads_theme_color_accent">Akzentfarbe</string>
+    <string name="ads_theme_color_secondary">Sekundärefarbe</string>
     <string name="ads_theme_color_accent_summary">In sekundären Elementen genutzte Farbe</string>
-    <string name="ads_theme_background">Hintergrundberechnung</string>
-    <string name="ads_theme_background_aware_desc">Manche Farben werden automatisch entsprechend der Hintergrundfarbe angepasst, um gute Sichtbarkeit zu garantieren.</string>
+    <string name="ads_theme_color_tint">Tönungsfarbe</string>
+    <string name="ads_theme_color_inverse">Inversfarbe</string>
+    <string name="ads_theme_corner_size">Eckgröße</string>
+    <string name="ads_theme_corner_size_summary">Eckenradius des App.</string>
+    <string name="ads_theme_background_aware">Hintergrundberechnung</string>
+    <string name="ads_theme_background_aware_desc">Passen Sie die Farben entsprechend dem Hintergrund an, um gute Sichtbarkeit zu garantieren.</string>
     <string name="ads_theme_app">App-Thema</string>
-    <string name="ads_theme_app_summary">Grundstil der App.</string>
+    <string name="ads_theme_app_summary">Stil der App.</string>
     <string name="ads_theme_app_desc">Wähle auto, um das Tages- und das Nachtthema zu benutzen.</string>
     <string name="ads_theme_app_day">Tagesthema</string>
-    <string name="ads_theme_app_day_summary">Grundstil der App am Tag.</string>
+    <string name="ads_theme_app_day_summary">Stil der App am Tag.</string>
     <string name="ads_theme_app_night">Nachtthema</string>
-    <string name="ads_theme_app_night_summary">Grundstil der App zur Nacht.</string>
+    <string name="ads_theme_app_night_summary">Stil der App zur Nacht.</string>
     <string name="ads_theme_app_day_night_desc">Dies wird nur funktionieren, wenn das automatische Thema ausgewählt ist.</string>
     <string name="ads_theme_toast">Toast-Nachricht Thema</string>
     <string name="ads_theme_toast_summary">Zeige Toast-Nachrichten entsprechend der Primärfarbe.</string>
@@ -205,12 +220,19 @@
     <string name="ads_theme_app_shortcuts_summary">Zeige App-Verknüpfungen entsprechend der Primärfarbe.</string>
     <string name="ads_theme_app_shortcuts_summary_unchecked">Zeige standard App-Verknüpfungen entsprechend dem Thema der App und der Symbolfarbe.</string>
     <string name="ads_theme_app_shortcuts_desc">Halte das Symbol im Launcher gedrückt, um App-Verknüpfungen zu zeigen. Deine Startseite muss dies unterstützen.</string>
+    <string name="ads_theme_reset_desc">Thema wurde zum Standard zurückgesetzt.</string>
+    <string name="ads_theme_import_done">Thema wurde erfolgreich importiert.</string>
+    <string name="ads_theme_copy_done">Das Thema wurde erfolgreich kopiert.</string>
 
-    <!-- Theme entries and labels-->
+    <!-- Theme and Labels -->
     <string name="ads_theme_toast_default">Standard Toast-Nachricht</string>
     <string name="ads_theme_toast_themed">Toast-Nachrichten mit Thema</string>
     <string name="ads_theme_entry_auto">Auto</string>
-    <string name="ads_theme_entry_auto_desc">Wähle auto, um die Farbpalette der App zu benutzen.</string>
+    <string name="ads_theme_settings_auto_desc">Wählen auto, um die App-Einstellungen zu verwenden.</string>
+    <string name="ads_theme_settings_default_desc">Wählen auto, um die Standard-Einstellungen zu verwenden.</string>
+    <string name="ads_theme_color_auto_desc">Wähle auto, um die Farbpalette der App zu benutzen.</string>
+    <string name="ads_theme_color_default_desc">Wähle auto, um die Farbpalette der Standard zu benutzen.</string>
+    <string name="ads_theme_entry_auto_background_aware_desc">Wähle auto, um die Farbpalette der App zu benutzen. Passen Sie die Farben entsprechend dem Hintergrund an, um gute Sichtbarkeit zu garantieren.</string>
     <string name="ads_theme_entry_light">Hell</string>
     <string name="ads_theme_entry_dark">Dunkel</string>
     <string name="ads_theme_entry_custom">Eigene</string>
@@ -235,6 +257,10 @@
     <string name="ads_theme_entry_dark_brown">Dunkelbraun</string>
     <string name="ads_theme_entry_dark_grey">Dunkelgrau</string>
 
+    <!-- Visibility -->
+    <string name="ads_visibility_show">Zeigen</string>
+    <string name="ads_visibility_hide">Löschen</string>
+
     <!-- Picker -->
     <string name="ads_picker_all">Alle</string>
     <string name="ads_picker_pick">Auswählen</string>
@@ -246,7 +272,7 @@
     <string name="ads_language_summary">In dieser App genutzte Sprache.</string>
     <string name="ads_language_system">System</string>
 
-    <!-- Notification and channel -->
+    <!-- Notification and Channel -->
     <string name="ads_notification_priority">Priorität der Benachrichtigung</string>
     <string name="ads_notification_priority_summary">Bestimme, mit welcher Priorität die Benachrichtigung oben erscheinen soll.</string>
     <string name="ads_notification_priority_desc">Wähle niedrige Priorität, um die Benachrichtigung aus der Statusleiste und vom Sperrbildschirm zu entfernen.</string>
@@ -262,6 +288,11 @@
     <string name="ads_widget_customise_desc">Konfiguriere das Widget unten.</string>
     <string name="ads_widget_preview">Vorschau</string>
     <string name="ads_widget_preview_desc">Layout des Widget kann automatisch entsprechend der Größe variieren, um gute Handhabung zu garantieren.</string>
+    <string name="ads_widget_header">Kopfzeile</string>
+    <string name="ads_widget_header_summary">Sichtbarkeit des Widget-Kopfzeiles.</string>
+    <string name="ads_widget_header_desc">Wähle auto, um die Kopfzeile anzuzeigen, wenn genügend Speicherplatz verfügbar ist.</string>
+    <string name="ads_widget_corner_size_bg_summary">Eckenradius des Widget-Hingergrunds.</string>
+    <string name="ads_widget_corner_size_bg_desc">Wähle auto, um die Eckgröße der App zu benutzen.</string>
     <string name="ads_widget_opacity_bg">Deckkraft des Hintergrunds</string>
     <string name="ads_widget_opacity_bg_summary">Deckkraft des Widget-Hingergrunds.</string>
     <string name="ads_widget_reset_desc">Widget wurde zum Standard zurückgesetzt.</string>
@@ -270,6 +301,7 @@
     <!-- About and Support -->
     <string name="ads_rate">Bewerten</string>
     <string name="ads_support_contact">Kontakt</string>
+    <string name="ads_support_feedback">Feedback</string>
     <string name="ads_support_report">Melden</string>
     <string name="ads_support_report_bug">Fehlerbericht senden</string>
     <string name="ads_support_report_bug_summary">Kontaktiere den Entwickler per Email.</string>
@@ -312,6 +344,8 @@
     <string name="ads_translations">Übersetzungen</string>
     <string name="ads_translators">Übersetzer</string>
     <string name="ads_translators_translate">Übersetzen</string>
+    <string name="ads_translators_translate_summary">Werde ein Übersetzer.</string>
+    <string name="ads_translators_translate_desc">Tragen Sie dazu bei, diese App in mehreren Sprachen verfügbar zu machen.</string>
     <string name="ads_translators_contact">Kontaktiere mich per Email, wenn du übersetzen möchtest.</string>
 
     <!-- Licenses -->

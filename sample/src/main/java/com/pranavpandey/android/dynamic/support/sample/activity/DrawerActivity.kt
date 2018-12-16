@@ -19,10 +19,10 @@ package com.pranavpandey.android.dynamic.support.sample.activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.support.annotation.IdRes
-import android.support.annotation.StyleRes
-import android.support.v4.view.GravityCompat
 import android.view.MenuItem
+import androidx.annotation.IdRes
+import androidx.annotation.StyleRes
+import androidx.core.view.GravityCompat
 import com.pranavpandey.android.dynamic.support.activity.DynamicDrawerActivity
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
@@ -125,7 +125,7 @@ class DrawerActivity : DynamicDrawerActivity() {
                 switchFragment(AboutFragment.newInstance(0), false)
             }
             R.id.nav_donate -> DynamicLinkUtils.viewUrl(this, Constants.URL_DONATE)
-            R.id.nav_share -> DynamicLinkUtils.shareApp(this, null,
+            R.id.nav_share -> DynamicLinkUtils.share(this, null,
                     String.format(getString(R.string.ads_format_next_line),
                             getString(R.string.app_share), Constants.URL_GITHUB))
         }

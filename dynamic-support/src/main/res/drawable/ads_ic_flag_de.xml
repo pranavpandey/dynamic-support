@@ -25,7 +25,7 @@
     android:autoMirrored="true">
 
     <path
-        android:fillColor="#ffce00"
+        android:fillColor="#FFCE00"
         android:pathData="M0,320h640v160.002H0z" />
 
     <path
@@ -33,7 +33,7 @@
         android:pathData="M0,0h640v160H0z" />
 
     <path
-        android:fillColor="#d00"
+        android:fillColor="#D00"
         android:pathData="M0,160h640v160H0z" />
 
 </vector>

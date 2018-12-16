@@ -22,11 +22,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.v7.view.menu.ActionMenuItemView;
-import android.support.v7.view.menu.MenuView;
-import android.support.v7.widget.ActionMenuView;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
@@ -37,6 +32,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.view.menu.ActionMenuItemView;
+import androidx.appcompat.view.menu.MenuView;
+import androidx.appcompat.widget.ActionMenuView;
+
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.toasts.DynamicHint;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
@@ -54,18 +57,15 @@ import java.lang.reflect.Method;
 public class DynamicMenuUtils {
 
     /**
-     * The estimated height of a toast, in dips (density-independent pixels).
-     * This is used to determine whether or not the toast should appear above
-     * or below the UI element.
-     */
-    private static final int ADS_HINT_OFFSET_DIPS = 64;
-
-    /**
      * Set the menu to show MenuItem icons in the overflow window.
      *
      * @param menu The menu to force icons to show.
      */
-    public static void forceMenuIcons(@NonNull Menu menu) {
+    public static void forceMenuIcons(@Nullable Menu menu) {
+        if (menu == null) {
+            return;
+        }
+
         try {
             Class<?> MenuBuilder = menu.getClass();
             Method setOptionalIconsVisible =
@@ -80,8 +80,8 @@ public class DynamicMenuUtils {
 
     /**
      * Set other items color of this view according to the supplied values.
-     * Generally, it should be a tint color so that items will be visible on
-     * this view background.
+     * <p>Generally, it should be a tint color so that items will be visible on this view
+     * background.
      *
      * @param view The view to set its items color.
      * @param color The tint color to be applied.
@@ -92,19 +92,21 @@ public class DynamicMenuUtils {
                 = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
 
         if (view instanceof ViewGroup){
-            for (int lli = 0; lli < ((ViewGroup) view).getChildCount(); lli++){
-                setViewItemsTint(((ViewGroup) view).getChildAt(lli), color);
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++){
+                setViewItemsTint(((ViewGroup) view).getChildAt(i), color);
             }
         }
 
         if (view instanceof ImageButton) {
             ((ImageButton) view).getDrawable().setAlpha(255);
             ((ImageButton) view).getDrawable().setColorFilter(colorFilter);
+            DynamicTintUtils.setViewBackgroundTint(view, color, true);
         }
 
         if (view instanceof ImageView) {
             ((ImageView) view).getDrawable().setAlpha(255);
             ((ImageView) view).getDrawable().setColorFilter(colorFilter);
+            DynamicTintUtils.setViewBackgroundTint(view, color, true);
 
             if (!TextUtils.isEmpty(view.getContentDescription())) {
                 new android.os.Handler().post(new Runnable() {
@@ -114,10 +116,10 @@ public class DynamicMenuUtils {
                             view.setOnLongClickListener(new View.OnLongClickListener() {
                                 @Override
                                 public boolean onLongClick(View v) {
-                                    DynamicHint.show(v, DynamicHint.make(v.getContext(),
+                                    DynamicHint.show(v, DynamicHint.make(
+                                            DynamicTheme.getInstance().getContext(),
                                             v.getContentDescription(),
-                                            DynamicColorUtils.getTintColor(color), color),
-                                            ADS_HINT_OFFSET_DIPS);
+                                            DynamicColorUtils.getTintColor(color), color));
                                     return true;
                                 }
                             });
@@ -134,6 +136,7 @@ public class DynamicMenuUtils {
 
         if (view instanceof TextView) {
             ((TextView) view).setTextColor(color);
+            DynamicTintUtils.setViewBackgroundTint(view, color, true);
         }
 
         if (view instanceof EditText) {
@@ -160,6 +163,8 @@ public class DynamicMenuUtils {
                 }
 
                 if (innerView instanceof MenuView.ItemView) {
+                    DynamicTintUtils.setViewBackgroundTint(view, color, true);
+
                     new android.os.Handler().post(new Runnable() {
                         @Override
                         public void run() {
@@ -168,11 +173,11 @@ public class DynamicMenuUtils {
                                     @SuppressLint("RestrictedApi")
                                     @Override
                                     public boolean onLongClick(View v) {
-                                        DynamicHint.show(v, DynamicHint.make(v.getContext(),
+                                        DynamicHint.show(v, DynamicHint.make(
+                                                DynamicTheme.getInstance().getContext(),
                                                 ((MenuView.ItemView) innerView)
                                                         .getItemData().getTitle(),
-                                                DynamicColorUtils.getTintColor(color), color),
-                                                ADS_HINT_OFFSET_DIPS);
+                                                DynamicColorUtils.getTintColor(color), color));
                                         return true;
                                     }
                                 });

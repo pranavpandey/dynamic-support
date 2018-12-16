@@ -32,8 +32,7 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils
 import java.util.*
 
 /**
- * Widgets fragment to show various widgets and their states
- * by using [DynamicFragment].
+ * Widgets fragment to show various widgets and their states by using [DynamicFragment].
  */
 class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
 
@@ -55,6 +54,8 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
     companion object {
 
         /**
+         * Returns the new instance of this fragment.
+         *
          * @return The new instance of [WidgetsFragment].
          */
         fun newInstance(): WidgetsFragment {

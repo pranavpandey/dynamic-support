@@ -18,52 +18,45 @@ package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
 import android.util.AttributeSet;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.android.material.navigation.NavigationView;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicBackgroundWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicScrollableWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicStateSelectedWidget;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 /**
- * A NavigationView to change its selected item and edge effect color
- * according to the supplied parameters.
+ * A NavigationView to change its selected item and edge effect color according to the
+ * supplied parameters.
  */
-public class DynamicNavigationView extends NavigationView implements DynamicScrollableWidget {
+public class DynamicNavigationView extends NavigationView implements
+        DynamicBackgroundWidget, DynamicScrollableWidget, DynamicStateSelectedWidget {
 
     /**
      * Color type applied to this view.
      *
-     * @see DynamicColorType
+     * @see Theme.ColorType
      */
-    private @DynamicColorType int mColorType;
+    private @Theme.ColorType int mColorType;
 
     /**
-     * Scroll bar color type applied to this view.
-     *
-     * @see DynamicColorType
+     * Background color type for this view so that it will remain in contrast with this
+     * color type.
      */
-    private @DynamicColorType int mScrollBarColorType;
-
-    /**
-     * Selected item color type applied to this view.
-     *
-     * @see DynamicColorType
-     */
-    private @DynamicColorType int mItemSelectedColorType;
-
-    /**
-     * Background color type for this view so that it will remain in
-     * contrast with this color type.
-     */
-    private @DynamicColorType int mContrastWithColorType;
+    private @Theme.ColorType int mContrastWithColorType;
 
     /**
      * Color applied to this view.
@@ -71,34 +64,72 @@ public class DynamicNavigationView extends NavigationView implements DynamicScro
     private @ColorInt int mColor;
 
     /**
+     * Background color for this view so that it will remain in contrast with this color.
+     */
+    private @ColorInt int mContrastWithColor;
+
+    /**
+     * The background aware functionality to change this view color according to the background.
+     * It was introduced to provide better legibility for colored views and to avoid dark view
+     * on dark background like situations.
+     *
+     * <p><p>If this is enabled then, it will check for the contrast color and do color
+     * calculations according to that color so that this text view will always be visible on
+     * that background. If no contrast color is found then, it will take the default
+     * background color.
+     *
+     * @see Theme.BackgroundAware
+     * @see #mContrastWithColor
+     */
+    private @Theme.BackgroundAware int mBackgroundAware;
+
+    /**
+     * Color type applied to the background of this view.
+     *
+     * @see Theme.ColorType
+     */
+    private @Theme.ColorType int mBackgroundColorType;
+
+    /**
+     * Scroll bar color type applied to this view.
+     *
+     * @see Theme.ColorType
+     */
+    private @Theme.ColorType int mScrollBarColorType;
+
+    /**
+     * Normal item color type applied to this view.
+     *
+     * @see Theme.ColorType
+     */
+    private @Theme.ColorType int mStateNormalColorType;
+
+    /**
+     * Selected item color type applied to this view.
+     *
+     * @see Theme.ColorType
+     */
+    private @Theme.ColorType int mStateSelectedColorType;
+
+    /**
+     * Background color applied to this view.
+     */
+    private @ColorInt int mBackgroundColor;
+
+    /**
      * Scroll bar color applied to this view.
      */
     private @ColorInt int mScrollBarColor;
 
     /**
+     * Normal item color applied to this view.
+     */
+    private @ColorInt int mStateNormalColor;
+
+    /**
      * Selected item color applied to this view.
      */
-    private @ColorInt int mItemSelectedColor;
-
-    /**
-     * Background color for this view so that it will remain in
-     * contrast with this color.
-     */
-    private @ColorInt int mContrastWithColor;
-
-    /**
-     * {@code true} if this view will change its color according
-     * to the background. It was introduced to provide better legibility for
-     * colored texts and to avoid dark text on dark background like situations.
-     *
-     * <p>If this boolean is set then, it will check for the contrast color and
-     * do color calculations according to that color so that this text view will
-     * always be visible on that background. If no contrast color is found then,
-     * it will take default background color.</p>
-     *
-     * @see #mContrastWithColor
-     */
-    private boolean mBackgroundAware;
+    private @ColorInt int mStateSelectedColor;
 
     public DynamicNavigationView(@NonNull Context context) {
         this(context, null);
@@ -111,7 +142,7 @@ public class DynamicNavigationView extends NavigationView implements DynamicScro
     }
 
     public DynamicNavigationView(@NonNull Context context,
-                                 @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         loadFromAttributes(attrs);
@@ -123,29 +154,45 @@ public class DynamicNavigationView extends NavigationView implements DynamicScro
                 attrs, R.styleable.DynamicTheme);
 
         try {
-            mColorType = a.getInt(R.styleable.DynamicTheme_ads_colorType,
+            mBackgroundColorType = a.getInt(
+                    R.styleable.DynamicTheme_ads_backgroundColorType,
+                    Theme.ColorType.BACKGROUND);
+            mColorType = a.getInt(
+                    R.styleable.DynamicTheme_ads_colorType,
                     WidgetDefaults.ADS_COLOR_EDGE_EFFECT);
-            mScrollBarColorType = a.getInt(R.styleable.DynamicTheme_ads_scrollBarColorType,
+            mScrollBarColorType = a.getInt(
+                    R.styleable.DynamicTheme_ads_scrollBarColorType,
                     WidgetDefaults.ADS_COLOR_SCROLL_BAR);
-            mItemSelectedColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_itemSelectedColorType,
-                    DynamicColorType.ACCENT);
+            mStateNormalColorType = a.getInt(
+                    R.styleable.DynamicTheme_ads_stateNormalColorType,
+                    Theme.ColorType.TEXT_PRIMARY);
+            mStateSelectedColorType = a.getInt(
+                    R.styleable.DynamicTheme_ads_stateSelectedColorType,
+                    Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
                     R.styleable.DynamicTheme_ads_contrastWithColorType,
-                    DynamicColorType.BACKGROUND);
-            mColor = a.getColor(R.styleable.DynamicTheme_ads_color,
+                    Theme.ColorType.BACKGROUND);
+            mBackgroundColor = a.getColor(
+                    R.styleable.DynamicTheme_ads_backgroundColor,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
-            mScrollBarColor = a.getColor(R.styleable.DynamicTheme_ads_scrollBarColor,
+            mColor = a.getColor(
+                    R.styleable.DynamicTheme_ads_color,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
-            mItemSelectedColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_itemSelectedColor,
+            mScrollBarColor = a.getColor(
+                    R.styleable.DynamicTheme_ads_scrollBarColor,
+                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+            mStateNormalColor = a.getColor(
+                    R.styleable.DynamicTheme_ads_stateNormalColor,
+                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+            mStateSelectedColor = a.getColor(
+                    R.styleable.DynamicTheme_ads_stateSelectedColor,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicTheme_ads_contrastWithColor,
-                    WidgetDefaults.getDefaultContrastWithColor(getContext()));
-            mBackgroundAware = a.getBoolean(
+                    WidgetDefaults.getContrastWithColor(getContext()));
+            mBackgroundAware = a.getInteger(
                     R.styleable.DynamicTheme_ads_backgroundAware,
-                    WidgetDefaults.ADS_BACKGROUND_AWARE);
+                    WidgetDefaults.getBackgroundAware());
         } finally {
             a.recycle();
         }
@@ -155,85 +202,122 @@ public class DynamicNavigationView extends NavigationView implements DynamicScro
 
     @Override
     public void initialize() {
-        if (mColorType != DynamicColorType.NONE
-                && mColorType != DynamicColorType.CUSTOM) {
-            mColor = DynamicTheme.getInstance().getColorFromType(mColorType);
+        if (mBackgroundColorType != Theme.ColorType.NONE
+                && mBackgroundColorType != Theme.ColorType.CUSTOM) {
+            mBackgroundColor = DynamicTheme.getInstance()
+                    .resolveColorType(mBackgroundColorType);
         }
 
-        if (mScrollBarColorType != DynamicColorType.NONE
-                && mScrollBarColorType != DynamicColorType.CUSTOM) {
+
+        if (mColorType != Theme.ColorType.NONE
+                && mColorType != Theme.ColorType.CUSTOM) {
+            mColor = DynamicTheme.getInstance().resolveColorType(mColorType);
+        }
+
+        if (mScrollBarColorType != Theme.ColorType.NONE
+                && mScrollBarColorType != Theme.ColorType.CUSTOM) {
             mScrollBarColor = DynamicTheme.getInstance()
-                    .getColorFromType(mScrollBarColorType);
+                    .resolveColorType(mScrollBarColorType);
         }
 
-        if (mItemSelectedColorType != DynamicColorType.NONE
-                && mItemSelectedColorType != DynamicColorType.CUSTOM) {
-            mItemSelectedColor = DynamicTheme.getInstance()
-                    .getColorFromType(mItemSelectedColorType);
+        if (mStateNormalColorType != Theme.ColorType.NONE
+                && mStateNormalColorType != Theme.ColorType.CUSTOM) {
+            mStateNormalColor = DynamicTheme.getInstance()
+                    .resolveColorType(mStateNormalColorType);
         }
 
-        if (mContrastWithColorType != DynamicColorType.NONE
-                && mContrastWithColorType != DynamicColorType.CUSTOM) {
+        if (mStateSelectedColorType != Theme.ColorType.NONE
+                && mStateSelectedColorType != Theme.ColorType.CUSTOM) {
+            mStateSelectedColor = DynamicTheme.getInstance()
+                    .resolveColorType(mStateSelectedColorType);
+        }
+
+        if (mContrastWithColorType != Theme.ColorType.NONE
+                && mContrastWithColorType != Theme.ColorType.CUSTOM) {
             mContrastWithColor = DynamicTheme.getInstance()
-                    .getColorFromType(mContrastWithColorType);
+                    .resolveColorType(mContrastWithColorType);
         }
 
+        setBackgroundColor(mBackgroundColor);
         setColor(true);
-        setItemSelectedColor();
+        setStatesColor();
     }
 
     @Override
-    public @DynamicColorType int getColorType() {
+    public @Theme.ColorType int getBackgroundColorType() {
+        return mBackgroundColorType;
+    }
+
+    @Override
+    public void setBackgroundColorType(@Theme.ColorType int backgroundColorType) {
+        this.mBackgroundColorType = backgroundColorType;
+
+        initialize();
+    }
+
+    @Override
+    public @Theme.ColorType int getColorType() {
         return mColorType;
     }
 
     @Override
-    public void setColorType(@DynamicColorType int colorType) {
+    public void setColorType(@Theme.ColorType int colorType) {
         this.mColorType = colorType;
 
         initialize();
     }
 
     @Override
-    public @DynamicColorType int getScrollBarColorType() {
+    public @Theme.ColorType int getScrollBarColorType() {
         return mScrollBarColorType;
     }
 
     @Override
-    public void setScrollBarColorType(@DynamicColorType int scrollBarColorType) {
+    public void setScrollBarColorType(@Theme.ColorType int scrollBarColorType) {
         this.mScrollBarColorType = scrollBarColorType;
 
         initialize();
     }
 
-    /**
-     * @return The value of {@link #mItemSelectedColorType}.
-     */
-    public @DynamicColorType int getItemSelectedColorType() {
-        return mItemSelectedColorType;
+    @Override
+    public @Theme.ColorType int getStateNormalColorType() {
+        return mStateNormalColorType;
     }
 
-    /**
-     * Set the value of {@link #mItemSelectedColorType} and re-initialize this view.
-     *
-     * @param itemSelectedColorType for this view.
-     */
-    public void setItemSelectedColorType(int itemSelectedColorType) {
-        this.mItemSelectedColorType = itemSelectedColorType;
+    @Override
+    public void setStateNormalColorType(@Theme.ColorType int stateNormalColorType) {
+        this.mStateNormalColorType = stateNormalColorType;
 
         initialize();
     }
 
     @Override
-    public @DynamicColorType int getContrastWithColorType() {
+    public @Theme.ColorType int getStateSelectedColorType() {
+        return mStateSelectedColorType;
+    }
+
+    @Override
+    public void setStateSelectedColorType(@Theme.ColorType int stateSelectedColorType) {
+        this.mStateSelectedColorType = stateSelectedColorType;
+
+        initialize();
+    }
+
+    @Override
+    public @Theme.ColorType int getContrastWithColorType() {
         return mContrastWithColorType;
     }
 
     @Override
-    public void setContrastWithColorType(@DynamicColorType int contrastWithColorType) {
+    public void setContrastWithColorType(@Theme.ColorType int contrastWithColorType) {
         this.mContrastWithColorType = contrastWithColorType;
 
         initialize();
+    }
+
+    @Override
+    public @ColorInt int getBackgroundColor() {
+        return mBackgroundColor ;
     }
 
     @Override
@@ -243,11 +327,10 @@ public class DynamicNavigationView extends NavigationView implements DynamicScro
 
     @Override
     public void setColor(@ColorInt int color) {
-        this.mColorType = DynamicColorType.CUSTOM;
+        this.mColorType = Theme.ColorType.CUSTOM;
         this.mColor = color;
 
         setColor(false);
-        setItemSelectedColor();
     }
 
     @Override
@@ -257,29 +340,36 @@ public class DynamicNavigationView extends NavigationView implements DynamicScro
 
     @Override
     public void setScrollBarColor(@ColorInt int scrollBarColor) {
-        this.mScrollBarColorType = DynamicColorType.CUSTOM;
+        this.mScrollBarColorType = Theme.ColorType.CUSTOM;
         this.mScrollBarColor = scrollBarColor;
 
         setScrollBarColor();
     }
 
-    /**
-     * @return The value of {@link #mItemSelectedColor}.
-     */
-    public @ColorInt int getItemSelectedColor() {
-        return mItemSelectedColor;
+    @Override
+    public @ColorInt int getStateNormalColor() {
+        return mStateNormalColor;
     }
 
-    /**
-     * Set the value of {@link #mItemSelectedColor}.
-     *
-     * @param itemSelectedColor Text color for this view.
-     */
-    public void setItemSelectedColor(@ColorInt int itemSelectedColor) {
-        this.mItemSelectedColorType = DynamicColorType.CUSTOM;
-        this.mItemSelectedColor = itemSelectedColor;
+    @Override
+    public void setStateNormalColor(@ColorInt int stateNormalColor) {
+        this.mStateNormalColorType = Theme.ColorType.CUSTOM;
+        this.mStateNormalColor = stateNormalColor;
 
-        setItemSelectedColor();
+        setStatesColor();
+    }
+
+    @Override
+    public @ColorInt int getStateSelectedColor() {
+        return mStateSelectedColor;
+    }
+
+    @Override
+    public void setStateSelectedColor(@ColorInt int stateSelectedColor) {
+        this.mStateSelectedColorType = Theme.ColorType.CUSTOM;
+        this.mStateSelectedColor = stateSelectedColor;
+
+        setStatesColor();
     }
 
     @Override
@@ -289,30 +379,45 @@ public class DynamicNavigationView extends NavigationView implements DynamicScro
 
     @Override
     public void setContrastWithColor(@ColorInt int contrastWithColor) {
-        this.mContrastWithColorType = DynamicColorType.CUSTOM;
+        this.mContrastWithColorType = Theme.ColorType.CUSTOM;
         this.mContrastWithColor = contrastWithColor;
 
         setColor(true);
-        setItemSelectedColor();
+        setStatesColor();
     }
 
     @Override
-    public boolean isBackgroundAware() {
+    public void setBackgroundAware(@Theme.BackgroundAware int backgroundAware) {
+        this.mBackgroundAware = backgroundAware;
+
+        setColor();
+    }
+
+    @Override
+    public @Theme.BackgroundAware int getBackgroundAware() {
         return mBackgroundAware;
     }
 
     @Override
-    public void setBackgroundAware(boolean backgroundAware) {
-        this.mBackgroundAware = backgroundAware;
+    public boolean isBackgroundAware() {
+        return DynamicTheme.getInstance().resolveBackgroundAware(
+                mBackgroundAware) != Theme.BackgroundAware.DISABLE;
+    }
+
+    @Override
+    public void setBackgroundColor(@ColorInt int backgroundColor) {
+        super.setBackgroundColor(backgroundColor);
+
+        this.mBackgroundColorType = Theme.ColorType.CUSTOM;
 
         setColor(true);
-        setItemSelectedColor();
+        setStatesColor();
     }
 
     @Override
     public void setColor() {
         if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (mBackgroundAware && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
+            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
                 mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
@@ -323,7 +428,7 @@ public class DynamicNavigationView extends NavigationView implements DynamicScro
     @Override
     public void setScrollBarColor() {
         if (mScrollBarColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (mBackgroundAware && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
+            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
                 mScrollBarColor = DynamicColorUtils.getContrastColor(
                         mScrollBarColor, mContrastWithColor);
             }
@@ -345,20 +450,41 @@ public class DynamicNavigationView extends NavigationView implements DynamicScro
      * Set selected item color of this view according to the
      * supplied values.
      */
-    private void setItemSelectedColor() {
-        if (mItemSelectedColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (mBackgroundAware && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mItemSelectedColor = DynamicColorUtils.getContrastColor(
-                        mItemSelectedColor, mContrastWithColor);
+    public void setStatesColor() {
+        if (mStateSelectedColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
+            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
+                mStateNormalColor = DynamicColorUtils.getContrastColor(
+                        mStateNormalColor, mContrastWithColor);
+                mStateSelectedColor = DynamicColorUtils.getContrastColor(
+                        mStateSelectedColor, mContrastWithColor);
             }
 
-            setItemIconTintList(DynamicResourceUtils.convertColorStateListWithNormal(
-                    getItemIconTintList(),
-                    DynamicTheme.getInstance().getTintLocalBackgroundColor(),
-                    mItemSelectedColor));
+            if (DynamicVersionUtils.isLollipop()) {
+                if (DynamicTheme.getInstance().get().getCornerSizeDp()
+                        >= WidgetDefaults.ADS_CORNER_SELECTOR_ROUND) {
+                    setItemBackgroundResource(R.drawable.ads_list_selector_round);
+                } else if (DynamicTheme.getInstance().get().getCornerSizeDp()
+                        >= WidgetDefaults.ADS_CORNER_SELECTOR_RECT) {
+                    setItemBackgroundResource(R.drawable.ads_list_selector_rect);
+                } else {
+                    setItemBackgroundResource(R.drawable.ads_list_selector);
+                }
 
-            setItemTextColor(DynamicResourceUtils.convertColorStateList(
-                    getItemTextColor(), mItemSelectedColor));
+                DynamicDrawableUtils.colorizeDrawable(getItemBackground(),
+                        DynamicColorUtils.getLighterColor(DynamicColorUtils.adjustAlpha(
+                                mStateSelectedColor, WidgetDefaults.ADS_ALPHA_SELECTED),
+                                WidgetDefaults.ADS_STATE_LIGHT));
+            }
+
+            if (getItemIconTintList() != null) {
+                setItemIconTintList(DynamicResourceUtils.convertColorStateListWithNormal(
+                        getItemIconTintList(), mStateNormalColor, mStateSelectedColor));
+            }
+
+            if (getItemTextColor() != null) {
+                setItemTextColor(DynamicResourceUtils.convertColorStateListWithNormal(
+                        getItemTextColor(), mStateNormalColor, mStateSelectedColor));
+            }
         }
     }
 }

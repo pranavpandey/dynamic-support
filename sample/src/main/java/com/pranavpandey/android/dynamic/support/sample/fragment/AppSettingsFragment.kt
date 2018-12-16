@@ -28,8 +28,7 @@ import com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
 import com.pranavpandey.android.dynamic.utils.DynamicWindowUtils
 
 /**
- * App Settings fragment to control theme settings by using
- * [DynamicFragment].
+ * App Settings fragment to control theme settings by using [DynamicFragment].
  */
 class AppSettingsFragment : DynamicFragment() {
 
@@ -46,6 +45,8 @@ class AppSettingsFragment : DynamicFragment() {
     companion object {
 
         /**
+         * Returns the new instance of this fragment.
+         *
          * @return The new instance of [AppSettingsFragment].
          */
         fun newInstance(): AppSettingsFragment {
@@ -78,8 +79,7 @@ class AppSettingsFragment : DynamicFragment() {
     }
 
     /**
-     * Enable or disable day and night theme according to
-     * the app theme.
+     * Enable or disable day and night theme according to the app theme.
      */
     private fun updatePreferences() {
         if (SampleTheme.isAutoTheme) {

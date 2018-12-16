@@ -21,17 +21,17 @@ import android.app.Service;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.annotation.RestrictTo;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.view.TintableBackgroundView;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.AppCompatEditText;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.RestrictTo;
+import androidx.core.view.TintableBackgroundView;
+import androidx.core.view.ViewCompat;
+
+import com.google.android.material.textfield.TextInputLayout;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
@@ -41,12 +41,11 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
- * Helper class to tint the various input widgets like {@link EditText}, etc.
- * dynamically by using reflection. It will be used to match the color with
- * the app's theme.
+ * Helper class to tint the various input widgets like {@link EditText}, etc. dynamically
+ * by using reflection. It will be used to match the color with the app's theme.
  */
 @RestrictTo(LIBRARY_GROUP)
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -55,13 +54,12 @@ public final class DynamicInputUtils {
     /**
      * Set cursor color for the supplied {@link EditText}.
      *
-     * @param editText The EditText to set the cursor color.
+     * @param editText The edit text to set the cursor color.
      * @param color The color for the cursor.
      */
-    private static void setCursorColor(final @NonNull EditText editText,
-                                       @ColorInt final int color) {
+    private static void setCursorColor(final @NonNull EditText editText, @ColorInt int color) {
         @ColorInt int hintColor = DynamicColorUtils.adjustAlpha(
-                color, WidgetDefaults.ADS_ALPHA_UNCHECKED);
+                color, WidgetDefaults.ADS_ALPHA_HINT);
         editText.setHintTextColor(hintColor);
         editText.setHighlightColor(DynamicColorUtils.getContrastColor(
                 hintColor, editText.getCurrentTextColor()));
@@ -115,18 +113,16 @@ public final class DynamicInputUtils {
     }
 
     /**
-     * Tint an {@link EditText} by changing its cursor, hint, etc. colors
-     * according to the supplied color.
+     * Tint an {@link EditText} by changing its cursor, hint, etc. colors according to the
+     * supplied color.
      *
-     * @param editText The EditText to be colorized.
+     * @param editText The edit text to be colorized.
      * @param color The color to be used.
      */
     public static void setColor(@NonNull EditText editText, @ColorInt int color) {
-        final ColorStateList editTextColorStateList =
-                DynamicResourceUtils.getColorStateListWithStates(color);
+        ColorStateList editTextColorStateList = DynamicResourceUtils.getColorStateList(color);
 
-        if (editText instanceof AppCompatEditText
-                || editText instanceof TintableBackgroundView) {
+        if (editText instanceof TintableBackgroundView) {
             ViewCompat.setBackgroundTintList(editText, editTextColorStateList);
         } else if (DynamicVersionUtils.isLollipop()) {
             editText.setBackgroundTintList(editTextColorStateList);
@@ -138,7 +134,7 @@ public final class DynamicInputUtils {
     /**
      * Set hint color for the supplied {@link TextInputLayout}.
      *
-     * @param textInputLayout The TextInputLayout to set the hint color.
+     * @param textInputLayout The text input layout to set the hint color.
      * @param color The color to be used.
      */
     public static void setHint(@NonNull TextInputLayout textInputLayout, @ColorInt int color) {
@@ -152,35 +148,28 @@ public final class DynamicInputUtils {
                             "updateLabelState", boolean.class, boolean.class);
             updateLabelStateMethod.setAccessible(true);
             updateLabelStateMethod.invoke(textInputLayout, false, true);
-        } catch (Throwable t) {
-            throw new IllegalStateException(
-                    "Unable to set the TextInputLayout hint (collapsed) color: "
-                            + t.getLocalizedMessage(), t);
+        } catch (Exception ignored) {
         }
     }
 
     /**
-     * Tint an {@link TextInputLayout} by changing its label and focus
-     * colors according to the supplied color.
+     * Tint an {@link TextInputLayout} by changing its label and focus colors according to the
+     * supplied color.
      *
-     * @param textInputLayout The TextInputLayout to be colorized.
+     * @param textInputLayout The text input layout to be colorized.
      * @param color The color to be used.
      */
     public static void setColor(@NonNull TextInputLayout textInputLayout, @ColorInt int color) {
         try {
-            final Field focusedTextColorField =
+            Field focusedTextColorField =
                     TextInputLayout.class.getDeclaredField("focusedTextColor");
             focusedTextColorField.setAccessible(true);
             focusedTextColorField.set(textInputLayout, ColorStateList.valueOf(color));
-            final Method updateLabelStateMethod =
-                    TextInputLayout.class.getDeclaredMethod(
-                            "updateLabelState", boolean.class, boolean.class);
+            Method updateLabelStateMethod = TextInputLayout.class.getDeclaredMethod(
+                    "updateLabelState", boolean.class, boolean.class);
             updateLabelStateMethod.setAccessible(true);
             updateLabelStateMethod.invoke(textInputLayout, false, true);
-        } catch (Throwable t) {
-            throw new IllegalStateException(
-                    "Unable to set the TextInputLayout hint (expanded) color: "
-                            + t.getLocalizedMessage(), t);
+        } catch (Exception ignored) {
         }
 
         if (textInputLayout.getEditText() != null) {
@@ -190,10 +179,9 @@ public final class DynamicInputUtils {
     }
 
     /**
-     * Show the soft input keyboard and focus it on the supplied
-     * {@link EditText}.
+     * Show the soft input keyboard and focus it on the supplied {@link EditText}.
      *
-     * @param editText The EditText to show the soft input.
+     * @param editText The edit text to show the soft input.
      */
     public static void showSoftInput(final @NonNull EditText editText) {
         editText.requestFocus();
@@ -212,10 +200,9 @@ public final class DynamicInputUtils {
     }
 
     /**
-     * Hide the soft input keyboard and remove focus from the supplied
-     * {@link EditText}.
+     * Hide the soft input keyboard and remove focus from the supplied {@link EditText}.
      *
-     * @param editText The EditText to clear the focus.
+     * @param editText The edit text to clear the focus.
      */
     public static void hideSoftInput(final @NonNull EditText editText) {
         editText.clearFocus();

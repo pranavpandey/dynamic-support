@@ -23,8 +23,7 @@ import com.pranavpandey.android.dynamic.support.sample.binder.AuthorInfoBinder
 import com.pranavpandey.android.dynamic.support.sample.binder.TranslatorsBinder
 
 /**
- * A binder adapter to display a list of [DynamicInfo] by
- * using [DynamicSimpleBinderAdapter].
+ * A binder adapter to display a list of [DynamicInfo] by using [DynamicSimpleBinderAdapter].
  */
 class AppInfoAdapter : DynamicSimpleBinderAdapter() {
 

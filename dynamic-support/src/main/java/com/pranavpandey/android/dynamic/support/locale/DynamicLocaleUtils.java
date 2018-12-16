@@ -21,9 +21,10 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.os.ConfigurationCompat;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.os.ConfigurationCompat;
 
 import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
@@ -45,6 +46,11 @@ public class DynamicLocaleUtils {
     public static final String ADS_LOCALE_SPANISH = "es";
 
     /**
+     * Constant value for the Indonesian (Indonesia) locale.
+     */
+    public static final String ADS_LOCALE_INDONESIA = "in";
+
+    /**
      * Constant value for the Turkish (Türkçe) locale.
      */
     public static final String ADS_LOCALE_TURKISH = "tr";
@@ -55,13 +61,12 @@ public class DynamicLocaleUtils {
     public static final String ADE_LOCALE_SPLIT = ",";
 
     /**
-     * Get locale from the locale string in the format:
-     * {@code language,region}
+     * Get locale from the locale string in the format: {@code language,region}.
      *
      * @param locale The locale string to be converted.
      *
      * @return The converted locale from the locale string.
-     *         Return {@code null} for the default locale value.
+     *         <p>Return {@code null} for the default locale value.
      *
      * @see #ADS_LOCALE_SYSTEM
      */
@@ -70,7 +75,7 @@ public class DynamicLocaleUtils {
         if (locale == null || locale.equals(DynamicLocaleUtils.ADS_LOCALE_SYSTEM)) {
             localeWithRegion = null;
         } else {
-            String localeFormat[] = locale.split(ADE_LOCALE_SPLIT);
+            String[] localeFormat = locale.split(ADE_LOCALE_SPLIT);
             localeWithRegion = new Locale(localeFormat[0]);
             if (localeFormat.length > 1) {
                 localeWithRegion = new Locale(localeFormat[0], localeFormat[1]);
@@ -88,27 +93,28 @@ public class DynamicLocaleUtils {
      *
      * @return The default locale according to the supported locales.
      */
-    public static @NonNull Locale getDefaultLocale(@NonNull Context context,
-                                                   @Nullable String[] supportedLocales) {
+    public static @NonNull Locale getDefaultLocale(
+            @NonNull Context context, @Nullable String[] supportedLocales) {
         if (supportedLocales == null) {
             return ConfigurationCompat.getLocales(
                     Resources.getSystem().getConfiguration()).get(0);
         } else {
-            return ConfigurationCompat.getLocales(
-                    Resources.getSystem().getConfiguration())
-                    .getFirstMatch(supportedLocales);
+            Locale defaultLocale = ConfigurationCompat.getLocales(
+                    Resources.getSystem().getConfiguration()).getFirstMatch(supportedLocales);
+            return defaultLocale != null ? defaultLocale : Locale.getDefault();
         }
     }
 
     /**
-     * @return The locale after performing safety checks.
+     * Returns the locale after performing safety checks.
      *
      * @param locale The locale to be checked.
-     * @param defaultLocale The default locale if current locale does
-     *                      not passes checks.
+     * @param defaultLocale The default locale if current locale does not passes checks.
+     *
+     * @return The locale after performing safety checks.
      */
     public static @NonNull Locale getLocale(@Nullable Locale locale,
-                                            @NonNull Locale defaultLocale) {
+            @NonNull Locale defaultLocale) {
         return locale == null ? defaultLocale : locale;
     }
 
@@ -120,8 +126,7 @@ public class DynamicLocaleUtils {
      *
      * @return The modified context after applying the locale.
      */
-    public static @NonNull Context setLocale(
-            @NonNull Context context, @Nullable Locale locale) {
+    public static @NonNull Context setLocale(@NonNull Context context, @Nullable Locale locale) {
         if (locale == null) {
             return context;
         }
@@ -134,13 +139,11 @@ public class DynamicLocaleUtils {
     }
 
     /**
-     * Update resources for a given context after setting the
-     * locale on {@link Build.VERSION_CODES#JELLY_BEAN_MR1} or
-     * above devices.
+     * Update resources for a given context after setting the locale on
+     * {@link Build.VERSION_CODES#JELLY_BEAN_MR1} or above devices.
      *
      * @param context The context to set update resources.
-     * @param locale The locale to be used for the context
-     *               resources.
+     * @param locale The locale to be used for the context resources.
      *
      * @return The modified context after applying the locale.
      */
@@ -164,13 +167,11 @@ public class DynamicLocaleUtils {
     }
 
     /**
-     * Update resources for a given context after setting the
-     * locale on {@link Build.VERSION_CODES#JELLY_BEAN} or
-     * below devices.
+     * Update resources for a given context after setting the locale on
+     * {@link Build.VERSION_CODES#JELLY_BEAN} or below devices.
      *
      * @param context The context to set update resources.
-     * @param locale The locale to be used for the context
-     *               resources.
+     * @param locale The locale to be used for the context resources.
      *
      * @return The modified context after applying the locale.
      */

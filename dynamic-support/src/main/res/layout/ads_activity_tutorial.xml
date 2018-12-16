@@ -15,7 +15,7 @@
 	limitations under the License.
 -->
 
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ads_coordinator_layout"
@@ -35,7 +35,7 @@
             android:layout_height="0dp"
             android:layout_weight="1.0"
             android:overScrollMode="never"
-            app:ads_backgroundAware="false" />
+            app:ads_backgroundAware="disable" />
 
         <LinearLayout
             android:id="@+id/ads_tutorial_footer"
@@ -52,10 +52,10 @@
                 android:layout_marginRight="@dimen/ads_icon_small"
                 android:layout_marginEnd="@dimen/ads_icon_small"
                 android:layout_gravity="start|center_vertical"
-                android:background="?attr/selectableItemBackgroundBorderless"
+                style="@style/Widget.DynamicApp.Button.ImageButton"
                 app:srcCompat="@drawable/ads_ic_chevron_left"
-                app:ads_backgroundAware="false"
-                style="@style/Widget.DynamicApp.Button.Borderless" />
+                app:ads_backgroundAware="disable"
+                app:ads_tintBackground="true" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -70,8 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/ads_margin_medium"
-                    android:singleLine="true"
-                    app:ads_backgroundAware="false"
+                    app:ads_backgroundAware="disable"
                     style="@style/Widget.DynamicApp.Button"
                     android:visibility="gone" />
 
@@ -89,13 +88,13 @@
                 android:layout_marginLeft="@dimen/ads_icon_small"
                 android:layout_marginStart="@dimen/ads_icon_small"
                 android:layout_gravity="start|center_vertical"
-                android:background="?attr/selectableItemBackgroundBorderless"
+                style="@style/Widget.DynamicApp.Button.ImageButton"
                 app:srcCompat="@drawable/ads_ic_chevron_right"
-                app:ads_backgroundAware="false"
-                style="@style/Widget.DynamicApp.Button.Borderless" />
+                app:ads_backgroundAware="disable"
+                app:ads_tintBackground="true" />
 
         </LinearLayout>
 
     </LinearLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

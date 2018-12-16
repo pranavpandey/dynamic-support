@@ -18,23 +18,42 @@
 <resources>
 
     <!-- Application theme -->
-    <style name="Base" />
+    <style name="Base" parent="Base.Theme.MaterialComponents" />
 
-    <style name="Base.DynamicApp" parent="Theme.AppCompat">
+    <style name="Base.DynamicApp" parent="Theme.MaterialComponents">
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowBackground">@color/ads_window_background</item>
         <item name="android:colorBackground">@color/ads_window_background</item>
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp</item>
-        <item name="android:textAppearanceMedium">@style/TextAppearance.DynamicApp.Subtitle</item>
-        <item name="android:textAppearanceSmall">@style/TextAppearance.DynamicApp.Description</item>
+        <item name="android:textAppearanceMedium">@style/TextAppearance.DynamicApp.Subtitle1</item>
+        <item name="android:textAppearanceSmall">@style/TextAppearance.DynamicApp.Body1</item>
         <item name="background">@color/ads_window_background</item>
+        <item name="toolbarStyle">@style/Widget.DynamicApp.Toolbar</item>
+        <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
+        <item name="textAppearanceLargePopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
+        <item name="textAppearancePopupMenuHeader">@style/TextAppearance.DynamicApp.Subtitle2.Secondary</item>
+        <item name="textAppearanceHeadline1">@style/TextAppearance.DynamicApp.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.DynamicApp.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.DynamicApp.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.DynamicApp.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.DynamicApp.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.DynamicApp.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.DynamicApp.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.DynamicApp.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.DynamicApp.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.DynamicApp.Body2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.DynamicApp.Caption</item>
+        <item name="textAppearanceButton">@style/TextAppearance.DynamicApp.Button</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.DynamicApp.Overline</item>
         <item name="alertDialogStyle">@style/Base.DynamicApp.AlertDialog</item>
-        <item name="buttonBarNeutralButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
-        <item name="buttonBarPositiveButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
-        <item name="buttonBarNegativeButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
+        <item name="ads_colorControlNormal">@color/ads_color_control</item>
         <item name="ads_contrastWithDefault">@color/ads_contrast_with</item>
         <item name="ads_cardBackgroundColor">@color/ads_card_background</item>
-        <item name="ads_cardCornerRadius">@dimen/ads_card_view_corner_radius</item>
+        <item name="ads_cornerRadius">@dimen/ads_corner_radius</item>
+        <item name="ads_cardCornerRadius">@dimen/ads_corner_radius</item>
         <item name="ads_cardElevation">@dimen/ads_card_view_elevation</item>
     </style>
 
@@ -47,39 +66,77 @@
         <item name="ads_cardBackgroundColor">@color/ads_card_background_dark</item>
     </style>
 
-    <style name="Base.DynamicApp.Light" parent="Theme.AppCompat.Light">
+    <style name="Base.DynamicApp.Light" parent="Theme.MaterialComponents.Light">
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowBackground">@color/ads_window_background_light</item>
         <item name="android:colorBackground">@color/ads_window_background_light</item>
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp</item>
-        <item name="android:textAppearanceMedium">@style/TextAppearance.DynamicApp.Subtitle</item>
-        <item name="android:textAppearanceSmall">@style/TextAppearance.DynamicApp.Description</item>
+        <item name="android:textAppearanceMedium">@style/TextAppearance.DynamicApp.Subtitle1</item>
+        <item name="android:textAppearanceSmall">@style/TextAppearance.DynamicApp.Body1</item>
         <item name="background">@color/ads_window_background_light</item>
+        <item name="toolbarStyle">@style/Widget.DynamicApp.Toolbar</item>
+        <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
+        <item name="textAppearanceLargePopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
+        <item name="textAppearancePopupMenuHeader">@style/TextAppearance.DynamicApp.Subtitle2.Secondary</item>
+        <item name="textAppearanceHeadline1">@style/TextAppearance.DynamicApp.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.DynamicApp.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.DynamicApp.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.DynamicApp.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.DynamicApp.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.DynamicApp.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.DynamicApp.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.DynamicApp.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.DynamicApp.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.DynamicApp.Body2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.DynamicApp.Caption</item>
+        <item name="textAppearanceButton">@style/TextAppearance.DynamicApp.Button</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.DynamicApp.Overline</item>
         <item name="alertDialogStyle">@style/Base.DynamicApp.AlertDialog</item>
-        <item name="buttonBarNeutralButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
-        <item name="buttonBarPositiveButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
-        <item name="buttonBarNegativeButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
+        <item name="ads_colorControlNormal">@color/ads_color_control_light</item>
         <item name="ads_contrastWithDefault">@color/ads_contrast_with_light</item>
         <item name="ads_cardBackgroundColor">@color/ads_card_background_light</item>
-        <item name="ads_cardCornerRadius">@dimen/ads_card_view_corner_radius</item>
+        <item name="ads_cornerRadius">@dimen/ads_corner_radius</item>
+        <item name="ads_cardCornerRadius">@dimen/ads_corner_radius</item>
         <item name="ads_cardElevation">@dimen/ads_card_view_elevation</item>
     </style>
 
-    <style name="Base.DynamicApp.DayNight" parent="Theme.AppCompat.DayNight">
+    <style name="Base.DynamicApp.DayNight" parent="Theme.MaterialComponents.DayNight">
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowBackground">@color/ads_window_background_day_night</item>
         <item name="android:colorBackground">@color/ads_window_background_day_night</item>
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp</item>
-        <item name="android:textAppearanceMedium">@style/TextAppearance.DynamicApp.Subtitle</item>
-        <item name="android:textAppearanceSmall">@style/TextAppearance.DynamicApp.Description</item>
+        <item name="android:textAppearanceMedium">@style/TextAppearance.DynamicApp.Subtitle1</item>
+        <item name="android:textAppearanceSmall">@style/TextAppearance.DynamicApp.Body1</item>
         <item name="background">@color/ads_window_background_day_night</item>
+        <item name="toolbarStyle">@style/Widget.DynamicApp.Toolbar</item>
+        <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
+        <item name="textAppearanceLargePopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
+        <item name="textAppearancePopupMenuHeader">@style/TextAppearance.DynamicApp.Subtitle2.Secondary</item>
+        <item name="textAppearanceHeadline1">@style/TextAppearance.DynamicApp.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.DynamicApp.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.DynamicApp.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.DynamicApp.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.DynamicApp.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.DynamicApp.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.DynamicApp.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.DynamicApp.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.DynamicApp.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.DynamicApp.Body2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.DynamicApp.Caption</item>
+        <item name="textAppearanceButton">@style/TextAppearance.DynamicApp.Button</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.DynamicApp.Overline</item>
         <item name="alertDialogStyle">@style/Base.DynamicApp.AlertDialog</item>
-        <item name="buttonBarNeutralButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
-        <item name="buttonBarPositiveButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
-        <item name="buttonBarNegativeButtonStyle">@style/Widget.DynamicApp.Button.Borderless</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
+        <item name="ads_colorControlNormal">@color/ads_color_control_day_night</item>
         <item name="ads_contrastWithDefault">@color/ads_contrast_with_day_night</item>
         <item name="ads_cardBackgroundColor">@color/ads_card_background_day_night</item>
-        <item name="ads_cardCornerRadius">@dimen/ads_card_view_corner_radius</item>
+        <item name="ads_cornerRadius">@dimen/ads_corner_radius</item>
+        <item name="ads_cardCornerRadius">@dimen/ads_corner_radius</item>
         <item name="ads_cardElevation">@dimen/ads_card_view_elevation</item>
     </style>
 
@@ -125,6 +182,7 @@
         <item name="listItemLayout">@layout/ads_dialog_select_item</item>
         <item name="multiChoiceItemLayout">@layout/ads_dialog_multi_choice</item>
         <item name="singleChoiceItemLayout">@layout/ads_dialog_single_choice</item>
+        <item name="buttonIconDimen">@dimen/ads_dialog_button_icon_size</item>
     </style>
 
     <style name="Theme.DynamicApp" parent="Base.DynamicApp.NoActionBar" />
@@ -138,130 +196,287 @@
     <style name="Theme.DynamicApp.DayNight.Translucent" />
 
     <!-- Text Appearance -->
-    <style name="TextAppearance" parent="TextAppearance.AppCompat" />
+    <style name="TextAppearance" parent="TextAppearance.MaterialComponents.Body1" />
+
     <style name="TextAppearance.DynamicApp">
         <item name="android:textSize">@dimen/ads_font_size_default</item>
     </style>
 
-    <style name="TextAppearance.DynamicApp.Title" parent="TextAppearance.AppCompat.Headline">
-        <item name="android:textSize">@dimen/ads_font_size_title</item>
+    <style name="TextAppearance.DynamicApp.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:textSize">@dimen/ads_font_size_headline1</item>
     </style>
 
-    <style name="TextAppearance.DynamicApp.Title.Bold" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textSize">@dimen/ads_font_size_title</item>
+    <style name="TextAppearance.DynamicApp.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="android:textSize">@dimen/ads_font_size_headline2</item>
     </style>
 
-    <style name="TextAppearance.DynamicApp.Subtitle" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:textSize">@dimen/ads_font_size_subtitle</item>
+    <style name="TextAppearance.DynamicApp.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:textSize">@dimen/ads_font_size_headline3</item>
     </style>
 
-    <style name="TextAppearance.DynamicApp.Subtitle.Secondary">
-        <item name="android:textColor">?android:textColorSecondary</item>
+    <style name="TextAppearance.DynamicApp.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textSize">@dimen/ads_font_size_headline4</item>
     </style>
 
-    <style name="TextAppearance.DynamicApp.Subtitle.Caps">
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textSize">@dimen/ads_font_size_extra_small</item>
+    <style name="TextAppearance.DynamicApp.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textSize">@dimen/ads_font_size_headline5</item>
     </style>
 
-    <style name="TextAppearance.DynamicApp.Description" parent="TextAppearance.AppCompat.Small">
-        <item name="android:textSize">@dimen/ads_font_size_description</item>
+    <style name="TextAppearance.DynamicApp.Headline5.Tutorial">
+        <item name="android:textSize">@dimen/ads_font_size_headline5_tutorial</item>
     </style>
 
-    <style name="TextAppearance.DynamicApp.Header" parent="TextAppearance.DynamicApp.Title.Bold">
-        <item name="android:textSize">@dimen/ads_font_size_extra_small</item>
-    </style>
-
-    <style name="TextAppearance.DynamicApp.Header.Drawer">
-        <item name="android:textSize">@dimen/ads_font_size_normal</item>
-    </style>
-
-    <style name="TextAppearance.DynamicApp.Title.Bold.Splash">
-        <item name="android:textSize">@dimen/ads_font_size_splash_title</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:alpha">0.8</item>
-        <item name="ads_colorType">tint_primary</item>
-    </style>
-
-    <style name="TextAppearance.DynamicApp.Title.Tutorial">
-        <item name="android:textSize">@dimen/ads_font_size_tutorial_title</item>
-    </style>
-
-    <style name="TextAppearance.DynamicApp.Subtitle.Tutorial">
-        <item name="android:textSize">@dimen/ads_font_size_tutorial_subtitle</item>
-    </style>
-
-    <style name="TextAppearance.DynamicApp.Description.Tutorial">
-        <item name="android:textSize">@dimen/ads_font_size_tutorial_description</item>
-    </style>
-
-    <style name="TextAppearance.DynamicApp.Title.Card">
+    <style name="TextAppearance.DynamicApp.Headline5.Card">
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="TextAppearance.DynamicApp.Title.Card.Info">
-        <item name="android:textSize">@dimen/ads_font_size_title_info</item>
+    <style name="TextAppearance.DynamicApp.Headline5.Card.Info">
+        <item name="android:textSize">@dimen/ads_font_size_headline5_card_info</item>
     </style>
 
-    <style name="TextAppearance.DynamicApp.Subtitle.Splash">
-        <item name="android:textSize">@dimen/ads_font_size_splash_subtitle</item>
+    <style name="TextAppearance.DynamicApp.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textSize">@dimen/ads_font_size_headline6</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Headline6.Splash">
+        <item name="textAllCaps">true</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/ads_font_size_headline6_splash</item>
         <item name="android:alpha">0.8</item>
         <item name="ads_colorType">tint_primary</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textSize">@dimen/ads_font_size_subtitle1</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Subtitle1.Toolbar">
+        <item name="android:textSize">@dimen/ads_font_size_subtitle1_toolbar</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Subtitle1.Secondary">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Subtitle1.Caps">
+        <item name="textAllCaps">true</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/ads_font_size_caption</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Subtitle1.Splash">
+        <item name="android:textSize">@dimen/ads_font_size_subtitle1_splash</item>
+        <item name="android:alpha">0.8</item>
+        <item name="ads_colorType">tint_primary</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Subtitle1.Tutorial">
+        <item name="android:textSize">@dimen/ads_font_size_subtitle1_tutorial</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Subtitle1.Secondary.Caps">
+        <item name="textAllCaps">true</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/ads_font_size_caption</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textSize">@dimen/ads_font_size_subtitle2</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Subtitle2.Secondary">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="android:textSize">@dimen/ads_font_size_body1</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Body1.Tutorial">
+        <item name="android:textSize">@dimen/ads_font_size_body1_tutorial</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textSize">@dimen/ads_font_size_body2</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">@dimen/ads_font_size_caption</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Caption.Drawer">
+        <item name="android:textSize">@dimen/ads_font_size_normal</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textSize">@dimen/ads_font_size_button</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Overline" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="android:textSize">@dimen/ads_font_size_caption</item>
     </style>
 
     <style name="TextAppearance.DynamicApp.PreferenceValue">
         <item name="android:textSize">@dimen/ads_font_size_preference_value</item>
         <item name="ads_colorType">accent</item>
-        <item name="ads_backgroundAware">true</item>
         <item name="ads_contrastWithColor">?attr/ads_contrastWithDefault</item>
     </style>
 
-    <style name="TextAppearance.DynamicApp.Dialog" parent="TextAppearance.AppCompat.Subhead">
+    <style name="TextAppearance.DynamicApp.Dialog" parent="TextAppearance.DynamicApp.Body1">
+        <item name="android:textColor">?android:textColorSecondary</item>
         <item name="android:textSize">@dimen/ads_dialog_font_size</item>
     </style>
 
-    <style name="TextAppearance.DynamicApp.CollapsingToolbar.Expanded"
-        parent="TextAppearance.Design.CollapsingToolbar.Expanded" />
+    <style name="TextAppearance.DynamicApp.Toolbar" parent="TextAppearance.DynamicApp.Headline6">
+        <item name="android:textSize">@dimen/ads_font_size_headline6_toolbar</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Toolbar.Expanded" parent="TextAppearance.DynamicApp.Headline5">
+        <item name="android:textSize">@dimen/ads_font_size_headline6_toolbar_expanded</item>
+    </style>
+
+    <style name="TextAppearance.DynamicApp.Toolbar.Subtitle" parent="TextAppearance.DynamicApp.Subtitle1.Secondary">
+        <item name="android:textSize">@dimen/ads_font_size_subtitle1_toolbar</item>
+    </style>
 
     <!-- Widget -->
-    <style name="Base.Widget" />
-    <style name="Widget" parent="Base.Widget" />
+    <style name="Base.Widget" parent="android:Widget" />
+    <style name="Widget" parent="Base.Widget"/>
     <style name="Widget.DynamicApp" />
     <style name="Widget.DynamicApp.Content" />
     <style name="Widget.DynamicApp.Image" />
     <style name="Widget.DynamicApp.Image.Card" />
 
-    <style name="Widget.DynamicApp.Button" parent="Widget.AppCompat.Button">
-        <item name="android:textSize">@dimen/ads_font_size_button</item>
+    <style name="Widget.DynamicApp.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.DynamicApp.Toolbar</item>
+        <item name="subtitleTextAppearance">@style/TextAppearance.DynamicApp.Toolbar.Subtitle</item>
     </style>
 
-    <style name="Widget.DynamicApp.Button.Borderless" parent="@style/Widget.AppCompat.Button.Borderless">
-        <item name="android:textSize">@dimen/ads_font_size_button</item>
+    <style name="Widget.DynamicApp.NavigationView">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="itemBackground">@null</item>
+    </style>
+
+    <style name="Widget.DynamicApp.NavigationView.ThemeOverlay">
+        <item name="selectableItemBackground">@null</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:insetLeft">@dimen/ads_margin_tiny</item>
+        <item name="android:insetRight">@dimen/ads_margin_tiny</item>
+        <item name="android:textAppearance">@style/TextAppearance.DynamicApp.Button</item>
+        <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
+        <item name="ads_colorType">accent</item>
+        <item name="ads_tintBackground">true</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Button.Preference">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/ads_margin_small</item>
+        <item name="android:layout_marginLeft">@dimen/ads_button_preference_card_margin_start</item>
+        <item name="android:layout_gravity">start|left</item>
+        <item name="ads_colorType">primary</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Button.Remote">
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:padding">@dimen/ads_margin_tiny</item>
+        <item name="android:background">@drawable/ads_button_remote</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Button.Remote.Borderless">
+        <item name="android:background">@drawable/ads_button_remote_borderless</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Button.Icon" parent="Widget.MaterialComponents.Button.Icon">
+        <item name="android:insetLeft">@dimen/ads_margin_tiny</item>
+        <item name="android:insetRight">@dimen/ads_margin_tiny</item>
+        <item name="android:textAppearance">@style/TextAppearance.DynamicApp.Button</item>
+        <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
+        <item name="ads_colorType">accent</item>
+        <item name="ads_tintBackground">true</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Button.UnelevatedButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:insetLeft">@dimen/ads_margin_tiny</item>
+        <item name="android:insetRight">@dimen/ads_margin_tiny</item>
+        <item name="android:textAppearance">@style/TextAppearance.DynamicApp.Button</item>
+        <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
+        <item name="ads_colorType">accent</item>
+        <item name="ads_tintBackground">true</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Button.UnelevatedButton.Icon" parent="Widget.MaterialComponents.Button.UnelevatedButton.Icon">
+        <item name="android:insetLeft">@dimen/ads_margin_tiny</item>
+        <item name="android:insetRight">@dimen/ads_margin_tiny</item>
+        <item name="android:textAppearance">@style/TextAppearance.DynamicApp.Button</item>
+        <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
+        <item name="ads_colorType">accent</item>
+        <item name="ads_tintBackground">true</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:insetLeft">@dimen/ads_margin_tiny</item>
+        <item name="android:insetRight">@dimen/ads_margin_tiny</item>
+        <item name="android:textAppearance">@style/TextAppearance.DynamicApp.Button</item>
+        <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
         <item name="ads_styleBorderless">true</item>
         <item name="ads_colorType">accent</item>
+        <item name="ads_tintBackground">true</item>
     </style>
 
-    <style name="Widget.DynamicApp.Button.Colored" parent="@style/Widget.AppCompat.Button.Colored">
-        <item name="android:textSize">@dimen/ads_font_size_button</item>
+    <style name="Widget.DynamicApp.Button.TextButton.Icon" parent="Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="android:insetLeft">@dimen/ads_margin_tiny</item>
+        <item name="android:insetRight">@dimen/ads_margin_tiny</item>
+        <item name="android:textAppearance">@style/TextAppearance.DynamicApp.Button</item>
+        <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
+        <item name="ads_styleBorderless">true</item>
         <item name="ads_colorType">accent</item>
+        <item name="ads_tintBackground">true</item>
     </style>
 
-    <style name="Widget.DynamicApp.Card">
+    <style name="Widget.DynamicApp.Button.TextButton.Dialog" />
+
+    <style name="Widget.DynamicApp.Button.ImageButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:padding">0dp</item>
+        <item name="android:background">?selectableItemBackground</item>
+        <item name="ads_styleBorderless">true</item>
+        <item name="ads_tintBackground">false</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Card" parent="Widget.MaterialComponents.CardView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginRight">@dimen/ads_card_view_margin_horizontal</item>
         <item name="android:layout_marginBottom">@dimen/ads_card_view_margin_bottom</item>
+        <item name="android:clipToPadding">false</item>
         <item name="cardBackgroundColor">?ads_cardBackgroundColor</item>
         <item name="cardCornerRadius">?ads_cardCornerRadius</item>
         <item name="cardElevation">?ads_cardElevation</item>
-        <item name="cardUseCompatPadding">true</item>
+        <item name="ads_backgroundAware">disable</item>
+        <item name="ads_tintBackground">true</item>
     </style>
 
     <style name="Widget.DynamicApp.Card.Floating">
-        <item name="android:layout_margin">@dimen/ads_margin_medium</item>
+        <item name="android:layout_margin">@dimen/ads_card_view_margin_floating</item>
         <item name="cardBackgroundColor">?android:colorBackground</item>
-        <item name="cardElevation">@dimen/ads_card_view_floating</item>
+        <item name="cardElevation">@dimen/ads_card_view_elevation_floating</item>
+        <item name="ads_tintBackground">false</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Card.Floating.Dialog">
+        <item name="android:layout_margin">@dimen/ads_card_view_margin_dialog</item>
+        <item name="cardElevation">@dimen/ads_card_view_elevation_dialog</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Card.Toast">
+        <item name="android:padding">0dp</item>
+        <item name="android:layout_margin">@dimen/ads_margin_small</item>
+        <item name="cardElevation">@dimen/ads_card_view_elevation_toast</item>
     </style>
 
     <style name="Widget.DynamicApp.Card.Clickable">
@@ -272,10 +487,10 @@
     <style name="Widget.DynamicApp.Scroller">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
+        <item name="android:clipChildren">false</item>
+        <item name="android:clipToPadding">false</item>
         <item name="android:overScrollMode">ifContentScrolls</item>
         <item name="android:scrollbarStyle">outsideOverlay</item>
-        <item name="android:clipToPadding">false</item>
-        <item name="ads_backgroundAware">true</item>
     </style>
 
     <style name="Widget.DynamicApp.Scroller.Padding">
@@ -296,12 +511,20 @@
     </style>
 
     <style name="Widget.DynamicApp.Scroller.Nested">
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingTop">0dp</item>
         <item name="android:paddingLeft">0dp</item>
         <item name="android:paddingRight">0dp</item>
         <item name="android:paddingBottom">0dp</item>
         <item name="android:overScrollMode">never</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Scroller.Nested.GridView">
+        <item name="android:numColumns">auto_fit</item>
+        <item name="android:stretchMode">columnWidth</item>
+        <item name="android:listSelector">@android:color/transparent</item>
+        <item name="android:cacheColorHint">@null</item>
     </style>
 
     <style name="Widget.DynamicApp.Content.Card">
@@ -309,6 +532,8 @@
         <item name="android:paddingRight">@dimen/ads_card_view_content_margin</item>
         <item name="android:paddingTop">@dimen/ads_card_view_content_margin</item>
         <item name="android:paddingBottom">@dimen/ads_card_view_content_margin</item>
+        <item name="android:clipChildren">false</item>
+        <item name="android:clipToPadding">false</item>
     </style>
 
     <style name="Widget.DynamicApp.Content.Card.Small">
@@ -321,6 +546,7 @@
     <style name="Widget.DynamicApp.Content.Card.Clickable">
         <item name="android:clickable">true</item>
         <item name="android:foreground">?selectableItemBackground</item>
+        <item name="android:descendantFocusability">blocksDescendants</item>
     </style>
 
     <style name="Widget.DynamicApp.Content.Card.Small.Clickable">
@@ -341,7 +567,6 @@
         <item name="android:layout_marginRight">@dimen/ads_icon_header_card_margin_end</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="ads_colorType">accent</item>
-        <item name="ads_backgroundAware">true</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.Preference">
@@ -350,50 +575,12 @@
         <item name="android:layout_marginRight">@dimen/ads_icon_preference_card_margin_end</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="ads_colorType">primary</item>
-        <item name="ads_backgroundAware">true</item>
-    </style>
-
-    <style name="Widget.DynamicApp.Button.Preference">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/ads_margin_small</item>
-        <item name="android:layout_marginBottom">@dimen/ads_margin_tiny</item>
-        <item name="android:layout_marginLeft">@dimen/ads_button_preference_card_margin_start</item>
-        <item name="android:layout_gravity">start|left</item>
-        <item name="ads_colorType">primary</item>
-        <item name="ads_backgroundAware">true</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.Card.Big">
         <item name="android:alpha">0.12</item>
         <item name="ads_colorType">tint_primary</item>
-        <item name="ads_backgroundAware">true</item>
         <item name="ads_contrastWithColor">?attr/ads_contrastWithDefault</item>
-    </style>
-
-    <style name="Widget.DynamicApp.Button.Colored.Primary">
-        <item name="colorAccent">?colorPrimary</item>
-        <item name="ads_colorType">primary</item>
-    </style>
-
-    <style name="Widget.DynamicApp.Button.Borderless.Primary">
-        <item name="colorAccent">?colorPrimary</item>
-        <item name="ads_colorType">primary</item>
-    </style>
-
-    <style name="Widget.DynamicApp.Button.Borderless.Image">
-        <item name="android:padding">0dp</item>
-        <item name="android:background">?selectableItemBackground</item>
-    </style>
-
-    <style name="Widget.DynamicApp.Button.Remote">
-        <item name="android:layout_margin">0dp</item>
-        <item name="android:padding">@dimen/ads_margin_tiny</item>
-        <item name="android:background">@drawable/ads_button_remote</item>
-    </style>
-
-    <style name="Widget.DynamicApp.Button.Remote.Borderless">
-        <item name="android:background">@drawable/ads_button_remote_borderless</item>
     </style>
 
 </resources>

@@ -16,7 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.picker;
 
-import android.support.annotation.IntDef;
+import androidx.annotation.IntDef;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -25,8 +25,8 @@ import static com.pranavpandey.android.dynamic.support.picker.DynamicPickerType.
 import static com.pranavpandey.android.dynamic.support.picker.DynamicPickerType.PRESETS;
 
 /**
- * Interface to hold the color type constant values to provide
- * show presets or custom view accordingly.
+ * Interface to hold the color type constant values to provide show presets or custom view
+ * accordingly.
  */
 @Retention(RetentionPolicy.SOURCE)
 @IntDef(value = { PRESETS, CUSTOM })

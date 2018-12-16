@@ -18,17 +18,18 @@ package com.pranavpandey.android.dynamic.support.splash;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 /**
  * A fragment to display splash before launching the main activity.
- * It will be used internally by the {@link DynamicSplashActivity}.
+ * <p>It will be used internally by the {@link DynamicSplashActivity}.
  */
 public class DynamicSplashFragment extends Fragment {
 
@@ -38,14 +39,13 @@ public class DynamicSplashFragment extends Fragment {
     private static final String ADS_ARGS_SPLASH_LAYOUT_RES = "ads_args_splash_layout_res";
 
     /**
-     * Async task to perform any background operation whiling showing the
-     * splash.
+     * Async task to perform any background operation whiling showing the splash.
      */
     private SplashTask mSplashTask;
 
     /**
-     * Listener to implement the splash screen and to get various
-     * callbacks while showing the splash.
+     * Listener to implement the splash screen and to get various callbacks while showing
+     * the splash.
      */
     private DynamicSplashListener mDynamicSplashListener;
 
@@ -86,8 +86,8 @@ public class DynamicSplashFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (getArguments() != null && getArguments().getInt(ADS_ARGS_SPLASH_LAYOUT_RES) != -1) {
             mView = inflater.inflate(getArguments().getInt(ADS_ARGS_SPLASH_LAYOUT_RES),
                     container, false);
@@ -114,26 +114,27 @@ public class DynamicSplashFragment extends Fragment {
     }
 
     /**
-     * @return The listener to implement the splash screen and to get
-     *         various callbacks while showing the splash.
+     * Returns listener to implement the splash screen and to get various callbacks while
+     * showing the splash.
+     *
+     * @return The listener to implement the splash screen.
      */
-    public DynamicSplashListener getOnSplashListener() {
+    public @Nullable DynamicSplashListener getOnSplashListener() {
         return mDynamicSplashListener;
     }
 
     /**
-     * Set the listener to implement the splash screen and to get
-     * various callbacks while showing the splash.
+     * Set the listener to implement the splash screen and to get various callbacks while
+     * showing the splash.
      *
      * @param dynamicSplashListener The listener to be set.
      */
-    public void setOnSplashListener(DynamicSplashListener dynamicSplashListener) {
+    public void setOnSplashListener(@Nullable DynamicSplashListener dynamicSplashListener) {
         mDynamicSplashListener = dynamicSplashListener;
     }
 
     /**
-     * Async task to perform any background operation while showing
-     * the splash.
+     * Async task to perform any background operation while showing the splash.
      */
     static class SplashTask extends AsyncTask<Void, String, Void> {
 
@@ -148,16 +149,15 @@ public class DynamicSplashFragment extends Fragment {
         long taskTimeElapsed;
 
         /**
-         * Listener to implement the splash screen and to get various
-         * callbacks while showing the splash.
+         * Listener to implement the splash screen and to get various callbacks while
+         * showing the splash.
          */
         private DynamicSplashListener dynamicSplashListener;
 
         /**
          * Constructor to initialize an object of this class.
          *
-         * @param dynamicSplashListener The splash listener to get the
-         *                              various callbacks.
+         * @param dynamicSplashListener The splash listener to get the various callbacks.
          */
         SplashTask(@Nullable DynamicSplashListener dynamicSplashListener) {
             this.dynamicSplashListener = dynamicSplashListener;
@@ -177,13 +177,13 @@ public class DynamicSplashFragment extends Fragment {
         protected Void doInBackground(Void... params) {
             if (dynamicSplashListener != null) {
                 dynamicSplashListener.doBehindSplash();
-            }
 
-            taskTimeElapsed = System.currentTimeMillis() - taskStartTime;
-            if (taskTimeElapsed < dynamicSplashListener.getMinSplashTime()) {
-                try {
-                    Thread.sleep(dynamicSplashListener.getMinSplashTime() - taskTimeElapsed);
-                } catch (InterruptedException ignored) {
+                taskTimeElapsed = System.currentTimeMillis() - taskStartTime;
+                if (taskTimeElapsed < dynamicSplashListener.getMinSplashTime()) {
+                    try {
+                        Thread.sleep(dynamicSplashListener.getMinSplashTime() - taskTimeElapsed);
+                    } catch (InterruptedException ignored) {
+                    }
                 }
             }
 

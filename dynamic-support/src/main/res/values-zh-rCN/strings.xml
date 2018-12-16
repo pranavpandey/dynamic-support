@@ -23,22 +23,7 @@
 
     <!-- String formats -->
     <string name="ads_format_version">版本%1$s</string>
-
-    <!-- Headings -->
-    <string name="ads_app">应用</string>
-    <string name="ads_icon">图标</string>
-    <string name="ads_size">尺寸</string>
-    <string name="ads_value">值</string>
-    <string name="ads_notification">通知</string>
-    <string name="ads_widgets">小部件</string>
-    <string name="ads_instructions">说明</string>
-    <string name="ads_tutorial">教程</string>
-    <string name="ads_troubleshoot">疑难解答</string>
-    <string name="ads_about">关于</string>
-    <string name="ads_overview">概述</string>
-    <string name="ads_general">一般</string>
-    <string name="ads_advanced">高级</string>
-    <string name="ads_fixes">修复</string>
+    <string name="ads_search_empty">没有找到\"%1$s\"的匹配项</string>
 
     <!-- Labels -->
     <string name="ads_i_got_it">好的！</string>
@@ -46,6 +31,7 @@
     <string name="ads_yes_in">是的，我进来了</string>
     <string name="ads_more_info">更多信息</string>
     <string name="ads_select">选择</string>
+    <string name="ads_copy">复制</string>
     <string name="ads_save">保存</string>
     <string name="ads_load">加载</string>
     <string name="ads_create">创建</string>
@@ -57,6 +43,7 @@
     <string name="ads_recents">近期]</string>
     <string name="ads_custom">自定义</string>
     <string name="ads_edit">编辑</string>
+    <string name="ads_refresh">刷新</string>
     <string name="ads_reset">重启</string>
     <string name="ads_default">默认</string>
     <string name="ads_sort">排序</string>
@@ -73,7 +60,24 @@
     <string name="ads_shortcut_created">创建快捷方式</string>
     <string name="ads_shortcuts_desc">选择一个快捷方式将其添加到主屏幕上。</string>
 
-    <!-- Navigation drawer and menu -->
+    <!-- Headings -->
+    <string name="ads_app">应用</string>
+    <string name="ads_text">文本</string>
+    <string name="ads_icon">图标</string>
+    <string name="ads_size">尺寸</string>
+    <string name="ads_value">值</string>
+    <string name="ads_notification">通知</string>
+    <string name="ads_widgets">小部件</string>
+    <string name="ads_instructions">说明</string>
+    <string name="ads_tutorial">教程</string>
+    <string name="ads_troubleshoot">疑难解答</string>
+    <string name="ads_about">关于</string>
+    <string name="ads_overview">概述</string>
+    <string name="ads_general">一般</string>
+    <string name="ads_advanced">高级</string>
+    <string name="ads_fixes">修复</string>
+
+    <!-- Navigation drawer and Menu -->
     <string name="ads_nav_category_features">菜单</string>
     <string name="ads_nav_category_support">支持发展</string>
     <string name="ads_nav_category_contribute">有助于</string>
@@ -126,6 +130,7 @@
     <string name="ads_backup_rename">重命名备份</string>
     <string name="ads_backup_complete">备份已成功创建</string>
     <string name="ads_backup_error">无法创建备份</string>
+    <string name="ads_backup_invalid">备份无效</string>
     <string name="ads_backup_restore">恢复</string>
     <string name="ads_backup_restore_title">恢复备份</string>
     <string name="ads_backup_error_save">无法保存备份</string>
@@ -166,19 +171,29 @@
     <string name="ads_backup_option_delete">删除</string>
     <string name="ads_backup_send">发送备份</string>
 
-    <!-- Theme -->
+    <!-- App theme -->
     <string name="ads_theme">主题</string>
+    <string name="ads_theme_customise_desc">配置下面的主题。</string>
     <string name="ads_theme_adjust_desc">主题会根据当前的Android版本自动调整。</string>
+    <string name="ads_theme_invalid">主题无效</string>
+    <string name="ads_theme_invalid_desc">无法验证此主题。请使用适当的数据再试一次。</string>
     <string name="ads_theme_color_palette">调色板</string>
     <string name="ads_theme_color_palette_summary">主颜色和强调色预设。</string>
     <string name="ads_theme_color_background">背景色</string>
     <string name="ads_theme_color_background_summary">主题背景色。</string>
     <string name="ads_theme_color_primary">主题色</string>
     <string name="ads_theme_color_primary_summary">主要元素使用的颜色。</string>
+    <string name="ads_theme_color_primary_dark">系统颜色</string>
+    <string name="ads_theme_color_primary_summary_dark">系统元素使用的颜色。</string>
     <string name="ads_theme_color_accent">强调色</string>
+    <string name="ads_theme_color_secondary">二次色</string>
     <string name="ads_theme_color_accent_summary">辅助元素使用的颜色。</string>
-    <string name="ads_theme_background">背景知晓</string>
-    <string name="ads_theme_background_aware_desc">有些颜色会根据背景自动改变，以提供最佳的可见度。</string>
+    <string name="ads_theme_color_tint">色彩</string>
+    <string name="ads_theme_color_inverse">反色</string>
+    <string name="ads_theme_corner_size">角落大小</string>
+    <string name="ads_theme_corner_size_summary">应用程序的角半径。</string>
+    <string name="ads_theme_background_aware">背景知晓</string>
+    <string name="ads_theme_background_aware_desc">根据背景调整颜色以提供最佳可见性。</string>
     <string name="ads_theme_app">应用主题</string>
     <string name="ads_theme_app_summary">应用程序主题。</string>
     <string name="ads_theme_app_desc">选择自动使用日间和夜间主题。</string>
@@ -205,12 +220,19 @@
     <string name="ads_theme_app_shortcuts_summary">根据应用主题色显示主题应用快捷方式。</string>
     <string name="ads_theme_app_shortcuts_summary_unchecked">根据应用主题和品牌颜色显示默认应用快捷方式。</string>
     <string name="ads_theme_app_shortcuts_desc">长按启动器图标以显示应用快捷方式，支持的启动器是必需的。</string>
+    <string name="ads_theme_reset_desc">主题已重置为其默认值。</string>
+    <string name="ads_theme_import_done">主题已成功导入。</string>
+    <string name="ads_theme_copy_done">该主题已成功复制。</string>
 
-    <!-- Theme entries and labels-->
+    <!-- Theme and Labels -->
     <string name="ads_theme_toast_default">默认的Toast消息</string>
     <string name="ads_theme_toast_themed">主题Toast消息</string>
     <string name="ads_theme_entry_auto">自动</string>
-    <string name="ads_theme_entry_auto_desc">选择自动使用应用程序调色板。</string>
+    <string name="ads_theme_settings_auto_desc">选择自动以使用应用程序设置。</string>
+    <string name="ads_theme_settings_default_desc">选择“自动”以使用默认设置。</string>
+    <string name="ads_theme_color_auto_desc">选择自动使用应用程序调色板。</string>
+    <string name="ads_theme_color_default_desc">选择自动使用默认的程序调色板。</string>
+    <string name="ads_theme_entry_auto_background_aware_desc">选择自动使用应用程序调色板。根据背景调整颜色以提供最佳可见性。</string>
     <string name="ads_theme_entry_light">亮色</string>
     <string name="ads_theme_entry_dark">暗色</string>
     <string name="ads_theme_entry_custom">自定义</string>
@@ -235,6 +257,10 @@
     <string name="ads_theme_entry_dark_brown">深棕色</string>
     <string name="ads_theme_entry_dark_grey">深灰色</string>
 
+    <!-- Visibility -->
+    <string name="ads_visibility_show">显示</string>
+    <string name="ads_visibility_hide">隐藏</string>
+
     <!-- Picker -->
     <string name="ads_picker_all">所有</string>
     <string name="ads_picker_more_colors">更多的颜色</string>
@@ -246,7 +272,7 @@
     <string name="ads_language_summary">应用程序使用的语言。</string>
     <string name="ads_language_system">系统</string>
 
-    <!-- Notification and channel -->
+    <!-- Notification and Channel -->
     <string name="ads_notification_priority">通知优先权</string>
     <string name="ads_notification_priority_summary">选择优先级来确定通知抽屉中的顺序。</string>
     <string name="ads_notification_priority_desc">选择低优先级隐藏状态栏和锁定屏幕通知。</string>
@@ -262,6 +288,11 @@
     <string name="ads_widget_customise_desc">配置下面的小部件。</string>
     <string name="ads_widget_preview">预习</string>
     <string name="ads_widget_preview_desc">小部件布局可能会根据实际使用的大小自动更改以提供最佳体验。</string>
+    <string name="ads_widget_header">标题</string>
+    <string name="ads_widget_header_summary">窗口小部件标题的可见性。</string>
+    <string name="ads_widget_header_desc">如果有足够的空间，请选择自动以显示标题。</string>
+    <string name="ads_widget_corner_size_bg_summary">小部件背景的角半径。</string>
+    <string name="ads_widget_corner_size_bg_desc">选择自动以使用应用边角大小。</string>
     <string name="ads_widget_opacity_bg">背景不透明</string>
     <string name="ads_widget_opacity_bg_summary">小部件背景的不透明度。</string>
     <string name="ads_widget_reset_desc">小部件已被重置为默认值。</string>
@@ -270,6 +301,7 @@
     <!-- About and Support -->
     <string name="ads_rate">评价</string>
     <string name="ads_support_contact">联系</string>
+    <string name="ads_support_feedback">反馈</string>
     <string name="ads_support_report">报告</string>
     <string name="ads_support_report_bug">提交错误报告</string>
     <string name="ads_support_report_bug_summary">通过电子邮件联系开发</string>
@@ -312,6 +344,8 @@
     <string name="ads_translations">翻译</string>
     <string name="ads_translators">译者</string>
     <string name="ads_translators_translate">翻译</string>
+    <string name="ads_translators_translate_summary">成为翻译。</string>
+    <string name="ads_translators_translate_desc">有助于使这个应用程序以更多语言提供。</string>
     <string name="ads_translators_contact">如果您想翻译，请通过电子邮件联系。</string>
 
     <!-- Licenses -->

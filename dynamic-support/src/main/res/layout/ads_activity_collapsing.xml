@@ -21,7 +21,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/ads_coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -34,9 +34,9 @@
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             app:elevation="0dp"
-            app:ads_backgroundAware="false">
+            app:ads_backgroundAware="disable">
 
-            <android.support.design.widget.CollapsingToolbarLayout
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/ads_collapsing_toolbar_layout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ads_collapsing_toolbar_height"
@@ -44,6 +44,8 @@
                 android:fitsSystemWindows="true"
                 app:expandedTitleMarginStart="@dimen/ads_toolbar_margin_start_collapsing"
                 app:expandedTitleMarginEnd="@dimen/ads_toolbar_inset_start_collapsing"
+                app:collapsedTitleTextAppearance="@style/TextAppearance.DynamicApp.Toolbar"
+                app:expandedTitleTextAppearance="@style/TextAppearance.DynamicApp.Toolbar.Expanded"
                 app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
                 <FrameLayout
@@ -58,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-            </android.support.design.widget.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
 
             <FrameLayout
                 android:id="@+id/ads_header_frame"
@@ -73,7 +75,7 @@
 
         <include layout="@layout/ads_layout_fab_bottom" />
 
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <FrameLayout
         android:id="@+id/ads_footer_frame"

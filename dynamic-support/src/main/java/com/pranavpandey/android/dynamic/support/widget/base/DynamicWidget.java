@@ -16,16 +16,16 @@
 
 package com.pranavpandey.android.dynamic.support.widget.base;
 
-import android.support.annotation.ColorInt;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
-import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
+import androidx.annotation.ColorInt;
+import androidx.annotation.Nullable;
+
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.theme.Theme;
 
 /**
- * Interface to create dynamic widgets which can be tinted
- * according to the {@link DynamicTheme}.
+ * Interface to create dynamic widgets which can be tinted according to the {@link DynamicTheme}.
  */
 public interface DynamicWidget {
 
@@ -37,97 +37,108 @@ public interface DynamicWidget {
     void loadFromAttributes(@Nullable AttributeSet attrs);
 
     /**
-     * Initialize this view by setting color type. If it is background
-     * aware then, background color will also taken into account while
-     * setting the color filter.
+     * Initialize this widget by setting color type. If it is background aware then, background
+     * color will also taken into account while setting the color filter.
      *
-     * @see DynamicColorType
+     * @see Theme.ColorType
      */
     void initialize();
 
     /**
-     * @return The color type applied to this view.
+     * Returns the color type applied to this widget.
+     * 
+     * @return The color type applied to this widget.
      *
-     * @see DynamicColorType
+     * @see Theme.ColorType
      */
-    @DynamicColorType int getColorType();
+    @Theme.ColorType int getColorType();
 
     /**
-     * Set the color type to this view.
+     * Set the color type to this widget.
      *
-     * @param colorType Color type for this view.
+     * @param colorType The color type for this widget.
      *
-     * @see DynamicColorType
+     * @see Theme.ColorType
      */
-    void setColorType(@DynamicColorType int colorType);
+    void setColorType(@Theme.ColorType int colorType);
 
     /**
-     * @return The contrast with color type applied to this view.
+     * Returns the contrast with color type applied to this widget.
+     * 
+     * @return The contrast with color type applied to this widget.
      *
-     * @see DynamicColorType
+     * @see Theme.ColorType
      */
-    @DynamicColorType int getContrastWithColorType();
+    @Theme.ColorType int getContrastWithColorType();
 
     /**
-     * Set the contrast with color type to this view.
+     * Set the contrast with color type to this widget.
      *
-     * @param contrastWithColorType Contrast with Color type for
-     *                              this view.
+     * @param contrastWithColorType The contrast with color type for this widget.
      *
-     * @see DynamicColorType
+     * @see Theme.ColorType
      */
-    void setContrastWithColorType(@DynamicColorType int contrastWithColorType);
+    void setContrastWithColorType(@Theme.ColorType int contrastWithColorType);
 
     /**
-     * @return The value of color applied to this view.
+     * Returns the value of color applied to this widget.
+     * 
+     * @return The value of color applied to this widget.
      */
     @ColorInt int getColor();
 
     /**
-     * Set the value of color for this view.
+     * Set the value of color for this widget.
      *
-     * @param color Color for this view.
+     * @param color Color for this widget.
      */
     void setColor(@ColorInt int color);
 
     /**
-     * @return The value of contrast with color applied to this view.
+     * Returns the value of contrast with color applied to this widget.
+     * 
+     * @return The value of contrast with color applied to this widget.
      */
     @ColorInt int getContrastWithColor();
 
     /**
-     * Set the value of contrast with color for this view.
+     * Set the value of contrast with color for this widget.
      *
-     * @param contrastWithColor Contrast with color for this view.
+     * @param contrastWithColor Contrast with color for this widget.
      */
     void setContrastWithColor(@ColorInt int contrastWithColor);
 
     /**
-     * @return {@code true} if this view changes color according
-     * to the background.
+     * Returns the background aware functionality used by this widget.
+     * 
+     * @return The background aware functionality used by this widget.
+     */
+    @Theme.BackgroundAware int getBackgroundAware();
+
+    /**
+     * Set the value to make this widget background aware or not.
+     *
+     * @param backgroundAware The background aware functionality to be set.
+     */
+    void setBackgroundAware(@Theme.BackgroundAware int backgroundAware);
+
+    /**
+     * Checks whether the background aware functionality is enabled.
+     * 
+     * @return {@code true} if this widget changes color according to the background.
      */
     boolean isBackgroundAware();
 
     /**
-     * Set the value to make this view background aware or not.
+     * Override this method to handle state changes for this widget.
+     * <p>For example, change alpha according to the enabled or disabled state of this widget.
      *
-     * @param backgroundAware {@code true} to make this view
-     *                        background aware.
-     */
-    void setBackgroundAware(boolean backgroundAware);
-
-    /**
-     * Override this method to handle state changes for this view.
-     * For example, change alpha according to the enabled or disabled
-     * state of this view.
-     *
-     * @param enabled {@code true} if this widget is enabled and can
-     *                receive click events.
+     * @param enabled {@code true} if this widget is enabled and can receive click events.
      */
     void setEnabled(boolean enabled);
 
     /**
-     * Set color of this view according to the supplied values.
+     * Set color of this widget according to the supplied values.
      */
     void setColor();
 }

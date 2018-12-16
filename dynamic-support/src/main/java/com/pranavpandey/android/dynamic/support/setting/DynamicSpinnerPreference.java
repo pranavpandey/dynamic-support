@@ -19,17 +19,20 @@ package com.pranavpandey.android.dynamic.support.setting;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.popup.DynamicArrayPopup;
 import com.pranavpandey.android.dynamic.support.popup.DynamicPopup;
 import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
-import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
+import com.pranavpandey.android.dynamic.support.theme.Theme;
+import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
 
 import java.util.Arrays;
@@ -42,7 +45,7 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
 
     /**
      * Popup type for this preference.
-     * Either {@link DynamicPopup.DynamicPopupType#LIST}
+     * <p>Either {@link DynamicPopup.DynamicPopupType#LIST}
      * or {@link DynamicPopup.DynamicPopupType#GRID}.
      */
     private @DynamicPopup.DynamicPopupType int mPopupType;
@@ -71,22 +74,22 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
     }
 
     public DynamicSpinnerPreference(@NonNull Context context,
-                                    @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
-    protected void onLoadAttributes(AttributeSet attrs) {
+    protected void onLoadAttributes(@Nullable AttributeSet attrs) {
         super.onLoadAttributes(attrs);
 
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.DynamicPreference);
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DynamicPreference);
 
         try {
-            mEntries = a.getTextArray(R.styleable.DynamicPreference_ads_dynamicPreference_entries);
-            mValues = a.getTextArray(R.styleable.DynamicPreference_ads_dynamicPreference_values);
-            mDefaultValue = a.getInt(R.styleable.DynamicPreference_ads_dynamicPreference_value, 0);
-            mPopupType = a.getInt(R.styleable.DynamicPreference_ads_dynamicPreference_popupType,
+            mEntries = a.getTextArray(R.styleable.DynamicPreference_ads_entries);
+            mValues = a.getTextArray(R.styleable.DynamicPreference_ads_values);
+            mDefaultValue = a.getInt(R.styleable.DynamicPreference_ads_value,
+                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE);
+            mPopupType = a.getInt(R.styleable.DynamicPreference_ads_popupType,
                     DynamicPopup.DynamicPopupType.NONE);
         } finally {
             a.recycle();
@@ -97,7 +100,9 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
     protected void onInflate() {
         super.onInflate();
 
-        ((DynamicTextView) getValueView()).setColorType(DynamicColorType.ACCENT);
+        if (getValueView() != null) {
+            ((DynamicTextView) getValueView()).setColorType(Theme.ColorType.ACCENT);
+        }
 
         setOnPreferenceClickListener(new OnClickListener() {
             @Override
@@ -110,9 +115,18 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
                     showPopup(v);
                 }
             }
-        });
+        }, false);
 
-        updateValueString();
+        updateValueString(false);
+    }
+
+    @Override
+    protected void onUpdate() {
+        super.onUpdate();
+
+        if (getPreferenceView() != null) {
+            getPreferenceView().setClickable(mEntries != null);
+        }
     }
 
     /**
@@ -143,29 +157,34 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
     }
 
     /**
-     * Update value string according to the current preference
-     * value.
+     * Update value string according to the current preference value.
+     *
+     * @param update {@code true} to call {@link #onUpdate()} method after setting the
+     *               value string.
      */
-    public void updateValueString() {
+    public void updateValueString(boolean update) {
         if (mEntries != null) {
-            setValueString(mEntries[Arrays.asList(mValues).indexOf(getPreferenceValue())]);
+            setValueString(mEntries[Arrays.asList(mValues)
+                    .indexOf(getPreferenceValue())], update);
         }
     }
 
     /**
-     * Set the value for this preference and save it in the
-     * shared preferences.
+     * Set the value for this preference and save it in the shared preferences.
      *
      * @param value The preference value.
      */
     public void setPreferenceValue(@NonNull String value) {
         if (getPreferenceKey() != null) {
             DynamicPreferences.getInstance().savePrefs(getPreferenceKey(), value);
-            updateValueString();
         }
+
+        updateValueString(true);
     }
 
     /**
+     * Returns the current value of this preference.
+     *
      * @return The current value of this preference.
      */
     public @Nullable String getPreferenceValue() {
@@ -182,7 +201,7 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
         super.onSharedPreferenceChanged(sharedPreferences, key);
 
         if (key.equals(getPreferenceKey())) {
-            updateValueString();
+            updateValueString(true);
         }
     }
 }

@@ -19,14 +19,6 @@ package com.pranavpandey.android.dynamic.support.popup;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
-import android.support.annotation.IntDef;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.NestedScrollView;
-import android.support.v4.widget.PopupWindowCompat;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,8 +28,16 @@ import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.core.view.ViewCompat;
+import androidx.core.widget.NestedScrollView;
+import androidx.core.widget.PopupWindowCompat;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
@@ -50,9 +50,8 @@ import static com.pranavpandey.android.dynamic.support.popup.DynamicPopup.Dynami
 import static com.pranavpandey.android.dynamic.support.popup.DynamicPopup.DynamicPopupType.NONE;
 
 /**
- * Base {@link PopupWindow} to provide the basic functionality to
- * its descendants. Extend this class to create popup windows
- * according to the need.
+ * Base {@link PopupWindow} to provide the basic functionality to its descendants.
+ * <p>Extend this class to create popup windows according to the need.
  */
 public abstract class DynamicPopup {
 
@@ -80,8 +79,7 @@ public abstract class DynamicPopup {
     }
 
     /**
-     * View root to add scroll indicators if the content
-     * can be scrolled.
+     * View root to add scroll indicators if the content can be scrolled.
      */
     private View mViewRoot;
 
@@ -101,11 +99,13 @@ public abstract class DynamicPopup {
     private PopupWindow mPopupWindow;
 
     /**
+     * Get the anchor view to display the popup.
+     *
      * @return The anchor view to display the popup.
      */
     public @NonNull View getAnchor() {
         return mAnchor;
-    };
+    }
 
     /**
      * Set the anchor view to display the popup.
@@ -117,6 +117,9 @@ public abstract class DynamicPopup {
     }
 
     /**
+     * Returns the header view for the popup.
+     * <p>Default is {@code null} to hide the header.
+     *
      * @return The header view for the popup.
      */
     protected @Nullable View getHeaderView() {
@@ -124,11 +127,16 @@ public abstract class DynamicPopup {
     }
 
     /**
+     * This method will be called to return the content view for the popup.
+     *
      * @return The content view for the popup.
      */
     protected abstract @Nullable View getView();
 
     /**
+     * Returns the footer view for the popup.
+     * <p>Default is {@code null} to hide the footer.
+     *
      * @return The footer view for the popup.
      */
     protected @Nullable View getFooterView() {
@@ -136,6 +144,8 @@ public abstract class DynamicPopup {
     }
 
     /**
+     * Returns the popup window displayed by this class.
+     *
      * @return The popup window displayed by this class.
      */
     public PopupWindow getPopupWindow() {
@@ -143,15 +153,16 @@ public abstract class DynamicPopup {
     }
 
     /**
-     * @return The view root to add scroll indicators if
-     *         the content can be scrolled.
+     * Returns the root view for the popup.
+     *
+     * @return The view root to add scroll indicators if the content can be scrolled.
      */
     public @Nullable View getViewRoot() {
         return mViewRoot;
     }
 
     /**
-     * Set the view root for this this popup.
+     * Set the view root for this the popup.
      *
      * @param viewRoot The view root to be set.
      */
@@ -160,14 +171,16 @@ public abstract class DynamicPopup {
     }
 
     /**
-     * @return The view type used by this popup.
+     * Returns the view type for the popup.
+     *
+     * @return The view type used by the popup.
      */
     public @DynamicPopupType int getViewType() {
         return mViewType;
     }
 
     /**
-     * Set the view type used by this popup.
+     * Set the view type used by the popup.
      *
      * @param viewType The view type to be set.
      */
@@ -176,17 +189,25 @@ public abstract class DynamicPopup {
     }
 
     /**
-     * Build this popup and make it ready to show. Please call
-     * {@link #show()} method to show the popup.
+     * Build this popup and make it ready to show. Please call {@link #show()} method
+     * to show the popup.
      *
-     * @return The popup after building it according to the
-     *         supplied parameters.
+     * @return The popup after building it according to the supplied parameters.
      */
     protected abstract @NonNull DynamicPopup build();
 
     /**
-     * Build and show {@link PopupWindow} according to the supplied
-     * parameters.
+     * Returns the maximum width for the popup.
+     *
+     * @return The maximum width for the popup.
+     */
+    protected int getMaxWidth() {
+        return (int) getAnchor().getContext().getResources()
+                .getDimension(R.dimen.ads_popup_max_width);
+    }
+
+    /**
+     * Build and show {@link PopupWindow} according to the supplied parameters.
      */
     public void show() {
         View view = LayoutInflater.from(getAnchor().getContext()).inflate(
@@ -306,9 +327,7 @@ public abstract class DynamicPopup {
             content.setVisibility(View.GONE);
         }
 
-        mPopupWindow = new PopupWindow(view,
-                (int) view.getContext().getResources()
-                        .getDimension(R.dimen.ads_popup_max_width),
+        mPopupWindow = new PopupWindow(view, getMaxWidth(),
                 LinearLayout.LayoutParams.WRAP_CONTENT, true);
         PopupWindowCompat.setWindowLayoutType(mPopupWindow,
                 WindowManager.LayoutParams.TYPE_APPLICATION_SUB_PANEL);
@@ -317,7 +336,6 @@ public abstract class DynamicPopup {
         PopupWindowCompat.setOverlapAnchor(mPopupWindow, true);
 
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        card.setCardBackgroundColor(DynamicTheme.getInstance().getBackgroundColor());
 
         final int[] screenPos = new int[2];
         final Rect displayFrame = new Rect();

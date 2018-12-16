@@ -17,12 +17,13 @@
 package com.pranavpandey.android.dynamic.support.sample.controller
 
 import android.content.Context
-import android.support.annotation.ColorInt
-import android.support.annotation.StyleRes
+import androidx.annotation.ColorInt
+import androidx.annotation.StyleRes
 
 import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
+import com.pranavpandey.android.dynamic.support.theme.Theme
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils
 
@@ -32,9 +33,9 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils
 object SampleTheme {
 
     /**
-     * @return `true` if `auto` theme is selected.
+     * `true` if `auto` theme is selected.
      */
-    val isAutoTheme: Boolean get() = appThemeColor == DynamicTheme.ADS_THEME_AUTO
+    val isAutoTheme: Boolean get() = appThemeColor == Theme.AUTO
 
 
     /**
@@ -68,11 +69,10 @@ object SampleTheme {
                 Constants.PREF_SETTINGS_APP_THEME_NIGHT_COLOR, color)
 
     /**
-     * @return The app theme style according to the current
-     * settings.
+     * The app theme style according to the current settings.
      */
     val splashStyle: Int
-        @StyleRes get() = if (appThemeColor == DynamicTheme.ADS_THEME_AUTO) {
+        @StyleRes get() = if (appThemeColor == Theme.AUTO) {
             getSplashStyle(if (DynamicResourceUtils.isNight())
                 appThemeNightColor
             else
@@ -82,11 +82,10 @@ object SampleTheme {
         }
 
     /**
-     * @return The app theme splash style according to the current
-     * settings.
+     * The app theme splash style according to the current settings.
      */
     val appStyle: Int
-        @StyleRes get() = if (appThemeColor == DynamicTheme.ADS_THEME_AUTO) {
+        @StyleRes get() = if (appThemeColor == Theme.AUTO) {
             getAppStyle(if (DynamicResourceUtils.isNight())
                 appThemeNightColor
             else
@@ -96,11 +95,10 @@ object SampleTheme {
         }
 
     /**
-     * @return The background color according to the current
-     * settings.
+     * The background color according to the current settings.
      */
     private val backgroundColor: Int
-        @ColorInt get() = if (appThemeColor == DynamicTheme.ADS_THEME_AUTO) {
+        @ColorInt get() = if (appThemeColor == Theme.AUTO) {
             if (DynamicResourceUtils.isNight())
                 appThemeNightColor
             else
@@ -110,9 +108,11 @@ object SampleTheme {
         }
 
     /**
-     * @return The app theme style according to the supplied color.
+     * Returns the app theme style according to the supplied color.
      *
      * @param color The color used for the background.
+     *
+     * @return The app theme style according to the supplied color.
      */
     @StyleRes private fun getAppStyle(@ColorInt color: Int): Int {
         return if (DynamicColorUtils.isColorDark(color))
@@ -122,10 +122,12 @@ object SampleTheme {
     }
 
     /**
-     * @return The app theme splash style according to the supplied
-     * color.
+     *
+     * Returns the app theme splash style according to the supplied color.
      *
      * @param color The color used for the background.
+     *
+     * @return The app theme splash style according to the supplied color.
      */
     @StyleRes private fun getSplashStyle(@ColorInt color: Int): Int {
         return if (DynamicColorUtils.isColorDark(color))
@@ -141,12 +143,11 @@ object SampleTheme {
      */
     fun setApplicationTheme(applicationContext: Context) {
         @ColorInt val colorPrimary = SampleController.instance.colorPrimaryApp
-        DynamicTheme.getInstance().setPrimaryColor(colorPrimary)
+        DynamicTheme.getInstance().application.setPrimaryColor(colorPrimary)
                 .setPrimaryColorDark(DynamicColorUtils.shiftColor(
                         colorPrimary, DynamicTheme.ADS_COLOR_SHIFT_DARK_DEFAULT))
                 .setAccentColor(SampleController.instance.colorAccentApp)
-                .setBackgroundColor(backgroundColor)
-                .initializeColors().initializeRemoteColors(true)
+                .setBackgroundColor(backgroundColor).autoGenerateColors();
     }
 
     /**
@@ -156,11 +157,10 @@ object SampleTheme {
      */
     fun setLocalTheme(context: Context) {
         @ColorInt val colorPrimary = SampleController.instance.colorPrimaryApp
-        DynamicTheme.getInstance().setLocalPrimaryColor(colorPrimary)
-                .setLocalPrimaryColorDark(DynamicColorUtils.shiftColor(
+        DynamicTheme.getInstance().get().setPrimaryColor(colorPrimary)
+                .setPrimaryColorDark(DynamicColorUtils.shiftColor(
                         colorPrimary, DynamicTheme.ADS_COLOR_SHIFT_DARK_DEFAULT))
-                .setLocalAccentColor(SampleController.instance.colorAccentApp)
-                .setLocalBackgroundColor(backgroundColor)
-                .initializeLocalColors()
+                .setAccentColor(SampleController.instance.colorAccentApp)
+                .setBackgroundColor(backgroundColor).autoGenerateColors()
     }
 }

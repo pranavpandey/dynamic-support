@@ -16,7 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.behavior;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Interface to listen start of a drag event requested by a view.
@@ -24,7 +24,7 @@ import android.support.v7.widget.RecyclerView;
 public interface DynamicDragListener {
 
     /**
-     * Called when a view is requesting a start of a drag.
+     * This method will be called when a view is requesting a start of a drag.
      *
      * @param viewHolder The holder of the view to drag.
      */

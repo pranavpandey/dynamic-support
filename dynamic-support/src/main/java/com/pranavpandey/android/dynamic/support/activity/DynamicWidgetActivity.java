@@ -19,14 +19,14 @@ package com.pranavpandey.android.dynamic.support.activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.utils.DynamicAppWidgetUtils;
+import androidx.annotation.Nullable;
+
+import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
 
 /**
  * An activity to configure widgets having basic configuration methods.
- * Just extend this activity and add your own settings fragments
- * according to the need.
+ * <p>Just extend this activity and add your own settings fragments according to the need.
  */
 public abstract class DynamicWidgetActivity extends DynamicActivity {
 
@@ -52,10 +52,10 @@ public abstract class DynamicWidgetActivity extends DynamicActivity {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         if (extras != null) {
-            mAppWidgetId = extras.getInt(
-                    AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+            mAppWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID,
+                    AppWidgetManager.INVALID_APPWIDGET_ID);
             mUpdateWidget = extras.getBoolean(
-                    DynamicAppWidgetUtils.ADS_EXTRA_WIDGET_UPDATE, false);
+                    DynamicIntent.EXTRA_WIDGET_UPDATE, false);
         }
 
         // If they gave us an intent without the widget id, just bail.

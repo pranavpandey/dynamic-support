@@ -17,18 +17,21 @@
 package com.pranavpandey.android.dynamic.support.setting;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
-import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
+import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
 
 /**
  * A DynamicSimplePreference to provide the functionality of a
- * {@link android.preference.PreferenceScreen} with a icon, title,
- * summary, description, value and an action button. It can be
- * extended to modify according to the need.
+ * {@link android.preference.PreferenceScreen} with an icon, title, summary, description,
+ * value and an action button.
+ *
+ * <p><p>It can be extended to modify according to the need.
  */
 public class DynamicScreenPreference extends DynamicSimplePreference {
 
@@ -41,7 +44,7 @@ public class DynamicScreenPreference extends DynamicSimplePreference {
     }
 
     public DynamicScreenPreference(@NonNull Context context,
-                                   @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -49,6 +52,6 @@ public class DynamicScreenPreference extends DynamicSimplePreference {
     protected void onInflate() {
         super.onInflate();
 
-        ((DynamicTextView) getValueView()).setColorType(DynamicColorType.ACCENT);
+        ((DynamicTextView) getValueView()).setColorType(Theme.ColorType.ACCENT);
     }
 }

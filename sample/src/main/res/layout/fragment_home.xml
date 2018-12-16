@@ -33,10 +33,10 @@
                 android:id="@+id/item_gradle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:ads_dynamicInfo_icon="@drawable/ads_ic_extension"
-                app:ads_dynamicInfo_title="@string/gradle"
-                app:ads_dynamicInfo_subtitle="@string/format_version"
-                app:ads_dynamicInfo_colorType="primary" />
+                app:ads_icon="@drawable/ads_ic_extension"
+                app:ads_title="@string/gradle"
+                app:ads_subtitle="@string/format_version"
+                app:ads_colorType="primary" />
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
@@ -51,31 +51,31 @@
                 <com.pranavpandey.android.dynamic.support.view.DynamicHeader
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:ads_dynamicHeader_title="@string/ads_general" />
+                    app:ads_title="@string/ads_general" />
 
                 <com.pranavpandey.android.dynamic.support.setting.DynamicScreenPreference
                     android:id="@+id/pref_tutorial"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:ads_dynamicPreference_icon="@drawable/ads_ic_tutorial"
-                    app:ads_dynamicPreference_title="@string/tutorial"
-                    app:ads_dynamicPreference_summary="@string/tutorial_activity_subtitle" />
+                    app:ads_icon="@drawable/ads_ic_tutorial"
+                    app:ads_title="@string/tutorial"
+                    app:ads_summary="@string/tutorial_activity_subtitle" />
 
                 <com.pranavpandey.android.dynamic.support.setting.DynamicScreenPreference
                     android:id="@+id/pref_collapsing_app_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:ads_dynamicPreference_icon="@drawable/ic_collapsing_app_bar"
-                    app:ads_dynamicPreference_title="@string/collapsing_app_bar"
-                    app:ads_dynamicPreference_summary="@string/collapsing_app_bar_subtitle" />
+                    app:ads_icon="@drawable/ic_collapsing_app_bar"
+                    app:ads_title="@string/collapsing_app_bar"
+                    app:ads_summary="@string/collapsing_app_bar_subtitle" />
 
                 <com.pranavpandey.android.dynamic.support.setting.DynamicScreenPreference
                     android:id="@+id/pref_bottom_navigation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:ads_dynamicPreference_icon="@drawable/ic_bottom_navigation"
-                    app:ads_dynamicPreference_title="@string/bottom_navigation"
-                    app:ads_dynamicPreference_summary="@string/bottom_navigation_subtitle" />
+                    app:ads_icon="@drawable/ic_bottom_navigation"
+                    app:ads_title="@string/bottom_navigation"
+                    app:ads_summary="@string/bottom_navigation_subtitle" />
 
             </LinearLayout>
 
@@ -88,10 +88,10 @@
                 android:id="@+id/item_rotation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:ads_dynamicInfo_icon="@drawable/ic_rotation"
-                app:ads_dynamicInfo_title="@string/rotation"
-                app:ads_dynamicInfo_subtitle="@string/rotation_subtitle"
-                app:ads_dynamicInfo_colorType="primary" />
+                app:ads_icon="@drawable/ic_rotation"
+                app:ads_title="@string/rotation"
+                app:ads_subtitle="@string/rotation_subtitle"
+                app:ads_colorType="primary" />
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 

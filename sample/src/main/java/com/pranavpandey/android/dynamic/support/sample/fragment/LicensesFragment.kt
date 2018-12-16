@@ -25,8 +25,7 @@ import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment
 import com.pranavpandey.android.dynamic.support.sample.R
 
 /**
- * Licenses fragment to show license and by using
- * [DynamicFragment].
+ * Licenses fragment to show license and by using [DynamicFragment].
  */
 class LicensesFragment : DynamicFragment() {
 
@@ -38,6 +37,8 @@ class LicensesFragment : DynamicFragment() {
     companion object {
 
         /**
+         * Returns the new instance of this fragment.
+         *
          * @return The new instance of [LicensesFragment].
          */
         fun newInstance(): LicensesFragment {

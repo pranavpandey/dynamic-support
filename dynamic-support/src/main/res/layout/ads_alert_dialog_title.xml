@@ -33,7 +33,7 @@
         android:orientation="horizontal"
         android:paddingLeft="?attr/dialogPreferredPadding"
         android:paddingRight="?attr/dialogPreferredPadding"
-        android:paddingTop="@dimen/add_dialog_margin_title_top">
+        android:paddingTop="@dimen/ads_dialog_margin_title_top">
 
         <ImageView
             android:id="@android:id/icon"
@@ -45,7 +45,7 @@
             android:scaleType="fitCenter"
             android:src="@null" />
 
-        <android.support.v7.widget.DialogTitle
+        <androidx.appcompat.widget.DialogTitle
             android:id="@+id/alertTitle"
             style="?android:attr/windowTitleStyle"
             android:layout_width="match_parent"
@@ -58,10 +58,10 @@
 
     </LinearLayout>
 
-    <android.support.v4.widget.Space
+    <androidx.legacy.widget.Space
         android:id="@+id/titleDividerNoCustom"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/add_dialog_margin_title_bottom"
+        android:layout_height="@dimen/ads_dialog_margin_title_bottom"
         android:visibility="gone" />
 
 </LinearLayout>

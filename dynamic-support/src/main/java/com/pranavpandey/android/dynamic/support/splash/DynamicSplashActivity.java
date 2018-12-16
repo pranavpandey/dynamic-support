@@ -17,30 +17,29 @@
 package com.pranavpandey.android.dynamic.support.splash;
 
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
-import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.app.Fragment;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.Fragment;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
 
 /**
- * An activity to show a splash screen before the actual app launch.
- * Its layout can be fully customised and it also provides multiple
- * methods to do any background work before launching the main activity
- * by running an {@link android.os.AsyncTask}.
+ * An activity to show a splash screen before the actual app launch. Its layout can be fully
+ * customised and it also provides multiple methods to do any background work before launching
+ * the main activity by running an {@link android.os.AsyncTask}.
  *
- * <p>Just extend this activity and implement the required functions to
- * show a splash screen. It should be declared as the main activity in
- * the projects's manifest for best performance.</p>
+ * <p><p>Just extend this activity and implement the required functions to show a splash screen.
+ * It should be declared as the main activity in the projects's manifest for best performance.
  */
 public abstract class DynamicSplashActivity extends DynamicSystemActivity
         implements DynamicSplashListener {
 
     /**
-     * Splash fragment TAG key which will be used to find it
-     * during the configuration changes.
+     * Splash fragment TAG key which will be used to find it during the configuration changes.
      */
     protected static final String ADS_STATE_SPLASH_FRAGMENT_TAG =
             "ads_state_splash_fragment_tag";
@@ -83,14 +82,11 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
             mContentFragment = DynamicSplashFragment.newInstance(getLayoutRes());
         }
 
+        setStatusBarColor(getStatusBarColor());
+        ((DynamicSplashFragment) mContentFragment).setOnSplashListener(this);
+
         getSupportFragmentManager().beginTransaction().replace(
                 R.id.ads_container, mContentFragment, ADS_STATE_SPLASH_FRAGMENT_TAG).commit();
-
-        if (savedInstanceState == null) {
-            ((DynamicSplashFragment) mContentFragment).setOnSplashListener(this);
-        }
-
-        setStatusBarColor(getStatusBarColor());
     }
 
     @Override
@@ -117,18 +113,31 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
     }
 
     @Override
-    public void onSaveInstanceState(@Nullable Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
 
         ADS_SPLASH_MAGIC = true;
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onPause() {
+        if (mContentFragment != null) {
+            ((DynamicSplashFragment) mContentFragment).setOnSplashListener(null);
 
-        if (!ADS_SPLASH_MAGIC && mContentFragment != null) {
-            ((DynamicSplashFragment) mContentFragment).stop();
+            if (!isChangingConfigurations()) {
+                ((DynamicSplashFragment) mContentFragment).stop();
+            }
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (!isChangingConfigurations() && ADS_SPLASH_MAGIC && mContentFragment != null) {
+            ((DynamicSplashFragment) mContentFragment).setOnSplashListener(this);
+            ((DynamicSplashFragment) mContentFragment).show();
         }
     }
 }

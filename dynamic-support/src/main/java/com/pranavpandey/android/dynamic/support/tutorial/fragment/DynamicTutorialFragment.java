@@ -17,11 +17,12 @@
 package com.pranavpandey.android.dynamic.support.tutorial.fragment;
 
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
@@ -30,15 +31,14 @@ import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorialActivity
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 
 /**
- * A tutorial fragment which will be used with the {@link DynamicTutorialActivity}
- * to display a list of fragments in the view pager. Extend this provide any
- * extra functionality according to the need.
+ * A tutorial fragment which will be used with the {@link DynamicTutorialActivity} to display
+ * a list of fragments in the view pager.
+ * <p>Extend this to provide any extra functionality according to the need.
  */
 public abstract class DynamicTutorialFragment extends DynamicFragment implements DynamicTutorial {
 
     @Override
-    public void onPageScrolled(int position, float positionOffset,
-                               int positionOffsetPixels) { }
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
 
     @Override
     public void onPageSelected(int position) {
@@ -55,15 +55,14 @@ public abstract class DynamicTutorialFragment extends DynamicFragment implements
 
     @Override
     public int getBackgroundColor() {
-        return DynamicTheme.getInstance().getPrimaryColor();
+        return DynamicTheme.getInstance().get().getPrimaryColor();
     }
 
     @Override
     public void onBackgroundColorChanged(int color) { }
 
     /**
-     * Set drawable for the tutorial image view and mange its visibility
-     * according to the data.
+     * Set drawable for the tutorial image view and mange its visibility according to the data.
      *
      * @param imageView The image view to set the drawable.
      * @param drawable The drawable for the image view.
@@ -80,8 +79,7 @@ public abstract class DynamicTutorialFragment extends DynamicFragment implements
     }
 
     /**
-     * Set text for the tutorial text view and mange its visibility
-     * according to the data.
+     * Set text for the tutorial text view and mange its visibility according to the data.
      *
      * @param textView The text view to set the text.
      * @param text The text for the text view.
@@ -98,8 +96,7 @@ public abstract class DynamicTutorialFragment extends DynamicFragment implements
     }
 
     /**
-     * Tint dynamic widgets used by the tutorial according to the
-     * supplied color.
+     * Tint dynamic widgets used by the tutorial according to the supplied color.
      *
      * @param dynamicWidget The dynamic widget to be tinted.
      * @param color The color to tint the widget.

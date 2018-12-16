@@ -16,23 +16,26 @@
 
 package com.pranavpandey.android.dynamic.support.setting;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Handler;
-import android.support.annotation.ColorInt;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatSeekBar;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
@@ -40,10 +43,10 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicSeekBar;
 import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
 
 /**
- * A DynamicPreference to provide the functionality of a seek bar
- * preference with control buttons to modify the value.
+ * A DynamicSpinnerPreference to provide the functionality of a seek bar preference with
+ * control buttons to modify the value.
  */
-public class DynamicSeekBarPreference extends DynamicPreference {
+public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
 
     /**
      * Constant for the seek bar animation duration.
@@ -106,62 +109,34 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     private CharSequence mUnit;
 
     /**
-     * {@code true} to show seek bar buttons to increase or
-     * decrease the value.
+     * {@code true} to show seek bar buttons to increase or decrease the value.
      */
     private boolean mControls;
 
     /**
-     * Seek bar change listener to get the callback for seek
-     * events.
+     * Seek bar change listener to get the callback for seek events.
      */
     private SeekBar.OnSeekBarChangeListener mOnSeekBarChangeListener;
 
     /**
-     * Seek bar change listener to get the callback for control
-     * events.
+     * Seek bar change listener to get the callback for control events.
      */
     private SeekBar.OnSeekBarChangeListener mOnSeekBarControlListener;
 
     /**
-     * The preference root view.
+     * Text view to show the seek bar value.
      */
-    private ViewGroup mPreferenceView;
-
-    /**
-     * Image view to show the icon.
-     */
-    private ImageView mIconView;
-
-    /**
-     * Text view to show the title.
-     */
-    private TextView mTitleView;
-
-    /**
-     * Text view to show the summary.
-     */
-    private TextView mSummaryView;
-
-    /**
-     * Text view to show the description.
-     */
-    private TextView mDescriptionView;
-
-    /**
-     * Text view to show the value.
-     */
-    private TextView mValueView;
+    private TextView mSeekBarView;
 
     /**
      * Image view to show the decrease button.
      */
-    private ImageView mSeekLeftView;
+    private ImageButton mSeekBarLeftView;
 
     /**
      * Image view to show the increase button.
      */
-    private ImageView mSeekRightView;
+    private ImageButton mSeekBarRightView;
 
     /**
      * Seek bar to display and modify the preference value.
@@ -169,10 +144,14 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     private AppCompatSeekBar mSeekBar;
 
     /**
-     * Button to provide a secondary action like permission
-     * request, etc.
+     * Button to provide a secondary action like permission request, etc.
      */
     private Button mActionView;
+
+    /**
+     * {@code true} if seek bar is controls are enabled.
+     */
+    private boolean mSeekBarEnabled;
 
     public DynamicSeekBarPreference(@NonNull Context context) {
         super(context);
@@ -183,26 +162,33 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     public DynamicSeekBarPreference(@NonNull Context context,
-                                    @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
-    protected void onLoadAttributes(AttributeSet attrs) {
+    protected void onLoadAttributes(@Nullable AttributeSet attrs) {
+        super.onLoadAttributes(attrs);
+
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DynamicPreference);
 
         try {
-            mMaxValue = a.getInteger(R.styleable.DynamicPreference_ads_dynamicPreference_max,
+            mMaxValue = a.getInteger(R.styleable.DynamicPreference_ads_max,
                     DEFAULT_MAX_VALUE);
-            mMinValue = a.getInteger(R.styleable.DynamicPreference_ads_dynamicPreference_min,
+            mMinValue = a.getInteger(R.styleable.DynamicPreference_ads_min,
                     DEFAULT_MIN_VALUE);
-            mDefaultValue = a.getInteger(R.styleable.DynamicPreference_ads_dynamicPreference_progress,
+            mDefaultValue = a.getInteger(
+                    R.styleable.DynamicPreference_ads_progress,
                     DEFAULT_SEEK_VALUE);
-            mSeekInterval = a.getInteger(R.styleable.DynamicPreference_ads_dynamicPreference_interval,
+            mSeekInterval = a.getInteger(
+                    R.styleable.DynamicPreference_ads_interval,
                     DEFAULT_SEEK_INTERVAL);
-            mControls = a.getBoolean(R.styleable.DynamicPreference_ads_dynamicPreference_controls,
+            mControls = a.getBoolean(R.styleable.DynamicPreference_ads_controls,
                     DEFAULT_SEEK_CONTROLS);
-            mUnit = a.getString(R.styleable.DynamicPreference_ads_dynamicPreference_unit);
+            mUnit = a.getString(R.styleable.DynamicPreference_ads_unit);
+            mSeekBarEnabled = a.getBoolean(
+                    R.styleable.DynamicPreference_ads_seek_bar,
+                    true);
         } finally {
             a.recycle();
         }
@@ -215,17 +201,12 @@ public class DynamicSeekBarPreference extends DynamicPreference {
 
     @Override
     protected void onInflate() {
-        inflate(getContext(), getLayoutRes(), this);
+        super.onInflate();
 
-        mPreferenceView = findViewById(R.id.ads_preference_seek_bar);
-        mIconView = findViewById(R.id.ads_preference_seek_bar_icon);
-        mTitleView = findViewById(R.id.ads_preference_seek_bar_title);
-        mSummaryView = findViewById(R.id.ads_preference_seek_bar_summary);
-        mDescriptionView = findViewById(R.id.ads_preference_seek_bar_description);
-        mValueView = findViewById(R.id.ads_preference_seek_bar_value);
+        mSeekBarView = findViewById(R.id.ads_preference_seek_bar_value);
         mSeekBar = findViewById(R.id.ads_preference_seek_bar_seek);
-        mSeekLeftView = findViewById(R.id.ads_preference_seek_bar_left);
-        mSeekRightView = findViewById(R.id.ads_preference_seek_bar_right);
+        mSeekBarLeftView = findViewById(R.id.ads_preference_seek_bar_left);
+        mSeekBarRightView = findViewById(R.id.ads_preference_seek_bar_right);
         mActionView = findViewById(R.id.ads_preference_action_button);
 
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -234,8 +215,6 @@ public class DynamicSeekBarPreference extends DynamicPreference {
                 if (fromUser) {
                     mProgress = progress;
                     updateSeekFunctions();
-                } else {
-                    mSeekBar.setProgress(mProgress);
                 }
 
                 if (mOnSeekBarChangeListener != null) {
@@ -261,14 +240,14 @@ public class DynamicSeekBarPreference extends DynamicPreference {
             }
         });
 
-        mSeekLeftView.setOnClickListener(new OnClickListener() {
+        mSeekBarLeftView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 setProgressFromControl(mProgress - 1);
             }
         });
 
-        mSeekRightView.setOnClickListener(new OnClickListener() {
+        mSeekBarRightView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 setProgressFromControl(mProgress + 1);
@@ -280,44 +259,63 @@ public class DynamicSeekBarPreference extends DynamicPreference {
             public void onClick(View v) {
                 final int defaultValue = getProgressFromValue(mDefaultValue);
                 ObjectAnimator animation = ObjectAnimator.ofInt(mSeekBar,
-                        "progress", defaultValue);
+                        "progress", getProgress(), defaultValue);
                 animation.setDuration(ANIMATION_DURATION);
+                animation.setInterpolator(new DecelerateInterpolator());
+                animation.addListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        setProgress(defaultValue);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) { }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) { }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) { }
+                });
+
                 animation.start();
-                setProgress(defaultValue);
             }
         });
 
-        if (getPreferenceKey() != null) {
+        if (super.getPreferenceKey() != null) {
             mProgress = getProgressFromValue(DynamicPreferences.getInstance()
-                    .loadPrefs(getPreferenceKey(), mDefaultValue));
+                    .loadPrefs(super.getPreferenceKey(), mDefaultValue));
         }
     }
 
+    @Override
+    public @Nullable String getPreferenceKey() {
+        return getAltPreferenceKey();
+    }
+
     /**
-     * Update seek bar functions according to the current
-     * parameters.
+     * Update seek bar functions according to the current parameters.
      */
     private void updateSeekFunctions() {
         int actualValue = getValueFromProgress();
 
         if (mUnit != null) {
-            mValueView.setText(String.format(
+            mSeekBarView.setText(String.format(
                     getContext().getString(R.string.ads_format_blank_space),
                     String.valueOf(actualValue), mUnit));
         } else {
-            mValueView.setText(String.valueOf(actualValue));
+            mSeekBarView.setText(String.valueOf(actualValue));
         }
 
-        if (isEnabled()) {
-            mSeekLeftView.setEnabled(mProgress > DEFAULT_MIN_VALUE);
-            mSeekRightView.setEnabled(mProgress < getMax());
+        if (isEnabled() && mSeekBarEnabled) {
+            mSeekBarLeftView.setEnabled(mProgress > DEFAULT_MIN_VALUE);
+            mSeekBarRightView.setEnabled(mProgress < getMax());
             mActionView.setEnabled(actualValue != mDefaultValue);
         }
     }
 
     /**
-     * Update seek bar controls according to the current
-     * parameters.
+     * Update seek bar controls according to the current parameters.
      */
     private void setProgressFromControl(int progress) {
         if (mOnSeekBarControlListener != null) {
@@ -334,75 +332,73 @@ public class DynamicSeekBarPreference extends DynamicPreference {
 
     @Override
     protected void onUpdate() {
-        mIconView.setImageDrawable(getIcon());
-        mSeekBar.setMax(getMax());
+        super.onUpdate();
 
-        if (mControls) {
-            mSeekLeftView.setVisibility(VISIBLE);
-            mSeekRightView.setVisibility(VISIBLE);
-        } else {
-            mSeekLeftView.setVisibility(GONE);
-            mSeekRightView.setVisibility(GONE);
-        }
+        if (mSeekBar != null) {
+            mSeekBar.setMax(getMax());
 
-        if (getTitle() != null) {
-            mTitleView.setText(getTitle());
-            mTitleView.setVisibility(VISIBLE);
-        } else {
-            mTitleView.setVisibility(GONE);
-        }
-
-        if (getSummary() != null) {
-            mSummaryView.setText(getSummary());
-            mSummaryView.setVisibility(VISIBLE);
-        } else {
-            mSummaryView.setVisibility(GONE);
-        }
-
-        if (getDescription() != null) {
-            mDescriptionView.setText(getDescription());
-            mDescriptionView.setVisibility(VISIBLE);
-        } else {
-            mDescriptionView.setVisibility(GONE);
-        }
-
-        if (getOnActionClickListener() != null) {
-            mActionView.setText(getActionString());
-            mActionView.setOnClickListener(getOnActionClickListener());
-            mActionView.setVisibility(VISIBLE);
-        } else {
-            mActionView.setVisibility(GONE);
-        }
-
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                mSeekBar.setProgress(mProgress);
-                updateSeekFunctions();
+            if (mControls) {
+                mSeekBarLeftView.setVisibility(VISIBLE);
+                mSeekBarRightView.setVisibility(VISIBLE);
+            } else {
+                mSeekBarLeftView.setVisibility(GONE);
+                mSeekBarRightView.setVisibility(GONE);
             }
-        });
+
+            if (getOnActionClickListener() != null) {
+                mActionView.setText(getActionString());
+                mActionView.setOnClickListener(getOnActionClickListener());
+                mActionView.setVisibility(VISIBLE);
+            } else {
+                mActionView.setVisibility(GONE);
+            }
+
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+                    mSeekBar.setProgress(mProgress);
+                    updateSeekFunctions();
+                }
+            });
+        }
     }
 
     @Override
     protected void onEnabled(boolean enabled) {
-        mPreferenceView.setEnabled(enabled);
-        mIconView.setEnabled(enabled);
-        mTitleView.setEnabled(enabled);
-        mSummaryView.setEnabled(enabled);
-        mDescriptionView.setEnabled(enabled);
-        mSeekBar.setEnabled(enabled);
+        super.onEnabled(enabled);
 
-        if (!enabled) {
-            mValueView.setEnabled(enabled);
-            mSeekLeftView.setEnabled(enabled);
-            mSeekRightView.setEnabled(enabled);
-            mActionView.setEnabled(enabled);
+        if (mSeekBar != null) {
+            mSeekBar.setEnabled(enabled && mSeekBarEnabled);
+            mSeekBarView.setEnabled(enabled && mSeekBarEnabled);
+            mSeekBarLeftView.setEnabled(enabled && mSeekBarEnabled);
+            mSeekBarRightView.setEnabled(enabled && mSeekBarEnabled);
+            mActionView.setEnabled(enabled && mSeekBarEnabled);
         }
-
-        onUpdate();
     }
 
     /**
+     * Enable or disable the seek bar.
+     *
+     * @param seekBarEnabled {@code true} to enable the seek bar.
+     */
+    public void setSeekBarEnabled(boolean seekBarEnabled) {
+        this.mSeekBarEnabled = seekBarEnabled;
+
+        onEnabled(isEnabled());
+    }
+
+    /**
+     * Returns whether the seek bar is enabled.
+     *
+     * {@code true} if seek bar is enabled.
+     */
+    public boolean isSeekBarEnabled() {
+        return mSeekBarEnabled;
+    }
+
+    /**
+     * Get the default value for this preference.
+     *
      * @return The default value for this preference.
      */
     public int getDefaultValue() {
@@ -421,6 +417,8 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
+     * Get the maximum value for this preference.
+     *
      * @return The maximum value for this preference.
      */
     public int getMaxValue() {
@@ -439,6 +437,8 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
+     * Get the minimum value for this preference.
+     *
      * @return The minimum value for this preference.
      */
     public int getMinValue() {
@@ -457,6 +457,8 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
+     * Returns the current seek bar progress.
+     *
      * @return The current seek bar progress.
      */
     public int getProgress() {
@@ -464,22 +466,24 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
-     * Set the current seek bar progress.
+     * Get the current seek bar progress.
      *
      * @param progress The progress to be set.
      */
     public void setProgress(int progress) {
         this.mProgress = progress;
 
-        if (getPreferenceKey() != null) {
+        if (super.getPreferenceKey() != null) {
             DynamicPreferences.getInstance().savePrefs(
-                    getPreferenceKey(), getValueFromProgress());
+                    super.getPreferenceKey(), getValueFromProgress());
         } else {
             onUpdate();
         }
     }
 
     /**
+     * Get the seek interval for the seek bar.
+     *
      * @return The seek interval for the seek bar.
      */
     public int getSeekInterval() {
@@ -498,6 +502,8 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
+     * Get the optional unit text for the preference value.
+     *
      * @return The optional unit text for the preference value.
      */
     public @Nullable CharSequence getUnit() {
@@ -525,8 +531,10 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
-     * @return {@code true} to show seek bar buttons to increase
-     *         or decrease the value.
+     * Returns whether the seek bar seek bar buttons to increase or decrease the value
+     * are enabled.
+     *
+     * @return {@code true} to show seek bar buttons to increase or decrease the value.
      */
     public boolean isControls() {
         return mControls;
@@ -535,8 +543,7 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     /**
      * Set the seek bar controls to be enabled or disabled.
      *
-     * @param controls {@code true} to show seek bar buttons
-     *                 to increase or decrease the value.
+     * @param controls {@code true} to show seek bar buttons to increase or decrease the value.
      */
     public void setControls(boolean controls) {
         this.mControls = controls;
@@ -545,16 +552,16 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
-     * @return The seek bar change listener to get the callback for
-     *         seek events.
+     * Returns the seek bar change listener to get the callback for seek events.
+     *
+     * @return The seek bar change listener to get the callback for seek events.
      */
     public @Nullable SeekBar.OnSeekBarChangeListener getOnSeekBarChangeListener() {
         return mOnSeekBarChangeListener;
     }
 
     /**
-     * Set the seek bar change listener to get the callback for
-     * seek events.
+     * Set the seek bar change listener to get the callback for seek events.
      *
      * @param onSeekBarChangeListener The listener to be set.
      */
@@ -564,16 +571,16 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
-     * @return The seek bar change listener to get the callback for
-     *         control events.
+     * Returns the seek bar change listener to get the callback for control events.
+     *
+     * @return The seek bar change listener to get the callback for control events.
      */
     public @Nullable SeekBar.OnSeekBarChangeListener getOnSeekBarControlListener() {
         return mOnSeekBarControlListener;
     }
 
     /**
-     * Set the seek bar change listener to get the callback for
-     * control events.
+     * Set the seek bar change listener to get the callback for control events.
      *
      * @param onSeekBarControlListener The listener to be set.
      */
@@ -583,44 +590,50 @@ public class DynamicSeekBarPreference extends DynamicPreference {
     }
 
     /**
-     * @return The maximum preference value according to the
-     *         {@link #mSeekInterval}.
+     * Returns the maximum preference value according to the seek interval.
+     *
+     * @return The maximum preference value according to the seek interval.
      */
     private int getMax() {
         return (mMaxValue - mMinValue) / mSeekInterval;
     }
 
     /**
-     * @return The seek bar progress according to the supplied
-     *         value.
+     * Returns the seek bar progress according to the supplied value.
      *
      * @param value The value to converted into seek bar progress.
+     *
+     * @return The seek bar progress according to the supplied value.
      */
     private int getProgressFromValue(int value) {
         return (value - mMinValue) / mSeekInterval;
     }
 
     /**
-     * @return The preference value according to the seek bar
-     *         progress.
+     * Returns the preference value according to the seek bar progress.
+     *
+     * @return The preference value according to the seek bar progress.
      */
     public int getValueFromProgress() {
         return mMinValue + (mProgress * mSeekInterval);
     }
 
     /**
-     * @return The seek bar to display and modify the preference
-     *         value.
+     * Get the seek bar to display and modify the preference value.
+     *
+     * @return The seek bar to display and modify the preference value.
      */
     public AppCompatSeekBar getSeekBar() {
         return mSeekBar;
     }
 
     /**
+     * Get the text view to show the value.
+     *
      * @return The text view to show the value.
      */
-    public TextView getValueView() {
-        return mValueView;
+    public TextView getSeekBarValueView() {
+        return mSeekBarView;
     }
 
     /**
@@ -630,16 +643,16 @@ public class DynamicSeekBarPreference extends DynamicPreference {
      */
     public void setColor(@ColorInt int color) {
         ((DynamicSeekBar) mSeekBar).setColor(color);
-        ((DynamicTextView) mValueView).setColor(color);
+        ((DynamicTextView) mSeekBarView).setColor(color);
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         super.onSharedPreferenceChanged(sharedPreferences, key);
 
-        if (key.equals(getPreferenceKey())) {
+        if (key.equals(super.getPreferenceKey())) {
             mProgress = getProgressFromValue(DynamicPreferences.getInstance()
-                    .loadPrefs(getPreferenceKey(), mProgress));
+                    .loadPrefs(super.getPreferenceKey(), mProgress));
 
             onUpdate();
         }

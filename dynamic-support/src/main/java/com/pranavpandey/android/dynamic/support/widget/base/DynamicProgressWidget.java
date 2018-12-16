@@ -17,14 +17,12 @@
 package com.pranavpandey.android.dynamic.support.widget.base;
 
 /**
- * Interface to create dynamic widgets with a progress bar
- * and thumb.
+ * Interface to create dynamic widgets with a progress bar and thumb.
  */
 public interface DynamicProgressWidget extends DynamicWidget {
 
     /**
-     * Set progress bar color according to the supplied
-     * values.
+     * Set progress bar color according to the supplied values.
      */
     void setProgressBarColor();
 

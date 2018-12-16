@@ -18,11 +18,11 @@ package com.pranavpandey.android.dynamic.support.utils;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.os.IBinder;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import androidx.annotation.NonNull;
 
 import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
 
@@ -32,16 +32,15 @@ import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
 public class DynamicDialogUtils {
 
     /**
-     * Set custom view to a dialog with top padding to maintain
-     * uniform layout on all Android versions.
+     * Set custom view to a dialog with top padding to maintain uniform layout on all
+     * Android versions.
      *
-     * @param alertDialog AlertDialog to set the custom view.
-     * @param view View to be used as the custom view.
+     * @param alertDialog The alert dialog to set the custom view.
+     * @param view The view to be used as the custom view.
      *
      * @return The alert dialog after setting the custom view.
      */
-    public static DynamicDialog setView(@NonNull DynamicDialog alertDialog,
-                                        @NonNull View view) {
+    public static DynamicDialog setView(@NonNull DynamicDialog alertDialog, @NonNull View view) {
         alertDialog.setView(view, 0, getDialogTopPadding(
                 alertDialog.getContext()), 0, 0);
 
@@ -49,38 +48,31 @@ public class DynamicDialogUtils {
     }
 
     /**
-     * Get top padding of the dialog to maintain uniform layout on all
-     * Android versions. Generally, it is required in case of custom view
-     * in the dialog.
+     * Get top padding of the dialog to maintain uniform layout on all Android versions.
+     * <p>Generally, it is required in case of custom view in the dialog.
      *
      * @param context The context to get the resources.
      *
-     * @return Top padding of the dialog.
+     * @return The top padding of the dialog.
      */
     public static int getDialogTopPadding(@NonNull Context context) {
         return (int) (14 * context.getResources().getDisplayMetrics().density);
     }
 
     /**
-     * Bind the dialog with a window token. Useful to display it
-     * from a service.
+     * Bind the dialog with a window token. Useful to display it from a service.
      *
-     * @param view View to extract the window token.
-     * @param dialog Dialog to be displayed.
+     * @param dialog The dialog to be displayed.
      * @param type The dialog type.
      *
      * @return The bound dialog with the supplied view.
      */
-    public static Dialog bindDialog(@NonNull View view, @NonNull Dialog dialog, int type) {
-        IBinder windowToken = view.getWindowToken();
+    public static Dialog bindDialog(@NonNull Dialog dialog, int type) {
         Window window = dialog.getWindow();
 
         if (window != null) {
-            WindowManager.LayoutParams lp = window.getAttributes();
-            lp.token = windowToken;
-            lp.windowAnimations = android.R.style.Animation_InputMethod;
-            lp.type = type;
-            window.setAttributes(lp);
+            window.setType(type);
+            window.setWindowAnimations(android.R.style.Animation_InputMethod);
             window.addFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
         }
 

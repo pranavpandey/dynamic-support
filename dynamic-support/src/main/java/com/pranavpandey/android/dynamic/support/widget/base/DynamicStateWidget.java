@@ -16,42 +16,45 @@
 
 package com.pranavpandey.android.dynamic.support.widget.base;
 
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 
-import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.theme.Theme;
 
 /**
- * Interface to create dynamic widgets with a normal and checked
- * state according to the {@link DynamicTheme}.
+ * Interface to create dynamic widgets with a normal state according to the {@link DynamicTheme}.
  */
 public interface DynamicStateWidget extends DynamicWidget {
 
     /**
-     * @return The normal state color type applied to this view.
+     * Returns the normal state color type applied to this widget.
+     * 
+     * @return The normal state color type applied to this widget.
      *
-     * @see DynamicColorType
+     * @see Theme.ColorType
      */
-    @DynamicColorType int getStateNormalColorType();
+    @Theme.ColorType int getStateNormalColorType();
 
     /**
-     * Set the normal state color type to this view.
+     * Set the normal state color type to this widget.
      *
-     * @param stateNormalColorType Normal state color type for this view.
+     * @param stateNormalColorType Normal state color type for this widget.
      *
-     * @see DynamicColorType
+     * @see Theme.ColorType
      */
-    void setStateNormalColorType(@DynamicColorType int stateNormalColorType);
+    void setStateNormalColorType(@Theme.ColorType int stateNormalColorType);
 
     /**
-     * @return The value of normal state color applied to this view.
+     * Returns the value of normal state color applied to this widget.
+     * 
+     * @return The value of normal state color applied to this widget.
      */
     @ColorInt int getStateNormalColor();
 
     /**
-     * Set the value of normal state color for this view.
+     * Set the value of normal state color for this widget.
      *
-     * @param stateNormalColorColor Normal state color for this view.
+     * @param stateNormalColorColor Normal state color for this widget.
      */
     void setStateNormalColor(@ColorInt int stateNormalColorColor);
 }

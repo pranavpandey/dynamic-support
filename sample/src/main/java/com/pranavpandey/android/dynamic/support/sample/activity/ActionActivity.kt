@@ -23,8 +23,9 @@ import com.pranavpandey.android.dynamic.support.sample.controller.Constants
 import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils
 
 /**
- * Activity to handle app shortcuts intent. For now, just
- * opening the GitHub page.
+ * Activity to handle app shortcuts intent.
+ *
+ * For now, just opening the GitHub page.
  */
 class ActionActivity : Activity() {
 

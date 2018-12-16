@@ -16,49 +16,53 @@
 
 package com.pranavpandey.android.dynamic.support.widget.base;
 
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 
-import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.theme.Theme;
 
 /**
- * Interface to create dynamic widgets with a text view which
- * can be tinted according to the {@link DynamicTheme}.
+ * Interface to create dynamic widgets with a text view which can be tinted according to the
+ * {@link DynamicTheme}.
  */
 public interface DynamicTextWidget extends DynamicWidget {
 
     /**
-     * @return The text color type applied to this view.
+     * Returns the text color type applied to this widget.
+     * 
+     * @return The text color type applied to this widget.
      *
-     * @see DynamicColorType
+     * @see Theme.ColorType
      */
-    @DynamicColorType int getTextColorType();
+    @Theme.ColorType int getTextColorType();
 
     /**
-     * Set the text color type to this view.
+     * Set the text color type to this widget.
      *
-     * @param textColorType Text color type for this view.
+     * @param textColorType Text color type for this widget.
      *
-     * @see DynamicColorType
+     * @see Theme.ColorType
      */
-    void setTextColorType(@DynamicColorType int textColorType);
+    void setTextColorType(@Theme.ColorType int textColorType);
 
     /**
-     * @return The value of text color applied to this view.
+     * Returns the value of text color applied to this widget.
+     * 
+     * @return The value of text color applied to this widget.
      */
     @ColorInt int getTextColor();
 
     /**
-     * Set the value of text color for this view.
+     * Set the value of text color for this widget.
      *
-     * @param textColor Text color for this view.
+     * @param textColor Text color for this widget.
      */
     void setTextColor(@ColorInt int textColor);
 
     /**
-     * Set text color of this view according to the supplied values.
-     * Generally, it should be a tint color so that text will be visible on
-     * this view background.
+     * Set text color of this widget according to the supplied values.
+     * <p>Generally, it should be a tint color so that text will be visible on this
+     * widget background.
      */
     void setTextColor();
 }

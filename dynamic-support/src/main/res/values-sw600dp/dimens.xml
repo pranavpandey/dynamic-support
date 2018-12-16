@@ -18,7 +18,7 @@
 <resources>
 
     <!-- Activity -->
-    <dimen name="ads_drawer_size">280dp</dimen>
+    <dimen name="ads_drawer_size">300dp</dimen>
     <dimen name="ads_margin_content_start">@dimen/ads_drawer_size</dimen>
     <dimen name="ads_collapsing_toolbar_height">240dp</dimen>
 
@@ -26,6 +26,7 @@
     <dimen name="ads_icon_tutorial">240dp</dimen>
 
     <!-- Popup -->
-    <dimen name="ads_popup_max_width">400dp</dimen>
+    <dimen name="ads_popup_max_width">380dp</dimen>
+    <dimen name="ads_popup_max_width_large">400dp</dimen>
 
 </resources>

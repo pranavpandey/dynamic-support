@@ -25,8 +25,7 @@ import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment
 import com.pranavpandey.android.dynamic.support.sample.R
 
 /**
- * App info fragment to show app links and developer info by
- * using [DynamicFragment].
+ * App info fragment to show app links and developer info by using [DynamicFragment].
  */
 class AppInfoFragment : DynamicFragment() {
 
@@ -38,6 +37,8 @@ class AppInfoFragment : DynamicFragment() {
     companion object {
 
         /**
+         * Returns the new instance of this fragment.
+         *
          * @return The new instance of [AppInfoFragment].
          */
         fun newInstance(): AppInfoFragment {

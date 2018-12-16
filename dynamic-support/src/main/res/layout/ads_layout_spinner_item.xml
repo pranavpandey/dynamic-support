@@ -29,12 +29,12 @@
         android:layout_height="@dimen/ads_popup_selector_icon_size"
         style="@style/Widget.DynamicApp.Image.Preference" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/ads_spinner_item_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1.0"
-        android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle"
+        android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle1"
         android:layout_gravity="center_vertical" />
 
 </LinearLayout>

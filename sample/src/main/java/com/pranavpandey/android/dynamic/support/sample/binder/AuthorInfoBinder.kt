@@ -16,11 +16,10 @@
 
 package com.pranavpandey.android.dynamic.support.sample.binder
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.recyclerview.widget.RecyclerView
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBinderAdapter
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder
 import com.pranavpandey.android.dynamic.support.sample.R
@@ -28,8 +27,7 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils
 import com.pranavpandey.android.dynamic.support.view.DynamicInfoView
 
 /**
- * A recycler view binder to display author info by using
- * [DynamicRecyclerViewBinder].
+ * A recycler view binder to display author info by using [DynamicRecyclerViewBinder].
  */
 class AuthorInfoBinder(dynamicBinderAdapter: DynamicBinderAdapter)
     : DynamicRecyclerViewBinder<RecyclerView.ViewHolder>(dynamicBinderAdapter) {

@@ -17,11 +17,10 @@
 package com.pranavpandey.android.dynamic.support.sample.fragment
 
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
-import android.support.v4.app.Fragment
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import com.google.android.material.appbar.AppBarLayout
 import com.pranavpandey.android.dynamic.support.fragment.DynamicViewPagerFragment
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
@@ -30,19 +29,20 @@ import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils
 import java.util.*
 
 /**
- * About fragment to show app info and licences by using
- * [DynamicViewPagerFragment].
+ * About fragment to show app info and licences by using [DynamicViewPagerFragment].
  */
 class AboutFragment : DynamicViewPagerFragment() {
 
     companion object {
 
         /**
-         * @return The new instance of [AboutFragment].
+         * Returns the new instance of this fragment.
          *
          * @param page The default selected page.
+         *
+         * @return The new instance of [AboutFragment].
          */
-        fun newInstance(page: Int): Fragment {
+        fun newInstance(page: Int): androidx.fragment.app.Fragment {
             val fragment = AboutFragment()
             val args = Bundle()
             args.putInt(DynamicViewPagerFragment.ADS_ARGS_VIEW_PAGER_PAGE, page)
@@ -54,8 +54,7 @@ class AboutFragment : DynamicViewPagerFragment() {
 
     override fun getSubtitle(): CharSequence? {
         // Set subtitle for the app compat activity.
-        return String.format(getString(R.string.ads_format_version),
-                DynamicPackageUtils.getAppVersion(context!!))
+        return DynamicPackageUtils.getAppVersion(context!!)
     }
 
     override fun setNavigationViewCheckedItem(): Int {
@@ -75,9 +74,9 @@ class AboutFragment : DynamicViewPagerFragment() {
         return titles
     }
 
-    override fun getPages(): List<Fragment> {
+    override fun getPages(): List<androidx.fragment.app.Fragment> {
         // Initialize an empty fragment array for view pages pages.
-        val pages = ArrayList<Fragment>()
+        val pages = ArrayList<androidx.fragment.app.Fragment>()
 
         // TODO: Add view pager fragments.
         pages.add(AppInfoFragment.newInstance())
