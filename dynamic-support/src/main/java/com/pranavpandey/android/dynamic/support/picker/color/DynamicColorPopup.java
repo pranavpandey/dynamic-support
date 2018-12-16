@@ -16,30 +16,34 @@
 
 package com.pranavpandey.android.dynamic.support.picker.color;
 
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.PopupWindow;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
+
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.adapter.DynamicColorsAdapter;
 import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
+import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
 import com.pranavpandey.android.dynamic.support.popup.DynamicPopup;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorPalette;
-import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.theme.Theme;
+import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
 
 import java.util.Arrays;
 
 /**
- * A {@link PopupWindow} to display a grid of colors. It will be used
- * internally by the {@link com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference}
+ * A {@link PopupWindow} to display a grid of colors.
+ * <p>It will be used internally by the
+ * {@link com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference}
  * but can be used by the other views also.
  */
 public class DynamicColorPopup extends DynamicPopup {
@@ -99,7 +103,7 @@ public class DynamicColorPopup extends DynamicPopup {
     /**
      * Color listener to get the selected color.
      */
-    private DynamicColorsAdapter.OnColorSelectedListener mOnColorSelectedListener;
+    private DynamicColorListener mDynamicColorListener;
 
     /**
      * On click listener to get the more colors callback.
@@ -111,17 +115,15 @@ public class DynamicColorPopup extends DynamicPopup {
      *
      * @param anchor The anchor view for this popup.
      * @param entries The color entries for this popup.
-     * @param onColorSelectedListener The color listener to
-     *                                get the selected color.
+     * @param dynamicColorListener The color listener to get the selected color.
      */
-    public DynamicColorPopup(
-            @NonNull View anchor, @NonNull Integer[] entries,
-            @NonNull DynamicColorsAdapter.OnColorSelectedListener onColorSelectedListener) {
+    public DynamicColorPopup(@NonNull View anchor, @NonNull Integer[] entries,
+            @NonNull DynamicColorListener dynamicColorListener) {
         this.mAnchor = anchor;
         this.mEntries = entries;
-        this.mOnColorSelectedListener = onColorSelectedListener;
-        this.mDefaultColor = DynamicColorType.UNKNOWN;
-        this.mSelectedColor = DynamicColorType.UNKNOWN;
+        this.mDynamicColorListener = dynamicColorListener;
+        this.mDefaultColor = DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE;
+        this.mSelectedColor = DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE;
         this.mColorShape = DynamicColorShape.CIRCLE;
     }
 
@@ -135,13 +137,14 @@ public class DynamicColorPopup extends DynamicPopup {
                 (ViewGroup) getAnchor().getRootView(), false);
 
         if (getTitle() != null) {
-            mHeaderView = new DynamicHeader(getAnchor().getContext())
-                    .setTitle(getTitle()).setShowIcon(false);
+            mHeaderView = new DynamicHeader(getAnchor().getContext());
+            ((DynamicHeader) mHeaderView).setTitle(mTitle);
+            ((DynamicHeader) mHeaderView).setFillSpace(true);
         }
 
         final GridView gridView = mView.findViewById(R.id.ads_color_picker_presets);
 
-        if (mSelectedColor == DynamicColorType.UNKNOWN
+        if (mSelectedColor == DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE
                 || Arrays.asList(mEntries).contains(mSelectedColor)) {
             mFooterView.findViewById(R.id.ads_color_picker_popup_footer_image)
                     .setVisibility(View.VISIBLE);
@@ -150,7 +153,8 @@ public class DynamicColorPopup extends DynamicPopup {
                     R.id.ads_color_picker_popup_footer_view), mSelectedColor);
         }
 
-        if (mDefaultColor != DynamicColorType.UNKNOWN && mDefaultColor != mSelectedColor) {
+        if (mDefaultColor != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE
+                && mDefaultColor != mSelectedColor) {
             setColorView((DynamicColorView) mFooterView.findViewById(
                     R.id.ads_color_picker_popup_footer_view_default), mDefaultColor);
         }
@@ -168,16 +172,18 @@ public class DynamicColorPopup extends DynamicPopup {
                                     .setColorShape(mColorShape)
                                     .setAlpha(mAlpha)
                                     .setPreviousColor(mPreviousColor)
-                                    .setSelectedColor(mSelectedColor == DynamicTheme.ADS_THEME_AUTO
-                                            ? DynamicTheme.getInstance().getBackgroundColor()
+                                    .setSelectedColor(mSelectedColor == Theme.AUTO
+                                            ? DynamicTheme.getInstance().get().getBackgroundColor()
                                             : mSelectedColor)
-                                    .setOnColorSelectedListener(
-                                            new DynamicColorsAdapter.OnColorSelectedListener() {
+                                    .setDynamicColorListener(
+                                            new DynamicColorListener() {
                                                 @Override
-                                                public void onColorSelected(int position, int color) {
-                                                    if (mOnColorSelectedListener != null) {
-                                                        mOnColorSelectedListener
-                                                                .onColorSelected(position, color);
+                                                public void onColorSelected(
+                                                        @Nullable String tag, int position,
+                                                        int color) {
+                                                    if (mDynamicColorListener != null) {
+                                                        mDynamicColorListener.onColorSelected(
+                                                                tag, position, color);
                                                     }
                                                 }
                                             })
@@ -191,14 +197,13 @@ public class DynamicColorPopup extends DynamicPopup {
                 });
 
         gridView.setAdapter(new DynamicColorsAdapter(mEntries, mSelectedColor,
-                mColorShape, mAlpha,
-                new DynamicColorsAdapter.OnColorSelectedListener() {
+                mColorShape, mAlpha, new DynamicColorListener() {
                     @Override
-                    public void onColorSelected(int position, int color) {
+                    public void onColorSelected(@Nullable String tag, int position, int color) {
                         getPopupWindow().dismiss();
 
-                        if (mOnColorSelectedListener != null) {
-                            mOnColorSelectedListener.onColorSelected(position, color);
+                        if (mDynamicColorListener != null) {
+                            mDynamicColorListener.onColorSelected(tag, position, color);
                         }
                     }
                 }));
@@ -226,8 +231,9 @@ public class DynamicColorPopup extends DynamicPopup {
                 colorView.setSelected(true);
                 getPopupWindow().dismiss();
 
-                if (mOnColorSelectedListener != null) {
-                    mOnColorSelectedListener.onColorSelected(0, colorView.getColor());
+                if (mDynamicColorListener != null) {
+                    mDynamicColorListener.onColorSelected(
+                            null, 0, colorView.getColor());
                 }
             }
         });
@@ -256,6 +262,8 @@ public class DynamicColorPopup extends DynamicPopup {
     }
 
     /**
+     * Get the title used by this popup.
+     *
      * @return The title used by this popup.
      */
     public @Nullable CharSequence getTitle() {
@@ -272,6 +280,8 @@ public class DynamicColorPopup extends DynamicPopup {
     }
 
     /**
+     * Get the color entries used by this popup.
+     *
      * @return The color entries used by this popup.
      */
     public Integer[] getEntries() {
@@ -288,6 +298,8 @@ public class DynamicColorPopup extends DynamicPopup {
     }
 
     /**
+     * Get the default color to be shown in footer.
+     *
      * @return The default color to be shown in footer.
      */
     public @ColorInt int getDefaultColor() {
@@ -304,6 +316,15 @@ public class DynamicColorPopup extends DynamicPopup {
     }
 
     /**
+     * Get the previous color.
+     *
+     * @return The previous color.
+     */
+    public @ColorInt int getPreviousColor() {
+        return mPreviousColor;
+    }
+
+    /**
      * Set the previous color.
      *
      * @param previousColor The previous color to be set.
@@ -313,6 +334,8 @@ public class DynamicColorPopup extends DynamicPopup {
     }
 
     /**
+     * Get the selected color.
+     *
      * @return The selected color.
      */
     public @ColorInt int getSelectedColor() {
@@ -329,6 +352,8 @@ public class DynamicColorPopup extends DynamicPopup {
     }
 
     /**
+     * Get the shape of the color swatches.
+     *
      * @return The shape of the color swatches.
      */
     public @DynamicColorShape int getColorShape() {
@@ -345,14 +370,16 @@ public class DynamicColorPopup extends DynamicPopup {
     }
 
     /**
-     * @return {@code true} to enable alpha for the custom color.
+     * Returns whether the color alpha is enabled for the picker.
+     *
+     * @return {@code true} to enable the color alpha for the picker.
      */
     public boolean isAlpha() {
         return mAlpha;
     }
 
     /**
-     * Set the alpha support for the custom color.
+     * Set the color alpha support for the picker.
      *
      * @param alpha {@code true} to enable alpha.
      */
@@ -361,39 +388,38 @@ public class DynamicColorPopup extends DynamicPopup {
     }
 
     /**
+     * Returns the color listener to get the selected color.
+     *
      * @return The color listener to get the selected color.
      */
-    public @NonNull DynamicColorsAdapter.OnColorSelectedListener getOnColorSelectedListener() {
-        return mOnColorSelectedListener;
+    public @NonNull DynamicColorListener getDynamicColorListener() {
+        return mDynamicColorListener;
     }
 
     /**
      * Set the color listener to get the selected color.
      *
-     * @param onColorSelectedListener The listener to be set.
+     * @param dynamicColorListener The listener to be set.
      */
-    public void setOnColorSelectedListener(
-            @NonNull DynamicColorsAdapter.OnColorSelectedListener onColorSelectedListener) {
-        this.mOnColorSelectedListener = onColorSelectedListener;
+    public void setDynamicColorListener(@NonNull DynamicColorListener dynamicColorListener) {
+        this.mDynamicColorListener = dynamicColorListener;
     }
 
     /**
-     * @return The on click listener to get the more colors
-     *         callback.
+     * Returns the on click listener to get the more colors callback.
+     *
+     * @return The on click listener to get the more colors callback.
      */
     public @Nullable View.OnClickListener getOnMoreColorsListener() {
         return mOnMoreColorsListener;
     }
 
     /**
-     * Set the on click listener to get the more colors
-     * callback.
+     * Set the on click listener to get the more colors callback.
      *
-     * @param onMoreColorsListener The on click listener
-     *                             to be set.
+     * @param onMoreColorsListener The on click listener to be set.
      */
-    public void setOnMoreColorsListener(
-            @Nullable View.OnClickListener onMoreColorsListener) {
+    public void setOnMoreColorsListener(@Nullable View.OnClickListener onMoreColorsListener) {
         this.mOnMoreColorsListener = onMoreColorsListener;
     }
 }

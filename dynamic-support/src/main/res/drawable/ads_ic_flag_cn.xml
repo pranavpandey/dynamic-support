@@ -25,27 +25,27 @@
     android:autoMirrored="true">
 
     <path
-        android:fillColor="#de2910"
+        android:fillColor="#DE2910"
         android:pathData="M0,0h640v480H0z" />
 
     <path
-        android:fillColor="#ffde00"
+        android:fillColor="#FFDE00"
         android:pathData="M77.664,178.32L119.999,48 162.334,178.32 51.456,97.68L188.542,97.68z" />
 
     <path
-        android:fillColor="#ffde00"
+        android:fillColor="#FFDE00"
         android:pathData="M264.22,50.109L219.704,60.332 249.713,25.899 245.653,71.419L222.166,32.221z" />
 
     <path
-        android:fillColor="#ffde00"
+        android:fillColor="#FFDE00"
         android:pathData="M309.186,107.024L264.19,99.182 305.205,79.083 283.808,119.465L277.361,74.226z" />
 
     <path
-        android:fillColor="#ffde00"
+        android:fillColor="#FFDE00"
         android:pathData="M302.769,186.925L264.884,161.413 310.53,159.789 274.524,187.934L287.088,143.999z" />
 
     <path
-        android:fillColor="#ffde00"
+        android:fillColor="#FFDE00"
         android:pathData="M246.289,239.22L221.198,201.055 263.928,217.187 219.846,229.24L248.404,193.568z" />
 
 </vector>

@@ -26,10 +26,10 @@ import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
 import android.os.Build
 import android.os.Handler
-import android.support.annotation.ColorInt
-import android.support.annotation.DrawableRes
-import android.support.annotation.StyleRes
-import android.support.v4.graphics.drawable.IconCompat
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
+import androidx.annotation.StyleRes
+import androidx.core.graphics.drawable.IconCompat
 import com.pranavpandey.android.dynamic.support.DynamicApplication
 import com.pranavpandey.android.dynamic.support.sample.activity.ActionActivity
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
@@ -42,27 +42,23 @@ import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils
 import java.util.*
 
 /**
- * Sample application extending the [DynamicApplication],
- * it must be done to initialize the base components of dynamic
- * support library.
+ * Sample application extending the [DynamicApplication], it must be done to initialize the
+ * base components of dynamic support library.
  *
- * This must be registered in the manifest using `name`
- * attribute of the `application` tag.
+ * This must be registered in the manifest using `name` attribute of the `application` tag.
  */
 class SampleApplication : DynamicApplication() {
 
     companion object {
 
         /**
-         * Theme change delay to apply correct app shortcuts
-         * theme.
+         * Theme change delay to apply correct app shortcuts theme.
          */
         const val THEME_CHANGE_DELAY = 150
     }
 
     override fun onInitialize() {
-        // Do any startup work here like initializing the other
-        // libraries, analytics, etc.
+        // Do any startup work here like initializing the other libraries, analytics, etc.
         SampleController.initializeInstance(this)
     }
 
@@ -150,9 +146,8 @@ class SampleApplication : DynamicApplication() {
     }
 
     /**
-     * Generate a dynamic app shortcut icon from the supplied
-     * drawable resource and theme it according the app colors.
-     * It must contain a background and foreground layers with
+     * Generate a dynamic app shortcut icon from the supplied drawable resource and theme
+     * it according the app colors. It must contain a background and foreground layers with
      * the appropriate ids.
      *
      * @param context The context to retrieve the resources.
@@ -160,13 +155,13 @@ class SampleApplication : DynamicApplication() {
      */
     @TargetApi(Build.VERSION_CODES.M)
     private fun getShortcutIcon(context: Context, @DrawableRes drawableRes: Int): Icon? {
-        @ColorInt var primaryColor = DynamicTheme.getInstance().primaryColor
-        @ColorInt var tintPrimaryColor = DynamicTheme.getInstance().tintPrimaryColor
+        @ColorInt var primaryColor = DynamicTheme.getInstance().get().primaryColor
+        @ColorInt var tintPrimaryColor = DynamicTheme.getInstance().get().tintPrimaryColor
         val drawable = DynamicResourceUtils.getDrawable(context, drawableRes)
 
         if (!SampleController.instance.isThemeAppShortcuts) {
-            primaryColor = DynamicTheme.getInstance().backgroundColor
-            tintPrimaryColor = DynamicTheme.getInstance().tintBackgroundColor
+            primaryColor = DynamicTheme.getInstance().get().backgroundColor
+            tintPrimaryColor = DynamicTheme.getInstance().get().tintBackgroundColor
         }
 
         if (drawable != null) {
@@ -175,8 +170,7 @@ class SampleApplication : DynamicApplication() {
             DynamicDrawableUtils.colorizeDrawable(drawable
                     .findDrawableByLayerId(R.id.foreground), tintPrimaryColor)
 
-            // Use IconCompat to support adaptive icons on Android O
-            // or above devices.
+            // Use IconCompat to support adaptive icons on Android O or above devices.
             return IconCompat.createWithAdaptiveBitmap(DynamicResourceUtils
                     .getBitmapFromVectorDrawable(drawable)!!).toIcon()
         }

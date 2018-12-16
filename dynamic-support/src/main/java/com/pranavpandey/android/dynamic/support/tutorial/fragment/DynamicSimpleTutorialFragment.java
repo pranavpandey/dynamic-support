@@ -17,12 +17,13 @@
 package com.pranavpandey.android.dynamic.support.tutorial.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicSimpleTutorial;
@@ -35,9 +36,8 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * A intro fragment which will be used with the {@link DynamicTutorialActivity}
- * to display a list of fragments in the view pager. Extend this provide any
- * extra functionality according to the need.
+ * A DynamicTutorialFragment fragment with an image, title, subtitle and description which
+ * will be used with the {@link DynamicTutorialActivity}.
  */
 public class DynamicSimpleTutorialFragment extends DynamicTutorialFragment {
 
@@ -84,8 +84,7 @@ public class DynamicSimpleTutorialFragment extends DynamicTutorialFragment {
     /**
      * Function to initialize this fragment.
      *
-     * @param dynamicSimpleTutorial The dynamic simple tutorial for this
-     *                              fragment.
+     * @param dynamicSimpleTutorial The dynamic simple tutorial for this fragment.
      *
      * @return An instance of {@link DynamicSimpleTutorialFragment}.
      */
@@ -140,8 +139,8 @@ public class DynamicSimpleTutorialFragment extends DynamicTutorialFragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.ads_fragment_tutorial_simple, container, false);
     }
 
@@ -177,10 +176,9 @@ public class DynamicSimpleTutorialFragment extends DynamicTutorialFragment {
     }
 
     /**
-     * Tint the widgets according to the supplied background
-     * color.
+     * Tint the widgets according to the supplied background color.
      *
-     * @param color Color to generate the tint.
+     * @param color The color to generate the tint.
      */
     private void tintWidgets(@ColorInt int color) {
         final @ColorInt int tintColor = DynamicColorUtils.getTintColor(color);

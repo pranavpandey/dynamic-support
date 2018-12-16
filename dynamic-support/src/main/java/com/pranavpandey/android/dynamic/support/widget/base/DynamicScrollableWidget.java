@@ -16,56 +16,57 @@
 
 package com.pranavpandey.android.dynamic.support.widget.base;
 
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 
-import com.pranavpandey.android.dynamic.support.theme.DynamicColorType;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.theme.Theme;
 
 /**
- * Interface to create dynamic widgets with a scroll bar
- * according to the {@link DynamicTheme}.
+ * Interface to create dynamic widgets with a scroll bar according to the {@link DynamicTheme}.
  */
 public interface DynamicScrollableWidget extends DynamicWidget {
 
     /**
-     * @return The scroll bar color type applied to this view.
+     * Returns the scroll bar color type applied to this widget.
+     * 
+     * @return The scroll bar color type applied to this widget.
      *
-     * @see DynamicColorType
+     * @see Theme.ColorType
      */
-    @DynamicColorType int getScrollBarColorType();
+    @Theme.ColorType int getScrollBarColorType();
 
     /**
-     * Set the scroll bar color type to this view.
+     * Set the scroll bar color type to this widget.
      *
-     * @param scrollBarColorType Scroll bar color type for this view.
+     * @param scrollBarColorType Scroll bar color type for this widget.
      *
-     * @see DynamicColorType
+     * @see Theme.ColorType
      */
-    void setScrollBarColorType(@DynamicColorType int scrollBarColorType);
+    void setScrollBarColorType(@Theme.ColorType int scrollBarColorType);
 
     /**
-     * @return The value of scroll bar color applied to this view.
+     * Returns the value of scroll bar color applied to this widget.
+     * 
+     * @return The value of scroll bar color applied to this widget.
      */
     @ColorInt int getScrollBarColor();
 
     /**
-     * Set the value of scroll bar color for this view.
+     * Set the value of scroll bar color for this widget.
      *
-     * @param scrollBarColor Scroll bar color for this view.
+     * @param scrollBarColor Scroll bar color for this widget.
      */
     void setScrollBarColor(@ColorInt int scrollBarColor);
 
     /**
-     * Set scroll bar color of this view according to the supplied
-     * values.
+     * Set scroll bar color of this widget according to the supplied values.
      */
     void setScrollBarColor();
 
     /**
-     * Set color and scroll bar color of this view at once.
+     * Set color and scroll bar color of this widget at once.
      *
-     * @param setScrollBarColor {@code true} to set the scroll bar color
-     *                          also.
+     * @param setScrollBarColor {@code true} to set the scroll bar color also.
      */
     void setColor(boolean setScrollBarColor);
 }

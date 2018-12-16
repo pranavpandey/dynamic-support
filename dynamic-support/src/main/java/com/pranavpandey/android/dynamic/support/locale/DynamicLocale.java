@@ -18,27 +18,26 @@ package com.pranavpandey.android.dynamic.support.locale;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.Locale;
 
 /**
- * An interface to implement the dynamic locale changes throughout
- * the app.
+ * An interface to implement the dynamic locale changes throughout the app.
  */
 public interface DynamicLocale {
 
     /**
      * @return The array of supported locales.
      *
-     * @see android.support.v4.os.ConfigurationCompat#getLocales(Configuration)
+     * @see androidx.core.os.ConfigurationCompat#getLocales(Configuration)
      */
     @Nullable String[] getSupportedLocales();
 
     /**
-     * @return The default locale to be used if no dynamic locale
-     *         support is provided.
+     * @return The default locale to be used if no dynamic locale support is provided.
      *
      * @param context The context to get configuration.
      *

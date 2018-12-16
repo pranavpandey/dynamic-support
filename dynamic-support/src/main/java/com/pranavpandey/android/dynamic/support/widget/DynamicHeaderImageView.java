@@ -18,15 +18,14 @@ package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
-import com.pranavpandey.android.dynamic.support.R;
+import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
- * A DynamicImageView to apply color filter as
- * {@link PorterDuff.Mode#SRC_ATOP}.
+ * A DynamicImageView to apply color filter as {@link PorterDuff.Mode#SRC_ATOP}.
  */
 public class DynamicHeaderImageView extends DynamicImageView {
 
@@ -39,7 +38,7 @@ public class DynamicHeaderImageView extends DynamicImageView {
     }
 
     public DynamicHeaderImageView(@NonNull Context context,
-                                  @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

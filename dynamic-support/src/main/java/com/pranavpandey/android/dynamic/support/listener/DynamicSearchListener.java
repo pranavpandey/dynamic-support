@@ -22,12 +22,12 @@ package com.pranavpandey.android.dynamic.support.listener;
 public interface DynamicSearchListener {
 
     /**
-     * Called when the search view is expanded.
+     * This method will be called when the search view is expanded.
      */
     void onSearchViewExpanded();
 
     /**
-     * Called when the search view is collapsed.
+     * This method will be called when the search view is collapsed.
      */
     void onSearchViewCollapsed();
 }

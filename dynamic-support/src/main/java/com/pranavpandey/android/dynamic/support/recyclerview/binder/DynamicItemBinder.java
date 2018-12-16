@@ -16,12 +16,13 @@
 
 package com.pranavpandey.android.dynamic.support.recyclerview.binder;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicItem;
@@ -29,8 +30,7 @@ import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBind
 import com.pranavpandey.android.dynamic.support.view.DynamicItemView;
 
 /**
- * Binder to bind the {@link DynamicItem} which can be used with the
- * {@link DynamicBinderAdapter}.
+ * Binder to bind the {@link DynamicItem} which can be used with the {@link DynamicBinderAdapter}.
  */
 public class DynamicItemBinder extends DynamicRecyclerViewBinder {
 
@@ -39,8 +39,8 @@ public class DynamicItemBinder extends DynamicRecyclerViewBinder {
      */
     private DynamicItem mData;
 
-    public DynamicItemBinder(@NonNull DynamicBinderAdapter dynamicBinderAdapter) {
-        super(dynamicBinderAdapter);
+    public DynamicItemBinder(@NonNull DynamicBinderAdapter binderAdapter) {
+        super(binderAdapter);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class DynamicItemBinder extends DynamicRecyclerViewBinder {
             viewHolderItem.getDynamicItemView().setClickable(false);
         }
 
-        viewHolderItem.getDynamicItemView().update();
+        viewHolderItem.getDynamicItemView().onUpdate();
     }
 
     @Override
@@ -77,6 +77,8 @@ public class DynamicItemBinder extends DynamicRecyclerViewBinder {
     }
 
     /**
+     * Get the data used by this binder.
+     *
      * @return The data used by this binder.
      */
     public @Nullable DynamicItem getData() {
@@ -99,7 +101,7 @@ public class DynamicItemBinder extends DynamicRecyclerViewBinder {
     /**
      * View holder to hold the dynamic item view layout.
      */
-    protected static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         /**
          * Dynamic item view for this view holder.
@@ -118,6 +120,8 @@ public class DynamicItemBinder extends DynamicRecyclerViewBinder {
         }
 
         /**
+         * Get the dynamic info view for this view holder.
+         *
          * @return The dynamic item view for this view holder.
          */
         public DynamicItemView getDynamicItemView() {

@@ -17,16 +17,16 @@
 package com.pranavpandey.android.dynamic.support.sample.view
 
 import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewFrame
 import com.pranavpandey.android.dynamic.support.sample.adapter.AppInfoAdapter
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils
 
 /**
- * App info view to display app and developer info by using
- * [AppInfoAdapter] and [DynamicRecyclerViewFrame].
+ * App info view to display app and developer info by using [AppInfoAdapter]
+ * and [DynamicRecyclerViewFrame].
  */
 class AppInfoView : DynamicRecyclerViewFrame {
 
@@ -42,7 +42,7 @@ class AppInfoView : DynamicRecyclerViewFrame {
 
     override fun getRecyclerViewLayoutManager(): RecyclerView.LayoutManager? {
         return DynamicLayoutUtils.getLinearLayoutManager(
-                context, LinearLayoutManager.VERTICAL)
+                context, androidx.recyclerview.widget.LinearLayoutManager.VERTICAL)
     }
 
     private fun setAdapter(): AppInfoView {

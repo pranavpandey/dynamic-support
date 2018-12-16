@@ -16,12 +16,13 @@
 
 package com.pranavpandey.android.dynamic.support.recyclerview.binder;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicInfo;
@@ -30,8 +31,7 @@ import com.pranavpandey.android.dynamic.support.view.DynamicInfoView;
 import com.pranavpandey.android.dynamic.support.view.DynamicInfoViewBig;
 
 /**
- * Binder to bind the {@link DynamicInfo} which can be used with the
- * {@link DynamicBinderAdapter}.
+ * Binder to bind the {@link DynamicInfo} which can be used with the {@link DynamicBinderAdapter}.
  */
 public class DynamicInfoBigBinder extends DynamicRecyclerViewBinder {
 
@@ -40,8 +40,8 @@ public class DynamicInfoBigBinder extends DynamicRecyclerViewBinder {
      */
     private DynamicInfo mData;
 
-    public DynamicInfoBigBinder(@NonNull DynamicBinderAdapter dynamicBinderAdapter) {
-        super(dynamicBinderAdapter);
+    public DynamicInfoBigBinder(@NonNull DynamicBinderAdapter binderAdapter) {
+        super(binderAdapter);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class DynamicInfoBigBinder extends DynamicRecyclerViewBinder {
         viewHolderInfo.getDynamicInfoViewBig().setLinksColorsId(dynamicInfo.getLinksColorsResId());
         viewHolderInfo.getDynamicInfoViewBig().setLinksColors(dynamicInfo.getLinksColors());
 
-        viewHolderInfo.getDynamicInfoViewBig().update();
+        viewHolderInfo.getDynamicInfoViewBig().onUpdate();
     }
 
     @Override
@@ -77,6 +77,8 @@ public class DynamicInfoBigBinder extends DynamicRecyclerViewBinder {
     }
 
     /**
+     * Get the data used by this binder.
+     *
      * @return The data used by this binder.
      */
     public @Nullable DynamicInfo getData() {
@@ -99,7 +101,7 @@ public class DynamicInfoBigBinder extends DynamicRecyclerViewBinder {
     /**
      * View holder to hold the dynamic info view layout.
      */
-    protected static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         /**
          * Dynamic info view for this view holder.
@@ -118,6 +120,8 @@ public class DynamicInfoBigBinder extends DynamicRecyclerViewBinder {
         }
 
         /**
+         * Get the dynamic info view for this view holder.
+         *
          * @return The dynamic info view for this view holder.
          */
         public DynamicInfoView getDynamicInfoViewBig() {

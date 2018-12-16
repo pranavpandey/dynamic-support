@@ -16,12 +16,11 @@
 
 package com.pranavpandey.android.dynamic.support.sample.binder
 
-import android.support.annotation.ColorInt
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.annotation.ColorInt
+import androidx.recyclerview.widget.RecyclerView
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBinderAdapter
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder
 import com.pranavpandey.android.dynamic.support.sample.R
@@ -31,8 +30,7 @@ import com.pranavpandey.android.dynamic.support.view.DynamicInfoView
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageView
 
 /**
- * A recycler view binder to display translators info by using
- * [DynamicRecyclerViewBinder].
+ * A recycler view binder to display translators info by using [DynamicRecyclerViewBinder].
  */
 class TranslatorsBinder(dynamicBinderAdapter: DynamicBinderAdapter)
     : DynamicRecyclerViewBinder<RecyclerView.ViewHolder>(dynamicBinderAdapter) {
@@ -60,15 +58,15 @@ class TranslatorsBinder(dynamicBinderAdapter: DynamicBinderAdapter)
         init {
             dynamicInfoView.linksView.recyclerViewLayoutManager =
                     DynamicLayoutUtils.getGridLayoutManager(dynamicInfoView.context,
-                            DynamicLayoutUtils.getGridCount(dynamicInfoView.context))
+                            DynamicLayoutUtils.getGridCountCompact(dynamicInfoView.context))
 
             (dynamicInfoView.iconView as DynamicImageView).color =
-                    DynamicTheme.getInstance().primaryColor
+                    DynamicTheme.getInstance().get().primaryColor
             if (dynamicInfoView.linksColors != null) {
                 @ColorInt val colors = dynamicInfoView.linksColors
-                colors?.set(colors.size - 1, DynamicTheme.getInstance().accentColor)
+                colors?.set(colors.size - 1, DynamicTheme.getInstance().get().accentColor)
                 dynamicInfoView.linksColors = colors
-                dynamicInfoView.update()
+                dynamicInfoView.onUpdate()
             }
         }
     }

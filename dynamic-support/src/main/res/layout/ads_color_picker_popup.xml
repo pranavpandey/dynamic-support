@@ -34,11 +34,7 @@
             android:columnWidth="@dimen/ads_icon_medium"
             android:horizontalSpacing="@dimen/ads_margin_tiny"
             android:verticalSpacing="@dimen/ads_margin_small"
-            android:numColumns="auto_fit"
-            android:stretchMode="columnWidth"
-            android:listSelector="@null"
-            android:cacheColorHint="@null"
-            style="@style/Widget.DynamicApp.Scroller.Nested" />
+            style="@style/Widget.DynamicApp.Scroller.Nested.GridView" />
 
     </LinearLayout>
 

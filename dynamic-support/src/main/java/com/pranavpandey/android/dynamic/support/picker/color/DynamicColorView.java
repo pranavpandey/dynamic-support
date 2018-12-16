@@ -16,50 +16,51 @@
 
 package com.pranavpandey.android.dynamic.support.picker.color;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.RadialGradient;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
-import android.os.Handler;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.toasts.DynamicHint;
 import com.pranavpandey.android.dynamic.utils.DynamicBitmapUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 /**
  * A FrameLayout to display a color in different {@link DynamicColorShape}.
- * It will provide various useful methods for the {@link DynamicColorPicker}
+ * <p>It will provide various useful methods for the {@link DynamicColorPicker}
  * to represent a set of colors and select a color from it.
  */
 public class DynamicColorView extends FrameLayout {
-
-    /**
-     * Constant for color view corners, 2 dip.
-     */
-    private static final int ADS_SQUARE_CORNERS = DynamicUnitUtils.convertDpToPixels(2);
 
     /**
      * Constant for color view stroke width, 1 dip.
@@ -123,6 +124,11 @@ public class DynamicColorView extends FrameLayout {
      */
     private boolean mAlpha;
 
+    /**
+     * Corner radius for the square or rectangle shape.
+     */
+    private int mCornerRadius;
+
     public DynamicColorView(@NonNull Context context) {
         this(context, null);
     }
@@ -134,7 +140,7 @@ public class DynamicColorView extends FrameLayout {
     }
 
     public DynamicColorView(@NonNull Context context,
-                            @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         loadFromAttributes(attrs);
@@ -152,17 +158,17 @@ public class DynamicColorView extends FrameLayout {
                 R.styleable.DynamicColorView);
 
         try {
-            mColorShape = a.getInt(R.styleable.DynamicColorView_ads_dynamicColorView_shape,
+            mColorShape = a.getInt(R.styleable.DynamicColorView_ads_shape,
                     DynamicColorShape.CIRCLE);
-            mColor = a.getColor(R.styleable.DynamicColorView_ads_dynamicColorView_color, 0);
-            mAlpha = a.getBoolean(R.styleable.DynamicColorView_ads_dynamicColorView_alpha,
+            mColor = a.getColor(R.styleable.DynamicColorView_ads_color, 0);
+            mAlpha = a.getBoolean(R.styleable.DynamicColorView_ads_alphaEnabled,
                     false);
+            mCornerRadius = a.getDimensionPixelOffset(
+                    R.styleable.DynamicColorView_ads_cornerRadius,
+                    getResources().getDimensionPixelOffset(R.dimen.ads_corner_radius));
         } finally {
             a.recycle();
         }
-
-        mSelectorBitmap = DynamicBitmapUtils.getBitmapFormDrawable(
-                DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_check));
 
         mColorPaint = new Paint();
         mColorStrokePaint = new Paint();
@@ -179,26 +185,56 @@ public class DynamicColorView extends FrameLayout {
         mSelectorPaint.setAntiAlias(true);
         mSelectorPaint.setFilterBitmap(true);
 
-        update(mColor);
+        onUpdate(mColor);
         setWillNotDraw(false);
+
+        getViewTreeObserver().addOnGlobalLayoutListener(
+                new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                    @Override
+                    public void onGlobalLayout() {
+                        if (DynamicVersionUtils.isJellyBean()) {
+                            getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        } else {
+                            getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                        }
+
+                        setColor(mColor);
+                    }
+        });
     }
 
     /**
      * Update this color view according to the current parameters.
      */
-    private void update(@ColorInt int color) {
+    private void onUpdate(@ColorInt int color) {
         this.mColor = color;
 
-        if (mColor == DynamicTheme.ADS_THEME_AUTO) {
-            mColorStrokePaint.setColor(DynamicTheme.getInstance().getTintBackgroundColor());
-            mColorPaint.setShader(new LinearGradient(0, 0,
-                    getMeasuredWidth() /2 , getMeasuredHeight() / 2,
-                    mColorStrokePaint.getColor(),
-                    DynamicTheme.getInstance().getBackgroundColor(), Shader.TileMode.MIRROR));
+        if (mColor == Theme.AUTO) {
+            @ColorInt int tintColor = DynamicColorUtils.getTintColor(
+                    DynamicTheme.getInstance().get().getBackgroundColor());
+
+            mSelectorBitmap = DynamicBitmapUtils.getBitmapFormDrawable(
+                    DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_play));
+            mColorStrokePaint.setColor(tintColor);
+            mColorPaint.setColor(DynamicTheme.getInstance().get().getBackgroundColor());
+
+            if (getMeasuredWidth() > 0) {
+                RadialGradient gradient =
+                        new RadialGradient(getMeasuredWidth() / 2f, getMeasuredWidth() / 2f,
+                                getMeasuredWidth(), new int[] {
+                                        DynamicTheme.getInstance().get().getBackgroundColor(),
+                                tintColor, DynamicTheme.getInstance().get().getPrimaryColor() },
+                                null, Shader.TileMode.CLAMP);
+                mColorPaint.setShader(gradient);
+            }
         } else {
-            mColorPaint.setShader(null);
+            mSelectorBitmap = DynamicBitmapUtils.getBitmapFormDrawable(
+                    DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_check));
             mColorPaint.setColor(color);
             mColorStrokePaint.setColor(DynamicColorUtils.getTintColor(color));
+
+            mColorPaint.setShader(null);
         }
 
         mSelectorPaint.setColor(mColorStrokePaint.getColor());
@@ -229,8 +265,8 @@ public class DynamicColorView extends FrameLayout {
             canvas.drawOval(mRectF, mColorPaint);
             canvas.drawOval(mRectF, mColorStrokePaint);
         } else {
-            canvas.drawRoundRect(mRectF, ADS_SQUARE_CORNERS, ADS_SQUARE_CORNERS, mColorPaint);
-            canvas.drawRoundRect(mRectF, ADS_SQUARE_CORNERS, ADS_SQUARE_CORNERS, mColorStrokePaint);
+            canvas.drawRoundRect(mRectF, mCornerRadius, mCornerRadius, mColorPaint);
+            canvas.drawRoundRect(mRectF, mCornerRadius, mCornerRadius, mColorStrokePaint);
         }
 
         if (mSelected) {
@@ -238,8 +274,9 @@ public class DynamicColorView extends FrameLayout {
             mSelectorBitmap = DynamicBitmapUtils
                     .resizeBitmap(mSelectorBitmap, selectorSize, selectorSize);
 
-            canvas.drawBitmap(mSelectorBitmap, (getMeasuredWidth() - mSelectorBitmap.getWidth()) / 2,
-                    (getMeasuredWidth() - mSelectorBitmap.getHeight()) / 2, mSelectorPaint);
+            canvas.drawBitmap(mSelectorBitmap,
+                    (getMeasuredWidth() - mSelectorBitmap.getWidth()) / 2f,
+                    (getMeasuredWidth() - mSelectorBitmap.getHeight()) / 2f, mSelectorPaint);
         }
 
         if (isClickable()) {
@@ -268,9 +305,10 @@ public class DynamicColorView extends FrameLayout {
     }
 
     /**
-     * @return A StateListDrawable according to the {@link #mColor}
-     *         to be used as the foreground drawable for this color
-     *         view.
+     * Returns a state list drawable to use it as the foreground for this color view.
+     *
+     * @return A state list drawable according to the color to use as the foreground  drawable
+     *         for this color view.
      */
     private StateListDrawable getForegroundDrawable() {
         Bitmap bitmap = Bitmap.createBitmap(
@@ -283,8 +321,7 @@ public class DynamicColorView extends FrameLayout {
         if (mColorShape == DynamicColorShape.CIRCLE) {
             canvas.drawOval(mRectF, mSelectorPaint);
         } else {
-            canvas.drawRoundRect(mRectF, ADS_SQUARE_CORNERS,
-                    ADS_SQUARE_CORNERS, mSelectorPaint);
+            canvas.drawRoundRect(mRectF, mCornerRadius, mCornerRadius, mSelectorPaint);
         }
 
         StateListDrawable stateListDrawable = new StateListDrawable();
@@ -296,15 +333,15 @@ public class DynamicColorView extends FrameLayout {
     }
 
     /**
-     * Show a cheat sheet around (below or above) this color view
-     * with hexadecimal color string according to the {@link #mColor}.
+     * Show a cheat sheet around (below or above) this color view with hexadecimal color string
+     * according to the {@link #mColor}.
      */
     public void showHint() {
         final Toast toast;
         final @ColorInt int color;
         final @ColorInt int tintColor;
 
-        if (mColor == DynamicTheme.ADS_THEME_AUTO) {
+        if (mColor == Theme.AUTO) {
             color = mSelectorPaint.getColor();
             tintColor = DynamicColorUtils.getTintColor(color);
         } else {
@@ -313,18 +350,21 @@ public class DynamicColorView extends FrameLayout {
         }
 
         if (mSelected) {
-            toast = DynamicHint.make(getContext(), getColorString(),
-                    DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_check),
+            toast = DynamicHint.make(DynamicTheme.getInstance().getContext(), getColorString(),
+                    DynamicResourceUtils.getDrawable(getContext(), mColor == Theme.AUTO
+                            ? R.drawable.ads_ic_play : R.drawable.ads_ic_check),
                     tintColor, color);
         } else {
-            toast = DynamicHint.make(getContext(), getColorString(),
-                    tintColor, color);
+            toast = DynamicHint.make(DynamicTheme.getInstance().getContext(),
+                    getColorString(), tintColor, color);
         }
 
         DynamicHint.show(this, toast);
     }
 
     /**
+     * Get the color used by this color view.
+     *
      * @return The color used by this color view.
      */
     public @ColorInt int getColor() {
@@ -337,14 +377,9 @@ public class DynamicColorView extends FrameLayout {
      * @param color The color to be set.
      */
     public void setColor(final @ColorInt int color) {
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                update(color);
-                requestLayout();
-                invalidate();
-            }
-        });
+        onUpdate(color);
+        requestLayout();
+        invalidate();
     }
 
     /**
@@ -367,6 +402,8 @@ public class DynamicColorView extends FrameLayout {
     }
 
     /**
+     * Returns whether this color view is selected.
+     *
      * @return {@code true} if this color view is selected.
      */
     public boolean isSelected() {
@@ -386,6 +423,8 @@ public class DynamicColorView extends FrameLayout {
     }
 
     /**
+     * Returns whether the alpha is enabled for the color.
+     *
      * @return {@code true} to enable alpha for the color.
      */
     public boolean isAlpha() {
@@ -405,25 +444,50 @@ public class DynamicColorView extends FrameLayout {
     }
 
     /**
-     * @return The hexadecimal color string according to the {@link #mColor}.
-     *         It will return {@link R.string#ads_theme_entry_auto}
-     *         if the color value will be {@link DynamicTheme#ADS_THEME_AUTO}.
+     * Get the corner radius for the square or rectangle shape.
+     *
+     * @return The corner radius for the square or rectangle shape.
+     */
+    public int getCornerRadius() {
+        return mCornerRadius;
+    }
+
+    /**
+     * Set the corner radius for the square or rectangle shape.
+     *
+     * @param cornerRadius The corner radius to be set in pixels.
+     */
+    public void setCornerRadius(int cornerRadius) {
+        this.mCornerRadius = cornerRadius;
+
+        requestLayout();
+        invalidate();
+    }
+
+    /**
+     * Returns the hexadecimal color string according to the supplied color.
+     *
+     * @return The hexadecimal color string according to the supplied color.
+     *         <p>It will return {@link R.string#ads_theme_entry_auto} if the color value is
+     *         {@link Theme#AUTO}.
      */
     public String getColorString() {
         return getColorString(getContext(), mColor, mAlpha);
     }
 
     /**
-     * @return The hexadecimal color string according to the supplied
-     *         color. It will return {@link R.string#ads_theme_entry_auto}
-     *         if the color value will be {@link DynamicTheme#ADS_THEME_AUTO}.
+     * Returns the hexadecimal color string according to the supplied color.
      *
      * @param context The context to retrieve resources.
      * @param color The color to be converted into string.
      * @param alpha {@code true} to enable alpha string.
+     *
+     * @return The hexadecimal color string according to the supplied color.
+     *         <p>It will return {@link R.string#ads_theme_entry_auto} if the color value is
+     *         {@link Theme#AUTO}.
      */
     public static String getColorString(@NonNull Context context, int color, boolean alpha) {
-        return color == DynamicTheme.ADS_THEME_AUTO
+        return color == Theme.AUTO
                 ? context.getString(R.string.ads_theme_entry_auto)
                 : DynamicColorUtils.getColorString(color, alpha, true);
     }

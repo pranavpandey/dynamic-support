@@ -18,47 +18,44 @@ package com.pranavpandey.android.dynamic.support.picker.color;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.View;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.adapter.DynamicColorsAdapter;
 import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
 import com.pranavpandey.android.dynamic.support.dialog.fragment.DynamicDialogFragment;
+import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
 import com.pranavpandey.android.dynamic.support.picker.DynamicPickerType;
 
 /**
- * A color picker dialog fragment to display multiple grids of colors
- * and their shades. It will be used internally by the
+ * A color picker dialog fragment to display multiple grids of colors and their shades.
+ * <p>It will be used internally by the
  * {@link com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference}
  * but can be used by the other views also.
  */
 public class DynamicColorDialog extends DynamicDialogFragment {
 
     /**
-     * State key to save the previously selected color so that it can
-     * be restored later.
+     * State key to save the previously selected color so that it can be restored later.
      */
     private static final String ADS_STATE_PICKER_PREVIOUS_COLOR =
             "ads_state_picker_previous_color";
 
     /**
-     * State key to save the currently selected color so that it can
-     * be restored later.
+     * State key to save the currently selected color so that it can be restored later.
      */
     private static final String ADS_STATE_PICKER_COLOR = "ads_state_picker_color";
 
     /**
-     * State key to save the color picker type so that it can be
-     * restored later.
+     * State key to save the color picker type so that it can be restored later.
      */
     private static final String ADS_STATE_PICKER_TYPE = "ads_state_picker_type";
 
     /**
-     * State key to save the color picker control so that it can be
-     * restored later.
+     * State key to save the color picker control so that it can be restored later.
      */
     private static final String ADS_STATE_PICKER_CONTROL = "ads_state_picker_control";
 
@@ -107,7 +104,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     /**
      * Color listener to get the selected color.
      */
-    private DynamicColorsAdapter.OnColorSelectedListener mOnColorSelectedListener;
+    private DynamicColorListener mDynamicColorListener;
 
     /**
      * The color picker used by this dialog.
@@ -144,14 +141,13 @@ public class DynamicColorDialog extends DynamicDialogFragment {
         mDynamicColorPicker.setSelectedColor(mSelectedColor);
         mDynamicColorPicker.setType(mType);
         mDynamicColorPicker.setControl(mControl);
-        mDynamicColorPicker.setOnColorSelectedListener(
-                new DynamicColorsAdapter.OnColorSelectedListener() {
+        mDynamicColorPicker.setDynamicColorListener(new DynamicColorListener() {
             @Override
-            public void onColorSelected(int position, int color) {
+            public void onColorSelected(@Nullable String tag, int position, int color) {
                 dismiss();
 
-                if (mOnColorSelectedListener != null) {
-                    mOnColorSelectedListener.onColorSelected(position, color);
+                if (mDynamicColorListener != null) {
+                    mDynamicColorListener.onColorSelected(tag, position, color);
                 }
             }
         });
@@ -176,7 +172,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
         setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {
-                mDynamicColorPicker.update();
+                mDynamicColorPicker.onUpdate();
                 if (savedInstanceState == null) {
                     showView(mDynamicColorPicker.getType());
                 } else {
@@ -233,7 +229,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
         outState.putInt(ADS_STATE_PICKER_PREVIOUS_COLOR, mDynamicColorPicker.getPreviousColor());
@@ -243,6 +239,8 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     }
 
     /**
+     * Ge the color entries used by the picker.
+     *
      * @return The color entries used by the picker.
      */
     public Integer[] getColors() {
@@ -250,6 +248,8 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     }
 
     /**
+     * Get the shade entries used by the picker.
+     *
      * @return The shade entries used by the picker.
      */
     public Integer[][] getShades() {
@@ -262,11 +262,10 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      * @param colors The color entries to be set.
      * @param shades The shade entries to be set.
      *
-     * @return The {@link DynamicColorDialog} object to allow for
-     *         chaining of calls to set methods.
+     * @return The {@link DynamicColorDialog} object to allow for chaining of calls to set methods.
      */
     public DynamicColorDialog setColors(@NonNull @ColorInt Integer[] colors,
-                                        @Nullable @ColorInt Integer[][] shades) {
+            @Nullable @ColorInt Integer[][] shades) {
         this.mColors = colors;
         this.mShades = shades;
 
@@ -274,6 +273,8 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     }
 
     /**
+     * Get the previous color.
+     *
      * @return The previous color.
      */
     public @ColorInt int getPreviousColor() {
@@ -285,8 +286,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      *
      * @param previousColor The previous color to be set.
      *
-     * @return The {@link DynamicColorDialog} object to allow for
-     *         chaining of calls to set methods.
+     * @return The {@link DynamicColorDialog} object to allow for chaining of calls to set methods.
      */
     public DynamicColorDialog setPreviousColor(@ColorInt int previousColor) {
         this.mPreviousColor = previousColor;
@@ -295,6 +295,8 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     }
 
     /**
+     * Get the selected color.
+     *
      * @return The selected color.
      */
     public @ColorInt int getSelectedColor() {
@@ -306,8 +308,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      *
      * @param selectedColor The color to be selected.
      *
-     * @return The {@link DynamicColorDialog} object to allow for
-     *         chaining of calls to set methods.
+     * @return The {@link DynamicColorDialog} object to allow for chaining of calls to set methods.
      */
     public DynamicColorDialog setSelectedColor(@ColorInt int selectedColor) {
         this.mSelectedColor = selectedColor;
@@ -316,6 +317,8 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     }
 
     /**
+     * Get the shape of the color swatches.
+     *
      * @return The shape of the color swatches.
      */
     public @DynamicColorShape int getColorShape() {
@@ -327,8 +330,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      *
      * @param colorShape The color shape to be set.
      *
-     * @return The {@link DynamicColorDialog} object to allow for
-     *         chaining of calls to set methods.
+     * @return The {@link DynamicColorDialog} object to allow for chaining of calls to set methods.
      */
     public DynamicColorDialog setColorShape(@DynamicColorShape int colorShape) {
         this.mColorShape = colorShape;
@@ -337,19 +339,20 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     }
 
     /**
-     * @return {@code true} to enable alpha for the custom color.
+     * Returns whether the color alpha is enabled for the picker.
+     *
+     * @return {@code true} to enable the color alpha for the picker.
      */
     public boolean isAlpha() {
         return mAlpha;
     }
 
     /**
-     * Set the alpha support for the custom color.
+     * Set the color alpha support for the picker.
      *
      * @param alpha {@code true} to enable alpha.
      *
-     * @return The {@link DynamicColorDialog} object to allow for
-     *         chaining of calls to set methods.
+     * @return The {@link DynamicColorDialog} object to allow for chaining of calls to set methods.
      */
     public DynamicColorDialog setAlpha(boolean alpha) {
         this.mAlpha = alpha;
@@ -358,23 +361,24 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     }
 
     /**
+     * Returns the color listener for this dialog.
+     *
      * @return The color listener to get the selected color.
      */
-    public @NonNull DynamicColorsAdapter.OnColorSelectedListener getOnColorSelectedListener() {
-        return mOnColorSelectedListener;
+    public @NonNull DynamicColorListener getDynamicColorListener() {
+        return mDynamicColorListener;
     }
 
     /**
      * Set the color listener to get the selected color.
      *
-     * @param onColorSelectedListener The listener to be set.
+     * @param dynamicColorListener The listener to be set.
      *
-     * @return The {@link DynamicColorDialog} object to allow for
-     *         chaining of calls to set methods.
+     * @return The {@link DynamicColorDialog} object to allow for chaining of calls to set methods.
      */
-    public DynamicColorDialog setOnColorSelectedListener(
-            @NonNull DynamicColorsAdapter.OnColorSelectedListener onColorSelectedListener) {
-        this.mOnColorSelectedListener = onColorSelectedListener;
+    public DynamicColorDialog setDynamicColorListener(
+            @NonNull DynamicColorListener dynamicColorListener) {
+        this.mDynamicColorListener = dynamicColorListener;
 
         return this;
     }

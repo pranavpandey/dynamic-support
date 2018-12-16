@@ -17,7 +17,7 @@
 package com.pranavpandey.android.dynamic.support.sample.activity
 
 import android.os.Bundle
-import android.support.annotation.StyleRes
+import androidx.annotation.StyleRes
 import com.pranavpandey.android.dynamic.support.activity.DynamicActivity
 import com.pranavpandey.android.dynamic.support.activity.DynamicDrawerActivity
 import com.pranavpandey.android.dynamic.support.sample.R
@@ -34,8 +34,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils
 import java.util.*
 
 /**
- * Implementing a bottom navigation view by using
- * [DynamicDrawerActivity].
+ * Implementing a bottom navigation view by using [DynamicDrawerActivity].
  */
 class BottomNavigationActivity : DynamicActivity() {
 
@@ -130,9 +129,9 @@ class BottomNavigationActivity : DynamicActivity() {
      */
     private fun themeBottomNavigationView() {
         if (mBottomNavigationView != null) {
-            mBottomNavigationView!!.color = DynamicTheme.getInstance().primaryColor
+            mBottomNavigationView!!.color = DynamicTheme.getInstance().get().primaryColor
             mBottomNavigationView!!.textColor = DynamicColorUtils.getTintColor(
-                    DynamicTheme.getInstance().primaryColor)
+                    DynamicTheme.getInstance().get().primaryColor)
         }
     }
 

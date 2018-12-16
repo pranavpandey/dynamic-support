@@ -19,82 +19,33 @@ package com.pranavpandey.android.dynamic.support.recyclerview;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
-import android.support.annotation.IntDef;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.ContentLoadingProgressBar;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.widget.ContentLoadingProgressBar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
 /**
- * A RecyclerView inside a FrameLayout with some built-in functionality
- * like swipe refresh layout, progress bar, etc. which can be initialized
- * quickly.
+ * A RecyclerView inside a FrameLayout with some built-in functionality like
+ * swipe refresh layout, progress bar, etc. which can be initialized quickly.
  */
 public abstract class DynamicRecyclerViewFrame extends FrameLayout {
 
     /**
-     * Constant for the type empty view.
+     * State key for the fragment super state.
      */
-    public static final int TYPE_EMPTY_VIEW = 0;
-
-    /**
-     * Constant for the type section header.
-     */
-    public static final int TYPE_SECTION_HEADER = 1;
-
-    /**
-     * Constant for the type item.
-     */
-    public static final int TYPE_ITEM = 2;
-
-    /**
-     * Constant for the type section divider.
-     */
-    public static final int TYPE_SECTION_DIVIDER = 3;
-
-    /**
-     * Valid item types for this adapter.
-     *
-     * <p>0. {@link #TYPE_EMPTY_VIEW}
-     * <br>1. {@link #TYPE_SECTION_HEADER}
-     * <br>2. {@link #TYPE_ITEM}
-     * <br>3. {@link #TYPE_SECTION_DIVIDER}</p>
-     */
-    @Retention(RetentionPolicy.SOURCE)
-    @IntDef(value = { TYPE_EMPTY_VIEW, TYPE_SECTION_HEADER, TYPE_ITEM, TYPE_SECTION_DIVIDER })
-    public @interface ItemType { }
-
-    /**
-     * Implement this interface in the object class to get item
-     * type and section header text.
-     */
-    public interface DynamicRecyclerViewItem {
-
-        /**
-         * @return Item type of this object.
-         * @see ItemType
-         */
-        @ItemType
-        int getItemViewType();
-
-        /**
-         * @return Section title for the item type {@link #TYPE_SECTION_HEADER}.
-         */
-        String getSectionTitle();
-    }
+    private static final String ADS_RECYCLER_VIEW_SCROLL_OFFSET = "superState";
 
     /**
      * Animation duration to show or hide the progress.
@@ -130,8 +81,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     private RecyclerView.LayoutManager mRecyclerViewLayoutManager;
 
     /**
-     * Progress bar which can be shown while the data is loading in
-     * the background.
+     * Progress bar which can be shown while the data is loading in the background.
      *
      * @see #showProgress()
      * @see #hideProgress()
@@ -149,15 +99,17 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     public DynamicRecyclerViewFrame(@NonNull Context context,
-                                    @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         initialize();
     }
 
     /**
-     * @return The layout used by this view. Override this to supply a
-     *         different layout.
+     * This method will be called to get the layout resource for this view.
+     * <p>Supply the view layout resource here to do the inflation.
+     *
+     * @return The layout used by this view. Override this to supply a different layout.
      */
     protected @LayoutRes int getLayoutRes() {
         return R.layout.ads_recycler_view;
@@ -181,6 +133,9 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     /**
+     * This method will be called to return the layout manager for the recycler view.
+     * <p>Override this method to supply the layout manager during.
+     *
      * @return The layout manager for the recycler view.
      */
     public abstract @Nullable RecyclerView.LayoutManager getRecyclerViewLayoutManager();
@@ -211,8 +166,6 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      * Set an adapter for the recycler view.
      *
      * @param adapter The recycler view adapter.
-     *
-     * @see #mRecyclerView
      */
     public void setAdapter(@NonNull RecyclerView.Adapter adapter) {
         mRecyclerView.setAdapter(adapter);
@@ -221,8 +174,8 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     /**
-     * Check for the staggered grid layout manager to avoid the jumping
-     * of items by scrolling the recycler view to top.
+     * Checks for the staggered grid layout manager to avoid the jumping of items by
+     * scrolling the recycler view to top.
      */
     protected void checkForStaggeredGridLayoutManager() {
         mRecyclerView.post(new Runnable() {
@@ -237,25 +190,24 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     /**
-     * @return Adapter used by the recycler view.
+     * Returns the adapter used by the recycler view.
      *
-     * @see #mRecyclerView
+     * @return The adapter used by the recycler view.
      */
     public RecyclerView.Adapter getAdapter() {
         return mRecyclerView.getAdapter();
     }
 
     /**
-     * Override this method to perform other operations on the
-     * recycler view.
+     * Override this method to perform other operations on the recycler view.
      *
      * @param recyclerView The recycler view inside this view.
      */
     protected void onCreateRecyclerView(@NonNull RecyclerView recyclerView) { }
 
     /**
-     * Override this method to set swipe refresh layout listener
-     * immediately after initializing the view.
+     * Override this method to set swipe refresh layout listener immediately after
+     * initializing the view.
      *
      * @return The on refresh listener for the swipe refresh layout.
      *
@@ -266,6 +218,8 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     /**
+     * Get the recycler view used by this view.
+     *
      * @return The recycler view to display the data.
      */
     public RecyclerView getRecyclerView() {
@@ -273,24 +227,25 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     /**
-     * @return The swipe refresh layout to provide pull to refresh
-     *         functionality.
+     * Get the swipe refresh layout used by this view.
+     *
+     * @return The swipe refresh layout used by this view.
      */
     public SwipeRefreshLayout getSwipeRefreshLayout() {
         return mSwipeRefreshLayout;
     }
 
     /**
-     * @return The swipe refresh layout to provide pull ro refresh
-     *         functionality.
+     * Get the swipe refresh layout listener used by this view.
+     *
+     * @return The swipe refresh layout listener used by this view.
      */
     public SwipeRefreshLayout.OnRefreshListener getOnRefreshListener() {
         return mOnRefreshListener;
     }
 
     /**
-     * Set the swipe refresh layout listener to provide pull to
-     * refresh functionality.
+     * Set the swipe refresh layout listener to provide pull to efresh functionality.
      *
      * @param onRefreshListener The listener to be set.
      */
@@ -309,8 +264,9 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     /**
-     * @return The progress bar which can be shown while the data
-     *         is loading in the background.
+     * Get the progress bar which can be shown while the data is loading in the background.
+     *
+     * @return The progress bar which can be shown while the data is loading in the background.
      */
     public ContentLoadingProgressBar getProgressBar() {
         return mProgressBar;
@@ -351,5 +307,29 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
                         }
                     });
         }
+    }
+
+    /**
+     * Returns the root scrollable view for this frame layout.
+     *
+     * @return The root scrollable view.
+     */
+    public View getViewRoot() {
+        return getRecyclerView();
+    }
+
+    /**
+     * Smooth scroll the root view according to the supplied values.
+     *
+     * @param x The x position to scroll to.
+     * @param y The y position to scroll to.
+     */
+    public void smoothScrollTo(final int x, final int y) {
+        post(new Runnable() {
+            @Override
+            public void run() {
+                getViewRoot().scrollTo(x, y);
+            }
+        });
     }
 }

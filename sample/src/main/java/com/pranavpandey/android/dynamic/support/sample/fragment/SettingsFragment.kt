@@ -17,26 +17,26 @@
 package com.pranavpandey.android.dynamic.support.sample.fragment
 
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
-import android.support.v4.app.Fragment
+import com.google.android.material.appbar.AppBarLayout
 import com.pranavpandey.android.dynamic.support.fragment.DynamicViewPagerFragment
 import com.pranavpandey.android.dynamic.support.sample.R
 import java.util.*
 
 /**
- * Settings fragment to show app settings and widgets by using
- * [DynamicViewPagerFragment].
+ * Settings fragment to show app settings and widgets by using [DynamicViewPagerFragment].
  */
 class SettingsFragment : DynamicViewPagerFragment() {
 
     companion object {
 
         /**
-         * @return The new instance of [SettingsFragment].
+         * Returns the new instance of this fragment.
          *
          * @param page The default selected page.
+         *
+         * @return The new instance of [SettingsFragment].
          */
-        fun newInstance(page: Int): Fragment {
+        fun newInstance(page: Int): androidx.fragment.app.Fragment {
             val fragment = SettingsFragment()
             val args = Bundle()
             args.putInt(DynamicViewPagerFragment.ADS_ARGS_VIEW_PAGER_PAGE, page)
@@ -68,9 +68,9 @@ class SettingsFragment : DynamicViewPagerFragment() {
         return titles
     }
 
-    override fun getPages(): List<Fragment> {
+    override fun getPages(): List<androidx.fragment.app.Fragment> {
         // Initialize an empty fragment array for view pages pages.
-        val pages = ArrayList<Fragment>()
+        val pages = ArrayList<androidx.fragment.app.Fragment>()
 
         // TODO: Add view pager fragments.
         pages.add(AppSettingsFragment.newInstance())

@@ -17,18 +17,21 @@
 package com.pranavpandey.android.dynamic.support.setting;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPicker;
 
 /**
- * A compact version of the DynamicSeekBarPreference for the
- * {@link DynamicColorPicker} to show the hue bar. It can
- * also be used in other scenarios.
+ * A compact version of the DynamicSeekBarPreference for the {@link DynamicColorPicker}
+ * to show the hue bar.
+ *
+ * <p><p>It can also be used in other scenarios.
  */
 public class DynamicSeekBarHue extends DynamicSeekBarCompact {
 
@@ -41,7 +44,7 @@ public class DynamicSeekBarHue extends DynamicSeekBarCompact {
     }
 
     public DynamicSeekBarHue(@NonNull Context context,
-                             @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

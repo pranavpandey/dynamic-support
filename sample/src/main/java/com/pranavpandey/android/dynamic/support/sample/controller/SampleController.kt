@@ -17,12 +17,11 @@
 package com.pranavpandey.android.dynamic.support.sample.controller
 
 import android.app.Application
-import android.support.annotation.ColorInt
+import androidx.annotation.ColorInt
 import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences
 
 /**
- * Singleton class to perform common operations throughout
- * the app.
+ * Singleton class to perform common operations throughout the app.
  */
 class SampleController {
 
@@ -32,8 +31,7 @@ class SampleController {
     var context: Application? = null
 
     /**
-     * Getter and Setter for the [Constants.PREF_FIRST_LAUNCH]
-     * shared preference.
+     * Getter and Setter for the [Constants.PREF_FIRST_LAUNCH] shared preference.
      */
     var isFirstLaunch: Boolean
         get() = DynamicPreferences.getInstance().loadPrefs(
@@ -43,7 +41,7 @@ class SampleController {
                 Constants.PREF_FIRST_LAUNCH, firstLaunch)
 
     /**
-     * @return The app theme primary color.
+     * The app theme primary color.
      */
     val colorPrimaryApp: Int
         @ColorInt get() = DynamicPreferences.getInstance().loadPrefs(
@@ -51,7 +49,7 @@ class SampleController {
                 Constants.PREF_SETTINGS_APP_THEME_COLOR_PRIMARY_DEFAULT)
 
     /**
-     * @return The app theme accent color.
+     * The app theme accent color.
      */
     val colorAccentApp: Int
         @ColorInt get() = DynamicPreferences.getInstance().loadPrefs(
@@ -59,7 +57,7 @@ class SampleController {
                 Constants.PREF_SETTINGS_APP_THEME_COLOR_ACCENT_DEFAULT)
 
     /**
-     * @return `true` to apply the navigation bar theme.
+     * true` to apply the navigation bar theme.
      */
     val isThemeNavigationBar: Boolean
         get() = DynamicPreferences.getInstance().loadPrefs(
@@ -67,7 +65,7 @@ class SampleController {
                 Constants.PREF_SETTINGS_NAVIGATION_BAR_THEME_DEFAULT)
 
     /**
-     * @return `true` to apply the app shortcuts theme.
+     * true` to apply the app shortcuts theme.
      */
     val isThemeAppShortcuts: Boolean
         get() = DynamicPreferences.getInstance().loadPrefs(
@@ -75,8 +73,8 @@ class SampleController {
                 Constants.PREF_SETTINGS_APP_SHORTCUTS_THEME_DEFAULT)
 
     /**
-     * Making default constructor private so that it cannot be initialized
-     * without a context. Use [.initializeInstance] instead.
+     * Making default constructor private so that it cannot be initialized without a context.
+     * Use [.initializeInstance] instead.
      */
     private constructor() {}
 
@@ -95,8 +93,8 @@ class SampleController {
         private var sInstance: SampleController? = null
 
         /**
-         * Initialize this controller when application starts. Must be
-         * initialize once.
+         * Initialize this controller when application starts.
+         * Must be initialize once.
          *
          * @param context The context to retrieve resources.
          */
@@ -112,8 +110,8 @@ class SampleController {
         }
 
         /**
-         * Get instance to access public methods. Must be called before accessing
-         * methods.
+         * Get instance to access public methods.
+         * Must be called before accessing methods.
          *
          * @return [.sInstance] Singleton [SampleController] instance.
          */

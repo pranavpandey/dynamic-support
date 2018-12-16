@@ -23,8 +23,9 @@ import android.graphics.Shader;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.widget.SeekBar;
+
+import androidx.annotation.NonNull;
 
 import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
@@ -45,7 +46,7 @@ public class DynamicSeekBarUtils {
         }
 
         LinearGradient gradient =
-                new LinearGradient(0.0f, 0.0f, ((float) seekBar.getWidth()), 0.0f,
+                new LinearGradient(0.0f, 0.0f, (float) seekBar.getWidth(), 0.0f,
                         new int[] { 0xFFFF0000, 0xFFFFFF00, 0xFF00FF00,
                                 0xFF00FFFF, 0xFF0000FF, 0xFFFF00FF, 0xFFFF0000 },
                         null, Shader.TileMode.CLAMP);

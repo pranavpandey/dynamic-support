@@ -16,9 +16,9 @@
 
 package com.pranavpandey.android.dynamic.support.recyclerview.adapter;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.pranavpandey.android.dynamic.support.model.DynamicItem;
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicItemBinder;
@@ -28,17 +28,21 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * A DynamicSimpleBinderAdapter to display the list of {@link DynamicItem}
- * inside a recycler view.
+ * A DynamicSimpleBinderAdapter to display the list of {@link DynamicItem} inside a recycler view.
  */
 public class DynamicItemsAdapter extends DynamicSimpleBinderAdapter {
 
     /**
-     * The data set used by this adapter. A list of
-     * {@link DynamicItem}.
+     * The data set used by this adapter.
+     * <p>A list of {@link DynamicItem}.
      */
     private List<DynamicItem> mDataSet;
 
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param dataSet The data set used by this adapter.
+     */
     public DynamicItemsAdapter(@NonNull Collection<? extends DynamicItem> dataSet) {
         this.mDataSet = new ArrayList<>(dataSet);
 
@@ -52,8 +56,7 @@ public class DynamicItemsAdapter extends DynamicSimpleBinderAdapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        ((DynamicItemBinder) getDataBinder(
-                getItemViewType(position))).setData(getItem(position));
+        ((DynamicItemBinder) getDataBinder(getItemViewType(position))).setData(getItem(position));
 
         super.onBindViewHolder(viewHolder, position);
     }
@@ -64,17 +67,21 @@ public class DynamicItemsAdapter extends DynamicSimpleBinderAdapter {
     }
 
     /**
-     * @return The data set used by this adapter. A list of
-     *         {@link DynamicItem}.
+     * Get the data set used by this adapter.
+     *
+     * @return The data set used by this adapter.
+     *         <p>A list of {@link DynamicItem}.
      */
     public @NonNull List<DynamicItem> getDataSet() {
         return mDataSet;
     }
 
     /**
-     * @return The item according to the supplied position.
+     * Returns the item according to the supplied position.
      *
      * @param position The position to get the item.
+     *
+     * @return The item according to the supplied position.
      */
     public @Nullable DynamicItem getItem(int position) {
         return mDataSet.get(position);

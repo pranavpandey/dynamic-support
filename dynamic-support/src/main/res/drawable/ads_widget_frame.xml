@@ -21,28 +21,10 @@
     <item>
 
         <shape
-            android:shape="rectangle"
-            android:dither="true">
-
-            <corners
-                android:radius="@dimen/ads_widget_corner_radius" />
-
-            <gradient
-                android:angle="90"
-                android:endColor="#1A000000"
-                android:startColor="#3A000000" />
-
-        </shape>
-
-    </item>
-
-    <item>
-
-        <shape
             android:shape="rectangle">
 
             <solid
-                android:color="#FFFFFF" />
+                android:color="@color/ads_color_control_remote" />
 
             <corners
                 android:radius="@dimen/ads_widget_corner_radius" />

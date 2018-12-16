@@ -23,7 +23,7 @@
     android:layout_height="wrap_content"
     android:fitsSystemWindows="true"
     app:ads_colorType="primary"
-    app:ads_backgroundAware="false">
+    app:ads_backgroundAware="disable">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,24 +41,24 @@
             android:layout_height="@dimen/ads_icon_header_drawer"
             android:layout_gravity="start"
             app:ads_colorType="tint_primary"
-            app:ads_backgroundAware="false" />
+            app:ads_contrastWithColorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
             android:id="@+id/ads_header_drawer_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ads_nav_header_spacing"
-            style="@style/TextAppearance.DynamicApp.Header.Drawer"
+            style="@style/TextAppearance.DynamicApp.Caption.Drawer"
             app:ads_colorType="tint_primary"
-            app:ads_backgroundAware="false" />
+            app:ads_contrastWithColorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
             android:id="@+id/ads_header_drawer_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:ads_colorType="tint_primary"
-            app:ads_backgroundAware="false"
-            style="@style/TextAppearance.DynamicApp.Subtitle" />
+            app:ads_contrastWithColorType="primary"
+            style="@style/TextAppearance.DynamicApp.Subtitle1" />
 
     </LinearLayout>
 

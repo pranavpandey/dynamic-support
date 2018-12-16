@@ -19,31 +19,35 @@ package com.pranavpandey.android.dynamic.support.tutorial;
 import android.animation.ArgbEvaluator;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.ColorInt;
-import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.view.ViewPager;
 import android.view.View;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.viewpager.widget.ViewPager;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
+import com.pranavpandey.android.dynamic.support.listener.DynamicWindowResolver;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.tutorial.adapter.DynamicTutorialsAdapter;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator;
 import com.pranavpandey.android.dynamic.support.widget.DynamicViewPager;
-import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.toasts.DynamicHint;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 import java.util.ArrayList;
 
 /**
- * Base activity with a view pager to show the supplied tutorials. Extend
- * this activity and supply tutorials or dataSet by using the provided
- * methods.
+ * Base activity with a view pager to show the supplied tutorials.
+ * <p>Extend this activity and supply tutorials or dataSet by using the provided methods.
  */
 public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
 
@@ -86,6 +90,11 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
      * Argb evaluator to manage color transition.
      */
     private ArgbEvaluator mArgbEvaluator;
+
+    /**
+     * Resolver to resolve the status and navigation bar color.
+     */
+    private DynamicWindowResolver mDynamicWindowResolver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -152,7 +161,7 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
         mActionPrevious.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                DynamicHint.show(v, DynamicHint.make(DynamicTutorialActivity.this,
+                DynamicHint.show(v, DynamicHint.make(DynamicTheme.getInstance().getContext(),
                         v.getContentDescription(), mActionCustom.getCurrentTextColor(),
                         ((DynamicWidget) v).getColor()));
                 return true;
@@ -172,14 +181,14 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
         mActionNext.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                DynamicHint.show(v, DynamicHint.make(DynamicTutorialActivity.this,
+                DynamicHint.show(v, DynamicHint.make(DynamicTheme.getInstance().getContext(),
                         v.getContentDescription(), mActionCustom.getCurrentTextColor(),
                         ((DynamicWidget) v).getColor()));
                 return true;
             }
         });
 
-        setViewPagerAdapter();
+        setTutorials();
 
         // A hack to retain the status bar color.
         if (savedInstanceState == null) {
@@ -197,39 +206,81 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
     }
 
     /**
-     * @return A list of {@link DynamicTutorial} to be shown by this
-     *         activity.
+     * Returns the list of {@link DynamicTutorial} to be shown by this activity.
+     *
+     * @return The list of {@link DynamicTutorial} to be shown by this activity.
      */
-    protected ArrayList<DynamicTutorial> getTutorials() {
+    protected @NonNull ArrayList<DynamicTutorial> getTutorials() {
         return new ArrayList<>();
     }
 
     /**
-     * Set view pager adapter according to the tutorials list.
+     * Returns the listener to resolve the status and navigation bar color.
+     *
+     * @return The listener to resolve the status and navigation bar color.
      */
-    private void setViewPagerAdapter() {
+    public @Nullable DynamicWindowResolver getDynamicWindowResolver() {
+        return mDynamicWindowResolver;
+    }
+
+    /**
+     * Set resolver to resolve the status and navigation bar.
+     *
+     * @param dynamicWindowResolver The resolver to be set
+     */
+    public void setDynamicWindowResolver(@Nullable DynamicWindowResolver dynamicWindowResolver) {
+        this.mDynamicWindowResolver = dynamicWindowResolver;
+
+        setTutorials();
+    }
+
+    /**
+     * Set view pager adapter according to the tutorials list.
+     *
+     * @param page The current page for to be set.
+     */
+    protected void setTutorials(int page) {
         mAdapter = new DynamicTutorialsAdapter(getSupportFragmentManager());
         mAdapter.setTutorials(getTutorials());
         mViewPager.setOffscreenPageLimit(mAdapter.getCount());
         mViewPager.setAdapter(mAdapter);
         mPageIndicator.setViewPager(mViewPager);
-
         mAdapter.notifyDataSetChanged();
+
+        mViewPager.setCurrentItem(page);
     }
 
     /**
-     * Update activity background and system UI according to the
-     * supplied color.
+     * Set view pager adapter according to the tutorials list.
+     */
+    protected void setTutorials() {
+        setTutorials(mViewPager.getCurrentItem());
+    }
+
+    /**
+     * Update activity background and system UI according to the supplied color.
      *
      * @param color The activity color to be applied.
      */
     private void setColor(int position, @ColorInt int color) {
-        setStatusBarColor(color);
-        setNavigationBarColor(color);
-        mCoordinatorLayout.setBackgroundColor(color);
-        mCoordinatorLayout.setStatusBarBackgroundColor(getStatusBarColor());
+        @ColorInt int systemUIColor = color;
+        @ColorInt int tintColor = DynamicColorUtils.getTintColor(color);
 
-        final @ColorInt int tintColor = DynamicColorUtils.getTintColor(color);
+        if (mDynamicWindowResolver != null) {
+            systemUIColor = mDynamicWindowResolver.getSystemUIColor(color);
+        } else {
+            systemUIColor = DynamicTheme.getInstance().get().getPrimaryColor()
+                    != DynamicTheme.getInstance().get().getPrimaryColorDark()
+                    ? DynamicTheme.getInstance().generateDarkColor(systemUIColor)
+                    : systemUIColor;
+        }
+
+        updateTaskDescription(color);
+        setStatusBarColor(systemUIColor);
+        setNavigationBarColor(systemUIColor);
+        mCoordinatorLayout.setStatusBarBackgroundColor(getStatusBarColor());
+        mCoordinatorLayout.setBackgroundColor(color);
+
         mViewPager.setColor(color);
         mActionPrevious.setColor(tintColor);
         mActionNext.setColor(tintColor);
@@ -238,6 +289,10 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
         mPageIndicator.setSelectedColour(tintColor);
         mPageIndicator.setUnselectedColour(DynamicColorUtils.adjustAlpha(
                 tintColor, WidgetDefaults.ADS_ALPHA_UNCHECKED));
+        DynamicTintUtils.setViewBackgroundTint(mActionPrevious,
+                color, tintColor, true, false);
+        DynamicTintUtils.setViewBackgroundTint(mActionNext, color,
+                tintColor, true, false);
 
         if (hasTutorialPrevious()) {
             mActionPrevious.setVisibility(View.VISIBLE);
@@ -259,16 +314,18 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
     }
 
     /**
-     * @return {@code true} if view pager can be moved to the
-     *         previous tutorial or item.
+     * Checks whether the view pager can be moved to the previous tutorial or item.
+     *
+     * @return {@code true} if view pager can be moved to the previous tutorial or item.
      */
     private boolean hasTutorialPrevious() {
         return mViewPager.getCurrentItem() != 0;
     }
 
     /**
-     * @return {@code true} if view pager can be moved to the
-     *         next tutorial or item.
+     * Checks whether the view pager can be moved to the next tutorial or item.
+     *
+     * @return {@code true} if view pager can be moved to the next tutorial or item.
      */
     private boolean hasTutorialNext() {
         return mAdapter != null && mViewPager.getCurrentItem() < mAdapter.getCount() - 1;
@@ -281,7 +338,7 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
      * @param onClickListener The on click listener for the action button.
      */
     protected void setAction(final @Nullable String text,
-                             final @Nullable View.OnClickListener onClickListener) {
+            final @Nullable View.OnClickListener onClickListener) {
         new Handler().post(new Runnable() {
             @Override
             public void run() {
@@ -297,6 +354,8 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
     }
 
     /**
+     * Get the view pager used by this activity.
+     *
      * @return The view pager used by this activity.
      */
     protected DynamicViewPager getViewPager() {
@@ -304,6 +363,8 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
     }
 
     /**
+     * Get the view pager adapter used by this activity.
+     *
      * @return The view pager adapter used by this activity.
      */
     protected DynamicTutorialsAdapter getViewPagerAdapter() {

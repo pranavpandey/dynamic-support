@@ -16,8 +16,6 @@
 
 package com.pranavpandey.android.dynamic.support.popup;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,15 +24,18 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.PopupWindow;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.adapter.DynamicSpinnerChoiceAdapter;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
 
 /**
- * A simple {@link PopupWindow} to display a list of items. It will be used
- * internally by the {@link com.pranavpandey.android.dynamic.support.setting.DynamicSpinnerPreference}
- * but it can also be used by the other views.
+ * A simple {@link PopupWindow} to display a list of items. It will be used internally by the
+ * {@link com.pranavpandey.android.dynamic.support.setting.DynamicSpinnerPreference} but it can
+ * be used by the other views also.
  */
 public class DynamicArrayPopup extends DynamicPopup {
 
@@ -64,7 +65,7 @@ public class DynamicArrayPopup extends DynamicPopup {
     private int mSelectedPosition;
 
     /**
-     * On click listener used by the list view.
+     * Click listener used by the list view.
      */
     private AdapterView.OnItemClickListener mOnItemClickListener;
 
@@ -73,11 +74,10 @@ public class DynamicArrayPopup extends DynamicPopup {
      *
      * @param anchor The anchor view used for this popup.
      * @param entries The list entries for this popup.
-     * @param onItemClickListener The on click listener
-     *                            for the list view.
+     * @param onItemClickListener The on click listener for the list view.
      */
     public DynamicArrayPopup(@NonNull View anchor, @NonNull CharSequence[] entries,
-                             @NonNull AdapterView.OnItemClickListener onItemClickListener) {
+            @NonNull AdapterView.OnItemClickListener onItemClickListener) {
         this.mAnchor = anchor;
         this.mEntries = entries;
         this.mOnItemClickListener = onItemClickListener;
@@ -100,8 +100,9 @@ public class DynamicArrayPopup extends DynamicPopup {
         }
 
         if (mTitle != null) {
-            mHeaderView = new DynamicHeader(getAnchor().getContext())
-                    .setTitle(mTitle).setShowIcon(false);
+            mHeaderView = new DynamicHeader(getAnchor().getContext());
+            ((DynamicHeader) mHeaderView).setTitle(mTitle);
+            ((DynamicHeader) mHeaderView).setFillSpace(true);
         }
 
         listView.setAdapter(new DynamicSpinnerChoiceAdapter(mEntries, mSelectedPosition,
@@ -141,6 +142,8 @@ public class DynamicArrayPopup extends DynamicPopup {
     }
 
     /**
+     * Get the title used by this popup.
+     *
      * @return The title used by this popup.
      */
     public @Nullable CharSequence getTitle() {
@@ -157,6 +160,8 @@ public class DynamicArrayPopup extends DynamicPopup {
     }
 
     /**
+     * Get the list entries used by this popup.
+     *
      * @return The list entries used by this popup.
      */
     public @Nullable CharSequence[] getEntries() {
@@ -173,6 +178,8 @@ public class DynamicArrayPopup extends DynamicPopup {
     }
 
     /**
+     * Get the selected position.
+     *
      * @return The the selected position.
      */
     public int getSelectedPosition() {
@@ -189,6 +196,8 @@ public class DynamicArrayPopup extends DynamicPopup {
     }
 
     /**
+     * Get the on click listener used by the list view.
+     *
      * @return The on click listener used by the list view.
      */
     public @NonNull AdapterView.OnItemClickListener getOnItemClickListener() {

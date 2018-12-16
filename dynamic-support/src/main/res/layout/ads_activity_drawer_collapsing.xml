@@ -35,7 +35,7 @@
 
     </FrameLayout>
 
-    <android.support.design.widget.NavigationView
+    <com.google.android.material.navigation.NavigationView
         android:id="@+id/ads_navigation_view"
         android:layout_width="@dimen/ads_drawer_size"
         android:layout_height="match_parent"

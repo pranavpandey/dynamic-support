@@ -17,9 +17,9 @@
 package com.pranavpandey.android.dynamic.support.sample.view
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
 import android.util.AttributeSet
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.pranavpandey.android.dynamic.support.model.DynamicInfo
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewFrame
 import com.pranavpandey.android.dynamic.support.sample.R
@@ -29,8 +29,8 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils
 import java.util.*
 
 /**
- * License view to display a list of licences by using
- * [LicensesAdapter] and [DynamicRecyclerViewFrame].
+ * License view to display a list of licences by using [LicensesAdapter]
+ * and [DynamicRecyclerViewFrame].
  */
 class LicenseView : DynamicRecyclerViewFrame {
 
@@ -47,7 +47,7 @@ class LicenseView : DynamicRecyclerViewFrame {
     override fun getRecyclerViewLayoutManager(): RecyclerView.LayoutManager? {
         return DynamicLayoutUtils.getStaggeredGridLayoutManager(
                 DynamicLayoutUtils.getGridCount(context),
-                StaggeredGridLayoutManager.VERTICAL)
+                androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL)
     }
 
     private fun setAdapter(): LicenseView {
@@ -67,14 +67,14 @@ class LicenseView : DynamicRecyclerViewFrame {
                         context, R.drawable.ads_ic_android)))
         licenses.add(DynamicInfo()
                 .setTitle(context
-                        .getString(R.string.ads_license_plaid))
+                        .getString(R.string.ads_license_gson_plaid))
                 .setDescription(context.getString(R.string.ads_license_copy_google_15))
                 .setLinks(resources.getStringArray(
                         R.array.ads_license_links_apache))
                 .setLinksSubtitles(resources.getStringArray(
                         R.array.ads_license_links_subtitles))
                 .setLinksUrls(resources.getStringArray(
-                        R.array.ads_license_links_urls_plaid))
+                        R.array.ads_license_links_urls_gson_plaid))
                 .setLinksIconsResId(R.array.ads_license_links_icons)
                 .setLinksColorsResId(R.array.ads_license_links_colors)
                 .setIconBig(DynamicResourceUtils.getDrawable(

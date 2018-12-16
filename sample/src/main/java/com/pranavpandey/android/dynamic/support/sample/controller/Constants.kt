@@ -17,9 +17,8 @@
 package com.pranavpandey.android.dynamic.support.sample.controller
 
 import android.graphics.Color
-import android.support.annotation.ColorInt
-
-import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
+import androidx.annotation.ColorInt
+import com.pranavpandey.android.dynamic.support.theme.Theme
 
 /**
  * Helper class to hold constants and shared preferences.
@@ -62,7 +61,7 @@ object Constants {
      *
      * `Auto` to use day and night themes.
      */
-    @ColorInt const val APP_THEME_COLOR = DynamicTheme.ADS_THEME_AUTO
+    @ColorInt const val APP_THEME_COLOR = Theme.AUTO
 
     /**
      * TODO: Default value for app theme day color.

@@ -16,7 +16,7 @@
     limitations under the License.
 -->
 
-<ScrollView
+<com.pranavpandey.android.dynamic.support.widget.DynamicScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/buttonPanel"
     style="?attr/buttonBarStyle"
@@ -25,7 +25,7 @@
     android:fillViewport="true"
     android:scrollIndicators="top|bottom">
 
-    <android.support.v7.widget.ButtonBarLayout
+    <androidx.appcompat.widget.ButtonBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="bottom"
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <android.support.v4.widget.Space
+        <androidx.legacy.widget.Space
             android:id="@+id/spacer"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -61,6 +61,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-    </android.support.v7.widget.ButtonBarLayout>
+    </androidx.appcompat.widget.ButtonBarLayout>
 
-</ScrollView>
+</com.pranavpandey.android.dynamic.support.widget.DynamicScrollView>

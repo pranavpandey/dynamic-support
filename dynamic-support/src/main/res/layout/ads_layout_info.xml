@@ -46,36 +46,35 @@
                 android:id="@+id/ads_info_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.DynamicApp.Title.Card" />
+                style="@style/TextAppearance.DynamicApp.Headline5.Card" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                 android:id="@+id/ads_info_subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.DynamicApp.Subtitle.Caps" />
+                style="@style/TextAppearance.DynamicApp.Subtitle1.Caps" />
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/ads_info_status_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.DynamicApp.Subtitle.Secondary" />
+                style="@style/TextAppearance.DynamicApp.Subtitle1.Secondary" />
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/ads_info_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ads_margin_tiny"
-                style="@style/TextAppearance.DynamicApp.Description" />
+                style="@style/TextAppearance.DynamicApp.Body1" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                 android:id="@+id/ads_info_status"
                 android:layout_marginTop="@dimen/ads_margin_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAllCaps="true"
                 android:textSize="@dimen/ads_font_size_medium"
                 app:ads_colorType="accent"
-                style="@style/TextAppearance.DynamicApp.Subtitle" />
+                style="@style/TextAppearance.DynamicApp.Subtitle1.Caps" />
 
         </LinearLayout>
 

@@ -22,26 +22,28 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StyleRes;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
 
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
 import com.pranavpandey.android.dynamic.support.locale.DynamicLocale;
 import com.pranavpandey.android.dynamic.support.locale.DynamicLocaleUtils;
+import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 import java.util.Locale;
 
 /**
- * Base application class which can be extended to initialize the
- * {@link DynamicTheme} and to perform theme change operations.
+ * Base application class which can be extended to initialize the {@link DynamicTheme} and to
+ * perform theme change operations.
  */
-public abstract class DynamicApplication extends Application implements
-        DynamicLocale, DynamicListener,
-        SharedPreferences.OnSharedPreferenceChangeListener {
+public abstract class DynamicApplication extends Application implements DynamicLocale,
+        DynamicListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     /**
      * Dynamic context used by this application.
@@ -70,7 +72,7 @@ public abstract class DynamicApplication extends Application implements
                 .registerOnSharedPreferenceChangeListener(this);
 
         onInitialize();
-        setThemeRes();
+        setDynamicTheme();
         onCustomiseTheme();
     }
 
@@ -79,30 +81,24 @@ public abstract class DynamicApplication extends Application implements
         super.onConfigurationChanged(newConfig);
 
         int diff = mConfiguration.diff(new Configuration(newConfig));
-        if ((diff & ActivityInfo.CONFIG_LOCALE) != 0) {
+        if ((diff & ActivityInfo.CONFIG_LOCALE) != 0
+                || (diff & ActivityInfo.CONFIG_ORIENTATION) != 0
+                || (DynamicVersionUtils.isJellyBeanMR1()
+                && (diff & ActivityInfo.CONFIG_DENSITY) != 0)) {
             DynamicTheme.getInstance().onDynamicChange(true, false);
             mConfiguration = new Configuration(newConfig);
         }
     }
 
     /**
-     * Set the current theme resource for this application.
-     */
-    protected void setThemeRes() {
-        if (getThemeRes() != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
-            DynamicTheme.getInstance().setTheme(getThemeRes(), true);
-        }
-    }
-
-    /**
-     * This method will be Called inside the {@link #onCreate()} method
-     * before applying the theme. Do any initializations in this method.
+     * This method will be called inside the {@link #onCreate()} method before applying the theme.
+     * <p>Do any initializations in this method.
      */
     protected abstract void onInitialize();
 
     /**
-     * Get the style resource file to apply theme on ths application.
-     * Override this method to supply your own customised style.
+     * Get the style resource to apply theme on this application.
+     * <p>Override this method to supply your own customised style.
      *
      * @return Style resource to be applied on this activity.
      */
@@ -111,17 +107,39 @@ public abstract class DynamicApplication extends Application implements
     }
 
     /**
-     * This method will be called inside the {@link #onCreate()} method
-     * after applying the theme. Override this method to customise the theme
-     * further.
+     * Get the dynamic app theme to be applied on this application.
+     * <p>Override this method to supply your own customised theme.
+     *
+     * @return The dynamic app theme for this application.
+     */
+    protected @Nullable DynamicAppTheme getDynamicTheme() {
+        return null;
+    }
+
+    /**
+     * This method will be called inside the {@link #onCreate()} method after applying the theme.
+     * <p>Override this method to customise the theme further.
      */
     protected void onCustomiseTheme() { }
 
     /**
+     * Returns the dynamic context used by this application.
+     *
      * @return The dynamic context used by this application.
      */
     public @NonNull Context getContext() {
         return mContext;
+    }
+
+    /**
+     * Set the dynamic app theme and style resource for this application.
+     */
+    protected void setDynamicTheme() {
+        if (getDynamicTheme() == null) {
+            DynamicTheme.getInstance().setThemeRes(getThemeRes(), true);
+        } else {
+            DynamicTheme.getInstance().setTheme(getDynamicTheme(), true);
+        }
     }
 
     @Override
@@ -149,7 +167,7 @@ public abstract class DynamicApplication extends Application implements
             DynamicTheme.getInstance().setContext(getContext());
         }
 
-        setThemeRes();
+        setDynamicTheme();
         onCustomiseTheme();
     }
 

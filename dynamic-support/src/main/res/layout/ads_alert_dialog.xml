@@ -16,94 +16,99 @@
     limitations under the License.
 -->
 
-<android.support.v7.widget.AlertDialogLayout
+<com.pranavpandey.android.dynamic.support.widget.DynamicCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/parentPanel"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="start|top"
-    android:orientation="vertical">
+    style="@style/Widget.DynamicApp.Card.Floating.Dialog">
 
-    <include layout="@layout/ads_alert_dialog_title" />
-
-    <FrameLayout
-        android:id="@+id/contentPanel"
+    <androidx.appcompat.widget.AlertDialogLayout
+        android:id="@+id/parentPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="48dp">
+        android:gravity="start|top"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <include layout="@layout/ads_alert_dialog_title" />
+
+        <FrameLayout
+            android:id="@+id/contentPanel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:minHeight="48dp">
 
-            <android.support.v4.widget.Space
-                android:id="@+id/textSpacerNoTitle"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/add_dialog_margin_title_top"
-                android:visibility="gone" />
-
-            <View
-                android:id="@+id/scrollIndicatorUp"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_gravity="top"
-                android:background="?attr/colorControlHighlight"
-                android:visibility="gone" />
-
-            <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
-                android:id="@+id/scrollView"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipToPadding="false">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@android:id/message"
+                <androidx.legacy.widget.Space
+                    android:id="@+id/textSpacerNoTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ads_dialog_margin_title_top"
+                    android:visibility="gone" />
+
+                <View
+                    android:id="@+id/scrollIndicatorUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="top"
+                    android:background="?attr/colorControlHighlight"
+                    android:visibility="gone" />
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
+                    android:id="@+id/scrollView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/ads_margin_extra_tiny"
-                    android:paddingLeft="?attr/dialogPreferredPadding"
-                    android:paddingRight="?attr/dialogPreferredPadding"
-                    style="@style/TextAppearance.DynamicApp.Dialog" />
+                    android:clipToPadding="false">
 
-            </com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView>
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                        android:id="@android:id/message"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ads_margin_extra_tiny"
+                        android:paddingLeft="?attr/dialogPreferredPadding"
+                        android:paddingRight="?attr/dialogPreferredPadding"
+                        style="@style/TextAppearance.DynamicApp.Dialog" />
 
-            <FrameLayout
-                android:id="@+id/customPanel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp">
+                </com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView>
 
                 <FrameLayout
-                    android:id="@+id/custom"
+                    android:id="@+id/customPanel"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp">
+
+                    <FrameLayout
+                        android:id="@+id/custom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </FrameLayout>
 
                 </FrameLayout>
 
-            </FrameLayout>
+                <androidx.legacy.widget.Space
+                    android:id="@+id/textSpacerNoButtons"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ads_dialog_margin_title_top"
+                    android:visibility="gone" />
 
-            <android.support.v4.widget.Space
-                android:id="@+id/textSpacerNoButtons"
+            </LinearLayout>
+
+            <View
+                android:id="@+id/scrollIndicatorDown"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/add_dialog_margin_title_top"
+                android:layout_height="1dp"
+                android:layout_gravity="bottom"
+                android:background="?attr/colorControlHighlight"
                 android:visibility="gone" />
 
-        </LinearLayout>
+        </FrameLayout>
 
-        <View
-            android:id="@+id/scrollIndicatorDown"
+        <include
+            layout="@layout/ads_alert_dialog_button_bar"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="bottom"
-            android:background="?attr/colorControlHighlight"
-            android:visibility="gone" />
+            android:layout_height="wrap_content" />
 
-    </FrameLayout>
+    </androidx.appcompat.widget.AlertDialogLayout>
 
-    <include
-        layout="@layout/ads_alert_dialog_button_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-</android.support.v7.widget.AlertDialogLayout>
+</com.pranavpandey.android.dynamic.support.widget.DynamicCardView>

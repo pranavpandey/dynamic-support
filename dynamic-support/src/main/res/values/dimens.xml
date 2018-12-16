@@ -20,6 +20,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="ads_page_horizontal_margin">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_page_vertical_margin">@dimen/ads_margin_medium</dimen>
+    <dimen name="ads_corner_radius">2dp</dimen>
 
     <!-- Margin presets -->
     <dimen name="ads_margin_extra_tiny">2dp</dimen>
@@ -31,13 +32,15 @@
     <dimen name="ads_margin_large">32dp</dimen>
     <dimen name="ads_margin_huge">64dp</dimen>
     <dimen name="ads_margin_fab">76dp</dimen>
+    <dimen name="ads_margin_fab_compat_mini">@dimen/ads_margin_tiny</dimen>
+    <dimen name="ads_margin_fab_compat_mini_bottom">@dimen/ads_margin_tiny</dimen>
     <dimen name="ads_padding_icon_small">3dp</dimen>
     <dimen name="ads_margin_app_shortcut_background">2dp</dimen>
     <dimen name="ads_margin_app_shortcut_icon">12dp</dimen>
     <dimen name="ads_margin_app_shortcut_icon_large">16dp</dimen>
 
     <!-- Dynamic activity -->
-    <dimen name="ads_drawer_size">280dp</dimen>
+    <dimen name="ads_drawer_size">300dp</dimen>
     <dimen name="ads_margin_content_start">0dp</dimen>
     <dimen name="ads_nav_header_spacing">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_nav_header_spacing_top">@dimen/ads_margin_medium</dimen>
@@ -47,44 +50,65 @@
     <dimen name="ads_margin_splash_bottom_end">@dimen/ads_margin_normal</dimen>
 
     <!-- Font sizes -->
+    <dimen name="ads_font_size_tiny">10sp</dimen>
     <dimen name="ads_font_size_extra_small">12sp</dimen>
     <dimen name="ads_font_size_small">13sp</dimen>
-    <dimen name="ads_font_size_medium">15sp</dimen>
-    <dimen name="ads_font_size_regular">17sp</dimen>
-    <dimen name="ads_font_size_normal">19sp</dimen>
-    <dimen name="ads_font_size_big">23sp</dimen>
+    <dimen name="ads_font_size_medium">14sp</dimen>
+    <dimen name="ads_font_size_regular">16sp</dimen>
+    <dimen name="ads_font_size_normal">18sp</dimen>
+    <dimen name="ads_font_size_big">22sp</dimen>
     <dimen name="ads_font_size_default">@dimen/ads_font_size_small</dimen>
-    <dimen name="ads_font_size_title">@dimen/ads_font_size_default</dimen>
-    <dimen name="ads_font_size_title_info">@dimen/ads_font_size_default</dimen>
-    <dimen name="ads_font_size_subtitle">@dimen/ads_font_size_extra_small</dimen>
-    <dimen name="ads_font_size_description">@dimen/ads_font_size_extra_small</dimen>
-    <dimen name="ads_font_size_splash_title">@dimen/ads_font_size_big</dimen>
-    <dimen name="ads_font_size_splash_subtitle">@dimen/ads_font_size_regular</dimen>
-    <dimen name="ads_font_size_tutorial_title">@dimen/ads_font_size_regular</dimen>
-    <dimen name="ads_font_size_tutorial_subtitle">@dimen/ads_font_size_default</dimen>
-    <dimen name="ads_font_size_tutorial_description">@dimen/ads_font_size_extra_small</dimen>
-    <dimen name="ads_font_size_button">@dimen/ads_font_size_extra_small</dimen>
-    <dimen name="ads_font_size_preference_value">21dp</dimen>
+    <dimen name="ads_font_size_headline1">84sp</dimen>
+    <dimen name="ads_font_size_headline2">52sp</dimen>
+    <dimen name="ads_font_size_headline3">44sp</dimen>
+    <dimen name="ads_font_size_headline4">28sp</dimen>
+    <dimen name="ads_font_size_headline5">@dimen/ads_font_size_medium</dimen>
+    <dimen name="ads_font_size_headline6">@dimen/ads_font_size_medium</dimen>
+    <dimen name="ads_font_size_subtitle1">@dimen/ads_font_size_default</dimen>
+    <dimen name="ads_font_size_subtitle2">@dimen/ads_font_size_default</dimen>
+    <dimen name="ads_font_size_body1">@dimen/ads_font_size_extra_small</dimen>
+    <dimen name="ads_font_size_body2">@dimen/ads_font_size_extra_small</dimen>
+    <dimen name="ads_font_size_caption">@dimen/ads_font_size_extra_small</dimen>
+    <dimen name="ads_font_size_headline5_card_info">@dimen/ads_font_size_medium</dimen>
+    <dimen name="ads_font_size_headline6_toolbar">@dimen/ads_font_size_normal</dimen>
+    <dimen name="ads_font_size_headline6_toolbar_expanded">@dimen/ads_font_size_headline4</dimen>
+    <dimen name="ads_font_size_headline6_splash">@dimen/ads_font_size_big</dimen>
+    <dimen name="ads_font_size_subtitle1_splash">@dimen/ads_font_size_regular</dimen>
+    <dimen name="ads_font_size_headline5_tutorial">@dimen/ads_font_size_regular</dimen>
+    <dimen name="ads_font_size_subtitle1_toolbar">@dimen/ads_font_size_medium</dimen>
+    <dimen name="ads_font_size_subtitle1_tutorial">@dimen/ads_font_size_default</dimen>
+    <dimen name="ads_font_size_body1_tutorial">@dimen/ads_font_size_default</dimen>
+    <dimen name="ads_font_size_button">@dimen/ads_font_size_caption</dimen>
+    <dimen name="ads_font_size_preference_value">20dp</dimen>
 
     <!-- Toolbar -->
     <dimen name="ads_toolbar_inset_start">72dp</dimen>
+    <dimen name="ads_toolbar_inset_start_card">64dp</dimen>
     <dimen name="ads_toolbar_inset_start_collapsing">68dp</dimen>
     <dimen name="ads_toolbar_margin_start_collapsing">20dp</dimen>
     <dimen name="ads_toolbar_margin_end_collapsing">@dimen/ads_toolbar_inset_start_collapsing</dimen>
     <dimen name="ads_tab_height">44dp</dimen>
     <dimen name="ads_tab_min_width">48dp</dimen>
+    <dimen name="ads_tab_indicator_margin_vertical">1dp</dimen>
+    <dimen name="ads_tab_indicator_margin_horizontal">@dimen/ads_margin_medium</dimen>
+    <dimen name="ads_tab_indicator_height">3dp</dimen>
+    <dimen name="ads_tab_indicator_corner_size">4dp</dimen>
     <dimen name="ads_tab_inset_start">@dimen/ads_toolbar_inset_start</dimen>
 
     <!-- Card -->
     <dimen name="ads_card_view_margin">@dimen/ads_margin_tiny</dimen>
-    <dimen name="ads_card_view_content_margin">@dimen/ads_margin_regular</dimen>
-    <dimen name="ads_card_view_content_margin_small">@dimen/ads_margin_small</dimen>
-    <dimen name="ads_card_view_corner_radius">2dp</dimen>
-    <dimen name="ads_card_view_elevation">2.4dp</dimen>
-    <dimen name="ads_card_view_floating">5.2dp</dimen>
     <dimen name="ads_card_view_margin_horizontal">@dimen/ads_card_view_margin</dimen>
     <dimen name="ads_card_view_margin_vertical">@dimen/ads_card_view_margin</dimen>
     <dimen name="ads_card_view_margin_bottom">1dp</dimen>
+    <dimen name="ads_card_view_margin_floating">20dp</dimen>
+    <dimen name="ads_card_view_margin_dialog">@dimen/ads_margin_tiny</dimen>
+    <dimen name="ads_card_view_content_margin">@dimen/ads_margin_regular</dimen>
+    <dimen name="ads_card_view_content_margin_small">@dimen/ads_margin_small</dimen>
+    <dimen name="ads_card_view_corner_radius">@dimen/ads_corner_radius</dimen>
+    <dimen name="ads_card_view_elevation">2.4dp</dimen>
+    <dimen name="ads_card_view_elevation_floating">@dimen/ads_margin_small</dimen>
+    <dimen name="ads_card_view_elevation_dialog">6dp</dimen>
+    <dimen name="ads_card_view_elevation_toast">1dp</dimen>
 
     <!-- Scroller -->
     <dimen name="ads_scroller_margin">5dp</dimen>
@@ -92,6 +116,7 @@
     <dimen name="ads_scroller_margin_small">1dp</dimen>
 
     <!-- Icon sizes -->
+    <dimen name="ads_icon_tiny">24dp</dimen>
     <dimen name="ads_icon_small">28dp</dimen>
     <dimen name="ads_icon_medium">36dp</dimen>
     <dimen name="ads_icon_normal">48dp</dimen>
@@ -124,6 +149,7 @@
     <dimen name="ads_icon_avatar_header_margin_end">28dp</dimen>
 
     <!-- Button -->
+    <dimen name="ads_button_corner_radius">@dimen/ads_corner_radius</dimen>
     <dimen name="ads_button_padding">@dimen/ads_margin_small</dimen>
     <dimen name="ads_button_min_height">56dp</dimen>
     <dimen name="ads_button_preference_card_margin_start">@dimen/ads_icon_normal</dimen>
@@ -133,29 +159,31 @@
     <dimen name="ads_list_avatar_width_small">28dp</dimen>
     <dimen name="ads_list_subtitle_margin_top">2dp</dimen>
     <dimen name="ads_circular_progress_size">60dp</dimen>
+    <dimen name="ads_list_selector_corner_margin">10dp</dimen>
+    <dimen name="ads_list_selector_rect_radius">4dp</dimen>
+    <dimen name="ads_list_selector_round_radius">32dp</dimen>
 
     <!-- Dialog -->
     <dimen name="ads_dialog_margin_start_end">24dp</dimen>
     <dimen name="ads_dialog_margin_start_end_small">22dp</dimen>
+    <dimen name="ads_dialog_margin_start_end_edit_text">@dimen/ads_dialog_margin_start_end</dimen>
     <dimen name="ads_dialog_margin_select_start">20dp</dimen>
-    <dimen name="add_dialog_margin_title_top">18dp</dimen>
-    <dimen name="add_dialog_margin_title_bottom">12dp</dimen>
+    <dimen name="ads_dialog_margin_title_top">18dp</dimen>
+    <dimen name="ads_dialog_margin_title_bottom">@dimen/ads_margin_medium</dimen>
+    <dimen name="ads_dialog_list_margin_no_title_top">@dimen/ads_margin_small</dimen>
+    <dimen name="ads_dialog_list_margin_no_buttons_button">@dimen/ads_margin_small</dimen>
     <dimen name="ads_dialog_margin_input">20dp</dimen>
     <dimen name="ads_dialog_margin_small">10dp</dimen>
-    <dimen name="ads_dialog_list_margin_no_title_top">8dp</dimen>
-    <dimen name="ads_dialog_list_margin_no_buttons_button">8dp</dimen>
+    <dimen name="ads_dialog_padding_button">@dimen/ads_margin_regular</dimen>
     <dimen name="ads_dialog_font_size">@dimen/ads_font_size_small</dimen>
-    <dimen name="ads_dialog_font_size_title">@dimen/ads_font_size_medium</dimen>
-    <dimen name="ads_dialog_font_size_large_fixed">12dp</dimen>
-    <dimen name="ads_dialog_font_size_normal_fixed">10dp</dimen>
-    <dimen name="ads_dialog_font_size_small">@dimen/ads_font_size_extra_small</dimen>
-    <dimen name="ads_dialog_font_size_small_fixed">8dp</dimen>
-    <dimen name="ads_dialog_font_size_extra_small_fixed">7dp</dimen>
+    <dimen name="ads_dialog_font_size_title">@dimen/ads_font_size_regular</dimen>
     <dimen name="ads_dialog_icon_avatar_margin_end">@dimen/ads_margin_regular</dimen>
+    <dimen name="ads_dialog_button_icon_size">@dimen/ads_icon_normal</dimen>
 
     <!-- Popup -->
     <dimen name="ads_popup_selector_icon_size">24dp</dimen>
-    <dimen name="ads_popup_max_width">320dp</dimen>
+    <dimen name="ads_popup_max_width">300dp</dimen>
+    <dimen name="ads_popup_max_width_large">340dp</dimen>
 
     <!-- Picker -->
     <dimen name="ads_picker_colors_size">@dimen/ads_icon_medium</dimen>
@@ -166,12 +194,20 @@
     <dimen name="ads_picker_font_size_normal">14sp</dimen>
     <dimen name="ads_picker_font_size_medium">15sp</dimen>
 
+    <!-- Theme -->
+    <dimen name="ads_theme_preview_height">160dp</dimen>
+    <dimen name="ads_theme_preview_status_bar_height">24dp</dimen>
+    <dimen name="ads_theme_preview_icon_size">@dimen/ads_icon_small</dimen>
+    <dimen name="ads_theme_preview_text_margin">60dp</dimen>
+    <dimen name="ads_theme_preview_fab_size">42dp</dimen>
+    <dimen name="ads_theme_preview_fab_elevation">1dp</dimen>
+
     <!-- App widget -->
     <dimen name="ads_widget_margin">0dp</dimen>
     <dimen name="ads_widget_margin_small">10dp</dimen>
     <dimen name="ads_widget_margin_end">@dimen/ads_margin_small</dimen>
-    <dimen name="ads_widget_corner_radius">@dimen/ads_card_view_corner_radius</dimen>
-    <dimen name="ads_widget_preview_height">124dp</dimen>
+    <dimen name="ads_widget_corner_radius">@dimen/ads_corner_radius</dimen>
+    <dimen name="ads_widget_preview_height">136dp</dimen>
     <dimen name="ads_widget_font_size_extra_small">12dp</dimen>
     <dimen name="ads_widget_font_size_small">14dp</dimen>
     <dimen name="ads_widget_font_size">16dp</dimen>

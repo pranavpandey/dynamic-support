@@ -23,9 +23,11 @@
 
     <!-- String formats -->
     <string name="ads_format_version">Version %1$s</string>
+    <string name="ads_search_empty">No matches found for \"%1$s\".</string>
 
     <!-- Headings -->
     <string name="ads_app">App</string>
+    <string name="ads_text">Text</string>
     <string name="ads_icon">Icon</string>
     <string name="ads_size">Size</string>
     <string name="ads_value">Value</string>
@@ -46,6 +48,7 @@
     <string name="ads_yes_in">Yes, I\'m in</string>
     <string name="ads_more_info">More info</string>
     <string name="ads_select">Select</string>
+    <string name="ads_copy">Copy</string>
     <string name="ads_save">Save</string>
     <string name="ads_load">Load</string>
     <string name="ads_create">Create</string>
@@ -57,6 +60,7 @@
     <string name="ads_recents">Recents</string>
     <string name="ads_custom">Custom</string>
     <string name="ads_edit">Edit</string>
+    <string name="ads_refresh">Refresh</string>
     <string name="ads_reset">Reset</string>
     <string name="ads_default">Default</string>
     <string name="ads_sort">Sort</string>
@@ -73,7 +77,7 @@
     <string name="ads_shortcut_created">Shortcut created</string>
     <string name="ads_shortcuts_desc">Pick a shortcut to add it on the home screen.</string>
 
-    <!-- Navigation drawer and menu -->
+    <!-- Navigation drawer and Menu -->
     <string name="ads_nav_category_features">Menu</string>
     <string name="ads_nav_category_support">Support development</string>
     <string name="ads_nav_category_contribute">Contribute</string>
@@ -95,9 +99,9 @@
     <string name="ads_permissions_subtitle_single">Please allow the required permission.</string>
     <string name="ads_perm_info_grant_all">Please allow all the permissions to make the app working properly.</string>
     <string name="ads_perm_request">Request</string>
-    <string name="ads_perm_request_desc">This permission is not granted. Tap to request.</string>
+    <string name="ads_perm_request_desc">This permission is not allowed. Tap to request.</string>
     <string name="ads_perm_granted">Granted</string>
-    <string name="ads_perm_granted_desc">This permission has been granted.</string>
+    <string name="ads_perm_granted_desc">This permission has been allowed.</string>
     <string name="ads_perm_denied">Denied</string>
     <string name="ads_perm_denied_desc">To grant this permission, go to App info > Permissions. Tap to go to the App info.</string>
     <string name="ads_perm_default">Permission</string>
@@ -126,6 +130,7 @@
     <string name="ads_backup_rename">Rename backup</string>
     <string name="ads_backup_complete">Backup has been created successfully</string>
     <string name="ads_backup_error">Unable to create backup</string>
+    <string name="ads_backup_invalid">Invalid backup</string>
     <string name="ads_backup_restore">Restore</string>
     <string name="ads_backup_restore_title">Restore backup</string>
     <string name="ads_backup_error_save">Unable to save backup</string>
@@ -166,26 +171,36 @@
     <string name="ads_backup_option_delete">Delete</string>
     <string name="ads_backup_send">Send backup</string>
 
-    <!-- Theme -->
+    <!-- App theme -->
     <string name="ads_theme">Theme</string>
+    <string name="ads_theme_customise_desc">Configure the theme below.</string>
     <string name="ads_theme_adjust_desc">Theme will be adjusted automatically according to the current Android version.</string>
+    <string name="ads_theme_invalid">Invalid theme</string>
+    <string name="ads_theme_invalid_desc">Unable to verify this theme. Please try again with the appropriate data.</string>
     <string name="ads_theme_color_palette">Color palette</string>
     <string name="ads_theme_color_palette_summary">Primary and accent color presets.</string>
     <string name="ads_theme_color_background">Background color</string>
     <string name="ads_theme_color_background_summary">Background color of the theme.</string>
     <string name="ads_theme_color_primary">Primary color</string>
     <string name="ads_theme_color_primary_summary">Color used by the primary elements.</string>
+    <string name="ads_theme_color_primary_dark">System color</string>
+    <string name="ads_theme_color_primary_summary_dark">Color used by the system elements.</string>
     <string name="ads_theme_color_accent">Accent color</string>
+    <string name="ads_theme_color_secondary">Secondary color</string>
     <string name="ads_theme_color_accent_summary">Color used by the secondary elements.</string>
-    <string name="ads_theme_background">Background aware</string>
-    <string name="ads_theme_background_aware_desc">Some colors will change automatically according to the background to provide best visibility.</string>
+    <string name="ads_theme_color_tint">Tint color</string>
+    <string name="ads_theme_color_inverse">Inverse color</string>
+    <string name="ads_theme_corner_size">Corner size</string>
+    <string name="ads_theme_corner_size_summary">Corner radius of the app.</string>
+    <string name="ads_theme_background_aware">Background aware</string>
+    <string name="ads_theme_background_aware_desc">Adjust colors according to the background to provide best visibility.</string>
     <string name="ads_theme_app">App theme</string>
-    <string name="ads_theme_app_summary">Base style of the app.</string>
+    <string name="ads_theme_app_summary">Style of the app.</string>
     <string name="ads_theme_app_desc">Select auto to use the day and night themes.</string>
     <string name="ads_theme_app_day">Day theme</string>
-    <string name="ads_theme_app_day_summary">Base style of the app during the day.</string>
+    <string name="ads_theme_app_day_summary">Style of the app during the day.</string>
     <string name="ads_theme_app_night">Night theme</string>
-    <string name="ads_theme_app_night_summary">Base style of the app at night.</string>
+    <string name="ads_theme_app_night_summary">Style of the app at night.</string>
     <string name="ads_theme_app_day_night_desc">This will only work when the auto theme is applied.</string>
     <string name="ads_theme_toast">Toast messages theme</string>
     <string name="ads_theme_toast_summary">Show themed toast messages according to the app primary color.</string>
@@ -198,19 +213,26 @@
     <string name="ads_theme_notification_summary">Color palette for the notification.</string>
     <string name="ads_theme_notification_style">Notification style</string>
     <string name="ads_theme_notification_style_summary">Layout style for the notification.</string>
-    <string name="ads_theme_style_classic_desc">Select classic style to use the color palette as background.</string>
+    <string name="ads_theme_style_classic_desc">Select classic to use the color palette as background.</string>
     <string name="ads_theme_widget">Widget theme</string>
     <string name="ads_theme_widget_summary">Color palette for the widget.</string>
     <string name="ads_theme_app_shortcuts">App shortcuts theme</string>
     <string name="ads_theme_app_shortcuts_summary">Show themed app shortcuts according to the app primary color.</string>
     <string name="ads_theme_app_shortcuts_summary_unchecked">Show default app shortcuts according to the app theme and brand color.</string>
     <string name="ads_theme_app_shortcuts_desc">Long press on the launcher icon to show app shortcuts, supported launcher is required.</string>
+    <string name="ads_theme_reset_desc">Theme has been reset to default.</string>
+    <string name="ads_theme_import_done">Theme has been imported successfully.</string>
+    <string name="ads_theme_copy_done">Theme has been copied successfully.</string>
 
-    <!-- Theme entries and labels-->
+    <!-- Theme and Labels -->
     <string name="ads_theme_toast_default">Default toast message</string>
     <string name="ads_theme_toast_themed">Themed toast message</string>
     <string name="ads_theme_entry_auto">Auto</string>
-    <string name="ads_theme_entry_auto_desc">Select auto to use the app color palette.</string>
+    <string name="ads_theme_settings_auto_desc">Select auto to use the app settings.</string>
+    <string name="ads_theme_settings_default_desc">Select auto to use the default settings.</string>
+    <string name="ads_theme_color_auto_desc">Select auto to use the app color palette.</string>
+    <string name="ads_theme_color_default_desc">Select auto to use the default color palette.</string>
+    <string name="ads_theme_entry_auto_background_aware_desc">Select auto to use the app color palette. Adjust colors according to the background to provide best visibility.</string>
     <string name="ads_theme_entry_light">Light</string>
     <string name="ads_theme_entry_dark">Dark</string>
     <string name="ads_theme_entry_custom">Custom</string>
@@ -235,6 +257,10 @@
     <string name="ads_theme_entry_dark_brown">Dark brown</string>
     <string name="ads_theme_entry_dark_grey">Dark grey</string>
 
+    <!-- Visibility -->
+    <string name="ads_visibility_show">Show</string>
+    <string name="ads_visibility_hide">Hide</string>
+
     <!-- Picker -->
     <string name="ads_picker_all">All</string>
     <string name="ads_picker_pick">Pick</string>
@@ -246,7 +272,7 @@
     <string name="ads_language_summary">Language used by the app.</string>
     <string name="ads_language_system">System</string>
 
-    <!-- Notification and channel -->
+    <!-- Notification and Channel -->
     <string name="ads_notification_priority">Notification priority</string>
     <string name="ads_notification_priority_summary">Select priority to determine its order in the notification drawer.</string>
     <string name="ads_notification_priority_desc">Select low priority to hide notification from the status bar and lock screen.</string>
@@ -262,6 +288,11 @@
     <string name="ads_widget_customise_desc">Configure the widget below.</string>
     <string name="ads_widget_preview">Preview</string>
     <string name="ads_widget_preview_desc">Widget layout might change automatically according to the actual size in use to provide best experience.</string>
+    <string name="ads_widget_header">Header</string>
+    <string name="ads_widget_header_summary">Visibility of the widget header.</string>
+    <string name="ads_widget_header_desc">Select auto to show the header if enough space is available.</string>
+    <string name="ads_widget_corner_size_bg_summary">Corner radius of the widget background.</string>
+    <string name="ads_widget_corner_size_bg_desc">Select auto to use the app corner size.</string>
     <string name="ads_widget_opacity_bg">Background opacity</string>
     <string name="ads_widget_opacity_bg_summary">Opacity of the widget background.</string>
     <string name="ads_widget_reset_desc">Widget has been reset to default.</string>
@@ -270,6 +301,7 @@
     <!-- About and Support -->
     <string name="ads_rate">Rate</string>
     <string name="ads_support_contact">Contact</string>
+    <string name="ads_support_feedback">Feedback</string>
     <string name="ads_support_report">Report</string>
     <string name="ads_support_report_bug">Submit bug report</string>
     <string name="ads_support_report_bug_summary">Contact developer via email.</string>
@@ -312,6 +344,8 @@
     <string name="ads_translations">Translations</string>
     <string name="ads_translators">Translators</string>
     <string name="ads_translators_translate">Translate</string>
+    <string name="ads_translators_translate_summary">Become a translator.</string>
+    <string name="ads_translators_translate_desc">Contribute to make this app available in more languages.</string>
     <string name="ads_translators_contact">Contact via email if you want to translate.</string>
 
     <!-- Licenses -->

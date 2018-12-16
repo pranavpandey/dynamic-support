@@ -27,4 +27,11 @@
     <integer name="ads_span_compact">1</integer>
     <integer name="ads_span_compact_dialog">1</integer>
 
+    <!-- Corner size -->
+    <integer name="ads_corner_radius">2</integer>
+    <integer name="ads_corner_radius_min">0</integer>
+    <integer name="ads_corner_radius_max">24</integer>
+    <integer name="ads_corner_radius_widget_max">36</integer>
+    <integer name="ads_corner_radius_interval">2</integer>
+
 </resources>

@@ -17,21 +17,21 @@
 package com.pranavpandey.android.dynamic.support.activity;
 
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.appbar.AppBarLayout;
 import com.pranavpandey.android.dynamic.support.R;
 
 /**
- * An activity extending {@link DynamicSystemActivity} to maintain state of
- * the widgets and fragments. It will be very useful while handling
- * orientation changes. It saves the current fragment state and reuses
- * it while a configuration change takes place.
+ * An activity extending {@link DynamicSystemActivity} to maintain state of the widgets
+ * and fragments. It will be very useful while handling orientation changes. It saves the
+ * current fragment state and reuses it while a configuration change takes place.
  */
 public abstract class DynamicStateActivity extends DynamicSystemActivity {
 
@@ -41,8 +41,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     protected static final int STATE_DELAY = 400;
 
     /**
-     * Content fragment TAG key which will be used to find it
-     * during the configuration changes.
+     * Content fragment TAG key which will be used to find it during the configuration changes.
      */
     protected static final String ADS_STATE_CONTENT_FRAGMENT_TAG =
             "ads_state_content_fragment_tag";
@@ -50,8 +49,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     /**
      * Status bar key to maintain its state.
      */
-    protected static final String ADS_STATE_APP_BAR_COLLAPSED =
-            "ads_state_app_bar_collapsed";
+    protected static final String ADS_STATE_APP_BAR_COLLAPSED = "ads_state_app_bar_collapsed";
 
     /**
      * FAB key to maintain its state.
@@ -61,8 +59,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     /**
      * Search key to maintain its state.
      */
-    protected static final String ADS_STATE_SEARCH_VIEW_VISIBLE =
-            "ads_state_search_view_visible";
+    protected static final String ADS_STATE_SEARCH_VIEW_VISIBLE = "ads_state_search_view_visible";
 
     /**
      * FAB visibility constant for no change.
@@ -75,8 +72,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     private Fragment mContentFragment;
 
     /**
-     * Content fragment TAG which will be used to find it during
-     * configuration changes.
+     * Content fragment TAG which will be used to find it during configuration changes.
      */
     private String mContentFragmentTag;
 
@@ -91,8 +87,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     private boolean mAppBarCollapsed;
 
     /**
-     * App bar off set change listener to identify whether it is in
-     * the collapsed state or not.
+     * App bar off set change listener to identify whether it is in the collapsed state.
      */
     protected AppBarLayout.OnOffsetChangedListener mAppBarStateListener =
     new AppBarLayout.OnOffsetChangedListener() {
@@ -129,41 +124,38 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
 
         if (savedInstanceState != null) {
             mFABVisibility = ADS_VISIBILITY_FAB_NO_CHANGE;
-            mContentFragmentTag = savedInstanceState
-                    .getString(ADS_STATE_CONTENT_FRAGMENT_TAG);
-            mContentFragment = getSupportFragmentManager()
-                    .findFragmentByTag(mContentFragmentTag);
+            mContentFragmentTag = savedInstanceState.getString(ADS_STATE_CONTENT_FRAGMENT_TAG);
+            mContentFragment = getSupportFragmentManager().findFragmentByTag(mContentFragmentTag);
         }
     }
 
     /**
-     * @return The fragment container id so that the fragment can be
-     * injected into that view.
+     * Retrieves the fragment container id.
+     * <p>This method must be implemented in the extended activity to show fragments inside
+     * this container.
+     *
+     * @return The fragment container id so that the fragment can be injected into this view.
      */
     protected abstract @IdRes int getFragmentContainerId();
 
     @Override
-    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
 
-        savedInstanceState.putString(
-                ADS_STATE_CONTENT_FRAGMENT_TAG, mContentFragmentTag);
+        outState.putString(ADS_STATE_CONTENT_FRAGMENT_TAG, mContentFragmentTag);
     }
 
     /**
-     * Switch the content fragment use by this activity by using the supplied
-     * fragment transaction.
+     * Switch the content fragment use by this activity by using the supplied fragment transaction.
      *
-     * @param fragmentTransaction Customised fragment transaction to support
-     *                            animations and more.
-     * @param fragment Fragment to be used by this activity.
-     * @param addToBackStack {@code true} to put previous fragment to back
-     *                       stack.
-     * @param tag Fragment tag to maintain the back stack.
+     * @param fragmentTransaction The customised fragment transaction to support animations
+     *                            and more.
+     * @param fragment The fragment to be used by this activity.
+     * @param addToBackStack {@code true} to put previous fragment to back stack.
+     * @param tag The fragment tag to maintain the back stack.
      */
     protected void switchFragment(@NonNull FragmentTransaction fragmentTransaction,
-                                  @NonNull Fragment fragment, boolean addToBackStack,
-                                  @Nullable String tag) {
+            @NonNull Fragment fragment, boolean addToBackStack, @Nullable String tag) {
         tag = tag != null ? tag : fragment.getClass().getSimpleName();
         if (getSupportFragmentManager().findFragmentByTag(tag) != null) {
             fragment = getSupportFragmentManager().findFragmentByTag(tag);
@@ -181,6 +173,11 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
         setContentFragment(fragment, tag);
     }
 
+    /**
+     * Commit the fragment transaction.
+     *
+     * @param fragmentTransaction The fragment transaction to be committed.
+     */
     private void commitFragmentTransaction(@NonNull FragmentTransaction fragmentTransaction) {
         try {
             fragmentTransaction.commit();
@@ -192,23 +189,20 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     /**
      * Switch the content fragment use by this activity.
      *
-     * @param fragment Fragment to be used by this activity.
-     * @param addToBackStack {@code true} to put previous fragment to back
-     *                       stack.
-     * @param tag Fragment tag to maintain the back stack.
+     * @param fragment The fragment to be used by this activity.
+     * @param addToBackStack {@code true} to put previous fragment to back stack.
+     * @param tag The fragment tag to maintain the back stack.
      */
-    protected void switchFragment(@NonNull Fragment fragment, boolean addToBackStack,
-                                  @Nullable String tag) {
-        FragmentTransaction fragmentTransaction =
-                getSupportFragmentManager().beginTransaction();
-
+    protected void switchFragment(@NonNull Fragment fragment,
+            boolean addToBackStack, @Nullable String tag) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         switchFragment(fragmentTransaction, fragment, addToBackStack, tag);
     }
 
     /**
      * Switch the content fragment use by this activity.
      *
-     * @param fragment Fragment to be used by this activity.
+     * @param fragment The fragment to be used by this activity.
      * @param addToBackStack {@code true} to put previous fragment to back stack.
      */
     protected void switchFragment(@NonNull Fragment fragment, boolean addToBackStack) {
@@ -216,6 +210,8 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     }
 
     /**
+     * Returns the current displayed fragment.
+     *
      * @return The content fragment used by this activity.
      */
     public @Nullable Fragment getContentFragment() {
@@ -225,15 +221,17 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     /**
      * Set the current content fragment.
      *
-     * @param fragment Content fragment.
-     * @param tag Content fragment tag.
+     * @param fragment The fragment to be set.
+     * @param tag The content fragment tag.
      */
-    public void setContentFragment(Fragment fragment, @NonNull String tag) {
+    public void setContentFragment(@Nullable Fragment fragment, @NonNull String tag) {
         this.mContentFragment = fragment;
         this.mContentFragmentTag = tag;
     }
 
     /**
+     * Returns the current FAB visibility.
+     *
      * @return The current FAB visibility.
      */
     public int getFABVisibility() {
@@ -241,7 +239,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     }
 
     /**
-     * Sets the current FAB visibility.
+     * Set the current FAB visibility.
      *
      * @param visibility The FAB visibility to be set.
      */
@@ -250,6 +248,8 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     }
 
     /**
+     * Returns whether the app bar is in collapsed state.
+     *
      * @return {@code true} if the app bar is in collapsed state.
      */
     public boolean isAppBarCollapsed() {

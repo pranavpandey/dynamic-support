@@ -27,7 +27,7 @@
                 android:color="#FFFFFF" />
 
             <corners
-                android:radius="@dimen/ads_widget_corner_radius" />
+                android:radius="@dimen/ads_corner_radius" />
 
         </shape>
 

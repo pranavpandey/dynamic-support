@@ -39,18 +39,18 @@
             android:orientation="vertical"
             android:layout_gravity="center_vertical">
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/ads_color_picker_popup_footer_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/ads_picker_more_colors"
-                style="@style/TextAppearance.DynamicApp.Subtitle" />
+                style="@style/TextAppearance.DynamicApp.Subtitle1.Caps" />
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/ads_color_picker_popup_footer_subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.DynamicApp.Description"
+                style="@style/TextAppearance.DynamicApp.Body1"
                 android:visibility="gone" />
 
         </LinearLayout>

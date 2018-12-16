@@ -17,8 +17,8 @@
 package com.pranavpandey.android.dynamic.support.sample.activity
 
 import android.os.Bundle
-import android.support.annotation.StyleRes
-import android.support.v4.view.ViewPager
+import androidx.annotation.StyleRes
+import androidx.viewpager.widget.ViewPager
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
 import com.pranavpandey.android.dynamic.support.sample.controller.SampleController
@@ -72,8 +72,7 @@ class TutorialActivity : DynamicTutorialActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Add a view pager listener to perform actions according to the
-        // tutorial screen.
+        // Add a view pager listener to perform actions according to the tutorial screen.
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float,
                                         positionOffsetPixels: Int) {
@@ -95,8 +94,7 @@ class TutorialActivity : DynamicTutorialActivity() {
     override fun onResume() {
         super.onResume()
 
-        // Update action button after performing some action like
-        // granting a permission.
+        // Update action button after performing some action like granting a permission.
         if (viewPagerAdapter != null) {
             setTutorialAction(viewPager.currentItem)
         }
@@ -134,7 +132,7 @@ class TutorialActivity : DynamicTutorialActivity() {
 
         // TODO: Add a simple dynamic tutorial.
         tutorials.add(DynamicSimpleTutorial(TUTORIAL_WELCOME,
-                DynamicTheme.getInstance().primaryColor,
+                DynamicTheme.getInstance().get().primaryColor,
                 getString(R.string.tutorial_welcome),
                 getString(R.string.tutorial_welcome_subtitle),
                 getString(R.string.tutorial_welcome_desc),
@@ -142,7 +140,7 @@ class TutorialActivity : DynamicTutorialActivity() {
 
         // TODO: Add another simple dynamic tutorial.
         tutorials.add(DynamicSimpleTutorial(TUTORIAL_FINISH,
-                DynamicTheme.getInstance().accentColor,
+                DynamicTheme.getInstance().get().accentColor,
                 getString(R.string.tutorial_finish),
                 getString(R.string.tutorial_finish_subtitle),
                 getString(R.string.tutorial_finish_desc),

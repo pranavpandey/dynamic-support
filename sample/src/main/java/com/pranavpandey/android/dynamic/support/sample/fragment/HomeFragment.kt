@@ -18,11 +18,10 @@ package com.pranavpandey.android.dynamic.support.sample.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import com.google.android.material.appbar.AppBarLayout
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.activity.BottomNavigationActivity
@@ -35,14 +34,16 @@ import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils
 import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils
 
 /**
- * Home fragment to show some of the features of dynamic-support
- * library by using [DynamicFragment].
+ * Home fragment to show some of the features of dynamic-support library by
+ * using [DynamicFragment].
  */
 class HomeFragment : DynamicFragment() {
 
     companion object {
 
         /**
+         * Returns the new instance of this fragment.
+         *
          * @return The new instance of [HomeFragment].
          */
         fun newInstance(): HomeFragment {

@@ -19,19 +19,22 @@ package com.pranavpandey.android.dynamic.support.setting;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
 
 /**
- * A DynamicSimplePreference with a secondary image view to
- * represent data according to the need.
+ * A DynamicSimplePreference with a secondary image view to represent data according to the need.
  */
 public class DynamicImagePreference extends DynamicSimplePreference {
 
@@ -54,7 +57,7 @@ public class DynamicImagePreference extends DynamicSimplePreference {
     }
 
     public DynamicImagePreference(@NonNull Context context,
-                                  @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -67,7 +70,7 @@ public class DynamicImagePreference extends DynamicSimplePreference {
 
         try {
             mImageDrawable = DynamicResourceUtils.getDrawable(getContext(), a.getResourceId(
-                    R.styleable.DynamicPreference_ads_dynamicPreference_image,
+                    R.styleable.DynamicPreference_ads_image,
                     DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
         } finally {
             a.recycle();
@@ -81,22 +84,21 @@ public class DynamicImagePreference extends DynamicSimplePreference {
         mImageView = LayoutInflater.from(getContext()).inflate(
                 R.layout.ads_preference_image, this, false)
                 .findViewById(R.id.ads_preference_image_big);
+
         setViewFrame(mImageView, true);
+        ((DynamicTextView) getValueView()).setColorType(Theme.ColorType.NONE);
     }
 
     @Override
     protected void onUpdate() {
         super.onUpdate();
 
-        if (getImageDrawable() != null) {
-            mImageView.setImageDrawable(getImageDrawable());
-            mImageView.setVisibility(VISIBLE);
-        } else {
-            mImageView.setVisibility(GONE);
-        }
+        setImageView(mImageView, getImageDrawable());
     }
 
     /**
+     * Get the secondary image view to show the drawable.
+     *
      * @return The secondary image view to show the drawable.
      */
     public ImageView getImageView() {
@@ -104,6 +106,8 @@ public class DynamicImagePreference extends DynamicSimplePreference {
     }
 
     /**
+     * Get the drawable for the image view.
+     *
      * @return The drawable for the image view.
      */
     public @Nullable Drawable getImageDrawable() {

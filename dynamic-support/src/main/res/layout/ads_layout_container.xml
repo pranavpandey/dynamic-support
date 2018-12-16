@@ -15,7 +15,7 @@
 	limitations under the License.
 -->
 
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ads_coordinator_layout"
     android:layout_width="match_parent"
@@ -29,4 +29,4 @@
 
     </FrameLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

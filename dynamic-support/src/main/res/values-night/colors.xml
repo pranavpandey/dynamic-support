@@ -24,6 +24,7 @@
     <color name="ads_card_background_day_night">@color/ads_card_background</color>
 
     <!-- Widget -->
+    <color name="ads_color_control_day_night">@color/ads_color_control</color>
     <color name="ads_contrast_with_day_night">@color/ads_window_background</color>
 
 </resources>

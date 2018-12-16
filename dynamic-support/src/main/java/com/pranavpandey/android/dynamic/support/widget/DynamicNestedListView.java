@@ -1,17 +1,17 @@
 package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 /**
- * A DynamicListView which fully expands vertically according
- * to its content height which is suitable to show it as a nested
- * view.
+ * A DynamicListView which fully expands vertically according to its content height which
+ * is suitable to show it as a nested view.
  */
 public class DynamicNestedListView extends DynamicListView {
-
 
     public DynamicNestedListView(@NonNull Context context) {
         super(context);
@@ -22,7 +22,7 @@ public class DynamicNestedListView extends DynamicListView {
     }
 
     public DynamicNestedListView(@NonNull Context context,
-                                 @Nullable AttributeSet attrs, int defStyleAttr) {
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

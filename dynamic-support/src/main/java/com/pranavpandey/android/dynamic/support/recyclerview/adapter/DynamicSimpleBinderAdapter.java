@@ -16,7 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.recyclerview.adapter;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder;
 
@@ -96,23 +96,25 @@ public class DynamicSimpleBinderAdapter extends DynamicBinderAdapter {
 
     @Override
     public void notifyBinderItemRangeChanged(@NonNull DynamicRecyclerViewBinder binder,
-                                             int position, int itemCount) {
+            int position, int itemCount) {
         notifyItemRangeChanged(getPosition(binder, position), itemCount);
     }
 
     @Override
     public void notifyBinderItemRangeInserted(@NonNull DynamicRecyclerViewBinder binder,
-                                              int position, int itemCount) {
+            int position, int itemCount) {
         notifyItemRangeInserted(getPosition(binder, position), itemCount);
     }
 
     @Override
     public void notifyBinderItemRangeRemoved(@NonNull DynamicRecyclerViewBinder binder,
-                                             int position, int itemCount) {
+            int position, int itemCount) {
         notifyItemRangeRemoved(getPosition(binder, position), itemCount);
     }
 
     /**
+     * Get the list of data binders displayed by this adapter.
+     *
      * @return The list of data binders displayed by this adapter.
      */
     public List<DynamicRecyclerViewBinder> getBinderList() {
@@ -131,19 +133,16 @@ public class DynamicSimpleBinderAdapter extends DynamicBinderAdapter {
     /**
      * Add data binders to display in this adapter.
      *
-     * @param binders The array of dynamic data binders to be added
-     *                in this adapter.
+     * @param binders The array of dynamic data binders to be added in this adapter.
      */
-    public void addDataBinders(
-            @NonNull Collection<? extends DynamicRecyclerViewBinder> binders) {
+    public void addDataBinders(@NonNull Collection<? extends DynamicRecyclerViewBinder> binders) {
         mDataBinders.addAll(binders);
     }
 
     /**
      * Add data binders to display in this adapter.
      *
-     * @param binders The array of dynamic data binders to be added
-     *                in this adapter.
+     * @param binders The array of dynamic data binders to be added in this adapter.
      */
     public void addDataBinders(@NonNull DynamicRecyclerViewBinder... binders) {
         mDataBinders.addAll(Arrays.asList(binders));

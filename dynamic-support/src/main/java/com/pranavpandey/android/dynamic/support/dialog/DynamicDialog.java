@@ -17,7 +17,6 @@
 
 package com.pranavpandey.android.dynamic.support.dialog;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,16 +24,6 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Message;
-import android.support.annotation.ArrayRes;
-import android.support.annotation.AttrRes;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RestrictTo;
-import android.support.annotation.StringRes;
-import android.support.annotation.StyleRes;
-import android.support.v7.app.AppCompatDialog;
-import android.support.v7.appcompat.R;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
@@ -44,7 +33,19 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import androidx.annotation.ArrayRes;
+import androidx.annotation.AttrRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+import androidx.annotation.StringRes;
+import androidx.annotation.StyleRes;
+import androidx.appcompat.app.AppCompatDialog;
+
+import com.pranavpandey.android.dynamic.support.R;
+
+import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
  * A subclass of Dialog that can display one, two or three buttons. If you only want to
@@ -94,7 +95,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
      * Construct an DynamicDialog that uses an explicit theme.  The actual style
      * that an DynamicDialog uses is a private implementation, however you can
      * here supply either the name of an attribute in the theme from which
-     * to get the dialog's style (such as {@link R.attr#alertDialogTheme}.
+     * to get the dialog's style (such as {@link androidx.appcompat.R.attr#alertDialogTheme}.
      */
     protected DynamicDialog(@NonNull Context context, @StyleRes int themeResId) {
         super(context, resolveDialogTheme(context, themeResId));
@@ -102,15 +103,15 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
     }
 
     protected DynamicDialog(@NonNull Context context, boolean cancelable,
-                            @Nullable OnCancelListener cancelListener) {
+            @Nullable OnCancelListener cancelListener) {
         this(context, 0);
         setCancelable(cancelable);
         setOnCancelListener(cancelListener);
     }
 
-    @SuppressLint("ResourceType")
     static int resolveDialogTheme(@NonNull Context context, @StyleRes int resid) {
-        if (resid >= 0x01000000) {   // start of real resource IDs.
+        // Check to see if this resourceId has a valid package ID.
+        if (((resid >>> 24) & 0x000000ff) >= 0x00000001) {   // start of real resource IDs.
             return resid;
         } else {
             TypedValue outValue = new TypedValue();
@@ -158,7 +159,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
     }
 
     /**
-     * Set the message to display.
+     * Sets the message to display.
      *
      * @param message The message to display in the dialog.
      */
@@ -175,14 +176,6 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
     }
 
     /**
-     * Set the view root to add scroll indicators if the content can be scrolled.
-     * This method has no effect if called after {@link #show()}.
-     */
-    public void setViewRoot(View view) {
-        mAlert.setViewRoot(view);
-    }
-
-    /**
      * Set the view to display in the dialog, specifying the spacing to appear around that
      * view.  This method has no effect if called after {@link #show()}.
      *
@@ -192,14 +185,24 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
      * @param viewSpacingRight  Extra space to appear to the right of {@code view}
      * @param viewSpacingBottom Extra space to appear below {@code view}
      */
-    public void setView(View view, int viewSpacingLeft, int viewSpacingTop,
-                        int viewSpacingRight, int viewSpacingBottom) {
+    public void setView(View view, int viewSpacingLeft, int viewSpacingTop, int viewSpacingRight,
+            int viewSpacingBottom) {
         mAlert.setView(view, viewSpacingLeft, viewSpacingTop, viewSpacingRight, viewSpacingBottom);
     }
 
     /**
-     * Internal api to allow hinting for the best button panel layout.
+     * Set the view root to add scroll indicators if the content can be scrolled.
+     * <p>This method has no effect if called after {@link #show()}.
      */
+    public void setViewRoot(View view) {
+        mAlert.setViewRoot(view);
+    }
+
+    /**
+     * Internal api to allow hinting for the best button panel layout.
+     * @hide
+     */
+    @RestrictTo(LIBRARY_GROUP)
     void setButtonPanelLayoutHint(int layoutHint) {
         mAlert.setButtonPanelLayoutHint(layoutHint);
     }
@@ -216,7 +219,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
      * @param msg         The {@link Message} to be sent when clicked.
      */
     public void setButton(int whichButton, CharSequence text, Message msg) {
-        mAlert.setButton(whichButton, text, null, msg);
+        mAlert.setButton(whichButton, text, null, msg, null);
     }
 
     /**
@@ -231,7 +234,25 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
      * @param listener    The {@link DialogInterface.OnClickListener} to use.
      */
     public void setButton(int whichButton, CharSequence text, OnClickListener listener) {
-        mAlert.setButton(whichButton, text, listener, null);
+        mAlert.setButton(whichButton, text, listener, null, null);
+    }
+
+    /**
+     * Sets an icon to be displayed along with the button text and a listener to be invoked when
+     * the positive button of the dialog is pressed. This method has no effect if called after
+     * {@link #show()}.
+     *
+     * @param whichButton Which button to set the listener on, can be one of
+     *                    {@link DialogInterface#BUTTON_POSITIVE},
+     *                    {@link DialogInterface#BUTTON_NEGATIVE}, or
+     *                    {@link DialogInterface#BUTTON_NEUTRAL}
+     * @param text        The text to display in positive button.
+     * @param listener    The {@link DialogInterface.OnClickListener} to use.
+     * @param icon        The {@link Drawable} to be set as an icon for the button.
+     */
+    public void setButton(int whichButton, CharSequence text, Drawable icon,
+            OnClickListener listener) {
+        mAlert.setButton(whichButton, text, listener, null,  icon);
     }
 
     /**
@@ -264,7 +285,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAlert.installContent();
     }
@@ -310,13 +331,13 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
          * The specified theme resource ({@code themeResId}) is applied on top
          * of the parent {@code context}'s theme. It may be specified as a
          * style resource containing a fully-populated theme, such as
-         * {@link R.style#Theme_AppCompat_Dialog}, to replace all
+         * {@link androidx.appcompat.R.style#Theme_AppCompat_Dialog}, to replace all
          * attributes in the parent {@code context}'s theme including primary
          * and accent colors.
          * <p>
          * To preserve attributes such as primary and accent colors, the
          * {@code themeResId} may instead be specified as an overlay theme such
-         * as {@link R.style#ThemeOverlay_AppCompat_Dialog}. This will
+         * as {@link androidx.appcompat.R.style#ThemeOverlay_AppCompat_Dialog}. This will
          * override only the window attributes necessary to style the alert
          * window as a dialog.
          * <p>
@@ -479,6 +500,16 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
         }
 
         /**
+         * Set an icon to be displayed for the positive button.
+         * @param icon The icon to be displayed
+         * @return This Builder object to allow for chaining of calls to set methods
+         */
+        public Builder setPositiveButtonIcon(Drawable icon) {
+            P.mPositiveButtonIcon = icon;
+            return this;
+        }
+
+        /**
          * Set a listener to be invoked when the negative button of the dialog is pressed.
          * @param textId The resource id of the text to display in the negative button
          * @param listener The {@link DialogInterface.OnClickListener} to use.
@@ -505,6 +536,16 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
         }
 
         /**
+         * Set an icon to be displayed for the negative button.
+         * @param icon The icon to be displayed
+         * @return This Builder object to allow for chaining of calls to set methods
+         */
+        public Builder setNegativeButtonIcon(Drawable icon) {
+            P.mNegativeButtonIcon = icon;
+            return this;
+        }
+
+        /**
          * Set a listener to be invoked when the neutral button of the dialog is pressed.
          * @param textId The resource id of the text to display in the neutral button
          * @param listener The {@link DialogInterface.OnClickListener} to use.
@@ -527,6 +568,16 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
         public Builder setNeutralButton(CharSequence text, final OnClickListener listener) {
             P.mNeutralButtonText = text;
             P.mNeutralButtonListener = listener;
+            return this;
+        }
+
+        /**
+         * Set an icon to be displayed for the neutral button.
+         * @param icon The icon to be displayed
+         * @return This Builder object to allow for chaining of calls to set methods
+         */
+        public Builder setNeutralButtonIcon(Drawable icon) {
+            P.mNeutralButtonIcon = icon;
             return this;
         }
 
@@ -634,7 +685,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
          * @return This Builder object to allow for chaining of calls to set methods
          */
         public Builder setCursor(final Cursor cursor, final OnClickListener listener,
-                                 String labelColumn) {
+                String labelColumn) {
             P.mCursor = cursor;
             P.mLabelColumn = labelColumn;
             P.mOnClickListener = listener;
@@ -660,7 +711,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
          * @return This Builder object to allow for chaining of calls to set methods
          */
         public Builder setMultiChoiceItems(@ArrayRes int itemsId, boolean[] checkedItems,
-                                           final OnMultiChoiceClickListener listener) {
+                final OnMultiChoiceClickListener listener) {
             P.mItems = P.mContext.getResources().getTextArray(itemsId);
             P.mOnCheckboxClickListener = listener;
             P.mCheckedItems = checkedItems;
@@ -686,7 +737,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
          * @return This Builder object to allow for chaining of calls to set methods
          */
         public Builder setMultiChoiceItems(CharSequence[] items, boolean[] checkedItems,
-                                           final OnMultiChoiceClickListener listener) {
+                final OnMultiChoiceClickListener listener) {
             P.mItems = items;
             P.mOnCheckboxClickListener = listener;
             P.mCheckedItems = checkedItems;
@@ -714,7 +765,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
          * @return This Builder object to allow for chaining of calls to set methods
          */
         public Builder setMultiChoiceItems(Cursor cursor, String isCheckedColumn, String labelColumn,
-                                           final OnMultiChoiceClickListener listener) {
+                final OnMultiChoiceClickListener listener) {
             P.mCursor = cursor;
             P.mOnCheckboxClickListener = listener;
             P.mIsCheckedColumn = isCheckedColumn;
@@ -739,7 +790,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
          * @return This Builder object to allow for chaining of calls to set methods
          */
         public Builder setSingleChoiceItems(@ArrayRes int itemsId, int checkedItem,
-                                            final OnClickListener listener) {
+                final OnClickListener listener) {
             P.mItems = P.mContext.getResources().getTextArray(itemsId);
             P.mOnClickListener = listener;
             P.mCheckedItem = checkedItem;
@@ -764,7 +815,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
          * @return This Builder object to allow for chaining of calls to set methods
          */
         public Builder setSingleChoiceItems(Cursor cursor, int checkedItem, String labelColumn,
-                                            final OnClickListener listener) {
+                final OnClickListener listener) {
             P.mCursor = cursor;
             P.mOnClickListener = listener;
             P.mCheckedItem = checkedItem;
@@ -787,8 +838,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
          *
          * @return This Builder object to allow for chaining of calls to set methods
          */
-        public Builder setSingleChoiceItems(CharSequence[] items, int checkedItem,
-                                            final OnClickListener listener) {
+        public Builder setSingleChoiceItems(CharSequence[] items, int checkedItem, final OnClickListener listener) {
             P.mItems = items;
             P.mOnClickListener = listener;
             P.mCheckedItem = checkedItem;
@@ -810,8 +860,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
          *
          * @return This Builder object to allow for chaining of calls to set methods
          */
-        public Builder setSingleChoiceItems(ListAdapter adapter, int checkedItem,
-                                            final OnClickListener listener) {
+        public Builder setSingleChoiceItems(ListAdapter adapter, int checkedItem, final OnClickListener listener) {
             P.mAdapter = adapter;
             P.mOnClickListener = listener;
             P.mCheckedItem = checkedItem;
@@ -868,34 +917,6 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
         }
 
         /**
-         * Set the view root id to add scroll indicators if the content can
-         * be scrolled.
-         *
-         * @param viewRootId Root view id of the custom view.
-         * @return this Builder object to allow for chaining of calls to set
-         *         methods
-         */
-        public Builder setViewRoot(int viewRootId) {
-            P.mViewRoot = null;
-            P.mViewRootId = viewRootId;
-            return this;
-        }
-
-        /**
-         * Set the view root to add scroll indicators if the content can
-         * be scrolled.
-         *
-         * @param viewRoot Root view of the custom view.
-         * @return this Builder object to allow for chaining of calls to set
-         *         methods
-         */
-        public Builder setViewRoot(View viewRoot) {
-            P.mViewRoot = viewRoot;
-            P.mViewRootId = 0;
-            return this;
-        }
-
-        /**
          * Set a custom view to be the contents of the Dialog, specifying the
          * spacing to appear around that view. If the supplied view is an
          * instance of a {@link ListView} the light background will be used.
@@ -920,7 +941,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
         @RestrictTo(LIBRARY_GROUP)
         @Deprecated
         public Builder setView(View view, int viewSpacingLeft, int viewSpacingTop,
-                               int viewSpacingRight, int viewSpacingBottom) {
+                int viewSpacingRight, int viewSpacingBottom) {
             P.mView = view;
             P.mViewLayoutResId = 0;
             P.mViewSpacingSpecified = true;
@@ -928,6 +949,34 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
             P.mViewSpacingTop = viewSpacingTop;
             P.mViewSpacingRight = viewSpacingRight;
             P.mViewSpacingBottom = viewSpacingBottom;
+            return this;
+        }
+
+        /**
+         * Set the view root id to add scroll indicators if the content can be scrolled.
+         *
+         * @param viewRootId The root view id of the custom view.
+         *
+         * @return this Builder object to allow for chaining of calls to set
+         *         methods
+         */
+        public Builder setViewRoot(int viewRootId) {
+            P.mViewRoot = null;
+            P.mViewRootId = viewRootId;
+            return this;
+        }
+
+        /**
+         * Set the view root to add scroll indicators if the content can be scrolled.
+         *
+         * @param viewRoot The root view of the custom view.
+         *
+         * @return this Builder object to allow for chaining of calls to set
+         *         methods
+         */
+        public Builder setViewRoot(View viewRoot) {
+            P.mViewRoot = viewRoot;
+            P.mViewRootId = 0;
             return this;
         }
 
@@ -965,6 +1014,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
          * processing is needed, {@link #show()} may be called instead to both
          * create and display the dialog.
          */
+        @NonNull
         public DynamicDialog create() {
             // We can't use Dialog's 3-arg constructor with the createThemeContextWrapper param,
             // so we always have to re-set the theme

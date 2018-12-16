@@ -18,6 +18,7 @@ package com.pranavpandey.android.dynamic.support.permission;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AppOpsManager;
 import android.content.Context;
 import android.content.Intent;
@@ -27,10 +28,17 @@ import android.content.pm.PermissionGroupInfo;
 import android.content.pm.PermissionInfo;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
+import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
+import com.pranavpandey.android.dynamic.support.model.DynamicAction;
+import com.pranavpandey.android.dynamic.support.model.DynamicPermission;
+import com.pranavpandey.android.dynamic.support.permission.activity.DynamicPermissionsActivity;
+import com.pranavpandey.android.dynamic.support.utils.DynamicPermissionUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
@@ -38,64 +46,16 @@ import java.util.ArrayList;
 
 /**
  * Help class to request and manage runtime permissions introduced in Android M.
- * It must be initialized before using any of its functions or requesting any
- * permissions.
+ * <p>It must be initialized before using any of its functions or requesting any permissions.
  *
- * <p>Register the {@link DynamicPermissionsActivity} via
- * {@link #setPermissionActivity(Class)} to request the permissions via this
- * manager.</p>
+ * <p><p>Register the {@link DynamicPermissionsActivity} via {@link #setPermissionActivity(Class)}
+ * to request the permissions via this manager.
  *
  * @see <a href="https://developer.android.com/training/permissions/requesting.html">
  *      Requesting Permissions at Run Time</a>
  */
 @TargetApi(Build.VERSION_CODES.M)
 public class DynamicPermissions {
-
-    /**
-     * Constant for permissions intent.
-     */
-    public static final String ADS_INTENT_PERMISSIONS = "permissions_intent";
-
-    /**
-     * Constant for permissions intent extra.
-     */
-    public static final String ADS_INTENT_EXTRA_PERMISSIONS = "permissions";
-
-    /**
-     * Constant for permissions intent extra intent to perform it when
-     * all the permissions are granted.
-     */
-    public static final String ADS_INTENT_EXTRA_INTENT = "permissions_extra_intent";
-
-    /**
-     * Constant for permissions intent extra action to perform it when
-     * all the permissions are granted.
-     */
-    public static final String ADS_INTENT_EXTRA_ACTION = "permissions_extra_action";
-
-    /**
-     * Settings intent action constant for write system settings.
-     *
-     * @see Settings#ACTION_MANAGE_WRITE_SETTINGS
-     */
-    public static final String ADS_ACTION_WRITE_SYSTEM_SETTINGS
-            = Settings.ACTION_MANAGE_WRITE_SETTINGS;
-
-    /**
-     * Settings intent action constant for overlay settings.
-     *
-     * @see Settings#ACTION_MANAGE_OVERLAY_PERMISSION
-     */
-    public static final String ADS_ACTION_OVERLAY_SETTINGS
-            = Settings.ACTION_MANAGE_OVERLAY_PERMISSION;
-
-    /**
-     * Settings intent action constant for usage access settings.
-     *
-     * @see Settings#ACTION_USAGE_ACCESS_SETTINGS
-     */
-    public static final String ADS_ACTION_USAGE_ACCESS_SETTINGS
-            = Settings.ACTION_USAGE_ACCESS_SETTINGS;
 
     /**
      * Singleton instance of {@link DynamicPermissions}.
@@ -113,8 +73,8 @@ public class DynamicPermissions {
     private Class<?> mPermissionActivity;
 
     /**
-     * Making default constructor private so that it cannot be initialized
-     * without a context. Use {@link #initializeInstance(Context)} instead.
+     * Making the default constructor private so that it cannot be initialized without a context.
+     * <p>Use {@link #initializeInstance(Context)} instead.
      */
     private DynamicPermissions() { }
 
@@ -123,8 +83,8 @@ public class DynamicPermissions {
     }
 
     /**
-     * Initialize permissions when application starts. 
-     * Must be initialized once.
+     * Initialize permissions when application starts.
+     * <p>Must be initialized once.
      *
      * @param context The context to request and manage permissions.
      */
@@ -139,6 +99,8 @@ public class DynamicPermissions {
     }
 
     /**
+     * Returns the context used by this instance.
+     *
      * @return The context used by this instance.
      */
     public @NonNull Context getContext() {
@@ -155,8 +117,7 @@ public class DynamicPermissions {
     }
 
     /**
-     * Get instance to access public methods. Must be called before
-     * accessing the methods.
+     * Get instance to access public methods. Must be called before accessing the methods.
      *
      * @return The singleton instance of this class.
      */
@@ -170,6 +131,8 @@ public class DynamicPermissions {
     }
 
     /**
+     * Get the permission activity used by this manager.
+     *
      * @return The permission activity used by this manager.
      */
     public Class<?> getPermissionActivity() {
@@ -179,51 +142,245 @@ public class DynamicPermissions {
     /**
      * Sets the permission activity for this instance.
      *
-     * @param permissionActivity The permission activity class
-     *                           to be set.
+     * @param permissionActivity The permission activity class to be set.
      */
     public void setPermissionActivity(Class<?> permissionActivity) {
         this.mPermissionActivity = permissionActivity;
     }
 
     /**
-     * @return {@code true} if all the supplied permissions has been granted.
-     * It can also be used to automatically request the permissions those are
-     * denied or not requested yet by using the {@link #mPermissionActivity}.
+     * Request the supplied permissions if not granted.
      *
+     * @param context The context to start the activity.
      * @param permissions The array of permissions to be requested.
-     * @param request {@code true} to automatically request the permissions
-     *                  if not granted.
-     * @param actionIntent The intent which should be called after all the
-     *                     permissions has been granted.
+     * @param history {@code false} to exclude the system settings activity from the recents.
+     * @param actionIntent The intent which should be called after all the permissions has been
+     *                     granted.
+     * @param action The intent action, either start an activity or a service.
+     * @param requestCode The request code for the result.
+     */
+    public void requestPermissions(@NonNull Context context,
+            @NonNull String[] permissions, boolean history, @Nullable Intent actionIntent,
+            @DynamicAction int action, int requestCode) {
+        Intent intent = new Intent(context, mPermissionActivity);
+        intent.setAction(DynamicIntent.ACTION_PERMISSIONS);
+        intent.putExtra(DynamicIntent.EXTRA_PERMISSIONS, permissions);
+        if (!history) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        }
+
+        if (actionIntent != null) {
+            intent.putExtra(DynamicIntent.EXTRA_PERMISSIONS_INTENT, actionIntent);
+            intent.putExtra(DynamicIntent.EXTRA_PERMISSIONS_ACTION, action);
+        }
+
+        if (context instanceof Activity) {
+            ((Activity) context).startActivityForResult(intent, requestCode);
+        } else {
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        }
+    }
+
+    /**
+     * Request the supplied permissions if not granted.
+     *
+     * @param fragment The fragment to start the activity.
+     * @param permissions The array of permissions to be requested.
+     * @param history {@code false} to exclude the system settings activity from the recents.
+     * @param actionIntent The intent which should be called after all the permissions has been
+     *                     granted.
+     * @param action The intent action, either start an activity or a service.
+     * @param requestCode The request code for the result.
+     */
+    public void requestPermissions(@NonNull Fragment fragment,
+            @NonNull String[] permissions, boolean history, @Nullable Intent actionIntent,
+            @DynamicAction int action, int requestCode) {
+        Intent intent = new Intent(fragment.getContext(), mPermissionActivity);
+        intent.setAction(DynamicIntent.ACTION_PERMISSIONS);
+        intent.putExtra(DynamicIntent.EXTRA_PERMISSIONS, permissions);
+        if (!history) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        }
+
+        if (actionIntent != null) {
+            intent.putExtra(DynamicIntent.EXTRA_PERMISSIONS_INTENT, actionIntent);
+            intent.putExtra(DynamicIntent.EXTRA_PERMISSIONS_ACTION, action);
+        }
+
+        fragment.startActivityForResult(intent, requestCode);
+    }
+
+    /**
+     * Request the supplied permissions if not granted.
+     *
+     * @param context The context to start the activity.
+     * @param permissions The array of permissions to be requested.
+     * @param history {@code false} to exclude the system settings activity from the recents.
+     * @param actionIntent The intent which should be called after all the permissions has been
+     *                     granted.
      * @param action The intent action, either start an activity or a service.
      */
-    public boolean isGranted(@NonNull String[] permissions, boolean request,
-                             @Nullable Intent actionIntent, @DynamicPermissionsAction int action) {
-        String[] permissionsNotGranted = isGranted(permissions);
+    public void requestPermissions(@NonNull Context context, @NonNull String[] permissions,
+            boolean history, @Nullable Intent actionIntent, @DynamicAction int action) {
+        requestPermissions(context, permissions, history, actionIntent,
+                action, DynamicIntent.REQUEST_PERMISSIONS);
+    }
 
+    /**
+     * Request the supplied permissions if not granted.
+     *
+     * @param fragment The fragment to start the activity.
+     * @param permissions The array of permissions to be requested.
+     * @param history {@code false} to exclude the system settings activity from the recents.
+     * @param actionIntent The intent which should be called after all the permissions has been
+     *                     granted.
+     * @param action The intent action, either start an activity or a service.
+     */
+    public void requestPermissions(@NonNull Fragment fragment, @NonNull String[] permissions,
+            boolean history, @Nullable Intent actionIntent, @DynamicAction int action) {
+        requestPermissions(fragment, permissions, history, actionIntent,
+                action, DynamicIntent.REQUEST_PERMISSIONS);
+    }
+
+    /**
+     * Request the supplied permissions if not granted.
+     *
+     * @param permissions The array of permissions to be requested.
+     * @param history {@code false} to exclude the system settings activity from the recents.
+     * @param actionIntent The intent which should be called after all the permissions has been
+     *                     granted.
+     * @param action The intent action, either start an activity or a service.
+     */
+    public void requestPermissions(@NonNull String[] permissions, boolean history,
+            @Nullable Intent actionIntent, @DynamicAction int action) {
+        requestPermissions(mContext, permissions, history, actionIntent, action);
+    }
+
+    /**
+     * Checks whether the supplied permissions have been granted. It can also be used to
+     * automatically request the permissions those are denied or not requested yet by using the
+     * permission activity.
+     *
+     * @param context The context to start the activity.
+     * @param permissions The array of permissions to be requested.
+     * @param request {@code true} to automatically request the permissions if not granted.
+     * @param actionIntent The intent which should be called after all the permissions has been
+     *                     granted.
+     * @param action The intent action, either start an activity or a service.
+     * @param requestCode The request code for the result.
+     *
+     * @return {@code true} if all the supplied permissions has been granted.
+     */
+    public boolean isGranted(@NonNull Context context,
+            @NonNull String[] permissions, boolean request, @Nullable Intent actionIntent,
+            @DynamicAction int action, int requestCode) {
+        String[] permissionsNotGranted = isGranted(permissions);
         if (request && permissionsNotGranted.length != 0) {
-            requestPermissions(permissions, true, actionIntent, action);
+            requestPermissions(context, permissions, true, actionIntent, action, requestCode);
         }
 
         return permissionsNotGranted.length == 0;
     }
 
     /**
-     * @return {@code true} if all the supplied permissions has been granted.
-     * It can also be used to automatically request the permissions those are
-     * denied or not requested yet by using the {@link #mPermissionActivity}.
+     * Checks whether the supplied permissions have been granted. It can also be used to
+     * automatically request the permissions those are denied or not requested yet by using the
+     * permission activity.
      *
+     * @param fragment The fragment to start the activity.
      * @param permissions The array of permissions to be requested.
-     * @param request {@code true} to automatically request the permissions
-     *                  if not granted.
+     * @param request {@code true} to automatically request the permissions if not granted.
+     * @param actionIntent The intent which should be called after all the permissions has been
+     *                     granted.
+     * @param action The intent action, either start an activity or a service.
+     * @param requestCode The request code for the result.
+     *
+     * @return {@code true} if all the supplied permissions has been granted.
      */
-    public boolean isGranted(@NonNull String[] permissions, boolean request) {
-        return isGranted(permissions, request,
-                null, DynamicPermissionsAction.NONE);
+    public boolean isGranted(@NonNull Fragment fragment,
+            @NonNull String[] permissions, boolean request, @Nullable Intent actionIntent,
+            @DynamicAction int action, int requestCode) {
+        String[] permissionsNotGranted = isGranted(permissions);
+        if (request && permissionsNotGranted.length != 0) {
+            requestPermissions(fragment, permissions, true, actionIntent, action, requestCode);
+        }
+
+        return permissionsNotGranted.length == 0;
     }
 
     /**
+     * Checks whether the supplied permissions have been granted. It can also be used to
+     * automatically request the permissions those are denied or not requested yet by using the
+     * permission activity.
+     *
+     * @param permissions The array of permissions to be requested.
+     * @param request {@code true} to automatically request the permissions if not granted.
+     * @param actionIntent The intent which should be called after all the permissions has been
+     *                     granted.
+     * @param action The intent action, either start an activity or a service.
+     *
+     * @return {@code true} if all the supplied permissions has been granted.
+     */
+    public boolean isGranted(@NonNull String[] permissions, boolean request,
+            @Nullable Intent actionIntent, @DynamicAction int action) {
+        return isGranted(mContext, permissions, request, actionIntent,
+                action, DynamicIntent.REQUEST_PERMISSIONS);
+    }
+
+    /**
+     * Checks whether the supplied permissions have been granted. It can also be used to
+     * automatically request the permissions those are denied or not requested yet by using the
+     * permission activity.
+     *
+     * @param context The context to start the activity.
+     * @param permissions The array of permissions to be requested.
+     * @param request {@code true} to automatically request the permissions if not granted.
+     * @param requestCode The request code for the result.
+     *
+     * @return {@code true} if all the supplied permissions has been granted.
+     */
+    public boolean isGranted(@NonNull Context context,
+            @NonNull String[] permissions, boolean request, int requestCode) {
+        return isGranted(context, permissions, request,
+                null, DynamicAction.NONE, requestCode);
+    }
+
+    /**
+     * Checks whether the supplied permissions have been granted. It can also be used to
+     * automatically request the permissions those are denied or not requested yet by using the
+     * permission activity.
+     *
+     * @param fragment The fragment to start the activity.
+     * @param permissions The array of permissions to be requested.
+     * @param request {@code true} to automatically request the permissions if not granted.
+     * @param requestCode The request code for the result.
+     *
+     * @return {@code true} if all the supplied permissions has been granted.
+     */
+    public boolean isGranted(@NonNull Fragment fragment,
+            @NonNull String[] permissions, boolean request, int requestCode) {
+        return isGranted(fragment, permissions, request,
+                null, DynamicAction.NONE, requestCode);
+    }
+
+    /**
+     * Checks whether the supplied permissions have been granted. It can also be used to
+     * automatically request the permissions those are denied or not requested yet by using the
+     * permission activity.
+     *
+     * @param permissions The array of permissions to be requested.
+     * @param request {@code true} to automatically request the permissions if not granted.
+     *
+     * @return {@code true} if all the supplied permissions has been granted.
+     */
+    public boolean isGranted(@NonNull String[] permissions, boolean request) {
+        return isGranted(permissions, request, null, DynamicAction.NONE);
+    }
+
+    /**
+     * Checks whether the supplied permissions have been granted.
+     *
      * @return {@code true} if all the supplied permissions has been granted.
      *
      * @param permissions The array of permissions to be requested.
@@ -261,34 +418,8 @@ public class DynamicPermissions {
     }
 
     /**
-     * Request the supplied permissions if not granted.
+     * Checks whether the package can write system settings.
      *
-     * @param permissions The array of permissions to be requested.
-     * @param history {@code false} to exclude the system settings activity
-     *                from the recents.
-     * @param actionIntent The intent which should be called after all the
-     *                     permissions has been granted.
-     * @param action The intent action, either start an activity or a service.
-     */
-    public void requestPermissions(@NonNull String[] permissions, boolean history,
-                                   @Nullable Intent actionIntent,
-                                   @DynamicPermissionsAction int action) {
-        Intent intent = new Intent(mContext, mPermissionActivity);
-        intent.putExtra(ADS_INTENT_EXTRA_PERMISSIONS, permissions);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (!history) {
-            intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-        }
-
-        if (actionIntent != null) {
-            intent.putExtra(ADS_INTENT_EXTRA_INTENT, actionIntent);
-            intent.putExtra(ADS_INTENT_EXTRA_ACTION, action);
-        }
-
-        mContext.startActivity(intent);
-    }
-
-    /**
      * @return {@code true} if can write system settings.
      *
      * @see Manifest.permission#WRITE_SETTINGS
@@ -299,6 +430,8 @@ public class DynamicPermissions {
     }
 
     /**
+     * Checks whether the package has overlay permission.
+     *
      * @return {@code true} if can draw overlays.
      *
      * @see Manifest.permission#SYSTEM_ALERT_WINDOW
@@ -308,6 +441,8 @@ public class DynamicPermissions {
     }
 
     /**
+     * Checks whether the package has usage access permission.
+     *
      * @return {@code true} if has usage access.
      *
      * @see Manifest.permission#PACKAGE_USAGE_STATS
@@ -337,8 +472,7 @@ public class DynamicPermissions {
     }
 
     /**
-     * Convert The array of permissions to the array list of
-     * {@link DynamicPermissions}.
+     * Converts the array of permissions to the array list of {@link DynamicPermissions}.
      *
      * @param permissions The permissions array to be converted.
      * 
@@ -361,15 +495,15 @@ public class DynamicPermissions {
                         mContext.getString(DynamicPermissionUtils.getPermissionSubtitle(permission)));
 
                 if (permission.equals(Manifest.permission.WRITE_SETTINGS)) {
-                    dynamicPermission.setGranted(canWriteSystemSettings());
+                    dynamicPermission.setAllowed(canWriteSystemSettings());
                 }
 
                 if (permission.equals(Manifest.permission.PACKAGE_USAGE_STATS)) {
-                    dynamicPermission.setGranted(hasUsageAccess());
+                    dynamicPermission.setAllowed(hasUsageAccess());
                 }
 
                 if (permission.equals(Manifest.permission.SYSTEM_ALERT_WINDOW)) {
-                    dynamicPermission.setGranted(canDrawOverlays());
+                    dynamicPermission.setAllowed(canDrawOverlays());
                 }
 
                 permissionsList.add(dynamicPermission);
@@ -387,7 +521,7 @@ public class DynamicPermissions {
                             permGroupInfo.loadDescription(packageManager).toString());
 
                     dynamicPermission.setDangerous(true);
-                    dynamicPermission.setGranted(ContextCompat.checkSelfPermission(mContext,
+                    dynamicPermission.setAllowed(ContextCompat.checkSelfPermission(mContext,
                             permission) == PackageManager.PERMISSION_GRANTED);
 
 

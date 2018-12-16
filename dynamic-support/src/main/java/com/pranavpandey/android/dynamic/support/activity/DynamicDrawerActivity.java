@@ -21,32 +21,33 @@ import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.MenuRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.MenuRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 
 /**
- * Base drawer activity to handle everything related to the {@link DrawerLayout}
- * and {@link android.support.design.internal.NavigationMenu}. It has many other
- * useful functions to customise according to the need.
+ * Base drawer activity to handle everything related to the {@link DrawerLayout} and
+ * {@link com.google.android.material.internal.NavigationMenu}.
+ * <p>It also has many other useful functions to customise according to the need.
  */
 public abstract class DynamicDrawerActivity extends DynamicActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -67,17 +68,17 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
     private NavigationView mNavigationView;
 
     /**
-     * Header image view used by the {@link #mNavigationView}.
+     * Header image view used by the navigation view.
      */
     private ImageView mNavHeaderIcon;
 
     /**
-     * Title text view used by the {@link #mNavigationView}.
+     * Title text view used by the navigation view.
      */
     private TextView mNavHeaderTitle;
 
     /**
-     * Subtitle text view used by the {@link #mNavigationView}.
+     * Subtitle text view used by the navigation view.
      */
     private TextView mNavHeaderSubtitle;
 
@@ -102,7 +103,6 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
                 .findViewById(R.id.ads_header_drawer_subtitle);
 
         mDrawer.setDrawerElevation(DynamicUnitUtils.convertDpToPixels(8));
-        mNavigationView.setBackgroundColor(DynamicTheme.getInstance().getBackgroundColor());
 
         setStatusBarColor(getStatusBarColor());
         setupDrawer();
@@ -136,13 +136,15 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
 
         if (isDrawerActivity()) {
             if (mDrawer != null) {
-                mDrawer.setStatusBarBackgroundColor(color);
+                mDrawer.setStatusBarBackgroundColor(getStatusBarColor());
                 mDrawer.setDrawerShadow(R.drawable.ads_drawer_shadow_start, GravityCompat.START);
             }
         }
     }
 
     /**
+     * Sets the action bar drawer toggle icon according to the returned value.
+     *
      * @return {@code true} to show the drawer toggle icon.
      */
     protected boolean setActionBarDrawerToggle() {
@@ -180,6 +182,8 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
         });
 
         mNavigationView.setNavigationItemSelectedListener(this);
+        DynamicTintUtils.setNavigationViewScrimColor(mNavigationView, getStatusBarColor());
+
         configureDrawer();
     }
 
@@ -210,8 +214,9 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
     }
 
     /**
-     * @return {@code true} to make the drawer persistent by locking
-     *         it in the open mode.
+     * Makes the drawer persistent according to the returned value.
+     *
+     * @return {@code true} to make the drawer persistent by locking it in the open mode.
      *
      * @see DrawerLayout#LOCK_MODE_LOCKED_OPEN
      */
@@ -221,6 +226,8 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
     }
 
     /**
+     * Get the drawer layout used by this activity.
+     *
      * @return The drawer layout used by this activity.
      */
     public @NonNull DrawerLayout getDrawer() {
@@ -230,13 +237,12 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
     /**
      * Close the drawer if it is not in the locked state.
      *
-     * @param gravity Gravity of the drawer to close it.
+     * @param gravity The gravity of the drawer to close it.
      *
      * @see DrawerLayout#LOCK_MODE_LOCKED_OPEN
      */
     public void closeDrawer(int gravity) {
-        if (mDrawer.isDrawerVisible(gravity)
-                && mDrawer.getDrawerLockMode(gravity)
+        if (mDrawer.isDrawerVisible(gravity) && mDrawer.getDrawerLockMode(gravity)
                 != DrawerLayout.LOCK_MODE_LOCKED_OPEN) {
             mDrawer.closeDrawer(gravity);
         }
@@ -253,8 +259,9 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
     }
 
     /**
-     * @return {@code true} if the {@link #mDrawer} is in the locked
-     * mode.
+     * Checks whether the drawer is in the locked mode.
+     *
+     * @return {@code true} if the drawer is in the locked mode.
      */
     public boolean isDrawerLocked() {
         return mDrawer.getDrawerLockMode(GravityCompat.START)
@@ -264,6 +271,8 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
     }
 
     /**
+     * Returns the action bar drawer toggle used by this activity.
+     *
      * @return The action bar drawer toggle used by this activity.
      */
     public ActionBarDrawerToggle getDrawerToggle() {
@@ -271,23 +280,24 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
     }
 
     /**
-     * Set the drawer toggle icon to open or close the navigation
-     * drawer.
+     * Set the drawer toggle icon to open or close the navigation drawer.
      *
-     * @param showDrawerIndicator {@code true} to show the drawer toggle
-     *                            icon.
+     * @param showDrawerIndicator {@code true} to show the drawer toggle icon.
      */
     public void showDrawerToggle(boolean showDrawerIndicator) {
         if (mDrawerToggle != null && getSupportActionBar() != null) {
             if (!showDrawerIndicator) {
                 mDrawerToggle.setDrawerIndicatorEnabled(false);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                getToolbar().setNavigationOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        onBackPressed();
-                    }
-                });
+
+                if (getToolbar() != null) {
+                    getToolbar().setNavigationOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            onBackPressed();
+                        }
+                    });
+                }
             } else {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                 mDrawerToggle.setDrawerIndicatorEnabled(true);
@@ -297,7 +307,7 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
     }
 
     /**
-     * Animate the {@link #mDrawerToggle} from one offset to another.
+     * Animate the drawer toggle icon from one offset to another.
      *
      * @param startOffSet The start offset.
      * @param endOffSet The end offset.
@@ -348,6 +358,8 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
     }
 
     /**
+     * Get the navigation view used by this activity.
+     *
      * @return The navigation view used by this activity.
      */
     public @NonNull NavigationView getNavigationView() {
@@ -355,66 +367,66 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
     }
 
     /**
-     * Set the menu for {@link #mNavigationView}.
+     * Set menu for the navigation view.
      *
-     * @param menuId Menu resource id for the navigation view.
+     * @param menuRes The menu resource id for the navigation view.
      */
-    public void setNavigationViewMenu(@MenuRes int menuId) {
+    public void setNavigationViewMenu(@MenuRes int menuRes) {
         mNavigationView.getMenu().clear();
-        mNavigationView.inflateMenu(menuId);
+        mNavigationView.inflateMenu(menuRes);
     }
 
     /**
-     * Set the header icon for {@link #mNavigationView}.
+     * Set header icon for the navigation view.
      *
-     * @param drawable Drawable for the header image view.
+     * @param drawable The drawable for the header image view.
      */
     public void setNavHeaderIcon(@Nullable Drawable drawable) {
         mNavHeaderIcon.setImageDrawable(drawable);
     }
 
     /**
-     * Set the header icon for {@link #mNavigationView}.
+     * Set header icon for the navigation view.
      *
-     * @param drawableId Drawable resource id for the header image view.
+     * @param drawableRes The drawable resource for the header image view.
      */
-    public void setNavHeaderIcon(@DrawableRes int drawableId) {
-        setNavHeaderIcon(DynamicResourceUtils.getDrawable(this, drawableId));
+    public void setNavHeaderIcon(@DrawableRes int drawableRes) {
+        setNavHeaderIcon(DynamicResourceUtils.getDrawable(this, drawableRes));
     }
 
     /**
-     * Set the header title for {@link #mNavigationView}.
+     * Set header title for the navigation view.
      *
-     * @param string Text for the title text view.
+     * @param string The string for the title.
      */
     public void setNavHeaderTitle(@Nullable String string) {
         mNavHeaderTitle.setText(string);
     }
 
     /**
-     * Set the header title for {@link #mNavigationView}.
+     * Set header title for the navigation view.
      *
-     * @param stringId String resource id for the title text view.
+     * @param stringRes The string resource for the title.
      */
-    public void setNavHeaderTitle(@StringRes int stringId) {
-        mNavHeaderTitle.setText(stringId);
+    public void setNavHeaderTitle(@StringRes int stringRes) {
+        mNavHeaderTitle.setText(stringRes);
     }
 
     /**
-     * Set the header subtitle for {@link #mNavigationView}.
+     * Set header subtitle for the navigation view.
      *
-     * @param string Text for the subtitle text view.
+     * @param string The string for the subtitle.
      */
     public void setNavHeaderSubtitle(@Nullable String string) {
         mNavHeaderSubtitle.setText(string);
     }
 
     /**
-     * Set the header subtitle for {@link #mNavigationView}.
+     * Set header subtitle for the navigation view.
      *
-     * @param stringId String resource id for the subtitle text view.
+     * @param stringRes The string resource for the subtitle.
      */
-    public void setNavHeaderSubtitle(@StringRes int stringId) {
-        mNavHeaderSubtitle.setText(stringId);
+    public void setNavHeaderSubtitle(@StringRes int stringRes) {
+        mNavHeaderSubtitle.setText(stringRes);
     }
 }

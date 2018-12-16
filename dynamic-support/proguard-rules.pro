@@ -15,3 +15,43 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+# Keep application class.
+-keep public class * extends android.app.Application
+
+# Keep methods in Activity that could be used in the XML.
+-keepclassmembers class * extends android.app.Activity {
+   public void *(android.view.View);
+}
+
+# Keep support library classes.
+#-keep class androidx.appcompat.widget.** { *; }
+#-keep class android.support.v4.widget.** { *; }
+#-keep class android.support.v7.widget.** { *; }
+#-keep class android.support.design.widget.** { *; }
+#-keep class android.support.design.internal.** { *; }
+
+# Keep AndroidX classes.
+-keep class androidx.core.widget.** { *; }
+-keep class androidx.appcompat.view.menu.** { *; }
+-keep class androidx.recyclerview.widget.** { *; }
+-keep class androidx.viewpager.widget.** { *; }
+
+# Keep Material Components classes.
+-keep class com.google.android.material.internal.** { *; }
+-keep class com.google.android.material.navigation.** { *; }
+-keep class com.google.android.material.textfield.** { *; }
+
+# Keep all the Dynamic Support models.
+-keep class com.pranavpandey.android.dynamic.support.model.** { *; }
+
+# Gson uses generic type information stored in a class file when working with fields.
+# Proguard removes such information by default, so configure it to keep all of it.
+-keepattributes Signature
+
+# For using GSON @Expose annotation
+-keepattributes *Annotation*
+
+# Gson specific classes
+-keep class sun.misc.Unsafe { *; }
+-keep class com.google.gson.** { *; }

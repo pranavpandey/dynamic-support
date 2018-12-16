@@ -16,14 +16,13 @@
 
 package com.pranavpandey.android.dynamic.support.behavior;
 
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * Simple item touch helper extending
- * {@link android.support.v7.widget.helper.ItemTouchHelper.Callback} which
- * can be used with {@link DynamicTouchAdapter} to provide basic touch
- * callbacks depending on your use case.
+ * Simple item touch helper extending {@link ItemTouchHelper.Callback} which can be used with
+ * {@link DynamicTouchAdapter} to provide basic touch callbacks depending on your use case.
  */
 public class DynamicTouchListener extends ItemTouchHelper.Callback {
 
@@ -37,7 +36,7 @@ public class DynamicTouchListener extends ItemTouchHelper.Callback {
      *
      * @param adapter The adapter to receive callbacks on touch.
      */
-    public DynamicTouchListener(DynamicTouchAdapter adapter) {
+    public DynamicTouchListener(@NonNull DynamicTouchAdapter adapter) {
         mAdapter = adapter;
     }
 
@@ -52,8 +51,8 @@ public class DynamicTouchListener extends ItemTouchHelper.Callback {
     }
 
     @Override
-    public int getMovementFlags(
-            RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+    public int getMovementFlags(@NonNull RecyclerView recyclerView,
+            @NonNull RecyclerView.ViewHolder viewHolder) {
         int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
         int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
 
@@ -61,16 +60,16 @@ public class DynamicTouchListener extends ItemTouchHelper.Callback {
     }
 
     @Override
-    public boolean onMove(
-            RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
-            RecyclerView.ViewHolder target) {
+    public boolean onMove(@NonNull RecyclerView recyclerView,
+            @NonNull RecyclerView.ViewHolder viewHolder,
+            @NonNull RecyclerView.ViewHolder target) {
         mAdapter.onItemMove(viewHolder.getAdapterPosition(), target.getAdapterPosition());
 
         return true;
     }
 
     @Override
-    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         mAdapter.onItemDismiss(viewHolder.getAdapterPosition());
     }
 }

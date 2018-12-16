@@ -35,12 +35,14 @@
 
     </FrameLayout>
 
-    <com.pranavpandey.android.dynamic.support.widget.DynamicNavigationView
+    <com.google.android.material.navigation.NavigationView
         android:id="@+id/ads_navigation_view"
         android:layout_width="@dimen/ads_drawer_size"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:layout_gravity="start"
-        app:headerLayout="@layout/ads_header_drawer" />
+        app:headerLayout="@layout/ads_header_drawer"
+        android:theme="@style/Widget.DynamicApp.NavigationView.ThemeOverlay"
+        style="@style/Widget.DynamicApp.NavigationView" />
 
 </com.pranavpandey.android.dynamic.support.widget.DynamicDrawerLayout>

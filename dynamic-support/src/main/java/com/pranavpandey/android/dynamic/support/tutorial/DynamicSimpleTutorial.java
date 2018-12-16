@@ -18,17 +18,17 @@ package com.pranavpandey.android.dynamic.support.tutorial;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.tutorial.fragment.DynamicSimpleTutorialFragment;
 
 /**
- * A simple tutorial item to display a title, subtitle and description
- * along with an image which can be tinted according to the background
- * color.
+ * A simple tutorial item to display a title, subtitle and description along with an image
+ * which can be tinted according to the background color.
  */
 public class DynamicSimpleTutorial implements Parcelable {
 
@@ -63,8 +63,7 @@ public class DynamicSimpleTutorial implements Parcelable {
     private @DrawableRes int imageRes;
 
     /**
-     * {@code true} to tint the image according to the
-     * background color.
+     * {@code true} to tint the image according to the background color.
      */
     private boolean tintImage;
 
@@ -77,8 +76,8 @@ public class DynamicSimpleTutorial implements Parcelable {
      * @param description The description for this tutorial.
      * @param imageRes The image resource for this tutorial.
      */
-    public DynamicSimpleTutorial(int id, @ColorInt int backgroundColor, @Nullable String title,
-                                 @Nullable String description, @DrawableRes int imageRes) {
+    public DynamicSimpleTutorial(int id, @ColorInt int backgroundColor,
+            @Nullable String title, @Nullable String description, @DrawableRes int imageRes) {
         this(id, backgroundColor, title, null, description, imageRes);
     }
 
@@ -92,9 +91,9 @@ public class DynamicSimpleTutorial implements Parcelable {
      * @param description The description for this tutorial.
      * @param imageRes The image resource for this tutorial.
      */
-    public DynamicSimpleTutorial(int id, @ColorInt int backgroundColor, @Nullable String title,
-                                 @Nullable String subtitle, @Nullable String description,
-                                 @DrawableRes int imageRes) {
+    public DynamicSimpleTutorial(int id, @ColorInt int backgroundColor,
+            @Nullable String title, @Nullable String subtitle,
+            @Nullable String description, @DrawableRes int imageRes) {
         this(id, backgroundColor, title, subtitle, description, imageRes, false);
     }
 
@@ -107,12 +106,11 @@ public class DynamicSimpleTutorial implements Parcelable {
      * @param subtitle The subtitle for this tutorial.
      * @param description The description for this tutorial.
      * @param imageRes The image resource for this tutorial.
-     * @param tintImage {@code true} to tint the image according
-     *                  to the background color.
+     * @param tintImage {@code true} to tint the image according to the background color.
      */
-    public DynamicSimpleTutorial(int id, @ColorInt int backgroundColor, @Nullable String title,
-                                 @Nullable String subtitle, @Nullable String description,
-                                 @DrawableRes int imageRes, boolean tintImage) {
+    public DynamicSimpleTutorial(int id, @ColorInt int backgroundColor,
+            @Nullable String title, @Nullable String subtitle, @Nullable String description,
+            @DrawableRes int imageRes, boolean tintImage) {
         this.id = id;
         this.backgroundColor = backgroundColor;
         this.title = title;
@@ -120,6 +118,37 @@ public class DynamicSimpleTutorial implements Parcelable {
         this.description = description;
         this.imageRes = imageRes;
         this.tintImage = tintImage;
+    }
+
+    /**
+     * Parcelable creator to create from parcel.
+     */
+    public static final Parcelable.Creator<DynamicSimpleTutorial> CREATOR =
+            new Parcelable.Creator<DynamicSimpleTutorial>() {
+        @Override
+        public DynamicSimpleTutorial createFromParcel(Parcel in) {
+            return new DynamicSimpleTutorial(in);
+        }
+
+        @Override
+        public DynamicSimpleTutorial[] newArray(int size) {
+            return new DynamicSimpleTutorial[size];
+        }
+    };
+
+    /**
+     * Read {@link DynamicSimpleTutorial} object from the parcel.
+     *
+     * @param in The parcel to read the values.
+     */
+    public DynamicSimpleTutorial(Parcel in) {
+        this.id = in.readInt();
+        this.backgroundColor = in.readInt();
+        this.title = in.readString();
+        this.subtitle = in.readString();
+        this.description = in.readString();
+        this.imageRes = in.readInt();
+        this.tintImage = in.readByte() != 0;
     }
 
     @Override
@@ -139,34 +168,8 @@ public class DynamicSimpleTutorial implements Parcelable {
     }
 
     /**
-     * Parcelable creator to create from parcel.
-     */
-    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
-        public DynamicSimpleTutorial createFromParcel(Parcel in) {
-            return new DynamicSimpleTutorial(in);
-        }
-
-        public DynamicSimpleTutorial[] newArray(int size) {
-            return new DynamicSimpleTutorial[size];
-        }
-    };
-
-    /**
-     * De-parcel {@link DynamicSimpleTutorial} object.
+     * Returns the id to uniquely identify this tutorial.
      *
-     * @param in The parcel to read the values.
-     */
-    public DynamicSimpleTutorial(Parcel in) {
-        this.id = in.readInt();
-        this.backgroundColor = in.readInt();
-        this.title = in.readString();
-        this.subtitle = in.readString();
-        this.description = in.readString();
-        this.imageRes = in.readInt();
-        this.tintImage = in.readByte() != 0;
-    }
-
-    /**
      * @return The id to uniquely identify this tutorial.
      */
     public int getId() {
@@ -178,8 +181,8 @@ public class DynamicSimpleTutorial implements Parcelable {
      *
      * @param id The id to be set.
      *
-     * @return The {@link DynamicSimpleTutorial} object to allow
-     *         for chaining of calls to set methods.
+     * @return The {@link DynamicSimpleTutorial} object to allow for chaining of calls to
+     *         set methods.
      */
     public DynamicSimpleTutorial setId(int id) {
         this.id = id;
@@ -188,6 +191,8 @@ public class DynamicSimpleTutorial implements Parcelable {
     }
 
     /**
+     * Get the background color used by this tutorial.
+     *
      * @return The background color used by this tutorial.
      */
     public @ColorInt int getBackgroundColor() {
@@ -199,8 +204,8 @@ public class DynamicSimpleTutorial implements Parcelable {
      *
      * @param backgroundColor The background color to be set.
      *
-     * @return The {@link DynamicSimpleTutorial} object to allow
-     *         for chaining of calls to set methods.
+     * @return The {@link DynamicSimpleTutorial} object to allow for chaining of calls to
+     *         set methods.
      */
     public DynamicSimpleTutorial setBackgroundColor(@ColorInt int backgroundColor) {
         this.backgroundColor = backgroundColor;
@@ -209,6 +214,8 @@ public class DynamicSimpleTutorial implements Parcelable {
     }
 
     /**
+     * Get the title used by this tutorial.
+     *
      * @return The title used by this tutorial.
      */
     public @Nullable String getTitle() {
@@ -220,8 +227,8 @@ public class DynamicSimpleTutorial implements Parcelable {
      *
      * @param title The subtitle to be set.
      *
-     * @return The {@link DynamicSimpleTutorial} object to allow
-     *         for chaining of calls to set methods.
+     * @return The {@link DynamicSimpleTutorial} object to allow for chaining of calls to
+     *         set methods.
      */
     public DynamicSimpleTutorial setTitle(@Nullable String title) {
         this.title = title;
@@ -230,6 +237,8 @@ public class DynamicSimpleTutorial implements Parcelable {
     }
 
     /**
+     * Get the subtitle used by this tutorial.
+     *
      * @return The subtitle used by this tutorial.
      */
     public @Nullable String getSubtitle() {
@@ -241,8 +250,8 @@ public class DynamicSimpleTutorial implements Parcelable {
      *
      * @param subtitle The subtitle to be set.
      *
-     * @return The {@link DynamicSimpleTutorial} object to allow
-     *         for chaining of calls to set methods.
+     * @return The {@link DynamicSimpleTutorial} object to allow for chaining of calls to
+     *         set methods.
      */
     public DynamicSimpleTutorial setSubtitle(@Nullable String subtitle) {
         this.subtitle = subtitle;
@@ -251,6 +260,8 @@ public class DynamicSimpleTutorial implements Parcelable {
     }
 
     /**
+     * Get the description used by this tutorial.
+     *
      * @return The description used by this tutorial.
      */
     public @Nullable String getDescription() {
@@ -262,8 +273,8 @@ public class DynamicSimpleTutorial implements Parcelable {
      *
      * @param description The description to be set.
      *
-     * @return The {@link DynamicSimpleTutorial} object to allow
-     *         for chaining of calls to set methods.
+     * @return The {@link DynamicSimpleTutorial} object to allow for chaining of calls to
+     *         set methods.
      */
     public DynamicSimpleTutorial setDescription(@Nullable String description) {
         this.description = description;
@@ -272,6 +283,8 @@ public class DynamicSimpleTutorial implements Parcelable {
     }
 
     /**
+     * Get the image resource used by this tutorial.
+     *
      * @return The image resource used by this tutorial.
      */
     public @DrawableRes int getImageRes() {
@@ -283,8 +296,8 @@ public class DynamicSimpleTutorial implements Parcelable {
      *
      * @param imageRes The image resource to be set.
      *
-     * @return The {@link DynamicSimpleTutorial} object to allow
-     *         for chaining of calls to set methods.
+     * @return The {@link DynamicSimpleTutorial} object to allow for chaining of calls to
+     *         set methods.
      */
     public DynamicSimpleTutorial setImageRes(@DrawableRes int imageRes) {
         this.imageRes = imageRes;
@@ -293,8 +306,9 @@ public class DynamicSimpleTutorial implements Parcelable {
     }
 
     /**
-     * @return {@code true} to tint the image according to the
-     *         background color.
+     * Returns whether to tint the image according to the background color.
+     *
+     * @return {@code true} to tint the image according to the background color.
      */
     public boolean isTintImage() {
         return tintImage;
@@ -305,8 +319,8 @@ public class DynamicSimpleTutorial implements Parcelable {
      *
      * @param tintImage {@code true} to tint the image.
      *
-     * @return The {@link DynamicSimpleTutorial} object to allow
-     *         for chaining of calls to set methods.
+     * @return The {@link DynamicSimpleTutorial} object to allow for chaining of calls to
+     *         set methods.
      */
     public DynamicSimpleTutorial setTintImage(boolean tintImage) {
         this.tintImage = tintImage;
@@ -315,8 +329,9 @@ public class DynamicSimpleTutorial implements Parcelable {
     }
 
     /**
-     * @return Build this simple tutorial and return a dynamic tutorial
-     *         to show it in the view pager.
+     * Build the simple tutorial according to the supplied parameters.
+     *
+     * @return The dynamic tutorial fragment to show it in the view pager.
      *
      * @see DynamicSimpleTutorialFragment
      */

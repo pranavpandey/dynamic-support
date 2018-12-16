@@ -16,32 +16,31 @@
 
 package com.pranavpandey.android.dynamic.support.recyclerview.binder;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBinderAdapter;
 
 /**
- * A data binder class to bind data with the view inside the
- * {@link DynamicBinderAdapter}. Extend this class to implement
- * your own data binding logic.
+ * A data binder class to bind data with the view inside the {@link DynamicBinderAdapter}.
+ * <p>Extend this class to implement your own data binding logic.
  */
 public abstract class DynamicRecyclerViewBinder<T extends RecyclerView.ViewHolder> {
 
     /**
      * The dynamic binder adapter for the recycler view.
      */
-    private DynamicBinderAdapter mDataBindAdapter;
+    private DynamicBinderAdapter mBinderAdapter;
 
     /**
      * Constructor to initialize an object of this class.
      *
-     * @param dataBindAdapter The dynamic binder adapter for
-     *                        the recycler view.
+     * @param binderAdapter The dynamic binder adapter for the recycler view.
      */
-    public DynamicRecyclerViewBinder(@NonNull DynamicBinderAdapter dataBindAdapter) {
-        mDataBindAdapter = dataBindAdapter;
+    public DynamicRecyclerViewBinder(@NonNull DynamicBinderAdapter binderAdapter) {
+        mBinderAdapter = binderAdapter;
     }
 
     /**
@@ -60,18 +59,20 @@ public abstract class DynamicRecyclerViewBinder<T extends RecyclerView.ViewHolde
      * @param viewHolder The view holder for the recycler view.
      * @param position Position to bind the view holder.
      */
-    public abstract void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder,
-                                          int position);
+    public abstract void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position);
 
     /**
-     * @return The recycler view adapter associated with this
-     *         data binder.
+     * Get the recycler view adapter associated with this data binder.
+     *
+     * @return The recycler view adapter associated with this data binder.
      */
     public DynamicBinderAdapter getRecyclerViewAdapter() {
-        return mDataBindAdapter;
+        return mBinderAdapter;
     }
 
     /**
+     * Returns the total no. of items in this data binder.
+     *
      * @return The total no. of items in this data binder.
      */
     public abstract int getItemCount();
@@ -80,12 +81,11 @@ public abstract class DynamicRecyclerViewBinder<T extends RecyclerView.ViewHolde
      * Notify adapter when the data set has been changed.
      */
     public final void notifyDataSetChanged() {
-        mDataBindAdapter.notifyDataSetChanged();
+        mBinderAdapter.notifyDataSetChanged();
     }
 
     /**
-     * Notify adapter when the data set has been changed in this
-     * data binder.
+     * Notify adapter when the data set has been changed in this data binder.
      */
     public final void notifyBinderDataSetChanged() {
         notifyBinderItemRangeChanged(0, getItemCount());
@@ -97,7 +97,7 @@ public abstract class DynamicRecyclerViewBinder<T extends RecyclerView.ViewHolde
      * @param position Position at which the item has been changed.
      */
     public final void notifyBinderItemChanged(int position) {
-        mDataBindAdapter.notifyBinderItemChanged(this, position);
+        mBinderAdapter.notifyBinderItemChanged(this, position);
     }
 
     /**
@@ -106,7 +106,7 @@ public abstract class DynamicRecyclerViewBinder<T extends RecyclerView.ViewHolde
      * @param position Position at which the item has been inserted.
      */
     public final void notifyBinderItemInserted(int position) {
-        mDataBindAdapter.notifyBinderItemInserted(this, position);
+        mBinderAdapter.notifyBinderItemInserted(this, position);
     }
 
     /**
@@ -116,7 +116,7 @@ public abstract class DynamicRecyclerViewBinder<T extends RecyclerView.ViewHolde
      * @param toPosition Final position of the moved item.
      */
     public final void notifyBinderItemMoved(int fromPosition, int toPosition) {
-        mDataBindAdapter.notifyBinderItemMoved(this, fromPosition, toPosition);
+        mBinderAdapter.notifyBinderItemMoved(this, fromPosition, toPosition);
     }
 
     /**
@@ -125,18 +125,17 @@ public abstract class DynamicRecyclerViewBinder<T extends RecyclerView.ViewHolde
      * @param position Position at which the item has been removed.
      */
     public final void notifyBinderItemRemoved(int position) {
-        mDataBindAdapter.notifyBinderItemRemoved(this, position);
+        mBinderAdapter.notifyBinderItemRemoved(this, position);
     }
 
     /**
-     * Notify adapter when the item range of this data binder has been
-     * changed.
+     * Notify adapter when the item range of this data binder has been changed.
      *
      * @param position Position at which the first item has been changed.
      * @param itemCount Total no. of items has been changed.
      */
     public final void notifyBinderItemRangeChanged(int position, int itemCount) {
-        mDataBindAdapter.notifyBinderItemRangeChanged(this, position, itemCount);
+        mBinderAdapter.notifyBinderItemRangeChanged(this, position, itemCount);
     }
 
     /**
@@ -147,17 +146,16 @@ public abstract class DynamicRecyclerViewBinder<T extends RecyclerView.ViewHolde
      * @param itemCount Total no. of items has been inserted.
      */
     public final void notifyBinderItemRangeInserted(int position, int itemCount) {
-        mDataBindAdapter.notifyBinderItemRangeInserted(this, position, itemCount);
+        mBinderAdapter.notifyBinderItemRangeInserted(this, position, itemCount);
     }
 
     /**
-     * Notify adapter when a set of items has been removed in this
-     * data binder.
+     * Notify adapter when a set of items has been removed in this data binder.
      *
      * @param position Position at which the first item has been removed.
      * @param itemCount Total no. of items has been removed.
      */
     public final void notifyBinderItemRangeRemoved(int position, int itemCount) {
-        mDataBindAdapter.notifyBinderItemRangeRemoved(this, position, itemCount);
+        mBinderAdapter.notifyBinderItemRangeRemoved(this, position, itemCount);
     }
 }

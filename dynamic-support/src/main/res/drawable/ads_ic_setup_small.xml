@@ -24,10 +24,10 @@
     android:autoMirrored="true">
 
     <group
-        android:scaleX="0.9"
-        android:scaleY="0.9"
         android:pivotX="12"
-        android:pivotY="12">
+        android:pivotY="12"
+        android:scaleX="0.8"
+        android:scaleY="0.8">
 
         <path
             android:fillColor="#FF000000"

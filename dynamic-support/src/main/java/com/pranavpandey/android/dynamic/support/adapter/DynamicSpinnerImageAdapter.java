@@ -17,23 +17,24 @@
 package com.pranavpandey.android.dynamic.support.adapter;
 
 import android.content.Context;
-import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.pranavpandey.android.dynamic.support.model.DynamicSpinnerItem;
 
 import java.util.List;
 
 /**
- * A simple array adapter for the {@link android.widget.Spinner} which
- * can display an icon and text together as an item. Use the constructor
- * to pass the layout resource, image and the text id with a list of items
- * according to the need.
+ * A simple array adapter for the {@link android.widget.Spinner} which can display an icon
+ * and text together as an item. Use the constructor to pass the layout resource, image and the
+ * text id with a list of items according to the need.
  */
 public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicSpinnerItem> {
 
@@ -47,9 +48,18 @@ public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicSpinnerItem>
      */
     private @IdRes int mTextViewResourceId;
 
-    public DynamicSpinnerImageAdapter(
-            @NonNull Context context, int resource, int imageViewResourceId,
-            int textViewResourceId, @NonNull List<DynamicSpinnerItem> data) {
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param context The context to retrieve the resources.
+     * @param resource The layout resource to be used.
+     * @param imageViewResourceId The resource id for the image view.
+     * @param textViewResourceId The resource id for the text view.
+     * @param data The data set to be handled by this adapter.
+     */
+    public DynamicSpinnerImageAdapter(@NonNull Context context,
+            int resource, int imageViewResourceId, int textViewResourceId,
+            @NonNull List<DynamicSpinnerItem> data) {
         super(context, resource, textViewResourceId, data);
 
         this.mImageViewResourceId = imageViewResourceId;
@@ -57,7 +67,8 @@ public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicSpinnerItem>
     }
 
     @Override
-    public @NonNull View getView(int position, View convertView, @NonNull ViewGroup parent) {
+    public @NonNull View getView(int position,
+            @Nullable View convertView, @NonNull ViewGroup parent) {
         View itemView = super.getView(position, convertView, parent);
         ImageView imageView = itemView.findViewById(mImageViewResourceId);
         TextView textView = itemView.findViewById(mTextViewResourceId);
@@ -87,8 +98,8 @@ public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicSpinnerItem>
     }
 
     @Override
-    public @NonNull View getDropDownView(int position, View convertView,
-                                         @NonNull ViewGroup parent) {
+    public @NonNull View getDropDownView(int position,
+            @Nullable View convertView, @NonNull ViewGroup parent) {
         return getView(position, convertView, parent);
     }
 }

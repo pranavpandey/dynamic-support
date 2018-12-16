@@ -19,19 +19,20 @@ package com.pranavpandey.android.dynamic.support.adapter;
 
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+
 /**
  * FragmentStatePagerAdapter that caches each pages.
- * FragmentStatePagerAdapter is also originally caches pages,
- * but its keys are not public nor documented, so depending
- * on how it create cache key is dangerous.
- * <p>
- * This adapter caches pages by itself and provide getter method to the cache.</p>
+ * <p>FragmentStatePagerAdapter is also originally caches pages, but its keys are not public
+ * nor documented, so depending on how it create cache key is dangerous.
+ *
+ * <p><p>This adapter caches pages by itself and provide getter method to the cache.
  */
 public abstract class DynamicFragmentsAdapter extends FragmentStatePagerAdapter {
 
@@ -109,10 +110,9 @@ public abstract class DynamicFragmentsAdapter extends FragmentStatePagerAdapter 
 
     /**
      * Get a new fragment instance.
-     * Each fragments are automatically cached in this method,
-     * so you don't have to do it by yourself.
-     * If you want to implement instantiation of fragments,
-     * you should override {@link #createItem(int)} instead.
+     * <p>Each fragments are automatically cached in this method, so you don't have to do it
+     * by yourself. If you want to implement instantiation of fragments, you should override
+     * {@link #createItem(int)} instead.
      *
      * {@inheritDoc}
      *
@@ -129,7 +129,7 @@ public abstract class DynamicFragmentsAdapter extends FragmentStatePagerAdapter 
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         if (0 <= mPages.indexOfKey(position)) {
             mPages.remove(position);
         }
@@ -149,7 +149,7 @@ public abstract class DynamicFragmentsAdapter extends FragmentStatePagerAdapter 
 
     /**
      * Create a new fragment instance.
-     * This will be called inside {@link #getItem(int)}.
+     * <p>This will be called inside {@link #getItem(int)}.
      *
      * @param position The position of the item in the adapter.
      *

@@ -25,9 +25,6 @@
         android:id="@+id/ads_color_item_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/ads_margin_extra_tiny"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="@null" />
+        android:layout_margin="@dimen/ads_margin_extra_tiny" />
 
 </FrameLayout>

@@ -17,10 +17,10 @@
 package com.pranavpandey.android.dynamic.support.sample.activity
 
 import android.os.Bundle
-import android.support.annotation.StyleRes
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.StyleRes
 import com.pranavpandey.android.dynamic.support.activity.DynamicActivity
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.controller.SampleController
@@ -29,8 +29,7 @@ import com.pranavpandey.android.dynamic.support.sample.fragment.AppSettingsFragm
 import java.util.*
 
 /**
- * Implementing a collapsing app bar layout by using
- * [DynamicActivity].
+ * Implementing a collapsing app bar layout by using [DynamicActivity].
  */
 class CollapsingAppBarActivity : DynamicActivity() {
 

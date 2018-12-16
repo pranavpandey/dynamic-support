@@ -25,12 +25,12 @@
     android:background="?selectableItemBackground"
     android:orientation="horizontal">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/ads_array_item_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1.0"
-        android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle"
+        android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle1"
         android:layout_gravity="center_vertical" />
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView

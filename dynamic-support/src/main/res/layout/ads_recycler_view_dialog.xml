@@ -23,7 +23,6 @@
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
         android:id="@+id/ads_dynamic_recycler_view"
-        android:descendantFocusability="blocksDescendants"
         style="@style/Widget.DynamicApp.Scroller.Vertical" />
 
 </FrameLayout>

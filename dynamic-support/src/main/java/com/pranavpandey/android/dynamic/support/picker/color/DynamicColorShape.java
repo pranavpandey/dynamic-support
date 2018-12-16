@@ -16,7 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.picker.color;
 
-import android.support.annotation.IntDef;
+import androidx.annotation.IntDef;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -26,8 +26,7 @@ import static com.pranavpandey.android.dynamic.support.picker.color.DynamicColor
 import static com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape.SQUARE;
 
 /**
- * Interface to hold the color shape constant values to generate
- * color swatches accordingly.
+ * Interface to hold the color shape constant values to generate color swatches accordingly.
  */
 @Retention(RetentionPolicy.SOURCE)
 @IntDef(value = { CIRCLE, SQUARE, RECTANGLE })

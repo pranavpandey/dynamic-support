@@ -15,7 +15,9 @@
 	limitations under the License.
 -->
 
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
 
     <!-- App -->
     <string name="app_name">Dynamic Support</string>

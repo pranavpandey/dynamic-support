@@ -21,41 +21,36 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewFrame;
+import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicRecyclerViewAdapter;
 import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 /**
- * Helper class to perform layout operations like detecting the
- * column count at runtime.
+ * Helper class to perform layout operations like detecting the column count at runtime.
  */
 public class DynamicLayoutUtils {
 
     /**
-     * Get the column count according to the current configuration.
-     * It will also consider multi-window mode on {@link Build.VERSION_CODES#N}
-     * or above devices.
+     * Get the column count according to the current configuration. It will also consider
+     * multi-window mode on {@link Build.VERSION_CODES#N} or above devices.
      *
-     * <p>It is not recommended to do this calculation at runtime.
-     * So, please define all the span counts in xml.</p>
+     * <p>It is not recommended to do this calculation at runtime. So, please define all the
+     * span counts in xml.
      *
      * @param context The context to get configuration.
      * @param defaultCount The default column count.
-     * @param maxCount The maximum column count up to which we can
-     *                 scale.
-     * @param compact {@code true} if the layout is compact and
-     *                disable the auto increase of columns in
-     *                multi-window mode.
+     * @param maxCount The maximum column count up to which we can scale.
+     * @param compact {@code true} if the layout is compact and disable the auto increase of
+     *                columns in multi-window mode.
      *
-     * @return The column count according to the current device
-     *         configurations.
-     *
+     * @return The column count according to the current device configurations.
      */
     @TargetApi(Build.VERSION_CODES.N)
     public static int getLayoutColumns(@NonNull Context context, int defaultCount,
@@ -95,9 +90,11 @@ public class DynamicLayoutUtils {
     }
 
     /**
-     * @return {@code true} if the app is in multi-window mode.
+     * Checks whether the app is in multi-window mode.
      *
      * @param context The context to get configuration.
+     *
+     * @return {@code true} if the app is in multi-window mode.
      */
     @TargetApi(Build.VERSION_CODES.N)
     public static boolean isInMultiWindowMode(@NonNull Context context) {
@@ -110,9 +107,12 @@ public class DynamicLayoutUtils {
     }
 
     /**
-     * @return The screen size category for the supplied context.
+     *
+     * Get the screen size category for the supplied context.
      *
      * @param context The context to get configuration.
+     *
+     * @return The screen size category for the supplied context.
      */
     public static int getScreenSizeCategory(@NonNull Context context){
         return context.getResources().getConfiguration().screenLayout
@@ -120,48 +120,51 @@ public class DynamicLayoutUtils {
     }
 
     /**
-     * @return The grid count for the supplied context with default
-     *         count 1 and max count 2.
+     * Get the grid count for the supplied context.
      *
      * @param context The context to get the span count.
+     *
+     * @return The grid count for the supplied context with default count 1 and max count 2.
      */
     public static int getGridCount(@NonNull Context context) {
         return context.getResources().getInteger(R.integer.ads_span_normal);
     }
 
     /**
-     * @return The grid count for the supplied context with default
-     *         count 1 and max count 3.
+     * Get the grid count for the supplied context suitable for no drawer activity.
      *
      * @param context The context to get the span count.
+     *
+     * @return The grid count for the supplied context with default count 1 and max count 3.
      */
     public static int getGridCountNoDrawer(@NonNull Context context) {
         return context.getResources().getInteger(R.integer.ads_span_no_drawer);
     }
 
     /**
-     * @return The grid count for the supplied context with default
-     *         count 1 or 2 and max count 3.
+     * Get the grid count for the supplied context suitable for a compact layout.
      *
      * @param context The context to get the span count.
+     *
+     * @return The grid count for the supplied context with default ount 1 or 2 and max count 3.
      */
     public static int getGridCountCompact(@NonNull Context context) {
         return context.getResources().getInteger(R.integer.ads_span_compact);
     }
 
     /**
-     * @return The grid count for the supplied context with default
-     *         count 1 or 2 and max count 3.
+     * Get the grid count for the supplied context suitable for a dialog.
      *
      * @param context The context to get the span count.
+     *
+     * @return The grid count for the supplied context with default count 1 or 2 and max count 3.
      */
     public static int getGridCountCompactDialog(@NonNull Context context) {
         return context.getResources().getInteger(R.integer.ads_span_compact_dialog);
     }
 
     /**
-     * @return The {@link LinearLayoutManager} object for a given
-     *         context.
+     * @return The {@link LinearLayoutManager} object for a given context.
      *
      * @param context The context to instantiate layout manager.
      * @param orientation The orientation of the layout manager.
@@ -174,8 +177,7 @@ public class DynamicLayoutUtils {
     }
 
     /**
-     * @return The {@link GridLayoutManager} object for a given
-     *         context.
+     * @return The {@link GridLayoutManager} object for a given context.
      *
      * @param context The context to instantiate layout manager.
      * @param count The column count for the grid layout.
@@ -186,11 +188,9 @@ public class DynamicLayoutUtils {
     }
 
     /**
-     * @return The {@link StaggeredGridLayoutManager} object for a given
-     *         context.
+     * @return The {@link StaggeredGridLayoutManager} object for a given context.
      *
-     * @param count The no. of rows or columns count according to the
-     *              orientation.
+     * @param count The no. of rows or columns count according to the orientation.
      * @param orientation The orientation of the layout manager.
      *                    {@link StaggeredGridLayoutManager#VERTICAL} or
      *                    {@link StaggeredGridLayoutManager#HORIZONTAL}
@@ -201,14 +201,13 @@ public class DynamicLayoutUtils {
     }
 
     /**
-     * Set full span for the header and empty view in case of a
-     * {@link GridLayoutManager}. This method must be called
-     * after setting a adapter for the recycler view.
+     * Set full span for the header and empty view in case of a {@link GridLayoutManager}.
+     * This method must be called after setting a adapter for the recycler view.
      *
      * @param recyclerView The recycler view to set the span size.
      *
-     * @see DynamicRecyclerViewFrame.ItemType
-     * @see GridLayoutManager#setSpanSizeLookup(GridLayoutManager.SpanSizeLookup)
+     * @see DynamicRecyclerViewAdapter.ItemType
+     * @see GridLayoutManager#setSpanSizeLookup( GridLayoutManager.SpanSizeLookup)
      */
     public static void setFullSpanForHeader(final RecyclerView recyclerView) {
         if (recyclerView != null && recyclerView.getAdapter() != null) {
@@ -218,11 +217,11 @@ public class DynamicLayoutUtils {
                             @Override
                             public int getSpanSize(int position) {
                                 switch (recyclerView.getAdapter().getItemViewType(position)) {
-                                    case DynamicRecyclerViewFrame.TYPE_EMPTY_VIEW:
-                                    case DynamicRecyclerViewFrame.TYPE_SECTION_HEADER:
+                                    case DynamicRecyclerViewAdapter.TYPE_EMPTY_VIEW:
+                                    case DynamicRecyclerViewAdapter.TYPE_SECTION_HEADER:
                                         return ((GridLayoutManager)
                                                 recyclerView.getLayoutManager()).getSpanCount();
-                                    case DynamicRecyclerViewFrame.TYPE_ITEM:
+                                    case DynamicRecyclerViewAdapter.TYPE_ITEM:
                                         return 1;
                                     default:
                                         return -1;
