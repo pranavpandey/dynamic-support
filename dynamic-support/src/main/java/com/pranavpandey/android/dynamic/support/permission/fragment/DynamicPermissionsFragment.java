@@ -158,7 +158,7 @@ public class DynamicPermissionsFragment extends DynamicFragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(@Nullable Menu menu, @Nullable MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
         inflater.inflate(R.menu.ads_menu_permissions, menu);

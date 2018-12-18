@@ -17,7 +17,6 @@
 package com.pranavpandey.android.dynamic.support.popup;
 
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -36,6 +35,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.core.widget.PopupWindowCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.TransitionManager;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
@@ -267,9 +267,9 @@ public abstract class DynamicPopup {
                             ((NestedScrollView) mViewRoot).setOnScrollChangeListener(
                                     new NestedScrollView.OnScrollChangeListener() {
                                         @Override
-                                        public void onScrollChange(NestedScrollView v, int scrollX,
-                                                                   int scrollY,
-                                                                   int oldScrollX, int oldScrollY) {
+                                        public void onScrollChange(NestedScrollView v,
+                                                int scrollX, int scrollY,
+                                                int oldScrollX, int oldScrollY) {
                                             DynamicViewUtils.manageScrollIndicators(v, top, bottom);
                                         }
                                     });
@@ -283,16 +283,16 @@ public abstract class DynamicPopup {
                         } else if (mViewRoot instanceof AbsListView) {
                             ((AbsListView) mViewRoot).setOnScrollListener(
                                     new AbsListView.OnScrollListener() {
-                                @Override
-                                public void onScrollStateChanged(
-                                        AbsListView view, int scrollState) {}
+                                        @Override
+                                        public void onScrollStateChanged(
+                                                AbsListView view, int scrollState) { }
 
-                                @Override
-                                public void onScroll(AbsListView v, int firstVisibleItem,
-                                                     int visibleItemCount, int totalItemCount) {
-                                    DynamicViewUtils.manageScrollIndicators(v, top, bottom);
-                                }
-                            });
+                                        @Override
+                                        public void onScroll(AbsListView v, int firstVisibleItem,
+                                                int visibleItemCount, int totalItemCount) {
+                                            DynamicViewUtils.manageScrollIndicators(v, top, bottom);
+                                        }
+                                    });
 
                             mViewRoot.post(new Runnable() {
                                 @Override
@@ -303,15 +303,16 @@ public abstract class DynamicPopup {
                         } else if (mViewRoot instanceof RecyclerView) {
                             ((RecyclerView) mViewRoot).addOnScrollListener(
                                     new RecyclerView.OnScrollListener() {
-                                @Override
-                                public void onScrollStateChanged(
-                                        RecyclerView view, int scrollState) {}
+                                        @Override
+                                        public void onScrollStateChanged(
+                                                @NonNull RecyclerView view, int scrollState) { }
 
-                                @Override
-                                public void onScrolled(RecyclerView v, int dx, int dy) {
-                                    DynamicViewUtils.manageScrollIndicators(v, top, bottom);
-                                }
-                            });
+                                        @Override
+                                        public void onScrolled(@NonNull RecyclerView v,
+                                                int dx, int dy) {
+                                            DynamicViewUtils.manageScrollIndicators(v, top, bottom);
+                                        }
+                                    });
 
                             mViewRoot.post(new Runnable() {
                                 @Override
@@ -332,29 +333,37 @@ public abstract class DynamicPopup {
         PopupWindowCompat.setWindowLayoutType(mPopupWindow,
                 WindowManager.LayoutParams.TYPE_APPLICATION_SUB_PANEL);
         mPopupWindow.setOutsideTouchable(true);
-        mPopupWindow.setAnimationStyle(android.R.style.Animation_Dialog);
+        mPopupWindow.setAnimationStyle(androidx.appcompat.R.style.Animation_AppCompat_DropDownUp);
         PopupWindowCompat.setOverlapAnchor(mPopupWindow, true);
 
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         final int[] screenPos = new int[2];
-        final Rect displayFrame = new Rect();
+        final int[] appScreenPos = new int[2];
         getAnchor().getLocationOnScreen(screenPos);
-        getAnchor().getWindowVisibleDisplayFrame(displayFrame);
-        final int viewCenterX = screenPos[0];
+        final View rootView = getAnchor().getRootView();
+        if (rootView != null) {
+            rootView.getLocationOnScreen(appScreenPos);
+            try {
+                TransitionManager.endTransitions((ViewGroup) rootView);
+            } catch (Exception ignored) {
+            }
+        } else {
+            getAnchor().getLocationOnScreen(appScreenPos);
+        }
+
+        final int viewCenterX = screenPos[0] - appScreenPos[0];
+        final int viewCenterY = screenPos[1] - appScreenPos[1];
         final int OFFSET_X = DynamicUnitUtils.convertDpToPixels(36);
-        final int OFFSET_Y;
+        final int OFFSET_Y = DynamicUnitUtils.convertDpToPixels(20);
 
         // Handle issues with popup not expanding.
         if (DynamicVersionUtils.isNougat(true)) {
-            OFFSET_Y = DynamicUnitUtils.convertDpToPixels(20);
             PopupWindowCompat.showAsDropDown(mPopupWindow,
                     getAnchor(), OFFSET_X, -OFFSET_Y, Gravity.NO_GRAVITY);
         } else {
-            OFFSET_Y = DynamicUnitUtils.convertDpToPixels(0);
-            mPopupWindow.showAtLocation(getAnchor(),
-                    Gravity.NO_GRAVITY, viewCenterX + OFFSET_X,
-                    screenPos[1] - displayFrame.top + OFFSET_Y);
+            mPopupWindow.showAtLocation(getAnchor(), Gravity.NO_GRAVITY,
+                    viewCenterX + OFFSET_X, viewCenterY - OFFSET_Y);
         }
     }
 }
