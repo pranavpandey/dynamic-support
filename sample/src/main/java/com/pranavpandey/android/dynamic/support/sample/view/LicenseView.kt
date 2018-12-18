@@ -68,7 +68,7 @@ class LicenseView : DynamicRecyclerViewFrame {
         licenses.add(DynamicInfo()
                 .setTitle(context
                         .getString(R.string.ads_license_gson_plaid))
-                .setDescription(context.getString(R.string.ads_license_copy_google_15))
+                .setDescription(context.getString(R.string.ads_license_copy_google_08_15))
                 .setLinks(resources.getStringArray(
                         R.array.ads_license_links_apache))
                 .setLinksSubtitles(resources.getStringArray(

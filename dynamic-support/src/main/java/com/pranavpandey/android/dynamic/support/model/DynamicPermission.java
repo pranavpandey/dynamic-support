@@ -69,7 +69,7 @@ public class DynamicPermission implements Parcelable {
     private boolean dangerous;
 
     /**
-     * {@code true} if the permission is allowed.
+     * {@code true} if the permission is granted.
      */
     private boolean allowed;
 
@@ -272,18 +272,18 @@ public class DynamicPermission implements Parcelable {
     }
 
     /**
-     * Returns whether this permission is allowed.
+     * Returns whether this permission is granted.
      *
-     * @return {@code true} if the permission is allowed.
+     * @return {@code true} if the permission is granted.
      */
     public boolean isAllowed() {
         return allowed;
     }
 
     /**
-     * Sets this permission as allowed or denied.
+     * Sets this permission as granted or denied.
      *
-     * @param allowed {@code true} if the permission is allowed.
+     * @param allowed {@code true} if the permission is granted.
      */
     public void setAllowed(boolean allowed) {
         this.allowed = allowed;

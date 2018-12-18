@@ -99,9 +99,9 @@
     <string name="ads_permissions_subtitle_single">Please allow the required permission.</string>
     <string name="ads_perm_info_grant_all">Please allow all the permissions to make the app working properly.</string>
     <string name="ads_perm_request">Request</string>
-    <string name="ads_perm_request_desc">This permission is not allowed. Tap to request.</string>
+    <string name="ads_perm_request_desc">This permission is not granted. Tap to request.</string>
     <string name="ads_perm_granted">Granted</string>
-    <string name="ads_perm_granted_desc">This permission has been allowed.</string>
+    <string name="ads_perm_granted_desc">This permission has been granted.</string>
     <string name="ads_perm_denied">Denied</string>
     <string name="ads_perm_denied_desc">To grant this permission, go to App info > Permissions. Tap to go to the App info.</string>
     <string name="ads_perm_default">Permission</string>

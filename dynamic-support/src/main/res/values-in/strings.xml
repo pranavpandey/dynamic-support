@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<resources>
+
+    <!-- Dynamic activity -->
+    <string name="ads_navigation_drawer_open">Buka drawer navigasi</string>
+    <string name="ads_navigation_drawer_close">Tutup drawer navigasi</string>
+
+    <!-- String formats -->
+    <string name="ads_format_version">Versi %1$s</string>
+    <string name="ads_search_empty">Tidak ada yang cocok dengan \"%1$s\".</string>
+
+    <!-- Headings -->
+    <string name="ads_app">Aplikasi</string>
+    <string name="ads_text">Teks</string>
+    <string name="ads_icon">Ikon</string>
+    <string name="ads_size">Ukuran</string>
+    <string name="ads_value">Nilai</string>
+    <string name="ads_notification">Notifikasi</string>
+    <string name="ads_widgets">Widget</string>
+    <string name="ads_instructions">Instruksi</string>
+    <string name="ads_tutorial">Panduan</string>
+    <string name="ads_troubleshoot">Pecahkan masalah</string>
+    <string name="ads_about">Tentang</string>
+    <string name="ads_overview">Ikhtisar</string>
+    <string name="ads_general">Umum</string>
+    <string name="ads_advanced">Lanjutan</string>
+    <string name="ads_fixes">Perbaikan</string>
+
+    <!-- Labels -->
+    <string name="ads_i_got_it">Oke, saya paham</string>
+    <string name="ads_not_now">Lain kali</string>
+    <string name="ads_yes_in">Ya, saya mau</string>
+    <string name="ads_more_info">Info lebih lanjut</string>
+    <string name="ads_select">Pilih</string>
+    <string name="ads_copy">Salin</string>
+    <string name="ads_save">Simpan</string>
+    <string name="ads_load">Muat</string>
+    <string name="ads_create">Buat</string>
+    <string name="ads_previous">Sebelumnya</string>
+    <string name="ads_next">Setelahnya</string>
+    <string name="ads_skip">Lewati</string>
+    <string name="ads_loading">Memuat&#8230;</string>
+    <string name="ads_finish">Selesai</string>
+    <string name="ads_recents">Baru-baru ini</string>
+    <string name="ads_custom">Kustom</string>
+    <string name="ads_edit">Ubah</string>
+    <string name="ads_refresh">Segarkan</string>
+    <string name="ads_reset">Pulihkan</string>
+    <string name="ads_default">Default</string>
+    <string name="ads_sort">Sortir</string>
+    <string name="ads_sort_category">Kategori</string>
+    <string name="ads_sort_name">Nama</string>
+    <string name="ads_search">Cari</string>
+    <string name="ads_enable">Nyalakan</string>
+    <string name="ads_enabled">Dinyalakan</string>
+    <string name="ads_disable">Matikan</string>
+    <string name="ads_disabled">Dimatikan</string>
+    <string name="ads_toggle">Alihkan</string>
+    <string name="ads_shortcut">Pintasan</string>
+    <string name="ads_shortcuts">Pintasan</string>
+    <string name="ads_shortcut_created">Pintasan dibuat</string>
+    <string name="ads_shortcuts_desc">Pilih pintasan untuk ditambahkan ke layar utama</string>
+
+    <!-- Navigation drawer and Menu -->
+    <string name="ads_nav_category_features">Menu</string>
+    <string name="ads_nav_category_support">Dukungan pengembangan</string>
+    <string name="ads_nav_category_contribute">Berkontribusi</string>
+    <string name="ads_nav_home">Utama</string>
+    <string name="ads_nav_settings">Pengaturan</string>
+    <string name="ads_nav_help">Bantuan</string>
+    <string name="ads_nav_support">Dukungan</string>
+    <string name="ads_nav_about">Tentang</string>
+    <string name="ads_nav_buy">Beli</string>
+    <string name="ads_nav_rate">Nilai</string>
+    <string name="ads_nav_share">Bagikan</string>
+    <string name="ads_nav_uninstall">Hapus instalasi</string>
+    <string name="ads_menu_info">Info</string>
+    <string name="ads_menu_app_info">Info aplikasi</string>
+
+    <!-- Runtime permissions -->
+    <string name="ads_permissions">Perijinan</string>
+    <string name="ads_permissions_subtitle">Mohon berikan perijinan berikut.</string>
+    <string name="ads_permissions_subtitle_single">Mohon berikan perijinan berikut.</string>
+    <string name="ads_perm_info_grant_all">Mohon berikan seluruh perijinan agar aplikasi dapat berjalan sebagaimana mestinya.</string>
+    <string name="ads_perm_request">Minta</string>
+    <string name="ads_perm_request_desc">Perijinan ini belum diberikan. Tekan untuk meminta.</string>
+    <string name="ads_perm_granted">Diberikan</string>
+    <string name="ads_perm_granted_desc">Perijinan ini telah diberikan</string>
+    <string name="ads_perm_denied">Ditolak</string>
+    <string name="ads_perm_denied_desc">Untuk memberikan perijinan ini, buka App info &gt; Permissions. Tekan untuk membuka App info.</string>
+    <string name="ads_perm_default">Perijinan</string>
+    <string name="ads_perm_default_desc">Perijinan ini dibutuhkan untuk melakukan beberapa aksi.</string>
+    <string name="ads_perm_default_explain">Penjelasan.</string>
+    <string name="ads_perm_write_system_settings">Tulis pengaturan sistem</string>
+    <string name="ads_perm_write_system_settings_desc">perbolehkan penulisan pengaturan sistem</string>
+    <string name="ads_perm_overlay">Tampilkan di atas aplikasi lain</string>
+    <string name="ads_perm_overlay_desc">ijinkan penampilan di atas aplikasi lain</string>
+    <string name="ads_perm_usage_access">Akses penggunaan</string>
+    <string name="ads_perm_usage_access_desc">ijinkan akses penggunaan</string>
+
+    <!-- Backup and Restore -->
+    <string name="ads_data">Data</string>
+    <string name="ads_data_operations">Operasi data</string>
+    <string name="ads_backup_and_restore">Cadangkan &amp; Pulihkan</string>
+    <string name="ads_backup">Cadangkan</string>
+    <string name="ads_backup_desc">Pengaturan widget tidak akan dicadangkan, mohon atur secara manual setelah melakukan operasi pemulihan.</string>
+    <string name="ads_backup_title">Buat cadangan</string>
+    <string name="ads_backup_select">Pilih</string>
+    <string name="ads_backup_summary">Simpan atau bagikan pengaturan aplikasi saat ini.</string>
+    <string name="ads_backup_new">Baru</string>
+    <string name="ads_backup_create_new_info">Mohon buat cadangan baru.</string>
+    <string name="ads_backup_import_info">Mohon coba untuk mengimpor cadangan dari penyimpanan device.</string>
+    <string name="ads_backup_name">Nama cadangan</string>
+    <string name="ads_backup_rename">Ubah nama cadangan</string>
+    <string name="ads_backup_complete">Cadangan telah sukses dibuat</string>
+    <string name="ads_backup_error">Tidak dapat membuat cadangan</string>
+    <string name="ads_backup_invalid">Cadangan tidak sah</string>
+    <string name="ads_backup_restore">Pulihkan</string>
+    <string name="ads_backup_restore_title">Pulihkan cadangan</string>
+    <string name="ads_backup_error_save">Tidak dapat menyimpan cadangan</string>
+    <string name="ads_backup_error_rename">Tidak dapat merubah nama cadangan</string>
+    <string name="ads_backup_restore_summary">Muat atau kelola cadangan yang tersimpan.</string>
+    <string name="ads_backup_restore_desc">Pilih cadangan untuk dipulihkan.</string>
+    <string name="ads_backup_restore_backup">Pulihkan cadangan</string>
+    <string name="ads_backup_restore_backup_desc">Ini akan menghapus seluruh pengaturan saat ini (kecuali widget) dan memulihkannya dari cadangan yang dipilih. Lanjutkan?</string>
+    <string name="ads_backup_restore_backup_verify_error">Tidak dapat memverifikasi cadangan ini. Mohon pilih cadangan lainnya.</string>
+    <string name="ads_backup_modify">Rubah</string>
+    <string name="ads_backup_modify_desc">Pilih cadangan untuk dirubah.</string>
+    <string name="ads_backup_restore_done">Cadangan telah sukses dirubah</string>
+    <string name="ads_backup_restore_error">Tidak dapat memulihkan cadangan</string>
+    <string name="ads_backup_not_found">Tidak ada cadangan yang ditemukan.</string>
+    <string name="ads_backup_modify_complete">Cadangan telah sukses dirubah</string>
+    <string name="ads_backup_delete_all">Hapus semua</string>
+    <string name="ads_backup_delete_all_title">Hapus semua cadangan</string>
+    <string name="ads_backup_delete_all_desc">Ini akan menghapus seluruh cadangan yang tersimpan di penyimpanan aplikasi. Lanjutkan?</string>
+    <string name="ads_backup_delete_all_done">Seluruh cadangan telah sukses dihapus.</string>
+    <string name="ads_backup_import">Impor</string>
+    <string name="ads_backup_import_title">Impor cadangan</string>
+    <string name="ads_backup_import_summary">Mulai dengan keadaan aplikasi sebelumnya</string>
+    <string name="ads_backup_import_desc">Impor cadangan dari device atau penyimpanan lainnya.</string>
+    <string name="ads_backup_format_location">Lokasi cadangan: %1$s</string>
+    <string name="ads_backup_format_created">Cadangan dibuat: %1$s</string>
+    <string name="ads_backup_format_saved">Cadangan disimpan: %1$s</string>
+    <string name="ads_backup_format_last">Cadangan terakhir: %1$s</string>
+    <string name="ads_backup_format_modified">Cadangan dimodifikasi: %1$s</string>
+    <string name="ads_backup_format_last_modified">Terakhir dimodifikasi: %1$s</string>
+    <string name="ads_backup_format_renamed">Nama cadangan dirubah: %1$s</string>
+    <string name="ads_backup_format_deleted">Cadangan dihapus: %1$s</string>
+    <string name="ads_backup_format_restored">Cadangan dipulihkan: %1$s</string>
+
+    <!-- Backup options -->
+    <string name="ads_backup_storage_app">Penyimpanan aplikasi</string>
+    <string name="ads_backup_storage_device">Penyimpanan device</string>
+    <string name="ads_backup_option_rename">Rubah nama</string>
+    <string name="ads_backup_option_delete">Hapus</string>
+    <string name="ads_backup_send">Kirim cadangan</string>
+
+    <!-- App theme -->
+    <string name="ads_theme">Tema</string>
+    <string name="ads_theme_customise_desc">Atur tema di bawah ini.</string>
+    <string name="ads_theme_adjust_desc">Tema akan otomatis disesuaikan berdasarkan versi Android saat ini.</string>
+    <string name="ads_theme_invalid">Tema tidak sah</string>
+    <string name="ads_theme_invalid_desc">Tidak dapat memverifikasi tema ini. Mohon coba lagi dengan data yang sesuai.</string>
+    <string name="ads_theme_color_palette">Palet warna</string>
+    <string name="ads_theme_color_palette_summary">Palet warna utama dan aksen.</string>
+    <string name="ads_theme_color_background">Warna latar belakang</string>
+    <string name="ads_theme_color_background_summary">Warna latar belakang tema.</string>
+    <string name="ads_theme_color_primary">Warna utama</string>
+    <string name="ads_theme_color_primary_summary">Warna yang digunakan pada elemen primer.</string>
+    <string name="ads_theme_color_primary_dark">Warna sistem</string>
+    <string name="ads_theme_color_primary_summary_dark">Warna yang digunakan elemen sistem.</string>
+    <string name="ads_theme_color_accent">Warna aksen</string>
+    <string name="ads_theme_color_secondary">Warna sekunder</string>
+    <string name="ads_theme_color_accent_summary">Warna yang digunakan elemen sekunder.</string>
+    <string name="ads_theme_color_tint">Warna tint</string>
+    <string name="ads_theme_color_inverse">Warna terbalik</string>
+    <string name="ads_theme_corner_size">Ukuran pojok</string>
+    <string name="ads_theme_corner_size_summary">Radius pojok aplikasi.</string>
+    <string name="ads_theme_background_aware">Sadar latar belakang</string>
+    <string name="ads_theme_background_aware_desc">Beberaoa warna akan otomatis berganti berdasarkan latar belakang untuk menyediakan visibilitas terbaik.</string>
+    <string name="ads_theme_app">Tema aplikasi</string>
+    <string name="ads_theme_app_summary">Gaya aplikasi.</string>
+    <string name="ads_theme_app_desc">Pilih otomatis untuk menggunakan tema siang dan malam.</string>
+    <string name="ads_theme_app_day">Tema siang</string>
+    <string name="ads_theme_app_day_summary">Gaya aplikasi ketika siang.</string>
+    <string name="ads_theme_app_night">Tema malam</string>
+    <string name="ads_theme_app_night_summary">Gaya aplikasi ketika malam.</string>
+    <string name="ads_theme_app_day_night_desc">Ini hanya akan bekerja ketika tema otomatis diberlakukan.</string>
+    <string name="ads_theme_toast">Tema pesan toast</string>
+    <string name="ads_theme_toast_summary">Tampilkan pesan toast bertema berdasarkan warna primer aplikasi.</string>
+    <string name="ads_theme_toast_summary_unchecked">Tampilkan pesan toast default oleh sistem.</string>
+    <string name="ads_theme_navigation_bar">Tema bar navigasi</string>
+    <string name="ads_theme_navigation_bar_summary">Tampilkan navigasi bar bertema berdasarkan warna primer aplikasi.</string>
+    <string name="ads_theme_navigation_bar_summary_unchecked">Tampilkan bar navigasi hitam.</string>
+    <string name="ads_theme_navigation_bar_desc">Tema bar navigasi mungkin tidak terlihat pada beberapa tempat untuk menampilkan pengalaman visual terbaik.</string>
+    <string name="ads_theme_notification">Tema notifikasi</string>
+    <string name="ads_theme_notification_summary">Palet warna untuk notifikasi.</string>
+    <string name="ads_theme_notification_style">Gaya notifikasi</string>
+    <string name="ads_theme_notification_style_summary">Gaya tata letak untuk notifikasi.</string>
+    <string name="ads_theme_style_classic_desc">Pilih klasik sebagai gaya palet warna latar belakang.</string>
+    <string name="ads_theme_widget">Tema widget</string>
+    <string name="ads_theme_widget_summary">Palet warna untuk widget.</string>
+    <string name="ads_theme_app_shortcuts">Tema pintasan aplikasi</string>
+    <string name="ads_theme_app_shortcuts_summary">Tampilkan pintasan aplikasi bertema berdasarkan warna primer aplikasi.</string>
+    <string name="ads_theme_app_shortcuts_summary_unchecked">Perlihatkan pintasan aplikasi default berdasarkan tema dan warna merek aplikasi.</string>
+    <string name="ads_theme_app_shortcuts_desc">Tekan lama pada ikon launcher untuk menunjukkan pintasan aplikasi, membutuhkan launcher yang mendukung ini.</string>
+    <string name="ads_theme_reset_desc">Tema sudah direset ke default.</string>
+    <string name="ads_theme_import_done">Tema telah sukses di import.</string>
+    <string name="ads_theme_copy_done">Tema telah berhasil disalin.</string>
+
+    <!-- Theme and Labels -->
+    <string name="ads_theme_toast_default">Pesan toast default</string>
+    <string name="ads_theme_toast_themed">Pesan toast bertema</string>
+    <string name="ads_theme_entry_auto">Otomatis</string>
+    <string name="ads_theme_settings_auto_desc">Pilih auto untuk menggunakan pengaturan aplikasi.</string>
+    <string name="ads_theme_settings_default_desc">Pilih auto untuk menggunakan pengaturan default.</string>
+    <string name="ads_theme_color_auto_desc">Pilih auto untuk menggunakan palet warna aplikasi.</string>
+    <string name="ads_theme_color_default_desc">Pilih auto untuk menggunakan palet warna default.</string>
+    <string name="ads_theme_entry_auto_background_aware_desc">Pilih auto untuk menggunakan palet warna aplikasi. Sesuaikan waran berdasarkan latar belakang untuk menyediakan visibilitas terbaik.</string>
+    <string name="ads_theme_entry_light">Terang</string>
+    <string name="ads_theme_entry_dark">Gelap</string>
+    <string name="ads_theme_entry_custom">Kustom</string>
+    <string name="ads_theme_entry_classic">Klasik</string>
+    <string name="ads_theme_entry_true_dark">Gelap sungguhan</string>
+    <string name="ads_theme_entry_light_indigo">Indigo terang</string>
+    <string name="ads_theme_entry_light_red">Merah terang</string>
+    <string name="ads_theme_entry_light_blue">Biru terang</string>
+    <string name="ads_theme_entry_light_green">Hijau terang</string>
+    <string name="ads_theme_entry_light_yellow">Kuning terang</string>
+    <string name="ads_theme_entry_light_purple">Ungu terang</string>
+    <string name="ads_theme_entry_light_orange">Jingga terang</string>
+    <string name="ads_theme_entry_light_brown">Cokelat terang</string>
+    <string name="ads_theme_entry_light_grey">Abu-abu terang</string>
+    <string name="ads_theme_entry_dark_indigo">Indigo gelap</string>
+    <string name="ads_theme_entry_dark_red">Merah gelap</string>
+    <string name="ads_theme_entry_dark_blue">Biru gelap</string>
+    <string name="ads_theme_entry_dark_green">Hijau gelap</string>
+    <string name="ads_theme_entry_dark_teal">Tiil gelap</string>
+    <string name="ads_theme_entry_dark_purple">Ungu gelap</string>
+    <string name="ads_theme_entry_dark_orange">Oranye gelap</string>
+    <string name="ads_theme_entry_dark_brown">Cokelat gelap</string>
+    <string name="ads_theme_entry_dark_grey">Abu-abu gelap</string>
+
+    <!-- Visibility -->
+    <string name="ads_visibility_show">Tampilkan</string>
+    <string name="ads_visibility_hide">Sembunyikan</string>
+
+    <!-- Picker -->
+    <string name="ads_picker_all">Semuanya</string>
+    <string name="ads_picker_pick">Pilih</string>
+    <string name="ads_picker_more_colors">Warna lain</string>
+    <string name="ads_picker_presets">Contoh aturan</string>
+
+    <!-- Language selector -->
+    <string name="ads_language">Bahasa</string>
+    <string name="ads_language_summary">Bahasa yang digunakan aplikasi.</string>
+    <string name="ads_language_system">Sistem</string>
+
+    <!-- Notification and Channel -->
+    <string name="ads_notification_priority">Prioritas notifikasi</string>
+    <string name="ads_notification_priority_summary">Pilih prioritas untuk menentukan urutannya pada drawer notifikasi.</string>
+    <string name="ads_notification_priority_desc">Pilih prioritas rendah untuk menyembunyikan notifikasi dari status bar dan layar kunci.</string>
+    <string name="ads_notification_priority_high">Tinggi</string>
+    <string name="ads_notification_priority_normal">Normal</string>
+    <string name="ads_notification_priority_low">Rendah</string>
+    <string name="ads_notification_category">Kategori notifikasi</string>
+    <string name="ads_notification_category_summary">Atur notifikasi yang ditampilkan aplikasi.</string>
+    <string name="ads_notification_category_desc">Pilih kategori prioritas rendah untuk menyembunyikan notifikasi dari status bar dan layar kunci.</string>
+
+    <!-- App widget -->
+    <string name="ads_widget_customise">Kustomisasi</string>
+    <string name="ads_widget_customise_desc">Kustomisasi widget di bawahnya.</string>
+    <string name="ads_widget_preview">Pratinjau</string>
+    <string name="ads_widget_preview_desc">Tata letak widget mungkin akan berubah secara otomatis berdasarkan ukuran yang digunakan untuk memberikan pengalaman terbaik.</string>
+    <string name="ads_widget_header">Kepala</string>
+    <string name="ads_widget_header_summary">Visibilitas dari kepala widget.</string>
+    <string name="ads_widget_header_desc">Pilih auto untuk menampilkan kepala apabila ada cukup ruang tersedia.</string>
+    <string name="ads_widget_corner_size_bg_summary">Radius pojok dari latar belakang widget.</string>
+    <string name="ads_widget_corner_size_bg_desc">Pilih auto untuk menggunakan ukuran pojok aplikasi.</string>
+    <string name="ads_widget_opacity_bg">Kegelapan latar belakang</string>
+    <string name="ads_widget_opacity_bg_summary">Kegelapan latar belakang widget.</string>
+    <string name="ads_widget_reset_desc">Widget telah direset ke default.</string>
+    <string name="ads_widget_not_added">Tidak ada widget yang ditambahkan.</string>
+
+    <!-- About and Support -->
+    <string name="ads_rate">Beri rating</string>
+    <string name="ads_support_contact">Kontak</string>
+    <string name="ads_support_feedback">Umpan balik</string>
+    <string name="ads_support_report">Lapor</string>
+    <string name="ads_support_report_bug">Kirim laporan bug</string>
+    <string name="ads_support_report_bug_summary">Hubungi pengembang via email.</string>
+    <string name="ads_support_report_bug_desc">Bila anda memiliki kendala atau pertanyaan apapun tentang aplikasi ini, mohon hubungi via email.</string>
+    <string name="ads_support_donate">Donasi</string>
+    <string name="ads_support_donate_paypal">Donasi via PayPal.</string>
+    <string name="ads_support_donate_desc">Kirimkan donasi sebagai ungkapan apresiasi dan dukungan untuk pengembangan proyek lainnya. Donasi tidak harus dilakukan, anda dapat membeli versi berbayar untuk mendukung pengembangan.</string>
+    <string name="ads_support_reset_to_default">Reset ke default</string>
+    <string name="ads_support_reset_to_default_alert">Ini akan menghapus seluruh pengaturan pengguna ke default. Lanjutkan?</string>
+    <string name="ads_support_reset_to_default_summary">Reset seluruh pengaturan ke default.</string>
+    <string name="ads_support_reset_to_default_desc">Ini dapat memperbaiki beberapa isu umum berkaitan dengan aplikasi atau pemutakhiran sistem. Seluruh pengaturan pengguna (kecuali widget) akan hilang setelah melakukan tindakan ini.</string>
+    <string name="ads_support_restart_app">Mulai ulang aplikasi</string>
+    <string name="ads_support_restart_app_summary">Mulai ulang aplikasi dan service untuk menyegarkan keadaan aplikasi.</string>
+    <string name="ads_support_restart_app_desc">Gunakan bila service tidak kunjung mulai atau aplikasi tidak berjalan sebagaimana mestinya. Seluruh pengaturan tidak akan berubah setelah melakukan tindakan ini.</string>
+
+    <!-- Developer and App info -->
+    <string name="ads_info_made_by">Ditulis dan didesain oleh</string>
+    <string name="ads_info_made_in">Dibuat di India</string>
+    <string name="ads_info_quote">Tidak ada yang sempurna namun masih dapat lebih baik. Mengembangkan hal-hal yang lebih baik!</string>
+    <string name="ads_info_privacy_policy">Kebijakan Pribadi</string>
+    <string name="ads_info_privacy_policy_desc">Tampilkan kebijakan pribadi produk ini secara lengkap.</string>
+    <string name="ads_info_terms_of_use">Syarat Penggunaan</string>
+    <string name="ads_info_terms_of_use_desc">Tampilkan syarat penggunaan produk ini secara lengkap.</string>
+    <string name="ads_info_privacy_policy_terms_desc">Kebijakan pribadi dan syarat penggunaan.</string>
+    <string name="ads_info_apps">Aplikasi lain</string>
+    <string name="ads_info_gplus_desc">Gabung dengan komunitas resmi untuk mencoba versi tes.</string>
+    <string name="ads_info_facebook_desc">Like laman resmi untuk mendapatkan berita dan pemberitahuan terbaru.</string>
+    <string name="ads_info_xda_desc">ikuti forum dukungan resmi di XDA.</string>
+    <string name="ads_info_website">Situs</string>
+    <string name="ads_info_website_me_desc">Tempatku di internet.</string>
+    <string name="ads_info_twitter_me_desc">Dapatkan tweet terbaru tentang kehidupan dan pekerjaanku.</string>
+    <string name="ads_info_facebook_me_desc">Jadi teman atau ikuti untuk mengetahui lebih lanjut tentangku.</string>
+    <string name="ads_info_gplus_me_desc">Masuk ke lingkaran atau ikuti untuk mengembangkan komunitas.</string>
+    <string name="ads_info_linkedin_me_desc">Ada yang bagus buatku? Sampaikan via LinkedIn.</string>
+    <string name="ads_info_github_me_desc">Memberikan kembali kepada komunitas dengan membuat proyekku open source.</string>
+
+    <!-- Contributors and Translators -->
+    <string name="ads_contributors">Kontributor</string>
+    <string name="ads_contributors_desc">Terima kasih banyak untuk dukungan mereka.</string>
+    <string name="ads_translations">Terjemahan</string>
+    <string name="ads_translators">Penerjemah</string>
+    <string name="ads_translators_translate">Terjemahkan</string>
+    <string name="ads_translators_translate_summary">Jadi penerjemah.</string>
+    <string name="ads_translators_translate_desc">Berikan kontribusi untuk membuat aplikasi ini tersedia di lebih banyak bahasa.</string>
+    <string name="ads_translators_contact">Hubungi via email bila anda ingin menerjemahkan.</string>
+
+    <!-- Licenses -->
+    <string name="ads_licenses">Lisensi</string>
+    <string name="ads_license">Lisensi</string>
+    <string name="ads_license_desc">Tampilkan lisensi penuh.</string>
+    <string name="ads_license_sources">Sumber</string>
+    <string name="ads_license_sources_desc">Tampilkan sumber dari GitHub.</string>
+
+</resources>
