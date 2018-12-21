@@ -36,6 +36,9 @@ import com.pranavpandey.android.dynamic.support.dialog.fragment.DynamicDialogFra
 import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicThemeUtils;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 import static com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog.Type.THEME_IMPORT;
 import static com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog.Type.THEME_INVALID;
 
@@ -60,6 +63,7 @@ public class DynamicThemeDialog extends DynamicDialogFragment {
     /**
      * Dialog type to show the layout accordingly.
      */
+    @Retention(RetentionPolicy.SOURCE)
     @IntDef(value = { THEME_IMPORT, THEME_INVALID })
     public @interface Type {
 
