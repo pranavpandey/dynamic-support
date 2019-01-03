@@ -61,7 +61,7 @@ class TutorialActivity : DynamicTutorialActivity() {
 
     override fun onCustomiseTheme() {
         // Customise activity theme after applying the base style.
-        SampleTheme.setLocalTheme(context)
+        SampleTheme.setLocalTheme()
     }
 
     override fun setNavigationBarTheme(): Boolean {

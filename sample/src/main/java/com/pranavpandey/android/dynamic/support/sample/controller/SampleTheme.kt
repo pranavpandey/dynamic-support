@@ -138,10 +138,8 @@ object SampleTheme {
 
     /**
      * Set the application theme according to the current settings.
-     *
-     * @param applicationContext The context to set the theme.
      */
-    fun setApplicationTheme(applicationContext: Context) {
+    fun setApplicationTheme() {
         @ColorInt val colorPrimary = SampleController.instance.colorPrimaryApp
         DynamicTheme.getInstance().application.setPrimaryColor(colorPrimary)
                 .setPrimaryColorDark(DynamicColorUtils.shiftColor(
@@ -152,10 +150,8 @@ object SampleTheme {
 
     /**
      * Set the local theme according to the current settings.
-     *
-     * @param context The context to set the theme.
      */
-    fun setLocalTheme(context: Context) {
+    fun setLocalTheme() {
         @ColorInt val colorPrimary = SampleController.instance.colorPrimaryApp
         DynamicTheme.getInstance().get().setPrimaryColor(colorPrimary)
                 .setPrimaryColorDark(DynamicColorUtils.shiftColor(

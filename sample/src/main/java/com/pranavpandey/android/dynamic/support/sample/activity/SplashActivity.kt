@@ -51,7 +51,7 @@ class SplashActivity : DynamicSplashActivity() {
 
     override fun onCustomiseTheme() {
         // Customise activity theme after applying the base style.
-        SampleTheme.setLocalTheme(this)
+        SampleTheme.setLocalTheme()
         DynamicTheme.getInstance().get().setPrimaryColorDark(
                 DynamicTheme.getInstance().get().primaryColor, true)
     }

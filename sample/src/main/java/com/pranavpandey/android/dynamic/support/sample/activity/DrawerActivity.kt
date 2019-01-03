@@ -65,7 +65,7 @@ class DrawerActivity : DynamicDrawerActivity() {
 
     override fun onCustomiseTheme() {
         // Customise activity theme after applying the base style.
-        SampleTheme.setLocalTheme(context)
+        SampleTheme.setLocalTheme()
     }
 
     override fun setNavigationBarTheme(): Boolean {

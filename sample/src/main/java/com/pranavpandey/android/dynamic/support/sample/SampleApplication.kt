@@ -69,7 +69,7 @@ class SampleApplication : DynamicApplication() {
 
     override fun onCustomiseTheme() {
         // Customise application theme after applying the base style.
-        SampleTheme.setApplicationTheme(context)
+        SampleTheme.setApplicationTheme()
 
         Handler().postDelayed({
             // Add dynamic app shortcuts after the delay.
@@ -123,7 +123,7 @@ class SampleApplication : DynamicApplication() {
             val shortcuts = ArrayList<ShortcutInfo>()
 
             // Sources app shortcut intent.
-            val intent = Intent(context, ActionActivity::class.java);
+            val intent = Intent(context, ActionActivity::class.java)
             intent.action = Constants.ACTION_APP_SHORTCUT
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
@@ -172,7 +172,7 @@ class SampleApplication : DynamicApplication() {
 
             // Use IconCompat to support adaptive icons on Android O or above devices.
             return IconCompat.createWithAdaptiveBitmap(DynamicResourceUtils
-                    .getBitmapFromVectorDrawable(drawable)!!).toIcon()
+                    .getBitmapFromVectorDrawable(drawable)).toIcon()
         }
 
         return null
