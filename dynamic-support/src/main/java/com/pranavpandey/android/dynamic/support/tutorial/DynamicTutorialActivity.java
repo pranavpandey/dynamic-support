@@ -31,6 +31,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
 import com.pranavpandey.android.dynamic.support.listener.DynamicWindowResolver;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.tutorial.adapter.DynamicTutorialsAdapter;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
@@ -269,10 +270,14 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
         if (mDynamicWindowResolver != null) {
             systemUIColor = mDynamicWindowResolver.getSystemUIColor(color);
         } else {
-            systemUIColor = DynamicTheme.getInstance().get().getPrimaryColor()
-                    != DynamicTheme.getInstance().get().getPrimaryColorDark()
-                    ? DynamicTheme.getInstance().generateDarkColor(systemUIColor)
-                    : systemUIColor;
+            if (DynamicTheme.getInstance().get().getPrimaryColorDark(false) == Theme.AUTO) {
+                systemUIColor = DynamicTheme.getInstance().generateDarkColor(systemUIColor);
+            } else {
+                systemUIColor = DynamicTheme.getInstance().get().getPrimaryColor()
+                        != DynamicTheme.getInstance().get().getPrimaryColorDark()
+                        ? DynamicTheme.getInstance().get().getPrimaryColorDark()
+                        : systemUIColor;
+            }
         }
 
         updateTaskDescription(color);
