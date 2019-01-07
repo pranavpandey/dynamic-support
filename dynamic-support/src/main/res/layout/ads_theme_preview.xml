@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ads_theme_preview_height" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                 android:id="@+id/ads_theme_preview_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

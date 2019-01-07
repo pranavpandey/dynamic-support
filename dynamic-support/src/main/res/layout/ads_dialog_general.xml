@@ -37,7 +37,7 @@
             app:ads_colorType="primary"
             style="@style/TextAppearance.DynamicApp.Headline5.Card" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
             android:id="@+id/ads_dialog_general_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

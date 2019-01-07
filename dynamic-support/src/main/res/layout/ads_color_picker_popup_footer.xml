@@ -39,14 +39,14 @@
             android:orientation="vertical"
             android:layout_gravity="center_vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                 android:id="@+id/ads_color_picker_popup_footer_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/ads_picker_more_colors"
                 style="@style/TextAppearance.DynamicApp.Subtitle1.Caps" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                 android:id="@+id/ads_color_picker_popup_footer_subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

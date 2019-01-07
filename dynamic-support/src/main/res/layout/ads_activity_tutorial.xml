@@ -18,6 +18,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ads_coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -43,7 +44,9 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/ads_margin_medium"
             android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:layoutDirection="ltr"
+            tools:targetApi="jelly_bean_mr1">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
                 android:id="@+id/ads_tutorial_action_previous"

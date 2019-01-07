@@ -16,9 +16,13 @@
 
 package com.pranavpandey.android.dynamic.support.widget;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.util.AttributeSet;
+import android.view.Gravity;
+import android.view.View;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
@@ -31,14 +35,16 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicLinkWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicRtlWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 /**
  * A TextView to change its color according to the supplied parameters.
  */
 public class DynamicTextView extends AppCompatTextView implements
-        DynamicWidget, DynamicLinkWidget {
+        DynamicWidget, DynamicLinkWidget, DynamicRtlWidget {
 
     /**
      * Color type applied to this view.
@@ -95,6 +101,11 @@ public class DynamicTextView extends AppCompatTextView implements
      */
     private @ColorInt int mLinkColor;
 
+    /**
+     * {@code true} if dynamic RTL support is enabled for this widget.
+     */
+    private boolean mRtlSupport;
+
     public DynamicTextView(@NonNull Context context) {
         this(context, null);
     }
@@ -116,6 +127,8 @@ public class DynamicTextView extends AppCompatTextView implements
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(
                 attrs, R.styleable.DynamicTheme);
+        TypedArray b = getContext().obtainStyledAttributes(
+                attrs, new int[] { R.attr.ads_rtlSupport });
 
         try {
             mColorType = a.getInt(
@@ -143,9 +156,11 @@ public class DynamicTextView extends AppCompatTextView implements
             if (attrs != null) {
                 mColorAttrRes = DynamicResourceUtils.getResourceIdFromAttributes(
                         getContext(), attrs, android.R.attr.textColor);
+                mRtlSupport = b.getBoolean(0, WidgetDefaults.ADS_RTL_SUPPORT);
             }
         } finally {
             a.recycle();
+            b.recycle();
         }
 
         initialize();
@@ -205,6 +220,7 @@ public class DynamicTextView extends AppCompatTextView implements
 
         setColor();
         setLinkColor();
+        setRtlSupport(mRtlSupport);
     }
 
     @Override
@@ -333,6 +349,25 @@ public class DynamicTextView extends AppCompatTextView implements
             }
 
             setLinkTextColor(mLinkColor);
+        }
+    }
+
+    @Override
+    public boolean isRtlSupport() {
+        return mRtlSupport;
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    @Override
+    public void setRtlSupport(boolean rtlSupport) {
+        this.mRtlSupport = rtlSupport;
+
+        if (mRtlSupport) {
+            if (DynamicVersionUtils.isJellyBeanMR1()) {
+                setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+            } else {
+                setGravity(Gravity.START);
+            }
         }
     }
 }

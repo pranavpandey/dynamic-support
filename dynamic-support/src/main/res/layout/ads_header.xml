@@ -42,7 +42,7 @@
             app:ads_colorType="accent"
             style="@style/TextAppearance.DynamicApp.Subtitle2" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
             android:id="@+id/ads_item_view_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
