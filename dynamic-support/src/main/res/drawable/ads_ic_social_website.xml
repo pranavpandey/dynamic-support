@@ -21,7 +21,6 @@
     android:width="24dp"
     android:viewportHeight="72"
     android:viewportWidth="72"
-    android:autoMirrored="true"
     android:tint="@color/ads_social_website">
 
     <path
