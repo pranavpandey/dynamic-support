@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.popup;
 
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -38,6 +39,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.TransitionManager;
 
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
@@ -194,7 +196,8 @@ public abstract class DynamicPopup {
      *
      * @return The popup after building it according to the supplied parameters.
      */
-    protected abstract @NonNull DynamicPopup build();
+    protected abstract @NonNull
+    DynamicPopup build();
 
     /**
      * Returns the maximum width for the popup.
@@ -292,7 +295,7 @@ public abstract class DynamicPopup {
                                                 int visibleItemCount, int totalItemCount) {
                                             DynamicViewUtils.manageScrollIndicators(v, top, bottom);
                                         }
-                                    });
+                            });
 
                             mViewRoot.post(new Runnable() {
                                 @Override
@@ -312,7 +315,7 @@ public abstract class DynamicPopup {
                                                 int dx, int dy) {
                                             DynamicViewUtils.manageScrollIndicators(v, top, bottom);
                                         }
-                                    });
+                            });
 
                             mViewRoot.post(new Runnable() {
                                 @Override
@@ -332,38 +335,40 @@ public abstract class DynamicPopup {
                 LinearLayout.LayoutParams.WRAP_CONTENT, true);
         PopupWindowCompat.setWindowLayoutType(mPopupWindow,
                 WindowManager.LayoutParams.TYPE_APPLICATION_SUB_PANEL);
-        mPopupWindow.setOutsideTouchable(true);
-        mPopupWindow.setAnimationStyle(androidx.appcompat.R.style.Animation_AppCompat_DropDownUp);
         PopupWindowCompat.setOverlapAnchor(mPopupWindow, true);
-
+        mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mPopupWindow.setAnimationStyle(androidx.appcompat.R.style.Animation_AppCompat_DropDownUp);
 
-        final int[] screenPos = new int[2];
-        final int[] appScreenPos = new int[2];
-        getAnchor().getLocationOnScreen(screenPos);
-        final View rootView = getAnchor().getRootView();
-        if (rootView != null) {
-            rootView.getLocationOnScreen(appScreenPos);
+        if (getAnchor().getRootView() != null) {
             try {
-                TransitionManager.endTransitions((ViewGroup) rootView);
+                TransitionManager.endTransitions((ViewGroup) getAnchor().getRootView());
             } catch (Exception ignored) {
             }
-        } else {
-            getAnchor().getLocationOnScreen(appScreenPos);
         }
 
-        final int viewCenterX = screenPos[0] - appScreenPos[0];
-        final int viewCenterY = screenPos[1] - appScreenPos[1];
-        final int OFFSET_X = DynamicUnitUtils.convertDpToPixels(36);
+        final int[] screenPos = new int[2];
+        final Rect displayFrame = new Rect();
+        getAnchor().getLocationOnScreen(screenPos);
+        getAnchor().getWindowVisibleDisplayFrame(displayFrame);
+
+        int viewCenterX = screenPos[0];
+        int OFFSET_X = DynamicUnitUtils.convertDpToPixels(36);
         final int OFFSET_Y = DynamicUnitUtils.convertDpToPixels(20);
+
+        // Check for RTL language.
+        if (DynamicLocaleUtils.isLayoutRtl()) {
+            viewCenterX = viewCenterX + getAnchor().getWidth() - getMaxWidth();
+            OFFSET_X = -OFFSET_X;
+        }
 
         // Handle issues with popup not expanding.
         if (DynamicVersionUtils.isNougat(true)) {
-            PopupWindowCompat.showAsDropDown(mPopupWindow,
-                    getAnchor(), OFFSET_X, -OFFSET_Y, Gravity.NO_GRAVITY);
+            PopupWindowCompat.showAsDropDown(mPopupWindow, getAnchor(),
+                    OFFSET_X, -OFFSET_Y, Gravity.NO_GRAVITY | Gravity.START);
         } else {
             mPopupWindow.showAtLocation(getAnchor(), Gravity.NO_GRAVITY,
-                    viewCenterX + OFFSET_X, viewCenterY - OFFSET_Y);
+                    viewCenterX  + OFFSET_X - displayFrame.left, screenPos[1] - OFFSET_Y);
         }
     }
 }

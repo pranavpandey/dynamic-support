@@ -25,6 +25,8 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.os.ConfigurationCompat;
+import androidx.core.text.TextUtilsCompat;
+import androidx.core.view.ViewCompat;
 
 import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
@@ -59,6 +61,32 @@ public class DynamicLocaleUtils {
      * Dynamic locale splitter to separate language, country, etc.
      */
     public static final String ADE_LOCALE_SPLIT = ",";
+
+    /**
+     * Returns the layout direction for the selected locale.
+     *
+     * @return The layout direction for the selected locale.
+     *
+     * @see ViewCompat#LAYOUT_DIRECTION_LTR
+     * @see ViewCompat#LAYOUT_DIRECTION_RTL
+     * @see ViewCompat#LAYOUT_DIRECTION_INHERIT
+     * @see ViewCompat#LAYOUT_DIRECTION_LOCALE
+     */
+    public static int getLayoutDirection() {
+        return TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault());
+    }
+
+    /**
+     * Checks whether the layout is Right to Left.
+     *
+     * @return {@code true} if the layout is Right to Left.
+     *
+     * @see ViewCompat#LAYOUT_DIRECTION_RTL
+     */
+    public static boolean isLayoutRtl() {
+        return DynamicVersionUtils.isJellyBeanMR1()
+                && getLayoutDirection() == ViewCompat.LAYOUT_DIRECTION_RTL;
+    }
 
     /**
      * Get locale from the locale string in the format: {@code language,region}.
