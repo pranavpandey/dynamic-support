@@ -24,15 +24,4 @@
     <!-- App widget -->
     <dimen name="ads_widget_margin_end">@dimen/ads_margin_tiny</dimen>
 
-    <!-- Card -->
-    <dimen name="ads_card_view_margin">@dimen/ads_margin_small</dimen>
-    <dimen name="ads_card_view_margin_bottom">@dimen/ads_margin_small</dimen>
-    <dimen name="ads_card_view_margin_floating">@dimen/ads_margin_normal</dimen>
-    <dimen name="ads_card_view_margin_dialog">@dimen/ads_dialog_margin_small</dimen>
-
-    <!-- Scroller -->
-    <dimen name="ads_scroller_margin">@dimen/ads_margin_small</dimen>
-    <dimen name="ads_scroller_margin_card">0dp</dimen>
-    <dimen name="ads_scroller_margin_small">0dp</dimen>
-
 </resources>

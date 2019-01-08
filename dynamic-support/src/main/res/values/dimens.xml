@@ -100,13 +100,13 @@
     <dimen name="ads_card_view_margin_horizontal">@dimen/ads_card_view_margin</dimen>
     <dimen name="ads_card_view_margin_vertical">@dimen/ads_card_view_margin</dimen>
     <dimen name="ads_card_view_margin_bottom">1dp</dimen>
-    <dimen name="ads_card_view_margin_floating">20dp</dimen>
+    <dimen name="ads_card_view_margin_floating">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_card_view_margin_dialog">@dimen/ads_margin_tiny</dimen>
     <dimen name="ads_card_view_content_margin">@dimen/ads_margin_regular</dimen>
     <dimen name="ads_card_view_content_margin_small">@dimen/ads_margin_small</dimen>
     <dimen name="ads_card_view_corner_radius">@dimen/ads_corner_radius</dimen>
     <dimen name="ads_card_view_elevation">2.4dp</dimen>
-    <dimen name="ads_card_view_elevation_floating">@dimen/ads_margin_small</dimen>
+    <dimen name="ads_card_view_elevation_floating">@dimen/ads_margin_tiny</dimen>
     <dimen name="ads_card_view_elevation_dialog">6dp</dimen>
     <dimen name="ads_card_view_elevation_toast">1dp</dimen>
 
