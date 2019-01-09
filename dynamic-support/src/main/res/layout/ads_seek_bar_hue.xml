@@ -47,13 +47,13 @@
                 android:layout_gravity="center_vertical"
                 android:visibility="gone">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                     android:id="@+id/ads_preference_summary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/TextAppearance.DynamicApp.Subtitle1" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                     android:id="@+id/ads_preference_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                 android:id="@+id/ads_preference_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

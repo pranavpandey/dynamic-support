@@ -16,10 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.widget.base;
 
-import android.util.AttributeSet;
-
 import androidx.annotation.ColorInt;
-import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.Theme;
@@ -27,22 +24,7 @@ import com.pranavpandey.android.dynamic.support.theme.Theme;
 /**
  * Interface to create dynamic widgets which can be tinted according to the {@link DynamicTheme}.
  */
-public interface DynamicWidget {
-
-    /**
-     * Load values from the supplied attribute set.
-     *
-     * @param attrs The supplied attribute set to load the values.
-     */
-    void loadFromAttributes(@Nullable AttributeSet attrs);
-
-    /**
-     * Initialize this widget by setting color type. If it is background aware then, background
-     * color will also taken into account while setting the color filter.
-     *
-     * @see Theme.ColorType
-     */
-    void initialize();
+public interface DynamicWidget extends BaseWidget {
 
     /**
      * Returns the color type applied to this widget.

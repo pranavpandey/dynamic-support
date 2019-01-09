@@ -51,6 +51,11 @@ public class WidgetDefaults {
     public static final float ADS_CORNER_SELECTOR_ROUND = 8;
 
     /**
+     * Default alpha for the toast.
+     */
+    public static final float ADS_ALPHA_TOAST = 0.9f;
+
+    /**
      * Default alpha when the widget is enabled.
      */
     public static final float ADS_ALPHA_ENABLED = 1.0f;
@@ -165,6 +170,12 @@ public class WidgetDefaults {
      * <p>{@code true} to fill the space.
      */
     public static final boolean ADS_FILL_SPACE = false;
+
+    /**
+     * Default value to provide the dynamic RTL support.
+     * <p>{@code true} to provide the dynamic RTL support.
+     */
+    public static final boolean ADS_RTL_SUPPORT = true;
 
     /**
      * Returns the default value for the background functionality used by the various widgets.

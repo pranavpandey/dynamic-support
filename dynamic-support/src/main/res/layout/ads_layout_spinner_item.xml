@@ -29,7 +29,7 @@
         android:layout_height="@dimen/ads_popup_selector_icon_size"
         style="@style/Widget.DynamicApp.Image.Preference" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
         android:id="@+id/ads_spinner_item_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

@@ -28,12 +28,12 @@
 
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_nav_settings"
+            android:icon="@drawable/ads_ic_settings"
             android:title="@string/ads_nav_settings" />
 
         <item
             android:id="@+id/nav_about"
-            android:icon="@drawable/ic_nav_about"
+            android:icon="@drawable/ads_ic_info"
             android:title="@string/ads_nav_about" />
 
     </group>
@@ -54,7 +54,7 @@
 
                 <item
                     android:id="@+id/nav_share"
-                    android:icon="@drawable/ic_nav_share"
+                    android:icon="@drawable/ads_ic_share"
                     android:title="@string/ads_nav_share" />
 
             </group>

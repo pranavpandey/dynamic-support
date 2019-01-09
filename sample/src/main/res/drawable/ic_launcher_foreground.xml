@@ -20,8 +20,7 @@
     android:width="108dp"
     android:height="108dp"
     android:viewportHeight="108"
-    android:viewportWidth="108"
-    android:autoMirrored="true">
+    android:viewportWidth="108">
 
     <path
         android:fillColor="@color/color_primary"

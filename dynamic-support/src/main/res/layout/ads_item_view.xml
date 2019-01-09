@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle1.Caps" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                     android:id="@+id/ads_item_view_subtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

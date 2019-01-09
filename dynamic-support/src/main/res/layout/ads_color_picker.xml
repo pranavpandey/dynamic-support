@@ -139,19 +139,21 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.7"
+                    android:layout_marginRight="@dimen/ads_margin_small"
+                    android:layout_marginEnd="@dimen/ads_margin_small"
                     app:ads_shape="rectangle"
                     app:ads_color= "#123456" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layoutDirection="ltr"
+                    tools:targetApi="jelly_bean_mr1">
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/ads_margin_medium"
-                        android:layout_marginStart="@dimen/ads_margin_medium"
                         android:textSize="@dimen/ads_picker_font_size_medium"
                         android:textAllCaps="true"
                         android:text="#"

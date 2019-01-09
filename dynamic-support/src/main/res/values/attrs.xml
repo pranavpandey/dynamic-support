@@ -17,12 +17,18 @@
 
 <resources>
 
-    <!-- Default contrast with color from the theme. Generally, it should be a background color
-         so that widgets can change their color accordingly if they are background aware. -->
+    <!-- Default contrast with color from the theme.
+         Generally, it should be a background color so that widgets can change their color
+         accordingly if they are background aware. -->
     <attr name="ads_contrastWithDefault" format="color" />
 
     <!-- Default color control normal color to generate the color state list dynamically. -->
     <attr name="ads_colorControlNormal" format="color" />
+
+    <!-- true to enable dynamic RTL support for the widgets.
+         When enabled, widgets will adjust gravity or text alignment automatically to support
+         the Right to Left layouts. -->
+    <attr name="ads_rtlSupport" format="boolean" />
 
     <!-- Color attributes used by the theme and widgets across the whole library. -->
     <declare-styleable name="DynamicTheme">
