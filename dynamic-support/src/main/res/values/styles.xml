@@ -452,11 +452,13 @@
     <style name="Widget.DynamicApp.Card" parent="Widget.MaterialComponents.CardView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/ads_card_view_margin_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/ads_card_view_margin_horizontal</item>
+        <item name="android:layout_marginStart">@dimen/ads_card_view_margin_horizontal</item>
         <item name="android:layout_marginRight">@dimen/ads_card_view_margin_horizontal</item>
         <item name="android:layout_marginEnd">@dimen/ads_card_view_margin_horizontal</item>
-        <item name="android:layout_marginBottom">@dimen/ads_card_view_margin_bottom</item>
+        <item name="android:layout_marginBottom">@dimen/ads_card_view_margin_vertical</item>
         <item name="android:clipToPadding">false</item>
-        <item name="cardUseCompatPadding">true</item>
         <item name="cardBackgroundColor">?ads_cardBackgroundColor</item>
         <item name="cardCornerRadius">?ads_cardCornerRadius</item>
         <item name="cardElevation">?ads_cardElevation</item>
@@ -497,10 +499,10 @@
     </style>
 
     <style name="Widget.DynamicApp.Scroller.Padding">
-        <item name="android:paddingTop">@dimen/ads_scroller_margin</item>
-        <item name="android:paddingLeft">@dimen/ads_scroller_margin</item>
-        <item name="android:paddingRight">@dimen/ads_scroller_margin_small</item>
-        <item name="android:paddingBottom">@dimen/ads_scroller_margin_card</item>
+        <item name="android:paddingTop">@dimen/ads_scroller_margin_vertical</item>
+        <item name="android:paddingLeft">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:paddingRight">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:paddingBottom">@dimen/ads_scroller_margin_vertical</item>
     </style>
 
     <style name="Widget.DynamicApp.Scroller.Vertical">
