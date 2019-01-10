@@ -39,6 +39,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
@@ -197,9 +198,16 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
             mDrawerToggle.setDrawerIndicatorEnabled(false);
 
             ViewGroup frame = findViewById(R.id.ads_drawer_persistent_frame);
-            frame.setPadding(getResources().getDimensionPixelSize(
-                    R.dimen.ads_margin_content_start), frame.getPaddingTop(),
-                    frame.getPaddingRight(), frame.getPaddingBottom());
+
+            if (DynamicLocaleUtils.isLayoutRtl()) {
+                frame.setPadding(frame.getPaddingLeft(), frame.getPaddingTop(),
+                        getResources().getDimensionPixelSize(R.dimen.ads_margin_content_start),
+                        frame.getPaddingBottom());
+            } else {
+                frame.setPadding(getResources().getDimensionPixelSize(
+                        R.dimen.ads_margin_content_start), frame.getPaddingTop(),
+                        frame.getPaddingRight(), frame.getPaddingBottom());
+            }
         } else {
             if (isDrawerLocked()) {
                 mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
