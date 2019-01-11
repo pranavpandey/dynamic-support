@@ -25,7 +25,6 @@ import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.controller.SampleController
 import com.pranavpandey.android.dynamic.support.sample.controller.SampleTheme
 import com.pranavpandey.android.dynamic.support.splash.DynamicSplashActivity
-import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
 import java.util.*
 
 /**
@@ -47,13 +46,6 @@ class SplashActivity : DynamicSplashActivity() {
     override fun getThemeRes(): Int {
         // Return activity theme to be applied.
         return SampleTheme.splashStyle
-    }
-
-    override fun onCustomiseTheme() {
-        // Customise activity theme after applying the base style.
-        SampleTheme.setLocalTheme()
-        DynamicTheme.getInstance().get().setPrimaryColorDark(
-                DynamicTheme.getInstance().get().primaryColor, true)
     }
 
     override fun setNavigationBarTheme(): Boolean {

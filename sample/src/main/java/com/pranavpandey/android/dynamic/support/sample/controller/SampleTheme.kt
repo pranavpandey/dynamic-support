@@ -16,10 +16,8 @@
 
 package com.pranavpandey.android.dynamic.support.sample.controller
 
-import android.content.Context
 import androidx.annotation.ColorInt
 import androidx.annotation.StyleRes
-
 import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
@@ -140,10 +138,9 @@ object SampleTheme {
      * Set the application theme according to the current settings.
      */
     fun setApplicationTheme() {
-        @ColorInt val colorPrimary = SampleController.instance.colorPrimaryApp
-        DynamicTheme.getInstance().application.setPrimaryColor(colorPrimary)
-                .setPrimaryColorDark(DynamicColorUtils.shiftColor(
-                        colorPrimary, DynamicTheme.ADS_COLOR_SHIFT_DARK_DEFAULT))
+        DynamicTheme.getInstance().application
+                .setPrimaryColor(SampleController.instance.colorPrimaryApp)
+                .setPrimaryColorDark(Theme.AUTO)
                 .setAccentColor(SampleController.instance.colorAccentApp)
                 .setBackgroundColor(backgroundColor).autoGenerateColors();
     }
@@ -152,10 +149,9 @@ object SampleTheme {
      * Set the local theme according to the current settings.
      */
     fun setLocalTheme() {
-        @ColorInt val colorPrimary = SampleController.instance.colorPrimaryApp
-        DynamicTheme.getInstance().get().setPrimaryColor(colorPrimary)
-                .setPrimaryColorDark(DynamicColorUtils.shiftColor(
-                        colorPrimary, DynamicTheme.ADS_COLOR_SHIFT_DARK_DEFAULT))
+        DynamicTheme.getInstance().get()
+                .setPrimaryColor(SampleController.instance.colorPrimaryApp)
+                .setPrimaryColorDark(Theme.AUTO)
                 .setAccentColor(SampleController.instance.colorAccentApp)
                 .setBackgroundColor(backgroundColor).autoGenerateColors()
     }
