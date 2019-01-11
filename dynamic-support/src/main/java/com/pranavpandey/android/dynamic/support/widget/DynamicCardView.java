@@ -24,8 +24,8 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 
-import com.google.android.material.card.MaterialCardView;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.Theme;
@@ -37,7 +37,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 /**
  * A CardView to change its background color according to the supplied parameters.
  */
-public class DynamicCardView extends MaterialCardView implements
+public class DynamicCardView extends CardView implements
         DynamicWidget, DynamicCornerWidget<Float>, DynamicTintWidget {
 
     /**
