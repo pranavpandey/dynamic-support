@@ -31,7 +31,6 @@ import android.widget.PopupWindow;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.core.widget.PopupWindowCompat;
@@ -214,7 +213,6 @@ public abstract class DynamicPopup {
     public void show() {
         View view = LayoutInflater.from(getAnchor().getContext()).inflate(
                 R.layout.ads_popup, (ViewGroup) getAnchor().getRootView(), false);
-        CardView card = view.findViewById(R.id.ads_popup_card);
         ViewGroup layout = view.findViewById(R.id.ads_popup_content_layout);
         ViewGroup header = view.findViewById(R.id.ads_popup_header);
         ViewGroup content = view.findViewById(R.id.ads_popup_content);
