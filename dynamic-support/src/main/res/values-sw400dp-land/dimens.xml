@@ -17,11 +17,7 @@
 
 <resources>
 
-    <!-- Activity-->
-    <dimen name="ads_drawer_size">300dp</dimen>
-
-    <!-- Popup -->
-    <dimen name="ads_popup_max_width">320dp</dimen>
-    <dimen name="ads_popup_max_width_large">360dp</dimen>
+    <!-- Activity -->
+    <dimen name="ads_drawer_size">320dp</dimen>
 
 </resources>

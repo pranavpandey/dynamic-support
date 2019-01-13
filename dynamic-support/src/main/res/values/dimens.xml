@@ -40,7 +40,7 @@
     <dimen name="ads_margin_app_shortcut_icon_large">16dp</dimen>
 
     <!-- Dynamic activity -->
-    <dimen name="ads_drawer_size">300dp</dimen>
+    <dimen name="ads_drawer_size">280dp</dimen>
     <dimen name="ads_margin_content_start">0dp</dimen>
     <dimen name="ads_nav_header_spacing">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_nav_header_spacing_top">@dimen/ads_margin_medium</dimen>
