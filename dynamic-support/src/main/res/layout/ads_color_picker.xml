@@ -28,7 +28,7 @@
         android:paddingLeft="@dimen/ads_dialog_margin_start_end_small"
         android:paddingRight="@dimen/ads_dialog_margin_start_end_small"
         android:orientation="vertical"
-        android:focusableInTouchMode="true">
+        android:descendantFocusability="blocksDescendants">
 
         <LinearLayout
             android:id="@+id/ads_color_picker_presets"

@@ -27,12 +27,12 @@ import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBind
  * A data binder class to bind data with the view inside the {@link DynamicBinderAdapter}.
  * <p>Extend this class to implement your own data binding logic.
  */
-public abstract class DynamicRecyclerViewBinder<T extends RecyclerView.ViewHolder> {
+public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHolder> {
 
     /**
      * The dynamic binder adapter for the recycler view.
      */
-    private DynamicBinderAdapter mBinderAdapter;
+    private DynamicBinderAdapter<DynamicRecyclerViewBinder<VH>> mBinderAdapter;
 
     /**
      * Constructor to initialize an object of this class.
@@ -51,7 +51,7 @@ public abstract class DynamicRecyclerViewBinder<T extends RecyclerView.ViewHolde
      *
      * @return The view holder associated with this data binder.
      */
-    public abstract T onCreateViewHolder(@NonNull ViewGroup parent, int viewType);
+    public abstract VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType);
 
     /**
      * Bind {@link RecyclerView.ViewHolder} at a particular position.

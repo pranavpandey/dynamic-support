@@ -29,12 +29,13 @@ import java.util.List;
  * A simple recycler view adapter to implement the {@link DynamicBinderAdapter}
  * and {@link DynamicRecyclerViewBinder}.
  */
-public class DynamicSimpleBinderAdapter extends DynamicBinderAdapter {
+public abstract class DynamicSimpleBinderAdapter<VB extends DynamicRecyclerViewBinder>
+        extends DynamicBinderAdapter<VB> {
 
     /**
      * List of data binders displayed by this adapter.
      */
-    private List<DynamicRecyclerViewBinder> mDataBinders = new ArrayList<>();
+    private List<VB> mDataBinders = new ArrayList<>();
 
     @Override
     public int getItemCount() {
@@ -61,18 +62,17 @@ public class DynamicSimpleBinderAdapter extends DynamicBinderAdapter {
     }
 
     @Override
-    public <T extends DynamicRecyclerViewBinder> T getDataBinder(int viewType) {
-        return (T) mDataBinders.get(viewType);
+    public VB getDataBinder(int viewType) {
+        return mDataBinders.get(viewType);
     }
 
     @Override
-    public int getPosition(@NonNull DynamicRecyclerViewBinder binder, int binderPosition) {
+    public int getPosition(@NonNull VB binder, int position) {
         int viewType = mDataBinders.indexOf(binder);
         if (viewType < 0) {
             throw new IllegalStateException("Binder does not exists in the adapter.");
         }
 
-        int position = binderPosition;
         for (int i = 0; i < viewType; i++) {
             position += mDataBinders.get(i).getItemCount();
         }
@@ -95,20 +95,17 @@ public class DynamicSimpleBinderAdapter extends DynamicBinderAdapter {
     }
 
     @Override
-    public void notifyBinderItemRangeChanged(@NonNull DynamicRecyclerViewBinder binder,
-            int position, int itemCount) {
+    public void notifyBinderItemRangeChanged(@NonNull VB binder, int position, int itemCount) {
         notifyItemRangeChanged(getPosition(binder, position), itemCount);
     }
 
     @Override
-    public void notifyBinderItemRangeInserted(@NonNull DynamicRecyclerViewBinder binder,
-            int position, int itemCount) {
+    public void notifyBinderItemRangeInserted(@NonNull VB binder, int position, int itemCount) {
         notifyItemRangeInserted(getPosition(binder, position), itemCount);
     }
 
     @Override
-    public void notifyBinderItemRangeRemoved(@NonNull DynamicRecyclerViewBinder binder,
-            int position, int itemCount) {
+    public void notifyBinderItemRangeRemoved(@NonNull VB binder, int position, int itemCount) {
         notifyItemRangeRemoved(getPosition(binder, position), itemCount);
     }
 
@@ -117,7 +114,7 @@ public class DynamicSimpleBinderAdapter extends DynamicBinderAdapter {
      *
      * @return The list of data binders displayed by this adapter.
      */
-    public List<DynamicRecyclerViewBinder> getBinderList() {
+    public List<VB> getBinderList() {
         return mDataBinders;
     }
 
@@ -126,7 +123,7 @@ public class DynamicSimpleBinderAdapter extends DynamicBinderAdapter {
      *
      * @param binder The data binder to be added in this adapter
      */
-    public void addDataBinder(@NonNull DynamicRecyclerViewBinder binder) {
+    public void addDataBinder(@NonNull VB binder) {
         mDataBinders.add(binder);
     }
 
@@ -135,7 +132,7 @@ public class DynamicSimpleBinderAdapter extends DynamicBinderAdapter {
      *
      * @param binders The array of dynamic data binders to be added in this adapter.
      */
-    public void addDataBinders(@NonNull Collection<? extends DynamicRecyclerViewBinder> binders) {
+    public void addDataBinders(@NonNull Collection<VB> binders) {
         mDataBinders.addAll(binders);
     }
 
@@ -144,7 +141,8 @@ public class DynamicSimpleBinderAdapter extends DynamicBinderAdapter {
      *
      * @param binders The array of dynamic data binders to be added in this adapter.
      */
-    public void addDataBinders(@NonNull DynamicRecyclerViewBinder... binders) {
+    @SafeVarargs
+    public final void addDataBinders(@NonNull VB... binders) {
         mDataBinders.addAll(Arrays.asList(binders));
     }
 }

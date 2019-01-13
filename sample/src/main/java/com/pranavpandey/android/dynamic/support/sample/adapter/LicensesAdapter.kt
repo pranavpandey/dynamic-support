@@ -16,9 +16,11 @@
 
 package com.pranavpandey.android.dynamic.support.sample.adapter
 
+import androidx.recyclerview.widget.RecyclerView
 import com.pranavpandey.android.dynamic.support.model.DynamicInfo
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicSimpleBinderAdapter
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicInfoBigBinder
+import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder
 import com.pranavpandey.android.dynamic.support.sample.binder.LicenseBinder
 import java.util.*
 
@@ -30,7 +32,8 @@ class LicensesAdapter(
     /**
      * Data set used by this adapter.
      */
-    private val dataSet: ArrayList<DynamicInfo>?) : DynamicSimpleBinderAdapter() {
+    private val dataSet: ArrayList<DynamicInfo>?)
+    : DynamicSimpleBinderAdapter<DynamicRecyclerViewBinder<*>>() {
 
     init {
 
@@ -42,7 +45,7 @@ class LicensesAdapter(
         return 0
     }
 
-    override fun onBindViewHolder(viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         (getDataBinder(getItemViewType(position))
                 as DynamicInfoBigBinder).data = getItem(position)
 

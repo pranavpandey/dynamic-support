@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.annotation.AttrRes;
+import androidx.annotation.CallSuper;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -203,6 +204,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      *
      * @param recyclerView The recycler view inside this view.
      */
+    @CallSuper
     protected void onCreateRecyclerView(@NonNull RecyclerView recyclerView) { }
 
     /**

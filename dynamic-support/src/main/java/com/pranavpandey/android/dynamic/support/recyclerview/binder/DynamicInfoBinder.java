@@ -54,20 +54,22 @@ public class DynamicInfoBinder extends DynamicRecyclerViewBinder {
         ViewHolder viewHolderInfo = (ViewHolder) viewHolder;
         DynamicInfo dynamicInfo = getData();
 
-        viewHolderInfo.getDynamicInfoView().setIcon(dynamicInfo.getIcon());
-        viewHolderInfo.getDynamicInfoView().setIconBig(dynamicInfo.getIconBig());
-        viewHolderInfo.getDynamicInfoView().setTitle(dynamicInfo.getTitle());
-        viewHolderInfo.getDynamicInfoView().setSubtitle(dynamicInfo.getSubtitle());
-        viewHolderInfo.getDynamicInfoView().setDescription(dynamicInfo.getDescription());
-        viewHolderInfo.getDynamicInfoView().setLinks(dynamicInfo.getLinks());
-        viewHolderInfo.getDynamicInfoView().setLinksSubtitles(dynamicInfo.getLinksSubtitles());
-        viewHolderInfo.getDynamicInfoView().setLinksUrls(dynamicInfo.getLinksUrls());
-        viewHolderInfo.getDynamicInfoView().setLinksIconsId(dynamicInfo.getLinksIconsResId());
-        viewHolderInfo.getDynamicInfoView().setLinksDrawables(dynamicInfo.getLinksDrawables());
-        viewHolderInfo.getDynamicInfoView().setLinksColorsId(dynamicInfo.getLinksColorsResId());
-        viewHolderInfo.getDynamicInfoView().setLinksColors(dynamicInfo.getLinksColors());
+        if (dynamicInfo != null) {
+            viewHolderInfo.getDynamicInfoView().setIcon(dynamicInfo.getIcon());
+            viewHolderInfo.getDynamicInfoView().setIconBig(dynamicInfo.getIconBig());
+            viewHolderInfo.getDynamicInfoView().setTitle(dynamicInfo.getTitle());
+            viewHolderInfo.getDynamicInfoView().setSubtitle(dynamicInfo.getSubtitle());
+            viewHolderInfo.getDynamicInfoView().setDescription(dynamicInfo.getDescription());
+            viewHolderInfo.getDynamicInfoView().setLinks(dynamicInfo.getLinks());
+            viewHolderInfo.getDynamicInfoView().setLinksSubtitles(dynamicInfo.getLinksSubtitles());
+            viewHolderInfo.getDynamicInfoView().setLinksUrls(dynamicInfo.getLinksUrls());
+            viewHolderInfo.getDynamicInfoView().setLinksIconsId(dynamicInfo.getLinksIconsResId());
+            viewHolderInfo.getDynamicInfoView().setLinksDrawables(dynamicInfo.getLinksDrawables());
+            viewHolderInfo.getDynamicInfoView().setLinksColorsId(dynamicInfo.getLinksColorsResId());
+            viewHolderInfo.getDynamicInfoView().setLinksColors(dynamicInfo.getLinksColors());
 
-        viewHolderInfo.getDynamicInfoView().onUpdate();
+            viewHolderInfo.getDynamicInfoView().onUpdate();
+        }
     }
 
     @Override

@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.pranavpandey.android.dynamic.support.model.DynamicItem;
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicItemBinder;
+import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,7 +31,7 @@ import java.util.List;
 /**
  * A DynamicSimpleBinderAdapter to display the list of {@link DynamicItem} inside a recycler view.
  */
-public class DynamicItemsAdapter extends DynamicSimpleBinderAdapter {
+public class DynamicItemsAdapter extends DynamicSimpleBinderAdapter<DynamicRecyclerViewBinder> {
 
     /**
      * The data set used by this adapter.

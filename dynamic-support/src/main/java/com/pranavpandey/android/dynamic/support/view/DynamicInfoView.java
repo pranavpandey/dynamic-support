@@ -203,9 +203,7 @@ public class DynamicInfoView extends DynamicView {
         mIconBigView = findViewById(R.id.ads_info_view_icon_big);
         mLinksView = findViewById(R.id.ads_info_links);
 
-        mLinksView.getRecyclerView().setNestedScrollingEnabled(false);
         mDynamicItems = new ArrayList<>();
-        
         onUpdate();
     }
 

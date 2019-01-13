@@ -20,9 +20,11 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
+import androidx.annotation.CallSuper;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -56,5 +58,13 @@ public class DynamicRecyclerViewNested extends DynamicRecyclerViewFrame {
     public @Nullable RecyclerView.LayoutManager getRecyclerViewLayoutManager() {
         return DynamicLayoutUtils.getLinearLayoutManager(
                 getContext(), LinearLayoutManager.VERTICAL);
+    }
+
+    @CallSuper
+    @Override
+    protected void onCreateRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onCreateRecyclerView(recyclerView);
+
+        ViewCompat.setNestedScrollingEnabled(recyclerView, false);
     }
 }

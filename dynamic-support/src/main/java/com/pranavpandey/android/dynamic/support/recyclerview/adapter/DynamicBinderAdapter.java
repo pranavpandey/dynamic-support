@@ -31,7 +31,8 @@ import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyc
  * <p><p>Extend this adapter and use {@link DynamicRecyclerViewBinder} to create binding logic
  * for the each type of views.
  */
-public abstract class DynamicBinderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public abstract class DynamicBinderAdapter<VB extends DynamicRecyclerViewBinder>
+        extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     /**
      * Recycler view displaying this adapter.
@@ -82,13 +83,12 @@ public abstract class DynamicBinderAdapter extends RecyclerView.Adapter<Recycler
      * Get data binder according to the view type.
      *
      * @param viewType The view type constant to get the data binder.
-     * @param <T> The dynamic recycler view binder.
      *
      * @return The data binder associated with this view type.
      *
      * @see DynamicTypeBinderAdapter
      */
-    public abstract <T extends DynamicRecyclerViewBinder> T getDataBinder(int viewType);
+    public abstract VB getDataBinder(int viewType);
 
     /**
      * Get the position of a data binder item inside the recycler view.
@@ -98,7 +98,7 @@ public abstract class DynamicBinderAdapter extends RecyclerView.Adapter<Recycler
      *
      * @return The position of the data binder item inside the recycler view.
      */
-    public abstract int getPosition(@NonNull DynamicRecyclerViewBinder binder, int position);
+    public abstract int getPosition(@NonNull VB binder, int position);
 
     /**
      * Get the position of a data binder inside the recycler view.
@@ -115,7 +115,7 @@ public abstract class DynamicBinderAdapter extends RecyclerView.Adapter<Recycler
      * @param binder The data binder inside the recycler view.
      * @param position The position at which the item has been changed.
      */
-    public void notifyBinderItemChanged(@NonNull DynamicRecyclerViewBinder binder, int position) {
+    public void notifyBinderItemChanged(@NonNull VB binder, int position) {
         notifyItemChanged(getPosition(binder, position));
     }
 
@@ -125,7 +125,7 @@ public abstract class DynamicBinderAdapter extends RecyclerView.Adapter<Recycler
      * @param binder The data binder inside the recycler view.
      * @param position The position at which the item is inserted.
      */
-    public void notifyBinderItemInserted(@NonNull DynamicRecyclerViewBinder binder, int position) {
+    public void notifyBinderItemInserted(@NonNull VB binder, int position) {
         notifyItemInserted(getPosition(binder, position));
     }
 
@@ -135,7 +135,7 @@ public abstract class DynamicBinderAdapter extends RecyclerView.Adapter<Recycler
      * @param binder The data binder inside the recycler view.
      * @param position The position at which the item has been removed.
      */
-    public void notifyBinderItemRemoved(@NonNull DynamicRecyclerViewBinder binder, int position) {
+    public void notifyBinderItemRemoved(@NonNull VB binder, int position) {
         notifyItemRemoved(getPosition(binder, position));
     }
 
@@ -146,7 +146,7 @@ public abstract class DynamicBinderAdapter extends RecyclerView.Adapter<Recycler
      * @param fromPosition Initial position of the moved item.
      * @param toPosition Final position of the moved item.
      */
-    public void notifyBinderItemMoved(@NonNull DynamicRecyclerViewBinder binder,
+    public void notifyBinderItemMoved(@NonNull VB binder,
             int fromPosition, int toPosition) {
         notifyItemMoved(getPosition(binder, fromPosition),
                 getPosition(binder, toPosition));
@@ -160,7 +160,7 @@ public abstract class DynamicBinderAdapter extends RecyclerView.Adapter<Recycler
      * @param itemCount Total no. of items has been changed.
      */
     public abstract void notifyBinderItemRangeChanged(
-            @NonNull DynamicRecyclerViewBinder binder, int position, int itemCount);
+            @NonNull VB binder, int position, int itemCount);
 
     /**
      * This method will be called when a set of items has been inserted in a data binder.
@@ -170,7 +170,7 @@ public abstract class DynamicBinderAdapter extends RecyclerView.Adapter<Recycler
      * @param itemCount Total no. of items has been inserted.
      */
     public abstract void notifyBinderItemRangeInserted(
-            @NonNull DynamicRecyclerViewBinder binder, int position, int itemCount);
+            @NonNull VB binder, int position, int itemCount);
 
     /**
      * This method will be called when a set of items has been removed in a data binder.
@@ -180,5 +180,5 @@ public abstract class DynamicBinderAdapter extends RecyclerView.Adapter<Recycler
      * @param itemCount Total no. of items has been removed.
      */
     public abstract void notifyBinderItemRangeRemoved(
-            @NonNull DynamicRecyclerViewBinder binder, int position, int itemCount);
+            @NonNull VB binder, int position, int itemCount);
 }

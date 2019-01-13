@@ -196,8 +196,7 @@ public abstract class DynamicPopup {
      *
      * @return The popup after building it according to the supplied parameters.
      */
-    protected abstract @NonNull
-    DynamicPopup build();
+    protected abstract @NonNull DynamicPopup build();
 
     /**
      * Returns the maximum width for the popup.

@@ -16,8 +16,10 @@
 
 package com.pranavpandey.android.dynamic.support.sample.adapter
 
+import android.view.View
 import com.pranavpandey.android.dynamic.support.model.DynamicInfo
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicSimpleBinderAdapter
+import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder
 import com.pranavpandey.android.dynamic.support.sample.binder.AppInfoBinder
 import com.pranavpandey.android.dynamic.support.sample.binder.AuthorInfoBinder
 import com.pranavpandey.android.dynamic.support.sample.binder.TranslatorsBinder
@@ -25,11 +27,18 @@ import com.pranavpandey.android.dynamic.support.sample.binder.TranslatorsBinder
 /**
  * A binder adapter to display a list of [DynamicInfo] by using [DynamicSimpleBinderAdapter].
  */
-class AppInfoAdapter : DynamicSimpleBinderAdapter() {
+class AppInfoAdapter : DynamicSimpleBinderAdapter<DynamicRecyclerViewBinder<*>>() {
+
+    var onClickListener: View.OnClickListener? = null
+        set(onClickListener) {
+            field = onClickListener
+
+            if (!isComputingLayout) {
+                notifyDataSetChanged()
+            }
+        }
 
     init {
-
-        // Add data binders for this adapter.
         addDataBinders(AppInfoBinder(this),
                 TranslatorsBinder(this),
                 AuthorInfoBinder(this))

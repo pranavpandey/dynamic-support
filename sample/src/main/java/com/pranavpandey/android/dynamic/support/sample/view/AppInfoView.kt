@@ -41,8 +41,7 @@ class AppInfoView : DynamicRecyclerViewFrame {
     }
 
     override fun getRecyclerViewLayoutManager(): RecyclerView.LayoutManager? {
-        return DynamicLayoutUtils.getLinearLayoutManager(
-                context, androidx.recyclerview.widget.LinearLayoutManager.VERTICAL)
+        return DynamicLayoutUtils.getLinearLayoutManager(context, LinearLayoutManager.VERTICAL)
     }
 
     private fun setAdapter(): AppInfoView {

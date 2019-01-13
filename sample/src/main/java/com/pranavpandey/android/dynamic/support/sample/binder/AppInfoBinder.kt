@@ -20,17 +20,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBinderAdapter
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder
 import com.pranavpandey.android.dynamic.support.sample.R
+import com.pranavpandey.android.dynamic.support.sample.adapter.AppInfoAdapter
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils
 import com.pranavpandey.android.dynamic.support.view.DynamicInfoView
 
 /**
  * A recycler view binder to display app info by using [DynamicRecyclerViewBinder].
  */
-class AppInfoBinder(dynamicBinderAdapter: DynamicBinderAdapter)
-    : DynamicRecyclerViewBinder<RecyclerView.ViewHolder>(dynamicBinderAdapter) {
+class AppInfoBinder(binderAdapter: AppInfoAdapter)
+    : DynamicRecyclerViewBinder<RecyclerView.ViewHolder>(binderAdapter) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context)

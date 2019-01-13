@@ -19,16 +19,15 @@ package com.pranavpandey.android.dynamic.support.sample.binder
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBinderAdapter
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicInfoBigBinder
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder
 import com.pranavpandey.android.dynamic.support.sample.R
+import com.pranavpandey.android.dynamic.support.sample.adapter.LicensesAdapter
 
 /**
  * A recycler view binder to display licenses by using [DynamicRecyclerViewBinder].
  */
-class LicenseBinder(dynamicBinderAdapter: DynamicBinderAdapter)
-    : DynamicInfoBigBinder(dynamicBinderAdapter) {
+class LicenseBinder(binderAdapter: LicensesAdapter) : DynamicInfoBigBinder(binderAdapter) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return DynamicInfoBigBinder.ViewHolder(LayoutInflater.from(parent.context)

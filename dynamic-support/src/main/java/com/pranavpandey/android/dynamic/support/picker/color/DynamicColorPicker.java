@@ -892,8 +892,7 @@ public class DynamicColorPicker extends DynamicView {
      *
      * @return The color listener to get the selected color.
      */
-    public @NonNull
-    DynamicColorListener getDynamicColorListener() {
+    public @NonNull DynamicColorListener getDynamicColorListener() {
         return mDynamicColorListener;
     }
 

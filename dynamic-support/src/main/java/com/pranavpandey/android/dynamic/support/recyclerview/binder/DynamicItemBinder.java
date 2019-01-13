@@ -54,21 +54,23 @@ public class DynamicItemBinder extends DynamicRecyclerViewBinder {
         ViewHolder viewHolderItem = (ViewHolder) viewHolder;
         DynamicItem dynamicItem = getData();
 
-        viewHolderItem.getDynamicItemView().setIcon(dynamicItem.getIcon());
-        viewHolderItem.getDynamicItemView().setTitle(dynamicItem.getTitle());
-        viewHolderItem.getDynamicItemView().setSubtitle(dynamicItem.getSubtitle());
-        viewHolderItem.getDynamicItemView().setColorType(dynamicItem.getColorType());
-        viewHolderItem.getDynamicItemView().setColor(dynamicItem.getColor());
-        viewHolderItem.getDynamicItemView().setShowDivider(dynamicItem.isShowDivider());
+        if (dynamicItem != null) {
+            viewHolderItem.getDynamicItemView().setIcon(dynamicItem.getIcon());
+            viewHolderItem.getDynamicItemView().setTitle(dynamicItem.getTitle());
+            viewHolderItem.getDynamicItemView().setSubtitle(dynamicItem.getSubtitle());
+            viewHolderItem.getDynamicItemView().setColorType(dynamicItem.getColorType());
+            viewHolderItem.getDynamicItemView().setColor(dynamicItem.getColor());
+            viewHolderItem.getDynamicItemView().setShowDivider(dynamicItem.isShowDivider());
 
-        if (dynamicItem.getOnClickListener() != null) {
-            viewHolderItem.getDynamicItemView()
-                    .setOnClickListener(dynamicItem.getOnClickListener());
-        } else {
-            viewHolderItem.getDynamicItemView().setClickable(false);
+            if (dynamicItem.getOnClickListener() != null) {
+                viewHolderItem.getDynamicItemView()
+                        .setOnClickListener(dynamicItem.getOnClickListener());
+            } else {
+                viewHolderItem.getDynamicItemView().setClickable(false);
+            }
+
+            viewHolderItem.getDynamicItemView().onUpdate();
         }
-
-        viewHolderItem.getDynamicItemView().onUpdate();
     }
 
     @Override

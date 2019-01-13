@@ -19,7 +19,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusableInTouchMode="true">
+    android:descendantFocusability="blocksDescendants">
 
     <com.pranavpandey.android.dynamic.support.sample.view.AppInfoView
         android:id="@+id/app_info_view"

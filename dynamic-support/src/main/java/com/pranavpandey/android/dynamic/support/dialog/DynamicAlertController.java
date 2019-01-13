@@ -834,7 +834,7 @@ class DynamicAlertController {
     private void setupContent(ViewGroup contentPanel) {
         mScrollView = mWindow.findViewById(R.id.scrollView);
         mScrollView.setFocusable(false);
-        mScrollView.setNestedScrollingEnabled(false);
+        ViewCompat.setNestedScrollingEnabled(mScrollView, false);
 
         // Special case for users that only want to display a String
         mMessageView = contentPanel.findViewById(android.R.id.message);
