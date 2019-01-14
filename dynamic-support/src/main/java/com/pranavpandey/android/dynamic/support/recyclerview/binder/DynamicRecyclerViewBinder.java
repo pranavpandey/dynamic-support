@@ -39,6 +39,7 @@ public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHold
      *
      * @param binderAdapter The dynamic binder adapter for the recycler view.
      */
+    @SuppressWarnings("unchecked")
     public DynamicRecyclerViewBinder(@NonNull DynamicBinderAdapter binderAdapter) {
         mBinderAdapter = binderAdapter;
     }

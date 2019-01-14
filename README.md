@@ -13,9 +13,9 @@ to provide best compatibility.
 >Since v2.0.0, it uses [AndroidX](https://developer.android.com/jetpack/androidx/) so, first
 [migrate](https://developer.android.com/jetpack/androidx/migrate) your project to AndroidX.
  
-<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-1.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-3.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-4.png" width="280" height="486">
+<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-1.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-3.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-4.png" width="280" height="486">
 
-<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-5.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-6.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-screen-7.png" width="280" height="486">
+<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-5.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-6.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-7.png" width="280" height="486">
 
 ---
 
