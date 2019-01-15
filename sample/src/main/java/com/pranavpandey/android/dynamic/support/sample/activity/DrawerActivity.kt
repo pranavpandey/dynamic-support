@@ -124,7 +124,6 @@ class DrawerActivity : DynamicDrawerActivity() {
             R.id.nav_about -> if (contentFragment !is AboutFragment) {
                 switchFragment(AboutFragment.newInstance(0), false)
             }
-            R.id.nav_donate -> DynamicLinkUtils.viewUrl(this, Constants.URL_DONATE)
             R.id.nav_share -> DynamicLinkUtils.share(this, null,
                     String.format(getString(R.string.ads_format_next_line),
                             getString(R.string.app_share), Constants.URL_GITHUB))

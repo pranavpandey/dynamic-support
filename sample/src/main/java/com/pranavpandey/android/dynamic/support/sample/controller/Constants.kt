@@ -41,20 +41,15 @@ object Constants {
     const val URL_GITHUB = "https://github.com/pranavpandey/dynamic-support"
 
     /**
-     * Url to donate via PayPal.
-     */
-    const val URL_DONATE = "https://www.paypal.me/pranavpandeydev"
-
-    /**
      * Action for app shortcut intent.
      */
-    val ACTION_APP_SHORTCUT =
+    const val ACTION_APP_SHORTCUT =
             "com.pranavpandey.android.dynamic.support.sample.intent.action.APP_SHORTCUT"
 
     /**
      * Constant for Sources app shortcut.
      */
-    val APP_SHORTCUT_SOURCES = "app_shortcut_sources"
+    const val APP_SHORTCUT_SOURCES = "app_shortcut_sources"
 
     /**
      * Default value for app theme color.

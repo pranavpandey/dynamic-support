@@ -25,7 +25,7 @@ android {
         applicationId "com.pranavpandey.android.dynamic.support.sample"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
-        versionCode mavenVersionCode
+        versionCode sampleVersionCode
         versionName mavenVersion
 
         vectorDrawables.useSupportLibrary = true
