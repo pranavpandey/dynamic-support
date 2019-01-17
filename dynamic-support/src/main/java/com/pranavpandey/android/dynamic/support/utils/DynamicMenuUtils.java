@@ -68,8 +68,8 @@ public class DynamicMenuUtils {
 
         try {
             Class<?> MenuBuilder = menu.getClass();
-            Method setOptionalIconsVisible =
-                    MenuBuilder.getDeclaredMethod("setOptionalIconsVisible", boolean.class);
+            Method setOptionalIconsVisible = MenuBuilder.getDeclaredMethod(
+                    "setOptionalIconsVisible", boolean.class);
             if (!setOptionalIconsVisible.isAccessible()) {
                 setOptionalIconsVisible.setAccessible(true);
             }

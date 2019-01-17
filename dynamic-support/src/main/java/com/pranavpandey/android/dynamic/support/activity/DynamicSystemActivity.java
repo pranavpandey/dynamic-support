@@ -477,8 +477,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
                 DynamicTheme.getInstance().onDynamicChange(false, true);
             } else if (mCurrentLocale != null) {
                 if (!mCurrentLocale.equals(DynamicLocaleUtils.getLocale(
-                        getLocale(), getDefaultLocale(
-                                DynamicSystemActivity.this)))) {
+                        getLocale(), getDefaultLocale(DynamicSystemActivity.this)))) {
                     DynamicTheme.getInstance().onDynamicChange(false, true);
                 }
             }
