@@ -233,6 +233,8 @@
     <string name="ads_theme_color_auto_desc">Wähle auto, um die Farbpalette der App zu benutzen.</string>
     <string name="ads_theme_color_default_desc">Wähle auto, um die Farbpalette der Standard zu benutzen.</string>
     <string name="ads_theme_entry_auto_background_aware_desc">Wähle auto, um die Farbpalette der App zu benutzen. Passen Sie die Farben entsprechend dem Hintergrund an, um gute Sichtbarkeit zu garantieren.</string>
+    <string name="ads_theme_entry_day">Tages</string>
+    <string name="ads_theme_entry_night">Nacht</string>
     <string name="ads_theme_entry_light">Hell</string>
     <string name="ads_theme_entry_dark">Dunkel</string>
     <string name="ads_theme_entry_custom">Eigene</string>

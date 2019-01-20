@@ -232,6 +232,8 @@
     <string name="ads_theme_color_auto_desc">Seleziona auto per usare la tavolozza colori dell\'app.</string>
     <string name="ads_theme_color_default_desc">Seleziona auto per usare la tavolozza colori predefinita.</string>
     <string name="ads_theme_entry_auto_background_aware_desc">Seleziona auto per usare la tavolozza colori dell\'app. Alcuni colori cambieranno automaticamente rispetto allo sfondo per ottenere migliore visibilità.</string>
+    <string name="ads_theme_entry_day">Giorno</string>
+    <string name="ads_theme_entry_night">Notturno</string>
     <string name="ads_theme_entry_light">Chiaro</string>
     <string name="ads_theme_entry_dark">Scuro</string>
     <string name="ads_theme_entry_custom">Personalizzato</string>

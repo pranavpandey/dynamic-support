@@ -17,6 +17,26 @@
 
 <resources>
 
+    <!-- Theme entries for auto, day, night and custom. -->
+    <string-array name="ads_theme_entries_all">
+        <item>@string/ads_theme_entry_auto</item>
+        <item>@string/ads_theme_entry_day</item>
+        <item>@string/ads_theme_entry_night</item>
+        <item>@string/ads_theme_entry_custom</item>
+    </string-array>
+
+    <!-- Theme values for auto, day, night and custom. -->
+    <string-array name="ads_theme_values_all">
+        <!-- Auto -->
+        <item>-3</item>
+        <!-- Day -->
+        <item>2</item>
+        <!-- Night -->
+        <item>3</item>
+        <!-- Custom -->
+        <item>-2</item>
+    </string-array>
+
     <!-- Theme entries for auto and custom. -->
     <string-array name="ads_theme_entries_auto">
         <item>@string/ads_theme_entry_auto</item>

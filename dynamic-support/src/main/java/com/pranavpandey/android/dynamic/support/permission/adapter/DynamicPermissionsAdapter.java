@@ -51,6 +51,103 @@ public class DynamicPermissionsAdapter extends
      */
     private DynamicPermissionsView.PermissionListener mPermissionListener;
 
+    public DynamicPermissionsAdapter(@NonNull ArrayList<DynamicPermission> dataSet,
+            @Nullable DynamicPermissionsView.PermissionListener permissionListener) {
+        mPermissions = dataSet;
+        mPermissionListener = permissionListener;
+
+        setHasStableIds(true);
+    }
+
+    @Override
+    public @NonNull ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        return new ViewHolder(LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.ads_layout_info, viewGroup, false));
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int position) {
+        if (mPermissionListener != null) {
+            viewHolder.getLayout().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mPermissionListener.onPermissionSelected(v, position, getItem(position));
+                }
+            });
+        } else {
+            viewHolder.getLayout().setClickable(false);
+        }
+
+        DynamicPermission dynamicPermission = getItem(position);
+
+        if (dynamicPermission.getIcon() != null) {
+            viewHolder.getIcon().setImageDrawable(dynamicPermission.getIcon());
+            viewHolder.getIcon().setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.getIcon().setVisibility(GONE);
+        }
+
+        if (dynamicPermission.getTitle() != null) {
+            viewHolder.getTitle().setText(dynamicPermission.getTitle());
+            viewHolder.getTitle().setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.getTitle().setVisibility(GONE);
+        }
+
+        if (dynamicPermission.getSubtitle() != null) {
+            viewHolder.getSubtitle().setText(dynamicPermission.getSubtitle());
+            viewHolder.getSubtitle().setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.getSubtitle().setVisibility(GONE);
+        }
+
+        if (dynamicPermission.getDescription() != null) {
+            viewHolder.getDescription().setText(dynamicPermission.getDescription());
+            viewHolder.getDescription().setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.getDescription().setVisibility(GONE);
+        }
+
+        if (dynamicPermission.isAllowed()) {
+            viewHolder.getStatusIcon().setImageResource(R.drawable.ads_ic_check);
+            viewHolder.getInfo().setText(R.string.ads_perm_granted_desc);
+            viewHolder.getStatus().setText(R.string.ads_perm_granted);
+            viewHolder.getLayout().setClickable(false);
+        } else {
+            viewHolder.getStatusIcon().setImageResource(R.drawable.ads_ic_close);
+            viewHolder.getInfo().setText(R.string.ads_perm_request_desc);
+            viewHolder.getStatus().setText(R.string.ads_perm_request);
+
+            if (!dynamicPermission.isAskAgain()) {
+                viewHolder.getStatusIcon().setImageResource(R.drawable.ads_ic_error);
+                viewHolder.getInfo().setText(R.string.ads_perm_denied_desc);
+                viewHolder.getStatus().setText(R.string.ads_perm_denied);
+            }
+            viewHolder.getLayout().setClickable(true);
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return mPermissions.size();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return getItem(position).hashCode();
+    }
+
+    /**
+     * Get the dynamic permission for a given position.
+     *
+     * @param position The position of the adapter.
+     *
+     * @return The dynamic permission according to the supplied position.
+     */
+    public DynamicPermission getItem(int position) {
+        return mPermissions.get(position);
+    }
+
     /**
      * View holder to hold the permission layout.
      */
@@ -185,102 +282,5 @@ public class DynamicPermissionsAdapter extends
         TextView getStatus() {
             return status;
         }
-    }
-
-    public DynamicPermissionsAdapter(@NonNull ArrayList<DynamicPermission> dataSet,
-            @Nullable DynamicPermissionsView.PermissionListener permissionListener) {
-        mPermissions = dataSet;
-        mPermissionListener = permissionListener;
-
-        setHasStableIds(true);
-    }
-
-    @Override
-    public @NonNull ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        return new ViewHolder(LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.ads_layout_info, viewGroup, false));
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int position) {
-        if (mPermissionListener != null) {
-            viewHolder.getLayout().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mPermissionListener.onPermissionSelected(v, position, getItem(position));
-                }
-            });
-        } else {
-            viewHolder.getLayout().setClickable(false);
-        }
-
-        DynamicPermission dynamicPermission = getItem(position);
-
-        if (dynamicPermission.getIcon() != null) {
-            viewHolder.getIcon().setImageDrawable(dynamicPermission.getIcon());
-            viewHolder.getIcon().setVisibility(View.VISIBLE);
-        } else {
-            viewHolder.getIcon().setVisibility(GONE);
-        }
-
-        if (dynamicPermission.getTitle() != null) {
-            viewHolder.getTitle().setText(dynamicPermission.getTitle());
-            viewHolder.getTitle().setVisibility(View.VISIBLE);
-        } else {
-            viewHolder.getTitle().setVisibility(GONE);
-        }
-
-        if (dynamicPermission.getSubtitle() != null) {
-            viewHolder.getSubtitle().setText(dynamicPermission.getSubtitle());
-            viewHolder.getSubtitle().setVisibility(View.VISIBLE);
-        } else {
-            viewHolder.getSubtitle().setVisibility(GONE);
-        }
-
-        if (dynamicPermission.getDescription() != null) {
-            viewHolder.getDescription().setText(dynamicPermission.getDescription());
-            viewHolder.getDescription().setVisibility(View.VISIBLE);
-        } else {
-            viewHolder.getDescription().setVisibility(GONE);
-        }
-
-        if (dynamicPermission.isAllowed()) {
-            viewHolder.getStatusIcon().setImageResource(R.drawable.ads_ic_check);
-            viewHolder.getInfo().setText(R.string.ads_perm_granted_desc);
-            viewHolder.getStatus().setText(R.string.ads_perm_granted);
-            viewHolder.getLayout().setClickable(false);
-        } else {
-            viewHolder.getStatusIcon().setImageResource(R.drawable.ads_ic_close);
-            viewHolder.getInfo().setText(R.string.ads_perm_request_desc);
-            viewHolder.getStatus().setText(R.string.ads_perm_request);
-
-            if (!dynamicPermission.isAskAgain()) {
-                viewHolder.getStatusIcon().setImageResource(R.drawable.ads_ic_error);
-                viewHolder.getInfo().setText(R.string.ads_perm_denied_desc);
-                viewHolder.getStatus().setText(R.string.ads_perm_denied);
-            }
-            viewHolder.getLayout().setClickable(true);
-        }
-    }
-
-    @Override
-    public int getItemCount() {
-        return mPermissions.size();
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return getItem(position).hashCode();
-    }
-
-    /**
-     * Get the dynamic permission for a given position.
-     *
-     * @param position The position of the adapter.
-     *
-     * @return The dynamic permission according to the supplied position.
-     */
-    public DynamicPermission getItem(int position) {
-        return mPermissions.get(position);
     }
 }

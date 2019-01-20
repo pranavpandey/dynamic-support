@@ -199,7 +199,7 @@
     <string name="ads_theme_app_desc">选择自动使用日间和夜间主题。</string>
     <string name="ads_theme_app_day">日间主题</string>
     <string name="ads_theme_app_day_summary">应用在日间的主题。</string>
-    <string name="ads_theme_app_night">主题</string>
+    <string name="ads_theme_app_night">夜间主题</string>
     <string name="ads_theme_app_night_summary">应用在夜间的主题。</string>
     <string name="ads_theme_app_day_night_desc">这只适用于自动主题被应用。</string>
     <string name="ads_theme_toast">Toast消息主题</string>
@@ -233,6 +233,8 @@
     <string name="ads_theme_color_auto_desc">选择自动使用应用程序调色板。</string>
     <string name="ads_theme_color_default_desc">选择自动使用默认的程序调色板。</string>
     <string name="ads_theme_entry_auto_background_aware_desc">选择自动使用应用程序调色板。根据背景调整颜色以提供最佳可见性。</string>
+    <string name="ads_theme_entry_day">日间</string>
+    <string name="ads_theme_entry_night">夜间</string>
     <string name="ads_theme_entry_light">亮色</string>
     <string name="ads_theme_entry_dark">暗色</string>
     <string name="ads_theme_entry_custom">自定义</string>

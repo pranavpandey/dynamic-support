@@ -26,7 +26,7 @@ import java.lang.annotation.RetentionPolicy;
  * Constant values for the dynamic theme.
  */
 @Retention(RetentionPolicy.SOURCE)
-@IntDef(value = { Theme.AUTO, Theme.CUSTOM })
+@IntDef(value = { Theme.AUTO, Theme.CUSTOM, Theme.SYSTEM, Theme.DAY, Theme.NIGHT })
 public @interface Theme {
 
     /**
@@ -40,10 +40,26 @@ public @interface Theme {
     int CUSTOM = -2;
 
     /**
+     * Constant for the system theme.
+     */
+    int SYSTEM = 1;
+
+    /**
+     * Constant for the day theme.
+     */
+    int DAY = 2;
+
+    /**
+     * Constant for the night theme.
+     */
+    int NIGHT = 3;
+
+    /**
      * String constant values for the dynamic theme.
      */
     @Retention(RetentionPolicy.SOURCE)
-    @StringDef(value = { ToString.AUTO, ToString.CUSTOM })
+    @StringDef(value = { ToString.AUTO, ToString.CUSTOM,
+            ToString.SYSTEM, ToString.DAY, ToString.NIGHT })
     @interface ToString {
 
         /**
@@ -55,6 +71,21 @@ public @interface Theme {
          * String constant for the custom theme.
          */
         String CUSTOM = "-2";
+
+        /**
+         * String constant for the system theme.
+         */
+        String SYSTEM = "1";
+
+        /**
+         * String constant for the day theme.
+         */
+        String DAY = "2";
+
+        /**
+         * String constant for the night theme.
+         */
+        String NIGHT = "3";
     }
 
     /**

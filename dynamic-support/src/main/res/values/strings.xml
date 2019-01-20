@@ -233,6 +233,8 @@
     <string name="ads_theme_color_auto_desc">Select auto to use the app color palette.</string>
     <string name="ads_theme_color_default_desc">Select auto to use the default color palette.</string>
     <string name="ads_theme_entry_auto_background_aware_desc">Select auto to use the app color palette. Adjust colors according to the background to provide best visibility.</string>
+    <string name="ads_theme_entry_day">Day</string>
+    <string name="ads_theme_entry_night">Night</string>
     <string name="ads_theme_entry_light">Light</string>
     <string name="ads_theme_entry_dark">Dark</string>
     <string name="ads_theme_entry_custom">Custom</string>

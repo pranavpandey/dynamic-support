@@ -232,6 +232,8 @@
     <string name="ads_theme_color_auto_desc">Uygulama renk paletini kullanmak için otomatiği seçin.</string>
     <string name="ads_theme_color_default_desc">Varsayılan renk paletini kullanmak için otomatiği seçin.</string>
     <string name="ads_theme_entry_auto_background_aware_desc">Uygulama renk paletini kullanmak için otomatiği seçin. En iyi görmeyi sağlamak için renkleri arka plana göre ayarlayın.</string>
+    <string name="ads_theme_entry_day">Gündüz</string>
+    <string name="ads_theme_entry_night">Gece</string>
     <string name="ads_theme_entry_light">Açık</string>
     <string name="ads_theme_entry_dark">Koyu</string>
     <string name="ads_theme_entry_custom">Özel</string>

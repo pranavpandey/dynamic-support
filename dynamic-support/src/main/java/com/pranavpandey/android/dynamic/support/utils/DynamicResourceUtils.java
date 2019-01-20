@@ -16,7 +16,6 @@
 
 package com.pranavpandey.android.dynamic.support.utils;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -764,9 +763,32 @@ public class DynamicResourceUtils {
      *
      * @return {@code true} if it is night.
      */
-    @SuppressLint("WrongConstant")
     public static boolean isNight() {
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         return hour < 6 || hour > 18;
+    }
+
+    /**
+     * Checks for the night time according to the supplied value.
+     * <p>Useful to apply themes based on the day and night.
+     *
+     * @param theme The integer value of the theme.
+     *
+     * @return {@code true} if it is night.
+     */
+    public static boolean isNight(@Theme int theme) {
+        return theme == Theme.NIGHT || (theme == Theme.AUTO && isNight());
+    }
+
+    /**
+     * Checks for the night time according to the supplied value.
+     * <p>Useful to apply themes based on the day and night.
+     *
+     * @param theme The string value of the theme.
+     *
+     * @return {@code true} if it is night.
+     */
+    public static boolean isNight(@Theme.ToString String theme) {
+        return isNight(Integer.valueOf(theme));
     }
 }

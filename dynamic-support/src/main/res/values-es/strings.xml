@@ -233,6 +233,8 @@
     <string name="ads_theme_color_auto_desc">Elige auto para usar la paleta de colores de la aplicación.</string>
     <string name="ads_theme_color_default_desc">Elige auto para usar la paleta de colores de la defecto.</string>
     <string name="ads_theme_entry_auto_background_aware_desc">Elige auto para usar la paleta de colores de la aplicación. Ajuste los colores dependiendo del fondo para mejorar la visibilidad.</string>
+    <string name="ads_theme_entry_day">Diurno</string>
+    <string name="ads_theme_entry_night">Nocturno</string>
     <string name="ads_theme_entry_light">Claro</string>
     <string name="ads_theme_entry_dark">Oscuro</string>
     <string name="ads_theme_entry_custom">Personalizado</string>
