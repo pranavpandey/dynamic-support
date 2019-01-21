@@ -32,6 +32,7 @@ com.pranavpandey.android.dynamic.support.theme.dialog
 com.pranavpandey.android.dynamic.support.theme.fragment
 com.pranavpandey.android.dynamic.support.theme.view
 com.pranavpandey.android.dynamic.support.tutorial
+com.pranavpandey.android.dynamic.support.tutorial.activity
 com.pranavpandey.android.dynamic.support.tutorial.adapter
 com.pranavpandey.android.dynamic.support.tutorial.fragment
 com.pranavpandey.android.dynamic.support.utils
