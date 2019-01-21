@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.tutorial;
+package com.pranavpandey.android.dynamic.support.tutorial.activity;
 
 import android.animation.ArgbEvaluator;
 import android.os.Bundle;
@@ -32,6 +32,7 @@ import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
 import com.pranavpandey.android.dynamic.support.listener.DynamicWindowResolver;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.Theme;
+import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.adapter.DynamicTutorialsAdapter;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
@@ -114,8 +115,8 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset,
-                                       int positionOffsetPixels) {
+            public void onPageScrolled(int position,
+                    float positionOffset, int positionOffsetPixels) {
                 @ColorInt final int color;
                 if (position < (mAdapter.getCount() - 1)) {
                     color = (Integer) mArgbEvaluator.evaluate(

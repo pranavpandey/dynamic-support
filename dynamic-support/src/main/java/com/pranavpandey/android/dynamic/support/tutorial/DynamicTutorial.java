@@ -19,6 +19,8 @@ package com.pranavpandey.android.dynamic.support.tutorial;
 import androidx.annotation.ColorInt;
 import androidx.viewpager.widget.ViewPager;
 
+import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutorialActivity;
+
 /**
  * Interface for the dynamic tutorial having useful functions which will be called by the
  * {@link DynamicTutorialActivity} to perform color transitions.

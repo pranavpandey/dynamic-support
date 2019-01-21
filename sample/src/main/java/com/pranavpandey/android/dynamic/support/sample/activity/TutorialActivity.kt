@@ -26,7 +26,7 @@ import com.pranavpandey.android.dynamic.support.sample.controller.SampleTheme
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicSimpleTutorial
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial
-import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorialActivity
+import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutorialActivity
 import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils
 import java.util.*
 

@@ -282,7 +282,7 @@ public class DynamicTheme implements DynamicListener {
      * @return The {@link DynamicTheme} object to allow for chaining of calls to set methods.
      */
     public @NonNull DynamicTheme setTheme(@Nullable DynamicAppTheme dynamicTheme,
-                                          boolean initializeRemoteColors) {
+            boolean initializeRemoteColors) {
         if (dynamicTheme != null) {
             if (dynamicTheme.getThemeRes() == DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
                 throw new IllegalStateException("Dynamic app theme style resource " +

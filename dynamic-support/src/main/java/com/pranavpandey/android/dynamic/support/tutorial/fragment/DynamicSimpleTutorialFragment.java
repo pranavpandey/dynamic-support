@@ -28,7 +28,7 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicSimpleTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
-import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorialActivity;
+import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutorialActivity;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView;
