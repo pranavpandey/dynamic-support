@@ -41,7 +41,6 @@ import androidx.appcompat.widget.ActionMenuView;
 
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.toasts.DynamicHint;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
@@ -87,13 +86,14 @@ public class DynamicMenuUtils {
      * @param color The tint color to be applied.
      */
     @TargetApi(Build.VERSION_CODES.M)
-    public static void setViewItemsTint(@NonNull final View view, @ColorInt final int color) {
+    public static void setViewItemsTint(@NonNull final View view,
+            @ColorInt final int color, @ColorInt final int background) {
         final PorterDuffColorFilter colorFilter
                 = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
 
         if (view instanceof ViewGroup){
             for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++){
-                setViewItemsTint(((ViewGroup) view).getChildAt(i), color);
+                setViewItemsTint(((ViewGroup) view).getChildAt(i), color, background);
             }
         }
 
@@ -118,8 +118,7 @@ public class DynamicMenuUtils {
                                 public boolean onLongClick(View v) {
                                     DynamicHint.show(v, DynamicHint.make(
                                             DynamicTheme.getInstance().getContext(),
-                                            v.getContentDescription(),
-                                            DynamicColorUtils.getTintColor(color), color));
+                                            v.getContentDescription(), background, color));
                                     return true;
                                 }
                             });
@@ -177,7 +176,7 @@ public class DynamicMenuUtils {
                                                 DynamicTheme.getInstance().getContext(),
                                                 ((MenuView.ItemView) innerView)
                                                         .getItemData().getTitle(),
-                                                DynamicColorUtils.getTintColor(color), color));
+                                                background, color));
                                         return true;
                                     }
                                 });

@@ -18,6 +18,7 @@ package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
@@ -26,6 +27,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.Theme;
@@ -111,19 +113,25 @@ public class DynamicToolbar extends Toolbar implements DynamicTextWidget {
                 attrs, R.styleable.DynamicTheme);
 
         try {
-            mColorType = a.getInt(R.styleable.DynamicTheme_ads_colorType,
+            mColorType = a.getInt(
+                    R.styleable.DynamicTheme_ads_colorType,
                     Theme.ColorType.PRIMARY);
-            mTextColorType = a.getInt(R.styleable.DynamicTheme_ads_textColorType,
+            mTextColorType = a.getInt(
+                    R.styleable.DynamicTheme_ads_textColorType,
                     Theme.ColorType.TINT_PRIMARY);
-            mContrastWithColorType = a.getInt(R.styleable.DynamicTheme_ads_contrastWithColorType,
-                    Theme.ColorType.PRIMARY);
+            mContrastWithColor = a.getColor(
+                    R.styleable.DynamicTheme_ads_contrastWithColor,
+                    WidgetDefaults.getContrastWithColor(getContext()));
             mColor = a.getColor(R.styleable.DynamicTheme_ads_color,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
-            mTextColor = a.getColor(R.styleable.DynamicTheme_ads_textColor,
+            mTextColor = a.getColor(
+                    R.styleable.DynamicTheme_ads_textColor,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
-            mContrastWithColor = a.getColor(R.styleable.DynamicTheme_ads_contrastWithColor,
+            mContrastWithColor = a.getColor(
+                    R.styleable.DynamicTheme_ads_contrastWithColor,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
-            mBackgroundAware = a.getInteger(R.styleable.DynamicTheme_ads_backgroundAware,
+            mBackgroundAware = a.getInteger(
+                    R.styleable.DynamicTheme_ads_backgroundAware,
                     WidgetDefaults.getBackgroundAware());
         } finally {
             a.recycle();
@@ -263,20 +271,28 @@ public class DynamicToolbar extends Toolbar implements DynamicTextWidget {
     @Override
     public void setColor() {
         if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            setBackgroundColor(mColor);
+            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
+                mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+            }
+
+            if (getParent() != null && getParent() instanceof CollapsingToolbarLayout) {
+                setBackgroundColor(Color.TRANSPARENT);
+            } else {
+                setBackgroundColor(mColor);
+            }
         }
     }
 
     @Override
     public void setTextColor() {
         if (mTextColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mTextColor = DynamicColorUtils.getContrastColor(mTextColor, mContrastWithColor);
+            if (isBackgroundAware() && mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
+                mTextColor = DynamicColorUtils.getContrastColor(mTextColor, mColor);
             }
 
             setTitleTextColor(mTextColor);
             setSubtitleTextColor(mTextColor);
-            DynamicMenuUtils.setViewItemsTint(this, mTextColor);
+            DynamicMenuUtils.setViewItemsTint(this, mTextColor, mColor);
         }
     }
 }

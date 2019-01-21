@@ -27,8 +27,7 @@
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
         app:layout_scrollFlags="scroll|enterAlways|snap"
-        app:contentInsetStartWithNavigation="@dimen/ads_toolbar_inset_start"
-        app:ads_colorType="none">
+        app:contentInsetStartWithNavigation="@dimen/ads_toolbar_inset_start">
 
         <include layout="@layout/ads_toolbar_search_view" />
 
