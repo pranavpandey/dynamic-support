@@ -108,7 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:ads_key="pref_settings_navigation_bar_theme"
-                    app:ads_icon="@drawable/ads_ic_brush"
+                    app:ads_icon="@drawable/ads_ic_paint"
                     app:ads_title="@string/ads_theme_navigation_bar"
                     app:ads_summary="@string/ads_theme_navigation_bar_summary"
                     app:ads_unchecked="@string/ads_theme_navigation_bar_summary_unchecked"

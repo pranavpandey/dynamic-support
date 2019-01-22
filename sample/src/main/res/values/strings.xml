@@ -47,10 +47,10 @@
     <string name="rotation_subtitle">An app completely built by using this library. It covers some more advanced use cases like multiple locales, runtime permissions, etc. and can motivate to implement similar kind of functionality by exploring the sources of Dynamic Support.</string>
 
     <!-- Widgets -->
-    <string name="widget_buttons">Buttons</string>
+    <string name="widget_buttons">Button</string>
     <string name="widget_button_raised">Raised</string>
     <string name="widget_button_flat">Flat</string>
-    <string name="widget_checked">Checked</string>
+    <string name="widget_checked">Checkable</string>
     <string name="widget_switch">Switch</string>
     <string name="widget_checkbox">Checkbox</string>
     <string name="widget_radio">Radio</string>
