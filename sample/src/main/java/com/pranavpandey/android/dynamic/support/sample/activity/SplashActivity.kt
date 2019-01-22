@@ -48,6 +48,11 @@ class SplashActivity : DynamicSplashActivity() {
         return SampleTheme.splashStyle
     }
 
+    override fun onCustomiseTheme() {
+        // Customise activity theme after applying the base style.
+        SampleTheme.setLocalTheme()
+    }
+
     override fun setNavigationBarTheme(): Boolean {
         // TODO: Return true to apply the navigation bar theme.
         return SampleController.instance.isThemeNavigationBar
