@@ -22,6 +22,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.appbar.AppBarLayout
+import com.pranavpandey.android.dynamic.support.activity.DynamicDrawerActivity
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.activity.BottomNavigationActivity
@@ -100,11 +101,17 @@ class HomeFragment : DynamicFragment() {
                     startActivity(Intent(activity, CollapsingAppBarActivity::class.java))
                 }
 
-        // Start bottom navigation activity.
-        (view.findViewById<View>(R.id.pref_bottom_navigation)
-                as DynamicScreenPreference).onPreferenceClickListener =
-                View.OnClickListener {
-                    startActivity(Intent(activity, BottomNavigationActivity::class.java))
-                }
+        if (activity is DynamicDrawerActivity ) {
+            // Start bottom navigation activity.
+            (view.findViewById<View>(R.id.pref_bottom_navigation)
+                    as DynamicScreenPreference).onPreferenceClickListener =
+                    View.OnClickListener {
+                        startActivity(Intent(activity, BottomNavigationActivity::class.java))
+                    }
+        } else{
+            // Hide bottom navigation activity.
+            view.findViewById<View>(R.id.pref_bottom_navigation).visibility = View.GONE
+        }
+
     }
 }
