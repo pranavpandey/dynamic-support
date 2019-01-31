@@ -92,14 +92,9 @@ public class DynamicCollapsingToolbarLayout extends CollapsingToolbarLayout
     public void setRtlSupport(boolean rtlSupport) {
         this.mRtlSupport = rtlSupport;
 
-        if (mRtlSupport) {
-            if (DynamicLocaleUtils.isLayoutRtl()) {
-                setExpandedTitleGravity(Gravity.END | Gravity.BOTTOM);
-                setCollapsedTitleGravity(Gravity.END);
-            } else {
-                setExpandedTitleGravity(Gravity.START | Gravity.BOTTOM);
-                setCollapsedTitleGravity(Gravity.START);
-            }
+        if (mRtlSupport && DynamicLocaleUtils.isLayoutRtl()) {
+            setExpandedTitleGravity(Gravity.END | Gravity.BOTTOM);
+            setCollapsedTitleGravity(Gravity.END);
         } else {
             setExpandedTitleGravity(Gravity.START | Gravity.BOTTOM);
             setCollapsedTitleGravity(Gravity.START);

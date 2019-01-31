@@ -366,7 +366,7 @@ public class DynamicTextView extends AppCompatTextView implements
             if (DynamicVersionUtils.isJellyBeanMR1()) {
                 setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
             } else {
-                setGravity(Gravity.START);
+                setGravity(getGravity() | Gravity.START);
             }
         }
     }
