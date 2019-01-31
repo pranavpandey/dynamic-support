@@ -46,7 +46,6 @@
         <item>@string/ads_info_website</item>
         <item>@string/ads_info_twitter</item>
         <item>@string/ads_info_facebook</item>
-        <item>@string/ads_info_gplus</item>
         <item>@string/ads_info_linkedin</item>
         <item>@string/ads_info_github</item>
     </string-array>
@@ -56,7 +55,6 @@
         <item>@string/ads_info_website_me_desc</item>
         <item>@string/ads_info_twitter_me_desc</item>
         <item>@string/ads_info_facebook_me_desc</item>
-        <item>@string/ads_info_gplus_me_desc</item>
         <item>@string/ads_info_linkedin_me_desc</item>
         <item>@string/ads_info_github_me_desc</item>
     </string-array>
@@ -66,7 +64,6 @@
         <item>https://www.pranavpandey.com</item>
         <item>https://twitter.com/intent/follow?screen_name=pranavpandeydev</item>
         <item>https://www.facebook.com/pranavpandeydev</item>
-        <item>https://plus.google.com/+pranavpandeydev</item>
         <item>https://in.linkedin.com/in/pranav-pandey-09032974</item>
         <item>https://github.com/pranavpandey</item>
     </string-array>
@@ -76,7 +73,6 @@
         <item>@drawable/ads_ic_public</item>
         <item>@drawable/ads_ic_social_twitter</item>
         <item>@drawable/ads_ic_social_facebook</item>
-        <item>@drawable/ads_ic_social_gplus</item>
         <item>@drawable/ads_ic_social_linkedin</item>
         <item>@drawable/ads_ic_social_github</item>
     </integer-array>
@@ -86,7 +82,6 @@
         <item>@color/ads_social_website</item>
         <item>@color/ads_social_twitter</item>
         <item>@color/ads_social_facebook</item>
-        <item>@color/ads_social_gplus</item>
         <item>@color/ads_social_linkedin</item>
         <item>@color/ads_social_github</item>
     </integer-array>

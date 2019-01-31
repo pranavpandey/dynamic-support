@@ -17,7 +17,6 @@
 package com.pranavpandey.android.dynamic.support.popup;
 
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -345,9 +344,7 @@ public abstract class DynamicPopup {
         }
 
         final int[] screenPos = new int[2];
-        final Rect displayFrame = new Rect();
-        getAnchor().getLocationOnScreen(screenPos);
-        getAnchor().getWindowVisibleDisplayFrame(displayFrame);
+        getAnchor().getLocationInWindow(screenPos);
 
         int viewCenterX = screenPos[0];
         int OFFSET_X = DynamicUnitUtils.convertDpToPixels(36);
@@ -365,7 +362,7 @@ public abstract class DynamicPopup {
                     OFFSET_X, -OFFSET_Y, Gravity.NO_GRAVITY | Gravity.START);
         } else {
             mPopupWindow.showAtLocation(getAnchor(), Gravity.NO_GRAVITY,
-                    viewCenterX  + OFFSET_X - displayFrame.left, screenPos[1] - OFFSET_Y);
+                    viewCenterX  + OFFSET_X, screenPos[1] - OFFSET_Y);
         }
     }
 }
