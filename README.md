@@ -91,7 +91,6 @@ dependencies {
     }
     
     # Keep support library classes.
-    #-keep class androidx.appcompat.widget.** { *; }
     #-keep class android.support.v4.widget.** { *; }
     #-keep class android.support.v7.widget.** { *; }
     #-keep class android.support.design.widget.** { *; }
@@ -99,6 +98,7 @@ dependencies {
     
     # Keep AndroidX classes.
     -keep class androidx.core.widget.** { *; }
+    #-keep class androidx.appcompat.widget.** { *; }
     -keep class androidx.appcompat.view.menu.** { *; }
     -keep class androidx.recyclerview.widget.** { *; }
     -keep class androidx.viewpager.widget.** { *; }
