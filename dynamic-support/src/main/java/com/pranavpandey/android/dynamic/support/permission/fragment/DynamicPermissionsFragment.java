@@ -165,12 +165,10 @@ public class DynamicPermissionsFragment extends DynamicFragment {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@Nullable MenuItem item) {
-        if (item != null) {
-            int id = item.getItemId();
-            if (id == R.id.ads_menu_app_info) {
-                DynamicPermissionUtils.launchAppInfo(getContext());
-            }
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.ads_menu_app_info) {
+            DynamicPermissionUtils.launchAppInfo(getContext());
         }
 
         return super.onOptionsItemSelected(item);

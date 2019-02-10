@@ -108,15 +108,15 @@ class AboutFragment : DynamicViewPagerFragment() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
         // TODO: Inflate menu for this fragment.
-        inflater!!.inflate(R.menu.ads_menu_about, menu)
+        inflater.inflate(R.menu.ads_menu_about, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item != null) when (item.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
             R.id.ads_menu_apps -> DynamicLinkUtils.moreApps(context!!, Constants.ME)
         }
 

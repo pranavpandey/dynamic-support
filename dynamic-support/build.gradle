@@ -37,6 +37,7 @@ android {
 
 dependencies {
     api "com.pranavpandey.android:dynamic-toasts:${versions.dynamic}"
+    api "androidx.fragment:fragment:${versions.fragment}"
     api "com.google.android.material:material:${versions.material}"
     api "com.google.code.gson:gson:${versions.gson}"
 }

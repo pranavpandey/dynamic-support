@@ -119,7 +119,7 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
         spinnerItems.add(DynamicSpinnerItem(null, "Spinner four"))
 
         // Set dynamic spinner image adapter with text and image view ids.
-        // Now, passing an array without icons to dide the image view.
+        // Now, passing an array without icons to hide the image view.
         mSpinnerThree!!.adapter = DynamicSpinnerImageAdapter(context!!,
                 R.layout.ads_layout_spinner_item,
                 R.id.ads_spinner_item_icon,
@@ -129,26 +129,25 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
         mSpinnerThree!!.setSelection(2)
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu?) {
+    override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
 
         // Try to force the menu icons.
-        DynamicMenuUtils.forceMenuIcons(menu!!)
+        DynamicMenuUtils.forceMenuIcons(menu)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
         // Inflate menu for this fragment.
-        inflater!!.inflate(R.menu.menu_widgets, menu)
+        inflater.inflate(R.menu.menu_widgets, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item != null) {
-            when (item.itemId) {
-                R.id.menu_search ->
-                    // Expand search view on search menu selected.
-                    dynamicActivity.expandSearchView(true)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_search -> {
+                // Expand search view on search menu selected.
+                dynamicActivity.expandSearchView(true)
             }
         }
 

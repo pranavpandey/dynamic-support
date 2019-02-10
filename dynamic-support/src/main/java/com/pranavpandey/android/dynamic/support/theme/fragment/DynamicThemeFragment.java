@@ -439,7 +439,7 @@ public class DynamicThemeFragment extends DynamicFragment {
     }
 
     @Override
-    public void onPrepareOptionsMenu(@Nullable Menu menu) {
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
         super.onPrepareOptionsMenu(menu);
 
         DynamicMenuUtils.forceMenuIcons(menu);
@@ -453,29 +453,27 @@ public class DynamicThemeFragment extends DynamicFragment {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@Nullable MenuItem item) {
-        if (item != null) {
-            int i = item.getItemId();
-            if (i == R.id.ads_menu_theme_copy) {
-                DynamicLinkUtils.copyToClipboard(getContext(), getString(R.string.ads_theme),
-                        mThemePreview.getDynamicAppTheme().toDynamicString());
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int i = item.getItemId();
+        if (i == R.id.ads_menu_theme_copy) {
+            DynamicLinkUtils.copyToClipboard(getContext(), getString(R.string.ads_theme),
+                    mThemePreview.getDynamicAppTheme().toDynamicString());
 
-                getDynamicActivity().getSnackBar(R.string.ads_theme_copy_done).show();
-            } else if (i == R.id.ads_menu_theme_share) {
-                DynamicLinkUtils.share(getContext(), null,
-                        mThemePreview.getDynamicAppTheme().toDynamicString());
-            } else if (i == R.id.ads_menu_theme_import) {
-                importTheme();
-            } else if (i == R.id.ads_menu_refresh) {
-                mSettingsChanged = false;
-                loadTheme(mDynamicAppTheme);
-            } else if (i == R.id.ads_menu_default) {
-                mSettingsChanged = false;
-                mDynamicAppTheme = new DynamicAppTheme(mDynamicAppThemeDefault);
-                loadTheme(mDynamicAppTheme);
+            getDynamicActivity().getSnackBar(R.string.ads_theme_copy_done).show();
+        } else if (i == R.id.ads_menu_theme_share) {
+            DynamicLinkUtils.share(getContext(), null,
+                    mThemePreview.getDynamicAppTheme().toDynamicString());
+        } else if (i == R.id.ads_menu_theme_import) {
+            importTheme();
+        } else if (i == R.id.ads_menu_refresh) {
+            mSettingsChanged = false;
+            loadTheme(mDynamicAppTheme);
+        } else if (i == R.id.ads_menu_default) {
+            mSettingsChanged = false;
+            mDynamicAppTheme = new DynamicAppTheme(mDynamicAppThemeDefault);
+            loadTheme(mDynamicAppTheme);
 
-                getDynamicActivity().getSnackBar(R.string.ads_theme_reset_desc).show();
-            }
+            getDynamicActivity().getSnackBar(R.string.ads_theme_reset_desc).show();
         }
 
         return super.onOptionsItemSelected(item);
