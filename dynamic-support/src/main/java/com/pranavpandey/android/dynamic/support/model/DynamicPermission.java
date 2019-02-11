@@ -16,7 +16,6 @@
 
 package com.pranavpandey.android.dynamic.support.model;
 
-import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -75,8 +74,6 @@ public class DynamicPermission implements Parcelable {
 
     /**
      * {@code true} if request this permission again.
-     *
-     * @see androidx.core.app.ActivityCompat#shouldShowRequestPermissionRationale(Activity, String)
      */
     private boolean askAgain;
 

@@ -115,7 +115,7 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
      *
      */
     public void setPermissions(@NonNull ArrayList<DynamicPermission> permissions,
-                               @Nullable PermissionListener permissionListener) {
+            @Nullable PermissionListener permissionListener) {
         mPermissions = permissions;
         mDangerousPermissions = new ArrayList<>();
         mPermissionsLeft = new ArrayList<>();
