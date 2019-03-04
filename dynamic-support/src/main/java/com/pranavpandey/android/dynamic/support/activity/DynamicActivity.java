@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -278,12 +279,14 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     @Override
-    public void onActionModeStarted(@NonNull android.view.ActionMode mode) {
+    public void onActionModeStarted(@NonNull ActionMode mode) {
         super.onActionModeStarted(mode);
 
-        DynamicDrawableUtils.setBackground(mode.getCustomView(),
-                DynamicDrawableUtils.colorizeDrawable(mode.getCustomView().getBackground(),
-                        DynamicTheme.getInstance().get().getBackgroundColor()));
+        if (mode.getCustomView() != null) {
+            DynamicDrawableUtils.setBackground(mode.getCustomView(),
+                    DynamicDrawableUtils.colorizeDrawable(mode.getCustomView().getBackground(),
+                            DynamicTheme.getInstance().get().getBackgroundColor()));
+        }
     }
 
     @Override
