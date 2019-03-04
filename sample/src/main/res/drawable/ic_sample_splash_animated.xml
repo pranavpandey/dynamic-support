@@ -23,10 +23,10 @@
 
     <target
         android:name="group_icon"
-        android:animation="@animator/rotate_sample" />
+        android:animation="@animator/rotate_splash" />
 
     <target
         android:name="path_icon"
-        android:animation="@animator/fade_sample" />
+        android:animation="@animator/fade_splash" />
 
 </animated-vector>
