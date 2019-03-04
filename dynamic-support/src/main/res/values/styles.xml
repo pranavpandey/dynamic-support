@@ -176,15 +176,6 @@
         <item name="windowActionModeOverlay">true</item>
     </style>
 
-    <style name="Base.DynamicApp.AlertDialog" parent="android:Widget">
-        <item name="android:layout">@layout/ads_alert_dialog</item>
-        <item name="listLayout">@layout/ads_dialog_list</item>
-        <item name="listItemLayout">@layout/ads_dialog_select_item</item>
-        <item name="multiChoiceItemLayout">@layout/ads_dialog_multi_choice</item>
-        <item name="singleChoiceItemLayout">@layout/ads_dialog_single_choice</item>
-        <item name="buttonIconDimen">@dimen/ads_dialog_button_icon_size</item>
-    </style>
-
     <style name="Theme.DynamicApp" parent="Base.DynamicApp.NoActionBar" />
     <style name="Theme.DynamicApp.Dark" parent="Base.DynamicApp.Dark.NoActionBar" />
     <style name="Theme.DynamicApp.Light" parent="Base.DynamicApp.Light.NoActionBar" />
@@ -195,8 +186,19 @@
     <style name="Theme.DynamicApp.Light.Translucent" />
     <style name="Theme.DynamicApp.DayNight.Translucent" />
 
+    <!-- Dialog -->
+    <style name="Base.DynamicApp.AlertDialog" parent="android:Widget">
+        <item name="android:layout">@layout/ads_alert_dialog</item>
+        <item name="listLayout">@layout/ads_dialog_list</item>
+        <item name="listItemLayout">@layout/ads_dialog_select_item</item>
+        <item name="multiChoiceItemLayout">@layout/ads_dialog_multi_choice</item>
+        <item name="singleChoiceItemLayout">@layout/ads_dialog_single_choice</item>
+        <item name="buttonIconDimen">@dimen/ads_dialog_button_icon_size</item>
+    </style>
+
     <!-- Text Appearance -->
-    <style name="TextAppearance" parent="TextAppearance.MaterialComponents.Body1" />
+    <style name="Base.TextAppearance" parent="TextAppearance.MaterialComponents.Body1" />
+    <style name="TextAppearance" parent="Base.TextAppearance" />
 
     <style name="TextAppearance.DynamicApp">
         <item name="android:textSize">@dimen/ads_font_size_default</item>
@@ -373,6 +375,14 @@
         <item name="ads_tintBackground">true</item>
     </style>
 
+    <style name="Widget.DynamicApp.TextInputEditText">
+        <item name="android:background">@null</item>
+        <item name="android:paddingTop">@dimen/ads_widget_text_input_edit_text_padding_top</item>
+        <item name="android:paddingLeft">@dimen/ads_widget_text_input_edit_text_padding</item>
+        <item name="android:paddingRight">@dimen/ads_widget_text_input_edit_text_padding</item>
+        <item name="android:paddingBottom">@dimen/ads_widget_text_input_edit_text_padding</item>
+    </style>
+
     <style name="Widget.DynamicApp.Button.Preference">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -517,10 +527,6 @@
 
     <style name="Widget.DynamicApp.Scroller.Nested">
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingTop">0dp</item>
-        <item name="android:paddingLeft">0dp</item>
-        <item name="android:paddingRight">0dp</item>
-        <item name="android:paddingBottom">0dp</item>
         <item name="android:overScrollMode">never</item>
         <item name="android:scrollbars">none</item>
     </style>

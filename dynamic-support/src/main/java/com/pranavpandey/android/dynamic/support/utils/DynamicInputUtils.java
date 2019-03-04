@@ -28,14 +28,12 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
-import androidx.core.view.TintableBackgroundView;
 import androidx.core.view.ViewCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -57,7 +55,7 @@ public final class DynamicInputUtils {
      * @param editText The edit text to set the cursor color.
      * @param color The color for the cursor.
      */
-    private static void setCursorColor(final @NonNull EditText editText, @ColorInt int color) {
+    public static void setCursorColor(final @NonNull EditText editText, @ColorInt int color) {
         @ColorInt int hintColor = DynamicColorUtils.adjustAlpha(
                 color, WidgetDefaults.ADS_ALPHA_HINT);
         editText.setHintTextColor(hintColor);
@@ -122,12 +120,7 @@ public final class DynamicInputUtils {
     public static void setColor(@NonNull EditText editText, @ColorInt int color) {
         ColorStateList editTextColorStateList = DynamicResourceUtils.getColorStateList(color);
 
-        if (editText instanceof TintableBackgroundView) {
-            ViewCompat.setBackgroundTintList(editText, editTextColorStateList);
-        } else if (DynamicVersionUtils.isLollipop()) {
-            editText.setBackgroundTintList(editTextColorStateList);
-        }
-
+        ViewCompat.setBackgroundTintList(editText, editTextColorStateList);
         setCursorColor(editText, color);
     }
 

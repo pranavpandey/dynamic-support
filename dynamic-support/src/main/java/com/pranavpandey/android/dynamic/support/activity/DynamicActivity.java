@@ -49,6 +49,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.pranavpandey.android.dynamic.support.R;
@@ -58,6 +59,7 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicFABUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicHintUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.widget.DynamicExtendedFloatingActionButton;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 
@@ -107,6 +109,13 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * {@link #setFAB(int, int, View.OnClickListener)} to enable it.
      */
     protected FloatingActionButton mFAB;
+
+    /**
+     * Extended floating action button used by this activity.
+     * <p>Use the methods {@link #setExtendedFAB(Drawable, String, int, View.OnClickListener)} or
+     * {@link #setExtendedFAB(int, int, int, View.OnClickListener)} to enable it.
+     */
+    protected ExtendedFloatingActionButton mExtendedFAB;
 
     /**
      * Coordinator layout used by this activity.
@@ -176,6 +185,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
         mSearchViewRoot = findViewById(R.id.ads_search_view_root);
         mSearchViewClear = findViewById(R.id.ads_search_view_clear);
         mFAB = findViewById(R.id.ads_fab);
+        mExtendedFAB = findViewById(R.id.ads_fab_extended);
 
         mCoordinatorLayout = findViewById(R.id.ads_coordinator_layout);
         mAppBarLayout = findViewById(R.id.ads_app_bar_layout);
@@ -198,11 +208,14 @@ public abstract class DynamicActivity extends DynamicStateActivity {
         setSearchView();
 
         if (savedInstanceState != null) {
-            mAppBarLayout.setExpanded(
-                    savedInstanceState.getBoolean(ADS_STATE_APP_BAR_COLLAPSED));
+            mAppBarLayout.setExpanded(savedInstanceState.getBoolean(ADS_STATE_APP_BAR_COLLAPSED));
 
             if (savedInstanceState.getInt(ADS_STATE_FAB_VISIBLE) != View.INVISIBLE) {
                 DynamicFABUtils.show(mFAB);
+            }
+
+            if (savedInstanceState.getInt(ADS_STATE_EXTENDED_FAB_VISIBLE) != View.INVISIBLE) {
+                DynamicFABUtils.show(mExtendedFAB, false);
             }
 
             if (savedInstanceState.getBoolean(ADS_STATE_SEARCH_VIEW_VISIBLE)) {
@@ -245,6 +258,12 @@ public abstract class DynamicActivity extends DynamicStateActivity {
 
         outState.putBoolean(ADS_STATE_APP_BAR_COLLAPSED, isAppBarCollapsed());
         outState.putInt(ADS_STATE_FAB_VISIBLE, mFAB.getVisibility());
+        outState.putInt(ADS_STATE_EXTENDED_FAB_VISIBLE, mExtendedFAB.getVisibility());
+
+        if (mExtendedFAB instanceof DynamicExtendedFloatingActionButton) {
+            outState.putBoolean(ADS_STATE_EXTENDED_FAB_STATE,
+                    ((DynamicExtendedFloatingActionButton) mExtendedFAB).isFABExtended());
+        }
 
         if (mSearchViewRoot != null) {
             outState.putBoolean(ADS_STATE_SEARCH_VIEW_VISIBLE,
@@ -773,6 +792,8 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
+     * Get the floating action button used by this activity.
+     *
      * @return The floating action button used by this activity.
      */
     public @Nullable FloatingActionButton getFAB() {
@@ -781,18 +802,20 @@ public abstract class DynamicActivity extends DynamicStateActivity {
 
     /**
      * Set a floating action button (FAB) used by this activity by supplying an image drawable,
-     * current visibility and a click listener. FAB will be tinted automatically according to the
-     * accent color used by this activity.
+     * current visibility and a click listener.
+     * <p>The FAB will be tinted automatically according to the accent color used by this activity.
      *
      * <p><p>Please use {@link #getFAB()} method to perform more operations dynamically.
      *
      * @param drawable The image drawable to be set.
      * @param visibility The visibility to be set.
-     *                   <p>C{@link View#VISIBLE}, {@link View#INVISIBLE} or {@link View#GONE}.
+     *                   <p>{@link View#VISIBLE}, {@link View#INVISIBLE} or {@link View#GONE}.
      * @param onClickListener Callback that will run when this view is clicked.
      */
     public void setFAB(@Nullable Drawable drawable, int visibility,
             @Nullable View.OnClickListener onClickListener) {
+        removeExtendedFAB();
+
         if (mFAB != null) {
             setFABImageDrawable(drawable);
             mFAB.setOnClickListener(onClickListener);
@@ -802,8 +825,8 @@ public abstract class DynamicActivity extends DynamicStateActivity {
 
     /**
      * Set a floating action button (FAB) used by this activity by supplying an image drawable,
-     * current visibility and a click listener. FAB will be tinted automatically according to the
-     * accent color used by this activity.
+     * current visibility and a click listener.
+     * <p>The FAB will be tinted automatically according to the accent color used by this activity.
      *
      * <p><p>Please use {@link #getFAB()} method to perform more operations dynamically.
      *
@@ -887,6 +910,180 @@ public abstract class DynamicActivity extends DynamicStateActivity {
             setFABImageDrawable(null);
             mFAB.setOnClickListener(null);
             hideFAB();
+        }
+    }
+
+    /**
+     * Get the extended floating action button used by this activity.
+     *
+     * @return The extended floating action button used by this activity.
+     */
+    public @Nullable ExtendedFloatingActionButton getExtendedFAB() {
+        return mExtendedFAB;
+    }
+
+    /**
+     * Set an extended floating action button (FAB) used by this activity by supplying an icon,
+     * a text, current visibility and a click listener.
+     * <p>The FAB will be tinted automatically according to the accent color used by this activity.
+     *
+     * <p><p>Please use {@link #getExtendedFAB()} method to perform more operations dynamically.
+     *
+     * @param icon The icon drawable to be set.
+     * @param text The text to be set.
+     * @param visibility The visibility to be set.
+     *                   <p>{@link View#VISIBLE}, {@link View#INVISIBLE} or {@link View#GONE}.
+     * @param onClickListener Callback that will run when this view is clicked.
+     */
+    public void setExtendedFAB(@Nullable Drawable icon, @Nullable String text,
+            int visibility, @Nullable View.OnClickListener onClickListener) {
+        removeFAB();
+
+        if (mExtendedFAB != null) {
+            updateExtendedFAB(icon, text);
+            mExtendedFAB.setOnClickListener(onClickListener);
+            setExtendedFABVisibility(visibility);
+        }
+    }
+
+    /**
+     * Set an extended floating action button (FAB) used by this activity by supplying an icon,
+     * a text, current visibility and a click listener.
+     * <p>The FAB will be tinted automatically according to the accent color used by this activity.
+     *
+     * <p><p>Please use {@link #getExtendedFAB()} method to perform more operations dynamically.
+     *
+     * @param drawableRes The icon drawable resource to be set.
+     * @param resId The string resource id to be set.
+     * @param visibility The visibility to be set.
+     *                   <p>{@link View#VISIBLE}, {@link View#INVISIBLE} or {@link View#GONE}.
+     * @param onClickListener Callback that will run when this view is clicked.
+     */
+    public void setExtendedFAB(@DrawableRes int drawableRes, @StringRes int resId,
+            int visibility, @Nullable View.OnClickListener onClickListener) {
+        setExtendedFAB(DynamicResourceUtils.getDrawable(this, drawableRes),
+                getString(resId), visibility, onClickListener);
+    }
+
+    /**
+     * Set the extended FAB icon and text.
+     * <p>Icon and text will be tinted automatically according to its background color to provide
+     * best visibility.
+     *
+     * @param icon The icon drawable to be set.
+     * @param text The text to be set.
+     */
+    public void updateExtendedFAB(@Nullable Drawable icon, @Nullable String text) {
+        if (mExtendedFAB != null) {
+            mExtendedFAB.setText(text);
+            mExtendedFAB.setIcon(icon);
+        }
+    }
+
+    /**
+     * Set the extended FAB icon and text.
+     * <p>Icon and text will be tinted automatically according to its background color to provide
+     * best visibility.
+     *
+     * @param drawableRes The icon drawable resource to be set.
+     * @param resId The string resource id to be set.
+     */
+    public void updateExtendedFAB(@DrawableRes int drawableRes, @StringRes int resId) {
+        updateExtendedFAB(DynamicResourceUtils.getDrawable(this, drawableRes), getString(resId));
+    }
+
+    /**
+     * Set the extended FAB visibility to {@link View#VISIBLE}, {@link View#INVISIBLE}
+     * or {@link View#GONE}.
+     */
+    public void setExtendedFABVisibility(int visibility) {
+        if (mExtendedFAB != null && visibility != ADS_VISIBILITY_EXTENDED_FAB_NO_CHANGE) {
+            switch (visibility) {
+                case View.VISIBLE:
+                    DynamicFABUtils.show(mExtendedFAB, false);
+                    break;
+                case View.INVISIBLE:
+                case View.GONE:
+                    DynamicFABUtils.hide(mExtendedFAB, false);
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Shrink the extended FAB.
+     */
+    public void shrinkFAB() {
+        if (mExtendedFAB != null) {
+            mExtendedFAB.shrink();
+        }
+    }
+
+    /**
+     * Shrink the extended FAB.
+     *
+     * @param allowExtended {@code true} if the FAB can be extended.
+     */
+    public void shrinkFAB(boolean allowExtended) {
+        if (mExtendedFAB != null) {
+            shrinkFAB();
+
+            if (mExtendedFAB instanceof DynamicExtendedFloatingActionButton) {
+                ((DynamicExtendedFloatingActionButton) mExtendedFAB)
+                        .setAllowExtended(allowExtended);
+            }
+        }
+    }
+
+    /**
+     * Extend the extended FAB.
+     */
+    public void extendFAB() {
+        if (mExtendedFAB != null) {
+            mExtendedFAB.extend();
+        }
+    }
+
+    /**
+     * Shrink the extended FAB.
+     *
+     * @param allowExtended {@code true} if the FAB can be extended.
+     */
+    public void extendFAB(boolean allowExtended) {
+        if (mExtendedFAB != null) {
+            extendFAB();
+
+            if (mExtendedFAB instanceof DynamicExtendedFloatingActionButton) {
+                ((DynamicExtendedFloatingActionButton) mExtendedFAB)
+                        .setAllowExtended(allowExtended);
+            }
+        }
+    }
+
+    /**
+     * Show the extended FAB by setting its visibility to {@link View#VISIBLE}.
+     */
+    public void showExtendedFAB() {
+        setExtendedFABVisibility(View.VISIBLE);
+    }
+
+    /**
+     * Hide the extended FAB by setting its visibility to {@link View#GONE}.
+     */
+    public void hideExtendedFAB() {
+        setExtendedFABVisibility(View.GONE);
+    }
+
+    /**
+     * Remove the extended FAB associated with this activity.
+     * <p>Please call the methods {@link #setExtendedFAB(int, int, int, View.OnClickListener)}
+     * or {@link #setExtendedFAB(Drawable, String, int, View.OnClickListener)} to set it again.
+     */
+    public void removeExtendedFAB() {
+        if (mExtendedFAB != null) {
+            updateExtendedFAB(null, null);
+            mExtendedFAB.setOnClickListener(null);
+            hideExtendedFAB();
         }
     }
 

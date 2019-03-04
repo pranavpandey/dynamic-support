@@ -28,7 +28,7 @@
         android:paddingLeft="@dimen/ads_dialog_margin_start_end_small"
         android:paddingRight="@dimen/ads_dialog_margin_start_end_small"
         android:orientation="vertical"
-        android:descendantFocusability="blocksDescendants">
+        android:focusableInTouchMode="true">
 
         <LinearLayout
             android:id="@+id/ads_color_picker_presets"
@@ -168,8 +168,7 @@
                         android:digits="0123456789abcdefABCDEF"
                         android:singleLine="true"
                         android:textSize="@dimen/ads_picker_font_size_medium"
-                        app:ads_colorType="accent"
-                        tools:ignore="HardcodedText" />
+                        app:ads_colorType="accent" />
 
                 </LinearLayout>
 

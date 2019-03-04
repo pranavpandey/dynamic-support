@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.behavior;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -26,6 +27,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.ViewCompat;
 
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pranavpandey.android.dynamic.support.utils.DynamicFABUtils;
 
@@ -47,8 +49,9 @@ public class DynamicFABScrollBehavior extends AppBarLayout.ScrollingViewBehavior
 
     @Override
     public boolean layoutDependsOn(CoordinatorLayout parent, View child, View dependency) {
-        return super.layoutDependsOn(parent, child, dependency) ||
-                dependency instanceof FloatingActionButton;
+        return super.layoutDependsOn(parent, child, dependency)
+                || dependency instanceof FloatingActionButton
+                || dependency instanceof ExtendedFloatingActionButton;
     }
 
     @Override
@@ -64,9 +67,9 @@ public class DynamicFABScrollBehavior extends AppBarLayout.ScrollingViewBehavior
     @Override
     public void onNestedScroll(@NonNull CoordinatorLayout coordinatorLayout,
             @NonNull View child, @NonNull View target, int dxConsumed, int dyConsumed,
-            int dxUnconsumed, int dyUnconsumed, int type) {
-        super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed,
-                dxUnconsumed, dyUnconsumed, type);
+            int dxUnconsumed, int dyUnconsumed, int type, @NonNull int[] consumed) {
+        super.onNestedScroll(coordinatorLayout, child, target, dxConsumed,
+                dyConsumed, dxUnconsumed, dyUnconsumed, type, consumed);
         if (dyConsumed > 0) {
             // User scrolled down -> hide the FAB
             List<View> dependencies = coordinatorLayout.getDependencies(child);
@@ -74,6 +77,10 @@ public class DynamicFABScrollBehavior extends AppBarLayout.ScrollingViewBehavior
                 if (view instanceof FloatingActionButton
                         && ((FloatingActionButton) view).getDrawable() != null) {
                     DynamicFABUtils.hide((FloatingActionButton) view);
+                } else if (view instanceof ExtendedFloatingActionButton
+                        && (((ExtendedFloatingActionButton) view).getIcon() != null
+                        || !TextUtils.isEmpty(((ExtendedFloatingActionButton) view).getText()))) {
+                    DynamicFABUtils.hide((ExtendedFloatingActionButton) view, true);
                 }
             }
         } else if (dyConsumed < 0) {
@@ -83,6 +90,10 @@ public class DynamicFABScrollBehavior extends AppBarLayout.ScrollingViewBehavior
                 if (view instanceof FloatingActionButton
                         && ((FloatingActionButton) view).getDrawable() != null) {
                     DynamicFABUtils.show((FloatingActionButton) view);
+                } else if (view instanceof ExtendedFloatingActionButton
+                        && (((ExtendedFloatingActionButton) view).getIcon() != null
+                        || !TextUtils.isEmpty(((ExtendedFloatingActionButton) view).getText()))) {
+                    DynamicFABUtils.show((ExtendedFloatingActionButton) view, true);
                 }
             }
         }

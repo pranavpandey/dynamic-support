@@ -162,6 +162,10 @@
     <dimen name="ads_list_selector_rect_radius">4dp</dimen>
     <dimen name="ads_list_selector_round_radius">32dp</dimen>
 
+    <!-- Widgets -->
+    <dimen name="ads_widget_text_input_edit_text_padding">8dp</dimen>
+    <dimen name="ads_widget_text_input_edit_text_padding_top">28dp</dimen>
+
     <!-- Dialog -->
     <dimen name="ads_dialog_margin_start_end">24dp</dimen>
     <dimen name="ads_dialog_margin_start_end_small">22dp</dimen>
@@ -224,5 +228,19 @@
     <dimen name="ads_notification_footer_margin">6dp</dimen>
     <dimen name="ads_notification_footer_margin_horizontal">10dp</dimen>
     <dimen name="ads_notification_font_size">12sp</dimen>
+
+    <!-- Toast dimensions -->
+    <dimen name="ads_font_toast">14sp</dimen>
+    <dimen name="ads_icon_toast">20dp</dimen>
+    <dimen name="ads_margin_toast_top_bottom">@dimen/ads_margin_regular</dimen>
+    <dimen name="ads_margin_toast_right_left">20dp</dimen>
+    <dimen name="ads_margin_toast_small">@dimen/ads_margin_small</dimen>
+
+    <!-- Hint dimensions -->
+    <dimen name="ads_font_hint">12sp</dimen>
+    <dimen name="ads_icon_hint">16dp</dimen>
+    <dimen name="ads_margin_hint_top_bottom">@dimen/ads_margin_small</dimen>
+    <dimen name="ads_margin_hint_right_left">@dimen/ads_margin_medium</dimen>
+    <dimen name="ads_margin_hint_small">@dimen/ads_margin_tiny</dimen>
 
 </resources>

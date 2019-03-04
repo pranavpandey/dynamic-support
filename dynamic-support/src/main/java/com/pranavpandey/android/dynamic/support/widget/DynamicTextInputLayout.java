@@ -18,7 +18,6 @@ package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
@@ -140,6 +139,19 @@ public class DynamicTextInputLayout extends TextInputLayout implements
 
         setCorner((float) DynamicTheme.getInstance().get().getCornerRadius());
         setColor();
+
+        post(new Runnable() {
+            @Override
+            public void run() {
+                // Fix crash while setting the hint on some devices.
+                // More info: https://issuetracker.google.com/issues/112105087
+                // First setting the same hint for both text input layout and edit text in xml
+                // then, setting the edit text hint to {@code null} to handle duplicate hints.
+                if (getEditText() != null && getEditText().getHint().equals(getHint())) {
+                    getEditText().setHint(null);
+                }
+            }
+        });
     }
 
     @Override
@@ -244,12 +256,8 @@ public class DynamicTextInputLayout extends TextInputLayout implements
                     DynamicColorUtils.getStateColor(mContrastWithColor,
                     WidgetDefaults.ADS_STATE_BOX_LIGHT, WidgetDefaults.ADS_STATE_BOX_DARK));
 
-            if (getBoxBackgroundColor() != Color.TRANSPARENT) {
-                setBoxBackgroundColor(boxColor);
-            } else {
-                setBoxStrokeColor(boxColor);
-            }
-
+            setBoxBackgroundColor(boxColor);
+            setBoxStrokeColor(mColor);
             DynamicInputUtils.setColor(this, mColor);
         }
     }

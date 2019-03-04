@@ -45,6 +45,7 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCheckBox;
 import com.pranavpandey.android.dynamic.support.widget.DynamicDrawerLayout;
 import com.pranavpandey.android.dynamic.support.widget.DynamicEditText;
+import com.pranavpandey.android.dynamic.support.widget.DynamicExtendedFloatingActionButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicFloatingActionButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
@@ -280,6 +281,9 @@ final class DynamicLayoutInflater implements LayoutInflater.Factory2 {
             case "android.support.design.widget.FloatingActionButton":
             case "com.google.android.material.floatingactionbutton.FloatingActionButton":
                 view = new DynamicFloatingActionButton(context, attrs);
+                break;
+            case "com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton":
+                view = new DynamicExtendedFloatingActionButton(context, attrs);
                 break;
             case "ListView":
                 view = new DynamicListView(context, attrs);

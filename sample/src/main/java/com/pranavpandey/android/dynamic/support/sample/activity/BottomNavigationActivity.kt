@@ -110,6 +110,8 @@ class BottomNavigationActivity : DynamicActivity() {
                 }
             }
 
+            // Show floating action button after switching the fragment.
+            showFAB()
             true
         }
 

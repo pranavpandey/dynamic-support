@@ -90,8 +90,14 @@ class DrawerActivity : DynamicDrawerActivity() {
             switchFragment(HomeFragment.newInstance(), false)
         }
 
-        // Set floating action button to view sources on GitHub.
-        setFAB(R.drawable.ads_ic_social_github, fabVisibility) {
+        // Set floating action button to view the sources on GitHub.
+//        setFAB(R.drawable.ads_ic_social_github, fabVisibility) {
+//            DynamicLinkUtils.viewUrl(this@DrawerActivity, Constants.URL_GITHUB)
+//        }
+
+        // Set extended floating action button to view the sources on GitHub.
+        setExtendedFAB(R.drawable.ads_ic_social_github,
+                R.string.ads_license_sources, fabVisibility) {
             DynamicLinkUtils.viewUrl(this@DrawerActivity, Constants.URL_GITHUB)
         }
 

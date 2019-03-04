@@ -16,29 +16,32 @@
 
 package com.pranavpandey.android.dynamic.support.widget;
 
+import android.animation.Animator;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
 
-import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.Theme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
+import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * A TextInputEditText to change its color according to the supplied parameters.
+ * A FloatingActionButton to change its color according to the supplied parameters.
  */
-public class DynamicTextInputEditText extends TextInputEditText implements DynamicWidget {
+public class DynamicExtendedFloatingActionButton
+        extends ExtendedFloatingActionButton implements DynamicWidget {
 
     /**
      * Color type applied to this view.
@@ -78,17 +81,27 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
      */
     private @Theme.BackgroundAware int mBackgroundAware;
 
-    public DynamicTextInputEditText(@NonNull Context context) {
+    /**
+     * {@code true} if this view is in the extended state.
+     */
+    private boolean mFABExtended;
+
+    /**
+     * {@code true} if this view can be extended.
+     */
+    private boolean mAllowExtended;
+
+    public DynamicExtendedFloatingActionButton(@NonNull Context context) {
         this(context, null);
     }
 
-    public DynamicTextInputEditText(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicExtendedFloatingActionButton(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         loadFromAttributes(attrs);
     }
 
-    public DynamicTextInputEditText(@NonNull Context context,
+    public DynamicExtendedFloatingActionButton(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
@@ -97,8 +110,7 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
 
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.DynamicTheme);
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DynamicTheme);
 
         try {
             mColorType = a.getInt(
@@ -116,15 +128,6 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicTheme_ads_backgroundAware,
                     WidgetDefaults.getBackgroundAware());
-
-            if (mColorType == Theme.ColorType.ACCENT) {
-                setTextColor(DynamicColorUtils.getContrastColor(
-                        DynamicTheme.getInstance().get().getTextPrimaryColor(),
-                        DynamicTheme.getInstance().get().getBackgroundColor()));
-                setHintTextColor(DynamicColorUtils.getContrastColor(
-                        DynamicTheme.getInstance().get().getTextSecondaryColor(),
-                        DynamicTheme.getInstance().get().getBackgroundColor()));
-            }
         } finally {
             a.recycle();
         }
@@ -134,6 +137,41 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
 
     @Override
     public void initialize() {
+        mFABExtended = true;
+        mAllowExtended = true;
+
+        addOnExtendAnimationListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) { }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mFABExtended = true;
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) { }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) { }
+        });
+
+        addOnShrinkAnimationListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) { }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mFABExtended = false;
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) { }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) { }
+        });
+
         if (mColorType != Theme.ColorType.NONE
                 && mColorType != Theme.ColorType.CUSTOM) {
             mColor = DynamicTheme.getInstance().resolveColorType(mColorType);
@@ -224,13 +262,46 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
     }
 
     @Override
-    protected void onFocusChanged(boolean gainFocus, @ViewCompat.FocusDirection int direction,
-            @Nullable Rect previouslyFocusedRect) {
-        super.onFocusChanged(gainFocus, direction, previouslyFocusedRect);
+    public void setIcon(@Nullable Drawable drawable) {
+        super.setIcon(drawable);
 
-        if (gainFocus) {
-            setColor();
-        }
+        setColor();
+    }
+
+    /**
+     * Sets whether this view is in the extended state.
+     *
+     * @param extended {@code true} if this view is in the extended state.
+     */
+    public void setFABExtended(boolean extended) {
+        this.mFABExtended = extended;
+    }
+
+    /**
+     * Returns whether this view is in the extended state.
+     *
+     * {@code true} if this view is in the extended state.
+     */
+    public boolean isFABExtended() {
+        return mFABExtended;
+    }
+
+    /**
+     * Sets whether this view can be extended.
+     *
+     * @param allowExtended {@code true} if this view can be extended.
+     */
+    public void setAllowExtended(boolean allowExtended) {
+        this.mAllowExtended = allowExtended;
+    }
+
+    /**
+     * Returns whether this view can be extended.
+     *
+     * {@code true} if this view can be extended.
+     */
+    public boolean isAllowExtended() {
+        return mAllowExtended;
     }
 
     @Override
@@ -240,13 +311,14 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
                 mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
-            post(new Runnable() {
-                @Override
-                public void run() {
-                    // Do not set background color to avoid issues with TextInputLayout.
-                    DynamicInputUtils.setCursorColor(DynamicTextInputEditText.this, mColor);
-                }
-            });
+            DynamicTintUtils.setViewBackgroundTint(this,
+                    mContrastWithColor, mColor, false, false);
+
+            ColorStateList colorStateList = DynamicResourceUtils.getColorStateList(
+                    mContrastWithColor, DynamicColorUtils.getTintColor(mColor),
+                    DynamicColorUtils.getTintColor(mColor), false);
+            setIconTint(colorStateList);
+            setTextColor(colorStateList);
         }
     }
 }

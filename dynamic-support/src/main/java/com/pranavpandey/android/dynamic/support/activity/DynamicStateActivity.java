@@ -57,6 +57,16 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     protected static final String ADS_STATE_FAB_VISIBLE = "ads_state_fab_visible";
 
     /**
+     * Extended FAB key to maintain its state.
+     */
+    protected static final String ADS_STATE_EXTENDED_FAB_VISIBLE = "ads_state_extended_fab_visible";
+
+    /**
+     * Extended FAB state key to maintain its state.
+     */
+    protected static final String ADS_STATE_EXTENDED_FAB_STATE = "ads_state_extended_fab_state";
+
+    /**
      * Search key to maintain its state.
      */
     protected static final String ADS_STATE_SEARCH_VIEW_VISIBLE = "ads_state_search_view_visible";
@@ -65,6 +75,16 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
      * FAB visibility constant for no change.
      */
     protected static final int ADS_VISIBILITY_FAB_NO_CHANGE = -1;
+
+    /**
+     * Extended FAB visibility constant for no change.
+     */
+    protected static final int ADS_VISIBILITY_EXTENDED_FAB_NO_CHANGE = -1;
+
+    /**
+     * Extended FAB state constant for extended.
+     */
+    protected static final boolean ADS_STATE_EXTENDED_FAB_NO_CHANGE = true;
 
     /**
      * Content fragment used by this activity.
@@ -80,6 +100,16 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
      * Current FAB visibility.
      */
     private int mFABVisibility;
+
+    /**
+     * Current extended FAB visibility.
+     */
+    private int mExtendedFABVisibility;
+
+    /**
+     * Current extended FAB state.
+     */
+    private boolean mExtendedFABState;
 
     /**
      * {@code true} if the app bar is in collapsed state.
@@ -124,6 +154,8 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
 
         if (savedInstanceState != null) {
             mFABVisibility = ADS_VISIBILITY_FAB_NO_CHANGE;
+            mExtendedFABVisibility = ADS_VISIBILITY_EXTENDED_FAB_NO_CHANGE;
+            mExtendedFABState = ADS_STATE_EXTENDED_FAB_NO_CHANGE;
             mContentFragmentTag = savedInstanceState.getString(ADS_STATE_CONTENT_FRAGMENT_TAG);
             mContentFragment = getSupportFragmentManager().findFragmentByTag(mContentFragmentTag);
         }
@@ -245,6 +277,42 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
      */
     public void setFABVisibility(int visibility) {
         this.mFABVisibility = visibility;
+    }
+
+    /**
+     * Returns the current extended FAB visibility.
+     *
+     * @return The current extended FAB visibility.
+     */
+    public int getExtendedFABVisibility() {
+        return mExtendedFABVisibility;
+    }
+
+    /**
+     * Set the current extended FAB visibility.
+     *
+     * @param visibility The extended FAB visibility to be set.
+     */
+    public void setExtendedFABVisibility(int visibility) {
+        this.mExtendedFABVisibility = visibility;
+    }
+
+    /**
+     * Returns whether the extend FAB is in the extended state.
+     *
+     * @return {@code true} if the extend FAB is in the extended state.
+     */
+    public boolean getExtendedFABState() {
+        return mExtendedFABState;
+    }
+
+    /**
+     * Set the current extended FAB state.
+     *
+     * @param extended {@code true} if the extend FAB is in the extended state.
+     */
+    public void setExtendedFABState(boolean extended) {
+        this.mExtendedFABState = extended;
     }
 
     /**

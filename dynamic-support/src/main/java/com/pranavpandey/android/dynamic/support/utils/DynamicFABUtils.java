@@ -18,7 +18,9 @@ package com.pranavpandey.android.dynamic.support.utils;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.pranavpandey.android.dynamic.support.widget.DynamicExtendedFloatingActionButton;
 
 /**
  * Helper class to perform various {@link FloatingActionButton} operations.
@@ -36,6 +38,23 @@ public class DynamicFABUtils {
     }
 
     /**
+     * Same animation that FloatingActionButton.Behavior uses to hide the extended FAB when the
+     * AppBarLayout exits.
+     *
+     * @param extendedFab The extended FAB to set hide animation.
+     */
+    public static void hide(@NonNull ExtendedFloatingActionButton extendedFab,
+            boolean shrinkBefore) {
+        if (shrinkBefore && (extendedFab instanceof DynamicExtendedFloatingActionButton
+                && ((DynamicExtendedFloatingActionButton) extendedFab).isFABExtended())) {
+            extendedFab.shrink();
+            return;
+        }
+
+        extendedFab.hide();
+    }
+
+    /**
      * Same animation that FloatingActionButton.Behavior uses to show the FAB when the
      * AppBarLayout enters.
      *
@@ -43,5 +62,22 @@ public class DynamicFABUtils {
      */
     public static void show(@NonNull FloatingActionButton fab) {
         fab.show();
+    }
+
+    /**
+     * Same animation that FloatingActionButton.Behavior uses to show the extended FAB when the
+     * AppBarLayout enters.
+     *
+     * @param extendedFab The FAB to set show animation.
+     */
+    public static void show(@NonNull ExtendedFloatingActionButton extendedFab,
+            boolean extendAfter) {
+        extendedFab.show();
+
+        if (extendAfter && (extendedFab instanceof DynamicExtendedFloatingActionButton
+                && ((DynamicExtendedFloatingActionButton) extendedFab).isAllowExtended()
+                && !((DynamicExtendedFloatingActionButton) extendedFab).isFABExtended())) {
+            extendedFab.extend();
+        }
     }
 }

@@ -53,6 +53,8 @@
 
         <include layout="@layout/ads_layout_fab_bottom" />
 
+        <include layout="@layout/ads_layout_fab_extended_bottom" />
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <FrameLayout
