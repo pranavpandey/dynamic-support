@@ -254,7 +254,8 @@
                         <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/widget_text_input_layout" />
+                            android:hint="@string/widget_text_input_layout"
+                            style="@style/Widget.DynamicApp.TextInputEditText" />
 
                     </com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout>
 
