@@ -17,8 +17,7 @@
 
 <objectAnimator
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:interpolator="@android:anim/accelerate_interpolator"
-    android:duration="@integer/animation_duration_splash"
-    android:propertyName="fillAlpha"
-    android:valueFrom="0"
-    android:valueTo="1" />
+    android:interpolator="@android:anim/decelerate_interpolator"
+    android:propertyName="fillAlpha" android:valueType="floatType"
+    android:valueFrom="0" android:valueTo="1.0"
+    android:duration="@integer/animation_duration_splash" />

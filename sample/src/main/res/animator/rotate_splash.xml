@@ -18,7 +18,6 @@
 <objectAnimator
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:interpolator="@android:anim/accelerate_decelerate_interpolator"
-    android:duration="@integer/animation_duration_splash"
     android:propertyName="rotation"
-    android:valueFrom="0"
-    android:valueTo="90" />
+    android:valueFrom="0" android:valueTo="90"
+    android:duration="@integer/animation_duration_splash" />
