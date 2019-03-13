@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -47,6 +48,7 @@ import androidx.core.content.ContextCompat;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.Theme;
+import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.toasts.DynamicHint;
@@ -70,17 +72,27 @@ public class DynamicColorView extends FrameLayout {
     /**
      * Constant for color view icon divisor.
      */
-    private static final float ADS_ICON_DIVISOR = 2.2f;
+    private static final float ICON_DIVISOR = 2.2f;
 
     /**
-     * Constant for color view state alpha.
+     * Alpha constant for color view state.
      */
-    private static final int ADS_STATE_ALPHA = 60;
+    private static final int ALPHA_STATE = 60;
+
+    /**
+     * Alpha constant for color view selector.
+     */
+    private static final int ALPHA_SELECTOR = 100;
 
     /**
      * RectF to draw the color view.
      */
     private RectF mRectF;
+
+    /**
+     * Paint for the alpha drawable.
+     */
+    private Paint mAlphaPaint;
 
     /**
      * Paint for the color.
@@ -170,9 +182,10 @@ public class DynamicColorView extends FrameLayout {
             a.recycle();
         }
 
-        mColorPaint = new Paint();
-        mColorStrokePaint = new Paint();
-        mSelectorPaint = new Paint();
+        mAlphaPaint = DynamicPickerUtils.getAlphaPatternPaint(DynamicUnitUtils.convertDpToPixels(4));
+        mColorPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mColorStrokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mSelectorPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mRectF = new RectF(0, 0, getMeasuredWidth(), getMeasuredHeight());
 
         mColorPaint.setStyle(Paint.Style.FILL);
@@ -180,9 +193,6 @@ public class DynamicColorView extends FrameLayout {
         mSelectorPaint.setStyle(Paint.Style.FILL);
         mColorStrokePaint.setStrokeWidth(ADS_STROKE_WIDTH);
         mColorStrokePaint.setStrokeCap(Paint.Cap.ROUND);
-        mColorStrokePaint.setAntiAlias(true);
-        mColorPaint.setAntiAlias(true);
-        mSelectorPaint.setAntiAlias(true);
         mSelectorPaint.setFilterBitmap(true);
 
         onUpdate(mColor);
@@ -232,14 +242,21 @@ public class DynamicColorView extends FrameLayout {
             mSelectorBitmap = DynamicBitmapUtils.getBitmapFormDrawable(
                     DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_check));
             mColorPaint.setColor(color);
-            mColorStrokePaint.setColor(DynamicColorUtils.getTintColor(color));
+            mColorStrokePaint.setColor(DynamicColorUtils.removeAlpha(
+                    DynamicColorUtils.getTintColor(color)));
 
             mColorPaint.setShader(null);
         }
 
-        mSelectorPaint.setColor(mColorStrokePaint.getColor());
+        if (Color.alpha(getColor()) < ALPHA_SELECTOR) {
+            mSelectorPaint.setColor(
+                    DynamicColorUtils.getContrastColor(mColorStrokePaint.getColor(),
+                    DynamicTheme.getInstance().get().getBackgroundColor()));
+        } else {
+            mSelectorPaint.setColor(mColorStrokePaint.getColor());
+        }
         mSelectorPaint.setColorFilter(new PorterDuffColorFilter(
-                mColorStrokePaint.getColor(), PorterDuff.Mode.SRC_ATOP));
+                mSelectorPaint.getColor(), PorterDuff.Mode.SRC_ATOP));
     }
 
     @Override
@@ -254,23 +271,30 @@ public class DynamicColorView extends FrameLayout {
     }
 
     @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        mRectF.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        mRectF.set(ADS_STROKE_WIDTH, ADS_STROKE_WIDTH,
+                mRectF.width() - ADS_STROKE_WIDTH, mRectF.height() - ADS_STROKE_WIDTH);
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        mRectF.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-        mRectF.set(ADS_STROKE_WIDTH, ADS_STROKE_WIDTH, mRectF.width() - ADS_STROKE_WIDTH,
-                mRectF.height() - ADS_STROKE_WIDTH);
-
         if (mColorShape == DynamicColorShape.CIRCLE) {
+            canvas.drawOval(mRectF, mAlphaPaint);
             canvas.drawOval(mRectF, mColorPaint);
             canvas.drawOval(mRectF, mColorStrokePaint);
         } else {
+            canvas.drawRoundRect(mRectF, mCornerRadius, mCornerRadius, mAlphaPaint);
             canvas.drawRoundRect(mRectF, mCornerRadius, mCornerRadius, mColorPaint);
             canvas.drawRoundRect(mRectF, mCornerRadius, mCornerRadius, mColorStrokePaint);
         }
 
         if (mSelected) {
-            final int selectorSize = (int) (getMeasuredWidth() - getMeasuredWidth() / ADS_ICON_DIVISOR);
+            int selectorSize = (int) (getMeasuredWidth() - getMeasuredWidth() / ICON_DIVISOR);
             mSelectorBitmap = DynamicBitmapUtils
                     .resizeBitmap(mSelectorBitmap, selectorSize, selectorSize);
 
@@ -327,7 +351,7 @@ public class DynamicColorView extends FrameLayout {
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[] {android.R.attr.state_pressed},
                 new BitmapDrawable(getResources(), bitmap));
-        stateListDrawable.setAlpha(ADS_STATE_ALPHA);
+        stateListDrawable.setAlpha(ALPHA_STATE);
 
         return stateListDrawable;
     }
@@ -505,8 +529,7 @@ public class DynamicColorView extends FrameLayout {
     @Deprecated
     @Override
     public void setBackground(Drawable background) {
-        throw new IllegalStateException(
-                "Cannot use setBackground(Drawable) on DynamicColorView.");
+        throw new IllegalStateException("Cannot use setBackground(Drawable) on DynamicColorView.");
     }
 
     @Deprecated
@@ -519,7 +542,6 @@ public class DynamicColorView extends FrameLayout {
     @Deprecated
     @Override
     public void setActivated(boolean activated) {
-        throw new IllegalStateException(
-                "Cannot use setActivated(boolean) on DynamicColorView.");
+        throw new IllegalStateException("Cannot use setActivated(boolean) on DynamicColorView.");
     }
 }

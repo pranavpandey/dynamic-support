@@ -334,8 +334,8 @@ public class DynamicColorPicker extends DynamicView {
         mEditTextWatcher =
                 new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence s, int start,
-                                                  int count, int after) { }
+                    public void beforeTextChanged(CharSequence s,
+                            int start, int count, int after) { }
 
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -351,7 +351,7 @@ public class DynamicColorPicker extends DynamicView {
                         }
 
                         mColorView.setColor(mSelectedColor);
-                        mEditText.setColor(mSelectedColor);
+                        mEditText.setColor(DynamicColorUtils.removeAlpha(mSelectedColor));
                     }
 
                     @Override
@@ -361,8 +361,8 @@ public class DynamicColorPicker extends DynamicView {
         mHSVSeekBarListener =
                 new SeekBar.OnSeekBarChangeListener() {
                     @Override
-                    public void onProgressChanged(SeekBar seekBar, int progress,
-                                                  boolean fromUser) {
+                    public void onProgressChanged(SeekBar seekBar,
+                            int progress, boolean fromUser) {
                         if (!mUpdatingCustomColor && fromUser) {
                             mHSVHue = mSeekBarHue.getProgress();
                             mHSVSaturation = mSeekBarSaturation.getProgress() / 100f;
@@ -390,8 +390,8 @@ public class DynamicColorPicker extends DynamicView {
         mRGBSeekBarListener =
                 new SeekBar.OnSeekBarChangeListener() {
                     @Override
-                    public void onProgressChanged(SeekBar seekBar, int progress,
-                                                  boolean fromUser) {
+                    public void onProgressChanged(SeekBar seekBar,
+                            int progress, boolean fromUser) {
                         if (!mUpdatingCustomColor && fromUser) {
                             if (mAlpha) {
                                 setCustom(Color.argb(mSeekBarAlpha.getProgress(),

@@ -25,7 +25,7 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.utils.DynamicSeekBarUtils;
+import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
 
 /**
  * A DynamicSeekBar to provide a hue bar for color picker.
@@ -50,7 +50,7 @@ public class DynamicHueSeekBar extends DynamicSeekBar {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
-        DynamicSeekBarUtils.setHueDrawable(this);
+        DynamicPickerUtils.setHueDrawable(this);
     }
 
     @Override

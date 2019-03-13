@@ -17,7 +17,11 @@
 package com.pranavpandey.android.dynamic.support.utils;
 
 import android.annotation.TargetApi;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
 import android.graphics.LinearGradient;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.ShapeDrawable;
@@ -32,7 +36,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 /**
  * Helper class to perform various {@link SeekBar} operations.
  */
-public class DynamicSeekBarUtils {
+public class DynamicPickerUtils {
 
     /**
      * Set a hue gradient progress drawable for a seek bar.
@@ -58,5 +62,31 @@ public class DynamicSeekBarUtils {
 
         seekBar.setProgressDrawable(shape);
         seekBar.getProgressDrawable().setBounds(bounds);
+    }
+
+    /**
+     * Returns an alpha pattern paint.
+     *
+     * @param pixelSize The size of one pixel.
+     */
+    public static Paint getAlphaPatternPaint(int pixelSize) {
+        Bitmap bitmap = Bitmap.createBitmap(pixelSize * 2,
+                pixelSize * 2, Bitmap.Config.ARGB_8888);
+        Paint fill = new Paint(Paint.ANTI_ALIAS_FLAG);
+        fill.setStyle(Paint.Style.FILL);
+
+        Canvas canvas = new Canvas(bitmap);
+        Rect rect = new Rect(0, 0, pixelSize, pixelSize);
+        fill.setColor(0x4D565656);
+        canvas.drawRect(rect, fill);
+        rect.offset(pixelSize, pixelSize);
+        fill.setColor(0x4D898989);
+        canvas.drawRect(rect, fill);
+
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setShader(new BitmapShader(bitmap, BitmapShader.TileMode.REPEAT,
+                BitmapShader.TileMode.REPEAT));
+
+        return paint;
     }
 }
