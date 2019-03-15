@@ -30,47 +30,68 @@ import android.widget.RemoteViews;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.locale.DynamicLocale;
+import com.pranavpandey.android.dynamic.support.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicAppWidgetUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicBitmapUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
+
+import java.util.Locale;
 
 /**
  * A customisable app widget provider to provide basic configuration functionality.
  * <p>Extend it and modify according to the need.
  */
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-public abstract class DynamicAppWidgetProvider extends AppWidgetProvider {
+public abstract class DynamicAppWidgetProvider extends AppWidgetProvider
+        implements DynamicLocale {
 
     /**
      * Constant size in dips for one cell.
      */
-    public static final int ADS_WIDGET_CELL_SIZE_ONE = 60;
+    public static final int WIDGET_CELL_SIZE_ONE = 60;
+
+    /**
+     * Default header size in dips.
+     */
+    public static final int WIDGET_HEADER_SIZE = 56;
 
     /**
      * Constant size in dips for two cells.
      */
-    public static final int ADS_WIDGET_CELL_SIZE_TWO = ADS_WIDGET_CELL_SIZE_ONE * 2;
+    public static final int WIDGET_CELL_SIZE_TWO = WIDGET_CELL_SIZE_ONE * 2;
 
     /**
      * Constant size in dips for three cells.
      */
-    public static final int ADS_WIDGET_CELL_SIZE_THREE = ADS_WIDGET_CELL_SIZE_ONE * 3;
+    public static final int WIDGET_CELL_SIZE_THREE = WIDGET_CELL_SIZE_ONE * 3;
 
     /**
      * Constant size in dips for four cells.
      */
-    public static final int ADS_WIDGET_CELL_SIZE_FOUR = ADS_WIDGET_CELL_SIZE_ONE * 4;
+    public static final int WIDGET_CELL_SIZE_FOUR = WIDGET_CELL_SIZE_ONE * 4;
 
     /**
      * Constant size in dips for five cells.
      */
-    public static final int ADS_WIDGET_CELL_SIZE_FIVE = ADS_WIDGET_CELL_SIZE_ONE * 5;
+    public static final int WIDGET_CELL_SIZE_FIVE = WIDGET_CELL_SIZE_ONE * 5;
 
     /**
      * Constant size in dips for six cells.
      */
-    public static final int ADS_WIDGET_CELL_SIZE_SIX = ADS_WIDGET_CELL_SIZE_ONE * 6;
+    public static final int WIDGET_CELL_SIZE_SIX = WIDGET_CELL_SIZE_ONE * 6;
+
+    /**
+     * Dynamic context used by this provider.
+     */
+    protected Context mContext;
+
+    /**
+     * Current locale used by this provider.
+     */
+    private Locale mCurrentLocale;
 
     /**
      * Current width of this widget provider.
@@ -84,7 +105,7 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onReceive(@NonNull Context context, @NonNull Intent intent)  {
-        super.onReceive(context, intent);
+        super.onReceive(setLocale(context), intent);
 
         if (intent.getAction() != null && intent.getAction()
                 .equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)) {
@@ -112,8 +133,8 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider {
             @NonNull Bundle newOptions) {
         super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
 
-        appWidgetManager.updateAppWidget(appWidgetId, getRemoteViews(context));
-        updateAppWidget(context, appWidgetManager, appWidgetId);
+        appWidgetManager.updateAppWidget(appWidgetId, getRemoteViews(getContext()));
+        updateAppWidget(getContext(), appWidgetManager, appWidgetId);
     }
 
     @Override
@@ -130,6 +151,25 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider {
         super.onDisabled(context);
 
         DynamicAppWidgetUtils.cleanupPreferences(getPreferences());
+    }
+
+    @Override
+    public @Nullable String[] getSupportedLocales() {
+        return null;
+    }
+
+    @Override
+    public @NonNull Locale getDefaultLocale(@NonNull Context context) {
+        return DynamicLocaleUtils.getDefaultLocale(context, getSupportedLocales());
+    }
+
+    @Override
+    public @NonNull Context setLocale(@NonNull Context context) {
+        this.mCurrentLocale = DynamicLocaleUtils.getLocale(
+                getLocale(), getDefaultLocale(context));
+        this.mContext = DynamicLocaleUtils.setLocale(context, mCurrentLocale);
+
+        return mContext;
     }
 
     /**
@@ -185,6 +225,16 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider {
     }
 
     /**
+     * Get the dynamic theme context used by this provider.
+     *
+     * @return The dynamic context used by this provider.
+     */
+    public @NonNull Context getContext() {
+        return mContext;
+    }
+
+
+    /**
      * Returns the current width of this widget provider.
      *
      * @return The current width of this widget provider.
@@ -228,7 +278,7 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider {
      * @param size The size to be converted into cells.
      */
     public static int getCellsForSize(int size) {
-        return (int) (Math.ceil(size + 30d) / ADS_WIDGET_CELL_SIZE_ONE);
+        return (int) (Math.ceil(size + 30d) / WIDGET_CELL_SIZE_ONE);
     }
 
     /**

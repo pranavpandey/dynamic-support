@@ -64,11 +64,6 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         DynamicLocale, DynamicListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     /**
-     * Dynamic context used by this activity.
-     */
-    protected Context mContext = this;
-
-    /**
      * Dynamic theme key to maintain its state.
      */
     protected static final String ADS_STATE_DYNAMIC_THEME = "ads_state_dynamic_theme";
@@ -100,6 +95,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      */
     protected static final @ColorInt int ADS_DEFAULT_SYSTEM_OVERLAY_COLOR =
             Color.parseColor("#1A000000");
+
+    /**
+     * Dynamic context used by this activity.
+     */
+    protected Context mContext = this;
 
     /**
      * Current locale used by this activity.
