@@ -67,9 +67,9 @@ ext {
     mavenGroup = 'com.pranavpandey.android'
     mavenArtifactId = 'dynamic-support'
     mavenInceptionYear = 2018
-    mavenVersion = '2.2.1'
-    mavenVersionCode = 18
-    sampleVersionCode = 18
+    mavenVersion = '2.3.0'
+    mavenVersionCode = 19
+    sampleVersionCode = 19
 
     developerId = 'pranavpandey'
     developerName = 'Pranav Pandey'

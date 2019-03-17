@@ -465,7 +465,8 @@ public class DynamicThemeFragment extends DynamicFragment {
             getDynamicActivity().getSnackBar(R.string.ads_theme_copy_done).show();
         } else if (i == R.id.ads_menu_theme_share) {
             mThemePreview.getFAB().setImageResource(R.drawable.ads_ic_style);
-            DynamicLinkUtils.share(getContext(), null,
+            DynamicLinkUtils.share(getContext(),
+                    getSubtitle() != null ? getSubtitle().toString() : null,
                     mThemePreview.getDynamicTheme().toDynamicString(),
                     DynamicFileUtils.getBitmapUri(getContext(),
                             DynamicBitmapUtils.createBitmapFromView(mThemePreview),
