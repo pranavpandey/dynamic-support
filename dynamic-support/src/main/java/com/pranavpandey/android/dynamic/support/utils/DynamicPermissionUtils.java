@@ -121,7 +121,6 @@ public class DynamicPermissionUtils {
                 return R.string.ads_perm_write_system_settings;
             default:
                 return R.string.ads_perm_default;
-
         }
     }
 

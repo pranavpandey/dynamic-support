@@ -488,9 +488,9 @@ public class DynamicPermissions {
                     || permission.equals(Manifest.permission.PACKAGE_USAGE_STATS)
                     || permission.equals(Manifest.permission.SYSTEM_ALERT_WINDOW)) {
 
-                DynamicPermission dynamicPermission = new DynamicPermission(permission,
-                        DynamicResourceUtils.getDrawable(mContext,
-                                DynamicPermissionUtils.getPermissionIcon(permission)),
+                DynamicPermission dynamicPermission = new DynamicPermission(
+                        permission, DynamicResourceUtils.getDrawable(mContext,
+                        DynamicPermissionUtils.getPermissionIcon(permission)),
                         mContext.getString(DynamicPermissionUtils.getPermissionTitle(permission)),
                         mContext.getString(DynamicPermissionUtils.getPermissionSubtitle(permission)));
 
@@ -515,21 +515,23 @@ public class DynamicPermissions {
                     PermissionGroupInfo permGroupInfo = packageManager
                             .getPermissionGroupInfo(permInfo.group, PackageManager.GET_META_DATA);
 
-                    DynamicPermission dynamicPermission = new DynamicPermission(permission,
-                            permGroupInfo.loadIcon(packageManager),
-                            permGroupInfo.loadLabel(packageManager).toString(),
-                            permGroupInfo.loadDescription(packageManager).toString());
+                    DynamicPermission dynamicPermission = new DynamicPermission(
+                            permission, permGroupInfo.loadIcon(packageManager),
+                            permGroupInfo.loadLabel(packageManager).toString());
+
+                    if (permGroupInfo.loadDescription(packageManager) != null) {
+                        dynamicPermission.setSubtitle(
+                                permGroupInfo.loadDescription(packageManager).toString());
+                    }
 
                     dynamicPermission.setDangerous(true);
                     dynamicPermission.setAllowed(ContextCompat.checkSelfPermission(mContext,
                             permission) == PackageManager.PERMISSION_GRANTED);
 
-
-
                     if (!permissionsList.contains(dynamicPermission)) {
                         permissionsList.add(dynamicPermission);
                     }
-                } catch (PackageManager.NameNotFoundException ignored) {
+                } catch (Exception ignored) {
                 }
             }
         }

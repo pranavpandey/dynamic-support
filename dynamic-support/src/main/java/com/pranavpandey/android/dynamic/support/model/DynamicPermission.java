@@ -86,11 +86,12 @@ public class DynamicPermission implements Parcelable {
      * Constructor to initialize an object of this class.
      *
      * @param permission The permission string.
-     * @param description The description for this permission.
+     * @param icon The icon used for this permission.
+     * @param title The title for this permission.
      */
-    public DynamicPermission(@NonNull String permission, @Nullable String description) {
-        this.permission = permission;
-        this.description = description;
+    public DynamicPermission(@NonNull String permission,
+            @Nullable Drawable icon, @NonNull String title) {
+        this(permission, icon, title, null);
     }
 
     /**
@@ -103,10 +104,25 @@ public class DynamicPermission implements Parcelable {
      */
     public DynamicPermission(@NonNull String permission, @Nullable Drawable icon,
             @NonNull String title, @Nullable String subtitle) {
+        this(permission, icon, title, subtitle, null);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param permission The permission string.
+     * @param icon The icon used for this permission.
+     * @param title The title for this permission.
+     * @param subtitle The subtitle for this permission.
+     * @param description The description for this permission.
+     */
+    public DynamicPermission(@NonNull String permission, @Nullable Drawable icon,
+            @NonNull String title, @Nullable String subtitle, @Nullable String description) {
         this.permission = permission;
         this.icon = icon;
         this.title = title;
         this.subtitle = subtitle;
+        this.description = description;
     }
 
     /**
