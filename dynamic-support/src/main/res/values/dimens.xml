@@ -21,6 +21,9 @@
     <dimen name="ads_page_horizontal_margin">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_page_vertical_margin">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_corner_radius">2dp</dimen>
+    <dimen name="ads_theme_overlay_radius">0dp</dimen>
+    <dimen name="ads_theme_overlay_rect_radius">4dp</dimen>
+    <dimen name="ads_theme_overlay_round_radius">8dp</dimen>
 
     <!-- Margin presets -->
     <dimen name="ads_margin_extra_tiny">2dp</dimen>
@@ -117,6 +120,7 @@
     <!-- Icon sizes -->
     <dimen name="ads_icon_tiny">24dp</dimen>
     <dimen name="ads_icon_small">28dp</dimen>
+    <dimen name="ads_icon_regular">32dp</dimen>
     <dimen name="ads_icon_medium">36dp</dimen>
     <dimen name="ads_icon_normal">48dp</dimen>
     <dimen name="ads_icon_large">72dp</dimen>
@@ -201,16 +205,13 @@
     <dimen name="ads_theme_preview_height">160dp</dimen>
     <dimen name="ads_theme_preview_status_bar_height">24dp</dimen>
     <dimen name="ads_theme_preview_icon_size">@dimen/ads_icon_small</dimen>
-    <dimen name="ads_theme_preview_text_margin">60dp</dimen>
     <dimen name="ads_theme_preview_fab_size">42dp</dimen>
     <dimen name="ads_theme_preview_fab_elevation">1dp</dimen>
 
     <!-- App widget -->
     <dimen name="ads_widget_margin">0dp</dimen>
-    <dimen name="ads_widget_margin_small">10dp</dimen>
-    <dimen name="ads_widget_margin_end">@dimen/ads_margin_small</dimen>
     <dimen name="ads_widget_corner_radius">@dimen/ads_corner_radius</dimen>
-    <dimen name="ads_widget_preview_height">136dp</dimen>
+    <dimen name="ads_widget_preview_height">144dp</dimen>
     <dimen name="ads_widget_font_size_extra_small">12dp</dimen>
     <dimen name="ads_widget_font_size_small">14dp</dimen>
     <dimen name="ads_widget_font_size">16dp</dimen>

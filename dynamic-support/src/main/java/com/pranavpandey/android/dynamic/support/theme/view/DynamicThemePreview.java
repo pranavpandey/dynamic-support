@@ -33,18 +33,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.Theme;
+import com.pranavpandey.android.dynamic.support.utils.DynamicThemeUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicFloatingActionButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
+import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 /**
  * A ThemePreview to show the dynamic app theme preview according to the selected values.
  */
-public class DynamicThemePreview extends ThemePreview {
+public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
 
     /**
      * Status bar used by this preview.
@@ -135,6 +137,11 @@ public class DynamicThemePreview extends ThemePreview {
     }
 
     @Override
+    public @NonNull DynamicAppTheme getDefaultTheme() {
+        return DynamicTheme.getInstance().get();
+    }
+
+    @Override
     protected void onInflate() {
         inflate(getContext(), getLayoutRes(), this);
 
@@ -154,15 +161,37 @@ public class DynamicThemePreview extends ThemePreview {
 
     @Override
     protected void onUpdate() {
-        mStatusBar.setBackgroundColor(getDynamicAppTheme().getPrimaryColorDark());
-        mBackgroundCard.setRadius(getDynamicAppTheme().getCornerRadius());
-        mHeader.setBackgroundColor(getDynamicAppTheme().getPrimaryColor());
-        mBackgroundCard.setColor(getDynamicAppTheme().getBackgroundColor());
+        mStatusBar.setBackgroundColor(getDynamicTheme().getPrimaryColorDark());
+        mBackgroundCard.setRadius(getDynamicTheme().getCornerRadius());
+        mBackgroundCard.setColor(getDynamicTheme().getBackgroundColor());
+        mHeader.setBackgroundColor(getDynamicTheme().getPrimaryColor());
+        DynamicDrawableUtils.setBackground(mStatusBar,
+                DynamicThemeUtils.getCornerDrawable(
+                        getDynamicTheme().getCornerSizeDp(),
+                        getDynamicTheme().getPrimaryColorDark(), false));
+
+        if (getDynamicTheme().getCornerSizeDp() < WidgetDefaults.ADS_CORNER_MIN_THEME) {
+            mHeaderTitle.setImageResource(R.drawable.ads_theme_overlay);
+            mTextPrimary.setImageResource(R.drawable.ads_theme_overlay);
+            mTextSecondary.setImageResource(R.drawable.ads_theme_overlay);
+            mTextTintBackground.setImageResource(R.drawable.ads_theme_overlay);
+        } else if (getDynamicTheme().getCornerSizeDp()
+                < WidgetDefaults.ADS_CORNER_MIN_THEME_ROUND) {
+            mHeaderTitle.setImageResource(R.drawable.ads_theme_overlay_rect);
+            mTextPrimary.setImageResource(R.drawable.ads_theme_overlay_rect);
+            mTextSecondary.setImageResource(R.drawable.ads_theme_overlay_rect);
+            mTextTintBackground.setImageResource(R.drawable.ads_theme_overlay_rect);
+        } else {
+            mHeaderTitle.setImageResource(R.drawable.ads_theme_overlay_round);
+            mTextPrimary.setImageResource(R.drawable.ads_theme_overlay_round);
+            mTextSecondary.setImageResource(R.drawable.ads_theme_overlay_round);
+            mTextTintBackground.setImageResource(R.drawable.ads_theme_overlay_round);
+        }
 
         new Handler().post(new Runnable() {
             @Override
             public void run() {
-                if (getDynamicAppTheme().getBackgroundColor(false) == Theme.AUTO
+                if (getDynamicTheme().getBackgroundColor(false) == Theme.AUTO
                         && getMeasuredWidth() > 0 && getMeasuredHeight() > 0) {
 
                     RadialGradient gradient =
@@ -170,8 +199,8 @@ public class DynamicThemePreview extends ThemePreview {
                                     mContent.getMeasuredHeight() / 2f,
                                     getMeasuredWidth() / 2f,
                                     new int[] { DynamicTheme.getInstance().generateDarkColor(
-                                            getDynamicAppTheme().getTintBackgroundColor()),
-                                            getDynamicAppTheme().getBackgroundColor() },
+                                            getDynamicTheme().getTintBackgroundColor()),
+                                            getDynamicTheme().getBackgroundColor() },
                                     null, Shader.TileMode.CLAMP);
                     ShapeDrawable shape = new ShapeDrawable(new RectShape());
                     shape.getPaint().setShader(gradient);
@@ -182,39 +211,32 @@ public class DynamicThemePreview extends ThemePreview {
             }
         });
 
-        mHeaderIcon.setBackgroundAware(getDynamicAppTheme().getBackgroundAware());
-        mHeaderTitle.setBackgroundAware(getDynamicAppTheme().getBackgroundAware());
-        mHeaderMenu.setBackgroundAware(getDynamicAppTheme().getBackgroundAware());
-        mIcon.setBackgroundAware(getDynamicAppTheme().getBackgroundAware());
-        mTextPrimary.setBackgroundAware(getDynamicAppTheme().getBackgroundAware());
-        mTextSecondary.setBackgroundAware(getDynamicAppTheme().getBackgroundAware());
-        mTextTintBackground.setBackgroundAware(getDynamicAppTheme().getBackgroundAware());
-        mFAB.setBackgroundAware(getDynamicAppTheme().getBackgroundAware());
+        mHeaderIcon.setBackgroundAware(getDynamicTheme().getBackgroundAware());
+        mHeaderTitle.setBackgroundAware(getDynamicTheme().getBackgroundAware());
+        mHeaderMenu.setBackgroundAware(getDynamicTheme().getBackgroundAware());
+        mIcon.setBackgroundAware(getDynamicTheme().getBackgroundAware());
+        mTextPrimary.setBackgroundAware(getDynamicTheme().getBackgroundAware());
+        mTextSecondary.setBackgroundAware(getDynamicTheme().getBackgroundAware());
+        mTextTintBackground.setBackgroundAware(getDynamicTheme().getBackgroundAware());
+        mFAB.setBackgroundAware(getDynamicTheme().getBackgroundAware());
 
-        mHeaderIcon.setContrastWithColor(getDynamicAppTheme().getPrimaryColor());
-        mHeaderTitle.setContrastWithColor(getDynamicAppTheme().getPrimaryColor());
-        mHeaderMenu.setContrastWithColor(getDynamicAppTheme().getPrimaryColor());
-        mIcon.setContrastWithColor(getDynamicAppTheme().getBackgroundColor());
-        mTextPrimary.setContrastWithColor(getDynamicAppTheme().getBackgroundColor());
-        mTextSecondary.setContrastWithColor(getDynamicAppTheme().getBackgroundColor());
-        mTextTintBackground.setContrastWithColor(getDynamicAppTheme().getBackgroundColor());
-        mFAB.setContrastWithColor(getDynamicAppTheme().getBackgroundColor());
+        mHeaderIcon.setContrastWithColor(getDynamicTheme().getPrimaryColor());
+        mHeaderTitle.setContrastWithColor(getDynamicTheme().getPrimaryColor());
+        mHeaderMenu.setContrastWithColor(getDynamicTheme().getPrimaryColor());
+        mIcon.setContrastWithColor(getDynamicTheme().getBackgroundColor());
+        mTextPrimary.setContrastWithColor(getDynamicTheme().getBackgroundColor());
+        mTextSecondary.setContrastWithColor(getDynamicTheme().getBackgroundColor());
+        mTextTintBackground.setContrastWithColor(getDynamicTheme().getBackgroundColor());
+        mFAB.setContrastWithColor(getDynamicTheme().getBackgroundColor());
 
-        mHeaderIcon.setColor(getDynamicAppTheme().getTintPrimaryColor());
-        mHeaderTitle.setColor(getDynamicAppTheme().getTintPrimaryColor());
-        mHeaderMenu.setColor(getDynamicAppTheme().getTintPrimaryColor());
-        mIcon.setColor(getDynamicAppTheme().getPrimaryColor());
-        mTextPrimary.setColor(getDynamicAppTheme().getTextPrimaryColor());
-        mTextSecondary.setColor(getDynamicAppTheme().getTextSecondaryColor());
-        mTextTintBackground.setColor(getDynamicAppTheme().getTintBackgroundColor());
-        mFAB.setColor(getDynamicAppTheme().getAccentColor());
-
-        if (!DynamicVersionUtils.isLollipop()) {
-            DynamicDrawableUtils.setBackground(mStatusBar, DynamicDrawableUtils
-                    .getCornerDrawable(Math.max(0f,
-                            (float) (getDynamicAppTheme().getCornerSizeDp() - 1)),
-                            getDynamicAppTheme().getPrimaryColorDark()));
-        }
+        mHeaderIcon.setColor(getDynamicTheme().getTintPrimaryColor());
+        mHeaderTitle.setColor(getDynamicTheme().getTintPrimaryColor());
+        mHeaderMenu.setColor(getDynamicTheme().getTintPrimaryColor());
+        mIcon.setColor(getDynamicTheme().getPrimaryColor());
+        mTextPrimary.setColor(getDynamicTheme().getTextPrimaryColor());
+        mTextSecondary.setColor(getDynamicTheme().getTextSecondaryColor());
+        mTextTintBackground.setColor(getDynamicTheme().getTintBackgroundColor());
+        mFAB.setColor(getDynamicTheme().getAccentColor());
     }
 
     @Override
@@ -241,8 +263,7 @@ public class DynamicThemePreview extends ThemePreview {
      *
      * @param onFABClickListener The on click listener to be set.
      */
-    public void setOnFABClickListener(
-            @Nullable View.OnClickListener onFABClickListener) {
+    public void setOnFABClickListener(@Nullable View.OnClickListener onFABClickListener) {
         this.mOnFABClickListener = onFABClickListener;
 
         mFAB.setOnClickListener(mOnFABClickListener);

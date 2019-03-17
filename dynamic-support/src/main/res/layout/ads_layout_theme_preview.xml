@@ -42,6 +42,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ads_theme_preview_status_bar_height"
+            android:paddingLeft="@dimen/ads_margin_regular"
+            android:paddingStart="@dimen/ads_margin_regular"
+            android:paddingRight="@dimen/ads_margin_small"
+            android:paddingEnd="@dimen/ads_margin_small"
             android:orientation="horizontal"
             android:layout_gravity="center_vertical"
             android:baselineAligned="false">
@@ -49,14 +53,18 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:layout_margin="@dimen/ads_margin_small"
-                android:orientation="horizontal">
+                android:layout_weight="0.6"
+                android:layout_marginTop="@dimen/ads_margin_regular"
+                android:layout_marginBottom="@dimen/ads_margin_regular"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                     android:id="@+id/ads_theme_header_icon"
-                    android:layout_width="@dimen/ads_theme_preview_icon_size"
-                    android:layout_height="@dimen/ads_theme_preview_icon_size"
+                    android:layout_width="@dimen/ads_widget_icon_size"
+                    android:layout_height="@dimen/ads_widget_icon_size"
+                    android:layout_marginEnd="@dimen/ads_margin_normal"
+                    android:layout_marginRight="@dimen/ads_margin_normal"
                     android:layout_gravity="center_vertical"
                     android:contentDescription="@null"
                     app:srcCompat="@drawable/ads_ic_menu" />
@@ -64,34 +72,32 @@
                 <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                     android:id="@+id/ads_theme_header_title"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/ads_icon_tiny"
-                    android:layout_marginStart="@dimen/ads_margin_medium"
-                    android:layout_marginLeft="@dimen/ads_margin_medium"
-                    android:layout_marginEnd="@dimen/ads_margin_tiny"
-                    android:layout_marginRight="@dimen/ads_margin_tiny"
+                    android:layout_height="@dimen/ads_icon_small"
                     android:layout_gravity="center"
-                    android:contentDescription="@null"
-                    app:srcCompat="@drawable/ads_ic_rectangle" />
+                    android:contentDescription="@null" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
+                android:layout_weight="0.4"
+                android:layout_marginStart="@dimen/ads_margin_tiny"
+                android:layout_marginLeft="@dimen/ads_margin_tiny"
                 android:orientation="horizontal"
                 android:layout_gravity="center"
                 android:gravity="end">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                     android:id="@+id/ads_theme_header_menu"
-                    android:layout_width="@dimen/ads_theme_preview_icon_size"
-                    android:layout_height="@dimen/ads_theme_preview_icon_size"
-                    android:contentDescription="@null"
+                    android:layout_width="@dimen/ads_widget_icon_size"
+                    android:layout_height="@dimen/ads_widget_icon_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/ads_widget_customise"
+                    app:srcCompat="@drawable/ads_ic_more"
                     android:background="@null"
                     android:clickable="false"
-                    style="@style/Widget.DynamicApp.Button.Remote.Borderless"
-                    app:srcCompat="@drawable/ads_ic_more" />
+                    style="@style/Widget.DynamicApp.Button.Remote.Borderless" />
 
             </LinearLayout>
 
@@ -101,17 +107,21 @@
             android:id="@+id/ads_theme_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="@dimen/ads_margin_medium"
-            android:paddingBottom="@dimen/ads_margin_small"
-            android:paddingRight="@dimen/ads_margin_small"
-            android:paddingLeft="@dimen/ads_margin_small"
+            android:layout_marginTop="@dimen/ads_margin_regular"
+            android:layout_marginBottom="@dimen/ads_margin_regular"
+            android:paddingLeft="@dimen/ads_margin_regular"
+            android:paddingStart="@dimen/ads_margin_regular"
+            android:paddingRight="@dimen/ads_margin_regular"
+            android:paddingEnd="@dimen/ads_margin_regular"
             android:orientation="horizontal"
             android:layout_below="@id/ads_theme_header">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                 android:id="@+id/ads_theme_icon"
-                android:layout_width="@dimen/ads_theme_preview_icon_size"
-                android:layout_height="@dimen/ads_theme_preview_icon_size"
+                android:layout_width="@dimen/ads_icon_medium"
+                android:layout_height="@dimen/ads_icon_medium"
+                android:layout_marginEnd="@dimen/ads_margin_medium"
+                android:layout_marginRight="@dimen/ads_margin_medium"
                 android:contentDescription="@null"
                 app:srcCompat="@drawable/ads_ic_circle" />
 
@@ -119,36 +129,31 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
-                android:layout_marginStart="@dimen/ads_margin_medium"
-                android:layout_marginLeft="@dimen/ads_margin_medium"
-                android:layout_marginEnd="@dimen/ads_margin_medium"
-                android:layout_marginRight="@dimen/ads_margin_medium"
                 android:orientation="vertical">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                     android:id="@+id/ads_theme_text_primary"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/ads_margin_medium"
-                    android:layout_marginEnd="@dimen/ads_theme_preview_text_margin"
-                    android:layout_marginRight="@dimen/ads_theme_preview_text_margin"
-                    android:contentDescription="@null"
-                    app:srcCompat="@drawable/ads_ic_rectangle" />
+                    android:layout_height="@dimen/ads_margin_regular"
+                    android:layout_marginEnd="@dimen/ads_margin_huge"
+                    android:layout_marginRight="@dimen/ads_margin_huge"
+                    android:contentDescription="@null" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                     android:id="@+id/ads_theme_text_secondary"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ads_margin_small"
-                    android:layout_marginTop="@dimen/ads_margin_extra_tiny"
-                    android:contentDescription="@null"
-                    app:srcCompat="@drawable/ads_ic_rectangle" />
+                    android:layout_marginTop="@dimen/ads_margin_tiny"
+                    android:layout_marginEnd="@dimen/ads_margin_large"
+                    android:layout_marginRight="@dimen/ads_margin_large"
+                    android:contentDescription="@null" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                     android:id="@+id/ads_theme_text_tint_background"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ads_margin_medium"
-                    android:layout_marginTop="@dimen/ads_margin_tiny"
-                    android:contentDescription="@null"
-                    app:srcCompat="@drawable/ads_ic_rectangle" />
+                    android:layout_marginTop="@dimen/ads_margin_small"
+                    android:contentDescription="@null" />
 
             </LinearLayout>
 

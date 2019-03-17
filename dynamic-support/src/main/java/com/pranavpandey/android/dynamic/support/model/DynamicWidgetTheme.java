@@ -49,19 +49,19 @@ public class DynamicWidgetTheme extends DynamicAppTheme {
      * App widget id used by this theme.
      */
     @Exclude
-    @SerializedName(DynamicThemeUtils.ADS_NAME_WIDGET_ID)
+    @SerializedName(DynamicThemeUtils.NAME_WIDGET_ID)
     private int widgetId;
 
     /**
      * Header state used by this theme.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_HEADER)
+    @SerializedName(DynamicThemeUtils.NAME_HEADER)
     private @Theme.Visibility int header;
     
     /**
      * Opacity value used by this theme.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_OPACITY)
+    @SerializedName(DynamicThemeUtils.NAME_OPACITY)
     private int opacity;
 
     /**

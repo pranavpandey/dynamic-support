@@ -31,6 +31,16 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 public class WidgetDefaults {
 
     /**
+     * Minimum corner size in dips to provide the rectangle theme overlay.
+     */
+    public static final float ADS_CORNER_MIN_THEME = 4;
+
+    /**
+     * Minimum corner size in dips to provide the rounded theme overlay.
+     */
+    public static final float ADS_CORNER_MIN_THEME_ROUND = 8;
+
+    /**
      * Minimum corner size in dips to provide the rounded tab indicator.
      */
     public static final float ADS_CORNER_MIN_TABS = 6;
@@ -53,7 +63,7 @@ public class WidgetDefaults {
     /**
      * Default alpha for the toast.
      */
-    public static final float ADS_ALPHA_TOAST = 0.9f;
+    public static final float ADS_ALPHA_TOAST = 0.95f;
 
     /**
      * Default alpha when the widget is enabled.

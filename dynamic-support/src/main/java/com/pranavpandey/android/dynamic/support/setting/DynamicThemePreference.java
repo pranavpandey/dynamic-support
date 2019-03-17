@@ -141,7 +141,7 @@ public class DynamicThemePreference extends DynamicSpinnerPreference {
         mDynamicAppTheme = DynamicTheme.getInstance().getTheme(mTheme);
 
         if (mDynamicAppTheme != null) {
-            mThemePreview.setDynamicAppTheme(mDynamicAppTheme);
+            mThemePreview.setDynamicTheme(mDynamicAppTheme);
             mThemePreviewDescription.setVisibility(
                     mDynamicAppTheme.isBackgroundAware() ? VISIBLE : GONE);
         }

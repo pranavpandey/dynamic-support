@@ -306,7 +306,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
 
         mColorView.setColor(getColor());
         getActionView().setColor(DynamicColorUtils.removeAlpha(getAltColor()));
-        ((DynamicTextView) getValueView()).setColor(getColor());
+        ((DynamicTextView) getValueView()).setColor(DynamicColorUtils.removeAlpha(getColor()));
     }
 
     /**

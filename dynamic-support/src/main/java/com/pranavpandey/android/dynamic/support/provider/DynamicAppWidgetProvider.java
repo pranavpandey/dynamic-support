@@ -24,19 +24,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.RemoteViews;
 
 import androidx.annotation.CallSuper;
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.locale.DynamicLocale;
 import com.pranavpandey.android.dynamic.support.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicAppWidgetUtils;
+import com.pranavpandey.android.dynamic.support.utils.DynamicThemeUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicBitmapUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 
 import java.util.Locale;
 
@@ -290,8 +292,24 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider
      *
      * @return The bitmap for widget background according to the supplied parameters.
      */
-    public static Bitmap getWidgetFrameBitmap(int width, int height, float cornerRadius) {
-        return DynamicBitmapUtils.getBitmapFormDrawable(DynamicDrawableUtils
-                .getCornerDrawable(width, height, cornerRadius));
+    public static @Nullable Bitmap getWidgetFrameBitmap(int width,
+            int height, float cornerRadius) {
+        return DynamicBitmapUtils.getBitmapFromDrawable(DynamicThemeUtils
+                .getCornerDrawable(width, height, cornerRadius, Color.WHITE, false));
+    }
+
+    /**
+     * Returns a bitmap for widget header according to the corner radius.
+     *
+     * @param width The width in dip for the bitmap.
+     * @param height The height in dip for the bitmap.
+     * @param cornerRadius The corner size in dip for the bitmap.
+     *
+     * @return The bitmap for widget background according to the supplied parameters.
+     */
+    public static @Nullable Bitmap getWidgetHeaderBitmap(int width,
+            int height, float cornerRadius, @ColorInt int color) {
+        return DynamicBitmapUtils.getBitmapFromDrawable(DynamicThemeUtils
+                .getCornerDrawable(width, height, cornerRadius, color, true));
     }
 }

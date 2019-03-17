@@ -51,13 +51,13 @@ public class DynamicTheme implements DynamicListener {
     /**
      * Normal delay for updating the views.
      */
-    public static final int ADS_DELAY_NORMAL = 250;
+    public static final int DELAY_NORMAL = 250;
 
     /**
      * Theme change delay which will be useful in some situations like changing the app theme,
      * updating the widgets, etc.
      */
-    public static final int ADS_DELAY_THEME_CHANGE = 100;
+    public static final int DELAY_THEME_CHANGE = 100;
 
     /**
      * Dynamic theme shared preferences.
@@ -72,30 +72,30 @@ public class DynamicTheme implements DynamicListener {
     /**
      * Default shift amount to generate the darker color.
      */
-    public static final float ADS_COLOR_SHIFT_DARK_DEFAULT = 0.863f;
+    public static final float COLOR_SHIFT_DARK_DEFAULT = 0.863f;
 
     /**
      * Default primary color used by this theme if no color is supplied.
      */
-    private static final @ColorInt int ADS_COLOR_PRIMARY_DEFAULT =
+    private static final @ColorInt int COLOR_PRIMARY_DEFAULT =
             Color.parseColor("#3F51B5");
 
     /**
      * Default dark primary color used by this theme if no color is supplied.
      */
-    private static final @ColorInt int ADS_COLOR_PRIMARY_DARK_DEFAULT =
+    private static final @ColorInt int COLOR_PRIMARY_DARK_DEFAULT =
             Color.parseColor("#303F9F");
 
     /**
      * Default accent color used by this theme if no color is supplied.
      */
-    private static final @ColorInt int ADS_COLOR_ACCENT_DEFAULT =
+    private static final @ColorInt int COLOR_ACCENT_DEFAULT =
             Color.parseColor("#E91E63");
 
     /**
      * Default corner size for the theme.
      */
-    private static final int ADS_CORNER_SIZE_DEFAULT = DynamicUnitUtils.convertDpToPixels(2);
+    private static final int CORNER_SIZE_DEFAULT = DynamicUnitUtils.convertDpToPixels(2);
 
     /**
      * Default theme used by the application.
@@ -156,9 +156,9 @@ public class DynamicTheme implements DynamicListener {
     private DynamicTheme(@NonNull Context context) {
         this.mContext = context;
         this.mDynamicListeners = new ArrayList<>();
-        this.mDefaultApplicationTheme = new DynamicAppTheme(ADS_COLOR_PRIMARY_DEFAULT,
-                ADS_COLOR_PRIMARY_DARK_DEFAULT, ADS_COLOR_ACCENT_DEFAULT,
-                ADS_CORNER_SIZE_DEFAULT, Theme.BackgroundAware.ENABLE);
+        this.mDefaultApplicationTheme = new DynamicAppTheme(COLOR_PRIMARY_DEFAULT,
+                COLOR_PRIMARY_DARK_DEFAULT, COLOR_ACCENT_DEFAULT,
+                CORNER_SIZE_DEFAULT, Theme.BackgroundAware.ENABLE);
         this.mApplicationTheme = new DynamicAppTheme();
         this.mRemoteTheme = new DynamicWidgetTheme();
     }
@@ -173,9 +173,9 @@ public class DynamicTheme implements DynamicListener {
      */
     public DynamicTheme attach(@NonNull Context localContext) {
         this.mLocalContext = localContext;
-        this.mDefaultLocalTheme = new DynamicAppTheme(ADS_COLOR_PRIMARY_DEFAULT,
-                ADS_COLOR_PRIMARY_DARK_DEFAULT, ADS_COLOR_ACCENT_DEFAULT,
-                ADS_CORNER_SIZE_DEFAULT, Theme.BackgroundAware.ENABLE);
+        this.mDefaultLocalTheme = new DynamicAppTheme(COLOR_PRIMARY_DEFAULT,
+                COLOR_PRIMARY_DARK_DEFAULT, COLOR_ACCENT_DEFAULT,
+                CORNER_SIZE_DEFAULT, Theme.BackgroundAware.ENABLE);
         this.mLocalTheme = new DynamicAppTheme();
 
         if (localContext instanceof Activity && ((Activity) localContext)
@@ -585,7 +585,7 @@ public class DynamicTheme implements DynamicListener {
      * @return The generated dark variant.
      */
     public @ColorInt int generateDarkColor(@ColorInt int color) {
-        return DynamicColorUtils.shiftColor(color, DynamicTheme.ADS_COLOR_SHIFT_DARK_DEFAULT);
+        return DynamicColorUtils.shiftColor(color, DynamicTheme.COLOR_SHIFT_DARK_DEFAULT);
     }
 
     /**

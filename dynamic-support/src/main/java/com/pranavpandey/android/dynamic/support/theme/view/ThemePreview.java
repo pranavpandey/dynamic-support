@@ -24,19 +24,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
-import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.view.DynamicView;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 
 /**
  * A DynamicView to show the theme preview according to the selected values.
  */
-public abstract class ThemePreview extends DynamicView {
+public abstract class ThemePreview<T extends DynamicAppTheme> extends DynamicView {
 
     /**
      * Dynamic app theme used by this preview.
      */
-    private DynamicAppTheme mDynamicAppTheme;
+    private T mDynamicTheme;
 
     public ThemePreview(@NonNull Context context) {
         super(context);
@@ -53,30 +52,32 @@ public abstract class ThemePreview extends DynamicView {
 
     @Override
     protected void onLoadAttributes(@Nullable AttributeSet attrs) {
-        this.mDynamicAppTheme = DynamicTheme.getInstance().get();
+        this.mDynamicTheme = getDefaultTheme();
     }
 
     @Override
     protected void onEnabled(boolean enabled) {
         setAlpha(enabled ? WidgetDefaults.ADS_ALPHA_ENABLED : WidgetDefaults.ADS_ALPHA_DISABLED);
     }
+    
+    public abstract @NonNull T getDefaultTheme();
 
     /**
-     * Get the dynamic app theme used by this preview.
+     * Get the dynamic theme used by this preview.
      *
-     * @return The dynamic app theme used by this preview.
+     * @return the dynamic theme used by this preview.
      */
-    public @NonNull DynamicAppTheme getDynamicAppTheme() {
-        return mDynamicAppTheme;
+    public @NonNull T getDynamicTheme() {
+        return mDynamicTheme;
     }
 
     /**
-     * Set the dynamic app theme used by this preview.
+     * Set the dynamic theme used by this preview.
      *
-     * @param dynamicAppTheme The dynamic app theme to be set.
+     * @param dynamicTheme the dynamic theme to be set.
      */
-    public void setDynamicAppTheme(@NonNull DynamicAppTheme dynamicAppTheme) {
-        this.mDynamicAppTheme = dynamicAppTheme;
+    public void setDynamicTheme(@NonNull T dynamicTheme) {
+        this.mDynamicTheme = dynamicTheme;
 
         onUpdate();
     }

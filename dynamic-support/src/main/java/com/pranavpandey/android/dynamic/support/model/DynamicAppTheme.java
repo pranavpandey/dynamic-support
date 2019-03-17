@@ -50,103 +50,103 @@ public class DynamicAppTheme implements Parcelable {
      * DynamicAppTheme resource used by this theme.
      */
     @Exclude
-    @SerializedName(DynamicThemeUtils.ADS_NAME_THEME_RES)
+    @SerializedName(DynamicThemeUtils.NAME_THEME_RES)
     private @StyleRes int themeRes;
 
     /**
      * Background color used by this theme.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_BACKGROUND_COLOR)
+    @SerializedName(DynamicThemeUtils.NAME_BACKGROUND_COLOR)
     private @ColorInt int backgroundColor;
 
     /**
      * Primary color used by this theme.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_PRIMARY_COLOR)
+    @SerializedName(DynamicThemeUtils.NAME_PRIMARY_COLOR)
     private @ColorInt int primaryColor;
 
     /**
      * Dark primary color used by this theme.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_PRIMARY_COLOR_DARK)
+    @SerializedName(DynamicThemeUtils.NAME_PRIMARY_COLOR_DARK)
     private @ColorInt int primaryColorDark;
 
     /**
      * Accent color used by this theme.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_ACCENT_COLOR)
+    @SerializedName(DynamicThemeUtils.NAME_ACCENT_COLOR)
     private @ColorInt int accentColor;
 
     /**
      * Dark accent color used by this theme.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_ACCENT_COLOR_DARK)
+    @SerializedName(DynamicThemeUtils.NAME_ACCENT_COLOR_DARK)
     private @ColorInt int accentColorDark;
 
     /**
      * Tint color according to the background color.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_TINT_BACKGROUND_COLOR)
+    @SerializedName(DynamicThemeUtils.NAME_TINT_BACKGROUND_COLOR)
     private @ColorInt int tintBackgroundColor;
 
     /**
      * Tint color according to the primary color.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_TINT_PRIMARY_COLOR)
+    @SerializedName(DynamicThemeUtils.NAME_TINT_PRIMARY_COLOR)
     private @ColorInt int tintPrimaryColor;
 
     /**
      * Tint color according to the dark primary color.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_TINT_PRIMARY_COLOR_DARK)
+    @SerializedName(DynamicThemeUtils.NAME_TINT_PRIMARY_COLOR_DARK)
     private @ColorInt int tintPrimaryColorDark;
 
     /**
      * Tint color according to the accent color.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_TINT_ACCENT_COLOR)
+    @SerializedName(DynamicThemeUtils.NAME_TINT_ACCENT_COLOR)
     private @ColorInt int tintAccentColor;
 
     /**
      * Tint color according to the dark accent color.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_TINT_ACCENT_COLOR_DARK)
+    @SerializedName(DynamicThemeUtils.NAME_TINT_ACCENT_COLOR_DARK)
     private @ColorInt int tintAccentColorDark;
 
     /**
      * Primary text color used by this theme.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_TEXT_PRIMARY_COLOR)
+    @SerializedName(DynamicThemeUtils.NAME_TEXT_PRIMARY_COLOR)
     private @ColorInt int textPrimaryColor;
 
     /**
      * Secondary text color used by this theme.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_TEXT_SECONDARY_COLOR)
+    @SerializedName(DynamicThemeUtils.NAME_TEXT_SECONDARY_COLOR)
     private @ColorInt int textSecondaryColor;
 
     /**
      * Inverse color for the primary text color.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_TEXT_PRIMARY_COLOR_INVERSE)
+    @SerializedName(DynamicThemeUtils.NAME_TEXT_PRIMARY_COLOR_INVERSE)
     private @ColorInt int textPrimaryColorInverse;
 
     /**
      * Inverse color for the secondary text color.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_TEXT_SECONDARY_COLOR_INVERSE)
+    @SerializedName(DynamicThemeUtils.NAME_TEXT_SECONDARY_COLOR_INVERSE)
     private @ColorInt int textSecondaryColorInverse;
 
     /**
      * Corner radius used by this theme in pixels.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_CORNER_RADIUS)
+    @SerializedName(DynamicThemeUtils.NAME_CORNER_RADIUS)
     private int cornerRadius;
 
     /**
      * Background aware functionality used by this theme.
      */
-    @SerializedName(DynamicThemeUtils.ADS_NAME_BACKGROUND_AWARE)
+    @SerializedName(DynamicThemeUtils.NAME_BACKGROUND_AWARE)
     private @Theme.BackgroundAware int backgroundAware;
 
     /**

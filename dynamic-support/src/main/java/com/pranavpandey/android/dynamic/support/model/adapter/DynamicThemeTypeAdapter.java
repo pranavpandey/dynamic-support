@@ -39,60 +39,60 @@ public class DynamicThemeTypeAdapter<T extends DynamicAppTheme> extends TypeAdap
         try {
             writer.beginObject();
 
-            writer.name(DynamicThemeUtils.ADS_NAME_BACKGROUND_COLOR);
+            writer.name(DynamicThemeUtils.NAME_BACKGROUND_COLOR);
             writer.value(DynamicThemeUtils.getValueFromColor(
                     value.getBackgroundColor(false)));
-            writer.name(DynamicThemeUtils.ADS_NAME_TINT_BACKGROUND_COLOR);
+            writer.name(DynamicThemeUtils.NAME_TINT_BACKGROUND_COLOR);
             writer.value(DynamicThemeUtils.getValueFromColor(
                     value.getTintBackgroundColor(false)));
-            writer.name(DynamicThemeUtils.ADS_NAME_PRIMARY_COLOR);
+            writer.name(DynamicThemeUtils.NAME_PRIMARY_COLOR);
             writer.value(DynamicThemeUtils.getValueFromColor(
                     value.getPrimaryColor(false)));
-            writer.name(DynamicThemeUtils.ADS_NAME_TINT_PRIMARY_COLOR);
+            writer.name(DynamicThemeUtils.NAME_TINT_PRIMARY_COLOR);
             writer.value(DynamicThemeUtils.getValueFromColor(
                     value.getTintPrimaryColor(false)));
-            writer.name(DynamicThemeUtils.ADS_NAME_PRIMARY_COLOR_DARK);
+            writer.name(DynamicThemeUtils.NAME_PRIMARY_COLOR_DARK);
             writer.value(DynamicThemeUtils.getValueFromColor(
                     value.getPrimaryColorDark(false)));
-            writer.name(DynamicThemeUtils.ADS_NAME_TINT_PRIMARY_COLOR_DARK);
+            writer.name(DynamicThemeUtils.NAME_TINT_PRIMARY_COLOR_DARK);
             writer.value(DynamicThemeUtils.getValueFromColor(
                     value.getTintPrimaryColorDark(false)));
-            writer.name(DynamicThemeUtils.ADS_NAME_ACCENT_COLOR);
+            writer.name(DynamicThemeUtils.NAME_ACCENT_COLOR);
             writer.value(DynamicThemeUtils.getValueFromColor(
                     value.getAccentColor(false)));
-            writer.name(DynamicThemeUtils.ADS_NAME_TINT_ACCENT_COLOR);
+            writer.name(DynamicThemeUtils.NAME_TINT_ACCENT_COLOR);
             writer.value(DynamicThemeUtils.getValueFromColor(
                     value.getTintAccentColor(false)));
-            writer.name(DynamicThemeUtils.ADS_NAME_ACCENT_COLOR_DARK);
+            writer.name(DynamicThemeUtils.NAME_ACCENT_COLOR_DARK);
             writer.value(DynamicThemeUtils.getValueFromColor(
                     value.getAccentColorDark(false)));
-            writer.name(DynamicThemeUtils.ADS_NAME_TINT_ACCENT_COLOR_DARK);
+            writer.name(DynamicThemeUtils.NAME_TINT_ACCENT_COLOR_DARK);
             writer.value(DynamicThemeUtils.getValueFromColor(
                     value.getTintAccentColorDark(false)));
-            writer.name(DynamicThemeUtils.ADS_NAME_TEXT_PRIMARY_COLOR);
+            writer.name(DynamicThemeUtils.NAME_TEXT_PRIMARY_COLOR);
             writer.value(DynamicThemeUtils.getValueFromColor(
                     value.getTextPrimaryColor(false)));
-            writer.name(DynamicThemeUtils.ADS_NAME_TEXT_PRIMARY_COLOR_INVERSE);
+            writer.name(DynamicThemeUtils.NAME_TEXT_PRIMARY_COLOR_INVERSE);
             writer.value(DynamicThemeUtils.getValueFromColor(
                     value.getTextPrimaryColorInverse(false)));
-            writer.name(DynamicThemeUtils.ADS_NAME_TEXT_SECONDARY_COLOR);
+            writer.name(DynamicThemeUtils.NAME_TEXT_SECONDARY_COLOR);
             writer.value(DynamicThemeUtils.getValueFromColor(
                     value.getTextSecondaryColor(false)));
-            writer.name(DynamicThemeUtils.ADS_NAME_TEXT_SECONDARY_COLOR_INVERSE);
+            writer.name(DynamicThemeUtils.NAME_TEXT_SECONDARY_COLOR_INVERSE);
             writer.value(DynamicThemeUtils.getValueFromColor(
                     value.getTextSecondaryColorInverse(false)));
-            writer.name(DynamicThemeUtils.ADS_NAME_CORNER_RADIUS);
+            writer.name(DynamicThemeUtils.NAME_CORNER_RADIUS);
             writer.value(DynamicThemeUtils.getValueFromCornerRadius(
                     value.getCornerRadius(false)));
-            writer.name(DynamicThemeUtils.ADS_NAME_BACKGROUND_AWARE);
+            writer.name(DynamicThemeUtils.NAME_BACKGROUND_AWARE);
             writer.value(DynamicThemeUtils.getValueFromBackgroundAware(
                     value.getBackgroundAware(false)));
 
             if (value instanceof DynamicWidgetTheme) {
-                writer.name(DynamicThemeUtils.ADS_NAME_HEADER);
+                writer.name(DynamicThemeUtils.NAME_HEADER);
                 writer.value(DynamicThemeUtils.getValueFromVisibility(
                         ((DynamicWidgetTheme) value).getHeader()));
-                writer.name(DynamicThemeUtils.ADS_NAME_OPACITY);
+                writer.name(DynamicThemeUtils.NAME_OPACITY);
                 writer.value(((DynamicWidgetTheme) value).getOpacity());
             }
 
@@ -117,75 +117,75 @@ public class DynamicThemeTypeAdapter<T extends DynamicAppTheme> extends TypeAdap
                             default:
                                 reader.skipValue();
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_BACKGROUND_COLOR:
+                            case DynamicThemeUtils.NAME_BACKGROUND_COLOR:
                                 theme.setBackgroundColor(DynamicThemeUtils
                                         .getValueFromColor(reader.nextString()), false);
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_TINT_BACKGROUND_COLOR:
+                            case DynamicThemeUtils.NAME_TINT_BACKGROUND_COLOR:
                                 theme.setTintBackgroundColor(DynamicThemeUtils
                                         .getValueFromColor(reader.nextString()));
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_PRIMARY_COLOR:
+                            case DynamicThemeUtils.NAME_PRIMARY_COLOR:
                                 theme.setPrimaryColor(DynamicThemeUtils.getValueFromColor(
                                         reader.nextString()), false);
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_TINT_PRIMARY_COLOR:
+                            case DynamicThemeUtils.NAME_TINT_PRIMARY_COLOR:
                                 theme.setTintPrimaryColor(DynamicThemeUtils
                                         .getValueFromColor(reader.nextString()));
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_PRIMARY_COLOR_DARK:
+                            case DynamicThemeUtils.NAME_PRIMARY_COLOR_DARK:
                                 theme.setPrimaryColorDark(DynamicThemeUtils
                                         .getValueFromColor(reader.nextString()), false);
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_TINT_PRIMARY_COLOR_DARK:
+                            case DynamicThemeUtils.NAME_TINT_PRIMARY_COLOR_DARK:
                                 theme.setTintPrimaryColorDark(DynamicThemeUtils
                                         .getValueFromColor(reader.nextString()));
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_ACCENT_COLOR:
+                            case DynamicThemeUtils.NAME_ACCENT_COLOR:
                                 theme.setAccentColor(DynamicThemeUtils
                                         .getValueFromColor(reader.nextString()), false);
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_TINT_ACCENT_COLOR:
+                            case DynamicThemeUtils.NAME_TINT_ACCENT_COLOR:
                                 theme.setTintAccentColor(DynamicThemeUtils
                                         .getValueFromColor(reader.nextString()));
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_ACCENT_COLOR_DARK:
+                            case DynamicThemeUtils.NAME_ACCENT_COLOR_DARK:
                                 theme.setAccentColorDark(DynamicThemeUtils
                                         .getValueFromColor(reader.nextString()), false);
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_TINT_ACCENT_COLOR_DARK:
+                            case DynamicThemeUtils.NAME_TINT_ACCENT_COLOR_DARK:
                                 theme.setTintAccentColorDark(DynamicThemeUtils
                                         .getValueFromColor(reader.nextString()));
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_TEXT_PRIMARY_COLOR:
+                            case DynamicThemeUtils.NAME_TEXT_PRIMARY_COLOR:
                                 theme.setTextPrimaryColor(DynamicThemeUtils
                                         .getValueFromColor(reader.nextString()), false);
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_TEXT_PRIMARY_COLOR_INVERSE:
+                            case DynamicThemeUtils.NAME_TEXT_PRIMARY_COLOR_INVERSE:
                                 theme.setTextPrimaryColorInverse(DynamicThemeUtils
                                         .getValueFromColor(reader.nextString()));
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_TEXT_SECONDARY_COLOR:
+                            case DynamicThemeUtils.NAME_TEXT_SECONDARY_COLOR:
                                 theme.setTextSecondaryColor(DynamicThemeUtils
                                         .getValueFromColor(reader.nextString()), false);
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_TEXT_SECONDARY_COLOR_INVERSE:
+                            case DynamicThemeUtils.NAME_TEXT_SECONDARY_COLOR_INVERSE:
                                 theme.setTextSecondaryColorInverse(DynamicThemeUtils
                                         .getValueFromColor(reader.nextString()));
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_CORNER_RADIUS:
+                            case DynamicThemeUtils.NAME_CORNER_RADIUS:
                                 theme.setCornerRadiusDp(DynamicThemeUtils
                                         .getValueFromCornerRadius(reader.nextString()));
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_BACKGROUND_AWARE:
+                            case DynamicThemeUtils.NAME_BACKGROUND_AWARE:
                                 theme.setBackgroundAware(DynamicThemeUtils
                                         .getValueFromBackgroundAware(reader.nextString()));
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_HEADER:
+                            case DynamicThemeUtils.NAME_HEADER:
                                 ((DynamicWidgetTheme) theme).setHeader(DynamicThemeUtils
                                         .getValueFromVisibility(reader.nextString()));
                                 break;
-                            case DynamicThemeUtils.ADS_NAME_OPACITY:
+                            case DynamicThemeUtils.NAME_OPACITY:
                                 ((DynamicWidgetTheme) theme).setOpacity(reader.nextInt());
                                 break;
                         }

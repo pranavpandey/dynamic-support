@@ -46,6 +46,7 @@
         <item name="textAppearanceButton">@style/TextAppearance.DynamicApp.Button</item>
         <item name="textAppearanceOverline">@style/TextAppearance.DynamicApp.Overline</item>
         <item name="alertDialogStyle">@style/Base.DynamicApp.AlertDialog</item>
+        <item name="alertDialogTheme">@style/Theme.DynamicApp.Dialog</item>
         <item name="buttonBarNeutralButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
         <item name="buttonBarPositiveButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
         <item name="buttonBarNegativeButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
@@ -92,6 +93,7 @@
         <item name="textAppearanceButton">@style/TextAppearance.DynamicApp.Button</item>
         <item name="textAppearanceOverline">@style/TextAppearance.DynamicApp.Overline</item>
         <item name="alertDialogStyle">@style/Base.DynamicApp.AlertDialog</item>
+        <item name="alertDialogTheme">@style/Theme.DynamicApp.Light.Dialog</item>
         <item name="buttonBarNeutralButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
         <item name="buttonBarPositiveButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
         <item name="buttonBarNegativeButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
@@ -129,6 +131,7 @@
         <item name="textAppearanceButton">@style/TextAppearance.DynamicApp.Button</item>
         <item name="textAppearanceOverline">@style/TextAppearance.DynamicApp.Overline</item>
         <item name="alertDialogStyle">@style/Base.DynamicApp.AlertDialog</item>
+        <item name="alertDialogTheme">@style/Theme.DynamicApp.DayNight.Dialog</item>
         <item name="buttonBarNeutralButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
         <item name="buttonBarPositiveButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
         <item name="buttonBarNegativeButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
@@ -194,6 +197,46 @@
         <item name="multiChoiceItemLayout">@layout/ads_dialog_multi_choice</item>
         <item name="singleChoiceItemLayout">@layout/ads_dialog_single_choice</item>
         <item name="buttonIconDimen">@dimen/ads_dialog_button_icon_size</item>
+    </style>
+
+    <style name="Base.DynamicApp.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowMinWidthMajor">@dimen/ads_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/ads_dialog_min_width_minor</item>
+        <!--<item name="android:windowAnimationStyle">@style/Animation.DynamicApp.Dialog</item>-->
+    </style>
+
+    <style name="Base.DynamicApp.Light.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowMinWidthMajor">@dimen/ads_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/ads_dialog_min_width_minor</item>
+        <!--<item name="android:windowAnimationStyle">@style/Animation.DynamicApp.Dialog</item>-->
+    </style>
+
+    <style name="Base.DynamicApp.DayNight.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowMinWidthMajor">@dimen/ads_dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@dimen/ads_dialog_min_width_minor</item>
+        <!--<item name="android:windowAnimationStyle">@style/Animation.DynamicApp.Dialog</item>-->
+    </style>
+
+    <style name="Theme.DynamicApp.Dialog" parent="Base.DynamicApp.Dialog" />
+    <style name="Theme.DynamicApp.Light.Dialog" parent="Base.DynamicApp.Light.Dialog" />
+    <style name="Theme.DynamicApp.DayNight.Dialog" parent="Base.DynamicApp.DayNight.Dialog" />
+
+    <!-- Animation -->
+    <style name="Base.Animation" parent="android:Animation"/>
+    <style name="Animation" parent="Base.Animation"/>
+    <style name="Animation.DynamicApp" />
+
+    <style name="Animation.DynamicApp.Dialog">
+        <item name="android:windowEnterAnimation">@anim/ads_dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/ads_dialog_exit</item>
+    </style>
+
+    <style name="Animation.DynamicApp.Popup">
+        <item name="android:windowEnterAnimation">@anim/ads_popup_enter</item>
+        <item name="android:windowExitAnimation">@anim/ads_fade_out</item>
     </style>
 
     <!-- Text Appearance -->
@@ -569,6 +612,12 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:src">@drawable/ads_widget_frame</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Image.WidgetHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:scaleType">fitXY</item>
     </style>
 

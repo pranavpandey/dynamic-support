@@ -77,10 +77,10 @@ public class DynamicPickerUtils {
 
         Canvas canvas = new Canvas(bitmap);
         Rect rect = new Rect(0, 0, pixelSize, pixelSize);
-        fill.setColor(0x4D565656);
+        fill.setColor(0x80565656);
         canvas.drawRect(rect, fill);
         rect.offset(pixelSize, pixelSize);
-        fill.setColor(0x4D898989);
+        fill.setColor(0x80787878);
         canvas.drawRect(rect, fill);
 
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);

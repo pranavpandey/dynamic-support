@@ -461,7 +461,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
             onCustomiseTheme();
             setNavigationBarColor(mNavigationBarColor);
 
-            mHandler.postDelayed(mDynamicChange, DynamicTheme.ADS_DELAY_THEME_CHANGE);
+            mHandler.postDelayed(mDynamicChange, DynamicTheme.DELAY_THEME_CHANGE);
         }
     }
 

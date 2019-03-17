@@ -17,7 +17,10 @@
 package com.pranavpandey.android.dynamic.support.utils;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -25,6 +28,7 @@ import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.model.DynamicWidgetTheme;
 import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 
 import org.json.JSONObject;
@@ -34,133 +38,138 @@ import org.json.JSONObject;
  */
 public class DynamicThemeUtils {
 
-    public static final String ADS_PATTERN_QUOTES = "[\"\\\"][\\s+][\\\"\"]";
-    public static final String ADS_PATTERN_SPACE = "[\\s+]";
+    public static final String PATTERN_QUOTES = "[\"\\\"][\\s+][\\\"\"]";
+    public static final String PATTERN_SPACE = "[\\s+]";
+
+    /**
+     * Constant name for sharing the theme.
+     */
+    public static final String NAME_THEME_SHARE = "dynamic-theme";
 
     /**
      * Serialized name for the theme resource.
      */
-    public static final String ADS_NAME_THEME_RES = "themeRes";
-    
+    public static final String NAME_THEME_RES = "themeRes";
+
     /**
      * Serialized name for the background color.
      */
-    public static final String ADS_NAME_BACKGROUND_COLOR = "backgroundColor";
+    public static final String NAME_BACKGROUND_COLOR = "backgroundColor";
 
     /**
      * Serialized name for the tint background color.
      */
-    public static final String ADS_NAME_TINT_BACKGROUND_COLOR = "tintBackgroundColor";
+    public static final String NAME_TINT_BACKGROUND_COLOR = "tintBackgroundColor";
 
     /**
      * Serialized name for the primary color.
      */
-    public static final String ADS_NAME_PRIMARY_COLOR = "primaryColor";
+    public static final String NAME_PRIMARY_COLOR = "primaryColor";
 
     /**
      * Serialized name for the tint primary color.
      */
-    public static final String ADS_NAME_TINT_PRIMARY_COLOR = "tintPrimaryColor";
+    public static final String NAME_TINT_PRIMARY_COLOR = "tintPrimaryColor";
 
     /**
      * Serialized name for the primary color dark.
      */
-    public static final String ADS_NAME_PRIMARY_COLOR_DARK = "primaryColorDark";
+    public static final String NAME_PRIMARY_COLOR_DARK = "primaryColorDark";
 
     /**
      * Serialized name for the tint primary color dark.
      */
-    public static final String ADS_NAME_TINT_PRIMARY_COLOR_DARK = "tintPrimaryColorDark";
+    public static final String NAME_TINT_PRIMARY_COLOR_DARK = "tintPrimaryColorDark";
 
     /**
      * Serialized name for the accent color.
      */
-    public static final String ADS_NAME_ACCENT_COLOR = "accentColor";
+    public static final String NAME_ACCENT_COLOR = "accentColor";
 
     /**
      * Serialized name for the tint accent color.
      */
-    public static final String ADS_NAME_TINT_ACCENT_COLOR = "tintAccentColor";
+    public static final String NAME_TINT_ACCENT_COLOR = "tintAccentColor";
 
     /**
      * Serialized name for the accent color dark.
      */
-    public static final String ADS_NAME_ACCENT_COLOR_DARK = "accentColorDark";
+    public static final String NAME_ACCENT_COLOR_DARK = "accentColorDark";
 
     /**
      * Serialized name for the tint accent color dark.
      */
-    public static final String ADS_NAME_TINT_ACCENT_COLOR_DARK = "tintAccentColorDark";
+    public static final String NAME_TINT_ACCENT_COLOR_DARK = "tintAccentColorDark";
 
     /**
      * Serialized name for the text primary color.
      */
-    public static final String ADS_NAME_TEXT_PRIMARY_COLOR = "textPrimaryColor";
+    public static final String NAME_TEXT_PRIMARY_COLOR = "textPrimaryColor";
 
     /**
      * Serialized name for the text primary color inverse.
      */
-    public static final String ADS_NAME_TEXT_PRIMARY_COLOR_INVERSE = "textPrimaryColorInverse";
+    public static final String NAME_TEXT_PRIMARY_COLOR_INVERSE = "textPrimaryColorInverse";
 
     /**
      * Serialized name for the text secondary color.
      */
-    public static final String ADS_NAME_TEXT_SECONDARY_COLOR = "textSecondaryColor";
+    public static final String NAME_TEXT_SECONDARY_COLOR = "textSecondaryColor";
 
     /**
      * Serialized name for the text secondary color inverse.
      */
-    public static final String ADS_NAME_TEXT_SECONDARY_COLOR_INVERSE = "textSecondaryColorInverse";
+    public static final String NAME_TEXT_SECONDARY_COLOR_INVERSE = "textSecondaryColorInverse";
 
     /**
      * Serialized name for the corner radius.
      */
-    public static final String ADS_NAME_CORNER_RADIUS = "cornerRadius";
+    public static final String NAME_CORNER_RADIUS = "cornerRadius";
 
     /**
      * Serialized name for the background aware.
      */
-    public static final String ADS_NAME_BACKGROUND_AWARE = "backgroundAware";
+    public static final String NAME_BACKGROUND_AWARE = "backgroundAware";
 
     /**
      * Serialized name for the widget id.
      */
-    public static final String ADS_NAME_WIDGET_ID = "widgetId";
+    public static final String NAME_WIDGET_ID = "widgetId";
 
     /**
      * Serialized name for the header.
      */
-    public static final String ADS_NAME_HEADER = "header";
+    public static final String NAME_HEADER = "header";
 
     /**
      * Serialized name for the opacity.
      */
-    public static final String ADS_NAME_OPACITY = "opacity";
+    public static final String NAME_OPACITY = "opacity";
 
     /**
      * Constant for the auto value.
      */
-    public static final String ADS_VALUE_AUTO = "auto";
+    public static final String VALUE_AUTO = "auto";
 
     /**
      * Constant for the disable value.
      */
-    public static final String ADS_VALUE_DISABLE = "disable";
+    public static final String VALUE_DISABLE = "disable";
 
     /**
      * Constant for the enable value.
      */
-    public static final String ADS_VALUE_ENABLE = "enable";
+    public static final String VALUE_ENABLE = "enable";
 
     /**
      * Constant for the hide value.
      */
-    public static final String ADS_VALUE_HIDE = "hide";
+    public static final String VALUE_HIDE = "hide";
 
     /**
      * Constant for the show value.
      */
-    public static final String ADS_VALUE_SHOW = "show";
+    public static final String VALUE_SHOW = "show";
 
     /**
      * Checks whether the string is a valid JSON.
@@ -191,8 +200,8 @@ public class DynamicThemeUtils {
      * @return The formatted dynamic theme string.
      */
     public static @NonNull String formatDynamicTheme(@NonNull String string) {
-        return string.trim().replaceAll(ADS_PATTERN_SPACE, "")
-                .replaceAll(ADS_PATTERN_QUOTES, "\"");
+        return string.trim().replaceAll(PATTERN_SPACE, "")
+                .replaceAll(PATTERN_QUOTES, "\"");
     }
 
     /**
@@ -208,37 +217,37 @@ public class DynamicThemeUtils {
         JSONObject jsonObject = new JSONObject(formatDynamicTheme(dynamicTheme));
 
         dynamicAppTheme.setBackgroundColor(getValueFromColor(
-                jsonObject.getString(ADS_NAME_BACKGROUND_COLOR)), false);
+                jsonObject.getString(NAME_BACKGROUND_COLOR)), false);
         dynamicAppTheme.setTintBackgroundColor(getValueFromColor(
-                jsonObject.getString(ADS_NAME_TINT_BACKGROUND_COLOR)));
+                jsonObject.getString(NAME_TINT_BACKGROUND_COLOR)));
         dynamicAppTheme.setPrimaryColor(getValueFromColor(
-                jsonObject.getString(ADS_NAME_PRIMARY_COLOR)), false);
+                jsonObject.getString(NAME_PRIMARY_COLOR)), false);
         dynamicAppTheme.setTintPrimaryColor(getValueFromColor(
-                jsonObject.getString(ADS_NAME_TINT_PRIMARY_COLOR)));
+                jsonObject.getString(NAME_TINT_PRIMARY_COLOR)));
         dynamicAppTheme.setPrimaryColorDark(getValueFromColor(
-                jsonObject.getString(ADS_NAME_PRIMARY_COLOR_DARK)), false);
+                jsonObject.getString(NAME_PRIMARY_COLOR_DARK)), false);
         dynamicAppTheme.setTintPrimaryColorDark(getValueFromColor(
-                jsonObject.getString(ADS_NAME_TINT_PRIMARY_COLOR_DARK)));
+                jsonObject.getString(NAME_TINT_PRIMARY_COLOR_DARK)));
         dynamicAppTheme.setAccentColor(getValueFromColor(
-                jsonObject.getString(ADS_NAME_ACCENT_COLOR)), false);
+                jsonObject.getString(NAME_ACCENT_COLOR)), false);
         dynamicAppTheme.setTintAccentColor(getValueFromColor(
-                jsonObject.getString(ADS_NAME_TINT_ACCENT_COLOR)));
+                jsonObject.getString(NAME_TINT_ACCENT_COLOR)));
         dynamicAppTheme.setAccentColorDark(getValueFromColor(
-                jsonObject.getString(ADS_NAME_ACCENT_COLOR_DARK)), false);
+                jsonObject.getString(NAME_ACCENT_COLOR_DARK)), false);
         dynamicAppTheme.setTintAccentColorDark(getValueFromColor(
-                jsonObject.getString(ADS_NAME_TINT_ACCENT_COLOR_DARK)));
+                jsonObject.getString(NAME_TINT_ACCENT_COLOR_DARK)));
         dynamicAppTheme.setTextPrimaryColor(getValueFromColor(
-                jsonObject.getString(ADS_NAME_TEXT_PRIMARY_COLOR)), false);
+                jsonObject.getString(NAME_TEXT_PRIMARY_COLOR)), false);
         dynamicAppTheme.setTextPrimaryColorInverse(getValueFromColor(
-                jsonObject.getString(ADS_NAME_TEXT_PRIMARY_COLOR_INVERSE)));
+                jsonObject.getString(NAME_TEXT_PRIMARY_COLOR_INVERSE)));
         dynamicAppTheme.setTextSecondaryColor(getValueFromColor(
-                jsonObject.getString(ADS_NAME_TEXT_SECONDARY_COLOR)), false);
+                jsonObject.getString(NAME_TEXT_SECONDARY_COLOR)), false);
         dynamicAppTheme.setTextSecondaryColorInverse(getValueFromColor(
-                jsonObject.getString(ADS_NAME_TEXT_SECONDARY_COLOR_INVERSE)));
+                jsonObject.getString(NAME_TEXT_SECONDARY_COLOR_INVERSE)));
         dynamicAppTheme.setCornerRadius(getValueFromCornerRadius(
-                jsonObject.getString(ADS_NAME_CORNER_RADIUS)));
+                jsonObject.getString(NAME_CORNER_RADIUS)));
         dynamicAppTheme.setBackgroundAware(getValueFromBackgroundAware(
-                jsonObject.getString(ADS_NAME_BACKGROUND_AWARE)));
+                jsonObject.getString(NAME_BACKGROUND_AWARE)));
 
         return dynamicAppTheme;
     }
@@ -256,8 +265,8 @@ public class DynamicThemeUtils {
         JSONObject jsonObject = new JSONObject(formatDynamicTheme(dynamicTheme));
 
         dynamicWidgetTheme.setHeader(getValueFromVisibility(
-                jsonObject.getString(ADS_NAME_HEADER)));
-        dynamicWidgetTheme.setCornerRadius(jsonObject.getInt(ADS_NAME_CORNER_RADIUS));
+                jsonObject.getString(NAME_HEADER)));
+        dynamicWidgetTheme.setCornerRadius(jsonObject.getInt(NAME_CORNER_RADIUS));
 
         return dynamicWidgetTheme;
     }
@@ -271,7 +280,7 @@ public class DynamicThemeUtils {
      */
     public static @NonNull String getValueFromColor(int color) {
         if (color == Theme.AUTO) {
-            return ADS_VALUE_AUTO;
+            return VALUE_AUTO;
         } else {
             return DynamicColorUtils.getColorString(color,
                     DynamicColorUtils.isAlpha(color), true);
@@ -286,7 +295,7 @@ public class DynamicThemeUtils {
      * @return The integer equivalent of the color.
      */
     public static int getValueFromColor(@NonNull String color) {
-        if (color.equals(ADS_VALUE_AUTO)) {
+        if (color.equals(VALUE_AUTO)) {
             return Theme.AUTO;
         } else {
             return Color.parseColor(color);
@@ -302,7 +311,7 @@ public class DynamicThemeUtils {
      */
     public static @NonNull String getValueFromCornerRadius(int cornerRadius) {
         if (cornerRadius == Theme.AUTO) {
-            return ADS_VALUE_AUTO;
+            return VALUE_AUTO;
         } else {
             return String.valueOf(DynamicUnitUtils.convertPixelsToDp(cornerRadius));
         }
@@ -316,7 +325,7 @@ public class DynamicThemeUtils {
      * @return The integer equivalent of the corner radius.
      */
     public static int getValueFromCornerRadius(@NonNull String cornerRadius) {
-        if (cornerRadius.equals(ADS_VALUE_AUTO)) {
+        if (cornerRadius.equals(VALUE_AUTO)) {
             return Theme.AUTO;
         } else {
             return Integer.valueOf(cornerRadius);
@@ -335,11 +344,11 @@ public class DynamicThemeUtils {
         switch (backgroundAware) {
             default:
             case Theme.BackgroundAware.AUTO:
-                return ADS_VALUE_AUTO;
+                return VALUE_AUTO;
             case Theme.BackgroundAware.DISABLE:
-                return ADS_VALUE_DISABLE;
+                return VALUE_DISABLE;
             case Theme.BackgroundAware.ENABLE:
-                return ADS_VALUE_ENABLE;
+                return VALUE_ENABLE;
         }
     }
 
@@ -354,11 +363,11 @@ public class DynamicThemeUtils {
             @NonNull String backgroundAware) {
         switch (backgroundAware) {
             default:
-            case ADS_VALUE_AUTO:
+            case VALUE_AUTO:
                 return Theme.BackgroundAware.AUTO;
-            case ADS_VALUE_DISABLE:
+            case VALUE_DISABLE:
                 return Theme.BackgroundAware.DISABLE;
-            case ADS_VALUE_ENABLE:
+            case VALUE_ENABLE:
                 return Theme.BackgroundAware.ENABLE;
         }
     }
@@ -374,11 +383,11 @@ public class DynamicThemeUtils {
         switch (visibility) {
             default:
             case Theme.Visibility.AUTO:
-                return ADS_VALUE_AUTO;
+                return VALUE_AUTO;
             case Theme.Visibility.HIDE:
-                return ADS_VALUE_HIDE;
+                return VALUE_HIDE;
             case Theme.Visibility.SHOW:
-                return ADS_VALUE_SHOW;
+                return VALUE_SHOW;
         }
     }
 
@@ -392,12 +401,54 @@ public class DynamicThemeUtils {
     public static @Theme.Visibility int getValueFromVisibility(@NonNull String visibility) {
         switch (visibility) {
             default:
-            case ADS_VALUE_AUTO:
+            case VALUE_AUTO:
                 return Theme.Visibility.AUTO;
-            case ADS_VALUE_HIDE:
+            case VALUE_HIDE:
                 return Theme.Visibility.HIDE;
-            case ADS_VALUE_SHOW:
+            case VALUE_SHOW:
                 return Theme.Visibility.SHOW;
         }
+    }
+
+    /**
+     * Returns a corner drawable which can be used for the theme preview header.
+     *
+     * @param width The width in dip for the drawable.
+     * @param height The height in dip for the drawable.
+     * @param cornerRadius The corner size in dip for the drawable.
+     * @param color The color for the drawable.
+     * @param topOnly {@code true} to round the top corners only.
+     */
+    public static Drawable getCornerDrawable(int width, int height,
+            float cornerRadius, @ColorInt int color, boolean topOnly) {
+        float adjustedCornerRadius = cornerRadius;
+
+        if (!topOnly) {
+            return DynamicDrawableUtils.getCornerDrawable(
+                    width, height, adjustedCornerRadius, color);
+        } else {
+            adjustedCornerRadius = Math.max(0, cornerRadius - 1f);
+            adjustedCornerRadius = DynamicUnitUtils.convertDpToPixels(adjustedCornerRadius);
+            GradientDrawable drawable = new GradientDrawable();
+            drawable.setSize(width, height);
+            drawable.setCornerRadii(new float[] {
+                    adjustedCornerRadius, adjustedCornerRadius,
+                    adjustedCornerRadius, adjustedCornerRadius,
+                    0, 0, 0, 0 });
+
+            return DynamicDrawableUtils.getCornerDrawable(width, height, drawable, color);
+        }
+    }
+
+    /**
+     * Returns a corner drawable which can be used for the theme preview header.
+     *
+     * @param cornerRadius The corner size in dip for the drawable.
+     * @param color The color for the drawable.
+     * @param topOnly {@code true} to round the top corners only.
+     */
+    public static Drawable getCornerDrawable(float cornerRadius,
+            @ColorInt int color, boolean topOnly) {
+        return getCornerDrawable(0, 0, cornerRadius, color, topOnly);
     }
 }

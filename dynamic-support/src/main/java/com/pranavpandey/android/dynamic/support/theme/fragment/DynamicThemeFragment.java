@@ -47,7 +47,10 @@ import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog;
 import com.pranavpandey.android.dynamic.support.theme.view.DynamicThemePreview;
 import com.pranavpandey.android.dynamic.support.utils.DynamicMenuUtils;
+import com.pranavpandey.android.dynamic.support.utils.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicBitmapUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicFileUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
 
 /**
@@ -285,7 +288,7 @@ public class DynamicThemeFragment extends DynamicFragment {
             @Override
             public int getAutoColor(@Nullable String tag) {
                 return DynamicColorUtils.getTintColor(
-                        mThemePreview.getDynamicAppTheme().getBackgroundColor());
+                        mThemePreview.getDynamicTheme().getBackgroundColor());
             }
         });
 
@@ -309,7 +312,7 @@ public class DynamicThemeFragment extends DynamicFragment {
             @Override
             public int getAutoColor(@Nullable String tag) {
                 return DynamicColorUtils.getTintColor(
-                        mThemePreview.getDynamicAppTheme().getPrimaryColor());
+                        mThemePreview.getDynamicTheme().getPrimaryColor());
             }
         });
 
@@ -322,7 +325,7 @@ public class DynamicThemeFragment extends DynamicFragment {
             @Override
             public int getAutoColor(@Nullable String tag) {
                 return DynamicTheme.getInstance().generateDarkColor(
-                        mThemePreview.getDynamicAppTheme().getPrimaryColor());
+                        mThemePreview.getDynamicTheme().getPrimaryColor());
             }
         });
 
@@ -346,7 +349,7 @@ public class DynamicThemeFragment extends DynamicFragment {
             @Override
             public int getAutoColor(@Nullable String tag) {
                 return DynamicColorUtils.getTintColor(
-                        mThemePreview.getDynamicAppTheme().getAccentColor());
+                        mThemePreview.getDynamicTheme().getAccentColor());
             }
         });
 
@@ -360,7 +363,7 @@ public class DynamicThemeFragment extends DynamicFragment {
             public int getAutoColor(@Nullable String tag) {
                 if (DynamicColorUtils.getContrastColor(
                         DynamicTheme.getInstance().getDefault().getTextPrimaryColor(),
-                        mThemePreview.getDynamicAppTheme().getBackgroundColor())
+                        mThemePreview.getDynamicTheme().getBackgroundColor())
                     != DynamicTheme.getInstance().getDefault().getTextPrimaryColor()) {
                     return DynamicTheme.getInstance().getDefault().getTextPrimaryColorInverse();
                 }
@@ -378,7 +381,7 @@ public class DynamicThemeFragment extends DynamicFragment {
             public int getAutoColor(@Nullable String tag) {
                 if (DynamicColorUtils.getContrastColor(
                         DynamicTheme.getInstance().getDefault().getTextPrimaryColorInverse(),
-                        mThemePreview.getDynamicAppTheme().getBackgroundColor())
+                        mThemePreview.getDynamicTheme().getBackgroundColor())
                         == DynamicTheme.getInstance().getDefault().getTextPrimaryColorInverse()) {
                     return DynamicColorUtils.getTintColor(
                             DynamicTheme.getInstance().getDefault().getTextPrimaryColorInverse());
@@ -398,7 +401,7 @@ public class DynamicThemeFragment extends DynamicFragment {
             public int getAutoColor(@Nullable String tag) {
                 if (DynamicColorUtils.getContrastColor(
                         DynamicTheme.getInstance().getDefault().getTextSecondaryColor(),
-                        mThemePreview.getDynamicAppTheme().getBackgroundColor())
+                        mThemePreview.getDynamicTheme().getBackgroundColor())
                         != DynamicTheme.getInstance().getDefault().getTextSecondaryColor()) {
                     return DynamicTheme.getInstance().getDefault().getTextSecondaryColorInverse();
                 }
@@ -416,7 +419,7 @@ public class DynamicThemeFragment extends DynamicFragment {
             public int getAutoColor(@Nullable String tag) {
                 if (DynamicColorUtils.getContrastColor(
                         DynamicTheme.getInstance().getDefault().getTextSecondaryColorInverse(),
-                        mThemePreview.getDynamicAppTheme().getBackgroundColor())
+                        mThemePreview.getDynamicTheme().getBackgroundColor())
                         == DynamicTheme.getInstance().getDefault().getTextSecondaryColorInverse()) {
                     return DynamicColorUtils.getTintColor(
                             DynamicTheme.getInstance().getDefault().getTextSecondaryColorInverse());
@@ -457,12 +460,17 @@ public class DynamicThemeFragment extends DynamicFragment {
         int i = item.getItemId();
         if (i == R.id.ads_menu_theme_copy) {
             DynamicLinkUtils.copyToClipboard(getContext(), getString(R.string.ads_theme),
-                    mThemePreview.getDynamicAppTheme().toDynamicString());
+                    mThemePreview.getDynamicTheme().toDynamicString());
 
             getDynamicActivity().getSnackBar(R.string.ads_theme_copy_done).show();
         } else if (i == R.id.ads_menu_theme_share) {
+            mThemePreview.getFAB().setImageResource(R.drawable.ads_ic_style);
             DynamicLinkUtils.share(getContext(), null,
-                    mThemePreview.getDynamicAppTheme().toDynamicString());
+                    mThemePreview.getDynamicTheme().toDynamicString(),
+                    DynamicFileUtils.getBitmapUri(getContext(),
+                            DynamicBitmapUtils.createBitmapFromView(mThemePreview),
+                            DynamicThemeUtils.NAME_THEME_SHARE));
+            mThemePreview.getFAB().setImageResource(R.drawable.ads_ic_preview);
         } else if (i == R.id.ads_menu_theme_import) {
             importTheme();
         } else if (i == R.id.ads_menu_refresh) {
@@ -613,7 +621,7 @@ public class DynamicThemeFragment extends DynamicFragment {
      * Update the theme preview.
      */
     private void updateThemePreview() {
-        mThemePreview.setDynamicAppTheme(
+        mThemePreview.setDynamicTheme(
                 new DynamicAppTheme(mDynamicAppTheme)
                         .setBackgroundColor(mColorBackgroundPreference.getColor(false))
                         .setTintBackgroundColor(mColorBackgroundPreference.getAltColor(false))
@@ -639,7 +647,7 @@ public class DynamicThemeFragment extends DynamicFragment {
     public void saveThemeSettings() {
         Intent intent = new Intent();
         intent.putExtra(DynamicIntent.EXTRA_THEME,
-                mThemePreview.getDynamicAppTheme().toJsonString());
+                mThemePreview.getDynamicTheme().toJsonString());
         setResult(Activity.RESULT_OK, intent);
 
         finishActivity();

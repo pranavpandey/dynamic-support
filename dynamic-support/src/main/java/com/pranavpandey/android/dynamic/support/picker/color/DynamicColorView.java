@@ -224,7 +224,7 @@ public class DynamicColorView extends FrameLayout {
             @ColorInt int tintColor = DynamicColorUtils.getTintColor(
                     DynamicTheme.getInstance().get().getBackgroundColor());
 
-            mSelectorBitmap = DynamicBitmapUtils.getBitmapFormDrawable(
+            mSelectorBitmap = DynamicBitmapUtils.getBitmapFromDrawable(
                     DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_play));
             mColorStrokePaint.setColor(tintColor);
             mColorPaint.setColor(DynamicTheme.getInstance().get().getBackgroundColor());
@@ -239,7 +239,7 @@ public class DynamicColorView extends FrameLayout {
                 mColorPaint.setShader(gradient);
             }
         } else {
-            mSelectorBitmap = DynamicBitmapUtils.getBitmapFormDrawable(
+            mSelectorBitmap = DynamicBitmapUtils.getBitmapFromDrawable(
                     DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_check));
             mColorPaint.setColor(color);
             mColorStrokePaint.setColor(DynamicColorUtils.removeAlpha(
