@@ -249,9 +249,8 @@ public class DynamicColorView extends FrameLayout {
         }
 
         if (Color.alpha(getColor()) < ALPHA_SELECTOR) {
-            mSelectorPaint.setColor(
-                    DynamicColorUtils.getContrastColor(mColorStrokePaint.getColor(),
-                    DynamicTheme.getInstance().get().getBackgroundColor()));
+            mSelectorPaint.setColor(DynamicColorUtils.getContrastColor(
+                    mColorStrokePaint.getColor(), Color.LTGRAY));
         } else {
             mSelectorPaint.setColor(mColorStrokePaint.getColor());
         }
@@ -362,8 +361,8 @@ public class DynamicColorView extends FrameLayout {
      */
     public void showHint() {
         final Toast toast;
-        final @ColorInt int color;
-        final @ColorInt int tintColor;
+        @ColorInt int color;
+        @ColorInt int tintColor;
 
         if (mColor == Theme.AUTO) {
             color = mSelectorPaint.getColor();
@@ -372,6 +371,9 @@ public class DynamicColorView extends FrameLayout {
             color = mColor;
             tintColor = mSelectorPaint.getColor();
         }
+
+        color = DynamicColorUtils.removeAlpha(color);
+        tintColor = DynamicColorUtils.removeAlpha(tintColor);
 
         if (mSelected) {
             toast = DynamicHint.make(DynamicTheme.getInstance().getContext(), getColorString(),
