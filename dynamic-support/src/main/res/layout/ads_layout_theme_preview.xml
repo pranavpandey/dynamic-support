@@ -111,8 +111,8 @@
             android:layout_marginBottom="@dimen/ads_margin_regular"
             android:paddingLeft="@dimen/ads_margin_regular"
             android:paddingStart="@dimen/ads_margin_regular"
-            android:paddingRight="@dimen/ads_margin_regular"
-            android:paddingEnd="@dimen/ads_margin_regular"
+            android:paddingRight="@dimen/ads_margin_medium"
+            android:paddingEnd="@dimen/ads_margin_medium"
             android:orientation="horizontal"
             android:layout_below="@id/ads_theme_header">
 
