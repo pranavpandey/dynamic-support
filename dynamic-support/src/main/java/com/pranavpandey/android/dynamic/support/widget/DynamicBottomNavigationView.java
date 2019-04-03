@@ -18,6 +18,7 @@ package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
@@ -280,6 +281,9 @@ public class DynamicBottomNavigationView extends BottomNavigationView
                     normalColor, mTextColor, true));
             setItemIconTintList(DynamicResourceUtils.getColorStateList(
                     normalColor, mTextColor, true));
+            setItemRippleColor(DynamicResourceUtils.getColorStateList(
+                    Color.TRANSPARENT, DynamicColorUtils.adjustAlpha(
+                            mTextColor, WidgetDefaults.ADS_ALPHA_PRESSED), false));
         }
     }
 }
