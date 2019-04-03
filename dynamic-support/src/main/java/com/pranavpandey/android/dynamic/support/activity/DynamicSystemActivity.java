@@ -26,6 +26,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.view.LayoutInflater;
 import android.view.WindowManager;
 
 import androidx.annotation.ColorInt;
@@ -42,6 +43,7 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
 import com.pranavpandey.android.dynamic.support.locale.DynamicLocale;
 import com.pranavpandey.android.dynamic.support.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.support.theme.DynamicLayoutInflater;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
@@ -205,6 +207,19 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     protected void onCustomiseTheme() { }
 
     /**
+     * Returns a layout inflater factory for this activity.
+     * <p>It will be used to replace the app compat widgets with their dynamic counterparts
+     * to provide the support for dynamic theme.
+     *
+     * <p><p>Override this method to provide a custom layout inflater.
+     *
+     * @return The layout inflater factory for this activity.
+     */
+    protected @Nullable LayoutInflater.Factory2 getDynamicLayoutInflater() {
+        return new DynamicLayoutInflater();
+    }
+
+    /**
      * Get the dynamic theme context used by this activity.
      *
      * @return The dynamic context used by this activity.
@@ -218,9 +233,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      */
     private void setDynamicTheme() {
         if (getDynamicTheme() == null) {
-            DynamicTheme.getInstance().attach(this).setLocalThemeRes(getThemeRes());
+            DynamicTheme.getInstance().attach(this,
+                    getDynamicLayoutInflater()).setLocalThemeRes(getThemeRes());
         } else {
-            DynamicTheme.getInstance().attach(this).setLocalTheme(getDynamicTheme());
+            DynamicTheme.getInstance().attach(this,
+                    getDynamicLayoutInflater()).setLocalTheme(getDynamicTheme());
         }
     }
 

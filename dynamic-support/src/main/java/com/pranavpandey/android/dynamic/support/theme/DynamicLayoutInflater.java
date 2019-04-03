@@ -31,7 +31,6 @@ import android.widget.ListView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RestrictTo;
 import androidx.appcompat.view.menu.ListMenuItemView;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
@@ -71,19 +70,16 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
-import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
-
 /**
  * A layout inflater factory2 to replace original views with the dynamic support views
  * during inflation.
  */
-@RestrictTo(LIBRARY_GROUP)
-final class DynamicLayoutInflater implements LayoutInflater.Factory2 {
+public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
 
     /**
      * Tag to ignore the view during inflation.
      */
-    private static final String ADS_TAG_IGNORE = ":ads_ignore";
+    protected static final String ADS_TAG_IGNORE = ":ads_ignore";
 
     @Override
     public View onCreateView(String name, @NonNull Context context, @NonNull AttributeSet attrs) {

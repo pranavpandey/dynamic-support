@@ -19,6 +19,7 @@ package com.pranavpandey.android.dynamic.support.theme;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.view.LayoutInflater;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -168,23 +169,38 @@ public class DynamicTheme implements DynamicListener {
      * <p>It can be an activity in case different themes are required for different activities.
      *
      * @param localContext The context to be attached with this theme.
+     * @param layoutInflater The layout inflater factory for the local context.
+     *                       <p>{@code null} to use no custom layout inflater.
      *
      * @return The {@link DynamicTheme} object to allow for chaining of calls to set methods.
      */
-    public DynamicTheme attach(@NonNull Context localContext) {
+    public DynamicTheme attach(@NonNull Context localContext,
+            @Nullable LayoutInflater.Factory2 layoutInflater) {
         this.mLocalContext = localContext;
         this.mDefaultLocalTheme = new DynamicAppTheme(COLOR_PRIMARY_DEFAULT,
                 COLOR_PRIMARY_DARK_DEFAULT, COLOR_ACCENT_DEFAULT,
                 CORNER_SIZE_DEFAULT, Theme.BackgroundAware.ENABLE);
         this.mLocalTheme = new DynamicAppTheme();
 
-        if (localContext instanceof Activity && ((Activity) localContext)
-                .getLayoutInflater().getFactory2() == null) {
+        if (localContext instanceof Activity && layoutInflater != null
+                && ((Activity) localContext).getLayoutInflater().getFactory2() == null) {
             LayoutInflaterCompat.setFactory2(((Activity) localContext)
-                    .getLayoutInflater(), new DynamicLayoutInflater());
+                    .getLayoutInflater(), layoutInflater);
         }
 
         return this;
+    }
+
+    /**
+     * Attach a local context to this theme.
+     * <p>It can be an activity in case different themes are required for different activities.
+     *
+     * @param localContext The context to be attached with this theme.
+     *
+     * @return The {@link DynamicTheme} object to allow for chaining of calls to set methods.
+     */
+    public DynamicTheme attach(@NonNull Context localContext) {
+        return attach(localContext, new DynamicLayoutInflater());
     }
 
     /**
