@@ -38,6 +38,7 @@ import androidx.core.view.ViewCompat;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
+import com.pranavpandey.android.dynamic.support.widget.DynamicBottomAppBar;
 import com.pranavpandey.android.dynamic.support.widget.DynamicBottomNavigationView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
@@ -247,6 +248,10 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
             case "android.support.v4.view.ViewPager":
             case "androidx.viewpager.widget.ViewPager":
                 view = new DynamicViewPager(context, attrs);
+                break;
+            case "android.support.design.bottomappbar.BottomAppBar":
+            case "com.google.android.material.bottomappbar.BottomAppBar":
+                view = new DynamicBottomAppBar(context, attrs);
                 break;
             case "android.support.design.widget.NavigationView":
             case "com.google.android.material.navigation.NavigationView":
