@@ -295,7 +295,7 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider
     public static @Nullable Bitmap getWidgetFrameBitmap(int width,
             int height, float cornerRadius) {
         return DynamicBitmapUtils.getBitmapFromDrawable(DynamicThemeUtils
-                .getCornerDrawable(width, height, cornerRadius, Color.WHITE, false));
+                .getCornerDrawableLegacy(width, height, cornerRadius, Color.WHITE, false));
     }
 
     /**
@@ -310,6 +310,6 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider
     public static @Nullable Bitmap getWidgetHeaderBitmap(int width,
             int height, float cornerRadius, @ColorInt int color) {
         return DynamicBitmapUtils.getBitmapFromDrawable(DynamicThemeUtils
-                .getCornerDrawable(width, height, cornerRadius, color, true));
+                .getCornerDrawableLegacy(width, height, cornerRadius, color, true));
     }
 }

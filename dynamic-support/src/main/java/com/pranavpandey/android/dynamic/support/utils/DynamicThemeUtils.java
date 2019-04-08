@@ -24,6 +24,9 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.material.shape.MaterialShapeDrawable;
+import com.google.android.material.shape.RoundedCornerTreatment;
+import com.google.android.material.shape.ShapeAppearanceModel;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.model.DynamicWidgetTheme;
 import com.pranavpandey.android.dynamic.support.theme.Theme;
@@ -413,13 +416,40 @@ public class DynamicThemeUtils {
     /**
      * Returns a corner drawable which can be used for the theme preview header.
      *
+     * @param cornerRadius The corner size in dip for the drawable.
+     * @param color The color for the drawable.
+     * @param topOnly {@code true} to round the top corners only.
+     */
+    public static Drawable getCornerDrawable(float cornerRadius,
+            @ColorInt int color, boolean topOnly) {
+        float cornerRadiusPixel = DynamicUnitUtils.convertDpToPixels(
+                topOnly ? Math.max(0, cornerRadius - 1f) : cornerRadius);
+        ShapeAppearanceModel shapeAppearanceModel = new ShapeAppearanceModel();
+        MaterialShapeDrawable materialShapeDrawable;
+
+        if (!topOnly) {
+            shapeAppearanceModel.setAllCorners(new RoundedCornerTreatment(cornerRadiusPixel));
+        } else {
+            shapeAppearanceModel.setTopLeftCorner(new RoundedCornerTreatment(cornerRadiusPixel));
+            shapeAppearanceModel.setTopRightCorner(new RoundedCornerTreatment(cornerRadiusPixel));
+        }
+
+        materialShapeDrawable = new MaterialShapeDrawable(shapeAppearanceModel);
+        materialShapeDrawable.setTint(color);
+
+        return materialShapeDrawable;
+    }
+
+    /**
+     * Returns a corner drawable which can be used for the theme preview header.
+     *
      * @param width The width in dip for the drawable.
      * @param height The height in dip for the drawable.
      * @param cornerRadius The corner size in dip for the drawable.
      * @param color The color for the drawable.
      * @param topOnly {@code true} to round the top corners only.
      */
-    public static Drawable getCornerDrawable(int width, int height,
+    public static Drawable getCornerDrawableLegacy(int width, int height,
             float cornerRadius, @ColorInt int color, boolean topOnly) {
         float adjustedCornerRadius = cornerRadius;
 
@@ -447,8 +477,8 @@ public class DynamicThemeUtils {
      * @param color The color for the drawable.
      * @param topOnly {@code true} to round the top corners only.
      */
-    public static Drawable getCornerDrawable(float cornerRadius,
+    public static Drawable getCornerDrawableLegacy(float cornerRadius,
             @ColorInt int color, boolean topOnly) {
-        return getCornerDrawable(0, 0, cornerRadius, color, topOnly);
+        return getCornerDrawableLegacy(0, 0, cornerRadius, color, topOnly);
     }
 }
