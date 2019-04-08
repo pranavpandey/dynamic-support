@@ -16,6 +16,9 @@
 
 package com.pranavpandey.android.dynamic.support.listener;
 
+import android.annotation.TargetApi;
+import android.os.Build;
+
 /**
  * An interface to listen the dynamic change events.
  */
@@ -35,4 +38,14 @@ public interface DynamicListener {
      * @param recreate {@code true} if listener must be recreated to adapt the changes.
      */
     void onDynamicChange(boolean context, boolean recreate);
+
+    /**
+     * This method will be called when the power save mode has been changed.
+     *
+     * <p><p>It will be called only on Android Lollipop or above (API 21+).
+     *
+     * @param powerSaveMode {@code true} if the device is in power save mode.
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    void onPowerSaveModeChange(boolean powerSaveMode);
 }

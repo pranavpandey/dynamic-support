@@ -224,7 +224,7 @@
     <string name="ads_theme_import_done">Theme has been imported successfully.</string>
     <string name="ads_theme_copy_done">Theme has been copied successfully.</string>
 
-    <!-- Theme and Labels -->
+    <!-- Theme -->
     <string name="ads_theme_toast_default">Default toast message</string>
     <string name="ads_theme_toast_themed">Themed toast message</string>
     <string name="ads_theme_entry_auto">Auto</string>
@@ -239,6 +239,8 @@
     <string name="ads_theme_entry_dark">Dark</string>
     <string name="ads_theme_entry_custom">Custom</string>
     <string name="ads_theme_entry_classic">Classic</string>
+    <string name="ads_theme_entry_battery">Battery saver</string>
+    <string name="ads_theme_entry_always">Always</string>
     <string name="ads_theme_entry_true_dark">True dark</string>
     <string name="ads_theme_entry_light_indigo">Light indigo</string>
     <string name="ads_theme_entry_light_red">Light red</string>

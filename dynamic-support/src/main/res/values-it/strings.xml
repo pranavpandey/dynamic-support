@@ -223,7 +223,7 @@
     <string name="ads_theme_import_done">Il motivo è stato importato correttamente.</string>
     <string name="ads_theme_copy_done">Il motivo è stato copiato correttamente.</string>
 
-    <!-- Theme and Labels -->
+    <!-- Theme -->
     <string name="ads_theme_toast_default">Messaggio toast predefinito</string>
     <string name="ads_theme_toast_themed">Motivo per i messaggi toast</string>
     <string name="ads_theme_entry_auto">Automatico</string>
@@ -238,6 +238,8 @@
     <string name="ads_theme_entry_dark">Scuro</string>
     <string name="ads_theme_entry_custom">Personalizzato</string>
     <string name="ads_theme_entry_classic">Classico</string>
+    <string name="ads_theme_entry_battery">Risparmio energetico</string>
+    <string name="ads_theme_entry_always">Sempre</string>
     <string name="ads_theme_entry_true_dark">Scuro vero</string>
     <string name="ads_theme_entry_light_indigo">Indaco chiaro</string>
     <string name="ads_theme_entry_light_red">Rosso chiaro</string>

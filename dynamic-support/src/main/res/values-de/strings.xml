@@ -224,7 +224,7 @@
     <string name="ads_theme_import_done">Thema wurde erfolgreich importiert.</string>
     <string name="ads_theme_copy_done">Das Thema wurde erfolgreich kopiert.</string>
 
-    <!-- Theme and Labels -->
+    <!-- Theme -->
     <string name="ads_theme_toast_default">Standard Toast-Nachricht</string>
     <string name="ads_theme_toast_themed">Toast-Nachrichten mit Thema</string>
     <string name="ads_theme_entry_auto">Auto</string>
@@ -239,6 +239,8 @@
     <string name="ads_theme_entry_dark">Dunkel</string>
     <string name="ads_theme_entry_custom">Eigene</string>
     <string name="ads_theme_entry_classic">Klassisch</string>
+    <string name="ads_theme_entry_battery">Energiesparmodus</string>
+    <string name="ads_theme_entry_always">Immer</string>
     <string name="ads_theme_entry_true_dark">Sehr dunkel</string>
     <string name="ads_theme_entry_light_indigo">Hellindigo</string>
     <string name="ads_theme_entry_light_red">Hellrot</string>

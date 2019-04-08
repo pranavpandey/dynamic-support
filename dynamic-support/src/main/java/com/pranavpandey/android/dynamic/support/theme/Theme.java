@@ -89,6 +89,60 @@ public @interface Theme {
     }
 
     /**
+     * Constant values for the night theme.
+     */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(value = { Night.AUTO, Night.CUSTOM, Night.SYSTEM, Night.BATTERY })
+    public @interface Night {
+
+        /**
+         * Constant for the night theme according to the time.
+         */
+        int AUTO = Theme.AUTO;
+
+        /**
+         * Constant for the custom night theme implementation.
+         */
+        int CUSTOM = Theme.CUSTOM;
+
+        /**
+         * Constant for the night theme according to the system.
+         */
+        int SYSTEM = Theme.SYSTEM;
+
+        /**
+         * Constant for the night theme when battery saver is active.
+         */
+        int BATTERY = 2;
+
+        @Retention(RetentionPolicy.SOURCE)
+        @StringDef(value = { Night.ToString.AUTO, Night.ToString.CUSTOM,
+                Night.ToString.SYSTEM, Night.ToString.BATTERY })
+        @interface ToString {
+
+            /**
+             * String constant for the night theme according to the time.
+             */
+            String AUTO = Theme.ToString.AUTO;
+
+            /**
+             * String constant for the custom night theme implementation.
+             */
+            String CUSTOM = Theme.ToString.CUSTOM;
+
+            /**
+             * String constant for the night theme according to the system.
+             */
+            String SYSTEM = Theme.ToString.SYSTEM;
+
+            /**
+             * String constant for the night theme when battery saver is active.
+             */
+            String BATTERY = "2";
+        }
+    }
+
+    /**
      * Constant values for the visibility.
      */
     @Retention(RetentionPolicy.SOURCE)

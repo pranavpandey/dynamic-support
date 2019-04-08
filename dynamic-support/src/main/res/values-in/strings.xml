@@ -224,7 +224,7 @@
     <string name="ads_theme_import_done">Tema telah sukses di import.</string>
     <string name="ads_theme_copy_done">Tema telah berhasil disalin.</string>
 
-    <!-- Theme and Labels -->
+    <!-- Theme -->
     <string name="ads_theme_toast_default">Pesan toast default</string>
     <string name="ads_theme_toast_themed">Pesan toast bertema</string>
     <string name="ads_theme_entry_auto">Otomatis</string>
@@ -239,6 +239,8 @@
     <string name="ads_theme_entry_dark">Gelap</string>
     <string name="ads_theme_entry_custom">Kustom</string>
     <string name="ads_theme_entry_classic">Klasik</string>
+    <string name="ads_theme_entry_battery">Penghemat baterai</string>
+    <string name="ads_theme_entry_always">Selalu</string>
     <string name="ads_theme_entry_true_dark">Gelap sungguhan</string>
     <string name="ads_theme_entry_light_indigo">Indigo terang</string>
     <string name="ads_theme_entry_light_red">Merah terang</string>

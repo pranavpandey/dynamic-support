@@ -100,8 +100,7 @@ public class DynamicThemePreference extends DynamicSpinnerPreference {
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DynamicPreference);
 
         try {
-            mDefaultTheme = a.getString(
-                    R.styleable.DynamicPreference_ads_theme);
+            mDefaultTheme = a.getString(R.styleable.DynamicPreference_ads_theme);
         } finally {
             a.recycle();
         }

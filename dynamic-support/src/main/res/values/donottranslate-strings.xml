@@ -22,6 +22,12 @@
     <string name="ads_format_blank_space">%1$s %2$s</string>
     <string name="ads_format_separator">%1$s | %2$s</string>
     <string name="ads_format_braces">%1$s (%2$s)</string>
+    <string name="ads_format_next_line">%1$s\n%2$s</string>
+    <string name="ads_format_line_break_two">%1$s\n\n%2$s</string>
+
+    <!-- Labels -->
+    <string name="ads_yes">@android:string/yes</string>
+    <string name="ads_cancel">@android:string/cancel</string>
 
     <!-- Locales -->
     <string name="ads_locale_system">@string/ads_language_system</string>
@@ -44,13 +50,8 @@
     <!-- FAB behavior -->
     <string name="ads_fab_behavior">com.pranavpandey.android.dynamic.support.behavior.DynamicFABScrollBehavior</string>
 
-    <!-- String formats -->
-    <string name="ads_format_next_line">%1$s\n%2$s</string>
-    <string name="ads_format_line_break_two">%1$s\n\n%2$s</string>
-
-    <!-- Labels -->
-    <string name="ads_yes">@android:string/yes</string>
-    <string name="ads_cancel">@android:string/cancel</string>
+    <!-- Theme -->
+    <string name="ads_theme_entry_system">@string/ads_locale_system</string>
 
     <!-- Picker -->
     <string name="ads_picker_hsv">HSV</string>

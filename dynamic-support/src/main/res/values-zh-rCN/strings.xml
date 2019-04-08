@@ -224,7 +224,7 @@
     <string name="ads_theme_import_done">主题已成功导入。</string>
     <string name="ads_theme_copy_done">该主题已成功复制。</string>
 
-    <!-- Theme and Labels -->
+    <!-- Theme -->
     <string name="ads_theme_toast_default">默认的Toast消息</string>
     <string name="ads_theme_toast_themed">主题Toast消息</string>
     <string name="ads_theme_entry_auto">自动</string>
@@ -239,6 +239,8 @@
     <string name="ads_theme_entry_dark">暗色</string>
     <string name="ads_theme_entry_custom">自定义</string>
     <string name="ads_theme_entry_classic">经典</string>
+    <string name="ads_theme_entry_battery">省电模式</string>
+    <string name="ads_theme_entry_always">始终</string>
     <string name="ads_theme_entry_true_dark">真·黑</string>
     <string name="ads_theme_entry_light_indigo">淡蓝</string>
     <string name="ads_theme_entry_light_red">浅红色</string>

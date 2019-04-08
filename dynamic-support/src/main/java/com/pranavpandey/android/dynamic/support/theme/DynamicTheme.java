@@ -16,9 +16,15 @@
 
 package com.pranavpandey.android.dynamic.support.theme;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
+import android.os.Build;
+import android.os.PowerManager;
 import android.view.LayoutInflater;
 
 import androidx.annotation.ColorInt;
@@ -47,6 +53,7 @@ import java.util.List;
  * <p>It must be initialized before using any activity or widget as they are
  * heavily dependent on this class to generate colors dynamically.
  */
+@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class DynamicTheme implements DynamicListener {
 
     /**
@@ -99,6 +106,11 @@ public class DynamicTheme implements DynamicListener {
     private static final int CORNER_SIZE_DEFAULT = DynamicUnitUtils.convertDpToPixels(2);
 
     /**
+     * {@code true} if power save mode is enabled.
+     */
+    private boolean mPowerSaveMode;
+
+    /**
      * Default theme used by the application.
      */
     private DynamicAppTheme mDefaultApplicationTheme;
@@ -139,6 +151,16 @@ public class DynamicTheme implements DynamicListener {
     private Context mLocalContext;
 
     /**
+     * Broadcast receiver to listen various events.
+     */
+    private BroadcastReceiver mBroadcastReceiver;
+
+    /**
+     * Power manager to perform battery and screen related events.
+     */
+    private PowerManager mPowerManager;
+
+    /**
      * Collection of dynamic listeners to send them event callback.
      */
     private List<DynamicListener> mDynamicListeners;
@@ -156,12 +178,30 @@ public class DynamicTheme implements DynamicListener {
      */
     private DynamicTheme(@NonNull Context context) {
         this.mContext = context;
+        this.mPowerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         this.mDynamicListeners = new ArrayList<>();
         this.mDefaultApplicationTheme = new DynamicAppTheme(COLOR_PRIMARY_DEFAULT,
                 COLOR_PRIMARY_DARK_DEFAULT, COLOR_ACCENT_DEFAULT,
                 CORNER_SIZE_DEFAULT, Theme.BackgroundAware.ENABLE);
         this.mApplicationTheme = new DynamicAppTheme();
         this.mRemoteTheme = new DynamicWidgetTheme();
+
+        if (DynamicVersionUtils.isLollipop()) {
+            this.mPowerSaveMode = mPowerManager.isPowerSaveMode();
+            this.mBroadcastReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    mPowerSaveMode = mPowerManager.isPowerSaveMode();
+                    onPowerSaveModeChange(mPowerSaveMode);
+                }
+            };
+
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED);
+            mContext.registerReceiver(mBroadcastReceiver, intentFilter);
+        } else {
+            this.mPowerSaveMode = false;
+        }
     }
 
     /**
@@ -480,6 +520,15 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
+     * Get the power manager used by the application.
+     *
+     * @return The power manager used by the application.
+     */
+    public PowerManager getPowerManager() {
+        return mPowerManager;
+    }
+
+    /**
      * Get the theme used by the application.
      *
      * @return The theme used by the application.
@@ -548,8 +597,10 @@ public class DynamicTheme implements DynamicListener {
             return;
         }
 
+        mContext.unregisterReceiver(mBroadcastReceiver);
         mContext = null;
         mLocalContext = null;
+        mBroadcastReceiver = null;
         mDefaultApplicationTheme = null;
         mApplicationTheme = null;
         mDefaultLocalTheme = null;
@@ -689,6 +740,13 @@ public class DynamicTheme implements DynamicListener {
     }
 
     @Override
+    public void onPowerSaveModeChange(boolean powerSaveMode) {
+        for (DynamicListener dynamicListener : mDynamicListeners) {
+            dynamicListener.onPowerSaveModeChange(powerSaveMode);
+        }
+    }
+
+    @Override
     public @NonNull String toString() {
         StringBuilder theme = new StringBuilder();
 
@@ -749,5 +807,44 @@ public class DynamicTheme implements DynamicListener {
      */
     public @Nullable DynamicAppTheme getTheme(@Nullable String theme) {
         return new Gson().fromJson(theme, DynamicAppTheme.class);
+    }
+
+    /**
+     * Resolves night theme according to the selected implementation.
+     *
+     * @param appTheme The app theme to resolve the auto night theme.
+     * @param implementation The implementation for the night theme.
+     *
+     * @return {@code true} if the night theme is enabled according to the selected implementation.
+     */
+    public boolean resolveNightTheme(@Theme int appTheme, @Theme.Night int implementation) {
+        if (appTheme == Theme.AUTO) {
+            switch (implementation) {
+                default:
+                case Theme.Night.SYSTEM:
+                    return false; // TODO
+                case Theme.Night.CUSTOM:
+                    return false;
+                case Theme.Night.AUTO:
+                    return DynamicResourceUtils.isNight(appTheme);
+                case Theme.Night.BATTERY:
+                    return mPowerSaveMode;
+            }
+        }
+
+        return appTheme == Theme.NIGHT;
+    }
+
+    /**
+     * Resolves night theme according to the selected implementation.
+     *
+     * @param appTheme The app theme to resolve the auto night theme.
+     * @param implementation The implementation for the night theme.
+     *
+     * @return {@code true} if the night theme is enabled according to the selected implementation.
+     */
+    public boolean resolveNightTheme(@Theme.ToString String appTheme,
+            @Theme.Night.ToString String implementation) {
+        return resolveNightTheme(Integer.valueOf(appTheme), Integer.valueOf(implementation));
     }
 }

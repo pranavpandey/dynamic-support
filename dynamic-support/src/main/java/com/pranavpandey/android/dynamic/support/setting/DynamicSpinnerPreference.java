@@ -125,7 +125,8 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
         super.onUpdate();
 
         if (getPreferenceView() != null) {
-            getPreferenceView().setClickable(mEntries != null);
+            getPreferenceView().setClickable(
+                    getOnPreferenceClickListener() != null && mEntries != null);
         }
     }
 
@@ -139,7 +140,7 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
-                                            int position, long id) {
+                            int position, long id) {
                         if (!getPreferenceValue().equals(mValues[position].toString())) {
                             setPreferenceValue(mValues[position].toString());
                         }
@@ -157,16 +158,79 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
     }
 
     /**
+     * Get the list entries for this preference.
+     */
+    public @Nullable CharSequence[] getEntries() {
+        return mEntries;
+    }
+
+    /**
+     * Sets the list entries for this preference.
+     *
+     * @param entries The list entries to be used.
+     */
+    public void setEntries(@NonNull CharSequence[] entries) {
+        this.mEntries = entries;
+
+        updateValueString(true);
+    }
+
+    /**
+     * Get the list values for this preference.
+     */
+    public @Nullable CharSequence[] getValues() {
+        return mValues;
+    }
+
+    /**
+     * Sets the list values for this preference.
+     *
+     * @param values The list values to be used.
+     */
+    public void setValues(@NonNull CharSequence[] values) {
+        this.mValues = values;
+
+        updateValueString(true);
+    }
+
+    /**
      * Update value string according to the current preference value.
      *
      * @param update {@code true} to call {@link #onUpdate()} method after setting the
      *               value string.
      */
     public void updateValueString(boolean update) {
-        if (mEntries != null) {
+        if (mEntries != null && mValues != null) {
             setValueString(mEntries[Arrays.asList(mValues)
                     .indexOf(getPreferenceValue())], update);
         }
+    }
+
+    public int getDefaultValue() {
+        return mDefaultValue;
+    }
+
+    /**
+     * Set the default value for this preference.
+     *
+     * @param defaultValue The default value.
+     */
+    public void setDefaultValue(int defaultValue) {
+        this.mDefaultValue = defaultValue;
+    }
+
+    /**
+     * Returns the default value of this preference.
+     *
+     * @return The default value of this preference.
+     */
+    public @Nullable String getPreferenceValue() {
+        if (getPreferenceKey() == null) {
+            return null;
+        }
+
+        return DynamicPreferences.getInstance().loadPrefs(
+                getPreferenceKey(), mValues[mDefaultValue].toString());
     }
 
     /**
@@ -180,20 +244,6 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
         }
 
         updateValueString(true);
-    }
-
-    /**
-     * Returns the current value of this preference.
-     *
-     * @return The current value of this preference.
-     */
-    public @Nullable String getPreferenceValue() {
-        if (getPreferenceKey() == null) {
-            return null;
-        }
-
-        return DynamicPreferences.getInstance().loadPrefs(
-                getPreferenceKey(), mValues[mDefaultValue].toString());
     }
 
     @Override

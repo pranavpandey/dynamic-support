@@ -534,6 +534,9 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void onPowerSaveModeChange(boolean powerSaveMode) { }
+
+    @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { }
 
     /**

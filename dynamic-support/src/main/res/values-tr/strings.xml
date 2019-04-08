@@ -223,7 +223,7 @@
     <string name="ads_theme_import_done">Tema başarıyla içe aktarıldı.</string>
     <string name="ads_theme_copy_done">Tema başarıyla kopyalandı.</string>
 
-    <!-- Theme and Labels -->
+    <!-- Theme -->
     <string name="ads_theme_toast_default">Varsayılan bildirim mesajı</string>
     <string name="ads_theme_toast_themed">Temalı bildirim mesajı</string>
     <string name="ads_theme_entry_auto">Otomatik</string>
@@ -238,6 +238,8 @@
     <string name="ads_theme_entry_dark">Koyu</string>
     <string name="ads_theme_entry_custom">Özel</string>
     <string name="ads_theme_entry_classic">Klasik</string>
+    <string name="ads_theme_entry_battery">Pil tasarrufu</string>
+    <string name="ads_theme_entry_always">Daima</string>
     <string name="ads_theme_entry_true_dark">Gerçek koyu</string>
     <string name="ads_theme_entry_light_indigo">Açık çivit mavisi</string>
     <string name="ads_theme_entry_light_red">Açık kırmızı</string>

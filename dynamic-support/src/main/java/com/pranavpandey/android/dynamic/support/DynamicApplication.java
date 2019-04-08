@@ -172,5 +172,8 @@ public abstract class DynamicApplication extends Application implements DynamicL
     }
 
     @Override
+    public void onPowerSaveModeChange(boolean powerSaveMode) { }
+
+    @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { }
 }
