@@ -83,6 +83,7 @@ public abstract class DynamicApplication extends Application implements DynamicL
         int diff = mConfiguration.diff(new Configuration(newConfig));
         if ((diff & ActivityInfo.CONFIG_LOCALE) != 0
                 || (diff & ActivityInfo.CONFIG_ORIENTATION) != 0
+                || (diff & ActivityInfo.CONFIG_UI_MODE) != 0
                 || (DynamicVersionUtils.isJellyBeanMR1()
                 && (diff & ActivityInfo.CONFIG_DENSITY) != 0)) {
             DynamicTheme.getInstance().onDynamicChange(true, false);

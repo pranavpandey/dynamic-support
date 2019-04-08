@@ -22,6 +22,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.PowerManager;
@@ -810,6 +811,16 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
+     * Checks whether the system night mode is enabled.
+     *
+     * @return {@code true} if the system night mode is enabled.
+     */
+    public boolean isSystemNightMode() {
+        return (getContext().getResources().getConfiguration().uiMode
+                & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+    }
+
+    /**
      * Resolves night theme according to the selected implementation.
      *
      * @param appTheme The app theme to resolve the auto night theme.
@@ -822,7 +833,7 @@ public class DynamicTheme implements DynamicListener {
             switch (implementation) {
                 default:
                 case Theme.Night.SYSTEM:
-                    return false; // TODO
+                    return isSystemNightMode();
                 case Theme.Night.CUSTOM:
                     return false;
                 case Theme.Night.AUTO:
