@@ -20,6 +20,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -147,12 +148,25 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
                                             DynamicCardView cardView =
                                                     new DynamicPopupBackground(context, attrs);
 
-                                            if (parent.getBackground() instanceof GradientDrawable) {
-                                                GradientDrawable backgroundDrawable =
-                                                        ((GradientDrawable) parent.getBackground());
-                                                backgroundDrawable.setColor(backgroundColor);
-                                                backgroundDrawable.setCornerRadius(DynamicTheme
-                                                        .getInstance().get().getCornerRadius());
+                                            if (parent.getBackground() != null) {
+                                                if (parent.getBackground()
+                                                        instanceof GradientDrawable) {
+                                                    GradientDrawable background =
+                                                            (GradientDrawable) parent.getBackground();
+                                                    background.setCornerRadius(DynamicTheme
+                                                            .getInstance().get().getCornerRadius());
+                                                } else if (parent.getBackground()
+                                                        instanceof LayerDrawable) {
+                                                    GradientDrawable background = (GradientDrawable)
+                                                            ((LayerDrawable) parent.getBackground())
+                                                                    .getDrawable(0);
+                                                    background.setCornerRadius(DynamicTheme
+                                                            .getInstance().get().getCornerRadius());
+                                                    ViewCompat.setBackground(parent, background);
+                                                }
+
+                                                DynamicDrawableUtils.colorizeDrawable(
+                                                        parent.getBackground(), backgroundColor);
                                             }
 
                                             parent.removeAllViews();
@@ -185,7 +199,7 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
                 break;
             case "android.support.v7.widget.AppCompatButton":
             case "androidx.appcompat.widget.AppCompatButton":
-            case "com.google.android.material.button.MaterialButton":
+            case "com.google.android.material.card.MaterialCardView":
                 view = new DynamicButton(context, attrs);
                 break;
             case "ImageButton":
