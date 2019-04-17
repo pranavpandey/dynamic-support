@@ -320,7 +320,7 @@ public class DynamicTheme implements DynamicListener {
                             mContext, theme, R.attr.ads_backgroundAware,
                             mDefaultApplicationTheme.getBackgroundAware()));
 
-            mApplicationTheme = mDefaultApplicationTheme;
+            mApplicationTheme = new DynamicAppTheme(mDefaultApplicationTheme);
 
             if (initializeRemoteColors) {
                 initializeRemoteColors();
@@ -347,7 +347,7 @@ public class DynamicTheme implements DynamicListener {
             }
 
             setThemeRes(dynamicTheme.getThemeRes(), false);
-            mApplicationTheme = dynamicTheme;
+            mApplicationTheme = new DynamicAppTheme(dynamicTheme);
 
             if (initializeRemoteColors) {
                 initializeRemoteColors();
@@ -405,7 +405,7 @@ public class DynamicTheme implements DynamicListener {
                             mContext, localTheme, R.attr.ads_backgroundAware,
                             mDefaultLocalTheme.getBackgroundAware()));
 
-            mLocalTheme = mDefaultLocalTheme;
+            mLocalTheme = new DynamicAppTheme(mDefaultLocalTheme);
             addDynamicListener(mLocalContext);
         }
 
@@ -427,7 +427,7 @@ public class DynamicTheme implements DynamicListener {
             }
 
             setLocalThemeRes(dynamicLocalTheme.getThemeRes());
-            mLocalTheme = dynamicLocalTheme;
+            mLocalTheme = new DynamicAppTheme(dynamicLocalTheme);
         }
 
         return this;
