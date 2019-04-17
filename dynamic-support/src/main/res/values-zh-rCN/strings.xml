@@ -23,12 +23,12 @@
 
     <!-- String formats -->
     <string name="ads_format_version">版本%1$s</string>
-    <string name="ads_search_empty">没有找到\"%1$s\"的匹配项</string>
+    <string name="ads_search_empty">没有找到\"%1$s\"匹配项</string>
 
     <!-- Labels -->
-    <string name="ads_i_got_it">好的！</string>
+    <string name="ads_i_got_it">好的，我知道了</string>
     <string name="ads_not_now">不是现在</string>
-    <string name="ads_yes_in">是的，我进来了</string>
+    <string name="ads_yes_in">是的，我在</string>
     <string name="ads_more_info">更多信息</string>
     <string name="ads_select">选择</string>
     <string name="ads_copy">复制</string>
@@ -39,8 +39,8 @@
     <string name="ads_next">下一个</string>
     <string name="ads_skip">跳过</string>
     <string name="ads_loading">载入中&#8230;</string>
-    <string name="ads_finish">完</string>
-    <string name="ads_recents">近期]</string>
+    <string name="ads_finish">完成</string>
+    <string name="ads_recents">最近活动</string>
     <string name="ads_custom">自定义</string>
     <string name="ads_edit">编辑</string>
     <string name="ads_refresh">刷新</string>
@@ -53,7 +53,7 @@
     <string name="ads_enable">启用</string>
     <string name="ads_enabled">启用</string>
     <string name="ads_disable">禁用</string>
-    <string name="ads_disabled">已禁用</string>
+    <string name="ads_disabled">禁用</string>
     <string name="ads_toggle">切换</string>
     <string name="ads_shortcut">快捷方式</string>
     <string name="ads_shortcuts">快捷方式</string>
@@ -64,7 +64,7 @@
     <string name="ads_app">应用</string>
     <string name="ads_text">文本</string>
     <string name="ads_icon">图标</string>
-    <string name="ads_size">尺寸</string>
+    <string name="ads_size">大小</string>
     <string name="ads_value">值</string>
     <string name="ads_notification">通知</string>
     <string name="ads_widgets">小部件</string>
@@ -186,7 +186,7 @@
     <string name="ads_theme_color_primary_dark">系统颜色</string>
     <string name="ads_theme_color_primary_summary_dark">系统元素使用的颜色。</string>
     <string name="ads_theme_color_accent">强调色</string>
-    <string name="ads_theme_color_secondary">二次色</string>
+    <string name="ads_theme_color_secondary">辅助色</string>
     <string name="ads_theme_color_accent_summary">辅助元素使用的颜色。</string>
     <string name="ads_theme_color_tint">色彩</string>
     <string name="ads_theme_color_inverse">反色</string>
@@ -338,7 +338,7 @@
     <string name="ads_info_website_me_desc">网络上的一个地方。</string>
     <string name="ads_info_twitter_me_desc">获取有关我的生活和工作的最新消息。</string>
     <string name="ads_info_facebook_me_desc">成为朋友或关注我，获得我的更多信息。</string>
-    <string name="ads_info_gplus_me_desc">圈出或跟随来发展社区。</string>
+    <string name="ads_info_gplus_me_desc">圈出或关注来发展社区。</string>
     <string name="ads_info_linkedin_me_desc">对我有好处吗？通过LinkedIn联系我。</string>
     <string name="ads_info_github_me_desc">通过开源购买我的一些项目回馈社区。</string>
 
