@@ -130,9 +130,10 @@ dependencies {
 
 All of my apps are using some or all part of this library. You can download them from Play Store. 
 Please email me if you are using this library and want to feature your app here. Also, please 
-checkout the `Rotation` app to experience the full potential of this library. 
+checkout the `Rotation` and `Everyday` apps to experience the full potential of this library.
 
 - [Rotation - Orientation Manager](https://play.google.com/store/apps/details?id=com.pranavpandey.rotation)
+- [Everyday - Calendar Widget](https://play.google.com/store/apps/details?id=com.pranavpandey.calendar)
 
 ---
 
