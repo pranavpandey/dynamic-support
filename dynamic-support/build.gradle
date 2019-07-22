@@ -61,7 +61,7 @@ project.afterEvaluate {
                 options.docTitle(referenceTitle)
                 options.header(referenceTitle)
                 options.links('http://docs.oracle.com/javase/8/docs/api')
-                options.linksOffline('https://developer.android.com/reference', "${android.sdkDirectory}/docs/reference")
+                options.links('https://developer.android.com/reference', "${android.sdkDirectory}/docs/reference")
                 exclude '**/R.java', '**/BuildConfig.java'
             }
         }
