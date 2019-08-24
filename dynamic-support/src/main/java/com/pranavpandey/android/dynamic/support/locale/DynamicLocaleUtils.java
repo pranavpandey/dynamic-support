@@ -167,8 +167,7 @@ public class DynamicLocaleUtils {
     }
 
     /**
-     * Update resources for a given context after setting the locale on
-     * {@link Build.VERSION_CODES#JELLY_BEAN_MR1} or above devices.
+     * Update resources for a given context after setting the locale on API 17 and above devices.
      *
      * @param context The context to set update resources.
      * @param locale The locale to be used for the context resources.

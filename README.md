@@ -6,7 +6,7 @@
 [![Build Status](https://travis-ci.org/pranavpandey/dynamic-support.svg?branch=master)](https://travis-ci.org/pranavpandey/dynamic-support)
 [![Download](https://api.bintray.com/packages/pranavpandey/android/dynamic-support/images/download.svg)](https://bintray.com/pranavpandey/android/dynamic-support/_latestVersion)
 
-A complete library to build apps for Android 14+ (ICS or above) devices with a built-in theme 
+A complete library to build apps for Android 4 (API 14) and above devices with a built-in theme 
 engine. It is built on top of the latest [app compat library](https://developer.android.com/topic/libraries/support-library/features.html) 
 to provide best compatibility. 
 

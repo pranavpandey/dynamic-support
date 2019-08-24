@@ -115,7 +115,7 @@ class SampleApplication : DynamicApplication() {
      */
     @TargetApi(Build.VERSION_CODES.N_MR1)
     private fun setShortcuts() {
-        // Set in API 25 or above devices.
+        // Set in API 25 and above devices.
         if (DynamicVersionUtils.isNougatMR1()) {
             // Initialize ShortcutManager.
             val shortcutManager = getSystemService(ShortcutManager::class.java)
@@ -170,7 +170,7 @@ class SampleApplication : DynamicApplication() {
             DynamicDrawableUtils.colorizeDrawable(drawable
                     .findDrawableByLayerId(R.id.foreground), tintPrimaryColor)
 
-            // Use IconCompat to support adaptive icons on Android O or above devices.
+            // Use IconCompat to support adaptive icons on API 26 and above devices.
             return IconCompat.createWithAdaptiveBitmap(DynamicResourceUtils
                     .getBitmapFromVectorDrawable(drawable)).toIcon()
         }

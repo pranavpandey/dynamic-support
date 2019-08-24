@@ -35,7 +35,7 @@
     <string name="tutorial_activity_subtitle">An intro screen by using dynamic tutorial activity.</string>
     <string name="tutorial_welcome">@string/app_name</string>
     <string name="tutorial_welcome_subtitle">@string/app_subtitle</string>
-    <string name="tutorial_welcome_desc">A complete library to build apps for Android 14+ (ICS or above) devices with a built-in theme engine.</string>
+    <string name="tutorial_welcome_desc">A complete library to build apps for Android 4 (API 14) and above devices with a built-in theme engine.</string>
     <string name="tutorial_finish">Thank you!</string>
     <string name="tutorial_finish_subtitle">Checkout the sources on GitHub</string>
     <string name="tutorial_finish_desc">This sample only implements the basic features of the library. Keep exploring the sources to find out the hidden gems of Dynamic Support.</string>

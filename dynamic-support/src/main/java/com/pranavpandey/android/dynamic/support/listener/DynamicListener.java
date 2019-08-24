@@ -42,7 +42,7 @@ public interface DynamicListener {
     /**
      * This method will be called when the power save mode has been changed.
      *
-     * <p><p>It will be called only on Android Lollipop or above (API 21+).
+     * <p><p>It will be called only on API 21 or above.
      *
      * @param powerSaveMode {@code true} if the device is in power save mode.
      */

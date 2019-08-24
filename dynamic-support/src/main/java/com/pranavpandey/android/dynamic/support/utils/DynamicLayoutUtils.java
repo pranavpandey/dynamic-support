@@ -38,8 +38,8 @@ import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 public class DynamicLayoutUtils {
 
     /**
-     * Get the column count according to the current configuration. It will also consider
-     * multi-window mode on {@link Build.VERSION_CODES#N} or above devices.
+     * Get the column count according to the current configuration.
+     * <p>It will also consider multi-window mode on API 24 and above devices.
      *
      * <p>It is not recommended to do this calculation at runtime. So, please define all the
      * span counts in xml.
