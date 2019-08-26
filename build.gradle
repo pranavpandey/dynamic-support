@@ -19,7 +19,7 @@ buildscript {
             'compileSdk': 29,
             'minSdk'    : 14,
             'targetSdk' : 29,
-            'buildTools': '29.0.1',
+            'buildTools': '29.0.2',
             'dynamic'   : '2.3.0',
             'fragment'  : '1.2.0-alpha02',
             'gson'      : '2.8.5',
