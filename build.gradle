@@ -23,7 +23,7 @@ buildscript {
             'dynamic'   : '2.3.0',
             'fragment'  : '1.2.0-alpha02',
             'gson'      : '2.8.5',
-            'kotlin'    : '1.3.41',
+            'kotlin'    : '1.3.50',
             'material'  : '1.1.0-alpha07'
     ]
 
@@ -33,7 +33,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.0-alpha07'
+        classpath 'com.android.tools.build:gradle:3.6.0-alpha12'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
@@ -54,7 +54,7 @@ task clean(type: Delete) {
 ext {
     projectName = 'dynamic-support'
     projectDesc = 'A complete library to build Android apps with a built-in theme engine.'
-    versionDesc = 'A complete library to build apps for Android 4 (API 14) and above devices ' +
+    versionDesc = 'A complete library to build apps for Android 4.0 (API 14) and above devices ' +
             'with a built-in theme engine.'
     referenceTitle = 'Dynamic Support Reference'
 
