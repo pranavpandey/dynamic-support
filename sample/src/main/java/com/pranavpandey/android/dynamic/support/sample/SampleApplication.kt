@@ -38,7 +38,7 @@ import com.pranavpandey.android.dynamic.support.sample.controller.SampleTheme
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils
 import java.util.*
 
 /**
@@ -116,7 +116,7 @@ class SampleApplication : DynamicApplication() {
     @TargetApi(Build.VERSION_CODES.N_MR1)
     private fun setShortcuts() {
         // Set in API 25 and above devices.
-        if (DynamicVersionUtils.isNougatMR1()) {
+        if (DynamicSdkUtils.is25()) {
             // Initialize ShortcutManager.
             val shortcutManager = getSystemService(ShortcutManager::class.java)
             // Initialize ShortcutInfo list.

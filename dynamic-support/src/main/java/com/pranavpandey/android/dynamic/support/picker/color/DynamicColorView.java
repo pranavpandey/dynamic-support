@@ -54,8 +54,8 @@ import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.toasts.DynamicHint;
 import com.pranavpandey.android.dynamic.utils.DynamicBitmapUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 /**
  * A FrameLayout to display a color in different {@link DynamicColorShape}.
@@ -203,7 +203,7 @@ public class DynamicColorView extends FrameLayout {
                     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onGlobalLayout() {
-                        if (DynamicVersionUtils.isJellyBean()) {
+                        if (DynamicSdkUtils.is16()) {
                             getViewTreeObserver().removeOnGlobalLayoutListener(this);
                         } else {
                             getViewTreeObserver().removeGlobalOnLayoutListener(this);

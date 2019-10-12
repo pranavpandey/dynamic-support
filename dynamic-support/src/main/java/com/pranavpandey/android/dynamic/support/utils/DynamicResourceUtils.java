@@ -50,7 +50,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 import java.util.Calendar;
 
@@ -223,7 +223,7 @@ public class DynamicResourceUtils {
      * @return The bitmap converted from the vector drawable.
      */
     public static @NonNull Bitmap getBitmapFromVectorDrawable(@NonNull Drawable drawable) {
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             drawable = (DrawableCompat.wrap(drawable)).mutate();
         } else {
             drawable.mutate();

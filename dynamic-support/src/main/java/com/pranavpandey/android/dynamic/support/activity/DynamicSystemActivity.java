@@ -38,17 +38,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.pranavpandey.android.dynamic.locale.DynamicLocale;
+import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
-import com.pranavpandey.android.dynamic.support.locale.DynamicLocale;
-import com.pranavpandey.android.dynamic.support.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicLayoutInflater;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicWindowUtils;
 
@@ -174,7 +174,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     public @NonNull Context setLocale(@NonNull Context context) {
         this.mCurrentLocale = DynamicLocaleUtils.getLocale(
                 getLocale(), getDefaultLocale(context));
-        this.mContext = DynamicLocaleUtils.setLocale(context, mCurrentLocale);
+        this.mContext = DynamicLocaleUtils.setLocale(context, mCurrentLocale, getFontScale());
 
         return mContext;
     }
@@ -311,7 +311,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * @param color Color to be applied on the status bar.
      */
     protected void setWindowStatusBarColor(@ColorInt int color) {
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             getWindow().setStatusBarColor(color);
         }
     }
@@ -323,7 +323,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * @param color The color to be applied.
      */
     public void setStatusBarColor(@ColorInt int color) {
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             mStatusBarColor = color;
             updateStatusBar();
         }
@@ -344,7 +344,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * <p>It will be applied only on the Android L and above devices.
      */
     public void setTranslucentStatusBar() {
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
     }
@@ -357,7 +357,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     protected void updateStatusBar() {
         boolean isLightColor = !DynamicColorUtils.isColorDark(mStatusBarColor);
         if (DynamicTheme.getInstance().get().isBackgroundAware() && isLightColor) {
-            if (!DynamicVersionUtils.isMarshmallow()) {
+            if (!DynamicSdkUtils.is23()) {
                 mStatusBarColor = DynamicColorUtils.getContrastColor(
                         mStatusBarColor, ADS_DEFAULT_SYSTEM_UI_COLOR);
             }
@@ -374,7 +374,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      */
     public void setNavigationBarColor(@ColorInt int color) {
         if (DynamicTheme.getInstance().get().isBackgroundAware()
-                && !DynamicVersionUtils.isOreo()) {
+                && !DynamicSdkUtils.is26()) {
             color = DynamicColorUtils.getContrastColor(color, ADS_DEFAULT_SYSTEM_UI_COLOR);
         }
 
@@ -388,7 +388,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         }
 
         this.mNavigationBarColor = color;
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             this.mNavigationBarTheme = setNavigationBarTheme();
 
             mAppliedNavigationBarColor = color = mNavigationBarTheme
@@ -417,7 +417,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * <p>It will be applied only on the Android L and above devices.
      */
     public void setTranslucentNavigationBar() {
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
@@ -523,6 +523,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     }
 
     @Override
+    public float getFontScale() {
+        return 1.0f;
+    }
+
+    @Override
     public void onDynamicChange(boolean context, boolean recreate) {
         if (context) {
             setLocale(getContext());
@@ -546,7 +551,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * @param color The color to be set.
      */
     protected void updateTaskDescription(@ColorInt int color) {
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             setTaskDescription(new ActivityManager.TaskDescription(null, null,
                     DynamicColorUtils.removeAlpha(color)));
         }

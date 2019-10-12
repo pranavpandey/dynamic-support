@@ -38,7 +38,7 @@ import com.pranavpandey.android.dynamic.support.widget.base.DynamicLinkWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicRtlWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * A TextView to change its color according to the supplied parameters.
@@ -363,7 +363,7 @@ public class DynamicTextView extends AppCompatTextView implements
         this.mRtlSupport = rtlSupport;
 
         if (mRtlSupport) {
-            if (DynamicVersionUtils.isJellyBeanMR1()) {
+            if (DynamicSdkUtils.is17()) {
                 setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
             } else {
                 setGravity(getGravity() | Gravity.START);

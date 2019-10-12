@@ -42,7 +42,7 @@ import androidx.appcompat.widget.ActionMenuView;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.toasts.DynamicHint;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 import java.lang.reflect.Method;
 
@@ -149,7 +149,7 @@ public class DynamicMenuUtils {
                 if (innerView instanceof ActionMenuItemView) {
                     final Drawable[] compoundDrawables =
                             ((ActionMenuItemView) innerView).getCompoundDrawables();
-                    if (DynamicVersionUtils.isMarshmallow()) {
+                    if (DynamicSdkUtils.is23()) {
                         ((ActionMenuItemView) innerView).setCompoundDrawableTintList
                                 (DynamicResourceUtils.getColorStateList(color));
                     } else {

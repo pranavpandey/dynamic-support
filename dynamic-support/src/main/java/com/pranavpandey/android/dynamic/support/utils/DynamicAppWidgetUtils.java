@@ -19,7 +19,7 @@ package com.pranavpandey.android.dynamic.support.utils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
+import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 
 /**
  * Helper class to perform various app widget operations. It will be used internally
@@ -47,7 +47,7 @@ public class DynamicAppWidgetUtils {
      */
     public static void saveWidgetSettings(@NonNull String preferences,
             int appWidgetId, @Nullable String value) {
-        DynamicPreferences.getInstance().savePrefs(
+        DynamicPreferences.getInstance().save(
                 preferences, String.valueOf(appWidgetId), value);
     }
 
@@ -64,7 +64,7 @@ public class DynamicAppWidgetUtils {
      */
     public static @Nullable String loadWidgetSettings(@NonNull String preferences,
             int appWidgetId, @Nullable String value) {
-        return DynamicPreferences.getInstance().loadPrefs(
+        return DynamicPreferences.getInstance().load(
                 preferences, String.valueOf(appWidgetId), value);
     }
 
@@ -75,7 +75,7 @@ public class DynamicAppWidgetUtils {
      * @param appWidgetId The app widget id to find the preference key.
      */
     public static void deleteWidgetSettings(@NonNull String preferences, int appWidgetId) {
-        DynamicPreferences.getInstance().deletePrefs(preferences, String.valueOf(appWidgetId));
+        DynamicPreferences.getInstance().delete(preferences, String.valueOf(appWidgetId));
     }
 
     /**

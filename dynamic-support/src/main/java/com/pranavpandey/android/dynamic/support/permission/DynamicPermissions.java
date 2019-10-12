@@ -40,7 +40,7 @@ import com.pranavpandey.android.dynamic.support.model.DynamicPermission;
 import com.pranavpandey.android.dynamic.support.permission.activity.DynamicPermissionsActivity;
 import com.pranavpandey.android.dynamic.support.utils.DynamicPermissionUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 import java.util.ArrayList;
 
@@ -425,7 +425,7 @@ public class DynamicPermissions {
      * @see Manifest.permission#WRITE_SETTINGS
      */
     public boolean canWriteSystemSettings() {
-        return !DynamicVersionUtils.isMarshmallow() || Settings.System.canWrite(mContext);
+        return !DynamicSdkUtils.is23() || Settings.System.canWrite(mContext);
 
     }
 
@@ -437,7 +437,7 @@ public class DynamicPermissions {
      * @see Manifest.permission#SYSTEM_ALERT_WINDOW
      */
     public boolean canDrawOverlays() {
-        return !DynamicVersionUtils.isMarshmallow() || Settings.canDrawOverlays(mContext);
+        return !DynamicSdkUtils.is23() || Settings.canDrawOverlays(mContext);
     }
 
     /**
@@ -448,7 +448,7 @@ public class DynamicPermissions {
      * @see Manifest.permission#PACKAGE_USAGE_STATS
      */
     public boolean hasUsageAccess() {
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             try {
                 PackageManager packageManager = mContext.getPackageManager();
                 ApplicationInfo applicationInfo = packageManager

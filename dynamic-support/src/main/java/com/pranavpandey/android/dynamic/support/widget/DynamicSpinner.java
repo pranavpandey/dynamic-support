@@ -33,7 +33,7 @@ import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * A Spinner to change its color according to the supplied parameters.
@@ -223,7 +223,7 @@ public class DynamicSpinner extends AppCompatSpinner implements DynamicWidget {
 
             DynamicDrawableUtils.colorizeDrawable(getBackground(), mColor);
             
-            if (DynamicVersionUtils.isLollipop()) {
+            if (DynamicSdkUtils.is21()) {
                 DynamicDrawableUtils.colorizeDrawable(getPopupBackground(),
                         DynamicTheme.getInstance().get().getBackgroundColor());
             } else {

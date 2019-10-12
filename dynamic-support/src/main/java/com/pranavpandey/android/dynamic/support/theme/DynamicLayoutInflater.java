@@ -70,7 +70,7 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicToolbar;
 import com.pranavpandey.android.dynamic.support.widget.DynamicViewPager;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * A layout inflater factory2 to replace original views with the dynamic support views
@@ -143,7 +143,7 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
                                     DynamicScrollUtils.setEdgeEffectColor(
                                             (ListView) view, tintColor);
 
-                                    if (DynamicVersionUtils.isLollipop()) {
+                                    if (DynamicSdkUtils.is21()) {
                                         if (!(parent instanceof CardView)) {
                                             DynamicCardView cardView =
                                                     new DynamicPopupBackground(context, attrs);

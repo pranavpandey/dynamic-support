@@ -27,10 +27,10 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.popup.DynamicArrayPopup;
 import com.pranavpandey.android.dynamic.support.popup.DynamicPopup;
-import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
@@ -229,7 +229,7 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
             return null;
         }
 
-        return DynamicPreferences.getInstance().loadPrefs(
+        return DynamicPreferences.getInstance().load(
                 getPreferenceKey(), mValues[mDefaultValue].toString());
     }
 
@@ -240,7 +240,7 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
      */
     public void setPreferenceValue(@NonNull String value) {
         if (getPreferenceKey() != null) {
-            DynamicPreferences.getInstance().savePrefs(getPreferenceKey(), value);
+            DynamicPreferences.getInstance().save(getPreferenceKey(), value);
         }
 
         updateValueString(true);

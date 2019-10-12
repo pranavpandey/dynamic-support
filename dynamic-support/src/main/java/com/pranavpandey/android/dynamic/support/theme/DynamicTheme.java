@@ -36,15 +36,15 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.LayoutInflaterCompat;
 
 import com.google.gson.Gson;
+import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.model.DynamicWidgetTheme;
-import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -187,7 +187,7 @@ public class DynamicTheme implements DynamicListener {
         this.mApplicationTheme = new DynamicAppTheme();
         this.mRemoteTheme = new DynamicWidgetTheme();
 
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             this.mPowerSaveMode = mPowerManager.isPowerSaveMode();
             this.mBroadcastReceiver = new BroadcastReceiver() {
                 @Override
@@ -442,7 +442,7 @@ public class DynamicTheme implements DynamicListener {
     public @NonNull DynamicTheme initializeRemoteColors() {
         mRemoteTheme = (DynamicWidgetTheme) new DynamicWidgetTheme(mApplicationTheme)
                 .setBackgroundColor(ContextCompat.getColor(getResolvedContext(),
-                !DynamicVersionUtils.isLollipop()
+                !DynamicSdkUtils.is21()
                         ? R.color.notification_background
                         : R.color.notification_background_light));
 
@@ -769,7 +769,7 @@ public class DynamicTheme implements DynamicListener {
      */
     public void saveLocalTheme() {
         if (mLocalContext != null) {
-            DynamicPreferences.getInstance().savePrefs(ADS_PREF_THEME,
+            DynamicPreferences.getInstance().save(ADS_PREF_THEME,
                     ADS_PREF_THEME_KEY + mLocalContext.getClass().getName(), toString());
         }
     }
@@ -782,7 +782,7 @@ public class DynamicTheme implements DynamicListener {
      * @return The supplied context theme from shared preferences.
      */
     public @Nullable String getLocalTheme(@NonNull Context context) {
-        return DynamicPreferences.getInstance().loadPrefs(ADS_PREF_THEME,
+        return DynamicPreferences.getInstance().load(ADS_PREF_THEME,
                 ADS_PREF_THEME_KEY + context.getClass().getName(), null);
     }
 
@@ -793,7 +793,7 @@ public class DynamicTheme implements DynamicListener {
      */
     public void deleteLocalTheme(@NonNull Context context) {
         try {
-            DynamicPreferences.getInstance().deletePrefs(ADS_PREF_THEME,
+            DynamicPreferences.getInstance().delete(ADS_PREF_THEME,
                     ADS_PREF_THEME_KEY + context.getClass().getName());
         } catch (Exception ignored) {
         }

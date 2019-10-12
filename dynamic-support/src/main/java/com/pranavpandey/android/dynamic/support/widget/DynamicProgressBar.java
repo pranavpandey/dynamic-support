@@ -34,7 +34,7 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * A ContentLoadingProgressBar to apply color filter according to the supplied parameters.
@@ -216,7 +216,7 @@ public class DynamicProgressBar extends ContentLoadingProgressBar implements Dyn
                 mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
-            if (DynamicVersionUtils.isLollipop()) {
+            if (DynamicSdkUtils.is21()) {
                 setProgressTintList(DynamicResourceUtils.getColorStateList(mColor));
                 setIndeterminateTintList(DynamicResourceUtils.getColorStateList(mColor));
             } else {

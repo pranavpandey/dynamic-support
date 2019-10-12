@@ -34,8 +34,8 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.locale.DynamicLocale;
-import com.pranavpandey.android.dynamic.support.locale.DynamicLocaleUtils;
+import com.pranavpandey.android.dynamic.locale.DynamicLocale;
+import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicAppWidgetUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicThemeUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicBitmapUtils;
@@ -169,9 +169,14 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider
     public @NonNull Context setLocale(@NonNull Context context) {
         this.mCurrentLocale = DynamicLocaleUtils.getLocale(
                 getLocale(), getDefaultLocale(context));
-        this.mContext = DynamicLocaleUtils.setLocale(context, mCurrentLocale);
+        this.mContext = DynamicLocaleUtils.setLocale(context, mCurrentLocale, getFontScale());
 
         return mContext;
+    }
+
+    @Override
+    public float getFontScale() {
+        return 1.0f;
     }
 
     /**

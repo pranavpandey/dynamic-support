@@ -37,7 +37,7 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * A CheckedTextView to change its color according to the supplied parameters.
@@ -241,7 +241,7 @@ public class DynamicCheckedTextView extends AppCompatCheckedTextView implements 
             DynamicTintUtils.setViewBackgroundTint(this,
                     mContrastWithColor, mColor, true, true);
 
-            if (DynamicVersionUtils.isMarshmallow()) {
+            if (DynamicSdkUtils.is23()) {
                 setCompoundDrawableTintList(DynamicResourceUtils.getColorStateList(
                         tintColor, mColor, true));
             } else {

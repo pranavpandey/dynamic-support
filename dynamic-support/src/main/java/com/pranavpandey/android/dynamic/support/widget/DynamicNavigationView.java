@@ -36,7 +36,7 @@ import com.pranavpandey.android.dynamic.support.widget.base.DynamicScrollableWid
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicStateSelectedWidget;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * A NavigationView to change its selected item and edge effect color according to the
@@ -459,7 +459,7 @@ public class DynamicNavigationView extends NavigationView implements
                         mStateSelectedColor, mContrastWithColor);
             }
 
-            if (DynamicVersionUtils.isLollipop()) {
+            if (DynamicSdkUtils.is21()) {
                 if (DynamicTheme.getInstance().get().getCornerSizeDp()
                         >= WidgetDefaults.ADS_CORNER_SELECTOR_ROUND) {
                     setItemBackgroundResource(R.drawable.ads_list_selector_round);

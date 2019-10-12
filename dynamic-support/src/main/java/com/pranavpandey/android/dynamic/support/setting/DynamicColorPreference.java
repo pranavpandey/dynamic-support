@@ -30,6 +30,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
+import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
 import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
@@ -38,7 +39,6 @@ import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorDialog;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPopup;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
-import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorPalette;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.Theme;
@@ -196,12 +196,12 @@ public class DynamicColorPreference extends DynamicSimplePreference {
         }
 
         if (getPreferenceKey() != null) {
-            mColor = DynamicPreferences.getInstance().loadPrefs(
+            mColor = DynamicPreferences.getInstance().load(
                     getPreferenceKey(), getDefaultColor());
         }
 
         if (getAltPreferenceKey() != null) {
-            mAltColor = DynamicPreferences.getInstance().loadPrefs(
+            mAltColor = DynamicPreferences.getInstance().load(
                     getAltPreferenceKey(), mAltDefaultColor);
         }
     }
@@ -543,7 +543,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
         setValueString(getColorString());
 
         if (getPreferenceKey() != null && save) {
-            DynamicPreferences.getInstance().savePrefs(getPreferenceKey(), mColor);
+            DynamicPreferences.getInstance().save(getPreferenceKey(), mColor);
         }
     }
 
@@ -628,7 +628,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
         setValueString(getColorString());
 
         if (getAltPreferenceKey() != null && save) {
-            DynamicPreferences.getInstance().savePrefs(getAltPreferenceKey(), mAltColor);
+            DynamicPreferences.getInstance().save(getAltPreferenceKey(), mAltColor);
         }
     }
 
@@ -804,10 +804,10 @@ public class DynamicColorPreference extends DynamicSimplePreference {
         super.onSharedPreferenceChanged(sharedPreferences, key);
 
         if (key.equals(getPreferenceKey())) {
-            setColor(DynamicPreferences.getInstance().loadPrefs(
+            setColor(DynamicPreferences.getInstance().load(
                     getPreferenceKey(), getDefaultColor(false)), false);
         } else if (key.equals(getAltPreferenceKey())) {
-            setAltColor(DynamicPreferences.getInstance().loadPrefs(
+            setAltColor(DynamicPreferences.getInstance().load(
                     getAltPreferenceKey(), getAltDefaultColor(false)), false);
         }
     }

@@ -27,14 +27,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 
+import com.pranavpandey.android.dynamic.locale.DynamicLocale;
+import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
+import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
-import com.pranavpandey.android.dynamic.support.locale.DynamicLocale;
-import com.pranavpandey.android.dynamic.support.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
-import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 import java.util.Locale;
 
@@ -84,7 +84,7 @@ public abstract class DynamicApplication extends Application implements DynamicL
         if ((diff & ActivityInfo.CONFIG_LOCALE) != 0
                 || (diff & ActivityInfo.CONFIG_ORIENTATION) != 0
                 || (diff & ActivityInfo.CONFIG_UI_MODE) != 0
-                || (DynamicVersionUtils.isJellyBeanMR1()
+                || (DynamicSdkUtils.is17()
                 && (diff & ActivityInfo.CONFIG_DENSITY) != 0)) {
             DynamicTheme.getInstance().onDynamicChange(true, false);
             mConfiguration = new Configuration(newConfig);
@@ -156,9 +156,15 @@ public abstract class DynamicApplication extends Application implements DynamicL
     @Override
     public @NonNull Context setLocale(@NonNull Context context) {
         this.mContext = DynamicLocaleUtils.setLocale(context,
-                DynamicLocaleUtils.getLocale(getLocale(), getDefaultLocale(context)));
+                DynamicLocaleUtils.getLocale(getLocale(),
+                        getDefaultLocale(context)), getFontScale());
 
         return mContext;
+    }
+
+    @Override
+    public float getFontScale() {
+        return 1.0f;
     }
 
     @Override

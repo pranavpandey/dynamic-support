@@ -36,7 +36,7 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicCheckedTextView;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 import java.lang.reflect.Field;
 
@@ -62,7 +62,7 @@ public class DynamicTintUtils {
 
         if (view instanceof MaterialButton) {
             if (borderless) {
-                if (!DynamicVersionUtils.isLollipop()) {
+                if (!DynamicSdkUtils.is21()) {
                     pressedColor = DynamicColorUtils.getStateColor(DynamicColorUtils.adjustAlpha(
                             pressedColor, WidgetDefaults.ADS_STATE_PRESSED),
                             WidgetDefaults.ADS_STATE_LIGHT, WidgetDefaults.ADS_STATE_DARK);
@@ -89,7 +89,7 @@ public class DynamicTintUtils {
                                 color, pressedColor, checkable));
             }
         } else {
-            if (!DynamicVersionUtils.isLollipop()) {
+            if (!DynamicSdkUtils.is21()) {
                 background = DynamicColorUtils.getStateColor(
                         DynamicColorUtils.adjustAlpha(DynamicColorUtils.getTintColor(background),
                                 WidgetDefaults.ADS_STATE_PRESSED),
@@ -108,7 +108,7 @@ public class DynamicTintUtils {
             }
         }
 
-        if (DynamicVersionUtils.isLollipop()
+        if (DynamicSdkUtils.is21()
                 && view.getBackground() instanceof RippleDrawable) {
             if (borderless) {
                 pressedColor = DynamicColorUtils.adjustAlpha(

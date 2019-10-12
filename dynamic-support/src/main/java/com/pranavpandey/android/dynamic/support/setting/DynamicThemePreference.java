@@ -29,9 +29,9 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
-import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.view.DynamicThemePreview;
 
@@ -136,7 +136,7 @@ public class DynamicThemePreference extends DynamicSpinnerPreference {
         super.onUpdate();
 
         mTheme = DynamicPreferences.getInstance()
-                .loadPrefs(super.getPreferenceKey(), mDefaultTheme);
+                .load(super.getPreferenceKey(), mDefaultTheme);
         mDynamicAppTheme = DynamicTheme.getInstance().getTheme(mTheme);
 
         if (mDynamicAppTheme != null) {
@@ -205,7 +205,7 @@ public class DynamicThemePreference extends DynamicSpinnerPreference {
         this.mTheme = theme;
 
         if (getPreferenceKey() != null && save) {
-            DynamicPreferences.getInstance().savePrefs(getPreferenceKey(), theme);
+            DynamicPreferences.getInstance().save(getPreferenceKey(), theme);
         }
     }
 
@@ -246,7 +246,7 @@ public class DynamicThemePreference extends DynamicSpinnerPreference {
 
         if (key.equals(super.getPreferenceKey())) {
             mTheme = DynamicPreferences.getInstance()
-                    .loadPrefs(super.getPreferenceKey(), mTheme);
+                    .load(super.getPreferenceKey(), mTheme);
 
             onUpdate();
         }

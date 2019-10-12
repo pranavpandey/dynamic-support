@@ -18,7 +18,7 @@ package com.pranavpandey.android.dynamic.support.sample.controller
 
 import androidx.annotation.ColorInt
 import androidx.annotation.StyleRes
-import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences
+import com.pranavpandey.android.dynamic.preferences.DynamicPreferences
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
 import com.pranavpandey.android.dynamic.support.theme.Theme
@@ -40,30 +40,30 @@ object SampleTheme {
      * Getter and Setter for the app theme color.
      */
     private var appThemeColor: Int
-        get() = DynamicPreferences.getInstance().loadPrefs(
+        get() = DynamicPreferences.getInstance().load(
                 Constants.PREF_SETTINGS_APP_THEME_COLOR,
                 Constants.PREF_SETTINGS_APP_THEME_COLOR_DEFAULT)
-        set(@ColorInt color) = DynamicPreferences.getInstance().savePrefs(
+        set(@ColorInt color) = DynamicPreferences.getInstance().save(
                 Constants.PREF_SETTINGS_APP_THEME_COLOR, color)
 
     /**
      * Getter and Setter for the app theme day color.
      */
     private var appThemeDayColor: Int
-        @ColorInt get() = DynamicPreferences.getInstance().loadPrefs(
+        @ColorInt get() = DynamicPreferences.getInstance().load(
                 Constants.PREF_SETTINGS_APP_THEME_DAY_COLOR,
                 Constants.PREF_SETTINGS_APP_THEME_DAY_COLOR_DEFAULT)
-        set(@ColorInt color) = DynamicPreferences.getInstance().savePrefs(
+        set(@ColorInt color) = DynamicPreferences.getInstance().save(
                 Constants.PREF_SETTINGS_APP_THEME_DAY_COLOR, color)
 
     /**
      * Getter and Setter for the app theme night color.
      */
     private var appThemeNightColor: Int
-        @ColorInt get() = DynamicPreferences.getInstance().loadPrefs(
+        @ColorInt get() = DynamicPreferences.getInstance().load(
                 Constants.PREF_SETTINGS_APP_THEME_NIGHT_COLOR,
                 Constants.PREF_SETTINGS_APP_THEME_NIGHT_COLOR_DEFAULT)
-        set(@ColorInt color) = DynamicPreferences.getInstance().savePrefs(
+        set(@ColorInt color) = DynamicPreferences.getInstance().save(
                 Constants.PREF_SETTINGS_APP_THEME_NIGHT_COLOR, color)
 
     /**

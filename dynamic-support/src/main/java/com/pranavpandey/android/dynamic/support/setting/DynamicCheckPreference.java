@@ -29,8 +29,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 
+import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
 
 /**
  * A DynamicSimplePreference to provide the functionality of a
@@ -109,7 +109,7 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
 
 
         mChecked = DynamicPreferences.getInstance()
-                .loadPrefs(getPreferenceKey(), mChecked);
+                .load(getPreferenceKey(), mChecked);
     }
 
     @Override
@@ -157,7 +157,7 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
         this.mChecked = checked;
 
         if (getPreferenceKey() != null) {
-            DynamicPreferences.getInstance().savePrefs(getPreferenceKey(), checked);
+            DynamicPreferences.getInstance().save(getPreferenceKey(), checked);
         }
     }
 
@@ -205,7 +205,7 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
         super.onSharedPreferenceChanged(sharedPreferences, key);
 
         if (key.equals(getPreferenceKey())) {
-            mChecked = DynamicPreferences.getInstance().loadPrefs(key, mChecked);
+            mChecked = DynamicPreferences.getInstance().load(key, mChecked);
 
             if (mOnCheckedChangeListener != null) {
                 mOnCheckedChangeListener.onCheckedChanged(mSwitchCompat, mChecked);

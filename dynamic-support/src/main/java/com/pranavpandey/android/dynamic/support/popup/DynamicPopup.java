@@ -36,10 +36,10 @@ import androidx.core.widget.PopupWindowCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.TransitionManager;
 
+import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.locale.DynamicLocaleUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 
 import java.lang.annotation.Retention;
@@ -242,7 +242,7 @@ public abstract class DynamicPopup {
                 final int mask = ViewCompat.SCROLL_INDICATOR_TOP
                         | ViewCompat.SCROLL_INDICATOR_BOTTOM;
 
-                if (DynamicVersionUtils.isMarshmallow()) {
+                if (DynamicSdkUtils.is23()) {
                     ViewCompat.setScrollIndicators(mViewRoot, indicators, mask);
 
                     layout.removeView(indicatorUp);
@@ -357,7 +357,7 @@ public abstract class DynamicPopup {
         }
 
         // Handle issues with popup not expanding.
-        if (DynamicVersionUtils.isNougat(true)) {
+        if (DynamicSdkUtils.is24(true)) {
             PopupWindowCompat.showAsDropDown(mPopupWindow, getAnchor(),
                     OFFSET_X, -OFFSET_Y, Gravity.NO_GRAVITY | Gravity.START);
         } else {

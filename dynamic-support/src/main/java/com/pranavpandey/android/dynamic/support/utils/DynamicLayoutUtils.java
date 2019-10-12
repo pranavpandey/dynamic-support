@@ -30,7 +30,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicRecyclerViewAdapter;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * Helper class to perform layout operations like detecting the column count at runtime.
@@ -99,7 +99,7 @@ public class DynamicLayoutUtils {
     @TargetApi(Build.VERSION_CODES.N)
     public static boolean isInMultiWindowMode(@NonNull Context context) {
         try {
-            return (DynamicVersionUtils.isNougat()
+            return (DynamicSdkUtils.is24()
                     && ((Activity) context).isInMultiWindowMode());
         } catch (Exception ignored) {
             return false;

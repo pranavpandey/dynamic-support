@@ -31,7 +31,7 @@ import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
 
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * Helper class to perform various {@link SeekBar} operations.
@@ -45,7 +45,7 @@ public class DynamicPickerUtils {
      */
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void setHueDrawable(@NonNull SeekBar seekBar) {
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             seekBar.setProgressTintList(null);
         }
 

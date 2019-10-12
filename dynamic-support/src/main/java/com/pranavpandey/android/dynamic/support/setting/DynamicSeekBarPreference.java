@@ -37,8 +37,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSeekBar;
 
+import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.widget.DynamicSeekBar;
 import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
 
@@ -284,7 +284,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
 
         if (super.getPreferenceKey() != null) {
             mProgress = getProgressFromValue(DynamicPreferences.getInstance()
-                    .loadPrefs(super.getPreferenceKey(), mDefaultValue));
+                    .load(super.getPreferenceKey(), mDefaultValue));
         }
     }
 
@@ -474,7 +474,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
         this.mProgress = progress;
 
         if (super.getPreferenceKey() != null) {
-            DynamicPreferences.getInstance().savePrefs(
+            DynamicPreferences.getInstance().save(
                     super.getPreferenceKey(), getValueFromProgress());
         } else {
             onUpdate();
@@ -652,7 +652,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
 
         if (key.equals(super.getPreferenceKey())) {
             mProgress = getProgressFromValue(DynamicPreferences.getInstance()
-                    .loadPrefs(super.getPreferenceKey(), mProgress));
+                    .load(super.getPreferenceKey(), mProgress));
 
             onUpdate();
         }

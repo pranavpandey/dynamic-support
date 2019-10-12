@@ -39,7 +39,7 @@ import com.google.android.material.internal.NavigationMenuView;
 import com.google.android.material.navigation.NavigationView;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 import java.lang.reflect.Field;
 
@@ -160,10 +160,10 @@ public final class DynamicScrollUtils {
             return;
         }
 
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             EDGE_EFFECT_FIELD_EDGE = null;
             EDGE_EFFECT_FIELD_GLOW = null;
-        } else if (DynamicVersionUtils.isIceCreamSandwich()) {
+        } else if (DynamicSdkUtils.is14()) {
             Field edge = null;
             Field glow = null;
             for (Field field : EdgeEffect.class.getDeclaredFields()) {
@@ -550,7 +550,7 @@ public final class DynamicScrollUtils {
             return;
         }
 
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             ((EdgeEffect) edgeEffect).setColor(color);
         } else {
             try {

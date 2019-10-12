@@ -16,6 +16,9 @@
 -->
 
 <manifest
-    package="com.pranavpandey.android.dynamic.support">
+    package="com.pranavpandey.android.dynamic.support"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-sdk tools:overrideLibrary="com.pranavpandey.android.dynamic.locale" />
 
 </manifest>
