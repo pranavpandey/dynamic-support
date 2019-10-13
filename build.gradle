@@ -27,6 +27,7 @@ buildscript {
             'material'    : '1.1.0-beta01',
             'support'     : '1.0.0',
             'swiperefresh': '1.1.0-alpha03',
+            'theme'       : '1.0.1',
             'work'        : '2.3.0-alpha02'
     ]
 
@@ -70,9 +71,9 @@ ext {
     mavenGroup = 'com.pranavpandey.android'
     mavenArtifactId = 'dynamic-support'
     mavenInceptionYear = 2018
-    mavenVersion = '2.3.0'
-    mavenVersionCode = 19
-    sampleVersionCode = 19
+    mavenVersion = '3.0.0'
+    mavenVersionCode = 20
+    sampleVersionCode = 20
 
     developerId = 'pranavpandey'
     developerName = 'Pranav Pandey'

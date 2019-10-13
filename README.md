@@ -12,6 +12,8 @@ to provide best compatibility.
 
 >Since v2.0.0, it uses [AndroidX](https://developer.android.com/jetpack/androidx/) so, first
 [migrate](https://developer.android.com/jetpack/androidx/migrate) your project to AndroidX.
+<br/>Since v3.0.0, it is dependent on Java 8 due to the dependency on 
+[DrawerLayout](https://developer.android.com/jetpack/androidx/releases/drawerlayout).
  
 <img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-1.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-3.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-4.png" width="280" height="486">
 
@@ -38,7 +40,7 @@ It can be installed by adding the following dependency to your `build.gradle` fi
 ```groovy
 dependencies {
     // For AndroidX enabled projects.
-    implementation 'com.pranavpandey.android:dynamic-support:2.3.0'
+    implementation 'com.pranavpandey.android:dynamic-support:3.0.0'
 
     // For legacy projects.
     implementation 'com.pranavpandey.android:dynamic-support:1.3.0'
@@ -48,8 +50,8 @@ dependencies {
 ---
 
 ## Usage
-It is a collection of activities, fragments, widgets, views and some utility functions required to 
-build a standard Android app. It also provides some in-built use cases like an intro screen, 
+It is a collection of activities, fragments, widgets, views and some utility functions required 
+to build a standard Android app. It also provides some in-built use cases like an intro screen, 
 drawer activity, about screen, collapsing app bar, bottom navigation, color picker, multiple 
 locales, runtime permissions, etc. which can be used and customised according to the need.
 
@@ -81,54 +83,54 @@ proguard is enabled in the project.
 The following rules will be applied by this library:
 
 ```yml
-dependencies {
-    # Keep application class.
-    -keep public class * extends android.app.Application
-    
-    # Keep methods in Activity that could be used in the XML.
-    -keepclassmembers class * extends android.app.Activity {
-       public void *(android.view.View);
-    }
-    
-    # Keep support library classes.
-    #-keep class android.support.v4.widget.** { *; }
-    #-keep class android.support.v7.widget.** { *; }
-    #-keep class android.support.design.widget.** { *; }
-    #-keep class android.support.design.internal.** { *; }
-    
-    # Keep AndroidX classes.
-    -keep class androidx.core.widget.** { *; }
-    #-keep class androidx.appcompat.widget.** { *; }
-    -keep class androidx.appcompat.view.menu.** { *; }
-    -keep class androidx.recyclerview.widget.** { *; }
-    -keep class androidx.viewpager.widget.** { *; }
-    
-    # Keep Material Components classes.
-    -keep class com.google.android.material.internal.** { *; }
-    -keep class com.google.android.material.navigation.** { *; }
-    -keep class com.google.android.material.textfield.** { *; }
-    
-    # Keep all the Dynamic Support models.
-    -keep class com.pranavpandey.android.dynamic.support.model.** { *; }
-    
-    # Gson uses generic type information stored in a class file when working with fields.
-    # Proguard removes such information by default, so configure it to keep all of it.
-    -keepattributes Signature
-    
-    # For using GSON @Expose annotation
-    -keepattributes *Annotation*
-    
-    # Gson specific classes
-    -keep class sun.misc.Unsafe { *; }
-    -keep class com.google.gson.** { *; }
+# Keep application class.
+-keep public class * extends android.app.Application
+
+# Keep methods in Activity that could be used in the XML.
+-keepclassmembers class * extends android.app.Activity {
+   public void *(android.view.View);
 }
+
+# Keep support library classes.
+#-keep class android.support.v4.widget.** { *; }
+#-keep class android.support.v7.widget.** { *; }
+#-keep class android.support.design.widget.** { *; }
+#-keep class android.support.design.internal.** { *; }
+
+# Keep AndroidX classes.
+-keep class androidx.core.widget.** { *; }
+#-keep class androidx.appcompat.widget.** { *; }
+-keep class androidx.appcompat.view.menu.** { *; }
+-keep class androidx.recyclerview.widget.** { *; }
+-keep class androidx.viewpager.widget.** { *; }
+
+# Keep Material Components classes.
+-keep class com.google.android.material.internal.** { *; }
+-keep class com.google.android.material.navigation.** { *; }
+-keep class com.google.android.material.textfield.** { *; }
+
+# Keep all the Dynamic Support models.
+-keep class com.pranavpandey.android.dynamic.support.model.** { *; }
+
+# Dynamic Theme rules
+
+# Gson uses generic type information stored in a class file when working with fields.
+# Proguard removes such information by default, so configure it to keep all of it.
+-keepattributes Signature
+
+# For using Gson annotation.
+-keepattributes *Annotation*
+
+# Gson specific classes.
+-keep class sun.misc.Unsafe { *; }
+-keep class com.google.gson.** { *; }
 ```
 
 ### Dependency
 
-It depends on the [dynamic-locale](https://github.com/pranavpandey/dynamic-locale), 
-[dynamic-preferences](https://github.com/pranavpandey/dynamic-preferences), and 
-[dynamic-theme](https://github.com/pranavpandey/dynamic-theme) to perform
+It depends on the [dynamic-theme](https://github.com/pranavpandey/dynamic-theme), 
+[dynamic-locale](https://github.com/pranavpandey/dynamic-locale) and 
+[dynamic-preferences](https://github.com/pranavpandey/dynamic-preferences) to perform 
 various internal operations. So, their functions can also be used to perform other 
 useful operations.
 
