@@ -28,6 +28,7 @@ to provide best compatibility.
     - [Theme engine](https://github.com/pranavpandey/dynamic-support#theme-engine)
     - [Background aware](https://github.com/pranavpandey/dynamic-support#background-aware)
     - [Sample](https://github.com/pranavpandey/dynamic-support#sample)
+    - [Dependency](https://github.com/pranavpandey/dynamic-support#dependency)
     - [Proguard](https://github.com/pranavpandey/dynamic-support#proguard)
 - [License](https://github.com/pranavpandey/dynamic-support#license)
 
@@ -74,6 +75,14 @@ This library is fully commented so, please check the individual classes or files
 documentation. Basic documentation will be available soon.
 
 Checkout the `sample` to know more about the basic implementation. 
+
+### Dependency
+
+It depends on the [dynamic-theme](https://github.com/pranavpandey/dynamic-theme), 
+[dynamic-locale](https://github.com/pranavpandey/dynamic-locale) and 
+[dynamic-preferences](https://github.com/pranavpandey/dynamic-preferences) to perform 
+various internal operations. So, their functions can also be used to perform other 
+useful operations.
 
 ### Proguard
 This library uses reflection at some places to theme widgets at runtime. So, their original name
@@ -125,14 +134,6 @@ The following rules will be applied by this library:
 -keep class sun.misc.Unsafe { *; }
 -keep class com.google.gson.** { *; }
 ```
-
-### Dependency
-
-It depends on the [dynamic-theme](https://github.com/pranavpandey/dynamic-theme), 
-[dynamic-locale](https://github.com/pranavpandey/dynamic-locale) and 
-[dynamic-preferences](https://github.com/pranavpandey/dynamic-preferences) to perform 
-various internal operations. So, their functions can also be used to perform other 
-useful operations.
 
 ---
 
