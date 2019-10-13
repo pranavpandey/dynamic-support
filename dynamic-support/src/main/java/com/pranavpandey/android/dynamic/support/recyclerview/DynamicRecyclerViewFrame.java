@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -141,7 +141,6 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      */
     public abstract @Nullable RecyclerView.LayoutManager getRecyclerViewLayoutManager();
 
-
     /**
      * Set supplied LayoutManager to the RecyclerView.
      *
@@ -179,7 +178,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      * scrolling the recycler view to top.
      */
     protected void checkForStaggeredGridLayoutManager() {
-        mRecyclerView.post(new Runnable() {
+        post(new Runnable() {
             @Override
             public void run() {
                 if (mRecyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {

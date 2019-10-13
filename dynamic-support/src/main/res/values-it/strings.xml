@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 -->
 
 <resources>
+
     <!-- Dynamic activity -->
     <string name="ads_navigation_drawer_open">Mostra elenco</string>
     <string name="ads_navigation_drawer_close">Nascondi elenco</string>
@@ -34,6 +35,7 @@
     <string name="ads_widgets">Widget</string>
     <string name="ads_instructions">Istruzioni</string>
     <string name="ads_tutorial">Guida</string>
+    <string name="ads_product_tour">Tour del prodotto</string>
     <string name="ads_troubleshoot">Soluzioni ai problemi</string>
     <string name="ads_about">A proposito di</string>
     <string name="ads_overview">Panoramica</string>
@@ -45,11 +47,13 @@
     <string name="ads_i_got_it">Ok, capito</string>
     <string name="ads_not_now">Non adesso</string>
     <string name="ads_yes_in">Si, ci sto</string>
+    <string name="ads_more">Di Più</string>
     <string name="ads_more_info">Più informazioni</string>
     <string name="ads_select">Scegli</string>
     <string name="ads_copy">Copia</string>
     <string name="ads_save">Salva</string>
     <string name="ads_load">Carica</string>
+    <string name="ads_file">File</string>
     <string name="ads_create">Crea</string>
     <string name="ads_previous">Precedente</string>
     <string name="ads_next">Successivo</string>
@@ -142,13 +146,13 @@
     <string name="ads_backup_modify">Modifica</string>
     <string name="ads_backup_modify_desc">Scegli un backup da modificare.</string>
     <string name="ads_backup_restore_done">Il backup è stato ripristinato correttamente</string>
-    <string name="ads_backup_restore_error">Impossibile ripristinare il backup</string>
+    <string name="ads_backup_restore_error">Impossibile ripristinare il backup.</string>
     <string name="ads_backup_not_found">Nessun backup trovato.</string>
     <string name="ads_backup_modify_complete">Backup spostato correttamente</string>
     <string name="ads_backup_delete_all">Cancella tutto</string>
     <string name="ads_backup_delete_all_title">Cancella tutti i backup</string>
     <string name="ads_backup_delete_all_desc">Questo cancellerà tutti i backup salvati in memoria. Vuoi continuare ?</string>
-    <string name="ads_backup_delete_all_done">Tutti i backup sono stati cancellati</string>
+    <string name="ads_backup_delete_all_done">Tutti i backup sono stati cancellati.</string>
     <string name="ads_backup_import">Importa</string>
     <string name="ads_backup_import_title">Importa backup</string>
     <string name="ads_backup_import_summary">Parti da una situazione precedente dell\'app</string>
@@ -187,8 +191,11 @@
     <string name="ads_theme_color_accent">Colore rifiniture</string>
     <string name="ads_theme_color_secondary">Colore secondario</string>
     <string name="ads_theme_color_accent_summary">Colore utilizzato dagli elementi secondari.</string>
+    <string name="ads_theme_color_surface">Colore superficie</string>
     <string name="ads_theme_color_tint">Colore tinta</string>
     <string name="ads_theme_color_inverse">Colore inverso</string>
+    <string name="ads_theme_font_scale">Scala dei caratteri</string>
+    <string name="ads_theme_font_scale_summary">Fattore di scala per rendere il testo più piccolo o più grande.</string>
     <string name="ads_theme_corner_size">Dimensione angolo</string>
     <string name="ads_theme_corner_size_summary">Raggio d\'angolo dell\'app.</string>
     <string name="ads_theme_background_aware">Sfondo consapevole</string>
@@ -202,11 +209,11 @@
     <string name="ads_theme_app_night_summary">Stile dell\'app di note.</string>
     <string name="ads_theme_app_day_night_desc">Questo funziona solo quando il motivo automatico viene applicato.</string>
     <string name="ads_theme_toast">Motivo messaggi toast</string>
-    <string name="ads_theme_toast_summary">Mostra messaggi toast a seconda del motivo dell\'app.</string>
+    <string name="ads_theme_toast_summary">Mostra messaggi toast a seconda colore dell\'accento dell\'app.</string>
     <string name="ads_theme_toast_summary_unchecked">Mostra i messaggi toast predefiniti di sistema.</string>
     <string name="ads_theme_navigation_bar">Motivo barra di navigazione</string>
     <string name="ads_theme_navigation_bar_summary">Mostra barra di navigazione a seconda del motivo dell\'app.</string>
-    <string name="ads_theme_navigation_bar_summary_unchecked">Mostra barra di navigazione nera.</string>
+    <string name="ads_theme_navigation_bar_summary_unchecked">Mostra la barra di navigazione predefinita.</string>
     <string name="ads_theme_navigation_bar_desc">Il motivo della barra di navigazione non sarà visibile in alcuni luoghi per avere risultati migliori.</string>
     <string name="ads_theme_notification">Motivo notifiche</string>
     <string name="ads_theme_notification_summary">Tavolozza colori per le notifiche.</string>
@@ -221,7 +228,10 @@
     <string name="ads_theme_app_shortcuts_desc">Premi a lungo l\'icona del launcher per mostrare le scorciatoie per l\'app. È richiesto un launcher supportato.</string>
     <string name="ads_theme_reset_desc">Il motivo è stato ripristinato ai valori predefiniti.</string>
     <string name="ads_theme_import_done">Il motivo è stato importato correttamente.</string>
+    <string name="ads_theme_export_done">Il motivo è stato esportato correttamente.</string>
+    <string name="ads_theme_export_error">Impossibile salvare il motivo.</string>
     <string name="ads_theme_copy_done">Il motivo è stato copiato correttamente.</string>
+    <string name="ads_theme_format_saved">Motivo salvato: %1$s</string>
 
     <!-- Theme -->
     <string name="ads_theme_toast_default">Messaggio toast predefinito</string>
@@ -301,6 +311,10 @@
     <string name="ads_widget_reset_desc">Il widget è stato ripristinato.</string>
     <string name="ads_widget_not_added">Nessun widget è stato aggiunto.</string>
 
+    <!-- Setup -->
+    <string name="ads_setup">Setup</string>
+    <string name="ads_setup_desc">Configura le caratteristiche importanti di seguito.</string>
+
     <!-- About and Support -->
     <string name="ads_rate">Valuta</string>
     <string name="ads_support_contact">Contatti</string>
@@ -330,6 +344,7 @@
     <string name="ads_info_terms_of_use_desc">Guarda le condizioni d\'uso complete per questo prodotto.</string>
     <string name="ads_info_privacy_policy_terms_desc">Politiche sulla privacy e condizioni d\'uso.</string>
     <string name="ads_info_apps">Altre app</string>
+    <string name="ads_info_apps_desc">Prova altre app da me tramite Google Play.</string>
     <string name="ads_info_gplus_desc">Unisciti alla comunità ufficiale per provare i rilasci di test.</string>
     <string name="ads_info_facebook_desc">Metti un like alla pagina ufficiale per ricevere notizie e aggiornamenti.</string>
     <string name="ads_info_xda_desc">Segui il forum di supporto ufficiale su XDA.</string>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 	limitations under the License.
 -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Theme entries for auto, day, night and custom. -->
     <string-array name="ads_theme_entries_all">
@@ -35,6 +35,17 @@
         <item>3</item>
         <!-- Custom -->
         <item>-2</item>
+    </string-array>
+
+    <!-- Night theme entries for auto. -->
+    <string-array name="ads_theme_entries_night" tools:ignore="InconsistentArrays">
+        <item>@string/ads_theme_entry_auto</item>
+    </string-array>
+
+    <!-- Night theme values for auto. -->
+    <string-array name="ads_theme_values_night" tools:ignore="InconsistentArrays">
+        <!-- Auto -->
+        <item>-3</item>
     </string-array>
 
     <!-- Theme entries for auto and custom. -->
@@ -85,7 +96,7 @@
         <item>1</item>
     </string-array>
 
-    <!-- App theme colors. -->
+    <!-- App theme background colors. -->
     <integer-array name="ads_app_theme_colors">
         <!-- Auto -->
         <item>-3</item>
@@ -112,6 +123,35 @@
         <item>@color/ads_window_background_blue_grey</item>
         <item>@color/ads_window_background_black_light</item>
         <item>@color/ads_window_background_black</item>
+    </integer-array>
+
+    <!-- App theme surface colors. -->
+    <integer-array name="ads_app_theme_surface_colors">
+        <!-- Auto -->
+        <item>-3</item>
+        <item>@color/ads_window_background_red_light_surface</item>
+        <item>@color/ads_window_background_purple_light_surface</item>
+        <item>@color/ads_window_background_indigo_light_surface</item>
+        <item>@color/ads_window_background_light_blue_light_surface</item>
+        <item>@color/ads_window_background_teal_light_surface</item>
+        <item>@color/ads_window_background_light_green_light_surface</item>
+        <item>@color/ads_window_background_yellow_light_surface</item>
+        <item>@color/ads_window_background_orange_light_surface</item>
+        <item>@color/ads_window_background_brown_light_surface</item>
+        <item>@color/ads_window_background_blue_grey_light_surface</item>
+        <item>@color/ads_window_background_white_light_surface</item>
+        <item>@color/ads_window_background_red_surface</item>
+        <item>@color/ads_window_background_purple_surface</item>
+        <item>@color/ads_window_background_indigo_surface</item>
+        <item>@color/ads_window_background_light_blue_surface</item>
+        <item>@color/ads_window_background_teal_surface</item>
+        <item>@color/ads_window_background_light_green_surface</item>
+        <item>@color/ads_window_background_yellow_surface</item>
+        <item>@color/ads_window_background_orange_surface</item>
+        <item>@color/ads_window_background_brown_surface</item>
+        <item>@color/ads_window_background_blue_grey_surface</item>
+        <item>@color/ads_window_background_black_light_surface</item>
+        <item>@color/ads_window_background_black_surface</item>
     </integer-array>
 
     <!-- App theme day colors. -->

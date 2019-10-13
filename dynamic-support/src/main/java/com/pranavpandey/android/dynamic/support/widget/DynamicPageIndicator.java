@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  * Copyright 2015 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,7 +29,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Interpolator;
 
@@ -650,11 +649,6 @@ public class DynamicPageIndicator extends View implements ViewPager.OnPageChange
 
     private void setJoiningFraction(int leftDot, float fraction) {
         if (leftDot < joiningFractions.length) {
-
-            if (leftDot == 1) {
-                Log.d("PageIndicator", "dot 1 fraction:\t" + fraction);
-            }
-
             joiningFractions[leftDot] = fraction;
             ViewCompat.postInvalidateOnAnimation(DynamicPageIndicator.this);
         }

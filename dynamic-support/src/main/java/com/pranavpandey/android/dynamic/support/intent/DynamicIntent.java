@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,56 +63,75 @@ public class DynamicIntent {
      *
      * @see Settings#ACTION_MANAGE_WRITE_SETTINGS
      */
-    public static final String ACTION_WRITE_SYSTEM_SETTINGS = Settings.ACTION_MANAGE_WRITE_SETTINGS;
+    public static final String ACTION_WRITE_SYSTEM_SETTINGS =
+            Settings.ACTION_MANAGE_WRITE_SETTINGS;
     /**
      * Settings action constant for overlay settings.
      *
      * @see Settings#ACTION_MANAGE_OVERLAY_PERMISSION
      */
-    public static final String ACTION_OVERLAY_SETTINGS = Settings.ACTION_MANAGE_OVERLAY_PERMISSION;
+    public static final String ACTION_OVERLAY_SETTINGS =
+            Settings.ACTION_MANAGE_OVERLAY_PERMISSION;
     /**
      * Settings action constant for usage access settings.
      *
      * @see Settings#ACTION_USAGE_ACCESS_SETTINGS
      */
-    public static final String ACTION_USAGE_ACCESS_SETTINGS = Settings.ACTION_USAGE_ACCESS_SETTINGS;
+    public static final String ACTION_USAGE_ACCESS_SETTINGS =
+            Settings.ACTION_USAGE_ACCESS_SETTINGS;
 
     /**
-     * Constant for text extra.
+     * Settings action constant for ignore battery optimization.
+     *
+     * @see Settings#ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS
+     */
+    public static final String ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS =
+            Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS;
+
+    /**
+     * Intent extra constant for the uri.
+     */
+    public static final String EXTRA_URI =
+            "com.pranavpandey.android.dynamic.support.intent.extra.URI";
+
+    /**
+     * Intent extra constant for the text.
      */
     public static final String EXTRA_TEXT =
             "com.pranavpandey.android.dynamic.support.intent.extra.TEXT";
 
     /**
-     * Constant for dynamic theme extra.
+     * Intent extra constant for the dynamic theme.
      */
     public static final String EXTRA_THEME =
             "com.pranavpandey.android.dynamic.support.intent.extra.THEME";
 
     /**
-     * Constant for default dynamic theme extra.
+     * Intent extra constant for the default dynamic theme.
      */
     public static final String EXTRA_THEME_DEFAULT =
             "com.pranavpandey.android.dynamic.support.intent.extra.THEME_DEFAULT";
 
     /**
-     * Constant for permissions extra.
+     * Intent extra constant for the permissions.
      */
     public static final String EXTRA_PERMISSIONS =
             "com.pranavpandey.android.dynamic.support.intent.extra.PERMISSIONS";
     /**
-     * Constant for permissions extra intent to perform it when all the permissions are granted.
+     * Intent extra constant for permissions to perform it when all the permissions are granted.
      */
     public static final String EXTRA_PERMISSIONS_INTENT =
             "com.pranavpandey.android.dynamic.support.intent.extra.PERMISSIONS_INTENT";
     /**
-     * Constant for permissions extra action to perform it when all the permissions are granted.
+     * Intent extra constant for permissions action to perform it when all the permissions
+     * are granted.
      */
     public static final String EXTRA_PERMISSIONS_ACTION =
             "com.pranavpandey.android.dynamic.support.intent.extra.PERMISSIONS_ACTION";
     /**
-     * Constant for intent extra if updating the widget.
+     * Intent extra constant for updating the app widget.
      */
     public static final String EXTRA_WIDGET_UPDATE =
             "com.pranavpandey.android.dynamic.support.intent.extra.WIDGET_UPDATE";
+
 }

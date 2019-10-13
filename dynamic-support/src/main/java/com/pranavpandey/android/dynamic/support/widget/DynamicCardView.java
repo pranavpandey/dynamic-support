@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,17 +28,17 @@ import androidx.cardview.widget.CardView;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicCornerWidget;
-import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicSurfaceWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * A CardView to change its background color according to the supplied parameters.
  */
 public class DynamicCardView extends CardView implements
-        DynamicWidget, DynamicCornerWidget<Float>, DynamicTintWidget {
+        DynamicWidget, DynamicCornerWidget<Float>, DynamicSurfaceWidget {
 
     /**
      * Color type applied to this view.
@@ -79,9 +79,18 @@ public class DynamicCardView extends CardView implements
     private @Theme.BackgroundAware int mBackgroundAware;
 
     /**
-     * {@code true} to tint background according to the widget color.
+     * {@code true} to enable elevation on the same background.
+     * <p>It will be useful to provide the true dark theme by disabling the card view elevation.
+     *
+     * <p><p>When disabled, widget elevation will be disabled (or 0) if the color of this widget
+     * (surface color) is exactly same as dynamic theme background color.
      */
-    private boolean mTintBackground;
+    private boolean mElevationOnSameBackground;
+
+    /**
+     * Intended elevation for this view without considering the background.
+     */
+    private float mElevation;
 
     public DynamicCardView(@NonNull Context context) {
         this(context, null);
@@ -108,7 +117,7 @@ public class DynamicCardView extends CardView implements
         try {
             mColorType = a.getInt(
                     R.styleable.DynamicTheme_ads_colorType,
-                    Theme.ColorType.BACKGROUND);
+                    Theme.ColorType.SURFACE);
             mContrastWithColorType = a.getInt(
                     R.styleable.DynamicTheme_ads_contrastWithColorType,
                     Theme.ColorType.NONE);
@@ -121,9 +130,10 @@ public class DynamicCardView extends CardView implements
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicTheme_ads_backgroundAware,
                     Theme.BackgroundAware.DISABLE);
-            mTintBackground = a.getBoolean(
-                    R.styleable.DynamicTheme_ads_tintBackground,
-                    WidgetDefaults.ADS_TINT_BACKGROUND);
+            mElevationOnSameBackground = a.getBoolean(
+                    R.styleable.DynamicTheme_ads_elevationOnSameBackground,
+                    WidgetDefaults.ADS_ELEVATION_ON_SAME_BACKGROUND);
+            mElevation = getCardElevation();
         } finally {
             a.recycle();
         }
@@ -217,18 +227,6 @@ public class DynamicCardView extends CardView implements
     }
 
     @Override
-    public boolean isTintBackground() {
-        return mTintBackground;
-    }
-
-    @Override
-    public void setTintBackground(boolean tintBackground) {
-        this.mTintBackground = tintBackground;
-
-        setColor();
-    }
-
-    @Override
     public void setBackgroundColor(@ColorInt int color) {
         super.setCardBackgroundColor(color);
 
@@ -252,10 +250,44 @@ public class DynamicCardView extends CardView implements
                 mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
-            setCardBackgroundColor(!mTintBackground ? mColor
-                    : DynamicColorUtils.isColorDark(mColor)
-                    ? DynamicColorUtils.getLighterColor(mColor, 0.07f)
-                    : DynamicColorUtils.getLighterColor(mColor, 0.2f));
+            if (mElevationOnSameBackground && mColorType == Theme.ColorType.BACKGROUND
+                    && mColor == DynamicTheme.getInstance().get().getSurfaceColor()) {
+                mColor = DynamicTheme.getInstance().generateSurfaceColor(mColor);
+            }
+
+            setCardBackgroundColor(mColor);
+            setSurface();
+        }
+    }
+
+    @Override
+    public void setCardElevation(float elevation)  {
+        super.setCardElevation(elevation);
+
+        if (elevation > 0) {
+            this.mElevation = getCardElevation();
+        }
+    }
+
+    @Override
+    public boolean isElevationOnSameBackground() {
+        return mElevationOnSameBackground;
+    }
+
+    @Override
+    public void setElevationOnSameBackground(boolean elevationOnSameBackground) {
+        this.mElevationOnSameBackground = elevationOnSameBackground;
+
+        setSurface();
+    }
+
+    @Override
+    public void setSurface() {
+        if (!mElevationOnSameBackground && mColorType == Theme.ColorType.SURFACE
+                && mColor == DynamicTheme.getInstance().get().getBackgroundColor()) {
+            setCardElevation(0);
+        } else {
+            setCardElevation(mElevation);
         }
     }
 }

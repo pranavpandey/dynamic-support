@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -18,18 +18,14 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.DynamicApp.Content.Card.Small.Clickable"
     android:id="@+id/ads_color_picker_popup_footer"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/ads_margin_tiny"
-    android:paddingRight="@dimen/ads_margin_tiny"
-    style="@style/Widget.DynamicApp.Content.Card.Small.Clickable">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/ads_margin_small"
-        android:paddingRight="@dimen/ads_margin_small"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -40,49 +36,78 @@
             android:layout_gravity="center_vertical">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                style="@style/TextAppearance.DynamicApp.Subtitle1.Caps"
                 android:id="@+id/ads_color_picker_popup_footer_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/ads_picker_more_colors"
-                style="@style/TextAppearance.DynamicApp.Subtitle1.Caps" />
+                android:text="@string/ads_more" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                style="@style/TextAppearance.DynamicApp.Body1"
                 android:id="@+id/ads_color_picker_popup_footer_subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.DynamicApp.Body1"
                 android:visibility="gone" />
 
         </LinearLayout>
 
-        <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView
-            android:id="@+id/ads_color_picker_popup_footer_view_default"
-            android:layout_width="@dimen/ads_icon_small"
-            android:layout_height="@dimen/ads_icon_small"
-            android:layout_marginLeft="@dimen/ads_margin_medium"
-            android:layout_marginStart="@dimen/ads_margin_medium"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ads_margin_tiny"
+            android:layout_marginStart="@dimen/ads_margin_tiny"
             android:layout_gravity="center_vertical"
-            android:visibility="gone" />
+            android:orientation="horizontal">
 
-        <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-            android:id="@+id/ads_color_picker_popup_footer_image"
-            android:layout_width="@dimen/ads_icon_small"
-            android:layout_height="@dimen/ads_icon_small"
-            android:layout_marginLeft="@dimen/ads_page_horizontal_margin"
-            android:layout_marginStart="@dimen/ads_page_horizontal_margin"
-            android:layout_gravity="center_vertical"
-            app:srcCompat="@drawable/ads_ic_picker"
-            app:ads_colorType="primary"
-            android:visibility="gone" />
+            <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView
+                android:id="@+id/ads_color_picker_popup_footer_view_default"
+                android:layout_width="@dimen/ads_icon_popup_footer"
+                android:layout_height="@dimen/ads_icon_popup_footer"
+                android:layout_marginLeft="@dimen/ads_margin_small"
+                android:layout_marginStart="@dimen/ads_margin_small"
+                android:visibility="gone" />
 
-        <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView
-            android:id="@+id/ads_color_picker_popup_footer_view"
-            android:layout_width="@dimen/ads_icon_small"
-            android:layout_height="@dimen/ads_icon_small"
-            android:layout_marginLeft="@dimen/ads_page_horizontal_margin"
-            android:layout_marginStart="@dimen/ads_page_horizontal_margin"
-            android:layout_gravity="center_vertical"
-            android:visibility="gone" />
+            <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+                android:id="@+id/ads_color_picker_popup_footer_image"
+                android:layout_width="@dimen/ads_icon_popup_footer"
+                android:layout_height="@dimen/ads_icon_popup_footer"
+                android:layout_marginLeft="@dimen/ads_margin_small"
+                android:layout_marginStart="@dimen/ads_margin_small"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ads_ic_picker"
+                app:ads_colorType="accent" />
+
+            <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView
+                android:id="@+id/ads_color_picker_popup_footer_view"
+                android:layout_width="@dimen/ads_icon_popup_footer"
+                android:layout_height="@dimen/ads_icon_popup_footer"
+                android:layout_marginLeft="@dimen/ads_margin_small"
+                android:layout_marginStart="@dimen/ads_margin_small"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/ads_color_picker_popup_footer_recent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <View
+                    android:layout_width="@dimen/ads_margin_extra_tiny"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/ads_margin_small"
+                    android:layout_marginRight="@dimen/ads_margin_small"
+                    android:background="?android:attr/dividerVertical" />
+
+                <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView
+                    android:id="@+id/ads_color_picker_popup_footer_view_recent"
+                    android:layout_width="@dimen/ads_icon_popup_footer"
+                    android:layout_height="@dimen/ads_icon_popup_footer"
+                    android:layout_gravity="center_vertical" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

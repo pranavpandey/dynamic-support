@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,14 +17,9 @@
 package com.pranavpandey.android.dynamic.support.sample.fragment
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import com.google.android.material.appbar.AppBarLayout
 import com.pranavpandey.android.dynamic.support.fragment.DynamicViewPagerFragment
 import com.pranavpandey.android.dynamic.support.sample.R
-import com.pranavpandey.android.dynamic.support.sample.controller.Constants
-import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils
 import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils
 import java.util.*
 
@@ -106,21 +101,6 @@ class AboutFragment : DynamicViewPagerFragment() {
                         DynamicViewPagerFragment.ADS_ARGS_VIEW_PAGER_PAGE)) {
             setPage(arguments!!.getInt(DynamicViewPagerFragment.ADS_ARGS_VIEW_PAGER_PAGE))
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-
-        // TODO: Inflate menu for this fragment.
-        inflater.inflate(R.menu.ads_menu_about, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.ads_menu_apps -> DynamicLinkUtils.moreApps(context!!, Constants.ME)
-        }
-
-        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroy() {

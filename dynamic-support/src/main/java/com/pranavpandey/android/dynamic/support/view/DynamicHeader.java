@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,6 +41,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
+import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A DynamicItemView to provide the header view with an icon, title and subtitle.
@@ -64,5 +67,25 @@ public class DynamicHeader extends DynamicItemView {
     @Override
     protected @LayoutRes int getLayoutRes() {
         return R.layout.ads_header;
+    }
+
+    @Override
+    protected void onInflate() {
+        super.onInflate();
+
+        setColorType(Theme.ColorType.ACCENT);
+    }
+
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+
+        if (getTitleView() != null) {
+            ((DynamicTextView) getTitleView()).setColorType(getColorType());
+
+            if (getColor() != WidgetDefaults.ADS_COLOR_UNKNOWN) {
+                ((DynamicTextView) getTitleView()).setColor(getColor());
+            }
+        }
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,12 @@ import android.content.pm.PackageManager;
 import android.content.pm.PermissionGroupInfo;
 import android.content.pm.PermissionInfo;
 import android.os.Build;
+import android.os.PowerManager;
 import android.provider.Settings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -45,7 +47,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import java.util.ArrayList;
 
 /**
- * Help class to request and manage runtime permissions introduced in Android M.
+ * Help class to request and manage runtime permissions introduced in API 23.
  * <p>It must be initialized before using any of its functions or requesting any permissions.
  *
  * <p><p>Register the {@link DynamicPermissionsActivity} via {@link #setPermissionActivity(Class)}
@@ -65,7 +67,7 @@ public class DynamicPermissions {
     /**
      * Context used by this instance.
      */
-    protected Context mContext;
+    private Context mContext;
 
     /**
      * Permissions activity used by this manager.
@@ -76,7 +78,8 @@ public class DynamicPermissions {
      * Making the default constructor private so that it cannot be initialized without a context.
      * <p>Use {@link #initializeInstance(Context)} instead.
      */
-    private DynamicPermissions() { }
+    @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+    protected DynamicPermissions() { }
 
     private DynamicPermissions(@NonNull Context context) {
         this.mContext = context;
@@ -162,6 +165,30 @@ public class DynamicPermissions {
     public void requestPermissions(@NonNull Context context,
             @NonNull String[] permissions, boolean history, @Nullable Intent actionIntent,
             @DynamicAction int action, int requestCode) {
+        Intent intent = requestPermissionsIntent(
+                context, permissions, history, actionIntent, action);
+
+        if (context instanceof Activity) {
+            ((Activity) context).startActivityForResult(intent, requestCode);
+        } else {
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        }
+    }
+
+    /**
+     * Request the permissions activity intent for the supplied permissions.
+     *
+     * @param context The context to build the intent.
+     * @param permissions The array of permissions to be requested.
+     * @param history {@code false} to exclude the system settings activity from the recents.
+     * @param actionIntent The intent which should be called after all the permissions has been
+     *                     granted.
+     * @param action The intent action, either start an activity or a service.
+     */
+    public Intent requestPermissionsIntent(@NonNull Context context,
+            @NonNull String[] permissions, boolean history,
+            @Nullable Intent actionIntent, @DynamicAction int action) {
         Intent intent = new Intent(context, mPermissionActivity);
         intent.setAction(DynamicIntent.ACTION_PERMISSIONS);
         intent.putExtra(DynamicIntent.EXTRA_PERMISSIONS, permissions);
@@ -174,12 +201,7 @@ public class DynamicPermissions {
             intent.putExtra(DynamicIntent.EXTRA_PERMISSIONS_ACTION, action);
         }
 
-        if (context instanceof Activity) {
-            ((Activity) context).startActivityForResult(intent, requestCode);
-        } else {
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
-        }
+        return intent;
     }
 
     /**
@@ -414,7 +436,7 @@ public class DynamicPermissions {
             }
         }
 
-        return permissionsNotGranted.toArray(new String[permissionsNotGranted.size()]);
+        return permissionsNotGranted.toArray(new String[0]);
     }
 
     /**
@@ -469,6 +491,42 @@ public class DynamicPermissions {
         }
 
         return true;
+    }
+
+    public boolean isIgnoringBatteryOptimizations(boolean settings) {
+        if (DynamicSdkUtils.is23()) {
+            boolean ignoring = false;
+
+            try {
+                PowerManager powerManager = ((PowerManager)
+                        mContext.getSystemService(Context.POWER_SERVICE));
+
+                if (powerManager != null) {
+                    ignoring = powerManager.isIgnoringBatteryOptimizations(
+                            mContext.getPackageName());
+                }
+
+                if (!ignoring && settings) {
+                    DynamicPermissionUtils.openPermissionSettings(mContext,
+                            Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                }
+            } catch (Exception ignored) {
+                return false;
+            }
+
+            return ignoring;
+        }
+
+        return true;
+    }
+
+    /**
+     * Checks whether the activity can be launched from the background.
+     *
+     * @return {@code true} if activity can be launched from the background.
+     */
+    public boolean canLaunchFromBackground() {
+        return !DynamicSdkUtils.is29() || canDrawOverlays();
     }
 
     /**

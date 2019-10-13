@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ import androidx.annotation.StyleRes
 import androidx.core.view.GravityCompat
 import com.pranavpandey.android.dynamic.support.activity.DynamicDrawerActivity
 import com.pranavpandey.android.dynamic.support.sample.R
+import com.pranavpandey.android.dynamic.support.sample.controller.AppController
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
-import com.pranavpandey.android.dynamic.support.sample.controller.SampleController
-import com.pranavpandey.android.dynamic.support.sample.controller.SampleTheme
+import com.pranavpandey.android.dynamic.support.sample.controller.ThemeController
 import com.pranavpandey.android.dynamic.support.sample.fragment.AboutFragment
 import com.pranavpandey.android.dynamic.support.sample.fragment.HomeFragment
 import com.pranavpandey.android.dynamic.support.sample.fragment.SettingsFragment
@@ -60,17 +60,17 @@ class DrawerActivity : DynamicDrawerActivity() {
     @StyleRes
     override fun getThemeRes(): Int {
         // Return activity theme to be applied.
-        return SampleTheme.appStyle
+        return ThemeController.appStyle
     }
 
     override fun onCustomiseTheme() {
         // Customise activity theme after applying the base style.
-        SampleTheme.setLocalTheme()
+        ThemeController.setLocalTheme()
     }
 
     override fun setNavigationBarTheme(): Boolean {
         // TODO: Return true to apply the navigation bar theme.
-        return SampleController.instance.isThemeNavigationBar
+        return AppController.instance.isThemeNavigationBar
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,8 +102,8 @@ class DrawerActivity : DynamicDrawerActivity() {
         }
 
         // Show tutorial on first launch.
-        if (SampleController.instance.isFirstLaunch) {
-            SampleController.instance.isFirstLaunch = false
+        if (AppController.instance.isFirstLaunch) {
+            AppController.instance.isFirstLaunch = false
             startActivity(Intent(this, TutorialActivity::class.java))
         }
     }

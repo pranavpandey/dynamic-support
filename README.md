@@ -124,6 +124,14 @@ dependencies {
 }
 ```
 
+### Dependency
+
+It depends on the [dynamic-locale](https://github.com/pranavpandey/dynamic-locale), 
+[dynamic-preferences](https://github.com/pranavpandey/dynamic-preferences), and 
+[dynamic-theme](https://github.com/pranavpandey/dynamic-theme) to perform
+various internal operations. So, their functions can also be used to perform other 
+useful operations.
+
 ---
 
 ## Apps using Dynamic Support
@@ -139,6 +147,7 @@ checkout the `Rotation` and `Everyday` apps to experience the full potential of 
 
 ## Translations
 - German (de) - Flubberlutsch
+- Hindi (hi) - Siddh Narhari
 - Indonesian (in) - Gamal Kevin A
 - Italian (it) - Nicola
 - Spanish (es) - Dave
@@ -159,7 +168,7 @@ Pranav Pandey
 
 ## License
 
-    Copyright 2018 Pranav Pandey
+    Copyright 2019 Pranav Pandey
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

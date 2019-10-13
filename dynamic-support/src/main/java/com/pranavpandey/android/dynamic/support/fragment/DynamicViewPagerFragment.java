@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,19 +25,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.activity.DynamicActivity;
-import com.pranavpandey.android.dynamic.support.adapter.DynamicFragmentsAdapter;
 
 import java.util.List;
 
 /**
  * An abstract {@link ViewPager} fragment to display multiple fragments inside the view pager
- * along with the tabs. Just extend this fragment and implement the necessary functions to use
- * it inside an activity.
+ * along with the tabs.
+ * <p>Just extend this fragment and implement the necessary methods to use it inside an activity.
  *
  * @see #getTitles()
  * @see #getPages()
@@ -78,6 +78,8 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setRetainInstance(false);
+        
         mTitles = getTitles();
         mPages = getPages();
         mAdapter = new ViewPagerAdapter(getChildFragmentManager(), mTitles, mPages);
@@ -119,6 +121,10 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment {
 
         mViewPager.setAdapter(mAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
+
+        if (getArguments() != null && getArguments().containsKey(ADS_ARGS_VIEW_PAGER_PAGE)) {
+            setPage(getArguments().getInt(ADS_ARGS_VIEW_PAGER_PAGE));
+        }
     }
 
     /**
@@ -160,7 +166,7 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment {
     /**
      * View pager adapter to display the supplied fragments with tab titles.
      */
-    static class ViewPagerAdapter extends DynamicFragmentsAdapter {
+    static class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
         /**
          * Tab titles list for this adapter.
@@ -181,15 +187,10 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment {
          */
         ViewPagerAdapter(@NonNull FragmentManager fragmentManager,
                 @NonNull List<String> titles, @NonNull List<Fragment> pages) {
-            super(fragmentManager);
+            super(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
             this.titles = titles;
             this.pages = pages;
-        }
-
-        @Override
-        public Fragment createItem(int position) {
-            return pages.get(position);
         }
 
         @Override
@@ -200,6 +201,11 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment {
         @Override
         public int getCount() {
             return pages.size();
+        }
+
+        @Override
+        public @NonNull Fragment getItem(int position) {
+            return pages.get(position);
         }
     }
 }

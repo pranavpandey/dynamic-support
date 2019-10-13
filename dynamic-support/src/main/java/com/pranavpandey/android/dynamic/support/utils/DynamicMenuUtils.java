@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,8 +39,7 @@ import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.appcompat.widget.ActionMenuView;
 
-import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.toasts.DynamicHint;
+import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
@@ -86,6 +85,7 @@ public class DynamicMenuUtils {
      * @param color The tint color to be applied.
      */
     @TargetApi(Build.VERSION_CODES.M)
+    @SuppressLint("RestrictedApi")
     public static void setViewItemsTint(@NonNull final View view,
             @ColorInt final int color, @ColorInt final int background) {
         final PorterDuffColorFilter colorFilter
@@ -109,23 +109,7 @@ public class DynamicMenuUtils {
             DynamicTintUtils.setViewBackgroundTint(view, color, true);
 
             if (!TextUtils.isEmpty(view.getContentDescription())) {
-                new android.os.Handler().post(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            view.setOnLongClickListener(new View.OnLongClickListener() {
-                                @Override
-                                public boolean onLongClick(View v) {
-                                    DynamicHint.show(v, DynamicHint.make(
-                                            DynamicTheme.getInstance().getContext(),
-                                            v.getContentDescription(), background, color));
-                                    return true;
-                                }
-                            });
-                        } catch (Exception ignored) {
-                        }
-                    }
-                });
+                DynamicTooltip.set(view, color, background, view.getContentDescription());
             }
         }
 
@@ -163,27 +147,8 @@ public class DynamicMenuUtils {
 
                 if (innerView instanceof MenuView.ItemView) {
                     DynamicTintUtils.setViewBackgroundTint(view, color, true);
-
-                    new android.os.Handler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                innerView.setOnLongClickListener(new View.OnLongClickListener() {
-                                    @SuppressLint("RestrictedApi")
-                                    @Override
-                                    public boolean onLongClick(View v) {
-                                        DynamicHint.show(v, DynamicHint.make(
-                                                DynamicTheme.getInstance().getContext(),
-                                                ((MenuView.ItemView) innerView)
-                                                        .getItemData().getTitle(),
-                                                background, color));
-                                        return true;
-                                    }
-                                });
-                            } catch (Exception ignored) {
-                            }
-                        }
-                    });
+                    DynamicTooltip.set(innerView, color, background,
+                            ((MenuView.ItemView) innerView).getItemData().getTitle());
                 }
             }
         }

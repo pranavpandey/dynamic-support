@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -27,6 +27,6 @@
         android:state_focused="true"
         android:drawable="@drawable/ads_button_pressed_remote_borderless" />
 
-    <item android:drawable="@android:color/transparent"/>
+    <item android:drawable="@android:color/transparent" />
 
 </selector>

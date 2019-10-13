@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,8 +29,12 @@ import android.graphics.drawable.shapes.RectShape;
 import android.os.Build;
 import android.widget.SeekBar;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
+import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
+import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPicker;
+import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
@@ -92,5 +96,26 @@ public class DynamicPickerUtils {
                 BitmapShader.TileMode.REPEAT));
 
         return paint;
+    }
+
+    /**
+     * Save the recently copied color to shared preferences.
+     *
+     * @param color The color to be saved.
+     */
+    public static void setRecentColor(@ColorInt int color) {
+        DynamicPreferences.getInstance().save(
+                DynamicColorPicker.ADS_PREF_COLOR_PICKER_RECENT, color);
+    }
+
+    /**
+     * Returns the recently copied color from the shared preferences.
+     *
+     * @return The recently copied color from the shared preferences.
+     */
+    public static @ColorInt int getRecentColor() {
+        return DynamicPreferences.getInstance().load(
+                DynamicColorPicker.ADS_PREF_COLOR_PICKER_RECENT,
+                WidgetDefaults.ADS_COLOR_UNKNOWN);
     }
 }

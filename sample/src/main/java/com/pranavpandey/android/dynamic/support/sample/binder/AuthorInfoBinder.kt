@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,10 +19,12 @@ package com.pranavpandey.android.dynamic.support.sample.binder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.adapter.AppInfoAdapter
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils
 import com.pranavpandey.android.dynamic.support.view.DynamicInfoView
 
@@ -56,6 +58,13 @@ class AuthorInfoBinder(binderAdapter: AppInfoAdapter)
             dynamicInfoView.linksView.recyclerViewLayoutManager =
                     DynamicLayoutUtils.getGridLayoutManager(dynamicInfoView.context,
                             DynamicLayoutUtils.getGridCount(dynamicInfoView.context))
+
+            if (dynamicInfoView.linksColors != null) {
+                @ColorInt val colors = dynamicInfoView.linksColors
+                colors?.set(0, DynamicTheme.getInstance().get().primaryColor)
+                dynamicInfoView.linksColors = colors
+                dynamicInfoView.onUpdate()
+            }
         }
     }
 }

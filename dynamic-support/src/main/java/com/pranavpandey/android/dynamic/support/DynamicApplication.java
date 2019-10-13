@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import com.pranavpandey.android.dynamic.locale.DynamicLocale;
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
+import com.pranavpandey.android.dynamic.support.listener.DynamicResolver;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
@@ -42,7 +43,8 @@ import java.util.Locale;
  * Base application class which can be extended to initialize the {@link DynamicTheme} and to
  * perform theme change operations.
  */
-public abstract class DynamicApplication extends Application implements DynamicLocale,
+public abstract class DynamicApplication extends Application
+        implements androidx.work.Configuration.Provider, DynamicLocale,
         DynamicListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     /**
@@ -58,6 +60,10 @@ public abstract class DynamicApplication extends Application implements DynamicL
     @Override
     public void attachBaseContext(@NonNull Context base) {
         DynamicPreferences.initializeInstance(base);
+        DynamicTheme.initializeInstance(base, getDynamicResolver());
+        DynamicTheme.getInstance().addDynamicListener(this);
+        PreferenceManager.getDefaultSharedPreferences(base)
+                .registerOnSharedPreferenceChangeListener(this);
         super.attachBaseContext(setLocale(base));
     }
 
@@ -65,23 +71,20 @@ public abstract class DynamicApplication extends Application implements DynamicL
     public void onCreate() {
         super.onCreate();
 
+        DynamicTheme.getInstance().setDynamicThemeWork(onSetupDynamicWork());
         mConfiguration = new Configuration(getResources().getConfiguration());
-        DynamicTheme.initializeInstance(this);
-        DynamicTheme.getInstance().addDynamicListener(this);
-        PreferenceManager.getDefaultSharedPreferences(this)
-                .registerOnSharedPreferenceChangeListener(this);
 
         onInitialize();
         setDynamicTheme();
-        onCustomiseTheme();
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
         int diff = mConfiguration.diff(new Configuration(newConfig));
         if ((diff & ActivityInfo.CONFIG_LOCALE) != 0
+                || (diff & ActivityInfo.CONFIG_FONT_SCALE) != 0
                 || (diff & ActivityInfo.CONFIG_ORIENTATION) != 0
                 || (diff & ActivityInfo.CONFIG_UI_MODE) != 0
                 || (DynamicSdkUtils.is17()
@@ -118,10 +121,30 @@ public abstract class DynamicApplication extends Application implements DynamicL
     }
 
     /**
+     * Returns the resolver for the dynamic theme to provide implementation for conditions like
+     * auto and night themes.
+     * <p>Override this method to supply your own resolver implementation.
+     *
+     * @return The resolver for the dynamic theme.
+     */
+    protected @Nullable DynamicResolver getDynamicResolver() {
+        return null;
+    }
+
+    /**
      * This method will be called inside the {@link #onCreate()} method after applying the theme.
      * <p>Override this method to customise the theme further.
      */
     protected void onCustomiseTheme() { }
+
+    /**
+     * This method will be called before setting up the dynamic work to listen changes based on
+     * time. It will be useful in updating the {@code auto} theme while the app is in background.
+     * <p>Return {@code false} to skip the dynamic work initialization.
+     */
+    protected boolean onSetupDynamicWork() {
+        return true;
+    }
 
     /**
      * Returns the dynamic context used by this application.
@@ -141,6 +164,15 @@ public abstract class DynamicApplication extends Application implements DynamicL
         } else {
             DynamicTheme.getInstance().setTheme(getDynamicTheme(), true);
         }
+
+        onCustomiseTheme();
+    }
+
+    @Override
+    public @NonNull androidx.work.Configuration getWorkManagerConfiguration() {
+        return new androidx.work.Configuration.Builder()
+                .setMinimumLoggingLevel(android.util.Log.INFO)
+                .build();
     }
 
     @Override
@@ -155,16 +187,15 @@ public abstract class DynamicApplication extends Application implements DynamicL
 
     @Override
     public @NonNull Context setLocale(@NonNull Context context) {
-        this.mContext = DynamicLocaleUtils.setLocale(context,
+        return mContext = DynamicLocaleUtils.setLocale(context,
                 DynamicLocaleUtils.getLocale(getLocale(),
                         getDefaultLocale(context)), getFontScale());
-
-        return mContext;
     }
 
     @Override
     public float getFontScale() {
-        return 1.0f;
+        return getDynamicTheme() != null ? getDynamicTheme().getFontScaleRelative()
+                : DynamicTheme.getInstance().getDefault().getFontScaleRelative();
     }
 
     @Override
@@ -175,8 +206,13 @@ public abstract class DynamicApplication extends Application implements DynamicL
         }
 
         setDynamicTheme();
-        onCustomiseTheme();
     }
+
+    @Override
+    public void onNavigationBarThemeChange() { }
+
+    @Override
+    public void onAutoThemeChange() { }
 
     @Override
     public void onPowerSaveModeChange(boolean powerSaveMode) { }

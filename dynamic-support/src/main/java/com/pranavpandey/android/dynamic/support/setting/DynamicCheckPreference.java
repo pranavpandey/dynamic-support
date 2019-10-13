@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -81,7 +81,8 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DynamicPreference);
 
         try {
-            mChecked = a.getBoolean(R.styleable.DynamicPreference_ads_checked,
+            mChecked = a.getBoolean(
+                    R.styleable.DynamicPreference_ads_checked,
                     DEFAULT_CHECK_STATE);
             mSummaryUnchecked = a.getString(
                     R.styleable.DynamicPreference_ads_unchecked);
@@ -108,8 +109,7 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
         }, false);
 
 
-        mChecked = DynamicPreferences.getInstance()
-                .load(getPreferenceKey(), mChecked);
+        mChecked = DynamicPreferences.getInstance().load(getPreferenceKey(), mChecked);
     }
 
     @Override
@@ -117,13 +117,11 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
         super.onUpdate();
 
         if (mSwitchCompat != null) {
-            if (!mChecked) {
-                if (mSummaryUnchecked != null) {
-                    setTextView(getSummaryView(), mSummaryUnchecked);
-                }
+            if (!mChecked && mSummaryUnchecked != null) {
+                setTextView(getSummaryView(), mSummaryUnchecked);
             }
 
-            mSwitchCompat.post(new Runnable() {
+            post(new Runnable() {
                 @Override
                 public void run() {
                     mSwitchCompat.setChecked(mChecked);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -17,20 +17,14 @@
 
 <resources>
 
-    <!-- Margin presets -->
-    <dimen name="ads_margin_fab_compat_mini">@dimen/ads_margin_regular</dimen>
-    <dimen name="ads_margin_fab_compat_mini_bottom">@dimen/ads_margin_regular</dimen>
-
     <!-- Card -->
     <dimen name="ads_card_view_margin">@dimen/ads_margin_tiny</dimen>
     <dimen name="ads_card_view_margin_vertical">@dimen/ads_card_view_margin</dimen>
     <dimen name="ads_card_view_margin_dialog">@dimen/ads_margin_small</dimen>
+    <dimen name="ads_margin_bottom_sheet">@dimen/ads_margin_medium</dimen>
 
     <!-- Scroller -->
     <dimen name="ads_scroller_margin">@dimen/ads_margin_tiny</dimen>
     <dimen name="ads_scroller_margin_vertical">@dimen/ads_scroller_margin</dimen>
-
-    <!-- App widget -->
-    <dimen name="ads_widget_margin_end">@dimen/ads_margin_tiny</dimen>
 
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -30,15 +30,15 @@
         android:orientation="vertical">
 
         <LinearLayout
+            style="@style/Widget.DynamicApp.Content.Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            style="@style/Widget.DynamicApp.Content.Card"
             android:orientation="horizontal">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-                android:id="@+id/ads_item_view_icon"
                 style="@style/Widget.DynamicApp.Image.Preference"
+                android:id="@+id/ads_item_view_icon"
                 app:ads_colorType="none" />
 
             <LinearLayout
@@ -54,10 +54,10 @@
                     android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle1.Caps" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                    style="@style/TextAppearance.DynamicApp.Body1"
                     android:id="@+id/ads_item_view_subtitle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/TextAppearance.DynamicApp.Body1" />
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -66,7 +66,7 @@
         <View
             android:id="@+id/ads_item_view_divider"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/ads_margin_divider"
             android:layout_marginLeft="@dimen/ads_icon_avatar_card_divider_medium"
             android:layout_marginStart="@dimen/ads_icon_avatar_card_divider_medium"
             android:background="?android:attr/dividerHorizontal" />

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,8 @@ public abstract class DynamicBinderAdapter<VB extends DynamicRecyclerViewBinder>
     private RecyclerView mRecyclerView;
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public @NonNull RecyclerView.ViewHolder onCreateViewHolder(
+            @NonNull ViewGroup parent, int viewType) {
         return getDataBinder(viewType).onCreateViewHolder(parent, viewType);
     }
 

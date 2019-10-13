@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -18,8 +18,8 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/scroll_home"
-    style="@style/Widget.DynamicApp.Scroller.Padding.Vertical">
+    style="@style/Widget.DynamicApp.Scroller.Padding.Vertical"
+    android:id="@+id/scroll_home">
 
     <LinearLayout
         android:layout_width="match_parent"

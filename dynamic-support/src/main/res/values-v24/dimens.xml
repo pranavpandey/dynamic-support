@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -16,6 +16,9 @@
 -->
 
 <resources>
+
+    <!-- Margin presets -->
+    <dimen name="ads_margin_bottom_sheet">0dp</dimen>
 
     <!-- Notification -->
     <dimen name="ads_notification_margin_vertical">12dp</dimen>

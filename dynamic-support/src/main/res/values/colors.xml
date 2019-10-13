@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@
     <color name="ads_window_background_light">#EAEAEA</color>
     <color name="ads_window_background_day_night">@color/ads_window_background_light</color>
     <color name="ads_immersive_bars">#99000000</color>
-    <color name="ads_navigation_color">#00000000</color>
+    <color name="ads_navigation_color">@android:color/transparent</color>
 
     <!-- Fill -->
     <color name="ads_icon_fill_dark">@android:color/black</color>
@@ -50,7 +50,7 @@
     <color name="ads_color_control_light">#7DBCBCBC</color>
     <color name="ads_color_control_light_disabled">#43000000</color>
     <color name="ads_color_control_day_night">@color/ads_color_control_light</color>
-    <color name="ads_color_control_remote">#34A0A0A0</color>
+    <color name="ads_color_control_remote">#66A0A0A0</color>
     <color name="ads_color_control_legacy">#42C0C1C1</color>
     <color name="ads_contrast_with">@color/ads_window_background</color>
     <color name="ads_contrast_with_dark">@color/ads_window_background_dark</color>
@@ -60,6 +60,7 @@
     <!-- Icons -->
     <color name="ads_link_privacy">#1976D2</color>
     <color name="ads_link_license">#43A047</color>
+    <color name="ads_link_apps">#48ff48</color>
     <color name="ads_social_facebook">#3B5998</color>
     <color name="ads_social_github">#000000</color>
     <color name="ads_social_gplus">#D34836</color>
@@ -67,5 +68,6 @@
     <color name="ads_social_twitter">#00ACED</color>
     <color name="ads_social_website">#3F51B5</color>
     <color name="ads_social_xda">#F48002</color>
+    <color name="ads_social_discord">#7289DA</color>
 
 </resources>

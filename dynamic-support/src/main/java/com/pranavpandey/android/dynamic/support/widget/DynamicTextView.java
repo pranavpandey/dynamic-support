@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,17 +32,18 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicLinkWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicRtlWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * A TextView to change its color according to the supplied parameters.
  */
+@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 public class DynamicTextView extends AppCompatTextView implements
         DynamicWidget, DynamicLinkWidget, DynamicRtlWidget {
 
@@ -357,7 +358,6 @@ public class DynamicTextView extends AppCompatTextView implements
         return mRtlSupport;
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public void setRtlSupport(boolean rtlSupport) {
         this.mRtlSupport = rtlSupport;

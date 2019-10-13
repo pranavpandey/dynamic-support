@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,12 +47,10 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
-import com.pranavpandey.android.dynamic.support.theme.Theme;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
-
-import java.util.Calendar;
 
 /**
  * Helper class to perform resource operations. Context and App compat is used to provide
@@ -539,7 +537,7 @@ public class DynamicResourceUtils {
                             new int[] { android.R.attr.state_pressed },
                             new int[] { }
                     },
-                    new int[]{ disabled, normal, color, normal });
+                    new int[] { disabled, normal, color, normal });
         }
     }
 
@@ -755,40 +753,5 @@ public class DynamicResourceUtils {
         }
 
         return colors;
-    }
-
-    /**
-     * Checks for the night time.
-     * <p>Useful to apply themes based on the day and night.
-     *
-     * @return {@code true} if it is night.
-     */
-    public static boolean isNight() {
-        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        return hour < 6 || hour > 18;
-    }
-
-    /**
-     * Checks for the night time according to the supplied value.
-     * <p>Useful to apply themes based on the day and night.
-     *
-     * @param theme The integer value of the theme.
-     *
-     * @return {@code true} if it is night.
-     */
-    public static boolean isNight(@Theme int theme) {
-        return theme == Theme.NIGHT || (theme == Theme.AUTO && isNight());
-    }
-
-    /**
-     * Checks for the night time according to the supplied value.
-     * <p>Useful to apply themes based on the day and night.
-     *
-     * @param theme The string value of the theme.
-     *
-     * @return {@code true} if it is night.
-     */
-    public static boolean isNight(@Theme.ToString String theme) {
-        return isNight(Integer.valueOf(theme));
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,9 +31,9 @@ import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.popup.DynamicArrayPopup;
 import com.pranavpandey.android.dynamic.support.popup.DynamicPopup;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 import java.util.Arrays;
 
@@ -61,7 +61,7 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
     private CharSequence[] mValues;
 
     /**
-     * Default value for the preference.
+     * Default value index for this preference.
      */
     private int mDefaultValue;
 
@@ -140,7 +140,7 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
-                            int position, long id) {
+                                            int position, long id) {
                         if (!getPreferenceValue().equals(mValues[position].toString())) {
                             setPreferenceValue(mValues[position].toString());
                         }
@@ -211,9 +211,9 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
     }
 
     /**
-     * Set the default value for this preference.
+     * Set the default value index for this preference.
      *
-     * @param defaultValue The default value.
+     * @param defaultValue The default value index to be set.
      */
     public void setDefaultValue(int defaultValue) {
         this.mDefaultValue = defaultValue;
@@ -236,7 +236,7 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
     /**
      * Set the value for this preference and save it in the shared preferences.
      *
-     * @param value The preference value.
+     * @param value The preference value to be set.
      */
     public void setPreferenceValue(@NonNull String value) {
         if (getPreferenceKey() != null) {

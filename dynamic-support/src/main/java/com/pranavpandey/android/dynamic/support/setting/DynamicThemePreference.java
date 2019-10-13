@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -236,7 +236,7 @@ public class DynamicThemePreference extends DynamicSpinnerPreference {
     public void setOnThemeClickListener(@Nullable View.OnClickListener onThemeClickListener) {
         this.mOnThemeClickListener = onThemeClickListener;
 
-        mThemePreview.setOnFABClickListener(mOnThemeClickListener);
+        mThemePreview.setOnActionClickListener(mOnThemeClickListener);
         onEnabled(isEnabled());
     }
 

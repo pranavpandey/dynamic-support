@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,10 +40,11 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
 import com.pranavpandey.android.dynamic.support.picker.DynamicPickerType;
 import com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorPalette;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
+import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicEditText;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 import java.util.ArrayList;
@@ -73,6 +74,11 @@ public class DynamicColorPicker extends DynamicView {
      */
     private static final String ADS_PREF_COLOR_PICKER_RECENTS_ALPHA =
             "ads_pref_color_picker_recents_alpha";
+
+    /**
+     * Shared preference key to save the recently copied color.
+     */
+    public static final String ADS_PREF_COLOR_PICKER_RECENT = "ads_pref_color_picker_recent";
 
     /**
      * The maximum recent colors count.
@@ -536,9 +542,10 @@ public class DynamicColorPicker extends DynamicView {
     protected void selectColor(int position, @ColorInt int color) {
         if (mDynamicColorListener != null) {
             mSelectedColor = color;
-            mDynamicColorListener.onColorSelected(null, position, color);
-
+            DynamicPickerUtils.setRecentColor(color);
             saveToRecents(color);
+
+            mDynamicColorListener.onColorSelected(null, position, color);
         }
     }
 

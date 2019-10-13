@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -44,21 +44,21 @@
             app:ads_contrastWithColorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+            style="@style/TextAppearance.DynamicApp.Caption.Drawer"
             android:id="@+id/ads_header_drawer_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ads_nav_header_spacing"
-            style="@style/TextAppearance.DynamicApp.Caption.Drawer"
             app:ads_colorType="tint_primary"
             app:ads_contrastWithColorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+            style="@style/TextAppearance.DynamicApp.Subtitle1"
             android:id="@+id/ads_header_drawer_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:ads_colorType="tint_primary"
-            app:ads_contrastWithColorType="primary"
-            style="@style/TextAppearance.DynamicApp.Subtitle1" />
+            app:ads_contrastWithColorType="primary" />
 
     </LinearLayout>
 

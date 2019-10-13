@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -49,21 +49,21 @@
             android:orientation="vertical">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                style="@style/TextAppearance.DynamicApp.Headline6.Splash"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
                 android:gravity="center"
-                style="@style/TextAppearance.DynamicApp.Headline6.Splash"
                 app:ads_rtlSupport="false"
                 app:ads_colorType="tint_primary"
                 app:ads_contrastWithColorType="primary" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                style="@style/TextAppearance.DynamicApp.Subtitle1.Splash"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/app_subtitle"
                 android:gravity="center"
-                style="@style/TextAppearance.DynamicApp.Subtitle1.Splash"
                 app:ads_rtlSupport="false"
                 app:ads_colorType="tint_primary"
                 app:ads_contrastWithColorType="primary" />

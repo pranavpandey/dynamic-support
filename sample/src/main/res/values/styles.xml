@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -22,11 +22,7 @@
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">@color/color_accent</item>
-    </style>
-
-    <!-- Dark splash theme -->
-    <style name="Sample.Splash">
-        <item name="android:windowBackground">?colorPrimary</item>
+        <item name="colorSecondary">?attr/colorAccent</item>
     </style>
 
     <!-- Light theme -->
@@ -34,11 +30,7 @@
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">@color/color_accent</item>
-    </style>
-
-    <!-- Light splash theme -->
-    <style name="Sample.Light.Splash">
-        <item name="android:windowBackground">?colorPrimary</item>
+        <item name="colorSecondary">?attr/colorAccent</item>
     </style>
 
 </resources>

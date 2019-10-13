@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,9 +32,9 @@ import androidx.annotation.StyleRes
 import androidx.core.graphics.drawable.IconCompat
 import com.pranavpandey.android.dynamic.support.DynamicApplication
 import com.pranavpandey.android.dynamic.support.sample.activity.ActionActivity
+import com.pranavpandey.android.dynamic.support.sample.controller.AppController
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
-import com.pranavpandey.android.dynamic.support.sample.controller.SampleController
-import com.pranavpandey.android.dynamic.support.sample.controller.SampleTheme
+import com.pranavpandey.android.dynamic.support.sample.controller.ThemeController
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils
@@ -59,17 +59,17 @@ class SampleApplication : DynamicApplication() {
 
     override fun onInitialize() {
         // Do any startup work here like initializing the other libraries, analytics, etc.
-        SampleController.initializeInstance(this)
+        AppController.initializeInstance(this)
     }
 
     @StyleRes override fun getThemeRes(): Int {
         // Return application theme to be applied.
-        return SampleTheme.appStyle
+        return ThemeController.appStyle
     }
 
     override fun onCustomiseTheme() {
         // Customise application theme after applying the base style.
-        SampleTheme.setApplicationTheme()
+        ThemeController.setApplicationTheme()
 
         Handler().postDelayed({
             // Add dynamic app shortcuts after the delay.
@@ -92,11 +92,11 @@ class SampleApplication : DynamicApplication() {
         // Update themes on shared preferences change.
         when (key) {
             Constants.PREF_SETTINGS_APP_THEME_DAY_COLOR ->
-                if (!DynamicResourceUtils.isNight() && SampleTheme.isAutoTheme) {
+                if (!DynamicTheme.getInstance().isNight && ThemeController.isAutoTheme) {
                     DynamicTheme.getInstance().onDynamicChange(false, true)
                 }
             Constants.PREF_SETTINGS_APP_THEME_NIGHT_COLOR ->
-                if (DynamicResourceUtils.isNight() && SampleTheme.isAutoTheme) {
+                if (DynamicTheme.getInstance().isNight && ThemeController.isAutoTheme) {
                     DynamicTheme.getInstance().onDynamicChange(false, true)
                 }
             Constants.PREF_SETTINGS_APP_THEME_COLOR,
@@ -159,7 +159,7 @@ class SampleApplication : DynamicApplication() {
         @ColorInt var tintPrimaryColor = DynamicTheme.getInstance().get().tintPrimaryColor
         val drawable = DynamicResourceUtils.getDrawable(context, drawableRes)
 
-        if (!SampleController.instance.isThemeAppShortcuts) {
+        if (!AppController.instance.isThemeAppShortcuts) {
             primaryColor = DynamicTheme.getInstance().get().backgroundColor
             tintPrimaryColor = DynamicTheme.getInstance().get().tintBackgroundColor
         }

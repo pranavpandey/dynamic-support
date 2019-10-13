@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,8 +22,8 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * Default configurations used by the dynamic widgets.
@@ -63,7 +63,7 @@ public class WidgetDefaults {
     /**
      * Default alpha for the toast.
      */
-    public static final float ADS_ALPHA_TOAST = 0.95f;
+    public static final float ADS_ALPHA_TOAST = 0.94f;
 
     /**
      * Default alpha when the widget is enabled.
@@ -154,8 +154,16 @@ public class WidgetDefaults {
      * Default value to make widgets background aware so that they can change color according
      * to the theme background to provide best visibility.
      * <p>{@code true} to make widgets background aware.
+     *
+     * @deprecated
      */
     public static final boolean ADS_BACKGROUND_AWARE = true;
+
+    /**
+     * Default value to provide widget elevation on the same background.
+     * <p>{@code true} to enable elevation on the same background.
+     */
+    public static final boolean ADS_ELEVATION_ON_SAME_BACKGROUND = false;
 
     /**
      * Default borderless value for the widgets.
@@ -186,6 +194,11 @@ public class WidgetDefaults {
      * <p>{@code true} to provide the dynamic RTL support.
      */
     public static final boolean ADS_RTL_SUPPORT = true;
+
+    /**
+     * {@code true} to make apply window insets.
+     */
+    public static final boolean ADS_WINDOW_INSETS = true;
 
     /**
      * Returns the default value for the background functionality used by the various widgets.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutorialActivity;
 
 /**
- * Interface for the dynamic tutorial having useful functions which will be called by the
+ * Interface for the dynamic tutorial having useful methods which will be called by the
  * {@link DynamicTutorialActivity} to perform color transitions.
  *
  * <p><p>Any child view or fragment must implement this interface to support any color

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,29 +16,29 @@
 
 package com.pranavpandey.android.dynamic.support.widget;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.View;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.widget.base.BaseWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicRtlWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
 
 /**
  * A CollapsingToolbarLayout to provide support for Right to Left (RTL) layouts.
  */
-@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class DynamicCollapsingToolbarLayout extends CollapsingToolbarLayout
-        implements BaseWidget, DynamicRtlWidget {
+        implements WindowInsetsWidget, DynamicRtlWidget {
 
     /**
      * {@code true} if dynamic RTL support is enabled for this widget.
@@ -66,13 +66,20 @@ public class DynamicCollapsingToolbarLayout extends CollapsingToolbarLayout
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(
                 attrs, new int[]{R.attr.ads_rtlSupport});
+        TypedArray b = getContext().obtainStyledAttributes(
+                attrs, new int[] { R.attr.ads_windowInsets});
 
         try {
             if (attrs != null) {
                 mRtlSupport = a.getBoolean(0, WidgetDefaults.ADS_RTL_SUPPORT);
+
+                if (b.getBoolean(0, WidgetDefaults.ADS_WINDOW_INSETS)) {
+                    applyWindowInsets();
+                }
             }
         } finally {
             a.recycle();
+            b.recycle();
         }
 
         initialize();
@@ -81,6 +88,20 @@ public class DynamicCollapsingToolbarLayout extends CollapsingToolbarLayout
     @Override
     public void initialize() {
         setRtlSupport(mRtlSupport);
+    }
+
+    @Override
+    public void applyWindowInsets() {
+        ViewCompat.setOnApplyWindowInsetsListener(this,
+                new androidx.core.view.OnApplyWindowInsetsListener() {
+            @Override
+            public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat insets) {
+                v.setPadding(v.getPaddingLeft(), v.getPaddingTop(),
+                        v.getPaddingRight(), v.getPaddingBottom());
+
+                return insets;
+            }
+        });
     }
 
     @Override

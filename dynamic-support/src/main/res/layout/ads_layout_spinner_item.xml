@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -24,10 +24,10 @@
     android:orientation="horizontal">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+        style="@style/Widget.DynamicApp.Image.Preference"
         android:id="@+id/ads_spinner_item_icon"
         android:layout_width="@dimen/ads_popup_selector_icon_size"
-        android:layout_height="@dimen/ads_popup_selector_icon_size"
-        style="@style/Widget.DynamicApp.Image.Preference" />
+        android:layout_height="@dimen/ads_popup_selector_icon_size" />
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
         android:id="@+id/ads_spinner_item_text"

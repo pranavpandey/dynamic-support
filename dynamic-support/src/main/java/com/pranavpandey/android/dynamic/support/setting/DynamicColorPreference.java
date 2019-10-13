@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,9 +41,9 @@ import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorPalette;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
@@ -63,6 +63,11 @@ public class DynamicColorPreference extends DynamicSimplePreference {
     private @ArrayRes int mPopupColorsResId;
 
     /**
+     * Resource id of the alternate popup colors array.
+     */
+    private @ArrayRes int mAltPopupColorsResId;
+
+    /**
      * Color entries used by this preference.
      */
     private @ColorInt Integer[] mColors;
@@ -71,6 +76,11 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      * Popup color entries used by this preference.
      */
     private @ColorInt Integer[] mPopupColors;
+
+    /**
+     * Alternate popup color entries used by this preference.
+     */
+    private @ColorInt Integer[] mAltPopupColors;
 
     /**
      * Shade color entries used by this preference.
@@ -189,6 +199,9 @@ public class DynamicColorPreference extends DynamicSimplePreference {
             mPopupColorsResId = c.getResourceId(
                     R.styleable.DynamicColorPicker_ads_popupColors,
                     DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID);
+            mAltPopupColorsResId = c.getResourceId(
+                    R.styleable.DynamicColorPicker_ads_altPopupColors,
+                    mPopupColorsResId);
         } finally {
             a.recycle();
             b.recycle();
@@ -243,8 +256,9 @@ public class DynamicColorPreference extends DynamicSimplePreference {
                 if (getOnPromptListener() != null) {
                     if (mShowColorPopup) {
                         if (getOnPromptListener().onPopup()) {
-                            showColorPopup(view, String.valueOf(getTitle()), getDefaultColor(),
-                                    getColor(false), getColor(), dynamicColorListener);
+                            showColorPopup(view, String.valueOf(getTitle()),
+                                    getPopupColors(), getDefaultColor(), getColor(false),
+                                    getColor(), dynamicColorListener);
                         }
                     } else {
                         if (getOnPromptListener().onDialog()) {
@@ -254,8 +268,9 @@ public class DynamicColorPreference extends DynamicSimplePreference {
                     }
                 } else {
                     if (mShowColorPopup) {
-                        showColorPopup(view, String.valueOf(getTitle()), getDefaultColor(),
-                                getColor(false), getColor(), dynamicColorListener);
+                        showColorPopup(view, String.valueOf(getTitle()),
+                                getPopupColors(), getDefaultColor(), getColor(false),
+                                getColor(), dynamicColorListener);
                     } else {
                         showColorDialog(String.valueOf(getTitle()),
                                 getColor(), dynamicColorListener);
@@ -273,8 +288,9 @@ public class DynamicColorPreference extends DynamicSimplePreference {
                     if (getOnPromptListener() != null) {
                         if (mShowColorPopup) {
                             if (getOnPromptListener().onPopup()) {
-                                showColorPopup(v, getAltTitle(), getAltDefaultColor(),
-                                        getAltColor(false), getAltColor(), altDynamicColorListener);
+                                showColorPopup(v, getAltTitle(), getAltPopupColors(),
+                                        getAltDefaultColor(), getAltColor(false),
+                                        getAltColor(), altDynamicColorListener);
                             }
                         } else {
                             if (getOnPromptListener().onDialog()) {
@@ -284,8 +300,9 @@ public class DynamicColorPreference extends DynamicSimplePreference {
                         }
                     } else {
                         if (mShowColorPopup) {
-                            showColorPopup(v, getAltTitle(), getAltDefaultColor(),
-                                    getAltColor(false), getAltColor(), altDynamicColorListener);
+                            showColorPopup(v, getAltTitle(), getAltPopupColors(),
+                                    getAltDefaultColor(), getAltColor(false),
+                                    getAltColor(), altDynamicColorListener);
                         } else {
                             showColorDialog(getAltTitle(), getAltColor(), altDynamicColorListener);
                         }
@@ -320,12 +337,12 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      *
      * @see DynamicColorPopup
      */
-    private void showColorPopup(@NonNull final View view,
-            @Nullable final String title, @ColorInt int defaultColor,
+    private void showColorPopup(@NonNull final View view, @Nullable final String title,
+            @NonNull @ColorInt Integer[] colors, @ColorInt int defaultColor,
             final @ColorInt int color, final @ColorInt int resolvedColor,
             @NonNull final DynamicColorListener dynamicColorListener) {
         DynamicColorPopup dynamicColorPopup = new DynamicColorPopup(
-                view, getPopupColors(), dynamicColorListener);
+                view, colors, dynamicColorListener);
         dynamicColorPopup.setColorShape(mColorShape);
         dynamicColorPopup.setAlpha(mAlpha);
         dynamicColorPopup.setTitle(title);
@@ -427,6 +444,34 @@ public class DynamicColorPreference extends DynamicSimplePreference {
     public void setPopupColors(@Nullable @ColorInt Integer[] popupColors) {
         this.mPopupColors = popupColors;
         this.mPopupColorsResId = DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
+    }
+
+    /**
+     * Returns the alternate popup color entries used by this preference.
+     *
+     * @return The alternate popup color entries used by this preference.
+     */
+    public @NonNull @ColorInt Integer[] getAltPopupColors() {
+        if (mAltPopupColorsResId != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
+            mAltPopupColors = DynamicResourceUtils
+                    .convertToColorArray(getContext(), mAltPopupColorsResId);
+        }
+
+        if (mAltPopupColors == null) {
+            mAltPopupColors = getColors();
+        }
+
+        return mAltPopupColors;
+    }
+
+    /**
+     * Set the alternate popup color entries used by this preference.
+     *
+     * @param altPopupColors The alternate popup color entries to be set.
+     */
+    public void setAltPopupColors(@Nullable @ColorInt Integer[] altPopupColors) {
+        this.mAltPopupColors = altPopupColors;
+        this.mAltPopupColorsResId = DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
     }
 
     /**

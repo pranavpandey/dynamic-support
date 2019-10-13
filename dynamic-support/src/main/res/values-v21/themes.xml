@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -79,13 +79,12 @@
     </style>
 
     <style name="Widget.DynamicApp.Button.Remote">
-        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:background">@drawable/ads_button_remote</item>
     </style>
 
     <style name="Widget.DynamicApp.Button.Remote.Borderless">
-        <item name="android:layout_margin">@dimen/ads_margin_small</item>
         <item name="android:padding">2dp</item>
-        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+        <item name="android:background">@drawable/ads_button_remote_borderless</item>
     </style>
 
 </resources>

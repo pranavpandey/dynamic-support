@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,15 +33,23 @@ android {
     sourceSets {
         main.res.srcDirs 'res'
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    api "com.pranavpandey.android:dynamic-preferences:${versions.support}"
     api "com.pranavpandey.android:dynamic-locale:${versions.support}"
+    api "com.pranavpandey.android:dynamic-preferences:${versions.support}"
+    api "com.pranavpandey.android:dynamic-theme:${versions.support}"
     api "com.pranavpandey.android:dynamic-toasts:${versions.dynamic}"
+    api "androidx.drawerlayout:drawerlayout:${versions.drawerlayout}"
     api "androidx.fragment:fragment:${versions.fragment}"
+    api "androidx.swiperefreshlayout:swiperefreshlayout:${versions.swiperefresh}"
+    api "androidx.work:work-runtime:${versions.work}"
     api "com.google.android.material:material:${versions.material}"
-    api "com.google.code.gson:gson:${versions.gson}"
 }
 
 if (project.rootProject.file('local.properties').exists()) {

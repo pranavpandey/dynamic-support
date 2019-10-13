@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@
 package com.pranavpandey.android.dynamic.support.utils;
 
 import android.Manifest;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -52,9 +51,11 @@ public class DynamicPermissionUtils {
      */
     public static boolean openPermissionSettings(@NonNull Context context,
             @NonNull String permission) {
-        Intent intent = new Intent(getPermissionSettingsAction(permission));
-        if (!getPermissionSettingsAction(permission)
-                .equals(DynamicIntent.ACTION_USAGE_ACCESS_SETTINGS)) {
+        String action = getPermissionSettingsAction(permission);
+        Intent intent = new Intent(action);
+
+        if (action.equals(DynamicIntent.ACTION_OVERLAY_SETTINGS)
+                || action.equals(DynamicIntent.ACTION_WRITE_SYSTEM_SETTINGS)) {
             Uri uri = Uri.fromParts(SCHEME, context.getPackageName(), null);
             intent.setData(uri);
         }
@@ -62,7 +63,7 @@ public class DynamicPermissionUtils {
         try {
             context.startActivity(intent);
             return true;
-        } catch (ActivityNotFoundException ignored) {
+        } catch (Exception ignored) {
         }
 
         return false;
@@ -84,7 +85,7 @@ public class DynamicPermissionUtils {
         try {
             context.startActivity(intent);
             return true;
-        } catch (ActivityNotFoundException ignored) {
+        } catch (Exception ignored) {
         }
 
         return false;
@@ -159,6 +160,8 @@ public class DynamicPermissionUtils {
                 return DynamicIntent.ACTION_USAGE_ACCESS_SETTINGS;
             case Manifest.permission.WRITE_SETTINGS:
                 return DynamicIntent.ACTION_WRITE_SYSTEM_SETTINGS;
+            case Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS:
+                return DynamicIntent.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS;
             default:
                 return Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
 

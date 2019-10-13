@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -23,8 +23,8 @@
     <integer name="ads_config_activity_default_duration">220</integer>
 
     <!-- Tutorial -->
-    <item name="ads_weight_tutorial_image" type="integer" format="float">0.4</item>
-    <item name="ads_weight_tutorial_text" type="integer" format="float">0.6</item>
+    <item name="ads_weight_tutorial_image" type="integer" format="float">0.36</item>
+    <item name="ads_weight_tutorial_text" type="integer" format="float">0.64</item>
 
     <!-- Span counts -->
     <integer name="ads_span_normal">1</integer>
@@ -38,6 +38,12 @@
     <integer name="ads_corner_radius_max">24</integer>
     <integer name="ads_corner_radius_widget_max">28</integer>
     <integer name="ads_corner_radius_interval">2</integer>
+
+    <!-- Font -->
+    <integer name="ads_font_scale">100</integer>
+    <integer name="ads_font_scale_min">50</integer>
+    <integer name="ads_font_scale_max">150</integer>
+    <integer name="ads_font_scale_interval">5</integer>
 
     <!-- Dialog -->
     <item name="ads_dialog_min_width_major" type="dimen">65%</item>

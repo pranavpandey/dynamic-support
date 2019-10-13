@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,15 +28,18 @@ import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicScrollableWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 
 /**
  * A ScrollView to apply color filter according to the supplied parameters.
  */
-public class DynamicScrollView extends ScrollView implements DynamicScrollableWidget {
+public class DynamicScrollView extends ScrollView
+        implements WindowInsetsWidget, DynamicScrollableWidget {
 
     /**
      * Color type applied to this view.
@@ -109,6 +112,8 @@ public class DynamicScrollView extends ScrollView implements DynamicScrollableWi
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(
                 attrs, R.styleable.DynamicTheme);
+        TypedArray b = getContext().obtainStyledAttributes(
+                attrs, new int[] { R.attr.ads_windowInsets});
 
         try {
             mColorType = a.getInt(
@@ -132,11 +137,16 @@ public class DynamicScrollView extends ScrollView implements DynamicScrollableWi
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicTheme_ads_backgroundAware,
                     WidgetDefaults.getBackgroundAware());
+
+            if (b.getBoolean(0, WidgetDefaults.ADS_WINDOW_INSETS)) {
+                applyWindowInsets();
+            }
         } finally {
             a.recycle();
+            b.recycle();
         }
 
-        setScrollBarColor();
+        initialize();
     }
 
     @Override
@@ -159,6 +169,11 @@ public class DynamicScrollView extends ScrollView implements DynamicScrollableWi
         }
 
         setColor(true);
+    }
+
+    @Override
+    public void applyWindowInsets() {
+        DynamicViewUtils.applyWindowInsetsBottom(this);
     }
 
     @Override

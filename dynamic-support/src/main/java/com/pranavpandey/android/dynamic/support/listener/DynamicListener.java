@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,6 +38,12 @@ public interface DynamicListener {
      * @param recreate {@code true} if listener must be recreated to adapt the changes.
      */
     void onDynamicChange(boolean context, boolean recreate);
+
+    /**
+     * This method will be called when the auto theme change event occurs according to the time.
+     * <p>Re-create the activity or application here to adapt changes.
+     */
+    void onAutoThemeChange();
 
     /**
      * This method will be called when the power save mode has been changed.

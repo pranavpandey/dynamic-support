@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,9 +20,9 @@ import android.os.Bundle
 import androidx.annotation.StyleRes
 import androidx.viewpager.widget.ViewPager
 import com.pranavpandey.android.dynamic.support.sample.R
+import com.pranavpandey.android.dynamic.support.sample.controller.AppController
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
-import com.pranavpandey.android.dynamic.support.sample.controller.SampleController
-import com.pranavpandey.android.dynamic.support.sample.controller.SampleTheme
+import com.pranavpandey.android.dynamic.support.sample.controller.ThemeController
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicSimpleTutorial
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial
@@ -56,17 +56,17 @@ class TutorialActivity : DynamicTutorialActivity() {
     @StyleRes
     override fun getThemeRes(): Int {
         // Return activity theme to be applied.
-        return SampleTheme.appStyle
+        return ThemeController.appStyle
     }
 
     override fun onCustomiseTheme() {
         // Customise activity theme after applying the base style.
-        SampleTheme.setLocalTheme()
+        ThemeController.setLocalTheme()
     }
 
     override fun setNavigationBarTheme(): Boolean {
         // TODO: Return true to apply the navigation bar theme.
-        return SampleController.instance.isThemeNavigationBar
+        return AppController.instance.isThemeNavigationBar
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

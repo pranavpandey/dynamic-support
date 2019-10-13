@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -49,13 +49,13 @@
             tools:targetApi="jelly_bean_mr1">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
+                style="@style/Widget.DynamicApp.Button.ImageButton"
                 android:id="@+id/ads_tutorial_action_previous"
                 android:layout_width="@dimen/ads_icon_normal"
                 android:layout_height="@dimen/ads_icon_normal"
                 android:layout_marginRight="@dimen/ads_icon_small"
                 android:layout_marginEnd="@dimen/ads_icon_small"
                 android:layout_gravity="start|center_vertical"
-                style="@style/Widget.DynamicApp.Button.ImageButton"
                 app:srcCompat="@drawable/ads_ic_chevron_left"
                 app:ads_backgroundAware="disable"
                 app:ads_tintBackground="true" />
@@ -69,13 +69,13 @@
                 android:gravity="center">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                    style="@style/Widget.DynamicApp.Button"
                     android:id="@+id/ads_tutorial_action_custom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/ads_margin_medium"
-                    app:ads_backgroundAware="disable"
-                    style="@style/Widget.DynamicApp.Button"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    app:ads_backgroundAware="disable" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator
                     android:id="@+id/ads_tutorial_page_indicator"
@@ -85,13 +85,13 @@
             </LinearLayout>
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
+                style="@style/Widget.DynamicApp.Button.ImageButton"
                 android:id="@+id/ads_tutorial_action_next_done"
                 android:layout_width="@dimen/ads_icon_normal"
                 android:layout_height="@dimen/ads_icon_normal"
                 android:layout_marginLeft="@dimen/ads_icon_small"
                 android:layout_marginStart="@dimen/ads_icon_small"
                 android:layout_gravity="start|center_vertical"
-                style="@style/Widget.DynamicApp.Button.ImageButton"
                 app:srcCompat="@drawable/ads_ic_chevron_right"
                 app:ads_backgroundAware="disable"
                 app:ads_tintBackground="true" />

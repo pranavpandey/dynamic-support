@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,8 +23,8 @@ import android.widget.TextView
 import androidx.annotation.StyleRes
 import com.pranavpandey.android.dynamic.support.activity.DynamicActivity
 import com.pranavpandey.android.dynamic.support.sample.R
-import com.pranavpandey.android.dynamic.support.sample.controller.SampleController
-import com.pranavpandey.android.dynamic.support.sample.controller.SampleTheme
+import com.pranavpandey.android.dynamic.support.sample.controller.AppController
+import com.pranavpandey.android.dynamic.support.sample.controller.ThemeController
 import com.pranavpandey.android.dynamic.support.sample.fragment.AppSettingsFragment
 import java.util.*
 
@@ -46,17 +46,17 @@ class CollapsingAppBarActivity : DynamicActivity() {
     @StyleRes
     override fun getThemeRes(): Int {
         // Return activity theme to be applied.
-        return SampleTheme.appStyle
+        return ThemeController.appStyle
     }
 
     override fun onCustomiseTheme() {
         // Customise activity theme after applying the base style.
-        SampleTheme.setLocalTheme()
+        ThemeController.setLocalTheme()
     }
 
     override fun setNavigationBarTheme(): Boolean {
         // TODO: Return true to apply the navigation bar theme.
-        return SampleController.instance.isThemeNavigationBar
+        return AppController.instance.isThemeNavigationBar
     }
 
     override fun setCollapsingToolbarLayout(): Boolean {
@@ -77,7 +77,7 @@ class CollapsingAppBarActivity : DynamicActivity() {
         setAppBarBackDrop(R.drawable.ads_ic_extension)
 
         // Add an optional header with an icon, title and subtitle.
-        addHeader(R.layout.ads_layout_header_appbar, true)
+        addHeader(R.layout.ads_header_appbar, true)
         (findViewById<View>(R.id.ads_header_toolbar_icon) as ImageView)
                 .setImageDrawable(applicationInfo.loadIcon(packageManager))
         (findViewById<View>(R.id.ads_header_toolbar_title) as TextView)

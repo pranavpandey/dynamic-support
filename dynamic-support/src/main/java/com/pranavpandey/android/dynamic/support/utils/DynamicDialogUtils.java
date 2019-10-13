@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
 
 import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
 
@@ -60,22 +62,43 @@ public class DynamicDialogUtils {
     }
 
     /**
+     * Bind the dialog with a window token.
+     * <p>Useful to display it from a service.
+     *
+     * @param view The view to bind the dialog.
+     * @param dialog The dialog to be displayed.
+     * @param type The dialog type.
+     * @param windowAnimations The custom animation used for the window.
+     *
+     * @return The bound dialog with the supplied view.
+     */
+    public static Dialog bindDialog(@Nullable View view,
+            @NonNull Dialog dialog, int type, @StyleRes int windowAnimations) {
+        Window window = dialog.getWindow();
+
+        if (window != null) {
+            if (view != null && view.getWindowToken() != null) {
+                window.getAttributes().token = view.getWindowToken();
+            }
+
+            window.setType(type);
+            window.setWindowAnimations(windowAnimations);
+            window.addFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        }
+
+        return dialog;
+    }
+
+    /**
      * Bind the dialog with a window token. Useful to display it from a service.
      *
+     * @param view The view to bind the dialog.
      * @param dialog The dialog to be displayed.
      * @param type The dialog type.
      *
      * @return The bound dialog with the supplied view.
      */
-    public static Dialog bindDialog(@NonNull Dialog dialog, int type) {
-        Window window = dialog.getWindow();
-
-        if (window != null) {
-            window.setType(type);
-            window.setWindowAnimations(android.R.style.Animation_InputMethod);
-            window.addFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
-        }
-
-        return dialog;
+    public static Dialog bindDialog(@Nullable View view, @NonNull Dialog dialog, int type) {
+        return bindDialog(view, dialog, type, android.R.style.Animation_InputMethod);
     }
 }

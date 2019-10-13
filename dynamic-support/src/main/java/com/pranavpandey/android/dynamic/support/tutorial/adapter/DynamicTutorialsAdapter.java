@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
 
@@ -35,7 +35,7 @@ import java.util.List;
  *
  * @see DynamicTutorial
  */
-public class DynamicTutorialsAdapter extends FragmentPagerAdapter {
+public class DynamicTutorialsAdapter extends FragmentStatePagerAdapter {
 
     /**
      * Fragment manager for this adapter.
@@ -53,31 +53,21 @@ public class DynamicTutorialsAdapter extends FragmentPagerAdapter {
      * @param fragmentManager The fragment manager to do the transactions.
      */
     public DynamicTutorialsAdapter(@NonNull FragmentManager fragmentManager) {
-        super(fragmentManager);
+        super(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
         this.mFragmentManager = fragmentManager;
         this.mDataSet = new ArrayList<>();
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public @NonNull Fragment getItem(int position) {
         return (Fragment) mDataSet.get(position);
-    }
-
-    @Override
-    public int getItemPosition(@NonNull Object object) {
-        if (object instanceof Fragment) {
-            mFragmentManager.beginTransaction()
-                    .detach((Fragment) object)
-                    .attach((Fragment) object)
-                    .commit();
-        }
-        return super.getItemPosition(object);
     }
 
     @Override
     public @NonNull Object instantiateItem(@NonNull ViewGroup container, int position) {
         Fragment fragment = getItem(position);
+
         if (fragment.isAdded()) {
             return fragment;
         }
@@ -99,6 +89,24 @@ public class DynamicTutorialsAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return mDataSet.size();
+    }
+
+    /**
+     * Refresh tutorial for a particular position.
+     *
+     * @param position The position to get the tutorial.
+     */
+    public void refreshTutorial(int position) {
+        super.notifyDataSetChanged();
+
+        Fragment fragment = getItem(position);
+
+        if (fragment.isAdded()) {
+            mFragmentManager.beginTransaction()
+                    .detach(fragment)
+                    .attach(fragment)
+                    .commit();
+        }
     }
 
     /**
@@ -131,6 +139,7 @@ public class DynamicTutorialsAdapter extends FragmentPagerAdapter {
         if (modified) {
             notifyDataSetChanged();
         }
+
         return modified;
     }
 
@@ -157,6 +166,7 @@ public class DynamicTutorialsAdapter extends FragmentPagerAdapter {
             @NonNull Collection<? extends DynamicTutorial> dynamicTutorials) {
         boolean modified = false;
         int i = 0;
+
         for (DynamicTutorial dynamicTutorial : dynamicTutorials) {
             if (!mDataSet.contains(dynamicTutorial)) {
                 mDataSet.add(location + i, dynamicTutorial);
@@ -168,6 +178,7 @@ public class DynamicTutorialsAdapter extends FragmentPagerAdapter {
         if (modified) {
             notifyDataSetChanged();
         }
+
         return modified;
     }
 
@@ -244,6 +255,7 @@ public class DynamicTutorialsAdapter extends FragmentPagerAdapter {
      */
     public boolean removeTutorial(@NonNull DynamicTutorial dynamicTutorial) {
         int locationToRemove = mDataSet.indexOf(dynamicTutorial);
+
         if (locationToRemove >= 0) {
             mDataSet.remove(locationToRemove);
             removeTutorialFragment(dynamicTutorial);
@@ -265,6 +277,7 @@ public class DynamicTutorialsAdapter extends FragmentPagerAdapter {
     public boolean removeTutorials(
             @NonNull Collection<? extends DynamicTutorial> dynamicTutorials) {
         boolean modified = false;
+
         for (DynamicTutorial dynamicTutorial : dynamicTutorials) {
             int locationToRemove = mDataSet.indexOf(dynamicTutorial);
             if (locationToRemove >= 0) {
@@ -287,6 +300,7 @@ public class DynamicTutorialsAdapter extends FragmentPagerAdapter {
     public boolean retainTutorials(
             @NonNull Collection<? extends DynamicTutorial> dynamicTutorials) {
         boolean modified = false;
+
         for (int i = mDataSet.size() - 1; i >= 0; i--) {
             if (!dynamicTutorials.contains(mDataSet.get(i))) {
                 removeTutorialFragment(mDataSet.get(i));

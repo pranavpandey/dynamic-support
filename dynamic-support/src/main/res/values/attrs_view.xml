@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -145,6 +145,8 @@
         </attr>
         <!-- An array of colors to be displayed in the picker popup. -->
         <attr name="ads_popupColors" format="reference" />
+        <!-- An array of colors to be displayed in the alternate picker popup. -->
+        <attr name="ads_altPopupColors" format="reference" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicColorView. -->
@@ -174,6 +176,8 @@
         <attr name="ads_alphaEnabled" />
         <!-- An array of colors to be displayed in the picker popup. -->
         <attr name="ads_popupColors" />
+        <!-- An array of colors to be displayed in the alternate picker popup. -->
+        <attr name="ads_altPopupColors" />
     </declare-styleable>
 
 </resources>

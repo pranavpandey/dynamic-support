@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -616,7 +616,7 @@ public final class DynamicScrollUtils {
                         VIEW_SCROLL_BAR_VERTICAL_THUMB.get(scrollBar), color);
             }
 
-            // Fix for Android P developer preview. For more info, please
+            // Fix for Android 9 developer preview. For more info, please
             // visit g.co/dev/appcompat.
 //            VIEW_SCROLL_BAR_HORIZONTAL_THUMB =
 //                    scrollBar.getClass().getDeclaredField("mHorizontalThumb");

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ package com.pranavpandey.android.dynamic.support.sample.controller
 
 import android.graphics.Color
 import androidx.annotation.ColorInt
-import com.pranavpandey.android.dynamic.support.theme.Theme
+import com.pranavpandey.android.dynamic.theme.Theme
 
 /**
  * Helper class to hold constants and shared preferences.

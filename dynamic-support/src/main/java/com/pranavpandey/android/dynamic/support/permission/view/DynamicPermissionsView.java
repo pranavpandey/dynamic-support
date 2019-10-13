@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -148,9 +148,18 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
     }
 
     /**
-     * Get the array of all the dangerous permissions.
+     * Returns a list of all the required permissions.
      *
-     * @return The array of all the dangerous permissions.
+     * @return A list of all the required permissions.
+     */
+    public ArrayList<DynamicPermission> getDynamicPermissions() {
+        return mPermissions;
+    }
+
+    /**
+     * Get an array of all the dangerous permissions.
+     *
+     * @return An array of all the dangerous permissions.
      */
     public String[] getDangerousPermissions() {
         String[] permissions = new String[mDangerousPermissions.size()];
@@ -162,9 +171,9 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
     }
 
     /**
-     * Get the array of unrequested or denied dangerous permissions.
+     * Returns an array of unrequested or denied dangerous permissions.
      *
-     * @return The array of unrequested or denied dangerous permissions.
+     * @return An array of unrequested or denied dangerous permissions.
      */
     public String[] getDangerousPermissionsLeft() {
         String[] permissions = new String[mDangerousPermissionsLeft.size()];
@@ -176,9 +185,9 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
     }
 
     /**
-     * Get the list of unrequested or denied special permissions.
+     * Returns a list of unrequested or denied special permissions.
      *
-     * @return the list of unrequested or denied special permissions.
+     * @return A list of unrequested or denied special permissions.
      */
     public ArrayList<DynamicPermission> getSpecialPermissionsLeft() {
         return mSpecialPermissionsLeft;
