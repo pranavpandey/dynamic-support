@@ -96,6 +96,13 @@
         <item>@drawable/ads_ic_license</item>
     </integer-array>
 
+    <!-- Drawables array with license and github icons for dynamic support. -->
+    <integer-array name="ads_license_links_icons_ads">
+        <item>@drawable/ads_ic_license</item>
+        <item>@drawable/ads_ic_social_github</item>
+        <item>@drawable/ads_ic_social_github</item>
+    </integer-array>
+
     <!-- Drawables array with license and github icons for dynamic support modules. -->
     <integer-array name="ads_license_links_icons_ads_modules">
         <item>@drawable/ads_ic_license</item>
@@ -135,6 +142,13 @@
         <item>@color/ads_social_github</item>
     </integer-array>
 
+    <!-- Colors array with license and github colors for dynamic support. -->
+    <integer-array name="ads_license_links_colors_ads">
+        <item>@color/ads_link_license</item>
+        <item>@color/ads_social_github</item>
+        <item>@color/ads_social_github</item>
+    </integer-array>
+
     <!-- Colors array with license and github colors for dynamic support modules. -->
     <integer-array name="ads_license_links_colors_ads_modules">
         <item>@color/ads_link_license</item>
@@ -161,6 +175,13 @@
         <item>Plaid</item>
     </string-array>
 
+    <!-- String array with Apache 2.0 license and dynamic support titles. -->
+    <string-array name="ads_license_links_ads">
+        <item>@string/ads_license_apache</item>
+        <item>Dynamic Support</item>
+        <item>Dynamic Theme</item>
+    </string-array>
+
     <!-- String array with Apache 2.0 license and dynamic support modules titles. -->
     <string-array name="ads_license_links_ads_modules">
         <item>@string/ads_license_apache</item>
@@ -182,6 +203,13 @@
 
     <!-- String array with license and sources subtitles for gson and plaid. -->
     <string-array name="ads_license_links_subtitles_gson_plaid">
+        <item>@string/ads_license_desc</item>
+        <item>@string/ads_license_sources_desc</item>
+        <item>@string/ads_license_sources_desc</item>
+    </string-array>
+
+    <!-- String array with license and sources subtitles. -->
+    <string-array name="ads_license_links_subtitles_ads">
         <item>@string/ads_license_desc</item>
         <item>@string/ads_license_sources_desc</item>
         <item>@string/ads_license_sources_desc</item>
@@ -219,8 +247,7 @@
     <string-array name="ads_license_links_urls_ads">
         <item>http://www.apache.org/licenses/LICENSE-2.0</item>
         <item>https://github.com/pranavpandey/dynamic-support</item>
-        <item>https://github.com/pranavpandey/dynamic-preferences</item>
-        <item>https://github.com/pranavpandey/dynamic-locale</item>
+        <item>https://github.com/pranavpandey/dynamic-theme</item>
     </string-array>
 
     <!-- String array with Apache 2.0 license and dynamic support

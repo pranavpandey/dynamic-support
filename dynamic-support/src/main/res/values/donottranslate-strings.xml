@@ -96,8 +96,8 @@
         \nDynamic Engine</string>
     <string name="ads_license_ads">Dynamic Support
         \nDynamic Theme
-        \nDynamic Preferences
-        \nDynamic Locale</string>
+        \nDynamic Locale
+        \nDynamic Preferences</string>
     <string name="ads_license_gson_plaid">Gson
         \nPlaid</string>
     <string name="ads_license_copy_android_google">&#169; 2005&#8211;2018 The Android Open Source Project</string>
@@ -105,7 +105,7 @@
         \n&#169; 2015 Google, Inc.</string>
     <string name="ads_license_copy_google_15">&#169; 2015 Google, Inc.</string>
     <string name="ads_license_copy_me_16">&#169; 2016 Pranav Pandey</string>
-    <string name="ads_license_copy_me_17">&#169; 2017 Pranav Pandey</string>
+    <string name="ads_license_copy_me_17">&#169; 2017&#8211;2019 Pranav Pandey</string>
     <string name="ads_license_copy_me_18">&#169; 2018&#8211;2019 Pranav Pandey</string>
     <string name="ads_license_apache">Apache 2.0</string>
 
