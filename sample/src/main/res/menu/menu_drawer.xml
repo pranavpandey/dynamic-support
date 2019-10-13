@@ -48,6 +48,11 @@
                 android:checkableBehavior="none">
 
                 <item
+                    android:id="@+id/nav_rate"
+                    android:icon="@drawable/ads_ic_rate"
+                    android:title="@string/ads_nav_rate" />
+
+                <item
                     android:id="@+id/nav_share"
                     android:icon="@drawable/ads_ic_share"
                     android:title="@string/ads_nav_share" />

@@ -22,15 +22,20 @@
     <integer name="ads_config_activity_short_duration">150</integer>
     <integer name="ads_config_activity_default_duration">220</integer>
 
-    <!-- Tutorial -->
-    <item name="ads_weight_tutorial_image" type="integer" format="float">0.36</item>
-    <item name="ads_weight_tutorial_text" type="integer" format="float">0.64</item>
-
     <!-- Span counts -->
     <integer name="ads_span_normal">1</integer>
     <integer name="ads_span_no_drawer">1</integer>
     <integer name="ads_span_compact">1</integer>
     <integer name="ads_span_compact_dialog">1</integer>
+
+    <!-- Tutorial -->
+    <item name="ads_weight_tutorial_image" type="integer" format="float">0.36</item>
+    <item name="ads_weight_tutorial_text" type="integer" format="float">0.64</item>
+
+    <!-- Fill -->
+    <item name="ads_fill_alpha_base" format="float" type="dimen">0.2</item>
+    <item name="ads_fill_alpha_secondary" format="float" type="dimen">0.6</item>
+    <item name="ads_fill_alpha_shadow" format="float" type="dimen">0.1</item>
 
     <!-- Corner size -->
     <integer name="ads_corner_radius">2</integer>

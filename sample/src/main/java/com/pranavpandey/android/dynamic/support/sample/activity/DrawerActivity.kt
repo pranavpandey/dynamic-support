@@ -18,11 +18,11 @@ package com.pranavpandey.android.dynamic.support.sample.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.view.MenuItem
+import android.view.View
 import androidx.annotation.IdRes
 import androidx.annotation.StyleRes
-import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import com.pranavpandey.android.dynamic.support.activity.DynamicDrawerActivity
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.controller.AppController
@@ -46,6 +46,16 @@ class DrawerActivity : DynamicDrawerActivity() {
          */
         private const val NAV_DRAWER_LAUNCH_DELAY = 250
     }
+
+    /**
+     * Selected menu item id.
+     */
+    private var mDrawerItemId: Int = 0
+
+    /**
+     * true if the menu item action is pending.
+     */
+    private var mDrawerItemSelected: Boolean = false
 
     override fun getLocale(): Locale? {
         // TODO: Not implementing multiple locales so, returning null.
@@ -101,6 +111,23 @@ class DrawerActivity : DynamicDrawerActivity() {
             DynamicLinkUtils.viewUrl(this@DrawerActivity, Constants.URL_GITHUB)
         }
 
+        if (!isPersistentDrawer) {
+            drawer.addDrawerListener(object : DrawerLayout.DrawerListener {
+                override fun onDrawerSlide(drawerView: View, slideOffset: Float) {}
+
+                override fun onDrawerOpened(drawerView: View) {}
+
+                override fun onDrawerClosed(drawerView: View) {
+                    if (mDrawerItemSelected) {
+                        mDrawerItemSelected = false
+                        selectMenu(mDrawerItemId)
+                    }
+                }
+
+                override fun onDrawerStateChanged(newState: Int) {}
+            })
+        }
+
         // Show tutorial on first launch.
         if (AppController.instance.isFirstLaunch) {
             AppController.instance.isFirstLaunch = false
@@ -109,11 +136,16 @@ class DrawerActivity : DynamicDrawerActivity() {
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Using handler for smoother open and close events.
-        Handler().postDelayed({ selectMenu(item.itemId) }, NAV_DRAWER_LAUNCH_DELAY.toLong())
+        mDrawerItemId = item.itemId;
 
-        closeDrawer(GravityCompat.START)
-        return true
+        if (isPersistentDrawer) {
+            selectMenu(mDrawerItemId);
+        } else {
+            mDrawerItemSelected = true;
+        }
+
+        closeDrawers();
+        return true;
     }
 
     /**
@@ -130,6 +162,7 @@ class DrawerActivity : DynamicDrawerActivity() {
             R.id.nav_about -> if (contentFragment !is AboutFragment) {
                 switchFragment(AboutFragment.newInstance(0), false)
             }
+            R.id.nav_rate -> DynamicLinkUtils.rateApp(this)
             R.id.nav_share -> DynamicLinkUtils.share(this, null,
                     String.format(getString(R.string.ads_format_next_line),
                             getString(R.string.app_share), Constants.URL_GITHUB))

@@ -61,7 +61,7 @@ class AuthorInfoBinder(binderAdapter: AppInfoAdapter)
 
             if (dynamicInfoView.linksColors != null) {
                 @ColorInt val colors = dynamicInfoView.linksColors
-                colors?.set(0, DynamicTheme.getInstance().get().primaryColor)
+                colors?.set(0, DynamicTheme.getInstance().get().accentColor)
                 dynamicInfoView.linksColors = colors
                 dynamicInfoView.onUpdate()
             }

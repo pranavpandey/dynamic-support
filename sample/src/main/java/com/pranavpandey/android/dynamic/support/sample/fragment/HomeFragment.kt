@@ -71,19 +71,25 @@ class HomeFragment : DynamicFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Do not scroll toolbar for this fragment.
-        dynamicActivity.setToolbarLayoutFlags(
-                AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP)
+        dynamicActivity.setToolbarLayoutFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP)
 
         // Set subtitle for the dynamic item view.
         (view.findViewById<View>(R.id.item_gradle) as DynamicItemView).subtitle =
                 String.format(getString(R.string.format_version),
                 DynamicPackageUtils.getAppVersion(context!!))
 
-        // Set subtitle for the dynamic item view.
+        // Set on click listener for the dynamic item view.
         (view.findViewById<View>(R.id.item_rotation) as DynamicItemView)
                 .setOnClickListener {
                     // View an app in Google Play by supplying the package name.
                     DynamicLinkUtils.viewInGooglePlay(context!!, Constants.PACKAGE_ROTATION)
+                }
+
+        // Set on click listener for the dynamic item view.
+        (view.findViewById<View>(R.id.item_everyday) as DynamicItemView)
+                .setOnClickListener {
+                    // View an app in Google Play by supplying the package name.
+                    DynamicLinkUtils.viewInGooglePlay(context!!, Constants.PACKAGE_EVERYDAY)
                 }
 
         // Set on preference click listeners.
@@ -108,7 +114,7 @@ class HomeFragment : DynamicFragment() {
                     View.OnClickListener {
                         startActivity(Intent(activity, BottomNavigationActivity::class.java))
                     }
-        } else{
+        } else {
             // Hide bottom navigation activity.
             view.findViewById<View>(R.id.pref_bottom_navigation).visibility = View.GONE
         }

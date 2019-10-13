@@ -90,8 +90,20 @@
                 android:layout_height="wrap_content"
                 app:ads_icon="@drawable/ic_rotation"
                 app:ads_title="@string/rotation"
-                app:ads_subtitle="@string/rotation_subtitle"
-                app:ads_colorType="primary" />
+                app:ads_subtitle="@string/rotation_subtitle" />
+
+        </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+            style="@style/Widget.DynamicApp.Card">
+
+            <com.pranavpandey.android.dynamic.support.view.DynamicItemView
+                android:id="@+id/item_everyday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ads_icon="@drawable/ic_everyday"
+                app:ads_title="@string/everyday"
+                app:ads_subtitle="@string/everyday_subtitle" />
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 

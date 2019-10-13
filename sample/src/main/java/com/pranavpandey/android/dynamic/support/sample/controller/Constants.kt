@@ -36,6 +36,11 @@ object Constants {
     const val PACKAGE_ROTATION = "com.pranavpandey.rotation"
 
     /**
+     * Everyday package name.
+     */
+    const val PACKAGE_EVERYDAY = "com.pranavpandey.calendar"
+
+    /**
      * Open source repository url.
      */
     const val URL_GITHUB = "https://github.com/pranavpandey/dynamic-support"
