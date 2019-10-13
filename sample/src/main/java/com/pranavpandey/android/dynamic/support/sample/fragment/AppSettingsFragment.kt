@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import android.view.ViewGroup
 
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment
 import com.pranavpandey.android.dynamic.support.sample.R
-import com.pranavpandey.android.dynamic.support.sample.controller.SampleTheme
+import com.pranavpandey.android.dynamic.support.sample.controller.ThemeController
 import com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
 import com.pranavpandey.android.dynamic.utils.DynamicWindowUtils
 
@@ -82,7 +82,7 @@ class AppSettingsFragment : DynamicFragment() {
      * Enable or disable day and night theme according to the app theme.
      */
     private fun updatePreferences() {
-        if (SampleTheme.isAutoTheme) {
+        if (ThemeController.isAutoTheme) {
             mAppThemeDay!!.isEnabled = true
             mAppThemeNight!!.isEnabled = true
         } else {

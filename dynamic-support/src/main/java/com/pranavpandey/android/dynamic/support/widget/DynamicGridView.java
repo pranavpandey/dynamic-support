@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,15 +28,18 @@ import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
-import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicScrollableWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 
 /**
  * A GridView to apply color filter according to the supplied parameters.
  */
-public class DynamicGridView extends GridView implements DynamicWidget {
+public class DynamicGridView extends GridView
+        implements WindowInsetsWidget, DynamicScrollableWidget {
 
     /**
      * Color type applied to this view.
@@ -76,6 +79,18 @@ public class DynamicGridView extends GridView implements DynamicWidget {
      */
     private @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * Scroll bar color type applied to this view.
+     *
+     * @see Theme.ColorType
+     */
+    private @Theme.ColorType int mScrollBarColorType;
+
+    /**
+     * Scroll bar color applied to this view.
+     */
+    private @ColorInt int mScrollBarColor;
+
     public DynamicGridView(@NonNull Context context) {
         this(context, null);
     }
@@ -97,16 +112,24 @@ public class DynamicGridView extends GridView implements DynamicWidget {
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(
                 attrs, R.styleable.DynamicTheme);
+        TypedArray b = getContext().obtainStyledAttributes(
+                attrs, new int[] { R.attr.ads_windowInsets});
 
         try {
             mColorType = a.getInt(
                     R.styleable.DynamicTheme_ads_colorType,
                     WidgetDefaults.ADS_COLOR_EDGE_EFFECT);
+            mScrollBarColorType = a.getInt(
+                    R.styleable.DynamicTheme_ads_scrollBarColorType,
+                    WidgetDefaults.ADS_COLOR_SCROLL_BAR);
             mContrastWithColorType = a.getInt(
                     R.styleable.DynamicTheme_ads_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
                     R.styleable.DynamicTheme_ads_color,
+                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+            mScrollBarColor = a.getColor(
+                    R.styleable.DynamicTheme_ads_scrollBarColor,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicTheme_ads_contrastWithColor,
@@ -114,8 +137,13 @@ public class DynamicGridView extends GridView implements DynamicWidget {
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicTheme_ads_backgroundAware,
                     WidgetDefaults.getBackgroundAware());
+
+            if (b.getBoolean(0, WidgetDefaults.ADS_WINDOW_INSETS)) {
+                applyWindowInsets();
+            }
         } finally {
             a.recycle();
+            b.recycle();
         }
 
         initialize();
@@ -128,13 +156,24 @@ public class DynamicGridView extends GridView implements DynamicWidget {
             mColor = DynamicTheme.getInstance().resolveColorType(mColorType);
         }
 
+        if (mScrollBarColorType != Theme.ColorType.NONE
+                && mScrollBarColorType != Theme.ColorType.CUSTOM) {
+            mScrollBarColor = DynamicTheme.getInstance()
+                    .resolveColorType(mScrollBarColorType);
+        }
+
         if (mContrastWithColorType != Theme.ColorType.NONE
                 && mContrastWithColorType != Theme.ColorType.CUSTOM) {
             mContrastWithColor = DynamicTheme.getInstance()
                     .resolveColorType(mContrastWithColorType);
         }
 
-        setColor();
+        setColor(true);
+    }
+
+    @Override
+    public void applyWindowInsets() {
+        DynamicViewUtils.applyWindowInsetsBottom(this);
     }
 
     @Override
@@ -145,6 +184,18 @@ public class DynamicGridView extends GridView implements DynamicWidget {
     @Override
     public void setColorType(@Theme.ColorType int colorType) {
         this.mColorType = colorType;
+
+        initialize();
+    }
+
+    @Override
+    public @Theme.ColorType int getScrollBarColorType() {
+        return mScrollBarColorType;
+    }
+
+    @Override
+    public void setScrollBarColorType(@Theme.ColorType int scrollBarColorType) {
+        this.mScrollBarColorType = scrollBarColorType;
 
         initialize();
     }
@@ -171,7 +222,20 @@ public class DynamicGridView extends GridView implements DynamicWidget {
         this.mColorType = Theme.ColorType.CUSTOM;
         this.mColor = color;
 
-        setColor();
+        setColor(true);
+    }
+
+    @Override
+    public @ColorInt int getScrollBarColor() {
+        return mScrollBarColor;
+    }
+
+    @Override
+    public void setScrollBarColor(@ColorInt int scrollBarColor) {
+        this.mScrollBarColorType = Theme.ColorType.CUSTOM;
+        this.mScrollBarColor = scrollBarColor;
+
+        setScrollBarColor();
     }
 
     @Override
@@ -184,7 +248,7 @@ public class DynamicGridView extends GridView implements DynamicWidget {
         this.mContrastWithColorType = Theme.ColorType.CUSTOM;
         this.mContrastWithColor = contrastWithColor;
 
-        setColor();
+        setColor(true);
     }
 
     @Override
@@ -213,6 +277,27 @@ public class DynamicGridView extends GridView implements DynamicWidget {
             }
 
             DynamicScrollUtils.setEdgeEffectColor(this, mColor);
+        }
+    }
+
+    @Override
+    public void setScrollBarColor() {
+        if (mScrollBarColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
+            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
+                mScrollBarColor = DynamicColorUtils.getContrastColor(
+                        mScrollBarColor, mContrastWithColor);
+            }
+
+            DynamicScrollUtils.setScrollBarColor(this, mScrollBarColor);
+        }
+    }
+
+    @Override
+    public void setColor(boolean setScrollBarColor) {
+        setColor();
+
+        if (setScrollBarColor) {
+            setScrollBarColor();
         }
     }
 }

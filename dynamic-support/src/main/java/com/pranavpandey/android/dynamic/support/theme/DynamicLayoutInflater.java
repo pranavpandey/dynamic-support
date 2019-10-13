@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +50,7 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicFloatingActionButt
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicListView;
+import com.pranavpandey.android.dynamic.support.widget.DynamicMaterialCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicNavigationView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicPopupBackground;
@@ -70,7 +70,7 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicToolbar;
 import com.pranavpandey.android.dynamic.support.widget.DynamicViewPager;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * A layout inflater factory2 to replace original views with the dynamic support views
@@ -112,13 +112,12 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
             case "android.support.v7.view.menu.ListMenuItemView":
             case "androidx.appcompat.view.menu.ListMenuItemView":
                 try {
-                    final @ColorInt int backgroundColor =
-                            DynamicTheme.getInstance().get().getBackgroundColor();
-
                     final View menuItemView = LayoutInflater.from(context)
                             .createView(name, null, attrs);
+                    final DynamicCardView cardView = new DynamicPopupBackground(context, attrs);
+                    final @ColorInt int backgroundColor = cardView.getColor();
 
-                    new Handler().post(new Runnable() {
+                    menuItemView.post(new Runnable() {
                         @Override
                         public void run() {
                             @ColorInt int tintColor = DynamicTheme
@@ -143,11 +142,8 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
                                     DynamicScrollUtils.setEdgeEffectColor(
                                             (ListView) view, tintColor);
 
-                                    if (DynamicVersionUtils.isLollipop()) {
+                                    if (DynamicSdkUtils.is21()) {
                                         if (!(parent instanceof CardView)) {
-                                            DynamicCardView cardView =
-                                                    new DynamicPopupBackground(context, attrs);
-
                                             if (parent.getBackground() != null) {
                                                 if (parent.getBackground()
                                                         instanceof GradientDrawable) {
@@ -199,7 +195,7 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
                 break;
             case "android.support.v7.widget.AppCompatButton":
             case "androidx.appcompat.widget.AppCompatButton":
-            case "com.google.android.material.card.MaterialCardView":
+            case "com.google.android.material.button.MaterialButton":
                 view = new DynamicButton(context, attrs);
                 break;
             case "ImageButton":
@@ -282,8 +278,10 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
             case "CardView":
             case "android.support.v7.widget.CardView":
             case "androidx.cardview.widget.CardView":
-            case "com.google.android.material.card.CardView":
                 view = new DynamicCardView(context, attrs);
+                break;
+            case "com.google.android.material.card.MaterialCardView":
+                view = new DynamicMaterialCardView(context, attrs);
                 break;
             case "android.support.design.widget.TextInputLayout":
             case "com.google.android.material.textfield.TextInputLayout":

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,9 +36,9 @@ import com.pranavpandey.android.dynamic.support.model.DynamicItem;
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewFrame;
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewNested;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicItemsAdapter;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
 
 import java.util.ArrayList;
@@ -296,8 +296,8 @@ public class DynamicInfoView extends DynamicView {
                     color = WidgetDefaults.ADS_COLOR_UNKNOWN;
                 }
 
-                DynamicItem dynamicItem = new DynamicItem(icon, title, subtitle, color,
-                        Theme.ColorType.CUSTOM, false);
+                DynamicItem dynamicItem = new DynamicItem(icon, title, subtitle,
+                        color, Theme.ColorType.CUSTOM, false);
 
                 if (url != null) {
                     dynamicItem.setOnClickListener(new OnClickListener() {

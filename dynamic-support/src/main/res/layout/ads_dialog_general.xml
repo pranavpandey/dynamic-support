@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -18,8 +18,8 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ads_dialog_general"
-    style="@style/Widget.DynamicApp.Scroller.Vertical">
+    style="@style/Widget.DynamicApp.Scroller.Vertical"
+    android:id="@+id/ads_dialog_general">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,18 +30,18 @@
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+            style="@style/TextAppearance.DynamicApp.Headline5.Card"
             android:id="@+id/ads_dialog_general_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/ads_margin_small"
-            app:ads_colorType="primary"
-            style="@style/TextAppearance.DynamicApp.Headline5.Card" />
+            app:ads_colorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+            style="@style/TextAppearance.DynamicApp.Dialog"
             android:id="@+id/ads_dialog_general_desc"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TextAppearance.DynamicApp.Dialog" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

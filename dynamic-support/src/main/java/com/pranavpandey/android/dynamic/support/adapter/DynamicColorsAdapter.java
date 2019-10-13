@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,8 +29,8 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A simple base adapter to hold an array of colors and displays them in a adapter view.
@@ -116,10 +116,11 @@ public class DynamicColorsAdapter extends BaseAdapter {
         dynamicColorView.setColor(color);
         dynamicColorView.setColorShape(mColorShape);
         dynamicColorView.setAlpha(mAlpha);
-        if (mSelectedColor != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE) {
+        if (mSelectedColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
             dynamicColorView.setSelected(mSelectedColor == color);
         }
 
+        dynamicColorView.setTooltip();
         dynamicColorView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,15 +134,7 @@ public class DynamicColorsAdapter extends BaseAdapter {
             }
         });
 
-        dynamicColorView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                dynamicColorView.showHint();
-                return true;
-            }
-        });
-        
-	    return convertView;
+        return convertView;
     }
 
     @Override

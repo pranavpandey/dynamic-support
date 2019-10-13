@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -18,8 +18,8 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ads_dialog_theme"
-    style="@style/Widget.DynamicApp.Scroller.Vertical">
+    style="@style/Widget.DynamicApp.Scroller.Vertical"
+    android:id="@+id/ads_dialog_theme">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,21 +31,20 @@
             android:id="@+id/ads_dialog_theme_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/ads_dialog_margin_start_end_edit_text"
-            android:layout_marginRight="@dimen/ads_dialog_margin_start_end_edit_text"
+            android:layout_marginLeft="@dimen/ads_dialog_margin_horizontal_edit_text"
+            android:layout_marginRight="@dimen/ads_dialog_margin_horizontal_edit_text"
             android:hint="@string/ads_data"
             android:textDirection="ltr"
             tools:targetApi="jelly_bean_mr1">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
+                style="@style/Widget.DynamicApp.TextInputEditText"
                 android:id="@+id/ads_dialog_theme_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/ads_data"
                 android:textCursorDrawable="@null"
                 android:inputType="textNoSuggestions|textLongMessage|textMultiLine"
-                android:textDirection="ltr"
-                style="@style/Widget.DynamicApp.TextInputEditText" />
+                android:textDirection="ltr" />
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout>
 

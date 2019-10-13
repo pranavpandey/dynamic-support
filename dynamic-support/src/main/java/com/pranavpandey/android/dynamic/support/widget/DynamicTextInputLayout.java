@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,10 +28,10 @@ import androidx.annotation.Nullable;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicCornerWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 
@@ -139,19 +139,6 @@ public class DynamicTextInputLayout extends TextInputLayout implements
 
         setCorner((float) DynamicTheme.getInstance().get().getCornerRadius());
         setColor();
-
-        post(new Runnable() {
-            @Override
-            public void run() {
-                // Fix crash while setting the hint on some devices.
-                // More info: https://issuetracker.google.com/issues/112105087
-                // First setting the same hint for both text input layout and edit text in xml
-                // then, setting the edit text hint to {@code null} to handle duplicate hints.
-                if (getEditText() != null && getEditText().getHint().equals(getHint())) {
-                    getEditText().setHint(null);
-                }
-            }
-        });
     }
 
     @Override
@@ -231,12 +218,23 @@ public class DynamicTextInputLayout extends TextInputLayout implements
 
     @Override
     public void setCorner(Float cornerRadius) {
-        cornerRadius = Math.min(cornerRadius,
+        final float resolvedCornerRadius = Math.min(cornerRadius,
                 DynamicUnitUtils.convertDpToPixels(WidgetDefaults.ADS_CORNER_MIN_BOX));
-        setBoxCornerRadii(getBoxCornerRadiusTopStart() > 0 ? cornerRadius : 0,
-                getBoxCornerRadiusTopEnd() > 0 ? cornerRadius : 0,
-                getBoxCornerRadiusBottomStart() > 0 ? cornerRadius : 0,
-                getBoxCornerRadiusBottomEnd() > 0 ? cornerRadius : 0);
+
+        // Fix null pointer exception while setting the corner radii
+        // in MDC-Android 1.1.0-beta01.
+        try {
+            post(new Runnable() {
+                @Override
+                public void run() {
+                    setBoxCornerRadii(getBoxCornerRadiusTopStart() > 0 ? resolvedCornerRadius : 0,
+                            getBoxCornerRadiusTopEnd() > 0 ? resolvedCornerRadius : 0,
+                            getBoxCornerRadiusBottomStart() > 0 ? resolvedCornerRadius : 0,
+                            getBoxCornerRadiusBottomEnd() > 0 ? resolvedCornerRadius : 0);
+                }
+            });
+        } catch (Exception ignored) {
+        }
     }
 
     @Override

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,10 +22,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 
 /**
  * A fragment to display splash before launching the main activity.
@@ -66,6 +69,7 @@ public class DynamicSplashFragment extends Fragment {
         Bundle args = new Bundle();
         args.putInt(ADS_ARGS_SPLASH_LAYOUT_RES, layoutRes);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -94,6 +98,15 @@ public class DynamicSplashFragment extends Fragment {
         }
 
         return mView;
+    }
+
+    /**
+     * Returns the background color for this fragment.
+     *
+     * @return The background color for this fragment.
+     */
+    public @ColorInt int getBackgroundColor() {
+        return DynamicTheme.getInstance().get().getPrimaryColor();
     }
 
     /**

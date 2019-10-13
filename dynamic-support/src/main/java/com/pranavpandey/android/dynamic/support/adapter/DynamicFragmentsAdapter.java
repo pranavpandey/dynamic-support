@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  * Copyright 2014 Soichiro Kashima
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -67,7 +67,7 @@ public abstract class DynamicFragmentsAdapter extends FragmentStatePagerAdapter 
     private SparseArray<Fragment> mPages;
 
     public DynamicFragmentsAdapter(FragmentManager fm) {
-        super(fm);
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
         mPages = new SparseArray<>();
         mFragmentManager = fm;

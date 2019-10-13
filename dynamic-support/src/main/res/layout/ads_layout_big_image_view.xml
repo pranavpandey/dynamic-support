@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -22,10 +22,10 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        style="@style/Widget.DynamicApp.Content.Card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        style="@style/Widget.DynamicApp.Content.Card">
+        android:orientation="horizontal">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
             android:id="@+id/ads_info_view_icon"
@@ -42,23 +42,23 @@
             android:orientation="vertical">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                style="@style/TextAppearance.DynamicApp.Headline5.Card"
                 android:id="@+id/ads_info_view_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/TextAppearance.DynamicApp.Headline5.Card" />
+                android:layout_height="wrap_content" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                style="@style/TextAppearance.DynamicApp.Subtitle1"
                 android:id="@+id/ads_info_view_subtitle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/TextAppearance.DynamicApp.Subtitle1" />
+                android:layout_height="wrap_content" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                style="@style/TextAppearance.DynamicApp.Body1"
                 android:id="@+id/ads_info_view_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ads_margin_tiny"
-                style="@style/TextAppearance.DynamicApp.Body1" />
+                android:layout_marginTop="@dimen/ads_margin_tiny" />
 
         </LinearLayout>
 
@@ -71,10 +71,10 @@
         android:layout_gravity="end|bottom">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+            style="@style/Widget.DynamicApp.Image.Card.Big"
             android:id="@+id/ads_info_view_icon_big"
             android:layout_width="@dimen/ads_icon_card_permission"
-            android:layout_height="@dimen/ads_icon_card_permission"
-            style="@style/Widget.DynamicApp.Image.Card.Big" />
+            android:layout_height="@dimen/ads_icon_card_permission" />
 
     </FrameLayout>
 

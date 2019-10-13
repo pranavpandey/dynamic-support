@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ public abstract class DynamicRecyclerViewAdapter
      * <p>0. {@link #TYPE_EMPTY_VIEW}
      * <br>1. {@link #TYPE_SECTION_HEADER}
      * <br>2. {@link #TYPE_ITEM}
-     * <br>3. {@link #TYPE_SECTION_DIVIDER}</p>
+     * <br>3. {@link #TYPE_SECTION_DIVIDER}
      */
     @Retention(RetentionPolicy.SOURCE)
     @IntDef(value = { TYPE_EMPTY_VIEW, TYPE_SECTION_HEADER, TYPE_ITEM, TYPE_SECTION_DIVIDER })
@@ -76,7 +76,7 @@ public abstract class DynamicRecyclerViewAdapter
          *
          * @see ItemType
          */
-        @ItemType int getItemViewType();
+        int getItemViewType();
 
         /**
          * This method will be called to return the section title for the item type

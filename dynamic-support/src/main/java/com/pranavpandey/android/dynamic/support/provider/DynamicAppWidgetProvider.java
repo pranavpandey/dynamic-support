@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,10 +34,11 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.locale.DynamicLocale;
-import com.pranavpandey.android.dynamic.support.locale.DynamicLocaleUtils;
+import com.pranavpandey.android.dynamic.locale.DynamicLocale;
+import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicAppWidgetUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.support.utils.DynamicShapeUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicBitmapUtils;
 
 import java.util.Locale;
@@ -47,18 +48,33 @@ import java.util.Locale;
  * <p>Extend it and modify according to the need.
  */
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-public abstract class DynamicAppWidgetProvider extends AppWidgetProvider
-        implements DynamicLocale {
+public abstract class DynamicAppWidgetProvider
+        extends AppWidgetProvider implements DynamicLocale {
+
+    /**
+     * Intent extra constant for width of the app widget.
+     */
+    public static final String EXTRA_APP_WIDGET_WIDTH = "appWidgetWidth";
+
+    /**
+     * Intent extra constant for height of the app widget.
+     */
+    public static final String EXTRA_APP_WIDGET_HEIGHT = "appWidgetHeight";
+
+    /**
+     * Intent extra constant for adjust position of the app widget.
+     */
+    public static final String EXTRA_APP_WIDGET_ADJUST_POSITION = "appWidgetAdjustPosition";
+
+    /**
+     * Constant for the default app widget id.
+     */
+    public static final int DEFAULT_APP_WIDGET_ID = 0;
 
     /**
      * Constant size in dips for one cell.
      */
     public static final int WIDGET_CELL_SIZE_ONE = 60;
-
-    /**
-     * Default header size in dips.
-     */
-    public static final int WIDGET_HEADER_SIZE = 56;
 
     /**
      * Constant size in dips for two cells.
@@ -86,6 +102,21 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider
     public static final int WIDGET_CELL_SIZE_SIX = WIDGET_CELL_SIZE_ONE * 6;
 
     /**
+     * Constant size in dips for seven cells.
+     */
+    public static final int WIDGET_CELL_SIZE_SEVEN = WIDGET_CELL_SIZE_ONE * 7;
+
+    /**
+     * Bitmap quality of the widget background.
+     */
+    public static final int WIDGET_BACKGROUND_QUALITY = 25;
+
+    /**
+     * Default header size in dips.
+     */
+    public static final int WIDGET_HEADER_SIZE = 56;
+
+    /**
      * Dynamic context used by this provider.
      */
     protected Context mContext;
@@ -96,12 +127,12 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider
     private Locale mCurrentLocale;
 
     /**
-     * Current width of this widget provider.
+     * Current width of this widget provider in dips.
      */
     private int mWidth;
 
     /**
-     * Current height of this widget provider.
+     * Current height of this widget provider dips.
      */
     private int mHeight;
 
@@ -112,9 +143,20 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider
         if (intent.getAction() != null && intent.getAction()
                 .equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)) {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
-                    new ComponentName(context, getClass().getName()));
-            onUpdate(context, appWidgetManager, appWidgetIds);
+            int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
+                    DynamicAppWidgetProvider.DEFAULT_APP_WIDGET_ID);
+
+            int[] appWidgetIds;
+            if (appWidgetId != DynamicAppWidgetProvider.DEFAULT_APP_WIDGET_ID) {
+                appWidgetIds =  new int[] { appWidgetId };
+            } else {
+                appWidgetIds = appWidgetManager.getAppWidgetIds(
+                        new ComponentName(context, getClass().getName()));
+            }
+
+            if (appWidgetIds != null) {
+                onUpdate(context, appWidgetManager, appWidgetIds);
+            }
         }
     }
 
@@ -124,8 +166,7 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider
         super.onUpdate(context, appWidgetManager, appWidgetIds);
 
         for (int appWidgetId : appWidgetIds) {
-            onAppWidgetOptionsChanged(context, appWidgetManager,
-                    appWidgetId, appWidgetManager.getAppWidgetOptions(appWidgetId));
+            updateAppWidget(context, appWidgetManager, appWidgetId);
         }
     }
 
@@ -135,7 +176,6 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider
             @NonNull Bundle newOptions) {
         super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
 
-        appWidgetManager.updateAppWidget(appWidgetId, getRemoteViews(getContext()));
         updateAppWidget(getContext(), appWidgetManager, appWidgetId);
     }
 
@@ -169,9 +209,13 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider
     public @NonNull Context setLocale(@NonNull Context context) {
         this.mCurrentLocale = DynamicLocaleUtils.getLocale(
                 getLocale(), getDefaultLocale(context));
-        this.mContext = DynamicLocaleUtils.setLocale(context, mCurrentLocale);
 
-        return mContext;
+        return mContext = DynamicLocaleUtils.setLocale(context, mCurrentLocale, getFontScale());
+    }
+
+    @Override
+    public float getFontScale() {
+        return DynamicTheme.getInstance().getRemote().getFontScaleRelative();
     }
 
     /**
@@ -235,6 +279,15 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider
         return mContext;
     }
 
+    /**
+     * Get the current locale used by this provider.
+     *
+     * @return The current locale used by this provider.
+     */
+    public @NonNull Locale getCurrentLocale() {
+        return mCurrentLocale;
+    }
+
 
     /**
      * Returns the current width of this widget provider.
@@ -294,8 +347,9 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider
      */
     public static @Nullable Bitmap getWidgetFrameBitmap(int width,
             int height, float cornerRadius) {
-        return DynamicBitmapUtils.getBitmapFromDrawable(DynamicThemeUtils
-                .getCornerDrawableLegacy(width, height, cornerRadius, Color.WHITE, false));
+        return DynamicBitmapUtils.getBitmapFromDrawable(DynamicShapeUtils
+                .getCornerDrawableLegacy(width, height, cornerRadius, Color.WHITE,
+                        false), true, WIDGET_BACKGROUND_QUALITY);
     }
 
     /**
@@ -309,7 +363,8 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider
      */
     public static @Nullable Bitmap getWidgetHeaderBitmap(int width,
             int height, float cornerRadius, @ColorInt int color) {
-        return DynamicBitmapUtils.getBitmapFromDrawable(DynamicThemeUtils
-                .getCornerDrawableLegacy(width, height, cornerRadius, color, true));
+        return DynamicBitmapUtils.getBitmapFromDrawable(DynamicShapeUtils
+                .getCornerDrawableLegacy(width, height, cornerRadius, color,
+                        true), true, WIDGET_BACKGROUND_QUALITY);
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -23,15 +23,19 @@
     <color name="ads_color_black_text">#8A000000</color>
     <color name="ads_color_black_text_dark">#DE000000</color>
     <color name="ads_window_background_black">#000000</color>
-    <color name="ads_window_background_black_light">@color/ads_window_background</color>
+    <color name="ads_window_background_black_surface">#111111</color>
+    <color name="ads_window_background_black_light">#252525</color>
+    <color name="ads_window_background_black_light_surface">#343434</color>
 
     <!-- White theme -->
     <color name="ads_color_white">#F5F5F5</color>
     <color name="ads_color_white_dark">#D3D3D3</color>
     <color name="ads_color_white_text">#B3FFFFFF</color>
     <color name="ads_color_white_text_dark">#B3FFFFFF</color>
-    <color name="ads_window_background_white">#FFFFFFFF</color>
-    <color name="ads_window_background_white_light">@color/ads_window_background_light</color>
+    <color name="ads_window_background_white">#FFFFFF</color>
+    <color name="ads_window_background_white_surface">#FFFFFF</color>
+    <color name="ads_window_background_white_light">#EAEAEA</color>
+    <color name="ads_window_background_white_light_surface">#EEEEEE</color>
 
     <!-- Red theme -->
     <color name="ads_color_red">#F44336</color>
@@ -39,7 +43,9 @@
     <color name="ads_color_red_text">#EF9A9A</color>
     <color name="ads_color_red_text_dark">#EF5350</color>
     <color name="ads_window_background_red">#C62828</color>
+    <color name="ads_window_background_red_surface">#C93737</color>
     <color name="ads_window_background_red_light">#EF9A9A</color>
+    <color name="ads_window_background_red_light_surface">#F2AEAE</color>
 
     <!-- Pink theme -->
     <color name="ads_color_pink">#E91E63</color>
@@ -47,7 +53,9 @@
     <color name="ads_color_pink_text">#F48FB1</color>
     <color name="ads_color_pink_text_dark">#EC407A</color>
     <color name="ads_window_background_pink">#AD1457</color>
+    <color name="ads_window_background_pink_surface">#B22462</color>
     <color name="ads_window_background_pink_light">#F48FB1</color>
+    <color name="ads_window_background_pink_light_surface">#F6A5C0</color>
 
     <!-- Purple theme -->
     <color name="ads_color_purple">#9C27B0</color>
@@ -55,7 +63,9 @@
     <color name="ads_color_purple_text">#CE93D8</color>
     <color name="ads_color_purple_text_dark">#AB47BC</color>
     <color name="ads_window_background_purple">#6A1B9A</color>
+    <color name="ads_window_background_purple_surface">#742AA1</color>
     <color name="ads_window_background_purple_light">#CE93D8</color>
+    <color name="ads_window_background_purple_light_surface">#D7A8DF</color>
 
     <!-- Deep Purple theme -->
     <color name="ads_color_deep_purple">#673AB7</color>
@@ -63,7 +73,9 @@
     <color name="ads_color_deep_purple_text">#B39DDB</color>
     <color name="ads_color_deep_purple_text_dark">#7E57C2</color>
     <color name="ads_window_background_deep_purple">#4527A0</color>
+    <color name="ads_window_background_deep_purple_surface">#5236A6</color>
     <color name="ads_window_background_deep_purple_light">#B39DDB</color>
+    <color name="ads_window_background_deep_purple_light_surface">#DBB0E2</color>
 
     <!-- Indigo theme -->
     <color name="ads_color_indigo">#3F51B5</color>
@@ -71,7 +83,9 @@
     <color name="ads_color_indigo_text">#9FA8DA</color>
     <color name="ads_color_indigo_text_dark">#5C6BC0</color>
     <color name="ads_window_background_indigo">#283593</color>
+    <color name="ads_window_background_indigo_surface">#37439A</color>
     <color name="ads_window_background_indigo_light">#9FA8DA</color>
+    <color name="ads_window_background_indigo_light_surface">#B2B9E1</color>
 
     <!-- Blue theme -->
     <color name="ads_color_blue">#1E88E5</color>
@@ -79,7 +93,9 @@
     <color name="ads_color_blue_text">#90CAF9</color>
     <color name="ads_color_blue_text_dark">#42A5F5</color>
     <color name="ads_window_background_blue">#1565C0</color>
+    <color name="ads_window_background_blue_surface">#256FC4</color>
     <color name="ads_window_background_blue_light">#90CAF9</color>
+    <color name="ads_window_background_blue_light_surface">#A6D4FA</color>
 
     <!-- Light Blue theme -->
     <color name="ads_color_light_blue">#03A9F4</color>
@@ -87,7 +103,9 @@
     <color name="ads_color_light_blue_text">#81D4FA</color>
     <color name="ads_color_light_blue_text_dark">#29B6F6</color>
     <color name="ads_window_background_light_blue">#0277BD</color>
+    <color name="ads_window_background_light_blue_surface">#1380C1</color>
     <color name="ads_window_background_light_blue_light">#81D4FA</color>
+    <color name="ads_window_background_light_blue_light_surface">#9ADCFB</color>
 
     <!-- Cyan theme -->
     <color name="ads_color_cyan">#00BCD4</color>
@@ -95,7 +113,9 @@
     <color name="ads_color_cyan_text">#80DEEA</color>
     <color name="ads_color_cyan_text_dark">#26C6DA</color>
     <color name="ads_window_background_cyan">#00838F</color>
+    <color name="ads_window_background_cyan_surface">#118B96</color>
     <color name="ads_window_background_cyan_light">#80DEEA</color>
+    <color name="ads_window_background_cyan_light_surface">#99E4EE</color>
 
     <!-- Teal theme -->
     <color name="ads_color_teal">#009688</color>
@@ -103,7 +123,9 @@
     <color name="ads_color_teal_text">#80CBC4</color>
     <color name="ads_color_teal_text_dark">#26A69A</color>
     <color name="ads_window_background_teal">#00695C</color>
+    <color name="ads_window_background_teal_surface">#117367</color>
     <color name="ads_window_background_teal_light">#80CBC4</color>
+    <color name="ads_window_background_teal_light_surface">#99D5C5</color>
 
     <!-- Green theme -->
     <color name="ads_color_green">#43A047</color>
@@ -111,7 +133,9 @@
     <color name="ads_color_green_text">#A5D6A7</color>
     <color name="ads_color_green_text_dark">#66BB6A</color>
     <color name="ads_window_background_green">#2E7A32</color>
+    <color name="ads_window_background_green_surface">#3C8340</color>
     <color name="ads_window_background_green_light">#A5D6A7</color>
+    <color name="ads_window_background_green_light_surface">#B7DEB8</color>
 
     <!-- Light Green theme -->
     <color name="ads_color_light_green">#8BC34A</color>
@@ -119,7 +143,9 @@
     <color name="ads_color_light_green_text">#C5E1A5</color>
     <color name="ads_color_light_green_text_dark">#9CCC65</color>
     <color name="ads_window_background_light_green">#558B2F</color>
+    <color name="ads_window_background_light_green_surface">#60933D</color>
     <color name="ads_window_background_light_green_light">#C5E1A5</color>
+    <color name="ads_window_background_light_green_light_surface">#D0E7B7</color>
 
     <!-- Lime theme -->
     <color name="ads_color_lime">#CDDC39</color>
@@ -127,7 +153,9 @@
     <color name="ads_color_lime_text">#E6EE9C</color>
     <color name="ads_color_lime_text_dark">#D4E157</color>
     <color name="ads_window_background_lime">#9E9D24</color>
+    <color name="ads_window_background_lime_surface">#B1B04F</color>
     <color name="ads_window_background_lime_light">#E6EE9C</color>
+    <color name="ads_window_background_lime_light_surface">#EBF1AB</color>
 
     <!-- Yellow theme -->
     <color name="ads_color_yellow">#FFEB3B</color>
@@ -135,7 +163,9 @@
     <color name="ads_color_yellow_text">#FFF59D</color>
     <color name="ads_color_yellow_text_dark">#FFEE58</color>
     <color name="ads_window_background_yellow">#F9A825</color>
+    <color name="ads_window_background_yellow_surface">#FAB950</color>
     <color name="ads_window_background_yellow_light">#FFF59D</color>
+    <color name="ads_window_background_yellow_light_surface">#FFF7B0</color>
 
     <!-- Amber theme -->
     <color name="ads_color_amber">#FFC107</color>
@@ -143,7 +173,9 @@
     <color name="ads_color_amber_text">#FFE082</color>
     <color name="ads_color_amber_text_dark">#FFCA28</color>
     <color name="ads_window_background_amber">#FF8F00</color>
+    <color name="ads_window_background_amber_surface">#FFA533</color>
     <color name="ads_window_background_amber_light">#FFE082</color>
+    <color name="ads_window_background_amber_light_surface">#FFE69B</color>
 
     <!-- Orange theme -->
     <color name="ads_color_orange">#FF9800</color>
@@ -151,7 +183,9 @@
     <color name="ads_color_orange_text">#FFCC80</color>
     <color name="ads_color_orange_text_dark">#FFA726</color>
     <color name="ads_window_background_orange">#EF6C00</color>
+    <color name="ads_window_background_orange_surface">#F28933</color>
     <color name="ads_window_background_orange_light">#FFCC80</color>
+    <color name="ads_window_background_orange_light_surface">#FFD699</color>
 
     <!-- Deep Orange theme -->
     <color name="ads_color_deep_orange">#F4511E</color>
@@ -159,7 +193,9 @@
     <color name="ads_color_deep_orange_text">#FFAB91</color>
     <color name="ads_color_deep_orange_text_dark">#FF7043</color>
     <color name="ads_window_background_deep_orange">#D84315</color>
+    <color name="ads_window_background_deep_orange_surface">#DA5025</color>
     <color name="ads_window_background_deep_orange_light">#FFAB91</color>
+    <color name="ads_window_background_deep_orange_light_surface">#FFBBA7</color>
 
     <!-- Brown theme -->
     <color name="ads_color_brown">#6D4C41</color>
@@ -167,7 +203,9 @@
     <color name="ads_color_brown_text">#BCAAA4</color>
     <color name="ads_color_brown_text_dark">#8D6E63</color>
     <color name="ads_window_background_brown">#4E342E</color>
+    <color name="ads_window_background_brown_surface">#5A423C</color>
     <color name="ads_window_background_brown_light">#BCAAA4</color>
+    <color name="ads_window_background_brown_light_surface">#C9BBB6</color>
 
     <!-- Grey theme -->
     <color name="ads_color_grey">#9E9E9E</color>
@@ -175,7 +213,9 @@
     <color name="ads_color_grey_text">#BCAAA4</color>
     <color name="ads_color_grey_text_dark">#BDBDBD</color>
     <color name="ads_window_background_grey">#424242</color>
+    <color name="ads_window_background_grey_surface">#4F4F4F</color>
     <color name="ads_window_background_grey_light">#EEEEEE</color>
+    <color name="ads_window_background_grey_light_surface">#F1F1F1</color>
 
     <!-- Blue Grey theme -->
     <color name="ads_color_blue_grey">#546E7A</color>
@@ -183,6 +223,8 @@
     <color name="ads_color_blue_grey_text">#B0BEC5</color>
     <color name="ads_color_blue_grey_text_dark">#78909C</color>
     <color name="ads_window_background_blue_grey">#37474F</color>
+    <color name="ads_window_background_blue_grey_surface">#45535B</color>
     <color name="ads_window_background_blue_grey_light">#B0BEC5</color>
+    <color name="ads_window_background_blue_grey_light_surface">#BFCBD0</color>
 
 </resources>

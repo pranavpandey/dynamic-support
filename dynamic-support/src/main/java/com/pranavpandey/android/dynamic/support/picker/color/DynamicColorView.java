@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
@@ -47,15 +46,15 @@ import androidx.core.content.ContextCompat;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
-import com.pranavpandey.android.dynamic.toasts.DynamicHint;
+import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicBitmapUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 /**
  * A FrameLayout to display a color in different {@link DynamicColorShape}.
@@ -203,7 +202,7 @@ public class DynamicColorView extends FrameLayout {
                     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onGlobalLayout() {
-                        if (DynamicVersionUtils.isJellyBean()) {
+                        if (DynamicSdkUtils.is16()) {
                             getViewTreeObserver().removeOnGlobalLayoutListener(this);
                         } else {
                             getViewTreeObserver().removeGlobalOnLayoutListener(this);
@@ -356,13 +355,12 @@ public class DynamicColorView extends FrameLayout {
     }
 
     /**
-     * Show a cheat sheet around (below or above) this color view with hexadecimal color string
-     * according to the {@link #mColor}.
+     * Set a tooltip for this color view with hexadecimal color string according to its color.
      */
-    public void showHint() {
-        final Toast toast;
+    public void setTooltip() {
         @ColorInt int color;
         @ColorInt int tintColor;
+        Drawable icon = null;
 
         if (mColor == Theme.AUTO) {
             color = mSelectorPaint.getColor();
@@ -376,16 +374,11 @@ public class DynamicColorView extends FrameLayout {
         tintColor = DynamicColorUtils.removeAlpha(tintColor);
 
         if (mSelected) {
-            toast = DynamicHint.make(DynamicTheme.getInstance().getContext(), getColorString(),
-                    DynamicResourceUtils.getDrawable(getContext(), mColor == Theme.AUTO
-                            ? R.drawable.ads_ic_play : R.drawable.ads_ic_check),
-                    tintColor, color);
-        } else {
-            toast = DynamicHint.make(DynamicTheme.getInstance().getContext(),
-                    getColorString(), tintColor, color);
+            icon = DynamicResourceUtils.getDrawable(getContext(), mColor == Theme.AUTO
+                            ? R.drawable.ads_ic_play : R.drawable.ads_ic_check);
         }
 
-        DynamicHint.show(this, toast);
+        DynamicTooltip.set(this, color, tintColor, icon, getColorString());
     }
 
     /**

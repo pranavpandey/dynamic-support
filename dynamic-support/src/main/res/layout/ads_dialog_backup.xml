@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2019 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.DynamicApp.Scroller.Vertical"
+    android:id="@+id/ads_dialog_backup_root">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ads_margin_extra_tiny"
+        android:orientation="vertical">
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+            style="@style/TextAppearance.DynamicApp.Headline5.Card"
+            android:id="@+id/ads_dialog_backup_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ads_margin_extra_tiny"
+            android:paddingLeft="@dimen/ads_margin_normal"
+            android:paddingRight="@dimen/ads_margin_normal"
+            app:ads_colorType="primary" />
+
+        <LinearLayout
+            android:id="@+id/ads_backup_create"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ads_margin_extra_tiny"
+            android:orientation="vertical">
+
+            <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout
+                android:id="@+id/ads_dialog_backup_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ads_dialog_margin_horizontal_edit_text"
+                android:layout_marginRight="@dimen/ads_dialog_margin_horizontal_edit_text"
+                android:hint="@string/ads_backup_name">
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
+                    style="@style/Widget.DynamicApp.TextInputEditText"
+                    android:id="@+id/ads_backup_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textCursorDrawable="@null"
+                    android:inputType="textNoSuggestions"
+                    android:singleLine="true" />
+
+            </com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout>
+
+            <com.pranavpandey.android.dynamic.support.widget.DynamicSpinner
+                android:id="@+id/ads_dialog_backup_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ads_margin_small"
+                android:layout_marginLeft="@dimen/ads_dialog_margin_input"
+                android:layout_marginRight="@dimen/ads_dialog_margin_input"
+                app:ads_elevationOnSameBackground="true" />
+
+        </LinearLayout>
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicNestedListView
+            style="@style/Widget.DynamicApp.Scroller.Nested"
+            android:id="@+id/ads_dialog_backup_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ads_margin_regular"
+            android:divider="@null" />
+
+    </LinearLayout>
+
+</com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView>

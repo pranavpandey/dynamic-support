@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -18,8 +18,8 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/scroll_home"
-    style="@style/Widget.DynamicApp.Scroller.Padding.Vertical">
+    style="@style/Widget.DynamicApp.Scroller.Padding.Vertical"
+    android:id="@+id/scroll_home">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,27 +47,27 @@
                     android:orientation="horizontal">
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                        style="@style/Widget.DynamicApp.Button"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
-                        android:text="@string/widget_button_raised"
-                        style="@style/Widget.DynamicApp.Button" />
+                        android:text="@string/widget_button_raised" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                        style="@style/Widget.DynamicApp.Button"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:text="@string/ads_disabled"
-                        android:enabled="false"
-                        style="@style/Widget.DynamicApp.Button" />
+                        android:enabled="false" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                        style="@style/Widget.DynamicApp.Button"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:text="@string/color_primary"
-                        app:ads_colorType="primary"
-                        style="@style/Widget.DynamicApp.Button" />
+                        app:ads_colorType="primary" />
 
                 </LinearLayout>
 
@@ -78,27 +78,27 @@
                     android:orientation="horizontal">
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                        style="@style/Widget.DynamicApp.Button.TextButton"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
-                        android:text="@string/widget_button_flat"
-                        style="@style/Widget.DynamicApp.Button.TextButton" />
+                        android:text="@string/widget_button_flat" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                        style="@style/Widget.DynamicApp.Button.TextButton"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:text="@string/ads_disabled"
-                        android:enabled="false"
-                        style="@style/Widget.DynamicApp.Button.TextButton" />
+                        android:enabled="false" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                        style="@style/Widget.DynamicApp.Button.TextButton"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:text="@string/color_primary"
-                        app:ads_colorType="primary"
-                        style="@style/Widget.DynamicApp.Button.TextButton" />
+                        app:ads_colorType="primary" />
 
                 </LinearLayout>
 
@@ -252,10 +252,10 @@
                         android:layout_marginTop="@dimen/ads_margin_tiny">
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
+                            style="@style/Widget.DynamicApp.TextInputEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/widget_text_input_layout"
-                            style="@style/Widget.DynamicApp.TextInputEditText" />
+                            android:hint="@string/widget_text_input_layout" />
 
                     </com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout>
 
@@ -314,52 +314,52 @@
                         android:orientation="horizontal">
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
+                            style="?android:attr/progressBarStyle"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/ads_icon_normal"
                             android:layout_weight="1.0"
                             android:layout_gravity="center"
-                            android:indeterminate="true"
-                            style="?android:attr/progressBarStyle" />
+                            android:indeterminate="true" />
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
+                            style="?android:attr/progressBarStyle"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/ads_icon_normal"
                             android:layout_weight="1.0"
                             android:layout_gravity="center"
                             android:indeterminate="true"
-                            app:ads_colorType="background"
-                            style="?android:attr/progressBarStyle" />
+                            app:ads_colorType="background" />
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
+                            style="?android:attr/progressBarStyle"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/ads_icon_normal"
                             android:layout_weight="1.0"
                             android:layout_gravity="center"
                             android:indeterminate="true"
-                            app:ads_colorType="primary"
-                            style="?android:attr/progressBarStyle" />
+                            app:ads_colorType="primary" />
 
                     </LinearLayout>
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
+                        style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:indeterminate="true"
-                        style="?android:attr/progressBarStyleHorizontal" />
+                        android:indeterminate="true" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
+                        style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:progress="50"
-                        app:ads_colorType="background"
-                        style="?android:attr/progressBarStyleHorizontal" />
+                        app:ads_colorType="background" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
+                        style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:indeterminate="true"
-                        app:ads_colorType="primary"
-                        style="?android:attr/progressBarStyleHorizontal" />
+                        app:ads_colorType="primary" />
 
                 </LinearLayout>
 

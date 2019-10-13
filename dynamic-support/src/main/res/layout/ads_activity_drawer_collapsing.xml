@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -15,31 +15,41 @@
 	limitations under the License.
 -->
 
-<com.pranavpandey.android.dynamic.support.widget.DynamicDrawerLayout
+<com.pranavpandey.android.dynamic.support.widget.DynamicRootLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ads_drawer_layout"
+    android:id="@+id/ads_activity_root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/ads_drawer_persistent_frame"
+    <com.pranavpandey.android.dynamic.support.widget.DynamicDrawerLayout
+        android:id="@+id/ads_drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <include
-            layout="@layout/ads_activity_collapsing"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </FrameLayout>
-
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/ads_navigation_view"
-        android:layout_width="@dimen/ads_drawer_size"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/ads_header_drawer" />
+        android:fitsSystemWindows="true">
 
-</com.pranavpandey.android.dynamic.support.widget.DynamicDrawerLayout>
+        <FrameLayout
+            android:id="@+id/ads_drawer_persistent_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                layout="@layout/ads_activity_collapsing"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </FrameLayout>
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicNavigationView
+            style="@style/Widget.DynamicApp.NavigationView"
+            android:id="@+id/ads_navigation_view"
+            android:layout_width="@dimen/ads_drawer_size"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:layout_gravity="start"
+            android:theme="@style/Widget.DynamicApp.NavigationView.ThemeOverlay"
+            app:headerLayout="@layout/ads_header_drawer" />
+
+    </com.pranavpandey.android.dynamic.support.widget.DynamicDrawerLayout>
+
+</com.pranavpandey.android.dynamic.support.widget.DynamicRootLayout>

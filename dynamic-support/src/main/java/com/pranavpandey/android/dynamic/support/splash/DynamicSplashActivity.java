@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,9 @@
 
 package com.pranavpandey.android.dynamic.support.splash;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -32,7 +34,7 @@ import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
  * customised and it also provides multiple methods to do any background work before launching
  * the main activity by running an {@link android.os.AsyncTask}.
  *
- * <p><p>Just extend this activity and implement the required functions to show a splash screen.
+ * <p><p>Just extend this activity and implement the required methods to show a splash screen.
  * It should be declared as the main activity in the projects's manifest for best performance.
  */
 public abstract class DynamicSplashActivity extends DynamicSystemActivity
@@ -82,9 +84,17 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
             mContentFragment = DynamicSplashFragment.newInstance(getLayoutRes());
         }
 
-        setStatusBarColor(getStatusBarColor());
-        ((DynamicSplashFragment) mContentFragment).setOnSplashListener(this);
+        if (mContentFragment instanceof DynamicSplashFragment) {
+            getWindow().setBackgroundDrawable(new ColorDrawable(
+                    ((DynamicSplashFragment) mContentFragment).getBackgroundColor()));
+            mCoordinatorLayout.setBackgroundColor(
+                    ((DynamicSplashFragment) mContentFragment).getBackgroundColor());
+        }
 
+        setStatusBarColor(getStatusBarColor());
+        setNavigationBarColor(getNavigationBarColor());
+
+        ((DynamicSplashFragment) mContentFragment).setOnSplashListener(this);
         getSupportFragmentManager().beginTransaction().replace(
                 R.id.ads_container, mContentFragment, ADS_STATE_SPLASH_FRAGMENT_TAG).commit();
     }
@@ -102,9 +112,16 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
     public void setStatusBarColor(@ColorInt int color) {
         super.setStatusBarColor(color);
 
+        setWindowStatusBarColor(getStatusBarColor());
+
         if (mCoordinatorLayout != null) {
             mCoordinatorLayout.setStatusBarBackgroundColor(getStatusBarColor());
         }
+    }
+
+    @Override
+    public @Nullable View getEdgeToEdgeView() {
+        return findViewById(R.id.ads_container);
     }
 
     @Override
@@ -120,6 +137,16 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        if (!isChangingConfigurations() && ADS_SPLASH_MAGIC && mContentFragment != null) {
+            ((DynamicSplashFragment) mContentFragment).setOnSplashListener(this);
+            ((DynamicSplashFragment) mContentFragment).show();
+        }
+    }
+
+    @Override
     public void onPause() {
         if (mContentFragment != null) {
             ((DynamicSplashFragment) mContentFragment).setOnSplashListener(null);
@@ -129,15 +156,5 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
             }
         }
         super.onPause();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        if (!isChangingConfigurations() && ADS_SPLASH_MAGIC && mContentFragment != null) {
-            ((DynamicSplashFragment) mContentFragment).setOnSplashListener(this);
-            ((DynamicSplashFragment) mContentFragment).show();
-        }
     }
 }

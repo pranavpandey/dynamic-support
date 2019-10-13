@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.adapter.DynamicSpinnerChoiceAdapter;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A simple {@link PopupWindow} to display a list of items. It will be used internally by the
@@ -101,6 +102,7 @@ public class DynamicArrayPopup extends DynamicPopup {
 
         if (mTitle != null) {
             mHeaderView = new DynamicHeader(getAnchor().getContext());
+            ((DynamicHeader) mHeaderView).setColorType(Theme.ColorType.PRIMARY);
             ((DynamicHeader) mHeaderView).setTitle(mTitle);
             ((DynamicHeader) mHeaderView).setFillSpace(true);
         }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
@@ -25,10 +26,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
+import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
+
 /**
  * A fixed DrawerLayout when in persistent or locked open state.
  */
-public class DynamicDrawerLayout extends DrawerLayout {
+public class DynamicDrawerLayout extends DrawerLayout implements WindowInsetsWidget {
 
     /**
      * Boolean to disallow the intercept if the drawer is in locked state.
@@ -36,16 +41,44 @@ public class DynamicDrawerLayout extends DrawerLayout {
     private boolean mDisallowIntercept;
 
     public DynamicDrawerLayout(@NonNull Context context) {
-        super(context);
+        this(context, null);
     }
 
     public DynamicDrawerLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+
+        loadFromAttributes(attrs);
     }
 
     public DynamicDrawerLayout(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
+        loadFromAttributes(attrs);
+    }
+
+    @Override
+    public void loadFromAttributes(@Nullable AttributeSet attrs) {
+        TypedArray a = getContext().obtainStyledAttributes(
+                attrs, new int[] { R.attr.ads_windowInsets});
+
+        try {
+            if (attrs != null && a.getBoolean(0, WidgetDefaults.ADS_WINDOW_INSETS)) {
+                applyWindowInsets();
+            }
+        } finally {
+            a.recycle();
+        }
+
+        initialize();
+    }
+
+    @Override
+    public void initialize() { }
+
+    @Override
+    public void applyWindowInsets() {
+        DynamicViewUtils.applyWindowInsetsHorizontal(this, false);
     }
 
     @Override

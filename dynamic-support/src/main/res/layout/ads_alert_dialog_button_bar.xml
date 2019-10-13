@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Copyright 2018 Pranav Pandey
+    Copyright 2019 Pranav Pandey
     Copyright 2014 The Android Open Source Project
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,8 +18,8 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/buttonPanel"
     style="?attr/buttonBarStyle"
+    android:id="@+id/buttonPanel"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fillViewport="true"
@@ -37,27 +37,27 @@
         android:paddingTop="4dp">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-            android:id="@android:id/button3"
             style="?attr/buttonBarNeutralButtonStyle"
+            android:id="@android:id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <androidx.legacy.widget.Space
+        <Space
             android:id="@+id/spacer"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1.0"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-            android:id="@android:id/button2"
             style="?attr/buttonBarNegativeButtonStyle"
+            android:id="@android:id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-            android:id="@android:id/button1"
             style="?attr/buttonBarPositiveButtonStyle"
+            android:id="@android:id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

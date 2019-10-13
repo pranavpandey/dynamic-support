@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,9 +34,11 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
 import com.pranavpandey.android.dynamic.support.popup.DynamicPopup;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorPalette;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
+import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
+import com.pranavpandey.android.dynamic.theme.Theme;
+import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 import java.util.Arrays;
 
@@ -77,6 +79,11 @@ public class DynamicColorPopup extends DynamicPopup {
      * The default color to be shown in footer.
      */
     private @ColorInt int mDefaultColor;
+
+    /**
+     * The recent color to be shown in footer.
+     */
+    private @ColorInt int mRecentColor;
 
     /**
      * The previous color.
@@ -122,8 +129,8 @@ public class DynamicColorPopup extends DynamicPopup {
         this.mAnchor = anchor;
         this.mEntries = entries;
         this.mDynamicColorListener = dynamicColorListener;
-        this.mDefaultColor = DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE;
-        this.mSelectedColor = DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE;
+        this.mDefaultColor = WidgetDefaults.ADS_COLOR_UNKNOWN;
+        this.mSelectedColor = WidgetDefaults.ADS_COLOR_UNKNOWN;
         this.mColorShape = DynamicColorShape.CIRCLE;
     }
 
@@ -136,15 +143,18 @@ public class DynamicColorPopup extends DynamicPopup {
                 R.layout.ads_color_picker_popup_footer,
                 (ViewGroup) getAnchor().getRootView(), false);
 
+        this.mRecentColor = DynamicPickerUtils.getRecentColor();
+
         if (getTitle() != null) {
             mHeaderView = new DynamicHeader(getAnchor().getContext());
+            ((DynamicHeader) mHeaderView).setColorType(Theme.ColorType.PRIMARY);
             ((DynamicHeader) mHeaderView).setTitle(mTitle);
             ((DynamicHeader) mHeaderView).setFillSpace(true);
         }
 
         final GridView gridView = mView.findViewById(R.id.ads_color_picker_presets);
 
-        if (mSelectedColor == DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE
+        if (mSelectedColor == WidgetDefaults.ADS_COLOR_UNKNOWN
                 || Arrays.asList(mEntries).contains(mSelectedColor)) {
             mFooterView.findViewById(R.id.ads_color_picker_popup_footer_image)
                     .setVisibility(View.VISIBLE);
@@ -153,10 +163,23 @@ public class DynamicColorPopup extends DynamicPopup {
                     R.id.ads_color_picker_popup_footer_view), mSelectedColor);
         }
 
-        if (mDefaultColor != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE
+        if (mDefaultColor != WidgetDefaults.ADS_COLOR_UNKNOWN
                 && mDefaultColor != mSelectedColor) {
             setColorView((DynamicColorView) mFooterView.findViewById(
                     R.id.ads_color_picker_popup_footer_view_default), mDefaultColor);
+        }
+
+        if (mRecentColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
+            if (!mAlpha) {
+                mRecentColor = DynamicColorUtils.removeAlpha(mRecentColor);
+            }
+
+            if (mRecentColor != mDefaultColor && mRecentColor != mSelectedColor){
+                mFooterView.findViewById(R.id.ads_color_picker_popup_footer_recent)
+                        .setVisibility(View.VISIBLE);
+                setColorView((DynamicColorView) mFooterView.findViewById(
+                        R.id.ads_color_picker_popup_footer_view_recent), mRecentColor);
+            }
         }
 
         mFooterView.findViewById(R.id.ads_color_picker_popup_footer)
@@ -201,6 +224,7 @@ public class DynamicColorPopup extends DynamicPopup {
                     @Override
                     public void onColorSelected(@Nullable String tag, int position, int color) {
                         getPopupWindow().dismiss();
+                        DynamicPickerUtils.setRecentColor(color);
 
                         if (mDynamicColorListener != null) {
                             mDynamicColorListener.onColorSelected(tag, position, color);
@@ -219,29 +243,24 @@ public class DynamicColorPopup extends DynamicPopup {
      * @param color The color to be applied.
      */
     private void setColorView(final @NonNull DynamicColorView colorView,
-                              final @ColorInt int color) {
+            final @ColorInt int color) {
         colorView.setVisibility(View.VISIBLE);
         colorView.setColorShape(mColorShape);
         colorView.setSelected(color == mSelectedColor);
         colorView.setColor(color);
 
+        colorView.setTooltip();
         colorView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 colorView.setSelected(true);
                 getPopupWindow().dismiss();
+                DynamicPickerUtils.setRecentColor(colorView.getColor());
 
                 if (mDynamicColorListener != null) {
                     mDynamicColorListener.onColorSelected(
                             null, 0, colorView.getColor());
                 }
-            }
-        });
-        colorView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                colorView.showHint();
-                return true;
             }
         });
     }

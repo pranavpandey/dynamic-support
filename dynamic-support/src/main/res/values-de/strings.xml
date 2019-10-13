@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -35,6 +35,7 @@
     <string name="ads_widgets">Widgets</string>
     <string name="ads_instructions">Anleitung</string>
     <string name="ads_tutorial">Tutorial</string>
+    <string name="ads_product_tour">Produkttour</string>
     <string name="ads_troubleshoot">Problembehandlung</string>
     <string name="ads_about">Über</string>
     <string name="ads_overview">Übersicht</string>
@@ -46,11 +47,13 @@
     <string name="ads_i_got_it">OK, verstanden</string>
     <string name="ads_not_now">Nicht jetzt</string>
     <string name="ads_yes_in">Ja, bin dabei</string>
+    <string name="ads_more">Mehr</string>
     <string name="ads_more_info">Mehr Info</string>
     <string name="ads_select">Auswählen</string>
     <string name="ads_copy">Kopieren</string>
     <string name="ads_save">Speichern</string>
     <string name="ads_load">Laden</string>
+    <string name="ads_file">Datei</string>
     <string name="ads_create">Erstellen</string>
     <string name="ads_previous">Zurück</string>
     <string name="ads_next">Weiter</string>
@@ -143,13 +146,13 @@
     <string name="ads_backup_modify">Bearbeiten</string>
     <string name="ads_backup_modify_desc">Wähle eine Sicherung zum Bearbeiten.</string>
     <string name="ads_backup_restore_done">Sicherung wurde erfolgreich wiederhergestellt</string>
-    <string name="ads_backup_restore_error">Sicherung kann nicht wiederhergestellt werden</string>
+    <string name="ads_backup_restore_error">Sicherung kann nicht wiederhergestellt werden.</string>
     <string name="ads_backup_not_found">Es wurde keine Sicherung gefunden.</string>
     <string name="ads_backup_modify_complete">Sicherung wurde erfolgreich bearbeitet</string>
     <string name="ads_backup_delete_all">Alle löschen</string>
     <string name="ads_backup_delete_all_title">Alle Sicherungen löschen</string>
     <string name="ads_backup_delete_all_desc">Dies wird alle Sicherungen, welche im App-Speicher gespeichert wurden, löschen. Möchtest du fortfahren?</string>
-    <string name="ads_backup_delete_all_done">Alle Sicherungen wurden erfolgreich gelöscht</string>
+    <string name="ads_backup_delete_all_done">Alle Sicherungen wurden erfolgreich gelöscht.</string>
     <string name="ads_backup_import">Importieren</string>
     <string name="ads_backup_import_title">Sicherung importieren</string>
     <string name="ads_backup_import_summary">Von einem früheren App-Status starten.</string>
@@ -188,8 +191,11 @@
     <string name="ads_theme_color_accent">Akzentfarbe</string>
     <string name="ads_theme_color_secondary">Sekundärefarbe</string>
     <string name="ads_theme_color_accent_summary">In sekundären Elementen genutzte Farbe</string>
+    <string name="ads_theme_color_surface">Oberflächenfarbe</string>
     <string name="ads_theme_color_tint">Tönungsfarbe</string>
     <string name="ads_theme_color_inverse">Inversfarbe</string>
+    <string name="ads_theme_font_scale">Schriftgröße</string>
+    <string name="ads_theme_font_scale_summary">Skalierungsfaktor, um den Text zu verkleinern oder zu vergrößern.</string>
     <string name="ads_theme_corner_size">Eckgröße</string>
     <string name="ads_theme_corner_size_summary">Eckenradius des App.</string>
     <string name="ads_theme_background_aware">Hintergrundberechnung</string>
@@ -203,11 +209,11 @@
     <string name="ads_theme_app_night_summary">Stil der App zur Nacht.</string>
     <string name="ads_theme_app_day_night_desc">Dies wird nur funktionieren, wenn das automatische Thema ausgewählt ist.</string>
     <string name="ads_theme_toast">Toast-Nachricht Thema</string>
-    <string name="ads_theme_toast_summary">Zeige Toast-Nachrichten entsprechend der Primärfarbe.</string>
+    <string name="ads_theme_toast_summary">Zeige Toast-Nachrichten entsprechend der Akzentfarbe.</string>
     <string name="ads_theme_toast_summary_unchecked">Zeige standard System-Toast-Nachrichten.</string>
     <string name="ads_theme_navigation_bar">Thema der Navigationsleiste</string>
-    <string name="ads_theme_navigation_bar_summary">Zeige Navigationsleiste entsprechend der Primärfarbe.</string>
-    <string name="ads_theme_navigation_bar_summary_unchecked">Zeige schwarze Navigationsleiste.</string>
+    <string name="ads_theme_navigation_bar_summary">Navigationsleiste entsprechend des App-Themas anzeigen.</string>
+    <string name="ads_theme_navigation_bar_summary_unchecked">Standard Navigationsleiste anzeigen.</string>
     <string name="ads_theme_navigation_bar_desc">Thema der Navigationsleiste wird an manchen Stellen nicht sichtbar sein, um gute Sichtbarkeit zu garantieren.</string>
     <string name="ads_theme_notification">Thema der Benachrichtigung</string>
     <string name="ads_theme_notification_summary">Farbpalette für die Benachrichtigung.</string>
@@ -222,7 +228,10 @@
     <string name="ads_theme_app_shortcuts_desc">Halte das Symbol im Launcher gedrückt, um App-Verknüpfungen zu zeigen. Deine Startseite muss dies unterstützen.</string>
     <string name="ads_theme_reset_desc">Thema wurde zum Standard zurückgesetzt.</string>
     <string name="ads_theme_import_done">Thema wurde erfolgreich importiert.</string>
+    <string name="ads_theme_export_done">Thema wurde erfolgreich exportiert.</string>
+    <string name="ads_theme_export_error">Thema kann nicht gespeichert werden.</string>
     <string name="ads_theme_copy_done">Das Thema wurde erfolgreich kopiert.</string>
+    <string name="ads_theme_format_saved">Thema gespeichert: %1$s</string>
 
     <!-- Theme -->
     <string name="ads_theme_toast_default">Standard Toast-Nachricht</string>
@@ -302,6 +311,10 @@
     <string name="ads_widget_reset_desc">Widget wurde zum Standard zurückgesetzt.</string>
     <string name="ads_widget_not_added">Es wurden keine Widgets hinzugefügt.</string>
 
+    <!-- Setup -->
+    <string name="ads_setup">Setup</string>
+    <string name="ads_setup_desc">Konfiguriere die wichtigsten Funktionen unten.</string>
+
     <!-- About and Support -->
     <string name="ads_rate">Bewerten</string>
     <string name="ads_support_contact">Kontakt</string>
@@ -331,6 +344,7 @@
     <string name="ads_info_terms_of_use_desc">Gesamte Nutzungsbedingungen dieses Produkts ansehen.</string>
     <string name="ads_info_privacy_policy_terms_desc">Datenschutz-Bestimmungen und Nutzungsbedingungen.</string>
     <string name="ads_info_apps">Mehr Apps</string>
+    <string name="ads_info_apps_desc">Probieren Sie andere Apps von mir über Google Play aus.</string>
     <string name="ads_info_gplus_desc">Trete der offiziellen Community bei, um Test-Veröffentlichungen auszuprobieren.</string>
     <string name="ads_info_facebook_desc">Like die offizielle Facebook-Seite, um die aktuellen Neuigkeiten und Updates zu erhalten.</string>
     <string name="ads_info_xda_desc">Folge dem offiziellen Unterstützungs-Forum auf XDA.</string>

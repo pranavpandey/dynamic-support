@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -110,13 +110,13 @@ class LicenseView : DynamicRecyclerViewFrame {
                         .getString(R.string.ads_license_ads))
                 .setDescription(context.getString(R.string.ads_license_copy_me_18))
                 .setLinks(resources.getStringArray(
-                        R.array.ads_license_links_apache))
+                        R.array.ads_license_links_ads))
                 .setLinksSubtitles(resources.getStringArray(
-                        R.array.ads_license_links_subtitles))
+                        R.array.ads_license_links_subtitles_ads))
                 .setLinksUrls(resources.getStringArray(
                         R.array.ads_license_links_urls_ads))
-                .setLinksIconsResId(R.array.ads_license_links_icons)
-                .setLinksColorsResId(R.array.ads_license_links_colors)
+                .setLinksIconsResId(R.array.ads_license_links_icons_ads)
+                .setLinksColorsResId(R.array.ads_license_links_colors_ads)
                 .setIconBig(DynamicResourceUtils.getDrawable(
                         context, R.drawable.ads_ic_extension)))
 

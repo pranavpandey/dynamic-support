@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -41,6 +41,6 @@
         android:layout_marginStart="@dimen/ads_page_horizontal_margin"
         android:layout_gravity="center_vertical"
         app:srcCompat="@drawable/ads_ic_check"
-        app:ads_colorType="primary" />
+        app:ads_colorType="accent" />
 
 </LinearLayout>

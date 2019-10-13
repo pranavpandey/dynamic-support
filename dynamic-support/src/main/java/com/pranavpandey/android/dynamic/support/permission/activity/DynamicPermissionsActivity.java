@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
@@ -29,6 +30,9 @@ import com.pranavpandey.android.dynamic.support.activity.DynamicActivity;
 import com.pranavpandey.android.dynamic.support.model.DynamicPermission;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.permission.fragment.DynamicPermissionsFragment;
+import com.pranavpandey.android.dynamic.support.permission.listener.DynamicPermissionsListener;
+
+import java.util.List;
 
 /**
  * Base activity to request the {@link DynamicPermission}. It will be useful to request a
@@ -43,7 +47,8 @@ import com.pranavpandey.android.dynamic.support.permission.fragment.DynamicPermi
  * {@link DynamicPermissions#requestPermissions(String[], boolean, Intent, int)} method anywhere
  * within the app.
  */
-public abstract class DynamicPermissionsActivity extends DynamicActivity {
+public abstract class DynamicPermissionsActivity extends DynamicActivity
+        implements DynamicPermissionsListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,7 +63,7 @@ public abstract class DynamicPermissionsActivity extends DynamicActivity {
 
         setAppBarBackDrop(R.drawable.ads_ic_security);
 
-        addHeader(R.layout.ads_layout_header_appbar, true);
+        addHeader(R.layout.ads_header_appbar, true);
         ((ImageView) findViewById(R.id.ads_header_toolbar_icon))
                 .setImageDrawable(getApplicationInfo().loadIcon(getPackageManager()));
         ((TextView) findViewById(R.id.ads_header_toolbar_title))
@@ -72,11 +77,6 @@ public abstract class DynamicPermissionsActivity extends DynamicActivity {
         super.onNewIntent(intent);
 
         setupFragment(intent, true);
-    }
-
-    @Override
-    protected int getContentRes() {
-        return -1;
     }
 
     @Override
@@ -109,4 +109,8 @@ public abstract class DynamicPermissionsActivity extends DynamicActivity {
                         ? R.string.ads_permissions_subtitle_single
                         : R.string.ads_permissions_subtitle);
     }
+
+    @Override
+    public void onRequestDynamicPermissionsResult(@NonNull List<DynamicPermission> permissions,
+            @NonNull String[] dangerousLeft, @NonNull List<DynamicPermission> specialLeft) { }
 }

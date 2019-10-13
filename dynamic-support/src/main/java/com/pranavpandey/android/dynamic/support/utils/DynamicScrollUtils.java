@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ import com.google.android.material.internal.NavigationMenuView;
 import com.google.android.material.navigation.NavigationView;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 import java.lang.reflect.Field;
 
@@ -160,10 +160,10 @@ public final class DynamicScrollUtils {
             return;
         }
 
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             EDGE_EFFECT_FIELD_EDGE = null;
             EDGE_EFFECT_FIELD_GLOW = null;
-        } else if (DynamicVersionUtils.isIceCreamSandwich()) {
+        } else if (DynamicSdkUtils.is14()) {
             Field edge = null;
             Field glow = null;
             for (Field field : EdgeEffect.class.getDeclaredFields()) {
@@ -550,7 +550,7 @@ public final class DynamicScrollUtils {
             return;
         }
 
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             ((EdgeEffect) edgeEffect).setColor(color);
         } else {
             try {
@@ -616,7 +616,7 @@ public final class DynamicScrollUtils {
                         VIEW_SCROLL_BAR_VERTICAL_THUMB.get(scrollBar), color);
             }
 
-            // Fix for Android P developer preview. For more info, please
+            // Fix for Android 9 developer preview. For more info, please
             // visit g.co/dev/appcompat.
 //            VIEW_SCROLL_BAR_HORIZONTAL_THUMB =
 //                    scrollBar.getClass().getDeclaredField("mHorizontalThumb");

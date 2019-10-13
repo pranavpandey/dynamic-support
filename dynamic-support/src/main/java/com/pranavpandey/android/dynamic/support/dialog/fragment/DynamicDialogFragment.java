@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
+import com.pranavpandey.android.dynamic.support.widget.DynamicButton;
 
 /**
  * Base dialog fragment to provide all the functionality of,{@link DynamicDialog} inside a
@@ -117,18 +118,18 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
             public void onShow(DialogInterface dialog) {
                 if (mButtonColor != ADS_DEFAULT_BUTTON_COLOR) {
                     if (alertDialog.getButton(AlertDialog.BUTTON_POSITIVE) != null) {
-                        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                                .setTextColor(mButtonColor);
+                        ((DynamicButton) alertDialog.getButton(
+                                AlertDialog.BUTTON_POSITIVE)).setColor(mButtonColor);
                     }
 
                     if (alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE) != null) {
-                        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                                .setTextColor(mButtonColor);
+                        ((DynamicButton) alertDialog.getButton(
+                                AlertDialog.BUTTON_NEGATIVE)).setColor(mButtonColor);
                     }
 
                     if (alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL) != null) {
-                        alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL)
-                                .setTextColor(mButtonColor);
+                        ((DynamicButton) alertDialog.getButton(
+                                AlertDialog.BUTTON_NEUTRAL)).setColor(mButtonColor);
                     }
                 }
 
@@ -177,6 +178,14 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
         if (mOnCancelListener != null) {
             mOnCancelListener.onCancel(dialog);
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (getDialog() != null && getRetainInstance()) {
+            getDialog().setDismissMessage(null);
+        }
+        super.onDestroyView();
     }
 
     /**
@@ -411,9 +420,19 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
      * Show this dialog fragment and attach it to the supplied activity.
      *
      * @param fragmentActivity The fragment activity to attach this dialog fragment.
+     * @param tag The tag for this fragment.
+     */
+    public void showDialog(@NonNull FragmentActivity fragmentActivity, @Nullable String tag) {
+        show(fragmentActivity.getSupportFragmentManager(), tag);
+    }
+
+    /**
+     * Show this dialog fragment and attach it to the supplied activity.
+     *
+     * @param fragmentActivity The fragment activity to attach this dialog fragment.
      */
     public void showDialog(@NonNull FragmentActivity fragmentActivity) {
-        show(fragmentActivity.getSupportFragmentManager(), getClass().getName());
+        showDialog(fragmentActivity, getClass().getName());
     }
 
     /**

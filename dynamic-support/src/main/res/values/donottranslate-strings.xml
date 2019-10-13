@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@
     <!-- Labels -->
     <string name="ads_yes">@android:string/yes</string>
     <string name="ads_cancel">@android:string/cancel</string>
+    <string name="ads_unit_percent">%</string>
 
     <!-- Locales -->
     <string name="ads_locale_system">@string/ads_language_system</string>
@@ -38,6 +39,8 @@
     <string name="ads_locale_de_value">de</string>
     <string name="ads_locale_es">Español</string>
     <string name="ads_locale_es_value">es</string>
+    <string name="ads_locale_hi">हिंदी</string>
+    <string name="ads_locale_hi_value">hi</string>
     <string name="ads_locale_in">Indonesia</string>
     <string name="ads_locale_in_value">in</string>
     <string name="ads_locale_it">Italiano</string>
@@ -74,6 +77,7 @@
     <string name="ads_info_github">GitHub</string>
     <string name="ads_info_linkedin">LinkedIn</string>
     <string name="ads_info_twitter">Twitter</string>
+    <string name="ads_info_discord">Discord</string>
 
     <!-- Licenses -->
     <string name="ads_license_android">Android Compat Support Library
@@ -83,13 +87,17 @@
         \nAndroid Core Utils Support Library
         \nAndroid Design Support Library
         \nAndroid Fragments Support Library
+        \nAndroid Jetpack Components
         \nAndroidX Extension Libraries
         \nMaterial Components for Android</string>
     <string name="ads_license_sas">Small App Support</string>
     <string name="ads_license_ads_modules">Dynamic Utils
         \nDynamic Toasts
         \nDynamic Engine</string>
-    <string name="ads_license_ads">Dynamic Support</string>
+    <string name="ads_license_ads">Dynamic Support
+        \nDynamic Theme
+        \nDynamic Locale
+        \nDynamic Preferences</string>
     <string name="ads_license_gson_plaid">Gson
         \nPlaid</string>
     <string name="ads_license_copy_android_google">&#169; 2005&#8211;2018 The Android Open Source Project</string>
@@ -97,8 +105,8 @@
         \n&#169; 2015 Google, Inc.</string>
     <string name="ads_license_copy_google_15">&#169; 2015 Google, Inc.</string>
     <string name="ads_license_copy_me_16">&#169; 2016 Pranav Pandey</string>
-    <string name="ads_license_copy_me_17">&#169; 2017 Pranav Pandey</string>
-    <string name="ads_license_copy_me_18">&#169; 2018 Pranav Pandey</string>
+    <string name="ads_license_copy_me_17">&#169; 2017&#8211;2019 Pranav Pandey</string>
+    <string name="ads_license_copy_me_18">&#169; 2018&#8211;2019 Pranav Pandey</string>
     <string name="ads_license_apache">Apache 2.0</string>
 
 </resources>

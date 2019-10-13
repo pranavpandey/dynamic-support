@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ package com.pranavpandey.android.dynamic.support.tutorial.activity;
 
 import android.animation.ArgbEvaluator;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 
 import androidx.annotation.ColorInt;
@@ -31,7 +30,6 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
 import com.pranavpandey.android.dynamic.support.listener.DynamicWindowResolver;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.adapter.DynamicTutorialsAdapter;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
@@ -41,8 +39,8 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicImageButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator;
 import com.pranavpandey.android.dynamic.support.widget.DynamicViewPager;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
-import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
-import com.pranavpandey.android.dynamic.toasts.DynamicHint;
+import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 import java.util.ArrayList;
@@ -139,6 +137,7 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
             public void onPageSelected(int position) {
                 if (mAdapter != null && mAdapter.getTutorial(position) != null) {
                     mAdapter.getTutorial(position).onPageSelected(position);
+                    setColor(position, mAdapter.getTutorial(position).getBackgroundColor());
                 }
             }
 
@@ -160,15 +159,6 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
                 }
             }
         });
-        mActionPrevious.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                DynamicHint.show(v, DynamicHint.make(DynamicTheme.getInstance().getContext(),
-                        v.getContentDescription(), mActionCustom.getCurrentTextColor(),
-                        ((DynamicWidget) v).getColor()));
-                return true;
-            }
-        });
 
         mActionNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,15 +168,6 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
                 } else {
                     DynamicTutorialActivity.this.finish();
                 }
-            }
-        });
-        mActionNext.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                DynamicHint.show(v, DynamicHint.make(DynamicTheme.getInstance().getContext(),
-                        v.getContentDescription(), mActionCustom.getCurrentTextColor(),
-                        ((DynamicWidget) v).getColor()));
-                return true;
             }
         });
 
@@ -205,6 +186,25 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
         super.setStatusBarColor(color);
 
         setWindowStatusBarColor(getStatusBarColor());
+    }
+
+    @Override
+    public @Nullable View getEdgeToEdgeView() {
+        return mCoordinatorLayout;
+    }
+
+    @Override
+    public boolean isApplyEdgeToEdgeInsets() {
+        return false;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (mViewPager != null) {
+            setTutorials();
+        }
     }
 
     /**
@@ -286,8 +286,11 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
         setNavigationBarColor(systemUIColor);
         mCoordinatorLayout.setStatusBarBackgroundColor(getStatusBarColor());
         mCoordinatorLayout.setBackgroundColor(color);
-
         mViewPager.setColor(color);
+
+        mActionPrevious.setContrastWithColor(color);
+        mActionNext.setContrastWithColor(color);
+        mActionCustom.setContrastWithColor(color);
         mActionPrevious.setColor(tintColor);
         mActionNext.setColor(tintColor);
         mActionCustom.setColor(tintColor);
@@ -317,6 +320,11 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
                     this, R.drawable.ads_ic_check));
             mActionNext.setContentDescription(getString(R.string.ads_finish));
         }
+
+        DynamicTooltip.set(mActionPrevious, tintColor, color,
+                mActionPrevious.getContentDescription());
+        DynamicTooltip.set(mActionNext, tintColor, color,
+                mActionNext.getContentDescription());
     }
 
     /**
@@ -345,7 +353,7 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
      */
     protected void setAction(final @Nullable String text,
             final @Nullable View.OnClickListener onClickListener) {
-        new Handler().post(new Runnable() {
+        mViewPager.post(new Runnable() {
             @Override
             public void run() {
                 if (onClickListener != null) {

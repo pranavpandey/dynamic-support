@@ -35,6 +35,7 @@
     <string name="ads_widgets">Widgets</string>
     <string name="ads_instructions">Instrucciones</string>
     <string name="ads_tutorial">Tutorial</string>
+    <string name="ads_product_tour">Visita guiada del producto</string>
     <string name="ads_troubleshoot">Solucionar problemas</string>
     <string name="ads_about">Acerca de</string>
     <string name="ads_overview">Control</string>
@@ -46,11 +47,13 @@
     <string name="ads_i_got_it">Entendido</string>
     <string name="ads_not_now">No por ahora</string>
     <string name="ads_yes_in">Sí, acepto</string>
+    <string name="ads_more">Más</string>
     <string name="ads_more_info">Más información</string>
     <string name="ads_select">Seleccionar</string>
     <string name="ads_copy">Dupdo</string>
     <string name="ads_save">Guardar</string>
     <string name="ads_load">Cargar</string>
+    <string name="ads_file">Archivar</string>
     <string name="ads_create">Crear</string>
     <string name="ads_previous">Anterior</string>
     <string name="ads_next">Siguiente</string>
@@ -143,13 +146,13 @@
     <string name="ads_backup_modify">Modificar</string>
     <string name="ads_backup_modify_desc">Elegir un respaldo para modificar.</string>
     <string name="ads_backup_restore_done">El respaldo se creó exitosamente</string>
-    <string name="ads_backup_restore_error">No se pudo restaurar el respaldo</string>
+    <string name="ads_backup_restore_error">No se pudo restaurar el respaldo.</string>
     <string name="ads_backup_not_found">No se encontró ningún respaldo.</string>
     <string name="ads_backup_modify_complete">El respaldo se modificó exitosamente</string>
     <string name="ads_backup_delete_all">Eliminar todo</string>
     <string name="ads_backup_delete_all_title">Eliminar todos los respaldos</string>
     <string name="ads_backup_delete_all_desc">Esto eliminará todos los respaldos guardados en el almacenamiento de la aplicación. ¿Continuar?</string>
-    <string name="ads_backup_delete_all_done">Todos los respaldos se eliminaron exitosamente</string>
+    <string name="ads_backup_delete_all_done">Todos los respaldos se eliminaron exitosamente.</string>
     <string name="ads_backup_import">Importar</string>
     <string name="ads_backup_import_title">Importar respaldo</string>
     <string name="ads_backup_import_summary">Iniciar desde un estado previo de la aplicación</string>
@@ -188,8 +191,11 @@
     <string name="ads_theme_color_accent">Color de énfasis</string>
     <string name="ads_theme_color_secondary">Color secundario</string>
     <string name="ads_theme_color_accent_summary">Color usado por los elementos secundarios.</string>
+    <string name="ads_theme_color_surface">Color de superficie</string>
     <string name="ads_theme_color_tint">Tinte de color</string>
     <string name="ads_theme_color_inverse">Inverso de color</string>
+    <string name="ads_theme_font_scale">Escala de fuente</string>
+    <string name="ads_theme_font_scale_summary">Factor de escala para hacer el texto más pequeño o más grande.</string>
     <string name="ads_theme_corner_size">Tamaño de la esquina</string>
     <string name="ads_theme_corner_size_summary">Radio de la esquina del aplicación.</string>
     <string name="ads_theme_background_aware">Color automático</string>
@@ -203,11 +209,11 @@
     <string name="ads_theme_app_night_summary">Estilo de la aplicación durante la noche.</string>
     <string name="ads_theme_app_day_night_desc">Esto funcionará únicamente cuando se aplique el tema auto.</string>
     <string name="ads_theme_toast">Tema de los mensajes toast</string>
-    <string name="ads_theme_toast_summary">Mostrar los mensajes toast coloreados según el color primario de la aplicación.</string>
+    <string name="ads_theme_toast_summary">Mostrar los mensajes toast coloreados según el color acento de la aplicación.</string>
     <string name="ads_theme_toast_summary_unchecked">Mostrar los mensajes toast con el estilo del sistema.</string>
     <string name="ads_theme_navigation_bar">Tema de la barra de navegación</string>
-    <string name="ads_theme_navigation_bar_summary">Mostrar la barra de navegación coloreada según el color primario de la aplicación.</string>
-    <string name="ads_theme_navigation_bar_summary_unchecked">Mostrar la barra de navegación de color negro.</string>
+    <string name="ads_theme_navigation_bar_summary">Muestra la barra de navegación de color según el tema de la aplicación.</string>
+    <string name="ads_theme_navigation_bar_summary_unchecked">Mostrar la barra de navegación predeterminada.</string>
     <string name="ads_theme_navigation_bar_desc">El tema de la barra de navegación no será visible en algunos lugares para una mejor experiencia visual.</string>
     <string name="ads_theme_notification">Tema de la notificación</string>
     <string name="ads_theme_notification_summary">Paleta de colores para la notificación.</string>
@@ -222,7 +228,10 @@
     <string name="ads_theme_app_shortcuts_desc">Mantén presionado el ícono del launcher para mostrar los atajos de la aplicación. Se requiere un launcher con soporte para atajos.</string>
     <string name="ads_theme_reset_desc">El tema se ha restablecido a su configuración por defecto.</string>
     <string name="ads_theme_import_done">El tema ha sido importado con éxito.</string>
+    <string name="ads_theme_export_done">El tema ha sido exportado con éxito.</string>
+    <string name="ads_theme_export_error">No se puede guardar el tema.</string>
     <string name="ads_theme_copy_done">El tema ha sido copiado con éxito.</string>
+    <string name="ads_theme_format_saved">Tema guardado: %1$s</string>
 
     <!-- Theme -->
     <string name="ads_theme_toast_default">Mensaje toast por defecto</string>
@@ -302,6 +311,10 @@
     <string name="ads_widget_reset_desc">El widget se ha restablecido a su configuración por defecto.</string>
     <string name="ads_widget_not_added">No se han añadido widgets.</string>
 
+    <!-- Setup -->
+    <string name="ads_setup">Configurador (Setup)</string>
+    <string name="ads_setup_desc">Configurar las características importantes abajo.</string>
+
     <!-- About and Support -->
     <string name="ads_rate">Calificar</string>
     <string name="ads_support_contact">Contacto</string>
@@ -331,6 +344,7 @@
     <string name="ads_info_terms_of_use_desc">Ver los términos de uso de este producto.</string>
     <string name="ads_info_privacy_policy_terms_desc">Política de privacidad y términos de uso.</string>
     <string name="ads_info_apps">Más aplicaciones</string>
+    <string name="ads_info_apps_desc">Prueba otras aplicaciones por mí a través de Google Play.</string>
     <string name="ads_info_gplus_desc">Únete a la comunidad oficial para probar las versiones de prueba.</string>
     <string name="ads_info_facebook_desc">Sigue la página oficial para recibir las últimas noticias y actualizaciones.</string>
     <string name="ads_info_xda_desc">Sigue el foro de soporte oficial de XDA.</string>

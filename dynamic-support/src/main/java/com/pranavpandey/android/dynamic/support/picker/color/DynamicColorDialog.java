@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ import android.view.View;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
@@ -37,6 +38,11 @@ import com.pranavpandey.android.dynamic.support.picker.DynamicPickerType;
  * but can be used by the other views also.
  */
 public class DynamicColorDialog extends DynamicDialogFragment {
+
+    /**
+     * Tag for this dialog fragment.
+     */
+    public static final String TAG = "DynamicColorDialog";
 
     /**
      * State key to save the previously selected color so that it can be restored later.
@@ -157,7 +163,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) { }
                 })
-                .setPositiveButton(R.string.ads_select,
+                .setPositiveButton(R.string.ads_picker_pick,
                         new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -232,10 +238,18 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putInt(ADS_STATE_PICKER_PREVIOUS_COLOR, mDynamicColorPicker.getPreviousColor());
-        outState.putInt(ADS_STATE_PICKER_COLOR, mDynamicColorPicker.getSelectedColor());
-        outState.putInt(ADS_STATE_PICKER_TYPE, mDynamicColorPicker.getType());
-        outState.putInt(ADS_STATE_PICKER_CONTROL, mDynamicColorPicker.getControl());
+        if (mDynamicColorPicker != null) {
+            outState.putInt(ADS_STATE_PICKER_PREVIOUS_COLOR,
+                    mDynamicColorPicker.getPreviousColor());
+            outState.putInt(ADS_STATE_PICKER_COLOR, mDynamicColorPicker.getSelectedColor());
+            outState.putInt(ADS_STATE_PICKER_TYPE, mDynamicColorPicker.getType());
+            outState.putInt(ADS_STATE_PICKER_CONTROL, mDynamicColorPicker.getControl());
+        }
+    }
+
+    @Override
+    public void showDialog(@NonNull FragmentActivity fragmentActivity) {
+        showDialog(fragmentActivity, TAG);
     }
 
     /**

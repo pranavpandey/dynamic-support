@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -35,6 +35,7 @@
     <string name="ads_widgets">Widget</string>
     <string name="ads_instructions">Instruksi</string>
     <string name="ads_tutorial">Panduan</string>
+    <string name="ads_product_tour">Tur produk</string>
     <string name="ads_troubleshoot">Pecahkan masalah</string>
     <string name="ads_about">Tentang</string>
     <string name="ads_overview">Ikhtisar</string>
@@ -46,11 +47,13 @@
     <string name="ads_i_got_it">Oke, saya paham</string>
     <string name="ads_not_now">Lain kali</string>
     <string name="ads_yes_in">Ya, saya mau</string>
+    <string name="ads_more">Lebih</string>
     <string name="ads_more_info">Info lebih lanjut</string>
     <string name="ads_select">Pilih</string>
     <string name="ads_copy">Salin</string>
     <string name="ads_save">Simpan</string>
     <string name="ads_load">Muat</string>
+    <string name="ads_file">File</string>
     <string name="ads_create">Buat</string>
     <string name="ads_previous">Sebelumnya</string>
     <string name="ads_next">Setelahnya</string>
@@ -143,7 +146,7 @@
     <string name="ads_backup_modify">Rubah</string>
     <string name="ads_backup_modify_desc">Pilih cadangan untuk dirubah.</string>
     <string name="ads_backup_restore_done">Cadangan telah sukses dirubah</string>
-    <string name="ads_backup_restore_error">Tidak dapat memulihkan cadangan</string>
+    <string name="ads_backup_restore_error">Tidak dapat memulihkan cadangan.</string>
     <string name="ads_backup_not_found">Tidak ada cadangan yang ditemukan.</string>
     <string name="ads_backup_modify_complete">Cadangan telah sukses dirubah</string>
     <string name="ads_backup_delete_all">Hapus semua</string>
@@ -188,8 +191,11 @@
     <string name="ads_theme_color_accent">Warna aksen</string>
     <string name="ads_theme_color_secondary">Warna sekunder</string>
     <string name="ads_theme_color_accent_summary">Warna yang digunakan elemen sekunder.</string>
+    <string name="ads_theme_color_surface">Warna permukaan</string>
     <string name="ads_theme_color_tint">Warna tint</string>
     <string name="ads_theme_color_inverse">Warna terbalik</string>
+    <string name="ads_theme_font_scale">Skala font</string>
+    <string name="ads_theme_font_scale_summary">Faktor penskalaan untuk membuat teks lebih kecil atau lebih besar.</string>
     <string name="ads_theme_corner_size">Ukuran pojok</string>
     <string name="ads_theme_corner_size_summary">Radius pojok aplikasi.</string>
     <string name="ads_theme_background_aware">Sadar latar belakang</string>
@@ -203,11 +209,11 @@
     <string name="ads_theme_app_night_summary">Gaya aplikasi ketika malam.</string>
     <string name="ads_theme_app_day_night_desc">Ini hanya akan bekerja ketika tema otomatis diberlakukan.</string>
     <string name="ads_theme_toast">Tema pesan toast</string>
-    <string name="ads_theme_toast_summary">Tampilkan pesan toast bertema berdasarkan warna primer aplikasi.</string>
+    <string name="ads_theme_toast_summary">Tampilkan pesan toast bertema berdasarkan warna aksen aplikasi.</string>
     <string name="ads_theme_toast_summary_unchecked">Tampilkan pesan toast default oleh sistem.</string>
     <string name="ads_theme_navigation_bar">Tema bar navigasi</string>
-    <string name="ads_theme_navigation_bar_summary">Tampilkan navigasi bar bertema berdasarkan warna primer aplikasi.</string>
-    <string name="ads_theme_navigation_bar_summary_unchecked">Tampilkan bar navigasi hitam.</string>
+    <string name="ads_theme_navigation_bar_summary">Tampilkan bilah navigasi berdasarkan tema aplikasi.</string>
+    <string name="ads_theme_navigation_bar_summary_unchecked">Tampilkan bilah navigasi default.</string>
     <string name="ads_theme_navigation_bar_desc">Tema bar navigasi mungkin tidak terlihat pada beberapa tempat untuk menampilkan pengalaman visual terbaik.</string>
     <string name="ads_theme_notification">Tema notifikasi</string>
     <string name="ads_theme_notification_summary">Palet warna untuk notifikasi.</string>
@@ -222,7 +228,10 @@
     <string name="ads_theme_app_shortcuts_desc">Tekan lama pada ikon launcher untuk menunjukkan pintasan aplikasi, membutuhkan launcher yang mendukung ini.</string>
     <string name="ads_theme_reset_desc">Tema sudah direset ke default.</string>
     <string name="ads_theme_import_done">Tema telah sukses di import.</string>
+    <string name="ads_theme_export_done">Tema telah sukses di export.</string>
+    <string name="ads_theme_export_error">Tidak dapat menyimpan tema.</string>
     <string name="ads_theme_copy_done">Tema telah berhasil disalin.</string>
+    <string name="ads_theme_format_saved">Tema disimpan: %1$s</string>
 
     <!-- Theme -->
     <string name="ads_theme_toast_default">Pesan toast default</string>
@@ -302,6 +311,10 @@
     <string name="ads_widget_reset_desc">Widget telah direset ke default.</string>
     <string name="ads_widget_not_added">Tidak ada widget yang ditambahkan.</string>
 
+    <!-- Setup -->
+    <string name="ads_setup">Pengaturan</string>
+    <string name="ads_setup_desc">Atur fitur penting di bawah.</string>
+
     <!-- About and Support -->
     <string name="ads_rate">Beri rating</string>
     <string name="ads_support_contact">Kontak</string>
@@ -331,6 +344,7 @@
     <string name="ads_info_terms_of_use_desc">Tampilkan syarat penggunaan produk ini secara lengkap.</string>
     <string name="ads_info_privacy_policy_terms_desc">Kebijakan pribadi dan syarat penggunaan.</string>
     <string name="ads_info_apps">Aplikasi lain</string>
+    <string name="ads_info_apps_desc">Coba aplikasi lain oleh saya melalui Google Play.</string>
     <string name="ads_info_gplus_desc">Gabung dengan komunitas resmi untuk mencoba versi tes.</string>
     <string name="ads_info_facebook_desc">Like laman resmi untuk mendapatkan berita dan pemberitahuan terbaru.</string>
     <string name="ads_info_xda_desc">ikuti forum dukungan resmi di XDA.</string>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,9 +38,8 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.locale.DynamicLocaleUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
@@ -105,8 +104,9 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
 
         mDrawer.setDrawerElevation(DynamicUnitUtils.convertDpToPixels(8));
 
-        setStatusBarColor(getStatusBarColor());
         setupDrawer();
+        setStatusBarColor(getStatusBarColor());
+        setNavigationBarColor(getNavigationBarColor());
     }
 
     @Override
@@ -118,11 +118,13 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
 
     @Override
     public void onBackPressed() {
-        if (!isPersistentDrawer() && (mDrawer.isDrawerOpen(GravityCompat.START)
-                || mDrawer.isDrawerOpen(GravityCompat.END))) {
-            closeDrawers();
-        } else {
-            super.onBackPressed();
+        if (!isFinishing()) {
+            if (!isPersistentDrawer() && (mDrawer.isDrawerOpen(GravityCompat.START)
+                    || mDrawer.isDrawerOpen(GravityCompat.END))) {
+                closeDrawers();
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 
@@ -143,6 +145,11 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
         }
     }
 
+    @Override
+    public @Nullable View getEdgeToEdgeView() {
+        return mDrawer;
+    }
+
     /**
      * Sets the action bar drawer toggle icon according to the returned value.
      *
@@ -156,6 +163,10 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
      * Initialize the navigation drawer.
      */
     private void setupDrawer() {
+        if (mDrawer == null) {
+            return;
+        }
+
         if (setActionBarDrawerToggle()) {
             mDrawerToggle = new ActionBarDrawerToggle(
                     this, mDrawer, getToolbar(), R.string.ads_navigation_drawer_open,
@@ -182,9 +193,8 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
             public void onDrawerStateChanged(int newState) { }
         });
 
+        DynamicTintUtils.setInsetForegroundColor(mNavigationView, getStatusBarColor());
         mNavigationView.setNavigationItemSelectedListener(this);
-        DynamicTintUtils.setNavigationViewScrimColor(mNavigationView, getStatusBarColor());
-
         configureDrawer();
     }
 
@@ -211,7 +221,7 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
         } else {
             if (isDrawerLocked()) {
                 mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-                mDrawer.post(new Runnable() {
+                getContentView().post(new Runnable() {
                     @Override
                     public void run() {
                         mDrawer.closeDrawers();
@@ -229,8 +239,7 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
      * @see DrawerLayout#LOCK_MODE_LOCKED_OPEN
      */
     public boolean isPersistentDrawer() {
-        return !DynamicLayoutUtils.isInMultiWindowMode(this)
-                && getResources().getBoolean(R.bool.ads_persistent_drawer);
+        return getResources().getBoolean(R.bool.ads_persistent_drawer);
     }
 
     /**
@@ -240,6 +249,16 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
      */
     public @NonNull DrawerLayout getDrawer() {
         return mDrawer;
+    }
+
+    /**
+     * Checks whether the drawer is in the open state.
+     *
+     * @return {@code true} if the drawer is in the open mode.
+     */
+    public boolean isDrawerOpen() {
+        return mDrawer.isDrawerOpen(GravityCompat.START)
+                || mDrawer.isDrawerOpen(GravityCompat.END);
     }
 
     /**
@@ -326,9 +345,9 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
         }
 
         if (!isPersistentDrawer()) {
-            ValueAnimator anim = ValueAnimator.ofFloat(startOffSet, endOffSet);
+            ValueAnimator valueAnimator = ValueAnimator.ofFloat(startOffSet, endOffSet);
 
-            anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
                     float slideOffset = (Float) valueAnimator.getAnimatedValue();
@@ -336,10 +355,9 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
                 }
             });
 
-            anim.addListener(new Animator.AnimatorListener() {
+            valueAnimator.addListener(new Animator.AnimatorListener() {
                 @Override
-                public void onAnimationStart(Animator animator) {
-                }
+                public void onAnimationStart(Animator animator) { }
 
                 @Override
                 public void onAnimationEnd(Animator animator) {
@@ -349,17 +367,15 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
                 }
 
                 @Override
-                public void onAnimationCancel(Animator animator) {
-                }
+                public void onAnimationCancel(Animator animator) { }
 
                 @Override
-                public void onAnimationRepeat(Animator animator) {
-                }
+                public void onAnimationRepeat(Animator animator) { }
             });
 
-            anim.setInterpolator(new DecelerateInterpolator());
-            anim.setDuration(350);
-            anim.start();
+            valueAnimator.setInterpolator(new DecelerateInterpolator());
+            valueAnimator.setDuration(350);
+            valueAnimator.start();
         } else {
             showDrawerToggle(false);
         }

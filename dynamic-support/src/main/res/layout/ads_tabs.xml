@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
     android:id="@+id/ads_tab_layout"
     android:layout_width="match_parent"
     android:layout_height="@dimen/ads_tab_height"
+    app:tabGravity="fill"
     app:tabMinWidth="@dimen/ads_tab_min_width"
     app:tabMode="scrollable"
     app:tabContentStart="@dimen/ads_tab_inset_start"

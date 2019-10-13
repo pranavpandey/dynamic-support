@@ -164,7 +164,7 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>,
      *
      * @return The map to hold the data binders.
      */
-    public Map<E, VB> getDataBinderMap() {
+    public @NonNull Map<E, VB> getDataBinderMap() {
         return mDataBinderMap;
     }
 

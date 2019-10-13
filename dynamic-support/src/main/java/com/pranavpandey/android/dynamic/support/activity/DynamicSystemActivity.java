@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,14 +19,18 @@ package com.pranavpandey.android.dynamic.support.activity;
 import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import androidx.annotation.ColorInt;
@@ -36,30 +40,33 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.pranavpandey.android.dynamic.locale.DynamicLocale;
+import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
-import com.pranavpandey.android.dynamic.support.locale.DynamicLocale;
-import com.pranavpandey.android.dynamic.support.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicLayoutInflater;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicWindowUtils;
 
 import java.util.Locale;
 
 /**
- * Base activity to perform all the system UI related tasks like status and navigation bar color,
- * theme, etc. It is heavily depends on the {@link DynamicTheme} which can be customised by
- * implementing the corresponding functions.
+ * Base activity to perform all the system UI related tasks like setting the status and
+ * navigation bar colors, theme, etc. It heavily depends on the {@link DynamicTheme} which can be
+ * customised by implementing the corresponding methods.
  *
- * <p><p>Just extend this activity and implement the various functions according to the need.
+ * <p><p>Just extend this activity and implement the various methods according to the need.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public abstract class DynamicSystemActivity extends AppCompatActivity implements
@@ -109,6 +116,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     private Locale mCurrentLocale;
 
     /**
+     * Saved instance state for this activity.
+     */
+    private Bundle mSavedInstanceState;
+
+    /**
      * Current status bar color.
      */
     protected @ColorInt int mStatusBarColor;
@@ -128,11 +140,6 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      */
     protected boolean mNavigationBarTheme;
 
-    /**
-     * Handler to update the theme.
-     */
-    protected Handler mHandler;
-
     @Override
     public void attachBaseContext(@NonNull Context base) {
         super.attachBaseContext(setLocale(base));
@@ -141,10 +148,10 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setDynamicTheme();
-        onCustomiseTheme();
         super.onCreate(savedInstanceState);
 
-        mHandler = new Handler();
+        mSavedInstanceState = savedInstanceState;
+
         mStatusBarColor = DynamicTheme.getInstance().get().getPrimaryColorDark();
         mNavigationBarColor = DynamicTheme.getInstance().get().getPrimaryColorDark();
 
@@ -174,9 +181,14 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     public @NonNull Context setLocale(@NonNull Context context) {
         this.mCurrentLocale = DynamicLocaleUtils.getLocale(
                 getLocale(), getDefaultLocale(context));
-        this.mContext = DynamicLocaleUtils.setLocale(context, mCurrentLocale);
 
-        return mContext;
+        return mContext = DynamicLocaleUtils.setLocale(context, mCurrentLocale, getFontScale());
+    }
+
+    @Override
+    public float getFontScale() {
+        return getDynamicTheme() != null ? getDynamicTheme().getFontScaleRelative()
+                : DynamicTheme.getInstance().getDefault().getFontScaleRelative();
     }
 
     /**
@@ -196,7 +208,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * @return The dynamic app theme for this activity.
      */
     protected @Nullable DynamicAppTheme getDynamicTheme() {
-        return null;
+        return DynamicTheme.getInstance().getApplication();
     }
 
     /**
@@ -229,6 +241,32 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     }
 
     /**
+     * Get the current locale used by this activity.
+     *
+     * @return The current locale used by this activity.
+     */
+    public @NonNull Locale getCurrentLocale() {
+        return mCurrentLocale;
+    }
+
+    /**
+     * Get the current saved instance state for this activity.
+     */
+    public @Nullable Bundle getSavedInstanceState() {
+        return mSavedInstanceState;
+    }
+
+    /**
+     * Checks whether this activity is launched from the history.
+     *
+     * @return {@code true} if this activity is launched from the history.
+     */
+    public boolean isLaunchedFromHistory() {
+        return getIntent() != null && (getIntent().getFlags()
+                & Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) != 0;
+    }
+
+    /**
      * Set the dynamic app theme and style resource for this activity.
      */
     private void setDynamicTheme() {
@@ -239,11 +277,16 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
             DynamicTheme.getInstance().attach(this,
                     getDynamicLayoutInflater()).setLocalTheme(getDynamicTheme());
         }
+
+        getWindow().setBackgroundDrawable(new ColorDrawable(
+                DynamicTheme.getInstance().get().getBackgroundColor()));
+
+        onCustomiseTheme();
     }
 
     /**
      * Sets whether the navigation bar theme should be applied for this activity.
-     * <p>It will be applied only on the Android L and above devices.
+     * <p>It will be applied only on the API 21 and above devices.
      *
      * <p><p>By default it will use the {@link Theme.ColorType#PRIMARY_DARK} color, use
      * {@link #setNavigationBarColor(int)} to set a custom color.
@@ -265,7 +308,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
 
     /**
      * Sets whether the navigation bar theme should be applied for this activity in landscape mode.
-     * <p>It will be applied only on the Android L and above devices.
+     * <p>It will be applied only on the API 21 and above devices.
      *
      * <p><p>By default it will use the {@link Theme.ColorType#PRIMARY_DARK} color, use
      * {@link #setNavigationBarColor(int)} to set a custom color.
@@ -301,29 +344,29 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * changed like update it with new colors.
      */
     protected void navigationBarThemeChange() {
-        setNavigationBarColor(getNavigationBarColor());
+        onAppThemeChange();
     }
 
     /**
      * Set the status bar color.
-     * <p>It will be applied only on the Android L and above devices.
+     * <p>It will be applied only on the API 21 and above devices.
      *
      * @param color Color to be applied on the status bar.
      */
     protected void setWindowStatusBarColor(@ColorInt int color) {
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             getWindow().setStatusBarColor(color);
         }
     }
 
     /**
      * Set the status bar color.
-     * <p>It will be applied only on the Android L and above devices.
+     * <p>It will be applied only on the API 21 and above devices.
      *
      * @param color The color to be applied.
      */
     public void setStatusBarColor(@ColorInt int color) {
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             mStatusBarColor = color;
             updateStatusBar();
         }
@@ -331,7 +374,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
 
     /**
      * Set the status bar color resource.
-     * <p>It will be applied only on the Android L and above devices.
+     * <p>It will be applied only on the API 21 and above devices.
      *
      * @param colorRes The color resource to be applied.
      */
@@ -341,10 +384,10 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
 
     /**
      * Set the translucent status bar flag, useful in case of {@link CollapsingToolbarLayout}.
-     * <p>It will be applied only on the Android L and above devices.
+     * <p>It will be applied only on the API 21 and above devices.
      */
     public void setTranslucentStatusBar() {
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
     }
@@ -357,7 +400,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     protected void updateStatusBar() {
         boolean isLightColor = !DynamicColorUtils.isColorDark(mStatusBarColor);
         if (DynamicTheme.getInstance().get().isBackgroundAware() && isLightColor) {
-            if (!DynamicVersionUtils.isMarshmallow()) {
+            if (!DynamicSdkUtils.is23()) {
                 mStatusBarColor = DynamicColorUtils.getContrastColor(
                         mStatusBarColor, ADS_DEFAULT_SYSTEM_UI_COLOR);
             }
@@ -367,14 +410,57 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     }
 
     /**
+     * Checks whether to enable edge-to-edge content.
+     * <p>Override this method to provide your own implementation.
+     *
+     * @return {@code true} to enable edge-to-edge content.
+     */
+    public boolean isEdgeToEdgeContent() {
+        return !mNavigationBarTheme && DynamicWindowUtils.isGestureNavigation(this);
+    }
+
+    /**
+     * Returns the view to apply edge-to-edge window insets.
+     *
+     * @return The view to apply edge-to-edge window insets.
+     *
+     * @see #isApplyEdgeToEdgeInsets()
+     */
+    public @Nullable View getEdgeToEdgeView() {
+        return null;
+    }
+
+    /**
+     * Returns whether to apply edge-to-edge window insets.
+     *
+     * @return {@code true} to apply edge-to-edge window insets.
+     *
+     * @see #getEdgeToEdgeView()
+     */
+    public boolean isApplyEdgeToEdgeInsets() {
+        return true;
+    }
+
+    /**
+     * Returns the bottom view to apply edge-to-edge window insets.
+     *
+     * @return The bottom view to apply edge-to-edge window insets.
+     *
+     * @see #isApplyEdgeToEdgeInsets()
+     */
+    public @Nullable View getEdgeToEdgeViewBottom() {
+        return getEdgeToEdgeView();
+    }
+
+    /**
      * Set the navigation bar color.
-     * <p>It will be applied only on the Android L and above devices.
+     * <p>It will be applied only on the API 21 and above devices.
      *
      * @param color The color to be applied.
      */
     public void setNavigationBarColor(@ColorInt int color) {
         if (DynamicTheme.getInstance().get().isBackgroundAware()
-                && !DynamicVersionUtils.isOreo()) {
+                && !DynamicSdkUtils.is26()) {
             color = DynamicColorUtils.getContrastColor(color, ADS_DEFAULT_SYSTEM_UI_COLOR);
         }
 
@@ -388,12 +474,42 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         }
 
         this.mNavigationBarColor = color;
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             this.mNavigationBarTheme = setNavigationBarTheme();
 
-            mAppliedNavigationBarColor = color = mNavigationBarTheme
-                    ? color : ADS_DEFAULT_SYSTEM_BG_COLOR;
-            getWindow().setNavigationBarColor(color);
+            if (isEdgeToEdgeContent()) {
+                if ((getWindow().getDecorView().getSystemUiVisibility()
+                        & View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
+                        != View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION) {
+                    DynamicViewUtils.setEdgeToEdge(getWindow().getDecorView(), true);
+                }
+
+                if (isApplyEdgeToEdgeInsets() && getEdgeToEdgeView() != null) {
+                    ViewCompat.setOnApplyWindowInsetsListener(getEdgeToEdgeView(),
+                            new OnApplyWindowInsetsListener() {
+                                @Override
+                                public WindowInsetsCompat onApplyWindowInsets(
+                                        View v, WindowInsetsCompat insets) {
+                                    final ViewGroup.MarginLayoutParams lp =
+                                            (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+                                    lp.topMargin = insets.getSystemWindowInsetTop();
+
+                                    v.setLayoutParams(lp);
+                                    DynamicViewUtils.applyWindowInsetsBottom(
+                                            getEdgeToEdgeViewBottom());
+
+                                    return insets.consumeSystemWindowInsets();
+                                }
+                            });
+                }
+
+                mAppliedNavigationBarColor = Color.TRANSPARENT;
+                getWindow().setNavigationBarColor(mAppliedNavigationBarColor);
+            } else {
+                mAppliedNavigationBarColor = color = mNavigationBarTheme
+                        ? color : ADS_DEFAULT_SYSTEM_BG_COLOR;
+                getWindow().setNavigationBarColor(color);
+            }
         } else {
             mAppliedNavigationBarColor = mNavigationBarColor;
         }
@@ -401,9 +517,29 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         updateNavigationBar();
     }
 
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
+
+    /**
+     * Fix for MDC-Android 1.1.0-beta01 which uses AppCompat 1.1.0.
+     * <p>https://issuetracker.google.com/issues/140602653
+     */
+    @Override
+    public void applyOverrideConfiguration(@Nullable Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(getResources().getConfiguration());
+    }
+
     /**
      * Set the navigation bar color resource.
-     * <p>It will be applied only on the Android L and above devices.
+     * <p>It will be applied only on the API 21 and above devices.
      *
      * @param colorRes The color resource to be applied.
      */
@@ -414,10 +550,10 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     /**
      * Set the translucent navigation bar flag, useful in case of to show the layout behind the
      * navigation bar.
-     * <p>It will be applied only on the Android L and above devices.
+     * <p>It will be applied only on the API 21 and above devices.
      */
     public void setTranslucentNavigationBar() {
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
@@ -475,15 +611,14 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
 
         if (!DynamicTheme.getInstance().isDynamicListener(this)) {
             setDynamicTheme();
-            onCustomiseTheme();
             setNavigationBarColor(mNavigationBarColor);
 
-            mHandler.postDelayed(mDynamicChange, DynamicTheme.DELAY_THEME_CHANGE);
+            runOnUiThread(mDynamicChange);
         }
     }
 
     /**
-     * Runnable to change dynamic theme on resume.
+     * Runnable to change the dynamic theme on resume.
      */
     private Runnable mDynamicChange = new Runnable() {
         @Override
@@ -534,19 +669,22 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void onAutoThemeChange() { }
+
+    @Override
     public void onPowerSaveModeChange(boolean powerSaveMode) { }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { }
 
     /**
-     * Update the task description on Android L and above devices to match it with the theme
+     * Update the task description on API 21 and above devices to match it with the theme
      * color.
      *
      * @param color The color to be set.
      */
     protected void updateTaskDescription(@ColorInt int color) {
-        if (DynamicVersionUtils.isLollipop()) {
+        if (DynamicSdkUtils.is21()) {
             setTaskDescription(new ActivityManager.TaskDescription(null, null,
                     DynamicColorUtils.removeAlpha(color)));
         }

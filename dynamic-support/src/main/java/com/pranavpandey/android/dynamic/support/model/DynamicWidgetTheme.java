@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,41 +27,39 @@ import androidx.annotation.StyleRes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
-import com.pranavpandey.android.dynamic.support.annotation.Exclude;
 import com.pranavpandey.android.dynamic.support.model.adapter.DynamicThemeTypeAdapter;
-import com.pranavpandey.android.dynamic.support.strategy.ExcludeStrategy;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.theme.AppWidgetTheme;
+import com.pranavpandey.android.dynamic.theme.Theme;
+import com.pranavpandey.android.dynamic.theme.annotation.Exclude;
+import com.pranavpandey.android.dynamic.theme.strategy.ExcludeStrategy;
+import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * DynamicAppTheme class to store various colors and attributes for app widget which can be
+ * An app widget theme to store various colors and attributes for app widget which can be
  * modified at runtime.
  */
-public class DynamicWidgetTheme extends DynamicAppTheme {
+public class DynamicWidgetTheme extends DynamicAppTheme
+        implements AppWidgetTheme<DynamicAppTheme> {
 
-    /**
-     * Default value for the opacity.
-     */
-    public static final int ADS_OPACITY_DEFAULT = 255;
-    
     /**
      * App widget id used by this theme.
      */
     @Exclude
-    @SerializedName(DynamicThemeUtils.NAME_WIDGET_ID)
+    @SerializedName(Theme.Key.WIDGET_ID)
     private int widgetId;
 
     /**
      * Header state used by this theme.
      */
-    @SerializedName(DynamicThemeUtils.NAME_HEADER)
+    @SerializedName(Theme.Key.HEADER)
     private @Theme.Visibility int header;
     
     /**
      * Opacity value used by this theme.
      */
-    @SerializedName(DynamicThemeUtils.NAME_OPACITY)
+    @SerializedName(Theme.Key.OPACITY)
     private int opacity;
 
     /**
@@ -71,7 +69,7 @@ public class DynamicWidgetTheme extends DynamicAppTheme {
         super();
 
         this.header = Theme.Visibility.AUTO;
-        this.opacity = ADS_OPACITY_DEFAULT;
+        this.opacity = AppWidgetTheme.OPACITY_DEFAULT;
     }
 
     /**
@@ -86,15 +84,15 @@ public class DynamicWidgetTheme extends DynamicAppTheme {
     }
 
     /**
-     * Constructor to initialize an object of this class from the dynamic string.
+     * Constructor to initialize an object of this class from the theme string.
      *
-     * @param theme The dynamic string to initialize the instance.
+     * @param theme The theme string to initialize the instance.
      */
     public DynamicWidgetTheme(@NonNull String theme) throws Exception {
         this(new GsonBuilder().setExclusionStrategies(new ExcludeStrategy())
                 .registerTypeAdapter(DynamicWidgetTheme.class,
                         new DynamicThemeTypeAdapter<DynamicWidgetTheme>()).create()
-                .fromJson(DynamicThemeUtils.formatDynamicTheme(theme), DynamicWidgetTheme.class));
+                .fromJson(DynamicThemeUtils.formatTheme(theme), DynamicWidgetTheme.class));
     }
 
     /**
@@ -106,7 +104,7 @@ public class DynamicWidgetTheme extends DynamicAppTheme {
         super(dynamicAppTheme);
 
         this.header = Theme.Visibility.AUTO;
-        this.opacity = ADS_OPACITY_DEFAULT;
+        this.opacity = AppWidgetTheme.OPACITY_DEFAULT;
     }
 
     /**
@@ -159,90 +157,51 @@ public class DynamicWidgetTheme extends DynamicAppTheme {
         dest.writeInt(opacity);
     }
 
-    /**
-     * Get the app widget id used by this theme.
-     *
-     * @return The app widget id used by this theme.
-     */
+    @Override
     public int getWidgetId() {
         return widgetId;
     }
 
-    /**
-     * Set the widget id used by this theme.
-     * 
-     * @param widgetId The widget id to be set.
-     *
-     * @return The {@link DynamicWidgetTheme} object to allow for chaining of calls to set methods.
-     */
+    @Override
     public @NonNull DynamicWidgetTheme setWidgetId(int widgetId) {
         this.widgetId = widgetId;
         
         return this;
     }
 
-    /**
-     * Get the header state used by this theme.
-     *
-     * @return The header state used by this theme.
-     */
+    @Override
     public @Theme.Visibility int getHeader() {
         return header;
     }
 
-    /**
-     * Returns the header state string used by this theme.
-     *
-     * @return The header state string used by this theme.
-     */
+    @Override
     public @NonNull @Theme.Visibility.ToString String getHeaderString() {
         return String.valueOf(header);
     }
 
-    /**
-     * Set the header state used by this theme.
-     *
-     * @param header The header state to be set.
-     *
-     * @return The {@link DynamicWidgetTheme} object to allow for chaining of calls to set methods.
-     */
+    @Override
     public @NonNull DynamicWidgetTheme setHeader(@Theme.Visibility int header) {
         this.header = header;
 
         return this;
     }
 
-    /**
-     * Set the header state used by this theme.
-     *
-     * @param header The header state to be set.
-     *
-     * @return The {@link DynamicWidgetTheme} object to allow for chaining of calls to set methods.
-     */
+    @Override
     public @NonNull DynamicWidgetTheme setHeaderString(
-            @NonNull@Theme.Visibility.ToString String header) {
+            @NonNull @Theme.Visibility.ToString String header) {
         this.header = Integer.valueOf(header);
 
         return this;
     }
     
-    /**
-     * Get the opacity value used by this theme.
-     *
-     * @return The opacity value used by this theme.
-     */
+    @Override
     public int getOpacity() {
-        return opacity;
+        return Math.min(AppWidgetTheme.OPACITY_MAX, opacity);
     }
 
-    /**
-     * Set the opacity value used by this theme.
-     *
-     * @param opacity The opacity value to be set.
-     *
-     * @return The {@link DynamicWidgetTheme} object to allow for chaining of calls to set methods.
-     */
-    public @NonNull DynamicWidgetTheme setOpacity(@IntRange(from = 0, to = 255) int opacity) {
+    @Override
+    public @NonNull DynamicWidgetTheme setOpacity(
+            @IntRange(from = 0, to = AppWidgetTheme.OPACITY_MAX) int opacity) {
         this.opacity = opacity;
 
         return this;
@@ -260,6 +219,24 @@ public class DynamicWidgetTheme extends DynamicAppTheme {
         }
 
         return super.getBackgroundColor(resolve);
+    }
+
+    /**
+     * Returns background color after considering the opacity value of this theme.
+     *
+     * @return The background color with alpha according to the opacity value.
+     */
+    public @ColorInt int getBackgroundColorWithOpacity() {
+        return DynamicColorUtils.setAlpha(getBackgroundColor(), getOpacity());
+    }
+
+    @Override
+    public @ColorInt int getSurfaceColor(boolean resolve) {
+        if (resolve && super.getSurfaceColor(false) == AUTO) {
+            return DynamicTheme.getInstance().getApplication().getSurfaceColor();
+        }
+
+        return super.getSurfaceColor(resolve);
     }
 
     @Override
@@ -305,6 +282,15 @@ public class DynamicWidgetTheme extends DynamicAppTheme {
         }
 
         return super.getTintBackgroundColor(resolve);
+    }
+
+    @Override
+    public @ColorInt int getTintSurfaceColor(boolean resolve) {
+        if (resolve && super.getTintSurfaceColor(false) == AUTO) {
+            return DynamicTheme.getInstance().getApplication().getTintSurfaceColor();
+        }
+
+        return super.getTintSurfaceColor(resolve);
     }
 
     @Override
@@ -389,6 +375,16 @@ public class DynamicWidgetTheme extends DynamicAppTheme {
     }
 
     @Override
+    public int getFontScale(boolean resolve) {
+        if (resolve && (super.getFontScale(false) == AUTO
+                || super.getFontScale(true) <= 0)) {
+            return DynamicTheme.getInstance().getApplication().getFontScale();
+        }
+
+        return super.getFontScale(resolve);
+    }
+
+    @Override
     public int getCornerRadius(boolean resolve) {
         if (resolve && super.getCornerRadius(false) == AUTO) {
             return DynamicTheme.getInstance().getApplication().getCornerRadius();
@@ -420,8 +416,8 @@ public class DynamicWidgetTheme extends DynamicAppTheme {
                 + getTintAccentColor(false) + getTintAccentColorDark(false)
                 + getTextPrimaryColor(false) + getTextSecondaryColor(false)
                 + getTextPrimaryColorInverse(false) + getTextSecondaryColorInverse(false)
-                + getCornerRadius(false) + getBackgroundAware(false)
-                + widgetId + header + opacity +
+                + getFontScale(false) + getCornerRadius(false)
+                + getBackgroundAware(false) + widgetId + header + opacity +
                 '}';
     }
 }

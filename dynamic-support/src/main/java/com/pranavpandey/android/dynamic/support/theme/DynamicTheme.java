@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,23 +31,33 @@ import android.view.LayoutInflater;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
 import androidx.annotation.StyleRes;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.LayoutInflaterCompat;
+import androidx.work.ExistingWorkPolicy;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
 
 import com.google.gson.Gson;
+import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
+import com.pranavpandey.android.dynamic.support.listener.DynamicResolver;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.model.DynamicWidgetTheme;
-import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
+import com.pranavpandey.android.dynamic.support.theme.work.DynamicThemeWork;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Helper class to manage theme for the whole application and its activities.
@@ -55,18 +65,7 @@ import java.util.List;
  * heavily dependent on this class to generate colors dynamically.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class DynamicTheme implements DynamicListener {
-
-    /**
-     * Normal delay for updating the views.
-     */
-    public static final int DELAY_NORMAL = 250;
-
-    /**
-     * Theme change delay which will be useful in some situations like changing the app theme,
-     * updating the widgets, etc.
-     */
-    public static final int DELAY_THEME_CHANGE = 100;
+public class DynamicTheme implements DynamicListener, DynamicResolver {
 
     /**
      * Dynamic theme shared preferences.
@@ -77,6 +76,17 @@ public class DynamicTheme implements DynamicListener {
      * Key for the theme preference.
      */
     public static final String ADS_PREF_THEME_KEY = "ads_theme_";
+
+    /**
+     * Normal delay in milliseconds for updating the views.
+     */
+    public static final long DELAY_NORMAL = 250;
+
+    /**
+     * Theme change delay in milliseconds which will be useful in some situations like changing
+     * the app theme, updating the widgets, etc.
+     */
+    public static final long DELAY_THEME_CHANGE = 150;
 
     /**
      * Default shift amount to generate the darker color.
@@ -100,6 +110,11 @@ public class DynamicTheme implements DynamicListener {
      */
     private static final @ColorInt int COLOR_ACCENT_DEFAULT =
             Color.parseColor("#E91E63");
+
+    /**
+     * Default font scale for the theme.
+     */
+    public static final int FONT_SCALE_DEFAULT = 100;
 
     /**
      * Default corner size for the theme.
@@ -167,41 +182,93 @@ public class DynamicTheme implements DynamicListener {
     private List<DynamicListener> mDynamicListeners;
 
     /**
-     * Making default constructor private so that it cannot be initialized without a context.
-     * <p>Use {@link #initializeInstance(Context)} instead.
+     * Resolver used by the dynamic theme.
      */
-    private DynamicTheme() { }
+    private DynamicResolver mDynamicResolver;
+
+    /**
+     * Making default constructor private so that it cannot be initialized without a context.
+     * <p>Use {@link #initializeInstance(Context, DynamicResolver)} instead.
+     */
+    @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+    protected DynamicTheme() { }
 
     /**
      * Constructor to initialize an object of this class.
      *
-     * @param context The application context to be attached with this theme.
+     * @param context The application context to be attached with the dynamic theme.
+     * @param dynamicResolver The resolver for the dynamic theme.
+     *                        <p>Pass {@code null} to use the default implementation.
      */
-    private DynamicTheme(@NonNull Context context) {
+    private DynamicTheme(@NonNull Context context,
+            @Nullable DynamicResolver dynamicResolver) {
         this.mContext = context;
         this.mPowerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         this.mDynamicListeners = new ArrayList<>();
+        this.mDynamicResolver = dynamicResolver != null ? dynamicResolver : this;
         this.mDefaultApplicationTheme = new DynamicAppTheme(COLOR_PRIMARY_DEFAULT,
-                COLOR_PRIMARY_DARK_DEFAULT, COLOR_ACCENT_DEFAULT,
+                COLOR_PRIMARY_DARK_DEFAULT, COLOR_ACCENT_DEFAULT, FONT_SCALE_DEFAULT,
                 CORNER_SIZE_DEFAULT, Theme.BackgroundAware.ENABLE);
         this.mApplicationTheme = new DynamicAppTheme();
         this.mRemoteTheme = new DynamicWidgetTheme();
 
-        if (DynamicVersionUtils.isLollipop()) {
-            this.mPowerSaveMode = mPowerManager.isPowerSaveMode();
-            this.mBroadcastReceiver = new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    mPowerSaveMode = mPowerManager.isPowerSaveMode();
-                    onPowerSaveModeChange(mPowerSaveMode);
+        this.mBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent != null && intent.getAction() != null) {
+                    if (intent.getAction().equals(
+                            PowerManager.ACTION_POWER_SAVE_MODE_CHANGED)) {
+                        mPowerSaveMode = mPowerManager.isPowerSaveMode();
+                        onPowerSaveModeChange(mPowerSaveMode);
+                    } else {
+                        setDynamicThemeWork(!WorkManager.getInstance(context)
+                                .getWorkInfosForUniqueWork(DynamicThemeWork.TAG).isDone());
+                        onAutoThemeChange();
+                    }
                 }
-            };
+            }
+        };
 
-            IntentFilter intentFilter = new IntentFilter();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_TIME_CHANGED);
+        intentFilter.addAction(Intent.ACTION_DATE_CHANGED);
+        intentFilter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
+        if (DynamicSdkUtils.is21()) {
             intentFilter.addAction(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED);
-            mContext.registerReceiver(mBroadcastReceiver, intentFilter);
+            this.mPowerSaveMode = mPowerManager.isPowerSaveMode();
         } else {
             this.mPowerSaveMode = false;
+        }
+        mContext.registerReceiver(mBroadcastReceiver, intentFilter);
+    }
+
+    /**
+     * Sets the dynamic theme work to schedule auto theme event according to the time.
+     *
+     * @param enqueue {@code true} to enqueue the dynamic theme work.
+     */
+    public void setDynamicThemeWork(boolean enqueue) {
+        if (enqueue) {
+            long delay;
+            Date date = new Date();
+            if (isNight()) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(getDynamicResolver().getNightTimeEnd());
+                if (date.after(calendar.getTime())) {
+                    calendar.add(Calendar.DAY_OF_MONTH, 1);
+                }
+                delay = calendar.getTimeInMillis() - date.getTime();
+            } else {
+                delay = getDynamicResolver().getNightTimeStart().getTime() - date.getTime();
+            }
+
+            WorkManager.getInstance(mContext).enqueueUniqueWork(
+                    DynamicThemeWork.TAG, ExistingWorkPolicy.REPLACE,
+                    new OneTimeWorkRequest.Builder(DynamicThemeWork.class)
+                            .setInitialDelay(delay, TimeUnit.MILLISECONDS)
+                            .build());
+        } else {
+            WorkManager.getInstance(mContext).cancelUniqueWork(DynamicThemeWork.TAG);
         }
     }
 
@@ -219,7 +286,7 @@ public class DynamicTheme implements DynamicListener {
             @Nullable LayoutInflater.Factory2 layoutInflater) {
         this.mLocalContext = localContext;
         this.mDefaultLocalTheme = new DynamicAppTheme(COLOR_PRIMARY_DEFAULT,
-                COLOR_PRIMARY_DARK_DEFAULT, COLOR_ACCENT_DEFAULT,
+                COLOR_PRIMARY_DARK_DEFAULT, COLOR_ACCENT_DEFAULT, FONT_SCALE_DEFAULT,
                 CORNER_SIZE_DEFAULT, Theme.BackgroundAware.ENABLE);
         this.mLocalTheme = new DynamicAppTheme();
 
@@ -249,14 +316,17 @@ public class DynamicTheme implements DynamicListener {
      * <p>Must be initialized once.
      *
      * @param context The context to retrieve resources.
+     * @param dynamicResolver The resolver for the dynamic theme.
+     *                        <p>Pass {@code null} to use the default implementation.
      */
-    public static synchronized void initializeInstance(@Nullable Context context) {
+    public static synchronized void initializeInstance(@Nullable Context context,
+            @Nullable DynamicResolver dynamicResolver) {
         if (context == null) {
             throw new NullPointerException("Context should not be null");
         }
 
         if (sInstance == null) {
-            sInstance = new DynamicTheme(context);
+            sInstance = new DynamicTheme(context, dynamicResolver);
         }
     }
 
@@ -291,6 +361,10 @@ public class DynamicTheme implements DynamicListener {
                     .setBackgroundColor(DynamicResourceUtils.resolveColor(
                             mContext, theme, android.R.attr.windowBackground,
                             DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE))
+                    .setSurfaceColor(DynamicResourceUtils.resolveColor(
+                            mContext, theme, R.attr.colorSurface, DynamicAppTheme.AUTO))
+                    .setTintSurfaceColor(DynamicResourceUtils.resolveColor(
+                            mContext, theme, R.attr.colorOnSurface, DynamicAppTheme.AUTO))
                     .setPrimaryColor(DynamicResourceUtils.resolveColor(
                             mContext, theme, R.attr.colorPrimary,
                             mDefaultApplicationTheme.getPrimaryColor()))
@@ -313,6 +387,9 @@ public class DynamicTheme implements DynamicListener {
                     .setTextSecondaryColorInverse(DynamicResourceUtils.resolveColor(
                             mContext, theme, android.R.attr.textColorSecondaryInverse,
                             DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE))
+                    .setFontScale(DynamicResourceUtils.resolveInteger(
+                            mContext, theme, R.attr.ads_fontScale,
+                            mDefaultApplicationTheme.getFontScale()))
                     .setCornerRadius(DynamicResourceUtils.resolveDimensionPixelOffSet(
                             mContext, theme, R.attr.ads_cornerRadius,
                             mDefaultApplicationTheme.getCornerRadius()))
@@ -333,21 +410,21 @@ public class DynamicTheme implements DynamicListener {
     /**
      * Initialize colors form the supplied dynamic app theme.
      *
-     * @param dynamicTheme The dynamic app theme to initialize colors.
+     * @param theme The dynamic app theme to initialize colors.
      * @param initializeRemoteColors {@code true} to initialize remote colors also.
      *
      * @return The {@link DynamicTheme} object to allow for chaining of calls to set methods.
      */
-    public @NonNull DynamicTheme setTheme(@Nullable DynamicAppTheme dynamicTheme,
+    public @NonNull DynamicTheme setTheme(@Nullable DynamicAppTheme theme,
             boolean initializeRemoteColors) {
-        if (dynamicTheme != null) {
-            if (dynamicTheme.getThemeRes() == DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
+        if (theme != null) {
+            if (theme.getThemeRes() == DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
                 throw new IllegalStateException("Dynamic app theme style resource " +
                         "id is not found for the application theme.");
             }
 
-            setThemeRes(dynamicTheme.getThemeRes(), false);
-            mApplicationTheme = new DynamicAppTheme(dynamicTheme);
+            setThemeRes(theme.getThemeRes(), false);
+            mApplicationTheme = new DynamicAppTheme(theme);
 
             if (initializeRemoteColors) {
                 initializeRemoteColors();
@@ -376,6 +453,10 @@ public class DynamicTheme implements DynamicListener {
                     .setBackgroundColor(DynamicResourceUtils.resolveColor(
                             mContext, localTheme, android.R.attr.windowBackground,
                             DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE))
+                    .setSurfaceColor(DynamicResourceUtils.resolveColor(
+                            mContext, localTheme, R.attr.colorSurface, DynamicAppTheme.AUTO))
+                    .setTintSurfaceColor(DynamicResourceUtils.resolveColor(
+                            mContext, localTheme, R.attr.colorOnSurface, DynamicAppTheme.AUTO))
                     .setPrimaryColor(DynamicResourceUtils.resolveColor(
                             mContext, localTheme, R.attr.colorPrimary,
                             mDefaultLocalTheme.getPrimaryColor()))
@@ -398,6 +479,9 @@ public class DynamicTheme implements DynamicListener {
                     .setTextSecondaryColorInverse(DynamicResourceUtils.resolveColor(
                             mContext, localTheme, android.R.attr.textColorSecondaryInverse,
                             DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE))
+                    .setFontScale(DynamicResourceUtils.resolveInteger(
+                            mContext, localTheme, R.attr.ads_fontScale,
+                            mDefaultLocalTheme.getFontScale()))
                     .setCornerRadius(DynamicResourceUtils.resolveDimensionPixelOffSet(
                             mContext, localTheme, R.attr.ads_cornerRadius,
                             mDefaultLocalTheme.getCornerRadius()))
@@ -435,14 +519,14 @@ public class DynamicTheme implements DynamicListener {
 
     /**
      * Initialize remote colors according to the base colors.
-     * <p>They can be set individually by calling the appropriate functions.
+     * <p>They can be set individually by calling the appropriate methods.
      *
      * @return The {@link DynamicTheme} object to allow for chaining of calls to set methods.
      */
     public @NonNull DynamicTheme initializeRemoteColors() {
         mRemoteTheme = (DynamicWidgetTheme) new DynamicWidgetTheme(mApplicationTheme)
                 .setBackgroundColor(ContextCompat.getColor(getResolvedContext(),
-                !DynamicVersionUtils.isLollipop()
+                !DynamicSdkUtils.is21()
                         ? R.color.notification_background
                         : R.color.notification_background_light));
 
@@ -495,6 +579,8 @@ public class DynamicTheme implements DynamicListener {
             case Theme.ColorType.TEXT_SECONDARY: return get().getTextSecondaryColor();
             case Theme.ColorType.TEXT_PRIMARY_INVERSE: return get().getTextPrimaryColorInverse();
             case Theme.ColorType.TEXT_SECONDARY_INVERSE: return get().getTextSecondaryColorInverse();
+            case Theme.ColorType.SURFACE: return get().getSurfaceColor();
+            case Theme.ColorType.TINT_SURFACE: return get().getTintSurfaceColor();
         }
     }
 
@@ -518,6 +604,15 @@ public class DynamicTheme implements DynamicListener {
         this.mContext = context;
 
         return this;
+    }
+
+    /**
+     * Get the local context.
+     *
+     * @return The local context.
+     */
+    public @Nullable Context getLocalContext() {
+        return mLocalContext;
     }
 
     /**
@@ -646,11 +741,24 @@ public class DynamicTheme implements DynamicListener {
     }
 
     /**
+     * Generates surface color according to the supplied color.
+     *
+     * @param color The color to generate the surface color.
+     *
+     * @return The generated surface color.
+     */
+    public @ColorInt int generateSurfaceColor(@ColorInt int color) {
+        return DynamicColorUtils.isColorDark(color)
+                ? DynamicColorUtils.getLighterColor(color, 0.09f)
+                : DynamicColorUtils.getLighterColor(color, 0.2f);
+    }
+
+    /**
      * Generates dark variant of the supplied color.
      *
      * @param color The color to generate the dark variant.
      *
-     * @return The generated dark variant.
+     * @return The generated dark variant of the color.
      */
     public @ColorInt int generateDarkColor(@ColorInt int color) {
         return DynamicColorUtils.shiftColor(color, DynamicTheme.COLOR_SHIFT_DARK_DEFAULT);
@@ -673,6 +781,24 @@ public class DynamicTheme implements DynamicListener {
      */
     public @ColorInt int getDefaultContrastWith() {
         return get().getBackgroundColor();
+    }
+
+    /**
+     * Returns the resolver used by the dynamic theme.
+     *
+     * @return The resolver used by the dynamic theme.
+     */
+    public @NonNull DynamicResolver getDynamicResolver() {
+        return mDynamicResolver != null ? mDynamicResolver : this;
+    }
+
+    /**
+     * Sets the resolver used by the dynamic theme.
+     *
+     * @param dynamicResolver The resolver to be set.
+     */
+    public void setDynamicResolver(@Nullable DynamicResolver dynamicResolver) {
+        this.mDynamicResolver = dynamicResolver;
     }
 
     /**
@@ -741,6 +867,13 @@ public class DynamicTheme implements DynamicListener {
     }
 
     @Override
+    public void onAutoThemeChange() {
+        for (DynamicListener dynamicListener : mDynamicListeners) {
+            dynamicListener.onAutoThemeChange();
+        }
+    }
+
+    @Override
     public void onPowerSaveModeChange(boolean powerSaveMode) {
         for (DynamicListener dynamicListener : mDynamicListeners) {
             dynamicListener.onPowerSaveModeChange(powerSaveMode);
@@ -769,7 +902,7 @@ public class DynamicTheme implements DynamicListener {
      */
     public void saveLocalTheme() {
         if (mLocalContext != null) {
-            DynamicPreferences.getInstance().savePrefs(ADS_PREF_THEME,
+            DynamicPreferences.getInstance().save(ADS_PREF_THEME,
                     ADS_PREF_THEME_KEY + mLocalContext.getClass().getName(), toString());
         }
     }
@@ -782,7 +915,7 @@ public class DynamicTheme implements DynamicListener {
      * @return The supplied context theme from shared preferences.
      */
     public @Nullable String getLocalTheme(@NonNull Context context) {
-        return DynamicPreferences.getInstance().loadPrefs(ADS_PREF_THEME,
+        return DynamicPreferences.getInstance().load(ADS_PREF_THEME,
                 ADS_PREF_THEME_KEY + context.getClass().getName(), null);
     }
 
@@ -793,7 +926,7 @@ public class DynamicTheme implements DynamicListener {
      */
     public void deleteLocalTheme(@NonNull Context context) {
         try {
-            DynamicPreferences.getInstance().deletePrefs(ADS_PREF_THEME,
+            DynamicPreferences.getInstance().delete(ADS_PREF_THEME,
                     ADS_PREF_THEME_KEY + context.getClass().getName());
         } catch (Exception ignored) {
         }
@@ -810,34 +943,64 @@ public class DynamicTheme implements DynamicListener {
         return new Gson().fromJson(theme, DynamicAppTheme.class);
     }
 
-    /**
-     * Checks whether the system night mode is enabled.
-     *
-     * @return {@code true} if the system night mode is enabled.
-     */
+    @Override
     public boolean isSystemNightMode() {
         return (getContext().getResources().getConfiguration().uiMode
                 & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
     }
 
-    /**
-     * Resolves night theme according to the selected implementation.
-     *
-     * @param appTheme The app theme to resolve the auto night theme.
-     * @param implementation The implementation for the night theme.
-     *
-     * @return {@code true} if the night theme is enabled according to the selected implementation.
-     */
+    @Override
+    public boolean isNight() {
+        Date date = new Date();
+        return date.getTime() >= getNightTimeStart().getTime()
+                || date.getTime() < getNightTimeEnd().getTime();
+    }
+
+    @Override
+    public boolean isNight(@Theme int theme) {
+        return theme == Theme.NIGHT || (theme == Theme.AUTO && isNight());
+    }
+
+    @Override
+    public boolean isNight(@Theme.ToString String theme) {
+        return getDynamicResolver().isNight(Integer.valueOf(theme));
+    }
+
+    @Override
+    public @NonNull Date getNightTimeStart() {
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY, 19);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+
+        return calendar.getTime();
+    }
+
+    @Override
+    public @NonNull Date getNightTimeEnd() {
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY, 6);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+
+        return calendar.getTime();
+    }
+
+    @Override
     public boolean resolveNightTheme(@Theme int appTheme, @Theme.Night int implementation) {
         if (appTheme == Theme.AUTO) {
             switch (implementation) {
                 default:
                 case Theme.Night.SYSTEM:
-                    return isSystemNightMode();
+                    return getDynamicResolver().isSystemNightMode();
                 case Theme.Night.CUSTOM:
                     return false;
                 case Theme.Night.AUTO:
-                    return DynamicResourceUtils.isNight(appTheme);
+                    return getDynamicResolver().isNight(appTheme);
                 case Theme.Night.BATTERY:
                     return mPowerSaveMode;
             }
@@ -846,16 +1009,10 @@ public class DynamicTheme implements DynamicListener {
         return appTheme == Theme.NIGHT;
     }
 
-    /**
-     * Resolves night theme according to the selected implementation.
-     *
-     * @param appTheme The app theme to resolve the auto night theme.
-     * @param implementation The implementation for the night theme.
-     *
-     * @return {@code true} if the night theme is enabled according to the selected implementation.
-     */
+    @Override
     public boolean resolveNightTheme(@Theme.ToString String appTheme,
             @Theme.Night.ToString String implementation) {
-        return resolveNightTheme(Integer.valueOf(appTheme), Integer.valueOf(implementation));
+        return getDynamicResolver().resolveNightTheme(
+                Integer.valueOf(appTheme), Integer.valueOf(implementation));
     }
 }

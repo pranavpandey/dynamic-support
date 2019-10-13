@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ package com.pranavpandey.android.dynamic.support.widget.base;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 
 /**
- * Interface to create dynamic widgets with some tint options which can be used to tint their
+ * Interface to create dynamic widgets with tint options which can be used to tint their
  * background, etc. according to the {@link DynamicTheme}.
  */
 public interface DynamicTintWidget {

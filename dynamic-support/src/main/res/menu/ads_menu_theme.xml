@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@
         android:id="@+id/ads_menu_theme"
         android:title="@string/ads_theme"
         android:icon="@drawable/ads_ic_style"
-        android:orderInCategory="1"
+        android:orderInCategory="2"
         app:showAsAction="ifRoom">
 
         <menu>
@@ -46,6 +46,36 @@
                 android:title="@string/ads_backup_import"
                 android:icon="@drawable/ads_ic_download"
                 android:orderInCategory="3" />
+
+            <item
+                android:id="@+id/ads_menu_theme_file"
+                android:title="@string/ads_file"
+                android:icon="@drawable/ads_ic_file"
+                android:orderInCategory="4">
+
+                <menu>
+
+                    <item
+                        android:id="@+id/ads_menu_theme_file_save"
+                        android:title="@string/ads_save"
+                        android:icon="@drawable/ads_ic_save"
+                        android:orderInCategory="1" />
+
+                    <item
+                        android:id="@+id/ads_menu_theme_file_share"
+                        android:title="@string/ads_nav_share"
+                        android:icon="@drawable/ads_ic_share"
+                        android:orderInCategory="2" />
+
+                    <item
+                        android:id="@+id/ads_menu_theme_file_import"
+                        android:title="@string/ads_backup_import"
+                        android:icon="@drawable/ads_ic_download"
+                        android:orderInCategory="3" />
+
+                </menu>
+
+            </item>
 
         </menu>
 

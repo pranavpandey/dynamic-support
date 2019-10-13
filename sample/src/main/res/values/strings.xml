@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -45,6 +45,8 @@
     <string name="bottom_navigation_subtitle">A bottom navigation view by using dynamic activity.</string>
     <string name="rotation">Rotation - Orientation Manager</string>
     <string name="rotation_subtitle">An app completely built by using this library. It covers some more advanced use cases like multiple locales, runtime permissions, etc. and can motivate to implement similar kind of functionality by exploring the sources of Dynamic Support.</string>
+    <string name="everyday">Everyday - Calendar Widget</string>
+    <string name="everyday_subtitle">An app to show the widget customisations by extending the app theme. It also features some more advanced use cases like multiple locales, runtime permissions, remote views factory, etc. and can motivate to implement similar kind of functionality by exploring the sources of Dynamic Support.</string>
 
     <!-- Widgets -->
     <string name="widget_buttons">Button</string>

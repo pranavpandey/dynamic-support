@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,17 +33,18 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.adapter.DynamicColorsAdapter;
 import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
 import com.pranavpandey.android.dynamic.support.picker.DynamicPickerType;
-import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorPalette;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
+import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicEditText;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 import java.util.ArrayList;
@@ -73,6 +74,11 @@ public class DynamicColorPicker extends DynamicView {
      */
     private static final String ADS_PREF_COLOR_PICKER_RECENTS_ALPHA =
             "ads_pref_color_picker_recents_alpha";
+
+    /**
+     * Shared preference key to save the recently copied color.
+     */
+    public static final String ADS_PREF_COLOR_PICKER_RECENT = "ads_pref_color_picker_recent";
 
     /**
      * The maximum recent colors count.
@@ -454,7 +460,7 @@ public class DynamicColorPicker extends DynamicView {
         mPreviousColor = Theme.ColorType.UNKNOWN;
         mColorShape = DynamicColorShape.CIRCLE;
         mType = DynamicPickerType.PRESETS;
-        mControl = DynamicPreferences.getInstance().loadPrefs(
+        mControl = DynamicPreferences.getInstance().load(
                 ADS_PREF_COLOR_PICKER_CONTROL, DynamicColorControl.HSV);
 
         onUpdate();
@@ -536,9 +542,10 @@ public class DynamicColorPicker extends DynamicView {
     protected void selectColor(int position, @ColorInt int color) {
         if (mDynamicColorListener != null) {
             mSelectedColor = color;
-            mDynamicColorListener.onColorSelected(null, position, color);
-
+            DynamicPickerUtils.setRecentColor(color);
             saveToRecents(color);
+
+            mDynamicColorListener.onColorSelected(null, position, color);
         }
     }
 
@@ -767,7 +774,7 @@ public class DynamicColorPicker extends DynamicView {
      */
     public void setControl(@DynamicColorControl int control) {
         this.mControl = control;
-        DynamicPreferences.getInstance().savePrefs(ADS_PREF_COLOR_PICKER_CONTROL, mControl);
+        DynamicPreferences.getInstance().save(ADS_PREF_COLOR_PICKER_CONTROL, mControl);
 
         switch (mControl) {
             case DynamicColorControl.ALL:
@@ -942,10 +949,10 @@ public class DynamicColorPicker extends DynamicView {
         }
 
         if (!mAlpha) {
-            DynamicPreferences.getInstance().savePrefs(
+            DynamicPreferences.getInstance().save(
                     ADS_PREF_COLOR_PICKER_RECENTS, recents.toString());
         } else {
-            DynamicPreferences.getInstance().savePrefs(
+            DynamicPreferences.getInstance().save(
                     ADS_PREF_COLOR_PICKER_RECENTS_ALPHA, recents.toString());
         }
     }
@@ -958,10 +965,10 @@ public class DynamicColorPicker extends DynamicView {
     protected Integer[] getRecents() {
         String recentsString;
         if (mAlpha) {
-            recentsString = DynamicPreferences.getInstance().loadPrefs(
+            recentsString = DynamicPreferences.getInstance().load(
                     ADS_PREF_COLOR_PICKER_RECENTS_ALPHA, null);
         } else {
-            recentsString = DynamicPreferences.getInstance().loadPrefs(
+            recentsString = DynamicPreferences.getInstance().load(
                     ADS_PREF_COLOR_PICKER_RECENTS, null);
         }
 

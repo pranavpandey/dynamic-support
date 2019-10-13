@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,16 +27,16 @@ import android.view.View;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.core.view.TintableBackgroundView;
+import androidx.core.view.ViewCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.internal.ScrimInsetsFrameLayout;
-import com.google.android.material.navigation.NavigationView;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCheckedTextView;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 import java.lang.reflect.Field;
 
@@ -62,34 +62,39 @@ public class DynamicTintUtils {
 
         if (view instanceof MaterialButton) {
             if (borderless) {
-                if (!DynamicVersionUtils.isLollipop()) {
-                    pressedColor = DynamicColorUtils.getStateColor(DynamicColorUtils.adjustAlpha(
-                            pressedColor, WidgetDefaults.ADS_STATE_PRESSED),
+                if (!DynamicSdkUtils.is21()) {
+                    pressedColor = DynamicColorUtils.getStateColor(
+                            DynamicColorUtils.adjustAlpha(
+                                    pressedColor, WidgetDefaults.ADS_STATE_PRESSED),
                             WidgetDefaults.ADS_STATE_LIGHT, WidgetDefaults.ADS_STATE_DARK);
-                }
 
-                ((MaterialButton) view).setRippleColor(
-                        DynamicResourceUtils.getColorStateList(
-                                Color.TRANSPARENT, pressedColor, checkable));
+                    ViewCompat.setBackgroundTintList(view,
+                            DynamicResourceUtils.getColorStateList(
+                                    Color.TRANSPARENT, pressedColor, checkable));
+                } else {
+                    ((MaterialButton) view).setRippleColor(
+                            DynamicResourceUtils.getColorStateList(
+                                    Color.TRANSPARENT, pressedColor, checkable));
+                }
             } else {
-                ((TintableBackgroundView) view).setSupportBackgroundTintList(
+                ViewCompat.setBackgroundTintList(view,
                         DynamicResourceUtils.getColorStateList(
                                 DynamicColorUtils.getTintColor(background),
                                 color, pressedColor, checkable));
             }
         } else if (view instanceof TintableBackgroundView) {
             if (borderless) {
-                ((TintableBackgroundView) view).setSupportBackgroundTintList(
+                ViewCompat.setBackgroundTintList(view,
                         DynamicResourceUtils.getColorStateList(
                                 Color.TRANSPARENT, pressedColor, checkable));
             } else {
-                ((TintableBackgroundView) view).setSupportBackgroundTintList(
+                ViewCompat.setBackgroundTintList(view,
                         DynamicResourceUtils.getColorStateList(
                                 DynamicColorUtils.getTintColor(background),
                                 color, pressedColor, checkable));
             }
         } else {
-            if (!DynamicVersionUtils.isLollipop()) {
+            if (!DynamicSdkUtils.is21()) {
                 background = DynamicColorUtils.getStateColor(
                         DynamicColorUtils.adjustAlpha(DynamicColorUtils.getTintColor(background),
                                 WidgetDefaults.ADS_STATE_PRESSED),
@@ -108,8 +113,7 @@ public class DynamicTintUtils {
             }
         }
 
-        if (DynamicVersionUtils.isLollipop()
-                && view.getBackground() instanceof RippleDrawable) {
+        if (DynamicSdkUtils.is21() && view.getBackground() instanceof RippleDrawable) {
             if (borderless) {
                 pressedColor = DynamicColorUtils.adjustAlpha(
                         color, WidgetDefaults.ADS_STATE_PRESSED);
@@ -147,12 +151,11 @@ public class DynamicTintUtils {
     }
 
     /**
-     * Try to set the top scrim color for the navigation view.
+     * Try to set the inset foreground color of the view.
      *
      * @param color The scrim color to be set.
      */
-    public static void setNavigationViewScrimColor(
-            @NonNull NavigationView navigationView, @ColorInt int color) {
+    public static void setInsetForegroundColor(@NonNull View navigationView, @ColorInt int color) {
         try {
             final Field insetForeground =
                     ScrimInsetsFrameLayout.class.getDeclaredField("insetForeground");

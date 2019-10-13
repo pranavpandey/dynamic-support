@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,11 +31,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A DynamicView with an icon, title and subtitle functionality which can be used to show various
@@ -150,7 +149,7 @@ public class DynamicItemView extends DynamicView {
         try {
             mIcon = DynamicResourceUtils.getDrawable(getContext(), a.getResourceId(
                     R.styleable.DynamicInfo_ads_icon,
-                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
+                    WidgetDefaults.ADS_COLOR_UNKNOWN));
             mTitle = a.getString(R.styleable.DynamicInfo_ads_title);
             mSubtitle = a.getString(R.styleable.DynamicInfo_ads_subtitle);
             mColor = a.getColor(R.styleable.DynamicInfo_ads_color,
@@ -186,10 +185,6 @@ public class DynamicItemView extends DynamicView {
 
     @Override
     public void onUpdate() {
-        if (mColorType != Theme.ColorType.NONE && mColorType != Theme.ColorType.CUSTOM) {
-            mColor = DynamicTheme.getInstance().resolveColorType(mColorType);
-        }
-
         if (mIcon != null) {
             mIconView.setImageDrawable(mIcon);
             mIconView.setVisibility(VISIBLE);
@@ -200,9 +195,11 @@ public class DynamicItemView extends DynamicView {
         }
 
         if (mIconView != null) {
-            if (mColor != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE) {
+            mIconView.setColorType(mColorType);
+
+            if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
                 mIconView.setColor(mColor);
-            } else {
+            } else if (mColorType == Theme.ColorType.NONE) {
                 mIconView.clearColorFilter();
             }
         }

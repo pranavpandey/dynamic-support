@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -15,18 +15,18 @@
 	limitations under the License.
 -->
 
-<RelativeLayout
+<com.pranavpandey.android.dynamic.support.widget.DynamicRootLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ads_activity_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout
         android:id="@+id/ads_coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/ads_footer_frame"
-        android:fitsSystemWindows="true">
+        android:layout_above="@id/ads_footer_frame">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicAppBarLayout
             android:id="@+id/ads_app_bar_layout"
@@ -41,7 +41,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ads_collapsing_toolbar_height"
                 android:clipChildren="false"
-                android:fitsSystemWindows="true"
                 app:expandedTitleMarginStart="@dimen/ads_toolbar_margin_start_collapsing"
                 app:expandedTitleMarginEnd="@dimen/ads_toolbar_margin_end_collapsing"
                 app:collapsedTitleTextAppearance="@style/TextAppearance.DynamicApp.Toolbar"
@@ -51,9 +50,8 @@
                 <FrameLayout
                     android:id="@+id/ads_backdrop_frame"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_collapseMode="parallax"
-                    android:fitsSystemWindows="true" />
+                    android:layout_height="match_parent"
+                    app:layout_collapseMode="parallax" />
 
                 <include
                     layout="@layout/ads_toolbar_collapsing"
@@ -71,13 +69,15 @@
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicAppBarLayout>
 
-        <include layout="@layout/ads_content_dynamic" />
+        <include layout="@layout/ads_content" />
+
+        <include layout="@layout/ads_layout_bottom_sheet" />
 
         <include layout="@layout/ads_layout_fab_bottom" />
 
         <include layout="@layout/ads_layout_fab_extended_bottom" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout>
 
     <FrameLayout
         android:id="@+id/ads_footer_frame"
@@ -87,4 +87,4 @@
 
     </FrameLayout>
 
-</RelativeLayout>
+</com.pranavpandey.android.dynamic.support.widget.DynamicRootLayout>

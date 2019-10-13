@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -29,11 +29,13 @@
     <string name="ads_i_got_it">好的，我知道了</string>
     <string name="ads_not_now">不是现在</string>
     <string name="ads_yes_in">是的，我在</string>
+    <string name="ads_more">更多</string>
     <string name="ads_more_info">更多信息</string>
     <string name="ads_select">选择</string>
     <string name="ads_copy">复制</string>
     <string name="ads_save">保存</string>
     <string name="ads_load">加载</string>
+    <string name="ads_file">文件</string>
     <string name="ads_create">创建</string>
     <string name="ads_previous">以前</string>
     <string name="ads_next">下一个</string>
@@ -70,6 +72,7 @@
     <string name="ads_widgets">小部件</string>
     <string name="ads_instructions">说明</string>
     <string name="ads_tutorial">教程</string>
+    <string name="ads_product_tour">功能导览</string>
     <string name="ads_troubleshoot">疑难解答</string>
     <string name="ads_about">关于</string>
     <string name="ads_overview">概述</string>
@@ -143,13 +146,13 @@
     <string name="ads_backup_modify">修改</string>
     <string name="ads_backup_modify_desc">选择要修改的备份。</string>
     <string name="ads_backup_restore_done">备份已成功恢复</string>
-    <string name="ads_backup_restore_error">无法恢复备份</string>
+    <string name="ads_backup_restore_error">无法恢复备份。</string>
     <string name="ads_backup_not_found">没有找到备份。</string>
     <string name="ads_backup_modify_complete">备份已成功修改</string>
     <string name="ads_backup_delete_all">删除所有</string>
     <string name="ads_backup_delete_all_title">删除所有备份</string>
     <string name="ads_backup_delete_all_desc">这将删除保存在应用程序存储中的所有备份。你想继续吗？</string>
-    <string name="ads_backup_delete_all_done">所有备份已成功删除</string>
+    <string name="ads_backup_delete_all_done">所有备份已成功删除。</string>
     <string name="ads_backup_import">入口</string>
     <string name="ads_backup_import_title">导入备份</string>
     <string name="ads_backup_import_summary">从以前的应用程序状态开始</string>
@@ -188,11 +191,14 @@
     <string name="ads_theme_color_accent">强调色</string>
     <string name="ads_theme_color_secondary">辅助色</string>
     <string name="ads_theme_color_accent_summary">辅助元素使用的颜色。</string>
+    <string name="ads_theme_color_surface">表面</string>
     <string name="ads_theme_color_tint">色彩</string>
     <string name="ads_theme_color_inverse">反色</string>
-    <string name="ads_theme_corner_size">角落大小</string>
+    <string name="ads_theme_font_scale">字体比例</string>
+    <string name="ads_theme_font_scale_summary">调整缩放系数，变小或变大文本。</string>
+    <string name="ads_theme_corner_size">边角大小</string>
     <string name="ads_theme_corner_size_summary">应用程序的角半径。</string>
-    <string name="ads_theme_background_aware">背景知晓</string>
+    <string name="ads_theme_background_aware">背景感知</string>
     <string name="ads_theme_background_aware_desc">根据背景调整颜色以提供最佳可见性。</string>
     <string name="ads_theme_app">应用主题</string>
     <string name="ads_theme_app_summary">应用程序主题。</string>
@@ -203,11 +209,11 @@
     <string name="ads_theme_app_night_summary">应用在夜间的主题。</string>
     <string name="ads_theme_app_day_night_desc">这只适用于自动主题被应用。</string>
     <string name="ads_theme_toast">Toast消息主题</string>
-    <string name="ads_theme_toast_summary">根据应用主题色显示主题Toast消息。</string>
+    <string name="ads_theme_toast_summary">根据应用强调色显示主题Toast消息。</string>
     <string name="ads_theme_toast_summary_unchecked">显示默认的系统Toast消息。</string>
     <string name="ads_theme_navigation_bar">导航栏主题</string>
-    <string name="ads_theme_navigation_bar_summary">显示主题导航栏根据应用程序的主颜色。</string>
-    <string name="ads_theme_navigation_bar_summary_unchecked">显示黑色导航栏。</string>
+    <string name="ads_theme_navigation_bar_summary">导航栏基于应用程序的主题显示。</string>
+    <string name="ads_theme_navigation_bar_summary_unchecked">将显示默认导航栏。</string>
     <string name="ads_theme_navigation_bar_desc">导航栏主题在某些地方不可见，以提供最佳的视觉体验。</string>
     <string name="ads_theme_notification">通知主题</string>
     <string name="ads_theme_notification_summary">通知调色板。</string>
@@ -222,7 +228,10 @@
     <string name="ads_theme_app_shortcuts_desc">长按启动器图标以显示应用快捷方式，支持的启动器是必需的。</string>
     <string name="ads_theme_reset_desc">主题已重置为其默认值。</string>
     <string name="ads_theme_import_done">主题已成功导入。</string>
+    <string name="ads_theme_export_done">该主题已成功导出。</string>
+    <string name="ads_theme_export_error">无法保存主题。</string>
     <string name="ads_theme_copy_done">该主题已成功复制。</string>
+    <string name="ads_theme_format_saved">主题保存: %1$s</string>
 
     <!-- Theme -->
     <string name="ads_theme_toast_default">默认的Toast消息</string>
@@ -295,12 +304,16 @@
     <string name="ads_widget_header">标题</string>
     <string name="ads_widget_header_summary">窗口小部件标题的可见性。</string>
     <string name="ads_widget_header_desc">如果有足够的空间，请选择自动以显示标题。</string>
-    <string name="ads_widget_corner_size_bg_summary">小部件背景的角半径。</string>
-    <string name="ads_widget_corner_size_bg_desc">选择自动以使用应用边角大小。</string>
+    <string name="ads_widget_corner_size_bg_summary">小部件背景的圆角半径。</string>
+    <string name="ads_widget_corner_size_bg_desc">选择自动使用应用圆角尺寸。</string>
     <string name="ads_widget_opacity_bg">背景不透明</string>
     <string name="ads_widget_opacity_bg_summary">小部件背景的不透明度。</string>
     <string name="ads_widget_reset_desc">小部件已被重置为默认值。</string>
     <string name="ads_widget_not_added">没有添加小部件。</string>
+
+    <!-- Setup -->
+    <string name="ads_setup">安装</string>
+    <string name="ads_setup_desc">配置下面的重要功能</string>
 
     <!-- About and Support -->
     <string name="ads_rate">评价</string>
@@ -331,6 +344,7 @@
     <string name="ads_info_terms_of_use_desc">查看此产品的完整使用条款。</string>
     <string name="ads_info_privacy_policy_terms_desc">隐私政策和使用条款。</string>
     <string name="ads_info_apps">更多应用程序</string>
+    <string name="ads_info_apps_desc">通过Google Play尝试其他应用。</string>
     <string name="ads_info_gplus_desc">加入官方社区尝试测试版本。</string>
     <string name="ads_info_facebook_desc">收藏官方页面，获取最新的新闻和更新。</string>
     <string name="ads_info_xda_desc">在XDA跟进官方支持。</string>

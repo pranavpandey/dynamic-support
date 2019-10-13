@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -37,8 +36,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSeekBar;
 
+import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.widget.DynamicSeekBar;
 import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
 
@@ -257,35 +256,39 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
         setActionButton(getContext().getString(R.string.ads_default), new OnClickListener() {
             @Override
             public void onClick(View v) {
-                final int defaultValue = getProgressFromValue(mDefaultValue);
-                ObjectAnimator animation = ObjectAnimator.ofInt(mSeekBar,
-                        "progress", getProgress(), defaultValue);
-                animation.setDuration(ANIMATION_DURATION);
-                animation.setInterpolator(new DecelerateInterpolator());
-                animation.addListener(new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-                        setProgress(defaultValue);
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animation) { }
-
-                    @Override
-                    public void onAnimationCancel(Animator animation) { }
-
-                    @Override
-                    public void onAnimationRepeat(Animator animation) { }
-                });
-
-                animation.start();
+                animateSeekBar(mDefaultValue);
             }
         });
 
         if (super.getPreferenceKey() != null) {
             mProgress = getProgressFromValue(DynamicPreferences.getInstance()
-                    .loadPrefs(super.getPreferenceKey(), mDefaultValue));
+                    .load(super.getPreferenceKey(), mDefaultValue));
         }
+    }
+
+    private void animateSeekBar(int value) {
+        final int progress = getProgressFromValue(value);
+        ObjectAnimator animation = ObjectAnimator.ofInt(mSeekBar,
+                "progress", getProgress(), progress);
+        animation.setDuration(ANIMATION_DURATION);
+        animation.setInterpolator(new DecelerateInterpolator());
+        animation.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                setProgress(progress);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) { }
+
+            @Override
+            public void onAnimationCancel(Animator animation) { }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) { }
+        });
+
+        animation.start();
     }
 
     @Override
@@ -353,7 +356,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
                 mActionView.setVisibility(GONE);
             }
 
-            new Handler().post(new Runnable() {
+            post(new Runnable() {
                 @Override
                 public void run() {
                     mSeekBar.setProgress(mProgress);
@@ -474,7 +477,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
         this.mProgress = progress;
 
         if (super.getPreferenceKey() != null) {
-            DynamicPreferences.getInstance().savePrefs(
+            DynamicPreferences.getInstance().save(
                     super.getPreferenceKey(), getValueFromProgress());
         } else {
             onUpdate();
@@ -606,7 +609,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
      * @return The seek bar progress according to the supplied value.
      */
     private int getProgressFromValue(int value) {
-        return (value - mMinValue) / mSeekInterval;
+        return (Math.min(value, mMaxValue) - mMinValue) / mSeekInterval;
     }
 
     /**
@@ -652,7 +655,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
 
         if (key.equals(super.getPreferenceKey())) {
             mProgress = getProgressFromValue(DynamicPreferences.getInstance()
-                    .loadPrefs(super.getPreferenceKey(), mProgress));
+                    .load(super.getPreferenceKey(), mProgress));
 
             onUpdate();
         }

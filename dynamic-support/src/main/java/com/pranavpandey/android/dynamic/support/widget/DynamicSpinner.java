@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,16 +29,18 @@ import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicSurfaceWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicVersionUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * A Spinner to change its color according to the supplied parameters.
  */
-public class DynamicSpinner extends AppCompatSpinner implements DynamicWidget {
+public class DynamicSpinner extends AppCompatSpinner
+        implements DynamicWidget, DynamicSurfaceWidget {
 
     /**
      * Color type applied to this view.
@@ -78,6 +80,15 @@ public class DynamicSpinner extends AppCompatSpinner implements DynamicWidget {
      */
     private @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * {@code true} to enable elevation on the same background.
+     * <p>It will be useful to provide the true dark theme by disabling the card view elevation.
+     *
+     * <p><p>When disabled, widget elevation will be disabled (or 0) if the color of this widget
+     * (surface color) is exactly same as dynamic theme background color.
+     */
+    private boolean mElevationOnSameBackground;
+
     public DynamicSpinner(@NonNull Context context) {
         this(context, null);
     }
@@ -116,6 +127,9 @@ public class DynamicSpinner extends AppCompatSpinner implements DynamicWidget {
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicTheme_ads_backgroundAware,
                     WidgetDefaults.getBackgroundAware());
+            mElevationOnSameBackground = a.getBoolean(
+                    R.styleable.DynamicTheme_ads_elevationOnSameBackground,
+                    WidgetDefaults.ADS_ELEVATION_ON_SAME_BACKGROUND);
         } finally {
             a.recycle();
         }
@@ -222,15 +236,37 @@ public class DynamicSpinner extends AppCompatSpinner implements DynamicWidget {
             }
 
             DynamicDrawableUtils.colorizeDrawable(getBackground(), mColor);
-            
-            if (DynamicVersionUtils.isLollipop()) {
-                DynamicDrawableUtils.colorizeDrawable(getPopupBackground(),
-                        DynamicTheme.getInstance().get().getBackgroundColor());
-            } else {
-                DynamicDrawableUtils.colorizeDrawable(getPopupBackground(),
-                        DynamicTheme.getInstance().get().getBackgroundColor(),
-                        PorterDuff.Mode.MULTIPLY);
-            }
+        }
+
+        setSurface();
+    }
+
+    @Override
+    public boolean isElevationOnSameBackground() {
+        return mElevationOnSameBackground;
+    }
+
+    @Override
+    public void setElevationOnSameBackground(boolean elevationOnSameBackground) {
+        this.mElevationOnSameBackground = elevationOnSameBackground;
+
+        setSurface();
+    }
+
+    @Override
+    public void setSurface() {
+        @ColorInt int color = DynamicTheme.getInstance().get().getBackgroundColor();
+
+        if (mElevationOnSameBackground
+                && color == DynamicTheme.getInstance().get().getSurfaceColor()) {
+            color = DynamicTheme.getInstance().generateSurfaceColor(color);
+        }
+
+        if (DynamicSdkUtils.is21()) {
+            DynamicDrawableUtils.colorizeDrawable(getPopupBackground(), color);
+        } else {
+            DynamicDrawableUtils.colorizeDrawable(getPopupBackground(),
+                    color, PorterDuff.Mode.MULTIPLY);
         }
     }
 }

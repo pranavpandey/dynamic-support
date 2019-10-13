@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -35,6 +35,7 @@
     <string name="ads_widgets">Widgets</string>
     <string name="ads_instructions">Instructions</string>
     <string name="ads_tutorial">Tutorial</string>
+    <string name="ads_product_tour">Product tour</string>
     <string name="ads_troubleshoot">Troubleshoot</string>
     <string name="ads_about">About</string>
     <string name="ads_overview">Overview</string>
@@ -46,11 +47,13 @@
     <string name="ads_i_got_it">OK, Got it</string>
     <string name="ads_not_now">Not now</string>
     <string name="ads_yes_in">Yes, I\'m in</string>
+    <string name="ads_more">More</string>
     <string name="ads_more_info">More info</string>
     <string name="ads_select">Select</string>
     <string name="ads_copy">Copy</string>
     <string name="ads_save">Save</string>
     <string name="ads_load">Load</string>
+    <string name="ads_file">File</string>
     <string name="ads_create">Create</string>
     <string name="ads_previous">Previous</string>
     <string name="ads_next">Next</string>
@@ -103,16 +106,16 @@
     <string name="ads_perm_granted">Granted</string>
     <string name="ads_perm_granted_desc">This permission has been granted.</string>
     <string name="ads_perm_denied">Denied</string>
-    <string name="ads_perm_denied_desc">To grant this permission, go to App info > Permissions. Tap to go to the App info.</string>
+    <string name="ads_perm_denied_desc">To grant this permission, go to App info &gt; Permissions. Tap to go to the App info.</string>
     <string name="ads_perm_default">Permission</string>
     <string name="ads_perm_default_desc">This permission is required to perform some actions.</string>
     <string name="ads_perm_default_explain">Explanation.</string>
     <string name="ads_perm_write_system_settings">Write system settings</string>
-    <string name="ads_perm_write_system_settings_desc">allow write system settings</string>
+    <string name="ads_perm_write_system_settings_desc">Allow write system settings</string>
     <string name="ads_perm_overlay">Draw over other apps</string>
-    <string name="ads_perm_overlay_desc">permit drawing over other apps</string>
+    <string name="ads_perm_overlay_desc">Permit drawing over other apps</string>
     <string name="ads_perm_usage_access">Usage access</string>
-    <string name="ads_perm_usage_access_desc">permit usage access</string>
+    <string name="ads_perm_usage_access_desc">Permit usage access</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">Data</string>
@@ -143,16 +146,16 @@
     <string name="ads_backup_modify">Modify</string>
     <string name="ads_backup_modify_desc">Select a backup to modify.</string>
     <string name="ads_backup_restore_done">Backup has been restored successfully</string>
-    <string name="ads_backup_restore_error">Unable to restore backup</string>
+    <string name="ads_backup_restore_error">Unable to restore backup.</string>
     <string name="ads_backup_not_found">No backup is found.</string>
     <string name="ads_backup_modify_complete">Backup has been modified successfully</string>
     <string name="ads_backup_delete_all">Delete all</string>
     <string name="ads_backup_delete_all_title">Delete all backups</string>
     <string name="ads_backup_delete_all_desc">This will delete all the backups saved in the app storage. Do you want to continue?</string>
-    <string name="ads_backup_delete_all_done">All backups have been deleted successfully</string>
+    <string name="ads_backup_delete_all_done">All backups have been deleted successfully.</string>
     <string name="ads_backup_import">Import</string>
     <string name="ads_backup_import_title">Import backup</string>
-    <string name="ads_backup_import_summary">Start form a previous app state</string>
+    <string name="ads_backup_import_summary">Start from a previous app state</string>
     <string name="ads_backup_import_desc">Import a backup from the device or other storage.</string>
     <string name="ads_backup_format_location">Backup location: %1$s</string>
     <string name="ads_backup_format_created">Backup created: %1$s</string>
@@ -188,8 +191,11 @@
     <string name="ads_theme_color_accent">Accent color</string>
     <string name="ads_theme_color_secondary">Secondary color</string>
     <string name="ads_theme_color_accent_summary">Color used by the secondary elements.</string>
+    <string name="ads_theme_color_surface">Surface color</string>
     <string name="ads_theme_color_tint">Tint color</string>
     <string name="ads_theme_color_inverse">Inverse color</string>
+    <string name="ads_theme_font_scale">Font scale</string>
+    <string name="ads_theme_font_scale_summary">Scaling factor to make the text smaller or larger.</string>
     <string name="ads_theme_corner_size">Corner size</string>
     <string name="ads_theme_corner_size_summary">Corner radius of the app.</string>
     <string name="ads_theme_background_aware">Background aware</string>
@@ -203,12 +209,12 @@
     <string name="ads_theme_app_night_summary">Style of the app at night.</string>
     <string name="ads_theme_app_day_night_desc">This will only work when the auto theme is applied.</string>
     <string name="ads_theme_toast">Toast messages theme</string>
-    <string name="ads_theme_toast_summary">Show themed toast messages according to the app primary color.</string>
+    <string name="ads_theme_toast_summary">Show themed toast messages according to the app accent color.</string>
     <string name="ads_theme_toast_summary_unchecked">Show default system toast messages.</string>
     <string name="ads_theme_navigation_bar">Navigation bar theme</string>
-    <string name="ads_theme_navigation_bar_summary">Show themed navigation bar according to the app primary color.</string>
-    <string name="ads_theme_navigation_bar_summary_unchecked">Show black navigation bar.</string>
-    <string name="ads_theme_navigation_bar_desc">Navigation bar theme will not be visible on some places to provide best visual experience.</string>
+    <string name="ads_theme_navigation_bar_summary">Show navigation bar according to the app theme.</string>
+    <string name="ads_theme_navigation_bar_summary_unchecked">Show default navigation bar.</string>
+    <string name="ads_theme_navigation_bar_desc">Navigation bar theme will not be visible at some places to provide best visual experience.</string>
     <string name="ads_theme_notification">Notification theme</string>
     <string name="ads_theme_notification_summary">Color palette for the notification.</string>
     <string name="ads_theme_notification_style">Notification style</string>
@@ -222,7 +228,10 @@
     <string name="ads_theme_app_shortcuts_desc">Long press on the launcher icon to show app shortcuts, supported launcher is required.</string>
     <string name="ads_theme_reset_desc">Theme has been reset to default.</string>
     <string name="ads_theme_import_done">Theme has been imported successfully.</string>
+    <string name="ads_theme_export_done">Theme has been exported successfully.</string>
+    <string name="ads_theme_export_error">Unable to save theme.</string>
     <string name="ads_theme_copy_done">Theme has been copied successfully.</string>
+    <string name="ads_theme_format_saved">Theme saved: %1$s</string>
 
     <!-- Theme -->
     <string name="ads_theme_toast_default">Default toast message</string>
@@ -257,7 +266,7 @@
     <string name="ads_theme_entry_dark_green">Dark green</string>
     <string name="ads_theme_entry_dark_teal">Dark teal</string>
     <string name="ads_theme_entry_dark_purple">Dark purple</string>
-    <string name="ads_theme_entry_dark_orange">Dark Orange</string>
+    <string name="ads_theme_entry_dark_orange">Dark orange</string>
     <string name="ads_theme_entry_dark_brown">Dark brown</string>
     <string name="ads_theme_entry_dark_grey">Dark grey</string>
 
@@ -302,6 +311,10 @@
     <string name="ads_widget_reset_desc">Widget has been reset to default.</string>
     <string name="ads_widget_not_added">No widgets have been added.</string>
 
+    <!-- Setup -->
+    <string name="ads_setup">Setup</string>
+    <string name="ads_setup_desc">Configure the important features below.</string>
+
     <!-- About and Support -->
     <string name="ads_rate">Rate</string>
     <string name="ads_support_contact">Contact</string>
@@ -331,6 +344,7 @@
     <string name="ads_info_terms_of_use_desc">View complete terms of use of this product.</string>
     <string name="ads_info_privacy_policy_terms_desc">Privacy policy and terms of use.</string>
     <string name="ads_info_apps">More apps</string>
+    <string name="ads_info_apps_desc">Try other apps by me via Google Play.</string>
     <string name="ads_info_gplus_desc">Join official community to try the test releases.</string>
     <string name="ads_info_facebook_desc">Like official page to get the latest news and updates.</string>
     <string name="ads_info_xda_desc">Follow the official support forum on XDA.</string>

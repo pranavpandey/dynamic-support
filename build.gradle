@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +16,19 @@
 
 buildscript {
     ext.versions = [
-            'compileSdk': 29,
-            'minSdk'    : 14,
-            'targetSdk' : 29,
-            'buildTools': '29.0.2',
-            'dynamic'   : '2.3.0',
-            'fragment'  : '1.2.0-alpha02',
-            'gson'      : '2.8.5',
-            'kotlin'    : '1.3.50',
-            'material'  : '1.1.0-alpha07'
+            'compileSdk'  : 29,
+            'minSdk'      : 14,
+            'targetSdk'   : 29,
+            'buildTools'  : '29.0.2',
+            'drawerlayout': '1.1.0-alpha03',
+            'dynamic'     : '3.0.0',
+            'fragment'    : '1.2.0-beta02',
+            'kotlin'      : '1.3.50',
+            'material'    : '1.1.0-beta01',
+            'support'     : '1.0.0',
+            'swiperefresh': '1.1.0-alpha03',
+            'theme'       : '1.0.1',
+            'work'        : '2.3.0-alpha02'
     ]
 
     repositories {
@@ -67,9 +71,9 @@ ext {
     mavenGroup = 'com.pranavpandey.android'
     mavenArtifactId = 'dynamic-support'
     mavenInceptionYear = 2018
-    mavenVersion = '2.3.0'
-    mavenVersionCode = 19
-    sampleVersionCode = 19
+    mavenVersion = '3.0.0'
+    mavenVersionCode = 20
+    sampleVersionCode = 20
 
     developerId = 'pranavpandey'
     developerName = 'Pranav Pandey'

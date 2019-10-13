@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,8 +66,10 @@ public abstract class DynamicWidgetActivity extends DynamicActivity {
 
     /**
      * Add widget after saving the settings.
+     *
+     * @param finishActivity {@code true} to finish the activity.
      */
-    public void addWidget() {
+    public void addWidget(boolean finishActivity) {
         if (!mUpdateWidget) {
             // Push widget update to surface with newly set configuration.
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
@@ -79,6 +81,17 @@ public abstract class DynamicWidgetActivity extends DynamicActivity {
             setResult(RESULT_OK, resultValue);
         }
 
-        finish();
+        if (finishActivity) {
+            finish();
+        }
+    }
+
+    /**
+     * Add widget after saving the settings.
+     *
+     * @see #addWidget(boolean)
+     */
+    public void addWidget() {
+        addWidget(true);
     }
 }

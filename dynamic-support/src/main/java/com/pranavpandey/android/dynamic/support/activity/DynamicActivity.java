@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ActionMode;
@@ -50,6 +49,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -60,9 +60,11 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicFABUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicHintUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.widget.DynamicBottomSheet;
 import com.pranavpandey.android.dynamic.support.widget.DynamicExtendedFloatingActionButton;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 
 /**
  * Base activity to handle everything related to design support and the app compat library.
@@ -151,21 +153,28 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     protected ViewGroup mFrameHeader;
 
     /**
+     * Frame layout to hold the content fragment.
+     * <p>Use the methods {@link #switchFragment(Fragment, boolean, String)} or
+     * {@link #switchFragment(Fragment, boolean)} or
+     * {@link #switchFragment(FragmentTransaction, Fragment, boolean, String)} to add or
+     * change the fragments.
+     */
+    protected FrameLayout mFrameContent;
+
+    /**
+     * Frame layout for the bottom sheet.
+     * <p>Use the methods {@link #addBottomSheet(int, boolean)}
+     * or {@link #addBottomSheet(View, boolean)} to add the views.
+     */
+    protected DynamicBottomSheet mBottomSheet;
+
+    /**
      * Footer frame at the bottom of the screen to add custom views like
      * bottom navigation bar, ads, etc.
      * <p>Use the methods {@link #addFooter(int, boolean)} or {@link #addFooter(View, boolean)}
      * to add the views.
      */
     protected ViewGroup mFrameFooter;
-
-    /**
-     * Frame layout to hold the content fragment.
-     * <p>Use the methods {@link #switchFragment(Fragment, boolean, String)} or
-     * {@link #switchFragment(Fragment, boolean)} ot
-     * {@link #switchFragment(FragmentTransaction, Fragment, boolean, String)} to add or
-     * change the fragments.
-     */
-    protected FrameLayout mFrameContent;
 
     /**
      * Boolean to maintain the app bar state.
@@ -180,6 +189,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
 
         mFrameContent = findViewById(R.id.ads_container);
         mFrameHeader = findViewById(R.id.ads_header_frame);
+        mBottomSheet = findViewById(R.id.ads_bottom_sheet);
         mFrameFooter = findViewById(R.id.ads_footer_frame);
         mToolbar = findViewById(R.id.ads_toolbar);
         mSearchViewEditText = findViewById(R.id.ads_search_view_edit);
@@ -206,6 +216,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
 
         setSupportActionBar(mToolbar);
         setStatusBarColor(getStatusBarColor());
+        setNavigationBarColor(getNavigationBarColor());
         setSearchView();
 
         if (savedInstanceState != null) {
@@ -223,6 +234,17 @@ public abstract class DynamicActivity extends DynamicStateActivity {
                 restoreSearchViewState();
             }
         }
+
+        DynamicViewUtils.applyWindowInsetsBottomMargin(mFAB);
+        DynamicViewUtils.applyWindowInsetsBottomMargin(mExtendedFAB);
+        DynamicViewUtils.applyWindowInsetsBottom(mFrameFooter);
+
+        if (mBottomSheet != null) {
+            mBottomSheet.applyWindowInsets();
+        }
+
+        setFrameVisibility(mBottomSheet);
+        setFrameVisibility(mFrameFooter);
     }
 
     @Override
@@ -230,18 +252,28 @@ public abstract class DynamicActivity extends DynamicStateActivity {
         super.setStatusBarColor(color);
 
         if (!isDrawerActivity()) {
-            if (mCoordinatorLayout != null) {
-                mCoordinatorLayout.setStatusBarBackgroundColor(getStatusBarColor());
-            }
-
-            if (mCollapsingToolbarLayout != null) {
-                mCollapsingToolbarLayout.setStatusBarScrimColor(getStatusBarColor());
-                mCollapsingToolbarLayout.setContentScrimColor(
-                        DynamicTheme.getInstance().get().getPrimaryColor());
-            } else {
-                setWindowStatusBarColor(getStatusBarColor());
-            }
+            setWindowStatusBarColor(getStatusBarColor());
         }
+
+        if (mCoordinatorLayout != null) {
+            mCoordinatorLayout.setStatusBarBackgroundColor(getStatusBarColor());
+        }
+
+        if (mCollapsingToolbarLayout != null) {
+            mCollapsingToolbarLayout.setStatusBarScrimColor(getStatusBarColor());
+            mCollapsingToolbarLayout.setContentScrimColor(
+                    DynamicTheme.getInstance().get().getPrimaryColor());
+        }
+    }
+
+    @Override
+    public @Nullable View getEdgeToEdgeView() {
+        return mCoordinatorLayout;
+    }
+
+    @Override
+    public boolean isApplyEdgeToEdgeInsets() {
+        return false;
     }
 
     /**
@@ -258,12 +290,17 @@ public abstract class DynamicActivity extends DynamicStateActivity {
         super.onSaveInstanceState(outState);
 
         outState.putBoolean(ADS_STATE_APP_BAR_COLLAPSED, isAppBarCollapsed());
-        outState.putInt(ADS_STATE_FAB_VISIBLE, mFAB.getVisibility());
-        outState.putInt(ADS_STATE_EXTENDED_FAB_VISIBLE, mExtendedFAB.getVisibility());
 
-        if (mExtendedFAB instanceof DynamicExtendedFloatingActionButton) {
-            outState.putBoolean(ADS_STATE_EXTENDED_FAB_STATE,
-                    ((DynamicExtendedFloatingActionButton) mExtendedFAB).isFABExtended());
+        if (mFAB != null) {
+            outState.putInt(ADS_STATE_FAB_VISIBLE, mFAB.getVisibility());
+        }
+
+        if ((mExtendedFAB != null)) {
+            outState.putInt(ADS_STATE_EXTENDED_FAB_VISIBLE, mExtendedFAB.getVisibility());
+            if (mExtendedFAB instanceof DynamicExtendedFloatingActionButton) {
+                outState.putBoolean(ADS_STATE_EXTENDED_FAB_STATE,
+                        ((DynamicExtendedFloatingActionButton) mExtendedFAB).isFABExtended());
+            }
         }
 
         if (mSearchViewRoot != null) {
@@ -307,6 +344,27 @@ public abstract class DynamicActivity extends DynamicStateActivity {
         setTitle(getText(titleRes));
     }
 
+    /**
+     * Set subtitle for the support action bar.
+     *
+     * @param subtitle The subtitle to be set.
+     */
+    public void setSubtitle(@Nullable CharSequence subtitle) {
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setSubtitle(subtitle);
+        }
+    }
+
+    /**
+     * Set subtitle resource for the support action bar.
+     *
+     * @param subtitleRes The subtitle resource to be set.
+     */
+    public void setSubtitle(@StringRes int subtitleRes) {
+        setSubtitle(getText(subtitleRes));
+    }
+
     @Override
     protected @IdRes int getFragmentContainerId() {
         return R.id.ads_container;
@@ -320,8 +378,10 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * @return The custom layout resource. Just return {@link #ADS_DEFAULT_LAYOUT_RES} to use
-     *         the default inbuilt layouts.
+     * Get the custom layout resource for this activity.
+     * <p>Return {@link #ADS_DEFAULT_LAYOUT_RES} to use the default inbuilt layouts.
+     *
+     * @return The custom layout resource.
      */
     protected @LayoutRes int getLayoutRes() {
         return setCollapsingToolbarLayout()
@@ -329,10 +389,23 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
-     * @return The custom content resource if no fragment is required. It will automatically
-     *         add this layout in the {@link #mFrameContent}.
+     * Returns the custom content resource if no fragment is required.
+     * <p>It will automatically add this layout in the {@link #mFrameContent}.
+     *
+     * @return The custom content resource if no fragment is required.
      */
-    protected abstract @LayoutRes int getContentRes();
+    protected int getContentRes() {
+        return ADS_DEFAULT_LAYOUT_RES;
+    }
+
+    /**
+     * Returns the parent content view used by this activity.
+     *
+     * @return The parent content view used by this activity.
+     */
+    protected @NonNull View getContentView() {
+        return mFrameContent != null ? mFrameContent.getRootView() : getWindow().getDecorView();
+    }
 
     /**
      * Set the icon and on click listener for the back or up button in the app bar.
@@ -574,6 +647,10 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * @param removePrevious {@code true} to remove the previously added views.
      */
     public void addHeader(@Nullable View view, boolean removePrevious) {
+        if (mFrameHeader == null) {
+            return;
+        }
+
         if (removePrevious && mFrameHeader.getChildCount() > 0) {
             mFrameHeader.removeAllViews();
         }
@@ -599,6 +676,68 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     }
 
     /**
+     * Get the bottom sheet frame layout.
+     * <p>Use the methods {@link #addBottomSheet(int, boolean)}
+     * or {@link #addBottomSheet(View, boolean)} to add the views.
+     *
+     * @return The bottom sheet frame layout.
+     */
+    public @Nullable DynamicBottomSheet getBottomSheet() {
+        return mBottomSheet;
+    }
+
+    /**
+     * Add view in the bottom sheet frame layout.
+     *
+     * @param view The view to be added in the bottom sheet.
+     * @param removePrevious {@code true} to remove the previously added views.
+     */
+    public void addBottomSheet(@Nullable View view, boolean removePrevious) {
+        if (mBottomSheet == null) {
+            return;
+        }
+
+        if (removePrevious && mBottomSheet.getChildCount() > 0) {
+            mBottomSheet.removeAllViews();
+        }
+
+        if (view != null) {
+            mBottomSheet.addView(view);
+        }
+
+        setFrameVisibility(mBottomSheet);
+    }
+
+    /**
+     * Returns the current bottom sheet behavior.
+     *
+     * @return The bottom sheet behavior.
+     */
+    public BottomSheetBehavior getBottomSheetBehavior() {
+        return BottomSheetBehavior.from(mBottomSheet);
+    }
+
+    /**
+     * Sets the bottom sheet state if present.
+     *
+     * @param bottomSheetState The state to be set.
+     */
+    public void setBottomSheetState(@BottomSheetBehavior.State int bottomSheetState) {
+        getBottomSheetBehavior().setState(bottomSheetState);
+    }
+
+    /**
+     * Add view in the bottom sheet frame layout.
+     *
+     * @param layoutRes The layout resource to be added in the bottom sheet.
+     * @param removePrevious {@code true} to remove the previously added views.
+     */
+    public void addBottomSheet(@LayoutRes int layoutRes, boolean removePrevious) {
+        addBottomSheet(LayoutInflater.from(this).inflate(layoutRes,
+                new LinearLayout(this), false), removePrevious);
+    }
+
+    /**
      * Get the footer frame at the bottom of the screen to add custom views like
      * bottom navigation bar, ads, etc.
      * <p>Use the methods {@link #addFooter(int, boolean)} or {@link #addFooter(View, boolean)}
@@ -616,17 +755,23 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * <p>Useful to add bottom navigation bar, ads, etc. dynamically. Multiple views can be
      * added and the default background will be the app bar background (theme primary color).
      *
-     * @param view The view to be added in the header frame.
+     * @param view The view to be added in the footer frame.
      * @param removePrevious {@code true} to remove the previously added views.
      */
     public void addFooter(@Nullable View view, boolean removePrevious) {
-        if (removePrevious && mFrameHeader.getChildCount() > 0) {
+        if (mFrameFooter == null) {
+            return;
+        }
+
+        if (removePrevious && mFrameFooter.getChildCount() > 0) {
             mFrameFooter.removeAllViews();
         }
 
         if (view != null) {
             mFrameFooter.addView(view);
         }
+
+        setFrameVisibility(mFrameFooter);
     }
 
     /**
@@ -649,7 +794,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * @param visible {@code true} to make the menu item visible.
      */
     public void setMenuItemVisible(final int id, final boolean visible) {
-        (new Handler()).post(new Runnable() {
+        getContentView().post(new Runnable() {
             @Override
             public void run() {
                 if (mMenu != null) {
@@ -657,6 +802,19 @@ public abstract class DynamicActivity extends DynamicStateActivity {
                 }
             }
         });
+    }
+
+    /**
+     * Set view group visibility according to the child views.
+     *
+     * @param viewGroup The view group to set the visibility.
+     */
+    private void setFrameVisibility(@Nullable ViewGroup viewGroup) {
+        if (viewGroup == null) {
+            return;
+        }
+
+        viewGroup.setVisibility(viewGroup.getChildCount() > 0 ? View.VISIBLE : View.GONE);
     }
 
     /**
@@ -675,15 +833,15 @@ public abstract class DynamicActivity extends DynamicStateActivity {
         if (mSearchViewEditText != null) {
             mSearchViewEditText.addTextChangedListener(new TextWatcher() {
                 @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
                 @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
                     setSearchViewClearButton();
                 }
 
                 @Override
-                public void afterTextChanged(Editable editable) { }
+                public void afterTextChanged(Editable s) { }
             });
         }
 
@@ -787,10 +945,12 @@ public abstract class DynamicActivity extends DynamicStateActivity {
 
     @Override
     public void onBackPressed() {
-        if (isSearchViewExpanded()) {
-            collapseSearchView();
-        } else {
-            super.onBackPressed();
+        if (!isFinishing()) {
+            if (isSearchViewExpanded()) {
+                collapseSearchView();
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 
@@ -817,13 +977,15 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      */
     public void setFAB(@Nullable Drawable drawable, int visibility,
             @Nullable View.OnClickListener onClickListener) {
+        if (mFAB == null) {
+            return;
+        }
+
         removeExtendedFAB();
 
-        if (mFAB != null) {
-            setFABImageDrawable(drawable);
-            mFAB.setOnClickListener(onClickListener);
-            setFABVisibility(visibility);
-        }
+        setFABImageDrawable(drawable);
+        mFAB.setOnClickListener(onClickListener);
+        setFABVisibility(visibility);
     }
 
     /**
@@ -940,13 +1102,15 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      */
     public void setExtendedFAB(@Nullable Drawable icon, @Nullable String text,
             int visibility, @Nullable View.OnClickListener onClickListener) {
+        if (mExtendedFAB == null) {
+            return;
+        }
+
         removeFAB();
 
-        if (mExtendedFAB != null) {
-            updateExtendedFAB(icon, text);
-            mExtendedFAB.setOnClickListener(onClickListener);
-            setExtendedFABVisibility(visibility);
-        }
+        updateExtendedFAB(icon, text);
+        mExtendedFAB.setOnClickListener(onClickListener);
+        setExtendedFABVisibility(visibility);
     }
 
     /**

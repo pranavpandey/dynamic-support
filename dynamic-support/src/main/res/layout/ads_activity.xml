@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -15,23 +15,24 @@
 	limitations under the License.
 -->
 
-<RelativeLayout
+<com.pranavpandey.android.dynamic.support.widget.DynamicRootLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ads_activity_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout
         android:id="@+id/ads_coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/ads_footer_frame"
-        android:fitsSystemWindows="true">
+        android:layout_above="@id/ads_footer_frame">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicAppBarLayout
             android:id="@+id/ads_app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
             app:elevation="0dp"
             app:ads_backgroundAware="disable">
 
@@ -49,13 +50,15 @@
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicAppBarLayout>
 
-        <include layout="@layout/ads_content_dynamic" />
+        <include layout="@layout/ads_content" />
+
+        <include layout="@layout/ads_layout_bottom_sheet" />
 
         <include layout="@layout/ads_layout_fab_bottom" />
 
         <include layout="@layout/ads_layout_fab_extended_bottom" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout>
 
     <FrameLayout
         android:id="@+id/ads_footer_frame"
@@ -65,4 +68,4 @@
 
     </FrameLayout>
 
-</RelativeLayout>
+</com.pranavpandey.android.dynamic.support.widget.DynamicRootLayout>

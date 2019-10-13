@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
     android:layout_height="match_parent">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
-        android:id="@+id/ads_dynamic_recycler_view"
-        style="@style/Widget.DynamicApp.Scroller.Vertical" />
+        style="@style/Widget.DynamicApp.Scroller.Vertical"
+        android:id="@+id/ads_dynamic_recycler_view" />
 
 </FrameLayout>

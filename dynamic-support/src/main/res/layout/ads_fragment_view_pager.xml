@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -15,7 +15,8 @@
 	limitations under the License.
 -->
 
-<com.pranavpandey.android.dynamic.support.widget.DynamicViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+<com.pranavpandey.android.dynamic.support.widget.DynamicViewPager
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ads_view_pager"
     android:layout_width="match_parent"
     android:layout_height="match_parent">

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,22 +19,27 @@ package com.pranavpandey.android.dynamic.support.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.View;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.theme.Theme;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * An AppBarLayout to apply color filter according to the supplied parameters.
  */
-public class DynamicAppBarLayout extends AppBarLayout implements DynamicWidget {
+public class DynamicAppBarLayout extends AppBarLayout
+        implements WindowInsetsWidget, DynamicWidget {
 
     /**
      * Color type applied to this view.
@@ -88,6 +93,8 @@ public class DynamicAppBarLayout extends AppBarLayout implements DynamicWidget {
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(
                 attrs, R.styleable.DynamicTheme);
+        TypedArray b = getContext().obtainStyledAttributes(
+                attrs, new int[] { R.attr.ads_windowInsets});
 
         try {
             mColorType = a.getInt(
@@ -105,8 +112,13 @@ public class DynamicAppBarLayout extends AppBarLayout implements DynamicWidget {
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicTheme_ads_backgroundAware,
                     WidgetDefaults.getBackgroundAware());
+
+            if (attrs != null && b.getBoolean(0, WidgetDefaults.ADS_WINDOW_INSETS)) {
+                applyWindowInsets();
+            }
         } finally {
             a.recycle();
+            b.recycle();
         }
 
         initialize();
@@ -126,6 +138,26 @@ public class DynamicAppBarLayout extends AppBarLayout implements DynamicWidget {
         }
 
         setColor();
+    }
+
+    @Override
+    public void applyWindowInsets() {
+        final int paddingTop = getPaddingTop();
+        final int paddingLeft = getPaddingLeft();
+        final int paddingRight = getPaddingRight();
+
+        ViewCompat.setOnApplyWindowInsetsListener(this,
+                new androidx.core.view.OnApplyWindowInsetsListener() {
+            @Override
+            public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat insets) {
+                v.setPadding(paddingLeft + insets.getSystemWindowInsetLeft(),
+                        paddingTop + insets.getSystemWindowInsetTop(),
+                        paddingRight + insets.getSystemWindowInsetRight(),
+                        v.getPaddingBottom());
+
+                return insets;
+            }
+        });
     }
 
     @Override

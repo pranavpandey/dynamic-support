@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,8 +33,8 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.preference.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 
 /**
@@ -314,7 +314,7 @@ public abstract class DynamicPreference extends FrameLayout
     private void updateDependency() {
         if (mDependency != null) {
             setEnabled(DynamicPreferences.getInstance()
-                    .loadPrefs(mDependency, isEnabled()));
+                    .load(mDependency, isEnabled()));
         }
     }
 
@@ -584,7 +584,7 @@ public abstract class DynamicPreference extends FrameLayout
     /**
      * Returns the listener to get the popup and dialog dialogs.
      *
-     * @return The llistener to get the popup and dialog dialogs.
+     * @return The listener to get the popup and dialog dialogs.
      */
     public @Nullable OnPromptListener getOnPromptListener() {
         return mOnPromptListener;
@@ -604,7 +604,7 @@ public abstract class DynamicPreference extends FrameLayout
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(mDependency)) {
-            setEnabled(DynamicPreferences.getInstance().loadPrefs(key, isEnabled()));
+            setEnabled(DynamicPreferences.getInstance().load(key, isEnabled()));
         }
     }
 }

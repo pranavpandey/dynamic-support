@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -178,7 +178,8 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     }
 
     /**
-     * Switch the content fragment use by this activity by using the supplied fragment transaction.
+     * Switch the content fragment used by this activity by using the supplied fragment
+     * transaction.
      *
      * @param fragmentTransaction The customised fragment transaction to support animations
      *                            and more.
@@ -193,16 +194,18 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
             fragment = getSupportFragmentManager().findFragmentByTag(tag);
         }
 
-        fragmentTransaction.replace(getFragmentContainerId(), fragment, tag);
-        if (addToBackStack && mContentFragment != null) {
-            fragmentTransaction.addToBackStack(tag);
-        } else {
-            getSupportFragmentManager().popBackStack(
-                    null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        }
+        if (fragment != null) {
+            fragmentTransaction.replace(getFragmentContainerId(), fragment, tag);
+            if (addToBackStack && mContentFragment != null) {
+                fragmentTransaction.addToBackStack(tag);
+            } else {
+                getSupportFragmentManager().popBackStack(
+                        null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            }
 
-        commitFragmentTransaction(fragmentTransaction);
-        setContentFragment(fragment, tag);
+            commitFragmentTransaction(fragmentTransaction);
+            setContentFragment(fragment, tag);
+        }
     }
 
     /**
@@ -219,7 +222,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     }
 
     /**
-     * Switch the content fragment use by this activity.
+     * Switch the content fragment used by this activity.
      *
      * @param fragment The fragment to be used by this activity.
      * @param addToBackStack {@code true} to put previous fragment to back stack.
@@ -232,7 +235,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     }
 
     /**
-     * Switch the content fragment use by this activity.
+     * Switch the content fragment used by this activity.
      *
      * @param fragment The fragment to be used by this activity.
      * @param addToBackStack {@code true} to put previous fragment to back stack.

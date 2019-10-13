@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Pranav Pandey
+ * Copyright 2019 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,8 @@ package com.pranavpandey.android.dynamic.support.theme.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
@@ -36,6 +38,11 @@ public abstract class ThemePreview<T extends DynamicAppTheme> extends DynamicVie
      * Dynamic app theme used by this preview.
      */
     private T mDynamicTheme;
+
+    /**
+     * On click listener to receive action view click events.
+     */
+    private View.OnClickListener mOnActionClickListener;
 
     public ThemePreview(@NonNull Context context) {
         super(context);
@@ -58,14 +65,23 @@ public abstract class ThemePreview<T extends DynamicAppTheme> extends DynamicVie
     @Override
     protected void onEnabled(boolean enabled) {
         setAlpha(enabled ? WidgetDefaults.ADS_ALPHA_ENABLED : WidgetDefaults.ADS_ALPHA_DISABLED);
+
+        getActionView().setEnabled(enabled);
+        getActionView().setOnClickListener(enabled ? mOnActionClickListener : null);
+        getActionView().setClickable(enabled && mOnActionClickListener != null);
     }
-    
+
+    /**
+     * Returns the default dynamic theme used by this preview.
+     *
+     * @return The default dynamic theme used by this preview.
+     */
     public abstract @NonNull T getDefaultTheme();
 
     /**
      * Get the dynamic theme used by this preview.
      *
-     * @return the dynamic theme used by this preview.
+     * @return The dynamic theme used by this preview.
      */
     public @NonNull T getDynamicTheme() {
         return mDynamicTheme;
@@ -80,5 +96,34 @@ public abstract class ThemePreview<T extends DynamicAppTheme> extends DynamicVie
         this.mDynamicTheme = dynamicTheme;
 
         onUpdate();
+    }
+
+    /**
+     * Returns the action view used by this preview.
+     *
+     * @return The action view used by this preview.
+     */
+    public abstract @NonNull ImageView getActionView();
+
+    /**
+     * Get the on click listener to receive action view click events.
+     *
+     * @return The on click listener to receive action view click events.
+     */
+    public OnClickListener getOnActionClickListener() {
+        return mOnActionClickListener;
+    }
+
+    /**
+     * Set the on click listener for action view to receive the click events and to perform edit
+     * operation.
+     *
+     * @param onActionClickListener The on click listener to be set.
+     */
+    public void setOnActionClickListener(@Nullable View.OnClickListener onActionClickListener) {
+        this.mOnActionClickListener = onActionClickListener;
+
+        getActionView().setOnClickListener(mOnActionClickListener);
+        onEnabled(isEnabled());
     }
 }

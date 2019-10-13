@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -18,36 +18,14 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ads_widget_configure"
-    style="@style/Widget.DynamicApp.Scroller.Padding.Vertical">
+    style="@style/Widget.DynamicApp.Scroller.Padding.Vertical"
+    android:id="@+id/ads_widget_configure">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-            style="@style/Widget.DynamicApp.Card">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <com.pranavpandey.android.dynamic.support.view.DynamicHeader
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:ads_title="@string/ads_widget_preview" />
-
-                <include
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/ads_margin_regular"
-                    layout="@layout/ads_theme_preview" />
-
-            </LinearLayout>
-
-        </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/ads_bottom_sheet_peek_height">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
             style="@style/Widget.DynamicApp.Card">
@@ -78,18 +56,20 @@
                     app:ads_popupColors="@array/ads_app_theme_colors" />
 
                 <com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
-                    android:id="@+id/ads_pref_theme_color_primary_dark"
+                    android:id="@+id/ads_pref_theme_color_system"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:ads_key="ads_pref_settings_theme_color_primary_dark"
+                    app:ads_altKey="ads_pref_settings_theme_color_surface"
                     app:ads_icon="@drawable/ads_ic_paint"
                     app:ads_title="@string/ads_theme_color_primary_dark"
                     app:ads_summary="@string/ads_theme_color_primary_summary_dark"
                     app:ads_description="@string/ads_theme_color_default_desc"
-                    app:ads_action="@string/ads_theme_color_tint"
+                    app:ads_action="@string/ads_theme_color_surface"
                     app:ads_alphaEnabled="true"
                     app:ads_popup="true"
-                    app:ads_popupColors="@array/ads_app_colors_dark" />
+                    app:ads_popupColors="@array/ads_app_colors_dark"
+                    app:ads_altPopupColors="@array/ads_app_theme_surface_colors" />
 
                 <com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
                     android:id="@+id/ads_pref_theme_color_primary"
@@ -184,6 +164,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:ads_title="@string/ads_advanced" />
+
+                <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarPreference
+                    android:id="@+id/ads_pref_theme_font_scale"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_key="ads_pref_settings_theme_font_scale"
+                    app:ads_altKey="ads_pref_settings_theme_font_scale_alt"
+                    app:ads_icon="@drawable/ads_ic_font_scale"
+                    app:ads_title="@string/ads_theme_font_scale"
+                    app:ads_summary="@string/ads_theme_font_scale_summary"
+                    app:ads_description="@string/ads_theme_settings_default_desc"
+                    app:ads_entries="@array/ads_theme_entries_auto"
+                    app:ads_values="@array/ads_theme_values_auto"
+                    app:ads_min="@integer/ads_font_scale_min"
+                    app:ads_max="@integer/ads_font_scale_max"
+                    app:ads_interval="@integer/ads_font_scale_interval"
+                    app:ads_progress="@integer/ads_font_scale"
+                    app:ads_unit="@string/ads_unit_percent"
+                    app:ads_controls="true" />
 
                 <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarPreference
                     android:id="@+id/ads_pref_theme_corner_size"

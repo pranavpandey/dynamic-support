@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -35,9 +35,9 @@
             android:orientation="horizontal">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+                style="@style/Widget.DynamicApp.Image.Preference"
                 android:id="@+id/ads_preference_icon"
-                android:visibility="gone"
-                style="@style/Widget.DynamicApp.Image.Preference" />
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -48,17 +48,17 @@
                 android:visibility="gone">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                    style="@style/TextAppearance.DynamicApp.Subtitle1"
                     android:id="@+id/ads_preference_summary"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/TextAppearance.DynamicApp.Subtitle1" />
+                    android:layout_height="wrap_content" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                    style="@style/TextAppearance.DynamicApp.Body1"
                     android:id="@+id/ads_preference_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/ads_margin_tiny"
-                    style="@style/TextAppearance.DynamicApp.Body1" />
+                    android:layout_marginTop="@dimen/ads_margin_tiny" />
 
             </LinearLayout>
 
@@ -81,10 +81,10 @@
                 android:textSize="@dimen/ads_picker_font_size_normal" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
+                style="@style/Widget.DynamicApp.Button.ImageButton"
                 android:id="@+id/ads_preference_seek_bar_left"
                 android:layout_width="@dimen/ads_icon_preference"
                 android:layout_height="@dimen/ads_icon_preference"
-                style="@style/Widget.DynamicApp.Button.ImageButton"
                 app:srcCompat="@drawable/ads_ic_chevron_left"
                 app:ads_colorType="primary" />
 
@@ -95,14 +95,15 @@
                 android:layout_weight="1.0" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
+                style="@style/Widget.DynamicApp.Button.ImageButton"
                 android:id="@+id/ads_preference_seek_bar_right"
                 android:layout_width="@dimen/ads_icon_preference"
                 android:layout_height="@dimen/ads_icon_preference"
-                style="@style/Widget.DynamicApp.Button.ImageButton"
                 app:srcCompat="@drawable/ads_ic_chevron_right"
                 app:ads_colorType="primary" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                style="@style/TextAppearance.DynamicApp.PreferenceValue"
                 android:id="@+id/ads_preference_seek_bar_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,14 +111,13 @@
                 android:layout_marginStart="@dimen/ads_margin_small"
                 android:minWidth="@dimen/ads_picker_value_width"
                 android:gravity="center"
-                android:textSize="@dimen/ads_picker_font_size_normal"
-                style="@style/TextAppearance.DynamicApp.PreferenceValue" />
+                android:textSize="@dimen/ads_picker_font_size_normal" />
 
         </LinearLayout>
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-            android:id="@+id/ads_preference_action_button"
-            style="@style/Widget.DynamicApp.Button.Preference" />
+            style="@style/Widget.DynamicApp.Button.Preference"
+            android:id="@+id/ads_preference_action_button" />
 
     </LinearLayout>
 

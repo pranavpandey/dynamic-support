@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018 Pranav Pandey
+	Copyright 2019 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ads_color_picker"
-    style="@style/Widget.DynamicApp.Scroller.Vertical">
+    style="@style/Widget.DynamicApp.Scroller.Vertical"
+    android:id="@+id/ads_color_picker">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,6 +26,7 @@
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
+            style="@style/Widget.DynamicApp.Scroller.Nested.GridView"
             android:id="@+id/ads_color_picker_presets"
             android:paddingTop="@dimen/ads_margin_extra_tiny"
             android:paddingBottom="@dimen/ads_margin_extra_tiny"
@@ -33,8 +34,7 @@
             android:paddingRight="@dimen/ads_margin_small"
             android:columnWidth="@dimen/ads_icon_medium"
             android:horizontalSpacing="@dimen/ads_margin_tiny"
-            android:verticalSpacing="@dimen/ads_margin_small"
-            style="@style/Widget.DynamicApp.Scroller.Nested.GridView" />
+            android:verticalSpacing="@dimen/ads_margin_small" />
 
     </LinearLayout>
 
