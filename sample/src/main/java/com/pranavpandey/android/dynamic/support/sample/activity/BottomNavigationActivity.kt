@@ -131,6 +131,7 @@ class BottomNavigationActivity : DynamicActivity() {
      */
     private fun themeBottomNavigationView() {
         if (mBottomNavigationView != null) {
+            frameFooter!!.setBackgroundColor(mBottomNavigationView!!.color)
             mBottomNavigationView!!.color = DynamicTheme.getInstance().get().primaryColor
             mBottomNavigationView!!.textColor = DynamicColorUtils.getTintColor(
                     DynamicTheme.getInstance().get().primaryColor)
