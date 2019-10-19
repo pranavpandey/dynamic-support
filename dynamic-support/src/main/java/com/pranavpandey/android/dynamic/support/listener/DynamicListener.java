@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.listener;
 
 import android.annotation.TargetApi;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 
 /**
@@ -27,23 +28,43 @@ public interface DynamicListener {
     /**
      * This method will be called when the navigation bar theme has been changed.
      */
-    void onNavigationBarThemeChange();
+    void onNavigationBarThemeChanged();
 
     /**
      * This method will be called when the dynamic change event occurs (like theme, locale, etc.).
-     * <p>Re-create the activity or application here to adapt changes.
+     * <p>Recreate the activity or application here to adapt changes.
      *
      * @param context {@code true} if there is a context change and it must be reinitialized.
      *
      * @param recreate {@code true} if listener must be recreated to adapt the changes.
      */
-    void onDynamicChange(boolean context, boolean recreate);
+    void onDynamicChanged(boolean context, boolean recreate);
+
+    /**
+     * This method will be called when the dynamic configuration change event occurs
+     * (like locale, font scale, orientation, ui mode, etc.).
+     * <p>It will provide more control on {@link #onDynamicChanged(boolean, boolean)} method call.
+     *
+     * @param locale {@code true} if locale is changed.
+     * @param fontScale {@code true} if font scale is changed.
+     * @param orientation {@code true} if there is an orientation change.
+     * @param uiMode {@code true} if ui mode is changed.
+     * @param density {@code true} if configuration density is changed.
+     *
+     * @see ActivityInfo#CONFIG_LOCALE
+     * @see ActivityInfo#CONFIG_FONT_SCALE
+     * @see ActivityInfo#CONFIG_ORIENTATION
+     * @see ActivityInfo#CONFIG_UI_MODE
+     * @see ActivityInfo#CONFIG_DENSITY
+     */
+    void onDynamicConfigurationChanged(boolean locale, boolean fontScale,
+            boolean orientation, boolean uiMode, boolean density);
 
     /**
      * This method will be called when the auto theme change event occurs according to the time.
-     * <p>Re-create the activity or application here to adapt changes.
+     * <p>Recreate the activity or application here to adapt changes.
      */
-    void onAutoThemeChange();
+    void onAutoThemeChanged();
 
     /**
      * This method will be called when the power save mode has been changed.
@@ -53,5 +74,5 @@ public interface DynamicListener {
      * @param powerSaveMode {@code true} if the device is in power save mode.
      */
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    void onPowerSaveModeChange(boolean powerSaveMode);
+    void onPowerSaveModeChanged(boolean powerSaveMode);
 }

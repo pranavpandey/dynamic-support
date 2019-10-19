@@ -219,11 +219,11 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                     if (intent.getAction().equals(
                             PowerManager.ACTION_POWER_SAVE_MODE_CHANGED)) {
                         mPowerSaveMode = mPowerManager.isPowerSaveMode();
-                        onPowerSaveModeChange(mPowerSaveMode);
+                        onPowerSaveModeChanged(mPowerSaveMode);
                     } else {
                         setDynamicThemeWork(!WorkManager.getInstance(context)
                                 .getWorkInfosForUniqueWork(DynamicThemeWork.TAG).isDone());
-                        onAutoThemeChange();
+                        onAutoThemeChanged();
                     }
                 }
             }
@@ -853,30 +853,39 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     }
 
     @Override
-    public void onNavigationBarThemeChange() {
+    public void onNavigationBarThemeChanged() {
         for (DynamicListener dynamicListener : mDynamicListeners) {
-            dynamicListener.onNavigationBarThemeChange();
+            dynamicListener.onNavigationBarThemeChanged();
         }
     }
 
     @Override
-    public void onDynamicChange(boolean context, boolean recreate) {
+    public void onDynamicChanged(boolean context, boolean recreate) {
         for (DynamicListener dynamicListener : mDynamicListeners) {
-            dynamicListener.onDynamicChange(context, recreate);
+            dynamicListener.onDynamicChanged(context, recreate);
         }
     }
 
     @Override
-    public void onAutoThemeChange() {
+    public void onDynamicConfigurationChanged(boolean locale, boolean fontScale,
+            boolean orientation, boolean uiMode, boolean density) {
         for (DynamicListener dynamicListener : mDynamicListeners) {
-            dynamicListener.onAutoThemeChange();
+            dynamicListener.onDynamicConfigurationChanged(locale,
+                    fontScale, orientation, uiMode, density);
         }
     }
 
     @Override
-    public void onPowerSaveModeChange(boolean powerSaveMode) {
+    public void onAutoThemeChanged() {
         for (DynamicListener dynamicListener : mDynamicListeners) {
-            dynamicListener.onPowerSaveModeChange(powerSaveMode);
+            dynamicListener.onAutoThemeChanged();
+        }
+    }
+
+    @Override
+    public void onPowerSaveModeChanged(boolean powerSaveMode) {
+        for (DynamicListener dynamicListener : mDynamicListeners) {
+            dynamicListener.onPowerSaveModeChanged(powerSaveMode);
         }
     }
 

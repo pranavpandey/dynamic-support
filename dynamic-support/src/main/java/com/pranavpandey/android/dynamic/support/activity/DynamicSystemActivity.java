@@ -517,12 +517,6 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         updateNavigationBar();
     }
 
-
-    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-    }
-
     /**
      * Fix for MDC-Android 1.1.0-beta01 which uses AppCompat 1.1.0.
      * <p>https://issuetracker.google.com/issues/140602653
@@ -626,11 +620,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
             String theme = DynamicTheme.getInstance().getLocalTheme(
                     DynamicSystemActivity.this);
             if (theme != null && !theme.equals(DynamicTheme.getInstance().toString())) {
-                DynamicTheme.getInstance().onDynamicChange(false, true);
+                DynamicTheme.getInstance().onDynamicChanged(false, true);
             } else if (mCurrentLocale != null) {
                 if (!mCurrentLocale.equals(DynamicLocaleUtils.getLocale(
                         getLocale(), getDefaultLocale(DynamicSystemActivity.this)))) {
-                    DynamicTheme.getInstance().onDynamicChange(false, true);
+                    DynamicTheme.getInstance().onDynamicChanged(false, true);
                 }
             }
         }
@@ -653,12 +647,12 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onNavigationBarThemeChange() {
+    public void onNavigationBarThemeChanged() {
         navigationBarThemeChange();
     }
 
     @Override
-    public void onDynamicChange(boolean context, boolean recreate) {
+    public void onDynamicChanged(boolean context, boolean recreate) {
         if (context) {
             setLocale(getContext());
         }
@@ -669,10 +663,17 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onAutoThemeChange() { }
+    public void onDynamicConfigurationChanged(boolean locale, boolean fontScale,
+            boolean orientation, boolean uiMode, boolean density) {
+        onDynamicChanged(locale || fontScale || orientation
+                || uiMode || density, locale || uiMode);
+    }
 
     @Override
-    public void onPowerSaveModeChange(boolean powerSaveMode) { }
+    public void onAutoThemeChanged() { }
+
+    @Override
+    public void onPowerSaveModeChanged(boolean powerSaveMode) { }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { }

@@ -89,7 +89,7 @@ public abstract class DynamicApplication extends Application
                 || (diff & ActivityInfo.CONFIG_UI_MODE) != 0
                 || (DynamicSdkUtils.is17()
                 && (diff & ActivityInfo.CONFIG_DENSITY) != 0)) {
-            DynamicTheme.getInstance().onDynamicChange(true, false);
+            DynamicTheme.getInstance().onDynamicChanged(true, false);
             mConfiguration = new Configuration(newConfig);
         }
     }
@@ -199,7 +199,7 @@ public abstract class DynamicApplication extends Application
     }
 
     @Override
-    public void onDynamicChange(boolean context, boolean recreate) {
+    public void onDynamicChanged(boolean context, boolean recreate) {
         if (context) {
             setLocale(getContext());
             DynamicTheme.getInstance().setContext(getContext());
@@ -209,13 +209,20 @@ public abstract class DynamicApplication extends Application
     }
 
     @Override
-    public void onNavigationBarThemeChange() { }
+    public void onDynamicConfigurationChanged(boolean locale, boolean fontScale,
+            boolean orientation, boolean uiMode, boolean density) {
+        onDynamicChanged(locale || fontScale || orientation
+                || uiMode || density, locale || uiMode);
+    }
 
     @Override
-    public void onAutoThemeChange() { }
+    public void onNavigationBarThemeChanged() { }
 
     @Override
-    public void onPowerSaveModeChange(boolean powerSaveMode) { }
+    public void onAutoThemeChanged() { }
+
+    @Override
+    public void onPowerSaveModeChanged(boolean powerSaveMode) { }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { }

@@ -69,8 +69,8 @@ class BottomNavigationActivity : DynamicActivity() {
         return AppController.instance.isThemeNavigationBar
     }
 
-    override fun onNavigationBarThemeChange() {
-        super.onNavigationBarThemeChange()
+    override fun onNavigationBarThemeChanged() {
+        super.onNavigationBarThemeChanged()
 
         // Update bottom navigation view theme on navigation bar
         // theme change.

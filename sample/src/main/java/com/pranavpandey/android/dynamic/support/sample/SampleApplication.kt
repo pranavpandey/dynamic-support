@@ -49,14 +49,6 @@ import java.util.*
  */
 class SampleApplication : DynamicApplication() {
 
-    companion object {
-
-        /**
-         * Theme change delay to apply correct app shortcuts theme.
-         */
-        const val THEME_CHANGE_DELAY = 150
-    }
-
     override fun onInitialize() {
         // Do any startup work here like initializing the other libraries, analytics, etc.
         AppController.initializeInstance(this)
@@ -71,19 +63,39 @@ class SampleApplication : DynamicApplication() {
         // Customise application theme after applying the base style.
         ThemeController.setApplicationTheme()
 
+        // Call method to do the delayed work.
+        setDelayedTheme()
+    }
+
+    /**
+     * Method to do some delayed work.
+     */
+    private fun setDelayedTheme() {
         Handler().postDelayed({
             // Add dynamic app shortcuts after the delay.
             setShortcuts()
-        }, THEME_CHANGE_DELAY.toLong())
+        }, DynamicTheme.DELAY_THEME_CHANGE)
     }
 
-    override fun onNavigationBarThemeChange() {
+    override fun onNavigationBarThemeChanged() {
         // TODO: Do any customisations on navigation bar theme change.
     }
 
     override fun getLocale(): Locale? {
         // TODO: Not implementing multiple locales so, returning null.
         return null
+    }
+
+    override fun onDynamicChanged(context: Boolean, recreate: Boolean) {
+        super.onDynamicChanged(context, recreate)
+
+        if (context) {
+            AppController.instance.context = this
+        }
+
+        if (recreate) {
+            setDelayedTheme()
+        }
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
@@ -93,18 +105,18 @@ class SampleApplication : DynamicApplication() {
         when (key) {
             Constants.PREF_SETTINGS_APP_THEME_DAY_COLOR ->
                 if (!DynamicTheme.getInstance().isNight && ThemeController.isAutoTheme) {
-                    DynamicTheme.getInstance().onDynamicChange(false, true)
+                    DynamicTheme.getInstance().onDynamicChanged(false, true)
                 }
             Constants.PREF_SETTINGS_APP_THEME_NIGHT_COLOR ->
                 if (DynamicTheme.getInstance().isNight && ThemeController.isAutoTheme) {
-                    DynamicTheme.getInstance().onDynamicChange(false, true)
+                    DynamicTheme.getInstance().onDynamicChanged(false, true)
                 }
             Constants.PREF_SETTINGS_APP_THEME_COLOR,
             Constants.PREF_SETTINGS_APP_THEME_COLOR_PRIMARY,
             Constants.PREF_SETTINGS_APP_THEME_COLOR_ACCENT ->
-                DynamicTheme.getInstance().onDynamicChange(false, true)
+                DynamicTheme.getInstance().onDynamicChanged(false, true)
             Constants.PREF_SETTINGS_NAVIGATION_BAR_THEME ->
-                DynamicTheme.getInstance().onNavigationBarThemeChange()
+                DynamicTheme.getInstance().onNavigationBarThemeChanged()
             Constants.PREF_SETTINGS_APP_SHORTCUTS_THEME ->
                 setShortcuts()
         }
@@ -115,34 +127,40 @@ class SampleApplication : DynamicApplication() {
      */
     @TargetApi(Build.VERSION_CODES.N_MR1)
     private fun setShortcuts() {
-        // Set in API 25 and above devices.
-        if (DynamicSdkUtils.is25()) {
-            // Initialize ShortcutManager.
-            val shortcutManager = getSystemService(ShortcutManager::class.java)
-            // Initialize ShortcutInfo list.
-            val shortcuts = ArrayList<ShortcutInfo>()
-
-            // Sources app shortcut intent.
-            val intent = Intent(context, ActionActivity::class.java)
-            intent.action = Constants.ACTION_APP_SHORTCUT
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
-
-            // Add Sources app shortcut to open GitHub page.
-            shortcuts.add(ShortcutInfo.Builder(context,
-                    Constants.APP_SHORTCUT_SOURCES)
-                    .setShortLabel(context.getString(R.string.ads_license_sources))
-                    .setLongLabel(context.getString(R.string.ads_license_sources))
-                    .setIcon(getShortcutIcon(context, R.drawable.ic_app_shortcut_sources))
-                    .setIntent(intent)
-                    .build())
-
-            // Add and update app shortcuts.
-            if (shortcutManager != null) {
-                shortcutManager.removeAllDynamicShortcuts()
-                shortcutManager.addDynamicShortcuts(shortcuts)
-                shortcutManager.updateShortcuts(shortcuts)
-            }
+        // Do not set for API 24 and below devices.
+        if (!DynamicSdkUtils.is25()) {
+            return;
         }
+
+        // Initialize ShortcutManager.
+        val shortcutManager = getSystemService(ShortcutManager::class.java)
+
+        // Do not proceed if shortcut manager is null or rate limit is active.
+        if (shortcutManager == null || shortcutManager.isRateLimitingActive) {
+            return
+        }
+
+        // Initialize ShortcutInfo list.
+        val shortcuts = ArrayList<ShortcutInfo>()
+
+        // Sources app shortcut intent.
+        val intent = Intent(context, ActionActivity::class.java)
+        intent.action = Constants.ACTION_APP_SHORTCUT
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+        // Add Sources app shortcut to open GitHub page.
+        shortcuts.add(ShortcutInfo.Builder(context,
+                Constants.APP_SHORTCUT_SOURCES)
+                .setShortLabel(context.getString(R.string.ads_license_sources))
+                .setLongLabel(context.getString(R.string.ads_license_sources))
+                .setIcon(getShortcutIcon(context, R.drawable.ic_app_shortcut_sources))
+                .setIntent(intent)
+                .build())
+
+        // Update dynamic app shortcuts.
+        shortcutManager.removeAllDynamicShortcuts()
+        shortcutManager.addDynamicShortcuts(shortcuts)
+        shortcutManager.updateShortcuts(shortcuts)
     }
 
     /**

@@ -386,8 +386,8 @@ public abstract class DynamicTutorialActivity extends DynamicSystemActivity {
     }
 
     @Override
-    public void onDynamicChange(boolean context, boolean recreate) {
-        super.onDynamicChange(context, recreate);
+    public void onDynamicChanged(boolean context, boolean recreate) {
+        super.onDynamicChanged(context, recreate);
 
         if (mAdapter != null) {
             mAdapter.setTutorials(getTutorials());
