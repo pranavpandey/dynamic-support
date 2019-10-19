@@ -193,7 +193,8 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
             public void onDrawerStateChanged(int newState) { }
         });
 
-        DynamicTintUtils.setInsetForegroundColor(mNavigationView, getStatusBarColor());
+        DynamicTintUtils.setInsetForegroundColor(mNavigationView,
+                getStatusBarColor(), !isPersistentDrawer());
         mNavigationView.setNavigationItemSelectedListener(this);
         configureDrawer();
     }

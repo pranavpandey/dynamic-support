@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.utils;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -151,18 +152,24 @@ public class DynamicTintUtils {
     }
 
     /**
-     * Try to set the inset foreground color of the view.
+     * Try to set the inset foreground color for the view.
      *
+     * @param view The view set the inset foreground color.
      * @param color The scrim color to be set.
+     * @param drawBottomInset {@code true} to draw the bottom inset.
      */
-    public static void setInsetForegroundColor(@NonNull View navigationView, @ColorInt int color) {
+    @SuppressLint("RestrictedApi")
+    public static void setInsetForegroundColor(@NonNull ScrimInsetsFrameLayout view,
+            @ColorInt int color, boolean drawBottomInset) {
         try {
             final Field insetForeground =
                     ScrimInsetsFrameLayout.class.getDeclaredField("insetForeground");
             insetForeground.setAccessible(true);
-            insetForeground.set(navigationView, new ColorDrawable(DynamicColorUtils
+            insetForeground.set(view, new ColorDrawable(DynamicColorUtils
                     .adjustAlpha(color, WidgetDefaults.ADS_ALPHA_SCRIM)));
-            navigationView.invalidate();
+
+            view.setDrawBottomInsetForeground(drawBottomInset);
+            view.invalidate();
         } catch (Exception ignored) {
         }
     }
