@@ -132,14 +132,13 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
                     mThemeExported, Theme.MIME), REQUEST_THEME_LOCATION);
         } else if (i == R.id.ads_menu_theme_file_share) {
             onSetActionIcon(false);
-            DynamicFileUtils.shareFiles(getActivity(),
-                    getSubtitle() != null ? getSubtitle().toString() : null, null,
-                    new Uri[] { DynamicFileUtils.getUriFromFile(getContext(),
-                            DynamicThemeUtils.requestThemeFile(getContext(),
-                                    Theme.NAME, mThemePreview.getDynamicTheme().toDynamicString())),
-                            DynamicFileUtils.getBitmapUri(getContext(),
-                                    DynamicThemeUtils.createThemeBitmap(mThemePreview),
-                                    Theme.Key.SHARE) }, null);
+            DynamicLinkUtils.share(getContext(),
+                    getSubtitle() != null ? getSubtitle().toString() : null,
+                    DynamicThemeUtils.getThemeUrl(mThemePreview.getDynamicTheme()),
+                    DynamicFileUtils.getUriFromFile(getContext(),
+                            DynamicThemeUtils.requestThemeFile(getContext(), Theme.NAME,
+                                    mThemePreview.getDynamicTheme().toDynamicString())),
+                    Theme.MIME);
             onSetActionIcon(true);
         } else if (i == R.id.ads_menu_theme_file_import) {
             importTheme(true);

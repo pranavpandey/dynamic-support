@@ -27,7 +27,7 @@ buildscript {
             'material'    : '1.2.0-alpha01',
             'support'     : '1.0.0',
             'swiperefresh': '1.1.0-alpha03',
-            'theme'       : '1.0.1',
+            'theme'       : '1.0.2',
             'work'        : '2.3.0-alpha02'
     ]
 

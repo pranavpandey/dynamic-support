@@ -797,7 +797,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
         getContentView().post(new Runnable() {
             @Override
             public void run() {
-                if (mMenu != null) {
+                if (mMenu != null && mMenu.findItem(id) != null) {
                     mMenu.findItem(id).setVisible(visible);
                 }
             }
