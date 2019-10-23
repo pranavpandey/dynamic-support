@@ -32,6 +32,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.ShapeAppearanceModel;
+import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
@@ -200,8 +201,13 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
                         getDynamicTheme().getCornerSizeDp(),
                         getDynamicTheme().getSurfaceColor(), false, true);
         ShapeAppearanceModel shapeAppearanceModel = new ShapeAppearanceModel();
-        shapeAppearanceModel = shapeAppearanceModel.toBuilder().setBottomLeftCornerSize(
-                drawable.getShapeAppearanceModel().getTopLeftCornerSize()).build();
+        if (DynamicLocaleUtils.isLayoutRtl()) {
+            shapeAppearanceModel = shapeAppearanceModel.toBuilder().setBottomRightCornerSize(
+                    drawable.getShapeAppearanceModel().getTopLeftCornerSize()).build();
+        } else {
+            shapeAppearanceModel = shapeAppearanceModel.toBuilder().setBottomLeftCornerSize(
+                    drawable.getShapeAppearanceModel().getTopLeftCornerSize()).build();
+        }
         drawable.setShapeAppearanceModel(shapeAppearanceModel);
         DynamicDrawableUtils.setBackground(mSurface, drawable);
 
