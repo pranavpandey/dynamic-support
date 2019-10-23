@@ -518,7 +518,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     }
 
     /**
-     * Fix for MDC-Android 1.1.0-beta01 which uses AppCompat 1.1.0.
+     * Fix for AppCompat 1.1.0.
      * <p>https://issuetracker.google.com/issues/140602653
      */
     @Override
