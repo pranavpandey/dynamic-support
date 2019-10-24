@@ -170,11 +170,12 @@ public class DynamicColorPopup extends DynamicPopup {
         }
 
         if (mRecentColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (!mAlpha) {
+            if (mRecentColor != Theme.AUTO && !mAlpha) {
                 mRecentColor = DynamicColorUtils.removeAlpha(mRecentColor);
             }
 
-            if (mRecentColor != mDefaultColor && mRecentColor != mSelectedColor){
+            if ((mRecentColor != Theme.AUTO || Arrays.asList(mEntries).contains(mRecentColor))
+                    && mRecentColor != mDefaultColor && mRecentColor != mSelectedColor) {
                 mFooterView.findViewById(R.id.ads_color_picker_popup_footer_recent)
                         .setVisibility(View.VISIBLE);
                 setColorView((DynamicColorView) mFooterView.findViewById(
