@@ -111,11 +111,11 @@
     <string name="ads_perm_default_desc">Perijinan ini dibutuhkan untuk melakukan beberapa aksi.</string>
     <string name="ads_perm_default_explain">Penjelasan.</string>
     <string name="ads_perm_write_system_settings">Tulis pengaturan sistem</string>
-    <string name="ads_perm_write_system_settings_desc">perbolehkan penulisan pengaturan sistem</string>
+    <string name="ads_perm_write_system_settings_desc">perbolehkan penulisan pengaturan sistem.</string>
     <string name="ads_perm_overlay">Tampilkan di atas aplikasi lain</string>
-    <string name="ads_perm_overlay_desc">ijinkan penampilan di atas aplikasi lain</string>
+    <string name="ads_perm_overlay_desc">ijinkan penampilan di atas aplikasi lain.</string>
     <string name="ads_perm_usage_access">Akses penggunaan</string>
-    <string name="ads_perm_usage_access_desc">ijinkan akses penggunaan</string>
+    <string name="ads_perm_usage_access_desc">ijinkan akses penggunaan.</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">Data</string>

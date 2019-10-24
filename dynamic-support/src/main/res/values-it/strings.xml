@@ -111,11 +111,11 @@
     <string name="ads_perm_default_desc">Il permesso è richiesto per eseguire alcune azioni.</string>
     <string name="ads_perm_default_explain">Spiegazioni.</string>
     <string name="ads_perm_write_system_settings">Scrivi impostazioni di sistema</string>
-    <string name="ads_perm_write_system_settings_desc">Autorizza la scrittura delle impostazioni di sistema</string>
+    <string name="ads_perm_write_system_settings_desc">Autorizza la scrittura delle impostazioni di sistema.</string>
     <string name="ads_perm_overlay">Disegna sopra alle altre app</string>
-    <string name="ads_perm_overlay_desc">Permetti disegno sopra alle altre app</string>
+    <string name="ads_perm_overlay_desc">Permetti disegno sopra alle altre app.</string>
     <string name="ads_perm_usage_access">Accesso ai dati di utilizzo</string>
-    <string name="ads_perm_usage_access_desc">Permetti accesso ai dati di utilizzo</string>
+    <string name="ads_perm_usage_access_desc">Permetti accesso ai dati di utilizzo.</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">Dati</string>

@@ -111,11 +111,11 @@
     <string name="ads_perm_default_desc">Bu izin bazı eylemleri gerçekleştirmek için gereklidir.</string>
     <string name="ads_perm_default_explain">Açıklama.</string>
     <string name="ads_perm_write_system_settings">Sistem ayarlarını yaz</string>
-    <string name="ads_perm_write_system_settings_desc">sistem ayarlarını yazmaya izin ver</string>
+    <string name="ads_perm_write_system_settings_desc">sistem ayarlarını yazmaya izin ver.</string>
     <string name="ads_perm_overlay">Diğer uygulamalar üzerinde görüntüle</string>
-    <string name="ads_perm_overlay_desc">diğer uygulamalar üzerinde görüntüleme izni</string>
+    <string name="ads_perm_overlay_desc">diğer uygulamalar üzerinde görüntüleme izni.</string>
     <string name="ads_perm_usage_access">Kullanım erişimi</string>
-    <string name="ads_perm_usage_access_desc">kullanım erişimi izni</string>
+    <string name="ads_perm_usage_access_desc">kullanım erişimi izni.</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">Veri</string>

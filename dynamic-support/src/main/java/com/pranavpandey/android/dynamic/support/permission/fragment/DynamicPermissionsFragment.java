@@ -261,7 +261,10 @@ public class DynamicPermissionsFragment extends DynamicFragment {
     public void initPermissions() {
         String[] permissionsArray = getPermissions();
         ArrayList<DynamicPermission> permissions;
-        ((DynamicPermissionsActivity) getActivity()).updateSubtitle(permissionsArray.length);
+
+        if (getActivity() != null) {
+            ((DynamicPermissionsActivity) getActivity()).updateSubtitle(permissionsArray.length);
+        }
 
         permissions = DynamicPermissions.getInstance()
                 .getPermissionItemArrayList(permissionsArray);

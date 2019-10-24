@@ -24,7 +24,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PermissionGroupInfo;
 import android.content.pm.PermissionInfo;
 import android.os.Build;
 import android.os.PowerManager;
@@ -542,55 +541,57 @@ public class DynamicPermissions {
         PackageManager packageManager = mContext.getPackageManager();
 
         for (String permission: permissions) {
-            if (permission.equals(Manifest.permission.WRITE_SETTINGS)
-                    || permission.equals(Manifest.permission.PACKAGE_USAGE_STATS)
-                    || permission.equals(Manifest.permission.SYSTEM_ALERT_WINDOW)) {
+            try {
+                DynamicPermission dynamicPermission;
+                PermissionInfo permInfo = packageManager.getPermissionInfo(
+                        permission, PackageManager.GET_META_DATA);
 
-                DynamicPermission dynamicPermission = new DynamicPermission(
-                        permission, DynamicResourceUtils.getDrawable(mContext,
-                        DynamicPermissionUtils.getPermissionIcon(permission)),
-                        mContext.getString(DynamicPermissionUtils.getPermissionTitle(permission)),
-                        mContext.getString(DynamicPermissionUtils.getPermissionSubtitle(permission)));
+                if (permission.equals(Manifest.permission.WRITE_SETTINGS)
+                        || permission.equals(Manifest.permission.PACKAGE_USAGE_STATS)
+                        || permission.equals(Manifest.permission.SYSTEM_ALERT_WINDOW)) {
+                    dynamicPermission = new DynamicPermission(permission,
+                            DynamicResourceUtils.getDrawable(mContext,
+                            DynamicPermissionUtils.getPermissionIcon(permission)),
+                            mContext.getString(DynamicPermissionUtils
+                                    .getPermissionTitle(permission)),
+                            mContext.getString(DynamicPermissionUtils
+                                    .getPermissionSubtitle(permission)));
 
-                if (permission.equals(Manifest.permission.WRITE_SETTINGS)) {
-                    dynamicPermission.setAllowed(canWriteSystemSettings());
-                }
-
-                if (permission.equals(Manifest.permission.PACKAGE_USAGE_STATS)) {
-                    dynamicPermission.setAllowed(hasUsageAccess());
-                }
-
-                if (permission.equals(Manifest.permission.SYSTEM_ALERT_WINDOW)) {
-                    dynamicPermission.setAllowed(canDrawOverlays());
-                }
-
-                permissionsList.add(dynamicPermission);
-            } else {
-                try {
-                    PermissionInfo permInfo = packageManager
-                            .getPermissionInfo(permission, PackageManager.GET_META_DATA);
-
-                    PermissionGroupInfo permGroupInfo = packageManager
-                            .getPermissionGroupInfo(permInfo.group, PackageManager.GET_META_DATA);
-
-                    DynamicPermission dynamicPermission = new DynamicPermission(
-                            permission, permGroupInfo.loadIcon(packageManager),
-                            permGroupInfo.loadLabel(packageManager).toString());
-
-                    if (permGroupInfo.loadDescription(packageManager) != null) {
-                        dynamicPermission.setSubtitle(
-                                permGroupInfo.loadDescription(packageManager).toString());
+                    if (permission.equals(Manifest.permission.WRITE_SETTINGS)) {
+                        dynamicPermission.setAllowed(canWriteSystemSettings());
                     }
+
+                    if (permission.equals(Manifest.permission.PACKAGE_USAGE_STATS)) {
+                        dynamicPermission.setAllowed(hasUsageAccess());
+                    }
+
+                    if (permission.equals(Manifest.permission.SYSTEM_ALERT_WINDOW)) {
+                        dynamicPermission.setAllowed(canDrawOverlays());
+                    }
+                } else {
+                    dynamicPermission = new DynamicPermission(
+                            permission, DynamicResourceUtils.getDrawable(mContext,
+                            DynamicPermissionUtils.getPermissionIcon(permission)),
+                            permInfo.loadLabel(packageManager).toString());
 
                     dynamicPermission.setDangerous(true);
                     dynamicPermission.setAllowed(ContextCompat.checkSelfPermission(mContext,
                             permission) == PackageManager.PERMISSION_GRANTED);
-
-                    if (!permissionsList.contains(dynamicPermission)) {
-                        permissionsList.add(dynamicPermission);
-                    }
-                } catch (Exception ignored) {
                 }
+
+                if (!permInfo.loadLabel(packageManager).equals(permission)) {
+                    dynamicPermission.setTitle(permInfo.loadLabel(packageManager).toString());
+                }
+
+                if (permInfo.loadDescription(packageManager) != null) {
+                    dynamicPermission.setSubtitle(
+                            permInfo.loadDescription(packageManager).toString());
+                }
+
+                if (!permissionsList.contains(dynamicPermission)) {
+                    permissionsList.add(dynamicPermission);
+                }
+            } catch (Exception ignored) {
             }
         }
 

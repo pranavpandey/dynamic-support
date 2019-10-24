@@ -111,11 +111,11 @@
     <string name="ads_perm_default_desc">कुछ कार्यों के लिए इस अनुमति की आवश्यकता है।</string>
     <string name="ads_perm_default_explain">विवरण।</string>
     <string name="ads_perm_write_system_settings">अंधूनी सेटिंग्स बदलें</string>
-    <string name="ads_perm_write_system_settings_desc">अंधुनी सेटिंग्स बदलने की अनुमति दें</string>
+    <string name="ads_perm_write_system_settings_desc">अंधुनी सेटिंग्स बदलने की अनुमति दें।</string>
     <string name="ads_perm_overlay">दूसरे ऐप्स के ऊपर दिखे</string>
-    <string name="ads_perm_overlay_desc">दूसरे ऐप्स पर दिखने की अनुमति दें</string>
+    <string name="ads_perm_overlay_desc">दूसरे ऐप्स पर दिखने की अनुमति दें।</string>
     <string name="ads_perm_usage_access">यूसेज ऐकसेस</string>
-    <string name="ads_perm_usage_access_desc">यूसेज एक्सेस की अनुमति दें</string>
+    <string name="ads_perm_usage_access_desc">यूसेज एक्सेस की अनुमति दें।</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">डेटा</string>

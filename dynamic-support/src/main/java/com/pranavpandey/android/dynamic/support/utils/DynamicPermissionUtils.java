@@ -101,6 +101,10 @@ public class DynamicPermissionUtils {
     public static @DrawableRes int getPermissionIcon(@NonNull String permission) {
         switch (permission) {
             default:
+                return R.drawable.ads_ic_security;
+            case Manifest.permission.WRITE_SETTINGS:
+            case Manifest.permission.PACKAGE_USAGE_STATS:
+            case Manifest.permission.SYSTEM_ALERT_WINDOW:
                 return R.drawable.ads_ic_settings;
         }
     }

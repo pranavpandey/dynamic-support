@@ -111,11 +111,11 @@
     <string name="ads_perm_default_desc">Este permiso se requiere para realizar algunas acciones.</string>
     <string name="ads_perm_default_explain">Explicación.</string>
     <string name="ads_perm_write_system_settings">Escribir configuración del sistema</string>
-    <string name="ads_perm_write_system_settings_desc">permitir escritura de configuración del sistema</string>
+    <string name="ads_perm_write_system_settings_desc">permitir escritura de configuración del sistema.</string>
     <string name="ads_perm_overlay">Dibujar encima de otras aplicaciones</string>
-    <string name="ads_perm_overlay_desc">permitir dibujar encima de otras aplicaciones</string>
+    <string name="ads_perm_overlay_desc">permitir dibujar encima de otras aplicaciones.</string>
     <string name="ads_perm_usage_access">Acceso</string>
-    <string name="ads_perm_usage_access_desc">Permitir acceso</string>
+    <string name="ads_perm_usage_access_desc">Permitir acceso.</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">Datos</string>

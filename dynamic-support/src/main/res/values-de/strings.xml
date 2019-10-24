@@ -110,12 +110,12 @@
     <string name="ads_perm_default">Berechtigung</string>
     <string name="ads_perm_default_desc">Diese Berechtigung ist notwendig, um manche Aktionen durchzuführen.</string>
     <string name="ads_perm_default_explain">Erklärung.</string>
-    <string name="ads_perm_write_system_settings">Systemeinstellungen überschreiben</string>
-    <string name="ads_perm_write_system_settings_desc">Überschreiben von Systemeinstellungen erlauben</string>
+    <string name="ads_perm_write_system_settings">Systemeinstellungen überschreiben.</string>
+    <string name="ads_perm_write_system_settings_desc">Überschreiben von Systemeinstellungen erlauben.</string>
     <string name="ads_perm_overlay">Über anderen Apps darstellen</string>
-    <string name="ads_perm_overlay_desc">Darstellung über anderen Apps erlauben</string>
+    <string name="ads_perm_overlay_desc">Darstellung über anderen Apps erlauben.</string>
     <string name="ads_perm_usage_access">Nutzungsdatenzugriff</string>
-    <string name="ads_perm_usage_access_desc">Nutzungsdatenzugriff gewähren</string>
+    <string name="ads_perm_usage_access_desc">Nutzungsdatenzugriff gewähren.</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">Daten</string>

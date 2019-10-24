@@ -111,11 +111,11 @@
     <string name="ads_perm_default_desc">This permission is required to perform some actions.</string>
     <string name="ads_perm_default_explain">Explanation.</string>
     <string name="ads_perm_write_system_settings">Write system settings</string>
-    <string name="ads_perm_write_system_settings_desc">Allow write system settings</string>
+    <string name="ads_perm_write_system_settings_desc">Allow write system settings.</string>
     <string name="ads_perm_overlay">Draw over other apps</string>
-    <string name="ads_perm_overlay_desc">Permit drawing over other apps</string>
+    <string name="ads_perm_overlay_desc">Permit drawing over other apps.</string>
     <string name="ads_perm_usage_access">Usage access</string>
-    <string name="ads_perm_usage_access_desc">Permit usage access</string>
+    <string name="ads_perm_usage_access_desc">Permit usage access.</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">Data</string>
