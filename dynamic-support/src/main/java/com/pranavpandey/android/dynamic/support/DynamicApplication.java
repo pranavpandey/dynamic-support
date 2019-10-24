@@ -16,11 +16,13 @@
 
 package com.pranavpandey.android.dynamic.support;
 
+import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.preference.PreferenceManager;
 
 import androidx.annotation.NonNull;
@@ -78,20 +80,20 @@ public abstract class DynamicApplication extends Application
         setDynamicTheme();
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
         int diff = mConfiguration.diff(new Configuration(newConfig));
-        if ((diff & ActivityInfo.CONFIG_LOCALE) != 0
-                || (diff & ActivityInfo.CONFIG_FONT_SCALE) != 0
-                || (diff & ActivityInfo.CONFIG_ORIENTATION) != 0
-                || (diff & ActivityInfo.CONFIG_UI_MODE) != 0
-                || (DynamicSdkUtils.is17()
-                && (diff & ActivityInfo.CONFIG_DENSITY) != 0)) {
-            DynamicTheme.getInstance().onDynamicChanged(true, false);
-            mConfiguration = new Configuration(newConfig);
-        }
+        DynamicTheme.getInstance().onDynamicConfigurationChanged(
+                (diff & ActivityInfo.CONFIG_LOCALE) != 0,
+                (diff & ActivityInfo.CONFIG_FONT_SCALE) != 0,
+                (diff & ActivityInfo.CONFIG_ORIENTATION) != 0,
+                (diff & ActivityInfo.CONFIG_UI_MODE) != 0,
+                DynamicSdkUtils.is17() && (diff & ActivityInfo.CONFIG_DENSITY) != 0);
+
+        mConfiguration = new Configuration(newConfig);
     }
 
     /**

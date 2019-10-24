@@ -27,6 +27,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -607,7 +608,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
             setDynamicTheme();
             setNavigationBarColor(mNavigationBarColor);
 
-            runOnUiThread(mDynamicChange);
+            new Handler().postDelayed(mDynamicChange, DynamicTheme.DELAY_THEME_CHANGE);
         }
     }
 
