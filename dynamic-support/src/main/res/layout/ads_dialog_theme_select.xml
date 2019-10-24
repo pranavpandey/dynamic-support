@@ -25,7 +25,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/ads_margin_extra_tiny"
+        android:paddingLeft="@dimen/ads_margin_regular"
         android:paddingStart="@dimen/ads_margin_regular"
+        android:paddingRight="@dimen/ads_margin_regular"
         android:paddingEnd="@dimen/ads_margin_regular"
         android:orientation="vertical">
 
@@ -35,7 +37,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/ads_margin_small"
+            android:paddingLeft="@dimen/ads_margin_regular"
             android:paddingStart="@dimen/ads_margin_regular"
+            android:paddingRight="@dimen/ads_margin_regular"
             android:paddingEnd="@dimen/ads_margin_regular"
             app:ads_colorType="primary" />
 
