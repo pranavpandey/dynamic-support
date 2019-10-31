@@ -139,7 +139,7 @@ The following rules will be applied by this library:
 
 ## Apps using Dynamic Support
 
-All of my apps are using some or all part of this library. You can download them from Play Store. 
+All of my apps are using some or all part of this library. You can download them from Google Play. 
 Please email me if you are using this library and want to feature your app here. Also, please 
 checkout the `Rotation` and `Everyday` apps to experience the full potential of this library.
 
