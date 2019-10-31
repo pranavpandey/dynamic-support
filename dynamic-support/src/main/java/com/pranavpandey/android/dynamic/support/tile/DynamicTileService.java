@@ -22,6 +22,7 @@ import android.content.Context;
 import android.os.Build;
 import android.service.quicksettings.TileService;
 
+import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 
 /**
@@ -34,7 +35,21 @@ public abstract class DynamicTileService extends TileService {
     public void onTileAdded() {
         super.onTileAdded();
 
-        DynamicTileService.update(getApplicationContext(), getTileServiceClass());
+        onDynamicUpdate();
+    }
+
+    @Override
+    public void onStartListening() {
+        super.onStartListening();
+
+        onDynamicUpdate();
+    }
+
+    @Override
+    public void onStopListening() {
+        super.onStopListening();
+
+        onDynamicUpdate();
     }
 
     /**
@@ -43,6 +58,14 @@ public abstract class DynamicTileService extends TileService {
      * @return The class for this title service.
      */
     protected abstract @NonNull Class<?> getTileServiceClass();
+
+    /**
+     * This method will be called when there is a change in the tile state.
+     *
+     * <p><p>Override this method to update the tile icon, title, etc.
+     */
+    @CallSuper
+    protected void onDynamicUpdate() { }
 
     /**
      * Update the title service for a given class.
