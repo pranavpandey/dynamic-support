@@ -53,8 +53,7 @@ class BottomNavigationActivity : DynamicActivity() {
         return DynamicActivity.ADS_DEFAULT_LAYOUT_RES
     }
 
-    @StyleRes
-    override fun getThemeRes(): Int {
+    @StyleRes override fun getThemeRes(): Int {
         // Return activity theme to be applied.
         return ThemeController.appStyle
     }
