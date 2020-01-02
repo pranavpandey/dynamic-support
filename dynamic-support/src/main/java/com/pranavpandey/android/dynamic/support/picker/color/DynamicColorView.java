@@ -273,8 +273,18 @@ public class DynamicColorView extends FrameLayout {
         super.onSizeChanged(w, h, oldw, oldh);
 
         mRectF.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-        mRectF.set(ADS_STROKE_WIDTH, ADS_STROKE_WIDTH,
-                mRectF.width() - ADS_STROKE_WIDTH, mRectF.height() - ADS_STROKE_WIDTH);
+        mRectF.set(ADS_STROKE_WIDTH, ADS_STROKE_WIDTH, mRectF.width() - ADS_STROKE_WIDTH,
+                mRectF.height() - ADS_STROKE_WIDTH);
+
+        if (mSelected) {
+            int selectorSize = (int) (getMeasuredWidth() - getMeasuredWidth() / ICON_DIVISOR);
+            mSelectorBitmap = DynamicBitmapUtils
+                    .resizeBitmap(mSelectorBitmap, selectorSize, selectorSize);
+        }
+
+        if (isClickable()) {
+            setForeground(getForegroundDrawable());
+        }
     }
 
     @Override
@@ -292,17 +302,9 @@ public class DynamicColorView extends FrameLayout {
         }
 
         if (mSelected) {
-            int selectorSize = (int) (getMeasuredWidth() - getMeasuredWidth() / ICON_DIVISOR);
-            mSelectorBitmap = DynamicBitmapUtils
-                    .resizeBitmap(mSelectorBitmap, selectorSize, selectorSize);
-
             canvas.drawBitmap(mSelectorBitmap,
                     (getMeasuredWidth() - mSelectorBitmap.getWidth()) / 2f,
                     (getMeasuredWidth() - mSelectorBitmap.getHeight()) / 2f, mSelectorPaint);
-        }
-
-        if (isClickable()) {
-            setForeground(getForegroundDrawable());
         }
     }
 
