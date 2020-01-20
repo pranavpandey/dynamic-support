@@ -17,6 +17,7 @@
 
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.pranavpandey.android.dynamic.support.sample">
 
     <application
@@ -64,6 +65,13 @@
             android:screenOrientation="behind"
             android:noHistory="true"
             android:exported="true" />
+
+        <!-- Remove work manager initializer for on-demand initialization. -->
+        <provider
+            android:name="androidx.work.impl.WorkManagerInitializer"
+            android:authorities="${applicationId}.workmanager-init"
+            android:exported="false"
+            tools:node="remove" />
 
     </application>
 

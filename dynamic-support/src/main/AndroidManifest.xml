@@ -15,10 +15,21 @@
 	limitations under the License.
 -->
 
-<manifest
-    package="com.pranavpandey.android.dynamic.support"
+<manifest package="com.pranavpandey.android.dynamic.support"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-sdk tools:overrideLibrary="com.pranavpandey.android.dynamic.locale" />
+
+    <application>
+
+        <!-- Remove work manager initializer for on-demand initialization. -->
+        <provider
+            android:name="androidx.work.impl.WorkManagerInitializer"
+            android:authorities="${applicationId}.workmanager-init"
+            android:exported="false"
+            tools:node="remove" />
+
+    </application>
 
 </manifest>
