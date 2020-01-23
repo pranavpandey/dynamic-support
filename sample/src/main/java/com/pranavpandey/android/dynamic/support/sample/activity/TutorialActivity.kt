@@ -18,7 +18,7 @@ package com.pranavpandey.android.dynamic.support.sample.activity
 
 import android.os.Bundle
 import androidx.annotation.StyleRes
-import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.controller.AppController
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
@@ -27,13 +27,15 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicSimpleTutorial
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial
 import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutorialActivity
+import com.pranavpandey.android.dynamic.support.tutorial.fragment.DynamicTutorialFragment
 import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils
 import java.util.*
 
 /**
  * Implementing a into screen by using [DynamicTutorialActivity].
  */
-class TutorialActivity : DynamicTutorialActivity() {
+class TutorialActivity :
+        DynamicTutorialActivity<DynamicSimpleTutorial, DynamicTutorialFragment>() {
 
     companion object {
 
@@ -73,31 +75,26 @@ class TutorialActivity : DynamicTutorialActivity() {
         super.onCreate(savedInstanceState)
 
         // Add a view pager listener to perform actions according to the tutorial screen.
-        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageScrolled(position: Int, positionOffset: Float,
                                         positionOffsetPixels: Int) {
-                if (viewPagerAdapter != null
-                        && viewPagerAdapter.getTutorial(position) != null) {
-                    setTutorialAction(viewPagerAdapter
-                            .getTutorial(position).tutorialId)
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+
+                if (viewPagerAdapter.getTutorial(position) != null) {
+                    setTutorialAction(viewPagerAdapter.getTutorial(position).tutorialId)
                 }
             }
 
-            override fun onPageSelected(position: Int) {}
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
 
-            override fun onPageScrollStateChanged(state: Int) {}
+                if (viewPagerAdapter.getTutorial(position) != null) {
+                    setTutorialAction(viewPagerAdapter.getTutorial(position).tutorialId)
+                }
+            }
         })
 
         setSkipAction()
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        // Update action button after performing some action like granting a permission.
-        if (viewPagerAdapter != null) {
-            setTutorialAction(viewPager.currentItem)
-        }
     }
 
     /**
@@ -126,9 +123,10 @@ class TutorialActivity : DynamicTutorialActivity() {
         }
     }
 
-    override fun getTutorials(): ArrayList<DynamicTutorial> {
+    override fun getTutorials():
+            ArrayList<DynamicTutorial<DynamicSimpleTutorial, DynamicTutorialFragment>> {
         // Initialize an array list for tutorials.
-        val tutorials = ArrayList<DynamicTutorial>()
+        val tutorials = ArrayList<DynamicTutorial<DynamicSimpleTutorial, DynamicTutorialFragment>>()
 
         // TODO: Add a simple dynamic tutorial.
         tutorials.add(DynamicSimpleTutorial(TUTORIAL_WELCOME,
@@ -136,7 +134,7 @@ class TutorialActivity : DynamicTutorialActivity() {
                 getString(R.string.tutorial_welcome),
                 getString(R.string.tutorial_welcome_subtitle),
                 getString(R.string.tutorial_welcome_desc),
-                R.drawable.ic_sample_splash, true).build())
+                R.drawable.ic_sample_splash, true))
 
         // TODO: Add another simple dynamic tutorial.
         tutorials.add(DynamicSimpleTutorial(TUTORIAL_FINISH,
@@ -144,7 +142,7 @@ class TutorialActivity : DynamicTutorialActivity() {
                 getString(R.string.tutorial_finish),
                 getString(R.string.tutorial_finish_subtitle),
                 getString(R.string.tutorial_finish_desc),
-                R.drawable.ic_finish, true).build())
+                R.drawable.ic_finish, true))
 
         // Return all the added tutorials.
         return tutorials

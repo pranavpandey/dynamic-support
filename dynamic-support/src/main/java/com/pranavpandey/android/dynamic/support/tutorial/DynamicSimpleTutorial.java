@@ -24,13 +24,14 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.tutorial.fragment.DynamicSimpleTutorialFragment;
+import com.pranavpandey.android.dynamic.support.tutorial.fragment.DynamicTutorialFragment;
 
 /**
  * A simple tutorial item to display a title, subtitle and description along with an image
  * which can be tinted according to the background color.
  */
-public class DynamicSimpleTutorial implements Parcelable {
+public class DynamicSimpleTutorial implements Parcelable,
+        DynamicTutorial<DynamicSimpleTutorial, DynamicTutorialFragment> {
 
     /**
      * Id to uniquely identify this tutorial.
@@ -66,6 +67,8 @@ public class DynamicSimpleTutorial implements Parcelable {
      * {@code true} to tint the image according to the background color.
      */
     private boolean tintImage;
+
+    private DynamicTutorialFragment mFragment;
 
     /**
      * Constructor to initialize an object of this class.
@@ -195,6 +198,7 @@ public class DynamicSimpleTutorial implements Parcelable {
      *
      * @return The background color used by this tutorial.
      */
+    @Override
     public @ColorInt int getBackgroundColor() {
         return backgroundColor;
     }
@@ -210,6 +214,7 @@ public class DynamicSimpleTutorial implements Parcelable {
     public DynamicSimpleTutorial setBackgroundColor(@ColorInt int backgroundColor) {
         this.backgroundColor = backgroundColor;
 
+        onBackgroundColorChanged(backgroundColor);
         return this;
     }
 
@@ -328,14 +333,55 @@ public class DynamicSimpleTutorial implements Parcelable {
         return this;
     }
 
-    /**
-     * Build the simple tutorial according to the supplied parameters.
-     *
-     * @return The dynamic tutorial fragment to show it in the view pager.
-     *
-     * @see DynamicSimpleTutorialFragment
-     */
-    public @NonNull DynamicTutorial build() {
-        return DynamicSimpleTutorialFragment.newInstance(this);
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        if (mFragment != null) {
+            mFragment.onPageScrolled(position, positionOffset, positionOffsetPixels);
+        }
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        if (mFragment != null) {
+            mFragment.onPageSelected(position);
+        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        if (mFragment != null) {
+            mFragment.onPageScrollStateChanged(state);
+        }
+    }
+
+    @Override
+    public @NonNull DynamicSimpleTutorial getTutorial() {
+        return this;
+    }
+
+    @Override
+    public @NonNull DynamicTutorialFragment createTutorial() {
+        mFragment = DynamicTutorialFragment.newInstance(this);
+
+        return mFragment;
+    }
+
+    @Override
+    public int getTutorialId() {
+        return getId();
+    }
+
+    @Override
+    public void onBackgroundColorChanged(int color) {
+        if (mFragment != null) {
+            mFragment.onBackgroundColorChanged(color);
+        }
+    }
+
+    @Override
+    public void onSetPadding(int left, int top, int right, int bottom) {
+        if (mFragment != null) {
+            mFragment.onSetPadding(left, top, right, bottom);
+        }
     }
 }

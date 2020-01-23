@@ -16,14 +16,12 @@
 
 package com.pranavpandey.android.dynamic.support.tutorial.adapter;
 
-import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentActivity;
 
+import com.pranavpandey.android.dynamic.support.adapter.DynamicFragmentStateAdapter;
+import com.pranavpandey.android.dynamic.support.tutorial.DynamicSimpleTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
 
 import java.util.ArrayList;
@@ -35,88 +33,47 @@ import java.util.List;
  *
  * @see DynamicTutorial
  */
-public class DynamicTutorialsAdapter extends FragmentStatePagerAdapter {
-
-    /**
-     * Fragment manager for this adapter.
-     */
-    private FragmentManager mFragmentManager;
+public class DynamicTutorialsAdapter<T extends DynamicSimpleTutorial, V extends Fragment>
+        extends DynamicFragmentStateAdapter {
 
     /**
      * Fragments list for this adapter.
      */
-    private List<DynamicTutorial> mDataSet;
+    private List<DynamicTutorial<T, V>> mDataSet;
 
     /**
      * Constructor to initialize an object of this class.
      *
-     * @param fragmentManager The fragment manager to do the transactions.
+     * @param fragmentActivity The fragment activity to do the transactions.
      */
-    public DynamicTutorialsAdapter(@NonNull FragmentManager fragmentManager) {
-        super(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+    public DynamicTutorialsAdapter(@NonNull FragmentActivity fragmentActivity) {
+        super(fragmentActivity);
 
-        this.mFragmentManager = fragmentManager;
         this.mDataSet = new ArrayList<>();
     }
 
     @Override
-    public @NonNull Fragment getItem(int position) {
-        return (Fragment) mDataSet.get(position);
+    public @NonNull Fragment createFragment(int position) {
+        return mDataSet.get(position).createTutorial();
     }
 
     @Override
-    public @NonNull Object instantiateItem(@NonNull ViewGroup container, int position) {
-        Fragment fragment = getItem(position);
-
-        if (fragment.isAdded()) {
-            return fragment;
-        }
-
-        Fragment instantiatedFragment = (Fragment) super.instantiateItem(container, position);
-        mDataSet.set(position, (DynamicTutorial) instantiatedFragment);
-
-        return instantiatedFragment;
-    }
-
-    @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, @Nullable Object object) {
-        if (object == null) {
-            return;
-        }
-        super.destroyItem(container, position, object);
-    }
-
-    @Override
-    public int getCount() {
+    public int getItemCount() {
         return mDataSet.size();
     }
 
-    /**
-     * Refresh tutorial for a particular position.
-     *
-     * @param position The position to get the tutorial.
-     */
-    public void refreshTutorial(int position) {
-        super.notifyDataSetChanged();
-
-        Fragment fragment = getItem(position);
-
-        if (fragment.isAdded()) {
-            mFragmentManager.beginTransaction()
-                    .detach(fragment)
-                    .attach(fragment)
-                    .commit();
-        }
+    @Override
+    protected void onTintRecyclerView() {
+        // Disable default tinting.
     }
 
     /**
      * Set tutorials for this adapter.
      *
-     * @param dynamicTutorials The collection of tutorials to be set.
+     * @param tutorials The collection of tutorials to be set.
      */
-    public void setTutorials(@NonNull Collection<? extends DynamicTutorial> dynamicTutorials) {
-        removeTutorialFragments(mDataSet);
-        mDataSet = new ArrayList<>(dynamicTutorials);
+    public void setTutorials(@NonNull Collection<? extends DynamicTutorial<T, V>> tutorials) {
+        mDataSet = new ArrayList<>(tutorials);
 
         notifyDataSetChanged();
     }
@@ -125,16 +82,16 @@ public class DynamicTutorialsAdapter extends FragmentStatePagerAdapter {
      * Add tutorial to this adapter.
      *
      * @param location The index at which to add.
-     * @param dynamicTutorial The tutorial to be added.
+     * @param tutorial The tutorial to be added.
      *
      * @return {@code true} if the tutorial added successfully.
      */
-    public boolean addTutorial(int location, @NonNull DynamicTutorial dynamicTutorial) {
-        if (mDataSet.contains(dynamicTutorial)) {
+    public boolean addTutorial(int location, @NonNull DynamicTutorial<T, V> tutorial) {
+        if (mDataSet.contains(tutorial)) {
             return false;
         }
 
-        boolean modified = mDataSet.add(dynamicTutorial);
+        boolean modified = mDataSet.add(tutorial);
 
         if (modified) {
             notifyDataSetChanged();
@@ -146,28 +103,28 @@ public class DynamicTutorialsAdapter extends FragmentStatePagerAdapter {
     /**
      * Add tutorial to this adapter.
      *
-     * @param dynamicTutorial The tutorial to be added.
+     * @param tutorial The tutorial to be added.
      *
      * @return {@code true} if the tutorial added successfully.
      */
-    public boolean addTutorial(@NonNull DynamicTutorial dynamicTutorial) {
-        return addTutorial(mDataSet.size(), dynamicTutorial);
+    public boolean addTutorial(@NonNull DynamicTutorial<T, V> tutorial) {
+        return addTutorial(mDataSet.size(), tutorial);
     }
 
     /**
      * Add a collection of tutorials to this adapter.
      *
      * @param location The index at which to add.
-     * @param dynamicTutorials The collection of tutorials to be added.
+     * @param tutorials The collection of tutorials to be added.
      *
      * @return {@code true} if the tutorials added successfully.
      */
-    public boolean addTutorials(int location,
-            @NonNull Collection<? extends DynamicTutorial> dynamicTutorials) {
+    public boolean addTutorials(int location, 
+            @NonNull Collection<? extends DynamicTutorial<T, V>> tutorials) {
         boolean modified = false;
         int i = 0;
 
-        for (DynamicTutorial dynamicTutorial : dynamicTutorials) {
+        for (DynamicTutorial<T, V> dynamicTutorial : tutorials) {
             if (!mDataSet.contains(dynamicTutorial)) {
                 mDataSet.add(location + i, dynamicTutorial);
                 i++;
@@ -185,12 +142,12 @@ public class DynamicTutorialsAdapter extends FragmentStatePagerAdapter {
     /**
      * Add a collection of tutorials to this adapter.
      *
-     * @param dynamicTutorials The collection of tutorials to be added.
+     * @param tutorials The collection of tutorials to be added.
      *
      * @return {@code true} if the tutorials added successfully.
      */
-    public boolean addTutorials(@NonNull Collection<? extends DynamicTutorial> dynamicTutorials) {
-        return addTutorials(mDataSet.size(), dynamicTutorials);
+    public boolean addTutorials(@NonNull Collection<? extends DynamicTutorial<T, V>> tutorials) {
+        return addTutorials(mDataSet.size(), tutorials);
     }
 
     /**
@@ -210,28 +167,9 @@ public class DynamicTutorialsAdapter extends FragmentStatePagerAdapter {
     }
 
     /**
-     * Checks whether this adapter contains the supplied object.
-     *
-     * @return {@code true} if this adapter contains the supplied object.
-     */
-    public boolean containsTutorial(Object object) {
-        return object instanceof DynamicTutorial && mDataSet.contains(object);
-    }
-
-    /**
-     * Checks whether this adapter contains the supplied collection.
-     *
-     * @return {@code true} if this adapter contains the supplied collection.
-     */
-    public boolean containsTutorials(
-            @NonNull Collection<? extends DynamicTutorial> dynamicTutorials) {
-        return mDataSet.containsAll(dynamicTutorials);
-    }
-
-    /**
      * Get the tutorials shown by this adapter.
      */
-    public @NonNull List<DynamicTutorial> getTutorials() {
+    public @NonNull List<DynamicTutorial<T, V>> getTutorials() {
         return mDataSet;
     }
 
@@ -242,23 +180,22 @@ public class DynamicTutorialsAdapter extends FragmentStatePagerAdapter {
      *
      * @return The tutorial at the supplied position.
      */
-    public DynamicTutorial getTutorial(int position) {
+    public DynamicTutorial<T, V> getTutorial(int position) {
         return mDataSet.get(position);
     }
 
     /**
      * Remove tutorial from this adapter.
      *
-     * @param dynamicTutorial The tutorial to be removed.
+     * @param tutorial The tutorial to be removed.
      *
      * @return {@code true} if the tutorial removed successfully.
      */
-    public boolean removeTutorial(@NonNull DynamicTutorial dynamicTutorial) {
-        int locationToRemove = mDataSet.indexOf(dynamicTutorial);
+    public boolean removeTutorial(@NonNull DynamicTutorial<T, V> tutorial) {
+        int locationToRemove = mDataSet.indexOf(tutorial);
 
         if (locationToRemove >= 0) {
             mDataSet.remove(locationToRemove);
-            removeTutorialFragment(dynamicTutorial);
 
             notifyDataSetChanged();
             return true;
@@ -270,18 +207,17 @@ public class DynamicTutorialsAdapter extends FragmentStatePagerAdapter {
     /**
      * Remove a collection of tutorials from this adapter.
      *
-     * @param dynamicTutorials The collection of tutorials to be removed.
+     * @param tutorials The collection of tutorials to be removed.
      *
      * @return {@code true} if the tutorials removed successfully.
      */
     public boolean removeTutorials(
-            @NonNull Collection<? extends DynamicTutorial> dynamicTutorials) {
+            @NonNull Collection<? extends DynamicTutorial<T, V>> tutorials) {
         boolean modified = false;
 
-        for (DynamicTutorial dynamicTutorial : dynamicTutorials) {
+        for (DynamicTutorial<T, V> dynamicTutorial : tutorials) {
             int locationToRemove = mDataSet.indexOf(dynamicTutorial);
             if (locationToRemove >= 0) {
-                removeTutorialFragment(dynamicTutorial);
                 mDataSet.remove(locationToRemove);
                 modified = true;
             }
@@ -293,17 +229,16 @@ public class DynamicTutorialsAdapter extends FragmentStatePagerAdapter {
     /**
      * Retain a collection of tutorials to this adapter.
      *
-     * @param dynamicTutorials The collection of tutorials to be retained.
+     * @param tutorials The collection of tutorials to be retained.
      *
      * @return {@code true} if the tutorials retained successfully.
      */
     public boolean retainTutorials(
-            @NonNull Collection<? extends DynamicTutorial> dynamicTutorials) {
+            @NonNull Collection<? extends DynamicTutorial<T, V>> tutorials) {
         boolean modified = false;
 
         for (int i = mDataSet.size() - 1; i >= 0; i--) {
-            if (!dynamicTutorials.contains(mDataSet.get(i))) {
-                removeTutorialFragment(mDataSet.get(i));
+            if (!tutorials.contains(mDataSet.get(i))) {
                 mDataSet.remove(i);
                 modified = true;
                 i--;
@@ -315,28 +250,5 @@ public class DynamicTutorialsAdapter extends FragmentStatePagerAdapter {
         }
 
         return modified;
-    }
-
-    /**
-     * Remove a tutorial fragments from the activity.
-     *
-     * @param dynamicTutorial The tutorial to be removed.
-     */
-    public void removeTutorialFragment(@NonNull DynamicTutorial dynamicTutorial) {
-        if (((Fragment) dynamicTutorial).isAdded()) {
-            mFragmentManager.beginTransaction().remove((Fragment) dynamicTutorial).commit();
-        }
-    }
-
-    /**
-     * Remove a collection of tutorial fragments from the activity.
-     *
-     * @param dynamicTutorials The collection of tutorials to be removed.
-     */
-    public void removeTutorialFragments(
-            @NonNull Collection<? extends DynamicTutorial> dynamicTutorials) {
-        for (DynamicTutorial dynamicTutorial : dynamicTutorials) {
-            removeTutorialFragment(dynamicTutorial);
-        }
     }
 }

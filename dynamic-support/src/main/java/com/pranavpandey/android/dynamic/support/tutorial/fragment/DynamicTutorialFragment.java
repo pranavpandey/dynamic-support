@@ -16,27 +16,167 @@
 
 package com.pranavpandey.android.dynamic.support.tutorial.fragment;
 
-import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.ViewGroup;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
-import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment;
+import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.tutorial.DynamicSimpleTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
+import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorialUtils;
 import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutorialActivity;
-import com.pranavpandey.android.dynamic.support.widget.base.DynamicScrollableWidget;
-import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
+import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
+import com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView;
+import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
+import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * A tutorial fragment which will be used with the {@link DynamicTutorialActivity} to display
- * a list of fragments in the view pager.
- * <p>Extend this to provide any extra functionality according to the need.
+ * A DynamicTutorialFragment fragment with an image, title, subtitle and description which
+ * will be used with the {@link DynamicTutorialActivity}.
  */
-public abstract class DynamicTutorialFragment extends DynamicFragment implements DynamicTutorial {
+public class DynamicTutorialFragment extends Fragment implements
+        DynamicTutorial<DynamicSimpleTutorial, DynamicTutorialFragment> {
+
+    /**
+     * Fragment argument key to set the dynamic tutorial.
+     */
+    private static final String ADS_ARGS_TUTORIAL = "ads_args_tutorial";
+
+    /**
+     * Tutorial key to maintain its state.
+     */
+    private static final String ADS_STATE_TUTORIAL = "ads_state_tutorial";
+
+    /**
+     * Dynamic simple tutorial used by this fragment.
+     */
+    private DynamicSimpleTutorial mDynamicSimpleTutorial;
+
+    /**
+     * Root view of this fragment.
+     */
+    private ViewGroup mRootView;
+
+    /**
+     * Image view to show the tutorial image.
+     */
+    private DynamicImageView mImageView;
+
+    /**
+     * Scroll view to show the scrolling content.
+     */
+    private DynamicNestedScrollView mScrollView;
+
+    /**
+     * Text view to show the tutorial title.
+     */
+    private DynamicTextView mTitleView;
+
+    /**
+     * Text view to show the tutorial subtitle.
+     */
+    private DynamicTextView mSubtitleView;
+
+    /**
+     * Text view to show the tutorial description.
+     */
+    private DynamicTextView mDescriptionView;
+
+    /**
+     * Function to initialize this fragment.
+     *
+     * @param dynamicSimpleTutorial The dynamic simple tutorial for this fragment.
+     *
+     * @return An instance of {@link DynamicTutorialFragment}.
+     */
+    public static DynamicTutorialFragment newInstance(
+            @NonNull DynamicSimpleTutorial dynamicSimpleTutorial) {
+        DynamicTutorialFragment fragment = new DynamicTutorialFragment();
+        Bundle args = new Bundle();
+        args.putParcelable(ADS_ARGS_TUTORIAL, dynamicSimpleTutorial);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (getArguments() != null) {
+            if (getArguments().containsKey(ADS_ARGS_TUTORIAL)) {
+                mDynamicSimpleTutorial = getArguments().getParcelable(ADS_ARGS_TUTORIAL);
+            }
+        }
+
+        if (savedInstanceState != null) {
+            mDynamicSimpleTutorial = savedInstanceState.getParcelable(ADS_STATE_TUTORIAL);
+        }
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.ads_fragment_tutorial_simple, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        mRootView = view.findViewById(R.id.ads_tutorial_simple);
+        mImageView = view.findViewById(R.id.ads_tutorial_simple_image);
+        mScrollView = view.findViewById(R.id.ads_tutorial_simple_scroller);
+        mTitleView = view.findViewById(R.id.ads_tutorial_simple_title);
+        mSubtitleView = view.findViewById(R.id.ads_tutorial_simple_subtitle);
+        mDescriptionView = view.findViewById(R.id.ads_tutorial_simple_description);
+
+        if (mDynamicSimpleTutorial != null) {
+            if (mImageView != null) {
+                DynamicTutorialUtils.setImage(mImageView, DynamicResourceUtils.getDrawable(
+                        getContext(), mDynamicSimpleTutorial.getImageRes()));
+            }
+
+            DynamicTutorialUtils.setText(mTitleView, mDynamicSimpleTutorial.getTitle());
+            DynamicTutorialUtils.setText(mSubtitleView, mDynamicSimpleTutorial.getSubtitle());
+            DynamicTutorialUtils.setText(mDescriptionView, mDynamicSimpleTutorial.getDescription());
+        }
+
+        tintWidgets(getBackgroundColor());
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putParcelable(ADS_STATE_TUTORIAL, mDynamicSimpleTutorial);
+    }
+
+    /**
+     * Tint the widgets according to the supplied background color.
+     *
+     * @param color The color to generate the tint.
+     */
+    private void tintWidgets(@ColorInt int color) {
+        final @ColorInt int tintColor = DynamicColorUtils.getTintColor(color);
+
+        if (mDynamicSimpleTutorial != null && mDynamicSimpleTutorial.isTintImage()) {
+            DynamicTutorialUtils.tintDynamicView(mImageView, tintColor);
+        }
+
+        DynamicTutorialUtils.tintDynamicView(mTitleView, tintColor);
+        DynamicTutorialUtils.tintDynamicView(mScrollView, tintColor);
+        DynamicTutorialUtils.tintDynamicView(mSubtitleView, tintColor);
+        DynamicTutorialUtils.tintDynamicView(mDescriptionView, tintColor);
+    }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
@@ -50,65 +190,40 @@ public abstract class DynamicTutorialFragment extends DynamicFragment implements
     public void onPageScrollStateChanged(int state) { }
 
     @Override
+    public @NonNull DynamicSimpleTutorial getTutorial() {
+        return mDynamicSimpleTutorial;
+    }
+
+    @Override
+    public @NonNull DynamicTutorialFragment createTutorial() {
+        return this;
+    }
+
+    @Override
     public int getTutorialId() {
-        return -1;
+        return mDynamicSimpleTutorial.getId();
     }
 
     @Override
     public int getBackgroundColor() {
-        return DynamicTheme.getInstance().get().getPrimaryColor();
+        return mDynamicSimpleTutorial != null ? mDynamicSimpleTutorial.getBackgroundColor()
+                : DynamicTheme.getInstance().get().getPrimaryColor();
     }
 
     @Override
-    public void onBackgroundColorChanged(int color) { }
-
-    /**
-     * Set drawable for the tutorial image view and mange its visibility according to the data.
-     *
-     * @param imageView The image view to set the drawable.
-     * @param drawable The drawable for the image view.
-     */
-    protected void setTutorialImage(@Nullable ImageView imageView, @Nullable Drawable drawable) {
-        if (imageView != null) {
-            if (drawable != null) {
-                imageView.setImageDrawable(drawable);
-                imageView.setVisibility(View.VISIBLE);
-            } else {
-                imageView.setVisibility(View.GONE);
-            }
-        }
+    public void onBackgroundColorChanged(int color) {
+        tintWidgets(color);
     }
 
-    /**
-     * Set text for the tutorial text view and mange its visibility according to the data.
-     *
-     * @param textView The text view to set the text.
-     * @param text The text for the text view.
-     */
-    protected void setTutorialText(@Nullable TextView textView, @Nullable String text) {
-        if (textView != null) {
-            if (text != null) {
-                textView.setText(text);
-                textView.setVisibility(View.VISIBLE);
-            } else {
-                textView.setVisibility(View.GONE);
-            }
+    @Override
+    public void onSetPadding(int left, int top, int right, int bottom) {
+        if (mRootView == null || bottom <= 0 || mRootView.getPaddingBottom() >= bottom) {
+            return;
         }
-    }
 
-    /**
-     * Tint dynamic widgets used by the tutorial according to the supplied color.
-     *
-     * @param dynamicWidget The dynamic widget to be tinted.
-     * @param color The color to tint the widget.
-     */
-    protected void tintDynamicView(@Nullable DynamicWidget dynamicWidget, @ColorInt int color) {
-        if (dynamicWidget != null) {
-            dynamicWidget.setColor(color);
-
-            if (dynamicWidget instanceof DynamicScrollableWidget) {
-                ((DynamicScrollableWidget) dynamicWidget).setScrollBarColor(color);
-            }
-        }
+        mRootView.setPadding(mRootView.getPaddingLeft() + left,
+                mRootView.getPaddingTop() + top,
+                mRootView.getPaddingRight() + right,
+                mRootView.getPaddingBottom() + bottom);
     }
 }

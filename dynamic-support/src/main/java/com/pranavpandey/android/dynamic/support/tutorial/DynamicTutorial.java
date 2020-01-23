@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.tutorial;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 
 import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutorialActivity;
@@ -28,14 +29,21 @@ import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutoria
  * <p><p>Any child view or fragment must implement this interface to support any color
  * transitions.
  */
-public interface DynamicTutorial extends ViewPager.OnPageChangeListener {
+public interface DynamicTutorial<T, V> extends ViewPager.OnPageChangeListener {
 
     /**
      * Returns the tutorial object.
      *
      * @return The tutorial object.
      */
-    Object getTutorial();
+    @NonNull T getTutorial();
+
+    /**
+     * Returns the tutorial view or fragment.
+     *
+     * @return The tutorial view or fragment.
+     */
+    @NonNull V createTutorial();
 
     /**
      * Returns the id for this tutorial.
@@ -58,4 +66,6 @@ public interface DynamicTutorial extends ViewPager.OnPageChangeListener {
      * @param color The color of the background.
      */
     void onBackgroundColorChanged(@ColorInt int color);
+
+    void onSetPadding(int left, int top, int right, int bottom);
 }

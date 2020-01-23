@@ -18,25 +18,20 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ads_coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/ads_tutorial"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <com.pranavpandey.android.dynamic.support.widget.DynamicViewPager
+        <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/ads_tutorial_view_pager"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.0"
-            android:overScrollMode="never"
-            app:ads_backgroundAware="disable" />
+            android:layout_height="match_parent" />
 
         <LinearLayout
             android:id="@+id/ads_tutorial_footer"
@@ -44,9 +39,8 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/ads_margin_medium"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layoutDirection="ltr"
-            tools:targetApi="jelly_bean_mr1">
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
                 style="@style/Widget.DynamicApp.Button.ImageButton"
@@ -77,7 +71,7 @@
                     android:visibility="gone"
                     app:ads_backgroundAware="disable" />
 
-                <com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator
+                <com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator2
                     android:id="@+id/ads_tutorial_page_indicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -98,6 +92,6 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

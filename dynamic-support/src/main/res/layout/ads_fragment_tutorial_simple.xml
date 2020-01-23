@@ -20,7 +20,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ads_tutorial_simple"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/ads_margin_medium"
     android:orientation="vertical">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
@@ -34,7 +35,7 @@
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
         style="@style/Widget.DynamicApp.Scroller.Vertical"
-        android:id="@+id/ads_tutorial_simple_scroll"
+        android:id="@+id/ads_tutorial_simple_scroller"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
