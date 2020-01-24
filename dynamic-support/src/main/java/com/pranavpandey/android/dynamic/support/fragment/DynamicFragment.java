@@ -152,11 +152,11 @@ public class DynamicFragment extends Fragment implements
     }
 
     /**
-     * Retrieves a parcelable form the fragment arguments associated with the supplied key.
+     * Retrieves a parcelable from the fragment arguments associated with the supplied key.
      *
      * @param key The key to be retrieved.
      *
-     * @return The parcelable form the fragment arguments.
+     * @return The parcelable from the fragment arguments.
      *
      * @see Fragment#getArguments()
      */
@@ -173,11 +173,11 @@ public class DynamicFragment extends Fragment implements
     }
 
     /**
-     * Retrieves a string form the fragment arguments associated with the supplied key.
+     * Retrieves a string from the fragment arguments associated with the supplied key.
      *
      * @param key The key to be retrieved.
      *
-     * @return The string form the fragment arguments.
+     * @return The string from the fragment arguments.
      *
      * @see Fragment#getArguments()
      */

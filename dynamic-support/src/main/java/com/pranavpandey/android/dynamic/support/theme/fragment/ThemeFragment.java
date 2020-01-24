@@ -221,7 +221,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
     /**
      * Show dialog to import the theme.
      *
-     * @param file {@code true} to import form the file.
+     * @param file {@code true} to import from the file.
      *
      * @see DynamicThemeDialog
      * @see DynamicThemeDialog.Type#THEME_IMPORT
@@ -247,7 +247,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
      * Try to import the supplied theme string.
      *
      * @param theme The theme string to be imported.
-     * @param file {@code true} if importing form the file.
+     * @param file {@code true} if importing from the file.
      **/
     protected void importTheme(@Nullable String theme, boolean file) {
         if (theme == null || !DynamicThemeUtils.isValidTheme(theme)) {
@@ -270,7 +270,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
     /**
      * Show dialog for the invalid theme.
      *
-     * @param file {@code true} if imported form the file.
+     * @param file {@code true} if imported from the file.
      *
      * @see DynamicThemeDialog
      * @see DynamicThemeDialog.Type#THEME_INVALID

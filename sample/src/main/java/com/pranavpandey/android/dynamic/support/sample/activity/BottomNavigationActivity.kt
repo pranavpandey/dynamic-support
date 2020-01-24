@@ -29,7 +29,6 @@ import com.pranavpandey.android.dynamic.support.sample.fragment.HomeFragment
 import com.pranavpandey.android.dynamic.support.sample.fragment.SettingsFragment
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
 import com.pranavpandey.android.dynamic.support.widget.DynamicBottomNavigationView
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils
 import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils
 import java.util.*
 
@@ -132,8 +131,7 @@ class BottomNavigationActivity : DynamicActivity() {
         if (mBottomNavigationView != null) {
             frameFooter!!.setBackgroundColor(mBottomNavigationView!!.color)
             mBottomNavigationView!!.color = DynamicTheme.getInstance().get().primaryColor
-            mBottomNavigationView!!.textColor = DynamicColorUtils.getTintColor(
-                    DynamicTheme.getInstance().get().primaryColor)
+            mBottomNavigationView!!.textColor = DynamicTheme.getInstance().get().accentColor
         }
     }
 

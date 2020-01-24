@@ -39,6 +39,8 @@ import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.appcompat.widget.ActionMenuView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
@@ -83,46 +85,50 @@ public class DynamicMenuUtils {
      *
      * @param view The view to set its items color.
      * @param color The tint color to be applied.
+     * @param background The background color for the tooltip.
+     * @param tint {@code true} to tint views according to the supplied parameters.
      */
     @TargetApi(Build.VERSION_CODES.M)
     @SuppressLint("RestrictedApi")
     public static void setViewItemsTint(@NonNull final View view,
-            @ColorInt final int color, @ColorInt final int background) {
+            @ColorInt final int color, @ColorInt final int background, boolean tint) {
         final PorterDuffColorFilter colorFilter
                 = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
 
         if (view instanceof ViewGroup){
             for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++){
-                setViewItemsTint(((ViewGroup) view).getChildAt(i), color, background);
+                setViewItemsTint(((ViewGroup) view).getChildAt(i), color, background, tint);
             }
         }
 
-        if (view instanceof ImageButton) {
+        if (tint && view instanceof ImageButton) {
             ((ImageButton) view).getDrawable().setAlpha(255);
             ((ImageButton) view).getDrawable().setColorFilter(colorFilter);
             DynamicTintUtils.setViewBackgroundTint(view, color, true);
         }
 
         if (view instanceof ImageView) {
-            ((ImageView) view).getDrawable().setAlpha(255);
-            ((ImageView) view).getDrawable().setColorFilter(colorFilter);
-            DynamicTintUtils.setViewBackgroundTint(view, color, true);
+            if (tint) {
+                ((ImageView) view).getDrawable().setAlpha(255);
+                ((ImageView) view).getDrawable().setColorFilter(colorFilter);
+                DynamicTintUtils.setViewBackgroundTint(view, color, true);
+            }
 
             if (!TextUtils.isEmpty(view.getContentDescription())) {
                 DynamicTooltip.set(view, color, background, view.getContentDescription());
             }
         }
 
-        if (view instanceof AutoCompleteTextView) {
+        if (tint && view instanceof AutoCompleteTextView) {
             ((AutoCompleteTextView) view).setTextColor(color);
         }
 
-        if (view instanceof TextView) {
+        if (tint && view instanceof TextView) {
             ((TextView) view).setTextColor(color);
             DynamicTintUtils.setViewBackgroundTint(view, color, true);
         }
 
-        if (view instanceof EditText) {
+        if (tint && view instanceof EditText) {
             ((EditText) view).setTextColor(color);
         }
 
@@ -130,7 +136,7 @@ public class DynamicMenuUtils {
             for (int j = 0; j < ((ActionMenuView) view).getChildCount(); j++) {
                 final View innerView = ((ActionMenuView) view).getChildAt(j);
 
-                if (innerView instanceof ActionMenuItemView) {
+                if (tint && innerView instanceof ActionMenuItemView) {
                     final Drawable[] compoundDrawables =
                             ((ActionMenuItemView) innerView).getCompoundDrawables();
                     if (DynamicSdkUtils.is23()) {
@@ -146,11 +152,43 @@ public class DynamicMenuUtils {
                 }
 
                 if (innerView instanceof MenuView.ItemView) {
-                    DynamicTintUtils.setViewBackgroundTint(view, color, true);
+                    if (tint) {
+                        DynamicTintUtils.setViewBackgroundTint(view, color, true);
+                    }
+
                     DynamicTooltip.set(innerView, color, background,
                             ((MenuView.ItemView) innerView).getItemData().getTitle());
                 }
             }
         }
+
+        if (view instanceof BottomNavigationMenuView) {
+            for (int j = 0; j < ((BottomNavigationMenuView) view).getChildCount(); j++) {
+                final View innerView = ((BottomNavigationMenuView) view).getChildAt(j);
+
+                if (innerView instanceof BottomNavigationItemView) {
+                    if (tint) {
+                        DynamicTintUtils.setViewBackgroundTint(view, color, true);
+                    }
+
+                    DynamicTooltip.set(innerView, color, background,
+                            ((MenuView.ItemView) innerView).getItemData().getTitle());
+                }
+            }
+        }
+    }
+
+    /**
+     * Set other items color of this view according to the supplied values.
+     * <p>Generally, it should be a tint color so that items will be visible on this view
+     * background.
+     *
+     * @param view The view to set its items color.
+     * @param color The tint color to be applied.
+     * @param background The background color for the tooltip.
+     */
+    public static void setViewItemsTint(@NonNull final View view,
+            @ColorInt final int color, @ColorInt final int background) {
+        setViewItemsTint(view, color, background, true);
     }
 }

@@ -76,6 +76,11 @@ public class WidgetDefaults {
     public static final float ADS_ALPHA_HINT = 0.8f;
 
     /**
+     * Default alpha for the unselected state.
+     */
+    public static final float ADS_ALPHA_UNSELECTED = 0.8f;
+
+    /**
      * Default alpha value for the unselected state to generate color state list dynamically.
      */
     public static final float ADS_ALPHA_UNCHECKED = 0.7f;

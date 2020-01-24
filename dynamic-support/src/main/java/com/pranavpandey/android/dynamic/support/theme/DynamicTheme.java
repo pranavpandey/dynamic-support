@@ -346,7 +346,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     }
 
     /**
-     * Initialize colors form the supplied theme resource.
+     * Initialize colors from the supplied theme resource.
      *
      * @param theme The theme resource to initialize colors.
      * @param initializeRemoteColors {@code true} to initialize remote colors also.
@@ -408,7 +408,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     }
 
     /**
-     * Initialize colors form the supplied dynamic app theme.
+     * Initialize colors from the supplied dynamic app theme.
      *
      * @param theme The dynamic app theme to initialize colors.
      * @param initializeRemoteColors {@code true} to initialize remote colors also.
@@ -435,7 +435,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     }
 
     /**
-     * Initialize colors form the supplied local theme resource.
+     * Initialize colors from the supplied local theme resource.
      *
      * @param localTheme The local theme resource to initialize colors.
      *
@@ -497,7 +497,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     }
 
     /**
-     * Initialize colors form the supplied local dynamic app theme.
+     * Initialize colors from the supplied local dynamic app theme.
      *
      * @param dynamicLocalTheme The local dynamic app theme to initialize colors.
      *

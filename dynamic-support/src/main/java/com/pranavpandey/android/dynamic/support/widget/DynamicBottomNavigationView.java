@@ -29,6 +29,7 @@ import androidx.annotation.Nullable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.utils.DynamicMenuUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTextWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -262,6 +263,14 @@ public class DynamicBottomNavigationView extends BottomNavigationView
     }
 
     @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+
+        setColor();
+        setTextColor();
+    }
+
+    @Override
     public void setColor() {
         if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
             setBackgroundColor(mColor);
@@ -275,8 +284,8 @@ public class DynamicBottomNavigationView extends BottomNavigationView
                 mTextColor = DynamicColorUtils.getContrastColor(mTextColor, mContrastWithColor);
             }
 
-            @ColorInt int normalColor = DynamicColorUtils.adjustAlpha(mTextColor,
-                    WidgetDefaults.ADS_ALPHA_UNCHECKED);
+            @ColorInt int normalColor = DynamicColorUtils.adjustAlpha(
+                    DynamicColorUtils.getTintColor(mColor), WidgetDefaults.ADS_ALPHA_UNSELECTED);
             setItemTextColor(DynamicResourceUtils.getColorStateList(
                     normalColor, mTextColor, true));
             setItemIconTintList(DynamicResourceUtils.getColorStateList(
@@ -285,5 +294,7 @@ public class DynamicBottomNavigationView extends BottomNavigationView
                     Color.TRANSPARENT, DynamicColorUtils.adjustAlpha(
                             mTextColor, WidgetDefaults.ADS_ALPHA_PRESSED), false));
         }
+
+        DynamicMenuUtils.setViewItemsTint(this, mTextColor, mColor, false);
     }
 }
