@@ -59,18 +59,11 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment {
      */
     private TabLayout mTabLayout;
 
-    /**
-     * View pager adapter used by this fragment.
-     */
-    private ViewPagerAdapter mAdapter;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setRetainInstance(false);
-
-        mAdapter = new ViewPagerAdapter(getChildFragmentManager(), getTitles(), getPages());
     }
 
     /**
@@ -104,10 +97,15 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        if (getActivity() == null) {
+            return;
+        }
+
         ((DynamicActivity) getActivity()).addHeader(R.layout.ads_tabs, true);
         mTabLayout = getActivity().findViewById(R.id.ads_tab_layout);
 
-        mViewPager.setAdapter(mAdapter);
+        mViewPager.setAdapter(new ViewPagerAdapter(
+                getChildFragmentManager(), getTitles(), getPages()));
         mTabLayout.setupWithViewPager(mViewPager);
 
         if (getArguments() != null && getArguments().containsKey(ADS_ARGS_VIEW_PAGER_PAGE)) {
@@ -120,7 +118,7 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment {
      *
      * @return The tab layout used by this fragment.
      */
-    public TabLayout getTabLayout() {
+    public @Nullable TabLayout getTabLayout() {
         return mTabLayout;
     }
 
@@ -129,7 +127,7 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment {
      *
      * @return The view pager used by this fragment.
      */
-    public ViewPager getViewPager() {
+    public @Nullable ViewPager getViewPager() {
         return mViewPager;
     }
 

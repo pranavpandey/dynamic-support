@@ -58,7 +58,7 @@ public class DynamicFABScrollBehavior extends AppBarLayout.ScrollingViewBehavior
     public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout,
             @NonNull View child, @NonNull View directTargetChild,
             @NonNull View target, int nestedScrollAxes, final int type) {
-        // Ensure we react to vertical scrolling
+        // Ensure we react to vertical scrolling.
         return nestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL
                 || super.onStartNestedScroll(coordinatorLayout, child,
                 directTargetChild, target, nestedScrollAxes, type);
@@ -70,8 +70,9 @@ public class DynamicFABScrollBehavior extends AppBarLayout.ScrollingViewBehavior
             int dxUnconsumed, int dyUnconsumed, int type, @NonNull int[] consumed) {
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed,
                 dyConsumed, dxUnconsumed, dyUnconsumed, type, consumed);
+
         if (dyConsumed > 0) {
-            // User scrolled down -> hide the FAB
+            // User scrolled down -> hide the FAB.
             List<View> dependencies = coordinatorLayout.getDependencies(child);
             for (View view : dependencies) {
                 if (view instanceof FloatingActionButton
@@ -84,7 +85,7 @@ public class DynamicFABScrollBehavior extends AppBarLayout.ScrollingViewBehavior
                 }
             }
         } else if (dyConsumed < 0) {
-            // User scrolled up -> show the FAB
+            // User scrolled up -> show the FAB.
             List<View> dependencies = coordinatorLayout.getDependencies(child);
             for (View view : dependencies) {
                 if (view instanceof FloatingActionButton

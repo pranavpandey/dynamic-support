@@ -39,8 +39,8 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicViewPagerCallbac
  * along with the tabs.
  * <p>Just extend this fragment and implement the necessary methods to use it inside an activity.
  */
-public abstract class DynamicViewPager2Fragment extends
-        DynamicFragment implements DynamicViewPagerCallback {
+public abstract class DynamicViewPager2Fragment extends DynamicFragment
+        implements DynamicViewPagerCallback {
 
     /**
      * Fragment argument key to set the initial view pager page.
@@ -56,11 +56,6 @@ public abstract class DynamicViewPager2Fragment extends
      * Tab layout used by this fragment.
      */
     private TabLayout mTabLayout;
-
-    /**
-     * View pager adapter used by this fragment.
-     */
-    private ViewPagerAdapter mAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,12 +81,15 @@ public abstract class DynamicViewPager2Fragment extends
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        if (getActivity() == null) {
+            return;
+        }
+
         ((DynamicActivity) getActivity()).addHeader(R.layout.ads_tabs, true);
         mTabLayout = getActivity().findViewById(R.id.ads_tab_layout);
 
-        mAdapter = new ViewPagerAdapter(this, this);
-        mViewPager.setOffscreenPageLimit(mAdapter.getItemCount());
-        mViewPager.setAdapter(mAdapter);
+        mViewPager.setOffscreenPageLimit(getItemCount());
+        mViewPager.setAdapter(new ViewPagerAdapter(this, this));
 
         new TabLayoutMediator(mTabLayout, mViewPager,
                 new TabLayoutMediator.TabConfigurationStrategy() {
@@ -111,7 +109,7 @@ public abstract class DynamicViewPager2Fragment extends
      *
      * @return The tab layout used by this fragment.
      */
-    public TabLayout getTabLayout() {
+    public @Nullable TabLayout getTabLayout() {
         return mTabLayout;
     }
 
@@ -120,7 +118,7 @@ public abstract class DynamicViewPager2Fragment extends
      *
      * @return The view pager used by this fragment.
      */
-    public ViewPager2 getViewPager() {
+    public @Nullable ViewPager2 getViewPager() {
         return mViewPager;
     }
 
@@ -147,6 +145,9 @@ public abstract class DynamicViewPager2Fragment extends
      */
     static class ViewPagerAdapter extends DynamicFragmentStateAdapter {
 
+        /**
+         * Dynamic view pager callback to get titles and fragments.
+         */
         private final DynamicViewPagerCallback dynamicViewPagerCallback;
 
         /**
