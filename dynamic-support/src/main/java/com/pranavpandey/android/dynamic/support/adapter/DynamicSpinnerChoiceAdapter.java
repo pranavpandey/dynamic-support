@@ -24,7 +24,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -48,7 +48,12 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
     /**
      * Array of char sequences to be handled by this adapter.
      */
-    private CharSequence[] mDataSet;
+    private CharSequence[] mEntries;
+
+    /**
+     * Array of drawable resource ids for the entries.
+     */
+    private @DrawableRes int[] mIcons;
 
     /**
      * The selected position.
@@ -63,7 +68,20 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
      */
     public DynamicSpinnerChoiceAdapter(@NonNull CharSequence[] entries,
             @NonNull AdapterView.OnItemClickListener onItemClickListener) {
-        this(entries, DEFAULT_SELECTED_POSITION, onItemClickListener);
+        this(entries, null, DEFAULT_SELECTED_POSITION, onItemClickListener);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param entries The array of texts to be handled by this adapter.
+     * @param icons The array of drawable resource ids for the entries.
+     * @param onItemClickListener The listener to get the callback when an item is clicked.
+     */
+    public DynamicSpinnerChoiceAdapter(@NonNull CharSequence[] entries,
+            @Nullable @DrawableRes int[] icons,
+            @NonNull AdapterView.OnItemClickListener onItemClickListener) {
+        this(entries, icons, DEFAULT_SELECTED_POSITION, onItemClickListener);
     }
 
     /**
@@ -73,10 +91,24 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
      * @param selectedPosition The selected position.
      * @param onItemClickListener The listener to get the callback when an item is clicked.
      */
-    public DynamicSpinnerChoiceAdapter(@NonNull CharSequence[] entries,
-            @ColorInt int selectedPosition,
+    public DynamicSpinnerChoiceAdapter(@NonNull CharSequence[] entries, int selectedPosition,
             @NonNull AdapterView.OnItemClickListener onItemClickListener) {
-        this.mDataSet = entries;
+        this(entries, null, selectedPosition, onItemClickListener);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param entries The array of texts to be handled by this adapter.
+     * @param icons The array of drawable resource ids for the entries.
+     * @param selectedPosition The selected position.
+     * @param onItemClickListener The listener to get the callback when an item is clicked.
+     */
+    public DynamicSpinnerChoiceAdapter(@NonNull CharSequence[] entries,
+            @Nullable @DrawableRes int[] icons, int selectedPosition,
+            @NonNull AdapterView.OnItemClickListener onItemClickListener) {
+        this.mEntries = entries;
+        this.mIcons = icons;
         this.mSelectedPosition = selectedPosition;
         this.mOnItemClickListener = onItemClickListener;
     }
@@ -95,34 +127,41 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
         	viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.getTextView().setText((CharSequence) getItem(position));
-        viewHolder.getSelectorView().setVisibility(
+        viewHolder.getText().setText((CharSequence) getItem(position));
+        viewHolder.getSelector().setVisibility(
                 mSelectedPosition == position ? View.VISIBLE : View.INVISIBLE);
 
-        viewHolder.getItemView().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mOnItemClickListener != null) {
-                    mOnItemClickListener.onItemClick(
-                            (AdapterView<?>) parent, view, position, getItemId(position));
+        if (mIcons != null && mIcons.length == mEntries.length) {
+            viewHolder.getIcon().setImageResource(mIcons[position]);
+            viewHolder.getIcon().setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.getIcon().setVisibility(View.GONE);
+        }
+
+        if (mOnItemClickListener != null) {
+            viewHolder.getRoot().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mOnItemClickListener.onItemClick((AdapterView<?>) parent,
+                            view, position, getItemId(position));
                     mSelectedPosition = position;
 
                     notifyDataSetChanged();
                 }
-            }
-        });
-        
+            });
+        }
+
 	    return convertView;
     }
 
     @Override
     public int getCount() {
-        return mDataSet.length;
+        return mEntries.length;
     }
 
     @Override
     public Object getItem(int position) {
-        return mDataSet[position];
+        return mEntries[position];
     }
 
     @Override
@@ -131,21 +170,42 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
     }
 
     /**
-     * Get the data set handled by this adapter.
+     * Get the entries handled by this adapter.
      *
      * @return The array of char sequences handled by this adapter.
      */
-    public CharSequence[] getDataSet() {
-        return mDataSet;
+    public @Nullable CharSequence[] getEntries() {
+        return mEntries;
     }
 
     /**
      * Sets the array of char sequences to be handled by this adapter.
      *
-     * @param dataSet The array of char sequences to be set.
+     * @param entries The array of char sequences to be set.
      */
-    public void setDataSet(@NonNull CharSequence[] dataSet) {
-        this.mDataSet = dataSet;
+    public void setEntries(@NonNull CharSequence[] entries) {
+        this.mEntries = entries;
+
+        notifyDataSetChanged();
+    }
+
+    /**
+     * Get the icons for the entries handled by this adapter.
+     *
+     * @return The array of drawable resource ids for the entries.
+     */
+    public @Nullable @DrawableRes int[] getIcons() {
+        return mIcons;
+    }
+
+
+    /**
+     * Sets the array of drawable resource ids for the entries.
+     *
+     * @param icons The array of drawable resource ids to be set.
+     */
+    public void setIcons(@Nullable @DrawableRes int[] icons) {
+        this.mIcons = icons;
 
         notifyDataSetChanged();
     }
@@ -155,7 +215,7 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
      *
      * @return The listener to get the callback when an item is clicked.
      */
-    public AdapterView.OnItemClickListener getOnItemClickListener() {
+    public @Nullable AdapterView.OnItemClickListener getOnItemClickListener() {
         return mOnItemClickListener;
     }
 
@@ -165,7 +225,7 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
      * @param onItemClickListener The listener to be set.
      */
     public void setOnItemClickListener(
-            @NonNull AdapterView.OnItemClickListener onItemClickListener) {
+            @Nullable AdapterView.OnItemClickListener onItemClickListener) {
         this.mOnItemClickListener = onItemClickListener;
 
         notifyDataSetChanged();
@@ -199,17 +259,22 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
         /**
          * Item view root.
          */
-        private final ViewGroup itemView;
+        private final ViewGroup root;
+
+        /**
+         * Image view to show the icon.
+         */
+        private final ImageView icon;
 
         /**
          * Text view to display the entry.
          */
-        private final TextView textView;
+        private final TextView text;
 
         /**
          * Image view to show the selected item.
          */
-        private final ImageView selectorView;
+        private final ImageView selector;
 
         /**
          * Constructor to initialize views from the supplied layout.
@@ -217,9 +282,10 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
          * @param view The view for this view holder.
          */
     	ViewHolder(@NonNull View view) {
-    	    itemView = view.findViewById(R.id.ads_array_item);
-    	    textView = view.findViewById(R.id.ads_array_item_text);
-            selectorView = view.findViewById(R.id.ads_array_item_selector);
+    	    root = view.findViewById(R.id.ads_array_item);
+    	    icon = view.findViewById(R.id.ads_array_item_icon);
+    	    text = view.findViewById(R.id.ads_array_item_text);
+            selector = view.findViewById(R.id.ads_array_item_selector);
     	}
 
         /**
@@ -227,8 +293,17 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
          *
          * @return The item view root.
          */
-        ViewGroup getItemView() {
-            return itemView;
+        ViewGroup getRoot() {
+            return root;
+        }
+
+        /**
+         * Get the image view to show the icon.
+         *
+         * @return The image view to show the icon.
+         */
+        ImageView getIcon() {
+            return icon;
         }
 
         /**
@@ -236,8 +311,8 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
          *
          * @return The text view to display the entry.
          */
-        TextView getTextView() {
-            return textView;
+        TextView getText() {
+            return text;
         }
 
         /**
@@ -245,8 +320,8 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
          *
          * @return The image view to show the selected item.
          */
-        ImageView getSelectorView() {
-            return selectorView;
+        ImageView getSelector() {
+            return selector;
         }
     }
 }

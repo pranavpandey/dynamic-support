@@ -15,15 +15,8 @@
 	limitations under the License.
 -->
 
-<FrameLayout
+<com.pranavpandey.android.dynamic.support.sample.view.AppInfoView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/app_info_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:descendantFocusability="blocksDescendants">
-
-    <com.pranavpandey.android.dynamic.support.sample.view.AppInfoView
-        android:id="@+id/app_info_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-</FrameLayout>
+    android:layout_height="match_parent" />

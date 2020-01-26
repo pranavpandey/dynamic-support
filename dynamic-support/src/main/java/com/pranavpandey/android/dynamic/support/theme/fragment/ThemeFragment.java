@@ -51,6 +51,21 @@ import java.io.File;
 public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFragment {
 
     /**
+     *  Name of the theme preview used for activity scene transitions.
+     */
+    public static final String ADS_NAME_THEME_PREVIEW = "ads_name:theme_preview";
+
+    /**
+     *  Name of the theme preview icon used for activity scene transitions.
+     */
+    public static final String ADS_NAME_THEME_PREVIEW_ICON = "ads_name:theme_preview:icon";
+
+    /**
+     *  Name of the theme preview action used for activity scene transitions.
+     */
+    public static final String ADS_NAME_THEME_PREVIEW_ACTION = "ads_name:theme_preview:action";
+
+    /**
      * Constant to request the theme file location.
      */
     protected static final int REQUEST_THEME_LOCATION = 0;

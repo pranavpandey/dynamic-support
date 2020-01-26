@@ -19,7 +19,6 @@ package com.pranavpandey.android.dynamic.support.sample.activity
 import android.os.Bundle
 import androidx.annotation.StyleRes
 import com.pranavpandey.android.dynamic.support.activity.DynamicActivity
-import com.pranavpandey.android.dynamic.support.activity.DynamicDrawerActivity
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.controller.AppController
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
@@ -33,7 +32,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils
 import java.util.*
 
 /**
- * Implementing a bottom navigation view by using [DynamicDrawerActivity].
+ * Implementing a bottom navigation view by using [DynamicActivity].
  */
 class BottomNavigationActivity : DynamicActivity() {
 
@@ -45,11 +44,6 @@ class BottomNavigationActivity : DynamicActivity() {
     override fun getLocale(): Locale? {
         // TODO: Not implementing multiple locales so, returning null.
         return null
-    }
-
-    override fun getContentRes(): Int {
-        // Returning default dynamic support drawer layout.
-        return DynamicActivity.ADS_DEFAULT_LAYOUT_RES
     }
 
     @StyleRes override fun getThemeRes(): Int {
@@ -70,8 +64,7 @@ class BottomNavigationActivity : DynamicActivity() {
     override fun onNavigationBarThemeChanged() {
         super.onNavigationBarThemeChanged()
 
-        // Update bottom navigation view theme on navigation bar
-        // theme change.
+        // Update bottom navigation view theme on navigation bar theme change.
         themeBottomNavigationView()
     }
 
@@ -82,7 +75,7 @@ class BottomNavigationActivity : DynamicActivity() {
         setTitle(R.string.app_name)
 
         // Finish this activity on clicking the back navigation button.
-        setNavigationClickListener { this@BottomNavigationActivity.finish() }
+        setNavigationClickListener { this@BottomNavigationActivity.finishActivity() }
 
         // Add bottom navigation view in footer.
         addFooter(R.layout.layout_bottom_navigation, true)
@@ -128,11 +121,9 @@ class BottomNavigationActivity : DynamicActivity() {
      * Apply theme for the bottom navigation view.
      */
     private fun themeBottomNavigationView() {
-        if (mBottomNavigationView != null) {
-            frameFooter!!.setBackgroundColor(mBottomNavigationView!!.color)
-            mBottomNavigationView!!.color = DynamicTheme.getInstance().get().primaryColor
-            mBottomNavigationView!!.textColor = DynamicTheme.getInstance().get().accentColor
-        }
+        mBottomNavigationView!!.color = DynamicTheme.getInstance().get().primaryColor
+        mBottomNavigationView!!.textColor = DynamicTheme.getInstance().get().accentColor
+        frameFooter!!.setBackgroundColor(mBottomNavigationView!!.color)
     }
 
     override fun onResume() {

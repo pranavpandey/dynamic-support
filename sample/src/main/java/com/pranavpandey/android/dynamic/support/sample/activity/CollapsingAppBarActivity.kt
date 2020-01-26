@@ -71,7 +71,7 @@ class CollapsingAppBarActivity : DynamicActivity() {
         setTitle(R.string.app_name)
 
         // Finish this activity on clicking the back navigation button.
-        setNavigationClickListener { this@CollapsingAppBarActivity.finish() }
+        setNavigationClickListener { this@CollapsingAppBarActivity.finishActivity() }
 
         // Set a drawable to use as app bar backdrop when in expanded state.
         setAppBarBackDrop(R.drawable.ads_ic_extension)

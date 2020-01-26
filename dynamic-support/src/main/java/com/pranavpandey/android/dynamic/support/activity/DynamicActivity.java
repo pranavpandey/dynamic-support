@@ -23,7 +23,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ActionMode;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -136,6 +135,11 @@ public abstract class DynamicActivity extends DynamicStateActivity {
     protected AppBarLayout mAppBarLayout;
 
     /**
+     * Bottom bar shadow layout used by this activity.
+     */
+    protected View mBottomBarShadow;
+
+    /**
      * Default menu reference to perform menu operations.
      */
     protected Menu mMenu;
@@ -200,13 +204,14 @@ public abstract class DynamicActivity extends DynamicStateActivity {
 
         mCoordinatorLayout = findViewById(R.id.ads_coordinator_layout);
         mAppBarLayout = findViewById(R.id.ads_app_bar_layout);
+        mBottomBarShadow = findViewById(R.id.ads_bottom_bar_shadow);
 
         mFrameContent.setBackgroundColor(DynamicTheme.getInstance().get().getBackgroundColor());
         mAppBarLayout.addOnOffsetChangedListener(mAppBarStateListener);
 
         if (getContentRes() != ADS_DEFAULT_LAYOUT_RES) {
-            mFrameContent.addView(LayoutInflater.from(this).inflate(
-                    getContentRes(), new LinearLayout(this), false));
+            mFrameContent.addView(getLayoutInflater().inflate(getContentRes(),
+                    new LinearLayout(this), false));
         }
 
         if (setCollapsingToolbarLayout()) {
@@ -403,7 +408,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      *
      * @return The parent content view used by this activity.
      */
-    protected @NonNull View getContentView() {
+    public  @NonNull View getContentView() {
         return mFrameContent != null ? mFrameContent.getRootView() : getWindow().getDecorView();
     }
 
@@ -570,7 +575,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      */
     public void setAppBarBackDropRes(@LayoutRes int layoutRes,
             @ColorRes int expandedTitleColorRes) {
-        setAppBarBackDrop(LayoutInflater.from(this).inflate(layoutRes,
+        setAppBarBackDrop(getLayoutInflater().inflate(layoutRes,
                 new LinearLayout(this), false),
                 ContextCompat.getColor(this, expandedTitleColorRes));
     }
@@ -582,7 +587,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * @param drawable The drawable for the backdrop image.
      */
     public void setAppBarBackDrop(@Nullable Drawable drawable) {
-        View view = LayoutInflater.from(this).inflate(R.layout.ads_appbar_backdrop_image,
+        View view = getLayoutInflater().inflate(R.layout.ads_appbar_backdrop_image,
                 new LinearLayout(this), false);
         ((ImageView) view.findViewById(R.id.ads_image_backdrop))
                 .setImageDrawable(drawable);
@@ -619,9 +624,33 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      *
      * @param visible {@code true} to show the content shadow below the app bar.
      */
-    public void showAppBarShadow(boolean visible) {
-        findViewById(R.id.ads_app_bar_shadow).setVisibility(
-                visible ? View.VISIBLE : View.GONE);
+    public void setAppBarShadowVisible(boolean visible) {
+        findViewById(R.id.ads_app_bar_shadow).setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    /**
+     * Add a view to the view group.
+     *
+     * @param viewGroup The view group to add the view.
+     * @param view The view to be added.
+     * @param removePrevious {@code true} to remove all the previous views of the view group.
+     */
+    public void addView(@Nullable ViewGroup viewGroup,
+            @Nullable View view, boolean removePrevious) {
+        if (viewGroup == null) {
+            return;
+        }
+
+        if (view == null) {
+            if (removePrevious) {
+                viewGroup.removeAllViews();
+            }
+
+            return;
+        }
+
+        DynamicViewUtils.addView(viewGroup, view, removePrevious);
+        setFrameVisibility(viewGroup);
     }
 
     /**
@@ -647,17 +676,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * @param removePrevious {@code true} to remove the previously added views.
      */
     public void addHeader(@Nullable View view, boolean removePrevious) {
-        if (mFrameHeader == null) {
-            return;
-        }
-
-        if (removePrevious && mFrameHeader.getChildCount() > 0) {
-            mFrameHeader.removeAllViews();
-        }
-
-        if (view != null) {
-            mFrameHeader.addView(view);
-        }
+        addView(mFrameHeader, view, removePrevious);
     }
 
     /**
@@ -671,8 +690,17 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * @param removePrevious {@code true} to remove the previously added views.
      */
     public void addHeader(@LayoutRes int layoutRes, boolean removePrevious) {
-        addHeader(LayoutInflater.from(this).inflate(layoutRes,
+        addHeader(getLayoutInflater().inflate(layoutRes,
                 new LinearLayout(this), false), removePrevious);
+    }
+
+    /**
+     * Set the visibility of bottom bar shadow.
+     *
+     * @param visible {@code true} to show the content shadow above the bottom bar.
+     */
+    public void setBottomBarShadowVisible(boolean visible) {
+        mBottomBarShadow.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     /**
@@ -693,19 +721,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * @param removePrevious {@code true} to remove the previously added views.
      */
     public void addBottomSheet(@Nullable View view, boolean removePrevious) {
-        if (mBottomSheet == null) {
-            return;
-        }
-
-        if (removePrevious && mBottomSheet.getChildCount() > 0) {
-            mBottomSheet.removeAllViews();
-        }
-
-        if (view != null) {
-            mBottomSheet.addView(view);
-        }
-
-        setFrameVisibility(mBottomSheet);
+        addView(mBottomSheet, view, removePrevious);
     }
 
     /**
@@ -733,7 +749,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * @param removePrevious {@code true} to remove the previously added views.
      */
     public void addBottomSheet(@LayoutRes int layoutRes, boolean removePrevious) {
-        addBottomSheet(LayoutInflater.from(this).inflate(layoutRes,
+        addBottomSheet(getLayoutInflater().inflate(layoutRes,
                 new LinearLayout(this), false), removePrevious);
     }
 
@@ -759,19 +775,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * @param removePrevious {@code true} to remove the previously added views.
      */
     public void addFooter(@Nullable View view, boolean removePrevious) {
-        if (mFrameFooter == null) {
-            return;
-        }
-
-        if (removePrevious && mFrameFooter.getChildCount() > 0) {
-            mFrameFooter.removeAllViews();
-        }
-
-        if (view != null) {
-            mFrameFooter.addView(view);
-        }
-
-        setFrameVisibility(mFrameFooter);
+        addView(mFrameFooter, view, removePrevious);
     }
 
     /**
@@ -783,7 +787,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * @param removePrevious {@code true} to remove the previously added views.
      */
     public void addFooter(@LayoutRes int layoutRes, boolean removePrevious) {
-        addFooter(LayoutInflater.from(this).inflate(layoutRes,
+        addFooter(getLayoutInflater().inflate(layoutRes,
                 new LinearLayout(this), false), removePrevious);
     }
 
@@ -815,6 +819,10 @@ public abstract class DynamicActivity extends DynamicStateActivity {
         }
 
         viewGroup.setVisibility(viewGroup.getChildCount() > 0 ? View.VISIBLE : View.GONE);
+
+        if (viewGroup.getId() == R.id.ads_footer_frame && mBottomBarShadow != null) {
+            mBottomBarShadow.setVisibility(viewGroup.getVisibility());
+        }
     }
 
     /**

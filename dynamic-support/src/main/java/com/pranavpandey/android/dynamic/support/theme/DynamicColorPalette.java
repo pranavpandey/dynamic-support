@@ -65,9 +65,9 @@ public class DynamicColorPalette {
                 Color.parseColor("#F4511E"),
                 // Brown
                 Color.parseColor("#6D4C41"),
-                // Grey
+                // Gray
                 Color.parseColor("#9E9E9E"),
-                // Blue Grey
+                // Blue Gray
                 Color.parseColor("#546E7A"),
                 // White
                 Color.parseColor("#F5F5F5"),
@@ -365,7 +365,7 @@ public class DynamicColorPalette {
                         Color.parseColor("#4E342E"),
                         Color.parseColor("#3E2723")
                 },
-                // Grey
+                // Gray
                 new Integer[] {
                         Color.parseColor("#FAFAFA"),
                         Color.parseColor("#F5F5F5"),
@@ -378,7 +378,7 @@ public class DynamicColorPalette {
                         Color.parseColor("#424242"),
                         Color.parseColor("#212121")
                 },
-                // Blue Grey
+                // Blue Gray
                 new Integer[] {
                         Color.parseColor("#ECEFF1"),
                         Color.parseColor("#CFD8DC"),

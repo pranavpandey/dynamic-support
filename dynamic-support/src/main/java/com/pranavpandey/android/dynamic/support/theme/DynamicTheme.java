@@ -33,6 +33,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.StyleRes;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.LayoutInflaterCompat;
 import androidx.work.ExistingWorkPolicy;
@@ -46,6 +47,7 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicResolver;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.model.DynamicWidgetTheme;
+import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.theme.work.DynamicThemeWork;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -200,8 +202,9 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      * @param dynamicResolver The resolver for the dynamic theme.
      *                        <p>Pass {@code null} to use the default implementation.
      */
-    private DynamicTheme(@NonNull Context context,
-            @Nullable DynamicResolver dynamicResolver) {
+    private DynamicTheme(@NonNull Context context, @Nullable DynamicResolver dynamicResolver) {
+        DynamicPermissions.initializeInstance(context);
+
         this.mContext = context;
         this.mPowerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         this.mDynamicListeners = new ArrayList<>();
@@ -681,7 +684,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
             throw new IllegalStateException("Not an instance of Activity");
         }
 
-        ((Activity) mLocalContext).recreate();
+        ActivityCompat.recreate(((Activity) mLocalContext));
     }
 
     /**
@@ -972,7 +975,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
 
     @Override
     public boolean isNight(@Theme.ToString String theme) {
-        return getDynamicResolver().isNight(Integer.valueOf(theme));
+        return getDynamicResolver().isNight(Integer.parseInt(theme));
     }
 
     @Override
@@ -1022,6 +1025,6 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     public boolean resolveNightTheme(@Theme.ToString String appTheme,
             @Theme.Night.ToString String implementation) {
         return getDynamicResolver().resolveNightTheme(
-                Integer.valueOf(appTheme), Integer.valueOf(implementation));
+                Integer.parseInt(appTheme), Integer.parseInt(implementation));
     }
 }

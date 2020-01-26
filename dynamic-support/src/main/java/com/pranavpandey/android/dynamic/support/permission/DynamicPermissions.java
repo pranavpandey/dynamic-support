@@ -492,6 +492,14 @@ public class DynamicPermissions {
         return true;
     }
 
+    /**
+     * Checks whether the battery optimizations are ignored for the package.
+     *
+     * @param settings {@code true} to open the battery optimization settings if the package
+     *                 is not ignored.
+     *
+     * @return {@code true} if the battery optimizations are ignored for the package.
+     */
     public boolean isIgnoringBatteryOptimizations(boolean settings) {
         if (DynamicSdkUtils.is23()) {
             boolean ignoring = false;

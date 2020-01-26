@@ -45,10 +45,11 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
 
     /**
      * Popup type for this preference.
-     * <p>Either {@link DynamicPopup.DynamicPopupType#LIST}
-     * or {@link DynamicPopup.DynamicPopupType#GRID}.
+     * <p>Either {@link DynamicPopup.Type#LIST}
+     * or {@link DynamicPopup.Type#GRID}.
      */
-    private @DynamicPopup.DynamicPopupType int mPopupType;
+    private @DynamicPopup.Type
+    int mPopupType;
 
     /**
      * Array to store list entries.
@@ -90,7 +91,7 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
             mDefaultValue = a.getInt(R.styleable.DynamicPreference_ads_value,
                     DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE);
             mPopupType = a.getInt(R.styleable.DynamicPreference_ads_popupType,
-                    DynamicPopup.DynamicPopupType.NONE);
+                    DynamicPopup.Type.NONE);
         } finally {
             a.recycle();
         }
@@ -140,7 +141,7 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
-                                            int position, long id) {
+                            int position, long id) {
                         if (!getPreferenceValue().equals(mValues[position].toString())) {
                             setPreferenceValue(mValues[position].toString());
                         }

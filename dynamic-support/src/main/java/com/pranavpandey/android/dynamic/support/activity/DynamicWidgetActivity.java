@@ -60,7 +60,7 @@ public abstract class DynamicWidgetActivity extends DynamicActivity {
 
         // If they gave us an intent without the widget id, just bail.
         if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
-            finish();
+            finishActivity();
         }
     }
 
@@ -82,7 +82,7 @@ public abstract class DynamicWidgetActivity extends DynamicActivity {
         }
 
         if (finishActivity) {
-            finish();
+            finishActivity();
         }
     }
 

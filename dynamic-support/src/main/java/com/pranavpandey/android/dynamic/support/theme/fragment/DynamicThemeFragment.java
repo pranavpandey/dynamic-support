@@ -16,9 +16,12 @@
 
 package com.pranavpandey.android.dynamic.support.theme.fragment;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.Transition;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +29,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -39,6 +43,7 @@ import com.pranavpandey.android.dynamic.support.setting.DynamicSpinnerPreference
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * Base theme fragment to provide theme editing functionality.
@@ -203,18 +208,36 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
      * Initialize the new instance of this fragment.
      *
      * @param dynamicAppTheme The dynamic app theme.
+     * @param dynamicAppThemeDefault The default dynamic app theme.
+     * @param showPresets {@code true} to show the presets.
      *
      * @return An instance of {@link DynamicThemeFragment}.
      */
     public static Fragment newInstance(@Nullable String dynamicAppTheme,
-            @Nullable String dynamicAppThemeDefault) {
+            @Nullable String dynamicAppThemeDefault, boolean showPresets) {
         DynamicThemeFragment fragment = new DynamicThemeFragment();
         Bundle args = new Bundle();
         args.putString(DynamicIntent.EXTRA_THEME, dynamicAppTheme);
         args.putString(DynamicIntent.EXTRA_THEME_DEFAULT, dynamicAppThemeDefault);
+        args.putBoolean(DynamicIntent.EXTRA_THEME_SHOW_PRESETS, showPresets);
         fragment.setArguments(args);
 
         return fragment;
+    }
+
+    /**
+     * Initialize the new instance of this fragment.
+     *
+     * @param dynamicAppTheme The dynamic app theme.
+     * @param dynamicAppThemeDefault The default dynamic app theme.
+     *
+     * @return An instance of {@link DynamicThemeFragment}.
+     *
+     * @see #newInstance(String, String, boolean)
+     */
+    public static Fragment newInstance(@Nullable String dynamicAppTheme,
+            @Nullable String dynamicAppThemeDefault) {
+        return newInstance(dynamicAppTheme, dynamicAppThemeDefault, true);
     }
 
     @Override
@@ -222,8 +245,6 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
         super.onCreate(savedInstanceState);
 
         setResult(Activity.RESULT_CANCELED, null, false);
-
-        setHasOptionsMenu(true);
 
         if (savedInstanceState == null) {
             mSettingsChanged = false;
@@ -244,15 +265,13 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        addThemePreview();
         return inflater.inflate(R.layout.ads_fragment_theme, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        getDynamicActivity().addBottomSheet(R.layout.ads_theme_preview_bottom_sheet, true);
-        mThemePreview = getActivity().findViewById(R.id.ads_theme_preview);
 
         mColorBackgroundPreference = view.findViewById(R.id.ads_pref_theme_color_background);
         mColorPrimaryPreference = view.findViewById(R.id.ads_pref_theme_color_primary);
@@ -263,13 +282,6 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
         mFontScalePreference = view.findViewById(R.id.ads_pref_theme_font_scale);
         mCornerSizePreference = view.findViewById(R.id.ads_pref_theme_corner_size);
         mBackgroundAwarePreference = view.findViewById(R.id.ads_pref_theme_background_aware);
-
-        mThemePreview.setOnActionClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveThemeSettings();
-            }
-        });
 
         mColorBackgroundPreference.setDynamicColorResolver(new DynamicColorResolver() {
             @Override
@@ -475,8 +487,61 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
     public void onResume() {
         super.onResume();
 
+        setHasOptionsMenu(true);
+
         updateThemePreview();
         updatePreferences();
+    }
+
+    /**
+     * Add the theme preview and set the shared element transition listener.
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void addThemePreview() {
+        if (getActivity() == null) {
+            return;
+        }
+
+        getDynamicActivity().addBottomSheet(R.layout.ads_theme_preview_bottom_sheet, true);
+        mThemePreview = getDynamicActivity().findViewById(R.id.ads_theme_preview);
+        ViewCompat.setTransitionName(mThemePreview.getActionView(), ADS_NAME_THEME_PREVIEW_ACTION);
+
+        mThemePreview.setOnActionClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveThemeSettings();
+            }
+        });
+
+        if (!DynamicSdkUtils.is21()) {
+            return;
+        }
+
+        final Transition transition = getActivity().getWindow().getSharedElementEnterTransition();
+
+        if (transition != null) {
+            transition.addListener(new Transition.TransitionListener() {
+                @Override
+                public void onTransitionEnd(Transition transition) {
+                    updateThemePreview();
+                    transition.removeListener(this);
+                }
+
+                @Override
+                public void onTransitionStart(Transition transition) { }
+
+                @Override
+                public void onTransitionCancel(Transition transition) {
+                    transition.removeListener(this);
+                }
+
+                @Override
+                public void onTransitionPause(Transition transition) { }
+
+                @Override
+                public void onTransitionResume(Transition transition) { }
+            });
+        }
     }
 
     /**
@@ -571,7 +636,7 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
      */
     private @Theme.BackgroundAware int getBackgroundAware() {
         if (mBackgroundAwarePreference.getPreferenceValue() != null) {
-            return Integer.valueOf(mBackgroundAwarePreference.getPreferenceValue());
+            return Integer.parseInt(mBackgroundAwarePreference.getPreferenceValue());
         }
 
         return Theme.BackgroundAware.AUTO;

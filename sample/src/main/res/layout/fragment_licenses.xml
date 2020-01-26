@@ -15,15 +15,8 @@
 	limitations under the License.
 -->
 
-<FrameLayout
+<com.pranavpandey.android.dynamic.support.sample.view.LicenseView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/license_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:descendantFocusability="blocksDescendants">
-
-    <com.pranavpandey.android.dynamic.support.sample.view.LicenseView
-        android:id="@+id/license_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-</FrameLayout>
+    android:layout_height="match_parent" />

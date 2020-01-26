@@ -63,13 +63,6 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Enable app bar options menu.
-        setHasOptionsMenu(true)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_widgets, container, false)
@@ -154,11 +147,11 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onResume() {
+        super.onResume()
 
-        // Disable options menu on destroy.
-        setHasOptionsMenu(false)
+        // TODO: Enable app bar options menu.
+        setHasOptionsMenu(true)
     }
 
     override fun onSearchViewExpanded() {

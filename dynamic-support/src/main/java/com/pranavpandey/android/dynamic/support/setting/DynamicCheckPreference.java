@@ -121,7 +121,7 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
                 setTextView(getSummaryView(), mSummaryUnchecked);
             }
 
-            post(new Runnable() {
+            mSwitchCompat.post(new Runnable() {
                 @Override
                 public void run() {
                     mSwitchCompat.setChecked(mChecked);

@@ -24,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.PopupWindow;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -61,6 +62,11 @@ public class DynamicArrayPopup extends DynamicPopup {
     private CharSequence[] mEntries;
 
     /**
+     * Icons for the entries.
+     */
+    private @DrawableRes int[] mIcons;
+
+    /**
      * The selected position.
      */
     private int mSelectedPosition;
@@ -74,22 +80,37 @@ public class DynamicArrayPopup extends DynamicPopup {
      * Constructor to initialize an object of this class.
      *
      * @param anchor The anchor view used for this popup.
-     * @param entries The list entries for this popup.
+     * @param entries The entries for this popup.
      * @param onItemClickListener The on click listener for the list view.
      */
     public DynamicArrayPopup(@NonNull View anchor, @NonNull CharSequence[] entries,
             @NonNull AdapterView.OnItemClickListener onItemClickListener) {
+        this(anchor, entries, null, onItemClickListener);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param anchor The anchor view used for this popup.
+     * @param entries The entries for this popup.
+     * @param icons The icons for the entries.
+     * @param onItemClickListener The on click listener for the list view.
+     */
+    public DynamicArrayPopup(@NonNull View anchor,
+            @NonNull CharSequence[] entries, @Nullable @DrawableRes int[] icons,
+            @NonNull AdapterView.OnItemClickListener onItemClickListener) {
         this.mAnchor = anchor;
         this.mEntries = entries;
+        this.mIcons = icons;
         this.mOnItemClickListener = onItemClickListener;
         this.mSelectedPosition = DynamicSpinnerChoiceAdapter.DEFAULT_SELECTED_POSITION;
-        this.mViewType = DynamicPopupType.LIST;
+        this.mViewType = Type.LIST;
     }
 
     @Override
     public @NonNull DynamicPopup build() {
         mView = LayoutInflater.from(getAnchor().getContext()).inflate(
-                mViewType == DynamicPopupType.GRID
+                mViewType == Type.GRID
                         ? R.layout.ads_preference_spinner_grid
                         : R.layout.ads_preference_spinner,
                 (ViewGroup) getAnchor().getRootView(), false);
@@ -107,27 +128,20 @@ public class DynamicArrayPopup extends DynamicPopup {
             ((DynamicHeader) mHeaderView).setFillSpace(true);
         }
 
-        listView.setAdapter(new DynamicSpinnerChoiceAdapter(mEntries, mSelectedPosition,
-                new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                        if (mOnItemClickListener != null) {
+        if (mOnItemClickListener != null) {
+            listView.setAdapter(new DynamicSpinnerChoiceAdapter(
+                    mEntries, mIcons, mSelectedPosition,
+                    new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView,
+                                View view, int position, long id) {
                             mOnItemClickListener.onItemClick(adapterView, view, position, id);
+
+                            getPopupWindow().dismiss();
                         }
-
-                        getPopupWindow().dismiss();
-                    }
-                }));
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                mOnItemClickListener.onItemClick(parent, view, position, id);
-
-                getPopupWindow().dismiss();
-            }
-        });
+                    })
+            );
+        }
 
         setViewRoot(listView);
         return this;
@@ -162,21 +176,39 @@ public class DynamicArrayPopup extends DynamicPopup {
     }
 
     /**
-     * Get the list entries used by this popup.
+     * Get the entries used by this popup.
      *
-     * @return The list entries used by this popup.
+     * @return The entries used by this popup.
      */
     public @Nullable CharSequence[] getEntries() {
         return mEntries;
     }
 
     /**
-     * Set the list entries for this popup.
+     * Set the entries for this popup.
      *
-     * @param entries The list entries to be set.
+     * @param entries The entries to be set.
      */
     public void setEntries(@NonNull CharSequence[] entries) {
         this.mEntries = entries;
+    }
+
+    /**
+     * Get the icons for the entries.
+     *
+     * @return The icons for the entries.
+     */
+    public @Nullable @DrawableRes int[] getIcons() {
+        return mIcons;
+    }
+
+    /**
+     * Set the icons for the entries.
+     *
+     * @param icons The icons for the entries to be set.
+     */
+    public void setIcons(@Nullable @DrawableRes int[] icons) {
+        this.mIcons = icons;
     }
 
     /**
@@ -202,7 +234,7 @@ public class DynamicArrayPopup extends DynamicPopup {
      *
      * @return The on click listener used by the list view.
      */
-    public @NonNull AdapterView.OnItemClickListener getOnItemClickListener() {
+    public @Nullable AdapterView.OnItemClickListener getOnItemClickListener() {
         return mOnItemClickListener;
     }
 
@@ -212,7 +244,7 @@ public class DynamicArrayPopup extends DynamicPopup {
      * @param onItemClickListener The listener to be set.
      */
     public void setOnItemClickListener(
-            @NonNull AdapterView.OnItemClickListener onItemClickListener) {
+            @Nullable AdapterView.OnItemClickListener onItemClickListener) {
         this.mOnItemClickListener = onItemClickListener;
     }
 }

@@ -45,7 +45,6 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageButton;
-import com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator;
 import com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator2;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
@@ -218,7 +217,7 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
                 if (hasTutorialNext()) {
                     mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1, true);
                 } else {
-                    finish();
+                    finishActivity();
                 }
             }
         });

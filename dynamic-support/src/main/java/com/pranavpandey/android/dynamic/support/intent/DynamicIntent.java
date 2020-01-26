@@ -29,7 +29,7 @@ public class DynamicIntent {
     /**
      * Constant for dynamic permission request.
      */
-    public static final int REQUEST_PERMISSIONS = 0;
+    public static final int REQUEST_PERMISSIONS = -1;
 
     /**
      * Constant for dynamic theme request.
@@ -45,6 +45,16 @@ public class DynamicIntent {
      * Constant for dynamic night theme request.
      */
     public static final int REQUEST_THEME_NIGHT = 2;
+
+    /**
+     * Constant to edit the dynamic theme.
+     */
+    public static final int REQUEST_THEME_EDIT = 3;
+
+    /**
+     * Constant to save the dynamic theme.
+     */
+    public static final int REQUEST_THEME_SAVE = 4;
 
     /**
      * Constant for dynamic theme action.
@@ -111,6 +121,12 @@ public class DynamicIntent {
      */
     public static final String EXTRA_THEME_DEFAULT =
             "com.pranavpandey.android.dynamic.support.intent.extra.THEME_DEFAULT";
+
+    /**
+     * Intent extra constant to show the theme presets.
+     */
+    public static final String EXTRA_THEME_SHOW_PRESETS =
+            "com.pranavpandey.android.dynamic.support.intent.extra.THEME_SHOW_PRESETS";
 
     /**
      * Intent extra constant for the permissions.

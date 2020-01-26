@@ -59,7 +59,8 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     /**
      * Extended FAB key to maintain its state.
      */
-    protected static final String ADS_STATE_EXTENDED_FAB_VISIBLE = "ads_state_extended_fab_visible";
+    protected static final String ADS_STATE_EXTENDED_FAB_VISIBLE =
+            "ads_state_extended_fab_visible";
 
     /**
      * Extended FAB state key to maintain its state.
@@ -120,7 +121,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
      * App bar off set change listener to identify whether it is in the collapsed state.
      */
     protected AppBarLayout.OnOffsetChangedListener mAppBarStateListener =
-    new AppBarLayout.OnOffsetChangedListener() {
+            new AppBarLayout.OnOffsetChangedListener() {
         @Override
         public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
             mAppBarCollapsed = verticalOffset == 0;

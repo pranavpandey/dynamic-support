@@ -52,7 +52,12 @@ class AboutFragment : DynamicViewPagerFragment() {
         return DynamicPackageUtils.getAppVersion(context!!)
     }
 
-    override fun setNavigationViewCheckedItem(): Int {
+    override fun getBottomNavigationViewId(): Int {
+        // Return the bottom navigation view id.
+        return R.id.bottom_navigation
+    }
+
+    override fun getCheckedMenuItemId(): Int {
         // Select navigation menu item.
         return R.id.nav_about
     }
@@ -81,13 +86,6 @@ class AboutFragment : DynamicViewPagerFragment() {
         return pages
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Enable app bar options menu.
-        setHasOptionsMenu(true)
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
@@ -105,9 +103,6 @@ class AboutFragment : DynamicViewPagerFragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-
-        // Disable options menu on destroy.
-        setHasOptionsMenu(false)
 
         // Remove tab layout from the header.
         dynamicActivity.addHeader(null, true)

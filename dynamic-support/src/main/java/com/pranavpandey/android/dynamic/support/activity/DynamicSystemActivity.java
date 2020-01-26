@@ -18,6 +18,7 @@ package com.pranavpandey.android.dynamic.support.activity;
 
 import android.annotation.TargetApi;
 import android.app.ActivityManager;
+import android.app.SharedElementCallback;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,7 +29,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,20 +36,25 @@ import android.view.WindowManager;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.pranavpandey.android.dynamic.locale.DynamicLocale;
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
+import com.pranavpandey.android.dynamic.support.listener.DynamicTransitionListener;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicLayoutInflater;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
@@ -60,7 +65,10 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicWindowUtils;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Base activity to perform all the system UI related tasks like setting the status and
@@ -79,6 +87,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     protected static final String ADS_STATE_DYNAMIC_THEME = "ads_state_dynamic_theme";
 
     /**
+     * Background color key to maintain its state.
+     */
+    protected static final String ADS_STATE_BACKGROUND_COLOR = "ads_state_background_color";
+
+    /**
      * Status bar color key to maintain its state.
      */
     protected static final String ADS_STATE_STATUS_BAR_COLOR = "ads_state_status_bar_color";
@@ -86,7 +99,24 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     /**
      * Navigation bar color key to maintain its state.
      */
-    protected static final String ADS_STATE_NAVIGATION_BAR_COLOR = "ads_state_navigation_bar_color";
+    protected static final String ADS_STATE_NAVIGATION_BAR_COLOR =
+            "ads_state_navigation_bar_color";
+
+    /**
+     * Shared element map key to maintain its state.
+     */
+    protected static final String ADS_STATE_SHARED_ELEMENT_MAP = "ads_state_shared_element_map";
+
+    /**
+     * Transition result code key to maintain its state.
+     */
+    protected static final String ADS_STATE_TRANSITION_RESULT_CODE =
+            "ads_state_transition_result_code";
+
+    /**
+     * Transition position key to maintain its state.
+     */
+    protected static final String ADS_STATE_TRANSITION_POSITION = "ads_state_transition_position";
 
     /**
      * Default tint color for the system UI elements like snack bars, etc.
@@ -122,6 +152,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     private Bundle mSavedInstanceState;
 
     /**
+     * Background color used by the activity window.
+     */
+    protected @ColorInt int mBackgroundColor;
+
+    /**
      * Current status bar color.
      */
     protected @ColorInt int mStatusBarColor;
@@ -141,6 +176,31 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      */
     protected boolean mNavigationBarTheme;
 
+    /**
+     * Hash map to store the shared elements map.
+     */
+    private HashMap<String, Integer> mSharedElementMap;
+
+    /**
+     * Result code for the shared element transition.
+     */
+    private int mTransitionResultCode;
+
+    /**
+     * Transition position of the shared element.
+     */
+    private int mTransitionPosition;
+
+    /**
+     * Listener to listen the transition events.
+     */
+    private DynamicTransitionListener mDynamicTransitionListener;
+
+    /**
+     * {@code true} if activity is finishing after running the support transition.
+     */
+    private boolean mFinishAfterTransition;
+
     @Override
     public void attachBaseContext(@NonNull Context base) {
         super.attachBaseContext(setLocale(base));
@@ -152,20 +212,141 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
 
         mSavedInstanceState = savedInstanceState;
-
+        mBackgroundColor = DynamicTheme.getInstance().get().getBackgroundColor();
         mStatusBarColor = DynamicTheme.getInstance().get().getPrimaryColorDark();
         mNavigationBarColor = DynamicTheme.getInstance().get().getPrimaryColorDark();
 
         updateTaskDescription(DynamicTheme.getInstance().get().getPrimaryColor());
         setNavigationBarColor(mNavigationBarColor);
+
+        onManageSharedElementTransition();
+    }
+
+    /**
+     * Setup the shared element transition callbacks to manage it's position on
+     * configuration change.
+     */
+    @SuppressWarnings("unchecked")
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    protected void onManageSharedElementTransition() {
+        if (DynamicSdkUtils.is21()) {
+            if (mSavedInstanceState != null) {
+                if (DynamicSdkUtils.is29()) {
+                    resetSharedElementTransition();
+                    return;
+                }
+
+                mBackgroundColor = mSavedInstanceState.getInt(ADS_STATE_BACKGROUND_COLOR);
+
+                if (mSavedInstanceState.getSerializable(ADS_STATE_SHARED_ELEMENT_MAP) != null) {
+                    mSharedElementMap = (HashMap<String, Integer>)
+                            mSavedInstanceState.getSerializable(ADS_STATE_SHARED_ELEMENT_MAP);
+                    mTransitionResultCode = mSavedInstanceState.getInt(
+                            ADS_STATE_TRANSITION_RESULT_CODE);
+                    mTransitionPosition = mSavedInstanceState.getInt(
+                            ADS_STATE_TRANSITION_POSITION);
+                }
+            }
+
+            adjustSharedElementTransition(false);
+
+            setExitSharedElementCallback(new SharedElementCallback() {
+                @Override
+                public void onMapSharedElements(List<String> names,
+                        Map<String, View> sharedElements) {
+                    super.onMapSharedElements(names, sharedElements);
+
+                    if (names == null || sharedElements == null) {
+                        return;
+                    }
+
+                    if (mSharedElementMap == null) {
+                        mSharedElementMap = new HashMap<>();
+                        for (Map.Entry<String, View> entry : sharedElements.entrySet()) {
+                            mSharedElementMap.put(entry.getKey(), entry.getValue().getId());
+                        }
+                    } else if (!mFinishAfterTransition) {
+                        if (mDynamicTransitionListener != null) {
+                            names.clear();
+                            sharedElements.clear();
+                            for (Map.Entry<String, Integer> entry : mSharedElementMap.entrySet()) {
+                                names.add(entry.getKey());
+                                sharedElements.put(entry.getKey(), getSharedElement(
+                                        mTransitionResultCode, mTransitionPosition,
+                                        entry.getKey(), entry.getValue()));
+                            }
+                        }
+
+                        resetSharedElementTransition();
+                    } else {
+                        resetSharedElementTransition();
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * Adjust the activity transition and background color for the smoother shared
+     * element transition.
+     *
+     * @param resume {@code true} if the activity is in the resumed state.
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    protected void adjustSharedElementTransition(boolean resume) {
+        if (!DynamicSdkUtils.is21()){
+            return;
+        }
+
+        if (getWindow().getSharedElementEnterTransition() != null
+                || mBackgroundColor == Color.TRANSPARENT) {
+            mBackgroundColor = Color.TRANSPARENT;
+            getWindow().setExitTransition(null);
+            getWindow().setBackgroundDrawable(new ColorDrawable(mBackgroundColor));
+        }
+
+        if (resume && DynamicSdkUtils.is29()
+                && getWindow().getSharedElementEnterTransition() != null) {
+            resetSharedElementTransition();
+        }
+    }
+
+    /**
+     * Resets the shared element transition.
+     */
+    protected void resetSharedElementTransition() {
+        mBackgroundColor = DynamicTheme.getInstance().get().getBackgroundColor();
+        mSharedElementMap = null;
+        mDynamicTransitionListener = null;
+        mFinishAfterTransition = false;
+    }
+
+    /**
+     * Returns the shared element according to the given id.
+     *
+     * @param resultCode The transition result code.
+     * @param position The position of the shared element.
+     * @param viewId The id resource to find the view by id.
+     *
+     * @return The view according to the view id.
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    protected @Nullable View getSharedElement(int resultCode, int position,
+            @NonNull String transition, @IdRes int viewId) {
+        return mDynamicTransitionListener == null ? findViewById(viewId)
+                : mDynamicTransitionListener.onFindView(resultCode, position, transition, viewId);
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
+        outState.putInt(ADS_STATE_BACKGROUND_COLOR, mBackgroundColor);
         outState.putInt(ADS_STATE_STATUS_BAR_COLOR, mStatusBarColor);
         outState.putInt(ADS_STATE_NAVIGATION_BAR_COLOR, mNavigationBarColor);
+        outState.putInt(ADS_STATE_TRANSITION_RESULT_CODE, mTransitionResultCode);
+        outState.putInt(ADS_STATE_TRANSITION_POSITION, mTransitionPosition);
+        outState.putSerializable(ADS_STATE_SHARED_ELEMENT_MAP, mSharedElementMap);
     }
 
     @Override
@@ -180,8 +361,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
 
     @Override
     public @NonNull Context setLocale(@NonNull Context context) {
-        this.mCurrentLocale = DynamicLocaleUtils.getLocale(
-                getLocale(), getDefaultLocale(context));
+        this.mCurrentLocale = DynamicLocaleUtils.getLocale(getLocale(), getDefaultLocale(context));
 
         return mContext = DynamicLocaleUtils.setLocale(context, mCurrentLocale, getFontScale());
     }
@@ -255,6 +435,61 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      */
     public @Nullable Bundle getSavedInstanceState() {
         return mSavedInstanceState;
+    }
+
+    /**
+     * Returns the transition result code for this activity.
+     *
+     * @return The transition result code for this activity.
+     */
+    public int getTransitionResultCode() {
+        return mTransitionResultCode;
+    }
+
+    /**
+     * Sets the transition result code for this activity.
+     *
+     * @param transitionResultCode The transition result code to be set.
+     */
+    public void setTransitionResultCode(int transitionResultCode) {
+        this.mTransitionResultCode = transitionResultCode;
+    }
+
+    /**
+     * Returns the transition position of the shared element.
+     *
+     * @return The transition position of the shared element.
+     */
+    public int getTransitionPosition() {
+        return mTransitionPosition;
+    }
+
+    /**
+     * Sets the transition position of the shared element.
+     *
+     * @param transitionPosition The transition position to be set.
+     */
+    public void setTransitionPosition(int transitionPosition) {
+        this.mTransitionPosition = transitionPosition;
+    }
+
+    /**
+     * Returns the dynamic transition listener used by this activity.
+     *
+     * @return The dynamic transition listener used by this activity.
+     */
+    public @Nullable DynamicTransitionListener getDynamicTransitionListener() {
+        return mDynamicTransitionListener;
+    }
+
+    /**
+     * Sets the dynamic transition listener for this activity.
+     *
+     * @param dynamicTransitionListener The dynamic transition listener to be set.
+     */
+    public void setDynamicTransitionListener(
+            @Nullable DynamicTransitionListener dynamicTransitionListener) {
+        this.mDynamicTransitionListener = dynamicTransitionListener;
     }
 
     /**
@@ -336,7 +571,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * re-initialize the {@link DynamicTheme} with new colors, etc.
      */
     protected void onAppThemeChange() {
-        recreate();
+        ActivityCompat.recreate(this);
     }
 
     /**
@@ -368,7 +603,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      */
     public void setStatusBarColor(@ColorInt int color) {
         if (DynamicSdkUtils.is21()) {
-            mStatusBarColor = color;
+            this.mStatusBarColor = color;
             updateStatusBar();
         }
     }
@@ -519,20 +754,6 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     }
 
     /**
-     * Fix for AppCompat 1.1.0.
-     * <p>https://issuetracker.google.com/issues/140602653
-     */
-    @Override
-    public void applyOverrideConfiguration(@Nullable Configuration overrideConfiguration) {
-        if (overrideConfiguration != null) {
-            int uiMode = overrideConfiguration.uiMode;
-            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
-            overrideConfiguration.uiMode = uiMode;
-        }
-        super.applyOverrideConfiguration(getResources().getConfiguration());
-    }
-
-    /**
      * Set the navigation bar color resource.
      * <p>It will be applied only on the API 21 and above devices.
      *
@@ -595,6 +816,35 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         return mAppliedNavigationBarColor;
     }
 
+    /**
+     * Fix for AppCompat 1.1.0.
+     * <p>https://issuetracker.google.com/issues/140602653
+     */
+    @Override
+    public void applyOverrideConfiguration(@Nullable Configuration overrideConfiguration) {
+        if (overrideConfiguration != null) {
+            int uiMode = overrideConfiguration.uiMode;
+            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
+            overrideConfiguration.uiMode = uiMode;
+        }
+        super.applyOverrideConfiguration(getResources().getConfiguration());
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
+        super.startActivityForResult(intent, requestCode, options);
+
+        mTransitionResultCode = requestCode;
+    }
+
+    @Override
+    public void startActivityFromFragment(@NonNull Fragment fragment,
+            Intent intent, int requestCode, @Nullable Bundle options) {
+        super.startActivityFromFragment(fragment, intent, requestCode, options);
+
+        mTransitionResultCode = requestCode;
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -607,6 +857,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         if (!DynamicTheme.getInstance().isDynamicListener(this)) {
             setDynamicTheme();
             setNavigationBarColor(mNavigationBarColor);
+            adjustSharedElementTransition(true);
 
             new Handler().postDelayed(mDynamicChange, DynamicTheme.DELAY_THEME_CHANGE);
         }
@@ -689,6 +940,22 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         if (DynamicSdkUtils.is21()) {
             setTaskDescription(new ActivityManager.TaskDescription(null, null,
                     DynamicColorUtils.removeAlpha(color)));
+        }
+    }
+
+    /**
+     * Finish the activity properly after checking the shared element transition.
+     */
+    protected void finishActivity() {
+        if (!isFinishing()) {
+            if (DynamicSdkUtils.is21()
+                    && (getWindow().getSharedElementEnterTransition() != null
+                    || getWindow().getSharedElementReturnTransition() != null)) {
+                mFinishAfterTransition = true;
+                supportFinishAfterTransition();
+            } else {
+                finish();
+            }
         }
     }
 }

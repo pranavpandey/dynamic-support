@@ -26,6 +26,7 @@ import androidx.annotation.StyleRes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.SerializedName;
 import com.pranavpandey.android.dynamic.support.model.adapter.DynamicThemeTypeAdapter;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
@@ -88,7 +89,7 @@ public class DynamicWidgetTheme extends DynamicAppTheme
      *
      * @param theme The theme string to initialize the instance.
      */
-    public DynamicWidgetTheme(@NonNull String theme) throws Exception {
+    public DynamicWidgetTheme(@NonNull String theme) throws JsonSyntaxException {
         this(new GsonBuilder().setExclusionStrategies(new ExcludeStrategy())
                 .registerTypeAdapter(DynamicWidgetTheme.class,
                         new DynamicThemeTypeAdapter<DynamicWidgetTheme>()).create()
@@ -189,7 +190,7 @@ public class DynamicWidgetTheme extends DynamicAppTheme
     @Override
     public @NonNull DynamicWidgetTheme setHeaderString(
             @NonNull @Theme.Visibility.ToString String header) {
-        this.header = Integer.valueOf(header);
+        this.header = Integer.parseInt(header);
 
         return this;
     }

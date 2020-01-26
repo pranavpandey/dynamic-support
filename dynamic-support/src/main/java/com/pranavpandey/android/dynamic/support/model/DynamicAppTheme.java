@@ -25,6 +25,7 @@ import androidx.annotation.StyleRes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.SerializedName;
 import com.pranavpandey.android.dynamic.support.model.adapter.DynamicThemeTypeAdapter;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
@@ -199,11 +200,10 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
      *
      * @param theme The theme string to initialize the instance.
      */
-    public DynamicAppTheme(@NonNull String theme) throws Exception {
+    public DynamicAppTheme(@NonNull String theme) throws JsonSyntaxException {
         this(new GsonBuilder().setExclusionStrategies(new ExcludeStrategy())
                 .registerTypeAdapter(DynamicAppTheme.class, new DynamicThemeTypeAdapter<>())
-                .create().fromJson(DynamicThemeUtils
-                        .formatTheme(theme), DynamicAppTheme.class));
+                .create().fromJson(DynamicThemeUtils.formatTheme(theme), DynamicAppTheme.class));
     }
 
     /**
@@ -884,7 +884,7 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
 
     @Override
     public @NonNull DynamicAppTheme setCornerRadiusDp(float cornerSize) {
-        return setCornerRadius((int) cornerSize == AUTO ? (int) cornerSize
+        return setCornerRadius(cornerSize == AUTO ? (int) cornerSize
                 : DynamicUnitUtils.convertDpToPixels(cornerSize));
     }
 

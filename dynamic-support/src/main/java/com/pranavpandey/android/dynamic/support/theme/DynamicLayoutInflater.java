@@ -84,13 +84,14 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
     protected static final String ADS_TAG_IGNORE = ":ads_ignore";
 
     @Override
-    public View onCreateView(String name, @NonNull Context context, @NonNull AttributeSet attrs) {
+    public @Nullable View onCreateView(@NonNull String name,
+            @NonNull Context context, @NonNull AttributeSet attrs) {
         return onCreateView(null, name, context, attrs);
     }
 
     @Override
     @SuppressLint("RestrictedApi")
-    public View onCreateView(@Nullable View parent, final String name,
+    public @Nullable View onCreateView(@Nullable View parent, final @NonNull String name,
             final @NonNull Context context, final @NonNull AttributeSet attrs) {
         View view = null;
 
@@ -306,7 +307,7 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
                 break;
         }
 
-        if (view != null && view.getTag() != null && view.getTag().equals(ADS_TAG_IGNORE)) {
+        if (view != null && ADS_TAG_IGNORE.equals(view.getTag())) {
             view = null;
         }
 

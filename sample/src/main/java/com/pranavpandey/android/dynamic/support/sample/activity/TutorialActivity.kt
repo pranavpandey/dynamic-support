@@ -111,7 +111,7 @@ class TutorialActivity :
      * TODO: Set an action button to skip the tutorial.
      */
     private fun setSkipAction() {
-        setAction(getString(R.string.ads_skip)) { this@TutorialActivity.finish() }
+        setAction(getString(R.string.ads_skip)) { this@TutorialActivity.finishActivity() }
     }
 
     /**

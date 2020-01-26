@@ -77,6 +77,15 @@
 
         <include layout="@layout/ads_layout_fab_extended_bottom" />
 
+        <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+            android:id="@+id/ads_bottom_bar_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ads_bottom_bar_shadow_size"
+            android:layout_gravity="bottom"
+            android:src="@drawable/ads_bottom_bar_shadow"
+            android:alpha="@integer/ads_shadow_alpha"
+            app:ads_colorType="tint_background" />
+
     </com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout>
 
     <FrameLayout

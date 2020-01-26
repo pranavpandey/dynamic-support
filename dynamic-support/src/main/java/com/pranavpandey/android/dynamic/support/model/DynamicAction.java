@@ -33,7 +33,7 @@ import static com.pranavpandey.android.dynamic.support.model.DynamicAction.START
  * Interface to hold the various dynamic actions.
  */
 @Retention(RetentionPolicy.SOURCE)
-@IntDef(value = {NONE, START_SERVICE, START_FOREGROUND_SERVICE, START_ACTIVITY })
+@IntDef(value = { NONE, START_SERVICE, START_FOREGROUND_SERVICE, START_ACTIVITY })
 public @interface DynamicAction {
 
     /**

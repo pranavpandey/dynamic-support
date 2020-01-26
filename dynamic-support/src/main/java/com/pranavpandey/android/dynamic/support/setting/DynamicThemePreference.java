@@ -21,6 +21,7 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -124,6 +125,8 @@ public class DynamicThemePreference extends DynamicSpinnerPreference {
         mThemePreview = findViewById(R.id.ads_theme_preview);
         mThemePreviewIcon = findViewById(R.id.ads_theme_preview_icon);
         mThemePreviewDescription = findViewById(R.id.ads_theme_preview_description);
+
+        mThemePreviewDescription.setText(R.string.ads_theme_background_aware_desc);
     }
 
     @Override
@@ -240,13 +243,30 @@ public class DynamicThemePreference extends DynamicSpinnerPreference {
         onEnabled(isEnabled());
     }
 
+    /**
+     * Get the theme preview used by this preference.
+     *
+     * @return The theme preview used by this preference.
+     */
+    public DynamicThemePreview getThemePreview() {
+        return mThemePreview;
+    }
+
+    /**
+     * Get the root view for the theme preview used by this preference.
+     *
+     * @return The root view for the theme preview used by this preference.
+     */
+    public ViewGroup getThemePreviewRoot() {
+        return findViewById(R.id.ads_theme_preview_root);
+    }
+
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         super.onSharedPreferenceChanged(sharedPreferences, key);
 
         if (key.equals(super.getPreferenceKey())) {
-            mTheme = DynamicPreferences.getInstance()
-                    .load(super.getPreferenceKey(), mTheme);
+            mTheme = DynamicPreferences.getInstance().load(super.getPreferenceKey(), mTheme);
 
             onUpdate();
         }

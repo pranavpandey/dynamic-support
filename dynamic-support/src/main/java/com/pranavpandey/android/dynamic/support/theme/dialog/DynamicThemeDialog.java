@@ -43,6 +43,7 @@ import java.lang.annotation.RetentionPolicy;
 
 import static com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog.Type.THEME_IMPORT;
 import static com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog.Type.THEME_INVALID;
+import static com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog.Type.THEME_SELECT_ALL;
 import static com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog.Type.THEME_SELECT;
 
 /**
@@ -90,11 +91,16 @@ public class DynamicThemeDialog extends DynamicDialogFragment {
      * Dialog type to show the layout accordingly.
      */
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef(value = {THEME_SELECT, THEME_IMPORT, THEME_INVALID })
+    @IntDef(value = {THEME_SELECT_ALL, THEME_SELECT, THEME_IMPORT, THEME_INVALID })
     public @interface Type {
 
         /**
-         * Constant for the import theme selection dialog.
+         * Constant for the import theme selection dialog with all the themes.
+         */
+        int THEME_SELECT_ALL = -2;
+
+        /**
+         * Constant for the import theme selection dialog with day and night themes.
          */
         int THEME_SELECT = -1;
 
@@ -164,7 +170,7 @@ public class DynamicThemeDialog extends DynamicDialogFragment {
             mType = savedInstanceState.getInt(ADS_STATE_DIALOG_TYPE);
         }
 
-        if (mType == THEME_SELECT) {
+        if (mType == THEME_SELECT_ALL || mType == THEME_SELECT) {
             view = LayoutInflater.from(getContext()).inflate(R.layout.ads_dialog_theme_select,
                     new LinearLayout(getContext()), false);
             messageView = view.findViewById(R.id.ads_dialog_theme_select_message);
@@ -190,6 +196,10 @@ public class DynamicThemeDialog extends DynamicDialogFragment {
                             onThemeSelect(Theme.NIGHT);
                         }
                     });
+
+            if (mType == THEME_SELECT) {
+                view.findViewById(R.id.ads_dialog_theme_select_app).setVisibility(View.GONE);
+            }
 
             dialogBuilder.setPositiveButton(R.string.ads_copy,
                     new DialogInterface.OnClickListener() {

@@ -109,7 +109,7 @@ public abstract class DynamicAppWidgetProvider
     /**
      * Bitmap quality of the widget background.
      */
-    public static final int WIDGET_BACKGROUND_QUALITY = 25;
+    public static final int WIDGET_BACKGROUND_QUALITY = 0;
 
     /**
      * Default header size in dips.
@@ -348,8 +348,7 @@ public abstract class DynamicAppWidgetProvider
     public static @Nullable Bitmap getWidgetFrameBitmap(int width,
             int height, float cornerRadius) {
         return DynamicBitmapUtils.getBitmapFromDrawable(DynamicShapeUtils
-                .getCornerDrawableLegacy(width, height, cornerRadius, Color.WHITE,
-                        false), true, WIDGET_BACKGROUND_QUALITY);
+                .getCornerDrawableLegacy(width, height, cornerRadius, Color.WHITE, false));
     }
 
     /**
@@ -364,7 +363,6 @@ public abstract class DynamicAppWidgetProvider
     public static @Nullable Bitmap getWidgetHeaderBitmap(int width,
             int height, float cornerRadius, @ColorInt int color) {
         return DynamicBitmapUtils.getBitmapFromDrawable(DynamicShapeUtils
-                .getCornerDrawableLegacy(width, height, cornerRadius, color,
-                        true), true, WIDGET_BACKGROUND_QUALITY);
+                .getCornerDrawableLegacy(width, height, cornerRadius, color, true));
     }
 }

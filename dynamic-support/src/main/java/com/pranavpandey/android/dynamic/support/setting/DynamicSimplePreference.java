@@ -241,7 +241,7 @@ public class DynamicSimplePreference extends DynamicPreference {
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         super.onSharedPreferenceChanged(sharedPreferences, key);
 
-        if (key != null && key.equals(getPreferenceKey())) {
+        if (key.equals(getPreferenceKey())) {
             onUpdate();
         }
     }

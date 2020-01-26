@@ -57,7 +57,7 @@ public abstract class DynamicPermissionsActivity extends DynamicActivity
         setNavigationClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                finishActivity();
             }
         });
 

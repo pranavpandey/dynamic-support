@@ -356,7 +356,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
                 mActionView.setVisibility(GONE);
             }
 
-            post(new Runnable() {
+            mSeekBar.post(new Runnable() {
                 @Override
                 public void run() {
                     mSeekBar.setProgress(mProgress);

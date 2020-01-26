@@ -27,6 +27,7 @@ import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,6 +39,7 @@ import androidx.transition.TransitionManager;
 
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
@@ -45,9 +47,9 @@ import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import static com.pranavpandey.android.dynamic.support.popup.DynamicPopup.DynamicPopupType.GRID;
-import static com.pranavpandey.android.dynamic.support.popup.DynamicPopup.DynamicPopupType.LIST;
-import static com.pranavpandey.android.dynamic.support.popup.DynamicPopup.DynamicPopupType.NONE;
+import static com.pranavpandey.android.dynamic.support.popup.DynamicPopup.Type.GRID;
+import static com.pranavpandey.android.dynamic.support.popup.DynamicPopup.Type.LIST;
+import static com.pranavpandey.android.dynamic.support.popup.DynamicPopup.Type.NONE;
 
 /**
  * Base {@link PopupWindow} to provide the basic functionality to its descendants.
@@ -60,7 +62,7 @@ public abstract class DynamicPopup {
      */
     @Retention(RetentionPolicy.SOURCE)
     @IntDef(value = { NONE, LIST, GRID})
-    public @interface DynamicPopupType {
+    public @interface Type {
 
         /**
          * Constant for default view type.
@@ -91,7 +93,12 @@ public abstract class DynamicPopup {
     /**
      * View type used by this popup.
      */
-    protected @DynamicPopupType int mViewType;
+    protected @Type int mViewType;
+
+    /**
+     * Color for the popup window background.
+     */
+    protected Integer mPopupWindowColor;
 
     /**
      * Popup window displayed by this class.
@@ -175,7 +182,7 @@ public abstract class DynamicPopup {
      *
      * @return The view type used by the popup.
      */
-    public @DynamicPopupType int getViewType() {
+    public @Type int getViewType() {
         return mViewType;
     }
 
@@ -184,8 +191,26 @@ public abstract class DynamicPopup {
      *
      * @param viewType The view type to be set.
      */
-    public void setViewType(@DynamicPopupType int viewType) {
+    public void setViewType(@Type int viewType) {
         this.mViewType = viewType;
+    }
+
+    /**
+     * Returns the popup window color.
+     *
+     * @return The popup window color used by the popup.
+     */
+    public @Nullable Integer getPopupWindowColor() {
+        return mPopupWindowColor;
+    }
+
+    /**
+     * Set the popup window color.
+     *
+     * @param popupWindowColor The popup window color to be set.
+     */
+    public void setPopupWindowColor(@ColorInt int popupWindowColor) {
+        this.mPopupWindowColor = popupWindowColor;
     }
 
     /**
@@ -213,11 +238,16 @@ public abstract class DynamicPopup {
         View view = LayoutInflater.from(getAnchor().getContext()).inflate(
                 R.layout.ads_popup, (ViewGroup) getAnchor().getRootView(), false);
         ViewGroup layout = view.findViewById(R.id.ads_popup_content_layout);
+        DynamicCardView card = view.findViewById(R.id.ads_popup_card);
         ViewGroup header = view.findViewById(R.id.ads_popup_header);
         ViewGroup content = view.findViewById(R.id.ads_popup_content);
         ViewGroup footer = view.findViewById(R.id.ads_popup_footer);
         View indicatorUp = view.findViewById(R.id.ads_popup_scroll_indicator_up);
         View indicatorDown = view.findViewById(R.id.ads_popup_scroll_indicator_down);
+
+        if (mPopupWindowColor != null) {
+            card.setColor(mPopupWindowColor);
+        }
 
         if (getHeaderView() != null) {
             DynamicViewUtils.addView(header, getHeaderView(), true);

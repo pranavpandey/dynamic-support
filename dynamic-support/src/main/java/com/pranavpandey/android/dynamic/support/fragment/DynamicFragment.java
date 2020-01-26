@@ -16,23 +16,27 @@
 
 package com.pranavpandey.android.dynamic.support.fragment;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.preference.PreferenceManager;
 
 import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.pranavpandey.android.dynamic.support.activity.DynamicActivity;
 import com.pranavpandey.android.dynamic.support.activity.DynamicDrawerActivity;
+import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
+import com.pranavpandey.android.dynamic.support.listener.DynamicTransitionListener;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * Base fragment class to provide basic functionality and to work with the {@link DynamicActivity}.
@@ -40,6 +44,22 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
  */
 public class DynamicFragment extends Fragment implements
         SharedPreferences.OnSharedPreferenceChangeListener {
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setRetainInstance(true);
+    }
+
+    /**
+     * Returns the dynamic transition listener for the activity.
+     *
+     * @return The dynamic transition listener for the activity.
+     */
+    protected @Nullable DynamicTransitionListener getDynamicTransitionListener() {
+        return null;
+    }
 
     /**
      * Get boolean to control the shared preferences listener.
@@ -52,29 +72,29 @@ public class DynamicFragment extends Fragment implements
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onResume() {
+        super.onResume();
 
-        setRetainInstance(true);
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
-        if (setSharedPreferenceChangeListener()) {
-            PreferenceManager.getDefaultSharedPreferences(getActivity())
+        if (setSharedPreferenceChangeListener() && getContext() != null) {
+            PreferenceManager.getDefaultSharedPreferences(getContext())
                     .registerOnSharedPreferenceChangeListener(this);
         }
+
+        if (getActivity() instanceof DynamicSystemActivity) {
+            ((DynamicSystemActivity) getActivity()).setDynamicTransitionListener(
+                    getDynamicTransitionListener());
+        }
     }
 
     @Override
-    public void onDetach() {
-        if (setSharedPreferenceChangeListener()) {
-            PreferenceManager.getDefaultSharedPreferences(getActivity())
+    public void onPause() {
+        setHasOptionsMenu(false);
+
+        if (setSharedPreferenceChangeListener() && getContext() != null) {
+            PreferenceManager.getDefaultSharedPreferences(getContext())
                     .unregisterOnSharedPreferenceChangeListener(this);
         }
-        super.onDetach();
+        super.onPause();
     }
 
     /**
@@ -104,12 +124,22 @@ public class DynamicFragment extends Fragment implements
     }
 
     /**
-     * Get the menu item id to make it checked in case of a drawer activity.
+     * Returns the bottom navigation view id to make its menu item checked.
      *
-     * @return The menu item id to make it checked if the parent activity is a
-     *         {@link DynamicDrawerActivity}.
+     * @return The bottom navigation view id to make its menu item checked.
+     *
+     * @see #getCheckedMenuItemId()
      */
-    protected @IdRes int setNavigationViewCheckedItem() {
+    protected @IdRes int getBottomNavigationViewId() {
+        return DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
+    }
+
+    /**
+     * Returns the menu item id to make it checked.
+     *
+     * @return The menu item id to make it checked.
+     */
+    protected @IdRes int getCheckedMenuItemId() {
         return DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
     }
 
@@ -118,17 +148,21 @@ public class DynamicFragment extends Fragment implements
         super.onActivityCreated(savedInstanceState);
 
         if (isSupportActionBar()) {
-            ((AppCompatActivity) getActivity())
-                    .getSupportActionBar().setTitle(getTitle());
-            ((AppCompatActivity) getActivity())
-                    .getSupportActionBar().setSubtitle(getSubtitle());
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getTitle());
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle(getSubtitle());
         }
 
-        if (setNavigationViewCheckedItem()
-                != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID
-                && getActivity() instanceof DynamicDrawerActivity) {
-            ((DynamicDrawerActivity) getActivity()).getNavigationView()
-                    .setCheckedItem(setNavigationViewCheckedItem());
+        if (getCheckedMenuItemId() != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
+            if (getActivity() != null
+                    && getActivity().findViewById(getBottomNavigationViewId()) != null) {
+                ((BottomNavigationView) getActivity().findViewById(getBottomNavigationViewId()))
+                        .setSelectedItemId(getCheckedMenuItemId());
+            }
+
+            if (getActivity() instanceof DynamicDrawerActivity) {
+                ((DynamicDrawerActivity) getActivity()).getNavigationView()
+                        .setCheckedItem(getCheckedMenuItemId());
+            }
         }
     }
 
@@ -194,6 +228,24 @@ public class DynamicFragment extends Fragment implements
     }
 
     /**
+     * Retrieves a boolean from the fragment arguments associated with the supplied key.
+     *
+     * @param key The key to be retrieved.
+     * @param defaultValue The default value.
+     *
+     * @return The boolean from the fragment arguments.
+     *
+     * @see Fragment#getArguments()
+     */
+    public boolean getBooleanFromArguments(@Nullable String key, boolean defaultValue) {
+        if (getArguments() == null) {
+            return defaultValue;
+        }
+
+        return getArguments().getBoolean(key, defaultValue);
+    }
+
+    /**
      * Set result for the parent activity to notify the requester about the action.
      *
      * @param resultCode The result code for the activity.
@@ -246,9 +298,16 @@ public class DynamicFragment extends Fragment implements
     /**
      * Finish the parent activity by calling {@link Activity#finish()}.
      */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     protected void finishActivity() {
         if (getActivity() != null && !getActivity().isFinishing()) {
-            getActivity().finish();
+            if (DynamicSdkUtils.is21()
+                    && (getActivity().getWindow().getSharedElementEnterTransition() != null
+                    || getActivity().getWindow().getSharedElementReturnTransition() != null)) {
+                getActivity().supportFinishAfterTransition();
+            } else {
+                getActivity().finish();
+            }
         }
     }
 
