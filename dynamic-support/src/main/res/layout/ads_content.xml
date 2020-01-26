@@ -30,10 +30,13 @@
 
     </androidx.fragment.app.FragmentContainerView>
 
-    <View
+    <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
         android:id="@+id/ads_app_bar_shadow"
         android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@drawable/ads_app_bar_shadow" />
+        android:layout_height="@dimen/ads_app_bar_shadow_size"
+        android:src="@drawable/ads_app_bar_shadow"
+        android:alpha="@integer/ads_shadow_alpha"
+        app:ads_colorType="none"
+        app:ads_backgroundAware="disable" />
 
 </FrameLayout>

@@ -77,6 +77,11 @@ public class DynamicInfoView extends DynamicView {
     private CharSequence mDescription;
 
     /**
+     * Status used by this view.
+     */
+    private CharSequence mStatus;
+
+    /**
      * Title for the links used by this view.
      */
     private CharSequence[] mLinks;
@@ -137,6 +142,11 @@ public class DynamicInfoView extends DynamicView {
     private TextView mDescriptionView;
 
     /**
+     * Text view to show the status.
+     */
+    private TextView mStatusView;
+
+    /**
      * Recycler view to show the links associated with this view.
      */
     private DynamicRecyclerViewNested mLinksView;
@@ -170,6 +180,7 @@ public class DynamicInfoView extends DynamicView {
             mTitle = a.getString(R.styleable.DynamicInfo_ads_title);
             mSubtitle = a.getString(R.styleable.DynamicInfo_ads_subtitle);
             mDescription = a.getString(R.styleable.DynamicInfo_ads_description);
+            mStatus = a.getString(R.styleable.DynamicInfo_ads_status);
             mIconBig = DynamicResourceUtils.getDrawable(getContext(), a.getResourceId(
                     R.styleable.DynamicInfo_ads_iconBig,
                     DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
@@ -200,6 +211,7 @@ public class DynamicInfoView extends DynamicView {
         mTitleView = findViewById(R.id.ads_info_view_title);
         mSubtitleView = findViewById(R.id.ads_info_view_subtitle);
         mDescriptionView = findViewById(R.id.ads_info_view_description);
+        mStatusView = findViewById(R.id.ads_info_view_status);
         mIconBigView = findViewById(R.id.ads_info_view_icon_big);
         mLinksView = findViewById(R.id.ads_info_links);
 
@@ -235,6 +247,13 @@ public class DynamicInfoView extends DynamicView {
             mDescriptionView.setVisibility(VISIBLE);
         } else {
             mDescriptionView.setVisibility(GONE);
+        }
+
+        if (mStatus != null) {
+            mStatusView.setText(mStatus);
+            mStatusView.setVisibility(VISIBLE);
+        } else {
+            mStatusView.setVisibility(GONE);
         }
 
         if (mIconBig != null) {
@@ -413,6 +432,26 @@ public class DynamicInfoView extends DynamicView {
      */
     public void setDescription(@Nullable CharSequence description) {
         this.mDescription = description;
+
+        onUpdate();
+    }
+
+    /**
+     * Get the status used by this view.
+     *
+     * @return The status used by this view.
+     */
+    public @Nullable CharSequence getStatus() {
+        return mStatus;
+    }
+
+    /**
+     * Set the status for this view.
+     *
+     * @param status The status to be set.
+     */
+    public void setStatus(@Nullable CharSequence status) {
+        this.mStatus = status;
 
         onUpdate();
     }
@@ -606,6 +645,15 @@ public class DynamicInfoView extends DynamicView {
      * @return The text view to show the description.
      */
     public TextView getDescriptionView() {
+        return mDescriptionView;
+    }
+
+    /**
+     * Get the text view to show the status.
+     *
+     * @return The text view to show the status.
+     */
+    public TextView getStatusView() {
         return mDescriptionView;
     }
 

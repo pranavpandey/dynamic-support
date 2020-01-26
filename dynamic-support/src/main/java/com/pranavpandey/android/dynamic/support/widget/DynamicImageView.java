@@ -228,5 +228,9 @@ public class DynamicImageView extends AppCompatImageView implements DynamicWidge
 
             setColorFilter(mColor, getFilterMode());
         }
+
+        if (mColorType == Theme.ColorType.NONE) {
+            clearColorFilter();
+        }
     }
 }

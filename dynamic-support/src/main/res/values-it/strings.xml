@@ -17,7 +17,7 @@
 
 <resources>
 
-    <!-- Dynamic activity -->
+    <!-- Activity -->
     <string name="ads_navigation_drawer_open">Mostra elenco</string>
     <string name="ads_navigation_drawer_close">Nascondi elenco</string>
 
@@ -107,6 +107,8 @@
     <string name="ads_perm_granted_desc">Il permesso è stato concesso.</string>
     <string name="ads_perm_denied">Vietato</string>
     <string name="ads_perm_denied_desc">Per concedere il permesso vai in: Informazioni app &gt; permessi. Tocca per andare in informazioni app.</string>
+    <string name="ads_perm_reinstall">Reinstallare</string>
+    <string name="ads_perm_reinstall_desc">Per concedere il permesso vai in: reinstallare l\'app. Tocca per andare in informazioni app.</string>
     <string name="ads_perm_default">Permesso</string>
     <string name="ads_perm_default_desc">Il permesso è richiesto per eseguire alcune azioni.</string>
     <string name="ads_perm_default_explain">Spiegazioni.</string>
@@ -174,7 +176,9 @@
     <string name="ads_backup_option_delete">Cancella</string>
     <string name="ads_backup_send">Invia backup</string>
 
-    <!-- App theme -->
+    <!-- Theme -->
+    <string name="ads_dynamic_theme">Motivo dinamico</string>
+    <string name="ads_dynamic_theme_summary">Motivo applicato dal destinatario.</string>
     <string name="ads_theme">Motivo</string>
     <string name="ads_theme_customise_desc">Configura il motivo qui sotto.</string>
     <string name="ads_theme_adjust_desc">Il motivo verrà adattato a seconda della versione di Android in uso.</string>
@@ -231,7 +235,14 @@
     <string name="ads_theme_export_done">Il motivo è stato esportato correttamente.</string>
     <string name="ads_theme_export_error">Impossibile salvare il motivo.</string>
     <string name="ads_theme_copy_done">Il motivo è stato copiato correttamente.</string>
+    <string name="ads_theme_edit_done">Il motivo è stato modificato correttamente.</string>
+    <string name="ads_theme_save_done">Il motivo è stato salvato correttamente.</string>
+    <string name="ads_theme_delete_done">Il motivo è stato eliminato correttamente.</string>
     <string name="ads_theme_format_saved">Motivo salvato: %1$s</string>
+    <string name="ads_theme_presets">Motivo predefiniti</string>
+    <string name="ads_theme_presets_desc">Scarica tramite Google Play.</string>
+    <string name="ads_theme_presets_options">Tocca per le opzioni</string>
+    <string name="ads_theme_presets_import">Tocca per importare</string>
 
     <!-- Theme -->
     <string name="ads_theme_toast_default">Messaggio toast predefinito</string>
@@ -259,7 +270,7 @@
     <string name="ads_theme_entry_light_purple">Viola chiaro</string>
     <string name="ads_theme_entry_light_orange">Arancione chiaro</string>
     <string name="ads_theme_entry_light_brown">Marrone chiaro</string>
-    <string name="ads_theme_entry_light_grey">Grigio chiaro</string>
+    <string name="ads_theme_entry_light_gray">Grigio chiaro</string>
     <string name="ads_theme_entry_dark_indigo">Indaco scuro</string>
     <string name="ads_theme_entry_dark_red">Rosso scuro</string>
     <string name="ads_theme_entry_dark_blue">Blu scuro</string>
@@ -268,7 +279,7 @@
     <string name="ads_theme_entry_dark_purple">Viola scuro</string>
     <string name="ads_theme_entry_dark_orange">Arancione scuro</string>
     <string name="ads_theme_entry_dark_brown">Marrone scuro</string>
-    <string name="ads_theme_entry_dark_grey">Grigio scuro</string>
+    <string name="ads_theme_entry_dark_gray">Grigio scuro</string>
 
     <!-- Visibility -->
     <string name="ads_visibility_show">Mostrare</string>
@@ -349,6 +360,7 @@
     <string name="ads_info_facebook_desc">Metti un like alla pagina ufficiale per ricevere notizie e aggiornamenti.</string>
     <string name="ads_info_xda_desc">Segui il forum di supporto ufficiale su XDA.</string>
     <string name="ads_info_website">Sito web</string>
+    <string name="ads_info_website_desc">Visita il sito ufficiale per ulteriori informazioni.</string>
     <string name="ads_info_website_me_desc">Un posto per me sul web.</string>
     <string name="ads_info_twitter_me_desc">Ricevi gli ultimi tweet sulla mia via ed il mio lavoro.</string>
     <string name="ads_info_facebook_me_desc">Diventa un amico o seguimi per saperne di più su di me.</string>

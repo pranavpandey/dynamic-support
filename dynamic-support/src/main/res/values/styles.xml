@@ -60,7 +60,6 @@
     </style>
 
     <style name="Base.DynamicApp.Dark">
-        <item name="android:windowDisablePreview">true</item>
         <item name="android:windowBackground">@color/ads_window_background_dark</item>
         <item name="android:colorBackground">@color/ads_window_background_dark</item>
         <item name="background">@color/ads_window_background_dark</item>
@@ -148,7 +147,6 @@
 
     <style name="Base.DynamicApp.NoActionBar">
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowDisablePreview">true</item>
         <item name="windowActionBarOverlay">true</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="windowActionBar">false</item>
@@ -157,7 +155,6 @@
 
     <style name="Base.DynamicApp.Dark.NoActionBar">
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowDisablePreview">true</item>
         <item name="windowActionBarOverlay">true</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="windowActionBar">false</item>
@@ -166,7 +163,6 @@
 
     <style name="Base.DynamicApp.Light.NoActionBar">
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowDisablePreview">true</item>
         <item name="windowActionBarOverlay">true</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="windowActionBar">false</item>
@@ -174,12 +170,11 @@
     </style>
 
     <style name="Base.DynamicApp.DayNight.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowDisablePreview">true</item>
         <item name="windowActionBarOverlay">true</item>
         <item name="windowActionModeOverlay">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="Theme.DynamicApp" parent="Base.DynamicApp.NoActionBar" />
@@ -206,12 +201,14 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowMinWidthMajor">@dimen/ads_dialog_min_width_major</item>
         <item name="android:windowMinWidthMinor">@dimen/ads_dialog_min_width_minor</item>
+        <item name="android:windowAnimationStyle">@style/Animation.DynamicApp.Dialog</item>
     </style>
 
     <style name="Base.DynamicApp.Light.Dialog">
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowMinWidthMajor">@dimen/ads_dialog_min_width_major</item>
         <item name="android:windowMinWidthMinor">@dimen/ads_dialog_min_width_minor</item>
+        <item name="android:windowAnimationStyle">@style/Animation.DynamicApp.Dialog</item>
     </style>
 
     <style name="Base.DynamicApp.DayNight.Dialog">
@@ -433,13 +430,16 @@
     </style>
 
     <style name="Widget.DynamicApp.TextInputEditText">
-        <item name="android:background">@null</item>
         <item name="android:paddingTop">@dimen/ads_widget_text_input_edit_text_padding_top</item>
         <item name="android:paddingLeft">@dimen/ads_widget_text_input_edit_text_padding</item>
         <item name="android:paddingStart">@dimen/ads_widget_text_input_edit_text_padding</item>
         <item name="android:paddingRight">@dimen/ads_widget_text_input_edit_text_padding</item>
         <item name="android:paddingEnd">@dimen/ads_widget_text_input_edit_text_padding</item>
         <item name="android:paddingBottom">@dimen/ads_widget_text_input_edit_text_padding</item>
+    </style>
+
+    <style name="Widget.DynamicApp.TextInputEditText.Outlined">
+        <item name="android:paddingTop">@dimen/ads_widget_text_input_edit_text_padding_top_outlined</item>
     </style>
 
     <style name="Widget.DynamicApp.Button.Preference">
@@ -535,6 +535,15 @@
         <item name="ads_backgroundAware">disable</item>
     </style>
 
+    <style name="Widget.DynamicApp.Card.Margin">
+        <item name="android:layout_marginTop">@dimen/ads_card_view_margin_layout</item>
+        <item name="android:layout_marginLeft">@dimen/ads_card_view_margin_layout</item>
+        <item name="android:layout_marginStart">@dimen/ads_card_view_margin_layout</item>
+        <item name="android:layout_marginRight">@dimen/ads_card_view_margin_layout</item>
+        <item name="android:layout_marginEnd">@dimen/ads_card_view_margin_layout</item>
+        <item name="android:layout_marginBottom">@dimen/ads_card_view_margin_layout</item>
+    </style>
+
     <style name="Widget.DynamicApp.Card.Floating">
         <item name="android:layout_margin">@dimen/ads_card_view_margin_floating</item>
         <item name="cardElevation">@dimen/ads_card_view_elevation_floating</item>
@@ -563,6 +572,30 @@
 
     <style name="Widget.DynamicApp.Card.Clickable">
         <item name="android:foreground">?selectableItemBackground</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Card.Margin.Clickable">
+        <item name="android:foreground">?selectableItemBackground</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Margin">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">@dimen/ads_scroller_margin_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:layout_marginStart">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:layout_marginRight">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:layout_marginEnd">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:layout_marginBottom">@dimen/ads_scroller_margin_vertical</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Margin.Large">
+        <item name="android:layout_marginTop">@dimen/ads_scroller_margin_layout</item>
+        <item name="android:layout_marginLeft">@dimen/ads_scroller_margin_layout</item>
+        <item name="android:layout_marginStart">@dimen/ads_scroller_margin_layout</item>
+        <item name="android:layout_marginRight">@dimen/ads_scroller_margin_layout</item>
+        <item name="android:layout_marginEnd">@dimen/ads_scroller_margin_layout</item>
+        <item name="android:layout_marginBottom">@dimen/ads_scroller_margin_layout</item>
     </style>
 
     <style name="Widget.DynamicApp.Scroller">
@@ -600,6 +633,16 @@
         <item name="ads_windowInsets">false</item>
     </style>
 
+    <style name="Widget.DynamicApp.Scroller.Nested.Padding">
+        <item name="android:paddingTop">@dimen/ads_scroller_margin_vertical</item>
+        <item name="android:paddingLeft">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:paddingStart">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:paddingRight">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:paddingEnd">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:paddingBottom">@dimen/ads_scroller_margin_vertical</item>
+        <item name="android:overScrollMode">ifContentScrolls</item>
+    </style>
+
     <style name="Widget.DynamicApp.Scroller.Nested.GridView">
         <item name="android:numColumns">auto_fit</item>
         <item name="android:stretchMode">columnWidth</item>
@@ -608,6 +651,8 @@
     </style>
 
     <style name="Widget.DynamicApp.Content.Card">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingTop">@dimen/ads_card_view_content_margin</item>
         <item name="android:paddingLeft">@dimen/ads_card_view_content_margin</item>
         <item name="android:paddingStart">@dimen/ads_card_view_content_margin</item>
@@ -642,7 +687,14 @@
         <item name="android:layout_marginRight">@dimen/ads_icon_header_card_margin_end</item>
         <item name="android:layout_marginEnd">@dimen/ads_icon_header_card_margin_end</item>
         <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:visibility">@integer/ads_visibility_preference_icon</item>
         <item name="ads_colorType">accent</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Image.Empty">
+        <item name="android:layout_width">@dimen/ads_icon_empty</item>
+        <item name="android:layout_height">@dimen/ads_icon_empty</item>
+        <item name="ads_colorType">primary</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.Preference">
@@ -651,7 +703,12 @@
         <item name="android:layout_marginRight">@dimen/ads_icon_preference_card_margin_end</item>
         <item name="android:layout_marginEnd">@dimen/ads_icon_preference_card_margin_end</item>
         <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:visibility">@integer/ads_visibility_preference_icon</item>
         <item name="ads_colorType">primary</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Image.Preference.Theme">
+        <item name="android:visibility">@integer/ads_visibility_preference_theme_icon</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.Card.Big">

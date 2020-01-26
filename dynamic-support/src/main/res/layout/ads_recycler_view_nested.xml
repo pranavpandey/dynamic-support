@@ -18,4 +18,4 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/Widget.DynamicApp.Scroller.Nested"
-    android:id="@+id/ads_dynamic_recycler_view" />
+    android:id="@+id/ads_recycler_view" />

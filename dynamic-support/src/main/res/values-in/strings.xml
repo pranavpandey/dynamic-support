@@ -17,7 +17,7 @@
 
 <resources>
 
-    <!-- Dynamic activity -->
+    <!-- Activity -->
     <string name="ads_navigation_drawer_open">Buka drawer navigasi</string>
     <string name="ads_navigation_drawer_close">Tutup drawer navigasi</string>
 
@@ -107,6 +107,8 @@
     <string name="ads_perm_granted_desc">Perijinan ini telah diberikan</string>
     <string name="ads_perm_denied">Ditolak</string>
     <string name="ads_perm_denied_desc">Untuk memberikan perijinan ini, buka App info &gt; Permissions. Tekan untuk membuka App info.</string>
+    <string name="ads_perm_reinstall">Instal ulang</string>
+    <string name="ads_perm_reinstall_desc">Untuk memberikan perijinan ini, silakan instal ulang aplikasi. Tekan untuk membuka App info.</string>
     <string name="ads_perm_default">Perijinan</string>
     <string name="ads_perm_default_desc">Perijinan ini dibutuhkan untuk melakukan beberapa aksi.</string>
     <string name="ads_perm_default_explain">Penjelasan.</string>
@@ -174,7 +176,9 @@
     <string name="ads_backup_option_delete">Hapus</string>
     <string name="ads_backup_send">Kirim cadangan</string>
 
-    <!-- App theme -->
+    <!-- Theme -->
+    <string name="ads_dynamic_theme">Tema dinamis</string>
+    <string name="ads_dynamic_theme_summary">Tema diterapkan oleh penerima.</string>
     <string name="ads_theme">Tema</string>
     <string name="ads_theme_customise_desc">Atur tema di bawah ini.</string>
     <string name="ads_theme_adjust_desc">Tema akan otomatis disesuaikan berdasarkan versi Android saat ini.</string>
@@ -231,7 +235,14 @@
     <string name="ads_theme_export_done">Tema telah sukses di export.</string>
     <string name="ads_theme_export_error">Tidak dapat menyimpan tema.</string>
     <string name="ads_theme_copy_done">Tema telah berhasil disalin.</string>
+    <string name="ads_theme_edit_done">Tema telah berhasil di edit.</string>
+    <string name="ads_theme_save_done">Tema berhasil di simpan.</string>
+    <string name="ads_theme_delete_done">Tema berhasil di hapus.</string>
     <string name="ads_theme_format_saved">Tema disimpan: %1$s</string>
+    <string name="ads_theme_presets">Preset tema</string>
+    <string name="ads_theme_presets_desc">Unduh melalui Google Play.</string>
+    <string name="ads_theme_presets_options">Ketuk untuk opsi</string>
+    <string name="ads_theme_presets_import">Ketuk untuk mengimpor</string>
 
     <!-- Theme -->
     <string name="ads_theme_toast_default">Pesan toast default</string>
@@ -259,7 +270,7 @@
     <string name="ads_theme_entry_light_purple">Ungu terang</string>
     <string name="ads_theme_entry_light_orange">Jingga terang</string>
     <string name="ads_theme_entry_light_brown">Cokelat terang</string>
-    <string name="ads_theme_entry_light_grey">Abu-abu terang</string>
+    <string name="ads_theme_entry_light_gray">Abu-abu terang</string>
     <string name="ads_theme_entry_dark_indigo">Indigo gelap</string>
     <string name="ads_theme_entry_dark_red">Merah gelap</string>
     <string name="ads_theme_entry_dark_blue">Biru gelap</string>
@@ -268,7 +279,7 @@
     <string name="ads_theme_entry_dark_purple">Ungu gelap</string>
     <string name="ads_theme_entry_dark_orange">Oranye gelap</string>
     <string name="ads_theme_entry_dark_brown">Cokelat gelap</string>
-    <string name="ads_theme_entry_dark_grey">Abu-abu gelap</string>
+    <string name="ads_theme_entry_dark_gray">Abu-abu gelap</string>
 
     <!-- Visibility -->
     <string name="ads_visibility_show">Tampilkan</string>
@@ -349,6 +360,7 @@
     <string name="ads_info_facebook_desc">Like laman resmi untuk mendapatkan berita dan pemberitahuan terbaru.</string>
     <string name="ads_info_xda_desc">ikuti forum dukungan resmi di XDA.</string>
     <string name="ads_info_website">Situs</string>
+    <string name="ads_info_website_desc">Kunjungi situs web resmi untuk informasi lebih lanjut.</string>
     <string name="ads_info_website_me_desc">Tempatku di internet.</string>
     <string name="ads_info_twitter_me_desc">Dapatkan tweet terbaru tentang kehidupan dan pekerjaanku.</string>
     <string name="ads_info_facebook_me_desc">Jadi teman atau ikuti untuk mengetahui lebih lanjut tentangku.</string>

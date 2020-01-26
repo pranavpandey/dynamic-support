@@ -149,7 +149,7 @@ public class DynamicLayoutUtils {
      *
      * @param context The context to get the span count.
      *
-     * @return The grid count for the supplied context with default ount 1 or 2 and max count 3.
+     * @return The grid count for the supplied context with default count 1 or 2 and max count 3.
      */
     public static int getGridCountCompact(@NonNull Context context) {
         return context.getResources().getInteger(R.integer.ads_span_compact);

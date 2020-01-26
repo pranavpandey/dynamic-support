@@ -17,7 +17,7 @@
 
 <resources>
 
-    <!-- Span counts -->
+    <!-- Span -->
     <integer name="ads_span_compact_dialog">3</integer>
 
 </resources>

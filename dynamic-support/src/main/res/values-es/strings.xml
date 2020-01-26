@@ -17,7 +17,7 @@
 
 <resources>
 
-    <!-- Dynamic activity -->
+    <!-- Activity -->
     <string name="ads_navigation_drawer_open">Abrir el menú de navegación</string>
     <string name="ads_navigation_drawer_close">Cerrar el menú de navegación</string>
 
@@ -100,7 +100,6 @@
     <string name="ads_permissions">Permisos</string>
     <string name="ads_permissions_subtitle_single">Por favor activa el permiso requerido.</string>
     <string name="ads_permissions_subtitle">Por favor activa los permisos requeridos.</string>
-    <string name="ads_perm_default">Permiso</string>
     <string name="ads_perm_info_grant_all">Por favor activa todos los permisos para que la aplicación funcione correctamente.</string>
     <string name="ads_perm_request">Solicitar</string>
     <string name="ads_perm_request_desc">Este permiso no está activado. Presiona para activarlo.</string>
@@ -108,6 +107,9 @@
     <string name="ads_perm_granted_desc">Este permiso ha sido activado</string>
     <string name="ads_perm_denied">Desactivado</string>
     <string name="ads_perm_denied_desc">Para aceptar este permiso, ve a Info. de la app &gt; Permisos. Presiona para ir a Info. de la app.</string>
+    <string name="ads_perm_reinstall">Reinstalar</string>
+    <string name="ads_perm_reinstall_desc">Para aceptar este permiso, por favor reinstale la aplicación. Presiona para ir a Info. de la app.</string>
+    <string name="ads_perm_default">Permiso</string>
     <string name="ads_perm_default_desc">Este permiso se requiere para realizar algunas acciones.</string>
     <string name="ads_perm_default_explain">Explicación.</string>
     <string name="ads_perm_write_system_settings">Escribir configuración del sistema</string>
@@ -174,7 +176,9 @@
     <string name="ads_backup_option_delete">Eliminar</string>
     <string name="ads_backup_send">Enviar respaldo</string>
 
-    <!-- App theme -->
+    <!-- Theme -->
+    <string name="ads_dynamic_theme">Tema dinámico</string>
+    <string name="ads_dynamic_theme_summary">Tema aplicado por el receptor.</string>
     <string name="ads_theme">Tema</string>
     <string name="ads_theme_customise_desc">Configurar el tema abajo.</string>
     <string name="ads_theme_adjust_desc">El tema se ajustará automáticamente según la versión actual de Android.</string>
@@ -231,7 +235,14 @@
     <string name="ads_theme_export_done">El tema ha sido exportado con éxito.</string>
     <string name="ads_theme_export_error">No se puede guardar el tema.</string>
     <string name="ads_theme_copy_done">El tema ha sido copiado con éxito.</string>
+    <string name="ads_theme_edit_done">El tema ha sido editado con éxito.</string>
+    <string name="ads_theme_save_done">El tema se guardó correctamente.</string>
+    <string name="ads_theme_delete_done">El tema se eliminó correctamente.</string>
     <string name="ads_theme_format_saved">Tema guardado: %1$s</string>
+    <string name="ads_theme_presets">Presets de tema</string>
+    <string name="ads_theme_presets_desc">Descargar a través de Google Play.</string>
+    <string name="ads_theme_presets_options">Toca para ver las opciones</string>
+    <string name="ads_theme_presets_import">Toca para importar</string>
 
     <!-- Theme -->
     <string name="ads_theme_toast_default">Mensaje toast por defecto</string>
@@ -259,7 +270,7 @@
     <string name="ads_theme_entry_light_purple">Morado claro</string>
     <string name="ads_theme_entry_light_orange">Naranja claro</string>
     <string name="ads_theme_entry_light_brown">Café claro</string>
-    <string name="ads_theme_entry_light_grey">Gris claro</string>
+    <string name="ads_theme_entry_light_gray">Gris claro</string>
     <string name="ads_theme_entry_dark_indigo">Índigo oscuro</string>
     <string name="ads_theme_entry_dark_red">Rojo oscuro</string>
     <string name="ads_theme_entry_dark_blue">Azul oscuro</string>
@@ -268,7 +279,7 @@
     <string name="ads_theme_entry_dark_purple">Morado oscuro</string>
     <string name="ads_theme_entry_dark_orange">Naranja oscuro</string>
     <string name="ads_theme_entry_dark_brown">Café oscuro</string>
-    <string name="ads_theme_entry_dark_grey">Gris oscuro</string>
+    <string name="ads_theme_entry_dark_gray">Gris oscuro</string>
 
     <!-- Visibility -->
     <string name="ads_visibility_show">Mostrar</string>
@@ -349,6 +360,7 @@
     <string name="ads_info_facebook_desc">Sigue la página oficial para recibir las últimas noticias y actualizaciones.</string>
     <string name="ads_info_xda_desc">Sigue el foro de soporte oficial de XDA.</string>
     <string name="ads_info_website">Sitio web</string>
+    <string name="ads_info_website_desc">Visite el sitio web oficial para más información.</string>
     <string name="ads_info_website_me_desc">Un lugar para mí en la web.</string>
     <string name="ads_info_twitter_me_desc">Obtén los últimos tweets sobre mi vida y mi trabajo.</string>
     <string name="ads_info_facebook_me_desc">Hazte amigo o sígueme para conocer más sobre mí.</string>

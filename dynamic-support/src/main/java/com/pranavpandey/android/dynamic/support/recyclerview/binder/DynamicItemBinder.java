@@ -32,7 +32,7 @@ import com.pranavpandey.android.dynamic.support.view.DynamicItemView;
 /**
  * Binder to bind the {@link DynamicItem} which can be used with the {@link DynamicBinderAdapter}.
  */
-public class DynamicItemBinder extends DynamicRecyclerViewBinder {
+public class DynamicItemBinder extends DynamicRecyclerViewBinder<DynamicItemBinder.ViewHolder> {
 
     /**
      * Data used by this binder.
@@ -44,32 +44,31 @@ public class DynamicItemBinder extends DynamicRecyclerViewBinder {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public @NonNull ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.ads_layout_item_view, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        ViewHolder viewHolderItem = (ViewHolder) viewHolder;
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         DynamicItem dynamicItem = getData();
 
         if (dynamicItem != null) {
-            viewHolderItem.getDynamicItemView().setIcon(dynamicItem.getIcon());
-            viewHolderItem.getDynamicItemView().setTitle(dynamicItem.getTitle());
-            viewHolderItem.getDynamicItemView().setSubtitle(dynamicItem.getSubtitle());
-            viewHolderItem.getDynamicItemView().setColorType(dynamicItem.getColorType());
-            viewHolderItem.getDynamicItemView().setColor(dynamicItem.getColor());
-            viewHolderItem.getDynamicItemView().setShowDivider(dynamicItem.isShowDivider());
+            viewHolder.getDynamicItem().setIcon(dynamicItem.getIcon());
+            viewHolder.getDynamicItem().setTitle(dynamicItem.getTitle());
+            viewHolder.getDynamicItem().setSubtitle(dynamicItem.getSubtitle());
+            viewHolder.getDynamicItem().setColorType(dynamicItem.getColorType());
+            viewHolder.getDynamicItem().setColor(dynamicItem.getColor());
+            viewHolder.getDynamicItem().setShowDivider(dynamicItem.isShowDivider());
 
             if (dynamicItem.getOnClickListener() != null) {
-                viewHolderItem.getDynamicItemView()
-                        .setOnClickListener(dynamicItem.getOnClickListener());
+                viewHolder.getDynamicItem().setOnClickListener(
+                        dynamicItem.getOnClickListener());
             } else {
-                viewHolderItem.getDynamicItemView().setClickable(false);
+                viewHolder.getDynamicItem().setClickable(false);
             }
 
-            viewHolderItem.getDynamicItemView().onUpdate();
+            viewHolder.getDynamicItem().onUpdate();
         }
     }
 
@@ -108,7 +107,7 @@ public class DynamicItemBinder extends DynamicRecyclerViewBinder {
         /**
          * Dynamic item view for this view holder.
          */
-        private final DynamicItemView dynamicItemView;
+        private final DynamicItemView dynamicItem;
 
         /**
          * Constructor to initialize views from the supplied layout.
@@ -118,7 +117,7 @@ public class DynamicItemBinder extends DynamicRecyclerViewBinder {
         public ViewHolder(View view) {
             super(view);
 
-            dynamicItemView = view.findViewById(R.id.ads_dynamic_item_view);
+            dynamicItem = view.findViewById(R.id.ads_dynamic_item_view);
         }
 
         /**
@@ -126,8 +125,8 @@ public class DynamicItemBinder extends DynamicRecyclerViewBinder {
          *
          * @return The dynamic item view for this view holder.
          */
-        public DynamicItemView getDynamicItemView() {
-            return dynamicItemView;
+        public DynamicItemView getDynamicItem() {
+            return dynamicItem;
         }
     }
 }

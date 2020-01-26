@@ -691,7 +691,37 @@ public class DynamicResourceUtils {
     }
 
     /**
-     * Get drawable array from the its resource id.
+     * Get drawable resource array from its resource id.
+     *
+     * @param context The context to retrieve resources.
+     * @param arrayRes The resource id of the drawable array.
+     *
+     * @return The drawable resource array from its resource id.
+     */
+    public static @Nullable @DrawableRes int[] convertToDrawableResArray(
+            @NonNull Context context, @ArrayRes int arrayRes) {
+        @DrawableRes int[] resources = null;
+
+        if (arrayRes != ADS_DEFAULT_RESOURCE_ID) {
+            TypedArray drawableArray = context.getResources().obtainTypedArray(arrayRes);
+            resources = new int[drawableArray.length()];
+
+            for (int i = 0; i < drawableArray.length(); i++) {
+                try {
+                    resources[i] = drawableArray.getResourceId(i, ADS_DEFAULT_RESOURCE_VALUE);
+                } catch (Exception e) {
+                    resources[i] = ADS_DEFAULT_RESOURCE_VALUE;
+                }
+            }
+
+            drawableArray.recycle();
+        }
+
+        return resources;
+    }
+
+    /**
+     * Get drawable array from ts resource id.
      *
      * @param context The context to retrieve resources.
      * @param arrayRes The resource id of the drawable array.
@@ -722,7 +752,7 @@ public class DynamicResourceUtils {
     }
 
     /**
-     * Get color array from the its resource id.
+     * Get color array from its resource id.
      *
      * @param context The context to retrieve resources.
      * @param arrayRes The resource id of the color array.

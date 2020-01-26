@@ -17,6 +17,7 @@
 
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ads_info_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -64,6 +65,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/ads_margin_tiny" />
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                    style="@style/TextAppearance.DynamicApp.Subtitle1.Caps"
+                    android:id="@+id/ads_info_view_status"
+                    android:layout_marginTop="@dimen/ads_margin_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/ads_font_size_medium"
+                    app:ads_colorType="accent" />
 
             </LinearLayout>
 

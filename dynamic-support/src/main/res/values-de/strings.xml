@@ -17,7 +17,7 @@
 
 <resources>
 
-    <!-- Dynamic activity -->
+    <!-- Activity -->
     <string name="ads_navigation_drawer_open">Navigationsmenü öffnen</string>
     <string name="ads_navigation_drawer_close">Navigationsmenü schließen</string>
 
@@ -107,6 +107,8 @@
     <string name="ads_perm_granted_desc">Diese Berechtigung wurde gewährt.</string>
     <string name="ads_perm_denied">Verweigert</string>
     <string name="ads_perm_denied_desc">Um diese Berechtigung zu gewähren, gehe zu App Info -&gt; Berechtigungen. Tippe hier, um zur App Info zu gelangen.</string>
+    <string name="ads_perm_reinstall">Neu installieren</string>
+    <string name="ads_perm_reinstall_desc">Um diese Berechtigung zu gewähren, bitte installieren Sie die Anwendung neu. Tippe hier, um zur App Info zu gelangen.</string>
     <string name="ads_perm_default">Berechtigung</string>
     <string name="ads_perm_default_desc">Diese Berechtigung ist notwendig, um manche Aktionen durchzuführen.</string>
     <string name="ads_perm_default_explain">Erklärung.</string>
@@ -174,7 +176,9 @@
     <string name="ads_backup_option_delete">Löschen</string>
     <string name="ads_backup_send">Sicherung senden</string>
 
-    <!-- App theme -->
+    <!-- Theme -->
+    <string name="ads_dynamic_theme">Dynamisches Thema</string>
+    <string name="ads_dynamic_theme_summary">Thema vom Empfänger angewendet.</string>
     <string name="ads_theme">Thema</string>
     <string name="ads_theme_customise_desc">Konfiguriere das Thema unten.</string>
     <string name="ads_theme_adjust_desc">Thema wird automatisch entsprechend der aktuellen Android-Version angepasst.</string>
@@ -231,7 +235,14 @@
     <string name="ads_theme_export_done">Thema wurde erfolgreich exportiert.</string>
     <string name="ads_theme_export_error">Thema kann nicht gespeichert werden.</string>
     <string name="ads_theme_copy_done">Das Thema wurde erfolgreich kopiert.</string>
+    <string name="ads_theme_edit_done">Thema wurde erfolgreich bearbeitet.</string>
+    <string name="ads_theme_save_done">Thema erfolgreich gespeichert.</string>
+    <string name="ads_theme_delete_done">Thema erfolgreich gelöscht.</string>
     <string name="ads_theme_format_saved">Thema gespeichert: %1$s</string>
+    <string name="ads_theme_presets">Themenvorgaben</string>
+    <string name="ads_theme_presets_desc">Über Google Play herunterladen.</string>
+    <string name="ads_theme_presets_options">Tippen Sie auf, um Optionen anzuzeigen</string>
+    <string name="ads_theme_presets_import">Tippen Sie zum Importieren auf</string>
 
     <!-- Theme -->
     <string name="ads_theme_toast_default">Standard Toast-Nachricht</string>
@@ -259,7 +270,7 @@
     <string name="ads_theme_entry_light_purple">Hellviolett</string>
     <string name="ads_theme_entry_light_orange">Hellorange</string>
     <string name="ads_theme_entry_light_brown">Hellbraun</string>
-    <string name="ads_theme_entry_light_grey">Hellgrau</string>
+    <string name="ads_theme_entry_light_gray">Hellgrau</string>
     <string name="ads_theme_entry_dark_indigo">Dunkelindigo</string>
     <string name="ads_theme_entry_dark_red">Dunkelrot</string>
     <string name="ads_theme_entry_dark_blue">Dunkelblau</string>
@@ -268,7 +279,7 @@
     <string name="ads_theme_entry_dark_purple">Dunkelviolett</string>
     <string name="ads_theme_entry_dark_orange">Dunkelorange</string>
     <string name="ads_theme_entry_dark_brown">Dunkelbraun</string>
-    <string name="ads_theme_entry_dark_grey">Dunkelgrau</string>
+    <string name="ads_theme_entry_dark_gray">Dunkelgrau</string>
 
     <!-- Visibility -->
     <string name="ads_visibility_show">Zeigen</string>
@@ -349,6 +360,7 @@
     <string name="ads_info_facebook_desc">Like die offizielle Facebook-Seite, um die aktuellen Neuigkeiten und Updates zu erhalten.</string>
     <string name="ads_info_xda_desc">Folge dem offiziellen Unterstützungs-Forum auf XDA.</string>
     <string name="ads_info_website">Webseite</string>
+    <string name="ads_info_website_desc">Besuchen Sie die offizielle Website für weitere Informationen.</string>
     <string name="ads_info_website_me_desc">Ein Platz für mich im Netz.</string>
     <string name="ads_info_twitter_me_desc">Erhalte aktuelle Tweets über meinen Alltag und meine Arbeit.</string>
     <string name="ads_info_facebook_me_desc">Werde ein Freund oder folge mir, um mehr über mich zu erfahren.</string>

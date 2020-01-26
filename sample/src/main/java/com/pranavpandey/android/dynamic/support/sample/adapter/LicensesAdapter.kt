@@ -36,7 +36,6 @@ class LicensesAdapter(
     : DynamicSimpleBinderAdapter<DynamicRecyclerViewBinder<*>>() {
 
     init {
-
         // Add license binder for this adapter.
         addDataBinder(LicenseBinder(this))
     }

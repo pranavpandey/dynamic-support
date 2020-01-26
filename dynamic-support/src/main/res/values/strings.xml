@@ -17,7 +17,7 @@
 
 <resources>
 
-    <!-- Dynamic activity -->
+    <!-- Activity -->
     <string name="ads_navigation_drawer_open">Open navigation drawer</string>
     <string name="ads_navigation_drawer_close">Close navigation drawer</string>
 
@@ -107,6 +107,8 @@
     <string name="ads_perm_granted_desc">This permission has been granted.</string>
     <string name="ads_perm_denied">Denied</string>
     <string name="ads_perm_denied_desc">To grant this permission, go to App info &gt; Permissions. Tap to go to the App info.</string>
+    <string name="ads_perm_reinstall">Reinstall</string>
+    <string name="ads_perm_reinstall_desc">To grant this permission, please reinstall the app. Tap to go to the App info.</string>
     <string name="ads_perm_default">Permission</string>
     <string name="ads_perm_default_desc">This permission is required to perform some actions.</string>
     <string name="ads_perm_default_explain">Explanation.</string>
@@ -174,7 +176,9 @@
     <string name="ads_backup_option_delete">Delete</string>
     <string name="ads_backup_send">Send backup</string>
 
-    <!-- App theme -->
+    <!-- Theme -->
+    <string name="ads_dynamic_theme">Dynamic theme</string>
+    <string name="ads_dynamic_theme_summary">Theme applied by the receiver.</string>
     <string name="ads_theme">Theme</string>
     <string name="ads_theme_customise_desc">Configure the theme below.</string>
     <string name="ads_theme_adjust_desc">Theme will be adjusted automatically according to the current Android version.</string>
@@ -230,8 +234,15 @@
     <string name="ads_theme_import_done">Theme has been imported successfully.</string>
     <string name="ads_theme_export_done">Theme has been exported successfully.</string>
     <string name="ads_theme_export_error">Unable to save theme.</string>
-    <string name="ads_theme_copy_done">Theme has been copied successfully.</string>
+    <string name="ads_theme_copy_done">Theme copied successfully.</string>
+    <string name="ads_theme_edit_done">Theme has been edited successfully.</string>
+    <string name="ads_theme_save_done">Theme saved successfully.</string>
+    <string name="ads_theme_delete_done">Theme deleted successfully.</string>
     <string name="ads_theme_format_saved">Theme saved: %1$s</string>
+    <string name="ads_theme_presets">Theme presets</string>
+    <string name="ads_theme_presets_desc">Download via Google Play.</string>
+    <string name="ads_theme_presets_options">Tap for options</string>
+    <string name="ads_theme_presets_import">Tap to import</string>
 
     <!-- Theme -->
     <string name="ads_theme_toast_default">Default toast message</string>
@@ -259,7 +270,7 @@
     <string name="ads_theme_entry_light_purple">Light purple</string>
     <string name="ads_theme_entry_light_orange">Light orange</string>
     <string name="ads_theme_entry_light_brown">Light brown</string>
-    <string name="ads_theme_entry_light_grey">Light grey</string>
+    <string name="ads_theme_entry_light_gray">Light gray</string>
     <string name="ads_theme_entry_dark_indigo">Dark indigo</string>
     <string name="ads_theme_entry_dark_red">Dark red</string>
     <string name="ads_theme_entry_dark_blue">Dark blue</string>
@@ -268,7 +279,7 @@
     <string name="ads_theme_entry_dark_purple">Dark purple</string>
     <string name="ads_theme_entry_dark_orange">Dark orange</string>
     <string name="ads_theme_entry_dark_brown">Dark brown</string>
-    <string name="ads_theme_entry_dark_grey">Dark grey</string>
+    <string name="ads_theme_entry_dark_gray">Dark gray</string>
 
     <!-- Visibility -->
     <string name="ads_visibility_show">Show</string>
@@ -345,12 +356,13 @@
     <string name="ads_info_privacy_policy_terms_desc">Privacy policy and terms of use.</string>
     <string name="ads_info_apps">More apps</string>
     <string name="ads_info_apps_desc">Try other apps by me via Google Play.</string>
-    <string name="ads_info_gplus_desc">Join official community to try the test releases.</string>
-    <string name="ads_info_facebook_desc">Like official page to get the latest news and updates.</string>
+    <string name="ads_info_gplus_desc">Join the official community to try test releases.</string>
+    <string name="ads_info_facebook_desc">Like the official page to get the latest news and updates.</string>
     <string name="ads_info_xda_desc">Follow the official support forum on XDA.</string>
     <string name="ads_info_website">Website</string>
+    <string name="ads_info_website_desc">Visit the official website for more info.</string>
     <string name="ads_info_website_me_desc">A place for me on the web.</string>
-    <string name="ads_info_twitter_me_desc">Get latest tweets about my life and work.</string>
+    <string name="ads_info_twitter_me_desc">Get the latest tweets about my life and work.</string>
     <string name="ads_info_facebook_me_desc">Become a friend or follow to know more about me.</string>
     <string name="ads_info_gplus_me_desc">Circle or follow to grow the community.</string>
     <string name="ads_info_linkedin_me_desc">Anything good for me? Reach me via LinkedIn.</string>

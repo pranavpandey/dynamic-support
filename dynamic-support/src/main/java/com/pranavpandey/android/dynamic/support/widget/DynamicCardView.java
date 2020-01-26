@@ -154,7 +154,9 @@ public class DynamicCardView extends CardView implements
                     .resolveColorType(mContrastWithColorType);
         }
 
-        setCorner((float) DynamicTheme.getInstance().get().getCornerRadius());
+        if (getCorner() != 0) {
+            setCorner((float) DynamicTheme.getInstance().get().getCornerRadius());
+        }
         setColor();
     }
 

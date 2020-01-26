@@ -207,24 +207,24 @@
     <color name="ads_window_background_brown_light">#BCAAA4</color>
     <color name="ads_window_background_brown_light_surface">#C9BBB6</color>
 
-    <!-- Grey theme -->
-    <color name="ads_color_grey">#9E9E9E</color>
-    <color name="ads_color_grey_dark">#616161</color>
-    <color name="ads_color_grey_text">#BCAAA4</color>
-    <color name="ads_color_grey_text_dark">#BDBDBD</color>
-    <color name="ads_window_background_grey">#424242</color>
-    <color name="ads_window_background_grey_surface">#4F4F4F</color>
-    <color name="ads_window_background_grey_light">#EEEEEE</color>
-    <color name="ads_window_background_grey_light_surface">#F1F1F1</color>
+    <!-- Gray theme -->
+    <color name="ads_color_gray">#9E9E9E</color>
+    <color name="ads_color_gray_dark">#616161</color>
+    <color name="ads_color_gray_text">#BCAAA4</color>
+    <color name="ads_color_gray_text_dark">#BDBDBD</color>
+    <color name="ads_window_background_gray">#424242</color>
+    <color name="ads_window_background_gray_surface">#4F4F4F</color>
+    <color name="ads_window_background_gray_light">#EEEEEE</color>
+    <color name="ads_window_background_gray_light_surface">#F1F1F1</color>
 
-    <!-- Blue Grey theme -->
-    <color name="ads_color_blue_grey">#546E7A</color>
-    <color name="ads_color_blue_grey_dark">#455A64</color>
-    <color name="ads_color_blue_grey_text">#B0BEC5</color>
-    <color name="ads_color_blue_grey_text_dark">#78909C</color>
-    <color name="ads_window_background_blue_grey">#37474F</color>
-    <color name="ads_window_background_blue_grey_surface">#45535B</color>
-    <color name="ads_window_background_blue_grey_light">#B0BEC5</color>
-    <color name="ads_window_background_blue_grey_light_surface">#BFCBD0</color>
+    <!-- Blue Gray theme -->
+    <color name="ads_color_blue_gray">#546E7A</color>
+    <color name="ads_color_blue_gray_dark">#455A64</color>
+    <color name="ads_color_blue_gray_text">#B0BEC5</color>
+    <color name="ads_color_blue_gray_text_dark">#78909C</color>
+    <color name="ads_window_background_blue_gray">#37474F</color>
+    <color name="ads_window_background_blue_gray_surface">#45535B</color>
+    <color name="ads_window_background_blue_gray_light">#B0BEC5</color>
+    <color name="ads_window_background_blue_gray_light_surface">#BFCBD0</color>
 
 </resources>

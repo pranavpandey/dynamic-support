@@ -125,8 +125,6 @@ public class DynamicPermissionsFragment extends DynamicFragment {
         super.onCreate(savedInstanceState);
 
         setResult(Activity.RESULT_CANCELED, null, false);
-
-        setHasOptionsMenu(true);
     }
 
     @Override
@@ -175,6 +173,8 @@ public class DynamicPermissionsFragment extends DynamicFragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        setHasOptionsMenu(true);
 
         initPermissions();
 
@@ -269,7 +269,8 @@ public class DynamicPermissionsFragment extends DynamicFragment {
         permissions = DynamicPermissions.getInstance()
                 .getPermissionItemArrayList(permissionsArray);
 
-        mDynamicPermissionsView.setPermissions(permissions, new DynamicPermissionsView.PermissionListener() {
+        mDynamicPermissionsView.setPermissions(permissions,
+                new DynamicPermissionsView.PermissionListener() {
             @Override
             public void onPermissionSelected(@NonNull View view, int position,
                                              @NonNull DynamicPermission dynamicPermission) {

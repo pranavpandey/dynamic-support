@@ -37,6 +37,8 @@
         <attr name="ads_subtitle" format="string" />
         <!-- Optional description that will be applied to this view. -->
         <attr name="ads_description" format="string" />
+        <!-- Optional status that will be applied to this view. -->
+        <attr name="ads_status" format="string" />
         <!-- Optional big drawable that will be applied to this view. -->
         <attr name="ads_iconBig" format="reference" />
         <!-- Optional icon color that will be applied to this view. -->

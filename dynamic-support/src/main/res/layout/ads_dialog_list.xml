@@ -19,7 +19,7 @@
 <!--
     This layout file is used by the AlertDialog when displaying a list of items.
     This layout file is inflated and used as the ListView to display the items.
-    Assign an ID so its state will be saved/restored.
+    Assign an _ID so its state will be saved/restored.
 -->
 <view
     xmlns:android="http://schemas.android.com/apk/res/android"

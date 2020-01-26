@@ -119,13 +119,13 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     /**
      * Initialize this view with default settings.
      */
-    private void initialize() {
+    protected void initialize() {
         inflate(getContext(), getLayoutRes(), this);
         mShortAnimationDuration = getResources().getInteger(
                 android.R.integer.config_shortAnimTime);
 
         mSwipeRefreshLayout = findViewById(R.id.ads_swipe_refresh_layout);
-        mRecyclerView = findViewById(R.id.ads_dynamic_recycler_view);
+        mRecyclerView = findViewById(R.id.ads_recycler_view);
         mProgressBar = findViewById(R.id.ads_progress);
 
         setRecyclerViewLayoutManager(getRecyclerViewLayoutManager());
@@ -225,6 +225,15 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      */
     public RecyclerView getRecyclerView() {
         return mRecyclerView;
+    }
+
+    /**
+     * Get the layout manager used by recycler view.
+     *
+     * @return The layout manager used by recycler view.
+     */
+    public @Nullable RecyclerView.LayoutManager getLayoutManager() {
+        return mRecyclerView == null ? null : mRecyclerView.getLayoutManager();
     }
 
     /**

@@ -23,6 +23,6 @@
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
         style="@style/Widget.DynamicApp.Scroller.Vertical"
-        android:id="@+id/ads_dynamic_recycler_view" />
+        android:id="@+id/ads_recycler_view" />
 
 </FrameLayout>

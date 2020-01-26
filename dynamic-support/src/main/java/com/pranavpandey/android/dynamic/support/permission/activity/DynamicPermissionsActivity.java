@@ -57,16 +57,16 @@ public abstract class DynamicPermissionsActivity extends DynamicActivity
         setNavigationClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DynamicPermissionsActivity.this.finish();
+                finish();
             }
         });
 
         setAppBarBackDrop(R.drawable.ads_ic_security);
 
         addHeader(R.layout.ads_header_appbar, true);
-        ((ImageView) findViewById(R.id.ads_header_toolbar_icon))
+        ((ImageView) findViewById(R.id.ads_header_appbar_icon))
                 .setImageDrawable(getApplicationInfo().loadIcon(getPackageManager()));
-        ((TextView) findViewById(R.id.ads_header_toolbar_title))
+        ((TextView) findViewById(R.id.ads_header_appbar_title))
                 .setText(getApplicationInfo().loadLabel(getPackageManager()));
 
         setupFragment(getIntent(), false);
@@ -104,7 +104,7 @@ public abstract class DynamicPermissionsActivity extends DynamicActivity
      * @param count The no. of permissions shown by this activity.
      */
     public void updateSubtitle(int count) {
-        ((TextView) findViewById(R.id.ads_header_toolbar_subtitle))
+        ((TextView) findViewById(R.id.ads_header_appbar_subtitle))
                 .setText(count == 1
                         ? R.string.ads_permissions_subtitle_single
                         : R.string.ads_permissions_subtitle);

@@ -254,7 +254,9 @@ public class DynamicTextInputLayout extends TextInputLayout implements
                     DynamicColorUtils.getStateColor(mContrastWithColor,
                     WidgetDefaults.ADS_STATE_BOX_LIGHT, WidgetDefaults.ADS_STATE_BOX_DARK));
 
-            setBoxBackgroundColor(boxColor);
+            if (getBoxBackgroundMode() == BOX_BACKGROUND_FILLED) {
+                setBoxBackgroundColor(boxColor);
+            }
             setBoxStrokeColor(mColor);
             DynamicInputUtils.setColor(this, mColor);
         }

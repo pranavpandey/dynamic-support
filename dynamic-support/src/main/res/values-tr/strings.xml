@@ -17,7 +17,7 @@
 
 <resources>
 
-    <!-- Dynamic activity -->
+    <!-- Activity -->
     <string name="ads_navigation_drawer_open">Gezinti çekmecesini aç</string>
     <string name="ads_navigation_drawer_close">Gezinti çekmecesini kapat</string>
 
@@ -107,6 +107,8 @@
     <string name="ads_perm_granted_desc">Bu izin verildi.</string>
     <string name="ads_perm_denied">Reddedildi</string>
     <string name="ads_perm_denied_desc">Bu izni vermek için Uygulama bilgileri &gt; İzinler\'e gidin. Uygulama bilgilerine gitmek için dokunun.</string>
+    <string name="ads_perm_reinstall">Yeniden Yükleyin</string>
+    <string name="ads_perm_reinstall_desc">Bu izni vermek için lütfen uygulamayı tekrar yükleyin. Uygulama bilgilerine gitmek için dokunun.</string>
     <string name="ads_perm_default">İzin</string>
     <string name="ads_perm_default_desc">Bu izin bazı eylemleri gerçekleştirmek için gereklidir.</string>
     <string name="ads_perm_default_explain">Açıklama.</string>
@@ -174,7 +176,9 @@
     <string name="ads_backup_option_delete">Sil</string>
     <string name="ads_backup_send">Yedeği gönder</string>
 
-    <!-- App theme -->
+    <!-- Theme -->
+    <string name="ads_dynamic_theme">Dinamik tema</string>
+    <string name="ads_dynamic_theme_summary">Alıcı tarafından uygulanan tema.</string>
     <string name="ads_theme">Tema</string>
     <string name="ads_theme_customise_desc">Aşağıdan temayı yapılandırın.</string>
     <string name="ads_theme_adjust_desc">Tema mevcut Android sürümüne göre otomatik olarak ayarlanacaktır.</string>
@@ -231,7 +235,14 @@
     <string name="ads_theme_export_done">Tema başarıyla dışa aktarıldı.</string>
     <string name="ads_theme_export_error">Tema kaydedilemiyor.</string>
     <string name="ads_theme_copy_done">Tema başarıyla kopyalandı.</string>
+    <string name="ads_theme_edit_done">Tema başarıyla düzenlendi.</string>
+    <string name="ads_theme_save_done">Tema başarıyla kaydedildi.</string>
+    <string name="ads_theme_delete_done">Tema başarıyla silindi.</string>
     <string name="ads_theme_format_saved">Tema kaydedildi: %1$s</string>
+    <string name="ads_theme_presets">Tema ön ayarları</string>
+    <string name="ads_theme_presets_desc">Google Play üzerinden indirin.</string>
+    <string name="ads_theme_presets_options">Seçenekler için dokunun</string>
+    <string name="ads_theme_presets_import">İçe aktarmak için dokunun</string>
 
     <!-- Theme -->
     <string name="ads_theme_toast_default">Varsayılan bildirim mesajı</string>
@@ -259,7 +270,7 @@
     <string name="ads_theme_entry_light_purple">Açık mor</string>
     <string name="ads_theme_entry_light_orange">Açık turuncu</string>
     <string name="ads_theme_entry_light_brown">Açık kahverengi</string>
-    <string name="ads_theme_entry_light_grey">Açık gri</string>
+    <string name="ads_theme_entry_light_gray">Açık gri</string>
     <string name="ads_theme_entry_dark_indigo">Koyu çivit mavisi</string>
     <string name="ads_theme_entry_dark_red">Koyu kırmızı</string>
     <string name="ads_theme_entry_dark_blue">Koyu mavi</string>
@@ -268,7 +279,7 @@
     <string name="ads_theme_entry_dark_purple">Koyu mor</string>
     <string name="ads_theme_entry_dark_orange">Koyu turuncu</string>
     <string name="ads_theme_entry_dark_brown">Koyu kahverengi</string>
-    <string name="ads_theme_entry_dark_grey">Koyu gri</string>
+    <string name="ads_theme_entry_dark_gray">Koyu gri</string>
 
     <!-- Visibility -->
     <string name="ads_visibility_show">Göster</string>
@@ -349,6 +360,7 @@
     <string name="ads_info_facebook_desc">En son haberleri ve güncellemeleri almak için resmi sayfayı beğenin.</string>
     <string name="ads_info_xda_desc">XDA\'daki resmi destek forumunu takip edin.</string>
     <string name="ads_info_website">Web sitesi</string>
+    <string name="ads_info_website_desc">Daha fazla bilgi için resmi web sitesini ziyaret edin.</string>
     <string name="ads_info_website_me_desc">Web\'de benim için bir yer.</string>
     <string name="ads_info_twitter_me_desc">Hayatım ve işim hakkında en son tweetleri alın.</string>
     <string name="ads_info_facebook_me_desc">Hakkımda daha fazla bilgi edinmek için arkadaş olun veya takip edin.</string>

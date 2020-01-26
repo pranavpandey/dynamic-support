@@ -25,6 +25,15 @@
     android:background="?selectableItemBackground"
     android:orientation="horizontal">
 
+    <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+        android:id="@+id/ads_array_item_icon"
+        android:layout_width="@dimen/ads_popup_selector_icon_size"
+        android:layout_height="@dimen/ads_popup_selector_icon_size"
+        android:layout_marginRight="@dimen/ads_page_horizontal_margin"
+        android:layout_marginEnd="@dimen/ads_page_horizontal_margin"
+        android:layout_gravity="center_vertical"
+        app:ads_colorType="tint_background" />
+
     <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
         android:id="@+id/ads_array_item_text"
         android:layout_width="0dp"

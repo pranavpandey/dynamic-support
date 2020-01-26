@@ -18,7 +18,6 @@ package com.pranavpandey.android.dynamic.support.sample.binder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicInfoBigBinder
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder
 import com.pranavpandey.android.dynamic.support.sample.R
@@ -29,8 +28,8 @@ import com.pranavpandey.android.dynamic.support.sample.adapter.LicensesAdapter
  */
 class LicenseBinder(binderAdapter: LicensesAdapter) : DynamicInfoBigBinder(binderAdapter) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return DynamicInfoBigBinder.ViewHolder(LayoutInflater.from(parent.context)
-                .inflate(R.layout.layout_license_card, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(
+                R.layout.layout_license_card, parent, false))
     }
 }

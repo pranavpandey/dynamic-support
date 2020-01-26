@@ -52,7 +52,7 @@ public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHold
      *
      * @return The view holder associated with this data binder.
      */
-    public abstract VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType);
+    public abstract @NonNull VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType);
 
     /**
      * Bind {@link RecyclerView.ViewHolder} at a particular position.
@@ -60,7 +60,7 @@ public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHold
      * @param viewHolder The view holder for the recycler view.
      * @param position Position to bind the view holder.
      */
-    public abstract void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position);
+    public abstract void onBindViewHolder(@NonNull VH viewHolder, int position);
 
     /**
      * Get the recycler view adapter associated with this data binder.

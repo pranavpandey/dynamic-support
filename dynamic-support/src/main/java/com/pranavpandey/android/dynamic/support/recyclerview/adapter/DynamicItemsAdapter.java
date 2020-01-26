@@ -42,7 +42,7 @@ public class DynamicItemsAdapter extends DynamicSimpleBinderAdapter<DynamicRecyc
     /**
      * Constructor to initialize an object of this class.
      *
-     * @param dataSet The data set used by this adapter.
+     * @param dataSet The data set for this adapter.
      */
     public DynamicItemsAdapter(@NonNull Collection<? extends DynamicItem> dataSet) {
         this.mDataSet = new ArrayList<>(dataSet);

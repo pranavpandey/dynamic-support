@@ -22,33 +22,44 @@
     <integer name="ads_config_activity_short_duration">150</integer>
     <integer name="ads_config_activity_default_duration">220</integer>
 
-    <!-- Span counts -->
-    <integer name="ads_span_normal">1</integer>
-    <integer name="ads_span_no_drawer">1</integer>
-    <integer name="ads_span_compact">1</integer>
-    <integer name="ads_span_compact_dialog">1</integer>
-
-    <!-- Tutorial -->
-    <item name="ads_weight_tutorial_image" type="integer" format="float">0.36</item>
-    <item name="ads_weight_tutorial_text" type="integer" format="float">0.64</item>
-
-    <!-- Fill -->
-    <item name="ads_fill_alpha_base" format="float" type="dimen">0.2</item>
-    <item name="ads_fill_alpha_secondary" format="float" type="dimen">0.6</item>
-    <item name="ads_fill_alpha_shadow" format="float" type="dimen">0.1</item>
-
-    <!-- Corner size -->
-    <integer name="ads_corner_radius">2</integer>
-    <integer name="ads_corner_radius_min">0</integer>
-    <integer name="ads_corner_radius_max">24</integer>
-    <integer name="ads_corner_radius_widget_max">28</integer>
-    <integer name="ads_corner_radius_interval">2</integer>
+    <!-- Activity -->
+    <item name="ads_shadow_alpha" type="integer" format="float">1.0</item>
 
     <!-- Font -->
     <integer name="ads_font_scale">100</integer>
     <integer name="ads_font_scale_min">50</integer>
     <integer name="ads_font_scale_max">150</integer>
     <integer name="ads_font_scale_interval">5</integer>
+
+    <!-- Span -->
+    <integer name="ads_span_normal">1</integer>
+    <integer name="ads_span_no_drawer">1</integer>
+    <integer name="ads_span_compact">1</integer>
+    <integer name="ads_span_compact_dialog">1</integer>
+
+    <!-- Alpha -->
+    <item name="ads_empty_view_alpha" type="integer" format="float">0.6</item>
+
+    <!-- Tutorial -->
+    <item name="ads_weight_tutorial_image" type="integer" format="float">0.36</item>
+    <item name="ads_weight_tutorial_text" type="integer" format="float">0.64</item>
+
+    <!-- Fill -->
+    <item name="ads_fill_alpha_shadow" format="float" type="dimen">0.1</item>
+    <item name="ads_fill_alpha_base" format="float" type="dimen">0.2</item>
+    <item name="ads_fill_alpha_secondary" format="float" type="dimen">0.6</item>
+    <item name="ads_fill_alpha_medium" format="float" type="dimen">0.4</item>
+
+    <!-- Corner -->
+    <integer name="ads_corner_radius">2</integer>
+    <integer name="ads_corner_radius_min">0</integer>
+    <integer name="ads_corner_radius_max">24</integer>
+    <integer name="ads_corner_radius_widget_max">28</integer>
+    <integer name="ads_corner_radius_interval">2</integer>
+
+    <!-- Icon -->
+    <integer name="ads_visibility_preference_icon">2</integer>
+    <integer name="ads_visibility_preference_theme_icon">2</integer>
 
     <!-- Dialog -->
     <item name="ads_dialog_min_width_major" type="dimen">65%</item>

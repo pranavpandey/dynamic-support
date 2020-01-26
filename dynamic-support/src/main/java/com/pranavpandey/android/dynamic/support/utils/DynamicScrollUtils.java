@@ -352,21 +352,21 @@ public final class DynamicScrollUtils {
 
         Class<?> clazz = NavigationView.class;
         for (Field field : clazz.getDeclaredFields()) {
-            switch (field.getName()) {
-                case "presenter":
-                    field.setAccessible(true);
-                    NAVIGATION_VIEW_FIELD_PRESENTER = field;
-                    break;
+            if (field.getName().equals("presenter")) {
+                field.setAccessible(true);
+                NAVIGATION_VIEW_FIELD_PRESENTER = field;
+
+                break;
             }
         }
 
         Class<?> clazz1 = NavigationMenuPresenter.class;
         for (Field field : clazz1.getDeclaredFields()) {
-            switch (field.getName()) {
-                case "menuView":
-                    field.setAccessible(true);
-                    NAVIGATION_VIEW_FIELD_RECYCLER_VIEW = field;
-                    break;
+            if (field.getName().equals("menuView")) {
+                field.setAccessible(true);
+                NAVIGATION_VIEW_FIELD_RECYCLER_VIEW = field;
+
+                break;
             }
         }
     }
@@ -431,19 +431,25 @@ public final class DynamicScrollUtils {
      * @param color The edge effect color to be set.
      * @param scrollListener Scroll listener to set color on over scroll.
      */
-    private static void setEdgeEffectColor(@NonNull RecyclerView recyclerView, 
+    public static void setEdgeEffectColor(@Nullable RecyclerView recyclerView,
             final @ColorInt int color, @Nullable RecyclerView.OnScrollListener scrollListener) {
+        if (recyclerView == null) {
+            return;
+        }
+
         if (scrollListener == null) {
             scrollListener =
                     new RecyclerView.OnScrollListener() {
                         @Override
-                        public void onScrollStateChanged(@NonNull RecyclerView recyclerView, 
+                        public void onScrollStateChanged(@NonNull RecyclerView recyclerView,
                                 int newState) {
                             super.onScrollStateChanged(recyclerView, newState);
 
                             setEdgeEffectColor(recyclerView, color);
                         }
                     };
+
+            recyclerView.removeOnScrollListener(scrollListener);
             recyclerView.addOnScrollListener(scrollListener);
         }
 
@@ -558,10 +564,15 @@ public final class DynamicScrollUtils {
                 final Drawable mEdge = (Drawable) EDGE_EFFECT_FIELD_EDGE.get(edgeEffect);
                 EDGE_EFFECT_FIELD_GLOW.setAccessible(true);
                 final Drawable mGlow = (Drawable) EDGE_EFFECT_FIELD_GLOW.get(edgeEffect);
-                mEdge.setColorFilter(color, PorterDuff.Mode.SRC_IN);
-                mGlow.setColorFilter(color, PorterDuff.Mode.SRC_IN);
-                mEdge.setCallback(null);
-                mGlow.setCallback(null);
+                if (mGlow != null) {
+                    mGlow.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+                    mGlow.setCallback(null);
+                }
+
+                if (mEdge != null) {
+                    mEdge.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+                    mEdge.setCallback(null);
+                }
             } catch (Exception ignored) {
             }
         }
@@ -593,7 +604,11 @@ public final class DynamicScrollUtils {
      * @param view The view to set the scroll bar color.
      * @param color The scroll bar color.
      */
-    public static void setScrollBarColor(@NonNull View view, @ColorInt int color) {
+    public static void setScrollBarColor(@Nullable View view, @ColorInt int color) {
+        if (view == null) {
+            return;
+        }
+
         initializeScrollBarFields(view);
         color = DynamicColorUtils.getLessVisibleColor(color);
 
@@ -603,17 +618,23 @@ public final class DynamicScrollUtils {
 
         try {
             Object mScrollCache = VIEW_SCROLL_BAR_FIELD_CACHE.get(view);
-            VIEW_SCROLL_BAR_FIELD =
-                    mScrollCache.getClass().getDeclaredField("scrollBar");
-            VIEW_SCROLL_BAR_FIELD.setAccessible(true);
-            Object scrollBar = VIEW_SCROLL_BAR_FIELD.get(mScrollCache);
-            VIEW_SCROLL_BAR_VERTICAL_THUMB =
-                    scrollBar.getClass().getDeclaredField("mVerticalThumb");
-            VIEW_SCROLL_BAR_VERTICAL_THUMB.setAccessible(true);
 
-            if (VIEW_SCROLL_BAR_VERTICAL_THUMB != null) {
-                DynamicDrawableUtils.colorizeDrawable((Drawable)
-                        VIEW_SCROLL_BAR_VERTICAL_THUMB.get(scrollBar), color);
+            if (mScrollCache != null) {
+                VIEW_SCROLL_BAR_FIELD =
+                        mScrollCache.getClass().getDeclaredField("scrollBar");
+                VIEW_SCROLL_BAR_FIELD.setAccessible(true);
+                Object scrollBar = VIEW_SCROLL_BAR_FIELD.get(mScrollCache);
+
+                if (scrollBar != null) {
+                    VIEW_SCROLL_BAR_VERTICAL_THUMB =
+                            scrollBar.getClass().getDeclaredField("mVerticalThumb");
+                    VIEW_SCROLL_BAR_VERTICAL_THUMB.setAccessible(true);
+
+                    if (VIEW_SCROLL_BAR_VERTICAL_THUMB != null) {
+                        DynamicDrawableUtils.colorizeDrawable((Drawable)
+                                VIEW_SCROLL_BAR_VERTICAL_THUMB.get(scrollBar), color);
+                    }
+                }
             }
 
             // Fix for Android 9 developer preview. For more info, please

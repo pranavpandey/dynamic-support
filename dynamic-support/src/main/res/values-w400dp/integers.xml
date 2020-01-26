@@ -21,7 +21,10 @@
     <item name="ads_weight_tutorial_image" type="integer" format="float">0.4</item>
     <item name="ads_weight_tutorial_text" type="integer" format="float">0.6</item>
 
-    <!-- Span counts -->
+    <!-- Span -->
     <integer name="ads_span_compact">2</integer>
+
+    <!-- Icon -->
+    <integer name="ads_visibility_preference_theme_icon">0</integer>
 
 </resources>

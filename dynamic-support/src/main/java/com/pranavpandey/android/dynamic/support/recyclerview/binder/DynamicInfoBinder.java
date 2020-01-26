@@ -32,7 +32,7 @@ import com.pranavpandey.android.dynamic.support.view.DynamicInfoView;
 /**
  * Binder to bind the {@link DynamicInfo} which can be used with the {@link DynamicBinderAdapter}.
  */
-public class DynamicInfoBinder extends DynamicRecyclerViewBinder {
+public class DynamicInfoBinder extends DynamicRecyclerViewBinder<DynamicInfoBinder.ViewHolder> {
 
     /**
      * Data used by this binder.
@@ -44,31 +44,30 @@ public class DynamicInfoBinder extends DynamicRecyclerViewBinder {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public @NonNull ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.ads_layout_info_view, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        ViewHolder viewHolderInfo = (ViewHolder) viewHolder;
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         DynamicInfo dynamicInfo = getData();
 
         if (dynamicInfo != null) {
-            viewHolderInfo.getDynamicInfoView().setIcon(dynamicInfo.getIcon());
-            viewHolderInfo.getDynamicInfoView().setIconBig(dynamicInfo.getIconBig());
-            viewHolderInfo.getDynamicInfoView().setTitle(dynamicInfo.getTitle());
-            viewHolderInfo.getDynamicInfoView().setSubtitle(dynamicInfo.getSubtitle());
-            viewHolderInfo.getDynamicInfoView().setDescription(dynamicInfo.getDescription());
-            viewHolderInfo.getDynamicInfoView().setLinks(dynamicInfo.getLinks());
-            viewHolderInfo.getDynamicInfoView().setLinksSubtitles(dynamicInfo.getLinksSubtitles());
-            viewHolderInfo.getDynamicInfoView().setLinksUrls(dynamicInfo.getLinksUrls());
-            viewHolderInfo.getDynamicInfoView().setLinksIconsId(dynamicInfo.getLinksIconsResId());
-            viewHolderInfo.getDynamicInfoView().setLinksDrawables(dynamicInfo.getLinksDrawables());
-            viewHolderInfo.getDynamicInfoView().setLinksColorsId(dynamicInfo.getLinksColorsResId());
-            viewHolderInfo.getDynamicInfoView().setLinksColors(dynamicInfo.getLinksColors());
+            viewHolder.getDynamicInfo().setIcon(dynamicInfo.getIcon());
+            viewHolder.getDynamicInfo().setIconBig(dynamicInfo.getIconBig());
+            viewHolder.getDynamicInfo().setTitle(dynamicInfo.getTitle());
+            viewHolder.getDynamicInfo().setSubtitle(dynamicInfo.getSubtitle());
+            viewHolder.getDynamicInfo().setDescription(dynamicInfo.getDescription());
+            viewHolder.getDynamicInfo().setLinks(dynamicInfo.getLinks());
+            viewHolder.getDynamicInfo().setLinksSubtitles(dynamicInfo.getLinksSubtitles());
+            viewHolder.getDynamicInfo().setLinksUrls(dynamicInfo.getLinksUrls());
+            viewHolder.getDynamicInfo().setLinksIconsId(dynamicInfo.getLinksIconsResId());
+            viewHolder.getDynamicInfo().setLinksDrawables(dynamicInfo.getLinksDrawables());
+            viewHolder.getDynamicInfo().setLinksColorsId(dynamicInfo.getLinksColorsResId());
+            viewHolder.getDynamicInfo().setLinksColors(dynamicInfo.getLinksColors());
 
-            viewHolderInfo.getDynamicInfoView().onUpdate();
+            viewHolder.getDynamicInfo().onUpdate();
         }
     }
 
@@ -107,7 +106,7 @@ public class DynamicInfoBinder extends DynamicRecyclerViewBinder {
         /**
          * Dynamic info view for this view holder.
          */
-        private final DynamicInfoView dynamicInfoView;
+        private final DynamicInfoView dynamicInfo;
 
         /**
          * Constructor to initialize views from the supplied layout.
@@ -117,7 +116,7 @@ public class DynamicInfoBinder extends DynamicRecyclerViewBinder {
         public ViewHolder(View view) {
             super(view);
 
-            dynamicInfoView = view.findViewById(R.id.ads_dynamic_info_view);
+            dynamicInfo = view.findViewById(R.id.ads_dynamic_info_view);
         }
 
         /**
@@ -125,8 +124,8 @@ public class DynamicInfoBinder extends DynamicRecyclerViewBinder {
          *
          * @return The dynamic info view for this view holder.
          */
-        public DynamicInfoView getDynamicInfoView() {
-            return dynamicInfoView;
+        public DynamicInfoView getDynamicInfo() {
+            return dynamicInfo;
         }
     }
 }

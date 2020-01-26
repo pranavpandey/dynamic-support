@@ -17,6 +17,43 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Theme entries for the dynamic theme. -->
+    <string-array name="ads_theme_dynamic_entries">
+        <item>@string/ads_theme_entry_auto</item>
+        <item>@string/ads_theme_entry_value</item>
+        <item>@string/ads_theme_entry_data</item>
+        <item>@string/ads_theme_entry_disable</item>
+    </string-array>
+
+    <!-- Theme values for the dynamic theme. -->
+    <string-array name="ads_theme_dynamic_values">
+        <!-- Auto -->
+        <item>-3</item>
+        <!-- Value -->
+        <item>1</item>
+        <!-- Data -->
+        <item>2</item>
+        <!-- Disable -->
+        <item>0</item>
+    </string-array>
+
+    <!-- Theme entries for auto, day and night. -->
+    <string-array name="ads_theme_entries">
+        <item>@string/ads_theme_entry_auto</item>
+        <item>@string/ads_theme_entry_day</item>
+        <item>@string/ads_theme_entry_night</item>
+    </string-array>
+
+    <!-- Theme values for auto, day and night. -->
+    <string-array name="ads_theme_values">
+        <!-- Auto -->
+        <item>-3</item>
+        <!-- Day -->
+        <item>2</item>
+        <!-- Night -->
+        <item>3</item>
+    </string-array>
+
     <!-- Theme entries for auto, day, night and custom. -->
     <string-array name="ads_theme_entries_all">
         <item>@string/ads_theme_entry_auto</item>
@@ -109,7 +146,7 @@
         <item>@color/ads_window_background_yellow_light</item>
         <item>@color/ads_window_background_orange_light</item>
         <item>@color/ads_window_background_brown_light</item>
-        <item>@color/ads_window_background_blue_grey_light</item>
+        <item>@color/ads_window_background_blue_gray_light</item>
         <item>@color/ads_window_background_white_light</item>
         <item>@color/ads_window_background_red</item>
         <item>@color/ads_window_background_purple</item>
@@ -120,7 +157,7 @@
         <item>@color/ads_window_background_yellow</item>
         <item>@color/ads_window_background_orange</item>
         <item>@color/ads_window_background_brown</item>
-        <item>@color/ads_window_background_blue_grey</item>
+        <item>@color/ads_window_background_blue_gray</item>
         <item>@color/ads_window_background_black_light</item>
         <item>@color/ads_window_background_black</item>
     </integer-array>
@@ -138,7 +175,7 @@
         <item>@color/ads_window_background_yellow_light_surface</item>
         <item>@color/ads_window_background_orange_light_surface</item>
         <item>@color/ads_window_background_brown_light_surface</item>
-        <item>@color/ads_window_background_blue_grey_light_surface</item>
+        <item>@color/ads_window_background_blue_gray_light_surface</item>
         <item>@color/ads_window_background_white_light_surface</item>
         <item>@color/ads_window_background_red_surface</item>
         <item>@color/ads_window_background_purple_surface</item>
@@ -149,7 +186,7 @@
         <item>@color/ads_window_background_yellow_surface</item>
         <item>@color/ads_window_background_orange_surface</item>
         <item>@color/ads_window_background_brown_surface</item>
-        <item>@color/ads_window_background_blue_grey_surface</item>
+        <item>@color/ads_window_background_blue_gray_surface</item>
         <item>@color/ads_window_background_black_light_surface</item>
         <item>@color/ads_window_background_black_surface</item>
     </integer-array>
@@ -173,8 +210,8 @@
         <item>@color/ads_window_background_orange_light</item>
         <item>@color/ads_window_background_deep_orange_light</item>
         <item>@color/ads_window_background_brown_light</item>
-        <item>@color/ads_window_background_grey_light</item>
-        <item>@color/ads_window_background_blue_grey_light</item>
+        <item>@color/ads_window_background_gray_light</item>
+        <item>@color/ads_window_background_blue_gray_light</item>
         <item>@color/ads_window_background_white_light</item>
         <item>@color/ads_window_background_white</item>
     </integer-array>
@@ -198,8 +235,8 @@
         <item>@color/ads_window_background_orange</item>
         <item>@color/ads_window_background_deep_orange</item>
         <item>@color/ads_window_background_brown</item>
-        <item>@color/ads_window_background_grey</item>
-        <item>@color/ads_window_background_blue_grey</item>
+        <item>@color/ads_window_background_gray</item>
+        <item>@color/ads_window_background_blue_gray</item>
         <item>@color/ads_window_background_black_light</item>
         <item>@color/ads_window_background_black</item>
     </integer-array>
@@ -225,8 +262,8 @@
         <item>@color/ads_color_orange</item>
         <item>@color/ads_color_deep_orange</item>
         <item>@color/ads_color_brown</item>
-        <item>@color/ads_color_grey</item>
-        <item>@color/ads_color_blue_grey</item>
+        <item>@color/ads_color_gray</item>
+        <item>@color/ads_color_blue_gray</item>
         <item>@color/ads_color_white</item>
         <item>@color/ads_color_black</item>
     </integer-array>
@@ -252,8 +289,8 @@
         <item>@color/ads_color_orange_dark</item>
         <item>@color/ads_color_deep_orange_dark</item>
         <item>@color/ads_color_brown_dark</item>
-        <item>@color/ads_color_grey_dark</item>
-        <item>@color/ads_color_blue_grey_dark</item>
+        <item>@color/ads_color_gray_dark</item>
+        <item>@color/ads_color_blue_gray_dark</item>
         <item>@color/ads_color_white_dark</item>
         <item>@color/ads_color_black_dark</item>
     </integer-array>
@@ -279,8 +316,8 @@
         <item>@color/ads_color_orange_text</item>
         <item>@color/ads_color_deep_orange_text</item>
         <item>@color/ads_color_brown_text</item>
-        <item>@color/ads_color_grey_text</item>
-        <item>@color/ads_color_blue_grey_text</item>
+        <item>@color/ads_color_gray_text</item>
+        <item>@color/ads_color_blue_gray_text</item>
         <item>@color/ads_color_white_text</item>
         <item>@color/ads_color_black_text</item>
     </integer-array>
@@ -306,8 +343,8 @@
         <item>@color/ads_color_orange_text_dark</item>
         <item>@color/ads_color_deep_orange_text_dark</item>
         <item>@color/ads_color_brown_text_dark</item>
-        <item>@color/ads_color_grey_text_dark</item>
-        <item>@color/ads_color_blue_grey_text_dark</item>
+        <item>@color/ads_color_gray_text_dark</item>
+        <item>@color/ads_color_blue_gray_text_dark</item>
         <item>@color/ads_color_white_text_dark</item>
         <item>@color/ads_color_black_text_dark</item>
     </integer-array>

@@ -17,7 +17,7 @@
 
 <resources>
 
-    <!-- Dynamic activity -->
+    <!-- Activity -->
     <string name="ads_navigation_drawer_open">नैवाहन मेनू खोलें</string>
     <string name="ads_navigation_drawer_close">नैवाहान मेनू बंद करें</string>
 
@@ -106,7 +106,9 @@
     <string name="ads_perm_granted">दे दी गई है</string>
     <string name="ads_perm_granted_desc">यह अनुमति दे दी गई है।</string>
     <string name="ads_perm_denied">मना कर दिया गया</string>
-    <string name="ads_perm_denied_desc">यह अनुमति देने के लिए ऐप इन्फो &gt; अनुमतियां में जाएं।</string>
+    <string name="ads_perm_denied_desc">यह अनुमति देने के लिए ऐप जानकारी &gt; अनुमतियां में जाएं।</string>
+    <string name="ads_perm_reinstall">पुनर्स्थापना</string>
+    <string name="ads_perm_reinstall_desc">यह अनुमति देने के ऐप को पुनर्स्थापित करें। ऐप जानकारी &gt; अनुमतियां में जाने के लिए टैप करें।</string>
     <string name="ads_perm_default">अनुमति</string>
     <string name="ads_perm_default_desc">कुछ कार्यों के लिए इस अनुमति की आवश्यकता है।</string>
     <string name="ads_perm_default_explain">विवरण।</string>
@@ -174,12 +176,14 @@
     <string name="ads_backup_option_delete">उड़ाएं</string>
     <string name="ads_backup_send">बैकअप भेजें</string>
 
-    <!-- App theme -->
+    <!-- Theme -->
+    <string name="ads_dynamic_theme">गतिशील रंग-रूप</string>
+    <string name="ads_dynamic_theme_summary">रिसीवर द्वारा लागू रंग-रूप।</string>
     <string name="ads_theme">रंग-रूप</string>
-    <string name="ads_theme_customise_desc">रंग रूप बदलें।</string>
-    <string name="ads_theme_adjust_desc">आपके Android संस्करण के अनुसार रंग रूप बदला जाएगा।</string>
-    <string name="ads_theme_invalid">अमान्य रंग रूप</string>
-    <string name="ads_theme_invalid_desc">इस रंग रूप को वेरिफाई नहीं किया जा सका। दोबारा प्रयास करें।</string>
+    <string name="ads_theme_customise_desc">रंग-रूप बदलें।</string>
+    <string name="ads_theme_adjust_desc">आपके Android संस्करण के अनुसार रंग-रूप बदला जाएगा।</string>
+    <string name="ads_theme_invalid">अमान्य रंग-रूप</string>
+    <string name="ads_theme_invalid_desc">इस रंग-रूप को वेरिफाई नहीं किया जा सका। दोबारा प्रयास करें।</string>
     <string name="ads_theme_color_palette">रंग</string>
     <string name="ads_theme_color_palette_summary">मुख्य व माध्यमिक रंग।</string>
     <string name="ads_theme_color_background">पीछे का रंग</string>
@@ -200,38 +204,45 @@
     <string name="ads_theme_corner_size_summary">आप के कोने का आकार।</string>
     <string name="ads_theme_background_aware">बैकग्राउंड अवेयर</string>
     <string name="ads_theme_background_aware_desc">आसानी से देखने के लिए बैकग्राउंड के अनुसार रंग बदलें।</string>
-    <string name="ads_theme_app">ऐप का रंग रूप</string>
+    <string name="ads_theme_app">ऐप का रंग-रूप</string>
     <string name="ads_theme_app_summary">ऐप का स्टाइल।</string>
-    <string name="ads_theme_app_desc">दिन और रात के रंग रूप उपयोग लेने के लिए \"ऑटो\" चुनें।</string>
-    <string name="ads_theme_app_day">दिन के रंग रूप</string>
+    <string name="ads_theme_app_desc">दिन और रात के रंग-रूप उपयोग लेने के लिए \"ऑटो\" चुनें।</string>
+    <string name="ads_theme_app_day">दिन के रंग-रूप</string>
     <string name="ads_theme_app_day_summary">दिन में आप का स्टाइल।</string>
-    <string name="ads_theme_app_night">रात का रंग रूप</string>
+    <string name="ads_theme_app_night">रात का रंग-रूप</string>
     <string name="ads_theme_app_night_summary">रात को ऐप का स्टाइल।</string>
     <string name="ads_theme_app_day_night_desc">ये \"ऑटो\" थीम शुरू करने के बाद ही काम करेगा।</string>
     <string name="ads_theme_toast">टोस्ट मेसेज थीम</string>
-    <string name="ads_theme_toast_summary">मेसेज का रंग रूप ऐप के रंग के अनुसार बदलकर दिखाएं।</string>
+    <string name="ads_theme_toast_summary">मेसेज का रंग-रूप ऐप के रंग के अनुसार बदलकर दिखाएं।</string>
     <string name="ads_theme_toast_summary_unchecked">डिफॉल्ट मेसेज दिखाएं।</string>
-    <string name="ads_theme_navigation_bar">नाविगेशन बार का रंग रूप</string>
-    <string name="ads_theme_navigation_bar_summary">नविगेशन बार का रंग ऐप के रंग रूप के अनुसार बदलें।</string>
+    <string name="ads_theme_navigation_bar">नाविगेशन बार का रंग-रूप</string>
+    <string name="ads_theme_navigation_bar_summary">नविगेशन बार का रंग ऐप के रंग-रूप के अनुसार बदलें।</string>
     <string name="ads_theme_navigation_bar_summary_unchecked">डिफ़ॉल्ट नेविगेशन बार दिखाएं।</string>
     <string name="ads_theme_navigation_bar_desc">देखने में आसानी के लिए नैविजेशन बार का रंग कई जगह नहीं दिखाया जाएगा।</string>
-    <string name="ads_theme_notification">नोटिफिकेशन का रंग रूप</string>
+    <string name="ads_theme_notification">नोटिफिकेशन का रंग-रूप</string>
     <string name="ads_theme_notification_summary">नोटिफिकेशन के लिए रंग।</string>
     <string name="ads_theme_notification_style">नोटिफिकेशन स्टाइल</string>
     <string name="ads_theme_notification_style_summary">नोटिफिकेशन की खाका।</string>
     <string name="ads_theme_style_classic_desc">इन रंगों का प्रयोग करने के लिए \"क्लासिक\" चुनें।</string>
-    <string name="ads_theme_widget">विडजेट का रंग रूप</string>
+    <string name="ads_theme_widget">विडजेट का रंग-रूप</string>
     <string name="ads_theme_widget_summary">विडजेट के लिए रंग।</string>
-    <string name="ads_theme_app_shortcuts">ऐप के शॉर्टकट का रंग रूप</string>
-    <string name="ads_theme_app_shortcuts_summary">ऐप के शॉर्टकट का रंग रूप ऐप के मुख्य रंग के अनुसार सेट करें।</string>
+    <string name="ads_theme_app_shortcuts">ऐप के शॉर्टकट का रंग-रूप</string>
+    <string name="ads_theme_app_shortcuts_summary">ऐप के शॉर्टकट का रंग-रूप ऐप के मुख्य रंग के अनुसार सेट करें।</string>
     <string name="ads_theme_app_shortcuts_summary_unchecked">ऐप के शॉर्टकट्स का रंग ऐप के रंग के अनुसार दिखाएं।</string>
     <string name="ads_theme_app_shortcuts_desc">ऐप के शॉर्टकट देखने के लिए लॉन्चर के आइकन को दबाकर रखें।</string>
-    <string name="ads_theme_reset_desc">रंग रूप डिफॉल्ट कर दिए गए हैं।</string>
-    <string name="ads_theme_import_done">रंग रूप आयात कर लिए गए हैं।</string>
-    <string name="ads_theme_export_done">रंग रूप निर्यात कर लिए गए हैं।</string>
-    <string name="ads_theme_export_error">रंग रूप सहेजने में असमर्थ.</string>
-    <string name="ads_theme_copy_done">रंग रूप कॉपी कर लिए गए हैं।</string>
-    <string name="ads_theme_format_saved">रंग रूप सेव हो गया है: %1$s</string>
+    <string name="ads_theme_reset_desc">रंग-रूप डिफॉल्ट कर दिए गए हैं।</string>
+    <string name="ads_theme_import_done">रंग-रूप आयात कर लिए गए हैं।</string>
+    <string name="ads_theme_export_done">रंग-रूप निर्यात कर लिए गए हैं।</string>
+    <string name="ads_theme_export_error">रंग-रूप सहेजने में असमर्थ.</string>
+    <string name="ads_theme_copy_done">रंग-रूप कॉपी कर लिए गए हैं।</string>
+    <string name="ads_theme_edit_done">रंग-रूप संपादित कर दिए गए हैं।</string>
+    <string name="ads_theme_save_done">रंग-रूप सेव कर दिए गए हैं।</string>
+    <string name="ads_theme_delete_done">रंग-रूप हटा दिए गए हैं।</string>
+    <string name="ads_theme_format_saved">रंग-रूप सेव हो गया है: %1$s</string>
+    <string name="ads_theme_presets">रंग-रूप प्रीसेट</string>
+    <string name="ads_theme_presets_desc">Google Play के माध्यम से डाउनलोड करें।</string>
+    <string name="ads_theme_presets_options">विकल्पों के लिए टैप करें</string>
+    <string name="ads_theme_presets_import">आयात करने के लिए टैप करें</string>
 
     <!-- Theme -->
     <string name="ads_theme_toast_default">डिफॉल्ट टोस्ट मेसेज</string>
@@ -259,7 +270,7 @@
     <string name="ads_theme_entry_light_purple">हल्का बैंगनी</string>
     <string name="ads_theme_entry_light_orange">हल्का नारंगी</string>
     <string name="ads_theme_entry_light_brown">हल्का भूरा</string>
-    <string name="ads_theme_entry_light_grey">हल्का धूसर</string>
+    <string name="ads_theme_entry_light_gray">हल्का धूसर</string>
     <string name="ads_theme_entry_dark_indigo">गहरा नीला</string>
     <string name="ads_theme_entry_dark_red">गहरा लाल</string>
     <string name="ads_theme_entry_dark_blue">गहरा नीला</string>
@@ -268,7 +279,7 @@
     <string name="ads_theme_entry_dark_purple">गहरा बैंगनी</string>
     <string name="ads_theme_entry_dark_orange">गहरा नारंगी</string>
     <string name="ads_theme_entry_dark_brown">गहरा भूरा</string>
-    <string name="ads_theme_entry_dark_grey">गहरा धूसर</string>
+    <string name="ads_theme_entry_dark_gray">गहरा धूसर</string>
 
     <!-- Visibility -->
     <string name="ads_visibility_show">दिखाएं</string>
@@ -278,7 +289,7 @@
     <string name="ads_picker_all">सारे</string>
     <string name="ads_picker_pick">उठाएं</string>
     <string name="ads_picker_more_colors">और रंग</string>
-    <string name="ads_picker_presets">प्रेसेट्स</string>
+    <string name="ads_picker_presets">प्रीसेट</string>
 
     <!-- Language selector -->
     <string name="ads_language">भाषा</string>
@@ -349,6 +360,7 @@
     <string name="ads_info_facebook_desc">नवीनतम समाचार और अपडेट प्राप्त करने के लिए आधिकारिक पृष्ठ को लाइक करें।</string>
     <string name="ads_info_xda_desc">XDA पर आधिकारिक सहायता मंच को फॉलो करें।</string>
     <string name="ads_info_website">वेबसाइट</string>
+    <string name="ads_info_website_desc">अधिक जानकारी के लिए आधिकारिक वेबसाइट पर जाएं।</string>
     <string name="ads_info_website_me_desc">वेब पर मेरे लिए एक जगह।</string>
     <string name="ads_info_twitter_me_desc">मेरे जीवन व कार्यों के बारे में ट्वीट पाएं।</string>
     <string name="ads_info_facebook_me_desc">दोस्त बनें या अधिक जानकारी के लिए फॉलो करें।</string>

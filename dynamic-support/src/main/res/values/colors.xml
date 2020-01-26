@@ -28,6 +28,7 @@
     <!-- Fill -->
     <color name="ads_icon_fill_dark">@android:color/black</color>
     <color name="ads_icon_fill_light">@android:color/white</color>
+    <color name="ads_app_shortcut_background">@android:color/white</color>
 
     <!-- Card -->
     <color name="ads_card_background">#353535</color>

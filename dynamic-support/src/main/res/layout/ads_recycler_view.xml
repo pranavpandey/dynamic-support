@@ -24,11 +24,12 @@
     <com.pranavpandey.android.dynamic.support.widget.DynamicSwipeRefreshLayout
         android:id="@+id/ads_swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:descendantFocusability="blocksDescendants">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
             style="@style/Widget.DynamicApp.Scroller.Padding.Vertical"
-            android:id="@+id/ads_dynamic_recycler_view" />
+            android:id="@+id/ads_recycler_view" />
 
     </com.pranavpandey.android.dynamic.support.widget.DynamicSwipeRefreshLayout>
 

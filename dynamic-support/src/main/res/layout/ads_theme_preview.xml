@@ -24,7 +24,7 @@
     android:orientation="horizontal">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-        style="@style/Widget.DynamicApp.Image.Preference"
+        style="@style/Widget.DynamicApp.Image.Preference.Theme"
         android:id="@+id/ads_theme_preview_icon"
         app:srcCompat="@drawable/ads_ic_palette" />
 

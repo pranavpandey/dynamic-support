@@ -55,6 +55,10 @@
 
     <!-- Theme -->
     <string name="ads_theme_entry_system">@string/ads_locale_system</string>
+    <string name="ads_theme_entry_app">@string/ads_app</string>
+    <string name="ads_theme_entry_value">@string/ads_app</string>
+    <string name="ads_theme_entry_data">@string/ads_data</string>
+    <string name="ads_theme_entry_disable">@string/ads_disable</string>
 
     <!-- Picker -->
     <string name="ads_picker_hsv">HSV</string>
@@ -105,8 +109,8 @@
         \n&#169; 2015 Google, Inc.</string>
     <string name="ads_license_copy_google_15">&#169; 2015 Google, Inc.</string>
     <string name="ads_license_copy_me_16">&#169; 2016 Pranav Pandey</string>
-    <string name="ads_license_copy_me_17">&#169; 2017&#8211;2019 Pranav Pandey</string>
-    <string name="ads_license_copy_me_18">&#169; 2018&#8211;2019 Pranav Pandey</string>
+    <string name="ads_license_copy_me_17">&#169; 2017&#8211;2020 Pranav Pandey</string>
+    <string name="ads_license_copy_me_18">&#169; 2018&#8211;2020 Pranav Pandey</string>
     <string name="ads_license_apache">Apache 2.0</string>
 
 </resources>

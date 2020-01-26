@@ -27,7 +27,7 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/ads_header_toolbar_icon"
+        android:id="@+id/ads_header_appbar_icon"
         android:layout_width="@dimen/ads_icon_header_appbar"
         android:layout_height="@dimen/ads_icon_header_appbar"
         android:layout_marginRight="@dimen/ads_margin_normal"
@@ -42,7 +42,7 @@
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            android:id="@+id/ads_header_toolbar_title"
+            android:id="@+id/ads_header_appbar_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.DynamicApp.Headline6"
@@ -50,7 +50,7 @@
             app:ads_contrastWithColorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            android:id="@+id/ads_header_toolbar_subtitle"
+            android:id="@+id/ads_header_appbar_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle1"

@@ -31,7 +31,7 @@
         <item>@color/ads_window_background_purple_light</item>
         <item>@color/ads_window_background_orange_light</item>
         <item>@color/ads_window_background_brown_light</item>
-        <item>@color/ads_window_background_grey_light</item>
+        <item>@color/ads_window_background_gray</item>
         <item>@color/ads_window_background_dark</item>
         <item>@color/ads_window_background_indigo</item>
         <item>@color/ads_window_background_red</item>
@@ -41,7 +41,7 @@
         <item>@color/ads_window_background_purple</item>
         <item>@color/ads_window_background_orange</item>
         <item>@color/ads_window_background_brown</item>
-        <item>@color/ads_window_background_grey</item>
+        <item>@color/ads_window_background_gray</item>
     </integer-array>
 
     <!-- Default app theme day colors. -->
@@ -56,7 +56,7 @@
         <item>@color/ads_window_background_purple_light</item>
         <item>@color/ads_window_background_orange_light</item>
         <item>@color/ads_window_background_brown_light</item>
-        <item>@color/ads_window_background_grey_light</item>
+        <item>@color/ads_window_background_gray_light</item>
     </integer-array>
 
     <!-- Default app theme night colors. -->
@@ -71,7 +71,7 @@
         <item>@color/ads_window_background_purple</item>
         <item>@color/ads_window_background_orange</item>
         <item>@color/ads_window_background_brown</item>
-        <item>@color/ads_window_background_grey</item>
+        <item>@color/ads_window_background_gray</item>
     </integer-array>
 
     <!-- App links titles. -->

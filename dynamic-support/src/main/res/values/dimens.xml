@@ -25,7 +25,7 @@
     <dimen name="ads_theme_overlay_rect_radius">4dp</dimen>
     <dimen name="ads_theme_overlay_round_radius">8dp</dimen>
 
-    <!-- Margin presets -->
+    <!-- Margin -->
     <dimen name="ads_margin_extra_tiny">2dp</dimen>
     <dimen name="ads_margin_tiny">4dp</dimen>
     <dimen name="ads_margin_small">8dp</dimen>
@@ -46,7 +46,9 @@
     <dimen name="ads_margin_divider">1dp</dimen>
     <dimen name="ads_margin_preference_value">@dimen/ads_margin_normal</dimen>
 
-    <!-- Dynamic activity -->
+    <!-- Activity -->
+    <dimen name="ads_app_bar_shadow_size">4dp</dimen>
+    <dimen name="ads_bottom_bar_shadow_size">2dp</dimen>
     <dimen name="ads_drawer_size">280dp</dimen>
     <dimen name="ads_margin_content_start">0dp</dimen>
     <dimen name="ads_nav_header_spacing">@dimen/ads_margin_medium</dimen>
@@ -104,12 +106,13 @@
     <dimen name="ads_tab_indicator_margin_horizontal">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_tab_indicator_height">3dp</dimen>
     <dimen name="ads_tab_indicator_corner_size">4dp</dimen>
-    <dimen name="ads_tab_inset_start">@dimen/ads_toolbar_inset_start</dimen>
+    <dimen name="ads_tab_inset_start">20dp</dimen>
 
     <!-- Card -->
-    <dimen name="ads_card_view_margin">@dimen/ads_margin_extra_tiny</dimen>
-    <dimen name="ads_card_view_margin_vertical">@dimen/ads_margin_divider</dimen>
+    <dimen name="ads_card_view_margin">1dp</dimen>
+    <dimen name="ads_card_view_margin_vertical">@dimen/ads_card_view_margin</dimen>
     <dimen name="ads_card_view_margin_horizontal">@dimen/ads_card_view_margin</dimen>
+    <dimen name="ads_card_view_margin_layout">5dp</dimen>
     <dimen name="ads_card_view_margin_floating">20dp</dimen>
     <dimen name="ads_card_view_margin_dialog">@dimen/ads_margin_tiny</dimen>
     <dimen name="ads_card_view_margin_bottom_sheet">@dimen/ads_margin_medium</dimen>
@@ -124,11 +127,12 @@
     <dimen name="ads_card_view_elevation_toast">1dp</dimen>
 
     <!-- Scroller -->
-    <dimen name="ads_scroller_margin">@dimen/ads_margin_extra_tiny</dimen>
-    <dimen name="ads_scroller_margin_vertical">3dp</dimen>
+    <dimen name="ads_scroller_margin">@dimen/ads_margin_tiny</dimen>
+    <dimen name="ads_scroller_margin_vertical">@dimen/ads_scroller_margin</dimen>
     <dimen name="ads_scroller_margin_horizontal">@dimen/ads_scroller_margin</dimen>
+    <dimen name="ads_scroller_margin_layout">@dimen/ads_margin_small</dimen>
 
-    <!-- Icon sizes -->
+    <!-- Icon -->
     <dimen name="ads_icon_tiny">24dp</dimen>
     <dimen name="ads_icon_small">28dp</dimen>
     <dimen name="ads_icon_regular">32dp</dimen>
@@ -149,6 +153,7 @@
     <dimen name="ads_icon_header_appbar">32dp</dimen>
     <dimen name="ads_icon_header_drawer">64dp</dimen>
     <dimen name="ads_icon_header_card_margin_end">@dimen/ads_margin_large</dimen>
+    <dimen name="ads_icon_empty">@dimen/ads_icon_extra_large</dimen>
     <dimen name="ads_icon_preference">@dimen/ads_icon_small</dimen>
     <dimen name="ads_icon_preference_big">@dimen/ads_icon_medium</dimen>
     <dimen name="ads_icon_popup_footer">@dimen/ads_icon_small</dimen>
@@ -168,7 +173,7 @@
     <dimen name="ads_button_padding">@dimen/ads_margin_small</dimen>
     <dimen name="ads_button_padding_borderless_remote">10dp</dimen>
     <dimen name="ads_button_min_height">56dp</dimen>
-    <dimen name="ads_button_preference_card_margin_start">@dimen/ads_icon_normal</dimen>
+    <dimen name="ads_button_preference_card_margin_start">0dp</dimen>
 
     <!-- List -->
     <dimen name="ads_list_avatar_height_small">28dp</dimen>
@@ -182,6 +187,7 @@
     <!-- Widgets -->
     <dimen name="ads_widget_text_input_edit_text_padding">8dp</dimen>
     <dimen name="ads_widget_text_input_edit_text_padding_top">28dp</dimen>
+    <dimen name="ads_widget_text_input_edit_text_padding_top_outlined">20dp</dimen>
 
     <!-- Dialog -->
     <dimen name="ads_dialog_margin_horizontal">24dp</dimen>
@@ -215,6 +221,7 @@
     <dimen name="ads_picker_font_size_medium">@dimen/ads_font_size_medium</dimen>
 
     <!-- Theme -->
+    <dimen name="ads_theme_preview_width">301dp</dimen>
     <dimen name="ads_theme_preview_height">161dp</dimen>
     <dimen name="ads_theme_preview_status_bar_height">24dp</dimen>
     <dimen name="ads_theme_preview_icon_size">@dimen/ads_icon_small</dimen>
@@ -245,14 +252,14 @@
     <dimen name="ads_notification_footer_margin_horizontal">10dp</dimen>
     <dimen name="ads_notification_font_size">12sp</dimen>
 
-    <!-- Hint dimensions -->
+    <!-- Hint -->
     <dimen name="ads_font_hint">12sp</dimen>
     <dimen name="ads_icon_hint">16dp</dimen>
     <dimen name="ads_margin_hint_vertical">@dimen/ads_margin_small</dimen>
     <dimen name="ads_margin_hint_horizontal">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_margin_hint_small">@dimen/ads_margin_tiny</dimen>
 
-    <!-- Tooltip dimensions -->
+    <!-- Tooltip -->
     <dimen name="ads_tooltip_y_offset_touch">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_tooltip_y_offset_non_touch">0dp</dimen>
     <dimen name="ads_tooltip_corner_radius_max">@dimen/ads_margin_medium</dimen>

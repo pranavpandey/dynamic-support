@@ -213,7 +213,7 @@ public class WidgetDefaults {
      * @see Theme.BackgroundAware
      */
     public static @Theme.BackgroundAware int getBackgroundAware() {
-        return DynamicTheme.getInstance().get().getBackgroundAware();
+        return DynamicTheme.getInstance().get().getBackgroundAware(false);
     }
 
     /**

@@ -30,14 +30,14 @@ import com.pranavpandey.android.dynamic.support.view.DynamicInfoView
  * A recycler view binder to display app info by using [DynamicRecyclerViewBinder].
  */
 class AppInfoBinder(binderAdapter: AppInfoAdapter)
-    : DynamicRecyclerViewBinder<RecyclerView.ViewHolder>(binderAdapter) {
+    : DynamicRecyclerViewBinder<AppInfoBinder.ViewHolder>(binderAdapter) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context)
                 .inflate(R.layout.layout_info_app, parent, false))
     }
 
-    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
     }
 
     override fun getItemCount(): Int {
@@ -48,7 +48,7 @@ class AppInfoBinder(binderAdapter: AppInfoAdapter)
     /**
      * Holder class to hold view holder item.
      */
-    internal class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val dynamicInfoView: DynamicInfoView = view.findViewById(R.id.info_app)
 

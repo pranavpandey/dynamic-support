@@ -37,6 +37,7 @@
             app:ads_colorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:id="@+id/ads_dialog_rename_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,7 +47,7 @@
             android:hint="@string/ads_backup_name">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
-                style="@style/Widget.DynamicApp.TextInputEditText"
+                style="@style/Widget.DynamicApp.TextInputEditText.Outlined"
                 android:id="@+id/ads_dialog_rename_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

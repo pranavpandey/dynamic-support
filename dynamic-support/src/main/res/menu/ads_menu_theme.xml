@@ -44,7 +44,7 @@
             <item
                 android:id="@+id/ads_menu_theme_import"
                 android:title="@string/ads_backup_import"
-                android:icon="@drawable/ads_ic_download"
+                android:icon="@drawable/ads_ic_text_color"
                 android:orderInCategory="3" />
 
             <item
