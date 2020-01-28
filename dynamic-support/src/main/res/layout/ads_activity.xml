@@ -50,7 +50,12 @@
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicAppBarLayout>
 
-        <include layout="@layout/ads_content" />
+        <include
+            layout="@layout/ads_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_anchor="@id/ads_app_bar_layout"
+            app:layout_behavior="@string/ads_fab_behavior" />
 
         <include layout="@layout/ads_layout_bottom_sheet" />
 

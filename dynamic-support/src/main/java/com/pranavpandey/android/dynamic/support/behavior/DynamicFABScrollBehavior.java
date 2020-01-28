@@ -72,7 +72,7 @@ public class DynamicFABScrollBehavior extends AppBarLayout.ScrollingViewBehavior
                 dyConsumed, dxUnconsumed, dyUnconsumed, type, consumed);
 
         if (dyConsumed > 0) {
-            // User scrolled down -> hide the FAB.
+            // User scrolled up -> hide the FAB.
             List<View> dependencies = coordinatorLayout.getDependencies(child);
             for (View view : dependencies) {
                 if (view instanceof FloatingActionButton
@@ -85,7 +85,7 @@ public class DynamicFABScrollBehavior extends AppBarLayout.ScrollingViewBehavior
                 }
             }
         } else if (dyConsumed < 0) {
-            // User scrolled up -> show the FAB.
+            // User scrolled down -> show the FAB.
             List<View> dependencies = coordinatorLayout.getDependencies(child);
             for (View view : dependencies) {
                 if (view instanceof FloatingActionButton
