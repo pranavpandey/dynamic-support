@@ -19,6 +19,7 @@
 
     <!-- Span -->
     <integer name="ads_span_normal">2</integer>
+    <integer name="ads_span_no_drawer">3</integer>
     <integer name="ads_span_compact">3</integer>
 
 </resources>
