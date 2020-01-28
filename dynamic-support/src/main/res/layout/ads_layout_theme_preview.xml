@@ -232,7 +232,6 @@
         android:layout_marginLeft="@dimen/ads_margin_fab_compat_mini"
         android:layout_marginRight="@dimen/ads_margin_fab_compat_mini"
         android:layout_gravity="bottom|end"
-        android:clipToPadding="false"
         app:elevation="@dimen/ads_theme_preview_fab_elevation"
         app:pressedTranslationZ="@dimen/ads_theme_preview_fab_elevation"
         app:hoveredFocusedTranslationZ="@dimen/ads_theme_preview_fab_elevation"

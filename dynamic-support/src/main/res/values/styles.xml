@@ -597,6 +597,13 @@
         <item name="android:layout_marginBottom">@dimen/ads_scroller_margin_layout</item>
     </style>
 
+    <style name="Widget.DynamicApp.ViewPager">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>c
+        <item name="android:clipChildren">false</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+
     <style name="Widget.DynamicApp.Scroller">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
