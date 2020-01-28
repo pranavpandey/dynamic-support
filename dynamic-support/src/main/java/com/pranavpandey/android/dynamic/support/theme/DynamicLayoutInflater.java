@@ -96,6 +96,12 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
         View view = null;
 
         switch (name) {
+            case "ListView":
+                view = new DynamicListView(context, attrs);
+                break;
+            case "ScrollView":
+                view = new DynamicScrollView(context, attrs);
+                break;
             case "android.support.v4.widget.DrawerLayout":
             case "androidx.DrawerLayout.widget.DrawerLayout":
                 view = new DynamicDrawerLayout(context, attrs);
@@ -107,6 +113,7 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
             case "Toolbar":
             case "android.support.v7.widget.Toolbar":
             case "androidx.appcompat.widget.Toolbar":
+            case "com.google.android.material.appbar.MaterialToolbar":
                 view = new DynamicToolbar(context, attrs);
                 break;
             case "ListMenuItemView":
@@ -212,16 +219,19 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
             case "TextView":
             case "android.support.v7.widget.AppCompatTextView":
             case "androidx.appcompat.widget.AppCompatTextView":
+            case "com.google.android.material.textview.MaterialTextView":
                 view = new DynamicTextView(context, attrs);
                 break;
             case "CheckBox":
             case "android.support.v7.widget.AppCompatCheckBox":
             case "androidx.appcompat.widget.AppCompatCheckBox":
+            case "com.google.android.material.checkbox.MaterialCheckBox":
                 view = new DynamicCheckBox(context, attrs);
                 break;
             case "RadioButton":
             case "android.support.v7.widget.AppCompatRadioButton":
             case "androidx.appcompat.widget.AppCompatRadioButton":
+            case "com.google.android.material.radiobutton.MaterialRadioButton":
                 view = new DynamicRadioButton(context, attrs);
                 break;
             case "EditText":
@@ -231,6 +241,7 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
                 break;
             case "android.support.v7.widget.SwitchCompat":
             case "androidx.appcompat.widget.SwitchCompat":
+            case "com.google.android.material.switchmaterial.SwitchMaterial":
                 view = new DynamicSwitchCompat(context, attrs);
                 break;
             case "SeekBar":
@@ -298,12 +309,6 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
                 break;
             case "com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton":
                 view = new DynamicExtendedFloatingActionButton(context, attrs);
-                break;
-            case "ListView":
-                view = new DynamicListView(context, attrs);
-                break;
-            case "ScrollView":
-                view = new DynamicScrollView(context, attrs);
                 break;
         }
 

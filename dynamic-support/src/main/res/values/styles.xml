@@ -609,6 +609,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:clipChildren">false</item>
         <item name="android:clipToPadding">false</item>
+        <item name="android:fillViewport">false</item>
         <item name="android:overScrollMode">ifContentScrolls</item>
         <item name="android:scrollbarStyle">outsideOverlay</item>
     </style>
@@ -634,6 +635,7 @@
 
     <style name="Widget.DynamicApp.Scroller.Nested">
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:fillViewport">false</item>
         <item name="android:overScrollMode">never</item>
         <item name="android:scrollbars">none</item>
         <item name="ads_windowInsets">false</item>

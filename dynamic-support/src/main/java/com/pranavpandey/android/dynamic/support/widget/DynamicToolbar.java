@@ -25,9 +25,9 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicMenuUtils;
@@ -38,7 +38,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 /**
  * A Toolbar to change its background and text color according to the supplied parameters.
  */
-public class DynamicToolbar extends Toolbar implements DynamicTextWidget {
+public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget {
 
     /**
      * Color type applied to this view.

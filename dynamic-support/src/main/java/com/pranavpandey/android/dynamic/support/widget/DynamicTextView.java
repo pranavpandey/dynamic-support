@@ -28,8 +28,8 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatTextView;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
@@ -44,7 +44,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
  * A TextView to change its color according to the supplied parameters.
  */
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-public class DynamicTextView extends AppCompatTextView implements
+public class DynamicTextView extends MaterialTextView implements
         DynamicWidget, DynamicLinkWidget, DynamicRtlWidget {
 
     /**
