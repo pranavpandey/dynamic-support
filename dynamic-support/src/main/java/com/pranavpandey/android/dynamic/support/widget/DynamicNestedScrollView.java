@@ -271,7 +271,7 @@ public class DynamicNestedScrollView extends NestedScrollView
 
     @Override
     protected void onOverScrolled(int scrollX, int scrollY, boolean clampedX, boolean clampedY) {
-        super.scrollTo(scrollX, scrollY);
+        super.onOverScrolled(scrollX, scrollY, clampedX, clampedY);
 
         setColor();
     }
