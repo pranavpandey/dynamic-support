@@ -216,15 +216,17 @@ public class DynamicPageIndicator2 extends View implements View.OnAttachStateCha
 
         if (viewPager.getAdapter() != null) {
             setPageCount(viewPager.getAdapter().getItemCount());
-            viewPager.getAdapter().registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-                @Override
-                public void onChanged() {
-                    super.onChanged();
+            viewPager.getAdapter().registerAdapterDataObserver(
+                    new RecyclerView.AdapterDataObserver() {
+                        @Override
+                        public void onChanged() {
+                            super.onChanged();
 
-                    if (DynamicPageIndicator2.this.viewPager.getAdapter() != null) {
-                        setPageCount(DynamicPageIndicator2.this.viewPager.getAdapter().getItemCount());
-                    }
-                }
+                            if (DynamicPageIndicator2.this.viewPager.getAdapter() != null) {
+                                setPageCount(DynamicPageIndicator2.this
+                                        .viewPager.getAdapter().getItemCount());
+                            }
+                        }
             });
         }
 
@@ -257,11 +259,17 @@ public class DynamicPageIndicator2 extends View implements View.OnAttachStateCha
 
         int requiredWidth = getRequiredWidth();
         float startLeft = left + ((right - left - requiredWidth) / 2) + dotRadius;
+        float startRight = right - ((right - left - requiredWidth) / 2) - dotRadius;
 
         dotCenterX = new float[pageCount];
         for (int i = 0; i < pageCount; i++) {
-            dotCenterX[i] = startLeft + i * (dotDiameter + gap);
+            if (!isRTL()) {
+                dotCenterX[i] = startLeft + i * (dotDiameter + gap);
+            } else {
+                dotCenterX[i] = startRight - i * (dotDiameter + gap);
+            }
         }
+
         // todo just top aligning for now… should make this smarter
         dotTopY = top;
         dotCenterY = top + dotRadius;
@@ -362,11 +370,20 @@ public class DynamicPageIndicator2 extends View implements View.OnAttachStateCha
         // draw any settled, revealing or joining dots
         for (int page = 0; page < pageCount; page++) {
             int nextXIndex = page == pageCount - 1 ? page : page + 1;
-            Path unselectedPath = getUnselectedPath(page,
-                    dotCenterX[page],
-                    dotCenterX[nextXIndex],
-                    page == pageCount - 1 ? INVALID_FRACTION : joiningFractions[page],
-                    dotRevealFractions[page]);
+            Path unselectedPath;
+            if (!isRTL()) {
+                unselectedPath = getUnselectedPath(page,
+                        dotCenterX[page],
+                        dotCenterX[nextXIndex],
+                        page == pageCount - 1 ? INVALID_FRACTION : joiningFractions[page],
+                        dotRevealFractions[page]);
+            } else {
+                unselectedPath = getUnselectedPath(page,
+                        dotCenterX[nextXIndex],
+                        dotCenterX[page],
+                        page == pageCount - 1 ? INVALID_FRACTION : joiningFractions[page],
+                        dotRevealFractions[page]);
+            }
             unselectedPath.addPath(combinedUnselectedPath);
             combinedUnselectedPath.addPath(unselectedPath);
         }
@@ -614,6 +631,10 @@ public class DynamicPageIndicator2 extends View implements View.OnAttachStateCha
         moveAnimation.start();
     }
 
+    private boolean isRTL() {
+        return ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL;
+    }
+
     private ValueAnimator createMoveSelectedAnimator(
             final float moveTo, int was, int now, int steps) {
 
@@ -622,7 +643,7 @@ public class DynamicPageIndicator2 extends View implements View.OnAttachStateCha
 
         // also set up a pending retreat anim – this starts when the move is 75% complete
         retreatAnimation = new PendingRetreatAnimator(was, now, steps,
-                now > was ?
+                (!isRTL() ? now > was : now < was) ?
                         new RightwardStartPredicate(moveTo - ((moveTo - selectedDotX) * 0.25f)) :
                         new LeftwardStartPredicate(moveTo + ((selectedDotX - moveTo) * 0.25f)));
         retreatAnimation.addListener(new AnimatorListenerAdapter() {
