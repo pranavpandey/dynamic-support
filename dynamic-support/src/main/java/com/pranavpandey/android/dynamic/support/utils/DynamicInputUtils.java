@@ -51,30 +51,29 @@ import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 public final class DynamicInputUtils {
 
     /**
-     * Set cursor color for the supplied {@link EditText}.
+     * Set cursor color for the supplied {@link TextView}.
      *
-     * @param editText The edit text to set the cursor color.
+     * @param textView The edit text to set the cursor color.
      * @param color The color for the cursor.
      */
     @TargetApi(Build.VERSION_CODES.Q)
-    public static void setCursorColor(final @NonNull EditText editText, @ColorInt int color) {
+    public static void setCursorColor(final @NonNull TextView textView, @ColorInt int color) {
         @ColorInt int hintColor = DynamicColorUtils.adjustAlpha(
                 color, WidgetDefaults.ADS_ALPHA_HINT);
-        editText.setHintTextColor(hintColor);
-        editText.setHighlightColor(DynamicColorUtils.getContrastColor(
-                hintColor, editText.getCurrentTextColor()));
+        textView.setHintTextColor(hintColor);
+        textView.setHighlightColor(DynamicColorUtils.getContrastColor(
+                hintColor, textView.getCurrentTextColor()));
 
         if (DynamicSdkUtils.is29()) {
-            DynamicDrawableUtils.colorizeDrawable(editText.getTextCursorDrawable(), color);
-            DynamicDrawableUtils.colorizeDrawable(editText.getTextSelectHandle(), color);
-            DynamicDrawableUtils.colorizeDrawable(editText.getTextSelectHandleLeft(), color);
-            DynamicDrawableUtils.colorizeDrawable(editText.getTextSelectHandleRight(), color);
+            DynamicDrawableUtils.colorizeDrawable(textView.getTextCursorDrawable(), color);
+            DynamicDrawableUtils.colorizeDrawable(textView.getTextSelectHandle(), color);
+            DynamicDrawableUtils.colorizeDrawable(textView.getTextSelectHandleLeft(), color);
+            DynamicDrawableUtils.colorizeDrawable(textView.getTextSelectHandleRight(), color);
         } else {
-
             try {
                 Field editorField = TextView.class.getDeclaredField("mEditor");
                 editorField.setAccessible(true);
-                Object editor = editorField.get(editText);
+                Object editor = editorField.get(textView);
 
                 String[] drawableResFields = { "mTextSelectHandleLeftRes",
                         "mTextSelectHandleRightRes", "mTextSelectHandleRes" };
@@ -87,8 +86,8 @@ public final class DynamicInputUtils {
                     selectHandleField.setAccessible(true);
 
                     Drawable selectHandleDrawable = DynamicDrawableUtils.colorizeDrawable(
-                            DynamicResourceUtils.getDrawable(editText.getContext(),
-                                    selectHandleField.getInt(editText)), color);
+                            DynamicResourceUtils.getDrawable(textView.getContext(),
+                                    selectHandleField.getInt(textView)), color);
 
                     if (editor != null) {
                         selectHandleField = editor.getClass().getDeclaredField(drawableFields[i]);
@@ -96,6 +95,14 @@ public final class DynamicInputUtils {
                         selectHandleField.set(editor, selectHandleDrawable);
                     }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            try {
+                Field editorField = TextView.class.getDeclaredField("mEditor");
+                editorField.setAccessible(true);
+                Object editor = editorField.get(textView);
 
                 if (editor != null) {
                     Field cursorResField = TextView.class
@@ -103,8 +110,8 @@ public final class DynamicInputUtils {
                     cursorResField.setAccessible(true);
 
                     Drawable cursorDrawable = DynamicDrawableUtils.colorizeDrawable(
-                            DynamicResourceUtils.getDrawable(editText.getContext(),
-                                    cursorResField.getInt(editText)), color);
+                            DynamicResourceUtils.getDrawable(textView.getContext(),
+                                    cursorResField.getInt(textView)), color);
 
                     String editorFields = Arrays.toString(editor.getClass().getDeclaredFields());
                     if (editorFields.contains("mCursorDrawable")) {
@@ -131,13 +138,17 @@ public final class DynamicInputUtils {
      * supplied color.
      *
      * @param editText The edit text to be colorized.
+     * @param background The background color to be used.
      * @param color The color to be used.
      */
-    public static void setColor(@NonNull EditText editText, @ColorInt int color) {
-        ColorStateList editTextColorStateList = DynamicResourceUtils.getColorStateList(color);
+    public static void setColor(@NonNull EditText editText,
+            @ColorInt int background, @ColorInt int color) {
+       if (editText.getBackground() != null) {
+           ViewCompat.setBackground(editText, DynamicDrawableUtils.colorizeDrawable(
+                   editText.getBackground(), background));
+       }
 
-        ViewCompat.setBackgroundTintList(editText, editTextColorStateList);
-        setCursorColor(editText, color);
+       setCursorColor(editText, color);
     }
 
     /**
@@ -157,11 +168,12 @@ public final class DynamicInputUtils {
                     "updateLabelState", boolean.class, boolean.class);
             updateLabelStateMethod.setAccessible(true);
             updateLabelStateMethod.invoke(textInputLayout, false, true);
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         if (textInputLayout.getEditText() != null) {
-            setColor(textInputLayout.getEditText(), color);
+            setColor(textInputLayout.getEditText(), textInputLayout.getBoxBackgroundColor(), color);
             textInputLayout.setHintTextColor(textInputLayout.getEditText().getHintTextColors());
         }
     }

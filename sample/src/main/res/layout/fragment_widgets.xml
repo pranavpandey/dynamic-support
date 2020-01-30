@@ -247,16 +247,30 @@
                         android:hint="@string/widget_edit_text" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ads_margin_small">
+
+                        <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
+                            style="@style/Widget.DynamicApp.TextInputEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/widget_text_input_layout" />
+
+                    </com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout>
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/ads_margin_tiny">
+                        android:layout_marginTop="@dimen/ads_margin_small">
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
                             style="@style/Widget.DynamicApp.TextInputEditText.Outlined"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/widget_text_input_layout" />
+                            android:hint="@string/widget_text_input_layout_outlined" />
 
                     </com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout>
 

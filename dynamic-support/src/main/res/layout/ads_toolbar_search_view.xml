@@ -33,7 +33,6 @@
         android:layout_weight="1.0"
         android:layout_gravity="center_vertical"
         android:background="@null"
-        android:textCursorDrawable="@null"
         android:hint="@string/ads_search"
         android:singleLine="true"
         android:imeOptions="actionSearch|flagNoExtractUi"

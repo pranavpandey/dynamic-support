@@ -28,7 +28,7 @@
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:id="@+id/ads_dialog_theme_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,11 +39,10 @@
             tools:targetApi="jelly_bean_mr1">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
-                style="@style/Widget.DynamicApp.TextInputEditText.Outlined"
+                style="@style/Widget.DynamicApp.TextInputEditText"
                 android:id="@+id/ads_dialog_theme_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textCursorDrawable="@null"
                 android:inputType="textNoSuggestions|textLongMessage|textMultiLine"
                 android:textDirection="ltr" />
 

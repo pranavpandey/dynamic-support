@@ -186,8 +186,9 @@
 
     <!-- Widgets -->
     <dimen name="ads_widget_text_input_edit_text_padding">8dp</dimen>
-    <dimen name="ads_widget_text_input_edit_text_padding_top">28dp</dimen>
-    <dimen name="ads_widget_text_input_edit_text_padding_top_outlined">20dp</dimen>
+    <dimen name="ads_widget_text_input_edit_text_padding_outlined">16dp</dimen>
+    <dimen name="ads_widget_text_input_edit_text_padding_vertical">28dp</dimen>
+    <dimen name="ads_widget_text_input_edit_text_padding_vertical_outlined">16dp</dimen>
 
     <!-- Dialog -->
     <dimen name="ads_dialog_margin_horizontal">24dp</dimen>

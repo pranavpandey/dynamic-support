@@ -228,7 +228,7 @@ public class DynamicEditText extends AppCompatEditText implements DynamicWidget 
                 mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
-            DynamicInputUtils.setColor(this, mColor);
+            DynamicInputUtils.setColor(this, mColor, mColor);
         }
     }
 }

@@ -18,16 +18,17 @@ package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewParent;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
@@ -224,16 +225,6 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
     }
 
     @Override
-    protected void onFocusChanged(boolean gainFocus, @ViewCompat.FocusDirection int direction,
-            @Nullable Rect previouslyFocusedRect) {
-        super.onFocusChanged(gainFocus, direction, previouslyFocusedRect);
-
-        if (gainFocus) {
-            setColor();
-        }
-    }
-
-    @Override
     public void setColor() {
         if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
             if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
@@ -243,10 +234,32 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
             post(new Runnable() {
                 @Override
                 public void run() {
-                    // Do not set background color to avoid issues with TextInputLayout.
-                    DynamicInputUtils.setCursorColor(DynamicTextInputEditText.this, mColor);
+                    TextInputLayout parent = getParentTextInputLayout();
+
+                    if (parent != null) {
+                        DynamicInputUtils.setColor(DynamicTextInputEditText.this,
+                                parent.getBoxBackgroundColor(), mColor);
+                    }
                 }
             });
         }
+    }
+
+    /**
+     * Returns the parent text input layout.
+     *
+     * @return The parent text input layout.
+     */
+    private @Nullable TextInputLayout getParentTextInputLayout() {
+        ViewParent parent = getParent();
+        while (parent instanceof View) {
+            if (parent instanceof TextInputLayout) {
+                return (TextInputLayout) parent;
+            }
+
+            parent = parent.getParent();
+        }
+
+        return null;
     }
 }
