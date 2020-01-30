@@ -25,6 +25,7 @@ import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.controller.ThemeController
 import com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils
 import com.pranavpandey.android.dynamic.utils.DynamicWindowUtils
 
 /**
@@ -68,6 +69,11 @@ class AppSettingsFragment : DynamicFragment() {
         // Hide navigation bar theme if not supported by the device.
         if (!DynamicWindowUtils.isNavigationBarThemeSupported(context!!)) {
             view.findViewById<View>(R.id.pref_navigation_bar_theme).visibility = View.GONE
+        }
+
+        // Hide app shortcuts theme if not supported by the device.
+        if (!DynamicSdkUtils.is25()) {
+            view.findViewById<View>(R.id.pref_app_shortcuts_theme).visibility = View.GONE
         }
     }
 

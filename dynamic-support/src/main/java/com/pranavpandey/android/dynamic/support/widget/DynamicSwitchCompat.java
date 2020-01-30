@@ -29,6 +29,7 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicStateWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
@@ -277,10 +278,13 @@ public class DynamicSwitchCompat extends SwitchMaterial implements DynamicStateW
                     colorOff, WidgetDefaults.ADS_STATE_LIGHT,
                     WidgetDefaults.ADS_STATE_DARK);
 
+            DynamicTintUtils.setViewBackgroundTint(this,
+                    mContrastWithColor, mColor, true, true);
             setThumbTintList(DynamicResourceUtils.getColorStateList(
                     colorOffTint, mColor, true));
             setTrackTintList(DynamicResourceUtils.getColorStateList(colorOff,
-                    DynamicColorUtils.getLighterColor(mColor, 0.3f), true));
+                    DynamicColorUtils.getLighterColor(mColor,
+                            WidgetDefaults.ADS_STATE_LIGHT), true));
         }
     }
 }
