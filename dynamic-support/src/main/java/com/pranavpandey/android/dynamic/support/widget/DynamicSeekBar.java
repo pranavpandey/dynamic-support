@@ -244,7 +244,7 @@ public class DynamicSeekBar extends AppCompatSeekBar implements DynamicProgressW
     public void setThumbColor() {
         if (DynamicSdkUtils.is21()) {
             setThumbTintList(DynamicResourceUtils.getColorStateList(mColor));
-        } else {
+        } else if (DynamicSdkUtils.is16()) {
             setThumb(DynamicDrawableUtils.colorizeDrawable(getThumb(), mColor));
         }
     }
