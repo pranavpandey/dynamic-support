@@ -22,7 +22,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/ads_card_view_content_margin"
-    android:background="?selectableItemBackground"
+    android:background="?attr/selectableItemBackground"
     android:orientation="horizontal">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView

@@ -59,7 +59,7 @@
             android:layout_marginLeft="@dimen/ads_page_horizontal_margin"
             android:layout_marginStart="@dimen/ads_page_horizontal_margin"
             android:layout_gravity="center_vertical"
-            android:background="?selectableItemBackgroundBorderless"
+            android:background="?attr/selectableItemBackgroundBorderless"
             app:srcCompat="@drawable/ads_ic_more"
             app:ads_colorType="accent" />
 
