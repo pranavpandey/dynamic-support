@@ -1312,7 +1312,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      *         <p>Use {@link Snackbar#show()} to display the snack bar.
      */
     public @NonNull Snackbar getSnackBar(@NonNull CharSequence text) {
-        return getSnackBar(text, Snackbar.LENGTH_LONG);
+        return getSnackBar(text, Snackbar.LENGTH_SHORT);
     }
 
     /**
