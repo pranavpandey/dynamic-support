@@ -267,10 +267,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
                         }
                     } else if (!mFinishAfterTransition) {
                         if (mDynamicTransitionListener != null) {
-                            names.clear();
-                            sharedElements.clear();
                             for (Map.Entry<String, Integer> entry : mSharedElementMap.entrySet()) {
-                                names.add(entry.getKey());
+                                if (!names.contains(entry.getKey())) {
+                                    names.add(entry.getKey());
+                                }
+
                                 sharedElements.put(entry.getKey(), getSharedElement(
                                         mTransitionResultCode, mTransitionPosition,
                                         entry.getKey(), entry.getValue()));
@@ -301,8 +302,8 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         if (getWindow().getSharedElementEnterTransition() != null
                 || mBackgroundColor == Color.TRANSPARENT) {
             mBackgroundColor = Color.TRANSPARENT;
-            getWindow().setExitTransition(null);
             getWindow().setBackgroundDrawable(new ColorDrawable(mBackgroundColor));
+            getWindow().setExitTransition(null);
         }
 
         if (resume && DynamicSdkUtils.is29()
