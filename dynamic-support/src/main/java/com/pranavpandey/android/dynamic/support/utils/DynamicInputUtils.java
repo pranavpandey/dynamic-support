@@ -53,7 +53,7 @@ public final class DynamicInputUtils {
     /**
      * Set cursor color for the supplied {@link TextView}.
      *
-     * @param textView The edit text to set the cursor color.
+     * @param textView The text view to set the cursor color.
      * @param color The color for the cursor.
      */
     @TargetApi(Build.VERSION_CODES.Q)

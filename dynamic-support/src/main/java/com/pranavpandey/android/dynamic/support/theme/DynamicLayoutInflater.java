@@ -137,57 +137,54 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
 
                             final Drawable icon = ((ListMenuItemView) menuItemView)
                                     .getItemData().getIcon();
-                            try {
-                                if (icon != null) {
-                                    ((ListMenuItemView) menuItemView).setIcon(
-                                            DynamicDrawableUtils.colorizeDrawable(icon, tintColor));
-                                }
+                            if (icon != null) {
+                                ((ListMenuItemView) menuItemView).setIcon(
+                                        DynamicDrawableUtils.colorizeDrawable(icon, tintColor));
+                            }
 
-                                if (menuItemView.getParent() != null) {
-                                    ViewGroup view = (ViewGroup) menuItemView.getParent();
-                                    ViewGroup parent = (ViewGroup) view.getParent();
+                            if (menuItemView.getParent() != null) {
+                                ViewGroup menu = (ViewGroup) menuItemView.getParent();
+                                ViewGroup group = (ViewGroup) menu.getParent();
 
-                                    DynamicScrollUtils.setEdgeEffectColor(
-                                            (ListView) view, tintColor);
+                                DynamicScrollUtils.setEdgeEffectColor(
+                                        (ListView) menu, tintColor);
 
-                                    if (DynamicSdkUtils.is21()) {
-                                        if (!(parent instanceof CardView)) {
-                                            if (parent.getBackground() != null) {
-                                                if (parent.getBackground()
-                                                        instanceof GradientDrawable) {
-                                                    GradientDrawable background =
-                                                            (GradientDrawable) parent.getBackground();
-                                                    background.setCornerRadius(DynamicTheme
-                                                            .getInstance().get().getCornerRadius());
-                                                } else if (parent.getBackground()
-                                                        instanceof LayerDrawable) {
-                                                    GradientDrawable background = (GradientDrawable)
-                                                            ((LayerDrawable) parent.getBackground())
-                                                                    .getDrawable(0);
-                                                    background.setCornerRadius(DynamicTheme
-                                                            .getInstance().get().getCornerRadius());
-                                                    ViewCompat.setBackground(parent, background);
-                                                }
-
-                                                DynamicDrawableUtils.colorizeDrawable(
-                                                        parent.getBackground(), backgroundColor);
+                                if (DynamicSdkUtils.is21()) {
+                                    if (!(group instanceof CardView)) {
+                                        if (group.getBackground() != null) {
+                                            if (group.getBackground()
+                                                    instanceof GradientDrawable) {
+                                                GradientDrawable background =
+                                                        (GradientDrawable) group.getBackground();
+                                                background.setCornerRadius(DynamicTheme
+                                                        .getInstance().get().getCornerRadius());
+                                            } else if (group.getBackground()
+                                                    instanceof LayerDrawable) {
+                                                GradientDrawable background = (GradientDrawable)
+                                                        ((LayerDrawable) group.getBackground())
+                                                                .getDrawable(0);
+                                                background.setCornerRadius(DynamicTheme
+                                                        .getInstance().get().getCornerRadius());
+                                                ViewCompat.setBackground(group, background);
                                             }
 
-                                            parent.removeAllViews();
-                                            parent.addView(cardView);
-                                            cardView.addView(view);
-                                        } else {
-                                            parent.removeAllViews();
-                                            parent.addView(view);
+                                            DynamicDrawableUtils.colorizeDrawable(
+                                                    group.getBackground(), backgroundColor);
                                         }
+
+                                        group.removeAllViews();
+                                        group.addView(cardView);
+                                        cardView.addView(menu);
                                     } else {
-                                        ViewCompat.setBackground(view, DynamicDrawableUtils
-                                                .colorizeDrawable(DynamicResourceUtils.getDrawable(
-                                                        context, R.drawable.ads_background),
-                                                        backgroundColor));
+                                        group.removeAllViews();
+                                        group.addView(menu);
                                     }
+                                } else {
+                                    ViewCompat.setBackground(menu, DynamicDrawableUtils
+                                            .colorizeDrawable(DynamicResourceUtils.getDrawable(
+                                                    context, R.drawable.ads_background),
+                                                    backgroundColor));
                                 }
-                            } catch (Exception ignored) {
                             }
                         }
                     });
