@@ -45,6 +45,7 @@ public abstract class DynamicBinderAdapter<VB extends DynamicRecyclerViewBinder>
         return getDataBinder(viewType).onCreateViewHolder(parent, viewType);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         int binderPosition = getBinderPosition(position);

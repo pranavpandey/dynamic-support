@@ -19,7 +19,7 @@ buildscript {
             'compileSdk'  : 29,
             'minSdk'      : 14,
             'targetSdk'   : 29,
-            'buildTools'  : '29.0.2',
+            'buildTools'  : '29.0.3',
             'drawerlayout': '1.1.0-alpha03',
             'dynamic'     : '3.0.1',
             'fragment'    : '1.2.0',
@@ -38,7 +38,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.0-alpha07'
+        classpath 'com.android.tools.build:gradle:4.0.0-alpha09'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
