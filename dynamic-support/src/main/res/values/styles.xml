@@ -290,7 +290,7 @@
     </style>
 
     <style name="TextAppearance.DynamicApp.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
-        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textSize">@dimen/ads_font_size_subtitle1</item>
     </style>
 
@@ -299,7 +299,7 @@
     </style>
 
     <style name="TextAppearance.DynamicApp.Subtitle1.Secondary">
-        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
 
     <style name="TextAppearance.DynamicApp.Subtitle1.Caps">
@@ -325,16 +325,16 @@
     </style>
 
     <style name="TextAppearance.DynamicApp.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
-        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textSize">@dimen/ads_font_size_subtitle2</item>
     </style>
 
     <style name="TextAppearance.DynamicApp.Subtitle2.Secondary">
-        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
 
     <style name="TextAppearance.DynamicApp.Body1" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
         <item name="android:textSize">@dimen/ads_font_size_body1</item>
     </style>
 
@@ -370,7 +370,7 @@
     </style>
 
     <style name="TextAppearance.DynamicApp.Dialog" parent="TextAppearance.DynamicApp.Body1">
-        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
         <item name="android:textSize">@dimen/ads_dialog_font_size</item>
     </style>
 
