@@ -97,6 +97,13 @@ class HomeFragment : DynamicFragment() {
                     DynamicLinkUtils.viewInGooglePlay(context!!, Constants.PACKAGE_EVERYDAY)
                 }
 
+        // Set on click listener for the dynamic item view.
+        (view.findViewById<View>(R.id.item_palettes) as DynamicItemView)
+                .setOnClickListener {
+                    // View an app in Google Play by supplying the package name.
+                    DynamicLinkUtils.viewInGooglePlay(context!!, Constants.PACKAGE_PALETTES)
+                }
+
         // Set on preference click listeners.
         // Start tutorial activity.
         (view.findViewById<View>(R.id.pref_tutorial)

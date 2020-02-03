@@ -145,6 +145,7 @@ checkout the `Rotation` and `Everyday` apps to experience the full potential of 
 
 - [Rotation - Orientation Manager](https://play.google.com/store/apps/details?id=com.pranavpandey.rotation)
 - [Everyday - Calendar Widget](https://play.google.com/store/apps/details?id=com.pranavpandey.calendar)
+- [Palettes - Theme Manager](https://play.google.com/store/apps/details?id=com.pranavpandey.theme)
 
 ---
 

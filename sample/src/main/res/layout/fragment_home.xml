@@ -107,6 +107,19 @@
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
+        <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+            style="@style/Widget.DynamicApp.Card">
+
+            <com.pranavpandey.android.dynamic.support.view.DynamicItemView
+                android:id="@+id/item_palettes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ads_icon="@drawable/adt_ic_presets"
+                app:ads_title="@string/palettes"
+                app:ads_subtitle="@string/palettes_subtitle" />
+
+        </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
     </LinearLayout>
 
 </com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView>
