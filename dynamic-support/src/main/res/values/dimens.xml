@@ -253,6 +253,13 @@
     <dimen name="ads_notification_footer_margin_horizontal">10dp</dimen>
     <dimen name="ads_notification_font_size">12sp</dimen>
 
+    <!-- Toast -->
+    <dimen name="ads_font_toast">14sp</dimen>
+    <dimen name="ads_icon_toast">20dp</dimen>
+    <dimen name="ads_margin_toast_vertical">@dimen/ads_margin_regular</dimen>
+    <dimen name="ads_margin_toast_horizontal">20dp</dimen>
+    <dimen name="ads_margin_toast_small">@dimen/ads_margin_small</dimen>
+
     <!-- Hint -->
     <dimen name="ads_font_hint">12sp</dimen>
     <dimen name="ads_icon_hint">16dp</dimen>

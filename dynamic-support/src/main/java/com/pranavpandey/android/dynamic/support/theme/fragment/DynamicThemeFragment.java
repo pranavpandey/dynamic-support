@@ -37,10 +37,13 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
 import com.pranavpandey.android.dynamic.support.listener.DynamicColorResolver;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference;
 import com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarPreference;
 import com.pranavpandey.android.dynamic.support.setting.DynamicSpinnerPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView;
+import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
@@ -160,6 +163,11 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
             "ads_pref_settings_theme_background_aware";
 
     /**
+     * View to show the theme presets.
+     */
+    private DynamicPresetsView<DynamicAppTheme> mPresetsView;
+
+    /**
      * Dynamic color preference to control the background color.
      */
     private DynamicColorPreference mColorBackgroundPreference;
@@ -273,6 +281,7 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mPresetsView = view.findViewById(R.id.ads_theme_presets_view);
         mColorBackgroundPreference = view.findViewById(R.id.ads_pref_theme_color_background);
         mColorPrimaryPreference = view.findViewById(R.id.ads_pref_theme_color_primary);
         mColorSystemPreference = view.findViewById(R.id.ads_pref_theme_color_system);
@@ -282,6 +291,34 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
         mFontScalePreference = view.findViewById(R.id.ads_pref_theme_font_scale);
         mCornerSizePreference = view.findViewById(R.id.ads_pref_theme_corner_size);
         mBackgroundAwarePreference = view.findViewById(R.id.ads_pref_theme_background_aware);
+
+        if (getBooleanFromArguments(DynamicIntent.EXTRA_THEME_SHOW_PRESETS, true)) {
+            mPresetsView.setVisibility(View.VISIBLE);
+            mPresetsView.setPresetsAdapter(this,
+                    new DynamicPresetsView.DynamicPresetsListener<DynamicAppTheme>() {
+                        @Override
+                        public void onRequestPermissions(@NonNull String[] permissions) {
+                            DynamicPermissions.getInstance().isGranted(permissions, true);
+                        }
+
+                        @Override
+                        public @Nullable DynamicAppTheme getDynamicTheme(@NonNull String theme) {
+                            try {
+                                return new DynamicAppTheme(theme);
+                            } catch (Exception ignored) {
+                                return null;
+                            }
+                        }
+
+                        @Override
+                        public void onPresetClick(@NonNull View anchor, @NonNull String theme,
+                                @NonNull ThemePreview<DynamicAppTheme> themePreview) {
+                            importTheme(themePreview.getDynamicTheme().toDynamicString(), false);
+                        }
+                    });
+        } else {
+            mPresetsView.setVisibility(View.GONE);
+        }
 
         mColorBackgroundPreference.setDynamicColorResolver(new DynamicColorResolver() {
             @Override

@@ -69,7 +69,7 @@
     <!-- String array with with urls for author links. -->
     <string-array name="ads_about_author_links_urls">
         <item>https://play.google.com/store/apps/dev?id=6608630615059087491</item>
-        <item>https://www.pranavpandey.com</item>
+        <item>https://pranavpandey.com</item>
     </string-array>
 
     <!-- Integer array with with drawables for author links. -->

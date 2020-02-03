@@ -18,49 +18,12 @@
 <resources>
 
     <!-- Activity -->
-    <string name="ads_navigation_drawer_close">关闭导航抽屉</string>
     <string name="ads_navigation_drawer_open">打开导航抽屉</string>
+    <string name="ads_navigation_drawer_close">关闭导航抽屉</string>
 
     <!-- String formats -->
     <string name="ads_format_version">版本%1$s</string>
     <string name="ads_search_empty">没有找到\"%1$s\"匹配项</string>
-
-    <!-- Labels -->
-    <string name="ads_i_got_it">好的，我知道了</string>
-    <string name="ads_not_now">不是现在</string>
-    <string name="ads_yes_in">是的，我在</string>
-    <string name="ads_more">更多</string>
-    <string name="ads_more_info">更多信息</string>
-    <string name="ads_select">选择</string>
-    <string name="ads_copy">复制</string>
-    <string name="ads_save">保存</string>
-    <string name="ads_load">加载</string>
-    <string name="ads_file">文件</string>
-    <string name="ads_create">创建</string>
-    <string name="ads_previous">以前</string>
-    <string name="ads_next">下一个</string>
-    <string name="ads_skip">跳过</string>
-    <string name="ads_loading">载入中&#8230;</string>
-    <string name="ads_finish">完成</string>
-    <string name="ads_recents">最近活动</string>
-    <string name="ads_custom">自定义</string>
-    <string name="ads_edit">编辑</string>
-    <string name="ads_refresh">刷新</string>
-    <string name="ads_reset">重启</string>
-    <string name="ads_default">默认</string>
-    <string name="ads_sort">排序</string>
-    <string name="ads_sort_category">类别</string>
-    <string name="ads_sort_name">名称</string>
-    <string name="ads_search">搜索</string>
-    <string name="ads_enable">启用</string>
-    <string name="ads_enabled">启用</string>
-    <string name="ads_disable">禁用</string>
-    <string name="ads_disabled">禁用</string>
-    <string name="ads_toggle">切换</string>
-    <string name="ads_shortcut">快捷方式</string>
-    <string name="ads_shortcuts">快捷方式</string>
-    <string name="ads_shortcut_created">创建快捷方式</string>
-    <string name="ads_shortcuts_desc">选择一个快捷方式将其添加到主屏幕上。</string>
 
     <!-- Headings -->
     <string name="ads_app">应用</string>
@@ -80,10 +43,47 @@
     <string name="ads_advanced">高级</string>
     <string name="ads_fixes">修复</string>
 
+    <!-- Labels -->
+    <string name="ads_i_got_it">好的，我知道了</string>
+    <string name="ads_not_now">不是现在</string>
+    <string name="ads_yes_in">是的，我在</string>
+    <string name="ads_more">更多</string>
+    <string name="ads_more_info">更多信息</string>
+    <string name="ads_select">选择</string>
+    <string name="ads_copy">复制</string>
+    <string name="ads_save">保存</string>
+    <string name="ads_load">加载</string>
+    <string name="ads_file">文件</string>
+    <string name="ads_create">创建</string>
+    <string name="ads_previous">保持现状</string>
+    <string name="ads_next">下一个</string>
+    <string name="ads_skip">跳过</string>
+    <string name="ads_loading">载入中&#8230;</string>
+    <string name="ads_finish">完成</string>
+    <string name="ads_recents">最近活动</string>
+    <string name="ads_custom">自定义</string>
+    <string name="ads_edit">编辑</string>
+    <string name="ads_refresh">刷新</string>
+    <string name="ads_reset">重启</string>
+    <string name="ads_default">默认</string>
+    <string name="ads_sort">分类</string>
+    <string name="ads_sort_category">类别</string>
+    <string name="ads_sort_name">名称</string>
+    <string name="ads_search">搜索</string>
+    <string name="ads_enable">启用</string>
+    <string name="ads_enabled">开启</string>
+    <string name="ads_disable">禁用</string>
+    <string name="ads_disabled">已禁用</string>
+    <string name="ads_toggle">切换</string>
+    <string name="ads_shortcut">快捷方式</string>
+    <string name="ads_shortcuts">快捷方式</string>
+    <string name="ads_shortcut_created">快捷方式已创建</string>
+    <string name="ads_shortcuts_desc">选择一个快捷方式将其添加到主屏幕上。</string>
+
     <!-- Navigation drawer and Menu -->
     <string name="ads_nav_category_features">菜单</string>
-    <string name="ads_nav_category_support">支持发展</string>
-    <string name="ads_nav_category_contribute">有助于</string>
+    <string name="ads_nav_category_support">支持开发</string>
+    <string name="ads_nav_category_contribute">贡献</string>
     <string name="ads_nav_home">主页</string>
     <string name="ads_nav_settings">设置</string>
     <string name="ads_nav_help">帮助</string>
@@ -106,18 +106,18 @@
     <string name="ads_perm_granted">允许</string>
     <string name="ads_perm_granted_desc">此权限已被允许。</string>
     <string name="ads_perm_denied">被拒绝</string>
-    <string name="ads_perm_denied_desc">要允许此权限，请转至应用程序信息\\u003e权限。点击转到应用程序信息。</string>
+    <string name="ads_perm_denied_desc">要允许此权限，请转至应用程序信息&gt;权限。点击转到应用程序信息。</string>
     <string name="ads_perm_reinstall">重新安装</string>
     <string name="ads_perm_reinstall_desc">要允许此权限，请重新安装该应用。点击转到应用程序信息。</string>
     <string name="ads_perm_default">允许</string>
     <string name="ads_perm_default_desc">执行一些操作需要此权限。</string>
     <string name="ads_perm_default_explain">说明。</string>
-    <string name="ads_perm_write_system_settings">编写系统设置</string>
-    <string name="ads_perm_write_system_settings_desc">允许写入系统设置。</string>
-    <string name="ads_perm_overlay">绘制其他应用程序</string>
-    <string name="ads_perm_overlay_desc">允许绘制其他应用程序。</string>
-    <string name="ads_perm_usage_access">使用权限</string>
-    <string name="ads_perm_usage_access_desc">允许使用访问。</string>
+    <string name="ads_perm_write_system_settings">修改系统设置</string>
+    <string name="ads_perm_write_system_settings_desc">允许修改系统设置。</string>
+    <string name="ads_perm_overlay">在其他应用上层显示</string>
+    <string name="ads_perm_overlay_desc">允许在其他应用程序上层显示。</string>
+    <string name="ads_perm_usage_access">使用情况访问权限</string>
+    <string name="ads_perm_usage_access_desc">使用情况访问权限。</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">数据</string>
@@ -151,8 +151,8 @@
     <string name="ads_backup_restore_error">无法恢复备份。</string>
     <string name="ads_backup_not_found">没有找到备份。</string>
     <string name="ads_backup_modify_complete">备份已成功修改</string>
-    <string name="ads_backup_delete_all">删除所有</string>
-    <string name="ads_backup_delete_all_title">删除所有备份</string>
+    <string name="ads_backup_delete_all">删除全部</string>
+    <string name="ads_backup_delete_all_title">删除全部备份</string>
     <string name="ads_backup_delete_all_desc">这将删除保存在应用程序存储中的所有备份。你想继续吗？</string>
     <string name="ads_backup_delete_all_done">所有备份已成功删除。</string>
     <string name="ads_backup_import">入口</string>
@@ -180,7 +180,7 @@
     <string name="ads_dynamic_theme">动态主题</string>
     <string name="ads_dynamic_theme_summary">接收者应用的主题。</string>
     <string name="ads_theme">主题</string>
-    <string name="ads_theme_customise_desc">配置下面的主题。</string>
+    <string name="ads_theme_customise_desc">配置以下主题。</string>
     <string name="ads_theme_adjust_desc">主题会根据当前的Android版本自动调整。</string>
     <string name="ads_theme_invalid">主题无效</string>
     <string name="ads_theme_invalid_desc">无法验证此主题。请使用适当的数据再试一次。</string>
@@ -287,8 +287,8 @@
 
     <!-- Picker -->
     <string name="ads_picker_all">所有</string>
-    <string name="ads_picker_more_colors">更多的颜色</string>
-    <string name="ads_picker_pick">挑</string>
+    <string name="ads_picker_pick">挑选</string>
+    <string name="ads_picker_more_colors">更多色彩</string>
     <string name="ads_picker_presets">预置</string>
 
     <!-- Language selector -->
@@ -301,7 +301,7 @@
     <string name="ads_notification_priority_summary">选择优先级来确定通知抽屉中的顺序。</string>
     <string name="ads_notification_priority_desc">选择低优先级隐藏状态栏和锁定屏幕通知。</string>
     <string name="ads_notification_priority_high">高</string>
-    <string name="ads_notification_priority_normal">正常</string>
+    <string name="ads_notification_priority_normal">普通</string>
     <string name="ads_notification_priority_low">低</string>
     <string name="ads_notification_category">通知类别</string>
     <string name="ads_notification_category_summary">配置应用程序显示的通知。</string>
@@ -310,7 +310,7 @@
     <!-- App widget -->
     <string name="ads_widget_customise">定制</string>
     <string name="ads_widget_customise_desc">配置下面的小部件。</string>
-    <string name="ads_widget_preview">预习</string>
+    <string name="ads_widget_preview">预览</string>
     <string name="ads_widget_preview_desc">小部件布局可能会根据实际使用的大小自动更改以提供最佳体验。</string>
     <string name="ads_widget_header">标题</string>
     <string name="ads_widget_header_summary">窗口小部件标题的可见性。</string>
@@ -357,7 +357,7 @@
     <string name="ads_info_apps">更多应用程序</string>
     <string name="ads_info_apps_desc">通过Google Play尝试其他应用。</string>
     <string name="ads_info_gplus_desc">加入官方社区尝试测试版本。</string>
-    <string name="ads_info_facebook_desc">收藏官方页面，获取最新的新闻和更新。</string>
+    <string name="ads_info_facebook_desc">收藏官方主页，获取最新的消息和更新。</string>
     <string name="ads_info_xda_desc">在XDA跟进官方支持。</string>
     <string name="ads_info_website">WEB</string>
     <string name="ads_info_website_desc">访问官方网站了解更多信息。</string>
@@ -366,7 +366,7 @@
     <string name="ads_info_facebook_me_desc">成为朋友或关注我，获得我的更多信息。</string>
     <string name="ads_info_gplus_me_desc">圈出或关注来发展社区。</string>
     <string name="ads_info_linkedin_me_desc">对我有好处吗？通过LinkedIn联系我。</string>
-    <string name="ads_info_github_me_desc">通过开源购买我的一些项目回馈社区。</string>
+    <string name="ads_info_github_me_desc">通过开源我的一些项目回馈社区。</string>
 
     <!-- Contributors and Translators -->
     <string name="ads_contributors">贡献者</string>
@@ -374,13 +374,13 @@
     <string name="ads_translations">翻译</string>
     <string name="ads_translators">译者</string>
     <string name="ads_translators_translate">翻译</string>
-    <string name="ads_translators_translate_summary">成为翻译。</string>
+    <string name="ads_translators_translate_summary">成为翻译者。</string>
     <string name="ads_translators_translate_desc">有助于使这个应用程序以更多语言提供。</string>
     <string name="ads_translators_contact">如果您想翻译，请通过电子邮件联系。</string>
 
     <!-- Licenses -->
     <string name="ads_licenses">许可证</string>
-    <string name="ads_license">执照</string>
+    <string name="ads_license">许可证</string>
     <string name="ads_license_desc">查看完整许可证。</string>
     <string name="ads_license_sources">来源</string>
     <string name="ads_license_sources_desc">在GitHub上查看源代码。</string>

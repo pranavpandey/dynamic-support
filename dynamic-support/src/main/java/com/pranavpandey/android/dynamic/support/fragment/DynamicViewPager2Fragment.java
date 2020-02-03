@@ -58,13 +58,6 @@ public abstract class DynamicViewPager2Fragment extends DynamicFragment
     private TabLayout mTabLayout;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setRetainInstance(false);
-    }
-
-    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.ads_fragment_view_pager_2, container, false);

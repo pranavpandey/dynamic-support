@@ -42,12 +42,11 @@ android {
 
 dependencies {
     api "com.pranavpandey.android:dynamic-theme:${versions.theme}"
-    api "com.pranavpandey.android:dynamic-locale:${versions.support}"
-    api "com.pranavpandey.android:dynamic-preferences:${versions.support}"
+    api "com.pranavpandey.android:dynamic-locale:${versions.locale}"
+    api "com.pranavpandey.android:dynamic-preferences:${versions.preferences}"
     api "com.pranavpandey.android:dynamic-toasts:${versions.dynamic}"
     api "androidx.drawerlayout:drawerlayout:${versions.drawerlayout}"
     api "androidx.fragment:fragment:${versions.fragment}"
-    api "androidx.preference:preference:${versions.preference}"
     api "androidx.swiperefreshlayout:swiperefreshlayout:${versions.swiperefresh}"
     api "androidx.work:work-runtime:${versions.work}"
     api "com.google.android.material:material:${versions.material}"

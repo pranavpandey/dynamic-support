@@ -601,7 +601,7 @@
 
     <style name="Widget.DynamicApp.ViewPager">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>c
+        <item name="android:layout_height">match_parent</item>
         <item name="android:clipChildren">false</item>
         <item name="android:clipToPadding">false</item>
     </style>

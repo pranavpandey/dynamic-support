@@ -945,11 +945,11 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     }
 
     /**
-     * Returns the dynamic app theme from the Json string.
+     * Returns the dynamic app theme from the JSON string.
      *
-     * @param theme The dynamic app theme Json string to be converted.
+     * @param theme The dynamic app theme JSON string to be converted.
      *
-     * @return The dynamic app theme from the Json string.
+     * @return The dynamic app theme from the JSON string.
      */
     public @Nullable DynamicAppTheme getTheme(@Nullable String theme) {
         return new Gson().fromJson(theme, DynamicAppTheme.class);

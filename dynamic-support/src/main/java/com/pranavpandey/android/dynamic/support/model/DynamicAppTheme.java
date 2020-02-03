@@ -871,8 +871,17 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
     }
 
     @Override
-    public int getCornerSizeDp() {
+    public int getCornerSizeDp(boolean resolve) {
+        if (!resolve && cornerRadius == AUTO) {
+            return AUTO;
+        }
+
         return DynamicUnitUtils.convertPixelsToDp(getCornerRadius());
+    }
+
+    @Override
+    public int getCornerSizeDp() {
+        return getCornerSizeDp(true);
     }
 
     @Override

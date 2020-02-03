@@ -27,6 +27,11 @@
         android:orientation="vertical"
         android:paddingBottom="@dimen/ads_bottom_sheet_peek_height">
 
+        <com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView
+            android:id="@+id/ads_theme_presets_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <LinearLayout
             style="@style/Widget.DynamicApp.Scroller.Padding"
             android:layout_width="match_parent"

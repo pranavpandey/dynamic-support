@@ -637,18 +637,6 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      */
     public void addView(@Nullable ViewGroup viewGroup,
             @Nullable View view, boolean removePrevious) {
-        if (viewGroup == null) {
-            return;
-        }
-
-        if (view == null) {
-            if (removePrevious) {
-                viewGroup.removeAllViews();
-            }
-
-            return;
-        }
-
         DynamicViewUtils.addView(viewGroup, view, removePrevious);
         setFrameVisibility(viewGroup);
     }

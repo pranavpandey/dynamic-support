@@ -137,6 +137,7 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
 
                             final Drawable icon = ((ListMenuItemView) menuItemView)
                                     .getItemData().getIcon();
+
                             if (icon != null) {
                                 ((ListMenuItemView) menuItemView).setIcon(
                                         DynamicDrawableUtils.colorizeDrawable(icon, tintColor));

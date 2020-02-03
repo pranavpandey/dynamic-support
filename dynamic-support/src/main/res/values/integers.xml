@@ -65,7 +65,4 @@
     <item name="ads_dialog_min_width_major" type="dimen">65%</item>
     <item name="ads_dialog_min_width_minor" type="dimen">95%</item>
 
-    <!-- Toast -->
-    <item name="ads_toast_alpha" type="integer" format="float">0.95</item>
-
 </resources>
