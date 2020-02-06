@@ -225,13 +225,18 @@ public abstract class DynamicActivity extends DynamicStateActivity {
         setSearchView();
 
         if (savedInstanceState != null) {
-            mAppBarLayout.setExpanded(savedInstanceState.getBoolean(ADS_STATE_APP_BAR_COLLAPSED));
+            if (mAppBarLayout != null) {
+                mAppBarLayout.setExpanded(savedInstanceState
+                        .getBoolean(ADS_STATE_APP_BAR_COLLAPSED));
+            }
 
-            if (savedInstanceState.getInt(ADS_STATE_FAB_VISIBLE) != View.INVISIBLE) {
+            if (mFAB != null && savedInstanceState.getInt(
+                    ADS_STATE_FAB_VISIBLE) != View.INVISIBLE) {
                 DynamicFABUtils.show(mFAB);
             }
 
-            if (savedInstanceState.getInt(ADS_STATE_EXTENDED_FAB_VISIBLE) != View.INVISIBLE) {
+            if (mExtendedFAB != null && savedInstanceState.getInt(
+                    ADS_STATE_EXTENDED_FAB_VISIBLE) != View.INVISIBLE) {
                 DynamicFABUtils.show(mExtendedFAB, false);
             }
 

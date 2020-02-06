@@ -29,6 +29,7 @@ import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -83,7 +84,7 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
     private TextView mNavHeaderSubtitle;
 
     @Override
-    protected int getLayoutRes() {
+    protected @LayoutRes int getLayoutRes() {
         return setCollapsingToolbarLayout()
                 ? R.layout.ads_activity_drawer_collapsing
                 : R.layout.ads_activity_drawer;
