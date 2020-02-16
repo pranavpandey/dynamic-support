@@ -150,6 +150,10 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
                                 DynamicScrollUtils.setEdgeEffectColor(
                                         (ListView) menu, tintColor);
 
+                                if (group == null) {
+                                    return;
+                                }
+
                                 if (DynamicSdkUtils.is21()) {
                                     if (!(group instanceof CardView)) {
                                         if (group.getBackground() != null) {
