@@ -286,10 +286,11 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      * Show progress bar and hide the recycler view.
      */
     public void showProgress() {
-        if (mProgressBar != null) {
+        if (mProgressBar != null && mProgressBar.getVisibility() == GONE) {
             mRecyclerView.setAlpha(0f);
             mProgressBar.setAlpha(0f);
 
+            mRecyclerView.setVisibility(GONE);
             mProgressBar.setVisibility(View.VISIBLE);
             mProgressBar.animate()
                     .alpha(1f)
@@ -302,7 +303,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      * Hide progress bar and show the recycler view.
      */
     public void hideProgress() {
-        if (mProgressBar != null) {
+        if (mProgressBar != null && mProgressBar.getVisibility() == VISIBLE) {
             mProgressBar.animate()
                     .alpha(0f)
                     .setDuration(mShortAnimationDuration)
@@ -310,6 +311,9 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             mProgressBar.setVisibility(View.GONE);
+                            mRecyclerView.setVisibility(View.VISIBLE);
+
+                            mRecyclerView.setAlpha(0f);
                             mRecyclerView.animate()
                                     .alpha(1f)
                                     .setDuration(mShortAnimationDuration)
