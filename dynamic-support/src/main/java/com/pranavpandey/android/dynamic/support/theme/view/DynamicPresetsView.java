@@ -340,19 +340,20 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
                 @Override
                 public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
                     if (loader.getId() == ADS_LOADER_PRESETS) {
-                        mPresetsAdapter.setPresets(data);
-                    }
+                        if (data != null) {
+                            mPresetsAdapter.setPresets(data);
+                        }
 
-                    setPresetsVisible(data != null);
+                        setPresetsVisible(data != null && data.getCount() > 0);
+                    }
                 }
 
                 @Override
                 public void onLoaderReset(@NonNull Loader<Cursor> loader) {
                     if (loader.getId() == ADS_LOADER_PRESETS) {
                         mPresetsAdapter.setPresets(null);
+                        setPresetsVisible(false);
                     }
-
-                    setPresetsVisible(false);
                 }
             };
 }
