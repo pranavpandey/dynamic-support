@@ -47,6 +47,7 @@ import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -336,6 +337,19 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
             @NonNull String transition, @IdRes int viewId) {
         return mDynamicTransitionListener == null ? findViewById(viewId)
                 : mDynamicTransitionListener.onFindView(resultCode, position, transition, viewId);
+    }
+
+    /**
+     * Commit the fragment transaction.
+     *
+     * @param fragmentTransaction The fragment transaction to be committed.
+     */
+    public void commitFragmentTransaction(@NonNull FragmentTransaction fragmentTransaction) {
+        try {
+            fragmentTransaction.commit();
+        } catch (Exception e) {
+            fragmentTransaction.commitAllowingStateLoss();
+        }
     }
 
     @Override

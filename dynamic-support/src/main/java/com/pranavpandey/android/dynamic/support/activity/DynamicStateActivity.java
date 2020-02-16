@@ -210,26 +210,13 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     }
 
     /**
-     * Commit the fragment transaction.
-     *
-     * @param fragmentTransaction The fragment transaction to be committed.
-     */
-    private void commitFragmentTransaction(@NonNull FragmentTransaction fragmentTransaction) {
-        try {
-            fragmentTransaction.commit();
-        } catch (Exception e) {
-            fragmentTransaction.commitAllowingStateLoss();
-        }
-    }
-
-    /**
      * Switch the content fragment used by this activity.
      *
      * @param fragment The fragment to be used by this activity.
      * @param addToBackStack {@code true} to put previous fragment to back stack.
      * @param tag The fragment tag to maintain the back stack.
      */
-    protected void switchFragment(@NonNull Fragment fragment,
+    public void switchFragment(@NonNull Fragment fragment,
             boolean addToBackStack, @Nullable String tag) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         switchFragment(fragmentTransaction, fragment, addToBackStack, tag);
@@ -241,7 +228,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
      * @param fragment The fragment to be used by this activity.
      * @param addToBackStack {@code true} to put previous fragment to back stack.
      */
-    protected void switchFragment(@NonNull Fragment fragment, boolean addToBackStack) {
+    public void switchFragment(@NonNull Fragment fragment, boolean addToBackStack) {
         switchFragment(fragment, addToBackStack, null);
     }
 

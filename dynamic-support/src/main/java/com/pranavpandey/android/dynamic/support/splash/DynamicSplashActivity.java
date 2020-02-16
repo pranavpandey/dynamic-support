@@ -95,8 +95,8 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
         setNavigationBarColor(getNavigationBarColor());
 
         ((DynamicSplashFragment) mContentFragment).setOnSplashListener(this);
-        getSupportFragmentManager().beginTransaction().replace(
-                R.id.ads_container, mContentFragment, ADS_STATE_SPLASH_FRAGMENT_TAG).commit();
+        commitFragmentTransaction(getSupportFragmentManager().beginTransaction()
+                .replace(R.id.ads_container, mContentFragment, ADS_STATE_SPLASH_FRAGMENT_TAG));
     }
 
     @Override
