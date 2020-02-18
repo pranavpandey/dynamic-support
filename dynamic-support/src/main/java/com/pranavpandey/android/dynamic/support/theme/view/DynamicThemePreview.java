@@ -150,7 +150,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
 
     @Override
     protected @LayoutRes int getLayoutRes() {
-        return R.layout.ads_layout_theme_preview;
+        return R.layout.ads_theme_preview;
     }
 
     @Override

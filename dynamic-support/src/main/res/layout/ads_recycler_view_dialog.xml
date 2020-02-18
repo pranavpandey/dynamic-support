@@ -15,14 +15,7 @@
 	limitations under the License.
 -->
 
-<FrameLayout
+<com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ads_recycler_view_root"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
-        style="@style/Widget.DynamicApp.Scroller.Vertical"
-        android:id="@+id/ads_recycler_view" />
-
-</FrameLayout>
+    style="@style/Widget.DynamicApp.Scroller.Vertical"
+    android:id="@+id/ads_recycler_view" />

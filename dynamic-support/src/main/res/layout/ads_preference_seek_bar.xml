@@ -15,15 +15,13 @@
 	limitations under the License.
 -->
 
-<FrameLayout
+<merge
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Content.Card.Clickable"
-    android:id="@+id/ads_preference"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
+        style="@style/Widget.DynamicApp.Content.Card.Clickable.Background"
+        android:id="@+id/ads_preference"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -130,4 +128,4 @@
 
     </LinearLayout>
 
-</FrameLayout>
+</merge>

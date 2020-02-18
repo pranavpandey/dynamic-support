@@ -28,17 +28,7 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
-        <FrameLayout
-            android:id="@+id/ads_drawer_persistent_frame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <include
-                layout="@layout/ads_activity"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </FrameLayout>
+        <include layout="@layout/ads_activity" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicNavigationView
             style="@style/Widget.DynamicApp.NavigationView"

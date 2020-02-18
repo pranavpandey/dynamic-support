@@ -15,12 +15,9 @@
 	limitations under the License.
 -->
 
-<FrameLayout
+<merge
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ads_recycler_view_root"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicSwipeRefreshLayout
         android:id="@+id/ads_swipe_refresh_layout"
@@ -45,4 +42,4 @@
         android:indeterminate="true"
         android:visibility="gone" />
 
-</FrameLayout>
+</merge>

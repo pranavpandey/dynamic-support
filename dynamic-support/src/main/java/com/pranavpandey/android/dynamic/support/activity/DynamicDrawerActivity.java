@@ -209,16 +209,21 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
             mDrawer.setScrimColor(Color.TRANSPARENT);
             mDrawerToggle.setDrawerIndicatorEnabled(false);
 
-            ViewGroup frame = findViewById(R.id.ads_drawer_persistent_frame);
+            ViewGroup frame = findViewById(R.id.ads_activity_root);
 
-            if (DynamicLocaleUtils.isLayoutRtl()) {
-                frame.setPadding(frame.getPaddingLeft(), frame.getPaddingTop(),
-                        getResources().getDimensionPixelSize(R.dimen.ads_margin_content_start),
-                        frame.getPaddingBottom());
-            } else {
-                frame.setPadding(getResources().getDimensionPixelSize(
-                        R.dimen.ads_margin_content_start), frame.getPaddingTop(),
-                        frame.getPaddingRight(), frame.getPaddingBottom());
+            if (frame != null && frame.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+                ViewGroup.MarginLayoutParams params =
+                        (ViewGroup.MarginLayoutParams) frame.getLayoutParams();
+
+                if (DynamicLocaleUtils.isLayoutRtl()) {
+                    params.rightMargin = getResources().getDimensionPixelOffset(
+                            R.dimen.ads_margin_content_start);
+                } else {
+                    params.leftMargin = getResources().getDimensionPixelOffset(
+                            R.dimen.ads_margin_content_start);
+                }
+
+                frame.setLayoutParams(params);
             }
         } else {
             if (isDrawerLocked()) {

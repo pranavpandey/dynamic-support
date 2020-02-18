@@ -686,8 +686,18 @@
         <item name="android:foreground">?attr/selectableItemBackground</item>
     </style>
 
+    <style name="Widget.DynamicApp.Content.Card.Clickable.Background"
+        parent="Widget.DynamicApp.Content.Card">
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
     <style name="Widget.DynamicApp.Content.Card.Small.Clickable">
         <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Content.Card.Small.Clickable.Background"
+        parent="Widget.DynamicApp.Content.Card.Small">
+        <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.Header">

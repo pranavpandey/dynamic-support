@@ -36,10 +36,7 @@
             app:elevation="0dp"
             app:ads_backgroundAware="disable">
 
-            <include
-                layout="@layout/ads_toolbar_scroll"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            <include layout="@layout/ads_toolbar_scroll" />
 
             <FrameLayout
                 android:id="@+id/ads_header_frame"
@@ -55,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_anchor="@id/ads_app_bar_layout"
+            app:layout_anchorGravity="bottom"
             app:layout_behavior="@string/ads_fab_behavior" />
 
         <include layout="@layout/ads_layout_bottom_sheet" />
