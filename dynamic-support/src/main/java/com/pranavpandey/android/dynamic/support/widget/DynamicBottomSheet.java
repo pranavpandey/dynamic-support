@@ -73,7 +73,14 @@ public class DynamicBottomSheet extends FrameLayout implements WindowInsetsWidge
     }
 
     @Override
-    public void initialize() { }
+    public void initialize() {
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetBehavior.from(v).setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
+    }
 
     @Override
     public void applyWindowInsets() {

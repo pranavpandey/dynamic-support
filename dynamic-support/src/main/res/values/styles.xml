@@ -739,7 +739,7 @@
     <style name="Widget.DynamicApp.Image.DragIndicator">
         <item name="android:layout_width">@dimen/ads_bottom_sheet_indicator_width</item>
         <item name="android:layout_height">@dimen/ads_bottom_sheet_indicator_height</item>
-        <item name="android:layout_margin">@dimen/ads_margin_medium</item>
+        <item name="android:layout_margin">@dimen/ads_margin_regular</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:alpha">0.5</item>
         <item name="ads_colorType">accent</item>

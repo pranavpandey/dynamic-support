@@ -57,7 +57,7 @@
     <dimen name="ads_collapsing_toolbar_height">160dp</dimen>
     <dimen name="ads_fab_margin">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_margin_splash_bottom_end">@dimen/ads_margin_normal</dimen>
-    <dimen name="ads_bottom_sheet_peek_height">76dp</dimen>
+    <dimen name="ads_bottom_sheet_peek_height">72dp</dimen>
     <dimen name="ads_bottom_sheet_indicator_width">@dimen/ads_icon_normal</dimen>
     <dimen name="ads_bottom_sheet_indicator_height">@dimen/ads_margin_tiny</dimen>
 
