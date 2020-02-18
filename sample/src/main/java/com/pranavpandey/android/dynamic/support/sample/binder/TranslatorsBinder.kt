@@ -56,7 +56,7 @@ class TranslatorsBinder(binderAdapter: AppInfoAdapter)
         private val dynamicInfoView: DynamicInfoView = view.findViewById(R.id.info_translators)
 
         init {
-            dynamicInfoView.linksView.recyclerViewLayoutManager =
+            dynamicInfoView.linksView.layoutManager =
                     DynamicLayoutUtils.getGridLayoutManager(dynamicInfoView.context,
                             DynamicLayoutUtils.getGridCountCompact(dynamicInfoView.context))
 

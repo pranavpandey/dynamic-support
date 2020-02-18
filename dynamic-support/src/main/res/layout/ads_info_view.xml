@@ -76,10 +76,7 @@
 
         </LinearLayout>
 
-        <com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewNested
-            android:id="@+id/ads_info_links"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <include layout="@layout/ads_recycler_view_nested" />
 
     </LinearLayout>
 

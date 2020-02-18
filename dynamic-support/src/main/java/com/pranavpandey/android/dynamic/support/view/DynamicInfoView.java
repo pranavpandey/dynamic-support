@@ -30,12 +30,13 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicItem;
-import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewFrame;
-import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewNested;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicItemsAdapter;
+import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -149,7 +150,7 @@ public class DynamicInfoView extends DynamicView {
     /**
      * Recycler view to show the links associated with this view.
      */
-    private DynamicRecyclerViewNested mLinksView;
+    private RecyclerView mLinksView;
 
     /**
      * A list to hold the dynamic items used by this view.
@@ -213,7 +214,7 @@ public class DynamicInfoView extends DynamicView {
         mDescriptionView = findViewById(R.id.ads_info_view_description);
         mStatusView = findViewById(R.id.ads_info_view_status);
         mIconBigView = findViewById(R.id.ads_info_view_icon_big);
-        mLinksView = findViewById(R.id.ads_info_links);
+        mLinksView = findViewById(R.id.ads_recycler_view);
 
         mDynamicItems = new ArrayList<>();
         onUpdate();
@@ -331,6 +332,11 @@ public class DynamicInfoView extends DynamicView {
             }
 
             if (!mDynamicItems.isEmpty()) {
+                if (mLinksView.getLayoutManager() == null) {
+                    mLinksView.setLayoutManager(DynamicLayoutUtils.getLinearLayoutManager(
+                            getContext(), LinearLayoutManager.VERTICAL));
+                }
+
                 mLinksView.setAdapter(new DynamicItemsAdapter(mDynamicItems));
             }
         }
@@ -662,7 +668,7 @@ public class DynamicInfoView extends DynamicView {
      *
      * @return The recycler view to show the links associated  with this view.
      */
-    public DynamicRecyclerViewFrame getLinksView() {
+    public RecyclerView getLinksView() {
         return mLinksView;
     }
 }

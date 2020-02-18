@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicItem;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBinderAdapter;
+import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicItemsAdapter;
 import com.pranavpandey.android.dynamic.support.view.DynamicItemView;
 
 /**
@@ -39,7 +40,12 @@ public class DynamicItemBinder extends DynamicRecyclerViewBinder<DynamicItemBind
      */
     private DynamicItem mData;
 
-    public DynamicItemBinder(@NonNull DynamicBinderAdapter binderAdapter) {
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param binderAdapter The dynamic binder adapter for the recycler view.
+     */
+    public DynamicItemBinder(@NonNull DynamicItemsAdapter binderAdapter) {
         super(binderAdapter);
     }
 

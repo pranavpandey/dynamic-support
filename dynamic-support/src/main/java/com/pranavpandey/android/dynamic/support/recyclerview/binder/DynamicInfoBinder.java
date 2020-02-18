@@ -39,6 +39,11 @@ public class DynamicInfoBinder extends DynamicRecyclerViewBinder<DynamicInfoBind
      */
     private DynamicInfo mData;
 
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param binderAdapter The dynamic binder adapter for the recycler view.
+     */
     public DynamicInfoBinder(@NonNull DynamicBinderAdapter binderAdapter) {
         super(binderAdapter);
     }

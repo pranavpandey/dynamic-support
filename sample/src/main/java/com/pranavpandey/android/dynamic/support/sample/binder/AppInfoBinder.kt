@@ -53,7 +53,7 @@ class AppInfoBinder(binderAdapter: AppInfoAdapter)
         private val dynamicInfoView: DynamicInfoView = view.findViewById(R.id.info_app)
 
         init {
-            dynamicInfoView.linksView.recyclerViewLayoutManager =
+            dynamicInfoView.linksView.layoutManager =
                     DynamicLayoutUtils.getGridLayoutManager(dynamicInfoView.context,
                             DynamicLayoutUtils.getGridCount(dynamicInfoView.context))
         }
