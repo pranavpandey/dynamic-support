@@ -16,8 +16,6 @@
 
 package com.pranavpandey.android.dynamic.support.recyclerview;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
@@ -33,6 +31,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.transition.TransitionManager;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
@@ -47,11 +46,6 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      * State key for the fragment super state.
      */
     private static final String ADS_RECYCLER_VIEW_SCROLL_OFFSET = "superState";
-
-    /**
-     * Animation duration to show or hide the progress.
-     */
-    private int mShortAnimationDuration;
 
     /**
      * Swipe refresh layout to provide pull to refresh functionality.
@@ -121,8 +115,6 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      */
     protected void initialize() {
         inflate(getContext(), getLayoutRes(), this);
-        mShortAnimationDuration = getResources().getInteger(
-                android.R.integer.config_shortAnimTime);
 
         mSwipeRefreshLayout = findViewById(R.id.ads_swipe_refresh_layout);
         mRecyclerView = findViewById(R.id.ads_recycler_view);
@@ -278,7 +270,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      *
      * @return The progress bar which can be shown while the data is loading in the background.
      */
-    public ContentLoadingProgressBar getProgressBar() {
+    public @Nullable ContentLoadingProgressBar getProgressBar() {
         return mProgressBar;
     }
 
@@ -286,16 +278,12 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      * Show progress bar and hide the recycler view.
      */
     public void showProgress() {
-        if (mProgressBar != null && mProgressBar.getVisibility() == GONE) {
-            mRecyclerView.setAlpha(0f);
-            mProgressBar.setAlpha(0f);
+        if (mProgressBar != null) {
+            TransitionManager.beginDelayedTransition(this);
 
+            mProgressBar.setVisibility(VISIBLE);
             mRecyclerView.setVisibility(GONE);
-            mProgressBar.setVisibility(View.VISIBLE);
-            mProgressBar.animate()
-                    .alpha(1f)
-                    .setDuration(mShortAnimationDuration)
-                    .setListener(null);
+            mProgressBar.show();
         }
     }
 
@@ -303,23 +291,11 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      * Hide progress bar and show the recycler view.
      */
     public void hideProgress() {
-        if (mProgressBar != null && mProgressBar.getVisibility() == VISIBLE) {
-            mProgressBar.animate()
-                    .alpha(0f)
-                    .setDuration(mShortAnimationDuration)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            mProgressBar.setVisibility(View.GONE);
-                            mRecyclerView.setVisibility(View.VISIBLE);
+        if (mProgressBar != null) {
+            TransitionManager.beginDelayedTransition(this);
 
-                            mRecyclerView.setAlpha(0f);
-                            mRecyclerView.animate()
-                                    .alpha(1f)
-                                    .setDuration(mShortAnimationDuration)
-                                    .setListener(null);
-                        }
-                    });
+            mProgressBar.hide();
+            mRecyclerView.setVisibility(View.VISIBLE);
         }
     }
 
@@ -328,7 +304,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      *
      * @return The root scrollable view.
      */
-    public View getViewRoot() {
+    public @Nullable View getViewRoot() {
         return getRecyclerView();
     }
 
@@ -339,6 +315,10 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      * @param y The y position to scroll to.
      */
     public void smoothScrollTo(final int x, final int y) {
+        if (getViewRoot() == null) {
+            return;
+        }
+
         post(new Runnable() {
             @Override
             public void run() {
