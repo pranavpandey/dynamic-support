@@ -27,6 +27,7 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceManager;
 
 import com.pranavpandey.android.dynamic.locale.DynamicLocale;
@@ -73,6 +74,7 @@ public abstract class DynamicApplication extends Application
     public void onCreate() {
         super.onCreate();
 
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         DynamicTheme.getInstance().setDynamicThemeWork(onSetupDynamicWork());
         mConfiguration = new Configuration(getResources().getConfiguration());
 
