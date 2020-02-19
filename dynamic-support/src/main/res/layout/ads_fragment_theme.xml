@@ -24,8 +24,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/ads_bottom_sheet_peek_height">
+        android:paddingBottom="@dimen/ads_bottom_sheet_peek_height"
+        android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView
             android:id="@+id/ads_theme_presets_view"
