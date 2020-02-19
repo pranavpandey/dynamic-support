@@ -224,7 +224,8 @@
     <!-- Theme -->
     <dimen name="ads_theme_preview_width">301dp</dimen>
     <dimen name="ads_theme_preview_height">161dp</dimen>
-    <dimen name="ads_theme_preview_status_bar_height">24dp</dimen>
+    <dimen name="ads_theme_preview_header_margin_top">@dimen/ads_margin_medium</dimen>
+    <dimen name="ads_theme_preview_header_margin_bottom">20dp</dimen>
     <dimen name="ads_theme_preview_icon_size">@dimen/ads_icon_small</dimen>
     <dimen name="ads_theme_preview_fab_size">42dp</dimen>
     <dimen name="ads_theme_preview_fab_elevation">1dp</dimen>
