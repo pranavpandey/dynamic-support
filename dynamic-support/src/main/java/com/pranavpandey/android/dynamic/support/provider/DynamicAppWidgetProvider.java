@@ -40,6 +40,7 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicAppWidgetUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicShapeUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicBitmapUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 import java.util.Locale;
 
@@ -259,14 +260,16 @@ public abstract class DynamicAppWidgetProvider
      */
     protected void updateWidgetDimensions(@NonNull Context context,
             @NonNull AppWidgetManager appWidgetManager, int appWidgetId) {
-        Bundle options = appWidgetManager.getAppWidgetOptions(appWidgetId);
-        if (context.getResources().getConfiguration().orientation
-                == Configuration.ORIENTATION_LANDSCAPE) {
-            mWidth = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH);
-            mHeight = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT);
-        } else {
-            mWidth = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
-            mHeight = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT);
+        if (DynamicSdkUtils.is16()) {
+            Bundle options = appWidgetManager.getAppWidgetOptions(appWidgetId);
+            if (context.getResources().getConfiguration().orientation
+                    == Configuration.ORIENTATION_LANDSCAPE) {
+                mWidth = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH);
+                mHeight = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT);
+            } else {
+                mWidth = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
+                mHeight = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT);
+            }
         }
     }
 
