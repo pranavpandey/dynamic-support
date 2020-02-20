@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * An AppCompatButton to change its color according to the supplied parameters.
+ * An {@link MaterialButton} to apply {@link DynamicTheme} according to the supplied parameters.
  */
 public class DynamicButton extends MaterialButton implements
         DynamicWidget, DynamicCornerWidget<Integer>, DynamicTintWidget {

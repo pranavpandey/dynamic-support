@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * A CardView to change its background color according to the supplied parameters.
+ * A {@link MaterialCardView} to apply {@link DynamicTheme} according to the supplied parameters.
  */
 public class DynamicMaterialCardView extends MaterialCardView implements
         DynamicWidget, DynamicCornerWidget<Float>, DynamicSurfaceWidget {
@@ -244,23 +244,29 @@ public class DynamicMaterialCardView extends MaterialCardView implements
     }
 
     @Override
+    public void setCardElevation(float elevation)  {
+        super.setCardElevation(elevation);
+
+        if (elevation > 0) {
+            this.mElevation = getCardElevation();
+        }
+    }
+
+    @Override
     public void setColor() {
         if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
             if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
                 mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
+            if (mElevationOnSameBackground && mColorType == Theme.ColorType.BACKGROUND
+                    && DynamicColorUtils.removeAlpha(mColor) == DynamicColorUtils.removeAlpha(
+                    DynamicTheme.getInstance().get().getSurfaceColor())) {
+                mColor = DynamicTheme.getInstance().generateSurfaceColor(mColor);
+            }
+
             setCardBackgroundColor(mColor);
             setSurface();
-        }
-    }
-
-    @Override
-    public void setCardElevation(float elevation)  {
-        super.setCardElevation(elevation);
-
-        if (elevation > 0) {
-            this.mElevation = getCardElevation();
         }
     }
 
@@ -279,7 +285,8 @@ public class DynamicMaterialCardView extends MaterialCardView implements
     @Override
     public void setSurface() {
         if (!mElevationOnSameBackground && mColorType == Theme.ColorType.SURFACE
-                && mColor == DynamicTheme.getInstance().get().getBackgroundColor()) {
+                && DynamicColorUtils.removeAlpha(mColor) == DynamicColorUtils.removeAlpha(
+                DynamicTheme.getInstance().get().getBackgroundColor())) {
             setCardElevation(0);
         } else {
             setCardElevation(mElevation);

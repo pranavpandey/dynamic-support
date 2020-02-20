@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ import com.pranavpandey.android.dynamic.support.widget.base.DynamicRtlWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
 
 /**
- * A CollapsingToolbarLayout to provide support for Right to Left (RTL) layouts.
+ * A {@link CollapsingToolbarLayout} to provide support for RTL (right-to-left) layouts.
  */
 public class DynamicCollapsingToolbarLayout extends CollapsingToolbarLayout
         implements WindowInsetsWidget, DynamicRtlWidget {

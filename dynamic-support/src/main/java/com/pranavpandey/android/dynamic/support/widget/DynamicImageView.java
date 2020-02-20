@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,8 @@ import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * An ImageView to apply color filter according to the supplied parameters.
+ * An {@link AppCompatImageView} to apply {@link DynamicTheme} according to the supplied
+ * parameters.
  */
 public class DynamicImageView extends AppCompatImageView implements DynamicWidget {
 

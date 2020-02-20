@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +17,9 @@
 package com.pranavpandey.android.dynamic.support.widget.base;
 
 /**
- * Interface to create widgets with support for Right to Left layouts.
+ * Interface to create widgets with support for RTL (right-to-left) layouts.
  * <p>When enabled, widgets will adjust gravity or text alignment automatically to support the
- * Right to Left (RTL) layouts.
+ * RTL (right-to-left) layouts.
  */
 public interface DynamicRtlWidget {
 

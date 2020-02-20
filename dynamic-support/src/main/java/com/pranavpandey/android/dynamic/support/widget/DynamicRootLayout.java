@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 
 /**
- * A RelativeLayout to apply window insets to act as a root view.
+ * A {@link RelativeLayout} to apply window insets to act as a root view.
  */
 public class DynamicRootLayout extends RelativeLayout
         implements BaseWidget, WindowInsetsWidget {

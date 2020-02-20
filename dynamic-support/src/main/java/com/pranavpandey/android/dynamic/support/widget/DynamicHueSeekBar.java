@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
 
 /**
- * A DynamicSeekBar to provide a hue bar for color picker.
+ * A {@link DynamicSeekBar} to provide a hue bar for the color picker.
  */
 public class DynamicHueSeekBar extends DynamicSeekBar {
 

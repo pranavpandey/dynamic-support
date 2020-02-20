@@ -8,8 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
- * A DynamicGridView which fully expands vertically according to its content height which
- * is suitable to show it as a nested view.
+ * A {@link DynamicGridView} that fully expands vertically according to its content height
+ * which is suitable to show it as a nested view.
  */
 public class DynamicNestedGridView extends DynamicGridView {
 

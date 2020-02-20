@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 
 /**
- * A fixed DrawerLayout when in persistent or locked open state.
+ * A fixed {@link DrawerLayout} when in persistent or {@link #LOCK_MODE_LOCKED_OPEN} state.
  */
 public class DynamicDrawerLayout extends DrawerLayout implements WindowInsetsWidget {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 
 /**
- * A RelativeLayout to apply background color according to the supplied parameters.
+ * A {@link RelativeLayout} to apply background color according to the supplied parameters.
  */
 public class DynamicRelativeLayout extends RelativeLayout implements DynamicWidget {
 

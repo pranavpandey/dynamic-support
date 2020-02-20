@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
 
 /**
- * A CoordinatorLayout to draw status bar background.
+ * A {@link CoordinatorLayout} to draw the status bar background.
  */
 public class DynamicCoordinatorLayout extends CoordinatorLayout implements WindowInsetsWidget {
 

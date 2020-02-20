@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,8 +28,10 @@ import androidx.annotation.Nullable;
 import androidx.viewpager2.widget.ViewPager2;
 
 /**
- * A DynamicFrameLayout to provide nested scrolling in the same direction inside
+ * A {@link DynamicFrameLayout} to provide nested scrolling in the same direction inside
  * a {@link ViewPager2}.
+ *
+ * @see <a href="https://developer.android.com/training/animation/vp2-migration#nested-scrollables">More info</a>
  */
 public class DynamicViewPager2Layout extends DynamicFrameLayout {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
- * A SeekBar to change its color according to the supplied parameters.
+ * An {@link AppCompatSeekBar} to apply {@link DynamicTheme} according to the supplied parameters.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class DynamicSeekBar extends AppCompatSeekBar implements DynamicProgressWidget {

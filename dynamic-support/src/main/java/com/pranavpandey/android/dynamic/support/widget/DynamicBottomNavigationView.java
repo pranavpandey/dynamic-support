@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * A BottomNavigationView to change its text and indicator color according to the
+ * A {@link BottomNavigationView} to apply {@link DynamicTheme} according to the
  * supplied parameters.
  */
 public class DynamicBottomNavigationView extends BottomNavigationView

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,8 +46,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import java.lang.reflect.Field;
 
 /**
- * A NavigationView to change its selected item and edge effect color according to the
- * supplied parameters.
+ * A {@link NavigationView} to apply {@link DynamicTheme} according to the supplied parameters.
  */
 public class DynamicNavigationView extends NavigationView
         implements WindowInsetsWidget, DynamicBackgroundWidget,

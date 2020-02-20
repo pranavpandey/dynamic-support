@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 
 /**
- * A DynamicImageView to show the drag indicator according to the corner radius.
+ * A {@link DynamicImageView} to show the drag indicator according to the {@link DynamicTheme}.
  */
 public class DynamicDragIndicator extends DynamicImageView {
 
