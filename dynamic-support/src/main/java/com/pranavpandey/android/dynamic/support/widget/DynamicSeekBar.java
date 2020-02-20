@@ -30,6 +30,7 @@ import androidx.appcompat.widget.AppCompatSeekBar;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicProgressWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -246,6 +247,8 @@ public class DynamicSeekBar extends AppCompatSeekBar implements DynamicProgressW
             setThumbTintList(DynamicResourceUtils.getColorStateList(mColor));
         } else if (DynamicSdkUtils.is16()) {
             setThumb(DynamicDrawableUtils.colorizeDrawable(getThumb(), mColor));
+        } else {
+            DynamicInputUtils.setColor(this, mColor);
         }
     }
 }

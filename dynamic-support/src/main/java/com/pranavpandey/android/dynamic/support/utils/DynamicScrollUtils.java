@@ -55,114 +55,114 @@ public final class DynamicScrollUtils {
     /**
      * {@link EdgeEffect} field constant for the edge.
      */
-    private static Field EDGE_EFFECT_FIELD_EDGE;
+    private static Field F_EDGE_EFFECT_EDGE;
     /**
      * {@link EdgeEffect} field constant for the glow.
      */
-    private static Field EDGE_EFFECT_FIELD_GLOW;
+    private static Field F_EDGE_EFFECT_GLOW;
     /**
      * {@link EdgeEffectCompat} field constant for the edge effect.
      */
-    private static Field EDGE_EFFECT_COMPAT_FIELD_EDGE_EFFECT;
+    private static Field F_EDGE_EFFECT_COMPAT_EDGE_EFFECT;
 
     /**
      * {@link AbsListView} field constant for the top glow.
      */
-    private static Field LIST_VIEW_FIELD_EDGE_GLOW_TOP;
+    private static Field F_LIST_VIEW_EDGE_GLOW_TOP;
     /**
      * {@link AbsListView} field constant for the bottom glow.
      */
-    private static Field LIST_VIEW_FIELD_EDGE_GLOW_BOTTOM;
+    private static Field F_LIST_VIEW_EDGE_GLOW_BOTTOM;
     /**
      * {@link RecyclerView} field constant for the top glow.
      */
-    private static Field RECYCLER_VIEW_FIELD_EDGE_GLOW_TOP;
+    private static Field F_RECYCLER_VIEW_EDGE_GLOW_TOP;
     /**
      * {@link RecyclerView} field constant for the left glow.
      */
-    private static Field RECYCLER_VIEW_FIELD_EDGE_GLOW_LEFT;
+    private static Field F_RECYCLER_VIEW_EDGE_GLOW_LEFT;
     /**
      * {@link RecyclerView} field constant for the right glow.
      */
-    private static Field RECYCLER_VIEW_FIELD_EDGE_GLOW_RIGHT;
+    private static Field F_RECYCLER_VIEW_EDGE_GLOW_RIGHT;
     /**
      * {@link RecyclerView} field constant for the bottom glow.
      */
-    private static Field RECYCLER_VIEW_FIELD_EDGE_GLOW_BOTTOM;
+    private static Field F_RECYCLER_VIEW_EDGE_GLOW_BOTTOM;
 
     /**
      * {@link ScrollView} field constant for the top glow.
      */
-    private static Field SCROLL_VIEW_FIELD_EDGE_GLOW_TOP;
+    private static Field F_SCROLL_VIEW_EDGE_GLOW_TOP;
     /**
      * {@link ScrollView} field constant for the bottom glow.
      */
-    private static Field SCROLL_VIEW_FIELD_EDGE_GLOW_BOTTOM;
+    private static Field F_SCROLL_VIEW_EDGE_GLOW_BOTTOM;
     /**
      * {@link NestedScrollView} field constant for the top glow.
      */
-    private static Field NESTED_SCROLL_VIEW_FIELD_EDGE_GLOW_TOP;
+    private static Field F_NESTED_SCROLL_VIEW_EDGE_GLOW_TOP;
     /**
      * {@link NestedScrollView} field constant for the bottom glow.
      */
-    private static Field NESTED_SCROLL_VIEW_FIELD_EDGE_GLOW_BOTTOM;
+    private static Field F_NESTED_SCROLL_VIEW_EDGE_GLOW_BOTTOM;
 
     /**
      * {@link ViewPager} field constant for the left glow.
      */
-    private static Field VIEW_PAGER_FIELD_EDGE_GLOW_LEFT;
+    private static Field F_VIEW_PAGER_EDGE_GLOW_LEFT;
     /**
      * {@link ViewPager} field constant for the right glow.
      */
-    private static Field VIEW_PAGER_FIELD_EDGE_GLOW_RIGHT;
+    private static Field F_VIEW_PAGER_EDGE_GLOW_RIGHT;
 
     /**
      * {@link NavigationView} field constant for the presenter.
      */
-    private static Field NAVIGATION_VIEW_FIELD_PRESENTER;
+    private static Field F_NAVIGATION_VIEW_PRESENTER;
     /**
      * {@link NavigationView} field constant for the recycler view.
      */
-    private static Field NAVIGATION_VIEW_FIELD_RECYCLER_VIEW;
+    private static Field F_NAVIGATION_VIEW_RECYCLER_VIEW;
 
     /**
      * Scroll bar field constant for the view.
      */
-    private static Field VIEW_SCROLL_BAR_FIELD;
+    private static Field F_VIEW_SCROLL_BAR;
 
     /**
      * Scroll bar cache constant for the view.
      */
-    private static Field VIEW_SCROLL_BAR_FIELD_CACHE;
+    private static Field V_SCROLL_BAR_FIELD_CACHE;
 
     /**
      * Scroll bar vertical thumb constant for the view.
      */
-    private static Field VIEW_SCROLL_BAR_VERTICAL_THUMB;
+    private static Field V_SCROLL_BAR_VERTICAL_THUMB;
 
     /**
      * Scroll bar horizontal thumb constant for the view.
      */
-    private static Field VIEW_SCROLL_BAR_HORIZONTAL_THUMB;
+    private static Field V_SCROLL_BAR_HORIZONTAL_THUMB;
 
     /**
      * Initialize edge effect or glow fields so that we can access them via reflection.
      */
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     private static void initializeEdgeEffectFields() {
-        if (EDGE_EFFECT_FIELD_EDGE != null
-                && EDGE_EFFECT_FIELD_GLOW != null
-                && EDGE_EFFECT_COMPAT_FIELD_EDGE_EFFECT != null) {
-            EDGE_EFFECT_FIELD_EDGE.setAccessible(true);
-            EDGE_EFFECT_FIELD_GLOW.setAccessible(true);
-            EDGE_EFFECT_COMPAT_FIELD_EDGE_EFFECT.setAccessible(true);
+        if (F_EDGE_EFFECT_EDGE != null
+                && F_EDGE_EFFECT_GLOW != null
+                && F_EDGE_EFFECT_COMPAT_EDGE_EFFECT != null) {
+            F_EDGE_EFFECT_EDGE.setAccessible(true);
+            F_EDGE_EFFECT_GLOW.setAccessible(true);
+            F_EDGE_EFFECT_COMPAT_EDGE_EFFECT.setAccessible(true);
 
             return;
         }
 
         if (DynamicSdkUtils.is21()) {
-            EDGE_EFFECT_FIELD_EDGE = null;
-            EDGE_EFFECT_FIELD_GLOW = null;
+            F_EDGE_EFFECT_EDGE = null;
+            F_EDGE_EFFECT_GLOW = null;
         } else if (DynamicSdkUtils.is14()) {
             Field edge = null;
             Field glow = null;
@@ -179,8 +179,8 @@ public final class DynamicScrollUtils {
                 }
             }
 
-            EDGE_EFFECT_FIELD_EDGE = edge;
-            EDGE_EFFECT_FIELD_GLOW = glow;
+            F_EDGE_EFFECT_EDGE = edge;
+            F_EDGE_EFFECT_GLOW = glow;
         }
 
         Field edgeEffectCompat = null;
@@ -188,21 +188,21 @@ public final class DynamicScrollUtils {
             edgeEffectCompat = EdgeEffectCompat.class.getDeclaredField("mEdgeEffect");
         } catch (NoSuchFieldException ignored) {
         }
-        EDGE_EFFECT_COMPAT_FIELD_EDGE_EFFECT = edgeEffectCompat;
+        F_EDGE_EFFECT_COMPAT_EDGE_EFFECT = edgeEffectCompat;
     }
 
     /**
      * Initialize recycler view fields so that we can access them via reflection.
      */
     private static void initializeRecyclerViewFields() {
-        if (RECYCLER_VIEW_FIELD_EDGE_GLOW_TOP != null
-                && RECYCLER_VIEW_FIELD_EDGE_GLOW_LEFT != null
-                && RECYCLER_VIEW_FIELD_EDGE_GLOW_RIGHT != null
-                && RECYCLER_VIEW_FIELD_EDGE_GLOW_BOTTOM != null) {
-            RECYCLER_VIEW_FIELD_EDGE_GLOW_TOP.setAccessible(true);
-            RECYCLER_VIEW_FIELD_EDGE_GLOW_LEFT.setAccessible(true);
-            RECYCLER_VIEW_FIELD_EDGE_GLOW_RIGHT.setAccessible(true);
-            RECYCLER_VIEW_FIELD_EDGE_GLOW_BOTTOM.setAccessible(true);
+        if (F_RECYCLER_VIEW_EDGE_GLOW_TOP != null
+                && F_RECYCLER_VIEW_EDGE_GLOW_LEFT != null
+                && F_RECYCLER_VIEW_EDGE_GLOW_RIGHT != null
+                && F_RECYCLER_VIEW_EDGE_GLOW_BOTTOM != null) {
+            F_RECYCLER_VIEW_EDGE_GLOW_TOP.setAccessible(true);
+            F_RECYCLER_VIEW_EDGE_GLOW_LEFT.setAccessible(true);
+            F_RECYCLER_VIEW_EDGE_GLOW_RIGHT.setAccessible(true);
+            F_RECYCLER_VIEW_EDGE_GLOW_BOTTOM.setAccessible(true);
 
             return;
         }
@@ -212,19 +212,19 @@ public final class DynamicScrollUtils {
             switch (field.getName()) {
                 case "mTopGlow":
                     field.setAccessible(true);
-                    RECYCLER_VIEW_FIELD_EDGE_GLOW_TOP = field;
+                    F_RECYCLER_VIEW_EDGE_GLOW_TOP = field;
                     break;
                 case "mBottomGlow":
                     field.setAccessible(true);
-                    RECYCLER_VIEW_FIELD_EDGE_GLOW_BOTTOM = field;
+                    F_RECYCLER_VIEW_EDGE_GLOW_BOTTOM = field;
                     break;
                 case "mLeftGlow":
                     field.setAccessible(true);
-                    RECYCLER_VIEW_FIELD_EDGE_GLOW_LEFT = field;
+                    F_RECYCLER_VIEW_EDGE_GLOW_LEFT = field;
                     break;
                 case "mRightGlow":
                     field.setAccessible(true);
-                    RECYCLER_VIEW_FIELD_EDGE_GLOW_RIGHT = field;
+                    F_RECYCLER_VIEW_EDGE_GLOW_RIGHT = field;
                     break;
             }
         }
@@ -234,10 +234,10 @@ public final class DynamicScrollUtils {
      * Initialize abs list view fields so that we can access them via reflection.
      */
     private static void initializeListViewFields() {
-        if (LIST_VIEW_FIELD_EDGE_GLOW_TOP != null
-                && LIST_VIEW_FIELD_EDGE_GLOW_BOTTOM != null) {
-            LIST_VIEW_FIELD_EDGE_GLOW_TOP.setAccessible(true);
-            LIST_VIEW_FIELD_EDGE_GLOW_BOTTOM.setAccessible(true);
+        if (F_LIST_VIEW_EDGE_GLOW_TOP != null
+                && F_LIST_VIEW_EDGE_GLOW_BOTTOM != null) {
+            F_LIST_VIEW_EDGE_GLOW_TOP.setAccessible(true);
+            F_LIST_VIEW_EDGE_GLOW_BOTTOM.setAccessible(true);
 
             return;
         }
@@ -247,11 +247,11 @@ public final class DynamicScrollUtils {
             switch (field.getName()) {
                 case "mEdgeGlowTop":
                     field.setAccessible(true);
-                    LIST_VIEW_FIELD_EDGE_GLOW_TOP = field;
+                    F_LIST_VIEW_EDGE_GLOW_TOP = field;
                     break;
                 case "mEdgeGlowBottom":
                     field.setAccessible(true);
-                    LIST_VIEW_FIELD_EDGE_GLOW_BOTTOM = field;
+                    F_LIST_VIEW_EDGE_GLOW_BOTTOM = field;
                     break;
             }
         }
@@ -261,10 +261,10 @@ public final class DynamicScrollUtils {
      * Initialize scroll view fields so that we can access them via reflection.
      */
     private static void initializeScrollViewFields() {
-        if (SCROLL_VIEW_FIELD_EDGE_GLOW_TOP != null
-                && SCROLL_VIEW_FIELD_EDGE_GLOW_BOTTOM != null) {
-            SCROLL_VIEW_FIELD_EDGE_GLOW_TOP.setAccessible(true);
-            SCROLL_VIEW_FIELD_EDGE_GLOW_BOTTOM.setAccessible(true);
+        if (F_SCROLL_VIEW_EDGE_GLOW_TOP != null
+                && F_SCROLL_VIEW_EDGE_GLOW_BOTTOM != null) {
+            F_SCROLL_VIEW_EDGE_GLOW_TOP.setAccessible(true);
+            F_SCROLL_VIEW_EDGE_GLOW_BOTTOM.setAccessible(true);
 
             return;
         }
@@ -274,11 +274,11 @@ public final class DynamicScrollUtils {
             switch (field.getName()) {
                 case "mEdgeGlowTop":
                     field.setAccessible(true);
-                    SCROLL_VIEW_FIELD_EDGE_GLOW_TOP = field;
+                    F_SCROLL_VIEW_EDGE_GLOW_TOP = field;
                     break;
                 case "mEdgeGlowBottom":
                     field.setAccessible(true);
-                    SCROLL_VIEW_FIELD_EDGE_GLOW_BOTTOM = field;
+                    F_SCROLL_VIEW_EDGE_GLOW_BOTTOM = field;
                     break;
             }
         }
@@ -288,10 +288,10 @@ public final class DynamicScrollUtils {
      * Initialize nested scroll view fields so that we can access them via reflection.
      */
     private static void initializeNestedScrollViewFields() {
-        if (NESTED_SCROLL_VIEW_FIELD_EDGE_GLOW_TOP != null
-                && NESTED_SCROLL_VIEW_FIELD_EDGE_GLOW_BOTTOM != null) {
-            NESTED_SCROLL_VIEW_FIELD_EDGE_GLOW_TOP.setAccessible(true);
-            NESTED_SCROLL_VIEW_FIELD_EDGE_GLOW_BOTTOM.setAccessible(true);
+        if (F_NESTED_SCROLL_VIEW_EDGE_GLOW_TOP != null
+                && F_NESTED_SCROLL_VIEW_EDGE_GLOW_BOTTOM != null) {
+            F_NESTED_SCROLL_VIEW_EDGE_GLOW_TOP.setAccessible(true);
+            F_NESTED_SCROLL_VIEW_EDGE_GLOW_BOTTOM.setAccessible(true);
 
             return;
         }
@@ -301,11 +301,11 @@ public final class DynamicScrollUtils {
             switch (field.getName()) {
                 case "mEdgeGlowTop":
                     field.setAccessible(true);
-                    NESTED_SCROLL_VIEW_FIELD_EDGE_GLOW_TOP = field;
+                    F_NESTED_SCROLL_VIEW_EDGE_GLOW_TOP = field;
                     break;
                 case "mEdgeGlowBottom":
                     field.setAccessible(true);
-                    NESTED_SCROLL_VIEW_FIELD_EDGE_GLOW_BOTTOM = field;
+                    F_NESTED_SCROLL_VIEW_EDGE_GLOW_BOTTOM = field;
                     break;
             }
         }
@@ -315,10 +315,10 @@ public final class DynamicScrollUtils {
      * Initialize view pager fields so that we can access them via reflection.
      */
     private static void initializeViewPagerFields() {
-        if (VIEW_PAGER_FIELD_EDGE_GLOW_LEFT != null
-                && VIEW_PAGER_FIELD_EDGE_GLOW_RIGHT != null) {
-            VIEW_PAGER_FIELD_EDGE_GLOW_LEFT.setAccessible(true);
-            VIEW_PAGER_FIELD_EDGE_GLOW_RIGHT.setAccessible(true);
+        if (F_VIEW_PAGER_EDGE_GLOW_LEFT != null
+                && F_VIEW_PAGER_EDGE_GLOW_RIGHT != null) {
+            F_VIEW_PAGER_EDGE_GLOW_LEFT.setAccessible(true);
+            F_VIEW_PAGER_EDGE_GLOW_RIGHT.setAccessible(true);
 
             return;
         }
@@ -328,11 +328,11 @@ public final class DynamicScrollUtils {
             switch (field.getName()) {
                 case "mLeftEdge":
                     field.setAccessible(true);
-                    VIEW_PAGER_FIELD_EDGE_GLOW_LEFT = field;
+                    F_VIEW_PAGER_EDGE_GLOW_LEFT = field;
                     break;
                 case "mRightEdge":
                     field.setAccessible(true);
-                    VIEW_PAGER_FIELD_EDGE_GLOW_RIGHT = field;
+                    F_VIEW_PAGER_EDGE_GLOW_RIGHT = field;
                     break;
             }
         }
@@ -342,10 +342,10 @@ public final class DynamicScrollUtils {
      * Initialize navigation view fields so that we can access them via reflection.
      */
     private static void initializeNavigationViewFields() {
-        if (NAVIGATION_VIEW_FIELD_PRESENTER != null
-                && NAVIGATION_VIEW_FIELD_RECYCLER_VIEW != null) {
-            NAVIGATION_VIEW_FIELD_PRESENTER.setAccessible(true);
-            NAVIGATION_VIEW_FIELD_RECYCLER_VIEW.setAccessible(true);
+        if (F_NAVIGATION_VIEW_PRESENTER != null
+                && F_NAVIGATION_VIEW_RECYCLER_VIEW != null) {
+            F_NAVIGATION_VIEW_PRESENTER.setAccessible(true);
+            F_NAVIGATION_VIEW_RECYCLER_VIEW.setAccessible(true);
 
             return;
         }
@@ -354,7 +354,7 @@ public final class DynamicScrollUtils {
         for (Field field : clazz.getDeclaredFields()) {
             if (field.getName().equals("presenter")) {
                 field.setAccessible(true);
-                NAVIGATION_VIEW_FIELD_PRESENTER = field;
+                F_NAVIGATION_VIEW_PRESENTER = field;
 
                 break;
             }
@@ -364,7 +364,7 @@ public final class DynamicScrollUtils {
         for (Field field : clazz1.getDeclaredFields()) {
             if (field.getName().equals("menuView")) {
                 field.setAccessible(true);
-                NAVIGATION_VIEW_FIELD_RECYCLER_VIEW = field;
+                F_NAVIGATION_VIEW_RECYCLER_VIEW = field;
 
                 break;
             }
@@ -376,9 +376,9 @@ public final class DynamicScrollUtils {
      */
     private static void initializeScrollBarFields(@NonNull View view) {
         try {
-            if (VIEW_SCROLL_BAR_FIELD_CACHE == null) {
-                VIEW_SCROLL_BAR_FIELD_CACHE = View.class.getDeclaredField("mScrollCache");
-                VIEW_SCROLL_BAR_FIELD_CACHE.setAccessible(true);
+            if (V_SCROLL_BAR_FIELD_CACHE == null) {
+                V_SCROLL_BAR_FIELD_CACHE = View.class.getDeclaredField("mScrollCache");
+                V_SCROLL_BAR_FIELD_CACHE.setAccessible(true);
             }
         } catch (Exception ignored) {
         }
@@ -394,9 +394,9 @@ public final class DynamicScrollUtils {
         initializeListViewFields();
 
         try {
-            Object edgeEffect = LIST_VIEW_FIELD_EDGE_GLOW_TOP.get(listView);
+            Object edgeEffect = F_LIST_VIEW_EDGE_GLOW_TOP.get(listView);
             setEdgeEffectColor(edgeEffect, color);
-            edgeEffect = LIST_VIEW_FIELD_EDGE_GLOW_BOTTOM.get(listView);
+            edgeEffect = F_LIST_VIEW_EDGE_GLOW_BOTTOM.get(listView);
             setEdgeEffectColor(edgeEffect, color);
         } catch (Exception ignored) {
         }
@@ -412,13 +412,13 @@ public final class DynamicScrollUtils {
         initializeRecyclerViewFields();
 
         try {
-            Object edgeEffect = RECYCLER_VIEW_FIELD_EDGE_GLOW_TOP.get(recyclerView);
+            Object edgeEffect = F_RECYCLER_VIEW_EDGE_GLOW_TOP.get(recyclerView);
             setEdgeEffectColor(edgeEffect, color);
-            edgeEffect = RECYCLER_VIEW_FIELD_EDGE_GLOW_BOTTOM.get(recyclerView);
+            edgeEffect = F_RECYCLER_VIEW_EDGE_GLOW_BOTTOM.get(recyclerView);
             setEdgeEffectColor(edgeEffect, color);
-            edgeEffect = RECYCLER_VIEW_FIELD_EDGE_GLOW_LEFT.get(recyclerView);
+            edgeEffect = F_RECYCLER_VIEW_EDGE_GLOW_LEFT.get(recyclerView);
             setEdgeEffectColor(edgeEffect, color);
-            edgeEffect = RECYCLER_VIEW_FIELD_EDGE_GLOW_RIGHT.get(recyclerView);
+            edgeEffect = F_RECYCLER_VIEW_EDGE_GLOW_RIGHT.get(recyclerView);
             setEdgeEffectColor(edgeEffect, color);
         } catch (Exception ignored) {
         }
@@ -466,9 +466,9 @@ public final class DynamicScrollUtils {
         initializeScrollViewFields();
 
         try {
-            Object edgeEffect = SCROLL_VIEW_FIELD_EDGE_GLOW_TOP.get(scrollView);
+            Object edgeEffect = F_SCROLL_VIEW_EDGE_GLOW_TOP.get(scrollView);
             setEdgeEffectColor(edgeEffect, color);
-            edgeEffect = SCROLL_VIEW_FIELD_EDGE_GLOW_BOTTOM.get(scrollView);
+            edgeEffect = F_SCROLL_VIEW_EDGE_GLOW_BOTTOM.get(scrollView);
             setEdgeEffectColor(edgeEffect, color);
         } catch (Exception ignored) {
         }
@@ -486,10 +486,10 @@ public final class DynamicScrollUtils {
 
         try {
             Object edgeEffect =
-                    NESTED_SCROLL_VIEW_FIELD_EDGE_GLOW_TOP.get(nestedScrollView);
+                    F_NESTED_SCROLL_VIEW_EDGE_GLOW_TOP.get(nestedScrollView);
             setEdgeEffectColor(edgeEffect, color);
             edgeEffect =
-                    NESTED_SCROLL_VIEW_FIELD_EDGE_GLOW_BOTTOM.get(nestedScrollView);
+                    F_NESTED_SCROLL_VIEW_EDGE_GLOW_BOTTOM.get(nestedScrollView);
             setEdgeEffectColor(edgeEffect, color);
         } catch (Exception ignored) {
         }
@@ -505,9 +505,9 @@ public final class DynamicScrollUtils {
         initializeViewPagerFields();
 
         try {
-            Object edgeEffect = VIEW_PAGER_FIELD_EDGE_GLOW_LEFT.get(viewPager);
+            Object edgeEffect = F_VIEW_PAGER_EDGE_GLOW_LEFT.get(viewPager);
             setEdgeEffectColor(edgeEffect, color);
-            edgeEffect = VIEW_PAGER_FIELD_EDGE_GLOW_RIGHT.get(viewPager);
+            edgeEffect = F_VIEW_PAGER_EDGE_GLOW_RIGHT.get(viewPager);
             setEdgeEffectColor(edgeEffect, color);
         } catch (Exception ignored) {
         }
@@ -525,9 +525,9 @@ public final class DynamicScrollUtils {
 
         try {
             NavigationMenuPresenter presenter = (NavigationMenuPresenter)
-                    NAVIGATION_VIEW_FIELD_PRESENTER.get(navigationView);
+                    F_NAVIGATION_VIEW_PRESENTER.get(navigationView);
             NavigationMenuView navigationMenuView = (NavigationMenuView)
-                    NAVIGATION_VIEW_FIELD_RECYCLER_VIEW.get(presenter);
+                    F_NAVIGATION_VIEW_RECYCLER_VIEW.get(presenter);
             setEdgeEffectColor(navigationMenuView, color, null);
         } catch (Exception ignored) {
         }
@@ -545,8 +545,8 @@ public final class DynamicScrollUtils {
 
         if (edgeEffect instanceof EdgeEffectCompat) {
             try {
-                EDGE_EFFECT_COMPAT_FIELD_EDGE_EFFECT.setAccessible(true);
-                edgeEffect = EDGE_EFFECT_COMPAT_FIELD_EDGE_EFFECT.get(edgeEffect);
+                F_EDGE_EFFECT_COMPAT_EDGE_EFFECT.setAccessible(true);
+                edgeEffect = F_EDGE_EFFECT_COMPAT_EDGE_EFFECT.get(edgeEffect);
             } catch (IllegalAccessException illegalAccessException) {
                 return;
             }
@@ -560,10 +560,10 @@ public final class DynamicScrollUtils {
             ((EdgeEffect) edgeEffect).setColor(color);
         } else {
             try {
-                EDGE_EFFECT_FIELD_EDGE.setAccessible(true);
-                final Drawable mEdge = (Drawable) EDGE_EFFECT_FIELD_EDGE.get(edgeEffect);
-                EDGE_EFFECT_FIELD_GLOW.setAccessible(true);
-                final Drawable mGlow = (Drawable) EDGE_EFFECT_FIELD_GLOW.get(edgeEffect);
+                F_EDGE_EFFECT_EDGE.setAccessible(true);
+                final Drawable mEdge = (Drawable) F_EDGE_EFFECT_EDGE.get(edgeEffect);
+                F_EDGE_EFFECT_GLOW.setAccessible(true);
+                final Drawable mGlow = (Drawable) F_EDGE_EFFECT_GLOW.get(edgeEffect);
                 if (mGlow != null) {
                     mGlow.setColorFilter(color, PorterDuff.Mode.SRC_IN);
                     mGlow.setCallback(null);
@@ -590,9 +590,9 @@ public final class DynamicScrollUtils {
 
         try {
             NavigationMenuPresenter presenter = (NavigationMenuPresenter)
-                    NAVIGATION_VIEW_FIELD_PRESENTER.get(navigationView);
+                    F_NAVIGATION_VIEW_PRESENTER.get(navigationView);
             NavigationMenuView navigationMenuView = (NavigationMenuView)
-                    NAVIGATION_VIEW_FIELD_RECYCLER_VIEW.get(presenter);
+                    F_NAVIGATION_VIEW_RECYCLER_VIEW.get(presenter);
             setScrollBarColor(navigationMenuView, color);
         } catch (Exception ignored) {
         }
@@ -612,40 +612,42 @@ public final class DynamicScrollUtils {
         initializeScrollBarFields(view);
         color = DynamicColorUtils.getLessVisibleColor(color);
 
-        if (VIEW_SCROLL_BAR_FIELD_CACHE == null) {
+        if (V_SCROLL_BAR_FIELD_CACHE == null) {
             return;
         }
 
         try {
-            Object mScrollCache = VIEW_SCROLL_BAR_FIELD_CACHE.get(view);
+            Object mScrollCache = V_SCROLL_BAR_FIELD_CACHE.get(view);
 
             if (mScrollCache != null) {
-                VIEW_SCROLL_BAR_FIELD =
+                F_VIEW_SCROLL_BAR =
                         mScrollCache.getClass().getDeclaredField("scrollBar");
-                VIEW_SCROLL_BAR_FIELD.setAccessible(true);
-                Object scrollBar = VIEW_SCROLL_BAR_FIELD.get(mScrollCache);
+                F_VIEW_SCROLL_BAR.setAccessible(true);
+                Object scrollBar = F_VIEW_SCROLL_BAR.get(mScrollCache);
 
                 if (scrollBar != null) {
-                    VIEW_SCROLL_BAR_VERTICAL_THUMB =
+                    V_SCROLL_BAR_VERTICAL_THUMB =
                             scrollBar.getClass().getDeclaredField("mVerticalThumb");
-                    VIEW_SCROLL_BAR_VERTICAL_THUMB.setAccessible(true);
+                    V_SCROLL_BAR_VERTICAL_THUMB.setAccessible(true);
 
-                    if (VIEW_SCROLL_BAR_VERTICAL_THUMB != null) {
+                    if (V_SCROLL_BAR_VERTICAL_THUMB != null) {
                         DynamicDrawableUtils.colorizeDrawable((Drawable)
-                                VIEW_SCROLL_BAR_VERTICAL_THUMB.get(scrollBar), color);
+                                V_SCROLL_BAR_VERTICAL_THUMB.get(scrollBar), color);
                     }
                 }
             }
 
             // Fix for Android 9 developer preview. For more info, please
             // visit g.co/dev/appcompat.
-//            VIEW_SCROLL_BAR_HORIZONTAL_THUMB =
-//                    scrollBar.getClass().getDeclaredField("mHorizontalThumb");
-//            VIEW_SCROLL_BAR_HORIZONTAL_THUMB.setAccessible(true);
-//            if (VIEW_SCROLL_BAR_HORIZONTAL_THUMB != null) {
-//                DynamicDrawableUtils.colorizeDrawable((Drawable)
-//                        VIEW_SCROLL_BAR_HORIZONTAL_THUMB.get(scrollBar), color);
-//            }
+            if (!DynamicSdkUtils.is28()) {
+                V_SCROLL_BAR_HORIZONTAL_THUMB =
+                        view.getClass().getDeclaredField("mHorizontalThumb");
+                V_SCROLL_BAR_HORIZONTAL_THUMB.setAccessible(true);
+                if (V_SCROLL_BAR_HORIZONTAL_THUMB != null) {
+                    DynamicDrawableUtils.colorizeDrawable((Drawable)
+                            V_SCROLL_BAR_HORIZONTAL_THUMB.get(view), color);
+                }
+            }
         } catch(Exception ignored) {
         }
     }
