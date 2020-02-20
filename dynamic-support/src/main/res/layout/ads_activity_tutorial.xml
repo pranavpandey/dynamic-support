@@ -21,7 +21,8 @@
     android:id="@+id/ads_coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    app:ads_windowInsets="false">
 
     <RelativeLayout
         android:id="@+id/ads_tutorial"
