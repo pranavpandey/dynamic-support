@@ -41,6 +41,7 @@ import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorPalette;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -280,7 +281,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
         });
 
         if (getAltPreferenceKey() != null) {
-            getActionView().setBackgroundAware(Theme.BackgroundAware.DISABLE);
+            Dynamic.setBackgroundAware(getActionView(), Theme.BackgroundAware.DISABLE);
 
             setActionButton(getActionString(), new OnClickListener() {
                 @Override
@@ -322,7 +323,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
         super.onUpdate();
 
         mColorView.setColor(getColor());
-        getActionView().setColor(DynamicColorUtils.removeAlpha(getAltColor()));
+        Dynamic.setColor(getActionView(), DynamicColorUtils.removeAlpha(getAltColor()));
         ((DynamicTextView) getValueView()).setColor(DynamicColorUtils.removeAlpha(getColor()));
     }
 

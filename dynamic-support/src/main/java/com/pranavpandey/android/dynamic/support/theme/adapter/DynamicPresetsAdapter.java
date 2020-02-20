@@ -32,7 +32,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView;
 import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
-import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
+import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
 import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
 
@@ -145,11 +145,7 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
                     holder.getThemePreview().getActionView()
                             .setImageResource(R.drawable.ads_ic_palette);
                     holder.getThemePreview().setDynamicTheme(theme);
-
-                    if (holder.getRoot() instanceof DynamicCardView) {
-                        ((DynamicCardView) holder.getRoot()).setCorner(
-                                (float) theme.getCornerRadius());
-                    }
+                    Dynamic.setCorner(holder.getRoot(), theme.getCornerRadius());
 
                     holder.getRoot().setOnClickListener(new View.OnClickListener() {
                         @Override

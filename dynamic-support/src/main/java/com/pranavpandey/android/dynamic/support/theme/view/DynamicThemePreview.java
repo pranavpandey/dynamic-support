@@ -30,6 +30,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.ShapeAppearanceModel;
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
@@ -37,13 +38,11 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicShapeUtils;
-import com.pranavpandey.android.dynamic.support.widget.DynamicFloatingActionButton;
-import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
+import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 
 /**
  * A ThemePreview to show the dynamic app theme preview according to the selected values.
@@ -68,17 +67,17 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
     /**
      * Header icon used by this preview.
      */
-    private DynamicImageView mHeaderIcon;
+    private ImageView mHeaderIcon;
 
     /**
      * Header title used by this preview.
      */
-    private DynamicImageView mHeaderTitle;
+    private ImageView mHeaderTitle;
 
     /**
      * Header menu used by this preview.
      */
-    private DynamicImageView mHeaderMenu;
+    private ImageView mHeaderMenu;
 
     /**
      * Content parent view used by this preview.
@@ -93,42 +92,42 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
     /**
      * Icon used by this preview.
      */
-    private DynamicImageView mIcon;
+    private ImageView mIcon;
 
     /**
      * Primary text start used by this preview.
      */
-    private DynamicImageView mTextPrimaryStart;
+    private ImageView mTextPrimaryStart;
 
     /**
      * Primary text end used by this preview.
      */
-    private DynamicImageView mTextPrimaryEnd;
+    private ImageView mTextPrimaryEnd;
 
     /**
      * Secondary text start used by this preview.
      */
-    private DynamicImageView mTextSecondaryStart;
+    private ImageView mTextSecondaryStart;
 
     /**
      * Secondary text end used by this preview.
      */
-    private DynamicImageView mTextSecondaryEnd;
+    private ImageView mTextSecondaryEnd;
 
     /**
      * Background tint text start used by this preview.
      */
-    private DynamicImageView mTextTintBackgroundStart;
+    private ImageView mTextTintBackgroundStart;
 
     /**
      * Background tint text end used by this preview.
      */
-    private DynamicImageView mTextTintBackgroundEnd;
+    private ImageView mTextTintBackgroundEnd;
 
     /**
      * FAB used by this preview.
      */
-    private DynamicFloatingActionButton mFAB;
+    private FloatingActionButton mFAB;
 
     public DynamicThemePreview(@NonNull Context context) {
         this(context, null);
@@ -186,7 +185,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
                 DynamicShapeUtils.getCornerDrawable(
                         getDynamicTheme().getCornerSizeDp(),
                         getDynamicTheme().getBackgroundColor(), false);
-        background.setStroke(DynamicUnitUtils.convertDpToPixels(1),
+        background.setStroke(WidgetDefaults.ADS_STROKE_WIDTH,
                 DynamicColorUtils.setAlpha(DynamicColorUtils.getTintColor(
                         getDynamicTheme().getBackgroundColor()), 100));
         mBackground.setImageDrawable(background);
@@ -209,6 +208,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
                     drawable.getShapeAppearanceModel().getTopLeftCornerSize()).build();
         }
         drawable.setShapeAppearanceModel(shapeAppearanceModel);
+
         DynamicDrawableUtils.setBackground(mSurface, drawable);
 
         if (getDynamicTheme().getCornerSizeDp() < WidgetDefaults.ADS_CORNER_MIN_THEME) {
@@ -260,41 +260,41 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
             }
         });
 
-        mHeaderIcon.setBackgroundAware(getDynamicTheme().getBackgroundAware());
-        mHeaderTitle.setBackgroundAware(getDynamicTheme().getBackgroundAware());
-        mHeaderMenu.setBackgroundAware(getDynamicTheme().getBackgroundAware());
-        mIcon.setBackgroundAware(getDynamicTheme().getBackgroundAware());
-        mTextPrimaryStart.setBackgroundAware(getDynamicTheme().getBackgroundAware());
-        mTextPrimaryEnd.setBackgroundAware(getDynamicTheme().getBackgroundAware());
-        mTextSecondaryStart.setBackgroundAware(getDynamicTheme().getBackgroundAware());
-        mTextSecondaryEnd.setBackgroundAware(getDynamicTheme().getBackgroundAware());
-        mTextTintBackgroundStart.setBackgroundAware(getDynamicTheme().getBackgroundAware());
-        mTextTintBackgroundEnd.setBackgroundAware(getDynamicTheme().getBackgroundAware());
-        mFAB.setBackgroundAware(getDynamicTheme().getBackgroundAware());
+        Dynamic.setBackgroundAware(mHeaderIcon, getDynamicTheme().getBackgroundAware());
+        Dynamic.setBackgroundAware(mHeaderTitle, getDynamicTheme().getBackgroundAware());
+        Dynamic.setBackgroundAware(mHeaderMenu, getDynamicTheme().getBackgroundAware());
+        Dynamic.setBackgroundAware(mIcon, getDynamicTheme().getBackgroundAware());
+        Dynamic.setBackgroundAware(mTextPrimaryStart, getDynamicTheme().getBackgroundAware());
+        Dynamic.setBackgroundAware(mTextPrimaryEnd, getDynamicTheme().getBackgroundAware());
+        Dynamic.setBackgroundAware(mTextSecondaryStart, getDynamicTheme().getBackgroundAware());
+        Dynamic.setBackgroundAware(mTextSecondaryEnd, getDynamicTheme().getBackgroundAware());
+        Dynamic.setBackgroundAware(mTextTintBackgroundStart, getDynamicTheme().getBackgroundAware());
+        Dynamic.setBackgroundAware(mTextTintBackgroundEnd, getDynamicTheme().getBackgroundAware());
+        Dynamic.setBackgroundAware(mFAB, getDynamicTheme().getBackgroundAware());
 
-        mHeaderIcon.setContrastWithColor(getDynamicTheme().getPrimaryColor());
-        mHeaderTitle.setContrastWithColor(getDynamicTheme().getPrimaryColor());
-        mHeaderMenu.setContrastWithColor(getDynamicTheme().getPrimaryColor());
-        mIcon.setContrastWithColor(getDynamicTheme().getBackgroundColor());
-        mTextPrimaryStart.setContrastWithColor(getDynamicTheme().getBackgroundColor());
-        mTextPrimaryEnd.setContrastWithColor(getDynamicTheme().getBackgroundColor());
-        mTextSecondaryStart.setContrastWithColor(getDynamicTheme().getBackgroundColor());
-        mTextSecondaryEnd.setContrastWithColor(getDynamicTheme().getBackgroundColor());
-        mTextTintBackgroundStart.setContrastWithColor(getDynamicTheme().getBackgroundColor());
-        mTextTintBackgroundEnd.setContrastWithColor(getDynamicTheme().getBackgroundColor());
-        mFAB.setContrastWithColor(getDynamicTheme().getBackgroundColor());
+        Dynamic.setContrastWithColor(mHeaderIcon, getDynamicTheme().getPrimaryColor());
+        Dynamic.setContrastWithColor(mHeaderTitle, getDynamicTheme().getPrimaryColor());
+        Dynamic.setContrastWithColor(mHeaderMenu, getDynamicTheme().getPrimaryColor());
+        Dynamic.setContrastWithColor(mIcon, getDynamicTheme().getBackgroundColor());
+        Dynamic.setContrastWithColor(mTextPrimaryStart, getDynamicTheme().getBackgroundColor());
+        Dynamic.setContrastWithColor(mTextPrimaryEnd, getDynamicTheme().getBackgroundColor());
+        Dynamic.setContrastWithColor(mTextSecondaryStart, getDynamicTheme().getBackgroundColor());
+        Dynamic.setContrastWithColor(mTextSecondaryEnd, getDynamicTheme().getBackgroundColor());
+        Dynamic.setContrastWithColor(mTextTintBackgroundStart, getDynamicTheme().getBackgroundColor());
+        Dynamic.setContrastWithColor(mTextTintBackgroundEnd, getDynamicTheme().getBackgroundColor());
+        Dynamic.setContrastWithColor(mFAB, getDynamicTheme().getBackgroundColor());
 
-        mHeaderIcon.setColor(getDynamicTheme().getTintPrimaryColor());
-        mHeaderTitle.setColor(getDynamicTheme().getTintPrimaryColor());
-        mHeaderMenu.setColor(getDynamicTheme().getTintPrimaryColor());
-        mIcon.setColor(getDynamicTheme().getPrimaryColor());
-        mTextPrimaryStart.setColor(getDynamicTheme().getTextPrimaryColor());
-        mTextPrimaryEnd.setColor(getDynamicTheme().getTextPrimaryColor());
-        mTextSecondaryStart.setColor(getDynamicTheme().getTextSecondaryColor());
-        mTextSecondaryEnd.setColor(getDynamicTheme().getTextSecondaryColor());
-        mTextTintBackgroundStart.setColor(getDynamicTheme().getTintBackgroundColor());
-        mTextTintBackgroundEnd.setColor(getDynamicTheme().getTintBackgroundColor());
-        mFAB.setColor(getDynamicTheme().getAccentColor());
+        Dynamic.setColor(mHeaderIcon, getDynamicTheme().getTintPrimaryColor());
+        Dynamic.setColor(mHeaderTitle, getDynamicTheme().getTintPrimaryColor());
+        Dynamic.setColor(mHeaderMenu, getDynamicTheme().getTintPrimaryColor());
+        Dynamic.setColor(mIcon, getDynamicTheme().getPrimaryColor());
+        Dynamic.setColor(mTextPrimaryStart, getDynamicTheme().getTextPrimaryColor());
+        Dynamic.setColor(mTextPrimaryEnd, getDynamicTheme().getTextPrimaryColor());
+        Dynamic.setColor(mTextSecondaryStart, getDynamicTheme().getTextSecondaryColor());
+        Dynamic.setColor(mTextSecondaryEnd, getDynamicTheme().getTextSecondaryColor());
+        Dynamic.setColor(mTextTintBackgroundStart, getDynamicTheme().getTintBackgroundColor());
+        Dynamic.setColor(mTextTintBackgroundEnd, getDynamicTheme().getTintBackgroundColor());
+        Dynamic.setColor(mFAB, getDynamicTheme().getAccentColor());
     }
 
     @Override
@@ -334,7 +334,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The header title used by this preview.
      */
-    public DynamicImageView getHeaderIcon() {
+    public ImageView getHeaderIcon() {
         return mHeaderIcon;
     }
 
@@ -343,7 +343,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The header title used by this preview.
      */
-    public DynamicImageView getHeaderTitle() {
+    public ImageView getHeaderTitle() {
         return mHeaderTitle;
     }
 
@@ -352,7 +352,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The header menu used by this preview.
      */
-    public DynamicImageView getHeaderMenu() {
+    public ImageView getHeaderMenu() {
         return mHeaderMenu;
     }
 
@@ -361,7 +361,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The icon used by this preview.
      */
-    public DynamicImageView getIcon() {
+    public ImageView getIcon() {
         return mIcon;
     }
 
@@ -370,7 +370,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The primary text used by this preview.
      */
-    public DynamicImageView getTextPrimary() {
+    public ImageView getTextPrimary() {
         return mTextPrimaryStart;
     }
 
@@ -379,7 +379,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The secondary text used by this preview.
      */
-    public DynamicImageView getTextSecondary() {
+    public ImageView getTextSecondary() {
         return mTextSecondaryStart;
     }
 
@@ -388,7 +388,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The background tint text used by this preview.
      */
-    public DynamicImageView getTextTintBackground() {
+    public ImageView getTextTintBackground() {
         return mTextTintBackgroundStart;
     }
 
@@ -397,7 +397,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The FAB used by this preview.
      */
-    public DynamicFloatingActionButton getFAB() {
+    public FloatingActionButton getFAB() {
         return mFAB;
     }
 }

@@ -21,6 +21,7 @@ import android.content.SharedPreferences;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,7 +31,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.widget.DynamicButton;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 
 /**
@@ -78,7 +78,7 @@ public class DynamicSimplePreference extends DynamicPreference {
     /**
      * Button to provide a secondary action like permission request, etc.
      */
-    private DynamicButton mActionView;
+    private Button mActionView;
 
     public DynamicSimplePreference(@NonNull Context context) {
         super(context);
@@ -233,7 +233,7 @@ public class DynamicSimplePreference extends DynamicPreference {
      *
      * @return The button to provide a secondary action like permission request, etc.
      */
-    public DynamicButton getActionView() {
+    public Button getActionView() {
         return mActionView;
     }
 

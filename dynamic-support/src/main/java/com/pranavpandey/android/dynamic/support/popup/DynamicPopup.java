@@ -39,7 +39,7 @@ import androidx.transition.TransitionManager;
 
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
+import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
@@ -238,7 +238,7 @@ public abstract class DynamicPopup {
         View view = LayoutInflater.from(getAnchor().getContext()).inflate(
                 R.layout.ads_popup, (ViewGroup) getAnchor().getRootView(), false);
         ViewGroup layout = view.findViewById(R.id.ads_popup_content_layout);
-        DynamicCardView card = view.findViewById(R.id.ads_popup_card);
+        ViewGroup card = view.findViewById(R.id.ads_popup_card);
         ViewGroup header = view.findViewById(R.id.ads_popup_header);
         ViewGroup content = view.findViewById(R.id.ads_popup_content);
         ViewGroup footer = view.findViewById(R.id.ads_popup_footer);
@@ -246,7 +246,7 @@ public abstract class DynamicPopup {
         View indicatorDown = view.findViewById(R.id.ads_popup_scroll_indicator_down);
 
         if (mPopupWindowColor != null) {
-            card.setColor(mPopupWindowColor);
+            Dynamic.setColor(card, mPopupWindowColor);
         }
 
         if (getHeaderView() != null) {

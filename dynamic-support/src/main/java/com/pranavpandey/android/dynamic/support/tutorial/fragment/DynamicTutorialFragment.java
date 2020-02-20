@@ -20,22 +20,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicSimpleTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
-import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorialUtils;
 import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutorialActivity;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
-import com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView;
-import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
+import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
@@ -68,27 +68,27 @@ public class DynamicTutorialFragment extends Fragment implements
     /**
      * Image view to show the tutorial image.
      */
-    private DynamicImageView mImageView;
+    private ImageView mImageView;
 
     /**
      * Scroll view to show the scrolling content.
      */
-    private DynamicNestedScrollView mScrollView;
+    private NestedScrollView mScrollView;
 
     /**
      * Text view to show the tutorial title.
      */
-    private DynamicTextView mTitleView;
+    private TextView mTitleView;
 
     /**
      * Text view to show the tutorial subtitle.
      */
-    private DynamicTextView mSubtitleView;
+    private TextView mSubtitleView;
 
     /**
      * Text view to show the tutorial description.
      */
-    private DynamicTextView mDescriptionView;
+    private TextView mDescriptionView;
 
     /**
      * Function to initialize this fragment.
@@ -141,13 +141,13 @@ public class DynamicTutorialFragment extends Fragment implements
 
         if (mDynamicSimpleTutorial != null) {
             if (mImageView != null) {
-                DynamicTutorialUtils.setImage(mImageView, DynamicResourceUtils.getDrawable(
+                Dynamic.setImage(mImageView, DynamicResourceUtils.getDrawable(
                         getContext(), mDynamicSimpleTutorial.getImageRes()));
             }
 
-            DynamicTutorialUtils.setText(mTitleView, mDynamicSimpleTutorial.getTitle());
-            DynamicTutorialUtils.setText(mSubtitleView, mDynamicSimpleTutorial.getSubtitle());
-            DynamicTutorialUtils.setText(mDescriptionView, mDynamicSimpleTutorial.getDescription());
+            Dynamic.setText(mTitleView, mDynamicSimpleTutorial.getTitle());
+            Dynamic.setText(mSubtitleView, mDynamicSimpleTutorial.getSubtitle());
+            Dynamic.setText(mDescriptionView, mDynamicSimpleTutorial.getDescription());
         }
 
         tintWidgets(getBackgroundColor());
@@ -169,13 +169,13 @@ public class DynamicTutorialFragment extends Fragment implements
         final @ColorInt int tintColor = DynamicColorUtils.getTintColor(color);
 
         if (mDynamicSimpleTutorial != null && mDynamicSimpleTutorial.isTintImage()) {
-            DynamicTutorialUtils.tintDynamicView(mImageView, tintColor);
+            Dynamic.tintDynamicView(mImageView, tintColor);
         }
 
-        DynamicTutorialUtils.tintDynamicView(mTitleView, tintColor);
-        DynamicTutorialUtils.tintDynamicView(mScrollView, tintColor);
-        DynamicTutorialUtils.tintDynamicView(mSubtitleView, tintColor);
-        DynamicTutorialUtils.tintDynamicView(mDescriptionView, tintColor);
+        Dynamic.tintDynamicView(mTitleView, tintColor);
+        Dynamic.tintDynamicView(mScrollView, tintColor);
+        Dynamic.tintDynamicView(mSubtitleView, tintColor);
+        Dynamic.tintDynamicView(mDescriptionView, tintColor);
     }
 
     @Override

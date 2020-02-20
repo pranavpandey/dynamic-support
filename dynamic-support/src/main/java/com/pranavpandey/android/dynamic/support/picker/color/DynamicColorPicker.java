@@ -24,6 +24,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.SeekBar;
 
@@ -40,9 +41,9 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
 import com.pranavpandey.android.dynamic.support.picker.DynamicPickerType;
 import com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorPalette;
+import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicView;
-import com.pranavpandey.android.dynamic.support.widget.DynamicEditText;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
@@ -200,7 +201,7 @@ public class DynamicColorPicker extends DynamicView {
     /**
      * Edit text to display the custom color string.
      */
-    private DynamicEditText mEditText;
+    private EditText mEditText;
 
     /**
      * Button to show all the color controls
@@ -357,7 +358,7 @@ public class DynamicColorPicker extends DynamicView {
                         }
 
                         mColorView.setColor(mSelectedColor);
-                        mEditText.setColor(DynamicColorUtils.removeAlpha(mSelectedColor));
+                        Dynamic.setColor(mEditText, DynamicColorUtils.removeAlpha(mSelectedColor));
                     }
 
                     @Override

@@ -41,7 +41,7 @@ import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
+import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.utils.DynamicWindowUtils;
 
@@ -68,7 +68,7 @@ public class DynamicTooltipPopup {
     /**
      * Card view used by this popup to provide background.
      */
-    private final DynamicCardView mCardView;
+    private final ViewGroup mCardView;
 
     /**
      * Image view used by this popup to show icon.
@@ -115,13 +115,13 @@ public class DynamicTooltipPopup {
         mIconView = mContentView.findViewById(R.id.ads_hint_icon);
         mTextView = mContentView.findViewById(R.id.ads_hint_text);
 
-        mCardView.setPreventCornerOverlap(false);
-        mCardView.setCorner(Math.min(mCardView.getCorner(), mContext.getResources()
-                .getDimension(R.dimen.ads_tooltip_corner_radius_max)));
         mCardView.setAlpha(WidgetDefaults.ADS_ALPHA_TOAST);
-        mCardView.setColor(backgroundColor);
         mIconView.setColorFilter(tintColor);
         mTextView.setTextColor(tintColor);
+        Dynamic.setPreventCornerOverlap(mCardView, false);
+        Dynamic.setColor(mCardView, backgroundColor);
+        Dynamic.setCornerMin(mCardView, mContext.getResources().getDimension(
+                R.dimen.ads_tooltip_corner_radius_max));
 
         mLayoutParams.setTitle(getClass().getSimpleName());
         mLayoutParams.packageName = mContext.getPackageName();

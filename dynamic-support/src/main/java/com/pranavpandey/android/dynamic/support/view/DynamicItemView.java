@@ -22,6 +22,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.AttrRes;
@@ -32,7 +33,7 @@ import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
+import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
@@ -88,7 +89,7 @@ public class DynamicItemView extends DynamicView {
     /**
      * Image view to show the icon.
      */
-    private DynamicImageView mIconView;
+    private ImageView mIconView;
 
     /**
      * Text view to show the title.
@@ -195,10 +196,10 @@ public class DynamicItemView extends DynamicView {
         }
 
         if (mIconView != null) {
-            mIconView.setColorType(mColorType);
+            Dynamic.setColorType(mIconView, mColorType);
 
             if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mIconView.setColor(mColor);
+                Dynamic.setColor(mIconView, mColor);
             } else if (mColorType == Theme.ColorType.NONE) {
                 mIconView.clearColorFilter();
             }
@@ -390,7 +391,7 @@ public class DynamicItemView extends DynamicView {
      *
      * @return The image view to show the icon.
      */
-    public DynamicImageView getIconView() {
+    public ImageView getIconView() {
         return mIconView;
     }
 

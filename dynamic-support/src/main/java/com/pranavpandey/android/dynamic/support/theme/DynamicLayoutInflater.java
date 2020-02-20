@@ -211,7 +211,7 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
             case "androidx.appcompat.widget.AppCompatImageView":
             case "com.pranavpandey.android.dynamic.support.widget.DynamicImageView":
                 view = new DynamicImageView(context, attrs);
-                break;
+            break;
             case "TextView":
             case "android.support.v7.widget.AppCompatTextView":
             case "androidx.appcompat.widget.AppCompatTextView":
@@ -366,17 +366,20 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
                 break;
         }
 
-        return onCustomiseView(view);
+        return onCustomiseView(view, context, attrs);
     }
 
     /**
      * Customise the supplied view created by this layout inflater.
      *
      * @param view The view to be customised.
+     * @param context The context the view is being created in.
+     * @param attrs Inflation attributes as specified in XML file.
      */
-    protected @Nullable View onCustomiseView(@Nullable View view) {
+    protected @Nullable View onCustomiseView(@Nullable View view,
+            @NonNull Context context, @NonNull AttributeSet attrs) {
         if (view != null) {
-           if (ADS_TAG_IGNORE.equals(view.getTag())) {
+            if (ADS_TAG_IGNORE.equals(view.getTag())) {
                 view = null;
             }
         }

@@ -42,6 +42,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
  * Base fragment class to provide basic functionality and to work with the {@link DynamicActivity}.
  * <p>Extend this fragment to add more functionality according to the need
  */
+@SuppressWarnings("ConstantConditions")
 public class DynamicFragment extends Fragment implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -147,16 +148,19 @@ public class DynamicFragment extends Fragment implements
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        if (getActivity() == null) {
+            return;
+        }
+
         if (isSupportActionBar()) {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getTitle());
             ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle(getSubtitle());
         }
 
         if (getCheckedMenuItemId() != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
-            if (getActivity() != null
-                    && getActivity().findViewById(getBottomNavigationViewId()) != null) {
-                ((BottomNavigationView) getActivity().findViewById(getBottomNavigationViewId()))
-                        .setSelectedItemId(getCheckedMenuItemId());
+            if (getActivity().findViewById(getBottomNavigationViewId()) != null) {
+                ((BottomNavigationView) getActivity().findViewById(
+                        getBottomNavigationViewId())).setSelectedItemId(getCheckedMenuItemId());
             }
 
             if (getActivity() instanceof DynamicDrawerActivity) {

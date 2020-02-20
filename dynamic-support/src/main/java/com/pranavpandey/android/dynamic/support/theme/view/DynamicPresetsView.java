@@ -43,6 +43,7 @@ import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewNested;
 import com.pranavpandey.android.dynamic.support.theme.adapter.DynamicPresetsAdapter;
+import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
 import com.pranavpandey.android.dynamic.support.view.DynamicItemView;
@@ -163,8 +164,8 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
             }
         });
 
-        ((DynamicHeader) findViewById(R.id.ads_theme_presets_header))
-                .getIconView().setColorType(Theme.ColorType.NONE);
+        Dynamic.setColorType(((DynamicHeader) findViewById(
+                R.id.ads_theme_presets_header)).getIconView(), Theme.ColorType.NONE);
     }
 
     @Override

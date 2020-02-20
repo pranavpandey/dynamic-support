@@ -23,6 +23,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -40,11 +42,10 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicSimpleTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.adapter.DynamicTutorialsAdapter;
+import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
-import com.pranavpandey.android.dynamic.support.widget.DynamicButton;
-import com.pranavpandey.android.dynamic.support.widget.DynamicImageButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator2;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
@@ -89,17 +90,17 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
     /**
      * Previous action button used by this activity.
      */
-    private DynamicImageButton mActionPrevious;
+    private ImageButton mActionPrevious;
 
     /**
      * Next and done action button used by this activity.
      */
-    private DynamicImageButton mActionNext;
+    private ImageButton mActionNext;
 
     /**
      * Custom action button used by this activity.
      */
-    private DynamicButton mActionCustom;
+    private Button mActionCustom;
 
     /**
      * Argb evaluator to manage color transition.
@@ -355,12 +356,12 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
             DynamicScrollUtils.setEdgeEffectColor(mAdapter.getRecyclerView(), tintColor);
         }
 
-        mActionPrevious.setContrastWithColor(color);
-        mActionNext.setContrastWithColor(color);
-        mActionCustom.setContrastWithColor(color);
-        mActionPrevious.setColor(tintColor);
-        mActionNext.setColor(tintColor);
-        mActionCustom.setColor(tintColor);
+        Dynamic.setContrastWithColor(mActionPrevious, color);
+        Dynamic.setContrastWithColor(mActionNext, color);
+        Dynamic.setContrastWithColor(mActionCustom, color);
+        Dynamic.setColor(mActionPrevious, tintColor);
+        Dynamic.setColor(mActionNext, tintColor);
+        Dynamic.setColor(mActionCustom, tintColor);
         mActionCustom.setTextColor(color);
         mPageIndicator.setSelectedColour(tintColor);
         mPageIndicator.setUnselectedColour(DynamicColorUtils.adjustAlpha(

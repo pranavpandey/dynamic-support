@@ -24,11 +24,17 @@ import androidx.annotation.NonNull;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.theme.Theme;
+import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 
 /**
  * Default configurations used by the dynamic widgets.
  */
 public class WidgetDefaults {
+
+    /**
+     * Constant for the stroke width, 1 dip.
+     */
+    public static final int ADS_STROKE_WIDTH = DynamicUnitUtils.convertDpToPixels(1);
 
     /**
      * Minimum corner size in dips to provide the rectangle theme overlay.
@@ -59,6 +65,11 @@ public class WidgetDefaults {
      * Minimum corner size in dips to provide the rounded list selector.
      */
     public static final float ADS_CORNER_SELECTOR_ROUND = 8;
+
+    /**
+     * Default alpha for the surface color to do not show stroke on the same background.
+     */
+    public static final int ADS_ALPHA_SURFACE_STROKE = 255;
 
     /**
      * Default alpha for the toast.
