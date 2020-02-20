@@ -56,7 +56,8 @@
     <dimen name="ads_nav_header_height">160dp</dimen>
     <dimen name="ads_collapsing_toolbar_height">160dp</dimen>
     <dimen name="ads_fab_margin">@dimen/ads_margin_medium</dimen>
-    <dimen name="ads_margin_splash_bottom_end">@dimen/ads_margin_normal</dimen>
+    <dimen name="ads_margin_splash">@dimen/ads_margin_normal</dimen>
+    <dimen name="ads_margin_splash_small">@dimen/ads_margin_regular</dimen>
     <dimen name="ads_bottom_sheet_peek_height">72dp</dimen>
     <dimen name="ads_bottom_sheet_indicator_width">@dimen/ads_icon_normal</dimen>
     <dimen name="ads_bottom_sheet_indicator_height">@dimen/ads_margin_tiny</dimen>
@@ -153,7 +154,7 @@
     <dimen name="ads_icon_header_appbar">32dp</dimen>
     <dimen name="ads_icon_header_drawer">64dp</dimen>
     <dimen name="ads_icon_header_card_margin_end">@dimen/ads_margin_large</dimen>
-    <dimen name="ads_icon_empty">@dimen/ads_icon_extra_large</dimen>
+    <dimen name="ads_icon_empty">@dimen/ads_icon_big</dimen>
     <dimen name="ads_icon_preference">@dimen/ads_icon_small</dimen>
     <dimen name="ads_icon_preference_big">@dimen/ads_icon_medium</dimen>
     <dimen name="ads_icon_popup_footer">@dimen/ads_icon_small</dimen>

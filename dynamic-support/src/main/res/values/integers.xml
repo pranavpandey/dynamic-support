@@ -38,7 +38,7 @@
     <integer name="ads_span_compact_dialog">1</integer>
 
     <!-- Alpha -->
-    <item name="ads_empty_view_alpha" type="integer" format="float">0.6</item>
+    <item name="ads_empty_view_alpha" type="integer" format="float">0.8</item>
 
     <!-- Tutorial -->
     <item name="ads_weight_tutorial_image" type="integer" format="float">0.36</item>

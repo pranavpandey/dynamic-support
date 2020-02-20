@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2019 Pranav Pandey
+	Copyright 2018 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -15,60 +15,56 @@
 	limitations under the License.
 -->
 
-<com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout
+<com.pranavpandey.android.dynamic.support.widget.DynamicRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/ads_page_vertical_margin"
+    android:padding="@dimen/ads_margin_splash"
     app:ads_colorType="primary"
     app:ads_backgroundAware="disable">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent">
+    <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+        android:id="@+id/splash_image"
+        android:layout_width="@dimen/ads_icon_splash"
+        android:layout_height="@dimen/ads_icon_splash"
+        android:layout_margin="@dimen/ads_margin_splash_small"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/ic_sample_splash_animated"
+        app:ads_colorType="tint_primary"
+        app:ads_contrastWithColorType="primary" />
 
-        <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-            android:id="@+id/splash_image"
-            android:layout_width="@dimen/ads_icon_splash"
-            android:layout_height="@dimen/ads_icon_splash"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_sample_splash_animated"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ads_margin_splash_small"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+            style="@style/TextAppearance.DynamicApp.Headline6.Splash"
+            android:id="@+id/splash_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:gravity="center"
+            app:ads_rtlSupport="false"
             app:ads_colorType="tint_primary"
             app:ads_contrastWithColorType="primary" />
 
-        <LinearLayout
+        <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+            style="@style/TextAppearance.DynamicApp.Subtitle1.Splash"
+            android:id="@+id/splash_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/ads_margin_splash_bottom_end"
-            android:orientation="vertical">
+            android:text="@string/app_subtitle"
+            android:gravity="center"
+            app:ads_rtlSupport="false"
+            app:ads_colorType="tint_primary"
+            app:ads_contrastWithColorType="primary" />
 
-            <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                style="@style/TextAppearance.DynamicApp.Headline6.Splash"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                android:gravity="center"
-                app:ads_rtlSupport="false"
-                app:ads_colorType="tint_primary"
-                app:ads_contrastWithColorType="primary" />
+    </LinearLayout>
 
-            <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                style="@style/TextAppearance.DynamicApp.Subtitle1.Splash"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/app_subtitle"
-                android:gravity="center"
-                app:ads_rtlSupport="false"
-                app:ads_colorType="tint_primary"
-                app:ads_contrastWithColorType="primary" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-</com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout>
+</com.pranavpandey.android.dynamic.support.widget.DynamicRelativeLayout>
