@@ -302,13 +302,6 @@ public abstract class DynamicPopup {
                                             DynamicViewUtils.manageScrollIndicators(v, top, bottom);
                                         }
                                     });
-
-                            mViewRoot.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    DynamicViewUtils.manageScrollIndicators(mViewRoot, top, bottom);
-                                }
-                            });
                         } else if (mViewRoot instanceof AbsListView) {
                             ((AbsListView) mViewRoot).setOnScrollListener(
                                     new AbsListView.OnScrollListener() {
@@ -321,14 +314,7 @@ public abstract class DynamicPopup {
                                                 int visibleItemCount, int totalItemCount) {
                                             DynamicViewUtils.manageScrollIndicators(v, top, bottom);
                                         }
-                            });
-
-                            mViewRoot.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    DynamicViewUtils.manageScrollIndicators(mViewRoot, top, bottom);
-                                }
-                            });
+                                    });
                         } else if (mViewRoot instanceof RecyclerView) {
                             ((RecyclerView) mViewRoot).addOnScrollListener(
                                     new RecyclerView.OnScrollListener() {
@@ -341,8 +327,12 @@ public abstract class DynamicPopup {
                                                 int dx, int dy) {
                                             DynamicViewUtils.manageScrollIndicators(v, top, bottom);
                                         }
-                            });
+                                    });
+                        }
 
+                        if (mViewRoot instanceof NestedScrollView
+                                || mViewRoot instanceof AbsListView
+                                || mViewRoot instanceof RecyclerView) {
                             mViewRoot.post(new Runnable() {
                                 @Override
                                 public void run() {

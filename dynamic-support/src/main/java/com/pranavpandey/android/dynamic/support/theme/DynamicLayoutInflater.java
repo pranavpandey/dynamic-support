@@ -21,6 +21,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -109,7 +110,7 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
                     final DynamicCardView cardView = new DynamicPopupBackground(context, attrs);
                     final @ColorInt int backgroundColor = cardView.getColor();
 
-                    menuItemView.post(new Runnable() {
+                    new Handler().post(new Runnable() {
                         @Override
                         public void run() {
                             @ColorInt int tintColor = DynamicTheme

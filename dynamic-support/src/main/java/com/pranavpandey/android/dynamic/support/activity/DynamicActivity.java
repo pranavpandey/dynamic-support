@@ -867,7 +867,11 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * Restore the search view state after the configuration change.
      */
     public void restoreSearchViewState() {
-        mSearchViewEditText.post(new Runnable() {
+        if (mSearchViewEditText == null) {
+            return;
+        }
+
+        getContentView().post(new Runnable() {
             @Override
             public void run() {
                 expandSearchView(false);
