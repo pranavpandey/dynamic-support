@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -83,23 +83,23 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
 
         // Array list for spinner items with icon.
         val spinnerItemsIcon = ArrayList<DynamicSpinnerItem>()
-        spinnerItemsIcon.add(DynamicSpinnerItem(DynamicResourceUtils.getDrawable(context!!,
+        spinnerItemsIcon.add(DynamicSpinnerItem(DynamicResourceUtils.getDrawable(requireContext(),
                 R.drawable.ads_ic_extension), "Spinner one"))
-        spinnerItemsIcon.add(DynamicSpinnerItem(DynamicResourceUtils.getDrawable(context!!,
+        spinnerItemsIcon.add(DynamicSpinnerItem(DynamicResourceUtils.getDrawable(requireContext(),
                 R.drawable.ads_ic_android), "Spinner two"))
-        spinnerItemsIcon.add(DynamicSpinnerItem(DynamicResourceUtils.getDrawable(context!!,
+        spinnerItemsIcon.add(DynamicSpinnerItem(DynamicResourceUtils.getDrawable(requireContext(),
                 R.drawable.ads_ic_check), "Spinner three"))
-        spinnerItemsIcon.add(DynamicSpinnerItem(DynamicResourceUtils.getDrawable(context!!,
+        spinnerItemsIcon.add(DynamicSpinnerItem(DynamicResourceUtils.getDrawable(requireContext(),
                 R.drawable.ads_ic_close), "Spinner four"))
 
         // Set dynamic spinner image adapter with text and image view ids.
-        mSpinnerOne!!.adapter = DynamicSpinnerImageAdapter(context!!,
+        mSpinnerOne!!.adapter = DynamicSpinnerImageAdapter(requireContext(),
                 R.layout.ads_layout_spinner_item, R.id.ads_spinner_item_icon,
                 R.id.ads_spinner_item_text, spinnerItemsIcon)
 
         // Set dynamic spinner image adapter with text view id. Setting a
         // default image view id to disable icons.
-        mSpinnerTwo!!.adapter = DynamicSpinnerImageAdapter(context!!,
+        mSpinnerTwo!!.adapter = DynamicSpinnerImageAdapter(requireContext(),
                 R.layout.ads_layout_spinner_item,
                 DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID,
                 R.id.ads_spinner_item_text, spinnerItemsIcon)
@@ -113,7 +113,7 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
 
         // Set dynamic spinner image adapter with text and image view ids.
         // Now, passing an array without icons to hide the image view.
-        mSpinnerThree!!.adapter = DynamicSpinnerImageAdapter(context!!,
+        mSpinnerThree!!.adapter = DynamicSpinnerImageAdapter(requireContext(),
                 R.layout.ads_layout_spinner_item,
                 R.id.ads_spinner_item_icon,
                 R.id.ads_spinner_item_text, spinnerItems)

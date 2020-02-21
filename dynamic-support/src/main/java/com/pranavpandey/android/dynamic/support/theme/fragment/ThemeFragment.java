@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -113,7 +113,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
 
         inflater.inflate(R.menu.ads_menu_theme, menu);
 
-        if (DynamicFileUtils.getTempDir(getContext()) == null) {
+        if (DynamicFileUtils.getTempDir(requireContext()) == null) {
             menu.findItem(R.id.ads_menu_theme_file).setVisible(false);
         } else if (!DynamicSdkUtils.is19()) {
             menu.findItem(R.id.ads_menu_theme_file_save).setVisible(false);
@@ -125,33 +125,33 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int i = item.getItemId();
         if (i == R.id.ads_menu_theme_copy) {
-            DynamicLinkUtils.copyToClipboard(getContext(), getString(R.string.ads_theme),
+            DynamicLinkUtils.copyToClipboard(requireContext(), getString(R.string.ads_theme),
                     mThemePreview.getDynamicTheme().toDynamicString());
 
             getDynamicActivity().getSnackBar(R.string.ads_theme_copy_done).show();
         } else if (i == R.id.ads_menu_theme_share) {
             onSetActionIcon(false);
-            DynamicLinkUtils.share(getContext(),
+            DynamicLinkUtils.share(requireContext(),
                     getSubtitle() != null ? getSubtitle().toString() : null,
                     DynamicThemeUtils.getThemeUrl(mThemePreview.getDynamicTheme()),
-                    DynamicFileUtils.getBitmapUri(getContext(),
+                    DynamicFileUtils.getBitmapUri(requireContext(),
                             DynamicThemeUtils.createThemeBitmap(mThemePreview),
                             Theme.Key.SHARE));
             onSetActionIcon(true);
         } else if (i == R.id.ads_menu_theme_import) {
             importTheme(false);
         } else if (i == R.id.ads_menu_theme_file_save) {
-            mThemeExported = DynamicThemeUtils.requestThemeFile(getContext(),
+            mThemeExported = DynamicThemeUtils.requestThemeFile(requireContext(),
                     Theme.NAME, mThemePreview.getDynamicTheme().toDynamicString());
-            startActivityForResult(DynamicFileUtils.getSaveToFileIntent(getContext(),
+            startActivityForResult(DynamicFileUtils.getSaveToFileIntent(requireContext(),
                     mThemeExported, Theme.MIME), REQUEST_THEME_LOCATION);
         } else if (i == R.id.ads_menu_theme_file_share) {
             onSetActionIcon(false);
-            DynamicLinkUtils.share(getContext(),
+            DynamicLinkUtils.share(requireContext(),
                     getSubtitle() != null ? getSubtitle().toString() : null,
                     DynamicThemeUtils.getThemeUrl(mThemePreview.getDynamicTheme()),
-                    DynamicFileUtils.getUriFromFile(getContext(),
-                            DynamicThemeUtils.requestThemeFile(getContext(), Theme.NAME,
+                    DynamicFileUtils.getUriFromFile(requireContext(),
+                            DynamicThemeUtils.requestThemeFile(requireContext(), Theme.NAME,
                                     mThemePreview.getDynamicTheme().toDynamicString())),
                     Theme.MIME);
             onSetActionIcon(true);
@@ -180,12 +180,12 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
             switch (requestCode) {
                 case REQUEST_THEME_LOCATION:
                     if (uri != null) {
-                        if (DynamicFileUtils.writeToFile(getContext(),
+                        if (DynamicFileUtils.writeToFile(requireContext(),
                                 DynamicFileUtils.getUriFromFile(
-                                        getContext(), mThemeExported), uri)) {
+                                        requireContext(), mThemeExported), uri)) {
                             getDynamicActivity().getSnackBar(String.format(getString(
                                     R.string.ads_theme_format_saved), DynamicFileUtils
-                                    .getFileNameFromUri(getContext(), uri))).show();
+                                    .getFileNameFromUri(requireContext(), uri))).show();
                         } else {
                             getDynamicActivity().getSnackBar(
                                     R.string.ads_theme_export_error).show();
@@ -195,7 +195,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
                 case REQUEST_THEME_IMPORT:
                     if (uri != null) {
                         importTheme(DynamicFileUtils.readStringFromFile(
-                                getContext(), uri), true);
+                                requireContext(), uri), true);
                     }
                     break;
             }
@@ -293,7 +293,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
     protected void invalidTheme(final boolean file) {
         DynamicThemeDialog.newInstance()
                 .setType(DynamicThemeDialog.Type.THEME_INVALID)
-                .setBuilder(new DynamicDialog.Builder(getContext())
+                .setBuilder(new DynamicDialog.Builder(requireContext())
                         .setPositiveButton(R.string.ads_backup_import,
                                 new DialogInterface.OnClickListener() {
                                     @Override

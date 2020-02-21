@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -81,27 +81,27 @@ class HomeFragment : DynamicFragment() {
         // Set subtitle for the dynamic item view.
         (view.findViewById<View>(R.id.item_gradle) as DynamicItemView).subtitle =
                 String.format(getString(R.string.format_version),
-                DynamicPackageUtils.getAppVersion(context!!))
+                DynamicPackageUtils.getAppVersion(requireContext()))
 
         // Set on click listener for the dynamic item view.
         (view.findViewById<View>(R.id.item_rotation) as DynamicItemView)
                 .setOnClickListener {
                     // View an app in Google Play by supplying the package name.
-                    DynamicLinkUtils.viewInGooglePlay(context!!, Constants.PACKAGE_ROTATION)
+                    DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_ROTATION)
                 }
 
         // Set on click listener for the dynamic item view.
         (view.findViewById<View>(R.id.item_everyday) as DynamicItemView)
                 .setOnClickListener {
                     // View an app in Google Play by supplying the package name.
-                    DynamicLinkUtils.viewInGooglePlay(context!!, Constants.PACKAGE_EVERYDAY)
+                    DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_EVERYDAY)
                 }
 
         // Set on click listener for the dynamic item view.
         (view.findViewById<View>(R.id.item_palettes) as DynamicItemView)
                 .setOnClickListener {
                     // View an app in Google Play by supplying the package name.
-                    DynamicLinkUtils.viewInGooglePlay(context!!, Constants.PACKAGE_PALETTES)
+                    DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_PALETTES)
                 }
 
         // Set on preference click listeners.

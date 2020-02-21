@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ class AppSettingsFragment : DynamicFragment() {
         mAppThemeNight = view.findViewById(R.id.pref_app_theme_night)
 
         // Hide navigation bar theme if not supported by the device.
-        if (!DynamicWindowUtils.isNavigationBarThemeSupported(context!!)) {
+        if (!DynamicWindowUtils.isNavigationBarThemeSupported(requireContext())) {
             view.findViewById<View>(R.id.pref_navigation_bar_theme).visibility = View.GONE
         }
 

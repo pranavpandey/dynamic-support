@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -76,8 +76,8 @@ public class DynamicFragment extends Fragment implements
     public void onResume() {
         super.onResume();
 
-        if (setSharedPreferenceChangeListener() && getContext() != null) {
-            PreferenceManager.getDefaultSharedPreferences(getContext())
+        if (setSharedPreferenceChangeListener() && requireContext() != null) {
+            PreferenceManager.getDefaultSharedPreferences(requireContext())
                     .registerOnSharedPreferenceChangeListener(this);
         }
 
@@ -91,8 +91,8 @@ public class DynamicFragment extends Fragment implements
     public void onPause() {
         setHasOptionsMenu(false);
 
-        if (setSharedPreferenceChangeListener() && getContext() != null) {
-            PreferenceManager.getDefaultSharedPreferences(getContext())
+        if (setSharedPreferenceChangeListener() && requireContext() != null) {
+            PreferenceManager.getDefaultSharedPreferences(requireContext())
                     .unregisterOnSharedPreferenceChangeListener(this);
         }
         super.onPause();

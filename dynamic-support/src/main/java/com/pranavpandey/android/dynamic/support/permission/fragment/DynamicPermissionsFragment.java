@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -164,7 +164,7 @@ public class DynamicPermissionsFragment extends DynamicFragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.ads_menu_app_info) {
-            DynamicPermissionUtils.launchAppInfo(getContext());
+            DynamicPermissionUtils.launchAppInfo(requireContext());
         }
 
         return super.onOptionsItemSelected(item);
@@ -340,7 +340,7 @@ public class DynamicPermissionsFragment extends DynamicFragment {
 
         if (dynamicPermission.isDangerous()) {
             if (!dynamicPermission.isAskAgain()) {
-                DynamicPermissionUtils.launchAppInfo(getContext());
+                DynamicPermissionUtils.launchAppInfo(requireContext());
             } else {
                 requestDangerousPermissions(dynamicPermission.getPermission());
             }
@@ -348,7 +348,7 @@ public class DynamicPermissionsFragment extends DynamicFragment {
             if (permission.equals(Manifest.permission.WRITE_SETTINGS)
                     || permission.equals(Manifest.permission.PACKAGE_USAGE_STATS)
                     || permission.equals(Manifest.permission.SYSTEM_ALERT_WINDOW)) {
-                DynamicPermissionUtils.openPermissionSettings(getContext(), permission);
+                DynamicPermissionUtils.openPermissionSettings(requireContext(), permission);
             }
         }
     }
@@ -378,13 +378,13 @@ public class DynamicPermissionsFragment extends DynamicFragment {
             switch (getPermissionsIntent().getIntExtra(
                     DynamicIntent.EXTRA_PERMISSIONS_ACTION, DynamicAction.NONE)) {
                 case DynamicAction.START_SERVICE:
-                    getContext().startService(actionIntent);
+                    requireContext().startService(actionIntent);
                     break;
                 case DynamicAction.START_FOREGROUND_SERVICE:
-                    ContextCompat.startForegroundService(getContext(), actionIntent);
+                    ContextCompat.startForegroundService(requireContext(), actionIntent);
                     break;
                 case DynamicAction.START_ACTIVITY:
-                    getContext().startActivity(actionIntent);
+                    requireContext().startActivity(actionIntent);
                     break;
             }
         }

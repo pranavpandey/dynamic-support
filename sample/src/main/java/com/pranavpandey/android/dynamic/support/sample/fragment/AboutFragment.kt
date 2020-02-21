@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ class AboutFragment : DynamicViewPagerFragment() {
 
     override fun getSubtitle(): CharSequence? {
         // Set subtitle for the app compat activity.
-        return DynamicPackageUtils.getAppVersion(context!!)
+        return DynamicPackageUtils.getAppVersion(requireContext())
     }
 
     override fun getBottomNavigationViewId(): Int {
@@ -95,9 +95,9 @@ class AboutFragment : DynamicViewPagerFragment() {
                 or AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS)
 
         // Select current page from the bundle arguments.
-        if (arguments != null && arguments!!.containsKey(
+        if (arguments != null && requireArguments().containsKey(
                         DynamicViewPagerFragment.ADS_ARGS_VIEW_PAGER_PAGE)) {
-            setPage(arguments!!.getInt(DynamicViewPagerFragment.ADS_ARGS_VIEW_PAGER_PAGE))
+            setPage(requireArguments().getInt(DynamicViewPagerFragment.ADS_ARGS_VIEW_PAGER_PAGE))
         }
     }
 
