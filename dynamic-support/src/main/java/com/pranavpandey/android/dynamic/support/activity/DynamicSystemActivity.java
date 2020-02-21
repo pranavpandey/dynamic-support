@@ -28,7 +28,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -874,14 +873,15 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
             setNavigationBarColor(mNavigationBarColor);
             adjustSharedElementTransition(true);
 
-            new Handler().postDelayed(mDynamicChange, DynamicTheme.DELAY_THEME_CHANGE);
+            getWindow().getDecorView().postDelayed(
+                    mDynamicChange, DynamicTheme.DELAY_THEME_CHANGE);
         }
     }
 
     /**
      * Runnable to change the dynamic theme on resume.
      */
-    private Runnable mDynamicChange = new Runnable() {
+    private final Runnable mDynamicChange = new Runnable() {
         @Override
         public void run() {
             String theme = DynamicTheme.getInstance().getLocalTheme(
@@ -894,6 +894,8 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
                     DynamicTheme.getInstance().onDynamicChanged(false, true);
                 }
             }
+
+            updateTaskDescription(DynamicTheme.getInstance().get().getPrimaryColor());
         }
     };
 
