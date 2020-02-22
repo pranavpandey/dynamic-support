@@ -19,7 +19,7 @@
 
     <!-- Application theme -->
     <style name="Theme.DynamicApp" parent="Base.DynamicApp.NoActionBar">
-        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowAllowEnterTransitionOverlap">true</item>
         <item name="android:windowAllowReturnTransitionOverlap">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
@@ -28,7 +28,7 @@
     </style>
 
     <style name="Theme.DynamicApp.Dark" parent="Base.DynamicApp.Dark.NoActionBar">
-        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowAllowEnterTransitionOverlap">true</item>
         <item name="android:windowAllowReturnTransitionOverlap">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
@@ -37,7 +37,7 @@
     </style>
 
     <style name="Theme.DynamicApp.Light" parent="Base.DynamicApp.Light.NoActionBar">
-        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowAllowEnterTransitionOverlap">true</item>
         <item name="android:windowAllowReturnTransitionOverlap">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
@@ -46,7 +46,7 @@
     </style>
 
     <style name="Theme.DynamicApp.DayNight" parent="Base.DynamicApp.DayNight.NoActionBar">
-        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowAllowEnterTransitionOverlap">true</item>
         <item name="android:windowAllowReturnTransitionOverlap">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>

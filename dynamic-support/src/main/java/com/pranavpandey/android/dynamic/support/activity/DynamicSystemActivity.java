@@ -50,6 +50,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.transition.MaterialContainerTransform;
 import com.pranavpandey.android.dynamic.locale.DynamicLocale;
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.R;
@@ -209,6 +210,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setDynamicTheme();
+        onSetSharedElementTransition();
         super.onCreate(savedInstanceState);
 
         mSavedInstanceState = savedInstanceState;
@@ -220,6 +222,71 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         setNavigationBarColor(mNavigationBarColor);
 
         onManageSharedElementTransition();
+    }
+
+    /**
+     * Setup the shared element transition fot this activity.
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    protected void onSetSharedElementTransition() {
+        if (!DynamicSdkUtils.is21()) {
+            return;
+        }
+
+        MaterialContainerTransform transform = new MaterialContainerTransform(this);
+        transform.setScrimColor(Color.TRANSPARENT);
+        SharedElementCallback mSharedElementCallback =
+                new SharedElementCallback() {
+                    @Override
+                    public void onSharedElementEnd(
+                            @NonNull List<String> sharedElementNames,
+                            @NonNull List<View> sharedElements,
+                            @NonNull List<View> sharedElementSnapshots) {
+                        super.onSharedElementEnd(sharedElementNames,
+                                sharedElements, sharedElementSnapshots);
+
+                        resetSharedElementTransition();
+                    }
+
+                    @Override
+                    public void onMapSharedElements(@NonNull List<String> names,
+                            @NonNull Map<String, View> sharedElements) {
+                        if (mSharedElementMap == null) {
+                            mSharedElementMap = new HashMap<>();
+                            for (Map.Entry<String, View> entry : sharedElements.entrySet()) {
+                                mSharedElementMap.put(entry.getKey(), entry.getValue().getId());
+                            }
+                        } else if (!mFinishAfterTransition) {
+                            if (mDynamicTransitionListener != null) {
+                                for (Map.Entry<String, Integer> entry
+                                        : mSharedElementMap.entrySet()) {
+                                    if (!names.contains(entry.getKey())) {
+                                        names.add(entry.getKey());
+                                    }
+
+                                    if (sharedElements.size() < names.size()) {
+                                        sharedElements.put(entry.getKey(), getSharedElement(
+                                                mTransitionResultCode, mTransitionPosition,
+                                                entry.getKey(), entry.getValue()));
+                                    }
+                                }
+                            }
+                            super.onMapSharedElements(names, sharedElements);
+
+                            resetSharedElementTransition();
+                        } else {
+                            resetSharedElementTransition();
+                        }
+                    }
+                };
+
+        if (getWindow().getSharedElementReturnTransition() == null) {
+            setExitSharedElementCallback(mSharedElementCallback);
+        } else {
+            setEnterSharedElementCallback(mSharedElementCallback);
+            getWindow().setSharedElementEnterTransition(transform);
+            getWindow().setSharedElementReturnTransition(transform);
+        }
     }
 
     /**
@@ -248,42 +315,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
                 }
             }
 
-            adjustSharedElementTransition(false);
-
-            setExitSharedElementCallback(new SharedElementCallback() {
-                @Override
-                public void onMapSharedElements(List<String> names,
-                        Map<String, View> sharedElements) {
-                    super.onMapSharedElements(names, sharedElements);
-
-                    if (names == null || sharedElements == null) {
-                        return;
-                    }
-
-                    if (mSharedElementMap == null) {
-                        mSharedElementMap = new HashMap<>();
-                        for (Map.Entry<String, View> entry : sharedElements.entrySet()) {
-                            mSharedElementMap.put(entry.getKey(), entry.getValue().getId());
-                        }
-                    } else if (!mFinishAfterTransition) {
-                        if (mDynamicTransitionListener != null) {
-                            for (Map.Entry<String, Integer> entry : mSharedElementMap.entrySet()) {
-                                if (!names.contains(entry.getKey())) {
-                                    names.add(entry.getKey());
-                                }
-
-                                sharedElements.put(entry.getKey(), getSharedElement(
-                                        mTransitionResultCode, mTransitionPosition,
-                                        entry.getKey(), entry.getValue()));
-                            }
-                        }
-
-                        resetSharedElementTransition();
-                    } else {
-                        resetSharedElementTransition();
-                    }
-                }
-            });
+            adjustSharedElementTransition(mSavedInstanceState != null);
         }
     }
 
@@ -303,7 +335,6 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
                 || mBackgroundColor == Color.TRANSPARENT) {
             mBackgroundColor = Color.TRANSPARENT;
             getWindow().setBackgroundDrawable(new ColorDrawable(mBackgroundColor));
-            getWindow().setExitTransition(null);
         }
 
         if (resume && DynamicSdkUtils.is29()
@@ -334,8 +365,14 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     protected @Nullable View getSharedElement(int resultCode, int position,
             @NonNull String transition, @IdRes int viewId) {
-        return mDynamicTransitionListener == null ? findViewById(viewId)
+        View view = mDynamicTransitionListener == null ? findViewById(viewId)
                 : mDynamicTransitionListener.onFindView(resultCode, position, transition, viewId);
+
+        if (view != null) {
+            view.setTag(null);
+        }
+
+        return view;
     }
 
     /**
