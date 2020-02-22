@@ -121,10 +121,10 @@
     <dimen name="ads_card_view_content_margin_vertical_small">@dimen/ads_margin_small</dimen>
     <dimen name="ads_card_view_content_margin_horizontal_small">@dimen/ads_margin_regular</dimen>
     <dimen name="ads_card_view_corner_radius">@dimen/ads_corner_radius</dimen>
-    <dimen name="ads_card_view_elevation">2.4dp</dimen>
+    <dimen name="ads_card_view_elevation">3dp</dimen>
     <dimen name="ads_card_view_elevation_floating">@dimen/ads_margin_tiny</dimen>
     <dimen name="ads_card_view_elevation_dialog">@dimen/ads_margin_tiny</dimen>
-    <dimen name="ads_card_view_elevation_bottom_sheet">3dp</dimen>
+    <dimen name="ads_card_view_elevation_bottom_sheet">@dimen/ads_margin_tiny</dimen>
     <dimen name="ads_card_view_elevation_toast">1dp</dimen>
 
     <!-- Scroller -->
