@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,6 +44,7 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Help class to request and manage runtime permissions introduced in API 23.
@@ -156,7 +157,7 @@ public class DynamicPermissions {
      * @param context The context to start the activity.
      * @param permissions The array of permissions to be requested.
      * @param history {@code false} to exclude the system settings activity from the recents.
-     * @param actionIntent The intent which should be called after all the permissions has been
+     * @param actionIntent The intent which should be called after all the permissions have been
      *                     granted.
      * @param action The intent action, either start an activity or a service.
      * @param requestCode The request code for the result.
@@ -181,7 +182,7 @@ public class DynamicPermissions {
      * @param context The context to build the intent.
      * @param permissions The array of permissions to be requested.
      * @param history {@code false} to exclude the system settings activity from the recents.
-     * @param actionIntent The intent which should be called after all the permissions has been
+     * @param actionIntent The intent which should be called after all the permissions have been
      *                     granted.
      * @param action The intent action, either start an activity or a service.
      */
@@ -209,7 +210,7 @@ public class DynamicPermissions {
      * @param fragment The fragment to start the activity.
      * @param permissions The array of permissions to be requested.
      * @param history {@code false} to exclude the system settings activity from the recents.
-     * @param actionIntent The intent which should be called after all the permissions has been
+     * @param actionIntent The intent which should be called after all the permissions have been
      *                     granted.
      * @param action The intent action, either start an activity or a service.
      * @param requestCode The request code for the result.
@@ -217,19 +218,8 @@ public class DynamicPermissions {
     public void requestPermissions(@NonNull Fragment fragment,
             @NonNull String[] permissions, boolean history, @Nullable Intent actionIntent,
             @DynamicAction int action, int requestCode) {
-        Intent intent = new Intent(fragment.getContext(), mPermissionActivity);
-        intent.setAction(DynamicIntent.ACTION_PERMISSIONS);
-        intent.putExtra(DynamicIntent.EXTRA_PERMISSIONS, permissions);
-        if (!history) {
-            intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-        }
-
-        if (actionIntent != null) {
-            intent.putExtra(DynamicIntent.EXTRA_PERMISSIONS_INTENT, actionIntent);
-            intent.putExtra(DynamicIntent.EXTRA_PERMISSIONS_ACTION, action);
-        }
-
-        fragment.startActivityForResult(intent, requestCode);
+        fragment.startActivityForResult(requestPermissionsIntent(fragment.requireContext(),
+                permissions, history, actionIntent, action), requestCode);
     }
 
     /**
@@ -238,7 +228,7 @@ public class DynamicPermissions {
      * @param context The context to start the activity.
      * @param permissions The array of permissions to be requested.
      * @param history {@code false} to exclude the system settings activity from the recents.
-     * @param actionIntent The intent which should be called after all the permissions has been
+     * @param actionIntent The intent which should be called after all the permissions have been
      *                     granted.
      * @param action The intent action, either start an activity or a service.
      */
@@ -254,7 +244,7 @@ public class DynamicPermissions {
      * @param fragment The fragment to start the activity.
      * @param permissions The array of permissions to be requested.
      * @param history {@code false} to exclude the system settings activity from the recents.
-     * @param actionIntent The intent which should be called after all the permissions has been
+     * @param actionIntent The intent which should be called after all the permissions have been
      *                     granted.
      * @param action The intent action, either start an activity or a service.
      */
@@ -269,7 +259,7 @@ public class DynamicPermissions {
      *
      * @param permissions The array of permissions to be requested.
      * @param history {@code false} to exclude the system settings activity from the recents.
-     * @param actionIntent The intent which should be called after all the permissions has been
+     * @param actionIntent The intent which should be called after all the permissions have been
      *                     granted.
      * @param action The intent action, either start an activity or a service.
      */
@@ -286,12 +276,12 @@ public class DynamicPermissions {
      * @param context The context to start the activity.
      * @param permissions The array of permissions to be requested.
      * @param request {@code true} to automatically request the permissions if not granted.
-     * @param actionIntent The intent which should be called after all the permissions has been
+     * @param actionIntent The intent which should be called after all the permissions have been
      *                     granted.
      * @param action The intent action, either start an activity or a service.
      * @param requestCode The request code for the result.
      *
-     * @return {@code true} if all the supplied permissions has been granted.
+     * @return {@code true} if all the supplied permissions have been granted.
      */
     public boolean isGranted(@NonNull Context context,
             @NonNull String[] permissions, boolean request, @Nullable Intent actionIntent,
@@ -312,12 +302,12 @@ public class DynamicPermissions {
      * @param fragment The fragment to start the activity.
      * @param permissions The array of permissions to be requested.
      * @param request {@code true} to automatically request the permissions if not granted.
-     * @param actionIntent The intent which should be called after all the permissions has been
+     * @param actionIntent The intent which should be called after all the permissions have been
      *                     granted.
      * @param action The intent action, either start an activity or a service.
      * @param requestCode The request code for the result.
      *
-     * @return {@code true} if all the supplied permissions has been granted.
+     * @return {@code true} if all the supplied permissions have been granted.
      */
     public boolean isGranted(@NonNull Fragment fragment,
             @NonNull String[] permissions, boolean request, @Nullable Intent actionIntent,
@@ -337,11 +327,11 @@ public class DynamicPermissions {
      *
      * @param permissions The array of permissions to be requested.
      * @param request {@code true} to automatically request the permissions if not granted.
-     * @param actionIntent The intent which should be called after all the permissions has been
+     * @param actionIntent The intent which should be called after all the permissions have been
      *                     granted.
      * @param action The intent action, either start an activity or a service.
      *
-     * @return {@code true} if all the supplied permissions has been granted.
+     * @return {@code true} if all the supplied permissions have been granted.
      */
     public boolean isGranted(@NonNull String[] permissions, boolean request,
             @Nullable Intent actionIntent, @DynamicAction int action) {
@@ -359,7 +349,7 @@ public class DynamicPermissions {
      * @param request {@code true} to automatically request the permissions if not granted.
      * @param requestCode The request code for the result.
      *
-     * @return {@code true} if all the supplied permissions has been granted.
+     * @return {@code true} if all the supplied permissions have been granted.
      */
     public boolean isGranted(@NonNull Context context,
             @NonNull String[] permissions, boolean request, int requestCode) {
@@ -377,7 +367,7 @@ public class DynamicPermissions {
      * @param request {@code true} to automatically request the permissions if not granted.
      * @param requestCode The request code for the result.
      *
-     * @return {@code true} if all the supplied permissions has been granted.
+     * @return {@code true} if all the supplied permissions have been granted.
      */
     public boolean isGranted(@NonNull Fragment fragment,
             @NonNull String[] permissions, boolean request, int requestCode) {
@@ -393,7 +383,7 @@ public class DynamicPermissions {
      * @param permissions The array of permissions to be requested.
      * @param request {@code true} to automatically request the permissions if not granted.
      *
-     * @return {@code true} if all the supplied permissions has been granted.
+     * @return {@code true} if all the supplied permissions have been granted.
      */
     public boolean isGranted(@NonNull String[] permissions, boolean request) {
         return isGranted(permissions, request, null, DynamicAction.NONE);
@@ -402,12 +392,12 @@ public class DynamicPermissions {
     /**
      * Checks whether the supplied permissions have been granted.
      *
-     * @return {@code true} if all the supplied permissions has been granted.
+     * @return {@code true} if all the supplied permissions have been granted.
      *
      * @param permissions The array of permissions to be requested.
      */
-    private String[] isGranted(@NonNull String[] permissions) {
-        final ArrayList<String> permissionsNotGranted = new ArrayList<String>();
+    private @NonNull String[] isGranted(@NonNull String[] permissions) {
+        final List<String> permissionsNotGranted = new ArrayList<String>();
 
         for (String permission: permissions) {
             switch (permission) {
@@ -543,9 +533,9 @@ public class DynamicPermissions {
      * 
      * @return The array list containing {@link DynamicPermissions}.
      */
-    public ArrayList<DynamicPermission> getPermissionItemArrayList(
+    public @NonNull List<DynamicPermission> getPermissionItemArrayList(
             @NonNull String[] permissions) {
-        ArrayList<DynamicPermission> permissionsList = new ArrayList<>();
+        List<DynamicPermission> permissionsList = new ArrayList<>();
         PackageManager packageManager = mContext.getPackageManager();
 
         for (String permission: permissions) {

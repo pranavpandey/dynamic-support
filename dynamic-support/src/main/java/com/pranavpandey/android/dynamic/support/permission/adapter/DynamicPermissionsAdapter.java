@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A {@link RecyclerView.Adapter} to show the {@link DynamicPermissions}.
@@ -45,7 +45,7 @@ public class DynamicPermissionsAdapter extends
     /**
      * List of permissions shown by this adapter.
      */
-    private ArrayList<DynamicPermission> mPermissions;
+    private List<DynamicPermission> mDataSet;
 
     /**
      * Callback when a permission is selected.
@@ -58,9 +58,9 @@ public class DynamicPermissionsAdapter extends
      * @param dataSet The data set for this adapter.
      * @param permissionListener The listener to receiver the permission events.
      */
-    public DynamicPermissionsAdapter(@NonNull ArrayList<DynamicPermission> dataSet,
+    public DynamicPermissionsAdapter(@Nullable List<DynamicPermission> dataSet,
             @Nullable DynamicPermissionsView.PermissionListener permissionListener) {
-        mPermissions = dataSet;
+        mDataSet = dataSet;
         mPermissionListener = permissionListener;
 
         setHasStableIds(true);
@@ -130,7 +130,7 @@ public class DynamicPermissionsAdapter extends
 
     @Override
     public int getItemCount() {
-        return mPermissions.size();
+        return mDataSet == null ? 0 : mDataSet.size();
     }
 
     @Override
@@ -145,8 +145,8 @@ public class DynamicPermissionsAdapter extends
      *
      * @return The dynamic permission according to the supplied position.
      */
-    public DynamicPermission getItem(int position) {
-        return mPermissions.get(position);
+    public @NonNull DynamicPermission getItem(int position) {
+        return mDataSet.get(position);
     }
 
     /**
@@ -187,7 +187,7 @@ public class DynamicPermissionsAdapter extends
          *
          * @return The root view used by this view holder.
          */
-        ViewGroup getRoot() {
+        @NonNull ViewGroup getRoot() {
             return root;
         }
 
@@ -196,7 +196,7 @@ public class DynamicPermissionsAdapter extends
          *
          * @return The dynamic info view used by this view holder.
          */
-        DynamicInfoView getInfoView() {
+        @NonNull DynamicInfoView getInfoView() {
             return dynamicInfo;
         }
     }

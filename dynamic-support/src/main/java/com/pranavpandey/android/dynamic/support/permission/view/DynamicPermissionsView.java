@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +34,7 @@ import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerView
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A {@link android.widget.FrameLayout} containing a {@link RecyclerView} to show the list of
@@ -60,27 +61,27 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
     /**
      * List to store all the required permissions.
      */
-    private ArrayList<DynamicPermission> mPermissions;
+    private List<DynamicPermission> mPermissions = new ArrayList<>();
 
     /**
      * List to store all the required dangerous permissions.
      */
-    private ArrayList<DynamicPermission> mDangerousPermissions;
+    private List<DynamicPermission> mDangerousPermissions = new ArrayList<>();;
 
     /**
      * List to store the unrequested or denied permissions.
      */
-    private ArrayList<DynamicPermission> mPermissionsLeft;
+    private List<DynamicPermission> mPermissionsLeft = new ArrayList<>();;
 
     /**
      * List to store the unrequested or denied dangerous permissions.
      */
-    private ArrayList<DynamicPermission> mDangerousPermissionsLeft;
+    private List<DynamicPermission> mDangerousPermissionsLeft = new ArrayList<>();;
 
     /**
      * List to store the unrequested or denied special permissions.
      */
-    private ArrayList<DynamicPermission> mSpecialPermissionsLeft;
+    private List<DynamicPermission> mSpecialPermissionsLeft = new ArrayList<>();;
 
     /**
      * Permissions adapter to show the {@link DynamicPermission}.
@@ -101,7 +102,7 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
     }
 
     @Override
-    public RecyclerView.LayoutManager getRecyclerViewLayoutManager() {
+    public @Nullable RecyclerView.LayoutManager getRecyclerViewLayoutManager() {
         return DynamicLayoutUtils.getLinearLayoutManager(
                 getContext(), LinearLayoutManager.VERTICAL);
     }
@@ -114,7 +115,7 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
      * @param permissionListener The listener to receive callback when a permission is selected.
      *
      */
-    public void setPermissions(@NonNull ArrayList<DynamicPermission> permissions,
+    public void setPermissions(@NonNull List<DynamicPermission> permissions,
             @Nullable PermissionListener permissionListener) {
         mPermissions = permissions;
         mDangerousPermissions = new ArrayList<>();
@@ -152,7 +153,7 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
      *
      * @return A list of all the required permissions.
      */
-    public ArrayList<DynamicPermission> getDynamicPermissions() {
+    public @NonNull List<DynamicPermission> getDynamicPermissions() {
         return mPermissions;
     }
 
@@ -161,7 +162,7 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
      *
      * @return An array of all the dangerous permissions.
      */
-    public String[] getDangerousPermissions() {
+    public @NonNull String[] getDangerousPermissions() {
         String[] permissions = new String[mDangerousPermissions.size()];
 
         for (int i = 0; i < mDangerousPermissions.size(); i ++) {
@@ -175,7 +176,7 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
      *
      * @return An array of unrequested or denied dangerous permissions.
      */
-    public String[] getDangerousPermissionsLeft() {
+    public @NonNull String[] getDangerousPermissionsLeft() {
         String[] permissions = new String[mDangerousPermissionsLeft.size()];
 
         for (int i = 0; i < mDangerousPermissionsLeft.size(); i ++) {
@@ -189,7 +190,7 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
      *
      * @return A list of unrequested or denied special permissions.
      */
-    public ArrayList<DynamicPermission> getSpecialPermissionsLeft() {
+    public @NonNull List<DynamicPermission> getSpecialPermissionsLeft() {
         return mSpecialPermissionsLeft;
     }
 
