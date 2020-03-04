@@ -91,7 +91,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
     protected File mThemeExported;
 
     /**
-     * {@code true} if the settings has been changed.
+     * {@code true} if the settings have been changed.
      */
     protected boolean mSettingsChanged;
 
@@ -254,7 +254,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
                                 public void onImportTheme(@NonNull String theme) {
                                     importTheme(theme, file);
                                 }
-                            }).showDialog(getActivity());
+                            }).showDialog(requireActivity());
         }
     }
 
@@ -300,7 +300,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
                                     public void onClick(DialogInterface dialog, int which) {
                                         importTheme(file);
                                     }
-                                })).showDialog(getActivity());
+                                })).showDialog(requireActivity());
     }
 
     /**

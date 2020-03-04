@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ public abstract class DynamicPopup {
      * Interface to hold the view types supported by the popup.
      */
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef(value = { NONE, LIST, GRID})
+    @IntDef(value = { NONE, LIST, GRID })
     public @interface Type {
 
         /**
@@ -314,7 +314,7 @@ public abstract class DynamicPopup {
                                                 int visibleItemCount, int totalItemCount) {
                                             DynamicViewUtils.manageScrollIndicators(v, top, bottom);
                                         }
-                                    });
+                            });
                         } else if (mViewRoot instanceof RecyclerView) {
                             ((RecyclerView) mViewRoot).addOnScrollListener(
                                     new RecyclerView.OnScrollListener() {
@@ -327,7 +327,7 @@ public abstract class DynamicPopup {
                                                 int dx, int dy) {
                                             DynamicViewUtils.manageScrollIndicators(v, top, bottom);
                                         }
-                                    });
+                            });
                         }
 
                         if (mViewRoot instanceof NestedScrollView

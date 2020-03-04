@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -92,8 +92,8 @@ public class DynamicSplashFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (getArguments() != null && getArguments().getInt(ADS_ARGS_SPLASH_LAYOUT_RES) != -1) {
-            mView = inflater.inflate(getArguments().getInt(ADS_ARGS_SPLASH_LAYOUT_RES),
+        if (getArguments() != null && requireArguments().getInt(ADS_ARGS_SPLASH_LAYOUT_RES) != -1) {
+            mView = inflater.inflate(requireArguments().getInt(ADS_ARGS_SPLASH_LAYOUT_RES),
                     container, false);
         }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.model.DynamicSpinnerItem;
+import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 
 import java.util.List;
 
@@ -75,23 +76,8 @@ public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicSpinnerItem>
 
         DynamicSpinnerItem item = getItem(position);
         if (item != null) {
-            if (imageView != null) {
-                if (item.getIcon() != null) {
-                    imageView.setImageDrawable(item.getIcon());
-                    imageView.setVisibility(View.VISIBLE);
-                } else {
-                    imageView.setVisibility(View.GONE);
-                }
-            }
-
-            if (textView != null) {
-                if (item.getText() != null) {
-                    textView.setText(item.getText());
-                    textView.setVisibility(View.VISIBLE);
-                } else {
-                    textView.setVisibility(View.GONE);
-                }
-            }
+            Dynamic.set(imageView, item.getIcon());
+            Dynamic.set(textView, item.getText());
         }
 
         return itemView;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,6 +35,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
 import com.pranavpandey.android.dynamic.support.dialog.fragment.DynamicDialogFragment;
 import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
+import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
 
@@ -43,8 +44,8 @@ import java.lang.annotation.RetentionPolicy;
 
 import static com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog.Type.THEME_IMPORT;
 import static com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog.Type.THEME_INVALID;
-import static com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog.Type.THEME_SELECT_ALL;
 import static com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog.Type.THEME_SELECT;
+import static com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog.Type.THEME_SELECT_ALL;
 
 /**
  * A dialog fragment to import a dynamic theme.
@@ -91,7 +92,7 @@ public class DynamicThemeDialog extends DynamicDialogFragment {
      * Dialog type to show the layout accordingly.
      */
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef(value = {THEME_SELECT_ALL, THEME_SELECT, THEME_IMPORT, THEME_INVALID })
+    @IntDef(value = { THEME_SELECT_ALL, THEME_SELECT, THEME_IMPORT, THEME_INVALID })
     public @interface Type {
 
         /**
@@ -155,7 +156,7 @@ public class DynamicThemeDialog extends DynamicDialogFragment {
      *
      * @return An instance of {@link DynamicThemeDialog}.
      */
-    public static DynamicThemeDialog newInstance() {
+    public @NonNull static DynamicThemeDialog newInstance() {
         return new DynamicThemeDialog();
     }
 
@@ -171,8 +172,8 @@ public class DynamicThemeDialog extends DynamicDialogFragment {
         }
 
         if (mType == THEME_SELECT_ALL || mType == THEME_SELECT) {
-            view = LayoutInflater.from(getContext()).inflate(R.layout.ads_dialog_theme_select,
-                    new LinearLayout(getContext()), false);
+            view = LayoutInflater.from(requireContext()).inflate(R.layout.ads_dialog_theme_select,
+                    new LinearLayout(requireContext()), false);
             messageView = view.findViewById(R.id.ads_dialog_theme_select_message);
 
             view.findViewById(R.id.ads_dialog_theme_select_app).setOnClickListener(
@@ -209,16 +210,16 @@ public class DynamicThemeDialog extends DynamicDialogFragment {
                 }
             });
         } else if (mType == THEME_INVALID) {
-            view = LayoutInflater.from(getContext()).inflate(R.layout.ads_dialog_general,
-                    new LinearLayout(getContext()), false);
+            view = LayoutInflater.from(requireContext()).inflate(R.layout.ads_dialog_general,
+                    new LinearLayout(requireContext()), false);
             messageView = view.findViewById(R.id.ads_dialog_general_message);
             mMessage = getString(R.string.ads_theme_invalid);
 
             ((TextView) view.findViewById(R.id.ads_dialog_general_desc))
                     .setText(R.string.ads_theme_invalid_desc);
         } else {
-            view = LayoutInflater.from(getContext()).inflate(R.layout.ads_dialog_theme,
-                    new LinearLayout(getContext()), false);
+            view = LayoutInflater.from(requireContext()).inflate(R.layout.ads_dialog_theme,
+                    new LinearLayout(requireContext()), false);
             mEditText = view.findViewById(R.id.ads_dialog_theme_edit_text);
 
             mEditText.addTextChangedListener(new TextWatcher() {
@@ -261,20 +262,11 @@ public class DynamicThemeDialog extends DynamicDialogFragment {
             });
         }
 
-        if (messageView != null) {
-            if (mMessage != null) {
-                messageView.setText(mMessage);
-                messageView.setVisibility(View.VISIBLE);
-            } else {
-                messageView.setVisibility(View.GONE);
-            }
-        }
+        Dynamic.set(messageView, mMessage);
 
-        dialogBuilder.setTitle(R.string.ads_theme)
+        return dialogBuilder.setTitle(R.string.ads_theme)
                 .setNegativeButton(R.string.ads_cancel, null)
                 .setView(view).setViewRoot(view.findViewById(R.id.ads_dialog_theme));
-
-        return dialogBuilder;
     }
 
     /**
@@ -342,7 +334,7 @@ public class DynamicThemeDialog extends DynamicDialogFragment {
      * @return The {@link DynamicThemeDialog} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicThemeDialog setType(@Type int type) {
+    public @NonNull DynamicThemeDialog setType(@Type int type) {
         this.mType = type;
 
         return this;
@@ -365,7 +357,7 @@ public class DynamicThemeDialog extends DynamicDialogFragment {
      * @return The {@link DynamicThemeDialog} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicThemeDialog setMessage(@Nullable CharSequence message) {
+    public @NonNull DynamicThemeDialog setMessage(@Nullable CharSequence message) {
         this.mMessage = message;
 
         return this;
@@ -388,7 +380,7 @@ public class DynamicThemeDialog extends DynamicDialogFragment {
      * @return The {@link DynamicThemeDialog} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicThemeDialog setOnSelectThemeListener(
+    public @NonNull DynamicThemeDialog setOnSelectThemeListener(
             @Nullable OnThemeSelectListener onThemeSelectListener) {
         this.mOnThemeSelectListener = onThemeSelectListener;
 
@@ -412,7 +404,7 @@ public class DynamicThemeDialog extends DynamicDialogFragment {
      * @return The {@link DynamicThemeDialog} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicThemeDialog setOnImportThemeListener(
+    public @NonNull DynamicThemeDialog setOnImportThemeListener(
             @Nullable OnThemeImportListener onThemeImportListener) {
         this.mOnThemeImportListener = onThemeImportListener;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -188,7 +188,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
      * @param addToBackStack {@code true} to put previous fragment to back stack.
      * @param tag The fragment tag to maintain the back stack.
      */
-    protected void switchFragment(@NonNull FragmentTransaction fragmentTransaction,
+    public void switchFragment(@NonNull FragmentTransaction fragmentTransaction,
             @NonNull Fragment fragment, boolean addToBackStack, @Nullable String tag) {
         tag = tag != null ? tag : fragment.getClass().getSimpleName();
         if (getSupportFragmentManager().findFragmentByTag(tag) != null) {

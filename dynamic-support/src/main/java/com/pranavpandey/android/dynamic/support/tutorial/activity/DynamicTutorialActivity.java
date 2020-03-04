@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,6 +54,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Base activity with a view pager to show the supplied tutorials.
@@ -263,7 +264,7 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
      *
      * @return The list of {@link DynamicTutorial} to be shown by this activity.
      */
-    protected @NonNull ArrayList<DynamicTutorial<T, V>> getTutorials() {
+    protected @NonNull List<DynamicTutorial<T, V>> getTutorials() {
         return new ArrayList<>();
     }
 
@@ -356,12 +357,9 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
             DynamicScrollUtils.setEdgeEffectColor(mAdapter.getRecyclerView(), tintColor);
         }
 
-        Dynamic.setContrastWithColor(mActionPrevious, color);
-        Dynamic.setContrastWithColor(mActionNext, color);
-        Dynamic.setContrastWithColor(mActionCustom, color);
-        Dynamic.setColor(mActionPrevious, tintColor);
-        Dynamic.setColor(mActionNext, tintColor);
-        Dynamic.setColor(mActionCustom, tintColor);
+        Dynamic.tint(mActionPrevious, tintColor, color);
+        Dynamic.tint(mActionNext, tintColor, color);
+        Dynamic.tint(mActionCustom, tintColor, color);
         mActionCustom.setTextColor(color);
         mPageIndicator.setSelectedColour(tintColor);
         mPageIndicator.setUnselectedColour(DynamicColorUtils.adjustAlpha(

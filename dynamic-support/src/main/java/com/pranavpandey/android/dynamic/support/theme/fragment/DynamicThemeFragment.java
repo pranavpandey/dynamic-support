@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -554,7 +554,7 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
             return;
         }
 
-        final Transition transition = getActivity().getWindow().getSharedElementEnterTransition();
+        final Transition transition = requireActivity().getWindow().getSharedElementEnterTransition();
 
         if (transition != null) {
             transition.addListener(new Transition.TransitionListener() {

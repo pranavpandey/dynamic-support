@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.theme.view;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.RadialGradient;
 import android.graphics.Shader;
 import android.graphics.drawable.ShapeDrawable;
@@ -43,6 +44,7 @@ import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * A ThemePreview to show the dynamic app theme preview according to the selected values.
@@ -182,12 +184,11 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
     @Override
     protected void onUpdate() {
         MaterialShapeDrawable background = (MaterialShapeDrawable)
-                DynamicShapeUtils.getCornerDrawable(
-                        getDynamicTheme().getCornerSizeDp(),
+                DynamicShapeUtils.getCornerDrawable(getDynamicTheme().getCornerSizeDp(),
                         getDynamicTheme().getBackgroundColor(), false);
-        background.setStroke(WidgetDefaults.ADS_STROKE_WIDTH,
-                DynamicColorUtils.setAlpha(DynamicColorUtils.getTintColor(
-                        getDynamicTheme().getBackgroundColor()), 100));
+        background.setStroke(WidgetDefaults.ADS_STROKE_WIDTH, DynamicColorUtils.setAlpha(
+                DynamicColorUtils.getTintColor(getDynamicTheme().getBackgroundColor()),
+                WidgetDefaults.ADS_STROKE_ALPHA));
         mBackground.setImageDrawable(background);
         DynamicDrawableUtils.setBackground(mStatusBar,
                 DynamicShapeUtils.getCornerDrawable(
@@ -208,6 +209,15 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
                     drawable.getShapeAppearanceModel().getTopLeftCornerSize()).build();
         }
         drawable.setShapeAppearanceModel(shapeAppearanceModel);
+
+        if (DynamicSdkUtils.is16()
+                && DynamicColorUtils.removeAlpha(getDynamicTheme().getSurfaceColor())
+                == DynamicColorUtils.removeAlpha(getDynamicTheme().getBackgroundColor())
+                && Color.alpha(getDynamicTheme().getSurfaceColor())
+                < WidgetDefaults.ADS_ALPHA_SURFACE_STROKE) {
+            drawable.setStroke(WidgetDefaults.ADS_STROKE_WIDTH,
+                    getDynamicTheme().getTintBackgroundColor());
+        }
 
         DynamicDrawableUtils.setBackground(mSurface, drawable);
 
@@ -237,28 +247,6 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
             mTextTintBackgroundStart.setImageResource(R.drawable.ads_theme_overlay_round_start);
             mTextTintBackgroundEnd.setImageResource(R.drawable.ads_theme_overlay_round_end);
         }
-
-        post(new Runnable() {
-            @Override
-            public void run() {
-                if (getDynamicTheme().getBackgroundColor(false) == Theme.AUTO
-                        && getMeasuredWidth() > 0 && getMeasuredHeight() > 0) {
-                    RadialGradient gradient =
-                            new RadialGradient(mContent.getMeasuredWidth() / 2f,
-                                    mContent.getMeasuredHeight() / 2f,
-                                    getMeasuredWidth() / 2f,
-                                    new int[] { DynamicTheme.getInstance().generateDarkColor(
-                                            getDynamicTheme().getTintBackgroundColor()),
-                                            getDynamicTheme().getBackgroundColor() },
-                                    null, Shader.TileMode.CLAMP);
-                    ShapeDrawable shape = new ShapeDrawable(new RectShape());
-                    shape.getPaint().setShader(gradient);
-                    DynamicDrawableUtils.setBackground(mContent, shape);
-                } else {
-                    DynamicDrawableUtils.setBackground(mContent, null);
-                }
-            }
-        });
 
         Dynamic.setBackgroundAware(mHeaderIcon, getDynamicTheme().getBackgroundAware());
         Dynamic.setBackgroundAware(mHeaderTitle, getDynamicTheme().getBackgroundAware());
@@ -295,6 +283,28 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
         Dynamic.setColor(mTextTintBackgroundStart, getDynamicTheme().getTintBackgroundColor());
         Dynamic.setColor(mTextTintBackgroundEnd, getDynamicTheme().getTintBackgroundColor());
         Dynamic.setColor(mFAB, getDynamicTheme().getAccentColor());
+
+        post(new Runnable() {
+            @Override
+            public void run() {
+                if (getDynamicTheme().getBackgroundColor(false) == Theme.AUTO
+                        && getMeasuredWidth() > 0 && getMeasuredHeight() > 0) {
+                    RadialGradient gradient =
+                            new RadialGradient(mContent.getMeasuredWidth() / 2f,
+                                    mContent.getMeasuredHeight() / 2f,
+                                    getMeasuredWidth() / 2f,
+                                    new int[] { DynamicTheme.getInstance().generateDarkColor(
+                                            getDynamicTheme().getTintBackgroundColor()),
+                                            getDynamicTheme().getBackgroundColor() },
+                                    null, Shader.TileMode.CLAMP);
+                    ShapeDrawable shape = new ShapeDrawable(new RectShape());
+                    shape.getPaint().setShader(gradient);
+                    DynamicDrawableUtils.setBackground(mContent, shape);
+                } else {
+                    DynamicDrawableUtils.setBackground(mContent, null);
+                }
+            }
+        });
     }
 
     @Override

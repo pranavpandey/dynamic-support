@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -78,8 +78,8 @@ public abstract class DynamicViewPager2Fragment extends DynamicFragment
             return;
         }
 
-        ((DynamicActivity) getActivity()).addHeader(R.layout.ads_tabs, true);
-        mTabLayout = getActivity().findViewById(R.id.ads_tab_layout);
+        ((DynamicActivity) requireActivity()).addHeader(R.layout.ads_tabs, true);
+        mTabLayout = requireActivity().findViewById(R.id.ads_tab_layout);
 
         mViewPager.setOffscreenPageLimit(getItemCount());
         mViewPager.setAdapter(new ViewPagerAdapter(this, this));
@@ -92,8 +92,8 @@ public abstract class DynamicViewPager2Fragment extends DynamicFragment
                     }
                 }).attach();
 
-        if (getArguments() != null && getArguments().containsKey(ADS_ARGS_VIEW_PAGER_PAGE)) {
-            setPage(getArguments().getInt(ADS_ARGS_VIEW_PAGER_PAGE));
+        if (getArguments() != null && requireArguments().containsKey(ADS_ARGS_VIEW_PAGER_PAGE)) {
+            setPage(requireArguments().getInt(ADS_ARGS_VIEW_PAGER_PAGE));
         }
     }
 

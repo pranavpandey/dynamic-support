@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,10 +43,10 @@ import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewNested;
 import com.pranavpandey.android.dynamic.support.theme.adapter.DynamicPresetsAdapter;
-import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
 import com.pranavpandey.android.dynamic.support.view.DynamicItemView;
+import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
 import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
@@ -174,7 +174,7 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
     }
 
     @Override
-    public RecyclerView.LayoutManager getRecyclerViewLayoutManager() {
+    public @Nullable RecyclerView.LayoutManager getRecyclerViewLayoutManager() {
         return DynamicLayoutUtils.getLinearLayoutManager(
                 getContext(), LinearLayoutManager.HORIZONTAL);
     }

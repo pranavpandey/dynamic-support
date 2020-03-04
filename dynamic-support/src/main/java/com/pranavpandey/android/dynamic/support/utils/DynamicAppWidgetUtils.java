@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -79,8 +79,8 @@ public class DynamicAppWidgetUtils {
     }
 
     /**
-     * Cleanup preferences for an app widget provider when all of its widget instances has been
-     * deleted.
+     * Cleanup preferences for an app widget provider when all of its widget instances
+     * have been deleted.
      *
      * @param preferences The preference name to cleanup the preferences.
      */

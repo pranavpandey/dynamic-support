@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -76,13 +77,13 @@ public class DynamicFragment extends Fragment implements
     public void onResume() {
         super.onResume();
 
-        if (setSharedPreferenceChangeListener() && requireContext() != null) {
+        if (setSharedPreferenceChangeListener() && getContext() != null) {
             PreferenceManager.getDefaultSharedPreferences(requireContext())
                     .registerOnSharedPreferenceChangeListener(this);
         }
 
-        if (getActivity() instanceof DynamicSystemActivity) {
-            ((DynamicSystemActivity) getActivity()).setDynamicTransitionListener(
+        if (requireActivity() instanceof DynamicSystemActivity) {
+            ((DynamicSystemActivity) requireActivity()).setDynamicTransitionListener(
                     getDynamicTransitionListener());
         }
     }
@@ -91,7 +92,7 @@ public class DynamicFragment extends Fragment implements
     public void onPause() {
         setHasOptionsMenu(false);
 
-        if (setSharedPreferenceChangeListener() && requireContext() != null) {
+        if (setSharedPreferenceChangeListener() && getContext() != null) {
             PreferenceManager.getDefaultSharedPreferences(requireContext())
                     .unregisterOnSharedPreferenceChangeListener(this);
         }
@@ -105,7 +106,7 @@ public class DynamicFragment extends Fragment implements
      */
     protected @Nullable CharSequence getTitle() {
         if (isSupportActionBar()) {
-            return ((AppCompatActivity) getActivity()).getSupportActionBar().getTitle();
+            return ((AppCompatActivity) requireActivity()).getSupportActionBar().getTitle();
         }
 
         return null;
@@ -118,7 +119,7 @@ public class DynamicFragment extends Fragment implements
      */
     protected @Nullable CharSequence getSubtitle() {
         if (isSupportActionBar()) {
-            return ((AppCompatActivity) getActivity()).getSupportActionBar().getSubtitle();
+            return ((AppCompatActivity) requireActivity()).getSupportActionBar().getSubtitle();
         }
 
         return null;
@@ -153,18 +154,18 @@ public class DynamicFragment extends Fragment implements
         }
 
         if (isSupportActionBar()) {
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getTitle());
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle(getSubtitle());
+            ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(getTitle());
+            ((AppCompatActivity) requireActivity()).getSupportActionBar().setSubtitle(getSubtitle());
         }
 
         if (getCheckedMenuItemId() != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
-            if (getActivity().findViewById(getBottomNavigationViewId()) != null) {
-                ((BottomNavigationView) getActivity().findViewById(
+            if (requireActivity().findViewById(getBottomNavigationViewId()) != null) {
+                ((BottomNavigationView) requireActivity().findViewById(
                         getBottomNavigationViewId())).setSelectedItemId(getCheckedMenuItemId());
             }
 
-            if (getActivity() instanceof DynamicDrawerActivity) {
-                ((DynamicDrawerActivity) getActivity()).getNavigationView()
+            if (requireActivity() instanceof DynamicDrawerActivity) {
+                ((DynamicDrawerActivity) requireActivity()).getNavigationView()
                         .setCheckedItem(getCheckedMenuItemId());
             }
         }
@@ -175,8 +176,8 @@ public class DynamicFragment extends Fragment implements
      *
      * @return {@code true} if the parent activity is an {@link AppCompatActivity}.
      */
-    protected boolean isAppCompatActivity() {
-        return getActivity() != null && getActivity() instanceof AppCompatActivity;
+    public boolean isAppCompatActivity() {
+        return getActivity() != null && requireActivity() instanceof AppCompatActivity;
     }
 
     /**
@@ -184,9 +185,9 @@ public class DynamicFragment extends Fragment implements
      *
      * @return {@code true} if the support action bar is not {@code null}.
      */
-    protected boolean isSupportActionBar() {
+    public boolean isSupportActionBar() {
         return isAppCompatActivity() &&
-                ((AppCompatActivity) getActivity()).getSupportActionBar() != null;
+                ((AppCompatActivity) requireActivity()).getSupportActionBar() != null;
     }
 
     /**
@@ -204,7 +205,7 @@ public class DynamicFragment extends Fragment implements
         }
 
         try {
-            return getArguments().getParcelable(key);
+            return requireArguments().getParcelable(key);
         } catch (Exception ignored) {
             return null;
         }
@@ -225,7 +226,7 @@ public class DynamicFragment extends Fragment implements
         }
 
         try {
-            return getArguments().getString(key);
+            return requireArguments().getString(key);
         } catch (Exception ignored) {
             return null;
         }
@@ -246,7 +247,7 @@ public class DynamicFragment extends Fragment implements
             return defaultValue;
         }
 
-        return getArguments().getBoolean(key, defaultValue);
+        return requireArguments().getBoolean(key, defaultValue);
     }
 
     /**
@@ -259,9 +260,9 @@ public class DynamicFragment extends Fragment implements
     protected void setResult(int resultCode, @Nullable Intent intent, boolean finish) {
         if (getActivity() != null) {
             if (intent != null) {
-                getActivity().setResult(resultCode, intent);
+                requireActivity().setResult(resultCode, intent);
             } else {
-                getActivity().setResult(resultCode);
+                requireActivity().setResult(resultCode);
             }
 
             if (finish) {
@@ -304,13 +305,13 @@ public class DynamicFragment extends Fragment implements
      */
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     protected void finishActivity() {
-        if (getActivity() != null && !getActivity().isFinishing()) {
+        if (getActivity() != null && !requireActivity().isFinishing()) {
             if (DynamicSdkUtils.is21()
-                    && (getActivity().getWindow().getSharedElementEnterTransition() != null
-                    || getActivity().getWindow().getSharedElementReturnTransition() != null)) {
-                getActivity().supportFinishAfterTransition();
+                    && (requireActivity().getWindow().getSharedElementEnterTransition() != null
+                    || requireActivity().getWindow().getSharedElementReturnTransition() != null)) {
+                requireActivity().supportFinishAfterTransition();
             } else {
-                getActivity().finish();
+                requireActivity().finish();
             }
         }
     }
@@ -320,8 +321,8 @@ public class DynamicFragment extends Fragment implements
      *
      * @return The parent activity as the instance of {@link DynamicActivity}.
      */
-    public DynamicActivity getDynamicActivity() {
-        return (DynamicActivity) getActivity();
+    public @NonNull DynamicActivity getDynamicActivity() {
+        return (DynamicActivity) requireActivity();
     }
 
     @Override
