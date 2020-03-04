@@ -71,8 +71,7 @@ public class DynamicHintUtils {
      */
     @SuppressLint("Range")
     public static @NonNull Snackbar getSnackBar(@NonNull View view, @NonNull CharSequence text) {
-        return getSnackBar(view, text, DynamicTheme.getInstance().get().getPrimaryColor(),
-                DynamicTheme.getInstance().get().getTintPrimaryColor(), Snackbar.LENGTH_SHORT);
+        return getSnackBar(view, text, Snackbar.LENGTH_SHORT);
     }
 
     /**
@@ -114,11 +113,12 @@ public class DynamicHintUtils {
             @NonNull CharSequence text, @ColorInt int backgroundColor,
             @ColorInt int tintColor, @Snackbar.Duration int duration) {
         if (DynamicTheme.getInstance().get().isBackgroundAware()) {
+            backgroundColor = DynamicColorUtils.getContrastColor(backgroundColor,
+                    DynamicTheme.getInstance().get().getBackgroundColor());
             tintColor = DynamicColorUtils.getContrastColor(tintColor, backgroundColor);
         }
 
         Snackbar snackbar = Snackbar.make(view, text, duration);
-
         DynamicDrawableUtils.setBackground(snackbar.getView(),
                 DynamicDrawableUtils.getCornerDrawable(DynamicTheme.getInstance()
                         .get().getCornerSizeDp(), backgroundColor));
