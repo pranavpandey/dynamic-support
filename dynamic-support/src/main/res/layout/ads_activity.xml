@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2019 Pranav Pandey
+	Copyright 2020 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -47,13 +47,7 @@
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicAppBarLayout>
 
-        <include
-            layout="@layout/ads_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_anchor="@id/ads_app_bar_layout"
-            app:layout_anchorGravity="bottom"
-            app:layout_behavior="@string/ads_fab_behavior" />
+        <include layout="@layout/ads_content" />
 
         <include layout="@layout/ads_layout_bottom_sheet" />
 
@@ -68,7 +62,8 @@
             android:layout_gravity="bottom"
             android:src="@drawable/ads_bottom_bar_shadow"
             android:alpha="@integer/ads_shadow_alpha"
-            app:ads_colorType="tint_background" />
+            app:ads_colorType="tint_background"
+            app:ads_backgroundAware="disable" />
 
     </com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout>
 

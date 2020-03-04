@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2019 Pranav Pandey
+	Copyright 2020 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -15,17 +15,17 @@
 	limitations under the License.
 -->
 
-<FrameLayout
+<merge
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ads_content"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/ads_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_anchor="@id/ads_app_bar_layout"
+        app:layout_anchorGravity="bottom"
+        app:layout_behavior="@string/ads_fab_behavior">
 
     </androidx.fragment.app.FragmentContainerView>
 
@@ -34,8 +34,10 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/ads_app_bar_shadow_size"
         android:src="@drawable/ads_app_bar_shadow"
-        android:alpha="@integer/ads_shadow_alpha"
-        app:ads_colorType="none"
+        app:layout_anchor="@id/ads_app_bar_layout"
+        app:layout_anchorGravity="bottom"
+        app:layout_behavior="@string/ads_fab_behavior"
+        app:ads_colorType="tint_background"
         app:ads_backgroundAware="disable" />
 
-</FrameLayout>
+</merge>

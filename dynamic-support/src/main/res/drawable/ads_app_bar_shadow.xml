@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2019 Pranav Pandey
+	Copyright 2020 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -20,9 +20,9 @@
     android:shape="rectangle">
 
     <gradient
-        android:startColor="#05000000"
-        android:centerColor="#20000000"
-        android:endColor="#35000000"
+        android:startColor="#0A000000"
+        android:centerColor="#23000000"
+        android:endColor="#45000000"
         android:angle="90" />
 
 </shape>

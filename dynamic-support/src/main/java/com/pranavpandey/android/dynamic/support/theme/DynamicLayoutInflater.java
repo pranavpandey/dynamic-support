@@ -17,10 +17,12 @@
 package com.pranavpandey.android.dynamic.support.theme;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -94,6 +96,7 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
     }
 
     @SuppressLint("RestrictedApi")
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public @Nullable View onCreateView(@Nullable View parent, final @NonNull String name,
             final @NonNull Context context, final @NonNull AttributeSet attrs) {
