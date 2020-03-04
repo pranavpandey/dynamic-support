@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -204,14 +204,133 @@ public class DynamicLayoutUtils {
     }
 
     /**
+     * Sets full span for the item view types in case of a {@link GridLayoutManager}.
+     * This method must be called after setting an adapter for the recycler view.
+     *
+     * @param recyclerView The recycler view to set the span size.
+     * @param itemTypes The item types supported by the recycler view.
+     * @param spanCount The maximum span supported by the layout manager.
+     *
+     * @see DynamicRecyclerViewAdapter.ItemType
+     * @see GridLayoutManager#setSpanSizeLookup(GridLayoutManager.SpanSizeLookup)
+     */
+    public static void setFullSpanForType(@Nullable final RecyclerView recyclerView,
+            @NonNull final Integer[] itemTypes, int spanCount) {
+        if (recyclerView == null || recyclerView.getAdapter() == null) {
+            return;
+        }
+
+        if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
+            final GridLayoutManager layoutManager =
+                    (GridLayoutManager) recyclerView.getLayoutManager();
+            layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    if (Arrays.asList(itemTypes).contains(
+                            recyclerView.getAdapter().getItemViewType(position))) {
+                        return spanCount;
+                    } else {
+                        return 1;
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * Sets full span for the header and empty view in case of a {@link GridLayoutManager}.
+     * This method must be called after setting an adapter for the recycler view.
+     *
+     * @param recyclerView The recycler view to set the span size.
+     *
+     * @see DynamicRecyclerViewAdapter.ItemType
+     * @see GridLayoutManager#setSpanSizeLookup(GridLayoutManager.SpanSizeLookup)
+     * @see #setFullSpanForType(RecyclerView, Integer[], int)
+     *
+     * @see DynamicRecyclerViewAdapter#TYPE_SECTION_HEADER
+     * @see DynamicRecyclerViewAdapter#TYPE_EMPTY_VIEW
+     */
+    public static void setFullSpanForType(@Nullable final RecyclerView recyclerView) {
+        if (recyclerView == null || recyclerView.getAdapter() == null) {
+            return;
+        }
+
+        if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
+            setFullSpanForType(recyclerView, new Integer[] {
+                    DynamicRecyclerViewAdapter.TYPE_SECTION_HEADER,
+                            DynamicRecyclerViewAdapter.TYPE_EMPTY_VIEW },
+                    ((GridLayoutManager) recyclerView.getLayoutManager()).getSpanCount());
+        }
+    }
+
+    /**
+     * Sets full span for the positions in case of a {@link GridLayoutManager}.
+     * This method must be called after setting an adapter for the recycler view.
+     *
+     * @param recyclerView The recycler view to set the span size.
+     * @param positions The positions supported by the recycler view.
+     * @param spanCount The maximum span supported by the layout manager.
+     *
+     * @see GridLayoutManager#setSpanSizeLookup(GridLayoutManager.SpanSizeLookup)
+     */
+    public static void setFullSpanForPosition(@Nullable final RecyclerView recyclerView,
+            @NonNull final Integer[] positions, int spanCount) {
+        if (recyclerView == null || recyclerView.getAdapter() == null) {
+            return;
+        }
+
+        if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
+            final GridLayoutManager layoutManager =
+                    (GridLayoutManager) recyclerView.getLayoutManager();
+            layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    if (Arrays.asList(positions).contains(position)) {
+                        return Math.min(Math.abs(spanCount - position % spanCount), spanCount);
+                    } else {
+                        return 1;
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * Sets full span for the single last position in case of a {@link GridLayoutManager}.
+     * This method must be called after setting an adapter for the recycler view.
+     *
+     * @param recyclerView The recycler view to set the span size.
+     *
+     * @see GridLayoutManager#setSpanSizeLookup(GridLayoutManager.SpanSizeLookup)
+     * @see #setFullSpanForPosition(RecyclerView, Integer[], int)
+     */
+    public static void setFullSpanForPosition(@Nullable final RecyclerView recyclerView) {
+        if (recyclerView == null || recyclerView.getAdapter() == null) {
+            return;
+        }
+
+        if (recyclerView.getLayoutManager() instanceof GridLayoutManager
+                && recyclerView.getAdapter().getItemCount() %
+                ((GridLayoutManager) recyclerView.getLayoutManager()).getSpanCount() <
+                ((GridLayoutManager) recyclerView.getLayoutManager()).getSpanCount()) {
+            setFullSpanForPosition(recyclerView, new Integer[] {
+                    recyclerView.getAdapter().getItemCount() - 1 },
+                    ((GridLayoutManager) recyclerView.getLayoutManager()).getSpanCount());
+        }
+    }
+
+    /**
      * Set full span for the header and empty view in case of a {@link GridLayoutManager}.
      * This method must be called after setting a adapter for the recycler view.
      *
      * @param recyclerView The recycler view to set the span size.
      * @param itemTypes The item types supported by the recycler view.
      *
-     * @see DynamicRecyclerViewAdapter.ItemType
-     * @see GridLayoutManager#setSpanSizeLookup( GridLayoutManager.SpanSizeLookup)
+     * @deprecated This method is not suitable for recycler view with multiple item types.
+     *             <p>Please use {#setFullSpanForType(RecyclerView, Integer[], int) } method that
+     *             provides better results.
+     *
+     * @see #setFullSpanForType(RecyclerView, Integer[], int)
      */
     public static void setFullSpanForHeader(@Nullable final RecyclerView recyclerView,
             @NonNull final Integer[] itemTypes) {
@@ -250,11 +369,10 @@ public class DynamicLayoutUtils {
      * @see GridLayoutManager#setSpanSizeLookup( GridLayoutManager.SpanSizeLookup)
      *
      * @deprecated This method is not suitable for recycler view with multiple item types.
-     *             <p>Please use this {@link #setFullSpanForHeader(RecyclerView, Integer[])}
-     *             method which accepts the item types supported by the recycler view to provide
+     *             <p>Please use {@link #setFullSpanForType(RecyclerView)} method that provides
      *             better results.
      *
-     * @see #setFullSpanForHeader(RecyclerView, Integer[])
+     * @see #setFullSpanForType(RecyclerView)
      */
     public static void setFullSpanForHeader(@Nullable final RecyclerView recyclerView) {
         setFullSpanForHeader(recyclerView, new Integer[] { DynamicRecyclerViewAdapter.TYPE_ITEM });

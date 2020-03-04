@@ -127,7 +127,7 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>,
      *
      * @return The {@code enum} corresponding to the given position.
      */
-    public abstract E getEnumFromPosition(int position);
+    public abstract @NonNull E getEnumFromPosition(int position);
 
     /**
      * Get the item type enum according to the ordinal.

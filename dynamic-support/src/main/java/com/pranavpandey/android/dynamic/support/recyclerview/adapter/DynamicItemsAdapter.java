@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,14 +51,8 @@ public class DynamicItemsAdapter extends DynamicSimpleBinderAdapter<DynamicRecyc
     }
 
     @Override
-    public int getItemViewType(int position) {
-        return 0;
-    }
-
-    @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         ((DynamicItemBinder) getDataBinder(getItemViewType(position))).setData(getItem(position));
-
         super.onBindViewHolder(viewHolder, position);
     }
 

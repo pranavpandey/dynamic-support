@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,8 +48,8 @@ public abstract class DynamicBinderAdapter<VB extends DynamicRecyclerViewBinder>
     @SuppressWarnings("unchecked")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        int binderPosition = getBinderPosition(position);
-        getDataBinder(viewHolder.getItemViewType()).onBindViewHolder(viewHolder, binderPosition);
+        getDataBinder(viewHolder.getItemViewType()).onBindViewHolder(
+                viewHolder, getBinderPosition(position));
     }
 
     @Override
@@ -112,6 +112,15 @@ public abstract class DynamicBinderAdapter<VB extends DynamicRecyclerViewBinder>
     public abstract int getBinderPosition(int position);
 
     /**
+     * This method will be called when the data set has been changed.
+     */
+    public void notifyBinderDataSetChanged() {
+        if (!isComputingLayout()) {
+            notifyDataSetChanged();
+        }
+    }
+
+    /**
      * This method will be called when an item has been changed in the data binder.
      *
      * @param binder The data binder inside the recycler view.
@@ -148,10 +157,8 @@ public abstract class DynamicBinderAdapter<VB extends DynamicRecyclerViewBinder>
      * @param fromPosition Initial position of the moved item.
      * @param toPosition Final position of the moved item.
      */
-    public void notifyBinderItemMoved(@NonNull VB binder,
-            int fromPosition, int toPosition) {
-        notifyItemMoved(getPosition(binder, fromPosition),
-                getPosition(binder, toPosition));
+    public void notifyBinderItemMoved(@NonNull VB binder, int fromPosition, int toPosition) {
+        notifyItemMoved(getPosition(binder, fromPosition), getPosition(binder, toPosition));
     }
 
     /**
@@ -159,27 +166,27 @@ public abstract class DynamicBinderAdapter<VB extends DynamicRecyclerViewBinder>
      *
      * @param binder The data binder inside the recycler view.
      * @param position The position at which the first item has been changed.
-     * @param itemCount Total no. of items has been changed.
+     * @param itemCount Total no. of items have been changed.
      */
     public abstract void notifyBinderItemRangeChanged(
             @NonNull VB binder, int position, int itemCount);
 
     /**
-     * This method will be called when a set of items has been inserted in a data binder.
+     * This method will be called when a set of items have been inserted in a data binder.
      *
      * @param binder The data binder inside the recycler view.
      * @param position The position at which the first item has been inserted.
-     * @param itemCount Total no. of items has been inserted.
+     * @param itemCount Total no. of items have been inserted.
      */
     public abstract void notifyBinderItemRangeInserted(
             @NonNull VB binder, int position, int itemCount);
 
     /**
-     * This method will be called when a set of items has been removed in a data binder.
+     * This method will be called when a set of items have been removed in a data binder.
      *
      * @param binder The data binder inside the recycler view.
      * @param position The position at which the first item has been removed.
-     * @param itemCount Total no. of items has been removed.
+     * @param itemCount Total no. of items have been removed.
      */
     public abstract void notifyBinderItemRangeRemoved(
             @NonNull VB binder, int position, int itemCount);

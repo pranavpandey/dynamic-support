@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,6 +66,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicWindowUtils;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -180,7 +181,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     /**
      * Hash map to store the shared elements map.
      */
-    private HashMap<String, Integer> mSharedElementMap;
+    private Map<String, Integer> mSharedElementMap;
 
     /**
      * Result code for the shared element transition.
@@ -397,7 +398,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         outState.putInt(ADS_STATE_NAVIGATION_BAR_COLOR, mNavigationBarColor);
         outState.putInt(ADS_STATE_TRANSITION_RESULT_CODE, mTransitionResultCode);
         outState.putInt(ADS_STATE_TRANSITION_POSITION, mTransitionPosition);
-        outState.putSerializable(ADS_STATE_SHARED_ELEMENT_MAP, mSharedElementMap);
+        outState.putSerializable(ADS_STATE_SHARED_ELEMENT_MAP, (Serializable) mSharedElementMap);
     }
 
     @Override

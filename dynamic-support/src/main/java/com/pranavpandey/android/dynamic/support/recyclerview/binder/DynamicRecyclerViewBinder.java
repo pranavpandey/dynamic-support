@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHold
      * Bind {@link RecyclerView.ViewHolder} at a particular position.
      *
      * @param viewHolder The view holder for the recycler view.
-     * @param position Position to bind the view holder.
+     * @param position The position to bind the view holder.
      */
     public abstract void onBindViewHolder(@NonNull VH viewHolder, int position);
 
@@ -86,28 +86,32 @@ public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHold
     }
 
     /**
-     * Notify adapter when the data set has been changed in this data binder.
+     * Notify adapter when an item has been changed in this data binder.
+     *
+     * @param position The position at which the item has been changed.
      */
-    public final void notifyBinderDataSetChanged() {
-        notifyBinderItemRangeChanged(0, getItemCount());
+    public final void notifyBinderItemChanged(int position) {
+        if (!mBinderAdapter.isComputingLayout()) {
+            mBinderAdapter.notifyBinderItemChanged(this, position);
+        }
     }
 
     /**
-     * Notify adapter when an item has been changed in this data binder.
-     *
-     * @param position Position at which the item has been changed.
+     * Notify adapter when the data set has been changed in this data binder.
      */
-    public final void notifyBinderItemChanged(int position) {
-        mBinderAdapter.notifyBinderItemChanged(this, position);
+    public final void notifyBinderDataSetChanged() {
+        notifyBinderItemChanged(0);
     }
 
     /**
      * Notify adapter when an item has been inserted in this data binder.
      *
-     * @param position Position at which the item has been inserted.
+     * @param position The position at which the item has been inserted.
      */
     public final void notifyBinderItemInserted(int position) {
-        mBinderAdapter.notifyBinderItemInserted(this, position);
+        if (!mBinderAdapter.isComputingLayout()) {
+            mBinderAdapter.notifyBinderItemInserted(this, position);
+        }
     }
 
     /**
@@ -117,46 +121,56 @@ public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHold
      * @param toPosition Final position of the moved item.
      */
     public final void notifyBinderItemMoved(int fromPosition, int toPosition) {
-        mBinderAdapter.notifyBinderItemMoved(this, fromPosition, toPosition);
+        if (!mBinderAdapter.isComputingLayout()) {
+            mBinderAdapter.notifyBinderItemMoved(this, fromPosition, toPosition);
+        }
     }
 
     /**
      * Notify adapter when an item has been removed in this data binder.
      *
-     * @param position Position at which the item has been removed.
+     * @param position The position at which the item has been removed.
      */
     public final void notifyBinderItemRemoved(int position) {
-        mBinderAdapter.notifyBinderItemRemoved(this, position);
+        if (!mBinderAdapter.isComputingLayout()) {
+            mBinderAdapter.notifyBinderItemRemoved(this, position);
+        }
     }
 
     /**
      * Notify adapter when the item range of this data binder has been changed.
      *
-     * @param position Position at which the first item has been changed.
-     * @param itemCount Total no. of items has been changed.
+     * @param position The position at which the first item has been changed.
+     * @param itemCount Total no. of items have been changed.
      */
     public final void notifyBinderItemRangeChanged(int position, int itemCount) {
-        mBinderAdapter.notifyBinderItemRangeChanged(this, position, itemCount);
+        if (!mBinderAdapter.isComputingLayout()) {
+            mBinderAdapter.notifyBinderItemRangeChanged(this, position, itemCount);
+        }
     }
 
     /**
-     * Notify adapter when a set of items has been inserted in this
+     * Notify adapter when a set of items have been inserted in this
      * data binder.
      *
-     * @param position Position at which the first item has been inserted.
-     * @param itemCount Total no. of items has been inserted.
+     * @param position The position at which the first item has been inserted.
+     * @param itemCount Total no. of items have been inserted.
      */
     public final void notifyBinderItemRangeInserted(int position, int itemCount) {
-        mBinderAdapter.notifyBinderItemRangeInserted(this, position, itemCount);
+        if (!mBinderAdapter.isComputingLayout()) {
+            mBinderAdapter.notifyBinderItemRangeInserted(this, position, itemCount);
+        }
     }
 
     /**
-     * Notify adapter when a set of items has been removed in this data binder.
+     * Notify adapter when a set of items have been removed in this data binder.
      *
-     * @param position Position at which the first item has been removed.
-     * @param itemCount Total no. of items has been removed.
+     * @param position The position at which the first item has been removed.
+     * @param itemCount Total no. of items have been removed.
      */
     public final void notifyBinderItemRangeRemoved(int position, int itemCount) {
-        mBinderAdapter.notifyBinderItemRangeRemoved(this, position, itemCount);
+        if (!mBinderAdapter.isComputingLayout()) {
+            mBinderAdapter.notifyBinderItemRangeRemoved(this, position, itemCount);
+        }
     }
 }

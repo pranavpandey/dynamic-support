@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
- * A simple base adapter to hold an array of colors and displays them in a adapter view.
+ * A simple base adapter to hold an array of colors and displays them in an adapter view.
  */
 public class DynamicColorsAdapter extends BaseAdapter {
 

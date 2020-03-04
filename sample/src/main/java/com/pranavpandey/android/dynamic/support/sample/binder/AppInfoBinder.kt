@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,8 +37,7 @@ class AppInfoBinder(binderAdapter: AppInfoAdapter)
                 .inflate(R.layout.layout_info_app, parent, false))
     }
 
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-    }
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) { }
 
     override fun getItemCount(): Int {
         // Return item count.
@@ -50,12 +49,12 @@ class AppInfoBinder(binderAdapter: AppInfoAdapter)
      */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        private val dynamicInfoView: DynamicInfoView = view.findViewById(R.id.info_app)
+        private val app: DynamicInfoView = view.findViewById(R.id.info_app)
 
         init {
-            dynamicInfoView.linksView.layoutManager =
-                    DynamicLayoutUtils.getGridLayoutManager(dynamicInfoView.context,
-                            DynamicLayoutUtils.getGridCount(dynamicInfoView.context))
+            app.linksView.layoutManager =
+                    DynamicLayoutUtils.getGridLayoutManager(app.context,
+                            DynamicLayoutUtils.getGridCount(app.context))
         }
     }
 }

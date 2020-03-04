@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,8 +40,7 @@ public abstract class DynamicSimpleBinderAdapter<VB extends DynamicRecyclerViewB
     @Override
     public int getItemCount() {
         int itemCount = 0;
-        for (int i = 0; i < mDataBinders.size(); i++) {
-            DynamicRecyclerViewBinder binder = mDataBinders.get(i);
+        for (VB binder : mDataBinders) {
             itemCount += binder.getItemCount();
         }
 
@@ -50,8 +49,12 @@ public abstract class DynamicSimpleBinderAdapter<VB extends DynamicRecyclerViewB
 
     @Override
     public int getItemViewType(int position) {
+        if (mDataBinders.size() == 1) {
+            return 0;
+        }
+
         int itemCount = 0;
-        for (int i = 0; i <  mDataBinders.size(); i++) {
+        for (int i = itemCount; i < mDataBinders.size(); i++) {
             itemCount += mDataBinders.get(i).getItemCount();
             if (position < itemCount) {
                 return i;
@@ -83,8 +86,8 @@ public abstract class DynamicSimpleBinderAdapter<VB extends DynamicRecyclerViewB
     @Override
     public int getBinderPosition(int position) {
         int binderItemCount;
-        for (int i = 0; i < mDataBinders.size(); i++) {
-            binderItemCount = mDataBinders.get(i).getItemCount();
+        for (VB binder : mDataBinders) {
+            binderItemCount = binder.getItemCount();
             if (position - binderItemCount < 0) {
                 break;
             }

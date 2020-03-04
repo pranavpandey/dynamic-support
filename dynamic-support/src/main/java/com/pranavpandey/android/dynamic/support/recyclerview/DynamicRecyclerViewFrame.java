@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,16 +36,13 @@ import androidx.transition.TransitionManager;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 
+import static androidx.recyclerview.widget.StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS;
+
 /**
  * A RecyclerView inside a FrameLayout with some built-in functionality like
  * swipe refresh layout, progress bar, etc. which can be initialized quickly.
  */
 public abstract class DynamicRecyclerViewFrame extends FrameLayout {
-
-    /**
-     * State key for the fragment super state.
-     */
-    private static final String ADS_RECYCLER_VIEW_SCROLL_OFFSET = "superState";
 
     /**
      * Swipe refresh layout to provide pull to refresh functionality.
@@ -166,19 +163,32 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     /**
-     * Checks for the staggered grid layout manager to avoid the jumping of items by
-     * scrolling the recycler view to top.
+     * Handler to update the {@link StaggeredGridLayoutManager} o avoid the jumping of items.
      */
-    protected void checkForStaggeredGridLayoutManager() {
-        post(new Runnable() {
-            @Override
-            public void run() {
-                if (mRecyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
+    private final Runnable mStaggeredGridHandler = new Runnable() {
+        @Override
+        public void run() {
+            if (mRecyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
+                ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager).setGapStrategy(
+                        ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager)
+                                .getGapStrategy() | GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
+                ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager)
+                        .invalidateSpanAssignments();
+
+                if (((StaggeredGridLayoutManager)
+                        mRecyclerViewLayoutManager).getSpanCount() > 1) {
                     ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager)
                             .scrollToPositionWithOffset(0, 0);
                 }
             }
-        });
+        }
+    };
+
+    /**
+     * Checks for the {@link StaggeredGridLayoutManager} to avoid the jumping of items.
+     */
+    protected void checkForStaggeredGridLayoutManager() {
+        post(mStaggeredGridHandler);
     }
 
     /**
@@ -276,10 +286,14 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
 
     /**
      * Show progress bar and hide the recycler view.
+     *
+     * @param animate {@code true} to animate the changes.
      */
-    public void showProgress() {
+    public void showProgress(boolean animate) {
         if (mProgressBar != null) {
-            TransitionManager.beginDelayedTransition(this);
+            if (animate) {
+                TransitionManager.beginDelayedTransition(this);
+            }
 
             mProgressBar.setVisibility(VISIBLE);
             mRecyclerView.setVisibility(GONE);
@@ -288,15 +302,37 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     /**
-     * Hide progress bar and show the recycler view.
+     * Show progress bar and hide the recycler view.
+     *
+     * @see #showProgress()
      */
-    public void hideProgress() {
+    public void showProgress() {
+        showProgress(true);
+    }
+
+    /**
+     * Hide progress bar and show the recycler view.
+     *
+     * @param animate {@code true} to animate the changes.
+     */
+    public void hideProgress(boolean animate) {
         if (mProgressBar != null) {
-            TransitionManager.beginDelayedTransition(this);
+            if (animate) {
+                TransitionManager.beginDelayedTransition(this);
+            }
 
             mProgressBar.hide();
             mRecyclerView.setVisibility(View.VISIBLE);
         }
+    }
+
+    /**
+     * Hide progress bar and show the recycler view.
+     *
+     * @see #hideProgress()
+     */
+    public void hideProgress() {
+        hideProgress(true);
     }
 
     /**

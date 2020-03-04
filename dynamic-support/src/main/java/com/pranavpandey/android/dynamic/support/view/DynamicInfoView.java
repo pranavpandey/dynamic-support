@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -215,6 +216,8 @@ public class DynamicInfoView extends DynamicView {
         mStatusView = findViewById(R.id.ads_info_view_status);
         mIconBigView = findViewById(R.id.ads_info_view_icon_big);
         mLinksView = findViewById(R.id.ads_recycler_view);
+
+        ViewCompat.setNestedScrollingEnabled(mLinksView, false);
 
         mDynamicItems = new ArrayList<>();
         onUpdate();

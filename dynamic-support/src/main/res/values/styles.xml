@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2019 Pranav Pandey
+	Copyright 2020 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -609,9 +609,10 @@
     <style name="Widget.DynamicApp.Scroller">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
+        <item name="android:fillViewport">true</item>
+        <item name="android:focusableInTouchMode">true</item>
         <item name="android:clipChildren">false</item>
         <item name="android:clipToPadding">false</item>
-        <item name="android:fillViewport">true</item>
         <item name="android:overScrollMode">ifContentScrolls</item>
         <item name="android:scrollbarStyle">outsideOverlay</item>
     </style>
@@ -637,6 +638,7 @@
 
     <style name="Widget.DynamicApp.Scroller.Nested">
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:focusableInTouchMode">false</item>
         <item name="android:fillViewport">false</item>
         <item name="android:overScrollMode">never</item>
         <item name="android:scrollbars">none</item>
