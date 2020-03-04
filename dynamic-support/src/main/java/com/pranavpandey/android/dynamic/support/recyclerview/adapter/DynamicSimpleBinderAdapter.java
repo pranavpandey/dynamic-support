@@ -29,6 +29,7 @@ import java.util.List;
  * A simple recycler view adapter to implement the {@link DynamicBinderAdapter}
  * and {@link DynamicRecyclerViewBinder}.
  */
+@SuppressWarnings({"rawtypes"})
 public abstract class DynamicSimpleBinderAdapter<VB extends DynamicRecyclerViewBinder>
         extends DynamicBinderAdapter<VB> {
 

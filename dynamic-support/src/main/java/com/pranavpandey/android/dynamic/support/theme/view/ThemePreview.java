@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import com.pranavpandey.android.dynamic.support.view.DynamicView;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 
 /**
- * A DynamicView to show the theme preview according to the selected values.
+ * A {@link DynamicView} to show the theme preview according to the selected values.
  */
 public abstract class ThemePreview<T extends DynamicAppTheme> extends DynamicView {
 

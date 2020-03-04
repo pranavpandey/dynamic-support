@@ -48,8 +48,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A DynamicView with an icon, title and subtitle, description and links functionality which
- * can be used to show various information according to the requirement. 
+ * A {@link DynamicView} with an icon, title and subtitle, description and links functionality
+ * that can be used to show various information according to the requirement.
  * <p>Links can be clickable or pass {@code null} url to just show or completely hide them.
  */
 public class DynamicInfoView extends DynamicView {

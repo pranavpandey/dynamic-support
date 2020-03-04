@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
 
 /**
  * An activity to configure widgets having basic configuration methods.
- * <p>Just extend this activity and add your own settings fragments according to the need.
+ * <p>Extend this activity and add your own settings fragments according to the need.
  */
 public abstract class DynamicWidgetActivity extends DynamicActivity {
 

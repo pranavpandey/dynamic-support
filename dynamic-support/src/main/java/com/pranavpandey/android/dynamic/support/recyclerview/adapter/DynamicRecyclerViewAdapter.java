@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * Simple recycler view adapter to display items in different sections.
+ * A {@link RecyclerView.Adapter} to display items in different sections.
  * <p>Each section can have a section header also.
  *
  * <p><p>Extend this adapter and implement {@link DynamicRecyclerViewItem} interface

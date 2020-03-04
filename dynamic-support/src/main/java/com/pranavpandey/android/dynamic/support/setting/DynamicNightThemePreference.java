@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import java.util.Arrays;
 
 /**
- * A DynamicThemePreference to display the night theme settings.
+ * A {@link DynamicThemePreference} to display the night theme settings.
  *
  * <p><p>It will automatically adjust the values according to the available API.
  * <p>{@link Theme.Night#BATTERY} will be available for API 21 and above devices.

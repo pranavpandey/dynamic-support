@@ -25,12 +25,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder;
 
 /**
- * Simple recycler view adapter to display different types of items or views in a recycler view.
+ * A {@link RecyclerView.Adapter} to display different types of items or views in a recycler view.
  * <p>Each section can have a header or a completely different item.
  *
  * <p><p>Extend this adapter and use {@link DynamicRecyclerViewBinder} to create binding logic
  * for the each type of views.
  */
+@SuppressWarnings({"unchecked", "rawtypes"})
 public abstract class DynamicBinderAdapter<VB extends DynamicRecyclerViewBinder>
         extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -45,7 +46,6 @@ public abstract class DynamicBinderAdapter<VB extends DynamicRecyclerViewBinder>
         return getDataBinder(viewType).onCreateViewHolder(parent, viewType);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         getDataBinder(viewHolder.getItemViewType()).onBindViewHolder(

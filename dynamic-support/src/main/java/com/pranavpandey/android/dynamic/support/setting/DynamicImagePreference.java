@@ -34,7 +34,8 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
- * A DynamicSimplePreference with a secondary image view to represent data according to the need.
+ * A {@link DynamicSimplePreference} with a secondary image view to represent data according
+ * to the need.
  */
 public class DynamicImagePreference extends DynamicSimplePreference {
 

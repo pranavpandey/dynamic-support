@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
- * A DynamicItemView to provide the header view with an icon, title and subtitle.
+ * A {@link DynamicItemView} to provide the header view with an icon, title and subtitle.
  * <p>It will be used at various locations like for settings category header, popup title, etc.
  */
 public class DynamicHeader extends DynamicItemView {

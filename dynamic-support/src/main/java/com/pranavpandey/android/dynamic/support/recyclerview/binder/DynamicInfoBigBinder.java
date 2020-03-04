@@ -31,8 +31,10 @@ import com.pranavpandey.android.dynamic.support.view.DynamicInfoView;
 import com.pranavpandey.android.dynamic.support.view.DynamicInfoViewBig;
 
 /**
- * Binder to bind the {@link DynamicInfo} which can be used with the {@link DynamicBinderAdapter}.
+ * A {@link DynamicRecyclerViewBinder} to bind the {@link DynamicInfo} that can be used with
+ * the {@link DynamicBinderAdapter}.
  */
+@SuppressWarnings({"rawtypes"})
 public class DynamicInfoBigBinder extends
         DynamicRecyclerViewBinder<DynamicInfoBigBinder.ViewHolder> {
 

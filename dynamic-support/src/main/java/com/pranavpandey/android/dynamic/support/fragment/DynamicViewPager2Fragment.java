@@ -37,7 +37,7 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicViewPagerCallbac
 /**
  * An abstract {@link ViewPager} fragment to display multiple fragments inside the view pager
  * along with the tabs.
- * <p>Just extend this fragment and implement the necessary methods to use it inside an activity.
+ * <p>Extend this fragment and implement the necessary methods to use it inside an activity.
  */
 public abstract class DynamicViewPager2Fragment extends DynamicFragment
         implements DynamicViewPagerCallback {

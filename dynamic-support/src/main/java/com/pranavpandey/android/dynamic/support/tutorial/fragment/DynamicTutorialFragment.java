@@ -39,7 +39,7 @@ import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * A DynamicTutorialFragment fragment with an image, title, subtitle and description which
+ * A {@link DynamicTutorialFragment} with an image, title, subtitle and description that
  * will be used with the {@link DynamicTutorialActivity}.
  */
 public class DynamicTutorialFragment extends Fragment implements

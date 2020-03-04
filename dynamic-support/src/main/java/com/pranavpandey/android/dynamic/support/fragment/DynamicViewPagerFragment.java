@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ import java.util.List;
 /**
  * An abstract {@link ViewPager} fragment to display multiple fragments inside the view pager
  * along with the tabs.
- * <p>Just extend this fragment and implement the necessary methods to use it inside an activity.
+ * <p>Extend this fragment and implement the necessary methods to use it inside an activity.
  *
  * @see #getTitles()
  * @see #getPages()

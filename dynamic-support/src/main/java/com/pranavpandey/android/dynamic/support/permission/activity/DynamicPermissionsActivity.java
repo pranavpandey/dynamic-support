@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,14 +36,14 @@ import java.util.List;
 
 /**
  * Base activity to request the {@link DynamicPermission}. It will be useful to request a
- * permission from anywhere, even from a service. Just extend this activity in your app and add
- * it in the manifest. Rest of the things
+ * permission from anywhere, even from a service. Extend this activity in your app and add
+ * it in the manifest.
  *
- * <p>Then, register that activity to request the permissions via
+ * <p><p>Then, register that activity to request the permissions via
  * {@link DynamicPermissions#setPermissionActivity(Class)}. Rest of the things will be handled
  * by the {@link DynamicPermissionsFragment}.
  *
- * <p>To request permissions, just call
+ * <p><p>To request permissions, just call
  * {@link DynamicPermissions#requestPermissions(String[], boolean, Intent, int)} method anywhere
  * within the app.
  */

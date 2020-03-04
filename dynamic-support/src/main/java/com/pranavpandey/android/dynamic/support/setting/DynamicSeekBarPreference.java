@@ -42,7 +42,7 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicSeekBar;
 import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
 
 /**
- * A DynamicSpinnerPreference to provide the functionality of a seek bar preference with
+ * A {@link DynamicSpinnerPreference} to provide the functionality of a seek bar preference with
  * control buttons to modify the value.
  */
 public class DynamicSeekBarPreference extends DynamicSpinnerPreference {

@@ -8,9 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A recycler view adapter to display different type of {@link VB}
- * inside a recycler view.
+ * A {@link DynamicBinderAdapter} to display different type of {@link VB} inside a recycler view.
  */
+@SuppressWarnings({"rawtypes"})
 public abstract class DynamicTypeBinderAdapter<E extends Enum<E>, 
         VB extends DynamicRecyclerViewBinder> extends DynamicBinderAdapter<VB> {
 

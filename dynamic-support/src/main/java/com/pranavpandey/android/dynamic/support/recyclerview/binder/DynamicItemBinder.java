@@ -31,7 +31,8 @@ import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicItem
 import com.pranavpandey.android.dynamic.support.view.DynamicItemView;
 
 /**
- * Binder to bind the {@link DynamicItem} which can be used with the {@link DynamicBinderAdapter}.
+ * A {@link DynamicRecyclerViewBinder}  to bind the {@link DynamicItem} that can be used
+ * with the {@link DynamicBinderAdapter}.
  */
 public class DynamicItemBinder extends DynamicRecyclerViewBinder<DynamicItemBinder.ViewHolder> {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 
 /**
- * A customisable remote views factory to provide basic functionality.
+ * A customisable {@link RemoteViewsService.RemoteViewsFactory} to provide basic functionality.
  * <p>Extend it and implement necessary methods according to the need.
  */
 public abstract class DynamicRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.support.R;
 
 /**
- * A DynamicInfoView with bigger fallback icon.
+ * A {@link DynamicInfoView} with bigger fallback icon.
  * <p>Useful for showing the app info like about, author, etc.
  */
 public class DynamicInfoViewBig extends DynamicInfoView {

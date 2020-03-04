@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 
 /**
- * A DynamicRecyclerViewFrame to display the nested content.
+ * A {@link DynamicRecyclerViewFrame} to display the nested content.
  */
 public class DynamicRecyclerViewNested extends DynamicRecyclerViewFrame {
 

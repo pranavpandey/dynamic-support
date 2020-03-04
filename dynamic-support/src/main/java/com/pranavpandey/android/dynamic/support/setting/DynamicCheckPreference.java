@@ -33,7 +33,7 @@ import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.R;
 
 /**
- * A DynamicSimplePreference to provide the functionality of a
+ * A {@link DynamicSimplePreference} to provide the functionality of a
  * {@link android.preference.SwitchPreference}.
  */
 public class DynamicCheckPreference extends DynamicSimplePreference {

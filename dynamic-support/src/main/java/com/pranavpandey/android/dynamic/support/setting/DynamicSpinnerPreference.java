@@ -38,7 +38,7 @@ import com.pranavpandey.android.dynamic.theme.Theme;
 import java.util.Arrays;
 
 /**
- * A DynamicPreference to provide the functionality of a
+ * A {@link DynamicPreference} to provide the functionality of a
  * {@link android.preference.ListPreference} with single choice.
  */
 public class DynamicSpinnerPreference extends DynamicSimplePreference {

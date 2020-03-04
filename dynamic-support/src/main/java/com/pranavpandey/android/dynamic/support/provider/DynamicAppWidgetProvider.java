@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,12 +45,11 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import java.util.Locale;
 
 /**
- * A customisable app widget provider to provide basic configuration functionality.
+ * A customisable {@link AppWidgetProvider} to provide basic configuration functionality.
  * <p>Extend it and modify according to the need.
  */
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-public abstract class DynamicAppWidgetProvider
-        extends AppWidgetProvider implements DynamicLocale {
+public abstract class DynamicAppWidgetProvider extends AppWidgetProvider implements DynamicLocale {
 
     /**
      * Intent extra constant for width of the app widget.

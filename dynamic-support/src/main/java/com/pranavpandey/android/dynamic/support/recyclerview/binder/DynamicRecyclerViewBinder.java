@@ -27,6 +27,7 @@ import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBind
  * A data binder class to bind data with the view inside the {@link DynamicBinderAdapter}.
  * <p>Extend this class to implement your own data binding logic.
  */
+@SuppressWarnings({"rawtypes"})
 public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHolder> {
 
     /**

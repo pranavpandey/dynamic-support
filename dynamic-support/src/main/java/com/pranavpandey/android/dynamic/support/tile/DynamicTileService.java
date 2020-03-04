@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 
 /**
- * A TileService providing the helper methods to update it properly.
+ * A {@link TileService} providing the helper methods to update it properly.
  */
 @TargetApi(Build.VERSION_CODES.N)
 public abstract class DynamicTileService extends TileService {
@@ -53,9 +53,9 @@ public abstract class DynamicTileService extends TileService {
     }
 
     /**
-     * Returns the class for this title service.
+     * Returns the class for this tile service.
      *
-     * @return The class for this title service.
+     * @return The class for this tile service.
      */
     protected abstract @NonNull Class<?> getTileServiceClass();
 
@@ -68,10 +68,10 @@ public abstract class DynamicTileService extends TileService {
     protected void onDynamicUpdate() { }
 
     /**
-     * Update the title service for a given class.
+     * Update the tile service for a given class.
      *
      * @param context The context to get the package name.
-     * @param clazz The title service class to be updated.
+     * @param clazz The tile service class to be updated.
      */
     public static synchronized void update(@NonNull Context context, @NonNull Class<?> clazz) {
         try {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
- * A DynamicSimplePreference to provide the functionality of a
+ * A {@link DynamicSimplePreference} to provide the functionality of a
  * {@link android.preference.PreferenceScreen} with an icon, title, summary, description,
  * value and an action button.
  *

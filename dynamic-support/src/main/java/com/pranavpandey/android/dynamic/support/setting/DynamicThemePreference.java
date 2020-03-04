@@ -37,7 +37,7 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.view.DynamicThemePreview;
 
 /**
- * A DynamicSpinnerPreference to display and edit the dynamic theme.
+ * A {@link DynamicSpinnerPreference} to display and edit the dynamic theme.
  */
 public class DynamicThemePreference extends DynamicSpinnerPreference {
 

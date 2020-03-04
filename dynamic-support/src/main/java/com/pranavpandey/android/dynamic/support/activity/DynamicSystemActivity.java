@@ -74,10 +74,10 @@ import java.util.Map;
 
 /**
  * Base activity to perform all the system UI related tasks like setting the status and
- * navigation bar colors, theme, etc. It heavily depends on the {@link DynamicTheme} which can be
+ * navigation bar colors, theme, etc. It heavily depends on the {@link DynamicTheme} that can be
  * customised by implementing the corresponding methods.
  *
- * <p><p>Just extend this activity and implement the various methods according to the need.
+ * <p><p>Extend this activity and implement the various methods according to the need.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public abstract class DynamicSystemActivity extends AppCompatActivity implements

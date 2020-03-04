@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.PopupWindow;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -35,7 +34,7 @@ import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
- * A simple {@link PopupWindow} to display a list of items. It will be used internally by the
+ * A {@link DynamicPopup} to display a list of items. It will be used internally by the
  * {@link com.pranavpandey.android.dynamic.support.setting.DynamicSpinnerPreference} but it can
  * be used by the other views also.
  */

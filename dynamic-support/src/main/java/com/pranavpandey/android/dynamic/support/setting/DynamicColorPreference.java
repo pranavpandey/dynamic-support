@@ -48,7 +48,7 @@ import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * A DynamicSimplePreference to implement the functionality of a color picker by using the
+ * A {@link DynamicSimplePreference} to implement the functionality of a color picker by using the
  * {@link DynamicColorPopup} and {@link DynamicColorDialog}.
  */
 public class DynamicColorPreference extends DynamicSimplePreference {

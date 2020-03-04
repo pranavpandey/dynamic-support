@@ -29,8 +29,10 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * A DynamicSimpleBinderAdapter to display the list of {@link DynamicItem} inside a recycler view.
+ * A {@link DynamicSimpleBinderAdapter} to display the list of {@link DynamicItem}
+ * inside a recycler view.
  */
+@SuppressWarnings({"rawtypes"})
 public class DynamicItemsAdapter extends DynamicSimpleBinderAdapter<DynamicRecyclerViewBinder> {
 
     /**

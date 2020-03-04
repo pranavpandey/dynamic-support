@@ -39,8 +39,8 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import static androidx.recyclerview.widget.StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS;
 
 /**
- * A RecyclerView inside a FrameLayout with some built-in functionality like
- * swipe refresh layout, progress bar, etc. which can be initialized quickly.
+ * A {@link RecyclerView} inside a {@link FrameLayout} with some built-in functionality like
+ * swipe refresh layout, progress bar, etc. that can be initialized quickly.
  */
 public abstract class DynamicRecyclerViewFrame extends FrameLayout {
 
@@ -73,7 +73,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     private RecyclerView.LayoutManager mRecyclerViewLayoutManager;
 
     /**
-     * Progress bar which can be shown while the data is loading in the background.
+     * Progress bar that can be shown while the data is loading in the background.
      *
      * @see #showProgress()
      * @see #hideProgress()
@@ -276,9 +276,9 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     /**
-     * Get the progress bar which can be shown while the data is loading in the background.
+     * Get the progress bar that can be shown while the data is loading in the background.
      *
-     * @return The progress bar which can be shown while the data is loading in the background.
+     * @return The progress bar that can be shown while the data is loading in the background.
      */
     public @Nullable ContentLoadingProgressBar getProgressBar() {
         return mProgressBar;
