@@ -96,24 +96,24 @@ public class DynamicLinearLayout extends LinearLayout implements DynamicWidget {
 
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.DynamicTheme);
+        TypedArray a = getContext().obtainStyledAttributes(attrs, 
+                R.styleable.DynamicLinearLayout);
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_colorType,
+                    R.styleable.DynamicLinearLayout_ads_colorType,
                     Theme.ColorType.NONE);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_contrastWithColorType,
+                    R.styleable.DynamicLinearLayout_ads_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_color,
+                    R.styleable.DynamicLinearLayout_ads_color,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_contrastWithColor,
+                    R.styleable.DynamicLinearLayout_ads_contrastWithColor,
                     WidgetDefaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicTheme_ads_backgroundAware,
+                    R.styleable.DynamicLinearLayout_ads_backgroundAware,
                     WidgetDefaults.getBackgroundAware());
         } finally {
             a.recycle();

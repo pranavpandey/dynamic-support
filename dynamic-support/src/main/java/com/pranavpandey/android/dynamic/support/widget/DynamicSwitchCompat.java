@@ -106,30 +106,30 @@ public class DynamicSwitchCompat extends SwitchMaterial implements DynamicStateW
 
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.DynamicTheme);
+        TypedArray a = getContext().obtainStyledAttributes(attrs, 
+                R.styleable.DynamicSwitchCompat);
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_colorType,
+                    R.styleable.DynamicSwitchCompat_ads_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_contrastWithColorType,
+                    R.styleable.DynamicSwitchCompat_ads_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mStateNormalColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_stateNormalColorType,
+                    R.styleable.DynamicSwitchCompat_ads_stateNormalColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_color,
+                    R.styleable.DynamicSwitchCompat_ads_color,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_contrastWithColor,
+                    R.styleable.DynamicSwitchCompat_ads_contrastWithColor,
                     WidgetDefaults.getContrastWithColor(getContext()));
             mStateNormalColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_stateNormalColor,
+                    R.styleable.DynamicSwitchCompat_ads_stateNormalColor,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicTheme_ads_backgroundAware,
+                    R.styleable.DynamicSwitchCompat_ads_backgroundAware,
                     WidgetDefaults.getBackgroundAware());
         } finally {
             a.recycle();

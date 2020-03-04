@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  * Copyright 2017 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -141,19 +141,8 @@ public class DynamicTooltipPopup {
      * @param text The text for the popup.
      */
     public void set(@Nullable Drawable icon, @Nullable CharSequence text) {
-        if (icon != null) {
-            mIconView.setImageDrawable(icon);
-            mIconView.setVisibility(View.VISIBLE);
-        } else {
-            mIconView.setVisibility(View.GONE);
-        }
-
-        if (text != null) {
-            mTextView.setText(text);
-            mTextView.setVisibility(View.VISIBLE);
-        } else {
-            mTextView.setVisibility(View.GONE);
-        }
+        Dynamic.set(mIconView, icon);
+        Dynamic.set(mTextView, text);
     }
 
     /**

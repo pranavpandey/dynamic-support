@@ -32,15 +32,17 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicMenuUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTextWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 
 /**
  * A {@link BottomNavigationView} to apply {@link DynamicTheme} according to the
  * supplied parameters.
  */
 public class DynamicBottomNavigationView extends BottomNavigationView
-        implements DynamicTextWidget {
+        implements WindowInsetsWidget, DynamicTextWidget {
 
     /**
      * Color type applied to this view.
@@ -111,24 +113,37 @@ public class DynamicBottomNavigationView extends BottomNavigationView
 
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.DynamicTheme);
+        TypedArray a = getContext().obtainStyledAttributes(attrs,
+                R.styleable.DynamicBottomNavigationView);
 
         try {
-            mColorType = a.getInt(R.styleable.DynamicTheme_ads_colorType,
+            mColorType = a.getInt(
+                    R.styleable.DynamicBottomNavigationView_ads_colorType,
                     Theme.ColorType.PRIMARY);
-            mTextColorType = a.getInt(R.styleable.DynamicTheme_ads_textColorType,
+            mTextColorType = a.getInt(
+                    R.styleable.DynamicBottomNavigationView_ads_textColorType,
                     Theme.ColorType.TINT_PRIMARY);
-            mContrastWithColorType = a.getInt(R.styleable.DynamicTheme_ads_contrastWithColorType,
+            mContrastWithColorType = a.getInt(
+                    R.styleable.DynamicBottomNavigationView_ads_contrastWithColorType,
                     Theme.ColorType.PRIMARY);
-            mColor = a.getColor(R.styleable.DynamicTheme_ads_color,
+            mColor = a.getColor(
+                    R.styleable.DynamicBottomNavigationView_ads_color,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
-            mTextColor = a.getColor(R.styleable.DynamicTheme_ads_textColor,
+            mTextColor = a.getColor(
+                    R.styleable.DynamicBottomNavigationView_ads_textColor,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
-            mContrastWithColor = a.getColor(R.styleable.DynamicTheme_ads_contrastWithColor,
+            mContrastWithColor = a.getColor(
+                    R.styleable.DynamicBottomNavigationView_ads_contrastWithColor,
                     WidgetDefaults.getContrastWithColor(getContext()));
-            mBackgroundAware = a.getInteger(R.styleable.DynamicTheme_ads_backgroundAware,
+            mBackgroundAware = a.getInteger(
+                    R.styleable.DynamicBottomNavigationView_ads_backgroundAware,
                     WidgetDefaults.getBackgroundAware());
+
+            if (a.getBoolean(
+                    R.styleable.DynamicBottomNavigationView_ads_windowInsets,
+                    WidgetDefaults.ADS_WINDOW_INSETS)) {
+                applyWindowInsets();
+            }
         } finally {
             a.recycle();
         }
@@ -156,6 +171,11 @@ public class DynamicBottomNavigationView extends BottomNavigationView
 
         setColor();
         setTextColor();
+    }
+
+    @Override
+    public void applyWindowInsets() {
+        DynamicViewUtils.applyWindowInsetsBottom(this);
     }
 
     @Override

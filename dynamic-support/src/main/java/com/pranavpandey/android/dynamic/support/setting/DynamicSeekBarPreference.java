@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -169,24 +169,29 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     protected void onLoadAttributes(@Nullable AttributeSet attrs) {
         super.onLoadAttributes(attrs);
 
-        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DynamicPreference);
+        TypedArray a = getContext().obtainStyledAttributes(attrs, 
+                R.styleable.DynamicSeekBarPreference);
 
         try {
-            mMaxValue = a.getInteger(R.styleable.DynamicPreference_ads_max,
+            mMaxValue = a.getInteger(
+                    R.styleable.DynamicSeekBarPreference_ads_max,
                     DEFAULT_MAX_VALUE);
-            mMinValue = a.getInteger(R.styleable.DynamicPreference_ads_min,
+            mMinValue = a.getInteger(
+                    R.styleable.DynamicSeekBarPreference_ads_min,
                     DEFAULT_MIN_VALUE);
             mDefaultValue = a.getInteger(
-                    R.styleable.DynamicPreference_ads_progress,
+                    R.styleable.DynamicSeekBarPreference_ads_progress,
                     DEFAULT_SEEK_VALUE);
             mSeekInterval = a.getInteger(
-                    R.styleable.DynamicPreference_ads_interval,
+                    R.styleable.DynamicSeekBarPreference_ads_interval,
                     DEFAULT_SEEK_INTERVAL);
-            mControls = a.getBoolean(R.styleable.DynamicPreference_ads_controls,
+            mControls = a.getBoolean(
+                    R.styleable.DynamicSeekBarPreference_ads_controls,
                     DEFAULT_SEEK_CONTROLS);
-            mUnit = a.getString(R.styleable.DynamicPreference_ads_unit);
+            mUnit = a.getString(
+                    R.styleable.DynamicSeekBarPreference_ads_unit);
             mSeekBarEnabled = a.getBoolean(
-                    R.styleable.DynamicPreference_ads_seek_bar,
+                    R.styleable.DynamicSeekBarPreference_ads_seek_bar,
                     true);
         } finally {
             a.recycle();
@@ -263,6 +268,8 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
         if (super.getPreferenceKey() != null) {
             mProgress = getProgressFromValue(DynamicPreferences.getInstance()
                     .load(super.getPreferenceKey(), mDefaultValue));
+            mSeekBar.setProgress(mProgress);
+            updateSeekFunctions();
         }
     }
 

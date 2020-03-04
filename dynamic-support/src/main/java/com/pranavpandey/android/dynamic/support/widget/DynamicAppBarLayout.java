@@ -91,34 +91,33 @@ public class DynamicAppBarLayout extends AppBarLayout
 
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.DynamicTheme);
-        TypedArray b = getContext().obtainStyledAttributes(
-                attrs, new int[] { R.attr.ads_windowInsets});
+        TypedArray a = getContext().obtainStyledAttributes(attrs,
+                R.styleable.DynamicAppBarLayout);
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_colorType,
+                    R.styleable.DynamicAppBarLayout_ads_colorType,
                     Theme.ColorType.PRIMARY);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_contrastWithColorType,
+                    R.styleable.DynamicAppBarLayout_ads_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_color,
+                    R.styleable.DynamicAppBarLayout_ads_color,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_contrastWithColor,
+                    R.styleable.DynamicAppBarLayout_ads_contrastWithColor,
                     WidgetDefaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicTheme_ads_backgroundAware,
+                    R.styleable.DynamicAppBarLayout_ads_backgroundAware,
                     WidgetDefaults.getBackgroundAware());
 
-            if (attrs != null && b.getBoolean(0, WidgetDefaults.ADS_WINDOW_INSETS)) {
+            if (a.getBoolean(
+                    R.styleable.DynamicAppBarLayout_ads_windowInsets,
+                    WidgetDefaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }
         } finally {
             a.recycle();
-            b.recycle();
         }
 
         initialize();

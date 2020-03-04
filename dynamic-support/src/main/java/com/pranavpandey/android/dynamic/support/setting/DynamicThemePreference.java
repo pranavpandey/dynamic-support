@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -98,10 +98,12 @@ public class DynamicThemePreference extends DynamicSpinnerPreference {
     protected void onLoadAttributes(@Nullable AttributeSet attrs) {
         super.onLoadAttributes(attrs);
 
-        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DynamicPreference);
+        TypedArray a = getContext().obtainStyledAttributes(attrs,
+                R.styleable.DynamicThemePreference);
 
         try {
-            mDefaultTheme = a.getString(R.styleable.DynamicPreference_ads_theme);
+            mDefaultTheme = a.getString(
+                    R.styleable.DynamicThemePreference_ads_theme);
         } finally {
             a.recycle();
         }

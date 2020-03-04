@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -145,22 +145,30 @@ public class DynamicItemView extends DynamicView {
 
     @Override
     protected void onLoadAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DynamicInfo);
+        TypedArray a = getContext().obtainStyledAttributes(attrs, 
+                R.styleable.DynamicItemView);
 
         try {
-            mIcon = DynamicResourceUtils.getDrawable(getContext(), a.getResourceId(
-                    R.styleable.DynamicInfo_ads_icon,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN));
-            mTitle = a.getString(R.styleable.DynamicInfo_ads_title);
-            mSubtitle = a.getString(R.styleable.DynamicInfo_ads_subtitle);
-            mColor = a.getColor(R.styleable.DynamicInfo_ads_color,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
-            mColorType = a.getInt(R.styleable.DynamicInfo_ads_colorType,
-                    Theme.ColorType.NONE);
-            mShowDivider = a.getBoolean(R.styleable.DynamicInfo_ads_showDivider,
+            mIcon = DynamicResourceUtils.getDrawable(getContext(),
+                    a.getResourceId(
+                            R.styleable.DynamicItemView_ads_icon,
+                            WidgetDefaults.ADS_COLOR_UNKNOWN));
+            mTitle = a.getString(
+                    R.styleable.DynamicItemView_ads_title);
+            mSubtitle = a.getString(
+                    R.styleable.DynamicItemView_ads_subtitle);
+            mShowDivider = a.getBoolean(
+                    R.styleable.DynamicItemView_ads_showDivider,
                     WidgetDefaults.ADS_SHOW_DIVIDER);
-            mFillSpace = a.getBoolean(R.styleable.DynamicInfo_ads_fillSpace,
+            mFillSpace = a.getBoolean(
+                    R.styleable.DynamicItemView_ads_fillSpace,
                     WidgetDefaults.ADS_FILL_SPACE);
+            mColorType = a.getInt(
+                    R.styleable.DynamicItemView_ads_colorType,
+                    Theme.ColorType.NONE);
+            mColor = a.getColor(
+                    R.styleable.DynamicItemView_ads_color,
+                    WidgetDefaults.ADS_COLOR_UNKNOWN);
         } finally {
             a.recycle();
         }
@@ -186,14 +194,9 @@ public class DynamicItemView extends DynamicView {
 
     @Override
     public void onUpdate() {
-        if (mIcon != null) {
-            mIconView.setImageDrawable(mIcon);
-            mIconView.setVisibility(VISIBLE);
-        } else {
-            if (mFillSpace) {
-                mIconView.setVisibility(GONE);
-            }
-        }
+        Dynamic.set(mIconView, mIcon);
+        Dynamic.set(mTitleView, mTitle);
+        Dynamic.set(mSubtitleView, mSubtitle);
 
         if (mIconView != null) {
             Dynamic.setColorType(mIconView, mColorType);
@@ -203,20 +206,10 @@ public class DynamicItemView extends DynamicView {
             } else if (mColorType == Theme.ColorType.NONE) {
                 mIconView.clearColorFilter();
             }
-        }
 
-        if (mTitle != null) {
-            mTitleView.setText(mTitle);
-            mTitleView.setVisibility(VISIBLE);
-        } else {
-            mTitleView.setVisibility(GONE);
-        }
-
-        if (mSubtitle != null) {
-            mSubtitleView.setText(mSubtitle);
-            mSubtitleView.setVisibility(VISIBLE);
-        } else {
-            mSubtitleView.setVisibility(GONE);
+            if (!mFillSpace) {
+                mIconView.setVisibility(VISIBLE);
+            }
         }
 
         if (mDivider != null) {

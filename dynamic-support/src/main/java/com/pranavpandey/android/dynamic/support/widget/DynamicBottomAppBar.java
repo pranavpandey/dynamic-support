@@ -109,29 +109,29 @@ public class DynamicBottomAppBar extends BottomAppBar implements DynamicTextWidg
 
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.DynamicTheme);
+        TypedArray a = getContext().obtainStyledAttributes(attrs,
+                R.styleable.DynamicBottomAppBar);
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_colorType,
+                    R.styleable.DynamicBottomAppBar_ads_colorType,
                     Theme.ColorType.PRIMARY);
             mTextColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_textColorType,
+                    R.styleable.DynamicBottomAppBar_ads_textColorType,
                     Theme.ColorType.TINT_PRIMARY);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_contrastWithColor,
+                    R.styleable.DynamicBottomAppBar_ads_contrastWithColor,
                     WidgetDefaults.getContrastWithColor(getContext()));
-            mColor = a.getColor(R.styleable.DynamicTheme_ads_color,
+            mColor = a.getColor(R.styleable.DynamicBottomAppBar_ads_color,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mTextColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_textColor,
+                    R.styleable.DynamicBottomAppBar_ads_textColor,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_contrastWithColor,
+                    R.styleable.DynamicBottomAppBar_ads_contrastWithColor,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicTheme_ads_backgroundAware,
+                    R.styleable.DynamicBottomAppBar_ads_backgroundAware,
                     WidgetDefaults.getBackgroundAware());
         } finally {
             a.recycle();

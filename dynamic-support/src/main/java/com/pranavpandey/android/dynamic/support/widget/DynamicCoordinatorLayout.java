@@ -54,11 +54,13 @@ public class DynamicCoordinatorLayout extends CoordinatorLayout implements Windo
 
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, new int[] { R.attr.ads_windowInsets});
+        TypedArray a = getContext().obtainStyledAttributes(attrs,
+                R.styleable.DynamicCoordinatorLayout);
 
         try {
-            if (attrs != null && a.getBoolean(0, WidgetDefaults.ADS_WINDOW_INSETS)) {
+            if (a.getBoolean(
+                    R.styleable.DynamicCoordinatorLayout_ads_windowInsets,
+                    WidgetDefaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }
         } finally {

@@ -111,39 +111,38 @@ public class DynamicRecyclerView extends RecyclerView
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.DynamicTheme);
-        TypedArray b = getContext().obtainStyledAttributes(
-                attrs, new int[] { R.attr.ads_windowInsets});
+                attrs, R.styleable.DynamicRecyclerView);
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_colorType,
+                    R.styleable.DynamicRecyclerView_ads_colorType,
                     WidgetDefaults.ADS_COLOR_EDGE_EFFECT);
             mScrollBarColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_scrollBarColorType,
+                    R.styleable.DynamicRecyclerView_ads_scrollBarColorType,
                     WidgetDefaults.ADS_COLOR_SCROLL_BAR);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_contrastWithColorType,
+                    R.styleable.DynamicRecyclerView_ads_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_color,
+                    R.styleable.DynamicRecyclerView_ads_color,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mScrollBarColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_scrollBarColor,
+                    R.styleable.DynamicRecyclerView_ads_scrollBarColor,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_contrastWithColor,
+                    R.styleable.DynamicRecyclerView_ads_contrastWithColor,
                     WidgetDefaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicTheme_ads_backgroundAware,
+                    R.styleable.DynamicRecyclerView_ads_backgroundAware,
                     WidgetDefaults.getBackgroundAware());
 
-            if (b.getBoolean(0, WidgetDefaults.ADS_WINDOW_INSETS)) {
+            if (a.getBoolean(
+                    R.styleable.DynamicRecyclerView_ads_windowInsets,
+                    WidgetDefaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }
         } finally {
             a.recycle();
-            b.recycle();
         }
 
         initialize();

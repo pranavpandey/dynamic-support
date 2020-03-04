@@ -59,11 +59,13 @@ public class DynamicDrawerLayout extends DrawerLayout implements WindowInsetsWid
 
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, new int[] { R.attr.ads_windowInsets});
+        TypedArray a = getContext().obtainStyledAttributes(attrs,
+                R.styleable.DynamicDrawerLayout);
 
         try {
-            if (attrs != null && a.getBoolean(0, WidgetDefaults.ADS_WINDOW_INSETS)) {
+            if (a.getBoolean(
+                    R.styleable.DynamicDrawerLayout_ads_windowInsets,
+                    WidgetDefaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }
         } finally {

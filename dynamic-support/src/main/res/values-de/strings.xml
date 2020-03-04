@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2019 Pranav Pandey
+	Copyright 2020 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -243,6 +243,7 @@
     <string name="ads_theme_presets_desc">Über Google Play herunterladen.</string>
     <string name="ads_theme_presets_options">Tippen Sie auf, um Optionen anzuzeigen</string>
     <string name="ads_theme_presets_import">Tippen Sie zum Importieren auf</string>
+    <string name="ads_theme_presets_empty">Keine Voreinstellungen</string>
 
     <!-- Theme -->
     <string name="ads_theme_toast_default">Standard Toast-Nachricht</string>

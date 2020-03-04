@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -122,7 +122,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      *
      * @return A instance of {@link DynamicColorDialog}.
      */
-    public static DynamicColorDialog newInstance() {
+    public @NonNull static DynamicColorDialog newInstance() {
         return new DynamicColorDialog();
     }
 
@@ -130,7 +130,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     protected @NonNull DynamicDialog.Builder onCustomiseBuilder(
             @NonNull final DynamicDialog.Builder dialogBuilder,
             @Nullable final Bundle savedInstanceState) {
-        mDynamicColorPicker = new DynamicColorPicker(getContext());
+        mDynamicColorPicker = new DynamicColorPicker(requireContext());
         mControl = mDynamicColorPicker.getControl();
 
         if (savedInstanceState != null) {
@@ -257,7 +257,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      *
      * @return The color entries used by the picker.
      */
-    public Integer[] getColors() {
+    public @Nullable Integer[] getColors() {
         return mColors;
     }
 
@@ -266,7 +266,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      *
      * @return The shade entries used by the picker.
      */
-    public Integer[][] getShades() {
+    public @Nullable Integer[][] getShades() {
         return mShades;
     }
 
@@ -278,7 +278,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      *
      * @return The {@link DynamicColorDialog} object to allow for chaining of calls to set methods.
      */
-    public DynamicColorDialog setColors(@NonNull @ColorInt Integer[] colors,
+    public @NonNull DynamicColorDialog setColors(@NonNull @ColorInt Integer[] colors,
             @Nullable @ColorInt Integer[][] shades) {
         this.mColors = colors;
         this.mShades = shades;
@@ -302,7 +302,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      *
      * @return The {@link DynamicColorDialog} object to allow for chaining of calls to set methods.
      */
-    public DynamicColorDialog setPreviousColor(@ColorInt int previousColor) {
+    public @NonNull DynamicColorDialog setPreviousColor(@ColorInt int previousColor) {
         this.mPreviousColor = previousColor;
 
         return this;
@@ -324,7 +324,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      *
      * @return The {@link DynamicColorDialog} object to allow for chaining of calls to set methods.
      */
-    public DynamicColorDialog setSelectedColor(@ColorInt int selectedColor) {
+    public @NonNull DynamicColorDialog setSelectedColor(@ColorInt int selectedColor) {
         this.mSelectedColor = selectedColor;
 
         return this;
@@ -346,7 +346,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      *
      * @return The {@link DynamicColorDialog} object to allow for chaining of calls to set methods.
      */
-    public DynamicColorDialog setColorShape(@DynamicColorShape int colorShape) {
+    public @NonNull DynamicColorDialog setColorShape(@DynamicColorShape int colorShape) {
         this.mColorShape = colorShape;
 
         return this;
@@ -368,7 +368,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      *
      * @return The {@link DynamicColorDialog} object to allow for chaining of calls to set methods.
      */
-    public DynamicColorDialog setAlpha(boolean alpha) {
+    public @NonNull DynamicColorDialog setAlpha(boolean alpha) {
         this.mAlpha = alpha;
 
         return this;
@@ -390,7 +390,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      *
      * @return The {@link DynamicColorDialog} object to allow for chaining of calls to set methods.
      */
-    public DynamicColorDialog setDynamicColorListener(
+    public @NonNull DynamicColorDialog setDynamicColorListener(
             @NonNull DynamicColorListener dynamicColorListener) {
         this.mDynamicColorListener = dynamicColorListener;
 

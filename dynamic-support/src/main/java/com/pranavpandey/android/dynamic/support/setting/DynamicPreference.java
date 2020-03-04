@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,6 +36,7 @@ import androidx.preference.PreferenceManager;
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 
 /**
  * Base preference to provide the basic interface for the extending preference with an icon,
@@ -268,7 +269,7 @@ public abstract class DynamicPreference extends FrameLayout
     protected abstract void onEnabled(boolean enabled);
 
     /**
-     * Set drawable for a image view.
+     * Set drawable for an image view.
      *
      * @param imageView The image view to set the drawable.
      * @param drawable The drawable to be set.
@@ -286,14 +287,7 @@ public abstract class DynamicPreference extends FrameLayout
      * @param text The text to be set.
      */
     protected void setTextView(@Nullable TextView textView, @Nullable CharSequence text) {
-        if (textView != null) {
-            if (text != null) {
-                textView.setText(text);
-                textView.setVisibility(View.VISIBLE);
-            } else {
-                textView.setVisibility(View.GONE);
-            }
-        }
+        Dynamic.set(textView, text);
     }
 
     /**

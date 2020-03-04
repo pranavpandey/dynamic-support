@@ -56,11 +56,13 @@ public class DynamicRootLayout extends RelativeLayout
 
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, new int[] { R.attr.ads_windowInsets});
+        TypedArray a = getContext().obtainStyledAttributes(attrs,
+                R.styleable.DynamicRootLayout);
 
         try {
-            if (attrs != null && a.getBoolean(0, WidgetDefaults.ADS_WINDOW_INSETS)) {
+            if (a.getBoolean(
+                    R.styleable.DynamicRootLayout_ads_windowInsets,
+                    WidgetDefaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }
         } finally {

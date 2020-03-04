@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,11 +62,6 @@ import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
  * to represent a set of colors and select a color from it.
  */
 public class DynamicColorView extends FrameLayout {
-
-    /**
-     * Constant for color view stroke width, 1 dip.
-     */
-    private static final int ADS_STROKE_WIDTH = DynamicUnitUtils.convertDpToPixels(1);
 
     /**
      * Constant for color view icon divisor.
@@ -190,7 +185,7 @@ public class DynamicColorView extends FrameLayout {
         mColorPaint.setStyle(Paint.Style.FILL);
         mColorStrokePaint.setStyle(Paint.Style.STROKE);
         mSelectorPaint.setStyle(Paint.Style.FILL);
-        mColorStrokePaint.setStrokeWidth(ADS_STROKE_WIDTH);
+        mColorStrokePaint.setStrokeWidth(WidgetDefaults.ADS_STROKE_WIDTH);
         mColorStrokePaint.setStrokeCap(Paint.Cap.ROUND);
         mSelectorPaint.setFilterBitmap(true);
 
@@ -273,8 +268,9 @@ public class DynamicColorView extends FrameLayout {
         super.onSizeChanged(w, h, oldw, oldh);
 
         mRectF.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-        mRectF.set(ADS_STROKE_WIDTH, ADS_STROKE_WIDTH, mRectF.width() - ADS_STROKE_WIDTH,
-                mRectF.height() - ADS_STROKE_WIDTH);
+        mRectF.set(WidgetDefaults.ADS_STROKE_WIDTH, WidgetDefaults.ADS_STROKE_WIDTH,
+                mRectF.width() - WidgetDefaults.ADS_STROKE_WIDTH,
+                mRectF.height() - WidgetDefaults.ADS_STROKE_WIDTH);
 
         if (mSelected) {
             int selectorSize = (int) (getMeasuredWidth() - getMeasuredWidth() / ICON_DIVISOR);
@@ -336,8 +332,8 @@ public class DynamicColorView extends FrameLayout {
      */
     private StateListDrawable getForegroundDrawable() {
         Bitmap bitmap = Bitmap.createBitmap(
-                (int) mRectF.width() + ADS_STROKE_WIDTH,
-                (int) mRectF.height() + ADS_STROKE_WIDTH,
+                (int) mRectF.width() + WidgetDefaults.ADS_STROKE_WIDTH,
+                (int) mRectF.height() + WidgetDefaults.ADS_STROKE_WIDTH,
                 Bitmap.Config.ARGB_8888
         );
 

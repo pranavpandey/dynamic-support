@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2019 Pranav Pandey
+	Copyright 2020 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -17,16 +17,6 @@
 
 <resources>
 
-    <!-- Attributes for the DynamicCardView. -->
-    <declare-styleable name="DynamicCardView">
-        <!-- Color for the card background. -->
-        <attr name="ads_cardBackgroundColor" format="color" />
-        <!-- Corner radius for the card view. -->
-        <attr name="ads_cardCornerRadius" format="dimension" />
-        <!-- Elevation for the card view. -->
-        <attr name="ads_cardElevation" format="dimension" />
-    </declare-styleable>
-
     <!-- Attributes for the DynamicInfo. -->
     <declare-styleable name="DynamicInfo">
         <!-- Drawable that will be applied to this view. -->
@@ -41,10 +31,6 @@
         <attr name="ads_status" format="string" />
         <!-- Optional big drawable that will be applied to this view. -->
         <attr name="ads_iconBig" format="reference" />
-        <!-- Optional icon color that will be applied to this view. -->
-        <attr name="ads_color" />
-        <!-- Optional icon color type that will be applied to this view. -->
-        <attr name="ads_colorType" />
         <!-- true to show the divider below this view. -->
         <attr name="ads_showDivider" format="boolean" />
         <!-- Links array that will be applied to this view. -->
@@ -63,78 +49,42 @@
 
     <!-- Attributes for the DynamicHeader. -->
     <declare-styleable name="DynamicHeader">
-        <!-- Drawable that will be applied to this header. -->
         <attr name="ads_icon" />
-        <!-- Title that will be applied to this header. -->
         <attr name="ads_title" />
-        <!-- Subtitle that will be applied to this header. -->
         <attr name="ads_subtitle" />
         <!-- true to display the icon. -->
         <attr name="ads_showIcon" format="boolean" />
     </declare-styleable>
 
-    <!-- Attributes for the DynamicPreference. -->
-    <declare-styleable name="DynamicPreference">
-        <!-- Drawable that will be applied to this preference. -->
+    <!-- Attributes for the DynamicInfoView. -->
+    <declare-styleable name="DynamicInfoView">
         <attr name="ads_icon" />
-        <!-- Title that will be applied to this preference. -->
         <attr name="ads_title" />
-        <!-- Optional summary that will be applied to this preference. -->
-        <attr name="ads_summary" format="string" />
-        <!-- Optional description that will be applied to this preference. -->
+        <attr name="ads_subtitle" />
         <attr name="ads_description" />
-        <!-- Default preference value that will be applied to this preference. -->
-        <attr name="ads_value" format="string" />
-        <!-- Shared preference key that will be applied to this preference. -->
-        <attr name="ads_key" format="string" />
-        <!-- Shared preference key that will be applied to the alternate preference. -->
-        <attr name="ads_altKey" format="string" />
-        <!-- true to disable this preference by default. -->
-        <attr name="ads_enabled" format="boolean" />
-        <!-- Shared preference key of other preference to make it dependent on that preference. -->
-        <attr name="ads_dependency" format="string" />
-        <!-- true to make this preference checked by default. -->
-        <attr name="ads_checked" format="boolean" />
-        <!-- Optional summary to show if the preference is in the unchecked state. -->
-        <attr name="ads_unchecked" format="string" />
-        <!-- Text for the optional action button. -->
-        <attr name="ads_action" format="string" />
-        <!-- Maximum value that will be applied to the seek bar. -->
-        <attr name="ads_max" format="integer" />
-        <!-- Minimum value that will be applied to the seek bar. -->
-        <attr name="ads_min" format="integer" />
-        <!-- Progress value that will be applied to the seek bar. -->
-        <attr name="ads_progress" format="integer" />
-        <!-- Progress interval that will be applied to the seek bar. -->
-        <attr name="ads_interval" format="integer" />
-        <!-- Optional text which will be shown after the progress value. -->
-        <attr name="ads_unit" format="string" />
-        <!-- true to show the optional seek bar controls to increment or decrement the seek bar
-             value by one. -->
-        <attr name="ads_controls" format="boolean" />
-        <!-- false to disable the seek bar. -->
-        <attr name="ads_seek_bar" format="boolean" />
-        <!-- Preference entries that will be used by this preference. -->
-        <attr name="ads_entries" format="reference" />
-        <!-- Preference values that will be used by this preference. -->
-        <attr name="ads_values" format="reference" />
-        <!-- Image drawable that will be applied to this preference. -->
-        <attr name="ads_image" format="reference" />
-        <!-- Color that will be applied to this preference. -->
+        <attr name="ads_status" />
+        <attr name="ads_iconBig" />
+        <attr name="ads_links" />
+        <attr name="ads_subtitles" />
+        <attr name="ads_urls" />
+        <attr name="ads_icons" />
+        <attr name="ads_colors" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicItemView. -->
+    <declare-styleable name="DynamicItemView">
+        <attr name="ads_icon" />
+        <attr name="ads_title" />
+        <attr name="ads_subtitle" />
+        <attr name="ads_showDivider" />
+        <attr name="ads_fillSpace" />
+        <attr name="ads_colorType" />
         <attr name="ads_color" />
-        <!-- Alternate color that will be applied to this preference. -->
-        <attr name="ads_altColor" />
-        <!-- Dynamic theme that will be applied to this preference. -->
-        <attr name="ads_theme" />
-        <!-- True to enable quick for the supported preferences. -->
-        <attr name="ads_popup" />
-        <!-- View types supported by the popup. -->
-        <attr name="ads_popupType" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicPopup. -->
     <declare-styleable name="DynamicPopup">
-        <!-- True to enable quick for the supported views. -->
+        <!-- true to enable quick popup for the supported views. -->
         <attr name="ads_popup" format="boolean" />
         <!-- View types supported by the popup. -->
         <attr name="ads_popupType" format="enum">
@@ -174,12 +124,99 @@
     <declare-styleable name="DynamicColorPicker">
         <!-- An array of colors to be displayed in the picker. -->
         <attr name="ads_colors" />
-        <!-- True to enable alpha for the colors. -->
+        <!-- true to enable alpha for the colors. -->
         <attr name="ads_alphaEnabled" />
         <!-- An array of colors to be displayed in the picker popup. -->
         <attr name="ads_popupColors" />
         <!-- An array of colors to be displayed in the alternate picker popup. -->
         <attr name="ads_altPopupColors" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicPreference. -->
+    <declare-styleable name="DynamicPreference">
+        <!-- Drawable that will be applied to this preference. -->
+        <attr name="ads_icon" />
+        <!-- Title that will be applied to this preference. -->
+        <attr name="ads_title" />
+        <!-- Optional summary that will be applied to this preference. -->
+        <attr name="ads_summary" format="string" />
+        <!-- Optional description that will be applied to this preference. -->
+        <attr name="ads_description" />
+        <!-- Default preference value that will be applied to this preference. -->
+        <attr name="ads_value" format="string" />
+        <!-- Shared preference key that will be applied to this preference. -->
+        <attr name="ads_key" format="string" />
+        <!-- Shared preference key that will be applied to the alternate preference. -->
+        <attr name="ads_altKey" format="string" />
+        <!-- true to disable this preference by default. -->
+        <attr name="ads_enabled" format="boolean" />
+        <!-- Shared preference key of other preference to make it dependent on that preference. -->
+        <attr name="ads_dependency" format="string" />
+        <!-- Text for the optional action button. -->
+        <attr name="ads_action" format="string" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicCheckPreference. -->
+    <declare-styleable name="DynamicCheckPreference">
+        <!-- true to make this preference checked by default. -->
+        <attr name="ads_checked" format="boolean" />
+        <!-- Optional summary to show if the preference is in the unchecked state. -->
+        <attr name="ads_unchecked" format="string" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicColorPreference. -->
+    <declare-styleable name="DynamicColorPreference">
+        <attr name="ads_color" />
+        <attr name="ads_altColor" />
+        <attr name="ads_popup" />
+        <attr name="ads_shape" />
+        <attr name="ads_alphaEnabled" />
+        <attr name="ads_colors" />
+        <attr name="ads_popupColors" />
+        <attr name="ads_altPopupColors" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicImagePreference. -->
+    <declare-styleable name="DynamicImagePreference">
+        <!-- Image drawable that will be applied to this preference. -->
+        <attr name="ads_image" format="reference" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicSeekBarPreference. -->
+    <declare-styleable name="DynamicSeekBarPreference">
+        <!-- Maximum value that will be applied to the seek bar. -->
+        <attr name="ads_max" format="integer" />
+        <!-- Minimum value that will be applied to the seek bar. -->
+        <attr name="ads_min" format="integer" />
+        <!-- Progress value that will be applied to the seek bar. -->
+        <attr name="ads_progress" format="integer" />
+        <!-- Progress interval that will be applied to the seek bar. -->
+        <attr name="ads_interval" format="integer" />
+        <!-- Optional text which will be shown after the progress value. -->
+        <attr name="ads_unit" format="string" />
+        <!-- true to show the optional seek bar controls to increment or decrement the seek bar
+             value by one. -->
+        <attr name="ads_controls" format="boolean" />
+        <!-- false to disable the seek bar. -->
+        <attr name="ads_seek_bar" format="boolean" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicSpinnerPreference. -->
+    <declare-styleable name="DynamicSpinnerPreference">
+        <!-- Selected index value for this preference. -->
+        <attr name="ads_value" />
+        <!-- Preference entries that will be used by this preference. -->
+        <attr name="ads_entries" format="reference" />
+        <!-- Preference values that will be used by this preference. -->
+        <attr name="ads_values" format="reference" />
+        <!-- View types supported by the popup. -->
+        <attr name="ads_popupType" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicThemePreference. -->
+    <declare-styleable name="DynamicThemePreference">
+        <!-- Dynamic theme that will be applied to this preference. -->
+        <attr name="ads_theme" />
     </declare-styleable>
 
 </resources>

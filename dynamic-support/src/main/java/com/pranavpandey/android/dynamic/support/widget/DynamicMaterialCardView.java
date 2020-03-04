@@ -118,29 +118,30 @@ public class DynamicMaterialCardView extends MaterialCardView implements
 
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.DynamicTheme);
+        TypedArray a = getContext().obtainStyledAttributes(attrs, 
+                R.styleable.DynamicMaterialCardView);
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_colorType,
+                    R.styleable.DynamicMaterialCardView_ads_colorType,
                     Theme.ColorType.SURFACE);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_contrastWithColorType,
-                    Theme.ColorType.NONE);
+                    R.styleable.DynamicMaterialCardView_ads_contrastWithColorType,
+                    Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_color,
+                    R.styleable.DynamicMaterialCardView_ads_color,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_contrastWithColor,
-                    WidgetDefaults.getContrastWithColor(getContext()));
+                    R.styleable.DynamicMaterialCardView_ads_contrastWithColor,
+                    WidgetDefaults.ADS_COLOR_UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicTheme_ads_backgroundAware,
+                    R.styleable.DynamicMaterialCardView_ads_backgroundAware,
                     Theme.BackgroundAware.DISABLE);
             mElevationOnSameBackground = a.getBoolean(
-                    R.styleable.DynamicTheme_ads_elevationOnSameBackground,
+                    R.styleable.DynamicMaterialCardView_ads_elevationOnSameBackground,
                     WidgetDefaults.ADS_ELEVATION_ON_SAME_BACKGROUND);
             mElevation = getCardElevation();
+            mStrokeWidth = getStrokeWidth();
         } finally {
             a.recycle();
         }

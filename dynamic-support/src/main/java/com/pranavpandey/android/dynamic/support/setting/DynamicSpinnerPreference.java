@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -83,14 +83,19 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
     protected void onLoadAttributes(@Nullable AttributeSet attrs) {
         super.onLoadAttributes(attrs);
 
-        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DynamicPreference);
+        TypedArray a = getContext().obtainStyledAttributes(attrs,
+                R.styleable.DynamicSpinnerPreference);
 
         try {
-            mEntries = a.getTextArray(R.styleable.DynamicPreference_ads_entries);
-            mValues = a.getTextArray(R.styleable.DynamicPreference_ads_values);
-            mDefaultValue = a.getInt(R.styleable.DynamicPreference_ads_value,
+            mEntries = a.getTextArray(
+                    R.styleable.DynamicSpinnerPreference_ads_entries);
+            mValues = a.getTextArray(
+                    R.styleable.DynamicSpinnerPreference_ads_values);
+            mDefaultValue = a.getInt(
+                    R.styleable.DynamicSpinnerPreference_ads_value,
                     DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE);
-            mPopupType = a.getInt(R.styleable.DynamicPreference_ads_popupType,
+            mPopupType = a.getInt(
+                    R.styleable.DynamicSpinnerPreference_ads_popupType,
                     DynamicPopup.Type.NONE);
         } finally {
             a.recycle();

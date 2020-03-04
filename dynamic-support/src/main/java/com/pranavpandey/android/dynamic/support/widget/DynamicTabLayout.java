@@ -122,36 +122,36 @@ public class DynamicTabLayout extends TabLayout implements
 
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.DynamicTheme);
+        TypedArray a = getContext().obtainStyledAttributes(attrs, 
+                R.styleable.DynamicTabLayout);
 
         try {
             mBackgroundColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_backgroundColorType,
+                    R.styleable.DynamicTabLayout_ads_backgroundColorType,
                     Theme.ColorType.PRIMARY);
             mColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_colorType,
+                    R.styleable.DynamicTabLayout_ads_colorType,
                     Theme.ColorType.ACCENT);
             mTextColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_textColorType,
+                    R.styleable.DynamicTabLayout_ads_textColorType,
                     Theme.ColorType.TINT_PRIMARY);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_contrastWithColorType,
+                    R.styleable.DynamicTabLayout_ads_contrastWithColorType,
                     Theme.ColorType.PRIMARY);
             mBackgroundColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_backgroundColor,
+                    R.styleable.DynamicTabLayout_ads_backgroundColor,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_color,
+                    R.styleable.DynamicTabLayout_ads_color,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mTextColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_textColor,
+                    R.styleable.DynamicTabLayout_ads_textColor,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_contrastWithColor,
+                    R.styleable.DynamicTabLayout_ads_contrastWithColor,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicTheme_ads_backgroundAware,
+                    R.styleable.DynamicTabLayout_ads_backgroundAware,
                     WidgetDefaults.getBackgroundAware());
         } finally {
             a.recycle();

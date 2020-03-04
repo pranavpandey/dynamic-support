@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,8 +41,8 @@ import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorPalette;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
@@ -172,41 +172,35 @@ public class DynamicColorPreference extends DynamicSimplePreference {
         super.onLoadAttributes(attrs);
 
         TypedArray a = getContext().obtainStyledAttributes(attrs,
-                R.styleable.DynamicPreference);
-        TypedArray b = getContext().obtainStyledAttributes(attrs,
-                R.styleable.DynamicColorView);
-        TypedArray c = getContext().obtainStyledAttributes(attrs,
-                R.styleable.DynamicColorPicker);
+                R.styleable.DynamicColorPreference);
 
         try {
             mDefaultColor = a.getColor(
-                    R.styleable.DynamicPreference_ads_color,
+                    R.styleable.DynamicColorPreference_ads_color,
                     Theme.AUTO);
             mAltDefaultColor = a.getColor(
-                    R.styleable.DynamicPreference_ads_altColor,
+                    R.styleable.DynamicColorPreference_ads_altColor,
                     Theme.AUTO);
             mShowColorPopup = a.getBoolean(
-                    R.styleable.DynamicPreference_ads_popup,
+                    R.styleable.DynamicColorPreference_ads_popup,
                     false);
-            mColorShape = b.getInt(
-                    R.styleable.DynamicColorView_ads_shape,
+            mColorShape = a.getInt(
+                    R.styleable.DynamicColorPreference_ads_shape,
                     DynamicColorShape.CIRCLE);
-            mAlpha = c.getBoolean(
+            mAlpha = a.getBoolean(
                     R.styleable.DynamicColorPicker_ads_alphaEnabled,
                     false);
-            mColorsResId = c.getResourceId(
-                    R.styleable.DynamicColorPicker_ads_colors,
+            mColorsResId = a.getResourceId(
+                    R.styleable.DynamicColorPreference_ads_colors,
                     DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID);
-            mPopupColorsResId = c.getResourceId(
-                    R.styleable.DynamicColorPicker_ads_popupColors,
+            mPopupColorsResId = a.getResourceId(
+                    R.styleable.DynamicColorPreference_ads_popupColors,
                     DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID);
-            mAltPopupColorsResId = c.getResourceId(
-                    R.styleable.DynamicColorPicker_ads_altPopupColors,
+            mAltPopupColorsResId = a.getResourceId(
+                    R.styleable.DynamicColorPreference_ads_altPopupColors,
                     mPopupColorsResId);
         } finally {
             a.recycle();
-            b.recycle();
-            c.recycle();
         }
 
         if (getPreferenceKey() != null) {

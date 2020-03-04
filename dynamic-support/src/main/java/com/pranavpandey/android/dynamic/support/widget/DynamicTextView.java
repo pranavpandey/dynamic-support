@@ -126,42 +126,41 @@ public class DynamicTextView extends MaterialTextView implements
 
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.DynamicTheme);
-        TypedArray b = getContext().obtainStyledAttributes(
-                attrs, new int[] { R.attr.ads_rtlSupport });
+        TypedArray a = getContext().obtainStyledAttributes(attrs, 
+                R.styleable.DynamicTextView);
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_colorType,
+                    R.styleable.DynamicTextView_ads_colorType,
                     Theme.ColorType.NONE);
             mLinkColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_linkColorType,
+                    R.styleable.DynamicTextView_ads_linkColorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_contrastWithColorType,
+                    R.styleable.DynamicTextView_ads_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_color,
+                    R.styleable.DynamicTextView_ads_color,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mLinkColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_linkColor,
+                    R.styleable.DynamicTextView_ads_linkColor,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_contrastWithColor,
+                    R.styleable.DynamicTextView_ads_contrastWithColor,
                     WidgetDefaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicTheme_ads_backgroundAware,
+                    R.styleable.DynamicTextView_ads_backgroundAware,
                     WidgetDefaults.getBackgroundAware());
+            mRtlSupport = a.getBoolean(
+                    R.styleable.DynamicTextView_ads_rtlSupport,
+                    WidgetDefaults.ADS_RTL_SUPPORT);
 
             if (attrs != null) {
                 mColorAttrRes = DynamicResourceUtils.getResourceIdFromAttributes(
                         getContext(), attrs, android.R.attr.textColor);
-                mRtlSupport = b.getBoolean(0, WidgetDefaults.ADS_RTL_SUPPORT);
             }
         } finally {
             a.recycle();
-            b.recycle();
         }
 
         initialize();

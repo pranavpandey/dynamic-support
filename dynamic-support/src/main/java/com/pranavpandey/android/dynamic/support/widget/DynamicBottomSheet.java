@@ -58,11 +58,13 @@ public class DynamicBottomSheet extends FrameLayout implements WindowInsetsWidge
 
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, new int[] { R.attr.ads_windowInsets});
+        TypedArray a = getContext().obtainStyledAttributes(attrs,
+                R.styleable.DynamicBottomSheet);
 
         try {
-            if (attrs != null && a.getBoolean(0, WidgetDefaults.ADS_WINDOW_INSETS)) {
+            if (a.getBoolean(
+                    R.styleable.DynamicBottomSheet_ads_windowInsets,
+                    WidgetDefaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }
         } finally {
@@ -98,6 +100,7 @@ public class DynamicBottomSheet extends FrameLayout implements WindowInsetsWidge
                         paddingBottom + insets.getSystemWindowInsetBottom());
                 BottomSheetBehavior.from(v).setPeekHeight(
                         peekHeight + insets.getSystemWindowInsetBottom());
+                insets.consumeSystemWindowInsets();
 
                 return insets;
             }

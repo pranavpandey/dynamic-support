@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2019 Pranav Pandey
+	Copyright 2020 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -17,6 +17,234 @@
 
 <resources>
 
+    <!-- Attributes for the DynamicAppBarLayout. -->
+    <declare-styleable name="DynamicAppBarLayout">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+        <attr name="ads_windowInsets" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicBottomAppBar. -->
+    <declare-styleable name="DynamicBottomAppBar">
+        <attr name="ads_colorType" />
+        <attr name="ads_textColorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_textColor" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicBottomNavigationView. -->
+    <declare-styleable name="DynamicBottomNavigationView">
+        <attr name="ads_colorType" />
+        <attr name="ads_textColorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_textColor" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+        <attr name="ads_windowInsets" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicBottomSheet. -->
+    <declare-styleable name="DynamicBottomSheet">
+        <attr name="ads_windowInsets" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicButton. -->
+    <declare-styleable name="DynamicButton">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+        <attr name="ads_styleBorderless" />
+        <attr name="ads_tintBackground" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicCardView. -->
+    <declare-styleable name="DynamicCardView">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+        <attr name="ads_elevationOnSameBackground" />
+        <!-- Color for the card background. -->
+        <attr name="ads_cardBackgroundColor" format="color" />
+        <!-- Corner radius for the card view. -->
+        <attr name="ads_cardCornerRadius" format="dimension" />
+        <!-- Elevation for the card view. -->
+        <attr name="ads_cardElevation" format="dimension" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicCheckBox. -->
+    <declare-styleable name="DynamicCheckBox">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicCheckedTextView. -->
+    <declare-styleable name="DynamicCheckedTextView">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicCollapsingToolbarLayout. -->
+    <declare-styleable name="DynamicCollapsingToolbarLayout">
+        <attr name="ads_rtlSupport" />
+        <attr name="ads_windowInsets" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicCoordinatorLayout. -->
+    <declare-styleable name="DynamicCoordinatorLayout">
+        <attr name="ads_windowInsets" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicDrawerLayout. -->
+    <declare-styleable name="DynamicDrawerLayout">
+        <attr name="ads_windowInsets" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicEditText. -->
+    <declare-styleable name="DynamicEditText">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicExtendedFloatingActionButton. -->
+    <declare-styleable name="DynamicExtendedFloatingActionButton">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicFloatingActionButton. -->
+    <declare-styleable name="DynamicFloatingActionButton">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicFrameLayout. -->
+    <declare-styleable name="DynamicFrameLayout">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicGridView. -->
+    <declare-styleable name="DynamicGridView">
+        <attr name="ads_colorType" />
+        <attr name="ads_scrollBarColorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_scrollBarColor" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+        <attr name="ads_windowInsets" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicImageButton. -->
+    <declare-styleable name="DynamicImageButton">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+        <attr name="ads_styleBorderless" />
+        <attr name="ads_tintBackground" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicImageView. -->
+    <declare-styleable name="DynamicImageView">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicLinearLayout. -->
+    <declare-styleable name="DynamicLinearLayout">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicListView. -->
+    <declare-styleable name="DynamicListView">
+        <attr name="ads_colorType" />
+        <attr name="ads_scrollBarColorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_scrollBarColor" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+        <attr name="ads_windowInsets" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicMaterialCardView. -->
+    <declare-styleable name="DynamicMaterialCardView">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+        <attr name="ads_elevationOnSameBackground" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicNavigationView. -->
+    <declare-styleable name="DynamicNavigationView">
+        <attr name="ads_backgroundColorType" />
+        <attr name="ads_colorType" />
+        <attr name="ads_scrollBarColorType" />
+        <attr name="ads_stateNormalColorType" />
+        <attr name="ads_stateSelectedColorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_backgroundColor" />
+        <attr name="ads_color" />
+        <attr name="ads_scrollBarColor" />
+        <attr name="ads_stateNormalColor" />
+        <attr name="ads_stateSelectedColor" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+        <attr name="ads_windowInsets" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicNestedScrollView. -->
+    <declare-styleable name="DynamicNestedScrollView">
+        <attr name="ads_colorType" />
+        <attr name="ads_scrollBarColorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_scrollBarColor" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+        <attr name="ads_windowInsets" />
+    </declare-styleable>
+
     <!-- Attributes for the DynamicPageIndicator. -->
     <declare-styleable name="DynamicPageIndicator">
         <!-- Diameter of the indicator dots. -->
@@ -29,6 +257,173 @@
         <attr name="ads_pageIndicatorColor" format="color" />
         <!-- Color for the current page indicator. -->
         <attr name="ads_currentPageIndicatorColor" format="color" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicPageIndicator2. -->
+    <declare-styleable name="DynamicPageIndicator2">
+        <attr name="ads_dotDiameter" />
+        <attr name="ads_dotGap" />
+        <attr name="ads_animationDuration" />
+        <attr name="ads_pageIndicatorColor" />
+        <attr name="ads_currentPageIndicatorColor" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicProgressBar. -->
+    <declare-styleable name="DynamicProgressBar">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicRadioButton. -->
+    <declare-styleable name="DynamicRadioButton">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicRecyclerView. -->
+    <declare-styleable name="DynamicRecyclerView">
+        <attr name="ads_colorType" />
+        <attr name="ads_scrollBarColorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_scrollBarColor" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+        <attr name="ads_windowInsets" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicRelativeLayout. -->
+    <declare-styleable name="DynamicRelativeLayout">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicRootLayout. -->
+    <declare-styleable name="DynamicRootLayout">
+        <attr name="ads_windowInsets" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicScrollView. -->
+    <declare-styleable name="DynamicScrollView">
+        <attr name="ads_colorType" />
+        <attr name="ads_scrollBarColorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_scrollBarColor" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+        <attr name="ads_windowInsets" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicSeekBar. -->
+    <declare-styleable name="DynamicSeekBar">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicSpinner. -->
+    <declare-styleable name="DynamicSpinner">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+        <attr name="ads_elevationOnSameBackground" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicSwipeRefreshLayout. -->
+    <declare-styleable name="DynamicSwipeRefreshLayout">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicSwitchCompat. -->
+    <declare-styleable name="DynamicSwitchCompat">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_stateNormalColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_stateNormalColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicTabLayout. -->
+    <declare-styleable name="DynamicTabLayout">
+        <attr name="ads_backgroundColorType" />
+        <attr name="ads_colorType" />
+        <attr name="ads_textColorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_backgroundColor" />
+        <attr name="ads_color" />
+        <attr name="ads_textColor" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicTextInputEditText. -->
+    <declare-styleable name="DynamicTextInputEditText">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicTextInputLayout. -->
+    <declare-styleable name="DynamicTextInputLayout">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicTextView. -->
+    <declare-styleable name="DynamicTextView">
+        <attr name="ads_colorType" />
+        <attr name="ads_linkColorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_linkColor" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+        <attr name="ads_rtlSupport" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicToolbar. -->
+    <declare-styleable name="DynamicToolbar">
+        <attr name="ads_colorType" />
+        <attr name="ads_textColorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_textColor" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicViewPager. -->
+    <declare-styleable name="DynamicViewPager">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
     </declare-styleable>
 
 </resources>

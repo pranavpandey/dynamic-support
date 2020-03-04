@@ -64,22 +64,23 @@ public class DynamicCollapsingToolbarLayout extends CollapsingToolbarLayout
 
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, new int[]{R.attr.ads_rtlSupport});
-        TypedArray b = getContext().obtainStyledAttributes(
-                attrs, new int[] { R.attr.ads_windowInsets});
+        TypedArray a = getContext().obtainStyledAttributes(attrs,
+                R.styleable.DynamicCollapsingToolbarLayout);
 
         try {
             if (attrs != null) {
-                mRtlSupport = a.getBoolean(0, WidgetDefaults.ADS_RTL_SUPPORT);
+                mRtlSupport = a.getBoolean(
+                        R.styleable.DynamicCollapsingToolbarLayout_ads_rtlSupport,
+                        WidgetDefaults.ADS_RTL_SUPPORT);
 
-                if (b.getBoolean(0, WidgetDefaults.ADS_WINDOW_INSETS)) {
+                if (a.getBoolean(
+                        R.styleable.DynamicCollapsingToolbarLayout_ads_windowInsets,
+                        WidgetDefaults.ADS_WINDOW_INSETS)) {
                     applyWindowInsets();
                 }
             }
         } finally {
             a.recycle();
-            b.recycle();
         }
 
         initialize();

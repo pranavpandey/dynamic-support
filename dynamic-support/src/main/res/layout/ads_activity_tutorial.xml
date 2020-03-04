@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2019 Pranav Pandey
+	Copyright 2020 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 	limitations under the License.
 -->
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ads_coordinator_layout"
@@ -52,7 +52,6 @@
                 android:layout_marginEnd="@dimen/ads_icon_small"
                 android:layout_gravity="start|center_vertical"
                 app:srcCompat="@drawable/ads_ic_chevron_left"
-                app:ads_backgroundAware="disable"
                 app:ads_tintBackground="true" />
 
             <LinearLayout
@@ -69,8 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/ads_margin_medium"
-                    android:visibility="gone"
-                    app:ads_backgroundAware="disable" />
+                    android:visibility="gone" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator2
                     android:id="@+id/ads_tutorial_page_indicator"
@@ -88,11 +86,10 @@
                 android:layout_marginStart="@dimen/ads_icon_small"
                 android:layout_gravity="start|center_vertical"
                 app:srcCompat="@drawable/ads_ic_chevron_right"
-                app:ads_backgroundAware="disable"
                 app:ads_tintBackground="true" />
 
         </LinearLayout>
 
     </RelativeLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout>

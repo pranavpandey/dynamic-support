@@ -348,9 +348,12 @@ public class Dynamic {
      *
      * @param dynamicWidget The dynamic widget to be tinted.
      * @param color The color to tint the widget.
+     * @param contrastWithColor The contrast with color for the widget.
      */
-    public static void tintDynamicView(@Nullable View dynamicWidget, @ColorInt int color) {
+    public static void tint(@Nullable View dynamicWidget,
+            @ColorInt int color, @ColorInt int contrastWithColor) {
         if (dynamicWidget != null) {
+            setContrastWithColor(dynamicWidget, contrastWithColor);
             setColor(dynamicWidget, color);
 
             if (dynamicWidget instanceof DynamicScrollableWidget) {
@@ -365,31 +368,54 @@ public class Dynamic {
      * @param imageView The image view to set the drawable.
      * @param drawable The drawable for the image view.
      */
-    public static void setImage(@Nullable ImageView imageView, @Nullable Drawable drawable) {
-        if (imageView != null) {
-            if (drawable != null) {
-                imageView.setImageDrawable(drawable);
-                imageView.setVisibility(View.VISIBLE);
-            } else {
-                imageView.setVisibility(View.GONE);
-            }
+    public static void set(@Nullable ImageView imageView, @Nullable Drawable drawable) {
+        if (imageView == null) {
+            return;
+        }
+
+        if (drawable != null) {
+            imageView.setImageDrawable(drawable);
+            imageView.setVisibility(View.VISIBLE);
+        } else {
+            imageView.setVisibility(View.GONE);
         }
     }
 
     /**
-     * Set text for the tutorial text view and mange its visibility according to the data.
+     * Set text for the text view and mange its visibility according to the data.
      *
      * @param textView The text view to set the text.
-     * @param text The text for the text view.
+     * @param text The text to be set.
      */
-    public static void setText(@Nullable TextView textView, @Nullable String text) {
-        if (textView != null) {
-            if (text != null) {
-                textView.setText(text);
-                textView.setVisibility(View.VISIBLE);
-            } else {
-                textView.setVisibility(View.GONE);
-            }
+    public static void set(@Nullable TextView textView, @Nullable String text) {
+        if (textView == null) {
+            return;
+        }
+
+        if (text != null) {
+            textView.setText(text);
+            textView.setVisibility(View.VISIBLE);
+        } else {
+            textView.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * Set text for the text view and mange its visibility according to the data.
+     *
+     * @param textView The text view to set the text.
+     * @param text The text to be set.
+     */
+    public static void set(@Nullable TextView textView, @Nullable CharSequence text) {
+        if (textView == null) {
+            return;
+        }
+
+        if (text != null) {
+            textView.setText(text);
+            textView.setVisibility(View.VISIBLE);
+        } else {
+            textView.setVisibility(View.GONE);
         }
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  * Copyright 2015 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -132,20 +132,20 @@ public class DynamicPageIndicator2 extends View implements View.OnAttachStateCha
 
         // Load attributes
         final TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.DynamicPageIndicator, defStyle, 0);
+                attrs, R.styleable.DynamicPageIndicator2, defStyle, 0);
 
-        dotDiameter = a.getDimensionPixelSize(R.styleable.DynamicPageIndicator_ads_dotDiameter,
+        dotDiameter = a.getDimensionPixelSize(R.styleable.DynamicPageIndicator2_ads_dotDiameter,
                 DEFAULT_DOT_SIZE * density);
         dotRadius = dotDiameter / 2;
         halfDotRadius = dotRadius / 2;
-        gap = a.getDimensionPixelSize(R.styleable.DynamicPageIndicator_ads_dotGap,
+        gap = a.getDimensionPixelSize(R.styleable.DynamicPageIndicator2_ads_dotGap,
                 DEFAULT_GAP * density);
-        animDuration = (long) a.getInteger(R.styleable.DynamicPageIndicator_ads_animationDuration,
+        animDuration = (long) a.getInteger(R.styleable.DynamicPageIndicator2_ads_animationDuration,
                 DEFAULT_ANIM_DURATION);
         animHalfDuration = animDuration / 2;
-        unselectedColour = a.getColor( R.styleable.DynamicPageIndicator_ads_pageIndicatorColor,
+        unselectedColour = a.getColor( R.styleable.DynamicPageIndicator2_ads_pageIndicatorColor,
                 DEFAULT_UNSELECTED_COLOUR);
-        selectedColour = a.getColor( R.styleable.DynamicPageIndicator_ads_currentPageIndicatorColor,
+        selectedColour = a.getColor( R.styleable.DynamicPageIndicator2_ads_currentPageIndicatorColor,
                 DEFAULT_SELECTED_COLOUR);
 
         a.recycle();

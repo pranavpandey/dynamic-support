@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2019 Pranav Pandey
+	Copyright 2020 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -64,5 +64,8 @@
     <!-- Dialog -->
     <item name="ads_dialog_min_width_major" type="dimen">65%</item>
     <item name="ads_dialog_min_width_minor" type="dimen">95%</item>
+
+    <!-- Toast -->
+    <item name="ads_toast_alpha" type="integer" format="float">0.95</item>
 
 </resources>

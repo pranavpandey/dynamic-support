@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,9 +41,9 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
 import com.pranavpandey.android.dynamic.support.picker.DynamicPickerType;
 import com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact;
 import com.pranavpandey.android.dynamic.support.theme.DynamicColorPalette;
-import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicView;
+import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
@@ -124,7 +124,7 @@ public class DynamicColorPicker extends DynamicView {
     /**
      * Recent array list to perform calculations.
      */
-    private ArrayList<Integer> mRecentsList;
+    private List<Integer> mRecentsList;
 
     /**
      * The previous color.
@@ -377,7 +377,7 @@ public class DynamicColorPicker extends DynamicView {
 
                             if (mAlpha) {
                                 setCustom(Color.HSVToColor(mSeekBarAlpha.getProgress(),
-                                        new float[] { mHSVHue, mHSVSaturation, mHSVValue}),
+                                        new float[] { mHSVHue, mHSVSaturation, mHSVValue }),
                                         false, true);
                             } else {
                                 setCustom(Color.HSVToColor(

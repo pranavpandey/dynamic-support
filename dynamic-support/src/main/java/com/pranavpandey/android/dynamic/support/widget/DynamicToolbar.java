@@ -109,29 +109,29 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
 
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.DynamicTheme);
+        TypedArray a = getContext().obtainStyledAttributes(attrs, 
+                R.styleable.DynamicToolbar);
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_colorType,
+                    R.styleable.DynamicToolbar_ads_colorType,
                     Theme.ColorType.PRIMARY);
             mTextColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_textColorType,
+                    R.styleable.DynamicToolbar_ads_textColorType,
                     Theme.ColorType.TINT_PRIMARY);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_contrastWithColor,
+                    R.styleable.DynamicToolbar_ads_contrastWithColor,
                     WidgetDefaults.getContrastWithColor(getContext()));
-            mColor = a.getColor(R.styleable.DynamicTheme_ads_color,
+            mColor = a.getColor(R.styleable.DynamicToolbar_ads_color,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mTextColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_textColor,
+                    R.styleable.DynamicToolbar_ads_textColor,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_contrastWithColor,
+                    R.styleable.DynamicToolbar_ads_contrastWithColor,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicTheme_ads_backgroundAware,
+                    R.styleable.DynamicToolbar_ads_backgroundAware,
                     WidgetDefaults.getBackgroundAware());
         } finally {
             a.recycle();

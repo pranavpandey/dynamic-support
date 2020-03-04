@@ -39,6 +39,7 @@ import com.pranavpandey.android.dynamic.support.model.DynamicItem;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicItemsAdapter;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
@@ -173,27 +174,37 @@ public class DynamicInfoView extends DynamicView {
 
     @Override
     protected void onLoadAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DynamicInfo);
+        TypedArray a = getContext().obtainStyledAttributes(attrs, 
+                R.styleable.DynamicInfoView);
 
         try {
-            mIcon = DynamicResourceUtils.getDrawable(getContext(), a.getResourceId(
-                    R.styleable.DynamicInfo_ads_icon,
-                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
-            mTitle = a.getString(R.styleable.DynamicInfo_ads_title);
-            mSubtitle = a.getString(R.styleable.DynamicInfo_ads_subtitle);
-            mDescription = a.getString(R.styleable.DynamicInfo_ads_description);
-            mStatus = a.getString(R.styleable.DynamicInfo_ads_status);
-            mIconBig = DynamicResourceUtils.getDrawable(getContext(), a.getResourceId(
-                    R.styleable.DynamicInfo_ads_iconBig,
-                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
-            mLinks = a.getTextArray(R.styleable.DynamicInfo_ads_links);
-            mLinksSubtitles = a.getTextArray(R.styleable.DynamicInfo_ads_subtitles);
-            mLinksUrls = a.getTextArray(R.styleable.DynamicInfo_ads_urls);
+            mIcon = DynamicResourceUtils.getDrawable(getContext(), 
+                    a.getResourceId(
+                            R.styleable.DynamicInfoView_ads_icon, 
+                            DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
+            mTitle = a.getString(
+                    R.styleable.DynamicInfoView_ads_title);
+            mSubtitle = a.getString(
+                    R.styleable.DynamicInfoView_ads_subtitle);
+            mDescription = a.getString(
+                    R.styleable.DynamicInfoView_ads_description);
+            mStatus = a.getString(
+                    R.styleable.DynamicInfoView_ads_status);
+            mIconBig = DynamicResourceUtils.getDrawable(getContext(), 
+                    a.getResourceId(
+                            R.styleable.DynamicInfoView_ads_iconBig, 
+                            DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
+            mLinks = a.getTextArray(
+                    R.styleable.DynamicInfoView_ads_links);
+            mLinksSubtitles = a.getTextArray(
+                    R.styleable.DynamicInfoView_ads_subtitles);
+            mLinksUrls = a.getTextArray(
+                    R.styleable.DynamicInfoView_ads_urls);
             mLinksIconsResId = a.getResourceId(
-                    R.styleable.DynamicInfo_ads_icons,
+                    R.styleable.DynamicInfoView_ads_icons,
                     DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID);
             mLinksColorsResId = a.getResourceId(
-                    R.styleable.DynamicInfo_ads_colors,
+                    R.styleable.DynamicInfoView_ads_colors,
                     DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID);
         } finally {
             a.recycle();
@@ -225,47 +236,12 @@ public class DynamicInfoView extends DynamicView {
 
     @Override
     public void onUpdate() {
-        if (mIcon != null) {
-            mIconView.setImageDrawable(mIcon);
-            mIconView.setVisibility(VISIBLE);
-        } else {
-            mIconView.setVisibility(GONE);
-        }
-
-        if (mTitle != null) {
-            mTitleView.setText(mTitle);
-            mTitleView.setVisibility(VISIBLE);
-        } else {
-            mTitleView.setVisibility(GONE);
-        }
-
-        if (mSubtitle != null) {
-            mSubtitleView.setText(mSubtitle);
-            mSubtitleView.setVisibility(VISIBLE);
-        } else {
-            mSubtitleView.setVisibility(GONE);
-        }
-
-        if (mDescription != null) {
-            mDescriptionView.setText(mDescription);
-            mDescriptionView.setVisibility(VISIBLE);
-        } else {
-            mDescriptionView.setVisibility(GONE);
-        }
-
-        if (mStatus != null) {
-            mStatusView.setText(mStatus);
-            mStatusView.setVisibility(VISIBLE);
-        } else {
-            mStatusView.setVisibility(GONE);
-        }
-
-        if (mIconBig != null) {
-            mIconBigView.setImageDrawable(mIconBig);
-            findViewById(R.id.ads_info_view_icon_frame).setVisibility(VISIBLE);
-        } else {
-            findViewById(R.id.ads_info_view_icon_frame).setVisibility(GONE);
-        }
+        Dynamic.set(mIconView, mIcon);
+        Dynamic.set(mIconBigView, mIconBig);
+        Dynamic.set(mTitleView, mTitle);
+        Dynamic.set(mSubtitleView, mSubtitle);
+        Dynamic.set(mDescriptionView, mDescription);
+        Dynamic.set(mStatusView, mStatus);
 
         mDynamicItems.clear();
         if (mLinks != null) {

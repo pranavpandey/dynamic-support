@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2019 Pranav Pandey
+	Copyright 2020 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -243,6 +243,7 @@
     <string name="ads_theme_presets_desc">通过Google Play下载。</string>
     <string name="ads_theme_presets_options">点击选项</string>
     <string name="ads_theme_presets_import">点击导入</string>
+    <string name="ads_theme_presets_empty">没有预设</string>
 
     <!-- Theme -->
     <string name="ads_theme_toast_default">默认的Toast消息</string>

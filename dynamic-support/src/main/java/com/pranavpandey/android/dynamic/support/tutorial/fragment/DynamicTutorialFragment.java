@@ -112,8 +112,8 @@ public class DynamicTutorialFragment extends Fragment implements
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            if (getArguments().containsKey(ADS_ARGS_TUTORIAL)) {
-                mDynamicSimpleTutorial = getArguments().getParcelable(ADS_ARGS_TUTORIAL);
+            if (requireArguments().containsKey(ADS_ARGS_TUTORIAL)) {
+                mDynamicSimpleTutorial = requireArguments().getParcelable(ADS_ARGS_TUTORIAL);
             }
         }
 
@@ -141,13 +141,13 @@ public class DynamicTutorialFragment extends Fragment implements
 
         if (mDynamicSimpleTutorial != null) {
             if (mImageView != null) {
-                Dynamic.setImage(mImageView, DynamicResourceUtils.getDrawable(
+                Dynamic.set(mImageView, DynamicResourceUtils.getDrawable(
                         requireContext(), mDynamicSimpleTutorial.getImageRes()));
             }
 
-            Dynamic.setText(mTitleView, mDynamicSimpleTutorial.getTitle());
-            Dynamic.setText(mSubtitleView, mDynamicSimpleTutorial.getSubtitle());
-            Dynamic.setText(mDescriptionView, mDynamicSimpleTutorial.getDescription());
+            Dynamic.set(mTitleView, mDynamicSimpleTutorial.getTitle());
+            Dynamic.set(mSubtitleView, mDynamicSimpleTutorial.getSubtitle());
+            Dynamic.set(mDescriptionView, mDynamicSimpleTutorial.getDescription());
         }
 
         tintWidgets(getBackgroundColor());
@@ -169,13 +169,13 @@ public class DynamicTutorialFragment extends Fragment implements
         final @ColorInt int tintColor = DynamicColorUtils.getTintColor(color);
 
         if (mDynamicSimpleTutorial != null && mDynamicSimpleTutorial.isTintImage()) {
-            Dynamic.tintDynamicView(mImageView, tintColor);
+            Dynamic.tint(mImageView, tintColor, color);
         }
 
-        Dynamic.tintDynamicView(mTitleView, tintColor);
-        Dynamic.tintDynamicView(mScrollView, tintColor);
-        Dynamic.tintDynamicView(mSubtitleView, tintColor);
-        Dynamic.tintDynamicView(mDescriptionView, tintColor);
+        Dynamic.tint(mTitleView, tintColor, color);
+        Dynamic.tint(mSubtitleView, tintColor, color);
+        Dynamic.tint(mDescriptionView, tintColor, color);
+        Dynamic.tint(mScrollView, tintColor, color);
     }
 
     @Override

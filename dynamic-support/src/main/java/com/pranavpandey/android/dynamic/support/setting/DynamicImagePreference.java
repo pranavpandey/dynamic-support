@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,12 +66,13 @@ public class DynamicImagePreference extends DynamicSimplePreference {
         super.onLoadAttributes(attrs);
 
         TypedArray a = getContext().obtainStyledAttributes(attrs,
-                R.styleable.DynamicPreference);
+                R.styleable.DynamicImagePreference);
 
         try {
-            mImageDrawable = DynamicResourceUtils.getDrawable(getContext(), a.getResourceId(
-                    R.styleable.DynamicPreference_ads_image,
-                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
+            mImageDrawable = DynamicResourceUtils.getDrawable(getContext(),
+                    a.getResourceId(
+                            R.styleable.DynamicImagePreference_ads_image,
+                            DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
         } finally {
             a.recycle();
         }

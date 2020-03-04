@@ -109,27 +109,27 @@ public class DynamicSpinner extends AppCompatSpinner
 
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
-        TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.DynamicTheme);
+        TypedArray a = getContext().obtainStyledAttributes(attrs, 
+                R.styleable.DynamicSpinner);
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_colorType,
+                    R.styleable.DynamicSpinner_ads_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicTheme_ads_contrastWithColorType,
-                    Theme.ColorType.BACKGROUND);
+                    R.styleable.DynamicSpinner_ads_contrastWithColorType,
+                    Theme.ColorType.SURFACE);
             mColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_color,
+                    R.styleable.DynamicSpinner_ads_color,
                     WidgetDefaults.ADS_COLOR_UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicTheme_ads_contrastWithColor,
-                    WidgetDefaults.getContrastWithColor(getContext()));
+                    R.styleable.DynamicSpinner_ads_contrastWithColor,
+                    WidgetDefaults.ADS_COLOR_UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicTheme_ads_backgroundAware,
+                    R.styleable.DynamicSpinner_ads_backgroundAware,
                     WidgetDefaults.getBackgroundAware());
             mElevationOnSameBackground = a.getBoolean(
-                    R.styleable.DynamicTheme_ads_elevationOnSameBackground,
+                    R.styleable.DynamicSpinner_ads_elevationOnSameBackground,
                     WidgetDefaults.ADS_ELEVATION_ON_SAME_BACKGROUND);
         } finally {
             a.recycle();
