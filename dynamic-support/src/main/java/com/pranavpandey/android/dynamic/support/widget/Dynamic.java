@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.widget;
 
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -392,7 +393,7 @@ public class Dynamic {
             return;
         }
 
-        if (text != null) {
+        if (!TextUtils.isEmpty(text)) {
             textView.setText(text);
             textView.setVisibility(View.VISIBLE);
         } else {
@@ -411,7 +412,7 @@ public class Dynamic {
             return;
         }
 
-        if (text != null) {
+        if (!TextUtils.isEmpty(text)) {
             textView.setText(text);
             textView.setVisibility(View.VISIBLE);
         } else {
