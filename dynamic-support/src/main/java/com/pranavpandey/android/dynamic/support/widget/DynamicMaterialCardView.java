@@ -18,6 +18,7 @@ package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
@@ -33,6 +34,7 @@ import com.pranavpandey.android.dynamic.support.widget.base.DynamicSurfaceWidget
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * A {@link MaterialCardView} to apply {@link DynamicTheme} according to the supplied parameters.
@@ -91,6 +93,11 @@ public class DynamicMaterialCardView extends MaterialCardView implements
      * Intended elevation for this view without considering the background.
      */
     private float mElevation;
+
+    /**
+     * Intended stroke width for this view without considering the background.
+     */
+    private int mStrokeWidth;
 
     public DynamicMaterialCardView(@NonNull Context context) {
         this(context, null);
@@ -253,19 +260,27 @@ public class DynamicMaterialCardView extends MaterialCardView implements
     }
 
     @Override
+    public void setStrokeWidth(int strokeWidth)  {
+        super.setStrokeWidth(strokeWidth);
+
+        if (strokeWidth != getResources().getDimensionPixelOffset(
+                R.dimen.ads_card_view_stroke_width)) {
+            this.mStrokeWidth = getStrokeWidth();
+        }
+    }
+
+    @Override
     public void setColor() {
         if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
             if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
                 mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
-            if (mElevationOnSameBackground && mColorType == Theme.ColorType.BACKGROUND
-                    && DynamicColorUtils.removeAlpha(mColor) == DynamicColorUtils.removeAlpha(
-                    DynamicTheme.getInstance().get().getSurfaceColor())) {
+            if (mElevationOnSameBackground && isBackgroundSurface()) {
                 mColor = DynamicTheme.getInstance().generateSurfaceColor(mColor);
             }
 
-            setCardBackgroundColor(mColor);
+            setCardBackgroundColor(DynamicColorUtils.removeAlpha(mColor));
             setSurface();
         }
     }
@@ -279,17 +294,36 @@ public class DynamicMaterialCardView extends MaterialCardView implements
     public void setElevationOnSameBackground(boolean elevationOnSameBackground) {
         this.mElevationOnSameBackground = elevationOnSameBackground;
 
-        setSurface();
+        setColor();
     }
 
     @Override
     public void setSurface() {
-        if (!mElevationOnSameBackground && mColorType == Theme.ColorType.SURFACE
-                && DynamicColorUtils.removeAlpha(mColor) == DynamicColorUtils.removeAlpha(
-                DynamicTheme.getInstance().get().getBackgroundColor())) {
+        if (!mElevationOnSameBackground && isBackgroundSurface()) {
             setCardElevation(0);
+
+            if (Color.alpha(mColor) < WidgetDefaults.ADS_ALPHA_SURFACE_STROKE) {
+                setStrokeColor(DynamicTheme.getInstance().get().getTintBackgroundColor());
+                setStrokeWidth(getResources().getDimensionPixelOffset(
+                        R.dimen.ads_card_view_stroke_width));
+            }
         } else {
             setCardElevation(mElevation);
+            setStrokeWidth(mStrokeWidth);
         }
+    }
+
+    @Override
+    public boolean isBackgroundSurface() {
+        return mColorType != Theme.ColorType.BACKGROUND
+                && mColor != WidgetDefaults.ADS_COLOR_UNKNOWN
+                && DynamicColorUtils.removeAlpha(mColor)
+                == DynamicColorUtils.removeAlpha(mContrastWithColor);
+    }
+
+    @Override
+    public boolean isStrokeRequired() {
+        return DynamicSdkUtils.is16() && !mElevationOnSameBackground && isBackgroundSurface()
+                && Color.alpha(mColor) < WidgetDefaults.ADS_ALPHA_SURFACE_STROKE;
     }
 }

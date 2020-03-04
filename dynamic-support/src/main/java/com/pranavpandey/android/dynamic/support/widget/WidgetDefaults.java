@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 
@@ -35,6 +34,11 @@ public class WidgetDefaults {
      * Constant for the stroke width, 1 dip.
      */
     public static final int ADS_STROKE_WIDTH = DynamicUnitUtils.convertDpToPixels(1);
+
+    /**
+     * Constant for the stroke alpha.
+     */
+    public static final int ADS_STROKE_ALPHA = 100;
 
     /**
      * Minimum corner size in dips to provide the rectangle theme overlay.
@@ -152,9 +156,14 @@ public class WidgetDefaults {
     public static final float ADS_SHIFT_DARK = 1.1f;
 
     /**
+     * Default factor to generate the surface color.
+     */
+    public static final float ADS_FACTOR_SURFACE = 0.04f;
+
+    /**
      * Constant for the unknown color.
      */
-    public static final int ADS_COLOR_UNKNOWN = DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE;
+    public static final int ADS_COLOR_UNKNOWN = 0x1;
 
     /**
      * Default edge effect or glow color used by the scrollable widgets.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.widget.base;
 
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * Interface to create dynamic widgets with surface options which can be used to adjust their
@@ -42,4 +43,15 @@ public interface DynamicSurfaceWidget {
      * Set surface for this widget according to the supplied values.
      */
     void setSurface();
+
+    boolean isBackgroundSurface();
+
+    /**
+     * Checks whether the stroke is required for the surface card view.
+     *
+     * @return {@code true} if the stroke is required for this surface card view.
+     *
+     * @see Theme.ColorType#SURFACE
+     */
+    boolean isStrokeRequired();
 }

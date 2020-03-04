@@ -18,6 +18,7 @@ package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 
@@ -255,18 +256,34 @@ public class DynamicSpinner extends AppCompatSpinner
 
     @Override
     public void setSurface() {
-        @ColorInt int color = DynamicTheme.getInstance().get().getBackgroundColor();
+        if (mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
+            @ColorInt int color = mContrastWithColor;
 
-        if (mElevationOnSameBackground
-                && color == DynamicTheme.getInstance().get().getSurfaceColor()) {
-            color = DynamicTheme.getInstance().generateSurfaceColor(color);
-        }
+            if (isBackgroundSurface()) {
+                color = DynamicTheme.getInstance().generateSurfaceColor(color);
+            }
 
-        if (DynamicSdkUtils.is21()) {
-            DynamicDrawableUtils.colorizeDrawable(getPopupBackground(), color);
-        } else {
-            DynamicDrawableUtils.colorizeDrawable(getPopupBackground(),
-                    color, PorterDuff.Mode.MULTIPLY);
+            if (DynamicSdkUtils.is21()) {
+                DynamicDrawableUtils.colorizeDrawable(getPopupBackground(), color);
+            } else {
+                DynamicDrawableUtils.colorizeDrawable(getPopupBackground(),
+                        color, PorterDuff.Mode.MULTIPLY);
+            }
         }
+    }
+
+    @Override
+    public boolean isBackgroundSurface() {
+        return mColorType != Theme.ColorType.BACKGROUND
+                && mColor != WidgetDefaults.ADS_COLOR_UNKNOWN
+                && DynamicColorUtils.removeAlpha(mContrastWithColor)
+                == DynamicColorUtils.removeAlpha(
+                        DynamicTheme.getInstance().get().getSurfaceColor());
+    }
+
+    @Override
+    public boolean isStrokeRequired() {
+        return DynamicSdkUtils.is16() && !mElevationOnSameBackground && isBackgroundSurface()
+                && Color.alpha(mColor) < WidgetDefaults.ADS_ALPHA_SURFACE_STROKE;
     }
 }

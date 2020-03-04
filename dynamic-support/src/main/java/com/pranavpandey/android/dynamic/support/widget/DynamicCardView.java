@@ -18,6 +18,7 @@ package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
@@ -33,6 +34,7 @@ import com.pranavpandey.android.dynamic.support.widget.base.DynamicSurfaceWidget
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * A {@link CardView} to apply {@link DynamicTheme} according to the supplied parameters.
@@ -252,12 +254,11 @@ public class DynamicCardView extends CardView implements
                 mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
-            if (mElevationOnSameBackground && mColorType == Theme.ColorType.BACKGROUND
-                    && mColor == DynamicTheme.getInstance().get().getSurfaceColor()) {
+            if (mElevationOnSameBackground && isBackgroundSurface()) {
                 mColor = DynamicTheme.getInstance().generateSurfaceColor(mColor);
             }
 
-            setCardBackgroundColor(mColor);
+            setCardBackgroundColor(DynamicColorUtils.removeAlpha(mColor));
             setSurface();
         }
     }
@@ -280,16 +281,29 @@ public class DynamicCardView extends CardView implements
     public void setElevationOnSameBackground(boolean elevationOnSameBackground) {
         this.mElevationOnSameBackground = elevationOnSameBackground;
 
-        setSurface();
+        setColor();
     }
 
     @Override
     public void setSurface() {
-        if (!mElevationOnSameBackground && mColorType == Theme.ColorType.SURFACE
-                && mColor == DynamicTheme.getInstance().get().getBackgroundColor()) {
+        if (!mElevationOnSameBackground && isBackgroundSurface()) {
             setCardElevation(0);
         } else {
             setCardElevation(mElevation);
         }
+    }
+
+    @Override
+    public boolean isBackgroundSurface() {
+        return mColorType != Theme.ColorType.BACKGROUND
+                && mColor != WidgetDefaults.ADS_COLOR_UNKNOWN
+                && DynamicColorUtils.removeAlpha(mColor)
+                == DynamicColorUtils.removeAlpha(mContrastWithColor);
+    }
+
+    @Override
+    public boolean isStrokeRequired() {
+        return DynamicSdkUtils.is16() && !mElevationOnSameBackground && isBackgroundSurface()
+                && Color.alpha(mColor) < WidgetDefaults.ADS_ALPHA_SURFACE_STROKE;
     }
 }

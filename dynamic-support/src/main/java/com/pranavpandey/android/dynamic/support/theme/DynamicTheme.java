@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,6 +50,7 @@ import com.pranavpandey.android.dynamic.support.model.DynamicWidgetTheme;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.theme.work.DynamicThemeWork;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
@@ -567,7 +568,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      */
     public @ColorInt int resolveColorType(@Theme.ColorType int colorType) {
         switch (colorType) {
-            default: return Theme.ColorType.NONE;
+            default: return WidgetDefaults.ADS_COLOR_UNKNOWN;
             case Theme.ColorType.PRIMARY: return get().getPrimaryColor();
             case Theme.ColorType.PRIMARY_DARK: return get().getPrimaryColorDark();
             case Theme.ColorType.ACCENT: return get().getAccentColor();
@@ -752,8 +753,8 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      */
     public @ColorInt int generateSurfaceColor(@ColorInt int color) {
         return DynamicColorUtils.isColorDark(color)
-                ? DynamicColorUtils.getLighterColor(color, 0.09f)
-                : DynamicColorUtils.getLighterColor(color, 0.2f);
+                ? DynamicColorUtils.getLighterColor(color, WidgetDefaults.ADS_FACTOR_SURFACE)
+                : DynamicColorUtils.getLighterColor(color, WidgetDefaults.ADS_FACTOR_SURFACE * 2);
     }
 
     /**
