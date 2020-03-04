@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2019 Pranav Pandey
+	Copyright 2020 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -20,5 +20,9 @@
     <!-- Tutorial -->
     <item name="ads_weight_tutorial_image" type="integer" format="float">0.44</item>
     <item name="ads_weight_tutorial_text" type="integer" format="float">0.56</item>
+
+    <!-- Dialog -->
+    <item name="ads_dialog_min_width_major" type="dimen">55%</item>
+    <item name="ads_dialog_min_width_minor" type="dimen">85%</item>
 
 </resources>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  * Copyright 2015 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -56,7 +56,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.app.AppCompatDialog;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -74,7 +73,7 @@ import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 @RestrictTo(LIBRARY_GROUP)
 class DynamicAlertController {
     private final Context mContext;
-    final AppCompatDialog mDialog;
+    final DynamicDialog mDialog;
     private final Window mWindow;
     private final int mButtonIconDimen;
 
@@ -191,7 +190,7 @@ class DynamicAlertController {
         return outValue.data != 0;
     }
 
-    public DynamicAlertController(Context context, AppCompatDialog di, Window window) {
+    public DynamicAlertController(Context context, DynamicDialog di, Window window) {
         mContext = context;
         mDialog = di;
         mWindow = window;
@@ -961,10 +960,14 @@ class DynamicAlertController {
 
             final TypedArray ta = context.obtainStyledAttributes(
                     attrs, R.styleable.RecycleListView);
-            mPaddingBottomNoButtons = ta.getDimensionPixelOffset(
-                    R.styleable.RecycleListView_paddingBottomNoButtons, -1);
-            mPaddingTopNoTitle = ta.getDimensionPixelOffset(
-                    R.styleable.RecycleListView_paddingTopNoTitle, -1);
+            try {
+                mPaddingBottomNoButtons = ta.getDimensionPixelOffset(
+                        R.styleable.RecycleListView_paddingBottomNoButtons, -1);
+                mPaddingTopNoTitle = ta.getDimensionPixelOffset(
+                        R.styleable.RecycleListView_paddingTopNoTitle, -1);
+            } finally {
+                ta.recycle();
+            }
         }
 
         public void setHasDecor(boolean hasTitle, boolean hasButtons) {

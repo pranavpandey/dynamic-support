@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Pranav Pandey
+ * Copyright 2020 Pranav Pandey
  * Copyright 2015 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -309,6 +309,67 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
     public static class Builder {
         private final DynamicAlertController.AlertParams P;
         private final int mTheme;
+
+        /**
+         * Copy constructor to create a builder for another builder.
+         * <p>
+         * It will use the supplied builder's theme id available otherwise the default alert
+         * dialog theme is defined by {@link android.R.attr#alertDialogTheme} within the parent
+         * {@code context}'s theme.
+         *
+         * @param context the parent context
+         * @param builder the builder to copy the parameters.
+         */
+        public Builder(@NonNull Context context, @Nullable Builder builder) {
+            this(context, resolveDialogTheme(context, builder != null ? builder.mTheme : 0));
+
+            if (builder != null) {
+                P.mIconId = builder.P.mIconId;
+                P.mIcon = builder.P.mIcon;
+                P.mTitle = builder.P.mTitle;
+                P.mCustomTitleView = builder.P.mCustomTitleView;
+                P.mMessage = builder.P.mMessage;
+                P.mPositiveButtonText = builder.P.mPositiveButtonText;
+                P.mPositiveButtonIcon = builder.P.mPositiveButtonIcon;
+                P.mPositiveButtonListener = builder.P.mPositiveButtonListener;
+                P.mNegativeButtonText = builder.P.mNegativeButtonText;
+                P.mNegativeButtonIcon = builder.P.mNegativeButtonIcon;
+                P.mNegativeButtonListener = builder.P.mNegativeButtonListener;
+                P.mNeutralButtonText = builder.P.mNeutralButtonText;
+                P.mNeutralButtonIcon = builder.P.mNeutralButtonIcon;
+                P.mNeutralButtonListener = builder.P.mNeutralButtonListener;
+                P.mCancelable = builder.P.mCancelable;
+                P.mOnCancelListener = builder.P.mOnCancelListener;
+                P.mOnDismissListener = builder.P.mOnDismissListener;
+                P.mOnKeyListener = builder.P.mOnKeyListener;
+                P.mItems = builder.P.mItems;
+                P.mAdapter = builder.P.mAdapter;
+                P.mOnClickListener = builder.P.mOnClickListener;
+                P.mViewLayoutResId = builder.P.mViewLayoutResId;
+                P.mView = builder.P.mView;
+                P.mViewRootId = builder.P.mViewRootId;
+                P.mViewRoot = builder.P.mViewRoot;
+                P.mViewSpacingLeft = builder.P.mViewSpacingLeft;
+                P.mViewSpacingTop = builder.P.mViewSpacingTop;
+                P.mViewSpacingRight = builder.P.mViewSpacingRight;
+                P.mViewSpacingBottom = builder.P.mViewSpacingBottom;
+                P.mViewSpacingSpecified = builder.P.mViewSpacingSpecified;
+                P.mCheckedItems = builder.P.mCheckedItems;
+                P.mIsMultiChoice = builder.P.mIsMultiChoice;
+                P.mIsSingleChoice = builder.P.mIsSingleChoice;
+                P.mCheckedItem = builder.P.mCheckedItem;
+                P.mOnCheckboxClickListener = builder.P.mOnCheckboxClickListener;
+                P.mCursor = builder.P.mCursor;
+                P.mLabelColumn = builder.P.mLabelColumn;
+                P.mIsCheckedColumn = builder.P.mIsCheckedColumn;
+                P.mForceInverseBackground = builder.P.mForceInverseBackground;
+                P.mOnItemSelectedListener = builder.P.mOnItemSelectedListener;
+                P.mOnPrepareListViewListener = builder.P.mOnPrepareListViewListener;
+                P.mRecycleOnMeasure = builder.P.mRecycleOnMeasure;
+
+                builder = null;
+            }
+        }
 
         /**
          * Creates a builder for an alert dialog that uses the default alert
