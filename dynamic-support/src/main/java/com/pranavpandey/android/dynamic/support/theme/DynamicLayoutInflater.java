@@ -382,6 +382,10 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
     protected @Nullable View onCustomiseView(@Nullable View view,
             @NonNull Context context, @NonNull AttributeSet attrs) {
         if (view != null) {
+            if (view instanceof DynamicCardView && ((DynamicCardView) view).isStrokeRequired()) {
+                view = new DynamicMaterialCardView(context, attrs);
+            }
+
             if (ADS_TAG_IGNORE.equals(view.getTag())) {
                 view = null;
             }
