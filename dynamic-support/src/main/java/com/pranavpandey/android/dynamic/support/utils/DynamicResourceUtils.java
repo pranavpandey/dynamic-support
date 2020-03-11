@@ -485,12 +485,7 @@ public class DynamicResourceUtils {
      * @return The color state list with the applied tint color.
      */
     public static @NonNull ColorStateList getColorStateList(@ColorInt int color) {
-        return new ColorStateList(
-                new int[][] {
-                        new int[] { -android.R.attr.state_enabled },
-                        new int[] { android.R.attr.state_enabled }
-                },
-                new int[] { color, color });
+        return getColorStateList(color, color, false);
     }
 
     /**
@@ -510,6 +505,8 @@ public class DynamicResourceUtils {
         if (checkable) {
             return new ColorStateList(
                     new int[][] {
+                            new int[] { android.R.attr.state_enabled,
+                                    android.R.attr.state_focused },
                             new int[] { -android.R.attr.state_enabled,
                                     -android.R.attr.state_activated,
                                     -android.R.attr.state_checked,
@@ -526,10 +523,12 @@ public class DynamicResourceUtils {
                             new int[] { android.R.attr.state_checked },
                             new int[] { }
                     },
-                    new int[] { disabled, normal, pressed, color, color, normal });
+                    new int[] { pressed, disabled, normal, pressed, color, color, normal });
         } else {
             return new ColorStateList(
                     new int[][]{
+                            new int[] { android.R.attr.state_enabled,
+                                    android.R.attr.state_focused },
                             new int[] { -android.R.attr.state_enabled,
                                     -android.R.attr.state_pressed },
                             new int[] { android.R.attr.state_enabled,
@@ -537,7 +536,7 @@ public class DynamicResourceUtils {
                             new int[] { android.R.attr.state_pressed },
                             new int[] { }
                     },
-                    new int[] { disabled, normal, color, normal });
+                    new int[] { color, disabled, normal, color, normal });
         }
     }
 
