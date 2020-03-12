@@ -207,7 +207,10 @@ public abstract class DynamicActivity extends DynamicStateActivity {
         mBottomBarShadow = findViewById(R.id.ads_bottom_bar_shadow);
 
         mFrameContent.setBackgroundColor(DynamicTheme.getInstance().get().getBackgroundColor());
-        mAppBarLayout.addOnOffsetChangedListener(mAppBarStateListener);
+
+        if (mAppBarLayout != null) {
+            mAppBarLayout.addOnOffsetChangedListener(mAppBarStateListener);
+        }
 
         if (getContentRes() != ADS_DEFAULT_LAYOUT_RES) {
             mFrameContent.addView(getLayoutInflater().inflate(getContentRes(),
@@ -245,9 +248,9 @@ public abstract class DynamicActivity extends DynamicStateActivity {
             }
         }
 
-        DynamicViewUtils.applyWindowInsetsBottomMargin(mFAB);
-        DynamicViewUtils.applyWindowInsetsBottomMargin(mExtendedFAB);
-        DynamicViewUtils.applyWindowInsetsBottom(mFrameFooter);
+        DynamicViewUtils.applyWindowInsetsMarginHorizontalBottom(mFAB);
+        DynamicViewUtils.applyWindowInsetsMarginHorizontalBottom(mExtendedFAB);
+        DynamicViewUtils.applyWindowInsetsBottom(mFrameFooter, true);
 
         if (mBottomSheet != null) {
             mBottomSheet.applyWindowInsets();
