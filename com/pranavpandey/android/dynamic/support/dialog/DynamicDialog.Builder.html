@@ -138,6 +138,12 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/dialog/DynamicDialog.Builder.html#Builder-android.content.Context-com.pranavpandey.android.dynamic.support.dialog.DynamicDialog.Builder-">Builder</a></span>(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</a>&nbsp;context,
+       <a href="../../../../../../com/pranavpandey/android/dynamic/support/dialog/DynamicDialog.Builder.html" title="class in com.pranavpandey.android.dynamic.support.dialog">DynamicDialog.Builder</a>&nbsp;builder)</code>
+<div class="block">Copy constructor to create a builder for another builder.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/dialog/DynamicDialog.Builder.html#Builder-android.content.Context-int-">Builder</a></span>(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</a>&nbsp;context,
        int&nbsp;themeResId)</code>
 <div class="block">Creates a builder for an alert dialog that uses an explicit theme
@@ -487,6 +493,26 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
+<a name="Builder-android.content.Context-com.pranavpandey.android.dynamic.support.dialog.DynamicDialog.Builder-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>Builder</h4>
+<pre>public&nbsp;Builder(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</a>&nbsp;context,
+               <a href="../../../../../../com/pranavpandey/android/dynamic/support/dialog/DynamicDialog.Builder.html" title="class in com.pranavpandey.android.dynamic.support.dialog">DynamicDialog.Builder</a>&nbsp;builder)</pre>
+<div class="block">Copy constructor to create a builder for another builder.
+ <p>
+ It will use the supplied builder's theme id available otherwise the default alert
+ dialog theme is defined by <a href="https://developer.android.com/reference/android/R.attr.html?is-external=true#alertDialogTheme" title="class or interface in android"><code>R.attr.alertDialogTheme</code></a> within the parent
+ <code>context</code>'s theme.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>context</code> - the parent context</dd>
+<dd><code>builder</code> - the builder to copy the parameters.</dd>
+</dl>
+</li>
+</ul>
 <a name="Builder-android.content.Context-">
 <!--   -->
 </a>

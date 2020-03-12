@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -125,7 +125,8 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">DynamicItemsAdapter</span>
 extends <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.adapter">DynamicSimpleBinderAdapter</a>&lt;<a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/binder/DynamicRecyclerViewBinder.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.binder">DynamicRecyclerViewBinder</a>&gt;</pre>
-<div class="block">A DynamicSimpleBinderAdapter to display the list of <a href="../../../../../../../com/pranavpandey/android/dynamic/support/model/DynamicItem.html" title="class in com.pranavpandey.android.dynamic.support.model"><code>DynamicItem</code></a> inside a recycler view.</div>
+<div class="block">A <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.adapter"><code>DynamicSimpleBinderAdapter</code></a> to display the list of <a href="../../../../../../../com/pranavpandey/android/dynamic/support/model/DynamicItem.html" title="class in com.pranavpandey.android.dynamic.support.model"><code>DynamicItem</code></a>
+ inside a recycler view.</div>
 </li>
 </ul>
 </div>
@@ -180,10 +181,6 @@ extends <a href="../../../../../../../com/pranavpandey/android/dynamic/support/r
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicItemsAdapter.html#getItemCount--">getItemCount</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicItemsAdapter.html#getItemViewType-int-">getItemViewType</a></span>(int&nbsp;position)</code>&nbsp;</td>
-</tr>
-<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicItemsAdapter.html#onBindViewHolder-RecyclerView.ViewHolder-int-">onBindViewHolder</a></span>(RecyclerView.ViewHolder&nbsp;viewHolder,
                 int&nbsp;position)</code>&nbsp;</td>
@@ -194,14 +191,14 @@ extends <a href="../../../../../../../com/pranavpandey/android/dynamic/support/r
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.pranavpandey.android.dynamic.support.recyclerview.adapter.<a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.adapter">DynamicSimpleBinderAdapter</a></h3>
-<code><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#addDataBinder-VB-">addDataBinder</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#addDataBinders-java.util.Collection-">addDataBinders</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#addDataBinders-VB...-">addDataBinders</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#getBinderList--">getBinderList</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#getBinderPosition-int-">getBinderPosition</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#getDataBinder-int-">getDataBinder</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#getPosition-VB-int-">getPosition</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#notifyBinderItemRangeChanged-VB-int-int-">notifyBinderItemRangeChanged</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#notifyBinderItemRangeInserted-VB-int-int-">notifyBinderItemRangeInserted</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#notifyBinderItemRangeRemoved-VB-int-int-">notifyBinderItemRangeRemoved</a></code></li>
+<code><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#addDataBinder-VB-">addDataBinder</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#addDataBinders-java.util.Collection-">addDataBinders</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#addDataBinders-VB...-">addDataBinders</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#getBinderList--">getBinderList</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#getBinderPosition-int-">getBinderPosition</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#getDataBinder-int-">getDataBinder</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#getItemViewType-int-">getItemViewType</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#getPosition-VB-int-">getPosition</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#notifyBinderItemRangeChanged-VB-int-int-">notifyBinderItemRangeChanged</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#notifyBinderItemRangeInserted-VB-int-int-">notifyBinderItemRangeInserted</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#notifyBinderItemRangeRemoved-VB-int-int-">notifyBinderItemRangeRemoved</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBinderAdapter">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.pranavpandey.android.dynamic.support.recyclerview.adapter.<a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.adapter">DynamicBinderAdapter</a></h3>
-<code><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#getRecyclerView--">getRecyclerView</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#isComputingLayout--">isComputingLayout</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#notifyBinderItemChanged-VB-int-">notifyBinderItemChanged</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#notifyBinderItemInserted-VB-int-">notifyBinderItemInserted</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#notifyBinderItemMoved-VB-int-int-">notifyBinderItemMoved</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#notifyBinderItemRemoved-VB-int-">notifyBinderItemRemoved</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#onAttachedToRecyclerView-RecyclerView-">onAttachedToRecyclerView</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#onCreateViewHolder-android.view.ViewGroup-int-">onCreateViewHolder</a></code></li>
+<code><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#getRecyclerView--">getRecyclerView</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#isComputingLayout--">isComputingLayout</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#notifyBinderDataSetChanged--">notifyBinderDataSetChanged</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#notifyBinderItemChanged-VB-int-">notifyBinderItemChanged</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#notifyBinderItemInserted-VB-int-">notifyBinderItemInserted</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#notifyBinderItemMoved-VB-int-int-">notifyBinderItemMoved</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#notifyBinderItemRemoved-VB-int-">notifyBinderItemRemoved</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#onAttachedToRecyclerView-RecyclerView-">onAttachedToRecyclerView</a>, <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#onCreateViewHolder-android.view.ViewGroup-int-">onCreateViewHolder</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -246,19 +243,6 @@ extends <a href="../../../../../../../com/pranavpandey/android/dynamic/support/r
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="getItemViewType-int-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getItemViewType</h4>
-<pre>public&nbsp;int&nbsp;getItemViewType(int&nbsp;position)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html#getItemViewType-int-">getItemViewType</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicSimpleBinderAdapter.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.adapter">DynamicSimpleBinderAdapter</a>&lt;<a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/binder/DynamicRecyclerViewBinder.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.binder">DynamicRecyclerViewBinder</a>&gt;</code></dd>
-</dl>
-</li>
-</ul>
 <a name="onBindViewHolder-RecyclerView.ViewHolder-int-">
 <!--   -->
 </a>

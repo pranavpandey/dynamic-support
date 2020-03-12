@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":41,"i11":9};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":41,"i11":41,"i12":9,"i13":9,"i14":9,"i15":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"],32:["t6","Deprecated Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -211,8 +211,7 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/utils/DynamicLayoutUtils.html#setFullSpanForHeader-RecyclerView-">setFullSpanForHeader</a></span>(RecyclerView&nbsp;recyclerView)</code>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
 <div class="block"><span class="deprecationComment">This method is not suitable for recycler view with multiple item types.
-             <p>Please use this <a href="../../../../../../com/pranavpandey/android/dynamic/support/utils/DynamicLayoutUtils.html#setFullSpanForHeader-RecyclerView-java.lang.Integer:A-"><code>setFullSpanForHeader(RecyclerView, Integer[])</code></a>
-             method which accepts the item types supported by the recycler view to provide
+             <p>Please use <a href="../../../../../../com/pranavpandey/android/dynamic/support/utils/DynamicLayoutUtils.html#setFullSpanForType-RecyclerView-"><code>setFullSpanForType(RecyclerView)</code></a> method that provides
              better results.</span></div>
 </div>
 </td>
@@ -221,7 +220,39 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/utils/DynamicLayoutUtils.html#setFullSpanForHeader-RecyclerView-java.lang.Integer:A-">setFullSpanForHeader</a></span>(RecyclerView&nbsp;recyclerView,
                     <a href="https://developer.android.com/reference/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>[]&nbsp;itemTypes)</code>
-<div class="block">Set full span for the header and empty view in case of a <code>GridLayoutManager</code>.</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">This method is not suitable for recycler view with multiple item types.
+             <p>Please use {#setFullSpanForType(RecyclerView, Integer[], int) } method that
+             provides better results.</span></div>
+</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/utils/DynamicLayoutUtils.html#setFullSpanForPosition-RecyclerView-">setFullSpanForPosition</a></span>(RecyclerView&nbsp;recyclerView)</code>
+<div class="block">Sets full span for the single last position in case of a <code>GridLayoutManager</code>.</div>
+</td>
+</tr>
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/utils/DynamicLayoutUtils.html#setFullSpanForPosition-RecyclerView-java.lang.Integer:A-int-">setFullSpanForPosition</a></span>(RecyclerView&nbsp;recyclerView,
+                      <a href="https://developer.android.com/reference/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>[]&nbsp;positions,
+                      int&nbsp;spanCount)</code>
+<div class="block">Sets full span for the positions in case of a <code>GridLayoutManager</code>.</div>
+</td>
+</tr>
+<tr id="i14" class="altColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/utils/DynamicLayoutUtils.html#setFullSpanForType-RecyclerView-">setFullSpanForType</a></span>(RecyclerView&nbsp;recyclerView)</code>
+<div class="block">Sets full span for the header and empty view in case of a <code>GridLayoutManager</code>.</div>
+</td>
+</tr>
+<tr id="i15" class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/utils/DynamicLayoutUtils.html#setFullSpanForType-RecyclerView-java.lang.Integer:A-int-">setFullSpanForType</a></span>(RecyclerView&nbsp;recyclerView,
+                  <a href="https://developer.android.com/reference/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>[]&nbsp;itemTypes,
+                  int&nbsp;spanCount)</code>
+<div class="block">Sets full span for the item view types in case of a <code>GridLayoutManager</code>.</div>
 </td>
 </tr>
 </table>
@@ -441,6 +472,88 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 </dl>
 </li>
 </ul>
+<a name="setFullSpanForType-RecyclerView-java.lang.Integer:A-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setFullSpanForType</h4>
+<pre>public static&nbsp;void&nbsp;setFullSpanForType(RecyclerView&nbsp;recyclerView,
+                                      <a href="https://developer.android.com/reference/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>[]&nbsp;itemTypes,
+                                      int&nbsp;spanCount)</pre>
+<div class="block">Sets full span for the item view types in case of a <code>GridLayoutManager</code>.
+ This method must be called after setting an adapter for the recycler view.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>recyclerView</code> - The recycler view to set the span size.</dd>
+<dd><code>itemTypes</code> - The item types supported by the recycler view.</dd>
+<dd><code>spanCount</code> - The maximum span supported by the layout manager.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>DynamicRecyclerViewAdapter.ItemType</code>, 
+<code>GridLayoutManager#setSpanSizeLookup(GridLayoutManager.SpanSizeLookup)</code></dd>
+</dl>
+</li>
+</ul>
+<a name="setFullSpanForType-RecyclerView-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setFullSpanForType</h4>
+<pre>public static&nbsp;void&nbsp;setFullSpanForType(RecyclerView&nbsp;recyclerView)</pre>
+<div class="block">Sets full span for the header and empty view in case of a <code>GridLayoutManager</code>.
+ This method must be called after setting an adapter for the recycler view.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>recyclerView</code> - The recycler view to set the span size.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>DynamicRecyclerViewAdapter.ItemType</code>, 
+<code>GridLayoutManager#setSpanSizeLookup(GridLayoutManager.SpanSizeLookup)</code>, 
+<a href="../../../../../../com/pranavpandey/android/dynamic/support/utils/DynamicLayoutUtils.html#setFullSpanForType-RecyclerView-java.lang.Integer:A-int-"><code>setFullSpanForType(RecyclerView, Integer[], int)</code></a>, 
+<a href="../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicRecyclerViewAdapter.html#TYPE_SECTION_HEADER"><code>DynamicRecyclerViewAdapter.TYPE_SECTION_HEADER</code></a>, 
+<a href="../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicRecyclerViewAdapter.html#TYPE_EMPTY_VIEW"><code>DynamicRecyclerViewAdapter.TYPE_EMPTY_VIEW</code></a></dd>
+</dl>
+</li>
+</ul>
+<a name="setFullSpanForPosition-RecyclerView-java.lang.Integer:A-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setFullSpanForPosition</h4>
+<pre>public static&nbsp;void&nbsp;setFullSpanForPosition(RecyclerView&nbsp;recyclerView,
+                                          <a href="https://developer.android.com/reference/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>[]&nbsp;positions,
+                                          int&nbsp;spanCount)</pre>
+<div class="block">Sets full span for the positions in case of a <code>GridLayoutManager</code>.
+ This method must be called after setting an adapter for the recycler view.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>recyclerView</code> - The recycler view to set the span size.</dd>
+<dd><code>positions</code> - The positions supported by the recycler view.</dd>
+<dd><code>spanCount</code> - The maximum span supported by the layout manager.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>GridLayoutManager#setSpanSizeLookup(GridLayoutManager.SpanSizeLookup)</code></dd>
+</dl>
+</li>
+</ul>
+<a name="setFullSpanForPosition-RecyclerView-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setFullSpanForPosition</h4>
+<pre>public static&nbsp;void&nbsp;setFullSpanForPosition(RecyclerView&nbsp;recyclerView)</pre>
+<div class="block">Sets full span for the single last position in case of a <code>GridLayoutManager</code>.
+ This method must be called after setting an adapter for the recycler view.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>recyclerView</code> - The recycler view to set the span size.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>GridLayoutManager#setSpanSizeLookup(GridLayoutManager.SpanSizeLookup)</code>, 
+<a href="../../../../../../com/pranavpandey/android/dynamic/support/utils/DynamicLayoutUtils.html#setFullSpanForPosition-RecyclerView-java.lang.Integer:A-int-"><code>setFullSpanForPosition(RecyclerView, Integer[], int)</code></a></dd>
+</dl>
+</li>
+</ul>
 <a name="setFullSpanForHeader-RecyclerView-java.lang.Integer:A-">
 <!--   -->
 </a>
@@ -449,6 +562,9 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <h4>setFullSpanForHeader</h4>
 <pre>public static&nbsp;void&nbsp;setFullSpanForHeader(RecyclerView&nbsp;recyclerView,
                                         <a href="https://developer.android.com/reference/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>[]&nbsp;itemTypes)</pre>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">This method is not suitable for recycler view with multiple item types.
+             <p>Please use {#setFullSpanForType(RecyclerView, Integer[], int) } method that
+             provides better results.</span></div>
 <div class="block">Set full span for the header and empty view in case of a <code>GridLayoutManager</code>.
  This method must be called after setting a adapter for the recycler view.</div>
 <dl>
@@ -456,8 +572,7 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <dd><code>recyclerView</code> - The recycler view to set the span size.</dd>
 <dd><code>itemTypes</code> - The item types supported by the recycler view.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><code>DynamicRecyclerViewAdapter.ItemType</code>, 
-<code>GridLayoutManager#setSpanSizeLookup( GridLayoutManager.SpanSizeLookup)</code></dd>
+<dd><a href="../../../../../../com/pranavpandey/android/dynamic/support/utils/DynamicLayoutUtils.html#setFullSpanForType-RecyclerView-java.lang.Integer:A-int-"><code>setFullSpanForType(RecyclerView, Integer[], int)</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -469,8 +584,7 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <h4>setFullSpanForHeader</h4>
 <pre>public static&nbsp;void&nbsp;setFullSpanForHeader(RecyclerView&nbsp;recyclerView)</pre>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">This method is not suitable for recycler view with multiple item types.
-             <p>Please use this <a href="../../../../../../com/pranavpandey/android/dynamic/support/utils/DynamicLayoutUtils.html#setFullSpanForHeader-RecyclerView-java.lang.Integer:A-"><code>setFullSpanForHeader(RecyclerView, Integer[])</code></a>
-             method which accepts the item types supported by the recycler view to provide
+             <p>Please use <a href="../../../../../../com/pranavpandey/android/dynamic/support/utils/DynamicLayoutUtils.html#setFullSpanForType-RecyclerView-"><code>setFullSpanForType(RecyclerView)</code></a> method that provides
              better results.</span></div>
 <div class="block">Set full span for the header and empty view in case of a <code>GridLayoutManager</code>.
  This method must be called after setting a adapter for the recycler view.</div>
@@ -480,7 +594,7 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><code>DynamicRecyclerViewAdapter.ItemType</code>, 
 <code>GridLayoutManager#setSpanSizeLookup( GridLayoutManager.SpanSizeLookup)</code>, 
-<a href="../../../../../../com/pranavpandey/android/dynamic/support/utils/DynamicLayoutUtils.html#setFullSpanForHeader-RecyclerView-java.lang.Integer:A-"><code>setFullSpanForHeader(RecyclerView, Integer[])</code></a></dd>
+<a href="../../../../../../com/pranavpandey/android/dynamic/support/utils/DynamicLayoutUtils.html#setFullSpanForType-RecyclerView-"><code>setFullSpanForType(RecyclerView)</code></a></dd>
 </dl>
 </li>
 </ul>

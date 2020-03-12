@@ -201,7 +201,7 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/binder/DynamicRecyclerViewBinder.html#notifyBinderItemRangeInserted-int-int-">notifyBinderItemRangeInserted</a></span>(int&nbsp;position,
                              int&nbsp;itemCount)</code>
-<div class="block">Notify adapter when a set of items has been inserted in this
+<div class="block">Notify adapter when a set of items have been inserted in this
  data binder.</div>
 </td>
 </tr>
@@ -209,7 +209,7 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/binder/DynamicRecyclerViewBinder.html#notifyBinderItemRangeRemoved-int-int-">notifyBinderItemRangeRemoved</a></span>(int&nbsp;position,
                             int&nbsp;itemCount)</code>
-<div class="block">Notify adapter when a set of items has been removed in this data binder.</div>
+<div class="block">Notify adapter when a set of items have been removed in this data binder.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
@@ -314,7 +314,7 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>viewHolder</code> - The view holder for the recycler view.</dd>
-<dd><code>position</code> - Position to bind the view holder.</dd>
+<dd><code>position</code> - The position to bind the view holder.</dd>
 </dl>
 </li>
 </ul>
@@ -356,16 +356,6 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <div class="block">Notify adapter when the data set has been changed.</div>
 </li>
 </ul>
-<a name="notifyBinderDataSetChanged--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>notifyBinderDataSetChanged</h4>
-<pre>public final&nbsp;void&nbsp;notifyBinderDataSetChanged()</pre>
-<div class="block">Notify adapter when the data set has been changed in this data binder.</div>
-</li>
-</ul>
 <a name="notifyBinderItemChanged-int-">
 <!--   -->
 </a>
@@ -376,8 +366,18 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <div class="block">Notify adapter when an item has been changed in this data binder.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>position</code> - Position at which the item has been changed.</dd>
+<dd><code>position</code> - The position at which the item has been changed.</dd>
 </dl>
+</li>
+</ul>
+<a name="notifyBinderDataSetChanged--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>notifyBinderDataSetChanged</h4>
+<pre>public final&nbsp;void&nbsp;notifyBinderDataSetChanged()</pre>
+<div class="block">Notify adapter when the data set has been changed in this data binder.</div>
 </li>
 </ul>
 <a name="notifyBinderItemInserted-int-">
@@ -390,7 +390,7 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <div class="block">Notify adapter when an item has been inserted in this data binder.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>position</code> - Position at which the item has been inserted.</dd>
+<dd><code>position</code> - The position at which the item has been inserted.</dd>
 </dl>
 </li>
 </ul>
@@ -420,7 +420,7 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <div class="block">Notify adapter when an item has been removed in this data binder.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>position</code> - Position at which the item has been removed.</dd>
+<dd><code>position</code> - The position at which the item has been removed.</dd>
 </dl>
 </li>
 </ul>
@@ -435,8 +435,8 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <div class="block">Notify adapter when the item range of this data binder has been changed.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>position</code> - Position at which the first item has been changed.</dd>
-<dd><code>itemCount</code> - Total no. of items has been changed.</dd>
+<dd><code>position</code> - The position at which the first item has been changed.</dd>
+<dd><code>itemCount</code> - Total no. of items have been changed.</dd>
 </dl>
 </li>
 </ul>
@@ -448,12 +448,12 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <h4>notifyBinderItemRangeInserted</h4>
 <pre>public final&nbsp;void&nbsp;notifyBinderItemRangeInserted(int&nbsp;position,
                                                 int&nbsp;itemCount)</pre>
-<div class="block">Notify adapter when a set of items has been inserted in this
+<div class="block">Notify adapter when a set of items have been inserted in this
  data binder.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>position</code> - Position at which the first item has been inserted.</dd>
-<dd><code>itemCount</code> - Total no. of items has been inserted.</dd>
+<dd><code>position</code> - The position at which the first item has been inserted.</dd>
+<dd><code>itemCount</code> - Total no. of items have been inserted.</dd>
 </dl>
 </li>
 </ul>
@@ -465,11 +465,11 @@ extends <a href="https://developer.android.com/reference/java/lang/Object.html?i
 <h4>notifyBinderItemRangeRemoved</h4>
 <pre>public final&nbsp;void&nbsp;notifyBinderItemRangeRemoved(int&nbsp;position,
                                                int&nbsp;itemCount)</pre>
-<div class="block">Notify adapter when a set of items has been removed in this data binder.</div>
+<div class="block">Notify adapter when a set of items have been removed in this data binder.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>position</code> - Position at which the first item has been removed.</dd>
-<dd><code>itemCount</code> - Total no. of items has been removed.</dd>
+<dd><code>position</code> - The position at which the first item has been removed.</dd>
+<dd><code>itemCount</code> - Total no. of items have been removed.</dd>
 </dl>
 </li>
 </ul>

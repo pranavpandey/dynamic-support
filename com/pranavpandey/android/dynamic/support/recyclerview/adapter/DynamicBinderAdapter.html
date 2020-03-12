@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":6,"i11":6,"i12":6,"i13":10,"i14":10,"i15":10,"i16":10};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":6,"i12":6,"i13":6,"i14":10,"i15":10,"i16":10,"i17":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -119,7 +119,7 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public abstract class <span class="typeNameLabel">DynamicBinderAdapter&lt;VB extends <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/binder/DynamicRecyclerViewBinder.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.binder">DynamicRecyclerViewBinder</a>&gt;</span>
 extends &lt;any&gt;</pre>
-<div class="block">Simple recycler view adapter to display different types of items or views in a recycler view.
+<div class="block">A <code>RecyclerView.Adapter</code> to display different types of items or views in a recycler view.
  <p>Each section can have a header or a completely different item.
 
  <p><p>Extend this adapter and use <a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/binder/DynamicRecyclerViewBinder.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.binder"><code>DynamicRecyclerViewBinder</code></a> to create binding logic
@@ -200,19 +200,25 @@ extends &lt;any&gt;</pre>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#notifyBinderDataSetChanged--">notifyBinderDataSetChanged</a></span>()</code>
+<div class="block">This method will be called when the data set has been changed.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#notifyBinderItemChanged-VB-int-">notifyBinderItemChanged</a></span>(<a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html" title="type parameter in DynamicBinderAdapter">VB</a>&nbsp;binder,
                        int&nbsp;position)</code>
 <div class="block">This method will be called when an item has been changed in the data binder.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#notifyBinderItemInserted-VB-int-">notifyBinderItemInserted</a></span>(<a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html" title="type parameter in DynamicBinderAdapter">VB</a>&nbsp;binder,
                         int&nbsp;position)</code>
 <div class="block">This method will be called when an item has been inserted in the data binder.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#notifyBinderItemMoved-VB-int-int-">notifyBinderItemMoved</a></span>(<a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html" title="type parameter in DynamicBinderAdapter">VB</a>&nbsp;binder,
                      int&nbsp;fromPosition,
@@ -220,7 +226,7 @@ extends &lt;any&gt;</pre>
 <div class="block">This method will be called when an item has been moved in the data binder.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>abstract void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#notifyBinderItemRangeChanged-VB-int-int-">notifyBinderItemRangeChanged</a></span>(<a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html" title="type parameter in DynamicBinderAdapter">VB</a>&nbsp;binder,
                             int&nbsp;position,
@@ -228,39 +234,39 @@ extends &lt;any&gt;</pre>
 <div class="block">This method will be called when the item range of a data binder has been changed.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>abstract void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#notifyBinderItemRangeInserted-VB-int-int-">notifyBinderItemRangeInserted</a></span>(<a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html" title="type parameter in DynamicBinderAdapter">VB</a>&nbsp;binder,
                              int&nbsp;position,
                              int&nbsp;itemCount)</code>
-<div class="block">This method will be called when a set of items has been inserted in a data binder.</div>
+<div class="block">This method will be called when a set of items have been inserted in a data binder.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>abstract void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#notifyBinderItemRangeRemoved-VB-int-int-">notifyBinderItemRangeRemoved</a></span>(<a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html" title="type parameter in DynamicBinderAdapter">VB</a>&nbsp;binder,
                             int&nbsp;position,
                             int&nbsp;itemCount)</code>
-<div class="block">This method will be called when a set of items has been removed in a data binder.</div>
+<div class="block">This method will be called when a set of items have been removed in a data binder.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#notifyBinderItemRemoved-VB-int-">notifyBinderItemRemoved</a></span>(<a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html" title="type parameter in DynamicBinderAdapter">VB</a>&nbsp;binder,
                        int&nbsp;position)</code>
 <div class="block">This method will be called when an item has been removed in the data binder.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#onAttachedToRecyclerView-RecyclerView-">onAttachedToRecyclerView</a></span>(RecyclerView&nbsp;recyclerView)</code>&nbsp;</td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#onBindViewHolder-RecyclerView.ViewHolder-int-">onBindViewHolder</a></span>(RecyclerView.ViewHolder&nbsp;viewHolder,
                 int&nbsp;position)</code>&nbsp;</td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>RecyclerView.ViewHolder</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html#onCreateViewHolder-android.view.ViewGroup-int-">onCreateViewHolder</a></span>(<a href="https://developer.android.com/reference/android/view/ViewGroup.html?is-external=true" title="class or interface in android.view">ViewGroup</a>&nbsp;parent,
                   int&nbsp;viewType)</code>&nbsp;</td>
@@ -433,6 +439,16 @@ extends &lt;any&gt;</pre>
 </dl>
 </li>
 </ul>
+<a name="notifyBinderDataSetChanged--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>notifyBinderDataSetChanged</h4>
+<pre>public&nbsp;void&nbsp;notifyBinderDataSetChanged()</pre>
+<div class="block">This method will be called when the data set has been changed.</div>
+</li>
+</ul>
 <a name="notifyBinderItemChanged-com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder-int-">
 <!--   -->
 </a><a name="notifyBinderItemChanged-VB-int-">
@@ -523,7 +539,7 @@ extends &lt;any&gt;</pre>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>binder</code> - The data binder inside the recycler view.</dd>
 <dd><code>position</code> - The position at which the first item has been changed.</dd>
-<dd><code>itemCount</code> - Total no. of items has been changed.</dd>
+<dd><code>itemCount</code> - Total no. of items have been changed.</dd>
 </dl>
 </li>
 </ul>
@@ -538,12 +554,12 @@ extends &lt;any&gt;</pre>
 <pre>public abstract&nbsp;void&nbsp;notifyBinderItemRangeInserted(<a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html" title="type parameter in DynamicBinderAdapter">VB</a>&nbsp;binder,
                                                    int&nbsp;position,
                                                    int&nbsp;itemCount)</pre>
-<div class="block">This method will be called when a set of items has been inserted in a data binder.</div>
+<div class="block">This method will be called when a set of items have been inserted in a data binder.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>binder</code> - The data binder inside the recycler view.</dd>
 <dd><code>position</code> - The position at which the first item has been inserted.</dd>
-<dd><code>itemCount</code> - Total no. of items has been inserted.</dd>
+<dd><code>itemCount</code> - Total no. of items have been inserted.</dd>
 </dl>
 </li>
 </ul>
@@ -558,12 +574,12 @@ extends &lt;any&gt;</pre>
 <pre>public abstract&nbsp;void&nbsp;notifyBinderItemRangeRemoved(<a href="../../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/adapter/DynamicBinderAdapter.html" title="type parameter in DynamicBinderAdapter">VB</a>&nbsp;binder,
                                                   int&nbsp;position,
                                                   int&nbsp;itemCount)</pre>
-<div class="block">This method will be called when a set of items has been removed in a data binder.</div>
+<div class="block">This method will be called when a set of items have been removed in a data binder.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>binder</code> - The data binder inside the recycler view.</dd>
 <dd><code>position</code> - The position at which the first item has been removed.</dd>
-<dd><code>itemCount</code> - Total no. of items has been removed.</dd>
+<dd><code>itemCount</code> - Total no. of items have been removed.</dd>
 </dl>
 </li>
 </ul>

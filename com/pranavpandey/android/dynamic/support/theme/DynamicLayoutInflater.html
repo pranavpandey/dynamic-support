@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10};
+var methods = {"i0":10,"i1":10,"i2":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -115,7 +115,7 @@ var activeTableTab = "activeTableTab";
 <pre>public class <span class="typeNameLabel">DynamicLayoutInflater</span>
 extends <a href="https://developer.android.com/reference/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="https://developer.android.com/reference/android/view/LayoutInflater.Factory2.html?is-external=true" title="class or interface in android.view">LayoutInflater.Factory2</a></pre>
-<div class="block">A layout inflater factory2 to replace original views with the dynamic support views
+<div class="block">A <code>LayoutInflater.Factory2</code> to replace original views with the dynamic support views
  during inflation.</div>
 </li>
 </ul>
@@ -185,6 +185,14 @@ implements <a href="https://developer.android.com/reference/android/view/LayoutI
             <a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
             <a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</a>&nbsp;context,
             <a href="https://developer.android.com/reference/android/util/AttributeSet.html?is-external=true" title="class or interface in android.util">AttributeSet</a>&nbsp;attrs)</code>&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>protected <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/theme/DynamicLayoutInflater.html#onCustomiseView-android.view.View-android.content.Context-android.util.AttributeSet-">onCustomiseView</a></span>(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</a>&nbsp;view,
+               <a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</a>&nbsp;context,
+               <a href="https://developer.android.com/reference/android/util/AttributeSet.html?is-external=true" title="class or interface in android.util">AttributeSet</a>&nbsp;attrs)</code>
+<div class="block">Customise the supplied view created by this layout inflater.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -265,7 +273,7 @@ implements <a href="https://developer.android.com/reference/android/view/LayoutI
 <a name="onCreateView-android.view.View-java.lang.String-android.content.Context-android.util.AttributeSet-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>onCreateView</h4>
 <pre>public&nbsp;<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</a>&nbsp;onCreateView(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</a>&nbsp;parent,
@@ -275,6 +283,24 @@ implements <a href="https://developer.android.com/reference/android/view/LayoutI
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="https://developer.android.com/reference/android/view/LayoutInflater.Factory2.html?is-external=true#onCreateView-android.view.View-java.lang.String-android.content.Context-android.util.AttributeSet-" title="class or interface in android.view">onCreateView</a></code>&nbsp;in interface&nbsp;<code><a href="https://developer.android.com/reference/android/view/LayoutInflater.Factory2.html?is-external=true" title="class or interface in android.view">LayoutInflater.Factory2</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="onCustomiseView-android.view.View-android.content.Context-android.util.AttributeSet-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>onCustomiseView</h4>
+<pre>protected&nbsp;<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</a>&nbsp;onCustomiseView(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view">View</a>&nbsp;view,
+                               <a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content">Context</a>&nbsp;context,
+                               <a href="https://developer.android.com/reference/android/util/AttributeSet.html?is-external=true" title="class or interface in android.util">AttributeSet</a>&nbsp;attrs)</pre>
+<div class="block">Customise the supplied view created by this layout inflater.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>view</code> - The view to be customised.</dd>
+<dd><code>context</code> - The context the view is being created in.</dd>
+<dd><code>attrs</code> - Inflation attributes as specified in XML file.</dd>
 </dl>
 </li>
 </ul>

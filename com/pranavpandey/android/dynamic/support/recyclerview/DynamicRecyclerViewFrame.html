@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":6,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":6,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -133,8 +133,8 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public abstract class <span class="typeNameLabel">DynamicRecyclerViewFrame</span>
 extends <a href="https://developer.android.com/reference/android/widget/FrameLayout.html?is-external=true" title="class or interface in android.widget">FrameLayout</a></pre>
-<div class="block">A RecyclerView inside a FrameLayout with some built-in functionality like
- swipe refresh layout, progress bar, etc. which can be initialized quickly.</div>
+<div class="block">A <code>RecyclerView</code> inside a <a href="https://developer.android.com/reference/android/widget/FrameLayout.html?is-external=true" title="class or interface in android.widget"><code>FrameLayout</code></a> with some built-in functionality like
+ swipe refresh layout, progress bar, etc. that can be initialized quickly.</div>
 </li>
 </ul>
 </div>
@@ -233,8 +233,7 @@ extends <a href="https://developer.android.com/reference/android/widget/FrameLay
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/DynamicRecyclerViewFrame.html#checkForStaggeredGridLayoutManager--">checkForStaggeredGridLayoutManager</a></span>()</code>
-<div class="block">Checks for the staggered grid layout manager to avoid the jumping of items by
- scrolling the recycler view to top.</div>
+<div class="block">Checks for the <code>StaggeredGridLayoutManager</code> to avoid the jumping of items.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -264,7 +263,7 @@ extends <a href="https://developer.android.com/reference/android/widget/FrameLay
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>ContentLoadingProgressBar</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/DynamicRecyclerViewFrame.html#getProgressBar--">getProgressBar</a></span>()</code>
-<div class="block">Get the progress bar which can be shown while the data is loading in the background.</div>
+<div class="block">Get the progress bar that can be shown while the data is loading in the background.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
@@ -298,49 +297,61 @@ extends <a href="https://developer.android.com/reference/android/widget/FrameLay
 </td>
 </tr>
 <tr id="i11" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/DynamicRecyclerViewFrame.html#hideProgress-boolean-">hideProgress</a></span>(boolean&nbsp;animate)</code>
+<div class="block">Hide progress bar and show the recycler view.</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/DynamicRecyclerViewFrame.html#initialize--">initialize</a></span>()</code>
 <div class="block">Initialize this view with default settings.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/DynamicRecyclerViewFrame.html#onCreateRecyclerView-RecyclerView-">onCreateRecyclerView</a></span>(RecyclerView&nbsp;recyclerView)</code>
 <div class="block">Override this method to perform other operations on the recycler view.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/DynamicRecyclerViewFrame.html#setAdapter-RecyclerView.Adapter-">setAdapter</a></span>(RecyclerView.Adapter&nbsp;adapter)</code>
 <div class="block">Set an adapter for the recycler view.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>protected SwipeRefreshLayout.OnRefreshListener</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/DynamicRecyclerViewFrame.html#setOnRefreshListener--">setOnRefreshListener</a></span>()</code>
 <div class="block">Override this method to set swipe refresh layout listener immediately after
  initializing the view.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/DynamicRecyclerViewFrame.html#setOnRefreshListener-SwipeRefreshLayout.OnRefreshListener-">setOnRefreshListener</a></span>(SwipeRefreshLayout.OnRefreshListener&nbsp;onRefreshListener)</code>
 <div class="block">Set the swipe refresh layout listener to provide pull to efresh functionality.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/DynamicRecyclerViewFrame.html#setRecyclerViewLayoutManager-RecyclerView.LayoutManager-">setRecyclerViewLayoutManager</a></span>(RecyclerView.LayoutManager&nbsp;layoutManager)</code>
 <div class="block">Set supplied LayoutManager to the RecyclerView.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/DynamicRecyclerViewFrame.html#showProgress--">showProgress</a></span>()</code>
 <div class="block">Show progress bar and hide the recycler view.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i19" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/DynamicRecyclerViewFrame.html#showProgress-boolean-">showProgress</a></span>(boolean&nbsp;animate)</code>
+<div class="block">Show progress bar and hide the recycler view.</div>
+</td>
+</tr>
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/DynamicRecyclerViewFrame.html#smoothScrollTo-int-int-">smoothScrollTo</a></span>(int&nbsp;x,
               int&nbsp;y)</code>
@@ -510,8 +521,7 @@ extends <a href="https://developer.android.com/reference/android/widget/FrameLay
 <li class="blockList">
 <h4>checkForStaggeredGridLayoutManager</h4>
 <pre>protected&nbsp;void&nbsp;checkForStaggeredGridLayoutManager()</pre>
-<div class="block">Checks for the staggered grid layout manager to avoid the jumping of items by
- scrolling the recycler view to top.</div>
+<div class="block">Checks for the <code>StaggeredGridLayoutManager</code> to avoid the jumping of items.</div>
 </li>
 </ul>
 <a name="getAdapter--">
@@ -636,10 +646,24 @@ extends <a href="https://developer.android.com/reference/android/widget/FrameLay
 <li class="blockList">
 <h4>getProgressBar</h4>
 <pre>public&nbsp;ContentLoadingProgressBar&nbsp;getProgressBar()</pre>
-<div class="block">Get the progress bar which can be shown while the data is loading in the background.</div>
+<div class="block">Get the progress bar that can be shown while the data is loading in the background.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The progress bar which can be shown while the data is loading in the background.</dd>
+<dd>The progress bar that can be shown while the data is loading in the background.</dd>
+</dl>
+</li>
+</ul>
+<a name="showProgress-boolean-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>showProgress</h4>
+<pre>public&nbsp;void&nbsp;showProgress(boolean&nbsp;animate)</pre>
+<div class="block">Show progress bar and hide the recycler view.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>animate</code> - <code>true</code> to animate the changes.</dd>
 </dl>
 </li>
 </ul>
@@ -651,6 +675,24 @@ extends <a href="https://developer.android.com/reference/android/widget/FrameLay
 <h4>showProgress</h4>
 <pre>public&nbsp;void&nbsp;showProgress()</pre>
 <div class="block">Show progress bar and hide the recycler view.</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/DynamicRecyclerViewFrame.html#showProgress--"><code>showProgress()</code></a></dd>
+</dl>
+</li>
+</ul>
+<a name="hideProgress-boolean-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hideProgress</h4>
+<pre>public&nbsp;void&nbsp;hideProgress(boolean&nbsp;animate)</pre>
+<div class="block">Hide progress bar and show the recycler view.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>animate</code> - <code>true</code> to animate the changes.</dd>
+</dl>
 </li>
 </ul>
 <a name="hideProgress--">
@@ -661,6 +703,10 @@ extends <a href="https://developer.android.com/reference/android/widget/FrameLay
 <h4>hideProgress</h4>
 <pre>public&nbsp;void&nbsp;hideProgress()</pre>
 <div class="block">Hide progress bar and show the recycler view.</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../../../com/pranavpandey/android/dynamic/support/recyclerview/DynamicRecyclerViewFrame.html#hideProgress--"><code>hideProgress()</code></a></dd>
+</dl>
 </li>
 </ul>
 <a name="getViewRoot--">
