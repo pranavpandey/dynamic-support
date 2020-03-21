@@ -173,7 +173,7 @@ public abstract class DynamicPopup {
      *
      * @param viewRoot The view root to be set.
      */
-    public void setViewRoot(@NonNull View viewRoot) {
+    public void setViewRoot(@Nullable View viewRoot) {
         this.mViewRoot = viewRoot;
     }
 
@@ -354,7 +354,7 @@ public abstract class DynamicPopup {
         PopupWindowCompat.setOverlapAnchor(mPopupWindow, true);
         mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        mPopupWindow.setAnimationStyle(androidx.appcompat.R.style.Animation_AppCompat_DropDownUp);
+        mPopupWindow.setAnimationStyle(R.style.Animation_AppCompat_DropDownUp);
 
         if (getAnchor().getRootView() != null) {
             try {

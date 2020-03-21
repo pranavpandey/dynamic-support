@@ -225,7 +225,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      *
      * @return The recycler view to display the data.
      */
-    public RecyclerView getRecyclerView() {
+    public @NonNull RecyclerView getRecyclerView() {
         return mRecyclerView;
     }
 

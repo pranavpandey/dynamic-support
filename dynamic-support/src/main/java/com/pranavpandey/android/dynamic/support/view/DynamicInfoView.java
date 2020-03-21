@@ -120,6 +120,11 @@ public class DynamicInfoView extends DynamicView {
     private @ColorInt Integer[] mLinksColors;
 
     /**
+     * Default visibility of the icon view.
+     */
+    private int mVisibilityIconView;
+
+    /**
      * Image view to show the icon.
      */
     private ImageView mIconView;
@@ -228,9 +233,10 @@ public class DynamicInfoView extends DynamicView {
         mIconBigView = findViewById(R.id.ads_info_view_icon_big);
         mLinksView = findViewById(R.id.ads_recycler_view);
 
-        ViewCompat.setNestedScrollingEnabled(mLinksView, false);
-
+        mVisibilityIconView = mIconView.getVisibility();
         mDynamicItems = new ArrayList<>();
+
+        ViewCompat.setNestedScrollingEnabled(mLinksView, false);
         onUpdate();
     }
 
@@ -242,6 +248,10 @@ public class DynamicInfoView extends DynamicView {
         Dynamic.set(mSubtitleView, mSubtitle);
         Dynamic.set(mDescriptionView, mDescription);
         Dynamic.set(mStatusView, mStatus);
+
+        if (mVisibilityIconView != VISIBLE) {
+            mIconView.setVisibility(mVisibilityIconView);
+        }
 
         mDynamicItems.clear();
         if (mLinks != null) {

@@ -30,9 +30,7 @@
             style="@style/Widget.DynamicApp.Image.DragIndicator" />
 
         <FrameLayout
-            style="@style/Widget.DynamicApp.Content.Card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            style="@style/Widget.DynamicApp.Content.Card">
 
             <include layout="@layout/ads_layout_theme_preview" />
 

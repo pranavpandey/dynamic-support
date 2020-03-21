@@ -82,6 +82,11 @@ public class DynamicItemView extends DynamicView {
     private boolean mFillSpace;
 
     /**
+     * Default visibility of the icon view.
+     */
+    private int mVisibilityIconView;
+
+    /**
      * Root element of this view.
      */
     private ViewGroup mItemView;
@@ -189,6 +194,8 @@ public class DynamicItemView extends DynamicView {
         mSubtitleView = findViewById(R.id.ads_item_view_subtitle);
         mDivider = findViewById(R.id.ads_item_view_divider);
 
+        mVisibilityIconView = mIconView.getVisibility();
+
         onUpdate();
     }
 
@@ -207,7 +214,7 @@ public class DynamicItemView extends DynamicView {
                 mIconView.clearColorFilter();
             }
 
-            if (!mFillSpace) {
+            if (!mFillSpace && mVisibilityIconView == VISIBLE) {
                 mIconView.setVisibility(VISIBLE);
             }
         }
