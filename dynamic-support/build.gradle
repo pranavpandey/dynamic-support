@@ -49,6 +49,7 @@ dependencies {
     api "androidx.fragment:fragment:${versions.fragment}"
     api "androidx.swiperefreshlayout:swiperefreshlayout:${versions.swiperefresh}"
     api "androidx.work:work-runtime:${versions.work}"
+    api "com.google.android:flexbox:${versions.flexbox}"
     api "com.google.android.material:material:${versions.material}"
 }
 

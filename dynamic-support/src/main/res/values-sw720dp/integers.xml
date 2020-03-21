@@ -17,7 +17,8 @@
 
 <resources>
 
-    <!-- Span -->
-    <integer name="ads_span_compact_dialog">3</integer>
+    <!-- Dialog -->
+    <item name="ads_dialog_min_width_major" type="dimen">65%</item>
+    <item name="ads_dialog_min_width_minor" type="dimen">75%</item>
 
 </resources>

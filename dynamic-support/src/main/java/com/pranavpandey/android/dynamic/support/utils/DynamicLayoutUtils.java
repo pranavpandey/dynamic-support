@@ -29,6 +29,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.google.android.flexbox.AlignItems;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicRecyclerViewAdapter;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
@@ -156,7 +160,7 @@ public class DynamicLayoutUtils {
     }
 
     /**
-     * Get the grid count for the supplied context suitable for a dialog.
+     * Get the grid count for the supplied context suitable for the dialog.
      *
      * @param context The context to get the span count.
      *
@@ -167,40 +171,67 @@ public class DynamicLayoutUtils {
     }
 
     /**
-     * @return The {@link LinearLayoutManager} object for a given context.
+     * Returns the {@link LinearLayoutManager} object for the given context.
      *
-     * @param context The context to instantiate layout manager.
+     * @param context The context to instantiate the layout manager.
      * @param orientation The orientation of the layout manager.
      *                    {@link StaggeredGridLayoutManager#VERTICAL} or
      *                    {@link StaggeredGridLayoutManager#HORIZONTAL}
+     *
+     * @return The {@link LinearLayoutManager} object for the given context.
      */
-    public static LinearLayoutManager getLinearLayoutManager(
+    public static @NonNull LinearLayoutManager getLinearLayoutManager(
             @NonNull Context context, int orientation) {
         return new LinearLayoutManager(context, orientation, false);
     }
 
     /**
-     * @return The {@link GridLayoutManager} object for a given context.
-     *
-     * @param context The context to instantiate layout manager.
+     * Returns the {@link GridLayoutManager} object for the given context.
+     * 
+     * @param context The context to instantiate the layout manager.
      * @param count The column count for the grid layout.
+     *
+     * @return The {@link GridLayoutManager} object for the given context.
      */
-    public static GridLayoutManager getGridLayoutManager(
+    public static @NonNull GridLayoutManager getGridLayoutManager(
             @NonNull Context context, int count) {
         return new GridLayoutManager(context, count);
     }
 
     /**
-     * @return The {@link StaggeredGridLayoutManager} object for a given context.
-     *
+     * Returns the {@link StaggeredGridLayoutManager} object for the given context.
+     * 
      * @param count The no. of rows or columns count according to the orientation.
      * @param orientation The orientation of the layout manager.
      *                    {@link StaggeredGridLayoutManager#VERTICAL} or
      *                    {@link StaggeredGridLayoutManager#HORIZONTAL}
+     *                    
+     * @return The {@link StaggeredGridLayoutManager} object for the given context.
      */
-    public static StaggeredGridLayoutManager getStaggeredGridLayoutManager(
+    public static @NonNull StaggeredGridLayoutManager getStaggeredGridLayoutManager(
             int count, int orientation) {
         return new StaggeredGridLayoutManager(count, orientation);
+    }
+
+    /**
+     * Returns the {@link FlexboxLayoutManager} object for the given context.
+     *
+     * @param context The context to instantiate the layout manager.
+     * @param flexDirection The flex direction attribute to the flex container.
+     * @param justifyContent The justify content attribute to the flex container.
+     * @param alignItems The align items attribute to the flex container.
+     *
+     * @return The {@link FlexboxLayoutManager} object for the given context.
+     */
+    public static @NonNull FlexboxLayoutManager getFlexboxLayoutManager(
+            @NonNull Context context, @FlexDirection int flexDirection,
+            @JustifyContent  int justifyContent, @AlignItems int alignItems) {
+        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(context);
+        layoutManager.setFlexDirection(flexDirection);
+        layoutManager.setJustifyContent(justifyContent);
+        layoutManager.setAlignItems(alignItems);
+
+        return layoutManager;
     }
 
     /**
@@ -317,64 +348,5 @@ public class DynamicLayoutUtils {
                     recyclerView.getAdapter().getItemCount() - 1 },
                     ((GridLayoutManager) recyclerView.getLayoutManager()).getSpanCount());
         }
-    }
-
-    /**
-     * Set full span for the header and empty view in case of a {@link GridLayoutManager}.
-     * This method must be called after setting a adapter for the recycler view.
-     *
-     * @param recyclerView The recycler view to set the span size.
-     * @param itemTypes The item types supported by the recycler view.
-     *
-     * @deprecated This method is not suitable for recycler view with multiple item types.
-     *             <p>Please use {#setFullSpanForType(RecyclerView, Integer[], int) } method that
-     *             provides better results.
-     *
-     * @see #setFullSpanForType(RecyclerView, Integer[], int)
-     */
-    public static void setFullSpanForHeader(@Nullable final RecyclerView recyclerView,
-            @NonNull final Integer[] itemTypes) {
-        if (recyclerView != null && recyclerView.getAdapter() != null) {
-            if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
-                ((GridLayoutManager) recyclerView.getLayoutManager())
-                        .setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-                            @Override
-                            public int getSpanSize(int position) {
-                                if (Arrays.asList(itemTypes).contains(
-                                        recyclerView.getAdapter().getItemViewType(position))) {
-                                    return 1;
-                                } else {
-                                    switch (recyclerView.getAdapter().getItemViewType(position)) {
-                                        case DynamicRecyclerViewAdapter.TYPE_EMPTY_VIEW:
-                                        case DynamicRecyclerViewAdapter.TYPE_SECTION_HEADER:
-                                            return ((GridLayoutManager)
-                                                    recyclerView.getLayoutManager()).getSpanCount();
-                                        default:
-                                            return -1;
-                                    }
-                                }
-                            }
-                        });
-            }
-        }
-    }
-
-    /**
-     * Set full span for the header and empty view in case of a {@link GridLayoutManager}.
-     * This method must be called after setting a adapter for the recycler view.
-     *
-     * @param recyclerView The recycler view to set the span size.
-     *
-     * @see DynamicRecyclerViewAdapter.ItemType
-     * @see GridLayoutManager#setSpanSizeLookup( GridLayoutManager.SpanSizeLookup)
-     *
-     * @deprecated This method is not suitable for recycler view with multiple item types.
-     *             <p>Please use {@link #setFullSpanForType(RecyclerView)} method that provides
-     *             better results.
-     *
-     * @see #setFullSpanForType(RecyclerView)
-     */
-    public static void setFullSpanForHeader(@Nullable final RecyclerView recyclerView) {
-        setFullSpanForHeader(recyclerView, new Integer[] { DynamicRecyclerViewAdapter.TYPE_ITEM });
     }
 }
