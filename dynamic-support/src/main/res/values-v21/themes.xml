@@ -19,55 +19,51 @@
 
     <!-- Application theme -->
     <style name="Theme.DynamicApp" parent="Base.DynamicApp.NoActionBar">
-        <item name="android:windowActivityTransitions">true</item>
-        <item name="android:windowAllowEnterTransitionOverlap">true</item>
-        <item name="android:windowAllowReturnTransitionOverlap">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/ads_navigation_color</item>
     </style>
 
     <style name="Theme.DynamicApp.Dark" parent="Base.DynamicApp.Dark.NoActionBar">
-        <item name="android:windowActivityTransitions">true</item>
-        <item name="android:windowAllowEnterTransitionOverlap">true</item>
-        <item name="android:windowAllowReturnTransitionOverlap">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/ads_navigation_color</item>
     </style>
 
     <style name="Theme.DynamicApp.Light" parent="Base.DynamicApp.Light.NoActionBar">
-        <item name="android:windowActivityTransitions">true</item>
-        <item name="android:windowAllowEnterTransitionOverlap">true</item>
-        <item name="android:windowAllowReturnTransitionOverlap">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/ads_navigation_color</item>
     </style>
 
     <style name="Theme.DynamicApp.DayNight" parent="Base.DynamicApp.DayNight.NoActionBar">
-        <item name="android:windowActivityTransitions">true</item>
-        <item name="android:windowAllowEnterTransitionOverlap">true</item>
-        <item name="android:windowAllowReturnTransitionOverlap">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/ads_navigation_color</item>
     </style>
 
     <style name="Theme.DynamicApp.Translucent">
+        <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
     <style name="Theme.DynamicApp.Dark.Translucent">
+        <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
     <style name="Theme.DynamicApp.Light.Translucent">
+        <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
     <style name="Theme.DynamicApp.DayNight.Translucent">
+        <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
     <!-- Widget -->

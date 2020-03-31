@@ -30,6 +30,16 @@ import androidx.annotation.Nullable;
 public interface DynamicTransitionListener {
 
     /**
+     * This method will be called to postpone the transition until the returned view is laid.
+     *
+     * <p><p>It will be called only on API 21 and above.
+     *
+     * @return The view to postpone the transition.
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @Nullable View getPostponeTransitionView();
+
+    /**
      * This method will be called to find the view according to the transition name
      * or resource id.
      *

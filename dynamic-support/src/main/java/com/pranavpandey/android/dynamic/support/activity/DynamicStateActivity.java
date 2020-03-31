@@ -196,16 +196,18 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
         }
 
         if (fragment != null) {
-            fragmentTransaction.replace(getFragmentContainerId(), fragment, tag);
+            fragmentTransaction.setReorderingAllowed(true)
+                    .replace(getFragmentContainerId(), fragment, tag);
             if (addToBackStack && mContentFragment != null) {
                 fragmentTransaction.addToBackStack(tag);
             } else {
-                getSupportFragmentManager().popBackStack(
-                        null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                getSupportFragmentManager().popBackStack(null,
+                        FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }
 
             commitFragmentTransaction(fragmentTransaction);
             setContentFragment(fragment, tag);
+            onManageSharedElementTransition();
         }
     }
 

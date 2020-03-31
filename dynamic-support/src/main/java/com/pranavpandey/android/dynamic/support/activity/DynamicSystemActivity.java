@@ -28,9 +28,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.transition.Transition;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.ColorInt;
@@ -51,6 +54,7 @@ import androidx.preference.PreferenceManager;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.transition.MaterialContainerTransform;
+import com.google.android.material.transition.MaterialContainerTransformSharedElementCallback;
 import com.pranavpandey.android.dynamic.locale.DynamicLocale;
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.R;
@@ -194,14 +198,24 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     private int mTransitionPosition;
 
     /**
-     * Listener to listen the transition events.
+     * Shared element transition.
      */
-    private DynamicTransitionListener mDynamicTransitionListener;
+    private Transition mSharedElementTransition;
+
+    /**
+     * Callback for the shared element transition.
+     */
+    private SharedElementCallback mSharedElementCallback;
 
     /**
      * {@code true} if activity is finishing after running the support transition.
      */
     private boolean mFinishAfterTransition;
+
+    /**
+     * Listener to listen the transition events.
+     */
+    private DynamicTransitionListener mDynamicTransitionListener;
 
     @Override
     public void attachBaseContext(@NonNull Context base) {
@@ -234,59 +248,63 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
             return;
         }
 
-        MaterialContainerTransform transform = new MaterialContainerTransform(this);
-        transform.setScrimColor(Color.TRANSPARENT);
-        SharedElementCallback mSharedElementCallback =
-                new SharedElementCallback() {
-                    @Override
-                    public void onSharedElementEnd(
-                            @NonNull List<String> sharedElementNames,
-                            @NonNull List<View> sharedElements,
-                            @NonNull List<View> sharedElementSnapshots) {
-                        super.onSharedElementEnd(sharedElementNames,
-                                sharedElements, sharedElementSnapshots);
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        mSharedElementTransition = new MaterialContainerTransform(this);
+        ((MaterialContainerTransform) mSharedElementTransition).setScrimColor(Color.TRANSPARENT);
 
-                        resetSharedElementTransition();
-                    }
+        mSharedElementCallback = new MaterialContainerTransformSharedElementCallback() {
+                @Override
+                public void onSharedElementEnd(
+                        @NonNull List<String> sharedElementNames,
+                        @NonNull List<View> sharedElements,
+                        @NonNull List<View> sharedElementSnapshots) {
+                    super.onSharedElementEnd(sharedElementNames,
+                            sharedElements, sharedElementSnapshots);
 
-                    @Override
-                    public void onMapSharedElements(@NonNull List<String> names,
-                            @NonNull Map<String, View> sharedElements) {
-                        if (mSharedElementMap == null) {
-                            mSharedElementMap = new HashMap<>();
-                            for (Map.Entry<String, View> entry : sharedElements.entrySet()) {
-                                mSharedElementMap.put(entry.getKey(), entry.getValue().getId());
-                            }
-                        } else if (!mFinishAfterTransition) {
-                            if (mDynamicTransitionListener != null) {
-                                for (Map.Entry<String, Integer> entry
-                                        : mSharedElementMap.entrySet()) {
-                                    if (!names.contains(entry.getKey())) {
-                                        names.add(entry.getKey());
-                                    }
+                    resetSharedElementTransition();
+                }
 
-                                    if (sharedElements.size() < names.size()) {
-                                        sharedElements.put(entry.getKey(), getSharedElement(
-                                                mTransitionResultCode, mTransitionPosition,
-                                                entry.getKey(), entry.getValue()));
-                                    }
+                @Override
+                public void onMapSharedElements(@NonNull List<String> names,
+                        @NonNull Map<String, View> sharedElements) {
+                    if (mSharedElementMap == null) {
+                        mSharedElementMap = new HashMap<>();
+                        for (Map.Entry<String, View> entry : sharedElements.entrySet()) {
+                            mSharedElementMap.put(entry.getKey(), entry.getValue().getId());
+                        }
+                    } else if (!mFinishAfterTransition) {
+                        if (mDynamicTransitionListener != null) {
+                            for (Map.Entry<String, Integer> entry
+                                    : mSharedElementMap.entrySet()) {
+                                if (!names.contains(entry.getKey())) {
+                                    names.add(entry.getKey());
+                                }
+
+                                if (sharedElements.size() < names.size()) {
+                                    sharedElements.put(entry.getKey(), getSharedElement(
+                                            mTransitionResultCode, mTransitionPosition,
+                                            entry.getKey(), entry.getValue()));
                                 }
                             }
-                            super.onMapSharedElements(names, sharedElements);
-
-                            resetSharedElementTransition();
-                        } else {
-                            resetSharedElementTransition();
                         }
+
+                        resetSharedElementTransition();
+                    } else {
+                        resetSharedElementTransition();
                     }
-                };
+                    super.onMapSharedElements(names, sharedElements);
+                }
+            };
 
         if (getWindow().getSharedElementReturnTransition() == null) {
             setExitSharedElementCallback(mSharedElementCallback);
         } else {
             setEnterSharedElementCallback(mSharedElementCallback);
-            getWindow().setSharedElementEnterTransition(transform);
-            getWindow().setSharedElementReturnTransition(transform);
+
+            if (mSharedElementTransition != null) {
+                getWindow().setSharedElementEnterTransition(mSharedElementTransition);
+                getWindow().setSharedElementReturnTransition(mSharedElementTransition);
+            }
         }
     }
 
@@ -297,27 +315,24 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     @SuppressWarnings("unchecked")
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     protected void onManageSharedElementTransition() {
-        if (DynamicSdkUtils.is21()) {
-            if (mSavedInstanceState != null) {
-                if (DynamicSdkUtils.is29()) {
-                    resetSharedElementTransition();
-                    return;
-                }
-
-                mBackgroundColor = mSavedInstanceState.getInt(ADS_STATE_BACKGROUND_COLOR);
-
-                if (mSavedInstanceState.getSerializable(ADS_STATE_SHARED_ELEMENT_MAP) != null) {
-                    mSharedElementMap = (HashMap<String, Integer>)
-                            mSavedInstanceState.getSerializable(ADS_STATE_SHARED_ELEMENT_MAP);
-                    mTransitionResultCode = mSavedInstanceState.getInt(
-                            ADS_STATE_TRANSITION_RESULT_CODE);
-                    mTransitionPosition = mSavedInstanceState.getInt(
-                            ADS_STATE_TRANSITION_POSITION);
-                }
-            }
-
-            adjustSharedElementTransition(mSavedInstanceState != null);
+        if (!DynamicSdkUtils.is21()) {
+            return;
         }
+
+        if (mSavedInstanceState != null) {
+            mBackgroundColor = mSavedInstanceState.getInt(ADS_STATE_BACKGROUND_COLOR);
+
+            if (mSavedInstanceState.getSerializable(ADS_STATE_SHARED_ELEMENT_MAP) != null) {
+                mSharedElementMap = (HashMap<String, Integer>)
+                        mSavedInstanceState.getSerializable(ADS_STATE_SHARED_ELEMENT_MAP);
+                mTransitionResultCode = mSavedInstanceState.getInt(
+                        ADS_STATE_TRANSITION_RESULT_CODE);
+                mTransitionPosition = mSavedInstanceState.getInt(
+                        ADS_STATE_TRANSITION_POSITION);
+            }
+        }
+
+        adjustSharedElementTransition(mSavedInstanceState != null);
     }
 
     /**
@@ -328,20 +343,46 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      */
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     protected void adjustSharedElementTransition(boolean resume) {
-        if (!DynamicSdkUtils.is21()){
+        if (!DynamicSdkUtils.is21()) {
             return;
         }
 
         if (getWindow().getSharedElementEnterTransition() != null
                 || mBackgroundColor == Color.TRANSPARENT) {
-            mBackgroundColor = Color.TRANSPARENT;
-            getWindow().setBackgroundDrawable(new ColorDrawable(mBackgroundColor));
+            setWindowBackground(Color.TRANSPARENT);
+            getWindow().setExitTransition(null);
+        } else {
+            getWindow().setEnterTransition(null);
         }
+        getWindow().setAllowEnterTransitionOverlap(false);
+        getWindow().setAllowReturnTransitionOverlap(false);
 
-        if (resume && DynamicSdkUtils.is29()
-                && getWindow().getSharedElementEnterTransition() != null) {
-            resetSharedElementTransition();
+        if (mDynamicTransitionListener != null
+                && mDynamicTransitionListener.getPostponeTransitionView() != null) {
+            supportPostponeEnterTransition();
+
+            mDynamicTransitionListener.getPostponeTransitionView().getViewTreeObserver()
+                    .addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                        @Override
+                        public boolean onPreDraw() {
+                            mDynamicTransitionListener.getPostponeTransitionView()
+                                    .getViewTreeObserver().removeOnPreDrawListener(this);
+                            supportStartPostponedEnterTransition();
+
+                            return true;
+                        }
+                    });
         }
+    }
+
+    /**
+     * Sets the window background color.
+     *
+     * @param color The window background color to be set.
+     */
+    private void setWindowBackground(@ColorInt int color) {
+        this.mBackgroundColor = color;
+        getWindow().setBackgroundDrawable(new ColorDrawable(mBackgroundColor));
     }
 
     /**
@@ -525,6 +566,43 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         this.mTransitionPosition = transitionPosition;
     }
 
+
+    /**
+     * Returns the shared element transition.
+     *
+     * @return The shared element transition.
+     */
+    public @Nullable Transition getSharedElementTransition() {
+        return mSharedElementTransition;
+    }
+
+    /**
+     * Sets the shared element transition.
+     *
+     * @param sharedElementTransition The shared element transition to be set.
+     */
+    public void setSharedElementTransition(@Nullable Transition sharedElementTransition) {
+        this.mSharedElementTransition = sharedElementTransition;
+    }
+
+    /**
+     * Returns the callback for the shared element transition.
+     *
+     * @return The callback for the shared element transition.
+     */
+    public @Nullable SharedElementCallback getSharedElementCallback() {
+        return mSharedElementCallback;
+    }
+
+    /**
+     * Sets the callback for the shared element transition.
+     *
+     * @param sharedElementCallback The callback for the shared element transition.
+     */
+    public void setSharedElementCallback(@Nullable SharedElementCallback sharedElementCallback) {
+        this.mSharedElementCallback = sharedElementCallback;
+    }
+
     /**
      * Returns the dynamic transition listener used by this activity.
      *
@@ -560,8 +638,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     private void setDynamicTheme() {
         DynamicTheme.getInstance().attach(this, getDynamicLayoutInflater())
                 .setLocalTheme(getThemeRes(), getDynamicTheme());
-        getWindow().setBackgroundDrawable(new ColorDrawable(
-                DynamicTheme.getInstance().get().getBackgroundColor()));
+        setWindowBackground(DynamicTheme.getInstance().get().getBackgroundColor());
 
         onCustomiseTheme();
     }
@@ -993,10 +1070,29 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (getOnBackPressedDispatcher().hasEnabledCallbacks()) {
+            getOnBackPressedDispatcher().onBackPressed();
+        } else {
+            finishActivity();
+        }
+    }
+
+    @Override
+    public void supportFinishAfterTransition() {
+        if (mSavedInstanceState != null) {
+            resetSharedElementTransition();
+            finish();
+        } else {
+            super.supportFinishAfterTransition();
+        }
+    }
+
     /**
      * Finish the activity properly after checking the shared element transition.
      */
-    protected void finishActivity() {
+    public void finishActivity() {
         if (!isFinishing()) {
             if (DynamicSdkUtils.is21()
                     && (getWindow().getSharedElementEnterTransition() != null

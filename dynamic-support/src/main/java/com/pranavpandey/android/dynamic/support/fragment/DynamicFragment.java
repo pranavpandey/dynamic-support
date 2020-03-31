@@ -305,7 +305,9 @@ public class DynamicFragment extends Fragment implements
      */
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     protected void finishActivity() {
-        if (getActivity() != null && !requireActivity().isFinishing()) {
+        if (getActivity() instanceof DynamicSystemActivity) {
+            ((DynamicSystemActivity) requireActivity()).finishActivity();
+        } else if (getActivity() != null && !requireActivity().isFinishing()) {
             if (DynamicSdkUtils.is21()
                     && (requireActivity().getWindow().getSharedElementEnterTransition() != null
                     || requireActivity().getWindow().getSharedElementReturnTransition() != null)) {
