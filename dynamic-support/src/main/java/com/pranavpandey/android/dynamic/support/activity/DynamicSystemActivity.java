@@ -558,14 +558,8 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * Set the dynamic app theme and style resource for this activity.
      */
     private void setDynamicTheme() {
-        if (getDynamicTheme() == null) {
-            DynamicTheme.getInstance().attach(this,
-                    getDynamicLayoutInflater()).setLocalThemeRes(getThemeRes());
-        } else {
-            DynamicTheme.getInstance().attach(this,
-                    getDynamicLayoutInflater()).setLocalTheme(getDynamicTheme());
-        }
-
+        DynamicTheme.getInstance().attach(this, getDynamicLayoutInflater())
+                .setLocalTheme(getThemeRes(), getDynamicTheme());
         getWindow().setBackgroundDrawable(new ColorDrawable(
                 DynamicTheme.getInstance().get().getBackgroundColor()));
 

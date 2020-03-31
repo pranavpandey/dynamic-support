@@ -353,11 +353,13 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      * Initialize colors from the supplied theme resource.
      *
      * @param theme The theme resource to initialize colors.
+     * @param dynamicTheme The dynamic app theme to initialize colors.
      * @param initializeRemoteColors {@code true} to initialize remote colors also.
      *
      * @return The {@link DynamicTheme} object to allow for chaining of calls to set methods.
      */
-    public @NonNull DynamicTheme setThemeRes(@StyleRes int theme, boolean initializeRemoteColors) {
+    public @NonNull DynamicTheme setThemeRes(@StyleRes int theme,
+            @Nullable DynamicAppTheme dynamicTheme, boolean initializeRemoteColors) {
         if (theme != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
             mContext.getTheme().applyStyle(theme, true);
 
@@ -401,7 +403,8 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                             mContext, theme, R.attr.ads_backgroundAware,
                             mDefaultApplicationTheme.getBackgroundAware()));
 
-            mApplicationTheme = new DynamicAppTheme(mDefaultApplicationTheme);
+            mApplicationTheme = new DynamicAppTheme(dynamicTheme == null
+                    ? mDefaultApplicationTheme : dynamicTheme);
 
             if (initializeRemoteColors) {
                 initializeRemoteColors();
@@ -414,25 +417,23 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     /**
      * Initialize colors from the supplied dynamic app theme.
      *
-     * @param theme The dynamic app theme to initialize colors.
+     * @param theme The theme resource to initialize colors.
+     * @param dynamicTheme The dynamic app theme to initialize colors.
      * @param initializeRemoteColors {@code true} to initialize remote colors also.
      *
      * @return The {@link DynamicTheme} object to allow for chaining of calls to set methods.
      */
-    public @NonNull DynamicTheme setTheme(@Nullable DynamicAppTheme theme,
-            boolean initializeRemoteColors) {
-        if (theme != null) {
-            if (theme.getThemeRes() == DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
+    public @NonNull DynamicTheme setTheme(@StyleRes int theme,
+            @Nullable DynamicAppTheme dynamicTheme, boolean initializeRemoteColors) {
+        if (dynamicTheme != null) {
+            if (dynamicTheme.getThemeRes() == DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
                 throw new IllegalStateException("Dynamic app theme style resource " +
                         "id is not found for the application theme.");
             }
 
-            setThemeRes(theme.getThemeRes(), false);
-            mApplicationTheme = new DynamicAppTheme(theme);
-
-            if (initializeRemoteColors) {
-                initializeRemoteColors();
-            }
+            setThemeRes(dynamicTheme.getThemeRes(), dynamicTheme, false);
+        } else {
+            setThemeRes(theme, null, false);
         }
 
         return this;
@@ -442,10 +443,12 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      * Initialize colors from the supplied local theme resource.
      *
      * @param localTheme The local theme resource to initialize colors.
+     * @param dynamicLocalTheme The local dynamic app theme to initialize colors.
      *
      * @return The {@link DynamicTheme} object to allow for chaining of calls to set methods.
      */
-    public @NonNull DynamicTheme setLocalThemeRes(@StyleRes int localTheme) {
+    public @NonNull DynamicTheme setLocalThemeRes(@StyleRes int localTheme,
+            @Nullable DynamicAppTheme dynamicLocalTheme) {
         if (mLocalContext == null) {
             throw new IllegalStateException("Not attached to a local context.");
         }
@@ -493,7 +496,9 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                             mContext, localTheme, R.attr.ads_backgroundAware,
                             mDefaultLocalTheme.getBackgroundAware()));
 
-            mLocalTheme = new DynamicAppTheme(mDefaultLocalTheme);
+            mLocalTheme = new DynamicAppTheme(dynamicLocalTheme == null
+                    ? mDefaultLocalTheme : dynamicLocalTheme);
+
             addDynamicListener(mLocalContext);
         }
 
@@ -503,19 +508,22 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     /**
      * Initialize colors from the supplied local dynamic app theme.
      *
+     * @param localTheme The local theme resource to initialize colors.
      * @param dynamicLocalTheme The local dynamic app theme to initialize colors.
      *
      * @return The {@link DynamicTheme} object to allow for chaining of calls to set methods.
      */
-    public @NonNull DynamicTheme setLocalTheme(@Nullable DynamicAppTheme dynamicLocalTheme) {
+    public @NonNull DynamicTheme setLocalTheme(@StyleRes int localTheme,
+            @Nullable DynamicAppTheme dynamicLocalTheme) {
         if (dynamicLocalTheme != null) {
             if (dynamicLocalTheme.getThemeRes() == DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
                 throw new IllegalStateException("Dynamic app theme style resource " +
                         "id is not found for the application theme.");
             }
 
-            setLocalThemeRes(dynamicLocalTheme.getThemeRes());
-            mLocalTheme = new DynamicAppTheme(dynamicLocalTheme);
+            setLocalThemeRes(dynamicLocalTheme.getThemeRes(), dynamicLocalTheme);
+        } else {
+            setLocalThemeRes(localTheme, null);
         }
 
         return this;

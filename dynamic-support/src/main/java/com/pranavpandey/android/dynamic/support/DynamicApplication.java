@@ -163,11 +163,7 @@ public abstract class DynamicApplication extends Application
      * Set the dynamic app theme and style resource for this application.
      */
     protected void setDynamicTheme() {
-        if (getDynamicTheme() == null) {
-            DynamicTheme.getInstance().setThemeRes(getThemeRes(), true);
-        } else {
-            DynamicTheme.getInstance().setTheme(getDynamicTheme(), true);
-        }
+        DynamicTheme.getInstance().setTheme(getThemeRes(), getDynamicTheme(), true);
 
         onCustomiseTheme();
     }
