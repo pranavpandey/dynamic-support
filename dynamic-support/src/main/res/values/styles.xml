@@ -235,6 +235,12 @@
     <style name="Base.Animation" parent="android:Animation" />
     <style name="Animation" parent="Base.Animation" />
     <style name="Animation.DynamicApp" />
+    <style name="Animation.DynamicApp.Window" />
+
+    <style name="Animation.DynamicApp.Window.FadeInOut">
+        <item name="android:windowEnterAnimation">@anim/ads_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/ads_fade_out</item>
+    </style>
 
     <style name="Animation.DynamicApp.Dialog">
         <item name="android:windowEnterAnimation">@anim/ads_dialog_enter</item>

@@ -623,6 +623,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * re-initialize the {@link DynamicTheme} with new colors, etc.
      */
     protected void onAppThemeChange() {
+        getWindow().setWindowAnimations(R.style.Animation_DynamicApp_Window_FadeInOut);
         ActivityCompat.recreate(this);
     }
 

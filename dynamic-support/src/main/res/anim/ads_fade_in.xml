@@ -16,20 +16,8 @@
 	limitations under the License.
 -->
 
-<set
+<alpha
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shareInterpolator="false">
-
-    <scale
-        android:interpolator="@android:anim/decelerate_interpolator"
-        android:fromXScale="0.9" android:toXScale="1.0"
-        android:fromYScale="0.9" android:toYScale="1.0"
-        android:pivotX="50%" android:pivotY="50%"
-        android:duration="@integer/ads_config_anim_short_duration" />
-
-    <alpha
-        android:interpolator="@android:anim/decelerate_interpolator"
-        android:fromAlpha="0.0" android:toAlpha="1.0"
-        android:duration="@integer/ads_config_anim_short_duration" />
-
-</set>
+    android:interpolator="@android:anim/decelerate_interpolator"
+    android:fromAlpha="0.0" android:toAlpha="1.0"
+    android:duration="@integer/ads_config_anim_long_duration" />

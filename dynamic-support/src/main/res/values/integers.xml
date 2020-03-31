@@ -21,6 +21,9 @@
          open/close animations. -->
     <integer name="ads_config_activity_short_duration">150</integer>
     <integer name="ads_config_activity_default_duration">220</integer>
+    <integer name="ads_config_anim_short_duration">@android:integer/config_shortAnimTime</integer>
+    <integer name="ads_config_anim_medium_duration">@android:integer/config_mediumAnimTime</integer>
+    <integer name="ads_config_anim_long_duration">@android:integer/config_longAnimTime</integer>
 
     <!-- Activity -->
     <item name="ads_shadow_alpha" type="integer" format="float">1.0</item>

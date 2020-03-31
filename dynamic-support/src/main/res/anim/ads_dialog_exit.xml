@@ -25,11 +25,11 @@
         android:fromXScale="1.0" android:toXScale="0.9"
         android:fromYScale="1.0" android:toYScale="0.9"
         android:pivotX="50%" android:pivotY="50%"
-        android:duration="@integer/ads_config_activity_default_duration" />
+        android:duration="@integer/ads_config_anim_short_duration" />
 
     <alpha
         android:interpolator="@android:anim/decelerate_interpolator"
         android:fromAlpha="1.0" android:toAlpha="0.0"
-        android:duration="@integer/ads_config_activity_short_duration" />
+        android:duration="@integer/ads_config_anim_short_duration" />
 
 </set>

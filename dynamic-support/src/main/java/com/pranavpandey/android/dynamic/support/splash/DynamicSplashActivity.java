@@ -157,4 +157,11 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
         }
         super.onPause();
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+
+        overridePendingTransition(R.anim.ads_fade_in, R.anim.ads_fade_out);
+    }
 }

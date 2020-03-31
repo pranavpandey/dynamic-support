@@ -92,11 +92,4 @@ class SplashActivity : DynamicSplashActivity() {
         startActivity(Intent(this, DrawerActivity::class.java))
         finish()
     }
-
-    override fun finish() {
-        super.finish()
-
-        // TODO: Enter and exit animation according ot the need.
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-    }
 }
