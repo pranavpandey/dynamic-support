@@ -62,8 +62,8 @@
                         app:ads_summary="@string/ads_theme_color_background_summary"
                         app:ads_description="@string/ads_theme_color_default_desc"
                         app:ads_action="@string/ads_theme_color_tint"
-                        app:ads_popup="true"
                         app:ads_shape="square"
+                        app:ads_popup="true"
                         app:ads_popupColors="@array/ads_app_theme_colors" />
 
                     <com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
