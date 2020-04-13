@@ -54,7 +54,6 @@ import androidx.preference.PreferenceManager;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.transition.MaterialContainerTransform;
-import com.google.android.material.transition.MaterialContainerTransformSharedElementCallback;
 import com.pranavpandey.android.dynamic.locale.DynamicLocale;
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.R;
@@ -252,7 +251,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         mSharedElementTransition = new MaterialContainerTransform(this);
         ((MaterialContainerTransform) mSharedElementTransition).setScrimColor(Color.TRANSPARENT);
 
-        mSharedElementCallback = new MaterialContainerTransformSharedElementCallback() {
+        mSharedElementCallback = new SharedElementCallback() {
                 @Override
                 public void onSharedElementEnd(
                         @NonNull List<String> sharedElementNames,
@@ -1081,6 +1080,8 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
 
     @Override
     public void supportFinishAfterTransition() {
+        mFinishAfterTransition = true;
+
         if (mSavedInstanceState != null) {
             resetSharedElementTransition();
             finish();
@@ -1097,7 +1098,6 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
             if (DynamicSdkUtils.is21()
                     && (getWindow().getSharedElementEnterTransition() != null
                     || getWindow().getSharedElementReturnTransition() != null)) {
-                mFinishAfterTransition = true;
                 supportFinishAfterTransition();
             } else {
                 finish();
