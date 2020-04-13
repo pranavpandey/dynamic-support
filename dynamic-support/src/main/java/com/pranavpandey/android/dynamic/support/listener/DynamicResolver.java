@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.listener;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -33,6 +34,15 @@ public interface DynamicResolver {
      * @return {@code true} if the system night mode is enabled.
      */
     boolean isSystemNightMode();
+
+    /**
+     * Resolves system color according to the API level and night mode.
+     *
+     * @param isNight {@code true} to resolve the night color.
+     *
+     * @return The system UI color according to the Android version and night mode.
+     */
+    @ColorInt int resolveSystemColor(boolean isNight);
 
     /**
      * Checks for the night time.

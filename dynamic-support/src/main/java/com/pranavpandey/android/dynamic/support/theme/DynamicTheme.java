@@ -46,6 +46,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicResolver;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.support.model.DynamicRemoteTheme;
 import com.pranavpandey.android.dynamic.support.model.DynamicWidgetTheme;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.theme.work.DynamicThemeWork;
@@ -152,7 +153,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     /**
      * Theme used by the remote elements.
      */
-    private DynamicWidgetTheme mRemoteTheme;
+    private DynamicRemoteTheme mRemoteTheme;
 
     /**
      * Singleton instance of {@link DynamicTheme}.
@@ -214,7 +215,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                 COLOR_PRIMARY_DARK_DEFAULT, COLOR_ACCENT_DEFAULT, FONT_SCALE_DEFAULT,
                 CORNER_SIZE_DEFAULT, Theme.BackgroundAware.ENABLE);
         this.mApplicationTheme = new DynamicAppTheme();
-        this.mRemoteTheme = new DynamicWidgetTheme();
+        this.mRemoteTheme = new DynamicRemoteTheme();
 
         this.mBroadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -536,7 +537,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      * @return The {@link DynamicTheme} object to allow for chaining of calls to set methods.
      */
     public @NonNull DynamicTheme initializeRemoteColors() {
-        mRemoteTheme = (DynamicWidgetTheme) new DynamicWidgetTheme(mApplicationTheme)
+        mRemoteTheme = (DynamicRemoteTheme) new DynamicRemoteTheme(mApplicationTheme)
                 .setBackgroundColor(ContextCompat.getColor(getResolvedContext(),
                 !DynamicSdkUtils.is21()
                         ? R.color.notification_background
@@ -968,6 +969,18 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     public boolean isSystemNightMode() {
         return (getContext().getResources().getConfiguration().uiMode
                 & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+    }
+
+    @Override
+    public int resolveSystemColor(boolean isNight) {
+        if (DynamicSdkUtils.is28()) {
+            return isNight ? DynamicRemoteTheme.SYSTEM_COLOR_NIGHT
+                    : DynamicRemoteTheme.SYSTEM_COLOR;
+        } else if (DynamicSdkUtils.is21()) {
+            return DynamicRemoteTheme.SYSTEM_COLOR;
+        } else {
+            return DynamicRemoteTheme.SYSTEM_COLOR_NIGHT;
+        }
     }
 
     @Override
