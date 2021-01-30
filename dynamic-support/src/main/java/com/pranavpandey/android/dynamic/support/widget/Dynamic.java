@@ -38,7 +38,7 @@ import com.pranavpandey.android.dynamic.theme.Theme;
 /**
  * Helper class to manipulate inflated views at runtime according to their implemented types.
  *
- * <p><p>These methods are provided to avoid any exceptions when views are replaced by the
+ * <p>These methods are provided to avoid any exceptions when views are replaced by the
  * {@link com.pranavpandey.android.dynamic.support.theme.DynamicLayoutInflater}.
  * So, this is the recommended way to modify any of the following view types at runtime.
  *

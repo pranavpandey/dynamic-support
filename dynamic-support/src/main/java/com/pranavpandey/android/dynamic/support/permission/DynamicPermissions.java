@@ -50,7 +50,7 @@ import java.util.List;
  * Help class to request and manage runtime permissions introduced in API 23.
  * <p>It must be initialized before using any of its functions or requesting any permissions.
  *
- * <p><p>Register the {@link DynamicPermissionsActivity} via {@link #setPermissionActivity(Class)}
+ * <p>Register the {@link DynamicPermissionsActivity} via {@link #setPermissionActivity(Class)}
  * to request the permissions via this manager.
  *
  * @see <a href="https://developer.android.com/training/permissions/requesting.html">

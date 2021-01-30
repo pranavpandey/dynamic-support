@@ -31,7 +31,7 @@ import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPicker;
  * A compact version of the DynamicSeekBarPreference for the {@link DynamicColorPicker}
  * to show the hue bar.
  *
- * <p><p>It can also be used in other scenarios.
+ * <p>It can also be used in other scenarios.
  */
 public class DynamicSeekBarHue extends DynamicSeekBarCompact {
 

@@ -36,7 +36,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 /**
  * A {@link DynamicPreference} to implement the basic functionality
  *
- * <p><p>It can be extended to modify according to the need.
+ * <p>It can be extended to modify according to the need.
  */
 public class DynamicSimplePreference extends DynamicPreference {
 

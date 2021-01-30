@@ -19,12 +19,12 @@ buildscript {
             'compileSdk'  : 29,
             'minSdk'      : 14,
             'targetSdk'   : 29,
-            'buildTools'  : '29.0.3',
+            'buildTools'  : '30.0.3',
             'drawerlayout': '1.1.0-alpha04',
             'dynamic'     : '3.2.0',
             'fragment'    : '1.2.3',
             'flexbox'     : '2.0.1',
-            'kotlin'      : '1.3.61',
+            'kotlin'      : '1.4.21',
             'locale'      : '1.1.0',
             'material'    : '1.2.0-alpha05',
             'preferences' : '1.2.0',
@@ -39,9 +39,8 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0-alpha02'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+        classpath 'com.android.tools.build:gradle:7.0.0-alpha05'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
     }
 }
@@ -62,7 +61,7 @@ ext {
     projectDesc = 'A complete library to build Android apps with a built-in theme engine.'
     versionDesc = 'A complete library to build apps for Android 4.0 (API 14) and above devices ' +
             'with a built-in theme engine.'
-    referenceTitle = 'Dynamic Support Reference'
+    referenceTitle = 'Dynamic Support API reference'
 
     siteUrl = 'https://github.com/pranavpandey/dynamic-support'
     gitUrl = 'https://github.com/pranavpandey/dynamic-support'
@@ -71,6 +70,7 @@ ext {
 
     mavenRepo = 'android'
     mavenGroup = 'com.pranavpandey.android'
+    mavenDir = 'com/pranavpandey/android'
     mavenArtifactId = 'dynamic-support'
     mavenInceptionYear = 2018
     mavenVersion = '3.2.0'

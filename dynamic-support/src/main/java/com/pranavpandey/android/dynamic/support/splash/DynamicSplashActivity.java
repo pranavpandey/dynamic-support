@@ -34,7 +34,7 @@ import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
  * customised and it also provides multiple methods to do any background work before launching
  * the main activity by running an {@link android.os.AsyncTask}.
  *
- * <p><p>Extend this activity and implement the required methods to show a splash screen.
+ * <p>Extend this activity and implement the required methods to show a splash screen.
  * It should be declared as the main activity in the projects's manifest for best performance.
  */
 public abstract class DynamicSplashActivity extends DynamicSystemActivity

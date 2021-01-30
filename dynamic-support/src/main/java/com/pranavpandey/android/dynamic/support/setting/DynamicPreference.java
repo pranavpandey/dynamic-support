@@ -42,7 +42,7 @@ import com.pranavpandey.android.dynamic.support.widget.Dynamic;
  * Base preference to provide the basic interface for the extending preference with an icon,
  * title, summary, description, value and an action button.
  *
- * <p><p>It must be extended and the necessary methods should be implemented to create a
+ * <p>It must be extended and the necessary methods should be implemented to create a
  * dynamic preference.
  *
  * @see DynamicSimplePreference
@@ -61,7 +61,7 @@ public abstract class DynamicPreference extends FrameLayout
      * <p>It will be useful if this preference is displaying a popup or dialog and we have
      * to restrict it from doing that.
      *
-     * <p><p>Most possible situation is if we want to display the color picker dialog only
+     * <p>Most possible situation is if we want to display the color picker dialog only
      * if user has purchased this feature.
      *
      * @see DynamicColorPreference
@@ -552,7 +552,7 @@ public abstract class DynamicPreference extends FrameLayout
      * Set an action button for this preference to perform secondary operations like requesting
      * a permission, reset the preference value etc.
      *
-     * <p><p>Extending preference should implement the functionality in {@link #onUpdate()}
+     * <p>Extending preference should implement the functionality in {@link #onUpdate()}
      * method.
      *
      * @param actionString The string to be shown for the action.

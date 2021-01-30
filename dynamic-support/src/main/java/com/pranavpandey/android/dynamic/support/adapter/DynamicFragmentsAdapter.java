@@ -32,7 +32,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
  * <p>FragmentStatePagerAdapter is also originally caches pages, but its keys are not public
  * nor documented, so depending on how it create cache key is dangerous.
  *
- * <p><p>This adapter caches pages by itself and provide getter method to the cache.
+ * <p>This adapter caches pages by itself and provide getter method to the cache.
  *
  * @deprecated Use the default {@link FragmentStatePagerAdapter}
  *             or {@link DynamicFragmentStateAdapter}.

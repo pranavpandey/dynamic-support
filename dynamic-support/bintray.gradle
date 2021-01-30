@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2019-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,10 @@
  * limitations under the License.
  */
 
+apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
+group = mavenGroup
 version = mavenVersion
 
 // Android libraries
@@ -27,7 +29,6 @@ if (project.hasProperty("android")) {
 
     task javadoc(type: Javadoc) {
         source = android.sourceSets.main.java.srcDirs
-        classpath += configurations.compile
         classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 
         failOnError = false
@@ -49,6 +50,61 @@ artifacts {
     archives sourcesJar
 }
 
+// Maven
+publishing {
+    publications {
+        library(MavenPublication) {
+            groupId mavenGroup
+            artifactId mavenArtifactId
+            version mavenVersion
+
+            artifact "$buildDir/outputs/aar/$mavenArtifactId-release.aar"
+            artifact javadocJar
+            artifact sourcesJar
+
+            pom.withXml {
+                // Project
+                asNode().appendNode('name', projectName)
+                asNode().appendNode('description', projectDesc)
+                asNode().appendNode('url', siteUrl)
+                asNode().appendNode('inceptionYear', mavenInceptionYear)
+
+                // Licenses
+                def license = asNode().appendNode('licenses').appendNode('license')
+                license.appendNode('name', licenseName)
+                license.appendNode('url', licenseUrl)
+                license.appendNode('distribution', licenseDistribution)
+
+                // Developers
+                def developer = asNode().appendNode('developers').appendNode('developer')
+                developer.appendNode('id', developerId)
+                developer.appendNode('name', developerName)
+                developer.appendNode('email', developerEmail)
+
+                // SCM
+                def scm = asNode().appendNode('scm')
+                scm.appendNode('connection', "${gitUrl}.git")
+                scm.appendNode('developerConnection', gitUrl)
+                scm.appendNode('url', siteUrl)
+
+                // Dependencies
+                def dependenciesNode = asNode()['dependencies'][0]
+                if (dependenciesNode == null) {
+                    dependenciesNode = asNode().appendNode('dependencies')
+                }
+
+                // Add all that are 'compile'
+                configurations.api.allDependencies.each {
+                    def dependencyNode = dependenciesNode.appendNode('dependency')
+                    dependencyNode.appendNode('groupId', it.group)
+                    dependencyNode.appendNode('artifactId', it.name)
+                    dependencyNode.appendNode('version', it.version)
+                }
+            }
+        }
+    }
+}
+
 // Bintray
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
@@ -56,6 +112,14 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 bintray {
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.key")
+
+    filesSpec {
+        from "$buildDir/publications/library/pom-default.xml"
+        into "$mavenDir/$mavenArtifactId/$mavenVersion/"
+        rename { String fileName ->
+            "${mavenArtifactId}-${mavenVersion}.pom"
+        }
+    }
 
     configurations = ['archives']
 
@@ -83,4 +147,16 @@ bintray {
             }
         }
     }
+}
+
+afterEvaluate { project ->
+    // Fix javadoc generation
+    javadoc.classpath += files(android.libraryVariants.collect { variant ->
+        variant.javaCompileProvider.get().classpath.files
+    })
+
+    def pomTask = "generatePomFileForLibraryPublication"
+
+    // Convenience task to prepare everything we need for releases
+    task prepareArtifacts(dependsOn: [javadocJar, sourcesJar, assembleRelease, pomTask]) { }
 }

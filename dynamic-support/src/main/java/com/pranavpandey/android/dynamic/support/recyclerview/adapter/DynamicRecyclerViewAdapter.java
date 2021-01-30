@@ -26,7 +26,7 @@ import java.lang.annotation.RetentionPolicy;
  * A {@link RecyclerView.Adapter} to display items in different sections.
  * <p>Each section can have a section header also.
  *
- * <p><p>Extend this adapter and implement {@link DynamicRecyclerViewItem} interface
+ * <p>Extend this adapter and implement {@link DynamicRecyclerViewItem} interface
  * in the object class.
  */
 public abstract class DynamicRecyclerViewAdapter

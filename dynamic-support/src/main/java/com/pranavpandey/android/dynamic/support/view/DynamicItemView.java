@@ -41,7 +41,7 @@ import com.pranavpandey.android.dynamic.theme.Theme;
  * A {@link DynamicView} with an icon, title and subtitle functionality that can be used to show
  * various information according to the requirement.
  *
- * <p><p>Use {@link #getItemView()} method to set click listeners or to perform other operations.
+ * <p>Use {@link #getItemView()} method to set click listeners or to perform other operations.
  */
 public class DynamicItemView extends DynamicView {
 

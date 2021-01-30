@@ -28,7 +28,7 @@ import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyc
  * A {@link RecyclerView.Adapter} to display different types of items or views in a recycler view.
  * <p>Each section can have a header or a completely different item.
  *
- * <p><p>Extend this adapter and use {@link DynamicRecyclerViewBinder} to create binding logic
+ * <p>Extend this adapter and use {@link DynamicRecyclerViewBinder} to create binding logic
  * for the each type of views.
  */
 @SuppressWarnings({"unchecked", "rawtypes"})

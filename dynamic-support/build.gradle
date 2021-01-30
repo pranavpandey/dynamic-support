@@ -38,6 +38,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -54,27 +58,46 @@ dependencies {
 }
 
 if (project.rootProject.file('local.properties').exists()) {
-    apply from: 'maven.gradle'
     apply from: 'bintray.gradle'
+}
+
+task generateJavadoc() {
+    description "Generates Javadoc."
 }
 
 project.afterEvaluate {
     android.libraryVariants.all { variant ->
-        if (variant.name == 'release') {
-            task javadocRelease(type: Javadoc) {
-                description = "Generates javadocs"
-                failOnError = false
-                destinationDir = new File(destinationDir, variant.baseName)
-                source = android.sourceSets.main.java.srcDirs
-                classpath += configurations.compile
-                classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-                options.windowTitle(referenceTitle)
-                options.docTitle(referenceTitle)
-                options.header(referenceTitle)
-                options.links('http://docs.oracle.com/javase/8/docs/api')
-                options.links('https://developer.android.com/reference', "${android.sdkDirectory}/docs/reference")
-                exclude '**/R.java', '**/BuildConfig.java'
+        def task = project.tasks.create("generate${variant.name.capitalize()}Javadoc", Javadoc) {
+            title "${referenceTitle}"
+            description "Generates Javadoc for $variant.name."
+            destinationDir = new File(destinationDir, variant.baseName)
+
+            source = variant.sourceSets.collect { it.java.sourceFiles }.inject { m, i -> m + i }
+            doFirst {
+                classpath = project.files(variant.javaCompileProvider.get().classpath.files,
+                        project.android.getBootClasspath())
             }
+
+            if (JavaVersion.current().isJava8Compatible()) {
+                options.addStringOption('Xdoclint:none', '-quiet')
+            }
+
+            exclude "**/R", "**/R.**", "**/R\$**", "**/BuildConfig*"
+
+            if (JavaVersion.current().isJava8Compatible()) {
+                options.addStringOption('Xdoclint:none', '-quiet')
+            }
+
+            options.windowTitle = "${referenceTitle}"
+            options.footer = "<h5>${project.android.defaultConfig.versionName}</h5>"
+            options.links('http://docs.oracle.com/javase/8/docs/api')
+            options.links('https://developer.android.com/reference')
+            options.memberLevel = JavadocMemberLevel.PROTECTED
+
+            failOnError false
         }
+
+        task.dependsOn "assemble${variant.name.capitalize()}"
+        generateJavadoc.dependsOn task
     }
 }

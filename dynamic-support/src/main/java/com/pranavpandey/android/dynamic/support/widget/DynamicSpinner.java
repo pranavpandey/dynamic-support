@@ -71,7 +71,7 @@ public class DynamicSpinner extends AppCompatSpinner
      * It was introduced to provide better legibility for colored views and to avoid dark view
      * on dark background like situations.
      *
-     * <p><p>If this is enabled then, it will check for the contrast color and do color
+     * <p>If this is enabled then, it will check for the contrast color and do color
      * calculations according to that color so that this text view will always be visible on
      * that background. If no contrast color is found then, it will take the default
      * background color.
@@ -85,7 +85,7 @@ public class DynamicSpinner extends AppCompatSpinner
      * {@code true} to enable elevation on the same background.
      * <p>It will be useful to provide the true dark theme by disabling the card view elevation.
      *
-     * <p><p>When disabled, widget elevation will be disabled (or 0) if the color of this widget
+     * <p>When disabled, widget elevation will be disabled (or 0) if the color of this widget
      * (surface color) is exactly same as dynamic theme background color.
      */
     private boolean mElevationOnSameBackground;

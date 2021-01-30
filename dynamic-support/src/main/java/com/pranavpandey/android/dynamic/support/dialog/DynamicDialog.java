@@ -200,7 +200,6 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
 
     /**
      * Internal api to allow hinting for the best button panel layout.
-     * @hide
      */
     @RestrictTo(LIBRARY_GROUP)
     void setButtonPanelLayoutHint(int layoutHint) {
@@ -997,7 +996,6 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
          *
          * This is currently hidden because it seems like people should just
          * be able to put padding around the view.
-         * @hide
          */
         @RestrictTo(LIBRARY_GROUP)
         @Deprecated
@@ -1057,9 +1055,6 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
             return this;
         }
 
-        /**
-         * @hide
-         */
         @RestrictTo(LIBRARY_GROUP)
         public Builder setRecycleOnMeasureEnabled(boolean enabled) {
             P.mRecycleOnMeasure = enabled;

@@ -26,7 +26,7 @@ import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutoria
  * Interface for the dynamic tutorial having useful methods which will be called by the
  * {@link DynamicTutorialActivity} to perform color transitions.
  *
- * <p><p>Any child view or fragment must implement this interface to support any color
+ * <p>Any child view or fragment must implement this interface to support any color
  * transitions.
  */
 public interface DynamicTutorial<T, V> extends ViewPager.OnPageChangeListener {

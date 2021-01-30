@@ -32,7 +32,7 @@ import java.util.Arrays;
 /**
  * A {@link DynamicThemePreference} to display the night theme settings.
  *
- * <p><p>It will automatically adjust the values according to the available API.
+ * <p>It will automatically adjust the values according to the available API.
  * <p>{@link Theme.Night#BATTERY} will be available for API 21 and above devices.
  * <p>{@link Theme.Night#SYSTEM} will be available for API 28 and above devices.
  */

@@ -80,7 +80,7 @@ import java.util.Map;
  * navigation bar colors, theme, etc. It heavily depends on the {@link DynamicTheme} that can be
  * customised by implementing the corresponding methods.
  *
- * <p><p>Extend this activity and implement the various methods according to the need.
+ * <p>Extend this activity and implement the various methods according to the need.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public abstract class DynamicSystemActivity extends AppCompatActivity implements
@@ -496,7 +496,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * <p>It will be used to replace the app compat widgets with their dynamic counterparts
      * to provide the support for dynamic theme.
      *
-     * <p><p>Override this method to provide a custom layout inflater.
+     * <p>Override this method to provide a custom layout inflater.
      *
      * @return The layout inflater factory for this activity.
      */
@@ -646,7 +646,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * Sets whether the navigation bar theme should be applied for this activity.
      * <p>It will be applied only on the API 21 and above devices.
      *
-     * <p><p>By default it will use the {@link Theme.ColorType#PRIMARY_DARK} color, use
+     * <p>By default it will use the {@link Theme.ColorType#PRIMARY_DARK} color, use
      * {@link #setNavigationBarColor(int)} to set a custom color.
      *
      * @return {@code true} to apply navigation bar theme for this activity.
@@ -668,7 +668,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * Sets whether the navigation bar theme should be applied for this activity in landscape mode.
      * <p>It will be applied only on the API 21 and above devices.
      *
-     * <p><p>By default it will use the {@link Theme.ColorType#PRIMARY_DARK} color, use
+     * <p>By default it will use the {@link Theme.ColorType#PRIMARY_DARK} color, use
      * {@link #setNavigationBarColor(int)} to set a custom color.
      *
      * @return {@code true} to apply navigation bar theme for this activity in the landscape mode.

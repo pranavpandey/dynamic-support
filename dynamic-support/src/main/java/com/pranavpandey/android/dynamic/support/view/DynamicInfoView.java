@@ -463,7 +463,7 @@ public class DynamicInfoView extends DynamicView {
     /**
      * Set the title for the links used by this view.
      *
-     * <p><p>Automatic refresh is disabled due to the stability reasons.
+     * <p>Automatic refresh is disabled due to the stability reasons.
      * <p>Please call {@link #onUpdate()} to refresh the view.
      *
      * @param links The titles for the links to be set.
@@ -484,7 +484,7 @@ public class DynamicInfoView extends DynamicView {
     /**
      * Set the subtitle for the links used by this view.
      *
-     * <p><p>Automatic refresh is disabled due to the stability reasons.
+     * <p>Automatic refresh is disabled due to the stability reasons.
      * <p>Please call {@link #onUpdate()} to refresh the view.
      *
      * @param linksSubtitles The subtitles for the links to be set.
@@ -505,7 +505,7 @@ public class DynamicInfoView extends DynamicView {
     /**
      * Set the url for the links used by this view.
      *
-     * <p><p>Automatic refresh is disabled due to the stability reasons.
+     * <p>Automatic refresh is disabled due to the stability reasons.
      * <p>Please call {@link #onUpdate()} to refresh the view.
      *
      * @param linksUrls The urls for the links to be set.
@@ -526,7 +526,7 @@ public class DynamicInfoView extends DynamicView {
     /**
      * Set the icons array resource for the links used by this view.
      *
-     * <p><p>Automatic refresh is disabled due to the stability reasons.
+     * <p>Automatic refresh is disabled due to the stability reasons.
      * <p>Please call {@link #onUpdate()} to refresh the view.
      *
      * @param linksIconsResId The icon drawables array resource for the links to be set.
@@ -547,7 +547,7 @@ public class DynamicInfoView extends DynamicView {
     /**
      * Set the icon tint colors array resource for the links used by this view.
      *
-     * <p><p>Automatic refresh is disabled due to the stability reasons.
+     * <p>Automatic refresh is disabled due to the stability reasons.
      * <p>Please call {@link #onUpdate()} to refresh the view.
      *
      * @param linksColorsResId The icon tint colors array resource for the links to be set.
@@ -568,7 +568,7 @@ public class DynamicInfoView extends DynamicView {
     /**
      * Set the icon for the links used by this view.
      *
-     * <p><p>Automatic refresh is disabled due to the stability reasons.
+     * <p>Automatic refresh is disabled due to the stability reasons.
      * <p>Please call {@link #onUpdate()} to refresh the view.
      *
      * @param linksDrawables The icon drawables for the links to be set.
@@ -589,7 +589,7 @@ public class DynamicInfoView extends DynamicView {
     /**
      * Set the icon tint color for the links used by this view.
      *
-     * <p><p>Automatic refresh is disabled due to the stability reasons.
+     * <p>Automatic refresh is disabled due to the stability reasons.
      * <p>Please call {@link #onUpdate()} to refresh the view.
      *
      * @param linksColors The icon tint color for the links to be set.

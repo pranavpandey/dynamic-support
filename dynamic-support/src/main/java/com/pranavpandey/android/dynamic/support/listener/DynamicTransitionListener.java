@@ -32,7 +32,7 @@ public interface DynamicTransitionListener {
     /**
      * This method will be called to postpone the transition until the returned view is laid.
      *
-     * <p><p>It will be called only on API 21 and above.
+     * <p>It will be called only on API 21 and above.
      *
      * @return The view to postpone the transition.
      */
@@ -43,7 +43,7 @@ public interface DynamicTransitionListener {
      * This method will be called to find the view according to the transition name
      * or resource id.
      *
-     * <p><p>It will be called only on API 21 and above.
+     * <p>It will be called only on API 21 and above.
      *
      * @param resultCode The transition result code.
      * @param position The position of the shared element.

@@ -62,7 +62,7 @@ public abstract class DynamicTileService extends TileService {
     /**
      * This method will be called when there is a change in the tile state.
      *
-     * <p><p>Override this method to update the tile icon, title, etc.
+     * <p>Override this method to update the tile icon, title, etc.
      */
     @CallSuper
     protected void onDynamicUpdate() { }

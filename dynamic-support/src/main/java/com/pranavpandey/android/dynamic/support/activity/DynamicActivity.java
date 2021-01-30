@@ -976,7 +976,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * current visibility and a click listener.
      * <p>The FAB will be tinted automatically according to the accent color used by this activity.
      *
-     * <p><p>Please use {@link #getFAB()} method to perform more operations dynamically.
+     * <p>Please use {@link #getFAB()} method to perform more operations dynamically.
      *
      * @param drawable The image drawable to be set.
      * @param visibility The visibility to be set.
@@ -1001,7 +1001,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * current visibility and a click listener.
      * <p>The FAB will be tinted automatically according to the accent color used by this activity.
      *
-     * <p><p>Please use {@link #getFAB()} method to perform more operations dynamically.
+     * <p>Please use {@link #getFAB()} method to perform more operations dynamically.
      *
      * @param drawableRes The image drawable resource to be set.
      * @param visibility The visibility to be set.
@@ -1100,7 +1100,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * a text, current visibility and a click listener.
      * <p>The FAB will be tinted automatically according to the accent color used by this activity.
      *
-     * <p><p>Please use {@link #getExtendedFAB()} method to perform more operations dynamically.
+     * <p>Please use {@link #getExtendedFAB()} method to perform more operations dynamically.
      *
      * @param icon The icon drawable to be set.
      * @param text The text to be set.
@@ -1126,7 +1126,7 @@ public abstract class DynamicActivity extends DynamicStateActivity {
      * a text, current visibility and a click listener.
      * <p>The FAB will be tinted automatically according to the accent color used by this activity.
      *
-     * <p><p>Please use {@link #getExtendedFAB()} method to perform more operations dynamically.
+     * <p>Please use {@link #getExtendedFAB()} method to perform more operations dynamically.
      *
      * @param drawableRes The icon drawable resource to be set.
      * @param resId The string resource id to be set.

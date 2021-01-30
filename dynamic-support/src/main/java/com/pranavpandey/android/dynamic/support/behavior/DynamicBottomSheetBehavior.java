@@ -33,7 +33,7 @@ import com.pranavpandey.android.dynamic.support.R;
  * Set this behavior in the layout file having {@link CoordinatorLayout} as root element to hide
  * the bottom sheet according to the scroll direction.
  *
- * <p><p>Scrolling in downwards direction will hide the bottom sheet.
+ * <p>Scrolling in downwards direction will hide the bottom sheet.
  */
 public class DynamicBottomSheetBehavior<V extends View> extends BottomSheetBehavior<V> {
 

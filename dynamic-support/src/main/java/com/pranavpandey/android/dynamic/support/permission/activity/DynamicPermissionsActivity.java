@@ -39,11 +39,11 @@ import java.util.List;
  * permission from anywhere, even from a service. Extend this activity in your app and add
  * it in the manifest.
  *
- * <p><p>Then, register that activity to request the permissions via
+ * <p>Then, register that activity to request the permissions via
  * {@link DynamicPermissions#setPermissionActivity(Class)}. Rest of the things will be handled
  * by the {@link DynamicPermissionsFragment}.
  *
- * <p><p>To request permissions, just call
+ * <p>To request permissions, just call
  * {@link DynamicPermissions#requestPermissions(String[], boolean, Intent, int)} method anywhere
  * within the app.
  */
