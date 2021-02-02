@@ -94,10 +94,6 @@ class SampleApplication : DynamicApplication() {
         setDelayedTheme()
     }
 
-    override fun onNavigationBarThemeChanged() {
-        // TODO: Do any customisations on navigation bar theme change.
-    }
-
     override fun onDynamicChanged(context: Boolean, recreate: Boolean) {
         super.onDynamicChanged(context, recreate)
 
@@ -108,6 +104,14 @@ class SampleApplication : DynamicApplication() {
         if (recreate) {
             setDelayedTheme()
         }
+    }
+
+    override fun onNavigationBarThemeChanged() {
+        // TODO: Do any customisations on navigation bar theme change.
+    }
+
+    override fun setNavigationBarTheme(): Boolean {
+        return AppController.instance.isThemeNavigationBar
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {

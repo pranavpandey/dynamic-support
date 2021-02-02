@@ -11,7 +11,7 @@ android:
     - tools
     - platform-tools
     - build-tools-30.0.3
-    - android-29
+    - android-30
     - extra-android-support
     - extra-android-m2repository
     - extra-google-m2repository
