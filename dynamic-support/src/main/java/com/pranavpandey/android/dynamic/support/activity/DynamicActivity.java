@@ -774,48 +774,48 @@ public abstract class DynamicActivity extends DynamicStateActivity
                     AnimationUtils.loadAnimation(getContext(), R.anim.ads_fade_out)));
         }
 
-        if (((ViewGroup) mFrameHeader.getCurrentView()).getChildCount() > 0
-                && DynamicMotion.getInstance().isMotion()
-                && view != null && removePrevious && animate) {
-            mHeaderRunnable = new Runnable() {
-                @Override
-                public void run() {
-                    if (mFrameHeader == null) {
-                        return;
-                    }
+        mHeaderRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (mFrameHeader == null) {
+                    return;
+                }
 
-                    if (mFrameHeader.getInAnimation() != null) {
-                        mFrameHeader.getInAnimation().setRepeatCount(0);
-                        mFrameHeader.getInAnimation().setAnimationListener(
-                                new Animation.AnimationListener() {
-                                    @Override
-                                    public void onAnimationStart(Animation animation) {
+                if (mFrameHeader.getInAnimation() != null) {
+                    mFrameHeader.getInAnimation().setRepeatCount(0);
+                    mFrameHeader.getInAnimation().setAnimationListener(
+                            new Animation.AnimationListener() {
+                                @Override
+                                public void onAnimationStart(Animation animation) {
 
-                                    }
+                                }
 
-                                    @Override
-                                    public void onAnimationEnd(Animation animation) {
-                                        mFrameHeader.removeCallbacks(mHeaderRunnable);
-                                    }
+                                @Override
+                                public void onAnimationEnd(Animation animation) {
+                                    mFrameHeader.removeCallbacks(mHeaderRunnable);
+                                }
 
-                                    @Override
-                                    public void onAnimationRepeat(Animation animation) {
+                                @Override
+                                public void onAnimationRepeat(Animation animation) {
 
-                                    }
-                                });
-                    }
+                                }
+                            });
+                }
 
+                if (((ViewGroup) mFrameHeader.getCurrentView()).getChildCount() > 0
+                        && DynamicMotion.getInstance().isMotion()
+                        && view != null && removePrevious && animate) {
                     addView((ViewGroup) mFrameHeader.getNextView(), view, true);
                     onAddHeader(view);
                     mFrameHeader.showNext();
+                } else {
+                    addView((ViewGroup) mFrameHeader.getCurrentView(), view, removePrevious);
+                    onAddHeader(view);
                 }
-            };
+            }
+        };
 
-            mFrameHeader.post(mHeaderRunnable);
-        } else {
-            addView((ViewGroup) mFrameHeader.getCurrentView(), view, removePrevious);
-            onAddHeader(view);
-        }
+        mFrameHeader.post(mHeaderRunnable);
     }
 
     /**
