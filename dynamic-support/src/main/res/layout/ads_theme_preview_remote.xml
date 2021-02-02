@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018-2021 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        style="@style/Widget.DynamicApp.Theme.Background.Image"
+        android:id="@+id/ads_theme_background"
+        android:contentDescription="@null" />
+
+    <LinearLayout
+        style="@style/Widget.DynamicApp.Theme.Preview.Layout">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+                android:id="@+id/ads_theme_header_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                app:ads_backgroundAware="disable" />
+
+            <LinearLayout
+                style="@style/Widget.DynamicApp.Theme.Preview.Header.Remote"
+                android:id="@+id/ads_theme_header"
+                android:baselineAligned="false">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="@integer/ads_theme_preview_weight_start"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+                        android:id="@+id/ads_theme_header_icon"
+                        android:layout_width="@dimen/ads_remote_icon_preview"
+                        android:layout_height="@dimen/ads_remote_icon_preview"
+                        android:layout_marginEnd="@dimen/ads_margin_normal"
+                        android:layout_marginRight="@dimen/ads_margin_normal"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@null"
+                        app:srcCompat="@drawable/ads_ic_circle" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+                        android:id="@+id/ads_theme_header_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/ads_icon_small"
+                        android:layout_gravity="center"
+                        android:contentDescription="@null"
+                        app:srcCompat="@drawable/ads_theme_overlay" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="@integer/ads_theme_preview_weight_end"
+                    android:layout_gravity="center"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+                        style="@style/Widget.DynamicApp.Theme.Action.Preview"
+                        android:id="@+id/ads_theme_header_menu"
+                        android:contentDescription="@string/ads_widget_customise" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <LinearLayout
+            style="@style/Widget.DynamicApp.Theme.Content.Remote"
+            android:id="@+id/ads_theme_footer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1.0">
+
+            <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+                android:id="@+id/ads_theme_action_one"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/ads_icon_tiny"
+                android:layout_weight="@integer/ads_theme_preview_content_weight_end"
+                android:layout_marginEnd="@dimen/ads_margin_medium"
+                android:layout_marginRight="@dimen/ads_margin_medium"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@null"
+                app:srcCompat="@drawable/ads_theme_overlay" />
+
+            <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+                android:id="@+id/ads_theme_action_two"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/ads_icon_tiny"
+                android:layout_weight="@integer/ads_theme_preview_content_weight_end"
+                android:layout_marginEnd="@dimen/ads_margin_medium"
+                android:layout_marginRight="@dimen/ads_margin_medium"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@null"
+                app:srcCompat="@drawable/ads_theme_overlay" />
+
+            <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+                android:id="@+id/ads_theme_action_three"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/ads_icon_tiny"
+                android:layout_weight="@integer/ads_theme_preview_content_weight_end"
+                android:layout_marginEnd="@dimen/ads_margin_medium"
+                android:layout_marginRight="@dimen/ads_margin_medium"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@null"
+                app:srcCompat="@drawable/ads_theme_overlay" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</merge>

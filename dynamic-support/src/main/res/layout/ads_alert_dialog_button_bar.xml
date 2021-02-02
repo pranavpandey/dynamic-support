@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Copyright 2018-2020 Pranav Pandey
+    Copyright 2018-2021 Pranav Pandey
     Copyright 2014 The Android Open Source Project
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,13 +28,13 @@
     <androidx.appcompat.widget.ButtonBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="bottom"
         android:layoutDirection="locale"
-        android:orientation="horizontal"
+        android:gravity="bottom"
         android:paddingBottom="4dp"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
-        android:paddingTop="4dp">
+        android:paddingTop="4dp"
+        android:orientation="horizontal">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicButton
             style="?attr/buttonBarNeutralButtonStyle"

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,13 +34,12 @@ import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicItem;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicItemsAdapter;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.widget.Dynamic;
-import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
 
@@ -128,6 +127,11 @@ public class DynamicInfoView extends DynamicView {
      * Image view to show the icon.
      */
     private ImageView mIconView;
+
+    /**
+     * Image view to show the footer icon.
+     */
+    private ImageView mIconFooterView;
 
     /**
      * Image view to show the big fallback icon.
@@ -226,6 +230,7 @@ public class DynamicInfoView extends DynamicView {
         inflate(getContext(), getLayoutRes(), this);
 
         mIconView = findViewById(R.id.ads_info_view_icon);
+        mIconFooterView = findViewById(R.id.ads_info_view_icon_footer);
         mTitleView = findViewById(R.id.ads_info_view_title);
         mSubtitleView = findViewById(R.id.ads_info_view_subtitle);
         mDescriptionView = findViewById(R.id.ads_info_view_description);
@@ -242,16 +247,17 @@ public class DynamicInfoView extends DynamicView {
 
     @Override
     public void onUpdate() {
-        Dynamic.set(mIconView, mIcon);
-        Dynamic.set(mIconBigView, mIconBig);
-        Dynamic.set(mTitleView, mTitle);
-        Dynamic.set(mSubtitleView, mSubtitle);
-        Dynamic.set(mDescriptionView, mDescription);
-        Dynamic.set(mStatusView, mStatus);
+        Dynamic.set(getIconView(), getIcon());
+        Dynamic.set(getIconBigView(), getIconBig());
+        Dynamic.set(getTitleView(), getTitle());
+        Dynamic.set(getSubtitleView(), getSubtitle());
+        Dynamic.set(getDescriptionView(), getDescription());
+        Dynamic.set(getStatusView(), getStatus());
 
-        if (mVisibilityIconView != VISIBLE) {
-            mIconView.setVisibility(mVisibilityIconView);
+        if (getVisibilityIconView() != VISIBLE) {
+            Dynamic.setVisibility(getIconView(), getVisibilityIconView());
         }
+        Dynamic.setVisibility(getIconFooterView(), getIconView());
 
         mDynamicItems.clear();
         if (mLinks != null) {
@@ -302,7 +308,7 @@ public class DynamicInfoView extends DynamicView {
                         DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE) {
                     color = mLinksColors[i];
                 } else {
-                    color = WidgetDefaults.ADS_COLOR_UNKNOWN;
+                    color = Theme.Color.UNKNOWN;
                 }
 
                 DynamicItem dynamicItem = new DynamicItem(icon, title, subtitle,
@@ -599,65 +605,83 @@ public class DynamicInfoView extends DynamicView {
     }
 
     /**
-     * Get the image view to show the icon.
+     * Returns the visibility of the icon view.
      *
-     * @return The image view to show the icon.
+     * @return The visibility of the icon view.
      */
-    public ImageView getIconView() {
+    public int getVisibilityIconView() {
+        return mVisibilityIconView;
+    }
+
+    /**
+     * Get the image view to show the icon used by this view.
+     *
+     * @return The image view to show the icon used by this view.
+     */
+    public @Nullable ImageView getIconView() {
         return mIconView;
     }
 
     /**
-     * Get the image view to show big fallback icon.
+     * Get the image view to show the footer icon used by this view.
      *
-     * @return The image view to show big fallback icon.
+     * @return The image view to show the footer icon used by this view.
      */
-    public ImageView getIconBigView() {
+    public @Nullable ImageView getIconFooterView() {
+        return mIconFooterView;
+    }
+
+    /**
+     * Get the image view to show big fallback icon used by this view.
+     *
+     * @return The image view to show big fallback icon used by this view.
+     */
+    public @Nullable ImageView getIconBigView() {
         return mIconBigView;
     }
 
     /**
-     * Get the text view to show the title.
+     * Get the text view to show the title used by this view.
      *
-     * @return The text view to show the title.
+     * @return The text view to show the title used by this view.
      */
-    public TextView getTitleView() {
+    public @Nullable TextView getTitleView() {
         return mTitleView;
     }
 
     /**
-     * Get the text view to show the subtitle.
+     * Get the text view to show the subtitle used by this view.
      *
-     * @return The text view to show the subtitle.
+     * @return The text view to show the subtitle used by this view.
      */
-    public TextView getSubtitleView() {
+    public @Nullable TextView getSubtitleView() {
         return mSubtitleView;
     }
 
     /**
-     * Get the text view to show the description.
+     * Get the text view to show the description used by this view.
      *
-     * @return The text view to show the description.
+     * @return The text view to show the description used by this view.
      */
-    public TextView getDescriptionView() {
+    public @Nullable TextView getDescriptionView() {
         return mDescriptionView;
     }
 
     /**
-     * Get the text view to show the status.
+     * Get the text view to show the status used by this view.
      *
-     * @return The text view to show the status.
+     * @return The text view to show the status used by this view.
      */
-    public TextView getStatusView() {
-        return mDescriptionView;
+    public @Nullable TextView getStatusView() {
+        return mStatusView;
     }
 
     /**
-     * Get the recycler view to show the links associated  with this view.
+     * Get the recycler view to show the links associated with this view.
      *
-     * @return The recycler view to show the links associated  with this view.
+     * @return The recycler view to show the links associated with this view.
      */
-    public RecyclerView getLinksView() {
+    public @Nullable RecyclerView getLinksView() {
         return mLinksView;
     }
 }

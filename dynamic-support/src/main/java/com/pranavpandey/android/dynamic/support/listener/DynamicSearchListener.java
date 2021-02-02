@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,10 @@
 
 package com.pranavpandey.android.dynamic.support.listener;
 
+import android.text.TextWatcher;
+
+import androidx.annotation.Nullable;
+
 /**
  * Interface to listen search view expand and collapse callbacks.
  */
@@ -30,4 +34,11 @@ public interface DynamicSearchListener {
      * This method will be called when the search view is collapsed.
      */
     void onSearchViewCollapsed();
+
+    /**
+     * This method will be called to get the text watcher for the search view.
+     *
+     * @return The text watcher for the search view.
+     */
+    @Nullable TextWatcher getTextWatcher();
 }

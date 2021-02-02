@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.popup.DynamicArrayPopup;
+import com.pranavpandey.android.dynamic.support.popup.DynamicMenuPopup;
 import com.pranavpandey.android.dynamic.support.popup.DynamicPopup;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
@@ -45,11 +45,9 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
 
     /**
      * Popup type for this preference.
-     * <p>Either {@link DynamicPopup.Type#LIST}
-     * or {@link DynamicPopup.Type#GRID}.
+     * <p>Either {@link DynamicPopup.Type#LIST} or {@link DynamicPopup.Type#GRID}.
      */
-    private @DynamicPopup.Type
-    int mPopupType;
+    private @DynamicPopup.Type int mPopupType;
 
     /**
      * Array to store list entries.
@@ -132,7 +130,7 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
 
         if (getPreferenceView() != null) {
             getPreferenceView().setClickable(
-                    getOnPreferenceClickListener() != null && mEntries != null);
+                    getOnPreferenceClickListener() != null && getEntries() != null);
         }
     }
 
@@ -142,29 +140,38 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
      * @param anchor The anchor view for the popup.
      */
     private void showPopup(@NonNull View anchor) {
-        DynamicArrayPopup popup = new DynamicArrayPopup(anchor, mEntries,
-                new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view,
-                            int position, long id) {
-                        if (!getPreferenceValue().equals(mValues[position].toString())) {
-                            setPreferenceValue(mValues[position].toString());
-                        }
+        if (getEntries() == null || getValues() == null) {
+            return;
+        }
 
-                        if (getOnPromptListener() != null) {
-                            getOnPromptListener().onPopupItemClick(parent, view, position, id);
-                        }
-                    }
-                });
+        DynamicMenuPopup popup = new DynamicMenuPopup(anchor, getEntries(),
+                new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                    int position, long id) {
+                if (!getValues()[position].toString().equals(getPreferenceValue())) {
+                    setPreferenceValue(getValues()[position].toString());
+                }
+
+                if (getOnPromptListener() != null) {
+                    getOnPromptListener().onPopupItemClick(parent, view, position, id);
+                }
+            }
+        });
+
+        if (getValues() != null) {
+            popup.setSelectedPosition(Arrays.asList(getValues()).indexOf(getPreferenceValue()));
+        }
 
         popup.setTitle(getTitle());
-        popup.setSelectedPosition(Arrays.asList(mValues).indexOf(getPreferenceValue()));
-        popup.setViewType(mPopupType);
+        popup.setViewType(getPopupType());
         popup.build().show();
     }
 
     /**
      * Get the list entries for this preference.
+     *
+     * @return The list entries for this preference.
      */
     public @Nullable CharSequence[] getEntries() {
         return mEntries;
@@ -183,6 +190,8 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
 
     /**
      * Get the list values for this preference.
+     *
+     * @return The list values for this preference.
      */
     public @Nullable CharSequence[] getValues() {
         return mValues;
@@ -202,16 +211,21 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
     /**
      * Update value string according to the current preference value.
      *
-     * @param update {@code true} to call {@link #onUpdate()} method after setting the
+     * @param update {@code true} to call {@link #update()} method after setting the
      *               value string.
      */
     public void updateValueString(boolean update) {
-        if (mEntries != null && mValues != null) {
-            setValueString(mEntries[Arrays.asList(mValues)
-                    .indexOf(getPreferenceValue())], update);
+        if (getEntries() != null && getValues() != null) {
+            setValueString(getEntries()[Arrays.asList(
+                    getValues()).indexOf(getPreferenceValue())], update);
         }
     }
 
+    /**
+     * Get the default value index for this preference.
+     *
+     * @return The default value index for this preference.
+     */
     public int getDefaultValue() {
         return mDefaultValue;
     }
@@ -226,17 +240,37 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
     }
 
     /**
+     * Get the popup type for this preference.
+     *
+     * @return The popup type for this preference.
+     */
+    public @DynamicPopup.Type int getPopupType() {
+        return mPopupType;
+    }
+
+    /**
+     * Set the popup type for this preference.
+     *
+     * @param popupType The popup type to be set.
+     *                  Either {@link DynamicPopup.Type#LIST} or {@link DynamicPopup.Type#GRID}.
+     */
+    public void setPopupType(@DynamicPopup.Type int popupType) {
+        this.mPopupType = popupType;
+    }
+
+    /**
      * Returns the default value of this preference.
      *
      * @return The default value of this preference.
      */
     public @Nullable String getPreferenceValue() {
-        if (getPreferenceKey() == null) {
+        if (getPreferenceKey() == null || getValues() == null) {
             return null;
         }
 
+        // Do not use default value getter to avoid crash on initialization.
         return DynamicPreferences.getInstance().load(
-                getPreferenceKey(), mValues[mDefaultValue].toString());
+                getPreferenceKey(), getValues()[mDefaultValue].toString());
     }
 
     /**
@@ -245,16 +279,17 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
      * @param value The preference value to be set.
      */
     public void setPreferenceValue(@NonNull String value) {
-        if (getPreferenceKey() != null) {
-            DynamicPreferences.getInstance().save(getPreferenceKey(), value);
-        }
-
+        DynamicPreferences.getInstance().save(getPreferenceKey(), value);
         updateValueString(true);
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         super.onSharedPreferenceChanged(sharedPreferences, key);
+
+        if (DynamicPreferences.isNullKey(key)) {
+            return;
+        }
 
         if (key.equals(getPreferenceKey())) {
             updateValueString(true);

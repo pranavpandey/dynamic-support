@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,9 +39,9 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
-import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
@@ -71,27 +71,19 @@ public class DynamicEmptyView extends DynamicHeader {
     protected void onInflate() {
         super.onInflate();
 
-        setColorType(Theme.ColorType.PRIMARY);
+        setColorType(Defaults.ADS_COLOR_TYPE_ICON);
     }
 
     @Override
     public void onUpdate() {
         super.onUpdate();
 
-        if (getIconView() != null) {
-            ((DynamicWidget) getIconView()).setColorType(getColorType());
+        Dynamic.setColorType(getIconView(), getColorType());
+        Dynamic.setColorType(getSubtitleView(), getColorType());
 
-            if (getColor() != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                ((DynamicWidget) getIconView()).setColor(getColor());
-            }
-        }
-
-        if (getTitleView() != null) {
-            ((DynamicWidget) getTitleView()).setColorType(Theme.ColorType.TINT_BACKGROUND);
-        }
-
-        if (getSubtitleView() != null) {
-            ((DynamicWidget) getSubtitleView()).setColorType(Theme.ColorType.TINT_BACKGROUND);
+        if (getColor() != Theme.Color.UNKNOWN) {
+            Dynamic.setColor(getIconView(), getColor());
+            Dynamic.setColor(getSubtitleView(), getColor());
         }
     }
 }

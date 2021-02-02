@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -15,14 +15,17 @@
 	limitations under the License.
 -->
 
-<manifest package="com.pranavpandey.android.dynamic.support"
+<manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.pranavpandey.android.dynamic.support">
 
     <uses-sdk tools:overrideLibrary="com.pranavpandey.android.dynamic.locale" />
+    <uses-permission android:name="com.pranavpandey.theme.permission.READ_THEME" />
 
     <application
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        tools:ignore="RtlEnabled">
 
         <!-- Remove work manager initializer for on-demand initialization. -->
         <provider
@@ -30,6 +33,18 @@
             android:authorities="${applicationId}.workmanager-init"
             android:exported="false"
             tools:node="remove" />
+
+        <!-- Theme activity to handle share intent. -->
+        <activity
+            android:name=".theme.activity.DynamicThemeActivity"
+            android:label="@string/ads_theme"
+            android:launchMode="singleTop" />
+
+        <!-- Default activity to handle dynamic permissions. -->
+        <activity
+            android:name=".permission.activity.DynamicPermissionsActivity"
+            android:label="@string/ads_permissions"
+            android:launchMode="singleTop" />
 
     </application>
 

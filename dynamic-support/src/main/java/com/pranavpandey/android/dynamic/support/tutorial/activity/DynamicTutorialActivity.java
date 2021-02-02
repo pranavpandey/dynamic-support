@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -35,19 +36,20 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
+import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
+import com.pranavpandey.android.dynamic.support.listener.DynamicTransitionListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicWindowResolver;
+import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.tutorial.DynamicSimpleTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.adapter.DynamicTutorialsAdapter;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
-import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator2;
-import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
@@ -60,8 +62,8 @@ import java.util.List;
  * Base activity with a view pager to show the supplied tutorials.
  * <p>Extend this activity and supply tutorials or dataSet by using the provided methods.
  */
-public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
-        V extends Fragment> extends DynamicSystemActivity {
+public abstract class DynamicTutorialActivity<V extends Fragment, T extends DynamicTutorial<T, V>>
+        extends DynamicSystemActivity implements DynamicTransitionListener {
 
     /**
      * Coordinator layout used by this activity.
@@ -76,7 +78,7 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
     /**
      * View pager adapter used by this activity.
      */
-    private DynamicTutorialsAdapter<T, V> mAdapter;
+    private DynamicTutorialsAdapter<V, T> mAdapter;
 
     /**
      * View group to show the tutorial actions.
@@ -122,7 +124,7 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.ads_activity_tutorial);
+        setContentView(getLayoutRes());
 
         mCoordinatorLayout = findViewById(R.id.ads_coordinator_layout);
         mViewPager = findViewById(R.id.ads_tutorial_view_pager);
@@ -131,6 +133,12 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
         mActionPrevious = findViewById(R.id.ads_tutorial_action_previous);
         mActionNext = findViewById(R.id.ads_tutorial_action_next_done);
         mActionCustom = findViewById(R.id.ads_tutorial_action_custom);
+
+        mArgbEvaluator = new ArgbEvaluator();
+
+        if (DynamicLocaleUtils.isLayoutRtl()) {
+            ViewCompat.setLayoutDirection(mViewPager, ViewCompat.LAYOUT_DIRECTION_RTL);
+        }
 
         mFooter.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -144,15 +152,14 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
                         }
 
                         mFooterHeight = mFooter.getHeight();
+
+                        if (DynamicMotion.getInstance().isMotion()
+                                && getSavedInstanceState() == null) {
+                            Dynamic.setVisibility(mFooter, View.INVISIBLE);
+                        }
                         setTutorials(false);
                     }
                 });
-
-        mArgbEvaluator = new ArgbEvaluator();
-
-        if (DynamicLocaleUtils.isLayoutRtl()) {
-            ViewCompat.setLayoutDirection(mViewPager, ViewCompat.LAYOUT_DIRECTION_RTL);
-        }
 
         mViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -160,24 +167,23 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
                     float positionOffset, int positionOffsetPixels) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
 
-                @ColorInt final int color;
-                if (position < (mAdapter.getItemCount() - 1)) {
-                    color = (Integer) mArgbEvaluator.evaluate(
-                            positionOffset, mAdapter.getTutorial(position).getBackgroundColor(),
-                            mAdapter.getTutorial(position + 1).getBackgroundColor());
+                final @ColorInt int color;
+                if (position < (getTutorialsCount() - 1)) {
+                    color = (Integer) mArgbEvaluator.evaluate(positionOffset,
+                            getTutorial(position).getBackgroundColor(),
+                            getTutorial(position + 1).getBackgroundColor());
                 } else {
-                    color = mAdapter.getTutorial(
-                            mAdapter.getItemCount() - 1).getBackgroundColor();
+                    color = getTutorial(getTutorialsCount() - 1).getBackgroundColor();
                 }
 
-                setColor(position, color);
-                mAdapter.getTutorial(position).onPageScrolled(
-                        position, positionOffset, positionOffsetPixels);
-                mAdapter.getTutorial(position).onSetPadding(0, 0, 0, mFooterHeight);
-                mAdapter.getTutorial(Math.min(mAdapter.getItemCount() - 1, position + 1))
+                onSetColor(position, color);
+                getTutorial(position).onPageScrolled(position,
+                        positionOffset, positionOffsetPixels);
+                getTutorial(position).onSetPadding(0, 0, 0, mFooterHeight);
+                getTutorial(Math.min(getTutorialsCount() - 1, position + 1))
                         .onSetPadding(0, 0, 0, mFooterHeight);
-                mAdapter.getTutorial(position).onBackgroundColorChanged(color);
-                mAdapter.getTutorial(Math.min(mAdapter.getItemCount() - 1, position + 1))
+                getTutorial(position).onBackgroundColorChanged(color);
+                getTutorial(Math.min(getTutorialsCount() - 1, position + 1))
                         .onBackgroundColorChanged(color);
             }
 
@@ -185,21 +191,23 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
 
-                if (mAdapter != null && mAdapter.getTutorial(position) != null) {
-                    mAdapter.getTutorial(position).onPageSelected(position);
-                    mAdapter.getTutorial(position).onSetPadding(0, 0, 0, mFooterHeight);
-                    setColor(position, mAdapter.getTutorial(position).getBackgroundColor());
+                setFooter(true);
+
+                if (getTutorial(position) != null) {
+                    getTutorial(position).onPageSelected(position);
+                    getTutorial(position).onSetPadding(0, 0, 0, mFooterHeight);
+                    onSetColor(position, getTutorial(position).getBackgroundColor());
                 }
+
+                onUpdate(getCurrentPosition());
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
                 super.onPageScrollStateChanged(state);
 
-                if (mAdapter != null
-                        && mAdapter.getTutorial(mViewPager.getCurrentItem()) != null) {
-                    mAdapter.getTutorial(mViewPager.getCurrentItem())
-                            .onPageScrollStateChanged(state);
+                if (getTutorial(getCurrentPosition()) != null) {
+                    getTutorial(getCurrentPosition()).onPageScrollStateChanged(state);
                 }
             }
         });
@@ -207,24 +215,18 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
         mActionPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (hasTutorialPrevious()) {
-                    mViewPager.setCurrentItem(mViewPager.getCurrentItem() - 1, true);
-                }
+                onTutorialPrevious(v);
             }
         });
 
         mActionNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (hasTutorialNext()) {
-                    mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1, true);
-                } else {
-                    finishActivity();
-                }
+                onTutorialNext(v);
             }
         });
 
-        setTutorials(false);
+        setTutorials(getDefaultPosition(), false);
 
         // A hack to retain the status bar color.
         if (savedInstanceState == null) {
@@ -232,6 +234,31 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
         } else {
             setStatusBarColor(savedInstanceState.getInt(ADS_STATE_STATUS_BAR_COLOR));
         }
+    }
+
+    /**
+     * Returns the layout resource for this activity.
+     *
+     * @return The layout resource for this activity.
+     */
+    protected @LayoutRes int getLayoutRes() {
+        return R.layout.ads_activity_tutorial;
+    }
+
+    @Override
+    public @NonNull View getContentView() {
+        return mCoordinatorLayout != null
+                ? mCoordinatorLayout.getRootView() : getWindow().getDecorView();
+    }
+
+    @Override
+    public @Nullable View getPostponeTransitionView() {
+        return null;
+    }
+
+    @Override
+    public @ColorInt int getBackgroundColor() {
+        return DynamicTheme.getInstance().get().getPrimaryColor();
     }
 
     @Override
@@ -244,7 +271,7 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
 
     @Override
     public @Nullable View getEdgeToEdgeView() {
-        return mCoordinatorLayout;
+        return getContentView();
     }
 
     @Override
@@ -256,8 +283,38 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
     public void onResume() {
         super.onResume();
 
-        setTutorials(false);
+        if (!isPaused() && !isLaunchedFromHistory()) {
+            // A hack to properly run shared element transition.
+            setTutorials(false);
+        } else if (mViewPager != null) {
+            // Fix lag on resuming the activity.
+            mViewPager.postDelayed(mTutorialsRunnable, DynamicMotion.Duration.TINIER);
+        }
+
+        onUpdate(getCurrentPosition());
     }
+
+    /**
+     * Runnable to set the tutorials.
+     */
+    private final Runnable mTutorialsRunnable = new Runnable() {
+        @Override
+        public void run() {
+            setTutorials(false);
+        }
+    };
+
+    /**
+     * Runnable to update the tutorials adapter.
+     */
+    private final Runnable mAdapterRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (mAdapter != null) {
+                mAdapter.notifyDataSetChanged();
+            }
+        }
+    };
 
     /**
      * Returns the list of {@link DynamicTutorial} to be shown by this activity.
@@ -266,6 +323,48 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
      */
     protected @NonNull List<DynamicTutorial<T, V>> getTutorials() {
         return new ArrayList<>();
+    }
+
+    /**
+     * Get the view pager adapter used by this activity.
+     *
+     * @return The view pager adapter used by this activity.
+     */
+    public @Nullable DynamicTutorialsAdapter<V, T> getViewPagerAdapter() {
+        return mAdapter;
+    }
+
+    /**
+     * Returns the no. of tutorials handled by this activity.
+     *
+     * @return The no. of tutorials handled by this activity.
+     */
+    public int getTutorialsCount() {
+        return mAdapter != null ? mAdapter.getItemCount() : 0;
+    }
+
+    /**
+     * Returns the default position for the tutorials.
+     *
+     * @return The default position for the tutorials.
+     */
+    protected int getDefaultPosition() {
+        return 0;
+    }
+
+    /**
+     * Returns the {@link DynamicTutorial} for the supplied position.
+     *
+     * @param position The position to get the tutorial.
+     *
+     * @return The {@link DynamicTutorial} for the supplied position.
+     */
+    public @Nullable DynamicTutorial<T, V> getTutorial(int position) {
+        if (getTutorialsCount() <= 0) {
+            return null;
+        }
+
+        return mAdapter.getTutorial(position);
     }
 
     /**
@@ -291,46 +390,62 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
     /**
      * Set view pager adapter according to the tutorials list.
      *
-     * @param page The current page for to be set.
+     * @param page The current page to be set.
+     * @param smoothScroll {@code true} to smoothly scroll the page.
      */
     protected void setTutorials(int page, boolean smoothScroll) {
-        if (mViewPager == null) {
+        final List<DynamicTutorial<T, V>> tutorials;
+        if (mViewPager == null || (tutorials = getTutorials()) == null) {
             return;
         }
 
         mAdapter = new DynamicTutorialsAdapter<>(this);
-        mAdapter.setTutorials(getTutorials());
-        mViewPager.setOffscreenPageLimit(mAdapter.getItemCount());
+        mAdapter.setTutorials(tutorials);
+        mViewPager.setOffscreenPageLimit(getTutorialsCount());
         mViewPager.setAdapter(mAdapter);
         mPageIndicator.setViewPager(mViewPager);
-        mAdapter.notifyDataSetChanged();
-        mViewPager.setCurrentItem(page < mAdapter.getItemCount() ? page : 0, smoothScroll);
+        mViewPager.setCurrentItem(page < getTutorialsCount() ? page : 0, smoothScroll);
 
-        mViewPager.post(new Runnable() {
-            @Override
-            public void run() {
-                mAdapter.notifyDataSetChanged();
-            }
-        });
+        // A hack to update the tutorials properly on lower API levels.
+        mViewPager.post(mAdapterRunnable);
     }
 
     /**
      * Set view pager adapter according to the tutorials list.
+     *
+     * @param smoothScroll {@code true} to smoothly scroll the page.
      */
     protected void setTutorials(boolean smoothScroll) {
         if (mViewPager == null) {
             return;
         }
 
-        setTutorials(mViewPager.getCurrentItem(), smoothScroll);
+        setTutorials(getCurrentPosition(), smoothScroll);
+    }
+
+    /**
+     * Set the current position for the tutorial list.
+     *
+     * @param page The current page to be set.
+     * @param smoothScroll {@code true} to smoothly scroll the page.
+     */
+    protected void setTutorial(int page, boolean smoothScroll) {
+        if (mViewPager == null || getTutorialsCount() <= 0) {
+            return;
+        }
+
+        if (page < getTutorialsCount()) {
+            mViewPager.setCurrentItem(page, smoothScroll);
+        }
     }
 
     /**
      * Update activity background and system UI according to the supplied color.
      *
+     * @param position The current position of the tutorial.
      * @param color The activity color to be applied.
      */
-    private void setColor(int position, @ColorInt int color) {
+    protected void onSetColor(int position, @ColorInt int color) {
         @ColorInt int systemUIColor = color;
         @ColorInt int tintColor = DynamicColorUtils.getTintColor(color);
 
@@ -338,7 +453,7 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
             systemUIColor = mDynamicWindowResolver.getSystemUIColor(color);
         } else {
             if (DynamicTheme.getInstance().get().getPrimaryColorDark(false) == Theme.AUTO) {
-                systemUIColor = DynamicTheme.getInstance().generateDarkColor(systemUIColor);
+                systemUIColor = DynamicTheme.getInstance().generateSystemColor(systemUIColor);
             } else {
                 systemUIColor = DynamicTheme.getInstance().get().getPrimaryColor()
                         != DynamicTheme.getInstance().get().getPrimaryColorDark()
@@ -352,6 +467,7 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
         setNavigationBarColor(systemUIColor);
         mCoordinatorLayout.setStatusBarBackgroundColor(getStatusBarColor());
         mCoordinatorLayout.setBackgroundColor(color);
+        updateTaskDescription(color);
 
         if (mAdapter.getRecyclerView() != null) {
             DynamicScrollUtils.setEdgeEffectColor(mAdapter.getRecyclerView(), tintColor);
@@ -363,28 +479,28 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
         mActionCustom.setTextColor(color);
         mPageIndicator.setSelectedColour(tintColor);
         mPageIndicator.setUnselectedColour(DynamicColorUtils.adjustAlpha(
-                tintColor, WidgetDefaults.ADS_ALPHA_UNCHECKED));
+                tintColor, Defaults.ADS_ALPHA_UNCHECKED));
         DynamicTintUtils.setViewBackgroundTint(mActionPrevious,
                 color, tintColor, true, false);
         DynamicTintUtils.setViewBackgroundTint(mActionNext, color,
                 tintColor, true, false);
 
         if (hasTutorialPrevious()) {
-            mActionPrevious.setVisibility(View.VISIBLE);
-            mActionPrevious.setContentDescription(getString(R.string.ads_previous));
+            Dynamic.setVisibility(mActionPrevious, View.VISIBLE);
+            Dynamic.setContentDescription(mActionPrevious, getString(R.string.ads_previous));
         } else {
-            mActionPrevious.setVisibility(View.INVISIBLE);
-            mActionPrevious.setContentDescription(null);
+            Dynamic.setVisibility(mActionPrevious, View.INVISIBLE);
+            Dynamic.setContentDescription(mActionPrevious, null);
         }
 
         if (hasTutorialNext()) {
-            mActionNext.setImageDrawable(DynamicResourceUtils.getDrawable(
+            Dynamic.set(mActionNext, DynamicResourceUtils.getDrawable(
                     this, R.drawable.ads_ic_chevron_right));
-            mActionNext.setContentDescription(getString(R.string.ads_next));
+            Dynamic.setContentDescription(mActionNext, getString(R.string.ads_next));
         } else {
-            mActionNext.setImageDrawable(DynamicResourceUtils.getDrawable(
+            Dynamic.set(mActionNext, DynamicResourceUtils.getDrawable(
                     this, R.drawable.ads_ic_check));
-            mActionNext.setContentDescription(getString(R.string.ads_finish));
+            Dynamic.setContentDescription(mActionNext, getString(R.string.ads_finish));
         }
 
         DynamicTooltip.set(mActionPrevious, tintColor, color,
@@ -394,12 +510,72 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
     }
 
     /**
+     * This method will be called to update the activity according to the tutorial position.
+     *
+     * @param position The current tutorial position.
+     */
+    protected void onUpdate(int position) { }
+
+    /**
+     * Set the tutorial footer and make it visible.
+     *
+     * @param animate {@code true} to animate the footer.
+     */
+    private void setFooter(boolean animate) {
+        if (mFooter == null) {
+            return;
+        }
+
+        if (animate && mFooter.getVisibility() != View.VISIBLE) {
+            // Animation fix for lower API levels.
+            DynamicTheme.getInstance().getMainThreadHandler().post(mFooterRunnable);
+        }
+    }
+
+    /**
+     * Runnable to animate the footer.
+     */
+    private final Runnable mFooterRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (mFooter == null) {
+                return;
+            }
+
+            if (mFooter.getVisibility() == View.VISIBLE) {
+                // Fix random invisible footer on emulators.
+                Dynamic.setAlpha(mFooter, DynamicMotion.Value.FLOAT_MAX);
+                return;
+            }
+
+            Dynamic.setVisibility(mFooter, View.VISIBLE);
+
+            if (mFooterHeight > 0) {
+                Dynamic.setAlpha(mFooter, DynamicMotion.Value.FLOAT_MIN);
+                DynamicMotion.getInstance().floatWithAlpha(mFooter, DynamicMotion.Duration.TINIER,
+                        View.TRANSLATION_Y, mFooterHeight, DynamicMotion.Value.FLOAT_MIN,
+                        DynamicMotion.Value.FLOAT_MIN, DynamicMotion.Value.FLOAT_MAX).start();
+            }
+        }
+    };
+
+    /**
+     * Returns the current position of the view pager.
+     *
+     * @return The current position of the view pager.
+     */
+    public int getCurrentPosition() {
+        return mViewPager == null || mAdapter == null
+                ? Defaults.ADS_NO_POSITION : mViewPager.getCurrentItem();
+    }
+
+    /**
      * Checks whether the view pager can be moved to the previous tutorial or item.
      *
      * @return {@code true} if view pager can be moved to the previous tutorial or item.
      */
-    private boolean hasTutorialPrevious() {
-        return mViewPager.getCurrentItem() != 0;
+    public boolean hasTutorialPrevious() {
+        return getCurrentPosition() != Defaults.ADS_NO_POSITION && getCurrentPosition() != 0;
     }
 
     /**
@@ -407,8 +583,33 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
      *
      * @return {@code true} if view pager can be moved to the next tutorial or item.
      */
-    private boolean hasTutorialNext() {
-        return mAdapter != null && mViewPager.getCurrentItem() < mAdapter.getItemCount() - 1;
+    public boolean hasTutorialNext() {
+        return getCurrentPosition() != Defaults.ADS_NO_POSITION
+                && getCurrentPosition() < getTutorialsCount() - 1;
+    }
+
+    /**
+     * This method will be called to go to the previous tutorial.
+     *
+     * @param view The optional view triggering the action.
+     */
+    public void onTutorialPrevious(@Nullable View view) {
+        if (hasTutorialPrevious()) {
+            setTutorial(getCurrentPosition() - 1, true);
+        }
+    }
+
+    /**
+     * This method will be called to go to the next tutorial.
+     *
+     * @param view The optional view triggering the action.
+     */
+    public void onTutorialNext(@Nullable View view) {
+        if (hasTutorialNext()) {
+            setTutorial(getCurrentPosition() + 1, true);
+        } else {
+            finishActivity();
+        }
     }
 
     /**
@@ -417,20 +618,15 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
      * @param text The text for the action button.
      * @param onClickListener The on click listener for the action button.
      */
-    protected void setAction(final @Nullable String text,
+    public void setAction(final @Nullable CharSequence text,
             final @Nullable View.OnClickListener onClickListener) {
-        mViewPager.post(new Runnable() {
-            @Override
-            public void run() {
-                if (onClickListener != null) {
-                    mActionCustom.setText(text);
-                    mActionCustom.setOnClickListener(onClickListener);
-                    mActionCustom.setVisibility(View.VISIBLE);
-                } else {
-                    mActionCustom.setVisibility(View.GONE);
-                }
-            }
-        });
+        if (onClickListener != null) {
+            mActionCustom.setText(text);
+            mActionCustom.setOnClickListener(onClickListener);
+            Dynamic.setVisibility(mActionCustom, View.VISIBLE);
+        } else {
+            Dynamic.setVisibility(mActionCustom, View.GONE);
+        }
     }
 
     /**
@@ -438,17 +634,26 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
      *
      * @return The view pager used by this activity.
      */
-    protected ViewPager2 getViewPager() {
+    public @NonNull ViewPager2 getViewPager() {
         return mViewPager;
     }
 
     /**
-     * Get the view pager adapter used by this activity.
+     * Get the previous action button used by this activity.
      *
-     * @return The view pager adapter used by this activity.
+     * @return The previous action button used by this activity.
      */
-    protected DynamicTutorialsAdapter<T, V> getViewPagerAdapter() {
-        return mAdapter;
+    public @Nullable ImageButton getActionPrevious() {
+        return mActionPrevious;
+    }
+
+    /**
+     * Get the next action button used by this activity.
+     *
+     * @return The next action button used by this activity.
+     */
+    public @Nullable ImageButton getActionNext() {
+        return mActionNext;
     }
 
     @Override
@@ -456,5 +661,16 @@ public abstract class DynamicTutorialActivity<T extends DynamicSimpleTutorial,
         super.onDynamicChanged(context, recreate);
 
         setTutorials(true);
+    }
+
+    @Override
+    public void finishActivity() {
+        DynamicTutorial<T, V> tutorial = getTutorial(getCurrentPosition());
+        if (tutorial instanceof DynamicTutorial.SharedElement
+                && ((DynamicTutorial.SharedElement<T, V>) tutorial).isSharedElement()) {
+            super.finishActivity();
+        } else if (!isFinishing()) {
+            finish();
+        }
     }
 }

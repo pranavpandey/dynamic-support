@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 	https://github.com/lipis/flag-icon-css
 
 	Licensed under the Apache License, Version 2.0 (the "License");
@@ -1741,7 +1741,7 @@
         android:strokeWidth=".4" />
 
     <path
-        android:fillColor="#FF000000"
+        android:fillColor="@android:color/black"
         android:pathData="M228.1,226.8l-0.2,-0.6v-0.3s0.8,0 0.7,0.3c0,0.2 -0.2,0.2 -0.3,0.3l-0.2,0.3" />
 
     <path
@@ -1751,7 +1751,7 @@
         android:strokeWidth=".3" />
 
     <path
-        android:fillColor="#FF000000"
+        android:fillColor="@android:color/black"
         android:pathData="M232,225.4v-0.4s0.7,0 1,0.3c0.5,0.4 0.9,1 0.9,1l-0.8,-0.4h-0.5l-0.3,-0.1v-0.3h-0.3" />
 
     <path
@@ -1797,7 +1797,7 @@
         android:strokeWidth=".4" />
 
     <path
-        android:fillColor="#FF000000"
+        android:fillColor="@android:color/black"
         android:pathData="M228.2,230.5l0.3,-0.5 0.3,0.5h-0.7" />
 
     <path
@@ -1807,7 +1807,7 @@
         android:strokeWidth=".3" />
 
     <path
-        android:fillColor="#FF000000"
+        android:fillColor="@android:color/black"
         android:pathData="M229,230.5l0.3,-0.5 0.4,0.5h-0.8" />
 
     <path
@@ -1817,7 +1817,7 @@
         android:strokeWidth=".3" />
 
     <path
-        android:fillColor="#FF000000"
+        android:fillColor="@android:color/black"
         android:pathData="M228.6,227.3l0.8,0.3 -0.7,0.4 -0.1,-0.6" />
 
     <path
@@ -1827,7 +1827,7 @@
         android:strokeWidth=".3" />
 
     <path
-        android:fillColor="#FF000000"
+        android:fillColor="@android:color/black"
         android:pathData="M229.5,227.6l0.7,0.2 -0.5,0.4 -0.2,-0.6" />
 
     <path
@@ -2504,7 +2504,7 @@
         android:strokeWidth=".3" />
 
     <path
-        android:fillColor="#FF000000"
+        android:fillColor="@android:color/black"
         android:pathData="M235.4,224h0.2v0.3h-0.1c-0.1,0 -0.1,-0.2 0,-0.2" />
 
     <path
@@ -2514,7 +2514,7 @@
         android:strokeWidth=".1" />
 
     <path
-        android:fillColor="#FF000000"
+        android:fillColor="@android:color/black"
         android:pathData="M236.3,224.8l-0.3,-0.2v-0.2h0.1l0.4,0.3 0.3,0.2v0.2h-0.2l-0.3,-0.3" />
 
     <path
@@ -2524,7 +2524,7 @@
         android:strokeWidth=".1" />
 
     <path
-        android:fillColor="#FF000000"
+        android:fillColor="@android:color/black"
         android:pathData="M234.6,223.7l-0.2,-0.2s-0.1,0 0,-0.1l0.3,0.1 0.3,0.1v0.2h-0.1l-0.3,-0.1" />
 
     <path
@@ -2534,7 +2534,7 @@
         android:strokeWidth=".1" />
 
     <path
-        android:fillColor="#FF000000"
+        android:fillColor="@android:color/black"
         android:pathData="M233.7,223h0.2v0.2h-0.2s-0.1,-0.1 0,-0.2" />
 
     <path
@@ -2543,7 +2543,7 @@
         android:strokeColor="#000" android:strokeWidth=".1" />
 
     <path
-        android:fillColor="#FF000000"
+        android:fillColor="@android:color/black"
         android:pathData="M237.3,225.5v-0.2h-0.3l0.1,0.2h0.2" />
 
     <path
@@ -2553,7 +2553,7 @@
         android:strokeWidth=".1" />
 
     <path
-        android:fillColor="#FF000000"
+        android:fillColor="@android:color/black"
         android:pathData="M237.9,226.2l0.2,0.2h0.1c0.1,0 0,-0.1 0,-0.2l-0.2,-0.2 -0.2,-0.2h-0.1v0.2l0.2,0.2" />
 
     <path
@@ -2563,7 +2563,7 @@
         android:strokeWidth=".1" />
 
     <path
-        android:fillColor="#FF000000"
+        android:fillColor="@android:color/black"
         android:pathData="M238.8,227v-0.3h-0.3v0.2h0.3" />
 
     <path

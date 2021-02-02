@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -27,11 +27,13 @@
 
     <!-- Headings -->
     <string name="ads_app">App</string>
+    <string name="ads_actions">Aktionen</string>
     <string name="ads_text">Text</string>
     <string name="ads_icon">Symbol</string>
     <string name="ads_size">Größe</string>
     <string name="ads_value">Wert</string>
     <string name="ads_notification">Benachrichtigung</string>
+    <string name="ads_notification_tile">Kachel</string>
     <string name="ads_widgets">Widgets</string>
     <string name="ads_instructions">Anleitung</string>
     <string name="ads_tutorial">Tutorial</string>
@@ -44,6 +46,7 @@
     <string name="ads_fixes">Behebungen</string>
 
     <!-- Labels -->
+    <string name="ads_warning">Warnung</string>
     <string name="ads_i_got_it">OK, verstanden</string>
     <string name="ads_not_now">Nicht jetzt</string>
     <string name="ads_yes_in">Ja, bin dabei</string>
@@ -55,17 +58,25 @@
     <string name="ads_load">Laden</string>
     <string name="ads_file">Datei</string>
     <string name="ads_create">Erstellen</string>
+    <string name="ads_open">Öffnen</string>
     <string name="ads_previous">Zurück</string>
     <string name="ads_next">Weiter</string>
     <string name="ads_skip">Überspringen</string>
     <string name="ads_loading">Lade&#8230;</string>
+    <string name="ads_play">Play</string>
+    <string name="ads_pause">Pause</string>
+    <string name="ads_exit">Ausgang</string>
     <string name="ads_finish">Fertig</string>
     <string name="ads_recents">Letzte</string>
+    <string name="ads_wallpaper">Hintergrund</string>
     <string name="ads_custom">Eigene</string>
     <string name="ads_refresh">Aktualisieren</string>
     <string name="ads_edit">Bearbeiten</string>
     <string name="ads_reset">Zurücksetzen</string>
     <string name="ads_default">Standard</string>
+    <string name="ads_normal">Normal</string>
+    <string name="ads_minimum">Minimum</string>
+    <string name="ads_experimental">Experimental</string>
     <string name="ads_sort">Sortierung</string>
     <string name="ads_sort_category">Kategorie</string>
     <string name="ads_sort_name">Name</string>
@@ -100,6 +111,7 @@
     <string name="ads_permissions">Berechtigungen</string>
     <string name="ads_permissions_subtitle">Bitte gewähre die notwendigen Berechtigungen.</string>
     <string name="ads_permissions_subtitle_single">Bitte gewähre die notwendige Berechtigung.</string>
+    <string name="ads_perm_info_required">Berechtigung notwendig</string>
     <string name="ads_perm_info_grant_all">Bitte gewähre alle Berechtigungen, damit die App richtig funktioniert.</string>
     <string name="ads_perm_request">Anfordern</string>
     <string name="ads_perm_request_desc">Diese Berechtigung wurde nicht gewährt. Tippe hier, um sie anzufordern.</string>
@@ -109,6 +121,8 @@
     <string name="ads_perm_denied_desc">Um diese Berechtigung zu gewähren, gehe zu App Info -&gt; Berechtigungen. Tippe hier, um zur App Info zu gelangen.</string>
     <string name="ads_perm_reinstall">Neu installieren</string>
     <string name="ads_perm_reinstall_desc">Um diese Berechtigung zu gewähren, bitte installieren Sie die Anwendung neu. Tippe hier, um zur App Info zu gelangen.</string>
+    <string name="ads_perm_unknown">Unbekannt</string>
+    <string name="ads_perm_unknown_desc">Diese Berechtigung ist im System nicht vorhanden.</string>
     <string name="ads_perm_default">Berechtigung</string>
     <string name="ads_perm_default_desc">Diese Berechtigung ist notwendig, um manche Aktionen durchzuführen.</string>
     <string name="ads_perm_default_explain">Erklärung.</string>
@@ -118,6 +132,7 @@
     <string name="ads_perm_overlay_desc">Darstellung über anderen Apps erlauben.</string>
     <string name="ads_perm_usage_access">Nutzungsdatenzugriff</string>
     <string name="ads_perm_usage_access_desc">Nutzungsdatenzugriff gewähren.</string>
+    <string name="ads_perm_accessibility">Bedienungshilfen</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">Daten</string>
@@ -135,6 +150,8 @@
     <string name="ads_backup_rename">Sicherung umbenennen</string>
     <string name="ads_backup_complete">Sicherung wurde erfolgreich erstellt</string>
     <string name="ads_backup_error">Sicherung kann nicht erstellt werden</string>
+    <string name="ads_backup_exists">Sicherung existiert bereits</string>
+    <string name="ads_backup_replace">Ersetzen, falls bereits vorhanden</string>
     <string name="ads_backup_invalid">Ungültige Sicherung</string>
     <string name="ads_backup_restore">Wiederherstellen</string>
     <string name="ads_backup_restore_title">Sicherung wiederherstellen</string>
@@ -163,6 +180,7 @@
     <string name="ads_backup_format_created">Sicherung erstellt: %1$s</string>
     <string name="ads_backup_format_saved">Sicherung gespeichert: %1$s</string>
     <string name="ads_backup_format_last">Letzte Sicherung: %1$s</string>
+    <string name="ads_backup_format_last_storage">App-Speicher: %1$s</string>
     <string name="ads_backup_format_modified">Sicherung bearbeitet: %1$s</string>
     <string name="ads_backup_format_last_modified">Zuletzt bearbeitet: %1$s</string>
     <string name="ads_backup_format_renamed">Sicherung umbenannt: %1$s</string>
@@ -180,6 +198,8 @@
     <string name="ads_dynamic_theme">Dynamisches Thema</string>
     <string name="ads_dynamic_theme_summary">Thema vom Empfänger angewendet.</string>
     <string name="ads_theme">Thema</string>
+    <string name="ads_theme_code">Code</string>
+    <string name="ads_theme_code_desc">Scannen oder teilen Sie das Thema.</string>
     <string name="ads_theme_customise_desc">Konfiguriere das Thema unten.</string>
     <string name="ads_theme_adjust_desc">Thema wird automatisch entsprechend der aktuellen Android-Version angepasst.</string>
     <string name="ads_theme_invalid">Ungültiges Thema</string>
@@ -188,14 +208,18 @@
     <string name="ads_theme_color_palette_summary">Primäre und Akzent Farb-Voreinstellungen.</string>
     <string name="ads_theme_color_background">Hintergrundfarbe</string>
     <string name="ads_theme_color_background_summary">Hintergrundfarbe des Themas.</string>
+    <string name="ads_theme_color_background_summary_system">Hintergrundfarbe des Systems.</string>
+    <string name="ads_theme_color_stroke">Strichfarbe</string>
+    <string name="ads_theme_color_surface">Oberflächenfarbe</string>
     <string name="ads_theme_color_primary">Primärfarbe</string>
     <string name="ads_theme_color_primary_summary">In primären Elementen genutzte Farbe.</string>
     <string name="ads_theme_color_primary_dark">Systemfarbe</string>
     <string name="ads_theme_color_primary_summary_dark">In systemelementen Elementen genutzte Farbe.</string>
     <string name="ads_theme_color_accent">Akzentfarbe</string>
     <string name="ads_theme_color_secondary">Sekundärefarbe</string>
-    <string name="ads_theme_color_accent_summary">In sekundären Elementen genutzte Farbe</string>
-    <string name="ads_theme_color_surface">Oberflächenfarbe</string>
+    <string name="ads_theme_color_accent_summary">In sekundären Elementen genutzte Farbe.</string>
+    <string name="ads_theme_color_error">Fehlerfarbe</string>
+    <string name="ads_theme_color_error_summary">Farbe zur Anzeige der Fehler.</string>
     <string name="ads_theme_color_tint">Tönungsfarbe</string>
     <string name="ads_theme_color_inverse">Inversfarbe</string>
     <string name="ads_theme_font_scale">Schriftgröße</string>
@@ -204,6 +228,8 @@
     <string name="ads_theme_corner_size_summary">Eckenradius des App.</string>
     <string name="ads_theme_background_aware">Hintergrundberechnung</string>
     <string name="ads_theme_background_aware_desc">Passen Sie die Farben entsprechend dem Hintergrund an, um gute Sichtbarkeit zu garantieren.</string>
+    <string name="ads_theme_style">Stil</string>
+    <string name="ads_theme_style_summary">Stil des Themas.</string>
     <string name="ads_theme_app">App-Thema</string>
     <string name="ads_theme_app_summary">Stil der App.</string>
     <string name="ads_theme_app_desc">Wähle auto, um das Tages- und das Nachtthema zu benutzen.</string>
@@ -222,7 +248,7 @@
     <string name="ads_theme_notification">Thema der Benachrichtigung</string>
     <string name="ads_theme_notification_summary">Farbpalette für die Benachrichtigung.</string>
     <string name="ads_theme_notification_style">Stil der Benachrichtigung</string>
-    <string name="ads_theme_notification_style_summary">Layout-Stil der Benachrichtigung.</string>
+    <string name="ads_theme_notification_style_summary">Stil der Benachrichtigung.</string>
     <string name="ads_theme_style_classic_desc">Wähle den klassischen Stil, um die Farbpalette für den Hintergrund zu benutzen.</string>
     <string name="ads_theme_widget">Thema des Widget</string>
     <string name="ads_theme_widget_summary">Farbpalette für das Widget.</string>
@@ -234,6 +260,7 @@
     <string name="ads_theme_import_done">Thema wurde erfolgreich importiert.</string>
     <string name="ads_theme_export_done">Thema wurde erfolgreich exportiert.</string>
     <string name="ads_theme_export_error">Thema kann nicht gespeichert werden.</string>
+    <string name="ads_theme_share_error">Thema kann nicht geteilt werden.</string>
     <string name="ads_theme_copy_done">Das Thema wurde erfolgreich kopiert.</string>
     <string name="ads_theme_edit_done">Thema wurde erfolgreich bearbeitet.</string>
     <string name="ads_theme_save_done">Thema erfolgreich gespeichert.</string>
@@ -292,10 +319,14 @@
     <string name="ads_picker_more_colors">Mehr Farben</string>
     <string name="ads_picker_presets">Voreinstellungen</string>
 
-    <!-- Language selector -->
+    <!-- Miscellaneous -->
     <string name="ads_language">Sprache</string>
     <string name="ads_language_summary">In dieser App genutzte Sprache.</string>
     <string name="ads_language_system">System</string>
+    <string name="ads_dynamic_motion">Bewegung</string>
+    <string name="ads_dynamic_motion_summary">Dynamische Bewegung durch Abspielen aller Animationen.</string>
+    <string name="ads_dynamic_motion_summary_unchecked">Reduzieren Sie die Bewegung, indem Sie einige Animationen überspringen.</string>
+    <string name="ads_dynamic_motion_desc">Reduzieren Sie immer die Bewegung, wenn der Batteriesparmodus eingeschaltet ist. Einige Animationen können nicht übersprungen werden.</string>
 
     <!-- Notification and Channel -->
     <string name="ads_notification_priority">Priorität der Benachrichtigung</string>
@@ -307,6 +338,9 @@
     <string name="ads_notification_category">Kategorie der Benachrichtigung</string>
     <string name="ads_notification_category_summary">Konfiguriere die von der App gezeigte Benachrichtigung.</string>
     <string name="ads_notification_category_desc">Wähle niedrige Benachrichtigungs-Wichtigkeit, um sie aus der Statusleiste und vom Sperrbildschirm zu entfernen.</string>
+    <string name="ads_notification_close_drawer">Schublade schließen</string>
+    <string name="ads_notification_close_drawer_summary">Schließe die Benachrichtigungsleiste nach der Durchführung von Aktionen.</string>
+    <string name="ads_notification_close_drawer_summary_unchecked">Schließe die Benachrichtigungsleiste nicht nach der Durchführung von Aktionen.</string>
 
     <!-- App widget -->
     <string name="ads_widget_customise">Personalisieren</string>
@@ -380,6 +414,7 @@
     <string name="ads_translators_contact">Kontaktiere mich per Email, wenn du übersetzen möchtest.</string>
 
     <!-- Licenses -->
+    <string name="ads_notices">Hinweise</string>
     <string name="ads_licenses">Lizenzen</string>
     <string name="ads_license">Lizenz</string>
     <string name="ads_license_desc">Gesamte Lizenz ansehen.</string>

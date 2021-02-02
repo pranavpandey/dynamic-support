@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,6 +43,15 @@ public interface DynamicScrollableWidget extends DynamicWidget {
      * @see Theme.ColorType
      */
     void setScrollBarColorType(@Theme.ColorType int scrollBarColorType);
+
+    /**
+     * Returns the value of scroll bar color applied to this widget.
+     *
+     * @param resolve {@code true} to resolve the applied scroll bar color.
+     *
+     * @return The value of scroll bar color applied to this widget.
+     */
+    @ColorInt int getScrollBarColor(boolean resolve);
 
     /**
      * Returns the value of scroll bar color applied to this widget.

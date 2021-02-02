@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,6 +38,7 @@ import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
@@ -46,7 +47,6 @@ import com.pranavpandey.android.dynamic.support.theme.adapter.DynamicPresetsAdap
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
 import com.pranavpandey.android.dynamic.support.view.DynamicItemView;
-import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
 import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
@@ -75,6 +75,8 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
          * This method will be called while creating the dynamic theme.
          *
          * @param theme The dynamic theme string associated with the clicked preset.
+         *
+         * @return The created dynamic theme.
          *
          * @see DynamicThemeUtils#decodeTheme(String)
          */
@@ -272,6 +274,8 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
 
     /**
      * Sets the dynamic preset listener for this adapter.
+     *
+     * @param dynamicPresetsListener The listener to be set.
      */
     public void setDynamicPresetsListener(
             @Nullable DynamicPresetsView.DynamicPresetsListener<T> dynamicPresetsListener) {
@@ -285,7 +289,7 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
     /**
      * Checks whether the presets manager is available.
      *
-     * @return {@code true} if the the presets manager is available.
+     * @return {@code true} if the presets manager is available.
      */
     public boolean isPackageExists() {
         return DynamicPackageUtils.isPackageExists(getContext(), ThemeContract.Preset.AUTHORITY);
@@ -308,17 +312,17 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
      */
     private void setPresetsVisible(boolean visible) {
         if (visible) {
-            mHeader.setVisibility(VISIBLE);
-            mViewInfo.setVisibility(GONE);
-            getRecyclerView().setVisibility(VISIBLE);
+            Dynamic.setVisibility(mHeader, VISIBLE);
+            Dynamic.setVisibility(mViewInfo, GONE);
+            Dynamic.setVisibility(getRecyclerView(), VISIBLE);
         } else {
-            mHeader.setVisibility(GONE);
-            getRecyclerView().setVisibility(GONE);
+            Dynamic.setVisibility(mHeader, GONE);
+            Dynamic.setVisibility(getRecyclerView(), GONE);
         }
     }
 
     /**
-     * Loader manager to callbacks to query presets from the theme provider.
+     * Loader manager callbacks to query presets from the theme provider.
      */
     private LoaderManager.LoaderCallbacks<Cursor> mLoaderCallbacks =
             new LoaderManager.LoaderCallbacks<Cursor>() {
@@ -326,13 +330,18 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
                 public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
                     if (id == ADS_LOADER_PRESETS) {
                         if (isPermissionGranted()) {
-                            return new CursorLoader(getContext().getApplicationContext(),
-                                    ThemeContract.Preset.CONTENT_URI,
-                                    new String[] { ThemeContract.Preset.Column.THEME },
-                                    null, null, null);
-                        } else {
-                            return new Loader<>(getContext().getApplicationContext());
+                            try {
+                                showProgress();
+                                return new CursorLoader(getContext().getApplicationContext(),
+                                        ThemeContract.Preset.CONTENT_URI,
+                                        new String[] { ThemeContract.Preset.Column.THEME },
+                                        null, null, null);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
+
+                        return new Loader<>(getContext().getApplicationContext());
                     }
 
                     throw new IllegalArgumentException();
@@ -342,6 +351,7 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
                 public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
                     if (loader.getId() == ADS_LOADER_PRESETS) {
                         if (data != null) {
+                            hideProgress();
                             mPresetsAdapter.setPresets(data);
                         }
 

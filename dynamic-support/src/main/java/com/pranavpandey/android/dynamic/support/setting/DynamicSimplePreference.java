@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.pranavpandey.android.dynamic.support.setting;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,10 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 
 /**
@@ -49,6 +53,11 @@ public class DynamicSimplePreference extends DynamicPreference {
      * Image view to show the icon.
      */
     private ImageView mIconView;
+
+    /**
+     * Image view to show the footer icon.
+     */
+    private ImageView mIconFooterView;
 
     /**
      * Text view to show the title.
@@ -94,9 +103,6 @@ public class DynamicSimplePreference extends DynamicPreference {
     }
 
     @Override
-    protected void onLoadAttributes(@Nullable AttributeSet attrs) { }
-
-    @Override
     protected @LayoutRes int getLayoutRes() {
         return R.layout.ads_preference_simple;
     }
@@ -107,6 +113,7 @@ public class DynamicSimplePreference extends DynamicPreference {
 
         mPreferenceView = findViewById(R.id.ads_preference);
         mIconView = findViewById(R.id.ads_preference_icon);
+        mIconFooterView = findViewById(R.id.ads_preference_icon_footer);
         mTitleView = findViewById(R.id.ads_preference_title);
         mSummaryView = findViewById(R.id.ads_preference_summary);
         mDescriptionView = findViewById(R.id.ads_preference_description);
@@ -119,51 +126,161 @@ public class DynamicSimplePreference extends DynamicPreference {
 
     @Override
     protected void onUpdate() {
-        if (mPreferenceView != null) {
-            mPreferenceView.setOnClickListener(getOnPreferenceClickListener());
-        }
+        super.onUpdate();
 
-        setImageView(mIconView, getIcon());
-        setTextView(mTitleView, getTitle());
-        setTextView(mSummaryView, getSummary());
-        setTextView(mValueView, getValueString());
-        setTextView(mDescriptionView, getDescription());
+        setIcon(getIcon(), false);
+        setTitle(getTitle(), false);
+        setSummary(getSummary(), false);
+        setValueString(getValueString(), false);
+        setDescription(getDescription(), false);
 
-        if (mActionView != null) {
-            if (getOnActionClickListener() != null) {
-                mActionView.setText(getActionString());
-                mActionView.setOnClickListener(getOnActionClickListener());
-                mActionView.setVisibility(View.VISIBLE);
-            } else {
-                mActionView.setVisibility(View.GONE);
-            }
-        }
+        setOnPreferenceClickListener(getOnPreferenceClickListener(), false);
+        setActionButton(getActionString(), getOnActionClickListener(), false);
+        Dynamic.setVisibility(getIconFooterView(), getIconView());
     }
 
     @Override
     protected void onEnabled(boolean enabled) {
-        setViewEnabled(mPreferenceView, enabled);
-        setViewEnabled(mIconView, enabled);
-        setViewEnabled(mTitleView, enabled);
-        setViewEnabled(mSummaryView, enabled);
-        setViewEnabled(mDescriptionView, enabled);
-        setViewEnabled(mValueView, enabled);
-        setViewEnabled(mActionView, enabled);
+        super.onEnabled(enabled);
 
-        if (mViewFrame != null && mViewFrame.getChildCount() > 0) {
-            setViewEnabled(mViewFrame.getChildAt(0), enabled);
+        Dynamic.setEnabled(getPreferenceView(), enabled);
+        Dynamic.setEnabled(getIconView(), enabled);
+        Dynamic.setEnabled(getTitleView(), enabled);
+        Dynamic.setEnabled(getSummaryView(), enabled);
+        Dynamic.setEnabled(getDescriptionView(), enabled);
+        Dynamic.setEnabled(getValueView(), enabled);
+        Dynamic.setEnabled(getActionView(), enabled);
+        Dynamic.setEnabled(getIconFooterView(), enabled);
+
+        if (getViewFrame() != null && getViewFrame().getChildCount() > 0) {
+            Dynamic.setEnabled(getViewFrame().getChildAt(0), enabled);
         }
 
-        onUpdate();
+        update();
+    }
+
+    @Override
+    public void setIcon(@Nullable Drawable icon, boolean update) {
+        super.setIcon(icon, update);
+
+        if (!update) {
+            setImageView(getIconView(), icon);
+        }
+    }
+
+    @Override
+    public void setTitle(@Nullable CharSequence title, boolean update) {
+        super.setTitle(title, update);
+
+        if (!update) {
+            setTextView(getTitleView(), title);
+        }
+    }
+
+    @Override
+    public void setSummary(@Nullable CharSequence summary, boolean update) {
+        super.setSummary(summary, update);
+
+        if (!update) {
+            setTextView(getSummaryView(), summary);
+        }
+    }
+
+    @Override
+    public void setDescription(@Nullable CharSequence description, boolean update) {
+        super.setDescription(description, update);
+
+        if (!update) {
+            setTextView(getDescriptionView(), description);
+        }
+    }
+
+    @Override
+    public void setValueString(@Nullable CharSequence valueString, boolean update) {
+        super.setValueString(valueString, update);
+
+        if (!update) {
+            setTextView(getValueView(), valueString);
+        }
+    }
+
+    @Override
+    public void setOnPreferenceClickListener(
+            @Nullable OnClickListener onPreferenceClickListener, boolean update) {
+        super.setOnPreferenceClickListener(onPreferenceClickListener, update);
+
+        if (!update) {
+            Dynamic.setClickListener(getPreferenceView(), onPreferenceClickListener);
+        }
+    }
+
+    @Override
+    public void setActionButton(@Nullable CharSequence actionString,
+            @Nullable OnClickListener onActionClickListener, boolean update) {
+        super.setActionButton(actionString, onActionClickListener, update);
+
+        if (!update) {
+            setTextView(getActionView(), actionString);
+            Dynamic.setClickListener(getActionView(), onActionClickListener, true);
+        }
+    }
+
+    @Override
+    public void setColor() {
+        super.setColor();
+
+        if (getBackgroundAware() != Theme.BackgroundAware.UNKNOWN) {
+            Dynamic.setBackgroundAware(getIconView(), getBackgroundAware());
+            Dynamic.setBackgroundAware(getTitleView(), getBackgroundAware());
+            Dynamic.setBackgroundAware(getSummaryView(), getBackgroundAware());
+            Dynamic.setBackgroundAware(getDescriptionView(), getBackgroundAware());
+            Dynamic.setBackgroundAware(getValueView(), getBackgroundAware());
+            Dynamic.setBackgroundAware(getActionView(), getBackgroundAware());
+            Dynamic.setBackgroundAware(getIconFooterView(), getBackgroundAware());
+        }
+
+        if (getContrastWithColorType() != Theme.ColorType.NONE
+                && getContrastWithColorType() != Theme.ColorType.CUSTOM) {
+            Dynamic.setContrastWithColorType(getIconView(), getContrastWithColorType());
+            Dynamic.setContrastWithColorType(getTitleView(), getContrastWithColorType());
+            Dynamic.setContrastWithColorType(getSummaryView(), getContrastWithColorType());
+            Dynamic.setContrastWithColorType(getDescriptionView(), getContrastWithColorType());
+            Dynamic.setContrastWithColorType(getValueView(), getContrastWithColorType());
+            Dynamic.setContrastWithColorType(getActionView(), getContrastWithColorType());
+            Dynamic.setContrastWithColorType(getIconFooterView(), getContrastWithColorType());
+        } else if (getContrastWithColorType() == Theme.ColorType.CUSTOM
+                && getContrastWithColor() != Theme.Color.UNKNOWN) {
+            Dynamic.setContrastWithColor(getIconView(), getContrastWithColor());
+            Dynamic.setContrastWithColor(getTitleView(), getContrastWithColor());
+            Dynamic.setContrastWithColor(getSummaryView(), getContrastWithColor());
+            Dynamic.setContrastWithColor(getDescriptionView(), getContrastWithColor());
+            Dynamic.setContrastWithColor(getValueView(), getContrastWithColor());
+            Dynamic.setContrastWithColor(getActionView(), getContrastWithColor());
+            Dynamic.setContrastWithColor(getIconFooterView(), getContrastWithColor());
+        }
+    }
+
+    @Override
+    public @Nullable ViewGroup getPreferenceView() {
+        return mPreferenceView;
     }
 
     /**
-     * Get the preference root view.
+     * Get the image view to show the icon.
      *
-     * @return The preference root view.
+     * @return The image view to show the icon.
      */
-    public ViewGroup getPreferenceView() {
-        return mPreferenceView;
+    public @Nullable ImageView getIconView() {
+        return mIconView;
+    }
+
+    /**
+     * Get the image view to show the footer icon.
+     *
+     * @return The image view to show the footer icon.
+     */
+    public @Nullable ImageView getIconFooterView() {
+        return mIconFooterView;
     }
 
     /**
@@ -171,7 +288,7 @@ public class DynamicSimplePreference extends DynamicPreference {
      *
      * @return The text view to show the title.
      */
-    public TextView getTitleView() {
+    public @Nullable TextView getTitleView() {
         return mTitleView;
     }
 
@@ -180,7 +297,7 @@ public class DynamicSimplePreference extends DynamicPreference {
      *
      * @return The text view to show the summary.
      */
-    public TextView getSummaryView() {
+    public @Nullable TextView getSummaryView() {
         return mSummaryView;
     }
 
@@ -189,7 +306,7 @@ public class DynamicSimplePreference extends DynamicPreference {
      *
      * @return The text view to show the value.
      */
-    public TextView getValueView() {
+    public @Nullable TextView getValueView() {
         return mValueView;
     }
 
@@ -198,7 +315,7 @@ public class DynamicSimplePreference extends DynamicPreference {
      *
      * @return The text view to show the description.
      */
-    public TextView getDescriptionView() {
+    public @Nullable TextView getDescriptionView() {
         return mDescriptionView;
     }
 
@@ -207,7 +324,7 @@ public class DynamicSimplePreference extends DynamicPreference {
      *
      * @return The text view to show the title.
      */
-    public ViewGroup getViewFrame() {
+    public @Nullable ViewGroup getViewFrame() {
         return mViewFrame;
     }
 
@@ -218,12 +335,12 @@ public class DynamicSimplePreference extends DynamicPreference {
      * @param removePrevious {@code true} to remove all the previous views of the view group.
      */
     public void setViewFrame(@Nullable View view, boolean removePrevious) {
-        if (mViewFrame != null) {
+        if (getViewFrame() != null) {
             if (view != null) {
-                mViewFrame.setVisibility(View.VISIBLE);
-                DynamicViewUtils.addView(mViewFrame, view, removePrevious);
+                Dynamic.setVisibility(getViewFrame(), View.VISIBLE);
+                DynamicViewUtils.addView(getViewFrame(), view, removePrevious);
             } else {
-                mViewFrame.setVisibility(View.GONE);
+                Dynamic.setVisibility(getViewFrame(), View.GONE);
             }
         }
     }
@@ -233,7 +350,7 @@ public class DynamicSimplePreference extends DynamicPreference {
      *
      * @return The button to provide a secondary action like permission request, etc.
      */
-    public Button getActionView() {
+    public @Nullable Button getActionView() {
         return mActionView;
     }
 
@@ -241,8 +358,12 @@ public class DynamicSimplePreference extends DynamicPreference {
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         super.onSharedPreferenceChanged(sharedPreferences, key);
 
+        if (DynamicPreferences.isNullKey(key)) {
+            return;
+        }
+
         if (key.equals(getPreferenceKey())) {
-            onUpdate();
+            update();
         }
     }
 }

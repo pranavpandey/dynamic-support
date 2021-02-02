@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,12 +17,9 @@
 package com.pranavpandey.android.dynamic.support.sample.activity
 
 import android.os.Bundle
-import androidx.annotation.StyleRes
 import com.pranavpandey.android.dynamic.support.activity.DynamicActivity
 import com.pranavpandey.android.dynamic.support.sample.R
-import com.pranavpandey.android.dynamic.support.sample.controller.AppController
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
-import com.pranavpandey.android.dynamic.support.sample.controller.ThemeController
 import com.pranavpandey.android.dynamic.support.sample.fragment.AboutFragment
 import com.pranavpandey.android.dynamic.support.sample.fragment.HomeFragment
 import com.pranavpandey.android.dynamic.support.sample.fragment.SettingsFragment
@@ -41,26 +38,6 @@ class BottomNavigationActivity : DynamicActivity() {
      */
     private var mBottomNavigationView: DynamicBottomNavigationView? = null
 
-    override fun getLocale(): Locale? {
-        // TODO: Not implementing multiple locales so, returning null.
-        return null
-    }
-
-    @StyleRes override fun getThemeRes(): Int {
-        // Return activity theme to be applied.
-        return ThemeController.appStyle
-    }
-
-    override fun onCustomiseTheme() {
-        // Customise activity theme after applying the base style.
-        ThemeController.setLocalTheme()
-    }
-
-    override fun setNavigationBarTheme(): Boolean {
-        // TODO: Return true to apply the navigation bar theme.
-        return AppController.instance.isThemeNavigationBar
-    }
-
     override fun onNavigationBarThemeChanged() {
         super.onNavigationBarThemeChanged()
 
@@ -73,9 +50,6 @@ class BottomNavigationActivity : DynamicActivity() {
 
         // TODO: Set app bar title.
         setTitle(R.string.app_name)
-
-        // Finish this activity on clicking the back navigation button.
-        setNavigationClickListener { this@BottomNavigationActivity.finishActivity() }
 
         // Add bottom navigation view in footer.
         addFooter(R.layout.layout_bottom_navigation, true)

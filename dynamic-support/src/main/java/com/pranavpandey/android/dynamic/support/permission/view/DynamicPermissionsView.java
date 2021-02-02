@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,22 +66,27 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
     /**
      * List to store all the required dangerous permissions.
      */
-    private List<DynamicPermission> mDangerousPermissions = new ArrayList<>();;
+    private List<DynamicPermission> mDangerousPermissions = new ArrayList<>();
+
+    /**
+     * List to store all the unknown permissions.
+     */
+    private List<DynamicPermission> mUnknownPermissions = new ArrayList<>();
 
     /**
      * List to store the unrequested or denied permissions.
      */
-    private List<DynamicPermission> mPermissionsLeft = new ArrayList<>();;
+    private List<DynamicPermission> mPermissionsLeft = new ArrayList<>();
 
     /**
      * List to store the unrequested or denied dangerous permissions.
      */
-    private List<DynamicPermission> mDangerousPermissionsLeft = new ArrayList<>();;
+    private List<DynamicPermission> mDangerousPermissionsLeft = new ArrayList<>();
 
     /**
      * List to store the unrequested or denied special permissions.
      */
-    private List<DynamicPermission> mSpecialPermissionsLeft = new ArrayList<>();;
+    private List<DynamicPermission> mSpecialPermissionsLeft = new ArrayList<>();
 
     /**
      * Permissions adapter to show the {@link DynamicPermission}.
@@ -119,27 +124,35 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
             @Nullable PermissionListener permissionListener) {
         mPermissions = permissions;
         mDangerousPermissions = new ArrayList<>();
+        mUnknownPermissions = new ArrayList<>();
         mPermissionsLeft = new ArrayList<>();
         mSpecialPermissionsLeft = new ArrayList<>();
         mDangerousPermissionsLeft = new ArrayList<>();
 
         for (DynamicPermission dynamicPermission : mPermissions) {
-            if (!dynamicPermission.isAllowed()) {
+            if (dynamicPermission.isReinstall() || dynamicPermission.isUnknown()) {
+                mUnknownPermissions.add(dynamicPermission);
                 mPermissionsLeft.add(dynamicPermission);
+            } else {
+                if (!dynamicPermission.isAllowed()) {
+                    mPermissionsLeft.add(dynamicPermission);
 
-                if (dynamicPermission.isDangerous()) {
-                    mDangerousPermissions.add(dynamicPermission);
+                    if (dynamicPermission.isDangerous()) {
+                        mDangerousPermissions.add(dynamicPermission);
 
-                    dynamicPermission.setAskAgain(
-                            ActivityCompat.shouldShowRequestPermissionRationale(
-                            (Activity) getContext(), dynamicPermission.getPermission()));
+                        if (getContext() instanceof Activity) {
+                            dynamicPermission.setAskAgain(
+                                    ActivityCompat.shouldShowRequestPermissionRationale(
+                                            (Activity) getContext(), dynamicPermission.getPermission()));
+                        }
 
-                    if (dynamicPermission.isAskAgain()) {
-                        mDangerousPermissionsLeft.add(dynamicPermission);
+                        if (dynamicPermission.isAskAgain()) {
+                            mDangerousPermissionsLeft.add(dynamicPermission);
+                        }
+                    } else {
+                        dynamicPermission.setAskAgain(false);
+                        mSpecialPermissionsLeft.add(dynamicPermission);
                     }
-                } else {
-                    dynamicPermission.setAskAgain(true);
-                    mSpecialPermissionsLeft.add(dynamicPermission);
                 }
             }
         }
@@ -200,7 +213,16 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
      * @return {@code true} if all the permissions shown by this view have been granted.
      */
     public boolean isAllPermissionsGranted() {
-        return !isSpecialPermissionsLeft() && !isDangerousPermissionsLeft();
+        return !isDangerousPermissionsLeft() && !isSpecialPermissionsLeft();
+    }
+
+    /**
+     * Checks whether there is any unknown permission.
+     *
+     * @return {@code true} if there is any unknown permission shown by this view.
+     */
+    public boolean isUnknownPermissions() {
+        return !mUnknownPermissions.isEmpty();
     }
 
     /**

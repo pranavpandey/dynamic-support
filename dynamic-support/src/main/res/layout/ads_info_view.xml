@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -16,32 +16,21 @@
 -->
 
 <merge
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        style="@style/Widget.DynamicApp.Content.Row.Vertical">
 
         <LinearLayout
-            style="@style/Widget.DynamicApp.Content.Card"
+            style="@style/Widget.DynamicApp.Content.Card.Header"
             android:orientation="horizontal">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-                android:id="@+id/ads_info_view_icon"
-                android:layout_width="@dimen/ads_icon_avatar_card"
-                android:layout_height="@dimen/ads_icon_avatar_card"
-                android:layout_marginRight="@dimen/ads_icon_avatar_card_margin_end"
-                android:layout_marginEnd="@dimen/ads_icon_avatar_card_margin_end"
-                android:layout_gravity="center_vertical"
-                android:visibility="@integer/ads_visibility_preference_icon" />
+                style="@style/Widget.DynamicApp.Image.Info"
+                android:id="@+id/ads_info_view_icon" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical">
+                style="@style/Widget.DynamicApp.Content.Row.Vertical.Center">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                     style="@style/TextAppearance.DynamicApp.Headline5.Card.Info"
@@ -62,18 +51,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/ads_margin_tiny" />
 
-                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Subtitle1.Caps"
-                    android:id="@+id/ads_info_view_status"
-                    android:layout_marginTop="@dimen/ads_margin_regular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/ads_font_size_medium"
-                    app:ads_colorType="accent" />
-
             </LinearLayout>
 
         </LinearLayout>
+
+        <include layout="@layout/ads_info_view_footer" />
 
         <include layout="@layout/ads_recycler_view_nested" />
 

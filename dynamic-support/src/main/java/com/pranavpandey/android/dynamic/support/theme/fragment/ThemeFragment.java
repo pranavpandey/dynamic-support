@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ package com.pranavpandey.android.dynamic.support.theme.fragment;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,14 +27,23 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
+import com.pranavpandey.android.dynamic.support.dialog.fragment.DynamicDialogFragment;
+import com.pranavpandey.android.dynamic.support.dialog.fragment.DynamicProgressDialog;
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment;
 import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.support.model.DynamicTaskViewModel;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.theme.activity.DynamicThemeActivity;
 import com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog;
+import com.pranavpandey.android.dynamic.support.theme.listener.ThemeListener;
+import com.pranavpandey.android.dynamic.support.theme.task.ThemeExportTask;
 import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
 import com.pranavpandey.android.dynamic.support.utils.DynamicMenuUtils;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -41,29 +51,31 @@ import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicFileUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
-
-import java.io.File;
+import com.pranavpandey.android.dynamic.utils.concurrent.DynamicResult;
+import com.pranavpandey.android.dynamic.utils.concurrent.DynamicTask;
+import com.pranavpandey.android.dynamic.utils.concurrent.task.FileWriteTask;
 
 /**
  * Base theme fragment to provide theme editing functionality.
  * <p>Extend this fragment to implement theme attributes according to the need.
  */
-public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFragment {
+public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFragment
+        implements ThemeListener.Import<T>, ThemeListener.Export<T> {
 
     /**
-     *  Name of the theme preview used for activity scene transitions.
+     *  Activity scene transition name for the theme preview.
      */
     public static final String ADS_NAME_THEME_PREVIEW = "ads_name:theme_preview";
 
     /**
-     *  Name of the theme preview icon used for activity scene transitions.
+     *  Activity scene transition name for the theme preview icon.
      */
-    public static final String ADS_NAME_THEME_PREVIEW_ICON = "ads_name:theme_preview:icon";
+    public static final String ADS_NAME_THEME_PREVIEW_ICON = ADS_NAME_THEME_PREVIEW + ":icon";
 
     /**
-     *  Name of the theme preview action used for activity scene transitions.
+     *  Activity scene transition name for the theme preview action.
      */
-    public static final String ADS_NAME_THEME_PREVIEW_ACTION = "ads_name:theme_preview:action";
+    public static final String ADS_NAME_THEME_PREVIEW_ACTION = ADS_NAME_THEME_PREVIEW + ":action";
 
     /**
      * Constant to request the theme file location.
@@ -71,24 +83,161 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
     protected static final int REQUEST_THEME_LOCATION = 0;
 
     /**
+     * Constant to request the theme file (code) location.
+     */
+    protected static final int REQUEST_THEME_CODE_LOCATION = 1;
+
+    /**
      * Constant to request the theme import from file.
      */
-    protected static final int REQUEST_THEME_IMPORT = 1;
+    protected static final int REQUEST_THEME_IMPORT = 5;
+
+    /**
+     * Key for the background color preference.
+     */
+    public static final String ADS_PREF_THEME_COLOR_BACKGROUND =
+            "ads_pref_settings_theme_color_background";
+
+    /**
+     * Key for the tint background color preference.
+     */
+    public static final String ADS_PREF_THEME_COLOR_TINT_BACKGROUND =
+            "ads_pref_settings_theme_color_tint_background";
+
+    /**
+     * Key for the surface color preference.
+     */
+    public static final String ADS_PREF_THEME_COLOR_SURFACE =
+            "ads_pref_settings_theme_color_surface";
+
+    /**
+     * Key for the tint surface color preference.
+     */
+    public static final String ADS_PREF_THEME_COLOR_TINT_SURFACE =
+            "ads_pref_settings_theme_color_tint_surface";
+
+    /**
+     * Key for the primary color preference.
+     */
+    public static final String ADS_PREF_THEME_COLOR_PRIMARY =
+            "ads_pref_settings_theme_color_primary";
+
+    /**
+     * Key for the tint primary color preference.
+     */
+    public static final String ADS_PREF_THEME_COLOR_TINT_PRIMARY =
+            "ads_pref_settings_theme_color_tint_primary";
+
+    /**
+     * Key for the dark primary color preference.
+     */
+    public static final String ADS_PREF_THEME_COLOR_PRIMARY_DARK =
+            "ads_pref_settings_theme_color_primary_dark";
+
+    /**
+     * Key for the accent color preference.
+     */
+    public static final String ADS_PREF_THEME_COLOR_ACCENT =
+            "ads_pref_settings_theme_color_accent";
+
+    /**
+     * Key for the tint accent color preference.
+     */
+    public static final String ADS_PREF_THEME_COLOR_TINT_ACCENT =
+            "ads_pref_settings_theme_color_tint_accent";
+
+    /**
+     * Key for the dark accent color preference.
+     */
+    public static final String ADS_PREF_THEME_COLOR_ACCENT_DARK =
+            "ads_pref_settings_theme_color_accent_dark";
+
+    /**
+     * Key for the error color preference.
+     */
+    public static final String ADS_PREF_THEME_COLOR_ERROR =
+            "ads_pref_settings_theme_color_error";
+
+    /**
+     * Key for the tint error color preference.
+     */
+    public static final String ADS_PREF_THEME_COLOR_TINT_ERROR =
+            "ads_pref_settings_theme_color_tint_error";
+
+    /**
+     * Key for the primary text color preference.
+     */
+    public static final String ADS_PREF_THEME_TEXT_PRIMARY =
+            "ads_pref_settings_theme_text_primary";
+
+    /**
+     * Key for the inverse primary text color preference.
+     */
+    public static final String ADS_PREF_THEME_TEXT_INVERSE_PRIMARY =
+            "ads_pref_settings_theme_text_inverse_primary";
+
+    /**
+     * Key for the secondary text color preference.
+     */
+    public static final String ADS_PREF_THEME_TEXT_SECONDARY =
+            "ads_pref_settings_theme_text_secondary";
+
+    /**
+     * Key for the inverse secondary text color preference.
+     */
+    public static final String ADS_PREF_THEME_TEXT_INVERSE_SECONDARY =
+            "ads_pref_settings_theme_text_inverse_secondary";
+
+    /**
+     * Key for the font scale preference.
+     */
+    public static final String ADS_PREF_THEME_FONT_SCALE =
+            "ads_pref_settings_theme_font_scale";
+
+    /**
+     * Key for the font scale alternate preference.
+     */
+    public static final String ADS_PREF_THEME_FONT_SCALE_ALT =
+            "ads_pref_settings_theme_font_scale_alt";
+
+    /**
+     * Key for the corner size preference.
+     */
+    public static final String ADS_PREF_THEME_CORNER_SIZE =
+            "ads_pref_settings_theme_corner_size";
+
+    /**
+     * Key for the corner size alternate preference.
+     */
+    public static final String ADS_PREF_THEME_CORNER_SIZE_ALT =
+            "ads_pref_settings_theme_corner_size_alt";
+
+    /**
+     * Key for the background aware preference.
+     */
+    public static final String ADS_PREF_THEME_BACKGROUND_AWARE =
+            "ads_pref_settings_theme_background_aware";
+
+    /**
+     * Key for the style preference.
+     */
+    public static final String ADS_PREF_THEME_STYLE =
+            "ads_pref_settings_theme_style";
 
     /**
      * Dynamic app theme used by this fragment.
      */
-    protected T mDynamicAppTheme;
+    protected T mDynamicTheme;
 
     /**
      * Default dynamic app theme used by this fragment.
      */
-    protected T mDynamicAppThemeDefault;
+    protected T mDynamicThemeDefault;
 
     /**
-     * Temporary file to store the exported theme.
+     * Temporary file uri to store the exported theme.
      */
-    protected File mThemeExported;
+    protected Uri mThemeExported;
 
     /**
      * {@code true} if the settings have been changed.
@@ -99,6 +248,11 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
      * Theme preview used by this fragment.
      */
     protected ThemePreview<T> mThemePreview;
+
+    /**
+     * Dialog fragment to show the progress.
+     */
+    protected DynamicDialogFragment mProgressDialog;
 
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
@@ -117,6 +271,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
             menu.findItem(R.id.ads_menu_theme_file).setVisible(false);
         } else if (!DynamicSdkUtils.is19()) {
             menu.findItem(R.id.ads_menu_theme_file_save).setVisible(false);
+            menu.findItem(R.id.ads_menu_theme_file_code).setVisible(false);
             menu.findItem(R.id.ads_menu_theme_file_import).setVisible(false);
         }
     }
@@ -124,183 +279,272 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int i = item.getItemId();
-        if (i == R.id.ads_menu_theme_copy) {
-            DynamicLinkUtils.copyToClipboard(requireContext(), getString(R.string.ads_theme),
-                    mThemePreview.getDynamicTheme().toDynamicString());
 
-            getDynamicActivity().getSnackBar(R.string.ads_theme_copy_done).show();
+        if (i == R.id.ads_menu_theme_data_copy) {
+            DynamicTheme.getInstance().copyThemeString(getDynamicActivity(),
+                    mThemePreview.getDynamicTheme().toDynamicString());
         } else if (i == R.id.ads_menu_theme_share) {
-            onSetActionIcon(false);
-            DynamicLinkUtils.share(requireContext(),
-                    getSubtitle() != null ? getSubtitle().toString() : null,
-                    DynamicThemeUtils.getThemeUrl(mThemePreview.getDynamicTheme()),
-                    DynamicFileUtils.getBitmapUri(requireContext(),
-                            DynamicThemeUtils.createThemeBitmap(mThemePreview),
-                            Theme.Key.SHARE));
-            onSetActionIcon(true);
+            DynamicThemeDialog.<T>newThemeInstance()
+                    .setThemeAction(Theme.Action.SHARE)
+                    .setThemeListener(this)
+                    .setMessage(getSubtitle())
+                    .showDialog(requireActivity());
+        } else if (i == R.id.ads_menu_theme_code) {
+            DynamicThemeDialog.<T>newThemeInstance()
+                    .setThemeAction(Theme.Action.SHARE_CODE)
+                    .setThemeListener(this)
+                    .setMessage(getSubtitle())
+                    .showDialog(requireActivity());
         } else if (i == R.id.ads_menu_theme_import) {
-            importTheme(false);
+            importTheme(Theme.Action.IMPORT);
         } else if (i == R.id.ads_menu_theme_file_save) {
-            mThemeExported = DynamicThemeUtils.requestThemeFile(requireContext(),
-                    Theme.NAME, mThemePreview.getDynamicTheme().toDynamicString());
-            startActivityForResult(DynamicFileUtils.getSaveToFileIntent(requireContext(),
-                    mThemeExported, Theme.MIME), REQUEST_THEME_LOCATION);
+            DynamicThemeDialog.<T>newThemeInstance()
+                    .setThemeAction(Theme.Action.SAVE_FILE)
+                    .setThemeListener(this)
+                    .setMessage(getSubtitle())
+                    .showDialog(requireActivity());
+        } else if (i == R.id.ads_menu_theme_file_code) {
+            DynamicThemeDialog.<T>newThemeInstance()
+                    .setThemeAction(Theme.Action.SAVE_CODE)
+                    .setThemeListener(this)
+                    .setMessage(getSubtitle())
+                    .showDialog(requireActivity());
         } else if (i == R.id.ads_menu_theme_file_share) {
-            onSetActionIcon(false);
-            DynamicLinkUtils.share(requireContext(),
-                    getSubtitle() != null ? getSubtitle().toString() : null,
-                    DynamicThemeUtils.getThemeUrl(mThemePreview.getDynamicTheme()),
-                    DynamicFileUtils.getUriFromFile(requireContext(),
-                            DynamicThemeUtils.requestThemeFile(requireContext(), Theme.NAME,
-                                    mThemePreview.getDynamicTheme().toDynamicString())),
-                    Theme.MIME);
-            onSetActionIcon(true);
+            DynamicThemeDialog.<T>newThemeInstance()
+                    .setThemeAction(Theme.Action.SHARE_FILE)
+                    .setThemeListener(this)
+                    .setMessage(getSubtitle())
+                    .showDialog(requireActivity());
         } else if (i == R.id.ads_menu_theme_file_import) {
-            importTheme(true);
+            importTheme(Theme.Action.IMPORT_FILE);
         } else if (i == R.id.ads_menu_refresh) {
             mSettingsChanged = false;
-            loadTheme(mDynamicAppTheme);
 
-            getDynamicActivity().setBottomSheetState(BottomSheetBehavior.STATE_EXPANDED);
+            onLoadTheme(mDynamicTheme);
+            Dynamic.setBottomSheetState(getActivity(), BottomSheetBehavior.STATE_EXPANDED);
+        } else if (i == R.id.ads_menu_default) {
+            mSettingsChanged = false;
+
+            onLoadTheme(mDynamicThemeDefault);
+            Dynamic.setBottomSheetState(getActivity(), BottomSheetBehavior.STATE_EXPANDED);
+            Dynamic.showSnackBar(getActivity(), R.string.ads_theme_reset_desc);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(final int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == Activity.RESULT_OK) {
-            Uri uri = null;
-            if (data != null) {
-                uri = data.getData();
-            }
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
 
+        final Uri uri = data != null ? data.getData() : null;
+
+        switch (requestCode) {
+            case REQUEST_THEME_LOCATION:
+            case REQUEST_THEME_CODE_LOCATION:
+                new ViewModelProvider(this).get(DynamicTaskViewModel.class).execute(
+                        new FileWriteTask(requireContext(), mThemeExported, uri) {
+                            @Override
+                            protected void onPreExecute() {
+                                super.onPreExecute();
+
+                                setProgress(requestCode, true);
+                            }
+
+                            @Override
+                            protected void onPostExecute(@Nullable DynamicResult<Boolean> result) {
+                                super.onPostExecute(result);
+
+                                setProgress(requestCode, false);
+
+                                if (getBooleanResult(result)) {
+                                    Dynamic.showSnackBar(getActivity(), String.format(
+                                            getString(R.string.ads_theme_format_saved),
+                                            DynamicFileUtils.getFileNameFromUri(
+                                                    requireContext(), uri)));
+                                } else {
+                                    onThemeError(Theme.Action.SAVE_FILE, null, null);
+                                }
+                            }
+                        });
+                break;
+            case REQUEST_THEME_IMPORT:
+                DynamicThemeDialog.newImportUriInstance()
+                        .setThemeAction(Theme.Action.IMPORT_FILE)
+                        .setThemeImportFileListener(
+                                new File<Uri>() {
+                                    @Override
+                                    public @Nullable Uri getThemeSource() {
+                                        return uri;
+                                    }
+
+                                    @Override
+                                    public void onImportTheme(@Nullable String theme) {
+                                        importTheme(theme, Theme.Action.IMPORT_FILE);
+                                    }
+                                })
+                        .setMessage(getSubtitle())
+                        .showDialog(requireActivity());
+                break;
+        }
+    }
+
+    /**
+     * Set progress for the theme tasks.
+     *
+     * @param requestCode The request code to be used.
+     * @param visible {@code true} to make the progress visible.
+     */
+    protected void setProgress(int requestCode, boolean visible) {
+        if (!visible && mProgressDialog != null) {
+            mProgressDialog.dismiss();
+            mProgressDialog = null;
+        } else if (visible) {
             switch (requestCode) {
                 case REQUEST_THEME_LOCATION:
-                    if (uri != null) {
-                        if (DynamicFileUtils.writeToFile(requireContext(),
-                                DynamicFileUtils.getUriFromFile(
-                                        requireContext(), mThemeExported), uri)) {
-                            getDynamicActivity().getSnackBar(String.format(getString(
-                                    R.string.ads_theme_format_saved), DynamicFileUtils
-                                    .getFileNameFromUri(requireContext(), uri))).show();
-                        } else {
-                            getDynamicActivity().getSnackBar(
-                                    R.string.ads_theme_export_error).show();
-                        }
-                    }
-                    break;
-                case REQUEST_THEME_IMPORT:
-                    if (uri != null) {
-                        importTheme(DynamicFileUtils.readStringFromFile(
-                                requireContext(), uri), true);
-                    }
+                case REQUEST_THEME_CODE_LOCATION:
+                    mProgressDialog = DynamicProgressDialog.newInstance()
+                            .setName(getString(R.string.ads_file))
+                            .setBuilder(new DynamicDialog.Builder(requireContext())
+                                    .setTitle(getString(R.string.ads_theme)));
+                    mProgressDialog.showDialog(requireActivity());
                     break;
             }
         }
     }
 
-    /**
-     * This method will be called when importing the theme from a string or file.
-     *
-     * @param theme The theme string to be imported.
-     */
-    protected abstract @NonNull T onImportTheme(@NonNull String theme);
-
-    /**
-     * Update settings according to the supplied theme.
-     *
-     * @param theme The dynamic app theme to be loaded.
-     */
-    protected abstract void loadTheme(@NonNull T theme);
-
-    /**
-     * This method will be called on setting the action icon.
-     * <p>It can be used to change the action icon while sharing the theme.
-     *
-     * @param enable {@code true} to enable the action icon;
-     */
-    public abstract void onSetActionIcon(boolean enable);
-
-    /**
-     * Get the theme preview used by this fragment.
-     *
-     * The theme preview used by this fragment.
-     */
+    @Override
     public @NonNull ThemePreview<T> getThemePreview() {
         return mThemePreview;
     }
 
-    /**
-     * Show dialog to import the theme.
-     *
-     * @param file {@code true} to import from the file.
-     *
-     * @see DynamicThemeDialog
-     * @see DynamicThemeDialog.Type#THEME_IMPORT
-     */
-    protected void importTheme(final boolean file) {
-        if (file) {
-            startActivityForResult(DynamicFileUtils.getFileSelectIntent(
-                    Theme.MIME), REQUEST_THEME_IMPORT);
-        } else {
-            DynamicThemeDialog.newInstance()
-                    .setType(DynamicThemeDialog.Type.THEME_IMPORT)
-                    .setOnImportThemeListener(
-                            new DynamicThemeDialog.OnThemeImportListener() {
-                                @Override
-                                public void onImportTheme(@NonNull String theme) {
-                                    importTheme(theme, file);
-                                }
-                            }).showDialog(requireActivity());
+    @Override
+    public void onThemeError(@Theme.Action int themeAction,
+            @Nullable ThemePreview<T> themePreview, @Nullable Exception e) {
+        switch (themeAction) {
+            case Theme.Action.IMPORT_FILE:
+                DynamicThemeDialog.<T>newThemeInstance()
+                        .setThemeAction(Theme.Action.INVALID)
+                        .setBuilder(new DynamicDialog.Builder(requireContext())
+                                .setPositiveButton(R.string.ads_backup_import,
+                                        new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        importTheme(themeAction);
+                                    }
+                                })).showDialog(requireActivity());
+                break;
+            case Theme.Action.SHARE:
+            case Theme.Action.SHARE_DATA:
+            case Theme.Action.SHARE_FILE:
+            case Theme.Action.SHARE_CODE:
+                Dynamic.showSnackBar(getActivity(), R.string.ads_theme_share_error);
+                break;
+            case Theme.Action.SAVE_FILE:
+            case Theme.Action.SAVE_CODE:
+                Dynamic.showSnackBar(getActivity(), themePreview != null
+                        ? R.string.ads_theme_share_error : R.string.ads_theme_export_error);
+                break;
         }
     }
 
-    /**
-     * Try to import the supplied theme string.
-     *
-     * @param theme The theme string to be imported.
-     * @param file {@code true} if importing from the file.
-     **/
-    protected void importTheme(@Nullable String theme, boolean file) {
+    @Override
+    public void importTheme(@Theme.Action int themeAction) {
+        if (themeAction == Theme.Action.IMPORT_FILE) {
+            startActivityForResult(DynamicFileUtils.getFileSelectIntent(
+                    Theme.MIME), REQUEST_THEME_IMPORT);
+        } else {
+            DynamicThemeDialog.<T>newThemeInstance()
+                    .setThemeAction(Theme.Action.IMPORT)
+                    .setThemeListener(this).showDialog(requireActivity());
+        }
+    }
+
+    @Override
+    public void importTheme(@Nullable String theme) {
+        importTheme(theme, Theme.Action.IMPORT);
+    }
+
+    @Override
+    public void importTheme(@Nullable String theme, @Theme.Action int themeAction) {
         if (theme == null || !DynamicThemeUtils.isValidTheme(theme)) {
-            invalidTheme(file);
+            onThemeError(themeAction, getThemePreview(), null);
         } else {
             try {
                 mSettingsChanged = false;
-                loadTheme(onImportTheme(theme));
 
-                getDynamicActivity().getSnackBar(
-                        R.string.ads_theme_import_done).show();
-                getDynamicActivity().setBottomSheetState(
-                        BottomSheetBehavior.STATE_EXPANDED);
-            } catch (Exception ignored) {
-                invalidTheme(file);
+                onLoadTheme(onImportTheme(theme));
+                Dynamic.setBottomSheetState(getActivity(), BottomSheetBehavior.STATE_EXPANDED);
+                Dynamic.showSnackBar(getActivity(), R.string.ads_theme_import_done);
+            } catch (Exception e) {
+                onThemeError(themeAction, getThemePreview(), e);
             }
         }
     }
 
-    /**
-     * Show dialog for the invalid theme.
-     *
-     * @param file {@code true} if imported from the file.
-     *
-     * @see DynamicThemeDialog
-     * @see DynamicThemeDialog.Type#THEME_INVALID
-     */
-    protected void invalidTheme(final boolean file) {
-        DynamicThemeDialog.newInstance()
-                .setType(DynamicThemeDialog.Type.THEME_INVALID)
-                .setBuilder(new DynamicDialog.Builder(requireContext())
-                        .setPositiveButton(R.string.ads_backup_import,
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        importTheme(file);
-                                    }
-                                })).showDialog(requireActivity());
+    @Override
+    public @Nullable Bitmap getThemeBitmap(
+            @Nullable ThemePreview<T> themePreview, int themeAction) {
+        if (themePreview == null) {
+            return null;
+        }
+
+        return DynamicThemeUtils.createThemeBitmap(themePreview);
+    }
+
+    @Override
+    public @NonNull DynamicTask<?, ?, ?> getThemeExportTask(
+            @Nullable DialogInterface dialog, @Theme.Action int themeAction,
+            @Nullable ThemePreview<T> themePreview) {
+        return new ThemeExportTask<T>(themeAction, this) {
+            @Override
+            protected void onPostExecute(@Nullable DynamicResult<Uri> result) {
+                super.onPostExecute(result);
+
+                if (dialog != null) {
+                    dialog.dismiss();
+                }
+
+                if (getThemeListener() == null || getThemeListener().getThemePreview() == null) {
+                    return;
+                }
+
+                if (!(result instanceof DynamicResult.Success)) {
+                    return;
+                }
+
+                if (getThemeAction() == Theme.Action.SHARE_FILE) {
+                    DynamicLinkUtils.share(requireActivity(),
+                            getSubtitle() != null ? getSubtitle().toString() : null,
+                            DynamicThemeUtils.getThemeUrl(getThemeListener().getThemePreview()
+                                    .getDynamicTheme()), result.getData(), Theme.MIME);
+                } else if (getThemeAction() == Theme.Action.SHARE_CODE) {
+                    startActivity(DynamicIntent.getThemeShareIntent(requireActivity(),
+                            DynamicThemeActivity.class, DynamicIntent.ACTION_THEME_SHARE,
+                            getThemeListener().getThemePreview().getDynamicTheme().toJsonString(),
+                            DynamicThemeUtils.getThemeUrl(getThemeListener()
+                                    .getThemePreview().getDynamicTheme()), result.getData()));
+                } else if (getThemeAction() == Theme.Action.SAVE_FILE) {
+                    mThemeExported = result.getData();
+                    startActivityForResult(DynamicFileUtils.getSaveToFileIntent(requireContext(),
+                            result.getData(), Theme.MIME), REQUEST_THEME_LOCATION);
+                } else if (getThemeAction() == Theme.Action.SAVE_CODE) {
+                    mThemeExported = result.getData();
+                    startActivityForResult(DynamicFileUtils.getSaveToFileIntent(requireContext(),
+                            result.getData(), Theme.MIME_IMAGE), REQUEST_THEME_CODE_LOCATION);
+                } else {
+                    DynamicLinkUtils.share(requireActivity(),
+                            getSubtitle() != null ? getSubtitle().toString() : null,
+                            DynamicThemeUtils.getThemeUrl(getThemeListener().getThemePreview()
+                                    .getDynamicTheme()), result.getData());
+                }
+            }
+        };
     }
 
     /**
@@ -308,10 +552,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
      */
     public void saveThemeSettings() {
         Intent intent = new Intent();
-        intent.putExtra(DynamicIntent.EXTRA_THEME,
-                mThemePreview.getDynamicTheme().toJsonString());
+        intent.putExtra(DynamicIntent.EXTRA_THEME, mThemePreview.getDynamicTheme().toJsonString());
         setResult(Activity.RESULT_OK, intent);
-
-        finishActivity();
     }
 }

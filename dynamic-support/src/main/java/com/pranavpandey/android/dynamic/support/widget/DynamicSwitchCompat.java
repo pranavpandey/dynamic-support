@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
@@ -53,14 +54,34 @@ public class DynamicSwitchCompat extends SwitchMaterial implements DynamicStateW
     private @Theme.ColorType int mContrastWithColorType;
 
     /**
+     * Normal state color type for this view.
+     */
+    private @Theme.ColorType int mStateNormalColorType;
+
+    /**
      * Color applied to this view.
      */
     private @ColorInt int mColor;
 
     /**
+     * Color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedColor;
+
+    /**
      * Background color for this view so that it will remain in contrast with this color.
      */
     private @ColorInt int mContrastWithColor;
+
+    /**
+     * Normal state color applied to this view.
+     */
+    private @ColorInt int mStateNormalColor;
+
+    /**
+     * Normal state color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedStateNormalColor;
 
     /**
      * The background aware functionality to change this view color according to the background.
@@ -76,16 +97,6 @@ public class DynamicSwitchCompat extends SwitchMaterial implements DynamicStateW
      * @see #mContrastWithColor
      */
     private @Theme.BackgroundAware int mBackgroundAware;
-
-    /**
-     * Normal state color type for this view.
-     */
-    private @Theme.ColorType int mStateNormalColorType;
-
-    /**
-     * Normal state color applied to this view.
-     */
-    private @ColorInt int mStateNormalColor;
 
     public DynamicSwitchCompat(@NonNull Context context) {
         this(context, null);
@@ -118,19 +129,19 @@ public class DynamicSwitchCompat extends SwitchMaterial implements DynamicStateW
                     Theme.ColorType.BACKGROUND);
             mStateNormalColorType = a.getInt(
                     R.styleable.DynamicSwitchCompat_ads_stateNormalColorType,
-                    Theme.ColorType.BACKGROUND);
+                    Defaults.ADS_COLOR_TYPE_ICON);
             mColor = a.getColor(
                     R.styleable.DynamicSwitchCompat_ads_color,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicSwitchCompat_ads_contrastWithColor,
-                    WidgetDefaults.getContrastWithColor(getContext()));
+                    Defaults.getContrastWithColor(getContext()));
             mStateNormalColor = a.getColor(
                     R.styleable.DynamicSwitchCompat_ads_stateNormalColor,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicSwitchCompat_ads_backgroundAware,
-                    WidgetDefaults.getBackgroundAware());
+                    Defaults.getBackgroundAware());
         } finally {
             a.recycle();
         }
@@ -165,11 +176,7 @@ public class DynamicSwitchCompat extends SwitchMaterial implements DynamicStateW
         return mColorType;
     }
 
-    /**
-     * Set the value of {@link #mColorType} and re-initialize this view.
-     *
-     * @param colorType for this view.
-     */
+    @Override
     public void setColorType(@Theme.ColorType int colorType) {
         this.mColorType = colorType;
 
@@ -201,8 +208,13 @@ public class DynamicSwitchCompat extends SwitchMaterial implements DynamicStateW
     }
 
     @Override
+    public @ColorInt int getColor(boolean resolve) {
+        return resolve ? mAppliedColor : mColor;
+    }
+
+    @Override
     public @ColorInt int getColor() {
-        return mColor;
+        return getColor(true);
     }
 
     @Override
@@ -227,8 +239,13 @@ public class DynamicSwitchCompat extends SwitchMaterial implements DynamicStateW
     }
 
     @Override
+    public @ColorInt int getStateNormalColor(boolean resolve) {
+        return resolve ? mAppliedStateNormalColor : mStateNormalColor;
+    }
+
+    @Override
     public @ColorInt int getStateNormalColor() {
-        return mStateNormalColor;
+        return getStateNormalColor(true);
     }
 
     @Override
@@ -261,30 +278,35 @@ public class DynamicSwitchCompat extends SwitchMaterial implements DynamicStateW
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
-        setAlpha(enabled ? WidgetDefaults.ADS_ALPHA_ENABLED : WidgetDefaults.ADS_ALPHA_DISABLED);
+        setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
     }
 
     @Override
     public void setColor() {
-        if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+        if (mColor != Theme.Color.UNKNOWN) {
+            if (mContrastWithColor != Theme.Color.UNKNOWN) {
+                if (mStateNormalColor == Theme.Color.UNKNOWN) {
+                    mStateNormalColor = DynamicColorUtils.getTintColor(mContrastWithColor);
+                }
+
+                mAppliedColor = mColor;
+                mAppliedStateNormalColor = mStateNormalColor;
+                if (isBackgroundAware()) {
+                    mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                    mAppliedStateNormalColor = DynamicColorUtils.getContrastColor(
+                            mStateNormalColor, mContrastWithColor);
+                }
             }
 
-            @ColorInt int colorOff = DynamicColorUtils.getStateColor(
-                    mStateNormalColor, WidgetDefaults.ADS_STATE_LIGHT,
-                    WidgetDefaults.ADS_STATE_DARK);
-            @ColorInt int colorOffTint = DynamicColorUtils.getStateColor(
-                    colorOff, WidgetDefaults.ADS_STATE_LIGHT,
-                    WidgetDefaults.ADS_STATE_DARK);
-
             DynamicTintUtils.setViewBackgroundTint(this,
-                    mContrastWithColor, mColor, true, true);
+                    mContrastWithColor, mAppliedColor, true, true);
             setThumbTintList(DynamicResourceUtils.getColorStateList(
-                    colorOffTint, mColor, true));
-            setTrackTintList(DynamicResourceUtils.getColorStateList(colorOff,
-                    DynamicColorUtils.getLighterColor(mColor,
-                            WidgetDefaults.ADS_STATE_LIGHT), true));
+                    mAppliedStateNormalColor, mAppliedColor, true));
+            setTrackTintList(DynamicResourceUtils.getColorStateList(
+                    DynamicColorUtils.getLighterColor(mAppliedStateNormalColor,
+                            Defaults.ADS_STATE_LIGHT),
+                    DynamicColorUtils.getLighterColor(mAppliedColor,
+                            Defaults.ADS_STATE_LIGHT), true));
         }
     }
 }

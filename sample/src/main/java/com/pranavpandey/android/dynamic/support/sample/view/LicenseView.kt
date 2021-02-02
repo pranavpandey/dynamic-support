@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,62 +63,47 @@ class LicenseView : DynamicRecyclerViewFrame {
                 .setLinks(resources.getStringArray(R.array.ads_license_links_apache_only))
                 .setLinksSubtitles(resources.getStringArray(
                         R.array.ads_license_links_subtitles_license))
-                .setLinksUrls(resources.getStringArray(
-                        R.array.ads_license_links_urls_apache_only))
+                .setLinksUrls(resources.getStringArray(R.array.ads_license_links_urls_apache_only))
                 .setLinksIconsResId(R.array.ads_license_links_icons_license)
                 .setLinksColorsResId(R.array.ads_license_links_colors_license)
-                .setIconBig(DynamicResourceUtils.getDrawable(
-                        context, R.drawable.ads_ic_android)))
+                .setIconBig(DynamicResourceUtils.getDrawable(context, R.drawable.ads_ic_android)))
         licenses.add(DynamicInfo()
-                .setTitle(context
-                        .getString(R.string.ads_license_gson_plaid))
-                .setDescription(context.getString(R.string.ads_license_copy_google_08_15))
-                .setLinks(resources.getStringArray(
-                        R.array.ads_license_links_apache))
-                .setLinksSubtitles(resources.getStringArray(
-                        R.array.ads_license_links_subtitles))
-                .setLinksUrls(resources.getStringArray(
-                        R.array.ads_license_links_urls_gson_plaid))
+                .setTitle(context.getString(R.string.ads_license_google))
+                .setDescription(context.getString(R.string.ads_license_copy_google))
+                .setLinks(resources.getStringArray(R.array.ads_license_links_apache))
+                .setLinksSubtitles(resources.getStringArray(R.array.ads_license_links_subtitles))
+                .setLinksUrls(resources.getStringArray(R.array.ads_license_links_google))
                 .setLinksIconsResId(R.array.ads_license_links_icons)
                 .setLinksColorsResId(R.array.ads_license_links_colors)
-                .setIconBig(DynamicResourceUtils.getDrawable(
-                        context, R.drawable.ads_ic_android)))
+                .setIconBig(DynamicResourceUtils.getDrawable(context, R.drawable.ads_ic_android)))
         licenses.add(DynamicInfo()
                 .setTitle(context.getString(R.string.ads_license_sas))
                 .setDescription(context.getString(R.string.ads_license_copy_me_16))
                 .setLinks(resources.getStringArray(R.array.ads_license_links_apache))
-                .setLinksSubtitles(resources.getStringArray(
-                        R.array.ads_license_links_subtitles))
-                .setLinksUrls(resources.getStringArray(
-                        R.array.ads_license_links_urls_sas))
+                .setLinksSubtitles(resources.getStringArray(R.array.ads_license_links_subtitles))
+                .setLinksUrls(resources.getStringArray(R.array.ads_license_links_urls_sas))
                 .setLinksIconsResId(R.array.ads_license_links_icons)
                 .setLinksColorsResId(R.array.ads_license_links_colors)
                 .setIconBig(DynamicResourceUtils.getDrawable(
                         context, R.drawable.ads_ic_extension)))
         licenses.add(DynamicInfo()
-                .setTitle(context
-                        .getString(R.string.ads_license_ads_modules))
+                .setTitle(context.getString(R.string.ads_license_ads_modules))
                 .setDescription(context.getString(R.string.ads_license_copy_me_17))
-                .setLinks(resources.getStringArray(
-                        R.array.ads_license_links_ads_modules))
+                .setLinks(resources.getStringArray(R.array.ads_license_links_ads_modules))
                 .setLinksSubtitles(resources.getStringArray(
                         R.array.ads_license_links_subtitles_ads_modules))
-                .setLinksUrls(resources.getStringArray(
-                        R.array.ads_license_links_urls_ads_modules))
+                .setLinksUrls(resources.getStringArray(R.array.ads_license_links_urls_ads_modules))
                 .setLinksIconsResId(R.array.ads_license_links_icons_ads_modules)
                 .setLinksColorsResId(R.array.ads_license_links_colors_ads_modules)
                 .setIconBig(DynamicResourceUtils.getDrawable(
                         context, R.drawable.ads_ic_extension)))
         licenses.add(DynamicInfo()
-                .setTitle(context
-                        .getString(R.string.ads_license_ads))
+                .setTitle(context.getString(R.string.ads_license_ads))
                 .setDescription(context.getString(R.string.ads_license_copy_me_18))
-                .setLinks(resources.getStringArray(
-                        R.array.ads_license_links_ads))
+                .setLinks(resources.getStringArray(R.array.ads_license_links_ads))
                 .setLinksSubtitles(resources.getStringArray(
                         R.array.ads_license_links_subtitles_ads))
-                .setLinksUrls(resources.getStringArray(
-                        R.array.ads_license_links_urls_ads))
+                .setLinksUrls(resources.getStringArray(R.array.ads_license_links_urls_ads))
                 .setLinksIconsResId(R.array.ads_license_links_icons_ads)
                 .setLinksColorsResId(R.array.ads_license_links_colors_ads)
                 .setIconBig(DynamicResourceUtils.getDrawable(

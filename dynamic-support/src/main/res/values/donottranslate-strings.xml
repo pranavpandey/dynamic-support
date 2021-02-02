@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
     <string name="ads_format_join">%1$s%2$s</string>
     <string name="ads_format_blank_space">%1$s %2$s</string>
     <string name="ads_format_separator">%1$s | %2$s</string>
+    <string name="ads_format_refactor">%1$s &#10143; %2$s</string>
     <string name="ads_format_braces">%1$s (%2$s)</string>
     <string name="ads_format_next_line">%1$s\n%2$s</string>
     <string name="ads_format_line_break_two">%1$s\n\n%2$s</string>
@@ -45,6 +46,10 @@
     <string name="ads_locale_in_value">in</string>
     <string name="ads_locale_it">Italiano</string>
     <string name="ads_locale_it_value">it</string>
+    <string name="ads_locale_pt">Português</string>
+    <string name="ads_locale_pt_value">pt</string>
+    <string name="ads_locale_ru">Русский</string>
+    <string name="ads_locale_ru_value">ru</string>
     <string name="ads_locale_tr">Türkçe</string>
     <string name="ads_locale_tr_value">tr</string>
     <string name="ads_locale_zh_rCN">中文 (简体)</string>
@@ -63,6 +68,7 @@
     <!-- Picker -->
     <string name="ads_picker_hsv">HSV</string>
     <string name="ads_picker_rgb">RGB</string>
+    <string name="ads_picker_cmyk">CMYK</string>
 
     <!-- Backup and Restore -->
     <string name="ads_backup_save">@string/ads_save</string>
@@ -102,15 +108,16 @@
         \nDynamic Theme
         \nDynamic Locale
         \nDynamic Preferences</string>
-    <string name="ads_license_gson_plaid">Gson
-        \nPlaid</string>
+    <string name="ads_license_google">Gson
+        \nPlaid
+        \nZXing</string>
     <string name="ads_license_copy_android_google">&#169; 2005&#8211;2018 The Android Open Source Project</string>
-    <string name="ads_license_copy_google_08_15">&#169; 2008 Google, Inc.
-        \n&#169; 2015 Google, Inc.</string>
-    <string name="ads_license_copy_google_15">&#169; 2015 Google, Inc.</string>
+    <string name="ads_license_copy_google">&#169; 2008 Google, Inc.
+        \n&#169; 2015 Google, Inc.
+        \n&#169; 2007&#8211;2020 ZXing authors</string>
     <string name="ads_license_copy_me_16">&#169; 2016 Pranav Pandey</string>
-    <string name="ads_license_copy_me_17">&#169; 2017&#8211;2020 Pranav Pandey</string>
-    <string name="ads_license_copy_me_18">&#169; 2018&#8211;2020 Pranav Pandey</string>
+    <string name="ads_license_copy_me_17">&#169; 2017&#8211;2021 Pranav Pandey</string>
+    <string name="ads_license_copy_me_18">&#169; 2018&#8211;2021 Pranav Pandey</string>
     <string name="ads_license_apache">Apache 2.0</string>
 
 </resources>

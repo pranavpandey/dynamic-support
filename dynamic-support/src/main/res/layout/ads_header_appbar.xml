@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -27,19 +27,12 @@
     android:orientation="horizontal">
 
     <ImageView
+        style="@style/Widget.DynamicApp.Image.Header.Appbar"
         android:id="@+id/ads_header_appbar_icon"
-        android:layout_width="@dimen/ads_icon_header_appbar"
-        android:layout_height="@dimen/ads_icon_header_appbar"
-        android:layout_marginRight="@dimen/ads_margin_normal"
-        android:layout_marginEnd="@dimen/ads_margin_normal"
-        android:layout_gravity="center_vertical"
         android:contentDescription="@null" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical">
+        style="@style/Widget.DynamicApp.Content.Row.Vertical.Center">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
             android:id="@+id/ads_header_appbar_title"

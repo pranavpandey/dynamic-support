@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@ import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.view.DynamicView;
-import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
+import com.pranavpandey.android.dynamic.support.Defaults;
 
 /**
- * A {@link DynamicView} to show the theme preview according to the selected values.
+ * A {@link DynamicView} to show the theme preview according to the {@link DynamicAppTheme}.
  */
 public abstract class ThemePreview<T extends DynamicAppTheme> extends DynamicView {
 
@@ -64,7 +64,7 @@ public abstract class ThemePreview<T extends DynamicAppTheme> extends DynamicVie
 
     @Override
     protected void onEnabled(boolean enabled) {
-        setAlpha(enabled ? WidgetDefaults.ADS_ALPHA_ENABLED : WidgetDefaults.ADS_ALPHA_DISABLED);
+        setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
 
         getActionView().setEnabled(enabled);
         getActionView().setOnClickListener(enabled ? mOnActionClickListener : null);
@@ -110,7 +110,7 @@ public abstract class ThemePreview<T extends DynamicAppTheme> extends DynamicVie
      *
      * @return The on click listener to receive action view click events.
      */
-    public OnClickListener getOnActionClickListener() {
+    public @Nullable OnClickListener getOnActionClickListener() {
         return mOnActionClickListener;
     }
 

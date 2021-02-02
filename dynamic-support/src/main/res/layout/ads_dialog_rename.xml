@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -44,7 +44,8 @@
             android:layout_marginTop="@dimen/ads_margin_regular"
             android:layout_marginLeft="@dimen/ads_dialog_margin_horizontal_edit_text"
             android:layout_marginRight="@dimen/ads_dialog_margin_horizontal_edit_text"
-            android:hint="@string/ads_backup_name">
+            android:hint="@string/ads_backup_name"
+            app:helperText="@string/ads_backup_replace">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
                 style="@style/Widget.DynamicApp.TextInputEditText.Outlined"

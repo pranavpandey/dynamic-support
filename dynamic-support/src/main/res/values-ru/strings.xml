@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018-2021 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<resources>
+
+    <!-- Activity -->
+    <string name="ads_navigation_drawer_open">Открыть навигационную панель</string>
+    <string name="ads_navigation_drawer_close">Закрыть навигационную панель</string>
+
+    <!-- String formats -->
+    <string name="ads_format_version">Версия %1$s</string>
+    <string name="ads_search_empty">Не найдено совпадений для \"%1$s\".</string>
+
+    <!-- Headings -->
+    <string name="ads_app">Приложение</string>
+    <string name="ads_actions">действия</string>
+    <string name="ads_text">Текст</string>
+    <string name="ads_icon">Иконка</string>
+    <string name="ads_size">Размер</string>
+    <string name="ads_value">Значение</string>
+    <string name="ads_notification">Уведомление</string>
+    <string name="ads_notification_tile">Плитка</string>
+    <string name="ads_widgets">Виджеты</string>
+    <string name="ads_instructions">Инструкции</string>
+    <string name="ads_tutorial">Руководство по использованию</string>
+    <string name="ads_product_tour">Тур по продукту</string>
+    <string name="ads_troubleshoot">Устранение проблем</string>
+    <string name="ads_about">О продукте</string>
+    <string name="ads_overview">Обзор</string>
+    <string name="ads_general">Общие</string>
+    <string name="ads_advanced">Дополнительно</string>
+    <string name="ads_fixes">Инструменты</string>
+
+    <!-- Labels -->
+    <string name="ads_warning">Предупреждение</string>
+    <string name="ads_i_got_it">ОК, понятно</string>
+    <string name="ads_not_now">Не сейчас</string>
+    <string name="ads_yes_in">Да, я в игре</string>
+    <string name="ads_more">Еще</string>
+    <string name="ads_more_info">Больше информации</string>
+    <string name="ads_select">Выбрать</string>
+    <string name="ads_copy">Копировать</string>
+    <string name="ads_save">Сохранить</string>
+    <string name="ads_load">Загрузить</string>
+    <string name="ads_file">Файл</string>
+    <string name="ads_create">Создать</string>
+    <string name="ads_open">Открыть</string>
+    <string name="ads_previous">Предыдущий</string>
+    <string name="ads_next">Следующий</string>
+    <string name="ads_skip">Пропустить</string>
+    <string name="ads_loading">Загрузка&#8230;</string>
+    <string name="ads_play">Играть в</string>
+    <string name="ads_pause">Пауза</string>
+    <string name="ads_exit">Выход</string>
+    <string name="ads_finish">Завершить</string>
+    <string name="ads_recents">Недавние</string>
+    <string name="ads_wallpaper">Фоновый рисунок</string>
+    <string name="ads_custom">Пользовательский</string>
+    <string name="ads_edit">Редактировать</string>
+    <string name="ads_refresh">Обновить</string>
+    <string name="ads_reset">Сброс</string>
+    <string name="ads_default">По умолчанию</string>
+    <string name="ads_normal">Обычный</string>
+    <string name="ads_minimum">Минимум</string>
+    <string name="ads_experimental">Экспериментальный</string>
+    <string name="ads_sort">Сортировать</string>
+    <string name="ads_sort_category">Категория</string>
+    <string name="ads_sort_name">Название</string>
+    <string name="ads_search">Поиск</string>
+    <string name="ads_enable">Включить</string>
+    <string name="ads_enabled">Включено</string>
+    <string name="ads_disable">Выключить</string>
+    <string name="ads_disabled">Выключено</string>
+    <string name="ads_toggle">Переключить</string>
+    <string name="ads_shortcut">Ярлык</string>
+    <string name="ads_shortcuts">Ярлыки</string>
+    <string name="ads_shortcut_created">Ярлык создан</string>
+    <string name="ads_shortcuts_desc">Выберите ярлык, чтобы добавить его на главный экран.</string>
+
+    <!-- Navigation drawer and Menu -->
+    <string name="ads_nav_category_features">Меню</string>
+    <string name="ads_nav_category_support">Поддержать разработку</string>
+    <string name="ads_nav_category_contribute">Принять участие</string>
+    <string name="ads_nav_home">Главная страница</string>
+    <string name="ads_nav_settings">Настройки</string>
+    <string name="ads_nav_help">Помощь</string>
+    <string name="ads_nav_support">Поддержка</string>
+    <string name="ads_nav_about">О продукте</string>
+    <string name="ads_nav_buy">Купить</string>
+    <string name="ads_nav_rate">Оценить</string>
+    <string name="ads_nav_share">Поделиться</string>
+    <string name="ads_nav_uninstall">Удалить</string>
+    <string name="ads_menu_info">Информация</string>
+    <string name="ads_menu_app_info">Информация о приложении</string>
+
+    <!-- Runtime permissions -->
+    <string name="ads_permissions">Разрешения</string>
+    <string name="ads_permissions_subtitle">Пожалуйста, предоставьте необходимые разрешения.</string>
+    <string name="ads_permissions_subtitle_single">Пожалуйста, предоставьте необходимое разрешение.</string>
+    <string name="ads_perm_info_required">Требуется разрешение</string>
+    <string name="ads_perm_info_grant_all">Пожалуйста, предоставьте все разрешения для корректной работы приложения.</string>
+    <string name="ads_perm_request">Запросить</string>
+    <string name="ads_perm_request_desc">Это разрешение не предоставлено. Нажмите, чтобы запросить.</string>
+    <string name="ads_perm_granted">Предоставлено</string>
+    <string name="ads_perm_granted_desc">Это разрешение предоставлено.</string>
+    <string name="ads_perm_denied">Отказано</string>
+    <string name="ads_perm_denied_desc">Чтобы предоставить это разрешение, перейдите в Информация о приложении &gt; Разрешения. Нажмите, чтобы перейти в раздел Информация о приложении.</string>
+    <string name="ads_perm_reinstall">Переустановить</string>
+    <string name="ads_perm_reinstall_desc">Чтобы предоставить это разрешение, пожалуйста, переустановите приложение. Нажмите, чтобы перейти в раздел Информация о приложении.</string>
+    <string name="ads_perm_unknown">Неизвестный</string>
+    <string name="ads_perm_unknown_desc">Это разрешение отсутствует в системе.</string>
+    <string name="ads_perm_default">Разрешение</string>
+    <string name="ads_perm_default_desc">Это разрешение требуется для выполнения некоторых действий.</string>
+    <string name="ads_perm_default_explain">Объяснение.</string>
+    <string name="ads_perm_write_system_settings">Записать системные настройки</string>
+    <string name="ads_perm_write_system_settings_desc">Разрешить записывать системные настройки.</string>
+    <string name="ads_perm_overlay">Отображать поверх других приложений</string>
+    <string name="ads_perm_overlay_desc">Разрешить отображать поверх других приложений.</string>
+    <string name="ads_perm_usage_access">Доступ к использованию</string>
+    <string name="ads_perm_usage_access_desc">Предоставить доступ к использованию.</string>
+    <string name="ads_perm_accessibility">Спец. возможности</string>
+
+    <!-- Backup and Restore -->
+    <string name="ads_data">Данные</string>
+    <string name="ads_data_operations">Операции с данными</string>
+    <string name="ads_backup_and_restore">Резервное копирование и восстановление</string>
+    <string name="ads_backup">Резервное копирование</string>
+    <string name="ads_backup_desc">Настройки виджета не будут включены в резервную копию, пожалуйста, установите их вручную после выполнения операции восстановления.</string>
+    <string name="ads_backup_title">Создать резервную копию</string>
+    <string name="ads_backup_select">Выбрать</string>
+    <string name="ads_backup_summary">Сохранить или поделиться текущими настройками приложения.</string>
+    <string name="ads_backup_new">Новый</string>
+    <string name="ads_backup_create_new_info">Пожалуйста, создайте резервную копию.</string>
+    <string name="ads_backup_import_info">Пожалуйста, попробуйте импортировать резервную копию из памяти устройства.</string>
+    <string name="ads_backup_name">Имя резервной копии</string>
+    <string name="ads_backup_rename">Переименовать резервную копию</string>
+    <string name="ads_backup_complete">Резервная копия успешно создана</string>
+    <string name="ads_backup_error">Невозможно создать резервную копию</string>
+    <string name="ads_backup_exists">Резервная копия уже существует</string>
+    <string name="ads_backup_replace">Заменить, если уже существует</string>
+    <string name="ads_backup_invalid">Неверная резервная копия</string>
+    <string name="ads_backup_restore">Восстановить</string>
+    <string name="ads_backup_restore_title">Восстановить из резервной копии</string>
+    <string name="ads_backup_error_save">Невозможно сохранить резервную копию</string>
+    <string name="ads_backup_error_rename">Невозможно переименовать резервную копию</string>
+    <string name="ads_backup_restore_summary">Загрузить или управлять ранее сохраненными резервными копиями.</string>
+    <string name="ads_backup_restore_desc">Выберите резервную копию для восстановления.</string>
+    <string name="ads_backup_restore_backup">Восстановить из резервной копии</string>
+    <string name="ads_backup_restore_backup_desc">Это удалит все текущие настройки (кроме виджетов) и восстановит их из выбранной резервной копии. Вы хотите продолжить?</string>
+    <string name="ads_backup_restore_backup_verify_error">Невозможно верифицировать эту резервную копию. Пожалуйста, выберите другую резервную копию.</string>
+    <string name="ads_backup_modify">Изменить</string>
+    <string name="ads_backup_modify_desc">Выберите резервную копию для изменения.</string>
+    <string name="ads_backup_restore_done">Резервная копия была успешно восстановлена</string>
+    <string name="ads_backup_restore_error">Невозможно восстановить резервную копию.</string>
+    <string name="ads_backup_not_found">Резервных копий не найдено.</string>
+    <string name="ads_backup_modify_complete">Резервная копия успешно изменена</string>
+    <string name="ads_backup_delete_all">Удалить все</string>
+    <string name="ads_backup_delete_all_title">Удалить все резервные копии</string>
+    <string name="ads_backup_delete_all_desc">Это удалит все резервные копии, сохраненные в памяти приложения. Вы хотите продолжить?</string>
+    <string name="ads_backup_delete_all_done">Все резервные копии успешно удалены.</string>
+    <string name="ads_backup_import">Импортировать</string>
+    <string name="ads_backup_import_title">Импортировать резервную копию</string>
+    <string name="ads_backup_import_summary">Начать с предыдущего состояния приложения</string>
+    <string name="ads_backup_import_desc">Импортировать резервную копию с устройства или из другого хранилища.</string>
+    <string name="ads_backup_format_location">Расположение резервной копии: %1$s</string>
+    <string name="ads_backup_format_created">Резервная копия создана: %1$s</string>
+    <string name="ads_backup_format_saved">Резервная копия сохранена: %1$s</string>
+    <string name="ads_backup_format_last">Последняя резервная копия: %1$s</string>
+    <string name="ads_backup_format_last_storage">Память приложения: %1$s</string>
+    <string name="ads_backup_format_modified">Резервная копия изменена: %1$s</string>
+    <string name="ads_backup_format_last_modified">Последнее изменение: %1$s</string>
+    <string name="ads_backup_format_renamed">Резервная копия переименована: %1$s</string>
+    <string name="ads_backup_format_deleted">Резервная копия удалена: %1$s</string>
+    <string name="ads_backup_format_restored">Резервная копия восстановлена: %1$s</string>
+
+    <!-- Backup options -->
+    <string name="ads_backup_storage_app">Память приложения</string>
+    <string name="ads_backup_storage_device">Память устройства</string>
+    <string name="ads_backup_option_rename">Переименовать</string>
+    <string name="ads_backup_option_delete">Удалить</string>
+    <string name="ads_backup_send">Отправить резервную копию</string>
+
+    <!-- Theme -->
+    <string name="ads_dynamic_theme">Динамическая тема</string>
+    <string name="ads_dynamic_theme_summary">Тема применена получателем.</string>
+    <string name="ads_theme">Тема</string>
+    <string name="ads_theme_code">Код</string>
+    <string name="ads_theme_code_desc">Отсканируйте или поделитесь темой.</string>
+    <string name="ads_theme_customise_desc">Настройте тему ниже.</string>
+    <string name="ads_theme_adjust_desc">Тема будет установлена автоматически в соответствии с текущей версией Android.</string>
+    <string name="ads_theme_invalid">Неверная тема</string>
+    <string name="ads_theme_invalid_desc">Невозможно верифицировать эту тему. Пожалуйста, попробуйте еще раз с подходящими данными.</string>
+    <string name="ads_theme_color_palette">Цветовая палитра</string>
+    <string name="ads_theme_color_palette_summary">Пресеты основного и акцентного цветов.</string>
+    <string name="ads_theme_color_background">Фоновый цвет</string>
+    <string name="ads_theme_color_background_summary">Фоновый цвет темы.</string>
+    <string name="ads_theme_color_background_summary_system">Фоновый цвет системными.</string>
+    <string name="ads_theme_color_stroke">Цвет обводки</string>
+    <string name="ads_theme_color_primary">Основной цвет</string>
+    <string name="ads_theme_color_primary_summary">Цвет, используемый основными элементами.</string>
+    <string name="ads_theme_color_primary_dark">Системный цвет</string>
+    <string name="ads_theme_color_primary_summary_dark">Цвет, используемый системными элементами.</string>
+    <string name="ads_theme_color_accent">Цвет акцента</string>
+    <string name="ads_theme_color_secondary">Вторичный цвет</string>
+    <string name="ads_theme_color_accent_summary">Цвет, используемый вторичными элементами.</string>
+    <string name="ads_theme_color_error">Цвет ошибки</string>
+    <string name="ads_theme_color_error_summary">Цвет, используемый для отображения ошибок.</string>
+    <string name="ads_theme_color_surface">Внешний цвет</string>
+    <string name="ads_theme_color_tint">Цвет оттенка</string>
+    <string name="ads_theme_color_inverse">Обратный цвет</string>
+    <string name="ads_theme_font_scale">Масштаб шрифта</string>
+    <string name="ads_theme_font_scale_summary">Коэффициент масштабирования, чтобы сделать текст меньше или больше.</string>
+    <string name="ads_theme_corner_size">Размер угла</string>
+    <string name="ads_theme_corner_size_summary">Радиус угла приложения</string>
+    <string name="ads_theme_background_aware">Адаптирование к фону</string>
+    <string name="ads_theme_background_aware_desc">Подрегулировать цвета в соответствии с фоном, чтобы обеспечить лучшую видимость.</string>
+    <string name="ads_theme_style">Стиль</string>
+    <string name="ads_theme_style_summary">Стиль темы</string>
+    <string name="ads_theme_app">Тема приложения</string>
+    <string name="ads_theme_app_summary">Стиль приложения.</string>
+    <string name="ads_theme_app_desc">Выберите авто, чтобы использовать дневную и ночную темы.</string>
+    <string name="ads_theme_app_day">Дневная тема</string>
+    <string name="ads_theme_app_day_summary">Стиль приложения в течение дня.</string>
+    <string name="ads_theme_app_night">Ночная тема</string>
+    <string name="ads_theme_app_night_summary">Стиль приложения ночью.</string>
+    <string name="ads_theme_app_day_night_desc">Это будет работать только если применена автоматическая тема.</string>
+    <string name="ads_theme_toast">Тема всплывающих сообщений</string>
+    <string name="ads_theme_toast_summary">Применять тему к всплывающим сообщениям в соответствии с цветом акцента приложения.</string>
+    <string name="ads_theme_toast_summary_unchecked">Показывать всплывающие сообщения по умолчанию системы.</string>
+    <string name="ads_theme_navigation_bar">Тема панели навигации</string>
+    <string name="ads_theme_navigation_bar_summary">Отображать панель навигации в соответствии с темой приложения.</string>
+    <string name="ads_theme_navigation_bar_summary_unchecked">Показывать панель навигации по умолчанию системы.</string>
+    <string name="ads_theme_navigation_bar_desc">Тема панели навигации не будет видна в некоторых местах, чтобы обеспечить лучшее визуальное восприятие.</string>
+    <string name="ads_theme_notification">Тема уведомлений</string>
+    <string name="ads_theme_notification_summary">Цветовая палитра уведомления.</string>
+    <string name="ads_theme_notification_style">Стиль уведомлений</string>
+    <string name="ads_theme_notification_style_summary">Стиль уведомления.</string>
+    <string name="ads_theme_style_classic_desc">Выберите классический, чтобы использовать цветовую палитру в качестве фона.</string>
+    <string name="ads_theme_widget">Тема виджета</string>
+    <string name="ads_theme_widget_summary">Цветовая палитра для виджета.</string>
+    <string name="ads_theme_app_shortcuts">Тема ярлыков приложения</string>
+    <string name="ads_theme_app_shortcuts_summary">Применять тему к ярлыкам приложения в соответствии с основным цветом приложения.</string>
+    <string name="ads_theme_app_shortcuts_summary_unchecked">Показывать ярлыки приложения по умолчанию в соответствии с темой приложения и цветом бренда.</string>
+    <string name="ads_theme_app_shortcuts_desc">Длительное нажатие на значок лаунчера, чтобы показать ярлыки приложений, требуется поддерживаемый лаунчер.</string>
+    <string name="ads_theme_reset_desc">Тема сброшена до значений по умолчанию.</string>
+    <string name="ads_theme_import_done">Тема успешно импортирована.</string>
+    <string name="ads_theme_export_done">Тема успешно экспортирована.</string>
+    <string name="ads_theme_export_error">Невозможно сохранить тему.</string>
+    <string name="ads_theme_share_error">Невозможно поделиться тему.</string>
+    <string name="ads_theme_copy_done">Тема успешно скопирована.</string>
+    <string name="ads_theme_edit_done">Тема успешно изменена.</string>
+    <string name="ads_theme_save_done">Тема успешно сохранена.</string>
+    <string name="ads_theme_delete_done">Тема успешно удалена.</string>
+    <string name="ads_theme_format_saved">Тема сохранена: %1$s</string>
+    <string name="ads_theme_presets">Пресеты тем</string>
+    <string name="ads_theme_presets_desc">Скачать из Google Play.</string>
+    <string name="ads_theme_presets_options">Нажмите для просмотра опций</string>
+    <string name="ads_theme_presets_import">Нажмите для импорта</string>
+    <string name="ads_theme_presets_empty">Без пресетов</string>
+
+    <!-- Theme -->
+    <string name="ads_theme_toast_default">Всплывающее окно по умолчанию</string>
+    <string name="ads_theme_toast_themed">Всплывающее окно с темой</string>
+    <string name="ads_theme_entry_auto">Авто</string>
+    <string name="ads_theme_settings_auto_desc">Выберите авто, чтобы использовать настройки приложения.</string>
+    <string name="ads_theme_settings_default_desc">Выберите авто, чтобы использовать настройки приложения.</string>
+    <string name="ads_theme_color_auto_desc">Выберите авто, чтобы использовать цветовую палитру приложения.</string>
+    <string name="ads_theme_color_default_desc">Выберите авто, чтобы использовать цветовую палитру по умолчанию.</string>
+    <string name="ads_theme_entry_auto_background_aware_desc">Выберите авто, чтобы использовать цветовую палитру приложения. Отрегулируйте цвета в соответствии с фоном, чтобы обеспечить лучшую видимость.</string>
+    <string name="ads_theme_entry_day">День</string>
+    <string name="ads_theme_entry_night">Ночь</string>
+    <string name="ads_theme_entry_light">Светлая</string>
+    <string name="ads_theme_entry_dark">Темная</string>
+    <string name="ads_theme_entry_custom">Пользовательский</string>
+    <string name="ads_theme_entry_classic">Классическая</string>
+    <string name="ads_theme_entry_battery">Экономия батареи</string>
+    <string name="ads_theme_entry_always">Всегда</string>
+    <string name="ads_theme_entry_true_dark">Настоящий темный</string>
+    <string name="ads_theme_entry_light_indigo">Светлый индиго</string>
+    <string name="ads_theme_entry_light_red">Светло-красный</string>
+    <string name="ads_theme_entry_light_blue">Светло-синий</string>
+    <string name="ads_theme_entry_light_green">Светло-зеленый</string>
+    <string name="ads_theme_entry_light_yellow">Светло-желтый</string>
+    <string name="ads_theme_entry_light_purple">Светло-фиолетовый</string>
+    <string name="ads_theme_entry_light_orange">Светло-оранжевый</string>
+    <string name="ads_theme_entry_light_brown">Светло-коричневый</string>
+    <string name="ads_theme_entry_light_gray">Светло-серый</string>
+    <string name="ads_theme_entry_dark_indigo">Темный индиго</string>
+    <string name="ads_theme_entry_dark_red">Темно-красный</string>
+    <string name="ads_theme_entry_dark_blue">Темно-синий</string>
+    <string name="ads_theme_entry_dark_green">Темно-зеленый</string>
+    <string name="ads_theme_entry_dark_teal">Темно-бирюзовый</string>
+    <string name="ads_theme_entry_dark_purple">Темно-фиолетовый</string>
+    <string name="ads_theme_entry_dark_orange">Темно-оранжевый</string>
+    <string name="ads_theme_entry_dark_brown">Темно-коричневый</string>
+    <string name="ads_theme_entry_dark_gray">Темно-серый</string>
+
+    <!-- Visibility -->
+    <string name="ads_visibility_show">Показать</string>
+    <string name="ads_visibility_hide">Спрятать</string>
+
+    <!-- Picker -->
+    <string name="ads_picker_all">Все</string>
+    <string name="ads_picker_pick">Выбрать</string>
+    <string name="ads_picker_more_colors">Еще цвета</string>
+    <string name="ads_picker_presets">Пресеты</string>
+
+    <!-- Miscellaneous -->
+    <string name="ads_language">Язык</string>
+    <string name="ads_language_summary">Язык, используемый приложением.</string>
+    <string name="ads_language_system">Система</string>
+    <string name="ads_dynamic_motion">Движение</string>
+    <string name="ads_dynamic_motion_summary">Динамическое движение с воспроизведением всех анимаций.</string>
+    <string name="ads_dynamic_motion_summary_unchecked">Уменьшите движение, пропустив некоторые анимации.</string>
+    <string name="ads_dynamic_motion_desc">Всегда уменьшайте количество движений, когда включена функция энергосбережения. Некоторые анимации нельзя пропустить.</string>
+
+    <!-- Notification and Channel -->
+    <string name="ads_notification_priority">Приоритет уведомлений</string>
+    <string name="ads_notification_priority_summary">Выберите приоритет, чтобы определить его порядок в шторке уведомлений.</string>
+    <string name="ads_notification_priority_desc">Выберите низкий приоритет, чтобы скрыть уведомление из строки состояния и экрана блокировки.</string>
+    <string name="ads_notification_priority_high">Высокий</string>
+    <string name="ads_notification_priority_normal">Обычный</string>
+    <string name="ads_notification_priority_low">Низкий</string>
+    <string name="ads_notification_category">Категория уведомлений</string>
+    <string name="ads_notification_category_summary">Настройте уведомление, отображаемое приложением.</string>
+    <string name="ads_notification_category_desc">Установите низкое значение категории, чтобы скрыть уведомление из строки состояния и экрана блокировки.</string>
+    <string name="ads_notification_close_drawer">Закрыть ящик</string>
+    <string name="ads_notification_close_drawer_summary">Закройте окно уведомлений после выполнения действия.</string>
+    <string name="ads_notification_close_drawer_summary_unchecked">Не изменяйте состояние ящика уведомлений после выполнения действия.</string>
+
+    <!-- App widget -->
+    <string name="ads_widget_customise">Настроить</string>
+    <string name="ads_widget_customise_desc">Настройте виджет ниже.</string>
+    <string name="ads_widget_preview">Предварительный просмотр</string>
+    <string name="ads_widget_preview_desc">Макет виджета может изменяться автоматически в зависимости от фактически используемого размера, чтобы обеспечить наилучший опыт.</string>
+    <string name="ads_widget_header">Заголовок</string>
+    <string name="ads_widget_header_summary">Видимость заголовка виджета.</string>
+    <string name="ads_widget_header_desc">Выберите авто, чтобы показывать заголовок, если доступно достаточно места.</string>
+    <string name="ads_widget_corner_size_bg_summary">Радиус угла фона виджета.</string>
+    <string name="ads_widget_corner_size_bg_desc">Выберите авто, чтобы использовать размер угла, заданный приложением.</string>
+    <string name="ads_widget_opacity_bg">Затененность фона</string>
+    <string name="ads_widget_opacity_bg_summary">Затененность фона виджета.</string>
+    <string name="ads_widget_reset_desc">Виджет сброшен до значений по умолчанию.</string>
+    <string name="ads_widget_not_added">Виджетов не добавлено.</string>
+
+    <!-- Setup -->
+    <string name="ads_setup">Установка</string>
+    <string name="ads_setup_desc">Настройте важные функции ниже.</string>
+
+    <!-- About and Support -->
+    <string name="ads_rate">Оценить</string>
+    <string name="ads_support_contact">Контакты</string>
+    <string name="ads_support_feedback">Обратная связь</string>
+    <string name="ads_support_report">Сообщить об ошибке</string>
+    <string name="ads_support_report_bug">Отправить отчет об ошибке</string>
+    <string name="ads_support_report_bug_summary">Связаться с разработчиком по электронной почте.</string>
+    <string name="ads_support_report_bug_desc">Если у вас есть какие-либо проблемы или вопросы по поводу этого приложения, пожалуйста, свяжитесь по электронной почте.</string>
+    <string name="ads_support_donate">Пожертвовать</string>
+    <string name="ads_support_donate_paypal">Пожертвовать через PayPal.</string>
+    <string name="ads_support_donate_desc">Отправьте платеж разработчику в знак признательности и за поддержку развития других проектов. Пожертвование не обязательно, вы всегда можете купить платную версию для поддержки разработки.</string>
+    <string name="ads_support_reset_to_default">Сбросить до значений по умолчанию</string>
+    <string name="ads_support_reset_to_default_alert">Это сбросит все пользовательские настройки до значений по умолчанию. Вы хотите продолжить?</string>
+    <string name="ads_support_reset_to_default_summary">Сбросить все настройки до значений по умолчанию.</string>
+    <string name="ads_support_reset_to_default_desc">Это может исправить некоторые общие проблемы, вызванные обновлением приложения или системы. Все пользовательские настройки (кроме виджетов) будут утеряны после выполнения этой операции.</string>
+    <string name="ads_support_restart_app">Перезапустить приложение</string>
+    <string name="ads_support_restart_app_summary">Перезапустить приложение и службу, чтобы обновить состояние приложения.</string>
+    <string name="ads_support_restart_app_desc">Используйте, если служба не запускается или приложение не работает должным образом. Все настройки останутся неизменными после выполнения этой операции.</string>
+
+    <!-- Developer and App info -->
+    <string name="ads_info_made_by">Написано и разработано</string>
+    <string name="ads_info_made_in">Сделано в Индии</string>
+    <string name="ads_info_quote">Ничто не идеально, но может быть лучше. Разрабатываю те самые лучшие вещи!</string>
+    <string name="ads_info_privacy_policy">Политика конфиденциальности</string>
+    <string name="ads_info_privacy_policy_desc">Ознакомиться с полной версией политики конфиденциальности этого продукта.</string>
+    <string name="ads_info_terms_of_use">Условия пользования</string>
+    <string name="ads_info_terms_of_use_desc">Ознакомиться с полной версией условий пользования этим продуктом.</string>
+    <string name="ads_info_privacy_policy_terms_desc">Политика конфиденциальности и условия пользования.</string>
+    <string name="ads_info_apps">Еще приложения</string>
+    <string name="ads_info_apps_desc">Попробуйте другие мои приложения в Google Play.</string>
+    <string name="ads_info_gplus_desc">Присоединитесь к официальному сообществу, чтобы попробовать тестовые релизы.</string>
+    <string name="ads_info_facebook_desc">Поставьте лайк на официальной странице, чтобы получать последние новости и обновления.</string>
+    <string name="ads_info_xda_desc">Следите за официальным форумом поддержки на XDA.</string>
+    <string name="ads_info_website">Веб-сайт</string>
+    <string name="ads_info_website_desc">Посетить официальный сайт для получения дополнительной информации.</string>
+    <string name="ads_info_website_me_desc">Моя страница в Интернете.</string>
+    <string name="ads_info_twitter_me_desc">Посмотреть последние твиты о моей жизни и работе.</string>
+    <string name="ads_info_facebook_me_desc">Стать другом или подписаться, чтобы узнать обо мне больше.</string>
+    <string name="ads_info_gplus_me_desc">Следите или вступайте в круг для роста сообщества.</string>
+    <string name="ads_info_linkedin_me_desc">Есть что-нибудь хорошее для меня? Связаться со мной через LinkedIn.</string>
+    <string name="ads_info_github_me_desc">Отдача сообществу с помощью открытого доступа к некоторым моих проектам.</string>
+
+    <!-- Contributors and Translators -->
+    <string name="ads_contributors">Соучастники</string>
+    <string name="ads_contributors_desc">Огромное спасибо за их большую поддержку.</string>
+    <string name="ads_translations">Переводы</string>
+    <string name="ads_translators">Переводчики</string>
+    <string name="ads_translators_translate">Перевести</string>
+    <string name="ads_translators_translate_summary">Стать переводчиком</string>
+    <string name="ads_translators_translate_desc">Принять участие, чтобы сделать это приложение доступным на нескольких языках.</string>
+    <string name="ads_translators_contact">Свяжитесь по электронной почте, если вы хотите перевести.</string>
+
+    <!-- Licenses -->
+    <string name="ads_notices">Извещения</string>
+    <string name="ads_licenses">Лицензии</string>
+    <string name="ads_license">Лицензия</string>
+    <string name="ads_license_desc">Посмотреть полную лицензию.</string>
+    <string name="ads_license_sources">Исходники</string>
+    <string name="ads_license_sources_desc">Посмотреть исходники на GitHub.</string>
+
+</resources>

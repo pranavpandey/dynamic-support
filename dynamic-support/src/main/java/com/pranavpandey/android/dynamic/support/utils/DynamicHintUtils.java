@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -112,6 +112,9 @@ public class DynamicHintUtils {
     public static @NonNull Snackbar getSnackBar(@NonNull View view,
             @NonNull CharSequence text, @ColorInt int backgroundColor,
             @ColorInt int tintColor, @Snackbar.Duration int duration) {
+        backgroundColor = DynamicColorUtils.removeAlpha(backgroundColor);
+        tintColor = DynamicColorUtils.removeAlpha(tintColor);
+
         if (DynamicTheme.getInstance().get().isBackgroundAware()) {
             backgroundColor = DynamicColorUtils.getContrastColor(backgroundColor,
                     DynamicTheme.getInstance().get().getBackgroundColor());
@@ -128,6 +131,7 @@ public class DynamicHintUtils {
                 R.id.snackbar_text)).setMaxLines(Integer.MAX_VALUE);
         snackbar.setActionTextColor(tintColor);
 
+        snackbar.dismiss();
         return snackbar;
     }
 }

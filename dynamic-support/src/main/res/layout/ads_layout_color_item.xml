@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@
     <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView
         android:id="@+id/ads_color_item_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/ads_margin_extra_tiny" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

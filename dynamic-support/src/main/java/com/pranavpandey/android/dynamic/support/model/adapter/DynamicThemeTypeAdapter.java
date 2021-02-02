@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import java.io.IOException;
  * @see AppTheme
  * @see AppWidgetTheme
  */
-public class DynamicThemeTypeAdapter<T extends AppTheme> extends TypeAdapter<T> {
+public class DynamicThemeTypeAdapter<T extends AppTheme<?>> extends TypeAdapter<T> {
 
     @Override
     public void write(JsonWriter writer, T value) throws IOException {
@@ -77,18 +77,24 @@ public class DynamicThemeTypeAdapter<T extends AppTheme> extends TypeAdapter<T> 
             writer.name(Theme.Key.TINT_ACCENT_DARK);
             writer.value(DynamicThemeUtils.getValueFromColor(
                     value.getTintAccentColorDark(false)));
+            writer.name(Theme.Key.ERROR);
+            writer.value(DynamicThemeUtils.getValueFromColor(
+                    value.getErrorColor(false)));
+            writer.name(Theme.Key.TINT_ERROR);
+            writer.value(DynamicThemeUtils.getValueFromColor(
+                    value.getTintErrorColor(false)));
             writer.name(Theme.Key.TEXT_PRIMARY);
             writer.value(DynamicThemeUtils.getValueFromColor(
-                    value.getTextPrimaryColor(false)));
+                    value.getTextPrimaryColor(false, false)));
             writer.name(Theme.Key.TEXT_PRIMARY_INVERSE);
             writer.value(DynamicThemeUtils.getValueFromColor(
-                    value.getTextPrimaryColorInverse(false)));
+                    value.getTextPrimaryColorInverse(false, false)));
             writer.name(Theme.Key.TEXT_SECONDARY);
             writer.value(DynamicThemeUtils.getValueFromColor(
-                    value.getTextSecondaryColor(false)));
+                    value.getTextSecondaryColor(false, false)));
             writer.name(Theme.Key.TEXT_SECONDARY_INVERSE);
             writer.value(DynamicThemeUtils.getValueFromColor(
-                    value.getTextSecondaryColorInverse(false)));
+                    value.getTextSecondaryColorInverse(false, false)));
             writer.name(Theme.Key.FONT_SCALE);
             writer.value(DynamicThemeUtils.getValueFromFontScale(
                     value.getFontScale(false)));
@@ -98,13 +104,16 @@ public class DynamicThemeTypeAdapter<T extends AppTheme> extends TypeAdapter<T> 
             writer.name(Theme.Key.BACKGROUND_AWARE);
             writer.value(DynamicThemeUtils.getValueFromBackgroundAware(
                     value.getBackgroundAware(false)));
+            writer.name(Theme.Key.STYLE);
+            writer.value(DynamicThemeUtils.getValueFromStyle(
+                    value.getStyle()));
 
             if (value instanceof AppWidgetTheme) {
                 writer.name(Theme.Key.HEADER);
                 writer.value(DynamicThemeUtils.getValueFromVisibility(
-                        ((AppWidgetTheme) value).getHeader()));
+                        ((AppWidgetTheme<?>) value).getHeader()));
                 writer.name(Theme.Key.OPACITY);
-                writer.value(((AppWidgetTheme) value).getOpacity());
+                writer.value(((AppWidgetTheme<?>) value).getOpacity());
             }
 
             writer.endObject();
@@ -125,9 +134,6 @@ public class DynamicThemeTypeAdapter<T extends AppTheme> extends TypeAdapter<T> 
                 while (!reader.peek().equals(JsonToken.END_OBJECT)) {
                     if (reader.peek().equals(JsonToken.NAME)) {
                         switch (reader.nextName()) {
-                            default:
-                                reader.skipValue();
-                                break;
                             case Theme.Key.BACKGROUND:
                             case Theme.Key.Short.BACKGROUND:
                                 theme.setBackgroundColor(DynamicThemeUtils
@@ -188,6 +194,16 @@ public class DynamicThemeTypeAdapter<T extends AppTheme> extends TypeAdapter<T> 
                                 theme.setTintAccentColorDark(DynamicThemeUtils
                                         .getValueFromColor(reader.nextString()));
                                 break;
+                            case Theme.Key.ERROR:
+                            case Theme.Key.Short.ERROR:
+                                theme.setErrorColor(DynamicThemeUtils
+                                        .getValueFromColor(reader.nextString()), false);
+                                break;
+                            case Theme.Key.TINT_ERROR:
+                            case Theme.Key.Short.TINT_ERROR:
+                                theme.setTintErrorColor(DynamicThemeUtils
+                                        .getValueFromColor(reader.nextString()));
+                                break;
                             case Theme.Key.TEXT_PRIMARY:
                             case Theme.Key.Short.TEXT_PRIMARY:
                                 theme.setTextPrimaryColor(DynamicThemeUtils
@@ -223,14 +239,22 @@ public class DynamicThemeTypeAdapter<T extends AppTheme> extends TypeAdapter<T> 
                                 theme.setBackgroundAware(DynamicThemeUtils
                                         .getValueFromBackgroundAware(reader.nextString()));
                                 break;
+                            case Theme.Key.STYLE:
+                            case Theme.Key.Short.STYLE:
+                                theme.setStyle(DynamicThemeUtils
+                                        .getValueFromStyle(reader.nextString()));
+                                break;
                             case Theme.Key.HEADER:
                             case Theme.Key.Short.HEADER:
-                                ((AppWidgetTheme) theme).setHeader(DynamicThemeUtils
+                                ((AppWidgetTheme<?>) theme).setHeader(DynamicThemeUtils
                                         .getValueFromVisibility(reader.nextString()));
                                 break;
                             case Theme.Key.OPACITY:
                             case Theme.Key.Short.OPACITY:
-                                ((AppWidgetTheme) theme).setOpacity(reader.nextInt());
+                                ((AppWidgetTheme<?>) theme).setOpacity(reader.nextInt());
+                                break;
+                            default:
+                                reader.skipValue();
                                 break;
                         }
                     } else {

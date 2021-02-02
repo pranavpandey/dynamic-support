@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
@@ -54,6 +55,11 @@ public class DynamicSwipeRefreshLayout extends SwipeRefreshLayout implements Dyn
      * Color applied to this view.
      */
     private @ColorInt int mColor;
+
+    /**
+     * Color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedColor;
 
     /**
      * Background color for this view so that it will remain in contrast with this color.
@@ -93,19 +99,19 @@ public class DynamicSwipeRefreshLayout extends SwipeRefreshLayout implements Dyn
         try {
             mColorType = a.getInt(
                     R.styleable.DynamicSwipeRefreshLayout_ads_colorType,
-                    Theme.ColorType.PRIMARY);
+                    Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
                     R.styleable.DynamicSwipeRefreshLayout_ads_contrastWithColorType,
-                    Theme.ColorType.BACKGROUND);
+                    Theme.ColorType.TINT_BACKGROUND);
             mColor = a.getColor(
                     R.styleable.DynamicSwipeRefreshLayout_ads_color,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicSwipeRefreshLayout_ads_contrastWithColor,
-                    WidgetDefaults.getContrastWithColor(getContext()));
+                    Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicSwipeRefreshLayout_ads_backgroundAware,
-                    WidgetDefaults.getBackgroundAware());
+                    Defaults.getBackgroundAware());
         } finally {
             a.recycle();
         }
@@ -154,8 +160,13 @@ public class DynamicSwipeRefreshLayout extends SwipeRefreshLayout implements Dyn
     }
 
     @Override
+    public @ColorInt int getColor(boolean resolve) {
+        return resolve ? mAppliedColor : mColor;
+    }
+
+    @Override
     public @ColorInt int getColor() {
-        return mColor;
+        return getColor(true);
     }
 
     @Override
@@ -199,18 +210,23 @@ public class DynamicSwipeRefreshLayout extends SwipeRefreshLayout implements Dyn
 
     @Override
     public void setColor() {
-        if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
+        if (mColor != Theme.Color.UNKNOWN) {
             @ColorInt int accentColor = DynamicColorUtils.getAccentColor(mColor);
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+            @ColorInt int color1 = Color.rgb(255 - Color.red(mColor),
+                    255 - Color.green(mColor), 255 - Color.blue(mColor));
+            @ColorInt int color2 = Color.rgb(255 - Color.red(accentColor),
+                    255 - Color.green(accentColor), 255 - Color.blue(accentColor));
+
+            mAppliedColor = mColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
                 accentColor = DynamicColorUtils.getContrastColor(accentColor, mContrastWithColor);
+                color1 = DynamicColorUtils.getContrastColor(color1, mContrastWithColor);
+                color2 = DynamicColorUtils.getContrastColor(color2, mContrastWithColor);
             }
 
-            setColorSchemeColors(mColor, accentColor,
-                    Color.rgb(255 - Color.red(mColor),
-                            255 - Color.green(mColor), 255 - Color.blue(mColor)),
-                    Color.rgb(255 - Color.red(accentColor),
-                            255 - Color.green(accentColor), 255 - Color.blue(accentColor)));
+            setProgressBackgroundColorSchemeColor(mContrastWithColor);
+            setColorSchemeColors(mAppliedColor, accentColor, color1, color2);
         }
     }
 }

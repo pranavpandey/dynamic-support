@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
@@ -205,16 +206,21 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
      */
     private void configureDrawer() {
         if (isPersistentDrawer()) {
+            setNavigationClickListener(getDefaultNavigationIcon(), new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
+
             mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
             mDrawer.setScrimColor(Color.TRANSPARENT);
             mDrawerToggle.setDrawerIndicatorEnabled(false);
 
             ViewGroup frame = findViewById(R.id.ads_activity_root);
-
             if (frame != null && frame.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
                 ViewGroup.MarginLayoutParams params =
                         (ViewGroup.MarginLayoutParams) frame.getLayoutParams();
-
                 if (DynamicLocaleUtils.isLayoutRtl()) {
                     params.rightMargin = getResources().getDimensionPixelOffset(
                             R.dimen.ads_margin_content_start);
@@ -228,15 +234,20 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
         } else {
             if (isDrawerLocked()) {
                 mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-                getContentView().post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mDrawer.closeDrawers();
-                    }
-                });
+                getContentView().post(mDrawerRunnable);
             }
         }
     }
+
+    /**
+     * Runnable to close the drawer.
+     */
+    private final Runnable mDrawerRunnable = new Runnable() {
+        @Override
+        public void run() {
+            closeDrawers();
+        }
+    };
 
     /**
      * Makes the drawer persistent according to the returned value.
@@ -325,7 +336,8 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
                 if (getToolbar() != null) {
-                    getToolbar().setNavigationOnClickListener(new View.OnClickListener() {
+                    setNavigationClickListener(getToolbar().getNavigationIcon(),
+                            new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             onBackPressed();
@@ -381,7 +393,7 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
             });
 
             valueAnimator.setInterpolator(new DecelerateInterpolator());
-            valueAnimator.setDuration(350);
+            valueAnimator.setDuration(DynamicMotion.Duration.SHORT);
             valueAnimator.start();
         } else {
             showDrawerToggle(false);
@@ -459,5 +471,27 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
      */
     public void setNavHeaderSubtitle(@StringRes int stringRes) {
         mNavHeaderSubtitle.setText(stringRes);
+    }
+
+    @Override
+    public void onSearchViewExpanded() {
+        super.onSearchViewExpanded();
+
+        if (isPersistentDrawer()) {
+            setNavigationIcon(R.drawable.ads_ic_back);
+        }
+
+        animateDrawerToggle(0, 1);
+    }
+
+    @Override
+    public void onSearchViewCollapsed() {
+        super.onSearchViewCollapsed();
+
+        if (isPersistentDrawer()) {
+            setNavigationIcon(getDefaultNavigationIcon());
+        }
+
+        animateDrawerToggle(1, 0);
     }
 }

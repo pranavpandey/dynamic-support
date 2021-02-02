@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,6 +77,9 @@ class HomeFragment : DynamicFragment() {
 
         // Do not scroll toolbar for this fragment.
         dynamicActivity.setToolbarLayoutFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP)
+
+        // Remove tab layout from the header.
+        dynamicActivity.addHeader(null, true)
 
         // Set subtitle for the dynamic item view.
         (view.findViewById<View>(R.id.item_gradle) as DynamicItemView).subtitle =

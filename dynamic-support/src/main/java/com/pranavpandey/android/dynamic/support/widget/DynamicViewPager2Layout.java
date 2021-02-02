@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -91,12 +91,12 @@ public class DynamicViewPager2Layout extends DynamicFrameLayout {
 
         int direction = -((int) Math.signum(delta));
         switch (orientation) {
-            default:
-                throw new IllegalArgumentException();
             case ViewPager2.ORIENTATION_HORIZONTAL:
                 return getChildAt(0).canScrollHorizontally(direction);
             case ViewPager2.ORIENTATION_VERTICAL:
                 return getChildAt(0).canScrollVertically(direction);
+            default:
+                throw new IllegalArgumentException();
         }
     }
 
@@ -135,7 +135,7 @@ public class DynamicViewPager2Layout extends DynamicFrameLayout {
         int orientation = viewPager2.getOrientation();
 
         // Early return if child can't scroll in same direction as parent.
-        if (!canChildScroll(orientation, -1.0f) && !canChildScroll(orientation, 1.0f)) {
+        if (!canChildScroll(orientation, -1f) && !canChildScroll(orientation, 1f)) {
             return;
         }
 
@@ -149,8 +149,8 @@ public class DynamicViewPager2Layout extends DynamicFrameLayout {
             boolean isVpHorizontal = orientation == ViewPager2.ORIENTATION_HORIZONTAL;
 
             // Assuming ViewPager2 touch-slop is 2x touch-slop of child.
-            float scaledDx = Math.abs(dx) * (isVpHorizontal ? 0.5f : 1.0f);
-            float scaledDy = Math.abs(dy) * (isVpHorizontal ? 1.0f : 0.5f);
+            float scaledDx = Math.abs(dx) * (isVpHorizontal ? 0.5f : 1f);
+            float scaledDy = Math.abs(dy) * (isVpHorizontal ? 1f : 0.5f);
 
             if (scaledDx > mTouchSlop || scaledDy > mTouchSlop) {
                 if (isVpHorizontal == (scaledDy > scaledDx)) {

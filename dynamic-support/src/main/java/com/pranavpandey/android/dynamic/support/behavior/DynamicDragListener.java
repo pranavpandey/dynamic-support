@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.behavior;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -28,5 +29,5 @@ public interface DynamicDragListener {
      *
      * @param viewHolder The holder of the view to drag.
      */
-    void onStartDrag(RecyclerView.ViewHolder viewHolder);
+    void onStartDrag(@NonNull RecyclerView.ViewHolder viewHolder);
 }

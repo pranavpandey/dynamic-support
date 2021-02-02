@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
@@ -26,10 +27,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicCornerWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicErrorWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
@@ -39,7 +42,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
  * A {@link TextInputLayout} to apply {@link DynamicTheme} according to the supplied parameters.
  */
 public class DynamicTextInputLayout extends TextInputLayout implements
-        DynamicWidget, DynamicCornerWidget<Float> {
+        DynamicWidget, DynamicCornerWidget<Float>, DynamicErrorWidget {
 
     /**
      * Color type applied to this view.
@@ -47,6 +50,13 @@ public class DynamicTextInputLayout extends TextInputLayout implements
      * @see Theme.ColorType
      */
     private @Theme.ColorType int mColorType;
+
+    /**
+     * Error color type applied to this view.
+     *
+     * @see Theme.ColorType
+     */
+    private @Theme.ColorType int mErrorColorType;
 
     /**
      * Background color type for this view so that it will remain in contrast with this
@@ -58,6 +68,21 @@ public class DynamicTextInputLayout extends TextInputLayout implements
      * Color applied to this view.
      */
     private @ColorInt int mColor;
+
+    /**
+     * Color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedColor;
+
+    /**
+     * Error color applied to this view.
+     */
+    private @ColorInt int mErrorColor;
+
+    /**
+     * Error color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedErrorColor;
 
     /**
      * Background color for this view so that it will remain in contrast with this color.
@@ -105,18 +130,29 @@ public class DynamicTextInputLayout extends TextInputLayout implements
             mColorType = a.getInt(
                     R.styleable.DynamicTextInputLayout_ads_colorType,
                     Theme.ColorType.ACCENT);
+            mErrorColorType = a.getInt(
+                    R.styleable.DynamicTextInputLayout_ads_errorColorType,
+                    Defaults.ADS_COLOR_TYPE_ERROR);
             mContrastWithColorType = a.getInt(
                     R.styleable.DynamicTextInputLayout_ads_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
                     R.styleable.DynamicTextInputLayout_ads_color,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
+            mErrorColor = a.getColor(
+                    R.styleable.DynamicTextInputLayout_ads_errorColor,
+                    Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicTextInputLayout_ads_contrastWithColor,
-                    WidgetDefaults.getContrastWithColor(getContext()));
+                    Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicTextInputLayout_ads_backgroundAware,
-                    WidgetDefaults.getBackgroundAware());
+                    Defaults.getBackgroundAware());
+
+            if (a.getBoolean(R.styleable.DynamicTextInputLayout_ads_dynamicCornerRadius,
+                    Defaults.ADS_DYNAMIC_CORNER_RADIUS)) {
+                setCorner((float) DynamicTheme.getInstance().get().getCornerRadius());
+            }
         } finally {
             a.recycle();
         }
@@ -131,14 +167,19 @@ public class DynamicTextInputLayout extends TextInputLayout implements
             mColor = DynamicTheme.getInstance().resolveColorType(mColorType);
         }
 
+        if (mErrorColorType != Theme.ColorType.NONE
+                && mErrorColorType != Theme.ColorType.CUSTOM) {
+            mErrorColor = DynamicTheme.getInstance().resolveColorType(mErrorColorType);
+        }
+
         if (mContrastWithColorType != Theme.ColorType.NONE
                 && mContrastWithColorType != Theme.ColorType.CUSTOM) {
             mContrastWithColor = DynamicTheme.getInstance()
                     .resolveColorType(mContrastWithColorType);
         }
 
-        setCorner((float) DynamicTheme.getInstance().get().getCornerRadius());
         setColor();
+        setErrorColor();
     }
 
     @Override
@@ -149,6 +190,18 @@ public class DynamicTextInputLayout extends TextInputLayout implements
     @Override
     public void setColorType(@Theme.ColorType int colorType) {
         this.mColorType = colorType;
+
+        initialize();
+    }
+
+    @Override
+    public @Theme.ColorType int getErrorColorType() {
+        return mErrorColorType;
+    }
+
+    @Override
+    public void setErrorColorType(@Theme.ColorType int errorColorType) {
+        this.mErrorColorType = errorColorType;
 
         initialize();
     }
@@ -166,8 +219,13 @@ public class DynamicTextInputLayout extends TextInputLayout implements
     }
 
     @Override
+    public @ColorInt int getColor(boolean resolve) {
+        return resolve ? mAppliedColor : mColor;
+    }
+
+    @Override
     public @ColorInt int getColor() {
-        return mColor;
+        return getColor(true);
     }
 
     @Override
@@ -176,6 +234,24 @@ public class DynamicTextInputLayout extends TextInputLayout implements
         this.mColor = color;
 
         setColor();
+    }
+
+    @Override
+    public @ColorInt int getErrorColor(boolean resolve) {
+        return resolve ? mAppliedErrorColor : mErrorColor;
+    }
+
+    @Override
+    public @ColorInt int getErrorColor() {
+        return getErrorColor(true);
+    }
+
+    @Override
+    public void setErrorColor(@ColorInt int errorColor) {
+        this.mErrorColorType = Theme.ColorType.CUSTOM;
+        this.mErrorColor = errorColor;
+
+        setErrorColor();
     }
 
     @Override
@@ -196,6 +272,7 @@ public class DynamicTextInputLayout extends TextInputLayout implements
         this.mBackgroundAware = backgroundAware;
 
         setColor();
+        setErrorColor();
     }
 
     @Override
@@ -213,13 +290,13 @@ public class DynamicTextInputLayout extends TextInputLayout implements
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
-        setAlpha(enabled ? WidgetDefaults.ADS_ALPHA_ENABLED : WidgetDefaults.ADS_ALPHA_DISABLED);
+        setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
     }
 
     @Override
     public void setCorner(Float cornerRadius) {
         final float resolvedCornerRadius = Math.min(cornerRadius,
-                DynamicUnitUtils.convertDpToPixels(WidgetDefaults.ADS_CORNER_MIN_BOX));
+                DynamicUnitUtils.convertDpToPixels(Defaults.ADS_CORNER_MIN_BOX));
 
         // Fix null pointer exception while setting the corner radii
         // in MDC-Android 1.1.0-beta01.
@@ -244,27 +321,47 @@ public class DynamicTextInputLayout extends TextInputLayout implements
 
     @Override
     public void setColor() {
-        if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+        if (mColor != Theme.Color.UNKNOWN) {
+            mAppliedColor = mColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
             // Remove alpha as box background color does not supports alpha component.
             @ColorInt int boxColor = DynamicColorUtils.removeAlpha(
                     DynamicColorUtils.getStateColor(mContrastWithColor,
-                    WidgetDefaults.ADS_STATE_BOX_LIGHT, WidgetDefaults.ADS_STATE_BOX_DARK));
+                    Defaults.ADS_STATE_BOX_LIGHT, Defaults.ADS_STATE_BOX_DARK));
+            setHelperTextColor(ColorStateList.valueOf(mAppliedColor));
 
             post(new Runnable() {
                 @Override
                 public void run() {
-                    setBoxStrokeColor(mColor);
+                    setBoxStrokeColor(mAppliedColor);
                     if (getBoxBackgroundMode() == BOX_BACKGROUND_FILLED) {
                         setBoxBackgroundColor(boxColor);
                     }
 
-                    DynamicInputUtils.setColor(DynamicTextInputLayout.this, mColor);
+                    DynamicInputUtils.setColor(
+                            DynamicTextInputLayout.this, mAppliedColor);
                 }
             });
+        }
+    }
+
+    @Override
+    public void setErrorColor() {
+        if (mErrorColor != Theme.Color.UNKNOWN) {
+            mAppliedErrorColor = mErrorColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedErrorColor = DynamicColorUtils.getContrastColor(
+                        mErrorColor, mContrastWithColor);
+            }
+
+            ColorStateList errorStateList = ColorStateList.valueOf(mAppliedErrorColor);
+
+            setBoxStrokeErrorColor(errorStateList);
+            setErrorTextColor(errorStateList);
+            setErrorIconTintList(errorStateList);
         }
     }
 }

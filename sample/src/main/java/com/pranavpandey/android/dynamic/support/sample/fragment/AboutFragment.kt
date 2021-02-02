@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,16 +17,17 @@
 package com.pranavpandey.android.dynamic.support.sample.fragment
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.AppBarLayout
+import com.pranavpandey.android.dynamic.support.fragment.DynamicViewPager2Fragment
 import com.pranavpandey.android.dynamic.support.fragment.DynamicViewPagerFragment
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils
-import java.util.*
 
 /**
  * About fragment to show app info and licences by using [DynamicViewPagerFragment].
  */
-class AboutFragment : DynamicViewPagerFragment() {
+class AboutFragment : DynamicViewPager2Fragment() {
 
     companion object {
 
@@ -62,28 +63,25 @@ class AboutFragment : DynamicViewPagerFragment() {
         return R.id.nav_about
     }
 
-    override fun getTitles(): List<String> {
-        // Initialize an empty string array for tab titles.
-        val titles = ArrayList<String>()
-
-        // TODO: Add tab titles.
-        titles.add(getString(R.string.ads_menu_info))
-        titles.add(getString(R.string.ads_licenses))
-
-        // Return all the added tab titles.
-        return titles
+    override fun getTitle(position: Int): String? {
+        // TODO: Return tab tiles.
+        return when (position) {
+            1 -> getString(R.string.ads_notices)
+            else -> getString(R.string.ads_menu_info)
+        }
     }
 
-    override fun getPages(): List<androidx.fragment.app.Fragment> {
-        // Initialize an empty fragment array for view pages pages.
-        val pages = ArrayList<androidx.fragment.app.Fragment>()
+    override fun createFragment(position: Int): Fragment {
+        // TODO: Return view pager fragments.
+        return when (position) {
+            1 -> LicensesFragment.newInstance()
+            else -> AppInfoFragment.newInstance()
+        }
+    }
 
-        // TODO: Add view pager fragments.
-        pages.add(AppInfoFragment.newInstance())
-        pages.add(LicensesFragment.newInstance())
-
-        // Return all the added fragments.
-        return pages
+    override fun getItemCount(): Int {
+        // TODO: Return item count.
+        return 2
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -99,12 +97,5 @@ class AboutFragment : DynamicViewPagerFragment() {
                         DynamicViewPagerFragment.ADS_ARGS_VIEW_PAGER_PAGE)) {
             setPage(requireArguments().getInt(DynamicViewPagerFragment.ADS_ARGS_VIEW_PAGER_PAGE))
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-        // Remove tab layout from the header.
-        dynamicActivity.addHeader(null, true)
     }
 }

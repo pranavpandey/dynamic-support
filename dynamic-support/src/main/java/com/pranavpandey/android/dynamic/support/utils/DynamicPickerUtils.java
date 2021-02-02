@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import androidx.annotation.NonNull;
 
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPicker;
-import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
@@ -72,8 +72,10 @@ public class DynamicPickerUtils {
      * Returns an alpha pattern paint.
      *
      * @param pixelSize The size of one pixel.
+     *
+     * @return The alpha pattern.
      */
-    public static Paint getAlphaPatternPaint(int pixelSize) {
+    public static @NonNull Paint getAlphaPatternPaint(int pixelSize) {
         Bitmap bitmap = Bitmap.createBitmap(pixelSize * 2,
                 pixelSize * 2, Bitmap.Config.ARGB_8888);
         Paint fill = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -116,6 +118,6 @@ public class DynamicPickerUtils {
     public static @ColorInt int getRecentColor() {
         return DynamicPreferences.getInstance().load(
                 DynamicColorPicker.ADS_PREF_COLOR_PICKER_RECENT,
-                WidgetDefaults.ADS_COLOR_UNKNOWN);
+                Theme.Color.UNKNOWN);
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 	Copyright (C) 2007 The Android Open Source Project
 
 	Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,6 +26,6 @@
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
     android:layout_gravity="center_vertical"
+    android:contentDescription="@null"
     android:scaleType="centerInside"
-    android:duplicateParentState="true"
-    android:contentDescription="@null" />
+    android:duplicateParentState="true" />

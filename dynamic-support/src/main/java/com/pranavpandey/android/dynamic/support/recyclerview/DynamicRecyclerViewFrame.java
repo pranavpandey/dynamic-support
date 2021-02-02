@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.transition.TransitionManager;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 
@@ -136,7 +137,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      * @param layoutManager Layout manager for the recycler view;
      */
     public void setRecyclerViewLayoutManager(
-            @Nullable final RecyclerView.LayoutManager layoutManager) {
+            final @Nullable RecyclerView.LayoutManager layoutManager) {
         this.mRecyclerViewLayoutManager = layoutManager;
         if (mRecyclerViewLayoutManager == null) {
             mRecyclerViewLayoutManager = DynamicLayoutUtils.getLinearLayoutManager(
@@ -156,7 +157,8 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      *
      * @param adapter The recycler view adapter.
      */
-    public void setAdapter(@NonNull RecyclerView.Adapter adapter) {
+    public void setAdapter(
+            @NonNull RecyclerView.Adapter<? extends RecyclerView.ViewHolder> adapter) {
         mRecyclerView.setAdapter(adapter);
 
         checkForStaggeredGridLayoutManager();
@@ -165,10 +167,11 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     /**
      * Handler to update the {@link StaggeredGridLayoutManager} o avoid the jumping of items.
      */
-    private final Runnable mStaggeredGridHandler = new Runnable() {
+    private final Runnable mStaggeredGridRunnable = new Runnable() {
         @Override
         public void run() {
-            if (mRecyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
+            if (mRecyclerView != null && mRecyclerViewLayoutManager != null
+                    && mRecyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
                 ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager).setGapStrategy(
                         ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager)
                                 .getGapStrategy() | GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
@@ -188,7 +191,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      * Checks for the {@link StaggeredGridLayoutManager} to avoid the jumping of items.
      */
     protected void checkForStaggeredGridLayoutManager() {
-        post(mStaggeredGridHandler);
+        post(mStaggeredGridRunnable);
     }
 
     /**
@@ -196,7 +199,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      *
      * @return The adapter used by the recycler view.
      */
-    public RecyclerView.Adapter getAdapter() {
+    public RecyclerView.Adapter<?> getAdapter() {
         return mRecyclerView.getAdapter();
     }
 
@@ -295,8 +298,8 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
                 TransitionManager.beginDelayedTransition(this);
             }
 
-            mProgressBar.setVisibility(VISIBLE);
-            mRecyclerView.setVisibility(GONE);
+            Dynamic.setVisibility(mProgressBar, VISIBLE);
+            Dynamic.setVisibility(mRecyclerView, GONE);
             mProgressBar.show();
         }
     }
@@ -322,7 +325,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
             }
 
             mProgressBar.hide();
-            mRecyclerView.setVisibility(View.VISIBLE);
+            Dynamic.setVisibility(mRecyclerView, VISIBLE);
         }
     }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,6 +42,7 @@ public class DynamicFABUtils {
      * AppBarLayout exits.
      *
      * @param extendedFab The extended FAB to set hide animation.
+     * @param shrinkBefore {@code true} to shrink the FAB before hiding it.
      */
     public static void hide(@NonNull ExtendedFloatingActionButton extendedFab,
             boolean shrinkBefore) {
@@ -69,6 +70,7 @@ public class DynamicFABUtils {
      * AppBarLayout enters.
      *
      * @param extendedFab The FAB to set show animation.
+     * @param extendAfter {@code true} to extend the FAB after showing it.
      */
     public static void show(@NonNull ExtendedFloatingActionButton extendedFab,
             boolean extendAfter) {

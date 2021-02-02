@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -24,8 +24,7 @@
     <com.pranavpandey.android.dynamic.support.widget.DynamicSwipeRefreshLayout
         android:id="@+id/ads_swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:descendantFocusability="blocksDescendants">
+        android:layout_height="match_parent">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
             style="@style/Widget.DynamicApp.Scroller.Padding.Vertical"

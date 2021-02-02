@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,8 +23,7 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.Button;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -37,20 +36,17 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSeekBar;
 
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.widget.DynamicSeekBar;
-import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
+import com.pranavpandey.android.dynamic.support.listener.DynamicSeekBarResolver;
+import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A {@link DynamicSpinnerPreference} to provide the functionality of a seek bar preference with
  * control buttons to modify the value.
  */
 public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
-
-    /**
-     * Constant for the seek bar animation duration.
-     */
-    public static final int ANIMATION_DURATION = 500;
 
     /**
      * Default value for the seek bar.
@@ -113,9 +109,9 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     private boolean mControls;
 
     /**
-     * Seek bar change listener to get the callback for seek events.
+     * Seek bar change listener and value resolver to get the various callbacks.
      */
-    private SeekBar.OnSeekBarChangeListener mOnSeekBarChangeListener;
+    private SeekBar.OnSeekBarChangeListener mDynamicSeekBarResolver;
 
     /**
      * Seek bar change listener to get the callback for control events.
@@ -125,7 +121,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     /**
      * Text view to show the seek bar value.
      */
-    private TextView mSeekBarView;
+    private TextView mSeekBarValueView;
 
     /**
      * Image view to show the decrease button.
@@ -141,11 +137,6 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
      * Seek bar to display and modify the preference value.
      */
     private AppCompatSeekBar mSeekBar;
-
-    /**
-     * Button to provide a secondary action like permission request, etc.
-     */
-    private Button mActionView;
 
     /**
      * {@code true} if seek bar is controls are enabled.
@@ -207,11 +198,10 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     protected void onInflate() {
         super.onInflate();
 
-        mSeekBarView = findViewById(R.id.ads_preference_seek_bar_value);
+        mSeekBarValueView = findViewById(R.id.ads_preference_seek_bar_value);
         mSeekBar = findViewById(R.id.ads_preference_seek_bar_seek);
         mSeekBarLeftView = findViewById(R.id.ads_preference_seek_bar_left);
         mSeekBarRightView = findViewById(R.id.ads_preference_seek_bar_right);
-        mActionView = findViewById(R.id.ads_preference_action_button);
 
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -221,25 +211,25 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
                     updateSeekFunctions();
                 }
 
-                if (mOnSeekBarChangeListener != null) {
-                    mOnSeekBarChangeListener.onProgressChanged(
+                if (getDynamicSeekBarResolver() != null) {
+                    getDynamicSeekBarResolver().onProgressChanged(
                             seekBar, getValueFromProgress(), fromUser);
                 }
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                if (mOnSeekBarChangeListener != null) {
-                    mOnSeekBarChangeListener.onStartTrackingTouch(seekBar);
+                if (getDynamicSeekBarResolver() != null) {
+                    getDynamicSeekBarResolver().onStartTrackingTouch(seekBar);
                 }
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                setProgress(mProgress);
+                setProgress(getProgress());
 
-                if (mOnSeekBarChangeListener != null) {
-                    mOnSeekBarChangeListener.onStopTrackingTouch(seekBar);
+                if (getDynamicSeekBarResolver() != null) {
+                    getDynamicSeekBarResolver().onStopTrackingTouch(seekBar);
                 }
             }
         });
@@ -247,55 +237,26 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
         mSeekBarLeftView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                setProgressFromControl(mProgress - 1);
+                setProgressFromControl(getProgress() - 1);
             }
         });
 
         mSeekBarRightView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                setProgressFromControl(mProgress + 1);
+                setProgressFromControl(getProgress() + 1);
             }
         });
 
         setActionButton(getContext().getString(R.string.ads_default), new OnClickListener() {
             @Override
             public void onClick(View v) {
-                animateSeekBar(mDefaultValue);
+                animateSeekBar(getDefaultValue());
             }
         });
 
-        if (super.getPreferenceKey() != null) {
-            mProgress = getProgressFromValue(DynamicPreferences.getInstance()
-                    .load(super.getPreferenceKey(), mDefaultValue));
-            mSeekBar.setProgress(mProgress);
-            updateSeekFunctions();
-        }
-    }
-
-    private void animateSeekBar(int value) {
-        final int progress = getProgressFromValue(value);
-        ObjectAnimator animation = ObjectAnimator.ofInt(mSeekBar,
-                "progress", getProgress(), progress);
-        animation.setDuration(ANIMATION_DURATION);
-        animation.setInterpolator(new DecelerateInterpolator());
-        animation.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-                setProgress(progress);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) { }
-
-            @Override
-            public void onAnimationCancel(Animator animation) { }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) { }
-        });
-
-        animation.start();
+        mProgress = getProgressFromValue(DynamicPreferences.getInstance()
+                .load(super.getPreferenceKey(), mDefaultValue));
     }
 
     @Override
@@ -303,86 +264,86 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
         return getAltPreferenceKey();
     }
 
-    /**
-     * Update seek bar functions according to the current parameters.
-     */
-    private void updateSeekFunctions() {
-        int actualValue = getValueFromProgress();
-
-        if (mUnit != null) {
-            mSeekBarView.setText(String.format(
-                    getContext().getString(R.string.ads_format_blank_space),
-                    String.valueOf(actualValue), mUnit));
-        } else {
-            mSeekBarView.setText(String.valueOf(actualValue));
-        }
-
-        if (isEnabled() && mSeekBarEnabled) {
-            mSeekBarLeftView.setEnabled(mProgress > DEFAULT_MIN_VALUE);
-            mSeekBarRightView.setEnabled(mProgress < getMax());
-            mActionView.setEnabled(actualValue != mDefaultValue);
-        }
-    }
-
-    /**
-     * Update seek bar controls according to the current parameters.
-     */
-    private void setProgressFromControl(int progress) {
-        if (mOnSeekBarControlListener != null) {
-            mOnSeekBarControlListener.onStartTrackingTouch(mSeekBar);
-        }
-
-        setProgress(progress);
-
-        if (mOnSeekBarControlListener != null) {
-            mOnSeekBarControlListener.onProgressChanged(mSeekBar, mProgress, true);
-            mOnSeekBarControlListener.onStopTrackingTouch(mSeekBar);
-        }
-    }
-
     @Override
     protected void onUpdate() {
         super.onUpdate();
 
-        if (mSeekBar != null) {
-            mSeekBar.setMax(getMax());
+        mProgress = getProgressFromValue(DynamicPreferences.getInstance()
+                .load(super.getPreferenceKey(), getValueFromProgress()));
 
-            if (mControls) {
-                mSeekBarLeftView.setVisibility(VISIBLE);
-                mSeekBarRightView.setVisibility(VISIBLE);
+        if (getSeekBar() != null) {
+            getSeekBar().setMax(getMax());
+
+            if (isControls()) {
+                Dynamic.setVisibility(getSeekBarLeftView(), VISIBLE);
+                Dynamic.setVisibility(getSeekBarRightView(), VISIBLE);
             } else {
-                mSeekBarLeftView.setVisibility(GONE);
-                mSeekBarRightView.setVisibility(GONE);
+                Dynamic.setVisibility(getSeekBarLeftView(), GONE);
+                Dynamic.setVisibility(getSeekBarRightView(), GONE);
             }
 
             if (getOnActionClickListener() != null) {
-                mActionView.setText(getActionString());
-                mActionView.setOnClickListener(getOnActionClickListener());
-                mActionView.setVisibility(VISIBLE);
+                setTextView(getActionView(), getActionString());
+                Dynamic.setClickListener(getActionView(), getOnActionClickListener());
+                Dynamic.setVisibility(getActionView(), VISIBLE);
             } else {
-                mActionView.setVisibility(GONE);
+                Dynamic.setVisibility(getActionView(), GONE);
             }
 
-            mSeekBar.post(new Runnable() {
-                @Override
-                public void run() {
-                    mSeekBar.setProgress(mProgress);
-                    updateSeekFunctions();
-                }
-            });
+            getSeekBar().post(mUpdateRunnable);
         }
     }
+
+    /**
+     * Runnable to post the update.
+     */
+    private final Runnable mUpdateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (getSeekBar() != null) {
+                getSeekBar().setProgress(getProgress());
+                updateSeekFunctions();
+            }
+        }
+    };
 
     @Override
     protected void onEnabled(boolean enabled) {
         super.onEnabled(enabled);
 
-        if (mSeekBar != null) {
-            mSeekBar.setEnabled(enabled && mSeekBarEnabled);
-            mSeekBarView.setEnabled(enabled && mSeekBarEnabled);
-            mSeekBarLeftView.setEnabled(enabled && mSeekBarEnabled);
-            mSeekBarRightView.setEnabled(enabled && mSeekBarEnabled);
-            mActionView.setEnabled(enabled && mSeekBarEnabled);
+        Dynamic.setEnabled(getSeekBar(), enabled && isSeekBarEnabled());
+        Dynamic.setEnabled(getSeekBarValueView(), enabled && isSeekBarEnabled());
+        Dynamic.setEnabled(getSeekBarLeftView(), enabled && isSeekBarEnabled());
+        Dynamic.setEnabled(getSeekBarRightView(), enabled && isSeekBarEnabled());
+        Dynamic.setEnabled(getActionView(), enabled && isSeekBarEnabled());
+    }
+
+    @Override
+    public void setColor() {
+        super.setColor();
+
+        if (getBackgroundAware() != Theme.BackgroundAware.UNKNOWN) {
+            Dynamic.setBackgroundAware(getSeekBar(), getBackgroundAware());
+            Dynamic.setBackgroundAware(getSeekBarValueView(), getBackgroundAware());
+            Dynamic.setBackgroundAware(getSeekBarLeftView(), getBackgroundAware());
+            Dynamic.setBackgroundAware(getSeekBarRightView(), getBackgroundAware());
+            Dynamic.setBackgroundAware(getActionView(), getBackgroundAware());
+        }
+
+        if (getContrastWithColorType() != Theme.ColorType.NONE
+                && getContrastWithColorType() != Theme.ColorType.CUSTOM) {
+            Dynamic.setContrastWithColorType(getSeekBar(), getContrastWithColorType());
+            Dynamic.setContrastWithColorType(getSeekBarValueView(), getContrastWithColorType());
+            Dynamic.setContrastWithColorType(getSeekBarLeftView(), getContrastWithColorType());
+            Dynamic.setContrastWithColorType(getSeekBarRightView(), getContrastWithColorType());
+            Dynamic.setContrastWithColorType(getActionView(), getContrastWithColorType());
+        } else if (getContrastWithColorType() == Theme.ColorType.CUSTOM
+                && getContrastWithColor() != Theme.Color.UNKNOWN) {
+            Dynamic.setContrastWithColor(getSeekBar(), getContrastWithColor());
+            Dynamic.setContrastWithColor(getSeekBarValueView(), getContrastWithColor());
+            Dynamic.setContrastWithColor(getSeekBarLeftView(), getContrastWithColor());
+            Dynamic.setContrastWithColor(getSeekBarRightView(), getContrastWithColor());
+            Dynamic.setContrastWithColor(getActionView(), getContrastWithColor());
         }
     }
 
@@ -400,7 +361,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     /**
      * Returns whether the seek bar is enabled.
      *
-     * {@code true} if seek bar is enabled.
+     * @return {@code true} if seek bar is enabled.
      */
     public boolean isSeekBarEnabled() {
         return mSeekBarEnabled;
@@ -423,7 +384,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     public void setDefaultValue(int defaultValue) {
         this.mDefaultValue = defaultValue;
 
-        onUpdate();
+        update();
     }
 
     /**
@@ -443,7 +404,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     public void setMaxValue(int maxValue) {
         this.mMaxValue = maxValue;
 
-        onUpdate();
+        update();
     }
 
     /**
@@ -463,7 +424,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     public void setMinValue(int minValue) {
         this.mMinValue = minValue;
 
-        onUpdate();
+        update();
     }
 
     /**
@@ -487,7 +448,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
             DynamicPreferences.getInstance().save(
                     super.getPreferenceKey(), getValueFromProgress());
         } else {
-            onUpdate();
+            update();
         }
     }
 
@@ -508,7 +469,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     public void setSeekInterval(int seekInterval) {
         this.mSeekInterval = seekInterval;
 
-        onUpdate();
+        update();
     }
 
     /**
@@ -528,7 +489,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     public void setUnit(@Nullable CharSequence unit) {
         this.mUnit = unit;
 
-        onUpdate();
+        update();
     }
 
     /**
@@ -558,7 +519,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     public void setControls(boolean controls) {
         this.mControls = controls;
 
-        onUpdate();
+        update();
     }
 
     /**
@@ -566,24 +527,24 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
      *
      * @return The seek bar change listener to get the callback for seek events.
      */
-    public @Nullable SeekBar.OnSeekBarChangeListener getOnSeekBarChangeListener() {
-        return mOnSeekBarChangeListener;
+    public @Nullable SeekBar.OnSeekBarChangeListener getDynamicSeekBarResolver() {
+        return mDynamicSeekBarResolver;
     }
 
     /**
-     * Set the seek bar change listener to get the callback for seek events.
+     * Set the seek bar change listener and value resolver to get the various callbacks.
      *
-     * @param onSeekBarChangeListener The listener to be set.
+     * @param dynamicSeekBarResolver The resolver to be set.
      */
-    public void setOnSeekBarChangeListener(
-            @Nullable SeekBar.OnSeekBarChangeListener onSeekBarChangeListener) {
-        this.mOnSeekBarChangeListener = onSeekBarChangeListener;
+    public void setDynamicSeekBarResolver(
+            @Nullable SeekBar.OnSeekBarChangeListener dynamicSeekBarResolver) {
+        this.mDynamicSeekBarResolver = dynamicSeekBarResolver;
     }
 
     /**
-     * Returns the seek bar change listener to get the callback for control events.
+     * Returns the seek bar change listener and value resolver to get the various callbacks.
      *
-     * @return The seek bar change listener to get the callback for control events.
+     * @return The seek bar change listener and value resolver to get the various callbacks.
      */
     public @Nullable SeekBar.OnSeekBarChangeListener getOnSeekBarControlListener() {
         return mOnSeekBarControlListener;
@@ -605,7 +566,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
      * @return The maximum preference value according to the seek interval.
      */
     private int getMax() {
-        return (mMaxValue - mMinValue) / mSeekInterval;
+        return (getMaxValue() - getMinValue()) / getSeekInterval();
     }
 
     /**
@@ -616,7 +577,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
      * @return The seek bar progress according to the supplied value.
      */
     private int getProgressFromValue(int value) {
-        return (Math.min(value, mMaxValue) - mMinValue) / mSeekInterval;
+        return (Math.min(value, getMaxValue()) - getMinValue()) / getSeekInterval();
     }
 
     /**
@@ -625,7 +586,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
      * @return The preference value according to the seek bar progress.
      */
     public int getValueFromProgress() {
-        return mMinValue + (mProgress * mSeekInterval);
+        return getMinValue() + (getProgress() * getSeekInterval());
     }
 
     /**
@@ -633,7 +594,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
      *
      * @return The seek bar to display and modify the preference value.
      */
-    public AppCompatSeekBar getSeekBar() {
+    public @Nullable AppCompatSeekBar getSeekBar() {
         return mSeekBar;
     }
 
@@ -642,8 +603,106 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
      *
      * @return The text view to show the value.
      */
-    public TextView getSeekBarValueView() {
-        return mSeekBarView;
+    public @Nullable TextView getSeekBarValueView() {
+        return mSeekBarValueView;
+    }
+
+    /**
+     * Get the image view to show the decrease button used by this preference.
+     *
+     * @return The image view to show the decrease button used by this preference.
+     */
+    public @Nullable ImageButton getSeekBarLeftView() {
+        return mSeekBarLeftView;
+    }
+
+    /**
+     * Get the image view to show the increase button used by this preference.
+     *
+     * @return The image view to show the increase button used by this preference.
+     */
+    public @Nullable ImageButton getSeekBarRightView() {
+        return mSeekBarRightView;
+    }
+
+    /**
+     * Set the preference value after animating the seek bar.
+     *
+     * @param value The preference value to be set.
+     */
+    private void animateSeekBar(int value) {
+        if (getSeekBar() == null) {
+            return;
+        }
+
+        final int progress = getProgressFromValue(value);
+        ObjectAnimator animation = ObjectAnimator.ofInt(getSeekBar(),
+                "progress", getProgress(), progress);
+        animation.setDuration(DynamicMotion.Duration.LONG);
+        animation.setInterpolator(new AccelerateDecelerateInterpolator());
+        animation.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                setProgress(progress);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) { }
+
+            @Override
+            public void onAnimationCancel(Animator animation) { }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) { }
+        });
+
+        animation.start();
+    }
+
+    /**
+     * Update seek bar functions according to the current parameters.
+     */
+    private void updateSeekFunctions() {
+        int actualValue = getValueFromProgress();
+
+        if (getSeekBarValueView() != null) {
+            if (getUnit() != null) {
+                setTextView(getSeekBarValueView(), String.format(
+                        getContext().getString(R.string.ads_format_blank_space),
+                        String.valueOf(actualValue), getUnit()));
+            } else {
+                setTextView(getSeekBarValueView(), String.valueOf(actualValue));
+            }
+
+            if (getDynamicSeekBarResolver() instanceof DynamicSeekBarResolver) {
+                setTextView(getSeekBarValueView(), ((DynamicSeekBarResolver)
+                        getDynamicSeekBarResolver()).getValueString(getSeekBarValueView().getText(),
+                        getProgress(), actualValue, getUnit()));
+            }
+        }
+
+        if (isEnabled() && isSeekBarEnabled()) {
+            Dynamic.setEnabled(getSeekBarLeftView(), getProgress() > DEFAULT_MIN_VALUE);
+            Dynamic.setEnabled(getSeekBarRightView(), getProgress() < getMax());
+            Dynamic.setEnabled(getActionView(), actualValue != getDefaultValue());
+        }
+    }
+
+    /**
+     * Update seek bar controls according to the current parameters.
+     */
+    private void setProgressFromControl(int progress) {
+        if (getOnSeekBarControlListener() != null) {
+            getOnSeekBarControlListener().onStartTrackingTouch(getSeekBar());
+        }
+
+        setProgress(progress);
+
+        if (getOnSeekBarControlListener() != null) {
+            getOnSeekBarControlListener().onProgressChanged(
+                    getSeekBar(), getProgress(), true);
+            getOnSeekBarControlListener().onStopTrackingTouch(getSeekBar());
+        }
     }
 
     /**
@@ -652,19 +711,20 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
      * @param color The color to be set.
      */
     public void setColor(@ColorInt int color) {
-        ((DynamicSeekBar) mSeekBar).setColor(color);
-        ((DynamicTextView) mSeekBarView).setColor(color);
+        Dynamic.setColor(getSeekBar(), color);
+        Dynamic.setColor(getSeekBarValueView(), color);
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         super.onSharedPreferenceChanged(sharedPreferences, key);
 
-        if (key.equals(super.getPreferenceKey())) {
-            mProgress = getProgressFromValue(DynamicPreferences.getInstance()
-                    .load(super.getPreferenceKey(), mProgress));
+        if (DynamicPreferences.isNullKey(key)) {
+            return;
+        }
 
-            onUpdate();
+        if (key.equals(super.getPreferenceKey())) {
+            update();
         }
     }
 }

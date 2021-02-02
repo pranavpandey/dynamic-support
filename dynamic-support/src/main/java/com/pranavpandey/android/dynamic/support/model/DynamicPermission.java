@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * A model class to hold the permission details that will be used by the app.
@@ -76,6 +77,11 @@ public class DynamicPermission implements Parcelable {
      * {@code true} if request this permission again.
      */
     private boolean askAgain;
+
+    /**
+     * {@code true} if this permission is not preset in the system.
+     */
+    private boolean unknown;
 
     /**
      * Default constructor to initialize the dynamic permission.
@@ -154,6 +160,7 @@ public class DynamicPermission implements Parcelable {
         this.dangerous = in.readByte() != 0;
         this.allowed = in.readByte() != 0;
         this.askAgain = in.readByte() != 0;
+        this.unknown = in.readByte() != 0;
         Bitmap bitmap = in.readParcelable(getClass().getClassLoader());
         this.icon = new BitmapDrawable(Resources.getSystem(), bitmap);
     }
@@ -172,6 +179,7 @@ public class DynamicPermission implements Parcelable {
         dest.writeByte((byte) (dangerous ? 1 : 0));
         dest.writeByte((byte) (allowed ? 1 : 0));
         dest.writeByte((byte) (askAgain ? 1 : 0));
+        dest.writeByte((byte) (unknown ? 1 : 0));
         Bitmap bitmap = ((BitmapDrawable) icon).getBitmap();
         dest.writeParcelable(bitmap, flags);
     }
@@ -318,5 +326,32 @@ public class DynamicPermission implements Parcelable {
      */
     public void setAskAgain(boolean askAgain) {
         this.askAgain = askAgain;
+    }
+
+    /**
+     * Returns whether this permission is unknown or not.
+     *
+     * @return {@code true} this permission is present in the system.
+     */
+    public boolean isUnknown() {
+        return unknown;
+    }
+
+    /**
+     * Sets whether this permission is unknown or not.
+     *
+     * @param unknown {@code true} if this permission is present in the system.
+     */
+    public void setUnknown(boolean unknown) {
+        this.unknown = unknown;
+    }
+
+    /**
+     * Checks whether this permission must be granted after reinstalling the app.
+     *
+     * @return {@code true} if this permission must be granted after reinstalling the app.
+     */
+    public boolean isReinstall() {
+        return !isAskAgain() && !DynamicSdkUtils.is23();
     }
 }

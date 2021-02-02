@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,9 +19,9 @@ package com.pranavpandey.android.dynamic.support.tutorial.adapter;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.pranavpandey.android.dynamic.support.adapter.DynamicFragmentStateAdapter;
-import com.pranavpandey.android.dynamic.support.tutorial.DynamicSimpleTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
 
 import java.util.ArrayList;
@@ -33,13 +33,13 @@ import java.util.List;
  *
  * @see DynamicTutorial
  */
-public class DynamicTutorialsAdapter<T extends DynamicSimpleTutorial, V extends Fragment>
+public class DynamicTutorialsAdapter<V extends Fragment, T extends DynamicTutorial<T, V>>
         extends DynamicFragmentStateAdapter {
 
     /**
      * Fragments list for this adapter.
      */
-    private List<DynamicTutorial<T, V>> mDataSet;
+    private final List<DynamicTutorial<T, V>> mData;
 
     /**
      * Constructor to initialize an object of this class.
@@ -49,17 +49,24 @@ public class DynamicTutorialsAdapter<T extends DynamicSimpleTutorial, V extends 
     public DynamicTutorialsAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
 
-        this.mDataSet = new ArrayList<>();
+        this.mData = new ArrayList<>();
     }
 
     @Override
     public @NonNull Fragment createFragment(int position) {
-        return mDataSet.get(position).createTutorial();
+        return mData.get(position).createTutorial();
     }
 
     @Override
     public int getItemCount() {
-        return mDataSet.size();
+        return mData.size();
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+
+        recyclerView.setItemAnimator(null);
     }
 
     @Override
@@ -73,7 +80,8 @@ public class DynamicTutorialsAdapter<T extends DynamicSimpleTutorial, V extends 
      * @param tutorials The collection of tutorials to be set.
      */
     public void setTutorials(@NonNull Collection<? extends DynamicTutorial<T, V>> tutorials) {
-        mDataSet = new ArrayList<>(tutorials);
+        mData.clear();
+        mData.addAll(tutorials);
 
         notifyDataSetChanged();
     }
@@ -87,11 +95,11 @@ public class DynamicTutorialsAdapter<T extends DynamicSimpleTutorial, V extends 
      * @return {@code true} if the tutorial added successfully.
      */
     public boolean addTutorial(int location, @NonNull DynamicTutorial<T, V> tutorial) {
-        if (mDataSet.contains(tutorial)) {
+        if (mData.contains(tutorial)) {
             return false;
         }
 
-        boolean modified = mDataSet.add(tutorial);
+        boolean modified = mData.add(tutorial);
 
         if (modified) {
             notifyDataSetChanged();
@@ -108,7 +116,7 @@ public class DynamicTutorialsAdapter<T extends DynamicSimpleTutorial, V extends 
      * @return {@code true} if the tutorial added successfully.
      */
     public boolean addTutorial(@NonNull DynamicTutorial<T, V> tutorial) {
-        return addTutorial(mDataSet.size(), tutorial);
+        return addTutorial(mData.size(), tutorial);
     }
 
     /**
@@ -125,8 +133,8 @@ public class DynamicTutorialsAdapter<T extends DynamicSimpleTutorial, V extends 
         int i = 0;
 
         for (DynamicTutorial<T, V> dynamicTutorial : tutorials) {
-            if (!mDataSet.contains(dynamicTutorial)) {
-                mDataSet.add(location + i, dynamicTutorial);
+            if (!mData.contains(dynamicTutorial)) {
+                mData.add(location + i, dynamicTutorial);
                 i++;
                 modified = true;
             }
@@ -147,7 +155,7 @@ public class DynamicTutorialsAdapter<T extends DynamicSimpleTutorial, V extends 
      * @return {@code true} if the tutorials added successfully.
      */
     public boolean addTutorials(@NonNull Collection<? extends DynamicTutorial<T, V>> tutorials) {
-        return addTutorials(mDataSet.size(), tutorials);
+        return addTutorials(mData.size(), tutorials);
     }
 
     /**
@@ -156,8 +164,8 @@ public class DynamicTutorialsAdapter<T extends DynamicSimpleTutorial, V extends 
      * @return {@code true} if the tutorials removed successfully.
      */
     public boolean clearTutorials() {
-        if (!mDataSet.isEmpty()) {
-            mDataSet.clear();
+        if (!mData.isEmpty()) {
+            mData.clear();
 
             notifyDataSetChanged();
             return true;
@@ -168,9 +176,11 @@ public class DynamicTutorialsAdapter<T extends DynamicSimpleTutorial, V extends 
 
     /**
      * Get the tutorials shown by this adapter.
+     *
+     * @return The tutorials shown by this adapter.
      */
     public @NonNull List<DynamicTutorial<T, V>> getTutorials() {
-        return mDataSet;
+        return mData;
     }
 
     /**
@@ -181,7 +191,7 @@ public class DynamicTutorialsAdapter<T extends DynamicSimpleTutorial, V extends 
      * @return The tutorial at the supplied position.
      */
     public DynamicTutorial<T, V> getTutorial(int position) {
-        return mDataSet.get(position);
+        return mData.get(position);
     }
 
     /**
@@ -192,10 +202,10 @@ public class DynamicTutorialsAdapter<T extends DynamicSimpleTutorial, V extends 
      * @return {@code true} if the tutorial removed successfully.
      */
     public boolean removeTutorial(@NonNull DynamicTutorial<T, V> tutorial) {
-        int locationToRemove = mDataSet.indexOf(tutorial);
+        int locationToRemove = mData.indexOf(tutorial);
 
         if (locationToRemove >= 0) {
-            mDataSet.remove(locationToRemove);
+            mData.remove(locationToRemove);
 
             notifyDataSetChanged();
             return true;
@@ -216,9 +226,9 @@ public class DynamicTutorialsAdapter<T extends DynamicSimpleTutorial, V extends 
         boolean modified = false;
 
         for (DynamicTutorial<T, V> dynamicTutorial : tutorials) {
-            int locationToRemove = mDataSet.indexOf(dynamicTutorial);
+            int locationToRemove = mData.indexOf(dynamicTutorial);
             if (locationToRemove >= 0) {
-                mDataSet.remove(locationToRemove);
+                mData.remove(locationToRemove);
                 modified = true;
             }
         }
@@ -237,9 +247,9 @@ public class DynamicTutorialsAdapter<T extends DynamicSimpleTutorial, V extends 
             @NonNull Collection<? extends DynamicTutorial<T, V>> tutorials) {
         boolean modified = false;
 
-        for (int i = mDataSet.size() - 1; i >= 0; i--) {
-            if (!tutorials.contains(mDataSet.get(i))) {
-                mDataSet.remove(i);
+        for (int i = mData.size() - 1; i >= 0; i--) {
+            if (!tutorials.contains(mData.get(i))) {
+                mData.remove(i);
                 modified = true;
                 i--;
             }

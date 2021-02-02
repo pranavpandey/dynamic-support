@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@
     android:id="@+id/ads_tutorial_simple"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/ads_margin_medium"
+    android:padding="@dimen/ads_margin_medium"
     android:orientation="vertical">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.0"
-        android:padding="@dimen/ads_margin_medium"
+        android:layout_marginBottom="@dimen/ads_margin_normal"
         android:layout_gravity="center_vertical" />
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
@@ -41,10 +41,7 @@
         app:ads_windowInsets="false">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/ads_margin_medium"
-            android:orientation="vertical">
+            style="@style/Widget.DynamicApp.Content.Row.Vertical">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                 style="@style/TextAppearance.DynamicApp.Headline5.Tutorial"

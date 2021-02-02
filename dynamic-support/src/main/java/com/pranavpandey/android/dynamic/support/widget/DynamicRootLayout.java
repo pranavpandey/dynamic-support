@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.widget.base.BaseWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
@@ -62,7 +63,7 @@ public class DynamicRootLayout extends RelativeLayout
         try {
             if (a.getBoolean(
                     R.styleable.DynamicRootLayout_ads_windowInsets,
-                    WidgetDefaults.ADS_WINDOW_INSETS)) {
+                    Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }
         } finally {

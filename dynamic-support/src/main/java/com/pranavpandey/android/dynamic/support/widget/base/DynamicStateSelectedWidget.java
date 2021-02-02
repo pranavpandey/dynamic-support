@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,6 +44,15 @@ public interface DynamicStateSelectedWidget extends DynamicStateWidget {
      * @see Theme.ColorType
      */
     void setStateSelectedColorType(@Theme.ColorType int stateSelectedColorType);
+
+    /**
+     * Returns the value of selected state color applied to this widget.
+     *
+     * @param resolve {@code true} to resolve the selected state color.
+     *
+     * @return The value of selected state color applied to this widget.
+     */
+    @ColorInt int getStateSelectedColor(boolean resolve);
 
     /**
      * Returns the value of selected state color applied to this widget.

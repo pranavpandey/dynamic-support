@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicRtlWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
@@ -71,11 +72,11 @@ public class DynamicCollapsingToolbarLayout extends CollapsingToolbarLayout
             if (attrs != null) {
                 mRtlSupport = a.getBoolean(
                         R.styleable.DynamicCollapsingToolbarLayout_ads_rtlSupport,
-                        WidgetDefaults.ADS_RTL_SUPPORT);
+                        Defaults.ADS_RTL_SUPPORT);
 
                 if (a.getBoolean(
                         R.styleable.DynamicCollapsingToolbarLayout_ads_windowInsets,
-                        WidgetDefaults.ADS_WINDOW_INSETS)) {
+                        Defaults.ADS_WINDOW_INSETS)) {
                     applyWindowInsets();
                 }
             }

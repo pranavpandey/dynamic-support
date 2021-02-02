@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
@@ -63,7 +63,7 @@ public class DynamicImagePreference extends DynamicSimplePreference {
     }
 
     @Override
-    protected void onLoadAttributes(AttributeSet attrs) {
+    protected void onLoadAttributes(@Nullable AttributeSet attrs) {
         super.onLoadAttributes(attrs);
 
         TypedArray a = getContext().obtainStyledAttributes(attrs,
@@ -85,17 +85,41 @@ public class DynamicImagePreference extends DynamicSimplePreference {
 
         mImageView = LayoutInflater.from(getContext()).inflate(
                 R.layout.ads_preference_image, this, false)
-                .findViewById(R.id.ads_preference_image_big);
+                .findViewById(R.id.ads_preference_image_value);
 
         setViewFrame(mImageView, true);
-        ((DynamicTextView) getValueView()).setColorType(Theme.ColorType.NONE);
+        Dynamic.setColorType(getValueView(), Theme.ColorType.NONE);
     }
 
     @Override
     protected void onUpdate() {
         super.onUpdate();
 
-        setImageView(mImageView, getImageDrawable());
+        setImageView(getImageView(), getImageDrawable());
+    }
+
+    @Override
+    protected void onEnabled(boolean enabled) {
+        super.onEnabled(enabled);
+
+        Dynamic.setEnabled(getImageView(), enabled);
+    }
+
+    @Override
+    public void setColor() {
+        super.setColor();
+
+        if (getBackgroundAware() != Theme.BackgroundAware.UNKNOWN) {
+            Dynamic.setBackgroundAware(getImageView(), getBackgroundAware());
+        }
+
+        if (getContrastWithColorType() != Theme.ColorType.NONE
+                && getContrastWithColorType() != Theme.ColorType.CUSTOM) {
+            Dynamic.setContrastWithColorType(getImageView(), getContrastWithColorType());
+        } else if (getContrastWithColorType() == Theme.ColorType.CUSTOM
+                && getContrastWithColor() != Theme.Color.UNKNOWN) {
+            Dynamic.setContrastWithColor(getImageView(), getContrastWithColor());
+        }
     }
 
     /**
@@ -103,7 +127,7 @@ public class DynamicImagePreference extends DynamicSimplePreference {
      *
      * @return The secondary image view to show the drawable.
      */
-    public ImageView getImageView() {
+    public @Nullable ImageView getImageView() {
         return mImageView;
     }
 
@@ -120,11 +144,26 @@ public class DynamicImagePreference extends DynamicSimplePreference {
      * Set the drawable for the image view.
      *
      * @param imageDrawable The image drawable to be set.
+     * @param update {@code true} to call {@link #update()} method after setting the
+     *               image drawable.
      */
-    public void setImageDrawable(@Nullable Drawable imageDrawable) {
+    public void setImageDrawable(@Nullable Drawable imageDrawable, boolean update) {
         this.mImageDrawable = imageDrawable;
 
-        onUpdate();
+        if (update) {
+            update();
+        } else {
+            setImageView(getImageView(), getImageDrawable());
+        }
+    }
+
+    /**
+     * Set the drawable for the image view.
+     *
+     * @param imageDrawable The image drawable to be set.
+     */
+    public void setImageDrawable(@Nullable Drawable imageDrawable) {
+        setImageDrawable(imageDrawable, true);
     }
 
     /**

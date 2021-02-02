@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,8 +22,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Build;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
@@ -37,8 +39,10 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicResolver;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.theme.AppTheme;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.utils.loader.DynamicLoader;
 
 import java.util.Locale;
 
@@ -56,15 +60,21 @@ public abstract class DynamicApplication extends Application
     protected Context mContext;
 
     /**
+     * Base context used by this application.
+     */
+    private Context mBaseContext;
+
+    /**
      * Current application configuration.
      */
     private Configuration mConfiguration;
 
     @Override
     public void attachBaseContext(@NonNull Context base) {
+        this.mBaseContext = base;
+
         DynamicPreferences.initializeInstance(base);
-        DynamicTheme.initializeInstance(base, getDynamicResolver());
-        DynamicTheme.getInstance().addDynamicListener(this);
+        DynamicTheme.initializeInstance(this, getDynamicResolver());
         PreferenceManager.getDefaultSharedPreferences(base)
                 .registerOnSharedPreferenceChangeListener(this);
         super.attachBaseContext(setLocale(base));
@@ -98,31 +108,18 @@ public abstract class DynamicApplication extends Application
         mConfiguration = new Configuration(newConfig);
     }
 
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+
+        DynamicLoader.getInstance().clearDrawables();
+    }
+
     /**
      * This method will be called inside the {@link #onCreate()} method before applying the theme.
      * <p>Do any initializations in this method.
      */
     protected abstract void onInitialize();
-
-    /**
-     * Get the style resource to apply theme on this application.
-     * <p>Override this method to supply your own customised style.
-     *
-     * @return Style resource to be applied on this activity.
-     */
-    protected @StyleRes int getThemeRes() {
-        return DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
-    }
-
-    /**
-     * Get the dynamic app theme to be applied on this application.
-     * <p>Override this method to supply your own customised theme.
-     *
-     * @return The dynamic app theme for this application.
-     */
-    protected @Nullable DynamicAppTheme getDynamicTheme() {
-        return null;
-    }
 
     /**
      * Returns the resolver for the dynamic theme to provide implementation for conditions like
@@ -145,26 +142,19 @@ public abstract class DynamicApplication extends Application
      * This method will be called before setting up the dynamic work to listen changes based on
      * time. It will be useful in updating the {@code auto} theme while the app is in background.
      * <p>Return {@code false} to skip the dynamic work initialization.
+     *
+     * @return {@code true} to setup the dynamic work.
      */
     protected boolean onSetupDynamicWork() {
         return true;
     }
 
     /**
-     * Returns the dynamic context used by this application.
-     *
-     * @return The dynamic context used by this application.
-     */
-    public @NonNull Context getContext() {
-        return mContext;
-    }
-
-    /**
      * Set the dynamic app theme and style resource for this application.
      */
     protected void setDynamicTheme() {
-        DynamicTheme.getInstance().setTheme(getThemeRes(), getDynamicTheme(), true);
-
+        DynamicTheme.getInstance().setTheme(getThemeRes(),
+                getDynamicTheme(), true);
         onCustomiseTheme();
     }
 
@@ -188,21 +178,63 @@ public abstract class DynamicApplication extends Application
     @Override
     public @NonNull Context setLocale(@NonNull Context context) {
         return mContext = DynamicLocaleUtils.setLocale(context,
-                DynamicLocaleUtils.getLocale(getLocale(),
+                false, DynamicLocaleUtils.getLocale(getLocale(),
                         getDefaultLocale(context)), getFontScale());
     }
 
     @Override
     public float getFontScale() {
         return getDynamicTheme() != null ? getDynamicTheme().getFontScaleRelative()
-                : DynamicTheme.getInstance().getDefault().getFontScaleRelative();
+                : DynamicTheme.getInstance().getDefault(false).getFontScaleRelative();
+    }
+
+    @Override
+    public @NonNull Context getContext() {
+        return mContext != null ? mContext : getBaseContext() != null
+                ? getBaseContext() : mBaseContext;
+    }
+
+    @Override
+    public @StyleRes int getThemeRes(@Nullable AppTheme<?> theme) {
+        if (theme == null) {
+            return R.style.Theme_DynamicApp;
+        }
+
+        return theme.isDarkTheme() ? R.style.Theme_DynamicApp : R.style.Theme_DynamicApp_Light;
+    }
+
+    @Override
+    public @StyleRes int getThemeRes() {
+        return getThemeRes(null);
+    }
+
+    @Override
+    public @Nullable AppTheme<?> getDynamicTheme() {
+        return new DynamicAppTheme();
+    }
+
+    @Override
+    public @ColorInt int getDefaultColor(@Theme.ColorType int colorType) {
+        if (colorType == Theme.ColorType.BACKGROUND) {
+            return DynamicTheme.COLOR_BACKGROUND_DEFAULT;
+        } if (colorType == Theme.ColorType.PRIMARY) {
+            return DynamicTheme.COLOR_PRIMARY_DEFAULT;
+        } else if (colorType == Theme.ColorType.ACCENT) {
+            return DynamicTheme.COLOR_ACCENT_DEFAULT;
+        } else if (colorType == Theme.ColorType.TEXT_PRIMARY) {
+            return DynamicTheme.COLOR_TEXT_PRIMARY_DEFAULT;
+        } else if (colorType == Theme.ColorType.TEXT_SECONDARY) {
+            return DynamicTheme.COLOR_TEXT_SECONDARY_DEFAULT;
+        }
+
+        return Color.TRANSPARENT;
     }
 
     @Override
     public void onDynamicChanged(boolean context, boolean recreate) {
         if (context) {
+            setLocale(mBaseContext);
             setLocale(getContext());
-            DynamicTheme.getInstance().setContext(getContext());
         }
 
         setDynamicTheme();
@@ -216,13 +248,18 @@ public abstract class DynamicApplication extends Application
     }
 
     @Override
-    public void onNavigationBarThemeChanged() { }
-
-    @Override
     public void onAutoThemeChanged() { }
 
     @Override
     public void onPowerSaveModeChanged(boolean powerSaveMode) { }
+
+    @Override
+    public boolean setNavigationBarTheme() {
+        return false;
+    }
+
+    @Override
+    public void onNavigationBarThemeChanged() { }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { }

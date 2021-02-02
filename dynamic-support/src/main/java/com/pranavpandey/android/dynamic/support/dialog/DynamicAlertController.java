@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  * Copyright 2015 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -54,6 +54,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.core.view.ViewCompat;
@@ -70,6 +71,7 @@ import java.lang.ref.WeakReference;
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
+@SuppressWarnings("deprecation")
 @RestrictTo(LIBRARY_GROUP)
 class DynamicAlertController {
     private final Context mContext;
@@ -186,7 +188,7 @@ class DynamicAlertController {
 
     private static boolean shouldCenterSingleButton(Context context) {
         final TypedValue outValue = new TypedValue();
-        context.getTheme().resolveAttribute(R.attr.alertDialogCenterButtons, outValue, true);
+        context.getTheme().resolveAttribute(R.attr.add_alertDialogCenterButtons, outValue, true);
         return outValue.data != 0;
     }
 
@@ -199,16 +201,23 @@ class DynamicAlertController {
         final TypedArray a = context.obtainStyledAttributes(null,
                 R.styleable.DynamicDialog, R.attr.alertDialogStyle, 0);
 
-        mAlertDialogLayout = a.getResourceId(R.styleable.DynamicDialog_android_layout, 0);
-        mButtonPanelSideLayout = a.getResourceId(R.styleable.DynamicDialog_buttonPanelSideLayout, 0);
+        mAlertDialogLayout = a.getResourceId(
+                R.styleable.DynamicDialog_android_layout, 0);
+        mButtonPanelSideLayout = a.getResourceId(
+                R.styleable.DynamicDialog_add_buttonPanelSideLayout, 0);
 
-        mListLayout = a.getResourceId(R.styleable.DynamicDialog_listLayout, 0);
-        mMultiChoiceItemLayout = a.getResourceId(R.styleable.DynamicDialog_multiChoiceItemLayout, 0);
-        mSingleChoiceItemLayout = a
-                .getResourceId(R.styleable.DynamicDialog_singleChoiceItemLayout, 0);
-        mListItemLayout = a.getResourceId(R.styleable.DynamicDialog_listItemLayout, 0);
-        mShowTitle = a.getBoolean(R.styleable.DynamicDialog_showTitle, true);
-        mButtonIconDimen = a.getDimensionPixelSize(R.styleable.DynamicDialog_buttonIconDimen, 0);
+        mListLayout = a.getResourceId(
+                R.styleable.DynamicDialog_add_listLayout, 0);
+        mMultiChoiceItemLayout = a.getResourceId(
+                R.styleable.DynamicDialog_add_multiChoiceItemLayout, 0);
+        mSingleChoiceItemLayout = a.getResourceId(
+                R.styleable.DynamicDialog_add_singleChoiceItemLayout, 0);
+        mListItemLayout = a.getResourceId(
+                R.styleable.DynamicDialog_add_listItemLayout, 0);
+        mShowTitle = a.getBoolean(
+                R.styleable.DynamicDialog_add_showTitle, true);
+        mButtonIconDimen = a.getDimensionPixelSize(
+                R.styleable.DynamicDialog_add_buttonIconDimen, 0);
 
         a.recycle();
 
@@ -702,15 +711,18 @@ class DynamicAlertController {
                             }
                         });
                     } else if (mViewRoot instanceof RecyclerView) {
-                        ((RecyclerView) mViewRoot).addOnScrollListener(new RecyclerView.OnScrollListener() {
-                            @Override
-                            public void onScrollStateChanged(RecyclerView view, int scrollState) {}
+                        ((RecyclerView) mViewRoot).addOnScrollListener(
+                                new RecyclerView.OnScrollListener() {
+                                    @Override
+                                    public void onScrollStateChanged(
+                                            @NonNull RecyclerView view, int scrollState) { }
 
-                            @Override
-                            public void onScrolled(RecyclerView v, int dx, int dy) {
-                                manageScrollIndicators(v, top, bottom);
-                            }
-                        });
+                                    @Override
+                                    public void onScrolled(@NonNull RecyclerView view,
+                                            int dx, int dy) {
+                                        manageScrollIndicators(view, top, bottom);
+                                    }
+                                });
 
                         mViewRoot.post(new Runnable() {
                             @Override
@@ -962,9 +974,9 @@ class DynamicAlertController {
                     attrs, R.styleable.RecycleListView);
             try {
                 mPaddingBottomNoButtons = ta.getDimensionPixelOffset(
-                        R.styleable.RecycleListView_paddingBottomNoButtons, -1);
+                        R.styleable.RecycleListView_add_paddingBottomNoButtons, -1);
                 mPaddingTopNoTitle = ta.getDimensionPixelOffset(
-                        R.styleable.RecycleListView_paddingTopNoTitle, -1);
+                        R.styleable.RecycleListView_add_paddingTopNoTitle, -1);
             } finally {
                 ta.recycle();
             }

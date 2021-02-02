@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,28 +29,38 @@ import java.lang.annotation.RetentionPolicy;
  * <p>Extend this adapter and implement {@link DynamicRecyclerViewItem} interface
  * in the object class.
  */
-public abstract class DynamicRecyclerViewAdapter
-        extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public abstract class DynamicRecyclerViewAdapter extends
+        RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    /**
+     * Constant for the type unknown.
+     */
+    public static final int TYPE_UNKNOWN = 0;
 
     /**
      * Constant for the type empty view.
      */
-    public static final int TYPE_EMPTY_VIEW = 0;
+    public static final int TYPE_EMPTY_VIEW = 1;
 
     /**
      * Constant for the type section header.
      */
-    public static final int TYPE_SECTION_HEADER = 1;
+    public static final int TYPE_SECTION_HEADER = 2;
 
     /**
      * Constant for the type item.
      */
-    public static final int TYPE_ITEM = 2;
+    public static final int TYPE_ITEM = 3;
+
+    /**
+     * Constant for the type item setting.
+     */
+    public static final int TYPE_SETTING = 4;
 
     /**
      * Constant for the type section divider.
      */
-    public static final int TYPE_SECTION_DIVIDER = 3;
+    public static final int TYPE_SECTION_DIVIDER = 5;
 
     /**
      * Valid item types for this adapter.
@@ -58,10 +68,12 @@ public abstract class DynamicRecyclerViewAdapter
      * <p>0. {@link #TYPE_EMPTY_VIEW}
      * <br>1. {@link #TYPE_SECTION_HEADER}
      * <br>2. {@link #TYPE_ITEM}
+     * <br>2. {@link #TYPE_SETTING}
      * <br>3. {@link #TYPE_SECTION_DIVIDER}
      */
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef(value = { TYPE_EMPTY_VIEW, TYPE_SECTION_HEADER, TYPE_ITEM, TYPE_SECTION_DIVIDER })
+    @IntDef(value = { TYPE_UNKNOWN, TYPE_EMPTY_VIEW, TYPE_SECTION_HEADER,
+            TYPE_ITEM, TYPE_SETTING, TYPE_SECTION_DIVIDER })
     public @interface ItemType { }
 
     /**

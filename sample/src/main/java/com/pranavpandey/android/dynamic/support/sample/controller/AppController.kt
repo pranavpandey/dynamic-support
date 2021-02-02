@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@
 package com.pranavpandey.android.dynamic.support.sample.controller
 
 import android.app.Application
-import androidx.annotation.ColorInt
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences
 
 /**
@@ -39,22 +38,6 @@ class AppController {
                 Constants.PREF_FIRST_LAUNCH_DEFAULT)
         set(firstLaunch) = DynamicPreferences.getInstance().save(
                 Constants.PREF_FIRST_LAUNCH, firstLaunch)
-
-    /**
-     * The app theme primary color.
-     */
-    val colorPrimaryApp: Int
-        @ColorInt get() = DynamicPreferences.getInstance().load(
-                Constants.PREF_SETTINGS_APP_THEME_COLOR_PRIMARY,
-                Constants.PREF_SETTINGS_APP_THEME_COLOR_PRIMARY_DEFAULT)
-
-    /**
-     * The app theme accent color.
-     */
-    val colorAccentApp: Int
-        @ColorInt get() = DynamicPreferences.getInstance().load(
-                Constants.PREF_SETTINGS_APP_THEME_COLOR_ACCENT,
-                Constants.PREF_SETTINGS_APP_THEME_COLOR_ACCENT_DEFAULT)
 
     /**
      * true` to apply the navigation bar theme.
@@ -96,7 +79,7 @@ class AppController {
          * Initialize this controller when application starts.
          * Must be initialize once.
          *
-         * @param context The context to retrieve resources.
+         * @param context The context to retrieve the resources.
          */
         @Synchronized
         fun initializeInstance(context: Application?) {

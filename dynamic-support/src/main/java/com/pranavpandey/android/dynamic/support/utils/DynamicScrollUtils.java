@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ import android.os.Build;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.EdgeEffect;
+import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
 
 import androidx.annotation.ColorInt;
@@ -37,7 +38,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.internal.NavigationMenuPresenter;
 import com.google.android.material.internal.NavigationMenuView;
 import com.google.android.material.navigation.NavigationView;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
@@ -56,10 +56,12 @@ public final class DynamicScrollUtils {
      * {@link EdgeEffect} field constant for the edge.
      */
     private static Field F_EDGE_EFFECT_EDGE;
+
     /**
      * {@link EdgeEffect} field constant for the glow.
      */
     private static Field F_EDGE_EFFECT_GLOW;
+
     /**
      * {@link EdgeEffectCompat} field constant for the edge effect.
      */
@@ -69,22 +71,27 @@ public final class DynamicScrollUtils {
      * {@link AbsListView} field constant for the top glow.
      */
     private static Field F_LIST_VIEW_EDGE_GLOW_TOP;
+
     /**
      * {@link AbsListView} field constant for the bottom glow.
      */
     private static Field F_LIST_VIEW_EDGE_GLOW_BOTTOM;
+
     /**
      * {@link RecyclerView} field constant for the top glow.
      */
     private static Field F_RECYCLER_VIEW_EDGE_GLOW_TOP;
+
     /**
      * {@link RecyclerView} field constant for the left glow.
      */
     private static Field F_RECYCLER_VIEW_EDGE_GLOW_LEFT;
+
     /**
      * {@link RecyclerView} field constant for the right glow.
      */
     private static Field F_RECYCLER_VIEW_EDGE_GLOW_RIGHT;
+
     /**
      * {@link RecyclerView} field constant for the bottom glow.
      */
@@ -94,14 +101,27 @@ public final class DynamicScrollUtils {
      * {@link ScrollView} field constant for the top glow.
      */
     private static Field F_SCROLL_VIEW_EDGE_GLOW_TOP;
+
     /**
      * {@link ScrollView} field constant for the bottom glow.
      */
     private static Field F_SCROLL_VIEW_EDGE_GLOW_BOTTOM;
+
+    /**
+     * {@link HorizontalScrollView} field constant for the left glow.
+     */
+    private static Field F_SCROLL_VIEW_EDGE_GLOW_LEFT;
+
+    /**
+     * {@link HorizontalScrollView} field constant for the right glow.
+     */
+    private static Field F_SCROLL_VIEW_EDGE_GLOW_RIGHT;
+
     /**
      * {@link NestedScrollView} field constant for the top glow.
      */
     private static Field F_NESTED_SCROLL_VIEW_EDGE_GLOW_TOP;
+
     /**
      * {@link NestedScrollView} field constant for the bottom glow.
      */
@@ -111,6 +131,7 @@ public final class DynamicScrollUtils {
      * {@link ViewPager} field constant for the left glow.
      */
     private static Field F_VIEW_PAGER_EDGE_GLOW_LEFT;
+
     /**
      * {@link ViewPager} field constant for the right glow.
      */
@@ -120,6 +141,7 @@ public final class DynamicScrollUtils {
      * {@link NavigationView} field constant for the presenter.
      */
     private static Field F_NAVIGATION_VIEW_PRESENTER;
+
     /**
      * {@link NavigationView} field constant for the recycler view.
      */
@@ -150,8 +172,7 @@ public final class DynamicScrollUtils {
      */
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     private static void initializeEdgeEffectFields() {
-        if (F_EDGE_EFFECT_EDGE != null
-                && F_EDGE_EFFECT_GLOW != null
+        if (F_EDGE_EFFECT_EDGE != null && F_EDGE_EFFECT_GLOW != null
                 && F_EDGE_EFFECT_COMPAT_EDGE_EFFECT != null) {
             F_EDGE_EFFECT_EDGE.setAccessible(true);
             F_EDGE_EFFECT_GLOW.setAccessible(true);
@@ -234,8 +255,7 @@ public final class DynamicScrollUtils {
      * Initialize abs list view fields so that we can access them via reflection.
      */
     private static void initializeListViewFields() {
-        if (F_LIST_VIEW_EDGE_GLOW_TOP != null
-                && F_LIST_VIEW_EDGE_GLOW_BOTTOM != null) {
+        if (F_LIST_VIEW_EDGE_GLOW_TOP != null && F_LIST_VIEW_EDGE_GLOW_BOTTOM != null) {
             F_LIST_VIEW_EDGE_GLOW_TOP.setAccessible(true);
             F_LIST_VIEW_EDGE_GLOW_BOTTOM.setAccessible(true);
 
@@ -261,8 +281,7 @@ public final class DynamicScrollUtils {
      * Initialize scroll view fields so that we can access them via reflection.
      */
     private static void initializeScrollViewFields() {
-        if (F_SCROLL_VIEW_EDGE_GLOW_TOP != null
-                && F_SCROLL_VIEW_EDGE_GLOW_BOTTOM != null) {
+        if (F_SCROLL_VIEW_EDGE_GLOW_TOP != null && F_SCROLL_VIEW_EDGE_GLOW_BOTTOM != null) {
             F_SCROLL_VIEW_EDGE_GLOW_TOP.setAccessible(true);
             F_SCROLL_VIEW_EDGE_GLOW_BOTTOM.setAccessible(true);
 
@@ -279,6 +298,32 @@ public final class DynamicScrollUtils {
                 case "mEdgeGlowBottom":
                     field.setAccessible(true);
                     F_SCROLL_VIEW_EDGE_GLOW_BOTTOM = field;
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Initialize horizontal scroll view fields so that we can access them via reflection.
+     */
+    private static void initializeHorizontalScrollViewFields() {
+        if (F_SCROLL_VIEW_EDGE_GLOW_LEFT != null && F_SCROLL_VIEW_EDGE_GLOW_RIGHT != null) {
+            F_SCROLL_VIEW_EDGE_GLOW_LEFT.setAccessible(true);
+            F_SCROLL_VIEW_EDGE_GLOW_RIGHT.setAccessible(true);
+
+            return;
+        }
+
+        final Class<?> clazz = HorizontalScrollView.class;
+        for (Field field : clazz.getDeclaredFields()) {
+            switch (field.getName()) {
+                case "mEdgeGlowLeft":
+                    field.setAccessible(true);
+                    F_SCROLL_VIEW_EDGE_GLOW_LEFT = field;
+                    break;
+                case "mEdgeGlowRight":
+                    field.setAccessible(true);
+                    F_SCROLL_VIEW_EDGE_GLOW_RIGHT = field;
                     break;
             }
         }
@@ -475,6 +520,25 @@ public final class DynamicScrollUtils {
     }
 
     /**
+     * Set edge effect or glow color for horizontal scroll view.
+     *
+     * @param horizontalScrollView The horizontal scroll view to set the edge effect color.
+     * @param color The edge effect color to be set.
+     */
+    public static void setEdgeEffectColor(
+            @NonNull HorizontalScrollView horizontalScrollView, @ColorInt int color) {
+        initializeHorizontalScrollViewFields();
+
+        try {
+            Object edgeEffect = F_SCROLL_VIEW_EDGE_GLOW_LEFT.get(horizontalScrollView);
+            setEdgeEffectColor(edgeEffect, color);
+            edgeEffect = F_SCROLL_VIEW_EDGE_GLOW_RIGHT.get(horizontalScrollView);
+            setEdgeEffectColor(edgeEffect, color);
+        } catch (Exception ignored) {
+        }
+    }
+
+    /**
      * Set edge effect or glow color for nested scroll view.
      *
      * @param nestedScrollView The nested scroll view to set the edge effect color.
@@ -610,7 +674,6 @@ public final class DynamicScrollUtils {
         }
 
         initializeScrollBarFields(view);
-        color = DynamicColorUtils.getLessVisibleColor(color);
 
         if (V_SCROLL_BAR_FIELD_CACHE == null) {
             return;

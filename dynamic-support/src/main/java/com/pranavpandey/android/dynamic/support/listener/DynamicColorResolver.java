@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import androidx.annotation.Nullable;
 public interface DynamicColorResolver {
 
     /**
-     * Get default color for this resolver.
+     * Returns the default color.
      *
      * @param tag The optional tag to differentiate between various callbacks.
      *
@@ -34,7 +34,7 @@ public interface DynamicColorResolver {
     int getDefaultColor(@Nullable String tag);
 
     /**
-     * Get automatically generated color for this resolver.
+     * Returns the automatically generated color.
      *
      * @param tag The optional tag to differentiate between various callbacks.
      *

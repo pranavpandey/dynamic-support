@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.appbar.AppBarLayout;
 import com.pranavpandey.android.dynamic.support.R;
 
+import java.util.Locale;
+
 /**
  * An activity extending {@link DynamicSystemActivity} to maintain state of the widgets
  * and fragments. It will be very useful while handling orientation changes. It saves the
@@ -39,6 +41,11 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
      * Minimum delay to restore the activity state.
      */
     protected static final int STATE_DELAY = 400;
+
+    /**
+     * Locale key to maintain its state during configuration changes.
+     */
+    protected static final String ADS_STATE_LOCALE = "ads_state_locale";
 
     /**
      * Content fragment TAG key which will be used to find it during the configuration changes.
@@ -154,6 +161,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
         });
 
         if (savedInstanceState != null) {
+            mCurrentLocale = (Locale) savedInstanceState.getSerializable(ADS_STATE_LOCALE);
             mFABVisibility = ADS_VISIBILITY_FAB_NO_CHANGE;
             mExtendedFABVisibility = ADS_VISIBILITY_EXTENDED_FAB_NO_CHANGE;
             mExtendedFABState = ADS_STATE_EXTENDED_FAB_NO_CHANGE;
@@ -175,6 +183,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
+        outState.putSerializable(ADS_STATE_LOCALE, mCurrentLocale);
         outState.putString(ADS_STATE_CONTENT_FRAGMENT_TAG, mContentFragmentTag);
     }
 
@@ -187,28 +196,34 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
      * @param fragment The fragment to be used by this activity.
      * @param addToBackStack {@code true} to put previous fragment to back stack.
      * @param tag The fragment tag to maintain the back stack.
+     * @param restoreByTag {@code true} to restore the fragment by tag.
      */
     public void switchFragment(@NonNull FragmentTransaction fragmentTransaction,
-            @NonNull Fragment fragment, boolean addToBackStack, @Nullable String tag) {
+            @NonNull Fragment fragment, boolean addToBackStack, @Nullable String tag,
+            boolean restoreByTag) {
         tag = tag != null ? tag : fragment.getClass().getSimpleName();
-        if (getSupportFragmentManager().findFragmentByTag(tag) != null) {
-            fragment = getSupportFragmentManager().findFragmentByTag(tag);
-        }
 
-        if (fragment != null) {
-            fragmentTransaction.setReorderingAllowed(true)
-                    .replace(getFragmentContainerId(), fragment, tag);
-            if (addToBackStack && mContentFragment != null) {
-                fragmentTransaction.addToBackStack(tag);
+        final Fragment fragmentByTag = getSupportFragmentManager().findFragmentByTag(tag);
+        if (fragmentByTag != null) {
+            if (restoreByTag) {
+                fragment = fragmentByTag;
             } else {
-                getSupportFragmentManager().popBackStack(null,
-                        FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fragmentTransaction.remove(fragmentByTag);
             }
-
-            commitFragmentTransaction(fragmentTransaction);
-            setContentFragment(fragment, tag);
-            onManageSharedElementTransition();
         }
+
+        fragmentTransaction.setReorderingAllowed(true)
+                .replace(getFragmentContainerId(), fragment, tag);
+        if (addToBackStack && mContentFragment != null) {
+            fragmentTransaction.addToBackStack(tag);
+        } else {
+            getSupportFragmentManager().popBackStack(null,
+                    FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+
+        commitFragmentTransaction(fragmentTransaction);
+        setContentFragment(fragment, tag);
+        onManageSharedElementTransition();
     }
 
     /**
@@ -217,11 +232,12 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
      * @param fragment The fragment to be used by this activity.
      * @param addToBackStack {@code true} to put previous fragment to back stack.
      * @param tag The fragment tag to maintain the back stack.
+     * @param restoreByTag {@code true} to restore the fragment by tag.
      */
-    public void switchFragment(@NonNull Fragment fragment,
-            boolean addToBackStack, @Nullable String tag) {
+    public void switchFragment(@NonNull Fragment fragment, boolean addToBackStack,
+            @Nullable String tag, boolean restoreByTag) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        switchFragment(fragmentTransaction, fragment, addToBackStack, tag);
+        switchFragment(fragmentTransaction, fragment, addToBackStack, tag, restoreByTag);
     }
 
     /**
@@ -229,9 +245,37 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
      *
      * @param fragment The fragment to be used by this activity.
      * @param addToBackStack {@code true} to put previous fragment to back stack.
+     * @param restoreByTag {@code true} to restore the fragment by tag.
+     *
+     * @see #switchFragment(FragmentTransaction, Fragment, boolean, String, boolean)
+     */
+    public void switchFragment(@NonNull Fragment fragment,
+            boolean addToBackStack, boolean restoreByTag) {
+        switchFragment(fragment, addToBackStack, null, restoreByTag);
+    }
+
+    /**
+     * Switch the content fragment used by this activity.
+     *
+     * @param fragment The fragment to be used by this activity.
+     * @param addToBackStack {@code true} to put previous fragment to back stack.
+     *
+     * @see #switchFragment(Fragment, boolean, boolean)
      */
     public void switchFragment(@NonNull Fragment fragment, boolean addToBackStack) {
-        switchFragment(fragment, addToBackStack, null);
+        switchFragment(fragment, addToBackStack, true);
+    }
+
+    /**
+     * Switch the content fragment used by this activity.
+     *
+     * @param fragment The fragment to be used by this activity.
+     * @param addToBackStack {@code true} to put previous fragment to back stack.
+     *
+     * @see #switchFragment(Fragment, boolean, boolean)
+     */
+    public void switchNewFragment(@NonNull Fragment fragment, boolean addToBackStack) {
+        switchFragment(fragment, addToBackStack, false);
     }
 
     /**

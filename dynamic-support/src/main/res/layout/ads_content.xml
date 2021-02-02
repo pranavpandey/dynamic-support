@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@
         app:layout_anchor="@id/ads_app_bar_layout"
         app:layout_anchorGravity="bottom"
         app:layout_behavior="@string/ads_fab_behavior"
-        app:ads_colorType="tint_background"
+        app:ads_colorType="accent_dark"
         app:ads_backgroundAware="disable" />
 
 </merge>

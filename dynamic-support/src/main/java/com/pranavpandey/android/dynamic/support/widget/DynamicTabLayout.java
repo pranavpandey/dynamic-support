@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ package com.pranavpandey.android.dynamic.support.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
@@ -27,8 +28,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.tabs.TabLayout;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.utils.DynamicMenuUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicBackgroundWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTextWidget;
@@ -49,6 +52,20 @@ public class DynamicTabLayout extends TabLayout implements
     private @Theme.ColorType int mColorType;
 
     /**
+     * Color type applied to the background of this view.
+     *
+     * @see Theme.ColorType
+     */
+    private @Theme.ColorType int mBackgroundColorType;
+
+    /**
+     * Text color type applied to this view.
+     *
+     * @see Theme.ColorType
+     */
+    private @Theme.ColorType int mTextColorType;
+
+    /**
      * Background color type for this view so that it will remain in contrast with this
      * color type.
      */
@@ -58,6 +75,26 @@ public class DynamicTabLayout extends TabLayout implements
      * Color applied to this view.
      */
     private @ColorInt int mColor;
+
+    /**
+     * Color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedColor;
+
+    /**
+     * Background color applied to this view.
+     */
+    private @ColorInt int mBackgroundColor;
+
+    /**
+     * Text color applied to this view.
+     */
+    private @ColorInt int mTextColor;
+
+    /**
+     * Text color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedTextColor;
 
     /**
      * Background color for this view so that it will remain in contrast with this color.
@@ -78,30 +115,6 @@ public class DynamicTabLayout extends TabLayout implements
      * @see #mContrastWithColor
      */
     private @Theme.BackgroundAware int mBackgroundAware;
-
-    /**
-     * Color type applied to the background of this view.
-     *
-     * @see Theme.ColorType
-     */
-    private @Theme.ColorType int mBackgroundColorType;
-
-    /**
-     * Text color type applied to this view.
-     *
-     * @see Theme.ColorType
-     */
-    private @Theme.ColorType int mTextColorType;
-
-    /**
-     * Background color applied to this view.
-     */
-    private @ColorInt int mBackgroundColor;
-
-    /**
-     * Text color applied to this view.
-     */
-    private @ColorInt int mTextColor;
 
     public DynamicTabLayout(@NonNull Context context) {
         this(context, null);
@@ -140,19 +153,19 @@ public class DynamicTabLayout extends TabLayout implements
                     Theme.ColorType.PRIMARY);
             mBackgroundColor = a.getColor(
                     R.styleable.DynamicTabLayout_ads_backgroundColor,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mColor = a.getColor(
                     R.styleable.DynamicTabLayout_ads_color,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mTextColor = a.getColor(
                     R.styleable.DynamicTabLayout_ads_textColor,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicTabLayout_ads_contrastWithColor,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicTabLayout_ads_backgroundAware,
-                    WidgetDefaults.getBackgroundAware());
+                    Defaults.getBackgroundAware());
         } finally {
             a.recycle();
         }
@@ -243,8 +256,13 @@ public class DynamicTabLayout extends TabLayout implements
     }
 
     @Override
+    public @ColorInt int getColor(boolean resolve) {
+        return resolve ? mAppliedColor : mColor;
+    }
+
+    @Override
     public @ColorInt int getColor() {
-        return mColor;
+        return getColor(true);
     }
 
     @Override
@@ -257,8 +275,13 @@ public class DynamicTabLayout extends TabLayout implements
     }
 
     @Override
+    public @ColorInt int getTextColor(boolean resolve) {
+        return resolve ? mAppliedTextColor : mTextColor;
+    }
+
+    @Override
     public @ColorInt int getTextColor() {
-        return mTextColor;
+        return getTextColor(true);
     }
 
     @Override
@@ -306,7 +329,15 @@ public class DynamicTabLayout extends TabLayout implements
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
-        setAlpha(enabled ? WidgetDefaults.ADS_ALPHA_ENABLED : WidgetDefaults.ADS_ALPHA_DISABLED);
+        setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        setColor();
+        setTextColor();
     }
 
     @Override
@@ -321,34 +352,45 @@ public class DynamicTabLayout extends TabLayout implements
 
     @Override
     public void setColor() {
-        if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+        if (mColor != Theme.Color.UNKNOWN) {
+            mAppliedColor = mColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
-            if (DynamicTheme.getInstance().get().getCornerSizeDp()
-                    >= WidgetDefaults.ADS_CORNER_MIN_TABS) {
-                setSelectedTabIndicator(R.drawable.ads_tabs_indicator_corner);
+            Drawable indicator = DynamicResourceUtils.getDrawable(getContext(),
+                    DynamicTheme.getInstance().get().getCornerSizeDp()
+                            >= Defaults.ADS_CORNER_MIN_TABS
+                            ? R.drawable.ads_tabs_indicator_corner
+                            : R.drawable.ads_tabs_indicator);
+            if (getTabSelectedIndicator() != null) {
+                indicator.setBounds(getTabSelectedIndicator().getBounds());
             } else {
-                setSelectedTabIndicator(R.drawable.ads_tabs_indicator);
+                indicator.setBounds(0, 0, 0,
+                        Defaults.ADS_HEIGHT_TAB_SELECTED_PIXEL);
             }
 
-            setSelectedTabIndicatorColor(mColor);
+            setSelectedTabIndicator(indicator);
+            setSelectedTabIndicatorColor(mAppliedColor);
         }
     }
 
     @Override
     public void setTextColor() {
-        if (mTextColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mTextColor = DynamicColorUtils.getContrastColor(mTextColor, mContrastWithColor);
+        if (mTextColor != Theme.Color.UNKNOWN) {
+            mAppliedTextColor = mTextColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedTextColor = DynamicColorUtils.getContrastColor(
+                        mTextColor, mContrastWithColor);
             }
 
-            setTabTextColors(DynamicColorUtils.adjustAlpha(mTextColor,
-                    WidgetDefaults.ADS_ALPHA_UNCHECKED), mTextColor);
+            setTabTextColors(DynamicColorUtils.adjustAlpha(mAppliedTextColor,
+                    Defaults.ADS_ALPHA_UNCHECKED), mAppliedTextColor);
             setTabRippleColor(DynamicResourceUtils.getColorStateList(
                     Color.TRANSPARENT, DynamicColorUtils.adjustAlpha(
-                            mTextColor, WidgetDefaults.ADS_ALPHA_PRESSED), false));
+                            mAppliedTextColor, Defaults.ADS_ALPHA_PRESSED), false));
+            DynamicMenuUtils.setViewItemsTint(this,
+                    mAppliedTextColor, mContrastWithColor, false);
         }
     }
 }

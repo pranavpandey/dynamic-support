@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -21,12 +21,12 @@
     <dimen name="ads_margin_bottom_sheet">0dp</dimen>
 
     <!-- Notification -->
-    <dimen name="ads_notification_margin_vertical">12dp</dimen>
-    <dimen name="ads_notification_margin_horizontal">16dp</dimen>
-    <dimen name="ads_notification_footer_margin_horizontal">12dp</dimen>
-    <dimen name="ads_notification_footer_size">56dp</dimen>
-    <dimen name="ads_notification_footer_margin">10dp</dimen>
-    <dimen name="ads_notification_icon">16dp</dimen>
-    <dimen name="ads_notification_font_size">12sp</dimen>
+    <dimen name="ads_remote_margin_vertical">12dp</dimen>
+    <dimen name="ads_remote_margin_horizontal">16dp</dimen>
+    <dimen name="ads_remote_footer_margin_horizontal">12dp</dimen>
+    <dimen name="ads_remote_footer_size">56dp</dimen>
+    <dimen name="ads_remote_footer_margin">10dp</dimen>
+    <dimen name="ads_remote_icon">16dp</dimen>
+    <dimen name="ads_remote_font_size">12sp</dimen>
 
 </resources>

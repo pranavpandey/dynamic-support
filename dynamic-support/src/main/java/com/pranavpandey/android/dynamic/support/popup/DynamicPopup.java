@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.popup;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
@@ -38,8 +39,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.TransitionManager;
 
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.widget.Dynamic;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
@@ -234,6 +235,7 @@ public abstract class DynamicPopup {
     /**
      * Build and show {@link PopupWindow} according to the supplied parameters.
      */
+    @SuppressLint("PrivateResource")
     public void show() {
         View view = LayoutInflater.from(getAnchor().getContext()).inflate(
                 R.layout.ads_popup, (ViewGroup) getAnchor().getRootView(), false);
@@ -252,13 +254,13 @@ public abstract class DynamicPopup {
         if (getHeaderView() != null) {
             DynamicViewUtils.addView(header, getHeaderView(), true);
         } else {
-            header.setVisibility(View.GONE);
+            Dynamic.setVisibility(header, View.GONE);
         }
 
         if (getFooterView() != null) {
             DynamicViewUtils.addView(footer, getFooterView(), true);
         } else {
-            footer.setVisibility(View.GONE);
+            Dynamic.setVisibility(footer, View.GONE);
         }
 
         if (getView() != null) {
@@ -344,7 +346,7 @@ public abstract class DynamicPopup {
                 }
             }
         } else {
-            content.setVisibility(View.GONE);
+            Dynamic.setVisibility(content, View.GONE);
         }
 
         mPopupWindow = new PopupWindow(view, getMaxWidth(),

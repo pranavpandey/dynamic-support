@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -27,11 +27,13 @@
 
     <!-- Headings -->
     <string name="ads_app">App</string>
+    <string name="ads_actions">Actions</string>
     <string name="ads_text">Text</string>
     <string name="ads_icon">Icon</string>
     <string name="ads_size">Size</string>
     <string name="ads_value">Value</string>
     <string name="ads_notification">Notification</string>
+    <string name="ads_notification_tile">Tile</string>
     <string name="ads_widgets">Widgets</string>
     <string name="ads_instructions">Instructions</string>
     <string name="ads_tutorial">Tutorial</string>
@@ -44,6 +46,7 @@
     <string name="ads_fixes">Fixes</string>
 
     <!-- Labels -->
+    <string name="ads_warning">Warning</string>
     <string name="ads_i_got_it">OK, Got it</string>
     <string name="ads_not_now">Not now</string>
     <string name="ads_yes_in">Yes, I\'m in</string>
@@ -55,17 +58,25 @@
     <string name="ads_load">Load</string>
     <string name="ads_file">File</string>
     <string name="ads_create">Create</string>
+    <string name="ads_open">Open</string>
     <string name="ads_previous">Previous</string>
     <string name="ads_next">Next</string>
     <string name="ads_skip">Skip</string>
     <string name="ads_loading">Loading&#8230;</string>
+    <string name="ads_play">Play</string>
+    <string name="ads_pause">Pause</string>
+    <string name="ads_exit">Exit</string>
     <string name="ads_finish">Finish</string>
     <string name="ads_recents">Recents</string>
+    <string name="ads_wallpaper">Wallpaper</string>
     <string name="ads_custom">Custom</string>
     <string name="ads_edit">Edit</string>
     <string name="ads_refresh">Refresh</string>
     <string name="ads_reset">Reset</string>
     <string name="ads_default">Default</string>
+    <string name="ads_normal">Normal</string>
+    <string name="ads_minimum">Minimum</string>
+    <string name="ads_experimental">Experimental</string>
     <string name="ads_sort">Sort</string>
     <string name="ads_sort_category">Category</string>
     <string name="ads_sort_name">Name</string>
@@ -100,6 +111,7 @@
     <string name="ads_permissions">Permissions</string>
     <string name="ads_permissions_subtitle">Please allow the required permissions.</string>
     <string name="ads_permissions_subtitle_single">Please allow the required permission.</string>
+    <string name="ads_perm_info_required">Permission required</string>
     <string name="ads_perm_info_grant_all">Please allow all the permissions to make the app working properly.</string>
     <string name="ads_perm_request">Request</string>
     <string name="ads_perm_request_desc">This permission is not granted. Tap to request.</string>
@@ -109,6 +121,8 @@
     <string name="ads_perm_denied_desc">To grant this permission, go to App info &gt; Permissions. Tap to go to the App info.</string>
     <string name="ads_perm_reinstall">Reinstall</string>
     <string name="ads_perm_reinstall_desc">To grant this permission, please reinstall the app. Tap to go to the App info.</string>
+    <string name="ads_perm_unknown">Unknown</string>
+    <string name="ads_perm_unknown_desc">This permission is not present in the system.</string>
     <string name="ads_perm_default">Permission</string>
     <string name="ads_perm_default_desc">This permission is required to perform some actions.</string>
     <string name="ads_perm_default_explain">Explanation.</string>
@@ -118,6 +132,7 @@
     <string name="ads_perm_overlay_desc">Permit drawing over other apps.</string>
     <string name="ads_perm_usage_access">Usage access</string>
     <string name="ads_perm_usage_access_desc">Permit usage access.</string>
+    <string name="ads_perm_accessibility">Accessibility</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">Data</string>
@@ -135,6 +150,8 @@
     <string name="ads_backup_rename">Rename backup</string>
     <string name="ads_backup_complete">Backup has been created successfully</string>
     <string name="ads_backup_error">Unable to create backup</string>
+    <string name="ads_backup_exists">Backup already exists</string>
+    <string name="ads_backup_replace">Replace if already exists</string>
     <string name="ads_backup_invalid">Invalid backup</string>
     <string name="ads_backup_restore">Restore</string>
     <string name="ads_backup_restore_title">Restore backup</string>
@@ -149,7 +166,7 @@
     <string name="ads_backup_modify_desc">Select a backup to modify.</string>
     <string name="ads_backup_restore_done">Backup has been restored successfully</string>
     <string name="ads_backup_restore_error">Unable to restore backup.</string>
-    <string name="ads_backup_not_found">No backup is found.</string>
+    <string name="ads_backup_not_found">No backups found.</string>
     <string name="ads_backup_modify_complete">Backup has been modified successfully</string>
     <string name="ads_backup_delete_all">Delete all</string>
     <string name="ads_backup_delete_all_title">Delete all backups</string>
@@ -163,6 +180,7 @@
     <string name="ads_backup_format_created">Backup created: %1$s</string>
     <string name="ads_backup_format_saved">Backup saved: %1$s</string>
     <string name="ads_backup_format_last">Last backup: %1$s</string>
+    <string name="ads_backup_format_last_storage">App storage: %1$s</string>
     <string name="ads_backup_format_modified">Backup modified: %1$s</string>
     <string name="ads_backup_format_last_modified">Last modified: %1$s</string>
     <string name="ads_backup_format_renamed">Backup renamed: %1$s</string>
@@ -180,6 +198,8 @@
     <string name="ads_dynamic_theme">Dynamic theme</string>
     <string name="ads_dynamic_theme_summary">Theme applied by the receiver.</string>
     <string name="ads_theme">Theme</string>
+    <string name="ads_theme_code">Code</string>
+    <string name="ads_theme_code_desc">Scan or share the theme.</string>
     <string name="ads_theme_customise_desc">Configure the theme below.</string>
     <string name="ads_theme_adjust_desc">Theme will be adjusted automatically according to the current Android version.</string>
     <string name="ads_theme_invalid">Invalid theme</string>
@@ -188,6 +208,8 @@
     <string name="ads_theme_color_palette_summary">Primary and accent color presets.</string>
     <string name="ads_theme_color_background">Background color</string>
     <string name="ads_theme_color_background_summary">Background color of the theme.</string>
+    <string name="ads_theme_color_background_summary_system">Background color of the system.</string>
+    <string name="ads_theme_color_stroke">Stroke color</string>
     <string name="ads_theme_color_primary">Primary color</string>
     <string name="ads_theme_color_primary_summary">Color used by the primary elements.</string>
     <string name="ads_theme_color_primary_dark">System color</string>
@@ -195,6 +217,8 @@
     <string name="ads_theme_color_accent">Accent color</string>
     <string name="ads_theme_color_secondary">Secondary color</string>
     <string name="ads_theme_color_accent_summary">Color used by the secondary elements.</string>
+    <string name="ads_theme_color_error">Error color</string>
+    <string name="ads_theme_color_error_summary">Color used to show the errors.</string>
     <string name="ads_theme_color_surface">Surface color</string>
     <string name="ads_theme_color_tint">Tint color</string>
     <string name="ads_theme_color_inverse">Inverse color</string>
@@ -204,6 +228,8 @@
     <string name="ads_theme_corner_size_summary">Corner radius of the app.</string>
     <string name="ads_theme_background_aware">Background aware</string>
     <string name="ads_theme_background_aware_desc">Adjust colors according to the background to provide best visibility.</string>
+    <string name="ads_theme_style">Style</string>
+    <string name="ads_theme_style_summary">Style of the theme.</string>
     <string name="ads_theme_app">App theme</string>
     <string name="ads_theme_app_summary">Style of the app.</string>
     <string name="ads_theme_app_desc">Select auto to use the day and night themes.</string>
@@ -220,9 +246,9 @@
     <string name="ads_theme_navigation_bar_summary_unchecked">Show default navigation bar.</string>
     <string name="ads_theme_navigation_bar_desc">Navigation bar theme will not be visible at some places to provide best visual experience.</string>
     <string name="ads_theme_notification">Notification theme</string>
-    <string name="ads_theme_notification_summary">Color palette for the notification.</string>
+    <string name="ads_theme_notification_summary">Color palette of the notification.</string>
     <string name="ads_theme_notification_style">Notification style</string>
-    <string name="ads_theme_notification_style_summary">Layout style for the notification.</string>
+    <string name="ads_theme_notification_style_summary">Style of the notification.</string>
     <string name="ads_theme_style_classic_desc">Select classic to use the color palette as background.</string>
     <string name="ads_theme_widget">Widget theme</string>
     <string name="ads_theme_widget_summary">Color palette for the widget.</string>
@@ -234,6 +260,7 @@
     <string name="ads_theme_import_done">Theme has been imported successfully.</string>
     <string name="ads_theme_export_done">Theme has been exported successfully.</string>
     <string name="ads_theme_export_error">Unable to save theme.</string>
+    <string name="ads_theme_share_error">Unable to share theme.</string>
     <string name="ads_theme_copy_done">Theme copied successfully.</string>
     <string name="ads_theme_edit_done">Theme has been edited successfully.</string>
     <string name="ads_theme_save_done">Theme saved successfully.</string>
@@ -292,10 +319,14 @@
     <string name="ads_picker_more_colors">More colors</string>
     <string name="ads_picker_presets">Presets</string>
 
-    <!-- Language selector -->
+    <!-- Miscellaneous -->
     <string name="ads_language">Language</string>
     <string name="ads_language_summary">Language used by the app.</string>
     <string name="ads_language_system">System</string>
+    <string name="ads_dynamic_motion">Motion</string>
+    <string name="ads_dynamic_motion_summary">Dynamic motion by playing all the animations.</string>
+    <string name="ads_dynamic_motion_summary_unchecked">Reduce motion by skipping some animations.</string>
+    <string name="ads_dynamic_motion_desc">Always reduce motion when the battery saver is turned on. Some animations cannot be skipped.</string>
 
     <!-- Notification and Channel -->
     <string name="ads_notification_priority">Notification priority</string>
@@ -307,6 +338,9 @@
     <string name="ads_notification_category">Notification category</string>
     <string name="ads_notification_category_summary">Configure notification shown by the app.</string>
     <string name="ads_notification_category_desc">Set low category importance to hide notification from the status bar and lock screen.</string>
+    <string name="ads_notification_close_drawer">Close drawer</string>
+    <string name="ads_notification_close_drawer_summary">Close notification drawer after performing the action.</string>
+    <string name="ads_notification_close_drawer_summary_unchecked">Do not change notification drawer state after performing the action.</string>
 
     <!-- App widget -->
     <string name="ads_widget_customise">Customise</string>
@@ -380,6 +414,7 @@
     <string name="ads_translators_contact">Contact via email if you want to translate.</string>
 
     <!-- Licenses -->
+    <string name="ads_notices">Notices</string>
     <string name="ads_licenses">Licenses</string>
     <string name="ads_license">License</string>
     <string name="ads_license_desc">View full license.</string>

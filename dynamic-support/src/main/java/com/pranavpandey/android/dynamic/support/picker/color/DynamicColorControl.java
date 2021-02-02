@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,22 +34,22 @@ import static com.pranavpandey.android.dynamic.support.picker.color.DynamicColor
 public @interface DynamicColorControl {
 
     /**
-     * Constant to show HSV and RGB controls.
+     * Constant for All (HSV, RGB and CMYK) the controls.
      */
     int ALL = 0;
 
     /**
-     * Constant to show HSV control only.
+     * Constant for the HSV controls.
      */
     int HSV = 1;
 
     /**
-     * Constant to show RGB control only.
+     * Constant for the RGB controls.
      */
     int RGB = 2;
 
     /**
-     * Constant to show CMYK control only.
+     * Constant for the CMYK controls.
      */
     int CMYK = 3;
 }

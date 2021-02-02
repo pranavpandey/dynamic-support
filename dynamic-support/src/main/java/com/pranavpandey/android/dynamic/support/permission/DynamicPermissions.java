@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import android.content.pm.PermissionInfo;
 import android.os.Build;
 import android.os.PowerManager;
 import android.provider.Settings;
+import android.view.accessibility.AccessibilityManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,6 +36,7 @@ import androidx.annotation.RestrictTo;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
 import com.pranavpandey.android.dynamic.support.model.DynamicAction;
 import com.pranavpandey.android.dynamic.support.model.DynamicPermission;
@@ -79,10 +81,11 @@ public class DynamicPermissions {
      * <p>Use {@link #initializeInstance(Context)} instead.
      */
     @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
-    protected DynamicPermissions() { }
+    private DynamicPermissions() { }
 
     private DynamicPermissions(@NonNull Context context) {
         this.mContext = context;
+        this.mPermissionActivity = DynamicPermissionsActivity.class;
     }
 
     /**
@@ -93,7 +96,7 @@ public class DynamicPermissions {
      */
     public static synchronized void initializeInstance(@Nullable Context context) {
         if (context == null) {
-            throw new NullPointerException("Context should not be null");
+            throw new NullPointerException("Context should not be null.");
         }
 
         if (sInstance == null) {
@@ -120,11 +123,12 @@ public class DynamicPermissions {
     }
 
     /**
-     * Get instance to access public methods. Must be called before accessing the methods.
+     * Retrieves the singleton instance of {@link DynamicPermissions}.
+     * <p>Must be called before accessing the public methods.
      *
-     * @return The singleton instance of this class.
+     * @return The singleton instance of {@link DynamicPermissions}.
      */
-    public static synchronized DynamicPermissions getInstance() {
+    public static synchronized @NonNull DynamicPermissions getInstance() {
         if (sInstance == null) {
             throw new IllegalStateException(DynamicPermissions.class.getSimpleName() +
                     " is not initialized, call initializeInstance(..) method first.");
@@ -138,7 +142,7 @@ public class DynamicPermissions {
      *
      * @return The permission activity used by this manager.
      */
-    public Class<?> getPermissionActivity() {
+    public @Nullable Class<?> getPermissionActivity() {
         return mPermissionActivity;
     }
 
@@ -147,7 +151,7 @@ public class DynamicPermissions {
      *
      * @param permissionActivity The permission activity class to be set.
      */
-    public void setPermissionActivity(Class<?> permissionActivity) {
+    public void setPermissionActivity(@NonNull Class<?> permissionActivity) {
         this.mPermissionActivity = permissionActivity;
     }
 
@@ -168,6 +172,10 @@ public class DynamicPermissions {
         Intent intent = requestPermissionsIntent(
                 context, permissions, history, actionIntent, action);
 
+        if (intent == null) {
+            return;
+        }
+
         if (context instanceof Activity) {
             ((Activity) context).startActivityForResult(intent, requestCode);
         } else {
@@ -185,11 +193,17 @@ public class DynamicPermissions {
      * @param actionIntent The intent which should be called after all the permissions have been
      *                     granted.
      * @param action The intent action, either start an activity or a service.
+     *
+     * @return The permissions activity intent for the supplied permissions.
      */
-    public Intent requestPermissionsIntent(@NonNull Context context,
+    public @Nullable Intent requestPermissionsIntent(@NonNull Context context,
             @NonNull String[] permissions, boolean history,
             @Nullable Intent actionIntent, @DynamicAction int action) {
-        Intent intent = new Intent(context, mPermissionActivity);
+        if (getPermissionActivity() == null) {
+            return null;
+        }
+
+        Intent intent = new Intent(context, getPermissionActivity());
         intent.setAction(DynamicIntent.ACTION_PERMISSIONS);
         intent.putExtra(DynamicIntent.EXTRA_PERMISSIONS, permissions);
         if (!history) {
@@ -265,7 +279,7 @@ public class DynamicPermissions {
      */
     public void requestPermissions(@NonNull String[] permissions, boolean history,
             @Nullable Intent actionIntent, @DynamicAction int action) {
-        requestPermissions(mContext, permissions, history, actionIntent, action);
+        requestPermissions(getContext(), permissions, history, actionIntent, action);
     }
 
     /**
@@ -335,7 +349,7 @@ public class DynamicPermissions {
      */
     public boolean isGranted(@NonNull String[] permissions, boolean request,
             @Nullable Intent actionIntent, @DynamicAction int action) {
-        return isGranted(mContext, permissions, request, actionIntent,
+        return isGranted(getContext(), permissions, request, actionIntent,
                 action, DynamicIntent.REQUEST_PERMISSIONS);
     }
 
@@ -417,8 +431,12 @@ public class DynamicPermissions {
                     }
                     break;
                 default:
-                    if (ContextCompat.checkSelfPermission(mContext,
-                            permission) != PackageManager.PERMISSION_GRANTED) {
+                    try {
+                        if (ContextCompat.checkSelfPermission(getContext(),
+                                permission) != PackageManager.PERMISSION_GRANTED) {
+                            permissionsNotGranted.add(permission);
+                        }
+                    } catch (Exception ignored) {
                         permissionsNotGranted.add(permission);
                     }
                     break;
@@ -436,7 +454,7 @@ public class DynamicPermissions {
      * @see Manifest.permission#WRITE_SETTINGS
      */
     public boolean canWriteSystemSettings() {
-        return !DynamicSdkUtils.is23() || Settings.System.canWrite(mContext);
+        return !DynamicSdkUtils.is23() || Settings.System.canWrite(getContext());
 
     }
 
@@ -448,7 +466,7 @@ public class DynamicPermissions {
      * @see Manifest.permission#SYSTEM_ALERT_WINDOW
      */
     public boolean canDrawOverlays() {
-        return !DynamicSdkUtils.is23() || Settings.canDrawOverlays(mContext);
+        return !DynamicSdkUtils.is23() || Settings.canDrawOverlays(getContext());
     }
 
     /**
@@ -461,10 +479,10 @@ public class DynamicPermissions {
     public boolean hasUsageAccess() {
         if (DynamicSdkUtils.is21()) {
             try {
-                PackageManager packageManager = mContext.getPackageManager();
+                PackageManager packageManager = getContext().getPackageManager();
                 ApplicationInfo applicationInfo = packageManager
-                        .getApplicationInfo(mContext.getPackageName(), 0);
-                AppOpsManager appOpsManager = (AppOpsManager) mContext
+                        .getApplicationInfo(getContext().getPackageName(), 0);
+                AppOpsManager appOpsManager = (AppOpsManager) getContext()
                         .getSystemService(Context.APP_OPS_SERVICE);
 
                 int mode = AppOpsManager.MODE_ERRORED;
@@ -483,6 +501,31 @@ public class DynamicPermissions {
     }
 
     /**
+     * Checks whether the accessibility service is enabled for the supplied class.
+     *
+     * @param clazz The class to be checked.
+     *
+     * @return {@code true} if the accessibility service is enabled for the supplied class.
+     *
+     * @see android.accessibilityservice.AccessibilityService
+     */
+    public boolean isAccessibilityService(@NonNull Class<?> clazz) {
+        try {
+            String prefString = Settings.Secure.getString(getContext().getContentResolver(),
+                    Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+            return prefString != null && prefString.contains(
+                    getContext().getPackageName() + "/" + clazz.getName());
+        } catch (Exception e) {
+            try {
+                return ((AccessibilityManager) getContext().getSystemService(
+                        Context.ACCESSIBILITY_SERVICE)).isEnabled();
+            } catch (Exception f) {
+                return false;
+            }
+        }
+    }
+
+    /**
      * Checks whether the battery optimizations are ignored for the package.
      *
      * @param settings {@code true} to open the battery optimization settings if the package
@@ -496,15 +539,15 @@ public class DynamicPermissions {
 
             try {
                 PowerManager powerManager = ((PowerManager)
-                        mContext.getSystemService(Context.POWER_SERVICE));
+                        getContext().getSystemService(Context.POWER_SERVICE));
 
                 if (powerManager != null) {
                     ignoring = powerManager.isIgnoringBatteryOptimizations(
-                            mContext.getPackageName());
+                            getContext().getPackageName());
                 }
 
                 if (!ignoring && settings) {
-                    DynamicPermissionUtils.openPermissionSettings(mContext,
+                    DynamicPermissionUtils.openPermissionSettings(getContext(),
                             Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
                 }
             } catch (Exception ignored) {
@@ -536,11 +579,11 @@ public class DynamicPermissions {
     public @NonNull List<DynamicPermission> getPermissionItemArrayList(
             @NonNull String[] permissions) {
         List<DynamicPermission> permissionsList = new ArrayList<>();
-        PackageManager packageManager = mContext.getPackageManager();
+        PackageManager packageManager = getContext().getPackageManager();
+        DynamicPermission dynamicPermission;
 
         for (String permission: permissions) {
             try {
-                DynamicPermission dynamicPermission;
                 PermissionInfo permInfo = packageManager.getPermissionInfo(
                         permission, PackageManager.GET_META_DATA);
 
@@ -548,11 +591,11 @@ public class DynamicPermissions {
                         || permission.equals(Manifest.permission.PACKAGE_USAGE_STATS)
                         || permission.equals(Manifest.permission.SYSTEM_ALERT_WINDOW)) {
                     dynamicPermission = new DynamicPermission(permission,
-                            DynamicResourceUtils.getDrawable(mContext,
+                            DynamicResourceUtils.getDrawable(getContext(),
                             DynamicPermissionUtils.getPermissionIcon(permission)),
-                            mContext.getString(DynamicPermissionUtils
+                            getContext().getString(DynamicPermissionUtils
                                     .getPermissionTitle(permission)),
-                            mContext.getString(DynamicPermissionUtils
+                            getContext().getString(DynamicPermissionUtils
                                     .getPermissionSubtitle(permission)));
 
                     if (permission.equals(Manifest.permission.WRITE_SETTINGS)) {
@@ -568,28 +611,32 @@ public class DynamicPermissions {
                     }
                 } else {
                     dynamicPermission = new DynamicPermission(
-                            permission, DynamicResourceUtils.getDrawable(mContext,
+                            permission, DynamicResourceUtils.getDrawable(getContext(),
                             DynamicPermissionUtils.getPermissionIcon(permission)),
                             permInfo.loadLabel(packageManager).toString());
 
                     dynamicPermission.setDangerous(true);
-                    dynamicPermission.setAllowed(ContextCompat.checkSelfPermission(mContext,
-                            permission) == PackageManager.PERMISSION_GRANTED);
+                    dynamicPermission.setAllowed(ContextCompat.checkSelfPermission(
+                            getContext(), permission) == PackageManager.PERMISSION_GRANTED);
                 }
 
                 if (!permInfo.loadLabel(packageManager).equals(permission)) {
                     dynamicPermission.setTitle(permInfo.loadLabel(packageManager).toString());
                 }
 
-                if (permInfo.loadDescription(packageManager) != null) {
-                    dynamicPermission.setSubtitle(
-                            permInfo.loadDescription(packageManager).toString());
-                }
-
-                if (!permissionsList.contains(dynamicPermission)) {
-                    permissionsList.add(dynamicPermission);
+                CharSequence description = permInfo.loadDescription(packageManager);
+                if (description != null) {
+                    dynamicPermission.setSubtitle(description.toString());
                 }
             } catch (Exception ignored) {
+                dynamicPermission = new DynamicPermission(permission,
+                        DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_error),
+                        getContext().getString(R.string.ads_perm_default), permission);
+                dynamicPermission.setUnknown(true);
+            }
+
+            if (!permissionsList.contains(dynamicPermission)) {
+                permissionsList.add(dynamicPermission);
             }
         }
 

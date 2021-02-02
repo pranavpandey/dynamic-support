@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@ package com.pranavpandey.android.dynamic.support.sample.adapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pranavpandey.android.dynamic.support.model.DynamicInfo
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicSimpleBinderAdapter
-import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicInfoBigBinder
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder
+import com.pranavpandey.android.dynamic.support.recyclerview.binder.factory.InfoBigBinder
 import com.pranavpandey.android.dynamic.support.sample.binder.LicenseBinder
 import java.util.*
 
@@ -45,9 +45,7 @@ class LicensesAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
-        (getDataBinder(getItemViewType(position))
-                as DynamicInfoBigBinder).data = getItem(position)
-
+        (getDataBinder(getItemViewType(position)) as InfoBigBinder).data = getItem(position)
         super.onBindViewHolder(viewHolder, position)
     }
 

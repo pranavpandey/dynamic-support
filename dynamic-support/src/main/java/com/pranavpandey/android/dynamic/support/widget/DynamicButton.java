@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.button.MaterialButton;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
@@ -59,6 +60,11 @@ public class DynamicButton extends MaterialButton implements
      * Color applied to this view.
      */
     private @ColorInt int mColor;
+
+    /**
+     * Color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedColor;
 
     /**
      * Background color for this view so that it will remain in contrast with this color.
@@ -140,19 +146,19 @@ public class DynamicButton extends MaterialButton implements
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
                     R.styleable.DynamicButton_ads_color,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicButton_ads_contrastWithColor,
-                    WidgetDefaults.getContrastWithColor(getContext()));
+                    Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicButton_ads_backgroundAware,
-                    WidgetDefaults.getBackgroundAware());
+                    Defaults.getBackgroundAware());
             mStyleBorderless = a.getBoolean(
                     R.styleable.DynamicButton_ads_styleBorderless,
-                    WidgetDefaults.ADS_STYLE_BORDERLESS);
+                    Defaults.ADS_STYLE_BORDERLESS);
             mTintBackground = a.getBoolean(
                     R.styleable.DynamicButton_ads_tintBackground,
-                    WidgetDefaults.ADS_TINT_BACKGROUND);
+                    Defaults.ADS_TINT_BACKGROUND);
         } finally {
             a.recycle();
         }
@@ -202,8 +208,13 @@ public class DynamicButton extends MaterialButton implements
     }
 
     @Override
+    public @ColorInt int getColor(boolean resolve) {
+        return resolve ? mAppliedColor : mColor;
+    }
+
+    @Override
     public @ColorInt int getColor() {
-        return mColor;
+        return getColor(true);
     }
 
     @Override
@@ -261,7 +272,7 @@ public class DynamicButton extends MaterialButton implements
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
-        setAlpha(enabled ? WidgetDefaults.ADS_ALPHA_ENABLED : WidgetDefaults.ADS_ALPHA_DISABLED);
+        setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
     }
 
     @Override
@@ -276,34 +287,35 @@ public class DynamicButton extends MaterialButton implements
 
     @Override
     public void setColor() {
-        if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+        if (mColor != Theme.Color.UNKNOWN) {
+            mAppliedColor = mColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
             DynamicTintUtils.setViewBackgroundTint(this, mContrastWithColor,
-                    mTintBackground ? mColor : DynamicColorUtils.getTintColor(
+                    mTintBackground ? mAppliedColor : DynamicColorUtils.getTintColor(
                             mContrastWithColor), mStyleBorderless, false);
 
             if (!mStyleBorderless) {
                 if (mTintBackground) {
                     setTextColor(DynamicResourceUtils.getColorStateList(
                             mContrastWithColor,
-                            DynamicColorUtils.getTintColor(mColor),
-                            DynamicColorUtils.getTintColor(mColor), false));
+                            DynamicColorUtils.getTintColor(mAppliedColor),
+                            DynamicColorUtils.getTintColor(mAppliedColor), false));
                 } else {
                     setTextColor(DynamicResourceUtils.getColorStateList(
                             mContrastWithColor,
-                            DynamicColorUtils.getContrastColor(mColor,
+                            DynamicColorUtils.getContrastColor(mAppliedColor,
                                     DynamicColorUtils.getTintColor(mContrastWithColor)),
-                            DynamicColorUtils.getContrastColor(mColor,
+                            DynamicColorUtils.getContrastColor(mAppliedColor,
                                     DynamicColorUtils.getTintColor(mContrastWithColor)),
                             false));
                 }
             } else {
                 setTextColor(DynamicResourceUtils.getColorStateList(
                         DynamicColorUtils.getTintColor(mContrastWithColor),
-                        mColor, mColor, false));
+                        mAppliedColor, mAppliedColor, false));
             }
         }
     }

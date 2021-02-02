@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -22,8 +22,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/ads_card_view_content_margin"
-    android:background="?attr/selectableItemBackground"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="?attr/selectableItemBackground">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
         android:id="@+id/ads_array_item_icon"
@@ -34,13 +34,22 @@
         android:layout_gravity="center_vertical"
         app:ads_colorType="tint_background" />
 
-    <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-        android:id="@+id/ads_array_item_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.0"
-        android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle1"
-        android:layout_gravity="center_vertical" />
+    <LinearLayout
+        style="@style/Widget.DynamicApp.Content.Row.Vertical.Weight">
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+            android:id="@+id/ads_array_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle1" />
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+            android:id="@+id/ads_array_item_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.DynamicApp.Body1" />
+
+    </LinearLayout>
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
         android:id="@+id/ads_array_item_selector"

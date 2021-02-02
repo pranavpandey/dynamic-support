@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,8 +47,7 @@ public class DynamicAppWidgetUtils {
      */
     public static void saveWidgetSettings(@NonNull String preferences,
             int appWidgetId, @Nullable String value) {
-        DynamicPreferences.getInstance().save(
-                preferences, String.valueOf(appWidgetId), value);
+        DynamicPreferences.getInstance().save(preferences, String.valueOf(appWidgetId), value);
     }
 
     /**

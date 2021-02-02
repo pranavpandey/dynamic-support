@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,10 +21,13 @@ import android.graphics.Color;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.pranavpandey.android.dynamic.support.model.adapter.DynamicThemeTypeAdapter;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.theme.AppTheme;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.strategy.ExcludeStrategy;
 import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
 
@@ -65,19 +68,71 @@ public class DynamicRemoteTheme extends DynamicWidgetTheme {
     /**
      * Constructor to initialize an object of this class.
      *
-     * @param dynamicAppTheme The dynamic app theme to copy the theme.
+     * @param dynamicTheme The dynamic theme to copy the theme.
      */
-    public DynamicRemoteTheme(@NonNull DynamicAppTheme dynamicAppTheme) {
-        super(dynamicAppTheme);
+    public DynamicRemoteTheme(@NonNull AppTheme<?> dynamicTheme) {
+        super(dynamicTheme);
     }
 
     @Override
-    public @ColorInt int getPrimaryColorDark(boolean resolve) {
-        if (resolve && super.getPrimaryColorDark(false) == AUTO) {
-            return DynamicTheme.getInstance().resolveSystemColor(
-                    DynamicTheme.getInstance().isSystemNightMode());
+    public @ColorInt int getBackgroundColor(boolean resolve, boolean inverse) {
+        if (resolve && super.getBackgroundColor(false, false) == Theme.AUTO) {
+            if (inverse && isInverseTheme()) {
+                return getTintBackgroundColor(true, false);
+            }
+
+            return DynamicTheme.getInstance().resolveSystemColor(false);
         }
 
-        return super.getPrimaryColorDark(resolve);
+        if (inverse && isInverseTheme()) {
+            return getTintBackgroundColor(resolve, false);
+        }
+
+        return super.getBackgroundColor(resolve, inverse);
+    }
+
+    @Override
+    public @ColorInt int getBackgroundColor(boolean resolve) {
+        return getBackgroundColor(resolve, true);
+    }
+
+    @Override
+    public @ColorInt int getTintBackgroundColor(boolean resolve, boolean inverse) {
+        if (resolve && super.getTintBackgroundColor(false, false) == Theme.AUTO) {
+            if (inverse && isInverseTheme()) {
+                return getBackgroundColor(true, false);
+            }
+
+            return DynamicTheme.getInstance().resolveSystemColor(true);
+        }
+
+        if (inverse && isInverseTheme()) {
+            return getBackgroundColor(resolve, false);
+        }
+
+        return super.getTintBackgroundColor(resolve, inverse);
+    }
+
+    @Override
+    public @ColorInt int getTintBackgroundColor(boolean resolve) {
+        return getTintBackgroundColor(resolve, true);
+    }
+
+    @Override
+    public boolean isInverseTheme() {
+        return DynamicTheme.getInstance().isSystemNightMode();
+    }
+
+    @Override
+    public @NonNull String toJsonString() {
+        return new Gson().toJson(new DynamicRemoteTheme(this));
+    }
+
+    @Override
+    public @NonNull String toDynamicString() {
+        return new GsonBuilder().setExclusionStrategies(new ExcludeStrategy())
+                .registerTypeAdapter(DynamicRemoteTheme.class,
+                        new DynamicThemeTypeAdapter<DynamicRemoteTheme>())
+                .setPrettyPrinting().create().toJson(new DynamicRemoteTheme(this));
     }
 }

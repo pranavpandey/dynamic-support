@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,12 +25,12 @@ import androidx.annotation.ColorInt;
 public interface DynamicWindowResolver {
 
     /**
-     * Get color for the status and navigation bar.
+     * Returns color for the status and navigation bars.
      *
      * @param optionalColor The optional color to provide some additional information like
      *                      the background color.
      *
-     * @return The color for the status and navigation bar.
+     * @return The color for the status and navigation bars.
      */
     @ColorInt int getSystemUIColor(@ColorInt int optionalColor);
 }

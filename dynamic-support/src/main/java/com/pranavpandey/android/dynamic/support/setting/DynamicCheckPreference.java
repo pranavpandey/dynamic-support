@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,11 @@ import android.widget.CompoundButton;
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SwitchCompat;
 
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A {@link DynamicSimplePreference} to provide the functionality of a
@@ -54,14 +55,14 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
     private CharSequence mSummaryUnchecked;
 
     /**
-     * Checked change listener to get the callback if switch state is changed.
+     * Checked change listener to get the callback when compound button state is changed.
      */
     private CompoundButton.OnCheckedChangeListener mOnCheckedChangeListener;
 
     /**
-     * Switch compat to show the checked state.
+     * Compound button to show the checked state.
      */
-    private SwitchCompat mSwitchCompat;
+    private CompoundButton mCompoundButton;
 
     public DynamicCheckPreference(@NonNull Context context) {
         super(context);
@@ -77,7 +78,9 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
     }
 
     @Override
-    protected void onLoadAttributes(AttributeSet attrs) {
+    protected void onLoadAttributes(@Nullable AttributeSet attrs) {
+        super.onLoadAttributes(attrs);
+
         TypedArray a = getContext().obtainStyledAttributes(attrs,
                 R.styleable.DynamicCheckPreference);
 
@@ -96,46 +99,78 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
     protected void onInflate() {
         super.onInflate();
 
-        mSwitchCompat = LayoutInflater.from(getContext()).inflate(
+        mCompoundButton = LayoutInflater.from(getContext()).inflate(
                 R.layout.ads_preference_check, this, false)
                 .findViewById(R.id.ads_preference_check_switch);
 
-        setViewFrame(mSwitchCompat, true);
+        setViewFrame(mCompoundButton, true);
 
         setOnPreferenceClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                setChecked(!mChecked);
+                setChecked(!isChecked());
             }
         }, false);
 
-
-        mChecked = DynamicPreferences.getInstance().load(getPreferenceKey(), mChecked);
+        mCompoundButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (getOnCheckedChangeListener() != null) {
+                    getOnCheckedChangeListener().onCheckedChanged(compoundButton, isChecked());
+                }
+            }
+        });
     }
 
     @Override
     protected void onUpdate() {
         super.onUpdate();
 
-        if (mSwitchCompat != null) {
-            if (!mChecked && mSummaryUnchecked != null) {
-                setTextView(getSummaryView(), mSummaryUnchecked);
+        mChecked = DynamicPreferences.getInstance().load(getPreferenceKey(), isChecked());
+
+        if (getCompoundButton() != null) {
+            if (!isChecked() && getSummaryUnchecked() != null) {
+                setTextView(getSummaryView(), getSummaryUnchecked());
             }
 
-            mSwitchCompat.post(new Runnable() {
-                @Override
-                public void run() {
-                    mSwitchCompat.setChecked(mChecked);
-                }
-            });
+            getCompoundButton().post(mUpdateRunnable);
         }
     }
+
+    /**
+     * Runnable to post the update.
+     */
+    private final Runnable mUpdateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (getCompoundButton() != null) {
+                getCompoundButton().setChecked(isChecked());
+            }
+        }
+    };
 
     @Override
     protected void onEnabled(boolean enabled) {
         super.onEnabled(enabled);
 
-        setViewEnabled(mSwitchCompat, enabled);
+        Dynamic.setEnabled(getCompoundButton(), enabled);
+    }
+
+    @Override
+    public void setColor() {
+        super.setColor();
+
+        if (getBackgroundAware() != Theme.BackgroundAware.UNKNOWN) {
+            Dynamic.setBackgroundAware(getCompoundButton(), getBackgroundAware());
+        }
+
+        if (getContrastWithColorType() != Theme.ColorType.NONE
+                && getContrastWithColorType() != Theme.ColorType.CUSTOM) {
+            Dynamic.setContrastWithColorType(getCompoundButton(), getContrastWithColorType());
+        } else if (getContrastWithColorType() == Theme.ColorType.CUSTOM
+                && getContrastWithColor() != Theme.Color.UNKNOWN) {
+            Dynamic.setContrastWithColor(getCompoundButton(), getContrastWithColor());
+        }
     }
 
     /**
@@ -155,9 +190,7 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
     public void setChecked(boolean checked) {
         this.mChecked = checked;
 
-        if (getPreferenceKey() != null) {
-            DynamicPreferences.getInstance().save(getPreferenceKey(), checked);
-        }
+        DynamicPreferences.getInstance().save(getPreferenceKey(), checked);
     }
 
     /**
@@ -177,7 +210,16 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
     public void setSummaryUnchecked(@Nullable String summaryUnchecked) {
         this.mSummaryUnchecked = summaryUnchecked;
 
-        onUpdate();
+        update();
+    }
+
+    /**
+     * Get the compound button used by this preference.
+     *
+     * @return The compound button used by this preference.
+     */
+    public @Nullable CompoundButton getCompoundButton() {
+        return mCompoundButton;
     }
 
     /**
@@ -203,14 +245,12 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         super.onSharedPreferenceChanged(sharedPreferences, key);
 
-        if (key.equals(getPreferenceKey())) {
-            mChecked = DynamicPreferences.getInstance().load(key, mChecked);
+        if (DynamicPreferences.isNullKey(key)) {
+            return;
+        }
 
-            if (mOnCheckedChangeListener != null) {
-                mOnCheckedChangeListener.onCheckedChanged(mSwitchCompat, mChecked);
-            }
-
-            onUpdate();
+        if (key.equals(super.getPreferenceKey())) {
+            update();
         }
     }
 }

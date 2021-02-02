@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 	https://github.com/lipis/flag-icon-css
 
 	Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,7 +28,7 @@
         android:pathData="M0,320h640v160.002H0z" />
 
     <path
-        android:fillColor="#FF000000"
+        android:fillColor="@android:color/black"
         android:pathData="M0,0h640v160H0z" />
 
     <path

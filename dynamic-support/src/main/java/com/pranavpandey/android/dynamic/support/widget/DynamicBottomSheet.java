@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
 
@@ -64,7 +65,7 @@ public class DynamicBottomSheet extends FrameLayout implements WindowInsetsWidge
         try {
             if (a.getBoolean(
                     R.styleable.DynamicBottomSheet_ads_windowInsets,
-                    WidgetDefaults.ADS_WINDOW_INSETS)) {
+                    Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }
         } finally {
@@ -90,17 +91,16 @@ public class DynamicBottomSheet extends FrameLayout implements WindowInsetsWidge
             return;
         }
 
-        final int paddingBottom = getPaddingBottom();
-        final int peekHeight = BottomSheetBehavior.from(this).getPeekHeight();
+        final int bottom = getPaddingBottom();
+        final int peek = BottomSheetBehavior.from(this).getPeekHeight();
         ViewCompat.setOnApplyWindowInsetsListener(this,
                 new androidx.core.view.OnApplyWindowInsetsListener() {
             @Override
             public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat insets) {
                 v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(),
-                        paddingBottom + insets.getSystemWindowInsetBottom());
-                BottomSheetBehavior.from(v).setPeekHeight(
-                        peekHeight + insets.getSystemWindowInsetBottom());
-                insets.consumeSystemWindowInsets();
+                        bottom + insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
+                BottomSheetBehavior.from(v).setPeekHeight(peek
+                        + insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
 
                 return insets;
             }

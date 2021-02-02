@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  * Copyright 2015 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -141,9 +141,9 @@ public class DynamicPageIndicator extends View implements ViewPager.OnPageChange
         animDuration = (long) a.getInteger(R.styleable.DynamicPageIndicator_ads_animationDuration,
                 DEFAULT_ANIM_DURATION);
         animHalfDuration = animDuration / 2;
-        unselectedColour = a.getColor( R.styleable.DynamicPageIndicator_ads_pageIndicatorColor,
+        unselectedColour = a.getColor(R.styleable.DynamicPageIndicator_ads_pageIndicatorColor,
                 DEFAULT_UNSELECTED_COLOUR);
-        selectedColour = a.getColor( R.styleable.DynamicPageIndicator_ads_currentPageIndicatorColor,
+        selectedColour = a.getColor(R.styleable.DynamicPageIndicator_ads_currentPageIndicatorColor,
                 DEFAULT_SELECTED_COLOUR);
 
         a.recycle();
@@ -166,12 +166,19 @@ public class DynamicPageIndicator extends View implements ViewPager.OnPageChange
 
     public void setViewPager(ViewPager viewPager) {
         this.viewPager = viewPager;
+
+        if (viewPager.getAdapter() == null) {
+            return;
+        }
+
         viewPager.addOnPageChangeListener(this);
         setPageCount(viewPager.getAdapter().getCount());
         viewPager.getAdapter().registerDataSetObserver(new DataSetObserver() {
             @Override
             public void onChanged() {
-                setPageCount(DynamicPageIndicator.this.viewPager.getAdapter().getCount());
+                if (DynamicPageIndicator.this.viewPager.getAdapter() != null)  {
+                    setPageCount(DynamicPageIndicator.this.viewPager.getAdapter().getCount());
+                }
             }
         });
         setCurrentPageImmediate();
@@ -259,8 +266,10 @@ public class DynamicPageIndicator extends View implements ViewPager.OnPageChange
         } else {
             currentPage = 0;
         }
-        if (dotCenterX != null) {
+        if (dotCenterX != null && dotCenterX.length > 0) {
             selectedDotX = dotCenterX[currentPage];
+        } else {
+            selectedDotX = 0;
         }
     }
 
@@ -570,7 +579,7 @@ public class DynamicPageIndicator extends View implements ViewPager.OnPageChange
 
     private void setSelectedPage(int now) {
         // Check for null array
-        if (now == currentPage || dotCenterX == null) return;
+        if (now == currentPage || dotCenterX == null || now >= dotCenterX.length) return;
 
         pageChanging = true;
         previousPage = currentPage;

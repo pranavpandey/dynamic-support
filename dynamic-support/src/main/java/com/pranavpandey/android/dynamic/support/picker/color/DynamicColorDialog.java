@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -86,6 +86,11 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     private Integer[][] mShades;
 
     /**
+     * Dynamic entries used by the picker.
+     */
+    private Integer[] mDynamics;
+
+    /**
      * The previous color.
      */
     private @ColorInt int mPreviousColor;
@@ -122,14 +127,14 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      *
      * @return A instance of {@link DynamicColorDialog}.
      */
-    public @NonNull static DynamicColorDialog newInstance() {
+    public static @NonNull DynamicColorDialog newInstance() {
         return new DynamicColorDialog();
     }
 
     @Override
     protected @NonNull DynamicDialog.Builder onCustomiseBuilder(
-            @NonNull final DynamicDialog.Builder dialogBuilder,
-            @Nullable final Bundle savedInstanceState) {
+            final @NonNull DynamicDialog.Builder dialogBuilder,
+            final @Nullable Bundle savedInstanceState) {
         mDynamicColorPicker = new DynamicColorPicker(requireContext());
         mControl = mDynamicColorPicker.getControl();
 
@@ -141,6 +146,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
         }
 
         mDynamicColorPicker.setColors(mColors, mShades);
+        mDynamicColorPicker.setDynamics(mDynamics);
         mDynamicColorPicker.setColorShape(mColorShape);
         mDynamicColorPicker.setAlpha(mAlpha);
         mDynamicColorPicker.setPreviousColor(mPreviousColor);
@@ -178,6 +184,10 @@ public class DynamicColorDialog extends DynamicDialogFragment {
         setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {
+                if (getDynamicDialog() == null) {
+                    return;
+                }
+
                 mDynamicColorPicker.onUpdate();
                 if (savedInstanceState == null) {
                     showView(mDynamicColorPicker.getType());
@@ -219,6 +229,10 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      * Show the presets view.
      */
     protected void showPresets() {
+        if (getDynamicDialog() == null) {
+            return;
+        }
+
         mType = DynamicPickerType.PRESETS;
         getDynamicDialog().getButton(DynamicDialog.BUTTON_NEUTRAL).setText(R.string.ads_custom);
         mDynamicColorPicker.showPresets();
@@ -228,6 +242,10 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      * Show the custom view.
      */
     protected void showCustom() {
+        if (getDynamicDialog() == null) {
+            return;
+        }
+
         mType = DynamicPickerType.CUSTOM;
         getDynamicDialog().getButton(DynamicDialog.BUTTON_NEUTRAL)
                 .setText(R.string.ads_picker_presets);
@@ -238,13 +256,16 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        if (mDynamicColorPicker != null) {
-            outState.putInt(ADS_STATE_PICKER_PREVIOUS_COLOR,
-                    mDynamicColorPicker.getPreviousColor());
-            outState.putInt(ADS_STATE_PICKER_COLOR, mDynamicColorPicker.getSelectedColor());
-            outState.putInt(ADS_STATE_PICKER_TYPE, mDynamicColorPicker.getType());
-            outState.putInt(ADS_STATE_PICKER_CONTROL, mDynamicColorPicker.getControl());
+        if (mDynamicColorPicker == null) {
+            return;
         }
+
+        mDynamics = mDynamicColorPicker.getDynamics();
+        outState.putInt(ADS_STATE_PICKER_PREVIOUS_COLOR,
+                mDynamicColorPicker.getPreviousColor());
+        outState.putInt(ADS_STATE_PICKER_COLOR, mDynamicColorPicker.getSelectedColor());
+        outState.putInt(ADS_STATE_PICKER_TYPE, mDynamicColorPicker.getType());
+        outState.putInt(ADS_STATE_PICKER_CONTROL, mDynamicColorPicker.getControl());
     }
 
     @Override
@@ -282,6 +303,28 @@ public class DynamicColorDialog extends DynamicDialogFragment {
             @Nullable @ColorInt Integer[][] shades) {
         this.mColors = colors;
         this.mShades = shades;
+
+        return this;
+    }
+
+    /**
+     * Get the dynamic color entries used by this picker.
+     *
+     * @return The dynamic color entries used by this picker.
+     */
+    public @Nullable Integer[] getDynamics() {
+        return mDynamics;
+    }
+
+    /**
+     * Set the dynamic color entries used by this picker.
+     *
+     * @param colors The color entries to be set.
+     *
+     * @return The {@link DynamicColorDialog} object to allow for chaining of calls to set methods.
+     */
+    public @NonNull DynamicColorDialog setDynamics(@Nullable @ColorInt Integer[] colors) {
+        this.mDynamics = colors;
 
         return this;
     }

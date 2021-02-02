@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ package com.pranavpandey.android.dynamic.support.listener;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.view.View;
+import android.view.Window;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -28,6 +29,87 @@ import androidx.annotation.Nullable;
  * An interface to listen the transition events.
  */
 public interface DynamicTransitionListener {
+
+    /**
+     * This method will be called on applying transitions.
+     * <p>It is recommended to do any shared element adjustments here like postponing
+     * the transition.
+     *
+     * @param exit {@code true} if the activity is exiting.
+     */
+    void onApplyTransitions(boolean exit);
+
+    /**
+     * Returns the enter transition used by his listener.
+     *
+     * @return The enter transition used by his listener.
+     *
+     * @see Window#setEnterTransition(android.transition.Transition)
+     * @see androidx.fragment.app.Fragment#setEnterTransition(Object)
+     * @see #onAdjustEnterReturnTransition(Object, boolean)
+     */
+    @Nullable Object getDynamicEnterTransition();
+
+    /**
+     * Returns the return transition used by his listener.
+     *
+     * @return The return transition transition used by his listener.
+     *
+     * @see Window#setExitTransition(android.transition.Transition)
+     * @see androidx.fragment.app.Fragment#setExitTransition(Object)
+     * @see #onAdjustEnterReturnTransition(Object, boolean)
+     */
+    @Nullable Object getDynamicReturnTransition();
+
+    /**
+     * Returns the exit transition used by his listener.
+     *
+     * @return The exit transition used by his listener.
+     *
+     * @see Window#setExitTransition(android.transition.Transition)
+     * @see androidx.fragment.app.Fragment#setEnterTransition(Object)
+     * @see #onAdjustExitReenterTransition(Object, boolean)
+     */
+    @Nullable Object getDynamicExitTransition();
+
+    /**
+     * Returns the reenter transition used by his listener.
+     *
+     * @return The reenter transition used by his listener.
+     *
+     * @see Window#setReenterTransition(android.transition.Transition)
+     * @see androidx.fragment.app.Fragment#setReenterTransition(Object)
+     * @see #onAdjustExitReenterTransition(Object, boolean)
+     */
+    @Nullable Object getDynamicReenterTransition();
+
+    /**
+     * This method will be called to optionally to adjust the enter and return transitions
+     * before applying.
+     *
+     * @param transition The transition to be adjusted.
+     * @param enter {@code true} if enter transition, otherwise return transition.
+     *
+     * @return The adjusted enter or return transition before applying.
+     *
+     * @see #getDynamicEnterTransition()
+     * @see #getDynamicReturnTransition()
+     */
+    @Nullable Object onAdjustEnterReturnTransition(@Nullable Object transition, boolean enter);
+
+    /**
+     * This method will be called to optionally to adjust the exit and reenter transitions
+     * before applying.
+     *
+     * @param transition The transition to be adjusted.
+     * @param exit {@code true} if exit transition, otherwise reenter transition.
+     *
+     * @return The adjusted exit or reenter transition before applying.
+     *
+     * @see #getDynamicExitTransition()
+     * @see #getDynamicReenterTransition()
+     */
+    @Nullable Object onAdjustExitReenterTransition(@Nullable Object transition, boolean exit);
 
     /**
      * This method will be called to postpone the transition until the returned view is laid.

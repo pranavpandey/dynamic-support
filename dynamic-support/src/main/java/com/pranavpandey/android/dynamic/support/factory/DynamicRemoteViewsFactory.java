@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,9 +34,14 @@ public abstract class DynamicRemoteViewsFactory implements RemoteViewsService.Re
     protected final Context mContext;
 
     /**
-     * App widget is used by this factory.
+     * App widget id used by this factory.
      */
     private final int mAppWidgetId;
+
+    /**
+     * App widget type used by this factory.
+     */
+    private final int mAppWidgetType;
 
     /**
      * Current width of the widget provider used for this factory in dips.
@@ -58,12 +63,13 @@ public abstract class DynamicRemoteViewsFactory implements RemoteViewsService.Re
      *
      * @param context The dynamic context for this factory.
      * @param appWidgetId The app widget id for this factory.
+     * @param appWidgetType The app widget type for this factory.
      * @param width The current width of the widget provider.
      * @param height The current height of the widget provider.
      */
     public DynamicRemoteViewsFactory(@NonNull Context context,
-            int appWidgetId, int width, int height) {
-        this(context, appWidgetId, width, height, false);
+            int appWidgetId, int appWidgetType, int width, int height) {
+        this(context, appWidgetId, appWidgetType, width, height, false);
     }
 
     /**
@@ -71,14 +77,16 @@ public abstract class DynamicRemoteViewsFactory implements RemoteViewsService.Re
      *
      * @param context The dynamic context for this factory.
      * @param appWidgetId The app widget id for this factory.
+     * @param appWidgetType The app widget type for this factory.
      * @param width The current width of the widget provider.
      * @param height The current height of the widget provider.
      * @param adjustPosition {@code true} to adjust the scrollable view position.
      */
-    public DynamicRemoteViewsFactory(@NonNull Context context,
-            int appWidgetId, int width, int height, boolean adjustPosition) {
+    public DynamicRemoteViewsFactory(@NonNull Context context, int appWidgetId,
+            int appWidgetType, int width, int height, boolean adjustPosition) {
         this.mContext = context;
         this.mAppWidgetId = appWidgetId;
+        this.mAppWidgetType = appWidgetType;
         this.mWidth = width;
         this.mHeight = height;
         this.mAdjustPosition = adjustPosition;
@@ -107,6 +115,15 @@ public abstract class DynamicRemoteViewsFactory implements RemoteViewsService.Re
      */
     public int getAppWidgetId() {
         return mAppWidgetId;
+    }
+
+    /**
+     * Get the app widget type used by this factory.
+     *
+     * @return The app widget type used by this factory.
+     */
+    public int getAppWidgetType() {
+        return mAppWidgetType;
     }
 
     /**

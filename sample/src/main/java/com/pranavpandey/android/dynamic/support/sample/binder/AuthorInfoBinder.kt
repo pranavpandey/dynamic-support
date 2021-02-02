@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.flexbox.FlexDirection
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.adapter.AppInfoAdapter
@@ -54,9 +55,9 @@ class AuthorInfoBinder(binderAdapter: AppInfoAdapter)
         private val author: DynamicInfoView = view.findViewById(R.id.info_author)
 
         init {
-            author.linksView.layoutManager =
-                    DynamicLayoutUtils.getGridLayoutManager(author.context,
-                            DynamicLayoutUtils.getGridCount(author.context))
+            author.linksView!!.layoutManager =
+                    DynamicLayoutUtils.getFlexboxLayoutManager(
+                            author.context, FlexDirection.ROW)
 
             if (author.linksColors != null) {
                 @ColorInt val colors = author.linksColors

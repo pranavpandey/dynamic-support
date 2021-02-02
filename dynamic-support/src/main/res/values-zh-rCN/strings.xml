@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -27,11 +27,13 @@
 
     <!-- Headings -->
     <string name="ads_app">应用</string>
+    <string name="ads_actions">动作</string>
     <string name="ads_text">文本</string>
     <string name="ads_icon">图标</string>
     <string name="ads_size">大小</string>
     <string name="ads_value">值</string>
     <string name="ads_notification">通知</string>
+    <string name="ads_notification_tile">磁贴</string>
     <string name="ads_widgets">小部件</string>
     <string name="ads_instructions">说明</string>
     <string name="ads_tutorial">教程</string>
@@ -44,6 +46,7 @@
     <string name="ads_fixes">修复</string>
 
     <!-- Labels -->
+    <string name="ads_warning">警告</string>
     <string name="ads_i_got_it">好的，我知道了</string>
     <string name="ads_not_now">不是现在</string>
     <string name="ads_yes_in">是的，我在</string>
@@ -55,17 +58,25 @@
     <string name="ads_load">加载</string>
     <string name="ads_file">文件</string>
     <string name="ads_create">创建</string>
+    <string name="ads_open">打开</string>
     <string name="ads_previous">保持现状</string>
     <string name="ads_next">下一个</string>
     <string name="ads_skip">跳过</string>
     <string name="ads_loading">载入中&#8230;</string>
+    <string name="ads_play">玩</string>
+    <string name="ads_pause">暂停</string>
+    <string name="ads_exit">出口</string>
     <string name="ads_finish">完成</string>
     <string name="ads_recents">最近活动</string>
+    <string name="ads_wallpaper">壁纸</string>
     <string name="ads_custom">自定义</string>
     <string name="ads_edit">编辑</string>
     <string name="ads_refresh">刷新</string>
     <string name="ads_reset">重启</string>
     <string name="ads_default">默认</string>
+    <string name="ads_normal">正常</string>
+    <string name="ads_minimum">最低要求</string>
+    <string name="ads_experimental">实验性</string>
     <string name="ads_sort">分类</string>
     <string name="ads_sort_category">类别</string>
     <string name="ads_sort_name">名称</string>
@@ -100,6 +111,7 @@
     <string name="ads_permissions">权限</string>
     <string name="ads_permissions_subtitle">请允许所需的权限。</string>
     <string name="ads_permissions_subtitle_single">请允许所需的权限。</string>
+    <string name="ads_perm_info_required">需要权限</string>
     <string name="ads_perm_info_grant_all">请允许所有的权限，使应用程序正常工作。</string>
     <string name="ads_perm_request">请求</string>
     <string name="ads_perm_request_desc">此权限不被允许。点按即可请求。</string>
@@ -109,15 +121,18 @@
     <string name="ads_perm_denied_desc">要允许此权限，请转至应用程序信息&gt;权限。点击转到应用程序信息。</string>
     <string name="ads_perm_reinstall">重新安装</string>
     <string name="ads_perm_reinstall_desc">要允许此权限，请重新安装该应用。点击转到应用程序信息。</string>
+    <string name="ads_perm_unknown">未知</string>
+    <string name="ads_perm_unknown_desc">该权限在系统中不存在。</string>
     <string name="ads_perm_default">允许</string>
     <string name="ads_perm_default_desc">执行一些操作需要此权限。</string>
     <string name="ads_perm_default_explain">说明。</string>
     <string name="ads_perm_write_system_settings">修改系统设置</string>
     <string name="ads_perm_write_system_settings_desc">允许修改系统设置。</string>
     <string name="ads_perm_overlay">在其他应用上层显示</string>
-    <string name="ads_perm_overlay_desc">允许在其他应用程序上层显示。</string>
+    <string name="ads_perm_overlay_desc">允许在其他应用上层绘制。</string>
     <string name="ads_perm_usage_access">使用情况访问权限</string>
     <string name="ads_perm_usage_access_desc">使用情况访问权限。</string>
+    <string name="ads_perm_accessibility">无障碍</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">数据</string>
@@ -135,6 +150,8 @@
     <string name="ads_backup_rename">重命名备份</string>
     <string name="ads_backup_complete">备份已成功创建</string>
     <string name="ads_backup_error">无法创建备份</string>
+    <string name="ads_backup_exists">备份已存在</string>
+    <string name="ads_backup_replace">Replace if already exists</string>
     <string name="ads_backup_invalid">备份无效</string>
     <string name="ads_backup_restore">恢复</string>
     <string name="ads_backup_restore_title">恢复备份</string>
@@ -149,7 +166,7 @@
     <string name="ads_backup_modify_desc">选择要修改的备份。</string>
     <string name="ads_backup_restore_done">备份已成功恢复</string>
     <string name="ads_backup_restore_error">无法恢复备份。</string>
-    <string name="ads_backup_not_found">没有找到备份。</string>
+    <string name="ads_backup_not_found">备份未找到。</string>
     <string name="ads_backup_modify_complete">备份已成功修改</string>
     <string name="ads_backup_delete_all">删除全部</string>
     <string name="ads_backup_delete_all_title">删除全部备份</string>
@@ -163,6 +180,7 @@
     <string name="ads_backup_format_created">已创建备份：%1$s</string>
     <string name="ads_backup_format_saved">备份保存：%1$s</string>
     <string name="ads_backup_format_last">上次备份：%1$s</string>
+    <string name="ads_backup_format_last_storage">应用程序存储: %1$s</string>
     <string name="ads_backup_format_modified">备份修改：%1$s</string>
     <string name="ads_backup_format_last_modified">上次修改时间：%1$s</string>
     <string name="ads_backup_format_renamed">备份重命名为：%1$s</string>
@@ -180,6 +198,8 @@
     <string name="ads_dynamic_theme">动态主题</string>
     <string name="ads_dynamic_theme_summary">接收者应用的主题。</string>
     <string name="ads_theme">主题</string>
+    <string name="ads_theme_code">码</string>
+    <string name="ads_theme_code_desc">扫描或共享主题。</string>
     <string name="ads_theme_customise_desc">配置以下主题。</string>
     <string name="ads_theme_adjust_desc">主题会根据当前的Android版本自动调整。</string>
     <string name="ads_theme_invalid">主题无效</string>
@@ -188,6 +208,9 @@
     <string name="ads_theme_color_palette_summary">主颜色和强调色预设。</string>
     <string name="ads_theme_color_background">背景色</string>
     <string name="ads_theme_color_background_summary">主题背景色。</string>
+    <string name="ads_theme_color_background_summary_system">系统的背景色。</string>
+    <string name="ads_theme_color_stroke">笔触颜色</string>
+    <string name="ads_theme_color_surface">表面</string>
     <string name="ads_theme_color_primary">主题色</string>
     <string name="ads_theme_color_primary_summary">主要元素使用的颜色。</string>
     <string name="ads_theme_color_primary_dark">系统颜色</string>
@@ -195,7 +218,8 @@
     <string name="ads_theme_color_accent">强调色</string>
     <string name="ads_theme_color_secondary">辅助色</string>
     <string name="ads_theme_color_accent_summary">辅助元素使用的颜色。</string>
-    <string name="ads_theme_color_surface">表面</string>
+    <string name="ads_theme_color_error">错误颜色</string>
+    <string name="ads_theme_color_error_summary">用于显示错误的颜色。</string>
     <string name="ads_theme_color_tint">色彩</string>
     <string name="ads_theme_color_inverse">反色</string>
     <string name="ads_theme_font_scale">字体比例</string>
@@ -204,6 +228,8 @@
     <string name="ads_theme_corner_size_summary">应用程序的角半径。</string>
     <string name="ads_theme_background_aware">背景感知</string>
     <string name="ads_theme_background_aware_desc">根据背景调整颜色以提供最佳可见性。</string>
+    <string name="ads_theme_style">样式</string>
+    <string name="ads_theme_style_summary">主题样式。</string>
     <string name="ads_theme_app">应用主题</string>
     <string name="ads_theme_app_summary">应用程序主题。</string>
     <string name="ads_theme_app_desc">选择自动使用日间和夜间主题。</string>
@@ -222,7 +248,7 @@
     <string name="ads_theme_notification">通知主题</string>
     <string name="ads_theme_notification_summary">通知调色板。</string>
     <string name="ads_theme_notification_style">通知样式</string>
-    <string name="ads_theme_notification_style_summary">通知布局样式。</string>
+    <string name="ads_theme_notification_style_summary">通知样式。</string>
     <string name="ads_theme_style_classic_desc">选择经典样式，以调色板作为背景。</string>
     <string name="ads_theme_widget">小部件主题</string>
     <string name="ads_theme_widget_summary">小部件调色板。</string>
@@ -234,6 +260,7 @@
     <string name="ads_theme_import_done">主题已成功导入。</string>
     <string name="ads_theme_export_done">该主题已成功导出。</string>
     <string name="ads_theme_export_error">无法保存主题。</string>
+    <string name="ads_theme_share_error">无法共享主题。</string>
     <string name="ads_theme_copy_done">该主题已成功复制。</string>
     <string name="ads_theme_edit_done">主题已成功编辑。</string>
     <string name="ads_theme_save_done">主题已成功保存。</string>
@@ -292,10 +319,14 @@
     <string name="ads_picker_more_colors">更多色彩</string>
     <string name="ads_picker_presets">预置</string>
 
-    <!-- Language selector -->
+    <!-- Miscellaneous -->
     <string name="ads_language">语言</string>
     <string name="ads_language_summary">应用程序使用的语言。</string>
     <string name="ads_language_system">系统</string>
+    <string name="ads_dynamic_motion">运动</string>
+    <string name="ads_dynamic_motion_summary">通过播放所有动画进行动态运动。</string>
+    <string name="ads_dynamic_motion_summary_unchecked">通过跳过一些动画来减少运动。</string>
+    <string name="ads_dynamic_motion_desc">打开节电开关时，请务必减少动作。 某些动画无法跳过。</string>
 
     <!-- Notification and Channel -->
     <string name="ads_notification_priority">通知优先权</string>
@@ -307,6 +338,9 @@
     <string name="ads_notification_category">通知类别</string>
     <string name="ads_notification_category_summary">配置应用程序显示的通知。</string>
     <string name="ads_notification_category_desc">设置低优先级以隐藏状态栏和锁定屏幕通知。</string>
+    <string name="ads_notification_close_drawer">关闭抽屉</string>
+    <string name="ads_notification_close_drawer_summary">执行操作后关闭通知抽屉</string>
+    <string name="ads_notification_close_drawer_summary_unchecked">执行操作后不要更改通知抽屉状态</string>
 
     <!-- App widget -->
     <string name="ads_widget_customise">定制</string>
@@ -380,6 +414,7 @@
     <string name="ads_translators_contact">如果您想翻译，请通过电子邮件联系。</string>
 
     <!-- Licenses -->
+    <string name="ads_notices">告示</string>
     <string name="ads_licenses">许可证</string>
     <string name="ads_license">许可证</string>
     <string name="ads_license_desc">查看完整许可证。</string>

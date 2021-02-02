@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
@@ -49,6 +50,13 @@ public class DynamicRecyclerView extends RecyclerView
     private @Theme.ColorType int mColorType;
 
     /**
+     * Scroll bar color type applied to this view.
+     *
+     * @see Theme.ColorType
+     */
+    private @Theme.ColorType int mScrollBarColorType;
+
+    /**
      * Background color type for this view so that it will remain in contrast with this
      * color type.
      */
@@ -58,6 +66,21 @@ public class DynamicRecyclerView extends RecyclerView
      * Color applied to this view.
      */
     private @ColorInt int mColor;
+
+    /**
+     * Color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedColor;
+
+    /**
+     * Scroll bar color applied to this view.
+     */
+    private @ColorInt int mScrollBarColor;
+
+    /**
+     * Scroll bar color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedScrollBarColor;
 
     /**
      * Background color for this view so that it will remain in contrast with this color.
@@ -78,18 +101,6 @@ public class DynamicRecyclerView extends RecyclerView
      * @see #mContrastWithColor
      */
     private @Theme.BackgroundAware int mBackgroundAware;
-
-    /**
-     * Scroll bar color type applied to this view.
-     *
-     * @see Theme.ColorType
-     */
-    private @Theme.ColorType int mScrollBarColorType;
-
-    /**
-     * Scroll bar color applied to this view.
-     */
-    private @ColorInt int mScrollBarColor;
 
     public DynamicRecyclerView(@NonNull Context context) {
         this(context, null);
@@ -116,29 +127,29 @@ public class DynamicRecyclerView extends RecyclerView
         try {
             mColorType = a.getInt(
                     R.styleable.DynamicRecyclerView_ads_colorType,
-                    WidgetDefaults.ADS_COLOR_EDGE_EFFECT);
+                    Defaults.ADS_COLOR_TYPE_EDGE_EFFECT);
             mScrollBarColorType = a.getInt(
                     R.styleable.DynamicRecyclerView_ads_scrollBarColorType,
-                    WidgetDefaults.ADS_COLOR_SCROLL_BAR);
+                    Defaults.ADS_COLOR_TYPE_SCROLLABLE);
             mContrastWithColorType = a.getInt(
                     R.styleable.DynamicRecyclerView_ads_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
                     R.styleable.DynamicRecyclerView_ads_color,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mScrollBarColor = a.getColor(
                     R.styleable.DynamicRecyclerView_ads_scrollBarColor,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicRecyclerView_ads_contrastWithColor,
-                    WidgetDefaults.getContrastWithColor(getContext()));
+                    Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicRecyclerView_ads_backgroundAware,
-                    WidgetDefaults.getBackgroundAware());
+                    Defaults.getBackgroundAware());
 
             if (a.getBoolean(
                     R.styleable.DynamicRecyclerView_ads_windowInsets,
-                    WidgetDefaults.ADS_WINDOW_INSETS)) {
+                    Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }
         } finally {
@@ -212,8 +223,13 @@ public class DynamicRecyclerView extends RecyclerView
     }
 
     @Override
+    public @ColorInt int getColor(boolean resolve) {
+        return resolve ? mAppliedColor : mColor;
+    }
+
+    @Override
     public @ColorInt int getColor() {
-        return mColor;
+        return getColor(true);
     }
 
     @Override
@@ -225,8 +241,13 @@ public class DynamicRecyclerView extends RecyclerView
     }
 
     @Override
+    public @ColorInt int getScrollBarColor(boolean resolve) {
+        return resolve ? mAppliedScrollBarColor : mScrollBarColor;
+    }
+
+    @Override
     public @ColorInt int getScrollBarColor() {
-        return mScrollBarColor;
+        return getScrollBarColor(true);
     }
 
     @Override
@@ -277,24 +298,26 @@ public class DynamicRecyclerView extends RecyclerView
 
     @Override
     public void setColor() {
-        if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+        if (mColor != Theme.Color.UNKNOWN) {
+            mAppliedColor = mColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
-            DynamicScrollUtils.setEdgeEffectColor(this, mColor);
+            DynamicScrollUtils.setEdgeEffectColor(this, mAppliedColor);
         }
     }
 
     @Override
     public void setScrollBarColor() {
-        if (mScrollBarColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mScrollBarColor = DynamicColorUtils.getContrastColor(
+        if (mScrollBarColor != Theme.Color.UNKNOWN) {
+            mAppliedScrollBarColor = mScrollBarColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedScrollBarColor = DynamicColorUtils.getContrastColor(
                         mScrollBarColor, mContrastWithColor);
             }
 
-            DynamicScrollUtils.setScrollBarColor(this, mScrollBarColor);
+            DynamicScrollUtils.setScrollBarColor(this, mAppliedScrollBarColor);
         }
     }
 
