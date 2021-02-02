@@ -20,7 +20,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.flexbox.FlexDirection
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.adapter.AppInfoAdapter
@@ -54,8 +53,8 @@ class AppInfoBinder(binderAdapter: AppInfoAdapter)
 
         init {
             app.linksView!!.layoutManager =
-                    DynamicLayoutUtils.getFlexboxLayoutManager(
-                            app.context, FlexDirection.ROW)
+                    DynamicLayoutUtils.getGridLayoutManager(app.context,
+                            DynamicLayoutUtils.getGridCount(app.context))
         }
     }
 }

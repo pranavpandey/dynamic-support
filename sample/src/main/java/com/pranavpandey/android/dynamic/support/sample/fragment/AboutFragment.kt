@@ -17,12 +17,17 @@
 package com.pranavpandey.android.dynamic.support.sample.fragment
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.AppBarLayout
 import com.pranavpandey.android.dynamic.support.fragment.DynamicViewPager2Fragment
 import com.pranavpandey.android.dynamic.support.fragment.DynamicViewPagerFragment
 import com.pranavpandey.android.dynamic.support.sample.R
+import com.pranavpandey.android.dynamic.support.utils.DynamicPermissionUtils
 import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils
+
 
 /**
  * About fragment to show app info and licences by using [DynamicViewPagerFragment].
@@ -46,6 +51,24 @@ class AboutFragment : DynamicViewPager2Fragment() {
 
             return fragment
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.ads_menu_info, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.ads_menu_info) {
+            DynamicPermissionUtils.launchAppInfo(requireContext())
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        
+        setHasOptionsMenu(true)
     }
 
     override fun getSubtitle(): CharSequence? {
@@ -90,7 +113,7 @@ class AboutFragment : DynamicViewPager2Fragment() {
         // Scroll toolbar for this fragment.
         dynamicActivity.setToolbarLayoutFlags(
                 AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
-                or AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS)
+                        or AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS)
 
         // Select current page from the bundle arguments.
         if (arguments != null && requireArguments().containsKey(

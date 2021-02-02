@@ -21,7 +21,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.flexbox.FlexDirection
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.adapter.AppInfoAdapter
@@ -56,8 +55,8 @@ class AuthorInfoBinder(binderAdapter: AppInfoAdapter)
 
         init {
             author.linksView!!.layoutManager =
-                    DynamicLayoutUtils.getFlexboxLayoutManager(
-                            author.context, FlexDirection.ROW)
+                    DynamicLayoutUtils.getGridLayoutManager(author.context,
+                            DynamicLayoutUtils.getGridCount(author.context))
 
             if (author.linksColors != null) {
                 @ColorInt val colors = author.linksColors
