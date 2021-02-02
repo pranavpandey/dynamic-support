@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@
     style="@style/Widget.DynamicApp.Content.Card"
     android:id="@+id/ads_item_view"
     android:orientation="vertical"
-    android:alpha="@integer/ads_empty_view_alpha">
+    android:alpha="@integer/ads_alpha_empty_view">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
         style="@style/Widget.DynamicApp.Image.Empty"
@@ -41,17 +41,17 @@
             android:id="@+id/ads_item_view_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:textAllCaps="true"
-            app:ads_rtlSupport="false"
-            app:ads_colorType="tint_background" />
+            app:ads_rtlSupport="false" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
             style="@style/TextAppearance.DynamicApp.Subtitle1.Secondary"
             android:id="@+id/ads_item_view_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:ads_rtlSupport="false"
-            app:ads_colorType="tint_background" />
+            android:gravity="center_horizontal"
+            app:ads_rtlSupport="false" />
 
     </LinearLayout>
 

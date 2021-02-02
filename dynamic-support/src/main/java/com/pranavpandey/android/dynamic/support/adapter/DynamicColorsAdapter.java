@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,6 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
-import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
@@ -45,7 +44,7 @@ public class DynamicColorsAdapter extends BaseAdapter {
     /**
      * Array of colors to be handled by this adapter.
      */
-    private @ColorInt Integer[] mDataSet;
+    private @ColorInt Integer[] mData;
 
     /**
      * The selected color.
@@ -90,7 +89,7 @@ public class DynamicColorsAdapter extends BaseAdapter {
     public DynamicColorsAdapter(@NonNull @ColorInt Integer[] colors,
             @ColorInt int selectedColor, @DynamicColorShape int colorShape, boolean alpha,
             @NonNull DynamicColorListener dynamicColorListener) {
-        this.mDataSet = colors;
+        this.mData = colors;
         this.mSelectedColor = selectedColor;
         this.mColorShape = colorShape;
         this.mAlpha = alpha;
@@ -116,7 +115,7 @@ public class DynamicColorsAdapter extends BaseAdapter {
         dynamicColorView.setColor(color);
         dynamicColorView.setColorShape(mColorShape);
         dynamicColorView.setAlpha(mAlpha);
-        if (mSelectedColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
+        if (mSelectedColor != Theme.Color.UNKNOWN) {
             dynamicColorView.setSelected(mSelectedColor == color);
         }
 
@@ -139,12 +138,12 @@ public class DynamicColorsAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mDataSet.length;
+        return mData.length;
     }
 
     @Override
     public Object getItem(int position) {
-        return mDataSet[position];
+        return mData[position];
     }
 
     @Override
@@ -153,21 +152,21 @@ public class DynamicColorsAdapter extends BaseAdapter {
     }
 
     /**
-     * Get the data set handled by this adapter.
+     * Get the data handled by this adapter.
      *
      * @return The array of colors to be handled by this adapter.
      */
-    public @NonNull @ColorInt Integer[] getDataSet() {
-        return mDataSet;
+    public @NonNull @ColorInt Integer[] getData() {
+        return mData;
     }
 
     /**
      * Sets array of colors to be handled by this adapter.
      *
-     * @param dataSet The array of colors to be set.
+     * @param data The array of colors to be set.
      */
-    public void setDataSet(@NonNull @ColorInt Integer[] dataSet) {
-        this.mDataSet = dataSet;
+    public void setData(@NonNull @ColorInt Integer[] data) {
+        this.mData = data;
 
         notifyDataSetChanged();
     }

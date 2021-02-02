@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -38,10 +38,15 @@
             android:id="@+id/ads_tutorial_footer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/ads_margin_medium"
-            android:orientation="horizontal"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true">
+            android:layout_alignParentBottom="true"
+            android:paddingTop="@dimen/ads_margin_small"
+            android:paddingLeft="@dimen/ads_margin_medium"
+            android:paddingStart="@dimen/ads_margin_medium"
+            android:paddingRight="@dimen/ads_margin_medium"
+            android:paddingEnd="@dimen/ads_margin_medium"
+            android:paddingBottom="@dimen/ads_margin_medium"
+            android:orientation="horizontal">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
                 style="@style/Widget.DynamicApp.Button.ImageButton"
@@ -58,9 +63,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
-                android:orientation="vertical"
                 android:layout_gravity="center_vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicButton
                     style="@style/Widget.DynamicApp.Button"

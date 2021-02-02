@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,18 @@
 package com.pranavpandey.android.dynamic.support.listener;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
+
+import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.theme.AppTheme;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * An interface to listen the dynamic change events.
@@ -26,9 +36,53 @@ import android.os.Build;
 public interface DynamicListener {
 
     /**
-     * This method will be called when the navigation bar theme has been changed.
+     * Returns the context used by this listener.
+     *
+     * @return The context used by this listener.
      */
-    void onNavigationBarThemeChanged();
+    @NonNull Context getContext();
+
+    /**
+     * This method will be called to return the theme style resource for this listener.
+     * <p>Override this method to supply your own customised style.
+     *
+     * @param theme The optional dynamic theme to resolve the style resource.
+     *
+     * @return The theme style resource for this listener.
+     *
+     * @see AppTheme#isDarkTheme()
+     */
+    @StyleRes int getThemeRes(@Nullable AppTheme<?> theme);
+
+    /**
+     * This method will be called to return the theme style resource for this listener.
+     * <p>Override this method to supply your own customised style.
+     *
+     * @return The theme style resource for this listener.
+     *
+     * @see DynamicAppTheme#isDarkTheme()
+     */
+    @StyleRes int getThemeRes();
+
+    /**
+     * This method will be called to return the dynamic app theme for this listener.
+     * <p>Override this method to supply your own customised theme.
+     *
+     * @return The dynamic app theme for this listener.
+     */
+    @Nullable AppTheme<?> getDynamicTheme();
+
+    /**
+     * This method will be called to resolve the default color according to it's type.
+     * <p>It is useful in resolving the color if the default theme also has auto values.
+     *
+     * @param colorType The color type to be resolved.
+     *
+     * @return The resolved default color according to the color type.
+     *
+     * @see Theme#AUTO
+     */
+    @ColorInt int getDefaultColor(@Theme.ColorType int colorType);
 
     /**
      * This method will be called when the dynamic change event occurs (like theme, locale, etc.).
@@ -69,10 +123,23 @@ public interface DynamicListener {
     /**
      * This method will be called when the power save mode has been changed.
      *
-     * <p><p>It will be called only on API 21 and above.
+     * <p>It will be called only on API 21 and above.
      *
      * @param powerSaveMode {@code true} if the device is in power save mode.
      */
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     void onPowerSaveModeChanged(boolean powerSaveMode);
+
+    /**
+     * Returns whether the navigation bar theme should be applied for the activity.
+     * <p>It will be applied only on the API 21 and above devices.
+     *
+     * @return {@code true} to apply navigation bar theme for the activity.
+     */
+    boolean setNavigationBarTheme();
+
+    /**
+     * This method will be called when the navigation bar theme has been changed.
+     */
+    void onNavigationBarThemeChanged();
 }

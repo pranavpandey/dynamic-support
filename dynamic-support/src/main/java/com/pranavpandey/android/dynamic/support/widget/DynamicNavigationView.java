@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.internal.ScrimInsetsFrameLayout;
 import com.google.android.material.navigation.NavigationView;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
@@ -58,37 +59,6 @@ public class DynamicNavigationView extends NavigationView
      * @see Theme.ColorType
      */
     private @Theme.ColorType int mColorType;
-
-    /**
-     * Background color type for this view so that it will remain in contrast with this
-     * color type.
-     */
-    private @Theme.ColorType int mContrastWithColorType;
-
-    /**
-     * Color applied to this view.
-     */
-    private @ColorInt int mColor;
-
-    /**
-     * Background color for this view so that it will remain in contrast with this color.
-     */
-    private @ColorInt int mContrastWithColor;
-
-    /**
-     * The background aware functionality to change this view color according to the background.
-     * It was introduced to provide better legibility for colored views and to avoid dark view
-     * on dark background like situations.
-     *
-     * <p><p>If this is enabled then, it will check for the contrast color and do color
-     * calculations according to that color so that this text view will always be visible on
-     * that background. If no contrast color is found then, it will take the default
-     * background color.
-     *
-     * @see Theme.BackgroundAware
-     * @see #mContrastWithColor
-     */
-    private @Theme.BackgroundAware int mBackgroundAware;
 
     /**
      * Color type applied to the background of this view.
@@ -119,6 +89,22 @@ public class DynamicNavigationView extends NavigationView
     private @Theme.ColorType int mStateSelectedColorType;
 
     /**
+     * Background color type for this view so that it will remain in contrast with this
+     * color type.
+     */
+    private @Theme.ColorType int mContrastWithColorType;
+
+    /**
+     * Color applied to this view.
+     */
+    private @ColorInt int mColor;
+
+    /**
+     * Color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedColor;
+
+    /**
      * Background color applied to this view.
      */
     private @ColorInt int mBackgroundColor;
@@ -129,14 +115,49 @@ public class DynamicNavigationView extends NavigationView
     private @ColorInt int mScrollBarColor;
 
     /**
+     * Scroll bar color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedScrollBarColor;
+
+    /**
      * Normal item color applied to this view.
      */
     private @ColorInt int mStateNormalColor;
 
     /**
+     * Normal item color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedStateNormalColor;
+
+    /**
      * Selected item color applied to this view.
      */
     private @ColorInt int mStateSelectedColor;
+
+    /**
+     * Selected item color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedStateSelectedColor;
+
+    /**
+     * Background color for this view so that it will remain in contrast with this color.
+     */
+    private @ColorInt int mContrastWithColor;
+
+    /**
+     * The background aware functionality to change this view color according to the background.
+     * It was introduced to provide better legibility for colored views and to avoid dark view
+     * on dark background like situations.
+     *
+     * <p>If this is enabled then, it will check for the contrast color and do color
+     * calculations according to that color so that this text view will always be visible on
+     * that background. If no contrast color is found then, it will take the default
+     * background color.
+     *
+     * @see Theme.BackgroundAware
+     * @see #mContrastWithColor
+     */
+    private @Theme.BackgroundAware int mBackgroundAware;
 
     public DynamicNavigationView(@NonNull Context context) {
         this(context, null);
@@ -166,10 +187,10 @@ public class DynamicNavigationView extends NavigationView
                     Theme.ColorType.BACKGROUND);
             mColorType = a.getInt(
                     R.styleable.DynamicNavigationView_ads_colorType,
-                    WidgetDefaults.ADS_COLOR_EDGE_EFFECT);
+                    Defaults.ADS_COLOR_TYPE_EDGE_EFFECT);
             mScrollBarColorType = a.getInt(
                     R.styleable.DynamicNavigationView_ads_scrollBarColorType,
-                    WidgetDefaults.ADS_COLOR_SCROLL_BAR);
+                    Defaults.ADS_COLOR_TYPE_SCROLLABLE);
             mStateNormalColorType = a.getInt(
                     R.styleable.DynamicNavigationView_ads_stateNormalColorType,
                     Theme.ColorType.TEXT_PRIMARY);
@@ -181,29 +202,29 @@ public class DynamicNavigationView extends NavigationView
                     Theme.ColorType.BACKGROUND);
             mBackgroundColor = a.getColor(
                     R.styleable.DynamicNavigationView_ads_backgroundColor,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mColor = a.getColor(
                     R.styleable.DynamicNavigationView_ads_color,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mScrollBarColor = a.getColor(
                     R.styleable.DynamicNavigationView_ads_scrollBarColor,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mStateNormalColor = a.getColor(
                     R.styleable.DynamicNavigationView_ads_stateNormalColor,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mStateSelectedColor = a.getColor(
                     R.styleable.DynamicNavigationView_ads_stateSelectedColor,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicNavigationView_ads_contrastWithColor,
-                    WidgetDefaults.getContrastWithColor(getContext()));
+                    Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicNavigationView_ads_backgroundAware,
-                    WidgetDefaults.getBackgroundAware());
+                    Defaults.getBackgroundAware());
 
             if (a.getBoolean(
                     R.styleable.DynamicNavigationView_ads_windowInsets,
-                    WidgetDefaults.ADS_WINDOW_INSETS)) {
+                    Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }
         } finally {
@@ -220,7 +241,6 @@ public class DynamicNavigationView extends NavigationView
             mBackgroundColor = DynamicTheme.getInstance()
                     .resolveColorType(mBackgroundColorType);
         }
-
 
         if (mColorType != Theme.ColorType.NONE
                 && mColorType != Theme.ColorType.CUSTOM) {
@@ -258,46 +278,49 @@ public class DynamicNavigationView extends NavigationView
 
     @Override
     public void applyWindowInsets() {
-        final View headerView;
-        final int paddingLeft = getPaddingLeft();
-        final int paddingBottom = getPaddingBottom();
-        final int headerPaddingTop;
+        final View header;
+        final int left = getPaddingLeft();
+        final int bottom = getPaddingBottom();
+        final int headerTop;
 
         if (getHeaderCount() != 0) {
-            headerView = getHeaderView(0);
-            headerPaddingTop = headerView.getPaddingTop();
+            header = getHeaderView(0);
+            headerTop = header.getPaddingTop();
         } else {
-            headerView = null;
-            headerPaddingTop = 0;
+            header = null;
+            headerTop = 0;
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(this,
                 new androidx.core.view.OnApplyWindowInsetsListener() {
             @Override
             public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat insets) {
-                v.setPadding(paddingLeft + insets.getStableInsetLeft(),
-                        v.getPaddingTop(), v.getPaddingRight(),
-                        paddingBottom + insets.getSystemWindowInsetBottom());
+                v.setPadding(left + insets.getInsets(
+                        WindowInsetsCompat.Type.systemBars()).left, v.getPaddingTop(),
+                        v.getPaddingRight(), bottom + insets.getInsets(
+                                WindowInsetsCompat.Type.systemBars()).bottom);
 
                 try {
                     final Rect rect = new Rect();
-                    rect.set(insets.getSystemWindowInsetLeft(),
-                            insets.getSystemWindowInsetTop(), 0,
-                            insets.getSystemWindowInsetBottom());
+                    rect.set(insets.getInsets(WindowInsetsCompat.Type.systemBars()).left,
+                            insets.getInsets(WindowInsetsCompat.Type.systemBars()).top, 0,
+                            insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
                     final Field fieldInsets =
                             ScrimInsetsFrameLayout.class.getDeclaredField("insets");
                     fieldInsets.setAccessible(true);
                     fieldInsets.set(DynamicNavigationView.this, rect);
 
-                    if (headerView != null) {
-                        headerView.setPadding(headerView.getPaddingLeft(),
-                                headerPaddingTop + insets.getSystemWindowInsetTop(),
-                                headerView.getPaddingRight(), headerView.getPaddingBottom());
+                    if (header != null) {
+                        header.setPadding(header.getPaddingLeft(),
+                                headerTop + insets.getInsets(
+                                        WindowInsetsCompat.Type.systemBars()).top,
+                                header.getPaddingRight(), header.getPaddingBottom());
                     }
                 } catch (Exception ignored) {
                 }
 
-                return insets.consumeSystemWindowInsets();
+                return WindowInsetsCompat.CONSUMED.inset(
+                        insets.getInsets(WindowInsetsCompat.Type.systemBars()));
             }
         });
     }
@@ -380,8 +403,13 @@ public class DynamicNavigationView extends NavigationView
     }
 
     @Override
+    public @ColorInt int getColor(boolean resolve) {
+        return resolve ? mAppliedColor : mColor;
+    }
+
+    @Override
     public @ColorInt int getColor() {
-        return mColor;
+        return getColor(true);
     }
 
     @Override
@@ -393,8 +421,13 @@ public class DynamicNavigationView extends NavigationView
     }
 
     @Override
+    public @ColorInt int getScrollBarColor(boolean resolve) {
+        return resolve ? mAppliedScrollBarColor : mScrollBarColor;
+    }
+
+    @Override
     public @ColorInt int getScrollBarColor() {
-        return mScrollBarColor;
+        return getScrollBarColor(true);
     }
 
     @Override
@@ -406,8 +439,13 @@ public class DynamicNavigationView extends NavigationView
     }
 
     @Override
+    public @ColorInt int getStateNormalColor(boolean resolve) {
+        return resolve ? mAppliedStateNormalColor : mStateNormalColor;
+    }
+
+    @Override
     public @ColorInt int getStateNormalColor() {
-        return mStateNormalColor;
+        return getStateNormalColor(true);
     }
 
     @Override
@@ -419,8 +457,13 @@ public class DynamicNavigationView extends NavigationView
     }
 
     @Override
+    public @ColorInt int getStateSelectedColor(boolean resolve) {
+        return resolve ? mAppliedStateSelectedColor : mStateSelectedColor;
+    }
+
+    @Override
     public @ColorInt int getStateSelectedColor() {
-        return mStateSelectedColor;
+        return getStateSelectedColor(true);
     }
 
     @Override
@@ -475,24 +518,26 @@ public class DynamicNavigationView extends NavigationView
 
     @Override
     public void setColor() {
-        if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+        if (mColor != Theme.Color.UNKNOWN) {
+            mAppliedColor = mColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
-            DynamicScrollUtils.setEdgeEffectColor(this, mColor);
+            DynamicScrollUtils.setEdgeEffectColor(this, mAppliedColor);
         }
     }
 
     @Override
     public void setScrollBarColor() {
-        if (mScrollBarColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mScrollBarColor = DynamicColorUtils.getContrastColor(
+        if (mScrollBarColor != Theme.Color.UNKNOWN) {
+            mAppliedScrollBarColor = mScrollBarColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedScrollBarColor = DynamicColorUtils.getContrastColor(
                         mScrollBarColor, mContrastWithColor);
             }
 
-            DynamicScrollUtils.setScrollBarColor(this, mScrollBarColor);
+            DynamicScrollUtils.setScrollBarColor(this, mAppliedScrollBarColor);
         }
     }
 
@@ -509,19 +554,21 @@ public class DynamicNavigationView extends NavigationView
      * Set selected item color of this view according to the supplied values.
      */
     public void setStatesColor() {
-        if (mStateSelectedColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mStateNormalColor = DynamicColorUtils.getContrastColor(
+        if (mStateSelectedColor != Theme.Color.UNKNOWN) {
+            mAppliedStateNormalColor = mStateNormalColor;
+            mAppliedStateSelectedColor = mStateSelectedColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedStateNormalColor = DynamicColorUtils.getContrastColor(
                         mStateNormalColor, mContrastWithColor);
-                mStateSelectedColor = DynamicColorUtils.getContrastColor(
+                mAppliedStateSelectedColor = DynamicColorUtils.getContrastColor(
                         mStateSelectedColor, mContrastWithColor);
             }
 
             if (DynamicTheme.getInstance().get().getCornerSizeDp()
-                    >= WidgetDefaults.ADS_CORNER_SELECTOR_ROUND) {
+                    >= Defaults.ADS_CORNER_SELECTOR_ROUND) {
                 setItemBackgroundResource(R.drawable.ads_list_selector_round);
             } else if (DynamicTheme.getInstance().get().getCornerSizeDp()
-                    >= WidgetDefaults.ADS_CORNER_SELECTOR_RECT) {
+                    >= Defaults.ADS_CORNER_SELECTOR_RECT) {
                 setItemBackgroundResource(R.drawable.ads_list_selector_rect);
             } else {
                 setItemBackgroundResource(R.drawable.ads_list_selector);
@@ -529,17 +576,18 @@ public class DynamicNavigationView extends NavigationView
 
             DynamicDrawableUtils.colorizeDrawable(getItemBackground(),
                     DynamicColorUtils.getLighterColor(DynamicColorUtils.adjustAlpha(
-                            mStateSelectedColor, WidgetDefaults.ADS_ALPHA_SELECTED),
-                            WidgetDefaults.ADS_STATE_LIGHT));
+                            mAppliedStateSelectedColor, Defaults.ADS_ALPHA_SELECTED),
+                            Defaults.ADS_STATE_LIGHT));
 
             if (getItemIconTintList() != null) {
                 setItemIconTintList(DynamicResourceUtils.convertColorStateListWithNormal(
-                        getItemIconTintList(), mStateNormalColor, mStateSelectedColor));
+                        getItemIconTintList(), mAppliedStateNormalColor,
+                        mAppliedStateSelectedColor));
             }
 
             if (getItemTextColor() != null) {
                 setItemTextColor(DynamicResourceUtils.convertColorStateListWithNormal(
-                        getItemTextColor(), mStateNormalColor, mStateSelectedColor));
+                        getItemTextColor(), mAppliedStateNormalColor, mAppliedStateSelectedColor));
             }
         }
     }

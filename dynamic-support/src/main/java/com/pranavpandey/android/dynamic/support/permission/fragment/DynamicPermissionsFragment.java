@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,6 +44,7 @@ import com.pranavpandey.android.dynamic.support.permission.activity.DynamicPermi
 import com.pranavpandey.android.dynamic.support.permission.listener.DynamicPermissionsListener;
 import com.pranavpandey.android.dynamic.support.permission.view.DynamicPermissionsView;
 import com.pranavpandey.android.dynamic.support.utils.DynamicPermissionUtils;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 
 import java.util.List;
 
@@ -111,7 +112,7 @@ public class DynamicPermissionsFragment extends DynamicFragment {
      *
      * @return An instance of {@link DynamicPermissionsFragment}.
      */
-    public static Fragment newInstance(@Nullable Intent permissionsIntent) {
+    public static @NonNull Fragment newInstance(@Nullable Intent permissionsIntent) {
         DynamicPermissionsFragment fragment = new DynamicPermissionsFragment();
         Bundle args = new Bundle();
         args.putParcelable(DynamicIntent.ACTION_PERMISSIONS, permissionsIntent);
@@ -128,7 +129,7 @@ public class DynamicPermissionsFragment extends DynamicFragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    public @Nullable View onCreateView(@NonNull LayoutInflater inflater,
             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.ads_fragment_permissions, container, false);
     }
@@ -144,8 +145,8 @@ public class DynamicPermissionsFragment extends DynamicFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        getDynamicActivity().setFAB(R.drawable.ads_ic_done_all,
-                View.VISIBLE, new View.OnClickListener() {
+        getDynamicActivity().setExtendedFAB(R.drawable.ads_ic_done_all,
+                R.string.ads_perm_request, View.VISIBLE, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 resetRequestCounter(true);
@@ -158,12 +159,12 @@ public class DynamicPermissionsFragment extends DynamicFragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
-        inflater.inflate(R.menu.ads_menu_permissions, menu);
+        inflater.inflate(R.menu.ads_menu_info, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.ads_menu_app_info) {
+        if (item.getItemId() == R.id.ads_menu_info) {
             DynamicPermissionUtils.launchAppInfo(requireContext());
         }
 
@@ -175,7 +176,6 @@ public class DynamicPermissionsFragment extends DynamicFragment {
         super.onResume();
 
         setHasOptionsMenu(true);
-
         initPermissions();
 
         if (!mRequestingDangerousPermissions) {
@@ -195,21 +195,25 @@ public class DynamicPermissionsFragment extends DynamicFragment {
             return;
         }
 
-        mDynamicPermissionsView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (!mRequestingDangerousPermissions) {
-                    if (mRequestDangerousPermissions) {
-                        requestDangerousPermissions(
-                                mDynamicPermissionsView.getDangerousPermissions());
-                        mRequestDangerousPermissions = false;
-                    }
-
-                    requestAllPermissions();
-                }
-            }
-        }, ADS_PERMISSION_REQUEST_DELAY);
+        mDynamicPermissionsView.postDelayed(mPermissionsRunnable, ADS_PERMISSION_REQUEST_DELAY);
     }
+
+    /**
+     * Runnable to request the permissions.
+     */
+    private final Runnable mPermissionsRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (mDynamicPermissionsView != null && !mRequestingDangerousPermissions) {
+                if (mRequestDangerousPermissions) {
+                    requestDangerousPermissions(mDynamicPermissionsView.getDangerousPermissions());
+                    mRequestDangerousPermissions = false;
+                }
+
+                requestAllPermissions();
+            }
+        }
+    };
 
     /**
      * Reset the request counter.
@@ -266,8 +270,9 @@ public class DynamicPermissionsFragment extends DynamicFragment {
             permissionsArray = new String[0];
         }
 
-        if (getActivity() != null) {
-            ((DynamicPermissionsActivity) requireActivity()).updateSubtitle(permissionsArray.length);
+        if (getActivity() instanceof DynamicPermissionsActivity) {
+            ((DynamicPermissionsActivity) requireActivity())
+                    .updateSubtitle(permissionsArray.length);
         }
 
         permissions = DynamicPermissions.getInstance()
@@ -287,7 +292,7 @@ public class DynamicPermissionsFragment extends DynamicFragment {
         }
 
         if (mDynamicPermissionsView.isAllPermissionsGranted()) {
-            getDynamicActivity().hideFAB();
+            getDynamicActivity().hideExtendedFAB();
 
             if (mRequestAll) {
                 mRequestAll = false;
@@ -305,7 +310,7 @@ public class DynamicPermissionsFragment extends DynamicFragment {
                 setResult(Activity.RESULT_OK, intent);
             }
         } else {
-            getDynamicActivity().showFAB();
+            getDynamicActivity().showExtendedFAB();
         }
     }
 
@@ -313,8 +318,8 @@ public class DynamicPermissionsFragment extends DynamicFragment {
      * Show hint if permission request is cancelled by the user.
      */
     private void showHint() {
-        getDynamicActivity().getSnackBar(R.string.ads_perm_info_grant_all,
-                Snackbar.LENGTH_LONG).show();
+        Dynamic.showSnackBar(getActivity(),
+                R.string.ads_perm_info_grant_all, Snackbar.LENGTH_LONG);
     }
 
     /**
@@ -344,6 +349,10 @@ public class DynamicPermissionsFragment extends DynamicFragment {
      * <p>Either dangerous or special.
      */
     private void requestPermission(@NonNull DynamicPermission dynamicPermission) {
+        if (getContext() == null) {
+            return;
+        }
+
         String permission = dynamicPermission.getPermission();
 
         if (dynamicPermission.isDangerous()) {

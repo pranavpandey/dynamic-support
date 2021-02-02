@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,19 +30,17 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.activity.DynamicActivity;
-
-import java.util.List;
+import com.pranavpandey.android.dynamic.support.fragment.listener.DynamicOnPageChangeListener;
+import com.pranavpandey.android.dynamic.support.listener.DynamicViewPagerCallback;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 
 /**
  * An abstract {@link ViewPager} fragment to display multiple fragments inside the view pager
  * along with the tabs.
  * <p>Extend this fragment and implement the necessary methods to use it inside an activity.
- *
- * @see #getTitles()
- * @see #getPages()
  */
-public abstract class DynamicViewPagerFragment extends DynamicFragment {
+public abstract class DynamicViewPagerFragment extends DynamicFragment
+        implements DynamicViewPagerCallback {
 
     /**
      * Fragment argument key to set the initial view pager page.
@@ -60,28 +58,7 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment {
     private TabLayout mTabLayout;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setRetainInstance(false);
-    }
-
-    /**
-     * Abstract method to initialize a list of tab titles to be used with the tab layout.
-     *
-     * @return A list containing the tab titles.
-     */
-    protected abstract List<String> getTitles();
-
-    /**
-     * Abstract method to initialize a list fragments to be shown in the view pager.
-     *
-     * @return A list containing the fragments.
-     */
-    protected abstract List<Fragment> getPages();
-
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    public @Nullable View onCreateView(@NonNull LayoutInflater inflater,
             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.ads_fragment_view_pager, container, false);
     }
@@ -101,15 +78,27 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment {
             return;
         }
 
-        ((DynamicActivity) getActivity()).addHeader(R.layout.ads_tabs, true);
-        mTabLayout = getActivity().findViewById(R.id.ads_tab_layout);
-
+        mViewPager.setOffscreenPageLimit(getItemCount());
+        mViewPager.addOnPageChangeListener(
+                new DynamicOnPageChangeListener(getChildFragmentManager()));
         mViewPager.setAdapter(new ViewPagerAdapter(
-                getChildFragmentManager(), getTitles(), getPages()));
-        mTabLayout.setupWithViewPager(mViewPager);
+                getChildFragmentManager(), this));
+        Dynamic.addHeader(getActivity(), R.layout.ads_tabs,
+                true, getSavedInstanceState() == null);
 
-        if (getArguments() != null && getArguments().containsKey(ADS_ARGS_VIEW_PAGER_PAGE)) {
-            setPage(getArguments().getInt(ADS_ARGS_VIEW_PAGER_PAGE));
+        if (savedInstanceState == null && getArguments() != null
+                && requireArguments().containsKey(ADS_ARGS_VIEW_PAGER_PAGE)) {
+            setPage(requireArguments().getInt(ADS_ARGS_VIEW_PAGER_PAGE));
+        }
+    }
+
+    @Override
+    public void onAddActivityHeader(@Nullable View view) {
+        super.onAddActivityHeader(view);
+
+        if (view != null) {
+            mTabLayout = view.findViewById(R.id.ads_tab_layout);
+            mTabLayout.setupWithViewPager(mViewPager);
         }
     }
 
@@ -137,6 +126,10 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment {
      * @return The currently selected view pager page or position.
      */
     public int getCurrentPage() {
+        if (mViewPager == null) {
+            return ViewPager.NO_ID;
+        }
+
         return mViewPager.getCurrentItem();
     }
 
@@ -146,6 +139,10 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment {
      * @param page The current position for the view pager.
      */
     public void setPage(final int page) {
+        if (mViewPager == null) {
+            return;
+        }
+
         mViewPager.setCurrentItem(page);
     }
 
@@ -155,43 +152,36 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment {
     static class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
         /**
-         * Tab titles list for this adapter.
+         * Dynamic view pager callback to get titles and fragments.
          */
-        private final List<String> titles;
-
-        /**
-         * Fragments list for this adapter.
-         */
-        private final List<Fragment> pages;
+        private final DynamicViewPagerCallback viewPagerCallback;
 
         /**
          * Constructor to initialize an object of this class.
          *
          * @param fragmentManager The fragment manager for this adapter.
-         * @param titles The tab titles list for this adapter.
-         * @param pages The fragments list for this adapter.
+         * @param viewPagerCallback The view pager callback to return the data.
          */
         ViewPagerAdapter(@NonNull FragmentManager fragmentManager,
-                @NonNull List<String> titles, @NonNull List<Fragment> pages) {
+                @NonNull DynamicViewPagerCallback viewPagerCallback) {
             super(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
-            this.titles = titles;
-            this.pages = pages;
+            this.viewPagerCallback = viewPagerCallback;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return titles.get(position);
+            return viewPagerCallback.getTitle(position);
         }
 
         @Override
         public @NonNull Fragment getItem(int position) {
-            return pages.get(position);
+            return viewPagerCallback.createFragment(position);
         }
 
         @Override
         public int getCount() {
-            return pages.size();
+            return viewPagerCallback.getItemCount();
         }
     }
 }

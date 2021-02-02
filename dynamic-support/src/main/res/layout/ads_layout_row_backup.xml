@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -30,12 +30,13 @@
         android:paddingRight="@dimen/ads_margin_regular"
         android:orientation="horizontal">
 
+        <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+            style="@style/Widget.DynamicApp.Image.Preference"
+            android:id="@+id/ads_preference_icon"
+            app:srcCompat="@drawable/ads_ic_folder" />
+
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:layout_gravity="center_vertical"
-            android:orientation="vertical">
+            style="@style/Widget.DynamicApp.Content.Row.Vertical.Weight">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                 style="@style/TextAppearance.DynamicApp.Headline5.Card"
@@ -55,10 +56,10 @@
             android:id="@+id/ads_backup_options"
             android:layout_width="@dimen/ads_icon_preference_big"
             android:layout_height="@dimen/ads_icon_preference_big"
-            android:padding="@dimen/ads_margin_tiny"
             android:layout_marginLeft="@dimen/ads_page_horizontal_margin"
             android:layout_marginStart="@dimen/ads_page_horizontal_margin"
             android:layout_gravity="center_vertical"
+            android:padding="@dimen/ads_margin_tiny"
             android:background="?attr/selectableItemBackgroundBorderless"
             app:srcCompat="@drawable/ads_ic_more"
             app:ads_colorType="accent" />

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import com.pranavpandey.android.dynamic.support.activity.DynamicDrawerActivity
 import com.pranavpandey.android.dynamic.support.adapter.DynamicSpinnerImageAdapter
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment
 import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener
-import com.pranavpandey.android.dynamic.support.model.DynamicSpinnerItem
+import com.pranavpandey.android.dynamic.support.model.DynamicMenu
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.utils.DynamicMenuUtils
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils
@@ -82,14 +82,14 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
         dynamicActivity.searchViewListener = this
 
         // Array list for spinner items with icon.
-        val spinnerItemsIcon = ArrayList<DynamicSpinnerItem>()
-        spinnerItemsIcon.add(DynamicSpinnerItem(DynamicResourceUtils.getDrawable(requireContext(),
+        val spinnerItemsIcon = ArrayList<DynamicMenu>()
+        spinnerItemsIcon.add(DynamicMenu(DynamicResourceUtils.getDrawable(requireContext(),
                 R.drawable.ads_ic_extension), "Spinner one"))
-        spinnerItemsIcon.add(DynamicSpinnerItem(DynamicResourceUtils.getDrawable(requireContext(),
+        spinnerItemsIcon.add(DynamicMenu(DynamicResourceUtils.getDrawable(requireContext(),
                 R.drawable.ads_ic_android), "Spinner two"))
-        spinnerItemsIcon.add(DynamicSpinnerItem(DynamicResourceUtils.getDrawable(requireContext(),
+        spinnerItemsIcon.add(DynamicMenu(DynamicResourceUtils.getDrawable(requireContext(),
                 R.drawable.ads_ic_check), "Spinner three"))
-        spinnerItemsIcon.add(DynamicSpinnerItem(DynamicResourceUtils.getDrawable(requireContext(),
+        spinnerItemsIcon.add(DynamicMenu(DynamicResourceUtils.getDrawable(requireContext(),
                 R.drawable.ads_ic_close), "Spinner four"))
 
         // Set dynamic spinner image adapter with text and image view ids.
@@ -105,11 +105,11 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
                 R.id.ads_spinner_item_text, spinnerItemsIcon)
 
         // Array list for spinner items without icon.
-        val spinnerItems = ArrayList<DynamicSpinnerItem>()
-        spinnerItems.add(DynamicSpinnerItem(null, "Spinner one"))
-        spinnerItems.add(DynamicSpinnerItem(null, "Spinner two"))
-        spinnerItems.add(DynamicSpinnerItem(null, "Spinner three"))
-        spinnerItems.add(DynamicSpinnerItem(null, "Spinner four"))
+        val spinnerItems = ArrayList<DynamicMenu>()
+        spinnerItems.add(DynamicMenu(null, "Spinner one"))
+        spinnerItems.add(DynamicMenu(null, "Spinner two"))
+        spinnerItems.add(DynamicMenu(null, "Spinner three"))
+        spinnerItems.add(DynamicMenu(null, "Spinner four"))
 
         // Set dynamic spinner image adapter with text and image view ids.
         // Now, passing an array without icons to hide the image view.

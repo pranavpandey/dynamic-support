@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,11 +29,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
-import com.pranavpandey.android.dynamic.support.widget.DynamicButton;
 
 /**
- * Base dialog fragment to provide all the functionality of,{@link DynamicDialog} inside a
+ * Base dialog fragment to provide all the functionality of {@link DynamicDialog} inside a
  * fragment. It can be extended to customise it further by overriding the supported methods.
  *
  * @see #onCustomiseBuilder(DynamicDialog.Builder, Bundle)
@@ -93,7 +93,7 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
      *
      * @return A instance of {@link DynamicDialogFragment}.
      */
-    public static DynamicDialogFragment newInstance() {
+    public static @NonNull DynamicDialogFragment newInstance() {
         return new DynamicDialogFragment();
     }
 
@@ -116,18 +116,18 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
             public void onShow(DialogInterface dialog) {
                 if (mButtonColor != ADS_DEFAULT_BUTTON_COLOR) {
                     if (alertDialog.getButton(AlertDialog.BUTTON_POSITIVE) != null) {
-                        ((DynamicButton) alertDialog.getButton(
-                                AlertDialog.BUTTON_POSITIVE)).setColor(mButtonColor);
+                        Dynamic.setColor(alertDialog.getButton(
+                                AlertDialog.BUTTON_POSITIVE), mButtonColor);
                     }
 
                     if (alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE) != null) {
-                        ((DynamicButton) alertDialog.getButton(
-                                AlertDialog.BUTTON_NEGATIVE)).setColor(mButtonColor);
+                        Dynamic.setColor(alertDialog.getButton(
+                                AlertDialog.BUTTON_NEGATIVE), mButtonColor);
                     }
 
                     if (alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL) != null) {
-                        ((DynamicButton) alertDialog.getButton(
-                                AlertDialog.BUTTON_NEUTRAL)).setColor(mButtonColor);
+                        Dynamic.setColor(alertDialog.getButton(
+                                AlertDialog.BUTTON_NEUTRAL), mButtonColor);
                     }
                 }
 
@@ -162,10 +162,14 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
 
     @Override
     public void onDismiss(@NonNull DialogInterface dialog) {
-        super.onDismiss(dialog);
+        try {
+            super.onDismiss(dialog);
 
-        if (mOnDismissListener != null) {
-            mOnDismissListener.onDismiss(dialog);
+            if (mOnDismissListener != null) {
+                mOnDismissListener.onDismiss(dialog);
+            }
+        } catch (Exception ignored) {
+            // Handle IllegalStateException while dismissing the fragment.
         }
     }
 
@@ -421,6 +425,15 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
      * @param tag The tag for this fragment.
      */
     public void showDialog(@NonNull FragmentActivity fragmentActivity, @Nullable String tag) {
+        if (fragmentActivity.getSupportFragmentManager().findFragmentByTag(tag)
+                instanceof AppCompatDialogFragment) {
+            try {
+                ((AppCompatDialogFragment) fragmentActivity
+                        .getSupportFragmentManager().findFragmentByTag(tag)).dismiss();
+            } catch (Exception ignored) {
+            }
+        }
+
         show(fragmentActivity.getSupportFragmentManager(), tag);
     }
 

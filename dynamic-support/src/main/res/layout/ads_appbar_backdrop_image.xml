@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -19,17 +19,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/ads_margin_tiny">
+    android:layout_height="match_parent">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicHeaderImageView
-        android:id="@+id/ads_image_backdrop"
-        android:layout_width="@dimen/ads_icon_appbar_backdrop"
-        android:layout_height="match_parent"
-        android:scaleType="fitCenter"
-        android:layout_gravity="center_vertical|end"
-        android:alpha="0.5"
-        app:ads_colorType="accent"
-        app:ads_contrastWithColorType="primary" />
+        style="@style/Widget.DynamicApp.Image.Backdrop"
+        android:id="@+id/ads_image_backdrop" />
 
 </FrameLayout>

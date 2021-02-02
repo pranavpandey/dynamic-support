@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,6 +46,15 @@ public interface DynamicStateWidget extends DynamicWidget {
 
     /**
      * Returns the value of normal state color applied to this widget.
+     *
+     * @param resolve {@code true} to resolve the applied normal state color.
+     *
+     * @return The value of normal state color applied to this widget.
+     */
+    @ColorInt int getStateNormalColor(boolean resolve);
+
+    /**
+     * Returns the value of normal state color applied to this widget.
      * 
      * @return The value of normal state color applied to this widget.
      */
@@ -54,7 +63,7 @@ public interface DynamicStateWidget extends DynamicWidget {
     /**
      * Set the value of normal state color for this widget.
      *
-     * @param stateNormalColorColor Normal state color for this widget.
+     * @param stateNormalColor Normal state color for this widget.
      */
-    void setStateNormalColor(@ColorInt int stateNormalColorColor);
+    void setStateNormalColor(@ColorInt int stateNormalColor);
 }

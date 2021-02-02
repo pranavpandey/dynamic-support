@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
 import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
@@ -39,11 +40,9 @@ import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorDialog;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPopup;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
-import com.pranavpandey.android.dynamic.support.theme.DynamicColorPalette;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.widget.Dynamic;
-import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
+import com.pranavpandey.android.dynamic.theme.DynamicPalette;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
@@ -168,7 +167,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
     }
 
     @Override
-    protected void onLoadAttributes(AttributeSet attrs) {
+    protected void onLoadAttributes(@Nullable AttributeSet attrs) {
         super.onLoadAttributes(attrs);
 
         TypedArray a = getContext().obtainStyledAttributes(attrs,
@@ -203,15 +202,8 @@ public class DynamicColorPreference extends DynamicSimplePreference {
             a.recycle();
         }
 
-        if (getPreferenceKey() != null) {
-            mColor = DynamicPreferences.getInstance().load(
-                    getPreferenceKey(), getDefaultColor());
-        }
-
-        if (getAltPreferenceKey() != null) {
-            mAltColor = DynamicPreferences.getInstance().load(
-                    getAltPreferenceKey(), mAltDefaultColor);
-        }
+        mColor = DynamicPreferences.getInstance().load(getPreferenceKey(), getDefaultColor());
+        mAltColor = DynamicPreferences.getInstance().load(getAltPreferenceKey(), mAltDefaultColor);
     }
 
     @Override
@@ -223,8 +215,8 @@ public class DynamicColorPreference extends DynamicSimplePreference {
             public void onColorSelected(@Nullable String tag, int position, int color) {
                 setColor(color);
 
-                if (mDynamicColorListener != null) {
-                    mDynamicColorListener.onColorSelected(tag, position, color);
+                if (getDynamicColorListener() != null) {
+                    getDynamicColorListener().onColorSelected(tag, position, color);
                 }
             }
         };
@@ -234,8 +226,8 @@ public class DynamicColorPreference extends DynamicSimplePreference {
             public void onColorSelected(@Nullable String tag, int position, int color) {
                 setAltColor(color);
 
-                if (mAltDynamicColorListener != null) {
-                    mAltDynamicColorListener.onColorSelected(tag, position, color);
+                if (getAltDynamicColorListener() != null) {
+                    getAltDynamicColorListener().onColorSelected(tag, position, color);
                 }
             }
         };
@@ -249,26 +241,24 @@ public class DynamicColorPreference extends DynamicSimplePreference {
             @Override
             public void onClick(View view) {
                 if (getOnPromptListener() != null) {
-                    if (mShowColorPopup) {
+                    if (isShowColorPopup()) {
                         if (getOnPromptListener().onPopup()) {
-                            showColorPopup(view, String.valueOf(getTitle()),
-                                    getPopupColors(), getDefaultColor(), getColor(false),
-                                    getColor(), dynamicColorListener);
+                            showColorPopup(view, getTitle(), getPopupColors(), getDefaultColor(),
+                                    getColor(false), getColor(), dynamicColorListener);
                         }
                     } else {
                         if (getOnPromptListener().onDialog()) {
-                            showColorDialog(String.valueOf(getTitle()),
-                                    getColor(), dynamicColorListener);
+                            showColorDialog(getTitle(),
+                                    null, getColor(), dynamicColorListener);
                         }
                     }
                 } else {
-                    if (mShowColorPopup) {
-                        showColorPopup(view, String.valueOf(getTitle()),
-                                getPopupColors(), getDefaultColor(), getColor(false),
-                                getColor(), dynamicColorListener);
+                    if (isShowColorPopup()) {
+                        showColorPopup(view, getTitle(), getPopupColors(), getDefaultColor(),
+                                getColor(false), getColor(), dynamicColorListener);
                     } else {
-                        showColorDialog(String.valueOf(getTitle()),
-                                getColor(), dynamicColorListener);
+                        showColorDialog(getTitle(),
+                                null, getColor(), dynamicColorListener);
                     }
                 }
             }
@@ -281,7 +271,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
                 @Override
                 public void onClick(View v) {
                     if (getOnPromptListener() != null) {
-                        if (mShowColorPopup) {
+                        if (isShowColorPopup()) {
                             if (getOnPromptListener().onPopup()) {
                                 showColorPopup(v, getAltTitle(), getAltPopupColors(),
                                         getAltDefaultColor(), getAltColor(false),
@@ -289,36 +279,37 @@ public class DynamicColorPreference extends DynamicSimplePreference {
                             }
                         } else {
                             if (getOnPromptListener().onDialog()) {
-                                showColorDialog(getAltTitle(), getAltColor(),
-                                        altDynamicColorListener);
+                                showColorDialog(getAltTitle(), null,
+                                        getAltColor(), altDynamicColorListener);
                             }
                         }
                     } else {
-                        if (mShowColorPopup) {
+                        if (isShowColorPopup()) {
                             showColorPopup(v, getAltTitle(), getAltPopupColors(),
                                     getAltDefaultColor(), getAltColor(false),
                                     getAltColor(), altDynamicColorListener);
                         } else {
-                            showColorDialog(getAltTitle(), getAltColor(), altDynamicColorListener);
+                            showColorDialog(getAltTitle(), null,
+                                    getAltColor(), altDynamicColorListener);
                         }
                     }
                 }
             });
         }
 
-        setColorShape(mColorShape);
-        setAlpha(mAlpha, false);
-        setColor(mColor, false);
-        setAltColor(mAltColor, false);
+        setColorShape(getColorShape());
+        setAlpha(isAlpha(), false);
+        setColor(getColor(false), false);
+        setAltColor(getAltColor(false), false);
     }
 
     @Override
     protected void onUpdate() {
         super.onUpdate();
 
-        mColorView.setColor(getColor());
+        Dynamic.setColor(getColorView(), getColor());
         Dynamic.setColor(getActionView(), DynamicColorUtils.removeAlpha(getAltColor()));
-        ((DynamicTextView) getValueView()).setColor(DynamicColorUtils.removeAlpha(getColor()));
+        Dynamic.setColor(getValueView(), DynamicColorUtils.removeAlpha(getColor()));
     }
 
     /**
@@ -332,52 +323,56 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      *
      * @see DynamicColorPopup
      */
-    private void showColorPopup(@NonNull final View view, @Nullable final String title,
+    private void showColorPopup(final @NonNull View view, final @Nullable CharSequence title,
             @NonNull @ColorInt Integer[] colors, @ColorInt int defaultColor,
             final @ColorInt int color, final @ColorInt int resolvedColor,
-            @NonNull final DynamicColorListener dynamicColorListener) {
-        DynamicColorPopup dynamicColorPopup = new DynamicColorPopup(
+            final @NonNull DynamicColorListener dynamicColorListener) {
+        final DynamicColorPopup colorPopup = new DynamicColorPopup(
                 view, colors, dynamicColorListener);
-        dynamicColorPopup.setColorShape(mColorShape);
-        dynamicColorPopup.setAlpha(mAlpha);
-        dynamicColorPopup.setTitle(title);
-        dynamicColorPopup.setDefaultColor(defaultColor);
-        dynamicColorPopup.setPreviousColor(color);
-        dynamicColorPopup.setSelectedColor(color);
+        colorPopup.setColorShape(getColorShape());
+        colorPopup.setAlpha(isAlpha());
+        colorPopup.setTitle(title);
+        colorPopup.setDefaultColor(defaultColor);
+        colorPopup.setPreviousColor(color);
+        colorPopup.setSelectedColor(color);
 
-        dynamicColorPopup.setOnMoreColorsListener(new OnClickListener() {
+        colorPopup.setOnMoreColorsListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (getOnPromptListener() != null) {
                     if (getOnPromptListener().onDialog()) {
-                        showColorDialog(title, resolvedColor, dynamicColorListener);
+                        showColorDialog(title, colorPopup.getDynamics(),
+                                resolvedColor, dynamicColorListener);
                     }
                 } else {
-                    showColorDialog(title, resolvedColor, dynamicColorListener);
+                    showColorDialog(title, colorPopup.getDynamics(),
+                            resolvedColor, dynamicColorListener);
                 }
             }
         });
 
-        dynamicColorPopup.build().show();
+        colorPopup.build().show();
     }
 
     /**
      * Show color dialog to select or create a color.
      *
-     * @param title the title for the dialog.
+     * @param title The title for the dialog.
+     * @param dynamics The dynamic color entries for the dialog.
      * @param color The color value for the dialog.
      * @param dynamicColorListener The listener to listen color events.
      *
      * @see DynamicColorDialog
      */
-    private void showColorDialog(@Nullable String title, @ColorInt int color,
-            @NonNull DynamicColorListener dynamicColorListener) {
+    private void showColorDialog(@Nullable CharSequence title, @Nullable Integer[] dynamics,
+            @ColorInt int color, @NonNull DynamicColorListener dynamicColorListener) {
         color = color == Theme.AUTO
                 ? DynamicTheme.getInstance().get().getBackgroundColor() : color;
 
         DynamicColorDialog.newInstance().setColors(getColors(), getShades())
-                .setColorShape(mColorShape)
-                .setAlpha(mAlpha)
+                .setDynamics(dynamics)
+                .setColorShape(getColorShape())
+                .setAlpha(isAlpha())
                 .setPreviousColor(color)
                 .setSelectedColor(color)
                 .setDynamicColorListener(dynamicColorListener)
@@ -397,7 +392,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
         }
 
         if (mColors == null) {
-            mColors = DynamicColorPalette.MATERIAL_COLORS;
+            mColors = DynamicPalette.MATERIAL_COLORS;
         }
 
         return mColors;
@@ -420,8 +415,8 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      */
     public @NonNull @ColorInt Integer[] getPopupColors() {
         if (mPopupColorsResId != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
-            mPopupColors = DynamicResourceUtils
-                    .convertToColorArray(getContext(), mPopupColorsResId);
+            mPopupColors = DynamicResourceUtils.convertToColorArray(
+                    getContext(), mPopupColorsResId);
         }
 
         if (mPopupColors == null) {
@@ -475,8 +470,8 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      * @return The shade color entries used by this preference.
      */
     public @Nullable @ColorInt Integer[][] getShades() {
-        if (mColors == DynamicColorPalette.MATERIAL_COLORS) {
-            mShades = DynamicColorPalette.MATERIAL_COLORS_SHADES;
+        if (getColors() == DynamicPalette.MATERIAL_COLORS) {
+            mShades = DynamicPalette.MATERIAL_COLORS_SHADES;
         }
 
         return mShades;
@@ -496,7 +491,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      *
      * @return The shape for the color view.
      */
-    public int getColorShape() {
+    public @DynamicColorShape int getColorShape() {
         return mColorShape;
     }
 
@@ -505,10 +500,12 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      *
      * @param colorShape The color shape to be set.
      */
-    public void setColorShape(int colorShape) {
+    public void setColorShape(@DynamicColorShape int colorShape) {
         this.mColorShape = colorShape;
 
-        mColorView.setColorShape(mColorShape);
+        if (getColorView() != null) {
+            getColorView().setColorShape(getColorShape());
+        }
     }
 
     /**
@@ -519,8 +516,8 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      * @return The default color for this preference.
      */
     public @ColorInt int getDefaultColor(boolean resolve) {
-        if (resolve && mDynamicColorResolver != null) {
-            return mDynamicColorResolver.getDefaultColor(getPreferenceKey());
+        if (resolve && getDynamicColorResolver() != null) {
+            return getDynamicColorResolver().getDefaultColor(getPreferenceKey());
         }
 
         return mDefaultColor;
@@ -543,7 +540,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
     public void setDefaultColor(@ColorInt int defaultColor) {
         this.mDefaultColor = defaultColor;
 
-        onUpdate();
+        update();
     }
 
     /**
@@ -554,9 +551,8 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      * @return The current color value of this preference.
      */
     public @ColorInt int getColor(boolean resolve) {
-        if (resolve && mColor == Theme.AUTO
-                && mDynamicColorResolver != null) {
-            return mDynamicColorResolver.getAutoColor(getPreferenceKey());
+        if (resolve && mColor == Theme.AUTO && getDynamicColorResolver() != null) {
+            return getDynamicColorResolver().getAutoColor(getPreferenceKey());
         }
 
         return mColor;
@@ -581,10 +577,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
         this.mColor = color;
 
         setValueString(getColorString());
-
-        if (getPreferenceKey() != null && save) {
-            DynamicPreferences.getInstance().save(getPreferenceKey(), mColor);
-        }
+        DynamicPreferences.getInstance().save(getPreferenceKey(), getColor(false));
     }
 
     /**
@@ -604,8 +597,8 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      * @return The alternate default color for this preference.
      */
     public @ColorInt int getAltDefaultColor(boolean resolve) {
-        if (resolve && mAltDynamicColorResolver != null) {
-            return mAltDynamicColorResolver.getDefaultColor(getAltPreferenceKey());
+        if (resolve && getAltDynamicColorResolver() != null) {
+            return getAltDynamicColorResolver().getDefaultColor(getAltPreferenceKey());
         }
 
         return mAltDefaultColor;
@@ -628,7 +621,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
     public void setAltDefaultColor(@ColorInt int altDefaultColor) {
         this.mAltDefaultColor = altDefaultColor;
 
-        onUpdate();
+        update();
     }
 
     /**
@@ -639,9 +632,8 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      * @return The current alternate color value of this preference.
      */
     public @ColorInt int getAltColor(boolean resolve) {
-        if (resolve && mAltColor == Theme.AUTO
-                && mAltDynamicColorResolver != null) {
-            return mAltDynamicColorResolver.getAutoColor(getAltPreferenceKey());
+        if (resolve && mAltColor == Theme.AUTO && getAltDynamicColorResolver() != null) {
+            return getAltDynamicColorResolver().getAutoColor(getAltPreferenceKey());
         }
 
         return mAltColor;
@@ -667,8 +659,8 @@ public class DynamicColorPreference extends DynamicSimplePreference {
 
         setValueString(getColorString());
 
-        if (getAltPreferenceKey() != null && save) {
-            DynamicPreferences.getInstance().save(getAltPreferenceKey(), mAltColor);
+        if (save) {
+            DynamicPreferences.getInstance().save(getAltPreferenceKey(), getAltColor(false));
         }
     }
 
@@ -708,10 +700,12 @@ public class DynamicColorPreference extends DynamicSimplePreference {
     private void setAlpha(boolean alpha, boolean save) {
         this.mAlpha = alpha;
 
-        mColorView.setAlpha(alpha);
+        if (getColorView() != null) {
+            getColorView().setAlpha(alpha);
 
-        if (save) {
-            setColor(mColorView.getColor());
+            if (save) {
+                setColor(getColorView().getColor());
+            }
         }
     }
 
@@ -817,7 +811,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      *
      * @return The combined title string according to the action string.
      */
-    public String getAltTitle() {
+    public @Nullable String getAltTitle() {
         return String.valueOf(getActionString());
     }
 
@@ -828,20 +822,42 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      */
     private @NonNull String getColorString() {
         if (getAltPreferenceKey() == null) {
-            return DynamicColorView.getColorString(
-                    getContext(), mColor, mColorView.isAlpha());
+            return DynamicColorView.getColorString(getContext(),
+                    getColor(false), isColorViewAlpha());
         }
 
         return String.format(getContext().getString(R.string.ads_format_separator),
-                DynamicColorView.getColorString(
-                        getContext(), mColor, mColorView.isAlpha()),
-                DynamicColorView.getColorString(
-                        getContext(), mAltColor, mColorView.isAlpha()));
+                DynamicColorView.getColorString(getContext(),
+                        getColor(false), isColorViewAlpha()),
+                DynamicColorView.getColorString(getContext(),
+                        getAltColor(false), isColorViewAlpha()));
+    }
+
+    /**
+     * Get the color view used by this preference to display the selected color.
+     *
+     * @return The color view used by this preference to display the selected color.
+     */
+    public @Nullable DynamicColorView getColorView() {
+        return mColorView;
+    }
+
+    /**
+     * Checks whether the alpha is enabled for the color view.
+     *
+     * @return {@code true} if the alpha is enabled for the color view.
+     */
+    public boolean isColorViewAlpha() {
+        return getColorView() != null ? getColorView().isAlpha() : isAlpha();
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         super.onSharedPreferenceChanged(sharedPreferences, key);
+
+        if (DynamicPreferences.isNullKey(key)) {
+            return;
+        }
 
         if (key.equals(getPreferenceKey())) {
             setColor(DynamicPreferences.getInstance().load(

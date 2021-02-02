@@ -1,6 +1,7 @@
 package com.pranavpandey.android.dynamic.support.recyclerview.adapter;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder;
 
@@ -10,14 +11,18 @@ import java.util.Map;
 /**
  * A {@link DynamicBinderAdapter} to display different type of {@link VB} inside a recycler view.
  */
-@SuppressWarnings({"rawtypes"})
-public abstract class DynamicTypeBinderAdapter<E extends Enum<E>, 
-        VB extends DynamicRecyclerViewBinder> extends DynamicBinderAdapter<VB> {
+public abstract class DynamicTypeBinderAdapter<E extends Enum<E>,
+        VB extends DynamicRecyclerViewBinder<?>> extends DynamicBinderAdapter<VB> {
 
     /**
      * Default item type {@code enums} for this adapter.
      */
     public enum ItemViewType {
+
+        /**
+         * Enum for the type unknown.
+         */
+        UNKNOWN,
 
         /**
          * Enum for the type empty.
@@ -35,6 +40,11 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>,
         ITEM,
 
         /**
+         * Enum for the setting item.
+         */
+        SETTING,
+
+        /**
          * Enum for the type divider.
          */
         DIVIDER
@@ -48,7 +58,7 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>,
     @Override
     public int getItemCount() {
         int itemCount = 0;
-        for (VB binder : mDataBinderMap.values()) {
+        for (VB binder : getDataBinderMap().values()) {
             itemCount += binder.getItemCount();
         }
 
@@ -61,7 +71,7 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>,
     }
 
     @Override
-    public VB getDataBinder(int viewType) {
+    public @NonNull VB getDataBinder(int viewType) {
         return getDataBinderBinder(getEnumFromOrdinal(viewType));
     }
 
@@ -127,19 +137,21 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>,
      *
      * @return The {@code enum} corresponding to the given position.
      */
-    public abstract @NonNull E getEnumFromPosition(int position);
+    public @NonNull E getEnumFromPosition(int position) {
+        return getEnumFromOrdinal(getItemViewType(position));
+    }
 
     /**
      * Get the item type enum according to the ordinal.
      *
-     * @param ordinal The ordinal to get the corresponding {@code enum}.
+     * @param viewType The ordinal to get the corresponding {@code enum}.
      *
      * @return The {@code enum} corresponding to the given ordinal.
      */
-    public abstract E getEnumFromOrdinal(int ordinal);
+    public abstract @NonNull E getEnumFromOrdinal(int viewType);
 
-    public E getEnumFromBinder(VB binder) {
-        for (Map.Entry<E, VB> entry : mDataBinderMap.entrySet()) {
+    public @NonNull E getEnumFromBinder(@NonNull VB binder) {
+        for (Map.Entry<E, VB> entry : getDataBinderMap().entrySet()) {
             if (entry.getValue().equals(binder)) {
                 return entry.getKey();
             }
@@ -155,8 +167,8 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>,
      *
      * @return The dynamic data binder according to the supplied {@code enum}.
      */
-    public VB getDataBinderBinder(E e) {
-        return mDataBinderMap.get(e);
+    public VB getDataBinderBinder(@NonNull E e) {
+        return getDataBinderMap().get(e);
     }
 
     /**
@@ -174,7 +186,7 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>,
      * @param e The data binder enum.
      * @param binder The data binder to be added in this adapter.
      */
-    public void putDataBinder(E e, VB binder) {
-        mDataBinderMap.put(e, binder);
+    public void putDataBinder(@Nullable E e, @NonNull VB binder) {
+        getDataBinderMap().put(e, binder);
     }
 }

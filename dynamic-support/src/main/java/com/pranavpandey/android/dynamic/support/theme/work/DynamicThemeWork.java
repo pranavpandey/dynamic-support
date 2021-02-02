@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,6 @@
 package com.pranavpandey.android.dynamic.support.theme.work;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
 
 import androidx.annotation.NonNull;
 import androidx.work.Worker;
@@ -43,16 +41,8 @@ public class DynamicThemeWork extends Worker {
 
     @Override
     public @NonNull Result doWork() {
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    DynamicTheme.getInstance().setDynamicThemeWork(true);
-                    DynamicTheme.getInstance().onAutoThemeChanged();
-                } catch (Exception ignored) {
-                }
-            }
-        });
+        DynamicTheme.getInstance().setDynamicThemeWork(true);
+        DynamicTheme.getInstance().onAutoThemeChanged();
 
         return Result.success();
     }

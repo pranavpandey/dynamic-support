@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,17 @@
 
 package com.pranavpandey.android.dynamic.support.utils;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.ShapeAppearanceModel;
+import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 
@@ -32,19 +36,22 @@ import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 public class DynamicShapeUtils {
 
     /**
-     * Returns a corner drawable which can be used for the theme preview header.
+     * Returns a {@link MaterialShapeDrawable} drawable according to the supplied parameters.
      *
      * @param cornerRadius The corner size in dip for the drawable.
      * @param color The color for the drawable.
      * @param topOnly {@code true} to round the top corners only.
      * @param adjustCorner {@code true} to automatically adjust the corner radius.
+     *
+     * @return The {@link MaterialShapeDrawable} drawable according to the supplied parameters.
      */
-    public static Drawable getCornerDrawable(float cornerRadius,
+    public static @NonNull Drawable getCornerDrawable(float cornerRadius,
             @ColorInt int color, boolean topOnly, boolean adjustCorner) {
-        float cornerRadiusPixel = DynamicUnitUtils.convertDpToPixels(
-                adjustCorner ? Math.max(0, cornerRadius - 1f) : cornerRadius);
+        float cornerRadiusPixel = DynamicUnitUtils.convertDpToPixels(adjustCorner
+                ? Math.max(0, cornerRadius - Defaults.ADS_STROKE_CORNER_ADJUST)
+                : cornerRadius);
         ShapeAppearanceModel shapeAppearanceModel = new ShapeAppearanceModel();
-        MaterialShapeDrawable materialShapeDrawable;
+        MaterialShapeDrawable drawable;
 
         if (!topOnly) {
             shapeAppearanceModel = shapeAppearanceModel.toBuilder()
@@ -55,34 +62,111 @@ public class DynamicShapeUtils {
                     .setTopRightCornerSize(cornerRadiusPixel).build();
         }
 
-        materialShapeDrawable = new MaterialShapeDrawable(shapeAppearanceModel);
-        materialShapeDrawable.setTint(color);
+        drawable = new MaterialShapeDrawable(shapeAppearanceModel);
+        drawable.setTint(color);
 
-        return materialShapeDrawable;
+        return drawable;
     }
 
     /**
-     * Returns a corner drawable which can be used for the theme preview header.
+     * Returns a {@link MaterialShapeDrawable} drawable according to the supplied parameters.
      *
      * @param cornerRadius The corner size in dip for the drawable.
      * @param color The color for the drawable.
      * @param topOnly {@code true} to round the top corners only.
+     *
+     * @return The {@link MaterialShapeDrawable} drawable according to the supplied parameters.
      */
-    public static Drawable getCornerDrawable(float cornerRadius,
+    public static @NonNull Drawable getCornerDrawable(float cornerRadius,
             @ColorInt int color, boolean topOnly) {
         return getCornerDrawable(cornerRadius, color, topOnly, topOnly);
     }
 
     /**
-     * Returns a corner drawable which can be used for the theme preview header.
+     * Returns a {@link MaterialShapeDrawable} drawable according to the supplied parameters.
+     *
+     * @param cornerRadius The corner size in dip for the drawable.
+     * @param color The color for the drawable.
+     * @param topOnly {@code true} to round the top corners only.
+     * @param adjustCorner {@code true} to automatically adjust the corner radius.
+     * @param strokeSize The size {@code greater than 0} in dip to enable the stroke.
+     * @param strokeColor The color for the stroke.
+     *
+     * @return The {@link MaterialShapeDrawable} drawable according to the supplied parameters.
+     */
+    public static @NonNull Drawable getCornerDrawableWithStroke(float cornerRadius,
+            @ColorInt int color, boolean topOnly, boolean adjustCorner,
+            float strokeSize, @ColorInt int strokeColor) {
+        Drawable drawable = getCornerDrawable(cornerRadius, color, topOnly, adjustCorner);
+
+        if (strokeSize > 0 && Color.alpha(strokeColor) > 0
+                && drawable instanceof MaterialShapeDrawable) {
+            ((MaterialShapeDrawable) drawable).setStroke(
+                    DynamicUnitUtils.convertDpToPixels(strokeSize), strokeColor);
+        }
+
+        return drawable;
+    }
+
+    /**
+     * Returns a {@link MaterialShapeDrawable} drawable according to the supplied parameters.
+     *
+     * @param cornerRadius The corner size in dip for the drawable.
+     * @param color The color for the drawable.
+     * @param topOnly {@code true} to round the top corners only.
+     * @param adjustCorner {@code true} to automatically adjust the corner radius.
+     *
+     * @return The {@link MaterialShapeDrawable} drawable according to the supplied parameters.
+     */
+    public static @NonNull Drawable getCornerDrawableWithStroke(float cornerRadius,
+            @ColorInt int color, boolean topOnly, boolean adjustCorner) {
+        return getCornerDrawableWithStroke(cornerRadius, color, topOnly, adjustCorner,
+                Defaults.ADS_STROKE_WIDTH, DynamicColorUtils.setAlpha(
+                        DynamicColorUtils.getTintColor(color), Defaults.ADS_STROKE_ALPHA));
+    }
+
+    /**
+     * Returns a {@link MaterialShapeDrawable} drawable according to the supplied parameters.
+     *
+     * @param cornerRadius The corner size in dip for the drawable.
+     * @param color The color for the drawable.
+     * @param topOnly {@code true} to round the top corners only.
+     * @param strokeColor The color for the stroke.
+     *
+     * @return The {@link MaterialShapeDrawable} drawable according to the supplied parameters.
+     */
+    public static @NonNull Drawable getCornerDrawableWithStroke(float cornerRadius,
+            @ColorInt int color, boolean topOnly, @ColorInt int strokeColor) {
+        return getCornerDrawableWithStroke(cornerRadius, color, topOnly,
+                topOnly, Defaults.ADS_STROKE_WIDTH, strokeColor);
+    }
+
+    /**
+     * Returns a {@link MaterialShapeDrawable} drawable according to the supplied parameters.
+     *
+     * @param cornerRadius The corner size in dip for the drawable.
+     * @param color The color for the drawable.
+     * @param topOnly {@code true} to round the top corners only.
+     *
+     * @return The {@link MaterialShapeDrawable} drawable according to the supplied parameters.
+     */
+    public static @NonNull Drawable getCornerDrawableWithStroke(float cornerRadius,
+            @ColorInt int color, boolean topOnly) {
+        return getCornerDrawableWithStroke(cornerRadius, color, topOnly, topOnly);
+    }
+
+    /**
+     * Returns a corner drawable according to the supplied parameters.
      *
      * @param width The width in dip for the drawable.
      * @param height The height in dip for the drawable.
      * @param cornerRadius The corner size in dip for the drawable.
      * @param color The color for the drawable.
      * @param topOnly {@code true} to round the top corners only.
+     *
+     * @return The corner drawable according to the supplied parameters.
      */
-    public static Drawable getCornerDrawableLegacy(int width, int height,
+    public static @NonNull Drawable getCornerDrawableLegacy(int width, int height,
             float cornerRadius, @ColorInt int color, boolean topOnly) {
         float adjustedCornerRadius = cornerRadius;
 
@@ -90,7 +174,8 @@ public class DynamicShapeUtils {
             return DynamicDrawableUtils.getCornerDrawable(
                     width, height, adjustedCornerRadius, color);
         } else {
-            adjustedCornerRadius = Math.max(0, cornerRadius - 1f);
+            adjustedCornerRadius = Math.max(0,
+                    cornerRadius - Defaults.ADS_STROKE_CORNER_ADJUST);
             adjustedCornerRadius = DynamicUnitUtils.convertDpToPixels(adjustedCornerRadius);
             GradientDrawable drawable = new GradientDrawable();
             drawable.setCornerRadii(new float[] {
@@ -103,14 +188,111 @@ public class DynamicShapeUtils {
     }
 
     /**
-     * Returns a corner drawable which can be used for the theme preview header.
+     * Returns a corner drawable according to the supplied parameters.
      *
      * @param cornerRadius The corner size in dip for the drawable.
      * @param color The color for the drawable.
      * @param topOnly {@code true} to round the top corners only.
+     *
+     * @return The corner drawable according to the supplied parameters.
      */
-    public static Drawable getCornerDrawableLegacy(float cornerRadius,
+    public static @NonNull Drawable getCornerDrawableLegacy(float cornerRadius,
             @ColorInt int color, boolean topOnly) {
         return getCornerDrawableLegacy(0, 0, cornerRadius, color, topOnly);
+    }
+
+    /**
+     * Returns a corner drawable according to the supplied parameters.
+     *
+     * @param width The width in dip for the drawable.
+     * @param height The height in dip for the drawable.
+     * @param cornerRadius The corner size in dip for the drawable.
+     * @param color The color for the drawable.
+     * @param topOnly {@code true} to round the top corners only.
+     * @param strokeSize The size {@code greater than 0} in dip to enable the stroke.
+     * @param strokeColor The color for the stroke.
+     *
+     * @return The corner drawable according to the supplied parameters.
+     */
+    public static @NonNull Drawable getCornerDrawableLegacyWithStroke(int width, int height,
+            float cornerRadius, @ColorInt int color, boolean topOnly,
+            float strokeSize, @ColorInt int strokeColor) {
+        Drawable drawable = getCornerDrawableLegacy(width, height, cornerRadius, color, topOnly);
+
+        if (strokeSize > 0 && Color.alpha(strokeColor) > 0
+                && drawable instanceof GradientDrawable) {
+            ((GradientDrawable) drawable).setStroke(
+                    DynamicUnitUtils.convertDpToPixels(strokeSize), strokeColor);
+        }
+
+        return drawable;
+    }
+
+    /**
+     * Returns a corner drawable according to the supplied parameters.
+     *
+     * @param width The width in dip for the drawable.
+     * @param height The height in dip for the drawable.
+     * @param cornerRadius The corner size in dip for the drawable.
+     * @param color The color for the drawable.
+     * @param topOnly {@code true} to round the top corners only.
+     * @param strokeColor The color for the stroke.
+     *
+     * @return The corner drawable according to the supplied parameters.
+     */
+    public static @NonNull Drawable getCornerDrawableLegacyWithStroke(int width, int height,
+            float cornerRadius, @ColorInt int color, boolean topOnly, @ColorInt int strokeColor) {
+        return getCornerDrawableLegacyWithStroke(width, height, cornerRadius, color,
+                topOnly, Defaults.ADS_STROKE_WIDTH, strokeColor);
+    }
+
+    /**
+     * Returns a corner drawable according to the supplied parameters.
+     *
+     * @param width The width in dip for the drawable.
+     * @param height The height in dip for the drawable.
+     * @param cornerRadius The corner size in dip for the drawable.
+     * @param color The color for the drawable.
+     * @param topOnly {@code true} to round the top corners only.
+     *
+     * @return The corner drawable according to the supplied parameters.
+     */
+    public static @NonNull Drawable getCornerDrawableLegacyWithStroke(int width, int height,
+            float cornerRadius, @ColorInt int color, boolean topOnly) {
+        return getCornerDrawableLegacyWithStroke(width, height, cornerRadius, color,
+                topOnly, Defaults.ADS_STROKE_WIDTH, DynamicColorUtils.setAlpha(
+                        DynamicColorUtils.getTintColor(color), Defaults.ADS_STROKE_ALPHA));
+    }
+
+    /**
+     * Returns a corner drawable according to the supplied parameters.
+
+     * @param cornerRadius The corner size in dip for the drawable.
+     * @param color The color for the drawable.
+     * @param topOnly {@code true} to round the top corners only.
+     * @param strokeSize The size {@code greater than 0} in dip to enable the stroke.
+     * @param strokeColor The color for the stroke.
+     *
+     * @return The corner drawable according to the supplied parameters.
+     */
+    public static @NonNull Drawable getCornerDrawableLegacyWithStroke(
+            float cornerRadius, @ColorInt int color, boolean topOnly,
+            float strokeSize, @ColorInt int strokeColor) {
+        return getCornerDrawableLegacyWithStroke(0, 0,
+                cornerRadius, color, topOnly, strokeSize, strokeColor);
+    }
+
+    /**
+     * Returns a corner drawable according to the supplied parameters.
+
+     * @param cornerRadius The corner size in dip for the drawable.
+     * @param color The color for the drawable.
+     * @param topOnly {@code true} to round the top corners only.
+     *
+     * @return The corner drawable according to the supplied parameters.
+     */
+    public static @NonNull Drawable getCornerDrawableLegacyWithStroke(
+            float cornerRadius, @ColorInt int color, boolean topOnly) {
+        return getCornerDrawableLegacyWithStroke(0, 0, cornerRadius, color, topOnly);
     }
 }

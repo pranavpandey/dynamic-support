@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.flexbox.FlexDirection
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.adapter.AppInfoAdapter
@@ -55,10 +56,9 @@ class TranslatorsBinder(binderAdapter: AppInfoAdapter)
         private val translators: DynamicInfoView = view.findViewById(R.id.info_translators)
 
         init {
-            translators.linksView.layoutManager =
-                    DynamicLayoutUtils.getGridLayoutManager(translators.context,
-                            DynamicLayoutUtils.getGridCountCompact(translators.context))
-            DynamicLayoutUtils.setFullSpanForPosition(translators.linksView)
+            translators.linksView!!.layoutManager =
+                    DynamicLayoutUtils.getFlexboxLayoutManager(
+                            translators.context, FlexDirection.ROW)
 
             (translators.iconView as DynamicImageView).color =
                     DynamicTheme.getInstance().get().primaryColor

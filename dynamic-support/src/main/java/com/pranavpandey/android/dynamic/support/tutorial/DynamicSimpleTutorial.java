@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import com.pranavpandey.android.dynamic.support.tutorial.fragment.DynamicTutoria
  * which can be tinted according to the background color.
  */
 public class DynamicSimpleTutorial implements Parcelable,
-        DynamicTutorial<DynamicSimpleTutorial, DynamicTutorialFragment> {
+        DynamicTutorial.SharedElement<DynamicSimpleTutorial, DynamicTutorialFragment> {
 
     /**
      * Id to uniquely identify this tutorial.
@@ -68,6 +68,14 @@ public class DynamicSimpleTutorial implements Parcelable,
      */
     private boolean tintImage;
 
+    /**
+     * {@code true} to set the shared element name and make it available for the transition.
+     */
+    private boolean sharedElement;
+
+    /**
+     * Fragment to show this tutorial.
+     */
     private DynamicTutorialFragment mFragment;
 
     /**
@@ -114,6 +122,24 @@ public class DynamicSimpleTutorial implements Parcelable,
     public DynamicSimpleTutorial(int id, @ColorInt int backgroundColor,
             @Nullable String title, @Nullable String subtitle, @Nullable String description,
             @DrawableRes int imageRes, boolean tintImage) {
+        this(id, backgroundColor, title, subtitle, description, imageRes, tintImage, false);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param id The id to uniquely identify this tutorial.
+     * @param backgroundColor The background color for this tutorial.
+     * @param title The title for this tutorial.
+     * @param subtitle The subtitle for this tutorial.
+     * @param description The description for this tutorial.
+     * @param imageRes The image resource for this tutorial.
+     * @param tintImage {@code true} to tint the image according to the background color.
+     * @param sharedElement {@code true} to set the shared element.
+     */
+    public DynamicSimpleTutorial(int id, @ColorInt int backgroundColor,
+            @Nullable String title, @Nullable String subtitle, @Nullable String description,
+            @DrawableRes int imageRes, boolean tintImage, boolean sharedElement) {
         this.id = id;
         this.backgroundColor = backgroundColor;
         this.title = title;
@@ -121,6 +147,7 @@ public class DynamicSimpleTutorial implements Parcelable,
         this.description = description;
         this.imageRes = imageRes;
         this.tintImage = tintImage;
+        this.sharedElement = sharedElement;
     }
 
     /**
@@ -152,6 +179,7 @@ public class DynamicSimpleTutorial implements Parcelable,
         this.description = in.readString();
         this.imageRes = in.readInt();
         this.tintImage = in.readByte() != 0;
+        this.sharedElement = in.readByte() != 0;
     }
 
     @Override
@@ -168,6 +196,7 @@ public class DynamicSimpleTutorial implements Parcelable,
         dest.writeString(description);
         dest.writeInt(imageRes);
         dest.writeByte((byte) (tintImage ? 1 : 0));
+        dest.writeByte((byte) (sharedElement ? 1 : 0));
     }
 
     /**
@@ -187,7 +216,7 @@ public class DynamicSimpleTutorial implements Parcelable,
      * @return The {@link DynamicSimpleTutorial} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicSimpleTutorial setId(int id) {
+    public @NonNull DynamicSimpleTutorial setId(int id) {
         this.id = id;
 
         return this;
@@ -211,7 +240,7 @@ public class DynamicSimpleTutorial implements Parcelable,
      * @return The {@link DynamicSimpleTutorial} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicSimpleTutorial setBackgroundColor(@ColorInt int backgroundColor) {
+    public @NonNull DynamicSimpleTutorial setBackgroundColor(@ColorInt int backgroundColor) {
         this.backgroundColor = backgroundColor;
 
         onBackgroundColorChanged(backgroundColor);
@@ -235,7 +264,7 @@ public class DynamicSimpleTutorial implements Parcelable,
      * @return The {@link DynamicSimpleTutorial} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicSimpleTutorial setTitle(@Nullable String title) {
+    public @NonNull DynamicSimpleTutorial setTitle(@Nullable String title) {
         this.title = title;
 
         return this;
@@ -258,7 +287,7 @@ public class DynamicSimpleTutorial implements Parcelable,
      * @return The {@link DynamicSimpleTutorial} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicSimpleTutorial setSubtitle(@Nullable String subtitle) {
+    public @NonNull DynamicSimpleTutorial setSubtitle(@Nullable String subtitle) {
         this.subtitle = subtitle;
 
         return this;
@@ -281,7 +310,7 @@ public class DynamicSimpleTutorial implements Parcelable,
      * @return The {@link DynamicSimpleTutorial} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicSimpleTutorial setDescription(@Nullable String description) {
+    public @NonNull DynamicSimpleTutorial setDescription(@Nullable String description) {
         this.description = description;
 
         return this;
@@ -304,7 +333,7 @@ public class DynamicSimpleTutorial implements Parcelable,
      * @return The {@link DynamicSimpleTutorial} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicSimpleTutorial setImageRes(@DrawableRes int imageRes) {
+    public @NonNull DynamicSimpleTutorial setImageRes(@DrawableRes int imageRes) {
         this.imageRes = imageRes;
 
         return this;
@@ -327,8 +356,27 @@ public class DynamicSimpleTutorial implements Parcelable,
      * @return The {@link DynamicSimpleTutorial} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicSimpleTutorial setTintImage(boolean tintImage) {
+    public @NonNull DynamicSimpleTutorial setTintImage(boolean tintImage) {
         this.tintImage = tintImage;
+
+        return this;
+    }
+
+    @Override
+    public boolean isSharedElement() {
+        return sharedElement;
+    }
+
+    /**
+     * Set whether to set the shared element.
+     *
+     * @param sharedElement {@code true} to set the shared element.
+     *
+     * @return The {@link DynamicSimpleTutorial} object to allow for chaining of calls to
+     *         set methods.
+     */
+    public @NonNull DynamicSimpleTutorial setSharedElement(boolean sharedElement) {
+        this.sharedElement = sharedElement;
 
         return this;
     }

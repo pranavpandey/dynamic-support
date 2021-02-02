@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.activity;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.app.SharedElementCallback;
@@ -28,6 +29,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.transition.Fade;
 import android.transition.Transition;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +38,7 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.CallSuper;
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.IdRes;
@@ -43,6 +46,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.app.DynamicLocaleDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.OnApplyWindowInsetsListener;
@@ -53,17 +58,21 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.transition.MaterialContainerTransform;
 import com.pranavpandey.android.dynamic.locale.DynamicLocale;
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicTransitionListener;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
-import com.pranavpandey.android.dynamic.support.theme.DynamicLayoutInflater;
+import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog;
+import com.pranavpandey.android.dynamic.support.theme.inflater.DynamicLayoutInflater;
+import com.pranavpandey.android.dynamic.support.theme.listener.ThemeListener;
+import com.pranavpandey.android.dynamic.theme.AppTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
+import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
@@ -80,11 +89,12 @@ import java.util.Map;
  * navigation bar colors, theme, etc. It heavily depends on the {@link DynamicTheme} that can be
  * customised by implementing the corresponding methods.
  *
- * <p><p>Extend this activity and implement the various methods according to the need.
+ * <p>Extend this activity and implement the various methods according to the need.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public abstract class DynamicSystemActivity extends AppCompatActivity implements
-        DynamicLocale, DynamicListener, SharedPreferences.OnSharedPreferenceChangeListener {
+        DynamicLocale, DynamicListener, DynamicTransitionListener,
+        SharedPreferences.OnSharedPreferenceChangeListener {
 
     /**
      * Dynamic theme key to maintain its state.
@@ -124,6 +134,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     protected static final String ADS_STATE_TRANSITION_POSITION = "ads_state_transition_position";
 
     /**
+     * Paused state key to maintain its state.
+     */
+    protected static final String ADS_STATE_PAUSED = "ads_state_paused";
+
+    /**
      * Default tint color for the system UI elements like snack bars, etc.
      */
     protected static final @ColorInt int ADS_DEFAULT_SYSTEM_UI_COLOR =
@@ -142,6 +157,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
             Color.parseColor("#1A000000");
 
     /**
+     * App compat delegate used by this activity.
+     */
+    protected AppCompatDelegate mDynamicDelegate;
+
+    /**
      * Dynamic context used by this activity.
      */
     protected Context mContext = this;
@@ -149,12 +169,17 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     /**
      * Current locale used by this activity.
      */
-    private Locale mCurrentLocale;
+    protected Locale mCurrentLocale;
 
     /**
      * Saved instance state for this activity.
      */
     private Bundle mSavedInstanceState;
+
+    /**
+     * Dynamic app theme received from the intent.
+     */
+    private DynamicAppTheme mDynamicIntentTheme;
 
     /**
      * Background color used by the activity window.
@@ -216,27 +241,169 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      */
     private DynamicTransitionListener mDynamicTransitionListener;
 
+    /**
+     * {@code true} this activity is paused before.
+     *
+     * @see #onPause();
+     */
+    private boolean mPaused;
+
+    /**
+     * Fix for app compat 1.2.0.
+     * Use custom delegate to fix activity configurations (locale, font scale, etc.) when using
+     * along with the application configuration.
+     */
     @Override
-    public void attachBaseContext(@NonNull Context base) {
-        super.attachBaseContext(setLocale(base));
+    public @NonNull AppCompatDelegate getDelegate() {
+        if (mDynamicDelegate == null) {
+            this.mDynamicDelegate = new DynamicLocaleDelegate(
+                    super.getDelegate(), this);
+        }
+
+        return mDynamicDelegate;
+    }
+
+    @Override
+    public Context createConfigurationContext(Configuration overrideConfiguration) {
+        return mContext = super.createConfigurationContext(overrideConfiguration);
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        updateThemeFromIntent(getIntent());
         setDynamicTheme();
         onSetSharedElementTransition();
         super.onCreate(savedInstanceState);
 
         mSavedInstanceState = savedInstanceState;
+
         mBackgroundColor = DynamicTheme.getInstance().get().getBackgroundColor();
         mStatusBarColor = DynamicTheme.getInstance().get().getPrimaryColorDark();
         mNavigationBarColor = DynamicTheme.getInstance().get().getPrimaryColorDark();
+
+        if (savedInstanceState != null) {
+            mBackgroundColor = savedInstanceState.getInt(
+                    ADS_STATE_BACKGROUND_COLOR, mBackgroundColor);
+            mPaused = savedInstanceState.getBoolean(ADS_STATE_PAUSED);
+        }
 
         updateTaskDescription(DynamicTheme.getInstance().get().getPrimaryColor());
         setNavigationBarColor(mNavigationBarColor);
 
         onManageSharedElementTransition();
     }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
+        onNewIntent(getIntent(), mSavedInstanceState == null);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        onNewIntent(intent, true);
+    }
+
+    /**
+     * Setup content according to the intent.
+     *
+     * @param intent The received intent.
+     * @param newIntent {@code true} if updating from the new intent.
+     */
+    @CallSuper
+    protected void onNewIntent(@Nullable Intent intent, boolean newIntent) {
+        setIntent(intent);
+        updateThemeFromIntent(intent);
+
+        if (isThemeActivity() && (newIntent || mSavedInstanceState == null)) {
+            checkForThemeIntent(intent);
+        }
+    }
+
+    /**
+     * Update content according to the intent.
+     *
+     * @param intent The received intent.
+     * @param newIntent {@code true} if updating from the new intent.
+     */
+    protected void onUpdateIntent(@Nullable Intent intent, boolean newIntent) { }
+
+    /**
+     * Returns whether this activity can handle theme intents.
+     *
+     * @return {@code true} if this activity can handle theme intents.
+     *
+     * @see #checkForThemeIntent(Intent)
+     * @see #onThemeIntent(String, String)
+     */
+    protected boolean isThemeActivity() {
+        return false;
+    }
+
+    /**
+     * Try to retrieve the dynamic theme from the intent.
+     *
+     * @param intent The intent to retrieve the theme.
+     */
+    private void updateThemeFromIntent(@Nullable Intent intent) {
+        if (intent == null) {
+            return;
+        }
+
+        mDynamicIntentTheme = DynamicTheme.getInstance().getTheme(getIntent()
+                .getStringExtra(DynamicIntent.EXTRA_THEME));
+    }
+
+    /**
+     * Checks for the valid dynamic theme intent.
+     *
+     * @param intent The intent to be checked.
+     *
+     * @see #onThemeIntent(String, String)
+     */
+    public void checkForThemeIntent(@Nullable Intent intent) {
+        if (intent == null) {
+            return;
+        }
+
+        if (Intent.ACTION_VIEW.equals(intent.getAction())
+                || Intent.ACTION_SEND.equals(intent.getAction())) {
+            if (DynamicThemeUtils.isValidThemeIntent(getContext(), intent)) {
+                String name = DynamicThemeUtils.getThemeName(getContext(),
+                        intent, getString(R.string.ads_data));
+
+                DynamicThemeDialog.newImportIntentInstance()
+                        .setThemeAction(Theme.Action.IMPORT_FILE)
+                        .setThemeImportFileListener(
+                                new ThemeListener.Import.File<Intent>() {
+                                    @Override
+                                    public @Nullable Intent getThemeSource() {
+                                        return intent;
+                                    }
+
+                                    @Override
+                                    public void onImportTheme(@Nullable String theme) {
+                                        onThemeIntent(theme, name);
+                                    }
+                                })
+                        .setMessage(name)
+                        .showDialog(this);
+            }
+        }
+    }
+
+    /**
+     * This method will be called on successfully verifying the dynamic theme intent.
+     *
+     * @param data The theme data retrieved from the intent.
+     * @param name The theme or file name retrieved from the intent.
+     *
+     * @see #checkForThemeIntent(Intent)
+     */
+    protected void onThemeIntent(@Nullable String data, @Nullable String name) { }
 
     /**
      * Setup the shared element transition fot this activity.
@@ -247,62 +414,60 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
             return;
         }
 
+        getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        mSharedElementTransition = new MaterialContainerTransform(this);
-        ((MaterialContainerTransform) mSharedElementTransition).setScrimColor(Color.TRANSPARENT);
 
         mSharedElementCallback = new SharedElementCallback() {
-                @Override
-                public void onSharedElementEnd(
-                        @NonNull List<String> sharedElementNames,
-                        @NonNull List<View> sharedElements,
-                        @NonNull List<View> sharedElementSnapshots) {
-                    super.onSharedElementEnd(sharedElementNames,
-                            sharedElements, sharedElementSnapshots);
+            @Override
+            public void onSharedElementEnd(
+                    @NonNull List<String> sharedElementNames,
+                    @NonNull List<View> sharedElements,
+                    @NonNull List<View> sharedElementSnapshots) {
+                super.onSharedElementEnd(sharedElementNames,
+                        sharedElements, sharedElementSnapshots);
 
-                    resetSharedElementTransition();
-                }
+                resetSharedElementTransition();
+            }
 
-                @Override
-                public void onMapSharedElements(@NonNull List<String> names,
-                        @NonNull Map<String, View> sharedElements) {
-                    if (mSharedElementMap == null) {
-                        mSharedElementMap = new HashMap<>();
-                        for (Map.Entry<String, View> entry : sharedElements.entrySet()) {
-                            mSharedElementMap.put(entry.getKey(), entry.getValue().getId());
-                        }
-                    } else if (!mFinishAfterTransition) {
-                        if (mDynamicTransitionListener != null) {
-                            for (Map.Entry<String, Integer> entry
-                                    : mSharedElementMap.entrySet()) {
-                                if (!names.contains(entry.getKey())) {
-                                    names.add(entry.getKey());
-                                }
+            @Override
+            public void onMapSharedElements(@NonNull List<String> names,
+                    @NonNull Map<String, View> sharedElements) {
+                if (mSharedElementMap == null) {
+                    mSharedElementMap = new HashMap<>();
+                    for (Map.Entry<String, View> entry : sharedElements.entrySet()) {
+                        mSharedElementMap.put(entry.getKey(), entry.getValue().getId());
+                    }
+                } else if (!mFinishAfterTransition) {
+                    if (mDynamicTransitionListener != null) {
+                        for (Map.Entry<String, Integer> entry : mSharedElementMap.entrySet()) {
+                            if (!names.contains(entry.getKey())) {
+                                names.add(entry.getKey());
+                            }
 
-                                if (sharedElements.size() < names.size()) {
-                                    sharedElements.put(entry.getKey(), getSharedElement(
-                                            mTransitionResultCode, mTransitionPosition,
-                                            entry.getKey(), entry.getValue()));
-                                }
+                            if (sharedElements.size() < names.size()) {
+                                sharedElements.put(entry.getKey(), onFindView(
+                                        mTransitionResultCode, mTransitionPosition,
+                                        entry.getKey(), entry.getValue()));
                             }
                         }
-
-                        resetSharedElementTransition();
-                    } else {
-                        resetSharedElementTransition();
                     }
-                    super.onMapSharedElements(names, sharedElements);
+
+                    resetSharedElementTransition();
+                } else {
+                    resetSharedElementTransition();
                 }
-            };
+                super.onMapSharedElements(names, sharedElements);
+            }
+        };
 
-        if (getWindow().getSharedElementReturnTransition() == null) {
-            setExitSharedElementCallback(mSharedElementCallback);
+        if (getWindow().getSharedElementEnterTransition() == null) {
+            setExitSharedElementCallback(getSharedElementCallback());
         } else {
-            setEnterSharedElementCallback(mSharedElementCallback);
+            setEnterSharedElementCallback(getSharedElementCallback());
 
-            if (mSharedElementTransition != null) {
-                getWindow().setSharedElementEnterTransition(mSharedElementTransition);
-                getWindow().setSharedElementReturnTransition(mSharedElementTransition);
+            if (getSharedElementTransition() != null) {
+                getWindow().setSharedElementEnterTransition(getSharedElementTransition());
+                getWindow().setSharedElementExitTransition(getSharedElementTransition());
             }
         }
     }
@@ -319,8 +484,6 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         }
 
         if (mSavedInstanceState != null) {
-            mBackgroundColor = mSavedInstanceState.getInt(ADS_STATE_BACKGROUND_COLOR);
-
             if (mSavedInstanceState.getSerializable(ADS_STATE_SHARED_ELEMENT_MAP) != null) {
                 mSharedElementMap = (HashMap<String, Integer>)
                         mSavedInstanceState.getSerializable(ADS_STATE_SHARED_ELEMENT_MAP);
@@ -331,41 +494,86 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
             }
         }
 
-        adjustSharedElementTransition(mSavedInstanceState != null);
+        onApplyTransitions(false);
     }
 
-    /**
-     * Adjust the activity transition and background color for the smoother shared
-     * element transition.
-     *
-     * @param resume {@code true} if the activity is in the resumed state.
-     */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    protected void adjustSharedElementTransition(boolean resume) {
+    @Override
+    public void onApplyTransitions(boolean exit) {
         if (!DynamicSdkUtils.is21()) {
             return;
         }
 
-        if (getWindow().getSharedElementEnterTransition() != null
-                || mBackgroundColor == Color.TRANSPARENT) {
-            setWindowBackground(Color.TRANSPARENT);
-            getWindow().setExitTransition(null);
+        if (exit) {
+            if (getWindow().getSharedElementEnterTransition() == null) {
+                getWindow().setExitTransition((Transition) onAdjustExitReenterTransition(
+                        getDynamicExitTransition(), true));
+                getWindow().setReenterTransition((Transition) onAdjustExitReenterTransition(
+                        getDynamicReenterTransition(), false));
+            }
         } else {
-            getWindow().setEnterTransition(null);
+            if (getWindow().getSharedElementEnterTransition() != null) {
+                getWindow().setEnterTransition((Transition) onAdjustEnterReturnTransition(
+                        getDynamicEnterTransition(), true));
+                getWindow().setReturnTransition((Transition) onAdjustEnterReturnTransition(
+                        getDynamicReturnTransition(), false));
+                supportPostponeEnterTransition();
+
+                if (getWindow().getEnterTransition() != null) {
+                    getWindow().getEnterTransition().addListener(
+                            new Transition.TransitionListener() {
+                                @Override
+                                public void onTransitionStart(Transition transition) { }
+
+                                @Override
+                                public void onTransitionEnd(Transition transition) {
+                                    transition.removeListener(this);
+                                    resetSharedElementTransition();
+                                    setWindowBackground(Color.TRANSPARENT);
+                                }
+
+                                @Override
+                                public void onTransitionCancel(Transition transition) {
+                                    transition.removeListener(this);
+                                    resetSharedElementTransition();
+                                    setWindowBackground(Color.TRANSPARENT);
+                                }
+
+                                @Override
+                                public void onTransitionPause(Transition transition) {
+                                    transition.removeListener(this);
+                                    resetSharedElementTransition();
+                                    setWindowBackground(Color.TRANSPARENT);
+                                }
+
+                                @Override
+                                public void onTransitionResume(Transition transition) { }
+                            });
+                }
+            } else {
+                getWindow().setExitTransition((Transition) onAdjustExitReenterTransition(
+                        getDynamicExitTransition(), true));
+                getWindow().setReenterTransition((Transition) onAdjustExitReenterTransition(
+                        getDynamicReenterTransition(), false));
+            }
+
+            if (getSavedInstanceState() != null) {
+                setWindowBackground(mBackgroundColor);
+            }
         }
+
         getWindow().setAllowEnterTransitionOverlap(false);
         getWindow().setAllowReturnTransitionOverlap(false);
 
-        if (mDynamicTransitionListener != null
-                && mDynamicTransitionListener.getPostponeTransitionView() != null) {
-            supportPostponeEnterTransition();
-
-            mDynamicTransitionListener.getPostponeTransitionView().getViewTreeObserver()
-                    .addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+        final View transitionView = getPostponeTransitionView();
+        if (transitionView != null) {
+            transitionView.getViewTreeObserver().addOnPreDrawListener(
+                    new ViewTreeObserver.OnPreDrawListener() {
                         @Override
                         public boolean onPreDraw() {
-                            mDynamicTransitionListener.getPostponeTransitionView()
-                                    .getViewTreeObserver().removeOnPreDrawListener(this);
+                            if (transitionView != null) {
+                                transitionView.getViewTreeObserver()
+                                        .removeOnPreDrawListener(this);
+                            }
                             supportStartPostponedEnterTransition();
 
                             return true;
@@ -374,14 +582,82 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         }
     }
 
-    /**
-     * Sets the window background color.
-     *
-     * @param color The window background color to be set.
-     */
-    private void setWindowBackground(@ColorInt int color) {
-        this.mBackgroundColor = color;
-        getWindow().setBackgroundDrawable(new ColorDrawable(mBackgroundColor));
+    @Override
+    public @Nullable Object getDynamicEnterTransition() {
+        // Using a transition is necessary to avoid flickering of status bar when using
+        // the shared element transition.
+        return DynamicMotion.getInstance().withDuration(new Fade());
+    }
+
+    @Override
+    public @Nullable Object getDynamicReturnTransition() {
+        return getDynamicEnterTransition();
+    }
+
+    @Override
+    public @Nullable Object getDynamicExitTransition() {
+        // Using a transition is necessary to avoid flickering of status bar when using
+        // the shared element transition.
+        return DynamicMotion.getInstance().withDuration(new Fade());
+    }
+
+    @Override
+    public @Nullable Object getDynamicReenterTransition() {
+        return getDynamicExitTransition();
+    }
+
+    @Override
+    public @Nullable Object onAdjustEnterReturnTransition(
+            @Nullable Object transition, boolean enter) {
+        if (transition instanceof Transition) {
+            if (enter) {
+                ((Transition) transition).excludeTarget(getWindow().getDecorView()
+                        .findViewById(R.id.action_bar_container), true);
+                ((Transition) transition).excludeTarget(
+                        android.R.id.statusBarBackground, true);
+                ((Transition) transition).excludeTarget(
+                        android.R.id.navigationBarBackground, true);
+            }
+        }
+
+        return transition;
+    }
+
+    @Override
+    public @Nullable Object onAdjustExitReenterTransition(
+            @Nullable Object transition, boolean exit) {
+        if (transition != null) {
+            ((Transition) transition).excludeTarget(getWindow().getDecorView()
+                    .findViewById(R.id.action_bar_container), true);
+            ((Transition) transition).excludeTarget(
+                    android.R.id.statusBarBackground, true);
+            ((Transition) transition).excludeTarget(
+                    android.R.id.navigationBarBackground, true);
+        }
+
+        return transition;
+    }
+
+    @Override
+    public @Nullable View getPostponeTransitionView() {
+        if (mDynamicTransitionListener != null) {
+            return mDynamicTransitionListener.getPostponeTransitionView();
+        }
+
+        return getContentView();
+    }
+
+    @Override
+    public @Nullable View onFindView(int resultCode, int position,
+            @NonNull String transition, @IdRes int viewId) {
+        View view = mDynamicTransitionListener == null ? findViewById(viewId)
+                : mDynamicTransitionListener.onFindView(resultCode, position, transition, viewId);
+
+        if (view != null) {
+            view.setTag(null);
+        }
+
+        return view;
     }
 
     /**
@@ -392,28 +668,6 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         mSharedElementMap = null;
         mDynamicTransitionListener = null;
         mFinishAfterTransition = false;
-    }
-
-    /**
-     * Returns the shared element according to the given id.
-     *
-     * @param resultCode The transition result code.
-     * @param position The position of the shared element.
-     * @param viewId The id resource to find the view by id.
-     *
-     * @return The view according to the view id.
-     */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    protected @Nullable View getSharedElement(int resultCode, int position,
-            @NonNull String transition, @IdRes int viewId) {
-        View view = mDynamicTransitionListener == null ? findViewById(viewId)
-                : mDynamicTransitionListener.onFindView(resultCode, position, transition, viewId);
-
-        if (view != null) {
-            view.setTag(null);
-        }
-
-        return view;
     }
 
     /**
@@ -439,10 +693,15 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         outState.putInt(ADS_STATE_TRANSITION_RESULT_CODE, mTransitionResultCode);
         outState.putInt(ADS_STATE_TRANSITION_POSITION, mTransitionPosition);
         outState.putSerializable(ADS_STATE_SHARED_ELEMENT_MAP, (Serializable) mSharedElementMap);
+        outState.putBoolean(ADS_STATE_PAUSED, mPaused);
     }
 
     @Override
     public @Nullable String[] getSupportedLocales() {
+        if (DynamicTheme.getInstance().getListener() instanceof DynamicLocale) {
+            return ((DynamicLocale) DynamicTheme.getInstance().getListener()).getSupportedLocales();
+        }
+
         return null;
     }
 
@@ -452,36 +711,29 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     }
 
     @Override
-    public @NonNull Context setLocale(@NonNull Context context) {
-        this.mCurrentLocale = DynamicLocaleUtils.getLocale(getLocale(), getDefaultLocale(context));
+    public @Nullable Locale getLocale() {
+        if (DynamicTheme.getInstance().getListener() instanceof DynamicLocale) {
+            return ((DynamicLocale) DynamicTheme.getInstance().getListener()).getLocale();
+        }
 
+        return DynamicLocaleUtils.getCurrentLocale(DynamicTheme.getInstance().getContext());
+    }
+
+    @Override
+    public @NonNull Context setLocale(@NonNull Context context) {
+        mCurrentLocale = DynamicLocaleUtils.getLocale(getLocale(), getDefaultLocale(context));
         return mContext = DynamicLocaleUtils.setLocale(context, mCurrentLocale, getFontScale());
     }
 
     @Override
     public float getFontScale() {
-        return getDynamicTheme() != null ? getDynamicTheme().getFontScaleRelative()
-                : DynamicTheme.getInstance().getDefault().getFontScaleRelative();
-    }
+        if (getDynamicTheme() != null) {
+            return getDynamicTheme().getFontScaleRelative();
+        } else if (DynamicTheme.getInstance().getListener() instanceof DynamicLocale) {
+            return ((DynamicLocale) DynamicTheme.getInstance().getListener()).getFontScale();
+        }
 
-    /**
-     * Get the style resource to apply theme on this activity.
-     * <p>Override this method to supply your own customised style.
-     *
-     * @return The style resource to be applied on this activity.
-     */
-    protected @StyleRes int getThemeRes() {
-        return DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
-    }
-
-    /**
-     * Get the dynamic app theme to be applied on this activity.
-     * <p>Override this method to supply your own customised theme.
-     *
-     * @return The dynamic app theme for this activity.
-     */
-    protected @Nullable DynamicAppTheme getDynamicTheme() {
-        return DynamicTheme.getInstance().getApplication();
+        return DynamicTheme.getInstance().get(false).getFontScaleRelative();
     }
 
     /**
@@ -496,7 +748,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * <p>It will be used to replace the app compat widgets with their dynamic counterparts
      * to provide the support for dynamic theme.
      *
-     * <p><p>Override this method to provide a custom layout inflater.
+     * <p>Override this method to provide a custom layout inflater.
      *
      * @return The layout inflater factory for this activity.
      */
@@ -505,13 +757,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     }
 
     /**
-     * Get the dynamic theme context used by this activity.
+     * Returns the parent content view used by this activity.
      *
-     * @return The dynamic context used by this activity.
+     * @return The parent content view used by this activity.
      */
-    public @NonNull Context getContext() {
-        return mContext;
-    }
+    public abstract  @NonNull View getContentView();
 
     /**
      * Get the current locale used by this activity.
@@ -524,9 +774,20 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
 
     /**
      * Get the current saved instance state for this activity.
+     *
+     * @return The current saved instance state for this activity.
      */
     public @Nullable Bundle getSavedInstanceState() {
         return mSavedInstanceState;
+    }
+
+    /**
+     * Returns the dynamic app theme received from the intent.
+     *
+     * @return The dynamic app theme received from the intent.
+     */
+    public @Nullable DynamicAppTheme getDynamicIntentTheme() {
+        return mDynamicIntentTheme;
     }
 
     /**
@@ -564,7 +825,6 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     public void setTransitionPosition(int transitionPosition) {
         this.mTransitionPosition = transitionPosition;
     }
-
 
     /**
      * Returns the shared element transition.
@@ -619,6 +879,8 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     public void setDynamicTransitionListener(
             @Nullable DynamicTransitionListener dynamicTransitionListener) {
         this.mDynamicTransitionListener = dynamicTransitionListener;
+
+        onApplyTransitions(false);
     }
 
     /**
@@ -637,22 +899,9 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     private void setDynamicTheme() {
         DynamicTheme.getInstance().attach(this, getDynamicLayoutInflater())
                 .setLocalTheme(getThemeRes(), getDynamicTheme());
-        setWindowBackground(DynamicTheme.getInstance().get().getBackgroundColor());
+        setWindowBackground(getBackgroundColor());
 
         onCustomiseTheme();
-    }
-
-    /**
-     * Sets whether the navigation bar theme should be applied for this activity.
-     * <p>It will be applied only on the API 21 and above devices.
-     *
-     * <p><p>By default it will use the {@link Theme.ColorType#PRIMARY_DARK} color, use
-     * {@link #setNavigationBarColor(int)} to set a custom color.
-     *
-     * @return {@code true} to apply navigation bar theme for this activity.
-     */
-    protected boolean setNavigationBarTheme() {
-        return false;
     }
 
     /**
@@ -668,7 +917,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * Sets whether the navigation bar theme should be applied for this activity in landscape mode.
      * <p>It will be applied only on the API 21 and above devices.
      *
-     * <p><p>By default it will use the {@link Theme.ColorType#PRIMARY_DARK} color, use
+     * <p>By default it will use the {@link Theme.ColorType#PRIMARY_DARK} color, use
      * {@link #setNavigationBarColor(int)} to set a custom color.
      *
      * @return {@code true} to apply navigation bar theme for this activity in the landscape mode.
@@ -703,7 +952,26 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      * changed like update it with new colors.
      */
     protected void navigationBarThemeChange() {
-        onAppThemeChange();
+        onDynamicChanged(false, true);
+    }
+
+    /**
+     * Returns the default background color for this activity.
+     *
+     * @return The default background color for this activity.
+     */
+    public @ColorInt int getBackgroundColor() {
+        return DynamicTheme.getInstance().get().getBackgroundColor();
+    }
+
+    /**
+     * Sets the window background color.
+     *
+     * @param color The window background color to be set.
+     */
+    public void setWindowBackground(@ColorInt int color) {
+        this.mBackgroundColor = color;
+        getWindow().setBackgroundDrawable(new ColorDrawable(mBackgroundColor));
     }
 
     /**
@@ -849,26 +1117,31 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
                                 @Override
                                 public WindowInsetsCompat onApplyWindowInsets(
                                         View v, WindowInsetsCompat insets) {
+                                    if (!(v.getLayoutParams()
+                                            instanceof  ViewGroup.MarginLayoutParams)) {
+                                        return insets;
+                                    }
+
                                     final ViewGroup.MarginLayoutParams lp =
                                             (ViewGroup.MarginLayoutParams) v.getLayoutParams();
-                                    lp.topMargin = insets.getSystemWindowInsetTop();
-
+                                    lp.topMargin = insets.getInsets(
+                                            WindowInsetsCompat.Type.systemBars()).top;
                                     v.setLayoutParams(lp);
-                                    DynamicViewUtils.applyWindowInsetsBottom(
-                                            getEdgeToEdgeViewBottom());
 
-                                    return insets.consumeSystemWindowInsets();
+                                    DynamicViewUtils.applyWindowInsetsBottom(
+                                            getEdgeToEdgeViewBottom(), true);
+                                    return insets;
                                 }
                             });
                 }
 
                 mAppliedNavigationBarColor = Color.TRANSPARENT;
-                getWindow().setNavigationBarColor(mAppliedNavigationBarColor);
             } else {
-                mAppliedNavigationBarColor = color = mNavigationBarTheme
+                mAppliedNavigationBarColor = mNavigationBarTheme
                         ? color : ADS_DEFAULT_SYSTEM_BG_COLOR;
-                getWindow().setNavigationBarColor(color);
             }
+
+            getWindow().setNavigationBarColor(mAppliedNavigationBarColor);
         } else {
             mAppliedNavigationBarColor = mNavigationBarColor;
         }
@@ -939,38 +1212,245 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         return mAppliedNavigationBarColor;
     }
 
-    /**
-     * Fix for AppCompat 1.1.0.
-     * <p>https://issuetracker.google.com/issues/140602653
-     */
     @Override
-    public void applyOverrideConfiguration(@Nullable Configuration overrideConfiguration) {
-        if (overrideConfiguration != null) {
-            int uiMode = overrideConfiguration.uiMode;
-            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
-            overrideConfiguration.uiMode = uiMode;
-        }
-        super.applyOverrideConfiguration(getResources().getConfiguration());
-    }
-
-    @Override
-    public void startActivityForResult(Intent intent, int requestCode, @Nullable Bundle options) {
-        super.startActivityForResult(intent, requestCode, options);
-
+    public void startActivityForResult(@SuppressLint("UnknownNullness") Intent intent,
+            int requestCode, @Nullable Bundle options) {
         mTransitionResultCode = requestCode;
+        onApplyTransitions(true);
+        super.startActivityForResult(intent, requestCode, options);
     }
 
     @Override
     public void startActivityFromFragment(@NonNull Fragment fragment,
-            Intent intent, int requestCode, @Nullable Bundle options) {
-        super.startActivityFromFragment(fragment, intent, requestCode, options);
-
+            @SuppressLint("UnknownNullness") Intent intent,
+            int requestCode, @Nullable Bundle options) {
         mTransitionResultCode = requestCode;
+        onApplyTransitions(true);
+        super.startActivityFromFragment(fragment, intent, requestCode, options);
+    }
+
+    /**
+     * Call {@link #startActivity(Intent, Bundle)} for this activity.
+     *
+     * <p>It will allow {@link Bundle} options if {@link DynamicMotion#isMotion()} is enabled.
+     *
+     * @param intent The intent to be used.
+     * @param options The intent to be set.
+     * @param motion {@code true} if motion is enabled.
+     * @param finish {@code true} to finish calling activity.
+     * @param afterTransition {@code true} to finish the calling activity after transition.
+     */
+    public void startMotionActivity(@SuppressLint("UnknownNullness") Intent intent,
+            @Nullable Bundle options, boolean motion, boolean finish,
+            boolean afterTransition) {
+        if (motion) {
+            ActivityCompat.startActivity(this, intent, options);
+        } else {
+            startActivity(intent);
+        }
+
+        finishMotionActivity(finish, afterTransition);
+    }
+
+    /**
+     * Call {@link #startActivity(Intent, Bundle)} for this activity.
+     *
+     * <p>It will allow {@link Bundle} options if {@link DynamicMotion#isMotion()} is enabled.
+     *
+     * @param intent The intent to be used.
+     * @param options The intent to be set.
+     * @param finish {@code true} to finish calling activity.
+     * @param afterTransition {@code true} to finish the calling activity after transition.
+     *
+     * @see #startMotionActivity(Intent, Bundle, boolean, boolean, boolean)
+     */
+    public void startMotionActivity(@SuppressLint("UnknownNullness") Intent intent,
+            @Nullable Bundle options, boolean finish, boolean afterTransition) {
+        startMotionActivity(intent, options, DynamicMotion.getInstance().isMotion(),
+                finish, afterTransition);
+    }
+
+    /**
+     * Call {@link #startActivity(Intent, Bundle)} for this activity.
+     *
+     * <p>It will allow {@link Bundle} options if {@link DynamicMotion#isMotion()} is enabled.
+     *
+     * @param intent The intent to be used.
+     * @param options The intent to be set.
+     */
+    public void startMotionActivity(@SuppressLint("UnknownNullness") Intent intent,
+            @Nullable Bundle options) {
+        startMotionActivity(intent, options, false, false);
+    }
+
+    /**
+     * Call {@link #startActivityForResult(Intent, int, Bundle)} for this activity.
+     *
+     * <p>It will allow {@link Bundle} options if {@link DynamicMotion#isMotion()} is enabled.
+     *
+     * @param intent The intent to be used.
+     * @param requestCode The request code to be set.
+     * @param options The intent to be set.
+     * @param motion {@code true} if motion is enabled.
+     * @param finish {@code true} to finish calling activity.
+     * @param afterTransition {@code true} to finish the calling activity after transition.
+     */
+    public void startMotionActivityForResult(@SuppressLint("UnknownNullness") Intent intent,
+            int requestCode, @Nullable Bundle options, boolean motion,
+            boolean finish, boolean afterTransition) {
+        if (motion) {
+            ActivityCompat.startActivityForResult(this, intent, requestCode, options);
+        } else {
+            startActivityForResult(intent, requestCode);
+        }
+
+        finishMotionActivity(finish, afterTransition);
+    }
+
+    /**
+     * Call {@link #startActivityForResult(Intent, int, Bundle)} for this activity.
+     *
+     * <p>It will allow {@link Bundle} options if {@link DynamicMotion#isMotion()} is enabled.
+     *
+     * @param intent The intent to be used.
+     * @param requestCode The request code to be set.
+     * @param options The intent to be set.
+     * @param finish {@code true} to finish calling activity.
+     * @param afterTransition {@code true} to finish the calling activity after transition.
+     *
+     * @see #startMotionActivityForResult(Intent, int, Bundle, boolean, boolean, boolean)
+     */
+    public void startMotionActivityForResult(@SuppressLint("UnknownNullness") Intent intent,
+            int requestCode, @Nullable Bundle options, boolean finish, boolean afterTransition) {
+        startMotionActivityForResult(intent, requestCode, options,
+                DynamicMotion.getInstance().isMotion(), finish, afterTransition);
+    }
+
+    /**
+     * Call {@link #startActivityForResult(Intent, int, Bundle)} for this activity.
+     *
+     * <p>It will allow {@link Bundle} options if {@link DynamicMotion#isMotion()} is enabled.
+     *
+     * @param intent The intent to be used.
+     * @param requestCode The request code to be set.
+     * @param options The intent to be set.
+     */
+    public void startMotionActivityForResult(@SuppressLint("UnknownNullness") Intent intent,
+            int requestCode, @Nullable Bundle options) {
+        startMotionActivityForResult(intent, requestCode, options, false, false);
+    }
+
+    /**
+     * Called by Fragment.startActivityForResult() to implement its behavior.
+     *
+     * <p>It will allow {@link Bundle} options if {@link DynamicMotion#isMotion()} is enabled.
+     *
+     * @param fragment The calling fragment.
+     * @param intent The intent to be used.
+     * @param requestCode The request code to be set.
+     * @param options The intent to be set.
+     * @param motion {@code true} if motion is enabled.
+     * @param finish {@code true} to finish calling activity.
+     * @param afterTransition {@code true} to finish the calling activity after transition.
+     */
+    public void startMotionActivityFromFragment(@NonNull Fragment fragment,
+            @SuppressLint("UnknownNullness") Intent intent, int requestCode,
+            @Nullable Bundle options, boolean motion, boolean finish, boolean afterTransition) {
+        if (motion) {
+            startActivityFromFragment(fragment, intent, requestCode, options);
+        } else {
+            startActivityFromFragment(fragment, intent, requestCode);
+        }
+
+        finishMotionActivity(finish, afterTransition);
+    }
+
+    /**
+     * Called by Fragment.startActivityForResult() to implement its behavior.
+     *
+     * <p>It will allow {@link Bundle} options if {@link DynamicMotion#isMotion()} is enabled.
+     *
+     * @param fragment The calling fragment.
+     * @param intent The intent to be used.
+     * @param requestCode The request code to be set.
+     * @param options The intent to be set.
+     * @param finish {@code true} to finish calling activity.
+     * @param afterTransition {@code true} to finish the calling activity after transition.
+     *
+     * @see #startMotionActivityFromFragment(Fragment, Intent, int, Bundle, boolean, boolean, boolean)
+     */
+    public void startMotionActivityFromFragment(@NonNull Fragment fragment,
+            @SuppressLint("UnknownNullness") Intent intent, int requestCode,
+            @Nullable Bundle options, boolean finish, boolean afterTransition) {
+        startMotionActivityFromFragment(fragment, intent, requestCode, options,
+                DynamicMotion.getInstance().isMotion(), finish, afterTransition);
+    }
+
+    /**
+     * Called by Fragment.startActivityForResult() to implement its behavior.
+     *
+     * <p>It will allow {@link Bundle} options if {@link DynamicMotion#isMotion()} is enabled.
+     *
+     * @param fragment The calling fragment.
+     * @param intent The intent to be used.
+     * @param requestCode The request code to be set.
+     * @param options The intent to be set.
+     */
+    public void startMotionActivityFromFragment(@NonNull Fragment fragment,
+            @SuppressLint("UnknownNullness") Intent intent, int requestCode,
+            @Nullable Bundle options) {
+        startMotionActivityFromFragment(fragment, intent, requestCode,
+                options, false, false);
+    }
+
+    /**
+     * Finish the motion activity after playing the exit transition.
+     *
+     * @param finish {@code true} to finish the activity.
+     * @param finishAfterTransition {@code true} to finish the activity after transition.
+     */
+    private void finishMotionActivity(boolean finish, boolean finishAfterTransition) {
+        if (!finish) {
+            return;
+        }
+
+        if (!DynamicSdkUtils.is21() || !finishAfterTransition) {
+            finishActivity();
+        } else if (getWindow().getSharedElementExitTransition() != null) {
+            getWindow().getSharedElementExitTransition().addListener(
+                    new Transition.TransitionListener() {
+                        @Override
+                        public void onTransitionStart(Transition transition) { }
+
+                        @Override
+                        public void onTransitionEnd(Transition transition) {
+                            transition.removeListener(this);
+                            finish();
+                        }
+
+                        @Override
+                        public void onTransitionCancel(Transition transition) {
+                            transition.removeListener(this);
+                            finish();
+                        }
+
+                        @Override
+                        public void onTransitionPause(Transition transition) {
+                            transition.removeListener(this);
+                            finish();
+                        }
+
+                        @Override
+                        public void onTransitionResume(Transition transition) { }
+                    });
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
+        onApplyTransitions(false);
 
         if (setOnSharedPreferenceChangeListener()) {
             PreferenceManager.getDefaultSharedPreferences(this)
@@ -980,41 +1460,47 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
         if (!DynamicTheme.getInstance().isDynamicListener(this)) {
             setDynamicTheme();
             setNavigationBarColor(mNavigationBarColor);
-            adjustSharedElementTransition(true);
 
-            getWindow().getDecorView().postDelayed(
-                    mDynamicChange, DynamicTheme.DELAY_THEME_CHANGE);
+             /*
+              * Hint: Do not delay on main handler as it was introducing the lag in the app.
+              * Hint: Update task description color on UI thread to get the proper theme values.
+              */
+            String theme = DynamicTheme.getInstance()
+                    .getLocalTheme(DynamicSystemActivity.this);
+            if (theme != null && !theme.equals(DynamicTheme.getInstance().toString())) {
+                onDynamicChanged(false, true);
+            } else if (mCurrentLocale != null && !mCurrentLocale.equals(
+                    DynamicLocaleUtils.getLocale(getLocale(), getDefaultLocale(getContext())))
+                    || (DynamicTheme.getInstance().getLocal() != null && getFontScale()
+                    != DynamicTheme.getInstance().getLocal().getFontScaleRelative())) {
+                onDynamicChanged(true, true);
+            }
+
+            if (DynamicSdkUtils.is21()) {
+                runOnUiThread(mDynamicRunnable);
+            }
         }
     }
 
     /**
      * Runnable to change the dynamic theme on resume.
      */
-    private final Runnable mDynamicChange = new Runnable() {
+    private final Runnable mDynamicRunnable = new Runnable() {
         @Override
         public void run() {
-            String theme = DynamicTheme.getInstance().getLocalTheme(
-                    DynamicSystemActivity.this);
-            if (theme != null && !theme.equals(DynamicTheme.getInstance().toString())) {
-                DynamicTheme.getInstance().onDynamicChanged(false, true);
-            } else if (mCurrentLocale != null) {
-                if (!mCurrentLocale.equals(DynamicLocaleUtils.getLocale(
-                        getLocale(), getDefaultLocale(DynamicSystemActivity.this)))) {
-                    DynamicTheme.getInstance().onDynamicChanged(false, true);
-                }
-            }
-
             updateTaskDescription(DynamicTheme.getInstance().get().getPrimaryColor());
         }
     };
 
     @Override
     public void onPause() {
+        mPaused = true;
+
         if (setOnSharedPreferenceChangeListener()) {
             PreferenceManager.getDefaultSharedPreferences(this)
                     .unregisterOnSharedPreferenceChangeListener(this);
         }
-        DynamicTheme.getInstance().onLocalDestroy();
+        DynamicTheme.getInstance().onLocalDestroy(this);
         super.onPause();
     }
 
@@ -1025,13 +1511,34 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onNavigationBarThemeChanged() {
-        navigationBarThemeChange();
+    public @NonNull Context getContext() {
+        return mContext != null ? mContext : getBaseContext();
+    }
+
+    @Override
+    public @StyleRes int getThemeRes(@Nullable AppTheme<?> theme) {
+        return DynamicTheme.getInstance().getListener().getThemeRes(theme);
+    }
+
+    @Override
+    public @StyleRes int getThemeRes() {
+        return DynamicTheme.getInstance().getListener().getThemeRes();
+    }
+
+    @Override
+    public @Nullable AppTheme<?> getDynamicTheme() {
+        return DynamicTheme.getInstance().getListener().getDynamicTheme();
+    }
+
+    @Override
+    public @ColorInt int getDefaultColor(@Theme.ColorType int colorType) {
+        return DynamicTheme.getInstance().getListener().getDefaultColor(colorType);
     }
 
     @Override
     public void onDynamicChanged(boolean context, boolean recreate) {
         if (context) {
+            setLocale(getBaseContext());
             setLocale(getContext());
         }
 
@@ -1052,6 +1559,25 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
 
     @Override
     public void onPowerSaveModeChanged(boolean powerSaveMode) { }
+
+    /**
+     * Sets whether the navigation bar theme should be applied for this activity.
+     * <p>It will be applied only on the API 21 and above devices.
+     *
+     * <p>By default it will use the {@link Theme.ColorType#PRIMARY_DARK} color, use
+     * {@link #setNavigationBarColor(int)} to set a custom color.
+     *
+     * @return {@code true} to apply navigation bar theme for this activity.
+     */
+    @Override
+    public boolean setNavigationBarTheme() {
+        return DynamicTheme.getInstance().getListener().setNavigationBarTheme();
+    }
+
+    @Override
+    public void onNavigationBarThemeChanged() {
+        navigationBarThemeChange();
+    }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { }
@@ -1079,15 +1605,56 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void finish() {
+        super.finish();
+
+        onSetFallbackActivityOptions();
+    }
+
+    @Override
+    public void supportStartPostponedEnterTransition() {
+        try {
+            super.supportStartPostponedEnterTransition();
+        } catch (Exception ignored) {
+        }
+    }
+
+    @Override
     public void supportFinishAfterTransition() {
         mFinishAfterTransition = true;
 
         if (mSavedInstanceState != null) {
             resetSharedElementTransition();
-            finish();
-        } else {
-            super.supportFinishAfterTransition();
         }
+        super.supportFinishAfterTransition();
+    }
+
+    /**
+     * This method will be called on setting the fallback activity options on unsupported
+     * API level like overriding a pending transition on API 15 and below.
+     */
+    protected void onSetFallbackActivityOptions() { }
+
+    /**
+     * Checks whether this activity should be finished after the transition.
+     *
+     * @return Returns {@code true} if this activity should be finished after the transition.
+     *
+     * @see #supportFinishAfterTransition()
+     */
+    public boolean isSupportFinishAfterTransition() {
+        return DynamicMotion.getInstance().isMotion() && DynamicSdkUtils.is21()
+                && (getWindow().getSharedElementEnterTransition() != null
+                || getWindow().getSharedElementExitTransition() != null);
+    }
+
+    /**
+     * Checks whether the activity was paused before.
+     *
+     * @return {@code true} if the activity was paused before.
+     */
+    public boolean isPaused() {
+        return mPaused;
     }
 
     /**
@@ -1095,9 +1662,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
      */
     public void finishActivity() {
         if (!isFinishing()) {
-            if (DynamicSdkUtils.is21()
-                    && (getWindow().getSharedElementEnterTransition() != null
-                    || getWindow().getSharedElementReturnTransition() != null)) {
+            if (isSupportFinishAfterTransition()) {
                 supportFinishAfterTransition();
             } else {
                 finish();

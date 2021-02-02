@@ -20,6 +20,6 @@
     android:shape="oval">
 
     <solid
-        android:color="#FF000000" />
+        android:color="@android:color/black" />
 
 </shape>

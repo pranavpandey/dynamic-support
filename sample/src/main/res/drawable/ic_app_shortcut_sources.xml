@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -20,10 +20,10 @@
 
     <item
         android:id="@+id/background"
-        android:top="@dimen/ads_margin_app_shortcut_background"
-        android:bottom="@dimen/ads_margin_app_shortcut_background"
-        android:left="@dimen/ads_margin_app_shortcut_background"
-        android:right="@dimen/ads_margin_app_shortcut_background">
+        android:top="@dimen/ads_inset_icon_app_shortcut_background"
+        android:bottom="@dimen/ads_inset_icon_app_shortcut_background"
+        android:left="@dimen/ads_inset_icon_app_shortcut_background"
+        android:right="@dimen/ads_inset_icon_app_shortcut_background">
 
         <shape android:shape="oval">
 
@@ -35,10 +35,10 @@
 
     <item
         android:id="@+id/foreground"
-        android:top="@dimen/ads_margin_app_shortcut_icon"
-        android:bottom="@dimen/ads_margin_app_shortcut_icon"
-        android:left="@dimen/ads_margin_app_shortcut_icon"
-        android:right="@dimen/ads_margin_app_shortcut_icon"
+        android:top="@dimen/ads_inset_icon_app_shortcut"
+        android:bottom="@dimen/ads_inset_icon_app_shortcut"
+        android:left="@dimen/ads_inset_icon_app_shortcut"
+        android:right="@dimen/ads_inset_icon_app_shortcut"
         android:drawable="@drawable/ads_ic_social_github" />
 
 </layer-list>

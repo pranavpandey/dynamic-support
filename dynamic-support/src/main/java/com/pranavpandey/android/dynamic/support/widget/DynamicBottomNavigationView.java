@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicMenuUtils;
@@ -70,9 +71,19 @@ public class DynamicBottomNavigationView extends BottomNavigationView
     private @ColorInt int mColor;
 
     /**
+     * Color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedColor;
+
+    /**
      * Text color applied to this view.
      */
     private @ColorInt int mTextColor;
+
+    /**
+     * Text color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedTextColor;
 
     /**
      * Background color for this view so that it will remain in contrast with this color.
@@ -84,7 +95,7 @@ public class DynamicBottomNavigationView extends BottomNavigationView
      * It was introduced to provide better legibility for colored views and to avoid dark view
      * on dark background like situations.
      *
-     * <p><p>If this is enabled then, it will check for the contrast color and do color
+     * <p>If this is enabled then, it will check for the contrast color and do color
      * calculations according to that color so that this text view will always be visible on
      * that background. If no contrast color is found then, it will take the default
      * background color.
@@ -128,20 +139,20 @@ public class DynamicBottomNavigationView extends BottomNavigationView
                     Theme.ColorType.PRIMARY);
             mColor = a.getColor(
                     R.styleable.DynamicBottomNavigationView_ads_color,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mTextColor = a.getColor(
                     R.styleable.DynamicBottomNavigationView_ads_textColor,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicBottomNavigationView_ads_contrastWithColor,
-                    WidgetDefaults.getContrastWithColor(getContext()));
+                    Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicBottomNavigationView_ads_backgroundAware,
-                    WidgetDefaults.getBackgroundAware());
+                    Defaults.getBackgroundAware());
 
             if (a.getBoolean(
                     R.styleable.DynamicBottomNavigationView_ads_windowInsets,
-                    WidgetDefaults.ADS_WINDOW_INSETS)) {
+                    Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }
         } finally {
@@ -215,8 +226,13 @@ public class DynamicBottomNavigationView extends BottomNavigationView
     }
 
     @Override
+    public @ColorInt int getColor(boolean resolve) {
+        return resolve ? mAppliedColor : mColor;
+    }
+
+    @Override
     public @ColorInt int getColor() {
-        return mColor;
+        return getColor(true);
     }
 
     @Override
@@ -229,8 +245,13 @@ public class DynamicBottomNavigationView extends BottomNavigationView
     }
 
     @Override
+    public @ColorInt int getTextColor(boolean resolve) {
+        return resolve ? mAppliedTextColor : mTextColor;
+    }
+
+    @Override
     public @ColorInt int getTextColor() {
-        return mTextColor;
+        return getTextColor(true);
     }
 
     @Override
@@ -279,7 +300,7 @@ public class DynamicBottomNavigationView extends BottomNavigationView
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
-        setAlpha(enabled ? WidgetDefaults.ADS_ALPHA_ENABLED : WidgetDefaults.ADS_ALPHA_DISABLED);
+        setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
     }
 
     @Override
@@ -292,29 +313,33 @@ public class DynamicBottomNavigationView extends BottomNavigationView
 
     @Override
     public void setColor() {
-        if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
+        if (mColor != Theme.Color.UNKNOWN) {
+            mAppliedColor = mColor;
             setBackgroundColor(mColor);
         }
     }
 
     @Override
     public void setTextColor() {
-        if (mTextColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mTextColor = DynamicColorUtils.getContrastColor(mTextColor, mContrastWithColor);
+        if (mTextColor != Theme.Color.UNKNOWN) {
+            mAppliedTextColor = mTextColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedTextColor = DynamicColorUtils.getContrastColor(
+                        mTextColor, mContrastWithColor);
             }
 
             @ColorInt int normalColor = DynamicColorUtils.adjustAlpha(
-                    DynamicColorUtils.getTintColor(mColor), WidgetDefaults.ADS_ALPHA_UNSELECTED);
+                    DynamicColorUtils.getTintColor(mAppliedColor), Defaults.ADS_ALPHA_UNSELECTED);
             setItemTextColor(DynamicResourceUtils.getColorStateList(
-                    normalColor, mTextColor, true));
+                    normalColor, mAppliedTextColor, true));
             setItemIconTintList(DynamicResourceUtils.getColorStateList(
-                    normalColor, mTextColor, true));
+                    normalColor, mAppliedTextColor, true));
             setItemRippleColor(DynamicResourceUtils.getColorStateList(
                     Color.TRANSPARENT, DynamicColorUtils.adjustAlpha(
-                            mTextColor, WidgetDefaults.ADS_ALPHA_PRESSED), false));
-        }
+                            mAppliedTextColor, Defaults.ADS_ALPHA_PRESSED), false));
 
-        DynamicMenuUtils.setViewItemsTint(this, mTextColor, mColor, false);
+            DynamicMenuUtils.setViewItemsTint(this,
+                    mAppliedTextColor, mAppliedColor, false);
+        }
     }
 }

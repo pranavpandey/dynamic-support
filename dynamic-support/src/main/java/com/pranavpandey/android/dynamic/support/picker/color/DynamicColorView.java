@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicBitmapUtils;
@@ -185,7 +185,7 @@ public class DynamicColorView extends FrameLayout {
         mColorPaint.setStyle(Paint.Style.FILL);
         mColorStrokePaint.setStyle(Paint.Style.STROKE);
         mSelectorPaint.setStyle(Paint.Style.FILL);
-        mColorStrokePaint.setStrokeWidth(WidgetDefaults.ADS_STROKE_WIDTH);
+        mColorStrokePaint.setStrokeWidth(Defaults.ADS_STROKE_WIDTH_PIXEL);
         mColorStrokePaint.setStrokeCap(Paint.Cap.ROUND);
         mSelectorPaint.setFilterBitmap(true);
 
@@ -218,7 +218,7 @@ public class DynamicColorView extends FrameLayout {
             @ColorInt int tintColor = DynamicColorUtils.getTintColor(
                     DynamicTheme.getInstance().get().getBackgroundColor());
 
-            mSelectorBitmap = DynamicBitmapUtils.getBitmapFromDrawable(
+            mSelectorBitmap = DynamicBitmapUtils.getBitmap(
                     DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_play));
             mColorStrokePaint.setColor(tintColor);
             mColorPaint.setColor(DynamicTheme.getInstance().get().getBackgroundColor());
@@ -233,7 +233,7 @@ public class DynamicColorView extends FrameLayout {
                 mColorPaint.setShader(gradient);
             }
         } else {
-            mSelectorBitmap = DynamicBitmapUtils.getBitmapFromDrawable(
+            mSelectorBitmap = DynamicBitmapUtils.getBitmap(
                     DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_check));
             mColorPaint.setColor(color);
             mColorStrokePaint.setColor(DynamicColorUtils.removeAlpha(
@@ -268,9 +268,9 @@ public class DynamicColorView extends FrameLayout {
         super.onSizeChanged(w, h, oldw, oldh);
 
         mRectF.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-        mRectF.set(WidgetDefaults.ADS_STROKE_WIDTH, WidgetDefaults.ADS_STROKE_WIDTH,
-                mRectF.width() - WidgetDefaults.ADS_STROKE_WIDTH,
-                mRectF.height() - WidgetDefaults.ADS_STROKE_WIDTH);
+        mRectF.set(Defaults.ADS_STROKE_WIDTH_PIXEL, Defaults.ADS_STROKE_WIDTH_PIXEL,
+                mRectF.width() - Defaults.ADS_STROKE_WIDTH_PIXEL,
+                mRectF.height() - Defaults.ADS_STROKE_WIDTH_PIXEL);
 
         if (mSelected) {
             int selectorSize = (int) (getMeasuredWidth() - getMeasuredWidth() / ICON_DIVISOR);
@@ -321,7 +321,7 @@ public class DynamicColorView extends FrameLayout {
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
-        setAlpha(enabled ? WidgetDefaults.ADS_ALPHA_ENABLED : WidgetDefaults.ADS_ALPHA_DISABLED);
+        setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
     }
 
     /**
@@ -332,8 +332,8 @@ public class DynamicColorView extends FrameLayout {
      */
     private StateListDrawable getForegroundDrawable() {
         Bitmap bitmap = Bitmap.createBitmap(
-                (int) mRectF.width() + WidgetDefaults.ADS_STROKE_WIDTH,
-                (int) mRectF.height() + WidgetDefaults.ADS_STROKE_WIDTH,
+                (int) mRectF.width() + Defaults.ADS_STROKE_WIDTH_PIXEL,
+                (int) mRectF.height() + Defaults.ADS_STROKE_WIDTH_PIXEL,
                 Bitmap.Config.ARGB_8888
         );
 
@@ -495,7 +495,7 @@ public class DynamicColorView extends FrameLayout {
     /**
      * Returns the hexadecimal color string according to the supplied color.
      *
-     * @param context The context to retrieve resources.
+     * @param context The context to retrieve the resources.
      * @param color The color to be converted into string.
      * @param alpha {@code true} to enable alpha string.
      *

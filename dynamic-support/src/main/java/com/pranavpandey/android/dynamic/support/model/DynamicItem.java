@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -68,6 +69,14 @@ public class DynamicItem {
 
     /**
      * Constructor to initialize an object of this class.
+     */
+    public DynamicItem() {
+        this(null, null, null, Theme.Color.UNKNOWN,
+                Theme.ColorType.CUSTOM, false);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
      * 
      * @param icon The icon for this item.
      * @param title The title for this item.
@@ -103,7 +112,7 @@ public class DynamicItem {
      *
      * @return The {@link DynamicItem} object to allow for chaining of calls to set methods.
      */
-    public DynamicItem setIcon(@Nullable Drawable icon) {
+    public @NonNull DynamicItem setIcon(@Nullable Drawable icon) {
         this.icon = icon;
 
         return this;
@@ -125,7 +134,7 @@ public class DynamicItem {
      *
      * @return The {@link DynamicItem} object to allow for chaining of calls to set methods.
      */
-    public DynamicItem setTitle(@Nullable CharSequence title) {
+    public @NonNull DynamicItem setTitle(@Nullable CharSequence title) {
         this.title = title;
 
         return this;
@@ -147,7 +156,7 @@ public class DynamicItem {
      *
      * @return The {@link DynamicItem} object to allow for chaining of calls to set methods.
      */
-    public DynamicItem setSubtitle(@Nullable CharSequence subtitle) {
+    public @NonNull DynamicItem setSubtitle(@Nullable CharSequence subtitle) {
         this.subtitle = subtitle;
 
         return this;
@@ -173,7 +182,7 @@ public class DynamicItem {
      *         
      * @see Theme.ColorType
      */
-    public DynamicItem setColorType(@Theme.ColorType int colorType) {
+    public @NonNull DynamicItem setColorType(@Theme.ColorType int colorType) {
         this.colorType = colorType;
 
         return this;
@@ -195,7 +204,7 @@ public class DynamicItem {
      *
      * @return The {@link DynamicItem} object to allow for chaining of calls to set methods.
      */
-    public DynamicItem setColor(@ColorInt int color) {
+    public @NonNull DynamicItem setColor(@ColorInt int color) {
         this.colorType = Theme.ColorType.CUSTOM;
         this.color = color;
 
@@ -220,7 +229,7 @@ public class DynamicItem {
      *
      * @return The {@link DynamicItem} object to allow for chaining of calls to set methods.
      */
-    public DynamicItem setShowDivider(boolean showDivider) {
+    public @NonNull DynamicItem setShowDivider(boolean showDivider) {
         this.showDivider = showDivider;
 
         return this;
@@ -242,7 +251,8 @@ public class DynamicItem {
      *
      * @return The {@link DynamicItem} object to allow for chaining of calls to set methods.
      */
-    public DynamicItem setOnClickListener(@Nullable View.OnClickListener onClickListener) {
+    public @NonNull DynamicItem setOnClickListener(
+            @Nullable View.OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
 
         return this;

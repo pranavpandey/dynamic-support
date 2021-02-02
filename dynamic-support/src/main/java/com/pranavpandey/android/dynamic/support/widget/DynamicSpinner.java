@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
 
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicSurfaceWidget;
@@ -62,6 +63,11 @@ public class DynamicSpinner extends AppCompatSpinner
     private @ColorInt int mColor;
 
     /**
+     * Color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedColor;
+
+    /**
      * Background color for this view so that it will remain in contrast with this color.
      */
     private @ColorInt int mContrastWithColor;
@@ -71,7 +77,7 @@ public class DynamicSpinner extends AppCompatSpinner
      * It was introduced to provide better legibility for colored views and to avoid dark view
      * on dark background like situations.
      *
-     * <p><p>If this is enabled then, it will check for the contrast color and do color
+     * <p>If this is enabled then, it will check for the contrast color and do color
      * calculations according to that color so that this text view will always be visible on
      * that background. If no contrast color is found then, it will take the default
      * background color.
@@ -85,7 +91,7 @@ public class DynamicSpinner extends AppCompatSpinner
      * {@code true} to enable elevation on the same background.
      * <p>It will be useful to provide the true dark theme by disabling the card view elevation.
      *
-     * <p><p>When disabled, widget elevation will be disabled (or 0) if the color of this widget
+     * <p>When disabled, widget elevation will be disabled (or 0) if the color of this widget
      * (surface color) is exactly same as dynamic theme background color.
      */
     private boolean mElevationOnSameBackground;
@@ -115,22 +121,22 @@ public class DynamicSpinner extends AppCompatSpinner
         try {
             mColorType = a.getInt(
                     R.styleable.DynamicSpinner_ads_colorType,
-                    Theme.ColorType.ACCENT);
+                    Defaults.ADS_COLOR_TYPE_SYSTEM_SECONDARY);
             mContrastWithColorType = a.getInt(
                     R.styleable.DynamicSpinner_ads_contrastWithColorType,
-                    Theme.ColorType.SURFACE);
+                    Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
                     R.styleable.DynamicSpinner_ads_color,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicSpinner_ads_contrastWithColor,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicSpinner_ads_backgroundAware,
-                    WidgetDefaults.getBackgroundAware());
+                    Defaults.getBackgroundAware());
             mElevationOnSameBackground = a.getBoolean(
                     R.styleable.DynamicSpinner_ads_elevationOnSameBackground,
-                    WidgetDefaults.ADS_ELEVATION_ON_SAME_BACKGROUND);
+                    Defaults.ADS_ELEVATION_ON_SAME_BACKGROUND);
         } finally {
             a.recycle();
         }
@@ -179,8 +185,13 @@ public class DynamicSpinner extends AppCompatSpinner
     }
 
     @Override
+    public @ColorInt int getColor(boolean resolve) {
+        return resolve ? mAppliedColor : mColor;
+    }
+
+    @Override
     public @ColorInt int getColor() {
-        return mColor;
+        return getColor(true);
     }
 
     @Override
@@ -226,17 +237,18 @@ public class DynamicSpinner extends AppCompatSpinner
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
-        setAlpha(enabled ? WidgetDefaults.ADS_ALPHA_ENABLED : WidgetDefaults.ADS_ALPHA_DISABLED);
+        setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
     }
 
     @Override
     public void setColor() {
-        if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+        if (mColor != Theme.Color.UNKNOWN) {
+            mAppliedColor = mColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
-            DynamicDrawableUtils.colorizeDrawable(getBackground(), mColor);
+            DynamicDrawableUtils.colorizeDrawable(getBackground(), mAppliedColor);
         }
 
         setSurface();
@@ -256,7 +268,7 @@ public class DynamicSpinner extends AppCompatSpinner
 
     @Override
     public void setSurface() {
-        if (mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
+        if (mContrastWithColor != Theme.Color.UNKNOWN) {
             @ColorInt int color = mContrastWithColor;
 
             if (isBackgroundSurface()) {
@@ -275,7 +287,7 @@ public class DynamicSpinner extends AppCompatSpinner
     @Override
     public boolean isBackgroundSurface() {
         return mColorType != Theme.ColorType.BACKGROUND
-                && mColor != WidgetDefaults.ADS_COLOR_UNKNOWN
+                && mColor != Theme.Color.UNKNOWN
                 && DynamicColorUtils.removeAlpha(mContrastWithColor)
                 == DynamicColorUtils.removeAlpha(
                         DynamicTheme.getInstance().get().getSurfaceColor());
@@ -284,6 +296,6 @@ public class DynamicSpinner extends AppCompatSpinner
     @Override
     public boolean isStrokeRequired() {
         return DynamicSdkUtils.is16() && !mElevationOnSameBackground && isBackgroundSurface()
-                && Color.alpha(mColor) < WidgetDefaults.ADS_ALPHA_SURFACE_STROKE;
+                && Color.alpha(mColor) < Defaults.ADS_ALPHA_SURFACE_STROKE;
     }
 }

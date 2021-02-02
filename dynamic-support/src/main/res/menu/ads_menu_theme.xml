@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -29,11 +29,10 @@
         <menu>
 
             <item
-                android:id="@+id/ads_menu_theme_copy"
+                android:id="@+id/ads_menu_theme_data_copy"
                 android:title="@string/ads_copy"
                 android:icon="@drawable/ads_ic_copy"
-                android:orderInCategory="1"
-                android:checked="true" />
+                android:orderInCategory="1" />
 
             <item
                 android:id="@+id/ads_menu_theme_share"
@@ -42,16 +41,22 @@
                 android:orderInCategory="2" />
 
             <item
+                android:id="@+id/ads_menu_theme_code"
+                android:title="@string/ads_theme_code"
+                android:icon="@drawable/ads_ic_qr_code"
+                android:orderInCategory="3" />
+
+            <item
                 android:id="@+id/ads_menu_theme_import"
                 android:title="@string/ads_backup_import"
                 android:icon="@drawable/ads_ic_text_color"
-                android:orderInCategory="3" />
+                android:orderInCategory="4" />
 
             <item
                 android:id="@+id/ads_menu_theme_file"
                 android:title="@string/ads_file"
                 android:icon="@drawable/ads_ic_file"
-                android:orderInCategory="4">
+                android:orderInCategory="5">
 
                 <menu>
 
@@ -62,16 +67,22 @@
                         android:orderInCategory="1" />
 
                     <item
+                        android:id="@+id/ads_menu_theme_file_code"
+                        android:title="@string/ads_theme_code"
+                        android:icon="@drawable/ads_ic_qr_code"
+                        android:orderInCategory="2" />
+
+                    <item
                         android:id="@+id/ads_menu_theme_file_share"
                         android:title="@string/ads_nav_share"
                         android:icon="@drawable/ads_ic_share"
-                        android:orderInCategory="2" />
+                        android:orderInCategory="3" />
 
                     <item
                         android:id="@+id/ads_menu_theme_file_import"
                         android:title="@string/ads_backup_import"
                         android:icon="@drawable/ads_ic_download"
-                        android:orderInCategory="3" />
+                        android:orderInCategory="4" />
 
                 </menu>
 
@@ -81,16 +92,18 @@
 
     </item>
 
-    <item android:id="@+id/ads_menu_refresh"
+    <item
+        android:id="@+id/ads_menu_refresh"
         android:title="@string/ads_refresh"
         android:icon="@drawable/ads_ic_refresh"
-        android:orderInCategory="2"
+        android:orderInCategory="3"
         app:showAsAction="never" />
 
-    <item android:id="@+id/ads_menu_default"
+    <item
+        android:id="@+id/ads_menu_default"
         android:title="@string/ads_default"
         android:icon="@drawable/ads_ic_reset"
-        android:orderInCategory="3"
+        android:orderInCategory="4"
         app:showAsAction="never" />
 
 </menu>

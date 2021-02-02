@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,10 +31,11 @@ import com.pranavpandey.android.dynamic.support.permission.view.DynamicPermissio
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicInfoView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
-import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.utils.DynamicTextUtils;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * A {@link RecyclerView.Adapter} to show the {@link DynamicPermissions}.
@@ -45,7 +46,7 @@ public class DynamicPermissionsAdapter extends
     /**
      * List of permissions shown by this adapter.
      */
-    private List<DynamicPermission> mDataSet;
+    private List<DynamicPermission> mData;
 
     /**
      * Callback when a permission is selected.
@@ -55,12 +56,12 @@ public class DynamicPermissionsAdapter extends
     /**
      * Constructor to initialize an object of this class.
      *
-     * @param dataSet The data set for this adapter.
+     * @param data The list of permissions shown by this adapter.
      * @param permissionListener The listener to receiver the permission events.
      */
-    public DynamicPermissionsAdapter(@Nullable List<DynamicPermission> dataSet,
+    public DynamicPermissionsAdapter(@Nullable List<DynamicPermission> data,
             @Nullable DynamicPermissionsView.PermissionListener permissionListener) {
-        mDataSet = dataSet;
+        mData = data;
         mPermissionListener = permissionListener;
 
         setHasStableIds(true);
@@ -69,11 +70,11 @@ public class DynamicPermissionsAdapter extends
     @Override
     public @NonNull ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         return new ViewHolder(LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.ads_layout_info_view_card, viewGroup, false));
+                .inflate(R.layout.ads_layout_info_card, viewGroup, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(final @NonNull ViewHolder viewHolder, final int position) {
         if (mPermissionListener != null) {
             viewHolder.getRoot().setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -88,7 +89,8 @@ public class DynamicPermissionsAdapter extends
         DynamicPermission dynamicPermission = getItem(position);
 
         viewHolder.getInfoView().setIconBig(dynamicPermission.getIcon());
-        viewHolder.getInfoView().setTitle(dynamicPermission.getTitle());
+        viewHolder.getInfoView().setTitle(DynamicTextUtils.capitalize(
+                dynamicPermission.getTitle(), Locale.getDefault()));
         viewHolder.getInfoView().setSubtitle(dynamicPermission.getSubtitle());
         viewHolder.getInfoView().setDescription(dynamicPermission.getDescription());
 
@@ -110,27 +112,36 @@ public class DynamicPermissionsAdapter extends
 
             if (!dynamicPermission.isAskAgain()) {
                 viewHolder.getInfoView().setIcon(DynamicResourceUtils.getDrawable(
-                        viewHolder.getInfoView().getContext(), R.drawable.ads_ic_error));
-
-                if (DynamicSdkUtils.is23()) {
-                    viewHolder.getInfoView().setDescription(viewHolder.getInfoView()
-                            .getContext().getString(R.string.ads_perm_denied_desc));
-                    viewHolder.getInfoView().setStatus(viewHolder.getInfoView()
-                            .getContext().getString(R.string.ads_perm_denied));
-                } else {
-                    viewHolder.getInfoView().setDescription(viewHolder.getInfoView()
-                            .getContext().getString(R.string.ads_perm_reinstall_desc));
-                    viewHolder.getInfoView().setStatus(viewHolder.getInfoView()
-                            .getContext().getString(R.string.ads_perm_reinstall));
-                }
+                        viewHolder.getInfoView().getContext(), R.drawable.ads_ic_error_outline));
+                viewHolder.getInfoView().setDescription(viewHolder.getInfoView()
+                        .getContext().getString(R.string.ads_perm_denied_desc));
+                viewHolder.getInfoView().setStatus(viewHolder.getInfoView()
+                        .getContext().getString(R.string.ads_perm_denied));
             }
+
             viewHolder.getRoot().setClickable(true);
+        }
+
+        if (dynamicPermission.isReinstall()) {
+            viewHolder.getInfoView().setDescription(viewHolder.getInfoView()
+                    .getContext().getString(R.string.ads_perm_reinstall_desc));
+            viewHolder.getInfoView().setStatus(viewHolder.getInfoView()
+                    .getContext().getString(R.string.ads_perm_reinstall));
+            viewHolder.getRoot().setClickable(true);
+        }
+
+        if (dynamicPermission.isUnknown()) {
+            viewHolder.getInfoView().setDescription(viewHolder.getInfoView()
+                    .getContext().getString(R.string.ads_perm_unknown_desc));
+            viewHolder.getInfoView().setStatus(viewHolder.getInfoView()
+                    .getContext().getString(R.string.ads_perm_unknown));
+            viewHolder.getRoot().setClickable(false);
         }
     }
 
     @Override
     public int getItemCount() {
-        return mDataSet == null ? 0 : mDataSet.size();
+        return mData == null ? 0 : mData.size();
     }
 
     @Override
@@ -146,7 +157,7 @@ public class DynamicPermissionsAdapter extends
      * @return The dynamic permission according to the supplied position.
      */
     public @NonNull DynamicPermission getItem(int position) {
-        return mDataSet.get(position);
+        return mData.get(position);
     }
 
     /**
@@ -172,13 +183,13 @@ public class DynamicPermissionsAdapter extends
         ViewHolder(@NonNull View view) {
             super(view);
 
-            root = view.findViewById(R.id.ads_info_view_card);
+            root = view.findViewById(R.id.ads_info_card);
             dynamicInfo = view.findViewById(R.id.ads_dynamic_info_view);
 
             dynamicInfo.getSubtitleView().setAllCaps(true);
             if (dynamicInfo.getIconView() instanceof DynamicImageView) {
                 ((DynamicImageView) dynamicInfo.getIconView())
-                        .setColorType(Theme.ColorType.PRIMARY);
+                        .setColorType(Defaults.ADS_COLOR_TYPE_ICON);
             }
         }
 

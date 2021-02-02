@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,6 +51,8 @@ import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.utils.concurrent.DynamicCallback;
+import com.pranavpandey.android.dynamic.utils.loader.DynamicLoader;
 
 /**
  * Helper class to perform resource operations. Context and App compat is used to provide
@@ -62,19 +64,19 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 public class DynamicResourceUtils {
 
     /**
-     * Resource id constant for no resource.
+     * Resource id constant for the no resource.
      */
     public static final int ADS_DEFAULT_RESOURCE_ID = -1;
 
     /**
-     * Resource value constant for no value.
+     * Resource value constant for the no value.
      */
     public static final int ADS_DEFAULT_RESOURCE_VALUE = 0;
 
     /**
      * Extract the supplied attribute value resource id from the theme.
      *
-     * @param context The context to retrieve resources.
+     * @param context The context to retrieve the resources.
      * @param attr The attribute whose value resource id to be extracted.
      *
      * @return The value resource id of the supplied attribute.
@@ -89,6 +91,7 @@ public class DynamicResourceUtils {
     /**
      * Extract the supplied integer attribute value from the theme.
      *
+     * @param context The context to retrieve the resources.
      * @param theme The theme to get the styled attributes.
      * @param attr The integer attribute whose value should be extracted.
      * @param defaultValue The value to return if the attribute is not defined or not a resource.
@@ -112,7 +115,7 @@ public class DynamicResourceUtils {
      * Extract the supplied color attribute value from the theme.
      *
      * @param theme The theme to get the styled attributes.
-     * @param context The context to retrieve resources.
+     * @param context The context to retrieve the resources.
      * @param attr The color attribute whose value to be extracted.
      * @param defaultValue The value to return if the attribute is not defined or not a resource.
      *
@@ -135,7 +138,7 @@ public class DynamicResourceUtils {
      * Extract the supplied drawable attribute value from the theme.
      *
      * @param theme The theme to get the styled attributes.
-     * @param context The context to retrieve resources.
+     * @param context The context to retrieve the resources.
      * @param attr The drawable attribute whose value to be extracted.
      *
      * @return The value of the supplied attribute.
@@ -154,6 +157,7 @@ public class DynamicResourceUtils {
     /**
      * Extract the supplied dimension attribute value from the theme.
      *
+     * @param context The context to retrieve the resources.
      * @param theme The theme to get the styled attributes.
      * @param attr The dimension attribute whose value should be extracted.
      * @param defaultValue The value to return if the attribute is not defined or not a resource.
@@ -177,6 +181,7 @@ public class DynamicResourceUtils {
      * Extract the supplied dimension attribute value from the theme.
      * <p>The extracted value will be converted into the integer pixels.
      *
+     * @param context The context to retrieve the resources.
      * @param theme The theme to get the styled attributes.
      * @param attr The dimension attribute whose value to be extracted.
      * @param defaultValue The value to return if the attribute is not defined or not a resource.
@@ -199,7 +204,7 @@ public class DynamicResourceUtils {
     /**
      * Get the drawable from the supplied resource.
      *
-     * @param context The context to retrieve resources.
+     * @param context The context to retrieve the resources.
      * @param drawableRes The drawable resource to get the drawable.
      *
      * @return The drawable retrieved from the resource.
@@ -271,20 +276,6 @@ public class DynamicResourceUtils {
     /**
      * Colorize and return the mutated drawable so that, all other references do not change.
      *
-     * @param context The context to retrieve drawable resource.
-     * @param drawableRes The drawable resource to be colorized.
-     * @param colorFilter The color filter to be applied on the drawable.
-     *
-     * @return The colorized drawable.
-     */
-    public static @Nullable Drawable colorizeDrawableRes(@NonNull Context context,
-            @DrawableRes int drawableRes, @NonNull ColorFilter colorFilter) {
-        return colorizeDrawable(getDrawable(context, drawableRes), colorFilter);
-    }
-
-    /**
-     * Colorize and return the mutated drawable so that, all other references do not change.
-     *
      * @param drawable The drawable to be colorized.
      * @param color The color to colorize the drawable.
      * @param mode The porter duff mode.
@@ -305,12 +296,26 @@ public class DynamicResourceUtils {
      *
      * @param context The context to retrieve drawable resource.
      * @param drawableRes The drawable resource to be colorized.
+     * @param colorFilter The color filter to be applied on the drawable.
+     *
+     * @return The colorized drawable.
+     */
+    public static @Nullable Drawable colorizeDrawableRes(@NonNull Context context,
+            @DrawableRes int drawableRes, @NonNull ColorFilter colorFilter) {
+        return colorizeDrawable(getDrawable(context, drawableRes), colorFilter);
+    }
+
+    /**
+     * Colorize and return the mutated drawable so that, all other references do not change.
+     *
+     * @param context The context to retrieve drawable resource.
+     * @param drawableRes The drawable resource to be colorized.
      * @param color The color to colorize the drawable.
      * @param mode The porter duff mode.
      *
      * @return The colorized drawable.
      */
-    public static @Nullable Drawable colorizeDrawableRes( @NonNull Context context,
+    public static @Nullable Drawable colorizeDrawableRes(@NonNull Context context,
             @DrawableRes int drawableRes, @ColorInt int color, @Nullable PorterDuff.Mode mode) {
         return colorizeDrawable(getDrawable(context, drawableRes), color, mode);
     }
@@ -340,21 +345,51 @@ public class DynamicResourceUtils {
      *
      * @see Spannable
      */
-    public static void highlightQueryTextColor(@NonNull String query,
-            @NonNull TextView textView, @ColorInt int color) {
-        String stringText = textView.getText().toString().toLowerCase();
-        if (!TextUtils.isEmpty(query) && stringText.contains(query)) {
-            final int startPos = stringText.indexOf(query);
-            final int endPos = startPos + query.length();
-
-            final SpannableStringBuilder sb = new SpannableStringBuilder(textView.getText());
-            sb.setSpan(new ForegroundColorSpan(color),
-                    startPos, endPos, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-            sb.setSpan(new StyleSpan(android.graphics.Typeface.BOLD),
-                    startPos, endPos, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-
-            textView.setText(sb, TextView.BufferType.SPANNABLE);
+    public static void highlightQueryTextColor(@Nullable String query,
+            @Nullable TextView textView, @ColorInt int color) {
+        if (query == null || TextUtils.isEmpty(query) || textView == null
+                || textView.getText() == null || TextUtils.isEmpty(textView.getText())) {
+            return;
         }
+
+        DynamicLoader.getInstance().setAsync(new DynamicCallback<TextView,
+                CharSequence, CharSequence>(textView) {
+            @Override
+            public @Nullable CharSequence onPlaceholder(@NonNull TextView view) {
+                return view.getText();
+            }
+
+            @Override
+            public @Nullable CharSequence onResult(@NonNull TextView view) {
+                final String text = view.getText().toString().toLowerCase();
+                final String textQuery = query.toLowerCase();
+                if (TextUtils.isEmpty(query) || TextUtils.isEmpty(text)
+                        || !text.contains(textQuery)) {
+                    return null;
+                }
+
+                final SpannableStringBuilder stringBuilder =
+                        new SpannableStringBuilder(view.getText());
+
+                int i = 0;
+                while (i < text.length()) {
+                    int startPos = text.indexOf(textQuery, i);
+
+                    if (startPos != -1) {
+                        i = startPos + query.length();
+
+                        stringBuilder.setSpan(new ForegroundColorSpan(color),
+                                startPos, i, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                        stringBuilder.setSpan(new StyleSpan(android.graphics.Typeface.BOLD),
+                                startPos, i, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                    }
+
+                    i++;
+                }
+
+                return stringBuilder;
+            }
+        });
     }
 
     /**
@@ -655,7 +690,7 @@ public class DynamicResourceUtils {
     /**
      * Get the value resource id of a given attribute.
      *
-     * @param context The context to retrieve resources.
+     * @param context The context to retrieve the resources.
      * @param attrRes The resource id of the attribute.
      *
      * @return The value resource id of the supplied attribute.
@@ -673,7 +708,8 @@ public class DynamicResourceUtils {
     /**
      * Get the value resource id of a given attribute.
      *
-     * @param context The context to retrieve resources.
+     * @param context The context to retrieve the resources.
+     * @param attrs The supplied attribute set to load the values.
      * @param attrRes The resource id of the attribute.
      *
      * @return The value resource id of the supplied attribute.
@@ -692,7 +728,7 @@ public class DynamicResourceUtils {
     /**
      * Get drawable resource array from its resource id.
      *
-     * @param context The context to retrieve resources.
+     * @param context The context to retrieve the resources.
      * @param arrayRes The resource id of the drawable array.
      *
      * @return The drawable resource array from its resource id.
@@ -722,7 +758,7 @@ public class DynamicResourceUtils {
     /**
      * Get drawable array from ts resource id.
      *
-     * @param context The context to retrieve resources.
+     * @param context The context to retrieve the resources.
      * @param arrayRes The resource id of the drawable array.
      *
      * @return The drawable array from its resource id.
@@ -753,7 +789,7 @@ public class DynamicResourceUtils {
     /**
      * Get color array from its resource id.
      *
-     * @param context The context to retrieve resources.
+     * @param context The context to retrieve the resources.
      * @param arrayRes The resource id of the color array.
      *
      * @return The color array from its resource id.

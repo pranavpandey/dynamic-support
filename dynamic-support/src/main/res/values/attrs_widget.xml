@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -73,21 +73,19 @@
         <attr name="ads_color" />
         <attr name="ads_contrastWithColor" />
         <attr name="ads_backgroundAware" />
+        <attr name="ads_dynamicCornerRadius" />
         <attr name="ads_elevationOnSameBackground" />
-        <!-- Color for the card background. -->
-        <attr name="ads_cardBackgroundColor" format="color" />
-        <!-- Corner radius for the card view. -->
-        <attr name="ads_cardCornerRadius" format="dimension" />
-        <!-- Elevation for the card view. -->
-        <attr name="ads_cardElevation" format="dimension" />
+        <attr name="ads_floatingView" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicCheckBox. -->
     <declare-styleable name="DynamicCheckBox">
         <attr name="ads_colorType" />
         <attr name="ads_contrastWithColorType" />
+        <attr name="ads_stateNormalColorType" />
         <attr name="ads_color" />
         <attr name="ads_contrastWithColor" />
+        <attr name="ads_stateNormalColor" />
         <attr name="ads_backgroundAware" />
     </declare-styleable>
 
@@ -95,8 +93,10 @@
     <declare-styleable name="DynamicCheckedTextView">
         <attr name="ads_colorType" />
         <attr name="ads_contrastWithColorType" />
+        <attr name="ads_stateNormalColorType" />
         <attr name="ads_color" />
         <attr name="ads_contrastWithColor" />
+        <attr name="ads_stateNormalColor" />
         <attr name="ads_backgroundAware" />
     </declare-styleable>
 
@@ -212,7 +212,9 @@
         <attr name="ads_color" />
         <attr name="ads_contrastWithColor" />
         <attr name="ads_backgroundAware" />
+        <attr name="ads_dynamicCornerRadius" />
         <attr name="ads_elevationOnSameBackground" />
+        <attr name="ads_floatingView" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicNavigationView. -->
@@ -281,8 +283,10 @@
     <declare-styleable name="DynamicRadioButton">
         <attr name="ads_colorType" />
         <attr name="ads_contrastWithColorType" />
+        <attr name="ads_stateNormalColorType" />
         <attr name="ads_color" />
         <attr name="ads_contrastWithColor" />
+        <attr name="ads_stateNormalColor" />
         <attr name="ads_backgroundAware" />
     </declare-styleable>
 
@@ -388,10 +392,13 @@
     <!-- Attributes for the DynamicTextInputLayout. -->
     <declare-styleable name="DynamicTextInputLayout">
         <attr name="ads_colorType" />
+        <attr name="ads_errorColorType" />
         <attr name="ads_contrastWithColorType" />
         <attr name="ads_color" />
+        <attr name="ads_errorColor" />
         <attr name="ads_contrastWithColor" />
         <attr name="ads_backgroundAware" />
+        <attr name="ads_dynamicCornerRadius" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicTextView. -->

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -28,13 +28,13 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:paddingTop="@dimen/ads_margin_hint_vertical"
             android:paddingBottom="@dimen/ads_margin_hint_vertical"
             android:paddingLeft="@dimen/ads_margin_hint_horizontal"
             android:paddingRight="@dimen/ads_margin_hint_horizontal"
             android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:gravity="center"
             android:background="@android:color/transparent">
 
             <ImageView
@@ -49,8 +49,8 @@
                 android:id="@+id/ads_hint_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="viewStart"
                 android:gravity="start"
+                android:textAlignment="viewStart"
                 android:textSize="@dimen/ads_font_hint" />
 
         </LinearLayout>

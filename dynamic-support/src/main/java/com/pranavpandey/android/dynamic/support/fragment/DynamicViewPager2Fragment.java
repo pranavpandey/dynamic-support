@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,9 +30,10 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.activity.DynamicActivity;
 import com.pranavpandey.android.dynamic.support.adapter.DynamicFragmentStateAdapter;
+import com.pranavpandey.android.dynamic.support.fragment.listener.DynamicOnPageChangeCallback;
 import com.pranavpandey.android.dynamic.support.listener.DynamicViewPagerCallback;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 
 /**
  * An abstract {@link ViewPager} fragment to display multiple fragments inside the view pager
@@ -58,7 +59,7 @@ public abstract class DynamicViewPager2Fragment extends DynamicFragment
     private TabLayout mTabLayout;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    public @Nullable View onCreateView(@NonNull LayoutInflater inflater,
             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.ads_fragment_view_pager_2, container, false);
     }
@@ -78,22 +79,33 @@ public abstract class DynamicViewPager2Fragment extends DynamicFragment
             return;
         }
 
-        ((DynamicActivity) requireActivity()).addHeader(R.layout.ads_tabs, true);
-        mTabLayout = requireActivity().findViewById(R.id.ads_tab_layout);
-
         mViewPager.setOffscreenPageLimit(getItemCount());
+        mViewPager.registerOnPageChangeCallback(
+                new DynamicOnPageChangeCallback(getChildFragmentManager()));
         mViewPager.setAdapter(new ViewPagerAdapter(this, this));
+        Dynamic.addHeader(getActivity(), R.layout.ads_tabs,
+                true, getSavedInstanceState() == null);
 
-        new TabLayoutMediator(mTabLayout, mViewPager,
-                new TabLayoutMediator.TabConfigurationStrategy() {
-                    @Override
-                    public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                        tab.setText(getTitle(position));
-                    }
-                }).attach();
-
-        if (getArguments() != null && requireArguments().containsKey(ADS_ARGS_VIEW_PAGER_PAGE)) {
+        if (savedInstanceState == null && getArguments() != null
+                && requireArguments().containsKey(ADS_ARGS_VIEW_PAGER_PAGE)) {
             setPage(requireArguments().getInt(ADS_ARGS_VIEW_PAGER_PAGE));
+        }
+    }
+
+    @Override
+    public void onAddActivityHeader(@Nullable View view) {
+        super.onAddActivityHeader(view);
+
+        if (view != null) {
+            mTabLayout = view.findViewById(R.id.ads_tab_layout);
+
+            new TabLayoutMediator(mTabLayout, mViewPager,
+                    new TabLayoutMediator.TabConfigurationStrategy() {
+                        @Override
+                        public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                            tab.setText(getTitle(position));
+                        }
+                    }).attach();
         }
     }
 
@@ -121,6 +133,10 @@ public abstract class DynamicViewPager2Fragment extends DynamicFragment
      * @return The currently selected view pager page or position.
      */
     public int getCurrentPage() {
+        if (mViewPager == null) {
+            return ViewPager2.NO_ID;
+        }
+
         return mViewPager.getCurrentItem();
     }
 
@@ -130,7 +146,16 @@ public abstract class DynamicViewPager2Fragment extends DynamicFragment
      * @param page The current position for the view pager.
      */
     public void setPage(final int page) {
-        mViewPager.setCurrentItem(page);
+        if (mViewPager == null) {
+            return;
+        }
+
+        mViewPager.post(new Runnable() {
+            @Override
+            public void run() {
+                mViewPager.setCurrentItem(page);
+            }
+        });
     }
 
     /**
@@ -141,29 +166,29 @@ public abstract class DynamicViewPager2Fragment extends DynamicFragment
         /**
          * Dynamic view pager callback to get titles and fragments.
          */
-        private final DynamicViewPagerCallback dynamicViewPagerCallback;
+        private final DynamicViewPagerCallback viewPagerCallback;
 
         /**
          * Constructor to initialize an object of this class.
          *
          * @param fragment The fragment manager to get the child fragment manager.
-         * @param dynamicViewPagerCallback The view pager callback to return the data.
+         * @param viewPagerCallback The view pager callback to return the data.
          */
         ViewPagerAdapter(@NonNull Fragment fragment,
-                @NonNull DynamicViewPagerCallback dynamicViewPagerCallback) {
+                @NonNull DynamicViewPagerCallback viewPagerCallback) {
             super(fragment);
 
-            this.dynamicViewPagerCallback = dynamicViewPagerCallback;
+            this.viewPagerCallback = viewPagerCallback;
         }
 
         @Override
         public @NonNull Fragment createFragment(int position) {
-            return dynamicViewPagerCallback.createFragment(position);
+            return viewPagerCallback.createFragment(position);
         }
 
         @Override
         public int getItemCount() {
-            return dynamicViewPagerCallback.getItemCount();
+            return viewPagerCallback.getItemCount();
         }
     }
 }

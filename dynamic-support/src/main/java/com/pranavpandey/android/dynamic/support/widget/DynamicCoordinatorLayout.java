@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,9 +26,11 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
 
@@ -60,7 +62,7 @@ public class DynamicCoordinatorLayout extends CoordinatorLayout implements Windo
         try {
             if (a.getBoolean(
                     R.styleable.DynamicCoordinatorLayout_ads_windowInsets,
-                    WidgetDefaults.ADS_WINDOW_INSETS)) {
+                    Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }
         } finally {
@@ -84,12 +86,13 @@ public class DynamicCoordinatorLayout extends CoordinatorLayout implements Windo
                     mInsets = new Rect();
                 }
 
-                mInsets.set(insets.getSystemWindowInsetLeft(),
-                        insets.getSystemWindowInsetTop(),
-                        insets.getSystemWindowInsetRight(),
-                        insets.getSystemWindowInsetBottom());
+                mInsets.set(insets.getInsets(WindowInsetsCompat.Type.systemBars()).left,
+                        insets.getInsets(WindowInsetsCompat.Type.systemBars()).top,
+                        insets.getInsets(WindowInsetsCompat.Type.systemBars()).right,
+                        insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
 
-                setWillNotDraw(!insets.hasSystemWindowInsets()
+                setWillNotDraw(insets.getInsets(
+                        WindowInsetsCompat.Type.systemBars()).equals(Insets.NONE)
                         || getStatusBarBackground() == null);
                 return insets;
             }

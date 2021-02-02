@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -20,26 +20,22 @@
     <!-- Application theme -->
     <style name="Theme.DynamicApp" parent="Base.DynamicApp.NoActionBar">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@color/ads_navigation_color</item>
+        <item name="android:statusBarColor">@color/ads_status_color</item>
     </style>
 
     <style name="Theme.DynamicApp.Dark" parent="Base.DynamicApp.Dark.NoActionBar">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@color/ads_navigation_color</item>
+        <item name="android:statusBarColor">@color/ads_status_color</item>
     </style>
 
     <style name="Theme.DynamicApp.Light" parent="Base.DynamicApp.Light.NoActionBar">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@color/ads_navigation_color</item>
+        <item name="android:statusBarColor">@color/ads_status_color</item>
     </style>
 
     <style name="Theme.DynamicApp.DayNight" parent="Base.DynamicApp.DayNight.NoActionBar">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@color/ads_navigation_color</item>
+        <item name="android:statusBarColor">@color/ads_status_color</item>
     </style>
 
     <style name="Theme.DynamicApp.Translucent">

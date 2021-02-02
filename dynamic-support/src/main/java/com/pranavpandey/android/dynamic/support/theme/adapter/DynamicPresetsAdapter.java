@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,13 +28,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView;
 import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
-import com.pranavpandey.android.dynamic.support.widget.Dynamic;
+import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
 import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 import static com.pranavpandey.android.dynamic.support.theme.adapter.DynamicPresetsAdapter.Type.HORIZONTAL;
 import static com.pranavpandey.android.dynamic.support.theme.adapter.DynamicPresetsAdapter.Type.VERTICAL;
@@ -48,6 +53,7 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
     /**
      * Interface to hold the presets layout according to the recycler view orientation.
      */
+    @Retention(RetentionPolicy.SOURCE)
     @IntDef(value = { VERTICAL, HORIZONTAL })
     public @interface Type {
 
@@ -123,55 +129,62 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder<T> holder, int position) {
-        if (mPresets != null) {
-            holder.getRoot().setVisibility(View.VISIBLE);
-            try {
-                if (mDynamicPresetsListener != null) {
-                    T theme = null;
-                    if (mPresets.moveToPosition(position)) {
-                        String decodeTheme = DynamicThemeUtils.decodeTheme(
-                                mPresets.getString(mPresets.getColumnIndexOrThrow(
-                                        ThemeContract.Preset.Column.THEME)));
+        if (mPresets == null) {
+            Dynamic.setVisibility(holder.getRoot(), View.GONE);
+            return;
+        }
 
-                        if (decodeTheme != null) {
-                            theme = mDynamicPresetsListener.getDynamicTheme(decodeTheme);
-                        }
-                    }
+        Dynamic.setVisibility(holder.getRoot(), View.VISIBLE);
 
-                    if (theme == null) {
-                        return;
-                    }
+        try {
+            T theme = null;
+            if (mPresets.moveToPosition(position)) {
+                String decodeTheme = DynamicThemeUtils.decodeTheme(
+                        mPresets.getString(mPresets.getColumnIndexOrThrow(
+                                ThemeContract.Preset.Column.THEME)));
 
-                    holder.getThemePreview().getActionView()
-                            .setImageResource(R.drawable.ads_ic_palette);
-                    holder.getThemePreview().setDynamicTheme(theme);
-                    Dynamic.setCorner(holder.getRoot(), theme.getCornerRadius());
-
-                    holder.getRoot().setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            mDynamicPresetsListener.onPresetClick(v,
-                                    holder.getThemePreview().getDynamicTheme().toDynamicString(),
-                                    holder.getThemePreview());
-                        }
-                    });
-                    holder.getThemePreview().getActionView().setOnClickListener(
-                            new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            mDynamicPresetsListener.onPresetClick(v,
-                                    holder.getThemePreview().getDynamicTheme().toDynamicString(),
-                                    holder.getThemePreview());
-                        }
-                    });
-                } else {
-                    holder.getRoot().setClickable(false);
-                    holder.getThemePreview().getActionView().setClickable(false);
+                if (decodeTheme != null) {
+                    theme = mDynamicPresetsListener.getDynamicTheme(decodeTheme);
                 }
-            } catch (Exception ignored) {
             }
-        } else {
-            holder.getRoot().setVisibility(View.GONE);
+
+            if (theme == null) {
+                Dynamic.setVisibility(holder.getRoot(), View.GONE);
+                return;
+            }
+
+            holder.getThemePreview().getActionView()
+                    .setImageResource(R.drawable.ads_ic_palette);
+            holder.getThemePreview().setDynamicTheme(theme);
+            Dynamic.setCorner(holder.getRoot(), theme.getCornerRadius());
+            DynamicTintUtils.setViewForegroundTint(holder.getRoot(), theme.getBackgroundColor(),
+                    DynamicColorUtils.getTintColor(theme.getBackgroundColor()),
+                    true, false);
+
+            if (mDynamicPresetsListener != null) {
+                holder.getRoot().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mDynamicPresetsListener.onPresetClick(v,
+                                holder.getThemePreview().getDynamicTheme().toDynamicString(),
+                                holder.getThemePreview());
+                    }
+                });
+                holder.getThemePreview().getActionView().setOnClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                mDynamicPresetsListener.onPresetClick(v,
+                                        holder.getThemePreview().getDynamicTheme().toDynamicString(),
+                                        holder.getThemePreview());
+                            }
+                        });
+            } else {
+                holder.getRoot().setClickable(false);
+                holder.getThemePreview().getActionView().setClickable(false);
+            }
+        } catch (Exception ignored) {
+            Dynamic.setVisibility(holder.getRoot(), View.GONE);
         }
     }
 
@@ -196,7 +209,7 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
      *
      * @return The layout resource containing the theme preview.
      */
-    public int getLayoutRes() {
+    public @LayoutRes int getLayoutRes() {
         return mLayoutRes;
     }
 
@@ -211,6 +224,8 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
 
     /**
      * Sets the dynamic preset listener for this adapter.
+     *
+     * @param dynamicPresetsListener The listener to be set.
      */
     public void setDynamicPresetsListener(
             @Nullable DynamicPresetsView.DynamicPresetsListener<T> dynamicPresetsListener) {
@@ -239,7 +254,7 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
          *
          * @param view The view for this view holder.
          */
-        ViewHolder(View view) {
+        ViewHolder(@NonNull View view) {
             super(view);
 
             root = view.findViewById(R.id.ads_preset_root);

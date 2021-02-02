@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,6 +44,15 @@ public interface DynamicTextWidget extends DynamicWidget {
      * @see Theme.ColorType
      */
     void setTextColorType(@Theme.ColorType int textColorType);
+
+    /**
+     * Returns the value of text color applied to this widget.
+     *
+     * @param resolve {@code true} to resolve the text color applied to this widget.
+     *
+     * @return The value of text color applied to this widget.
+     */
+    @ColorInt int getTextColor(boolean resolve);
 
     /**
      * Returns the value of text color applied to this widget.

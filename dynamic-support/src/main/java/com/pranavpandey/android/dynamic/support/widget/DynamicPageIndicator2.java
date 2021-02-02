@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  * Copyright 2015 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -143,9 +143,9 @@ public class DynamicPageIndicator2 extends View implements View.OnAttachStateCha
         animDuration = (long) a.getInteger(R.styleable.DynamicPageIndicator2_ads_animationDuration,
                 DEFAULT_ANIM_DURATION);
         animHalfDuration = animDuration / 2;
-        unselectedColour = a.getColor( R.styleable.DynamicPageIndicator2_ads_pageIndicatorColor,
+        unselectedColour = a.getColor(R.styleable.DynamicPageIndicator2_ads_pageIndicatorColor,
                 DEFAULT_UNSELECTED_COLOUR);
-        selectedColour = a.getColor( R.styleable.DynamicPageIndicator2_ads_currentPageIndicatorColor,
+        selectedColour = a.getColor(R.styleable.DynamicPageIndicator2_ads_currentPageIndicatorColor,
                 DEFAULT_SELECTED_COLOUR);
 
         a.recycle();
@@ -284,8 +284,10 @@ public class DynamicPageIndicator2 extends View implements View.OnAttachStateCha
         } else {
             currentPage = 0;
         }
-        if (dotCenterX != null) {
+        if (dotCenterX != null && dotCenterX.length > 0) {
             selectedDotX = dotCenterX[currentPage];
+        } else {
+            selectedDotX = 0;
         }
     }
 
@@ -604,7 +606,7 @@ public class DynamicPageIndicator2 extends View implements View.OnAttachStateCha
 
     private void setSelectedPage(int now) {
         // Check for null array
-        if (now == currentPage || dotCenterX == null) return;
+        if (now == currentPage || dotCenterX == null || now >= dotCenterX.length) return;
 
         pageChanging = true;
         previousPage = currentPage;

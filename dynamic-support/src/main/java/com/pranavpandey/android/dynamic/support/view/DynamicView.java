@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ public abstract class DynamicView extends FrameLayout {
      *
      * @param attrs The supplied attribute set to load the values.
      */
-    private void loadFromAttributes(@Nullable AttributeSet attrs) {
+    public void loadFromAttributes(@Nullable AttributeSet attrs) {
         onLoadAttributes(attrs);
         onInflate();
     }
@@ -62,7 +62,7 @@ public abstract class DynamicView extends FrameLayout {
      *
      * @param attrs The attribute set to load the values.
      */
-    protected void onLoadAttributes(@Nullable AttributeSet attrs) { };
+    protected void onLoadAttributes(@Nullable AttributeSet attrs) { }
 
     /**
      * This method will be called to get the layout resource for this view.
@@ -86,19 +86,41 @@ public abstract class DynamicView extends FrameLayout {
     protected abstract void onUpdate();
 
     /**
+     * Runnable to post the update.
+     */
+    private final Runnable mUpdateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            onUpdate();
+        }
+    };
+
+    /**
+     * Manually update this view by calling {@link #onUpdate()} method.
+     * <p>Useful in some situations to restore the view state.
+     */
+    public void update() {
+        onUpdate();
+    }
+
+    /**
+     * Manually update this view by calling {@link #onUpdate()} method via a {@link Runnable}.
+     * <p>Useful in some situations to restore the view state on main thread.
+     */
+    public void postUpdate() {
+        post(mUpdateRunnable);
+    }
+
+    /**
      * This method will be called whenever there is a change in the view state.
      * <p>Either {@code enabled} or {@code disabled}, other views like icon, title, color, etc.
      * must be updated here to reflect the overall view state.
      *
      * @param enabled {@code true} if this view is enabled and can receive click events.
      */
-    protected void onEnabled(boolean enabled) { };
+    protected void onEnabled(boolean enabled) { }
 
-    /**
-     * Set this view enabled or disabled.
-     *
-     * @param enabled {@code true} if this view is enabled.
-     */
+    @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 

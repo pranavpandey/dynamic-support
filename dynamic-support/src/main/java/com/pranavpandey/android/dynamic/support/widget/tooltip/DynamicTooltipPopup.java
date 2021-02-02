@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  * Copyright 2017 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -41,8 +41,8 @@ import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.widget.Dynamic;
-import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
+import com.pranavpandey.android.dynamic.support.Dynamic;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.utils.DynamicWindowUtils;
 
 /**
@@ -115,7 +115,7 @@ public class DynamicTooltipPopup {
         mIconView = mContentView.findViewById(R.id.ads_hint_icon);
         mTextView = mContentView.findViewById(R.id.ads_hint_text);
 
-        mCardView.setAlpha(WidgetDefaults.ADS_ALPHA_TOAST);
+        mCardView.setAlpha(Defaults.ADS_ALPHA_TOAST);
         mIconView.setColorFilter(tintColor);
         mTextView.setTextColor(tintColor);
         Dynamic.setPreventCornerOverlap(mCardView, false);
@@ -166,7 +166,10 @@ public class DynamicTooltipPopup {
 
         WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         if (wm != null) {
-            wm.addView(mContentView, mLayoutParams);
+            try {
+                wm.addView(mContentView, mLayoutParams);
+            } catch (Exception ignored) {
+            }
         }
     }
 

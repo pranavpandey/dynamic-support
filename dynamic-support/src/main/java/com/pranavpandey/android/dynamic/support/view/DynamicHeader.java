@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,9 +40,8 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
-import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
@@ -80,12 +79,10 @@ public class DynamicHeader extends DynamicItemView {
     public void onUpdate() {
         super.onUpdate();
 
-        if (getTitleView() != null) {
-            ((DynamicTextView) getTitleView()).setColorType(getColorType());
+        Dynamic.setColorType(getTitleView(), getColorType());
 
-            if (getColor() != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                ((DynamicTextView) getTitleView()).setColor(getColor());
-            }
+        if (getColor() != Theme.Color.UNKNOWN) {
+            Dynamic.setColor(getTitleView(), getColor());
         }
     }
 }

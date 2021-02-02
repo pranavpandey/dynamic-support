@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
@@ -31,7 +31,7 @@ import com.pranavpandey.android.dynamic.theme.Theme;
  * {@link android.preference.PreferenceScreen} with an icon, title, summary, description,
  * value and an action button.
  *
- * <p><p>It can be extended to modify according to the need.
+ * <p>It can be extended to modify according to the need.
  */
 public class DynamicScreenPreference extends DynamicSimplePreference {
 
@@ -52,6 +52,6 @@ public class DynamicScreenPreference extends DynamicSimplePreference {
     protected void onInflate() {
         super.onInflate();
 
-        ((DynamicTextView) getValueView()).setColorType(Theme.ColorType.ACCENT);
+        Dynamic.setColorType(getValueView(), Theme.ColorType.ACCENT);
     }
 }

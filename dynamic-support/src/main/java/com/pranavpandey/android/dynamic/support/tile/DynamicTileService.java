@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ public abstract class DynamicTileService extends TileService {
     /**
      * This method will be called when there is a change in the tile state.
      *
-     * <p><p>Override this method to update the tile icon, title, etc.
+     * <p>Override this method to update the tile icon, title, etc.
      */
     @CallSuper
     protected void onDynamicUpdate() { }

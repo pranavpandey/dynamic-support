@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,9 +38,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.appcompat.view.menu.MenuView;
 import androidx.appcompat.widget.ActionMenuView;
+import androidx.core.widget.TextViewCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
+import com.google.android.material.tabs.TabLayout;
 import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
@@ -90,78 +92,8 @@ public class DynamicMenuUtils {
      */
     @TargetApi(Build.VERSION_CODES.M)
     @SuppressLint("RestrictedApi")
-    public static void setViewItemsTint(@NonNull final View view,
-            @ColorInt final int color, @ColorInt final int background, boolean tint) {
-        final PorterDuffColorFilter colorFilter
-                = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
-
-        if (view instanceof ViewGroup){
-            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++){
-                setViewItemsTint(((ViewGroup) view).getChildAt(i), color, background, tint);
-            }
-        }
-
-        if (tint && view instanceof ImageButton) {
-            ((ImageButton) view).getDrawable().setAlpha(255);
-            ((ImageButton) view).getDrawable().setColorFilter(colorFilter);
-            DynamicTintUtils.setViewBackgroundTint(view, color, true);
-        }
-
-        if (view instanceof ImageView) {
-            if (tint) {
-                ((ImageView) view).getDrawable().setAlpha(255);
-                ((ImageView) view).getDrawable().setColorFilter(colorFilter);
-                DynamicTintUtils.setViewBackgroundTint(view, color, true);
-            }
-
-            if (!TextUtils.isEmpty(view.getContentDescription())) {
-                DynamicTooltip.set(view, color, background, view.getContentDescription());
-            }
-        }
-
-        if (tint && view instanceof AutoCompleteTextView) {
-            ((AutoCompleteTextView) view).setTextColor(color);
-        }
-
-        if (tint && view instanceof TextView) {
-            ((TextView) view).setTextColor(color);
-            DynamicTintUtils.setViewBackgroundTint(view, color, true);
-        }
-
-        if (tint && view instanceof EditText) {
-            ((EditText) view).setTextColor(color);
-        }
-
-        if (view instanceof ActionMenuView) {
-            for (int j = 0; j < ((ActionMenuView) view).getChildCount(); j++) {
-                final View innerView = ((ActionMenuView) view).getChildAt(j);
-
-                if (tint && innerView instanceof ActionMenuItemView) {
-                    final Drawable[] compoundDrawables =
-                            ((ActionMenuItemView) innerView).getCompoundDrawables();
-                    if (DynamicSdkUtils.is23()) {
-                        ((ActionMenuItemView) innerView).setCompoundDrawableTintList
-                                (DynamicResourceUtils.getColorStateList(color));
-                    } else {
-                        for (Drawable compoundDrawable : compoundDrawables) {
-                            if (compoundDrawable != null) {
-                                DynamicDrawableUtils.colorizeDrawable(compoundDrawable, color);
-                            }
-                        }
-                    }
-                }
-
-                if (innerView instanceof MenuView.ItemView) {
-                    if (tint) {
-                        DynamicTintUtils.setViewBackgroundTint(view, color, true);
-                    }
-
-                    DynamicTooltip.set(innerView, color, background,
-                            ((MenuView.ItemView) innerView).getItemData().getTitle());
-                }
-            }
-        }
-
+    public static void setViewItemsTint(final @NonNull View view,
+            final @ColorInt int color, final @ColorInt int background, boolean tint) {
         if (view instanceof BottomNavigationMenuView) {
             for (int j = 0; j < ((BottomNavigationMenuView) view).getChildCount(); j++) {
                 final View innerView = ((BottomNavigationMenuView) view).getChildAt(j);
@@ -173,6 +105,82 @@ public class DynamicMenuUtils {
 
                     DynamicTooltip.set(innerView, color, background,
                             ((MenuView.ItemView) innerView).getItemData().getTitle());
+                }
+            }
+        } else if (view instanceof TabLayout) {
+            for (int j = 0; j < ((TabLayout) view).getTabCount(); j++) {
+                final TabLayout.Tab innerView = ((TabLayout) view).getTabAt(j);
+                DynamicTooltip.set(innerView.view, color, background, innerView.getText());
+            }
+        } else {
+            final PorterDuffColorFilter colorFilter
+                    = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
+
+            if (view instanceof ViewGroup) {
+                for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                    setViewItemsTint(((ViewGroup) view).getChildAt(i), color, background, tint);
+                }
+            }
+
+            if (tint && view instanceof ImageButton) {
+                ((ImageButton) view).getDrawable().setAlpha(255);
+                ((ImageButton) view).getDrawable().setColorFilter(colorFilter);
+                DynamicTintUtils.setViewBackgroundTint(view, color, true);
+            }
+
+            if (view instanceof ImageView) {
+                if (tint) {
+                    ((ImageView) view).getDrawable().setAlpha(255);
+                    ((ImageView) view).getDrawable().setColorFilter(colorFilter);
+                    DynamicTintUtils.setViewBackgroundTint(view, color, true);
+                }
+
+                if (!TextUtils.isEmpty(view.getContentDescription())) {
+                    DynamicTooltip.set(view, color, background, view.getContentDescription());
+                }
+            }
+
+            if (tint && view instanceof AutoCompleteTextView) {
+                ((AutoCompleteTextView) view).setTextColor(color);
+            }
+
+            if (tint && view instanceof TextView) {
+                ((TextView) view).setTextColor(color);
+                DynamicTintUtils.setViewBackgroundTint(view, color, true);
+            }
+
+            if (tint && view instanceof EditText) {
+                ((EditText) view).setTextColor(color);
+            }
+
+            if (view instanceof ActionMenuView) {
+                for (int j = 0; j < ((ActionMenuView) view).getChildCount(); j++) {
+                    final View innerView = ((ActionMenuView) view).getChildAt(j);
+
+                    if (tint && innerView instanceof ActionMenuItemView) {
+                        final Drawable[] compoundDrawables =
+                                ((ActionMenuItemView) innerView).getCompoundDrawables();
+                        if (DynamicSdkUtils.is23()) {
+                            TextViewCompat.setCompoundDrawableTintList(
+                                    ((ActionMenuItemView) innerView),
+                                    DynamicResourceUtils.getColorStateList(color));
+                        } else {
+                            for (Drawable compoundDrawable : compoundDrawables) {
+                                if (compoundDrawable != null) {
+                                    DynamicDrawableUtils.colorizeDrawable(compoundDrawable, color);
+                                }
+                            }
+                        }
+                    }
+
+                    if (innerView instanceof MenuView.ItemView) {
+                        if (tint) {
+                            DynamicTintUtils.setViewBackgroundTint(view, color, true);
+                        }
+
+                        DynamicTooltip.set(innerView, color, background,
+                                ((MenuView.ItemView) innerView).getItemData().getTitle());
+                    }
                 }
             }
         }
@@ -187,8 +195,8 @@ public class DynamicMenuUtils {
      * @param color The tint color to be applied.
      * @param background The background color for the tooltip.
      */
-    public static void setViewItemsTint(@NonNull final View view,
-            @ColorInt final int color, @ColorInt final int background) {
+    public static void setViewItemsTint(final @NonNull View view,
+            final @ColorInt int color, final @ColorInt int background) {
         setViewItemsTint(view, color, background, true);
     }
 }

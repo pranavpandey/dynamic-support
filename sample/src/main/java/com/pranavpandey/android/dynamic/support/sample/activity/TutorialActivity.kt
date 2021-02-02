@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,12 +17,9 @@
 package com.pranavpandey.android.dynamic.support.sample.activity
 
 import android.os.Bundle
-import androidx.annotation.StyleRes
 import androidx.viewpager2.widget.ViewPager2
 import com.pranavpandey.android.dynamic.support.sample.R
-import com.pranavpandey.android.dynamic.support.sample.controller.AppController
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
-import com.pranavpandey.android.dynamic.support.sample.controller.ThemeController
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicSimpleTutorial
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial
@@ -35,7 +32,7 @@ import java.util.*
  * Implementing a into screen by using [DynamicTutorialActivity].
  */
 class TutorialActivity :
-        DynamicTutorialActivity<DynamicSimpleTutorial, DynamicTutorialFragment>() {
+        DynamicTutorialActivity<DynamicTutorialFragment, DynamicSimpleTutorial>() {
 
     companion object {
 
@@ -50,27 +47,6 @@ class TutorialActivity :
         const val TUTORIAL_FINISH = 1
     }
 
-    override fun getLocale(): Locale? {
-        // TODO: Not implementing multiple locales so, returning null.
-        return null
-    }
-
-    @StyleRes
-    override fun getThemeRes(): Int {
-        // Return activity theme to be applied.
-        return ThemeController.appStyle
-    }
-
-    override fun onCustomiseTheme() {
-        // Customise activity theme after applying the base style.
-        ThemeController.setLocalTheme()
-    }
-
-    override fun setNavigationBarTheme(): Boolean {
-        // TODO: Return true to apply the navigation bar theme.
-        return AppController.instance.isThemeNavigationBar
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -80,16 +56,16 @@ class TutorialActivity :
                                         positionOffsetPixels: Int) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
 
-                if (viewPagerAdapter.getTutorial(position) != null) {
-                    setTutorialAction(viewPagerAdapter.getTutorial(position).tutorialId)
+                if (viewPagerAdapter!!.getTutorial(position) != null) {
+                    setTutorialAction(viewPagerAdapter!!.getTutorial(position).tutorialId)
                 }
             }
 
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
 
-                if (viewPagerAdapter.getTutorial(position) != null) {
-                    setTutorialAction(viewPagerAdapter.getTutorial(position).tutorialId)
+                if (viewPagerAdapter!!.getTutorial(position) != null) {
+                    setTutorialAction(viewPagerAdapter!!.getTutorial(position).tutorialId)
                 }
             }
         })

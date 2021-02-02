@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ import java.util.List;
  * nested scroll. Set this behavior in the layout file having {@link CoordinatorLayout} as root
  * element to show or hide the FAB according to the scroll direction.
  *
- * <p><p>Scrolling in upwards direction will hide the FAB and scrolling in downwards direction
+ * <p>Scrolling in upwards direction will hide the FAB and scrolling in downwards direction
  * will make it visible.
  */
 public class DynamicFABScrollBehavior extends AppBarLayout.ScrollingViewBehavior {

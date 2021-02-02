@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.widget.ContentLoadingProgressBar;
 
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
@@ -61,6 +62,11 @@ public class DynamicProgressBar extends ContentLoadingProgressBar implements Dyn
     private @ColorInt int mColor;
 
     /**
+     * Color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedColor;
+
+    /**
      * Background color for this view so that it will remain in contrast with this color.
      */
     private @ColorInt int mContrastWithColor;
@@ -70,7 +76,7 @@ public class DynamicProgressBar extends ContentLoadingProgressBar implements Dyn
      * It was introduced to provide better legibility for colored views and to avoid dark view
      * on dark background like situations.
      *
-     * <p><p>If this is enabled then, it will check for the contrast color and do color
+     * <p>If this is enabled then, it will check for the contrast color and do color
      * calculations according to that color so that this text view will always be visible on
      * that background. If no contrast color is found then, it will take the default
      * background color.
@@ -104,13 +110,13 @@ public class DynamicProgressBar extends ContentLoadingProgressBar implements Dyn
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
                     R.styleable.DynamicProgressBar_ads_color,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicProgressBar_ads_contrastWithColor,
-                    WidgetDefaults.getContrastWithColor(getContext()));
+                    Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicProgressBar_ads_backgroundAware,
-                    WidgetDefaults.getBackgroundAware());
+                    Defaults.getBackgroundAware());
         } finally {
             a.recycle();
         }
@@ -159,13 +165,18 @@ public class DynamicProgressBar extends ContentLoadingProgressBar implements Dyn
     }
 
     @Override
+    public @ColorInt int getColor(boolean resolve) {
+        return resolve ? mAppliedColor : mColor;
+    }
+
+    @Override
     public @ColorInt int getColor() {
-        this.mColorType = Theme.ColorType.CUSTOM;
-        return mColor;
+        return getColor(true);
     }
 
     @Override
     public void setColor(@ColorInt int color) {
+        this.mColorType = Theme.ColorType.CUSTOM;
         this.mColor = color;
 
         setColor();
@@ -206,29 +217,30 @@ public class DynamicProgressBar extends ContentLoadingProgressBar implements Dyn
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
-        setAlpha(enabled ? WidgetDefaults.ADS_ALPHA_ENABLED : WidgetDefaults.ADS_ALPHA_DISABLED);
+        setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void setColor() {
-        if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+        if (mColor != Theme.Color.UNKNOWN) {
+            mAppliedColor = mColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
             if (DynamicSdkUtils.is21()) {
-                setProgressTintList(DynamicResourceUtils.getColorStateList(mColor));
-                setIndeterminateTintList(DynamicResourceUtils.getColorStateList(mColor));
+                setProgressTintList(DynamicResourceUtils.getColorStateList(mAppliedColor));
+                setIndeterminateTintList(DynamicResourceUtils.getColorStateList(mAppliedColor));
             } else {
                 if (getProgressDrawable() != null) {
                     setProgressDrawable(DynamicDrawableUtils.colorizeDrawable(
-                            getProgressDrawable(), mColor));
+                            getProgressDrawable(), mAppliedColor));
                 }
 
                 if (getIndeterminateDrawable() != null) {
                     setIndeterminateDrawable(DynamicDrawableUtils.colorizeDrawable(
-                            getIndeterminateDrawable(), mColor));
+                            getIndeterminateDrawable(), mAppliedColor));
                 }
             }
         }

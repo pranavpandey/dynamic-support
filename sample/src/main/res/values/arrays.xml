@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -107,10 +107,12 @@
     <!-- Supported locales titles. -->
     <string-array name="info_translators_languages">
         <item>@string/ads_locale_de</item>
-        <item>@string/ads_locale_hi</item>
         <item>@string/ads_locale_es</item>
+        <item>@string/ads_locale_hi</item>
         <item>@string/ads_locale_in</item>
         <item>@string/ads_locale_it</item>
+        <item>@string/ads_locale_pt</item>
+        <item>@string/ads_locale_ru</item>
         <item>@string/ads_locale_tr</item>
         <item>@string/ads_locale_zh_rCN</item>
         <item>@string/ads_translators_translate</item>
@@ -119,10 +121,12 @@
     <!-- Supported locales translators. -->
     <string-array name="info_translators_authors">
         <item>Flubberlutsch</item>
-        <item>सिद्ध नरहरि</item>
         <item>Dave</item>
+        <item>सिद्ध नरहरि</item>
         <item>Gamal Kevin A</item>
         <item>Nicola</item>
+        <item>Jorge Alexandre | Matheus Coelho</item>
+        <item>Maxim Anisimov</item>
         <item>Fatih Fırıncı</item>
         <item>残念</item>
         <item>@string/ads_translators_translate_summary</item>
@@ -131,10 +135,12 @@
     <!-- Supported locales flags. -->
     <string-array name="info_translators_flags">
         <item>@drawable/ads_ic_flag_de</item>
-        <item>@drawable/ads_ic_flag_hi</item>
         <item>@drawable/ads_ic_flag_es</item>
+        <item>@drawable/ads_ic_flag_hi</item>
         <item>@drawable/ads_ic_flag_in</item>
         <item>@drawable/ads_ic_flag_it</item>
+        <item>@drawable/ads_ic_flag_pt</item>
+        <item>@drawable/ads_ic_flag_ru</item>
         <item>@drawable/ads_ic_flag_tr</item>
         <item>@drawable/ads_ic_flag_cn</item>
         <item>@drawable/ads_ic_translate</item>
@@ -149,11 +155,15 @@
         <item>@null</item>
         <item>@null</item>
         <item>@null</item>
+        <item>@null</item>
+        <item>@null</item>
         <item>https://github.com/pranavpandey/dynamic-support</item>
     </string-array>
 
     <!-- Supported locales tint colors. -->
     <integer-array name="info_translators_colors">
+        <item>0</item>
+        <item>0</item>
         <item>0</item>
         <item>0</item>
         <item>0</item>

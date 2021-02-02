@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,43 @@ import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutoria
  * Interface for the dynamic tutorial having useful methods which will be called by the
  * {@link DynamicTutorialActivity} to perform color transitions.
  *
- * <p><p>Any child view or fragment must implement this interface to support any color
+ * <p>Any child view or fragment must implement this interface to support any color
  * transitions.
  */
 public interface DynamicTutorial<T, V> extends ViewPager.OnPageChangeListener {
+
+    /**
+     * A {@link DynamicTutorial} to support shared element(s) transition.
+     */
+    interface SharedElement<T, V> extends DynamicTutorial<T, V> {
+
+        /**
+         * Returns whether this tutorial supports shared element(s) transition.
+         *
+         * @return {@code true} if this tutorial supports shared element(s) transition.
+         */
+        boolean isSharedElement();
+    }
+
+    /**
+     *  Activity scene transition name for the tutorial.
+     */
+    String ADS_NAME_TUTORIAL = "ads_name:tutorial";
+
+    /**
+     *  Activity scene transition name for the tutorial image.
+     */
+    String ADS_NAME_TUTORIAL_IMAGE = ADS_NAME_TUTORIAL + ":image";
+
+    /**
+     *  Activity scene transition name for the tutorial title.
+     */
+    String ADS_NAME_TUTORIAL_TITLE = ADS_NAME_TUTORIAL + ":title";
+
+    /**
+     *  Activity scene transition name for the tutorial subtitle.
+     */
+    String ADS_NAME_TUTORIAL_SUBTITLE = ADS_NAME_TUTORIAL + ":subtitle";
 
     /**
      * Returns the tutorial object.
@@ -67,5 +100,14 @@ public interface DynamicTutorial<T, V> extends ViewPager.OnPageChangeListener {
      */
     void onBackgroundColorChanged(@ColorInt int color);
 
+    /**
+     * This method will be called on setting the padding of the tutorial.
+     * <p>Implement this method to update any views according to the container.
+     *
+     * @param left The left padding supplied by the container.
+     * @param top The top padding supplied by the container.
+     * @param right The right padding supplied by the container.
+     * @param bottom The bottom padding supplied by the container.
+     */
     void onSetPadding(int left, int top, int right, int bottom);
 }

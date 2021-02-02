@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ import android.content.pm.ShortcutManager
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
 import android.os.Build
-import android.os.Handler
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
+import androidx.annotation.Nullable
 import androidx.annotation.StyleRes
 import androidx.core.graphics.drawable.IconCompat
 import com.pranavpandey.android.dynamic.support.DynamicApplication
@@ -37,9 +37,12 @@ import com.pranavpandey.android.dynamic.support.sample.controller.Constants
 import com.pranavpandey.android.dynamic.support.sample.controller.ThemeController
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils
+import com.pranavpandey.android.dynamic.theme.AppTheme
+import com.pranavpandey.android.dynamic.theme.Theme
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils
 import java.util.*
+
 
 /**
  * Sample application extending the [DynamicApplication], it must be done to initialize the
@@ -54,36 +57,41 @@ class SampleApplication : DynamicApplication() {
         AppController.initializeInstance(this)
     }
 
-    @StyleRes override fun getThemeRes(): Int {
-        // Return application theme to be applied.
-        return ThemeController.appStyle
-    }
-
-    override fun onCustomiseTheme() {
-        // Customise application theme after applying the base style.
-        ThemeController.setApplicationTheme()
-
-        // Call method to do the delayed work.
-        setDelayedTheme()
-    }
-
-    /**
-     * Method to do some delayed work.
-     */
-    private fun setDelayedTheme() {
-        Handler().postDelayed({
-            // Add dynamic app shortcuts after the delay.
-            setShortcuts()
-        }, DynamicTheme.DELAY_THEME_CHANGE)
-    }
-
-    override fun onNavigationBarThemeChanged() {
-        // TODO: Do any customisations on navigation bar theme change.
-    }
-
     override fun getLocale(): Locale? {
         // TODO: Not implementing multiple locales so, returning null.
         return null
+    }
+
+    @StyleRes
+    override fun getThemeRes(@Nullable theme: AppTheme<*>?): Int {
+        return if (theme != null) {
+            ThemeController.getAppStyle(theme.backgroundColor)
+        } else ThemeController.appStyle
+    }
+
+    override fun getDynamicTheme(): AppTheme<*>? {
+        return ThemeController.dynamicAppTheme
+    }
+
+    @ColorInt
+    override fun getDefaultColor(@Theme.ColorType colorType: Int): Int {
+        return when (colorType) {
+            Theme.ColorType.BACKGROUND -> {
+                return ThemeController.backgroundColor
+            }
+            Theme.ColorType.PRIMARY -> {
+                return ThemeController.colorPrimaryApp
+            }
+            Theme.ColorType.ACCENT -> {
+                ThemeController.colorAccentApp
+            }
+            else -> super.getDefaultColor(colorType)
+        }
+    }
+
+    override fun onCustomiseTheme() {
+        // Call method to do the delayed work.
+        setDelayedTheme()
     }
 
     override fun onDynamicChanged(context: Boolean, recreate: Boolean) {
@@ -96,6 +104,14 @@ class SampleApplication : DynamicApplication() {
         if (recreate) {
             setDelayedTheme()
         }
+    }
+
+    override fun onNavigationBarThemeChanged() {
+        // TODO: Do any customisations on navigation bar theme change.
+    }
+
+    override fun setNavigationBarTheme(): Boolean {
+        return AppController.instance.isThemeNavigationBar
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
@@ -120,6 +136,16 @@ class SampleApplication : DynamicApplication() {
             Constants.PREF_SETTINGS_APP_SHORTCUTS_THEME ->
                 setShortcuts()
         }
+    }
+
+    /**
+     * Method to do some delayed work.
+     */
+    private fun setDelayedTheme() {
+        DynamicTheme.getInstance().mainThreadHandler.postDelayed({
+            // Add dynamic app shortcuts after the delay.
+            setShortcuts()
+        }, DynamicTheme.DELAY_THEME_CHANGE)
     }
 
     /**
@@ -190,7 +216,7 @@ class SampleApplication : DynamicApplication() {
 
             // Use IconCompat to support adaptive icons on API 26 and above devices.
             return IconCompat.createWithAdaptiveBitmap(DynamicResourceUtils
-                    .getBitmapFromVectorDrawable(drawable)).toIcon()
+                    .getBitmapFromVectorDrawable(drawable)).toIcon(getContext())
         }
 
         return null

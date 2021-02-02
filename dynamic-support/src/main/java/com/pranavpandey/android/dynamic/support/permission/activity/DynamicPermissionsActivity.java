@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,64 +19,64 @@ package com.pranavpandey.android.dynamic.support.permission.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.activity.DynamicActivity;
 import com.pranavpandey.android.dynamic.support.model.DynamicPermission;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.permission.fragment.DynamicPermissionsFragment;
 import com.pranavpandey.android.dynamic.support.permission.listener.DynamicPermissionsListener;
+import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils;
 
 import java.util.List;
 
 /**
  * Base activity to request the {@link DynamicPermission}. It will be useful to request a
  * permission from anywhere, even from a service. Extend this activity in your app and add
- * it in the manifest.
+ * it in the manifest to provide additional functionality.
  *
- * <p><p>Then, register that activity to request the permissions via
+ * <p>Then, register that activity to request the permissions via
  * {@link DynamicPermissions#setPermissionActivity(Class)}. Rest of the things will be handled
  * by the {@link DynamicPermissionsFragment}.
  *
- * <p><p>To request permissions, just call
+ * <p>To request permissions, just call
  * {@link DynamicPermissions#requestPermissions(String[], boolean, Intent, int)} method anywhere
  * within the app.
  */
-public abstract class DynamicPermissionsActivity extends DynamicActivity
+public class DynamicPermissionsActivity extends DynamicActivity
         implements DynamicPermissionsListener {
+
+    /**
+     * No. of permission shown by this activity.
+     */
+    private int mPermissionsCount;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setNavigationClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finishActivity();
-            }
-        });
-
+        setTitle(R.string.ads_permissions);
+        setSubtitle(DynamicPackageUtils.getAppLabel(getContext()));
         setAppBarBackDrop(R.drawable.ads_ic_security);
-
-        addHeader(R.layout.ads_header_appbar, true);
-        ((ImageView) findViewById(R.id.ads_header_appbar_icon))
-                .setImageDrawable(getApplicationInfo().loadIcon(getPackageManager()));
-        ((TextView) findViewById(R.id.ads_header_appbar_title))
-                .setText(getApplicationInfo().loadLabel(getPackageManager()));
-
-        setupFragment(getIntent(), false);
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
+    protected void onNewIntent(@Nullable Intent intent, boolean newIntent) {
+        super.onNewIntent(intent, newIntent);
 
-        setupFragment(intent, true);
+        if (intent == null || intent.getAction() == null) {
+            return;
+        }
+
+        addHeader(R.layout.ads_header_appbar, true);
+
+        if (getContentFragment() == null || newIntent) {
+            switchFragment(DynamicPermissionsFragment.newInstance(getIntent()), false);
+        }
     }
 
     @Override
@@ -84,16 +84,18 @@ public abstract class DynamicPermissionsActivity extends DynamicActivity
         return true;
     }
 
-    /**
-     * Setup fragment according to the intent.
-     *
-     * @param intent The received intent.
-     * @param newIntent {@code true} if updating from the new intent.
-     */
-    private void setupFragment(@Nullable Intent intent, boolean newIntent) {
-        if (intent != null && intent.getAction() != null) {
-            if (getContentFragment() == null || newIntent) {
-                switchFragment(DynamicPermissionsFragment.newInstance(getIntent()), false);
+    @Override
+    public void onAddHeader(@Nullable View view) {
+        super.onAddHeader(view);
+
+        if (view != null) {
+            Dynamic.set(view.findViewById(R.id.ads_header_appbar_icon),
+                    DynamicPackageUtils.getAppIcon(this));
+            Dynamic.set(view.findViewById(R.id.ads_header_appbar_title),
+                    DynamicPackageUtils.getAppLabel(this));
+
+            if (mPermissionsCount > 0) {
+                updateSubtitle(mPermissionsCount);
             }
         }
     }
@@ -104,10 +106,14 @@ public abstract class DynamicPermissionsActivity extends DynamicActivity
      * @param count The no. of permissions shown by this activity.
      */
     public void updateSubtitle(int count) {
-        ((TextView) findViewById(R.id.ads_header_appbar_subtitle))
-                .setText(count == 1
-                        ? R.string.ads_permissions_subtitle_single
-                        : R.string.ads_permissions_subtitle);
+        this.mPermissionsCount = count;
+
+        if (findViewById(R.id.ads_header_appbar_subtitle) == null) {
+            return;
+        }
+
+        Dynamic.set(findViewById(R.id.ads_header_appbar_subtitle), getString(count == 1
+                ? R.string.ads_permissions_subtitle_single : R.string.ads_permissions_subtitle));
     }
 
     @Override

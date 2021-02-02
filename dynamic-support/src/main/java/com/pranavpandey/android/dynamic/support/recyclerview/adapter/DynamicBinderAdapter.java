@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,10 +28,10 @@ import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyc
  * A {@link RecyclerView.Adapter} to display different types of items or views in a recycler view.
  * <p>Each section can have a header or a completely different item.
  *
- * <p><p>Extend this adapter and use {@link DynamicRecyclerViewBinder} to create binding logic
+ * <p>Extend this adapter and use {@link DynamicRecyclerViewBinder} to create binding logic
  * for the each type of views.
  */
-@SuppressWarnings({"unchecked", "rawtypes"})
+@SuppressWarnings({"rawtypes", "unchecked"})
 public abstract class DynamicBinderAdapter<VB extends DynamicRecyclerViewBinder>
         extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -48,8 +48,10 @@ public abstract class DynamicBinderAdapter<VB extends DynamicRecyclerViewBinder>
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        getDataBinder(viewHolder.getItemViewType()).onBindViewHolder(
-                viewHolder, getBinderPosition(position));
+        if (getDataBinder(viewHolder.getItemViewType()).getRecyclerViewAdapter() != null) {
+            getDataBinder(viewHolder.getItemViewType()).onBindViewHolder(
+                    viewHolder, getBinderPosition(position));
+        }
     }
 
     @Override
@@ -112,7 +114,7 @@ public abstract class DynamicBinderAdapter<VB extends DynamicRecyclerViewBinder>
     public abstract int getBinderPosition(int position);
 
     /**
-     * This method will be called when the data set has been changed.
+     * This method will be called when the data has been changed.
      */
     public void notifyBinderDataSetChanged() {
         if (!isComputingLayout()) {

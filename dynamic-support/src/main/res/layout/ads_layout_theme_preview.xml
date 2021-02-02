@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -18,10 +18,8 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ads_theme_preview_root"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    style="@style/Widget.DynamicApp.Content.Row.Horizontal"
+    android:id="@+id/ads_theme_preview_root">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
         style="@style/Widget.DynamicApp.Image.Preference.Theme"
@@ -29,10 +27,7 @@
         app:srcCompat="@drawable/ads_ic_palette" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical">
+        style="@style/Widget.DynamicApp.Content.Row.Vertical">
 
         <com.pranavpandey.android.dynamic.support.theme.view.DynamicThemePreview
             android:id="@+id/ads_theme_preview"

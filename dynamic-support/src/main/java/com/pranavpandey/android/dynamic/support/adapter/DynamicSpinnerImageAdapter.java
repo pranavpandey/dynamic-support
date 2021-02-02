@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.model.DynamicSpinnerItem;
-import com.pranavpandey.android.dynamic.support.widget.Dynamic;
+import com.pranavpandey.android.dynamic.support.model.DynamicMenu;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ import java.util.List;
  * and text together as an item. Use the constructor to pass the layout resource, image and the
  * text id with a list of items according to the need.
  */
-public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicSpinnerItem> {
+public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicMenu> {
 
     /**
      * Resource id for the image view.
@@ -56,11 +56,11 @@ public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicSpinnerItem>
      * @param resource The layout resource to be used.
      * @param imageViewResourceId The resource id for the image view.
      * @param textViewResourceId The resource id for the text view.
-     * @param data The data set to be handled by this adapter.
+     * @param data The data to be handled by this adapter.
      */
     public DynamicSpinnerImageAdapter(@NonNull Context context,
             int resource, int imageViewResourceId, int textViewResourceId,
-            @NonNull List<DynamicSpinnerItem> data) {
+            @NonNull List<DynamicMenu> data) {
         super(context, resource, textViewResourceId, data);
 
         this.mImageViewResourceId = imageViewResourceId;
@@ -74,10 +74,10 @@ public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicSpinnerItem>
         ImageView imageView = itemView.findViewById(mImageViewResourceId);
         TextView textView = itemView.findViewById(mTextViewResourceId);
 
-        DynamicSpinnerItem item = getItem(position);
+        DynamicMenu item = getItem(position);
         if (item != null) {
             Dynamic.set(imageView, item.getIcon());
-            Dynamic.set(textView, item.getText());
+            Dynamic.set(textView, item.getTitle());
         }
 
         return itemView;

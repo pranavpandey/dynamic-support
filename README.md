@@ -41,7 +41,7 @@ It can be installed by adding the following dependency to your `build.gradle` fi
 ```groovy
 dependencies {
     // For AndroidX enabled projects.
-    implementation 'com.pranavpandey.android:dynamic-support:3.2.0'
+    implementation 'com.pranavpandey.android:dynamic-support:4.0.0'
 
     // For legacy projects.
     implementation 'com.pranavpandey.android:dynamic-support:1.3.0'
@@ -156,6 +156,8 @@ checkout the `Rotation` and `Everyday` apps to experience the full potential of 
 - Hindi (hi) - Siddh Narhari
 - Indonesian (in) - Gamal Kevin A
 - Italian (it) - Nicola
+- Portuguese (pt) - Jorge Alexandre | Matheus Coelho
+- Russian (ru) - Maxim Anisimov
 - Spanish (es) - Dave
 - Turkish (tr) - Fatih Fırıncı
 - Chinese (Simplified) (zh-rCN) - John Canny
@@ -174,7 +176,7 @@ Pranav Pandey
 
 ## License
 
-    Copyright 2018-2020 Pranav Pandey
+    Copyright 2018-2021 Pranav Pandey
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

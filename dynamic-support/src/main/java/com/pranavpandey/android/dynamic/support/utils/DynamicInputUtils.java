@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@ import android.app.Service;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsSeekBar;
 import android.widget.EditText;
@@ -33,7 +32,7 @@ import androidx.annotation.RestrictTo;
 import androidx.core.view.ViewCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
-import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
@@ -62,7 +61,7 @@ public final class DynamicInputUtils {
     @TargetApi(Build.VERSION_CODES.Q)
     public static void setCursorColor(@NonNull TextView textView, @ColorInt int color) {
         @ColorInt int hintColor = DynamicColorUtils.adjustAlpha(
-                color, WidgetDefaults.ADS_ALPHA_HINT);
+                color, Defaults.ADS_ALPHA_HINT);
         textView.setHintTextColor(hintColor);
         textView.setHighlightColor(DynamicColorUtils.getContrastColor(
                 hintColor, textView.getCurrentTextColor()));

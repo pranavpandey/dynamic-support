@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -90,7 +90,8 @@
                 android:layout_height="wrap_content"
                 app:ads_icon="@drawable/ic_rotation"
                 app:ads_title="@string/rotation"
-                app:ads_subtitle="@string/rotation_subtitle" />
+                app:ads_subtitle="@string/rotation_subtitle"
+                app:ads_colorType="none" />
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
@@ -103,7 +104,8 @@
                 android:layout_height="wrap_content"
                 app:ads_icon="@drawable/ic_everyday"
                 app:ads_title="@string/everyday"
-                app:ads_subtitle="@string/everyday_subtitle" />
+                app:ads_subtitle="@string/everyday_subtitle"
+                app:ads_colorType="none" />
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
@@ -116,7 +118,8 @@
                 android:layout_height="wrap_content"
                 app:ads_icon="@drawable/adt_ic_presets"
                 app:ads_title="@string/palettes"
-                app:ads_subtitle="@string/palettes_subtitle" />
+                app:ads_subtitle="@string/palettes_subtitle"
+                app:ads_colorType="none" />
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  * Copyright 2014 Soichiro Kashima
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,7 +31,7 @@ import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * FragmentStateAdapter to with the the {@link androidx.viewpager2.widget.ViewPager2}.
+ * A {@link FragmentStateAdapter} to be used with the {@link androidx.viewpager2.widget.ViewPager2}.
  * <p>The main purpose of this adapter is to tint the recycler view edge glow according to the
  * dynamic theme.
  */
@@ -84,7 +84,6 @@ public abstract class DynamicFragmentStateAdapter extends FragmentStateAdapter {
                                 DynamicTheme.getInstance().get().getPrimaryColor(),
                                 DynamicTheme.getInstance().get().getBackgroundColor()));
             }
-
         });
     }
 

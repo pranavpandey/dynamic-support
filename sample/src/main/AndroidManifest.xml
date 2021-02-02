@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@
         <activity
             android:name=".activity.SplashActivity"
             android:label="@string/app_name"
-            android:theme="@style/Sample">
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -42,20 +42,24 @@
         </activity>
 
         <activity
-            android:name=".activity.DrawerActivity"
-            android:label="@string/app_name" />
+            android:name=".activity.TutorialActivity"
+            android:label="@string/tutorial_sample"
+            android:launchMode="singleTop" />
 
         <activity
-            android:name=".activity.TutorialActivity"
-            android:label="@string/tutorial_sample" />
+            android:name=".activity.DrawerActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop" />
 
         <activity
             android:name=".activity.CollapsingAppBarActivity"
-            android:label="@string/collapsing_app_bar" />
+            android:label="@string/collapsing_app_bar"
+            android:launchMode="singleTop" />
 
         <activity
             android:name=".activity.BottomNavigationActivity"
-            android:label="@string/collapsing_app_bar" />
+            android:label="@string/collapsing_app_bar"
+            android:launchMode="singleTop" />
 
         <activity
             android:name=".activity.ActionActivity"

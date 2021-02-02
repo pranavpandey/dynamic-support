@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,17 +31,17 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.widget.Dynamic;
-import com.pranavpandey.android.dynamic.support.widget.WidgetDefaults;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A {@link DynamicView} with an icon, title and subtitle functionality that can be used to show
  * various information according to the requirement.
  *
- * <p><p>Use {@link #getItemView()} method to set click listeners or to perform other operations.
+ * <p>Use {@link #getItemView()} method to set click listeners or to perform other operations.
  */
 public class DynamicItemView extends DynamicView {
 
@@ -95,6 +95,11 @@ public class DynamicItemView extends DynamicView {
      * Image view to show the icon.
      */
     private ImageView mIconView;
+
+    /**
+     * Image view to show the icon.
+     */
+    private ImageView mIconFooterView;
 
     /**
      * Text view to show the title.
@@ -157,23 +162,23 @@ public class DynamicItemView extends DynamicView {
             mIcon = DynamicResourceUtils.getDrawable(getContext(),
                     a.getResourceId(
                             R.styleable.DynamicItemView_ads_icon,
-                            WidgetDefaults.ADS_COLOR_UNKNOWN));
+                            Theme.Color.UNKNOWN));
             mTitle = a.getString(
                     R.styleable.DynamicItemView_ads_title);
             mSubtitle = a.getString(
                     R.styleable.DynamicItemView_ads_subtitle);
             mShowDivider = a.getBoolean(
                     R.styleable.DynamicItemView_ads_showDivider,
-                    WidgetDefaults.ADS_SHOW_DIVIDER);
+                    Defaults.ADS_SHOW_DIVIDER);
             mFillSpace = a.getBoolean(
                     R.styleable.DynamicItemView_ads_fillSpace,
-                    WidgetDefaults.ADS_FILL_SPACE);
+                    Defaults.ADS_FILL_SPACE);
             mColorType = a.getInt(
                     R.styleable.DynamicItemView_ads_colorType,
-                    Theme.ColorType.NONE);
+                    Defaults.ADS_COLOR_TYPE_ICON);
             mColor = a.getColor(
                     R.styleable.DynamicItemView_ads_color,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
         } finally {
             a.recycle();
         }
@@ -190,46 +195,46 @@ public class DynamicItemView extends DynamicView {
 
         mItemView = findViewById(R.id.ads_item_view);
         mIconView = findViewById(R.id.ads_item_view_icon);
+        mIconFooterView = findViewById(R.id.ads_item_view_icon_footer);
         mTitleView = findViewById(R.id.ads_item_view_title);
         mSubtitleView = findViewById(R.id.ads_item_view_subtitle);
         mDivider = findViewById(R.id.ads_item_view_divider);
 
-        mVisibilityIconView = mIconView.getVisibility();
+        mVisibilityIconView = mIconView != null ? mIconView.getVisibility() : VISIBLE;
 
         onUpdate();
     }
 
     @Override
     public void onUpdate() {
-        Dynamic.set(mIconView, mIcon);
-        Dynamic.set(mTitleView, mTitle);
-        Dynamic.set(mSubtitleView, mSubtitle);
+        Dynamic.set(getIconView(), getIcon());
+        Dynamic.set(getTitleView(), getTitle());
+        Dynamic.set(getSubtitleView(), getSubtitle());
 
-        if (mIconView != null) {
-            Dynamic.setColorType(mIconView, mColorType);
+        if (getIconView() != null) {
+            Dynamic.setVisibility(getIconView(), isFillSpace() ? GONE : getVisibilityIconView());
 
-            if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                Dynamic.setColor(mIconView, mColor);
-            } else if (mColorType == Theme.ColorType.NONE) {
-                mIconView.clearColorFilter();
-            }
-
-            if (!mFillSpace && mVisibilityIconView == VISIBLE) {
-                mIconView.setVisibility(VISIBLE);
+            if (getColor() != Theme.Color.UNKNOWN) {
+                Dynamic.setColor(getIconView(), getColor());
+            } else if (getColorType() != Theme.ColorType.CUSTOM) {
+                Dynamic.setColorType(getIconView(), getColorType());
+            } else {
+                getIconView().clearColorFilter();
             }
         }
 
-        if (mDivider != null) {
-            mDivider.setVisibility(mShowDivider ? VISIBLE : GONE);
+        if (getDivider() != null) {
+            Dynamic.setVisibility(getDivider(), isShowDivider() ? VISIBLE : GONE);
         }
+        Dynamic.setVisibility(getIconFooterView(), getIconView());
     }
 
     @Override
     protected void onEnabled(boolean enabled) {
-        mItemView.setEnabled(enabled);
-        mIconView.setEnabled(enabled);
-        mTitleView.setEnabled(enabled);
-        mSubtitleView.setEnabled(enabled);
+        Dynamic.setEnabled(getItemView(), enabled);
+        Dynamic.setEnabled(getIconView(), enabled);
+        Dynamic.setEnabled(getTitleView(), enabled);
+        Dynamic.setEnabled(getSubtitleView(), enabled);
     }
 
     /**
@@ -378,45 +383,63 @@ public class DynamicItemView extends DynamicView {
     }
 
     /**
+     * Returns the visibility of the icon view.
+     *
+     * @return The visibility of the icon view.
+     */
+    public int getVisibilityIconView() {
+        return mVisibilityIconView;
+    }
+
+    /**
      * Get the root element of this view.
      *
-     * @return The root element of this view.
+     * @return The root element of this view
      */
     public ViewGroup getItemView() {
         return mItemView;
     }
 
     /**
-     * Get the image view to show the icon.
+     * Get the image view to show the icon used by this view.
      *
-     * @return The image view to show the icon.
+     * @return The image view to show the icon used by this view.
      */
     public ImageView getIconView() {
         return mIconView;
     }
 
     /**
-     * Get the text view to show the title.
+     * Get the image view to show the footer icon used by this view.
      *
-     * @return The text view to show the title.
+     * @return The image view to show the footer icon used by this view.
+     */
+    public @Nullable ImageView getIconFooterView() {
+        return mIconFooterView;
+    }
+
+    /**
+     * Get the text view to show the title used by this view.
+     *
+     * @return The text view to show the title used by this view.
      */
     public TextView getTitleView() {
         return mTitleView;
     }
 
     /**
-     * Get the text view to show the subtitle.
+     * Get the text view to show the subtitle used by this view.
      *
-     * @return The text view to show the subtitle.
+     * @return The text view to show the subtitle used by this view.
      */
     public TextView getSubtitleView() {
         return mSubtitleView;
     }
 
     /**
-     * Get the view to show the divider.
+     * Get the view to show the divider used by this view.
      *
-     * @return The view to show the divider.
+     * @return The view to show the divider used by this view.
      */
     public View getDivider() {
         return mDivider;

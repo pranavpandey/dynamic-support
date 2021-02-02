@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.card.MaterialCardView;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicCornerWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicFloatingWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicSurfaceWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -40,7 +42,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
  * A {@link MaterialCardView} to apply {@link DynamicTheme} according to the supplied parameters.
  */
 public class DynamicMaterialCardView extends MaterialCardView implements
-        DynamicWidget, DynamicCornerWidget<Float>, DynamicSurfaceWidget {
+        DynamicWidget, DynamicCornerWidget<Float>, DynamicSurfaceWidget, DynamicFloatingWidget {
 
     /**
      * Color type applied to this view.
@@ -61,6 +63,11 @@ public class DynamicMaterialCardView extends MaterialCardView implements
     private @ColorInt int mColor;
 
     /**
+     * Color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedColor;
+
+    /**
      * Background color for this view so that it will remain in contrast with this color.
      */
     private @ColorInt int mContrastWithColor;
@@ -70,7 +77,7 @@ public class DynamicMaterialCardView extends MaterialCardView implements
      * It was introduced to provide better legibility for colored views and to avoid dark view
      * on dark background like situations.
      *
-     * <p><p>If this is enabled then, it will check for the contrast color and do color
+     * <p>If this is enabled then, it will check for the contrast color and do color
      * calculations according to that color so that this text view will always be visible on
      * that background. If no contrast color is found then, it will take the default
      * background color.
@@ -84,20 +91,21 @@ public class DynamicMaterialCardView extends MaterialCardView implements
      * {@code true} to enable elevation on the same background.
      * <p>It will be useful to provide the true dark theme by disabling the card view elevation.
      *
-     * <p><p>When disabled, widget elevation will be disabled (or 0) if the color of this widget
+     * <p>When disabled, widget elevation will be disabled (or 0) if the color of this widget
      * (surface color) is exactly same as dynamic theme background color.
      */
     private boolean mElevationOnSameBackground;
 
     /**
+     * {@code true} if this view is floating.
+     * <p>It will be useful to provide the stroke for popup and dialogs.
+     */
+    private boolean mFloatingView;
+
+    /**
      * Intended elevation for this view without considering the background.
      */
     private float mElevation;
-
-    /**
-     * Intended stroke width for this view without considering the background.
-     */
-    private int mStrokeWidth;
 
     public DynamicMaterialCardView(@NonNull Context context) {
         this(context, null);
@@ -130,18 +138,25 @@ public class DynamicMaterialCardView extends MaterialCardView implements
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
                     R.styleable.DynamicMaterialCardView_ads_color,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicMaterialCardView_ads_contrastWithColor,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicMaterialCardView_ads_backgroundAware,
                     Theme.BackgroundAware.DISABLE);
             mElevationOnSameBackground = a.getBoolean(
                     R.styleable.DynamicMaterialCardView_ads_elevationOnSameBackground,
-                    WidgetDefaults.ADS_ELEVATION_ON_SAME_BACKGROUND);
+                    Defaults.ADS_ELEVATION_ON_SAME_BACKGROUND);
+            mFloatingView = a.getBoolean(
+                    R.styleable.DynamicMaterialCardView_ads_floatingView,
+                    Defaults.ADS_FLOATING_VIEW);
             mElevation = getCardElevation();
-            mStrokeWidth = getStrokeWidth();
+
+            if (a.getBoolean(R.styleable.DynamicMaterialCardView_ads_dynamicCornerRadius,
+                    Defaults.ADS_DYNAMIC_CORNER_RADIUS)) {
+                setCorner((float) DynamicTheme.getInstance().get().getCornerRadius());
+            }
         } finally {
             a.recycle();
         }
@@ -162,7 +177,6 @@ public class DynamicMaterialCardView extends MaterialCardView implements
                     .resolveColorType(mContrastWithColorType);
         }
 
-        setCorner((float) DynamicTheme.getInstance().get().getCornerRadius());
         setColor();
     }
 
@@ -191,8 +205,13 @@ public class DynamicMaterialCardView extends MaterialCardView implements
     }
 
     @Override
+    public @ColorInt int getColor(boolean resolve) {
+        return resolve ? mAppliedColor : mColor;
+    }
+
+    @Override
     public @ColorInt int getColor() {
-        return mColor;
+        return getColor(true);
     }
 
     @Override
@@ -261,27 +280,18 @@ public class DynamicMaterialCardView extends MaterialCardView implements
     }
 
     @Override
-    public void setStrokeWidth(int strokeWidth)  {
-        super.setStrokeWidth(strokeWidth);
-
-        if (strokeWidth != getResources().getDimensionPixelOffset(
-                R.dimen.ads_card_view_stroke_width)) {
-            this.mStrokeWidth = getStrokeWidth();
-        }
-    }
-
-    @Override
     public void setColor() {
-        if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+        if (mColor != Theme.Color.UNKNOWN) {
+            mAppliedColor = mColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
             if (mElevationOnSameBackground && isBackgroundSurface()) {
-                mColor = DynamicTheme.getInstance().generateSurfaceColor(mColor);
+                mAppliedColor = DynamicTheme.getInstance().generateSurfaceColor(mAppliedColor);
             }
 
-            setCardBackgroundColor(DynamicColorUtils.removeAlpha(mColor));
+            setCardBackgroundColor(DynamicColorUtils.removeAlpha(mAppliedColor));
             setSurface();
         }
     }
@@ -299,25 +309,43 @@ public class DynamicMaterialCardView extends MaterialCardView implements
     }
 
     @Override
-    public void setSurface() {
-        if (!mElevationOnSameBackground && isBackgroundSurface()) {
-            setCardElevation(0);
+    public boolean isFloatingView() {
+        return mFloatingView;
+    }
 
-            if (Color.alpha(mColor) < WidgetDefaults.ADS_ALPHA_SURFACE_STROKE) {
+    @Override
+    public void setFloatingView(boolean floatingView) {
+        this.mFloatingView = floatingView;
+
+        setColor();
+    }
+
+    @Override
+    public void setSurface() {
+        setStrokeColor(Color.TRANSPARENT);
+
+         if (mFloatingView) {
+            if (Color.alpha(mColor) < Defaults.ADS_ALPHA_SURFACE_STROKE
+                    || Color.alpha(mContrastWithColor) < Defaults.ADS_ALPHA_SURFACE_STROKE) {
                 setStrokeColor(DynamicTheme.getInstance().get().getTintBackgroundColor());
-                setStrokeWidth(getResources().getDimensionPixelOffset(
-                        R.dimen.ads_card_view_stroke_width));
             }
-        } else {
+        } else if (isBackgroundSurface()) {
+             if (!mElevationOnSameBackground) {
+                 setCardElevation(0);
+             }
+
+             if (Color.alpha(mColor) < Defaults.ADS_ALPHA_SURFACE_STROKE) {
+                 setStrokeColor(DynamicTheme.getInstance().get().getTintBackgroundColor());
+             }
+         } else {
             setCardElevation(mElevation);
-            setStrokeWidth(mStrokeWidth);
         }
     }
 
     @Override
     public boolean isBackgroundSurface() {
         return mColorType != Theme.ColorType.BACKGROUND
-                && mColor != WidgetDefaults.ADS_COLOR_UNKNOWN
+                && mColor != Theme.Color.UNKNOWN
                 && DynamicColorUtils.removeAlpha(mColor)
                 == DynamicColorUtils.removeAlpha(mContrastWithColor);
     }
@@ -325,6 +353,6 @@ public class DynamicMaterialCardView extends MaterialCardView implements
     @Override
     public boolean isStrokeRequired() {
         return DynamicSdkUtils.is16() && !mElevationOnSameBackground && isBackgroundSurface()
-                && Color.alpha(mColor) < WidgetDefaults.ADS_ALPHA_SURFACE_STROKE;
+                && Color.alpha(mColor) < Defaults.ADS_ALPHA_SURFACE_STROKE;
     }
 }

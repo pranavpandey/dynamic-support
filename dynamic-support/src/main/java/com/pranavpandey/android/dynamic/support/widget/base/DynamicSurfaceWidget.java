@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ public interface DynamicSurfaceWidget {
     boolean isElevationOnSameBackground();
 
     /**
-     * Set the elevation ons ame background option for this widget.
+     * Set the elevation on same background option for this widget.
      *
      * @param elevationOnSameBackground {@code true} to enable elevation on the same background.
      */
@@ -44,6 +44,11 @@ public interface DynamicSurfaceWidget {
      */
     void setSurface();
 
+    /**
+     * Checks whether the background should be used as the surface.
+     *
+     * @return {@code true} if the background should be used as surface.
+     */
     boolean isBackgroundSurface();
 
     /**

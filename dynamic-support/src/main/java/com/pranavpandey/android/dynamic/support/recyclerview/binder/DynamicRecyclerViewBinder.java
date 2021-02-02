@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ package com.pranavpandey.android.dynamic.support.recyclerview.binder;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBinderAdapter;
@@ -27,20 +28,19 @@ import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBind
  * A data binder class to bind data with the view inside the {@link DynamicBinderAdapter}.
  * <p>Extend this class to implement your own data binding logic.
  */
-@SuppressWarnings({"rawtypes"})
+@SuppressWarnings({"rawtypes", "unchecked"})
 public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHolder> {
 
     /**
      * The dynamic binder adapter for the recycler view.
      */
-    private DynamicBinderAdapter<DynamicRecyclerViewBinder<VH>> mBinderAdapter;
+    private DynamicBinderAdapter mBinderAdapter;
 
     /**
      * Constructor to initialize an object of this class.
      *
      * @param binderAdapter The dynamic binder adapter for the recycler view.
      */
-    @SuppressWarnings("unchecked")
     public DynamicRecyclerViewBinder(@NonNull DynamicBinderAdapter binderAdapter) {
         mBinderAdapter = binderAdapter;
     }
@@ -68,7 +68,16 @@ public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHold
      *
      * @return The recycler view adapter associated with this data binder.
      */
-    public DynamicBinderAdapter getRecyclerViewAdapter() {
+    public @Nullable RecyclerView.Adapter<RecyclerView.ViewHolder> getRecyclerViewAdapter() {
+        return mBinderAdapter;
+    }
+
+    /**
+     * Get the recycler view adapter associated with this data binder.
+     *
+     * @return The recycler view adapter associated with this data binder.
+     */
+    public @NonNull DynamicBinderAdapter getBinderAdapter() {
         return mBinderAdapter;
     }
 
@@ -80,10 +89,12 @@ public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHold
     public abstract int getItemCount();
 
     /**
-     * Notify adapter when the data set has been changed.
+     * Notify adapter when the data has been changed.
      */
     public final void notifyDataSetChanged() {
-        mBinderAdapter.notifyDataSetChanged();
+        if (!getBinderAdapter().isComputingLayout()) {
+            getBinderAdapter().notifyDataSetChanged();
+        }
     }
 
     /**
@@ -92,16 +103,18 @@ public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHold
      * @param position The position at which the item has been changed.
      */
     public final void notifyBinderItemChanged(int position) {
-        if (!mBinderAdapter.isComputingLayout()) {
-            mBinderAdapter.notifyBinderItemChanged(this, position);
+        if (!getBinderAdapter().isComputingLayout()) {
+            getBinderAdapter().notifyBinderItemChanged(this, position);
         }
     }
 
     /**
-     * Notify adapter when the data set has been changed in this data binder.
+     * Notify adapter when the data has been changed in this data binder.
      */
     public final void notifyBinderDataSetChanged() {
-        notifyBinderItemChanged(0);
+        if (!getBinderAdapter().isComputingLayout()) {
+            notifyBinderItemChanged(0);
+        }
     }
 
     /**
@@ -110,8 +123,8 @@ public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHold
      * @param position The position at which the item has been inserted.
      */
     public final void notifyBinderItemInserted(int position) {
-        if (!mBinderAdapter.isComputingLayout()) {
-            mBinderAdapter.notifyBinderItemInserted(this, position);
+        if (!getBinderAdapter().isComputingLayout()) {
+            getBinderAdapter().notifyBinderItemInserted(this, position);
         }
     }
 
@@ -122,8 +135,8 @@ public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHold
      * @param toPosition Final position of the moved item.
      */
     public final void notifyBinderItemMoved(int fromPosition, int toPosition) {
-        if (!mBinderAdapter.isComputingLayout()) {
-            mBinderAdapter.notifyBinderItemMoved(this, fromPosition, toPosition);
+        if (!getBinderAdapter().isComputingLayout()) {
+            getBinderAdapter().notifyBinderItemMoved(this, fromPosition, toPosition);
         }
     }
 
@@ -133,8 +146,8 @@ public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHold
      * @param position The position at which the item has been removed.
      */
     public final void notifyBinderItemRemoved(int position) {
-        if (!mBinderAdapter.isComputingLayout()) {
-            mBinderAdapter.notifyBinderItemRemoved(this, position);
+        if (!getBinderAdapter().isComputingLayout()) {
+            getBinderAdapter().notifyBinderItemRemoved(this, position);
         }
     }
 
@@ -145,8 +158,8 @@ public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHold
      * @param itemCount Total no. of items have been changed.
      */
     public final void notifyBinderItemRangeChanged(int position, int itemCount) {
-        if (!mBinderAdapter.isComputingLayout()) {
-            mBinderAdapter.notifyBinderItemRangeChanged(this, position, itemCount);
+        if (!getBinderAdapter().isComputingLayout()) {
+            getBinderAdapter().notifyBinderItemRangeChanged(this, position, itemCount);
         }
     }
 
@@ -158,8 +171,8 @@ public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHold
      * @param itemCount Total no. of items have been inserted.
      */
     public final void notifyBinderItemRangeInserted(int position, int itemCount) {
-        if (!mBinderAdapter.isComputingLayout()) {
-            mBinderAdapter.notifyBinderItemRangeInserted(this, position, itemCount);
+        if (!getBinderAdapter().isComputingLayout()) {
+            getBinderAdapter().notifyBinderItemRangeInserted(this, position, itemCount);
         }
     }
 
@@ -170,8 +183,8 @@ public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHold
      * @param itemCount Total no. of items have been removed.
      */
     public final void notifyBinderItemRangeRemoved(int position, int itemCount) {
-        if (!mBinderAdapter.isComputingLayout()) {
-            mBinderAdapter.notifyBinderItemRangeRemoved(this, position, itemCount);
+        if (!getBinderAdapter().isComputingLayout()) {
+            getBinderAdapter().notifyBinderItemRangeRemoved(this, position, itemCount);
         }
     }
 }

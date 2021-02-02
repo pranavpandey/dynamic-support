@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -84,7 +85,7 @@ public class DynamicLayoutUtils {
         }
 
         if (context.getResources().getConfiguration().orientation
-                == Configuration.ORIENTATION_LANDSCAPE){
+                == Configuration.ORIENTATION_LANDSCAPE) {
             try {
                 if (compact || !isInMultiWindowMode(context)) {
                     columns *= 2;
@@ -121,7 +122,7 @@ public class DynamicLayoutUtils {
      *
      * @return The screen size category for the supplied context.
      */
-    public static int getScreenSizeCategory(@NonNull Context context){
+    public static int getScreenSizeCategory(@NonNull Context context) {
         return context.getResources().getConfiguration().screenLayout
                 & Configuration.SCREENLAYOUT_SIZE_MASK;
     }
@@ -235,6 +236,20 @@ public class DynamicLayoutUtils {
     }
 
     /**
+     * Returns the {@link FlexboxLayoutManager} object for the given context.
+     *
+     * @param context The context to instantiate the layout manager.
+     * @param flexDirection The flex direction attribute to the flex container.
+     *
+     * @return The {@link FlexboxLayoutManager} object for the given context.
+     */
+    public static @NonNull FlexboxLayoutManager getFlexboxLayoutManager(
+            @NonNull Context context, @FlexDirection int flexDirection) {
+        return getFlexboxLayoutManager(context, flexDirection,
+                JustifyContent.FLEX_START, AlignItems.STRETCH);
+    }
+
+    /**
      * Sets full span for the item view types in case of a {@link GridLayoutManager}.
      * This method must be called after setting an adapter for the recycler view.
      *
@@ -245,8 +260,8 @@ public class DynamicLayoutUtils {
      * @see DynamicRecyclerViewAdapter.ItemType
      * @see GridLayoutManager#setSpanSizeLookup(GridLayoutManager.SpanSizeLookup)
      */
-    public static void setFullSpanForType(@Nullable final RecyclerView recyclerView,
-            @NonNull final Integer[] itemTypes, int spanCount) {
+    public static void setFullSpanForType(final @Nullable RecyclerView recyclerView,
+            final @NonNull Integer[] itemTypes, int spanCount) {
         if (recyclerView == null || recyclerView.getAdapter() == null) {
             return;
         }
@@ -281,7 +296,7 @@ public class DynamicLayoutUtils {
      * @see DynamicRecyclerViewAdapter#TYPE_SECTION_HEADER
      * @see DynamicRecyclerViewAdapter#TYPE_EMPTY_VIEW
      */
-    public static void setFullSpanForType(@Nullable final RecyclerView recyclerView) {
+    public static void setFullSpanForType(final @Nullable RecyclerView recyclerView) {
         if (recyclerView == null || recyclerView.getAdapter() == null) {
             return;
         }
@@ -304,8 +319,8 @@ public class DynamicLayoutUtils {
      *
      * @see GridLayoutManager#setSpanSizeLookup(GridLayoutManager.SpanSizeLookup)
      */
-    public static void setFullSpanForPosition(@Nullable final RecyclerView recyclerView,
-            @NonNull final Integer[] positions, int spanCount) {
+    public static void setFullSpanForPosition(final @Nullable RecyclerView recyclerView,
+            final @NonNull Integer[] positions, int spanCount) {
         if (recyclerView == null || recyclerView.getAdapter() == null) {
             return;
         }
@@ -317,12 +332,45 @@ public class DynamicLayoutUtils {
                 @Override
                 public int getSpanSize(int position) {
                     if (Arrays.asList(positions).contains(position)) {
-                        return Math.min(Math.abs(spanCount - position % spanCount), spanCount);
+                        int previousSpans = 0;
+                        int previousIndex = Arrays.asList(positions).indexOf(position);
+                        for (int i = 0; i < previousIndex; i++) {
+                            previousSpans += Math.min(Math.abs(spanCount
+                                    - ((positions[i] + previousSpans) % spanCount)), spanCount);
+
+                            if (previousSpans > 0) {
+                                previousSpans--;
+                            }
+                        }
+
+                        return Math.min(Math.abs(spanCount -
+                                ((position + previousSpans) % spanCount)), spanCount);
                     } else {
                         return 1;
                     }
                 }
             });
+        }
+    }
+
+    /**
+     * Sets full span for the positions in case of a {@link GridLayoutManager}.
+     * This method must be called after setting an adapter for the recycler view.
+     *
+     * @param recyclerView The recycler view to set the span size.
+     * @param positions The positions supported by the recycler view.
+     *
+     * @see GridLayoutManager#setSpanSizeLookup(GridLayoutManager.SpanSizeLookup)
+     */
+    public static void setFullSpanForPosition(final @Nullable RecyclerView recyclerView,
+            final @NonNull Integer[] positions) {
+        if (recyclerView == null || recyclerView.getAdapter() == null) {
+            return;
+        }
+
+        if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
+            setFullSpanForPosition(recyclerView, positions,
+                    ((GridLayoutManager) recyclerView.getLayoutManager()).getSpanCount());
         }
     }
 
@@ -335,7 +383,7 @@ public class DynamicLayoutUtils {
      * @see GridLayoutManager#setSpanSizeLookup(GridLayoutManager.SpanSizeLookup)
      * @see #setFullSpanForPosition(RecyclerView, Integer[], int)
      */
-    public static void setFullSpanForPosition(@Nullable final RecyclerView recyclerView) {
+    public static void setFullSpanForPosition(final @Nullable RecyclerView recyclerView) {
         if (recyclerView == null || recyclerView.getAdapter() == null) {
             return;
         }
@@ -345,8 +393,25 @@ public class DynamicLayoutUtils {
                 ((GridLayoutManager) recyclerView.getLayoutManager()).getSpanCount() <
                 ((GridLayoutManager) recyclerView.getLayoutManager()).getSpanCount()) {
             setFullSpanForPosition(recyclerView, new Integer[] {
-                    recyclerView.getAdapter().getItemCount() - 1 },
-                    ((GridLayoutManager) recyclerView.getLayoutManager()).getSpanCount());
+                            recyclerView.getAdapter().getItemCount() - 1 });
+        }
+    }
+
+    /**
+     * Sets full span for the view in case of a {@link StaggeredGridLayoutManager}.
+     * This method must be called after setting an adapter for the recycler view.
+     *
+     * @param view The recycler view to set the span size.
+     *
+     * @see StaggeredGridLayoutManager.LayoutParams#setFullSpan(boolean)
+     */
+    public static void setFullSpanForView(final @Nullable View view) {
+        if (view == null) {
+            return;
+        }
+
+        if (view.getLayoutParams() instanceof StaggeredGridLayoutManager.LayoutParams) {
+            ((StaggeredGridLayoutManager.LayoutParams) view.getLayoutParams()).setFullSpan(true);
         }
     }
 }

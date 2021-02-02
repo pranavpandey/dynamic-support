@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,12 +33,15 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
 
 import com.pranavpandey.android.dynamic.locale.DynamicLocale;
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
+import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicAppWidgetUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicShapeUtils;
+import com.pranavpandey.android.dynamic.theme.AppTheme;
 import com.pranavpandey.android.dynamic.utils.DynamicBitmapUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
@@ -49,27 +52,33 @@ import java.util.Locale;
  * <p>Extend it and modify according to the need.
  */
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-public abstract class DynamicAppWidgetProvider extends AppWidgetProvider implements DynamicLocale {
+public abstract class DynamicAppWidgetProvider<T extends AppTheme<?>>
+        extends AppWidgetProvider implements DynamicLocale {
 
     /**
      * Intent extra constant for width of the app widget.
      */
-    public static final String EXTRA_APP_WIDGET_WIDTH = "appWidgetWidth";
+    public static final String EXTRA_APP_WIDGET_WIDTH = "app:widget:width";
 
     /**
      * Intent extra constant for height of the app widget.
      */
-    public static final String EXTRA_APP_WIDGET_HEIGHT = "appWidgetHeight";
+    public static final String EXTRA_APP_WIDGET_HEIGHT = "app:widget:height";
 
     /**
      * Intent extra constant for adjust position of the app widget.
      */
-    public static final String EXTRA_APP_WIDGET_ADJUST_POSITION = "appWidgetAdjustPosition";
+    public static final String EXTRA_APP_WIDGET_ADJUST_POSITION = "app:widget:adjust_position";
+
+    /**
+     * Intent extra constant for the app widget type.
+     */
+    public static final String EXTRA_APP_WIDGET_TYPE = "app:widget:type";
 
     /**
      * Constant for the default app widget id.
      */
-    public static final int DEFAULT_APP_WIDGET_ID = 0;
+    public static final int NO_ID = -1;
 
     /**
      * Constant size in dips for one cell.
@@ -107,6 +116,11 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider impleme
     public static final int WIDGET_CELL_SIZE_SEVEN = WIDGET_CELL_SIZE_ONE * 7;
 
     /**
+     * Constant size in dips for eight cells.
+     */
+    public static final int WIDGET_CELL_SIZE_EIGHT = WIDGET_CELL_SIZE_ONE * 8;
+
+    /**
      * Bitmap quality of the widget background.
      */
     public static final int WIDGET_BACKGROUND_QUALITY = 0;
@@ -136,18 +150,25 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider impleme
      */
     private int mHeight;
 
+    /**
+     * {@code true} if position should be adjusted.
+     */
+    private boolean mAdjustPosition = true;
+
     @Override
     public void onReceive(@NonNull Context context, @NonNull Intent intent)  {
         super.onReceive(setLocale(context), intent);
 
-        if (intent.getAction() != null && intent.getAction()
-                .equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)) {
+        mAdjustPosition = true;
+
+        if (intent != null
+                && AppWidgetManager.ACTION_APPWIDGET_UPDATE.equals(intent.getAction())) {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
-                    DynamicAppWidgetProvider.DEFAULT_APP_WIDGET_ID);
+                    NO_ID);
 
             int[] appWidgetIds;
-            if (appWidgetId != DynamicAppWidgetProvider.DEFAULT_APP_WIDGET_ID) {
+            if (appWidgetId != NO_ID) {
                 appWidgetIds =  new int[] { appWidgetId };
             } else {
                 appWidgetIds = appWidgetManager.getAppWidgetIds(
@@ -176,6 +197,8 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider impleme
             @NonNull Bundle newOptions) {
         super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
 
+        mAdjustPosition = false;
+
         updateAppWidget(getContext(), appWidgetManager, appWidgetId);
     }
 
@@ -197,6 +220,10 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider impleme
 
     @Override
     public @Nullable String[] getSupportedLocales() {
+        if (DynamicTheme.getInstance().getListener() instanceof DynamicLocale) {
+            return ((DynamicLocale) DynamicTheme.getInstance().getListener()).getSupportedLocales();
+        }
+
         return null;
     }
 
@@ -206,16 +233,55 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider impleme
     }
 
     @Override
-    public @NonNull Context setLocale(@NonNull Context context) {
-        this.mCurrentLocale = DynamicLocaleUtils.getLocale(
-                getLocale(), getDefaultLocale(context));
+    public @Nullable Locale getLocale() {
+        if (DynamicTheme.getInstance().getListener() instanceof DynamicLocale) {
+            return ((DynamicLocale) DynamicTheme.getInstance().getListener()).getLocale();
+        }
 
-        return mContext = DynamicLocaleUtils.setLocale(context, mCurrentLocale, getFontScale());
+        return DynamicLocaleUtils.getCurrentLocale(DynamicTheme.getInstance().getContext());
+    }
+
+    @Override
+    public @NonNull Context setLocale(@NonNull Context context) {
+        mCurrentLocale = DynamicLocaleUtils.getLocale(
+                getLocale(), getDefaultLocale(context));
+        return mContext = DynamicLocaleUtils.setLocale(context,
+                false, mCurrentLocale, getFontScale());
+    }
+
+    /**
+     * This method will be called to get the theme style resource for this provider.
+     * <p>Override this method to supply your own customised style.
+     *
+     * @param appWidgetId The app widget id to be used.
+     *
+     * @return The theme style resource for this provider.
+     *
+     * @see DynamicAppTheme#isDarkTheme()
+     */
+    public @StyleRes int getThemeRes(int appWidgetId) {
+        return DynamicTheme.getInstance().getListener().getThemeRes(getDynamicTheme(appWidgetId));
+    }
+
+    /**
+     * This method will be called to get the dynamic app theme for this provideZ.
+     * <p>Override this method to supply your own customised theme.
+     *
+     * @param appWidgetId The app widget id to be used.
+     *
+     * @return The dynamic app theme for this provider.
+     */
+    public @Nullable T getDynamicTheme(int appWidgetId) {
+        return null;
     }
 
     @Override
     public float getFontScale() {
-        return DynamicTheme.getInstance().getRemote().getFontScaleRelative();
+        if (DynamicTheme.getInstance().getListener() instanceof DynamicLocale) {
+            return ((DynamicLocale) DynamicTheme.getInstance().getListener()).getFontScale();
+        }
+
+        return DynamicTheme.getInstance().get(false).getFontScaleRelative();
     }
 
     /**
@@ -226,7 +292,7 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider impleme
      *
      * @return The remote views for this provider.
      */
-    protected abstract RemoteViews getRemoteViews(@NonNull Context context);
+    protected abstract @NonNull RemoteViews getRemoteViews(@NonNull Context context);
 
     /**
      * Override this method to provide a shared preferences name for this app widget provider.
@@ -247,6 +313,7 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider impleme
     @CallSuper
     public void updateAppWidget(@NonNull Context context,
             @NonNull AppWidgetManager appWidgetManager, int appWidgetId) {
+        context.getTheme().applyStyle(getThemeRes(appWidgetId), true);
         updateWidgetDimensions(context, appWidgetManager, appWidgetId);
     }
 
@@ -290,7 +357,6 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider impleme
         return mCurrentLocale;
     }
 
-
     /**
      * Returns the current width of this widget provider.
      *
@@ -328,6 +394,24 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider impleme
     }
 
     /**
+     * Sets whether the position should be adjusted.
+     *
+     * @param adjustPosition {@code true} if the position should be adjusted.
+     */
+    public void setAdjustPosition(boolean adjustPosition) {
+         this.mAdjustPosition = adjustPosition;
+    }
+
+    /**
+     * Checks whether the position should be adjusted.
+     *
+     * @return {@code true} if the position should be adjusted.
+     */
+    public boolean isAdjustPosition() {
+        return mAdjustPosition;
+    }
+
+    /**
      * Converts the widget size into cells.
      *
      * @return The number of cells according to the supplied size.
@@ -337,20 +421,54 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider impleme
     public static int getCellsForSize(int size) {
         return (int) (Math.ceil(size + 30d) / WIDGET_CELL_SIZE_ONE);
     }
-
+    
     /**
-     * Get a bitmap for widget background according to the corner radius.
+     * Get a bitmap for the widget background according to the corner radius.
      *
      * @param width The width in dip for the bitmap.
      * @param height The height in dip for the bitmap.
      * @param cornerRadius The corner size in dip for the bitmap.
      *
-     * @return The bitmap for widget background according to the supplied parameters.
+     * @return The bitmap for the widget background according to the supplied parameters.
      */
     public static @Nullable Bitmap getWidgetFrameBitmap(int width,
             int height, float cornerRadius) {
-        return DynamicBitmapUtils.getBitmapFromDrawable(DynamicShapeUtils
-                .getCornerDrawableLegacy(width, height, cornerRadius, Color.WHITE, false));
+        return DynamicBitmapUtils.getBitmap(DynamicShapeUtils
+                .getCornerDrawableLegacyWithStroke(width, height, cornerRadius,
+                        Color.WHITE, false));
+    }
+
+    /**
+     * Get a bitmap for the widget background according to the corner radius.
+     *
+     * @param width The width in dip for the bitmap.
+     * @param height The height in dip for the bitmap.
+     * @param cornerRadius The corner size in dip for the bitmap.
+     * @param color The color to be used.
+     * @param strokeColor The stroke color to be used.
+     *
+     * @return The bitmap for the widget background according to the supplied parameters.
+     */
+    public static @Nullable Bitmap getWidgetFrameBitmapWithStroke(int width, int height,
+            float cornerRadius, @ColorInt int color, @ColorInt int strokeColor) {
+        return DynamicBitmapUtils.getBitmap(DynamicShapeUtils.getCornerDrawableLegacyWithStroke(
+                width, height, cornerRadius, color, false, strokeColor));
+    }
+
+    /**
+     * Get a bitmap for the widget background according to the corner radius.
+     *
+     * @param width The width in dip for the bitmap.
+     * @param height The height in dip for the bitmap.
+     * @param cornerRadius The corner size in dip for the bitmap.
+     * @param color The color to be used.
+     *
+     * @return The bitmap for the widget background according to the supplied parameters.
+     */
+    public static @Nullable Bitmap getWidgetFrameBitmapWithStroke(int width,
+            int height, float cornerRadius, @ColorInt int color) {
+        return DynamicBitmapUtils.getBitmap(DynamicShapeUtils.getCornerDrawableLegacyWithStroke(
+                width, height, cornerRadius, color, false));
     }
 
     /**
@@ -359,12 +477,13 @@ public abstract class DynamicAppWidgetProvider extends AppWidgetProvider impleme
      * @param width The width in dip for the bitmap.
      * @param height The height in dip for the bitmap.
      * @param cornerRadius The corner size in dip for the bitmap.
+     * @param color The color to be used.
      *
-     * @return The bitmap for widget background according to the supplied parameters.
+     * @return The bitmap for the widget background according to the supplied parameters.
      */
     public static @Nullable Bitmap getWidgetHeaderBitmap(int width,
             int height, float cornerRadius, @ColorInt int color) {
-        return DynamicBitmapUtils.getBitmapFromDrawable(DynamicShapeUtils
+        return DynamicBitmapUtils.getBitmap(DynamicShapeUtils
                 .getCornerDrawableLegacy(width, height, cornerRadius, color, true));
     }
 }

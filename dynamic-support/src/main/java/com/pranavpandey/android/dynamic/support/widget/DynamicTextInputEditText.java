@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
@@ -60,6 +61,11 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
     private @ColorInt int mColor;
 
     /**
+     * Color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedColor;
+
+    /**
      * Background color for this view so that it will remain in contrast with this color.
      */
     private @ColorInt int mContrastWithColor;
@@ -69,7 +75,7 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
      * It was introduced to provide better legibility for colored views and to avoid dark view
      * on dark background like situations.
      *
-     * <p><p>If this is enabled then, it will check for the contrast color and do color
+     * <p>If this is enabled then, it will check for the contrast color and do color
      * calculations according to that color so that this text view will always be visible on
      * that background. If no contrast color is found then, it will take the default
      * background color.
@@ -110,13 +116,13 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
                     R.styleable.DynamicTextInputEditText_ads_color,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicTextInputEditText_ads_contrastWithColor,
-                    WidgetDefaults.getContrastWithColor(getContext()));
+                    Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicTextInputEditText_ads_backgroundAware,
-                    WidgetDefaults.getBackgroundAware());
+                    Defaults.getBackgroundAware());
 
             if (mColorType == Theme.ColorType.ACCENT) {
                 setTextColor(DynamicColorUtils.getContrastColor(
@@ -174,8 +180,13 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
     }
 
     @Override
+    public @ColorInt int getColor(boolean resolve) {
+        return resolve ? mAppliedColor : mColor;
+    }
+
+    @Override
     public @ColorInt int getColor() {
-        return mColor;
+        return getColor(true);
     }
 
     @Override
@@ -221,14 +232,15 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
-        setAlpha(enabled ? WidgetDefaults.ADS_ALPHA_ENABLED : WidgetDefaults.ADS_ALPHA_DISABLED);
+        setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
     }
 
     @Override
     public void setColor() {
-        if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+        if (mColor != Theme.Color.UNKNOWN) {
+            mAppliedColor = mColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
             post(new Runnable() {
@@ -238,7 +250,7 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
 
                     if (parent != null) {
                         DynamicInputUtils.setColor(DynamicTextInputEditText.this,
-                                parent.getBoxBackgroundColor(), mColor);
+                                parent.getBoxBackgroundColor(), mAppliedColor);
                     }
                 }
             });

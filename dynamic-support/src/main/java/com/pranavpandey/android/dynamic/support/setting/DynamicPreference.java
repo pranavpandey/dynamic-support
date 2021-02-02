@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,27 +22,32 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.AttrRes;
-import androidx.annotation.LayoutRes;
+import androidx.annotation.CallSuper;
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.widget.Dynamic;
+import com.pranavpandey.android.dynamic.support.view.DynamicView;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * Base preference to provide the basic interface for the extending preference with an icon,
  * title, summary, description, value and an action button.
  *
- * <p><p>It must be extended and the necessary methods should be implemented to create a
+ * <p>It must be extended and the necessary methods should be implemented to create a
  * dynamic preference.
  *
  * @see DynamicSimplePreference
@@ -53,15 +58,15 @@ import com.pranavpandey.android.dynamic.support.widget.Dynamic;
  * @see DynamicSeekBarPreference
  * @see DynamicColorPreference
  */
-public abstract class DynamicPreference extends FrameLayout
-        implements SharedPreferences.OnSharedPreferenceChangeListener {
+public abstract class DynamicPreference extends DynamicView
+        implements SharedPreferences.OnSharedPreferenceChangeListener, DynamicWidget {
 
     /**
      * Listener to get various callbacks related to the popup and dialog.
      * <p>It will be useful if this preference is displaying a popup or dialog and we have
      * to restrict it from doing that.
      *
-     * <p><p>Most possible situation is if we want to display the color picker dialog only
+     * <p>Most possible situation is if we want to display the color picker dialog only
      * if user has purchased this feature.
      *
      * @see DynamicColorPreference
@@ -165,36 +170,55 @@ public abstract class DynamicPreference extends FrameLayout
      */
     private OnPromptListener mOnPromptListener;
 
+    /**
+     * Background color type for this view so that it will remain in contrast with this
+     * color type.
+     */
+    private @Theme.ColorType int mContrastWithColorType;
+
+    /**
+     * Background color for this view so that it will remain in contrast with this color.
+     */
+    private @ColorInt int mContrastWithColor;
+
+    /**
+     * The background aware functionality to change this view color according to the background.
+     * It was introduced to provide better legibility for colored views and to avoid dark view
+     * on dark background like situations.
+     *
+     * <p>If this is enabled then, it will check for the contrast color and do color
+     * calculations according to that color so that this text view will always be visible on
+     * that background. If no contrast color is found then, it will take the default
+     * background color.
+     *
+     * @see Theme.BackgroundAware
+     * @see #mContrastWithColor
+     */
+    private @Theme.BackgroundAware int mBackgroundAware;
+
     public DynamicPreference(@NonNull Context context) {
         this(context, null);
     }
 
     public DynamicPreference(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-
-        loadFromAttributes(attrs);
     }
 
     public DynamicPreference(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-        loadFromAttributes(attrs);
     }
 
-    /**
-     * Load values from the supplied attribute set.
-     *
-     * @param attrs The supplied attribute set to load the values.
-     */
-    private void loadFromAttributes(@Nullable AttributeSet attrs) {
+    @CallSuper
+    @Override
+    protected void onLoadAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(
                 attrs, R.styleable.DynamicPreference);
 
         try {
             mIcon = DynamicResourceUtils.getDrawable(getContext(),
                     a.getResourceId(R.styleable.DynamicPreference_ads_icon,
-                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
+                            DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
             mTitle = a.getString(R.styleable.DynamicPreference_ads_title);
             mSummary = a.getString(R.styleable.DynamicPreference_ads_summary);
             mDescription = a.getString(R.styleable.DynamicPreference_ads_description);
@@ -204,15 +228,40 @@ public abstract class DynamicPreference extends FrameLayout
             mDependency = a.getString(R.styleable.DynamicPreference_ads_dependency);
             mActionString = a.getString(R.styleable.DynamicPreference_ads_action);
             mEnabled = a.getBoolean(R.styleable.DynamicPreference_ads_enabled, DEFAULT_ENABLED);
+            mContrastWithColorType = a.getInt(
+                    R.styleable.DynamicPreference_ads_contrastWithColorType,
+                    Theme.ColorType.NONE);
+            mContrastWithColor = a.getColor(
+                    R.styleable.DynamicPreference_ads_contrastWithColor,
+                    Theme.Color.UNKNOWN);
+            mBackgroundAware = a.getInteger(
+                    R.styleable.DynamicPreference_ads_backgroundAware,
+                    Theme.BackgroundAware.UNKNOWN);
         } finally {
             a.recycle();
         }
+    }
 
-        onLoadAttributes(attrs);
-        onInflate();
-        onUpdate();
+    @CallSuper
+    @Override
+    protected void onUpdate() {
+        setPreferenceListener();
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+
+        update();
         setEnabled(mEnabled);
         updateDependency();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+
+        setPreferenceListener();
     }
 
     @Override
@@ -224,49 +273,107 @@ public abstract class DynamicPreference extends FrameLayout
     }
 
     @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
+    public void setEnabled(boolean enabled) {
+        this.mEnabled = enabled;
 
-        PreferenceManager.getDefaultSharedPreferences(getContext())
-                .registerOnSharedPreferenceChangeListener(this);
+        super.setEnabled(enabled);
     }
 
-    /**
-     * Load values from the supplied attribute set.
-     *
-     * @param attrs The attribute set to load the values.
-     */
-    protected abstract void onLoadAttributes(@Nullable AttributeSet attrs);
+    @Override
+    public void initialize() {
+        if (mContrastWithColorType != Theme.ColorType.NONE
+                && mContrastWithColorType != Theme.ColorType.CUSTOM) {
+            mContrastWithColor = DynamicTheme.getInstance()
+                    .resolveColorType(mContrastWithColorType);
+        }
+
+        setColor();
+    }
+
+    @Override
+    public @Theme.ColorType int getColorType() {
+        return Theme.ColorType.NONE;
+    }
+
+    @Override
+    public void setColorType(@Theme.ColorType int colorType) {
+        initialize();
+    }
+
+    @Override
+    public @Theme.ColorType int getContrastWithColorType() {
+        return mContrastWithColorType;
+    }
+
+    @Override
+    public void setContrastWithColorType(@Theme.ColorType int contrastWithColorType) {
+        this.mContrastWithColorType = contrastWithColorType;
+
+        initialize();
+    }
+
+    @Override
+    public @ColorInt int getColor(boolean resolve) {
+        return Theme.Color.UNKNOWN;
+    }
+
+    @Override
+    public @ColorInt int getColor() {
+        return getColor(true);
+    }
+
+    @Override
+    public void setColor(@ColorInt int color) {
+        setColor();
+    }
+
+    @Override
+    public @ColorInt int getContrastWithColor() {
+        return mContrastWithColor;
+    }
+
+    @Override
+    public void setContrastWithColor(@ColorInt int contrastWithColor) {
+        this.mContrastWithColorType = Theme.ColorType.CUSTOM;
+        this.mContrastWithColor = contrastWithColor;
+
+        setColor();
+    }
+
+    @Override
+    public void setBackgroundAware(@Theme.BackgroundAware int backgroundAware) {
+        this.mBackgroundAware = backgroundAware;
+
+        setColor();
+    }
+
+    @Override
+    public @Theme.BackgroundAware int getBackgroundAware() {
+        return mBackgroundAware;
+    }
+
+    @Override
+    public boolean isBackgroundAware() {
+        return DynamicTheme.getInstance().resolveBackgroundAware(
+                mBackgroundAware) != Theme.BackgroundAware.DISABLE;
+    }
+
+    @Override
+    public void setColor() { }
 
     /**
-     * Returns the layout resource id for this preference.
-     *
-     * @return The layout resource id for this preference.
+     * Manage the shared preferences listener according to the preference keys.
      */
-    protected abstract @LayoutRes int getLayoutRes();
-
-    /**
-     * This method will be called after loading the attributed.
-     * <p>Initialize the preference layout here.
-     */
-    protected abstract void onInflate();
-
-    /**
-     * This method will be called whenever there is a change in the preference attributes
-     * or parameters.
-     * <p>It is better to do any real time calculation like updating the value string
-     * or checked state in this method.
-     */
-    protected abstract void onUpdate();
-
-    /**
-     * This method will be called whenever there is a change in the preference view state.
-     * <p>Either {@code enabled} or {@code disabled}, preference views like icon, title, value,
-     * etc. must be updated here to reflect the overall preference state.
-     *
-     * @param enabled {@code true} if this widget is enabled and can receive click events.
-     */
-    protected abstract void onEnabled(boolean enabled);
+    private void setPreferenceListener() {
+        if (getPreferenceKey() != null || getAltPreferenceKey() != null
+                || getDependency() != null) {
+            PreferenceManager.getDefaultSharedPreferences(getContext())
+                    .registerOnSharedPreferenceChangeListener(this);
+        } else {
+            PreferenceManager.getDefaultSharedPreferences(getContext())
+                    .unregisterOnSharedPreferenceChangeListener(this);
+        }
+    }
 
     /**
      * Set drawable for an image view.
@@ -291,33 +398,12 @@ public abstract class DynamicPreference extends FrameLayout
     }
 
     /**
-     * Set a view enabled or disabled.
-     *
-     * @param view The view to be enabled or disabled.
-     * @param enabled {@code true} to enable the view.
-     */
-    protected void setViewEnabled(@Nullable View view, boolean enabled) {
-        if (view != null) {
-            view.setEnabled(enabled);
-        }
-    }
-
-    /**
      * Update this preference according to the dependency.
      */
     private void updateDependency() {
         if (mDependency != null) {
-            setEnabled(DynamicPreferences.getInstance()
-                    .load(mDependency, isEnabled()));
+            setEnabled(DynamicPreferences.getInstance().load(mDependency, isEnabled()));
         }
-    }
-
-    /**
-     * Manually onUpdate this preference by calling {@link #onUpdate()} method.
-     * <p>Useful in some situations to restore the preference state.
-     */
-    public void update() {
-        onUpdate();
     }
 
     /**
@@ -333,11 +419,24 @@ public abstract class DynamicPreference extends FrameLayout
      * Set the icon used by this preference.
      *
      * @param icon The icon drawable to be set.
+     * @param update {@code true} to call {@link #onUpdate()} method after setting
+     *               the icon.
      */
-    public void setIcon(@Nullable Drawable icon) {
+    public void setIcon(@Nullable Drawable icon, boolean update) {
         this.mIcon = icon;
 
-        onUpdate();
+        if (update) {
+            update();
+        }
+    }
+
+    /**
+     * Set the icon used by this preference.
+     *
+     * @param icon The icon drawable to be set.
+     */
+    public void setIcon(@Nullable Drawable icon) {
+        setIcon(icon, true);
     }
 
     /**
@@ -353,11 +452,24 @@ public abstract class DynamicPreference extends FrameLayout
      * Set the title used by this preference.
      *
      * @param title The title to be set.
+     * @param update {@code true} to call {@link #onUpdate()} method after setting
+     *               the title.
      */
-    public void setTitle(@Nullable String title) {
+    public void setTitle(@Nullable CharSequence title, boolean update) {
         this.mTitle = title;
 
-        onUpdate();
+        if (update) {
+            update();
+        }
+    }
+
+    /**
+     * Set the title used by this preference.
+     *
+     * @param title The title to be set.
+     */
+    public void setTitle(@Nullable CharSequence title) {
+        setTitle(title, true);
     }
 
     /**
@@ -373,11 +485,24 @@ public abstract class DynamicPreference extends FrameLayout
      * Set the summary used by this preference.
      *
      * @param summary The summary to be set.
+     * @param update {@code true} to call {@link #onUpdate()} method after setting
+     *               the summary.
      */
-    public void setSummary(@Nullable String summary) {
+    public void setSummary(@Nullable CharSequence summary, boolean update) {
         this.mSummary = summary;
 
-        onUpdate();
+        if (update) {
+            update();
+        }
+    }
+
+    /**
+     * Set the summary used by this preference.
+     *
+     * @param summary The summary to be set.
+     */
+    public void setSummary(@Nullable CharSequence summary) {
+        setSummary(summary, true);
     }
 
     /**
@@ -393,11 +518,24 @@ public abstract class DynamicPreference extends FrameLayout
      * Set the description used by this preference.
      *
      * @param description The description to be set.
+     * @param update {@code true} to call {@link #onUpdate()} method after setting
+     *               the description.
      */
-    public void setDescription(@Nullable String description) {
+    public void setDescription(@Nullable CharSequence description, boolean update) {
         this.mDescription = description;
 
-        onUpdate();
+        if (update) {
+            update();
+        }
+    }
+
+    /**
+     * Set the description used by this preference.
+     *
+     * @param description The description to be set.
+     */
+    public void setDescription(@Nullable CharSequence description) {
+        setDescription(description, true);
     }
 
     /**
@@ -420,7 +558,7 @@ public abstract class DynamicPreference extends FrameLayout
         this.mValueString = valueString;
 
         if (update) {
-            onUpdate();
+            update();
         }
     }
 
@@ -450,7 +588,7 @@ public abstract class DynamicPreference extends FrameLayout
     public void setPreferenceKey(@Nullable String preferenceKey) {
         this.mPreferenceKey = preferenceKey;
 
-        onUpdate();
+        update();
     }
 
     /**
@@ -470,7 +608,7 @@ public abstract class DynamicPreference extends FrameLayout
     public void setAltPreferenceKey(@Nullable String altPreferenceKey) {
         this.mAltPreferenceKey = altPreferenceKey;
 
-        onUpdate();
+        update();
     }
 
     /**
@@ -491,18 +629,6 @@ public abstract class DynamicPreference extends FrameLayout
         this.mDependency = dependency;
 
         updateDependency();
-    }
-
-    /**
-     * Set this preference enabled or disabled.
-     *
-     * @param enabled {@code true} if this preference is enabled.
-     */
-    public void setEnabled(boolean enabled) {
-        super.setEnabled(enabled);
-
-        this.mEnabled = enabled;
-        onEnabled(enabled);
     }
 
     /**
@@ -534,7 +660,7 @@ public abstract class DynamicPreference extends FrameLayout
         this.mOnPreferenceClickListener = onPreferenceClickListener;
 
         if (update) {
-            onUpdate();
+            update();
         }
     }
 
@@ -552,7 +678,28 @@ public abstract class DynamicPreference extends FrameLayout
      * Set an action button for this preference to perform secondary operations like requesting
      * a permission, reset the preference value etc.
      *
-     * <p><p>Extending preference should implement the functionality in {@link #onUpdate()}
+     * <p>Extending preference should implement the functionality in {@link #onUpdate()}
+     * method.
+     *
+     * @param actionString The string to be shown for the action.
+     * @param onActionClickListener The on click listener to perform the action when it is clicked.
+     * @param update {@code true} to call {@link #onUpdate()} method after setting the listener.
+     */
+    public void setActionButton(@Nullable CharSequence actionString,
+            @Nullable OnClickListener onActionClickListener, boolean update) {
+        this.mActionString = actionString;
+        this.mOnActionClickListener = onActionClickListener;
+
+        if (update) {
+            update();
+        }
+    }
+
+    /**
+     * Set an action button for this preference to perform secondary operations like requesting
+     * a permission, reset the preference value etc.
+     *
+     * <p>Extending preference should implement the functionality in {@link #onUpdate()}
      * method.
      *
      * @param actionString The string to be shown for the action.
@@ -560,11 +707,7 @@ public abstract class DynamicPreference extends FrameLayout
      */
     public void setActionButton(@Nullable CharSequence actionString,
             @Nullable OnClickListener onActionClickListener) {
-        this.mActionString = actionString;
-        this.mOnActionClickListener = onActionClickListener;
-
-        onUpdate();
-        onEnabled(isEnabled());
+        setActionButton(actionString, onActionClickListener, true);
     }
 
     /**
@@ -596,8 +739,19 @@ public abstract class DynamicPreference extends FrameLayout
         this.mOnPromptListener = onPromptListener;
     }
 
+    /**
+     * Get the preference root view.
+     *
+     * @return The preference root view.
+     */
+    public abstract @Nullable ViewGroup getPreferenceView();
+
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (DynamicPreferences.isNullKey(key)) {
+            return;
+        }
+
         if (key.equals(mDependency)) {
             setEnabled(DynamicPreferences.getInstance().load(key, isEnabled()));
         }

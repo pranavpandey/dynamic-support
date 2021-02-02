@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,16 +16,12 @@
 
 package com.pranavpandey.android.dynamic.support.sample.activity
 
-import android.content.Intent
 import android.graphics.drawable.Animatable
 import android.view.View
-import androidx.annotation.StyleRes
 import androidx.appcompat.widget.AppCompatImageView
 import com.pranavpandey.android.dynamic.support.sample.R
-import com.pranavpandey.android.dynamic.support.sample.controller.AppController
-import com.pranavpandey.android.dynamic.support.sample.controller.ThemeController
-import com.pranavpandey.android.dynamic.support.splash.DynamicSplashActivity
-import java.util.*
+import com.pranavpandey.android.dynamic.support.splash.activity.DynamicSplashActivity
+import com.pranavpandey.android.dynamic.utils.DynamicIntentUtils
 
 /**
  * Implementing a splash screen by using [DynamicSplashActivity].
@@ -36,27 +32,6 @@ class SplashActivity : DynamicSplashActivity() {
      * Splash image view to start animations.
      */
     private var mSplash: AppCompatImageView? = null
-
-    override fun getLocale(): Locale? {
-        // TODO: Not implementing multiple locales so, returning null.
-        return null
-    }
-
-    @StyleRes
-    override fun getThemeRes(): Int {
-        // Return activity theme to be applied.
-        return ThemeController.appStyle
-    }
-
-    override fun onCustomiseTheme() {
-        // Customise activity theme after applying the base style.
-        ThemeController.setLocalTheme()
-    }
-
-    override fun setNavigationBarTheme(): Boolean {
-        // TODO: Return true to apply the navigation bar theme.
-        return AppController.instance.isThemeNavigationBar
-    }
 
     override fun setNavigationBarThemeInLandscape(): Boolean {
         return true
@@ -89,7 +64,8 @@ class SplashActivity : DynamicSplashActivity() {
 
     override fun onPostSplash() {
         // TODO: Do any operation on post splash.
-        startActivity(Intent(this, DrawerActivity::class.java))
+        startMainActivity(DynamicIntentUtils.getActivityIntent(
+                this, DrawerActivity::class.java), true)
         finish()
     }
 }

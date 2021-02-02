@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
@@ -63,6 +64,11 @@ public class DynamicExtendedFloatingActionButton extends
     private @ColorInt int mColor;
 
     /**
+     * Color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedColor;
+
+    /**
      * Background color for this view so that it will remain in contrast with this color.
      */
     private @ColorInt int mContrastWithColor;
@@ -72,7 +78,7 @@ public class DynamicExtendedFloatingActionButton extends
      * It was introduced to provide better legibility for colored views and to avoid dark view
      * on dark background like situations.
      *
-     * <p><p>If this is enabled then, it will check for the contrast color and do color
+     * <p>If this is enabled then, it will check for the contrast color and do color
      * calculations according to that color so that this text view will always be visible on
      * that background. If no contrast color is found then, it will take the default
      * background color.
@@ -123,13 +129,13 @@ public class DynamicExtendedFloatingActionButton extends
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
                     R.styleable.DynamicExtendedFloatingActionButton_ads_color,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicExtendedFloatingActionButton_ads_contrastWithColor,
-                    WidgetDefaults.getContrastWithColor(getContext()));
+                    Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicExtendedFloatingActionButton_ads_backgroundAware,
-                    WidgetDefaults.getBackgroundAware());
+                    Defaults.getBackgroundAware());
         } finally {
             a.recycle();
         }
@@ -213,8 +219,13 @@ public class DynamicExtendedFloatingActionButton extends
     }
 
     @Override
+    public @ColorInt int getColor(boolean resolve) {
+        return resolve ? mAppliedColor : mColor;
+    }
+
+    @Override
     public @ColorInt int getColor() {
-        return mColor;
+        return getColor(true);
     }
 
     @Override
@@ -260,7 +271,7 @@ public class DynamicExtendedFloatingActionButton extends
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
-        setAlpha(enabled ? WidgetDefaults.ADS_ALPHA_ENABLED : WidgetDefaults.ADS_ALPHA_DISABLED);
+        setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
     }
 
     @Override
@@ -282,7 +293,7 @@ public class DynamicExtendedFloatingActionButton extends
     /**
      * Returns whether this view is in the extended state.
      *
-     * {@code true} if this view is in the extended state.
+     * @return {@code true} if this view is in the extended state.
      */
     public boolean isFABExtended() {
         return mFABExtended;
@@ -300,7 +311,7 @@ public class DynamicExtendedFloatingActionButton extends
     /**
      * Returns whether this view can be extended.
      *
-     * {@code true} if this view can be extended.
+     * @return {@code true} if this view can be extended.
      */
     public boolean isAllowExtended() {
         return mAllowExtended;
@@ -308,17 +319,18 @@ public class DynamicExtendedFloatingActionButton extends
 
     @Override
     public void setColor() {
-        if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+        if (mColor != Theme.Color.UNKNOWN) {
+            mAppliedColor = mColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
             DynamicTintUtils.setViewBackgroundTint(this,
-                    mContrastWithColor, mColor, false, false);
+                    mContrastWithColor, mAppliedColor, false, false);
 
             ColorStateList colorStateList = DynamicResourceUtils.getColorStateList(
-                    mContrastWithColor, DynamicColorUtils.getTintColor(mColor),
-                    DynamicColorUtils.getTintColor(mColor), false);
+                    mContrastWithColor, DynamicColorUtils.getTintColor(mAppliedColor),
+                    DynamicColorUtils.getTintColor(mAppliedColor), false);
             setIconTint(colorStateList);
             setTextColor(colorStateList);
         }

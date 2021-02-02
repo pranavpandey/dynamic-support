@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 
@@ -49,10 +50,10 @@ public class DynamicDragIndicator extends DynamicImageView {
         super.initialize();
 
         if (DynamicTheme.getInstance().get().getCornerSizeDp()
-                < WidgetDefaults.ADS_CORNER_MIN_THEME) {
+                < Defaults.ADS_CORNER_MIN_THEME) {
             setImageResource(R.drawable.ads_theme_overlay);
         } else if (DynamicTheme.getInstance().get().getCornerSizeDp()
-                < WidgetDefaults.ADS_CORNER_MIN_THEME_ROUND) {
+                < Defaults.ADS_CORNER_MIN_THEME_ROUND) {
             setImageResource(R.drawable.ads_theme_overlay_rect);
         } else {
             setImageResource(R.drawable.ads_theme_overlay_round);

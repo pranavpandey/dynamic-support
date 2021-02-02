@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 Pranav Pandey
+ * Copyright 2018-2021 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicMenuUtils;
@@ -48,6 +49,13 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
     private @Theme.ColorType int mColorType;
 
     /**
+     * Text color type applied to this view.
+     *
+     * @see Theme.ColorType
+     */
+    private @Theme.ColorType int mTextColorType;
+
+    /**
      * Background color type for this view so that it will remain in contrast with this
      * color type.
      */
@@ -59,6 +67,21 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
     private @ColorInt int mColor;
 
     /**
+     * Color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedColor;
+
+    /**
+     * Text color applied to this view.
+     */
+    private @ColorInt int mTextColor;
+
+    /**
+     * Text color applied to this view after considering the background aware properties.
+     */
+    private @ColorInt int mAppliedTextColor;
+
+    /**
      * Background color for this view so that it will remain in contrast with this color.
      */
     private @ColorInt int mContrastWithColor;
@@ -68,7 +91,7 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
      * It was introduced to provide better legibility for colored views and to avoid dark view
      * on dark background like situations.
      *
-     * <p><p>If this is enabled then, it will check for the contrast color and do color
+     * <p>If this is enabled then, it will check for the contrast color and do color
      * calculations according to that color so that this text view will always be visible on
      * that background. If no contrast color is found then, it will take the default
      * background color.
@@ -77,18 +100,6 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
      * @see #mContrastWithColor
      */
     private @Theme.BackgroundAware int mBackgroundAware;
-
-    /**
-     * Text color type applied to this view.
-     *
-     * @see Theme.ColorType
-     */
-    private @Theme.ColorType int mTextColorType;
-
-    /**
-     * Text color applied to this view.
-     */
-    private @ColorInt int mTextColor;
 
     public DynamicToolbar(@NonNull Context context) {
         this(context, null);
@@ -121,18 +132,18 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
                     Theme.ColorType.TINT_PRIMARY);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicToolbar_ads_contrastWithColor,
-                    WidgetDefaults.getContrastWithColor(getContext()));
+                    Defaults.getContrastWithColor(getContext()));
             mColor = a.getColor(R.styleable.DynamicToolbar_ads_color,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mTextColor = a.getColor(
                     R.styleable.DynamicToolbar_ads_textColor,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicToolbar_ads_contrastWithColor,
-                    WidgetDefaults.ADS_COLOR_UNKNOWN);
+                    Theme.Color.UNKNOWN);
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicToolbar_ads_backgroundAware,
-                    WidgetDefaults.getBackgroundAware());
+                    Defaults.getBackgroundAware());
         } finally {
             a.recycle();
         }
@@ -187,8 +198,7 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
     }
 
     @Override
-    public  @Theme.ColorType
-    int getContrastWithColorType() {
+    public @Theme.ColorType int getContrastWithColorType() {
         return mContrastWithColorType;
     }
 
@@ -200,8 +210,13 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
     }
 
     @Override
+    public @ColorInt int getColor(boolean resolve) {
+        return resolve ? mAppliedColor : mColor;
+    }
+
+    @Override
     public @ColorInt int getColor() {
-        return mColor;
+        return getColor(true);
     }
 
     @Override
@@ -214,8 +229,13 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
     }
 
     @Override
+    public @ColorInt int getTextColor(boolean resolve) {
+        return resolve ? mAppliedTextColor : mTextColor;
+    }
+
+    @Override
     public @ColorInt int getTextColor() {
-        return mTextColor;
+        return getTextColor(true);
     }
 
     @Override
@@ -270,29 +290,31 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
 
     @Override
     public void setColor() {
-        if (mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mContrastWithColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+        if (mColor != Theme.Color.UNKNOWN) {
+            mAppliedColor = mColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
             if (getParent() != null && getParent() instanceof CollapsingToolbarLayout) {
                 setBackgroundColor(Color.TRANSPARENT);
             } else {
-                setBackgroundColor(mColor);
+                setBackgroundColor(mAppliedColor);
             }
         }
     }
 
     @Override
     public void setTextColor() {
-        if (mTextColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-            if (isBackgroundAware() && mColor != WidgetDefaults.ADS_COLOR_UNKNOWN) {
-                mTextColor = DynamicColorUtils.getContrastColor(mTextColor, mColor);
+        if (mTextColor != Theme.Color.UNKNOWN) {
+            mAppliedTextColor = mTextColor;
+            if (isBackgroundAware() && mColor != Theme.Color.UNKNOWN) {
+                mAppliedTextColor = DynamicColorUtils.getContrastColor(mTextColor, mAppliedColor);
             }
 
-            setTitleTextColor(mTextColor);
-            setSubtitleTextColor(mTextColor);
-            DynamicMenuUtils.setViewItemsTint(this, mTextColor, mColor);
+            setTitleTextColor(mAppliedTextColor);
+            setSubtitleTextColor(mAppliedTextColor);
+            DynamicMenuUtils.setViewItemsTint(this, mAppliedTextColor, mAppliedColor);
         }
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2020 Pranav Pandey
+	Copyright 2018-2021 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -27,9 +27,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            style="@style/Widget.DynamicApp.Content.Row.Horizontal">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                 style="@style/Widget.DynamicApp.Image.Preference"
@@ -37,11 +35,7 @@
                 android:visibility="gone" />
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:orientation="vertical"
-                android:layout_gravity="center_vertical"
+                style="@style/Widget.DynamicApp.Content.Row.Vertical.Weight"
                 android:visibility="gone">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
@@ -69,12 +63,14 @@
             android:orientation="horizontal">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                style="@style/TextAppearance.DynamicApp.Button"
                 android:id="@+id/ads_preference_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="@dimen/ads_picker_title_width"
                 android:layout_marginRight="@dimen/ads_margin_small"
                 android:layout_marginEnd="@dimen/ads_margin_small"
-                android:gravity="center"
+                android:gravity="start"
                 android:textSize="@dimen/ads_picker_font_size_normal" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
@@ -83,7 +79,7 @@
                 android:layout_width="@dimen/ads_icon_preference"
                 android:layout_height="@dimen/ads_icon_preference"
                 app:srcCompat="@drawable/ads_ic_chevron_left"
-                app:ads_colorType="primary" />
+                app:ads_colorType="accent_dark" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicSeekBar
                 android:id="@+id/ads_preference_seek_bar_seek"
@@ -97,17 +93,17 @@
                 android:layout_width="@dimen/ads_icon_preference"
                 android:layout_height="@dimen/ads_icon_preference"
                 app:srcCompat="@drawable/ads_ic_chevron_right"
-                app:ads_colorType="primary" />
+                app:ads_colorType="accent_dark" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                 style="@style/TextAppearance.DynamicApp.PreferenceValue"
                 android:id="@+id/ads_preference_seek_bar_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="@dimen/ads_picker_value_width"
                 android:layout_marginLeft="@dimen/ads_margin_small"
                 android:layout_marginStart="@dimen/ads_margin_small"
-                android:minWidth="@dimen/ads_picker_value_width"
-                android:gravity="center"
+                android:gravity="end"
                 android:textSize="@dimen/ads_picker_font_size_normal" />
 
         </LinearLayout>
