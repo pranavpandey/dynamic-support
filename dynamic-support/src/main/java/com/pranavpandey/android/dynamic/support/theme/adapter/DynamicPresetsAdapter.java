@@ -33,8 +33,10 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView;
 import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
+import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
 import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -146,12 +148,18 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
                 }
             }
 
-            if (theme != null) {
-                holder.getThemePreview().getActionView()
-                        .setImageResource(R.drawable.ads_ic_palette);
-                holder.getThemePreview().setDynamicTheme(theme);
-                Dynamic.setCorner(holder.getRoot(), theme.getCornerRadius());
+            if (theme == null) {
+                Dynamic.setVisibility(holder.getRoot(), View.GONE);
+                return;
             }
+
+            holder.getThemePreview().getActionView()
+                    .setImageResource(R.drawable.ads_ic_palette);
+            holder.getThemePreview().setDynamicTheme(theme);
+            Dynamic.setCorner(holder.getRoot(), theme.getCornerRadius());
+            DynamicTintUtils.setViewForegroundTint(holder.getRoot(), theme.getBackgroundColor(),
+                    DynamicColorUtils.getTintColor(theme.getBackgroundColor()),
+                    true, false);
 
             if (mDynamicPresetsListener != null) {
                 holder.getRoot().setOnClickListener(new View.OnClickListener() {

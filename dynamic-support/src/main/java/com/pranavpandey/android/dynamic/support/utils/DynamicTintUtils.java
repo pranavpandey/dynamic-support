@@ -27,6 +27,7 @@ import android.view.View;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.TintableBackgroundView;
 import androidx.core.view.ViewCompat;
 
@@ -128,6 +129,10 @@ public class DynamicTintUtils {
                     Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
 
             RippleDrawable rippleDrawable = (RippleDrawable) view.getBackground();
+            if (rippleDrawable == null) {
+                return;
+            }
+
             if (checkable && !(view instanceof DynamicCheckedTextView)) {
                 background = DynamicColorUtils.getStateColor(
                         DynamicColorUtils.adjustAlpha(
@@ -153,6 +158,66 @@ public class DynamicTintUtils {
     public static void setViewBackgroundTint(@Nullable View view,
             @ColorInt int color, boolean borderless) {
         setViewBackgroundTint(view, DynamicTheme.getInstance().get()
+                .getTintBackgroundColor(), color, borderless, false);
+    }
+
+    /**
+     * Set a view foreground tint according to the supplied color.
+     *
+     * @param view The view to set the foreground tint.
+     * @param background The background color to calculate the default color.
+     * @param color The tint color to be used.
+     * @param borderless {@code true} if the view is borderless.
+     * @param checkable {@code true} if the view is checkable.
+     */
+    @TargetApi(Build.VERSION_CODES.M)
+    public static void setViewForegroundTint(@Nullable View view, @ColorInt int background,
+            @ColorInt int color, boolean borderless, boolean checkable) {
+        if (!DynamicSdkUtils.is21()) {
+            setViewBackgroundTint(view, background, color, borderless, checkable);
+        } else if (view instanceof CardView || (DynamicSdkUtils.is23()
+                && view.getForeground() instanceof RippleDrawable)) {
+            @ColorInt int pressedColor = DynamicColorUtils.shiftColor(color,
+                    Defaults.ADS_SHIFT_LIGHT, Defaults.ADS_SHIFT_DARK);
+
+            if (borderless) {
+                pressedColor = DynamicColorUtils.adjustAlpha(
+                        color, Defaults.ADS_STATE_PRESSED);
+            }
+
+            pressedColor = DynamicColorUtils.getStateColor(pressedColor,
+                    Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
+
+            RippleDrawable rippleDrawable = (RippleDrawable) view.getBackground();
+            if (rippleDrawable == null) {
+                return;
+            }
+
+            if (checkable && !(view instanceof DynamicCheckedTextView)) {
+                background = DynamicColorUtils.getStateColor(
+                        DynamicColorUtils.adjustAlpha(
+                                DynamicColorUtils.getTintColor(background),
+                                Defaults.ADS_STATE_PRESSED),
+                        Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
+
+                rippleDrawable.setColor(DynamicResourceUtils.getColorStateList(
+                        Color.TRANSPARENT, background, pressedColor, true));
+            } else {
+                rippleDrawable.setColor(ColorStateList.valueOf(pressedColor));
+            }
+        }
+    }
+
+    /**
+     * Set a view background tint according to the supplied color.
+     *
+     * @param view The view to set the foreground tint.
+     * @param color The tint color to be used.
+     * @param borderless {@code true} if the view is borderless.
+     */
+    public static void setViewForegroundTint(@Nullable View view,
+            @ColorInt int color, boolean borderless) {
+        setViewForegroundTint(view, DynamicTheme.getInstance().get()
                 .getTintBackgroundColor(), color, borderless, false);
     }
 
