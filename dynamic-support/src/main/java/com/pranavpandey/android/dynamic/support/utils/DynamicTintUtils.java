@@ -173,6 +173,10 @@ public class DynamicTintUtils {
     @TargetApi(Build.VERSION_CODES.M)
     public static void setViewForegroundTint(@Nullable View view, @ColorInt int background,
             @ColorInt int color, boolean borderless, boolean checkable) {
+        if (view == null) {
+            return;
+        }
+
         if (!DynamicSdkUtils.is21()) {
             setViewBackgroundTint(view, background, color, borderless, checkable);
         } else if (view instanceof CardView || (DynamicSdkUtils.is23()
@@ -188,22 +192,20 @@ public class DynamicTintUtils {
             pressedColor = DynamicColorUtils.getStateColor(pressedColor,
                     Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
 
-            RippleDrawable rippleDrawable = (RippleDrawable) view.getBackground();
-            if (rippleDrawable == null) {
-                return;
-            }
+            RippleDrawable rippleDrawable = (RippleDrawable) view.getForeground();
+            if (rippleDrawable != null) {
+                if (checkable && !(view instanceof DynamicCheckedTextView)) {
+                    background = DynamicColorUtils.getStateColor(
+                            DynamicColorUtils.adjustAlpha(
+                                    DynamicColorUtils.getTintColor(background),
+                                    Defaults.ADS_STATE_PRESSED),
+                            Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
 
-            if (checkable && !(view instanceof DynamicCheckedTextView)) {
-                background = DynamicColorUtils.getStateColor(
-                        DynamicColorUtils.adjustAlpha(
-                                DynamicColorUtils.getTintColor(background),
-                                Defaults.ADS_STATE_PRESSED),
-                        Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
-
-                rippleDrawable.setColor(DynamicResourceUtils.getColorStateList(
-                        Color.TRANSPARENT, background, pressedColor, true));
-            } else {
-                rippleDrawable.setColor(ColorStateList.valueOf(pressedColor));
+                    rippleDrawable.setColor(DynamicResourceUtils.getColorStateList(
+                            Color.TRANSPARENT, background, pressedColor, true));
+                } else {
+                    rippleDrawable.setColor(ColorStateList.valueOf(pressedColor));
+                }
             }
         }
     }
