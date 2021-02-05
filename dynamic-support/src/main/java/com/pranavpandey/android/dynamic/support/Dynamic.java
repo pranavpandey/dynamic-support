@@ -43,6 +43,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.snackbar.Snackbar;
 import com.pranavpandey.android.dynamic.support.activity.DynamicActivity;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener;
+import com.pranavpandey.android.dynamic.support.model.DynamicItem;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
 import com.pranavpandey.android.dynamic.support.theme.inflater.DynamicLayoutInflater;
@@ -75,252 +76,369 @@ import com.pranavpandey.android.dynamic.theme.Theme;
  * @see DynamicStateWidget
  * @see DynamicStateSelectedWidget
  * @see DynamicTextWidget
+ * @see DynamicColorView
+ * @see DynamicItem
  */
 public class Dynamic {
 
     /**
-     * Sets the color type for the supplied view.
+     * Sets the color type for the supplied dynamic object.
      *
-     * @param view The view to be used.
+     * @param dynamic The dynamic object to be used.
      * @param colorType The color type to be set.
+     * @param <T> The type of the dynamic object.
      *
      * @see DynamicWidget#setColorType(int)
+     * @see DynamicItem#setColorType(int)
      */
-    public static void setColorType(@Nullable View view, @Theme.ColorType int colorType) {
-        if (view instanceof DynamicWidget) {
-            ((DynamicWidget) view).setColorType(colorType);
+    public static <T> void setColorType(@Nullable T dynamic, @Theme.ColorType int colorType) {
+        if (dynamic instanceof DynamicWidget) {
+            ((DynamicWidget) dynamic).setColorType(colorType);
+        } else if (dynamic instanceof DynamicItem) {
+            ((DynamicItem) dynamic).setColorType(colorType);
         }
     }
 
     /**
-     * Sets the background color type for the supplied view.
+     * Sets the background color type for the supplied dynamic object.
      *
-     * @param view The view to be used.
+     * @param dynamic The dynamic object to be used.
      * @param colorType The color type to be set.
+     * @param <T> The type of the dynamic object.
      *
      * @see DynamicBackgroundWidget#setBackgroundColorType(int)
      */
-    public static void setBackgroundColorType(@Nullable View view,
+    public static <T> void setBackgroundColorType(@Nullable T dynamic,
             @Theme.ColorType int colorType) {
-        if (view instanceof DynamicBackgroundWidget) {
-            ((DynamicBackgroundWidget) view).setBackgroundColorType(colorType);
+        if (dynamic instanceof DynamicBackgroundWidget) {
+            ((DynamicBackgroundWidget) dynamic).setBackgroundColorType(colorType);
         }
     }
 
     /**
-     * Sets the contrast with color type for the supplied view.
+     * Sets the contrast with color type for the supplied dynamic object.
      *
-     * @param view The view to be used.
+     * @param dynamic The dynamic object to be used.
      * @param colorType The color type to be set.
+     * @param <T> The type of the dynamic object.
      *
      * @see DynamicWidget#setContrastWithColorType(int)
+     * @see DynamicItem#setContrastWithColorType(int)
      */
-    public static void setContrastWithColorType(@Nullable View view,
+    public static <T> void setContrastWithColorType(@Nullable T dynamic,
             @Theme.ColorType int colorType) {
-        if (view instanceof DynamicWidget) {
-            ((DynamicWidget) view).setContrastWithColorType(colorType);
+        if (dynamic instanceof DynamicWidget) {
+            ((DynamicWidget) dynamic).setContrastWithColorType(colorType);
+        } else if (dynamic instanceof DynamicItem) {
+            ((DynamicItem) dynamic).setContrastWithColorType(colorType);
         }
     }
 
     /**
-     * Sets the text color type for the supplied view.
+     * Sets the text color type for the supplied dynamic object.
      *
-     * @param view The view to be used.
+     * @param dynamic The dynamic object to be used.
      * @param colorType The color type to be set.
+     * @param <T> The type of the dynamic object.
      *
      * @see DynamicTextWidget#setTextColorType(int)
      */
-    public static void setTextColorType(@Nullable View view, @Theme.ColorType int colorType) {
-        if (view instanceof DynamicTextWidget) {
-            ((DynamicTextWidget) view).setTextColorType(colorType);
+    public static <T> void setTextColorType(@Nullable T dynamic, @Theme.ColorType int colorType) {
+        if (dynamic instanceof DynamicTextWidget) {
+            ((DynamicTextWidget) dynamic).setTextColorType(colorType);
         }
     }
 
     /**
-     * Sets the link color type for the supplied view.
+     * Sets the link color type for the supplied dynamic object.
      *
-     * @param view The view to be used.
+     * @param dynamic The dynamic object to be used.
      * @param colorType The color type to be set.
+     * @param <T> The type of the dynamic object.
      *
      * @see DynamicLinkWidget#setLinkColorType(int)
      */
-    public static void setLinkColorType(@Nullable View view, @Theme.ColorType int colorType) {
-        if (view instanceof DynamicLinkWidget) {
-            ((DynamicLinkWidget) view).setLinkColorType(colorType);
+    public static <T> void setLinkColorType(@Nullable T dynamic, @Theme.ColorType int colorType) {
+        if (dynamic instanceof DynamicLinkWidget) {
+            ((DynamicLinkWidget) dynamic).setLinkColorType(colorType);
         }
     }
 
     /**
-     * Sets the normal state color type for the supplied view.
+     * Sets the normal state color type for the supplied dynamic object.
      *
-     * @param view The view to be used.
+     * @param dynamic The dynamic object to be used.
      * @param colorType The color type to be set.
+     * @param <T> The type of the dynamic object.
      *
      * @see DynamicStateWidget#setStateNormalColorType(int)
      */
-    public static void setStateNormalColorType(@Nullable View view,
+    public static <T> void setStateNormalColorType(@Nullable T dynamic,
             @Theme.ColorType int colorType) {
-        if (view instanceof DynamicStateWidget) {
-            ((DynamicStateWidget) view).setStateNormalColorType(colorType);
+        if (dynamic instanceof DynamicStateWidget) {
+            ((DynamicStateWidget) dynamic).setStateNormalColorType(colorType);
         }
     }
 
     /**
-     * Sets the selected state color type for the supplied view.
+     * Sets the selected state color type for the supplied dynamic object.
      *
-     * @param view The view to be used.
+     * @param dynamic The dynamic object to be used.
      * @param colorType The color type to be set.
+     * @param <T> The type of the dynamic object.
      *
      * @see DynamicStateSelectedWidget#setStateSelectedColorType(int)
      */
-    public static void setStateSelectedColorType(@Nullable View view,
+    public static <T> void setStateSelectedColorType(@Nullable T dynamic,
             @Theme.ColorType int colorType) {
-        if (view instanceof DynamicStateSelectedWidget) {
-            ((DynamicStateSelectedWidget) view).setStateSelectedColorType(colorType);
+        if (dynamic instanceof DynamicStateSelectedWidget) {
+            ((DynamicStateSelectedWidget) dynamic).setStateSelectedColorType(colorType);
         }
     }
 
     /**
-     * Sets the scroll bar color type for the supplied view.
+     * Sets the scroll bar color type for the supplied dynamic object.
      *
-     * @param view The view to be used.
+     * @param dynamic The dynamic object to be used.
      * @param colorType The color type to be set.
+     * @param <T> The type of the dynamic object.
      *
      * @see DynamicScrollableWidget#setScrollBarColorType(int)
      */
-    public static void setScrollBarColorType(@Nullable View view,
+    public static <T> void setScrollBarColorType(@Nullable T dynamic,
             @Theme.ColorType int colorType) {
-        if (view instanceof DynamicScrollableWidget) {
-            ((DynamicScrollableWidget) view).setScrollBarColorType(colorType);
+        if (dynamic instanceof DynamicScrollableWidget) {
+            ((DynamicScrollableWidget) dynamic).setScrollBarColorType(colorType);
         }
     }
 
     /**
-     * Sets the color for the supplied view.
+     * Sets the color for the supplied dynamic object.
      *
-     * @param view The view to be used.
+     * @param dynamic The dynamic object to be used.
      * @param color The color to be set.
+     * @param <T> The type of the dynamic object.
      *
      * @see DynamicWidget#setColor(int)
+     * @see DynamicColorView#setColor(int)
+     * @see DynamicItem#setColor(int)
      */
-    public static void setColor(@Nullable View view, @ColorInt int color) {
-        if (view instanceof DynamicWidget) {
-            ((DynamicWidget) view).setColor(color);
-        } else if (view instanceof DynamicColorView) {
-            ((DynamicColorView) view).setColor(color);
+    public static <T> void setColor(@Nullable T dynamic, @ColorInt int color) {
+        if (dynamic instanceof DynamicWidget) {
+            ((DynamicWidget) dynamic).setColor(color);
+        } else if (dynamic instanceof DynamicColorView) {
+            ((DynamicColorView) dynamic).setColor(color);
+        } else if (dynamic instanceof DynamicItem) {
+            ((DynamicItem) dynamic).setColor(color);
         }
     }
 
     /**
-     * Sets the background color for the supplied view.
+     * Sets the background color for the supplied dynamic object.
      *
-     * @param view The view to be used.
+     * @param dynamic The dynamic object to be used.
      * @param color The color to be set.
+     * @param <T> The type of the dynamic object.
      *
      * @see DynamicBackgroundWidget#setBackgroundColor(int)
      */
-    public static void setBackgroundColor(@Nullable View view, @ColorInt int color) {
-        if (view instanceof DynamicBackgroundWidget) {
-            ((DynamicBackgroundWidget) view).setBackgroundColor(color);
+    public static <T> void setBackgroundColor(@Nullable T dynamic, @ColorInt int color) {
+        if (dynamic instanceof DynamicBackgroundWidget) {
+            ((DynamicBackgroundWidget) dynamic).setBackgroundColor(color);
         }
     }
 
     /**
-     * Sets the contrast with color for the supplied view.
+     * Sets the contrast with color for the supplied dynamic object.
      *
-     * @param view The view to be used.
+     * @param dynamic The dynamic object to be used.
      * @param color The color to be set.
+     * @param <T> The type of the dynamic object.
      *
      * @see DynamicWidget#setContrastWithColor(int)
+     * @see DynamicItem#setContrastWithColor(int)
      */
-    public static void setContrastWithColor(@Nullable View view, @ColorInt int color) {
-        if (view instanceof DynamicWidget) {
-            ((DynamicWidget) view).setContrastWithColor(color);
+    public static <T> void setContrastWithColor(@Nullable T dynamic, @ColorInt int color) {
+        if (dynamic instanceof DynamicWidget) {
+            ((DynamicWidget) dynamic).setContrastWithColor(color);
+        } else if (dynamic instanceof DynamicItem) {
+            ((DynamicItem) dynamic).setContrastWithColor(color);
         }
     }
 
     /**
-     * Sets the text color for the supplied view.
+     * Sets the text color for the supplied dynamic object.
      *
-     * @param view The view to be used.
+     * @param dynamic The dynamic object to be used.
      * @param color The color to be set.
+     * @param <T> The type of the dynamic object.
      *
      * @see DynamicTextWidget#setTextColor(int)
      */
-    public static void setTextColor(@Nullable View view, @ColorInt int color) {
-        if (view instanceof DynamicTextWidget) {
-            ((DynamicTextWidget) view).setTextColor(color);
+    public static <T> void setTextColor(@Nullable T dynamic, @ColorInt int color) {
+        if (dynamic instanceof DynamicTextWidget) {
+            ((DynamicTextWidget) dynamic).setTextColor(color);
         }
     }
 
     /**
-     * Sets the link color for the supplied view.
+     * Sets the link color for the supplied dynamic object.
      *
-     * @param view The view to be used.
+     * @param dynamic The dynamic object to be used.
      * @param color The color to be set.
+     * @param <T> The type of the dynamic object.
      *
      * @see DynamicLinkWidget#setLinkColor(int)
      */
-    public static void setLinkColor(@Nullable View view, @ColorInt int color) {
-        if (view instanceof DynamicLinkWidget) {
-            ((DynamicLinkWidget) view).setLinkColor(color);
+    public static <T> void setLinkColor(@Nullable T dynamic, @ColorInt int color) {
+        if (dynamic instanceof DynamicLinkWidget) {
+            ((DynamicLinkWidget) dynamic).setLinkColor(color);
         }
     }
 
     /**
-     * Sets the normal state color for the supplied view.
+     * Sets the normal state color for the supplied dynamic object.
      *
-     * @param view The view to be used.
+     * @param dynamic The dynamic object to be used.
      * @param color The color to be set.
+     * @param <T> The type of the dynamic object.
      *
      * @see DynamicStateWidget#setStateNormalColor(int)
      */
-    public static void setStateNormalColor(@Nullable View view, @ColorInt int color) {
-        if (view instanceof DynamicStateWidget) {
-            ((DynamicStateWidget) view).setStateNormalColor(color);
+    public static <T> void setStateNormalColor(@Nullable T dynamic, @ColorInt int color) {
+        if (dynamic instanceof DynamicStateWidget) {
+            ((DynamicStateWidget) dynamic).setStateNormalColor(color);
         }
     }
 
     /**
-     * Sets the selected state color for the supplied view.
+     * Sets the selected state color for the supplied dynamic object.
      *
-     * @param view The view to be used.
+     * @param dynamic The dynamic object to be used.
      * @param color The color to be set.
+     * @param <T> The type of the dynamic object.
      *
      * @see DynamicStateSelectedWidget#setStateSelectedColorType(int)
      */
-    public static void setStateSelectedColor(@Nullable View view, @ColorInt int color) {
-        if (view instanceof DynamicStateSelectedWidget) {
-            ((DynamicStateSelectedWidget) view).setStateSelectedColor(color);
+    public static <T> void setStateSelectedColor(@Nullable T dynamic, @ColorInt int color) {
+        if (dynamic instanceof DynamicStateSelectedWidget) {
+            ((DynamicStateSelectedWidget) dynamic).setStateSelectedColor(color);
         }
     }
 
     /**
-     * Sets the scroll bar color for the supplied view.
+     * Sets the scroll bar color for the supplied dynamic object.
      *
-     * @param view The view to be used.
+     * @param dynamic The dynamic object to be used.
      * @param color The color to be set.
+     * @param <T> The type of the dynamic object.
      *
      * @see DynamicScrollableWidget#setScrollBarColor(int)
      */
-    public static void setScrollBarColor(@Nullable View view, @ColorInt int color) {
-        if (view instanceof DynamicScrollableWidget) {
-            ((DynamicScrollableWidget) view).setScrollBarColor(color);
+    public static <T> void setScrollBarColor(@Nullable T dynamic, @ColorInt int color) {
+        if (dynamic instanceof DynamicScrollableWidget) {
+            ((DynamicScrollableWidget) dynamic).setScrollBarColor(color);
         }
     }
 
     /**
-     * Sets the background aware for the supplied view.
+     * Sets the background aware for the supplied dynamic object.
      *
-     * @param view The view to be used.
-     * @param backgroundAware The color to be set.
+     * @param dynamic The dynamic object to be used.
+     * @param backgroundAware The background aware option to be set.
+     * @param <T> The type of the dynamic object.
      *
      * @see DynamicWidget#setBackgroundAware(int)
+     * @see DynamicItem#setBackgroundAware(int)
      */
-    public static void setBackgroundAware(@Nullable View view,
+    public static <T> void setBackgroundAware(@Nullable T dynamic,
             @Theme.BackgroundAware int backgroundAware) {
-        if (view instanceof DynamicWidget) {
-            ((DynamicWidget) view).setBackgroundAware(backgroundAware);
+        if (dynamic instanceof DynamicWidget) {
+            ((DynamicWidget) dynamic).setBackgroundAware(backgroundAware);
+        } else if (dynamic instanceof DynamicItem) {
+            ((DynamicItem) dynamic).setBackgroundAware(backgroundAware);
+        }
+    }
+
+    /**
+     * Sets the color type or color for the supplied dynamic object after doing 
+     * the appropriate checks.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param colorType The color type to be set.
+     * @param color The color to be set.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see #setColorType(Object, int)
+     * @see #setColor(Object, int)
+     */
+    public static <T> void setColorTypeOrColor(@Nullable T dynamic,
+            @Theme.ColorType int colorType, @ColorInt int color) {
+        if (colorType != Theme.ColorType.NONE && colorType != Theme.ColorType.CUSTOM) {
+            setColorType(dynamic, colorType);
+        } else if (colorType == Theme.ColorType.CUSTOM && color != Theme.Color.UNKNOWN) {
+            setColor(dynamic, color);
+        }
+    }
+
+    /**
+     * Sets the contrast with color type or color for the supplied dynamic object after doing
+     * the appropriate checks.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param colorType The color type to be set.
+     * @param color The color to be set.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see #setContrastWithColorType(Object, int)
+     * @see #setContrastWithColor(Object, int)
+     */
+    public static <T> void setContrastWithColorTypeOrColor(@Nullable T dynamic,
+            @Theme.ColorType int colorType, @ColorInt int color) {
+        if (colorType != Theme.ColorType.NONE && colorType != Theme.ColorType.CUSTOM) {
+            setContrastWithColorType(dynamic, colorType);
+        } else if (colorType == Theme.ColorType.CUSTOM && color != Theme.Color.UNKNOWN) {
+            setContrastWithColor(dynamic, color);
+        }
+    }
+
+    /**
+     * Sets the background aware for the supplied dynamic object after doing appropriate checks.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param backgroundAware The background aware option to be set.
+     * @param <T> The type of the dynamic object.
+     * 
+     * @see #setBackgroundAware(Object, int) 
+     */
+    public static <T> void setBackgroundAwareSafe(@Nullable T dynamic,
+            @Theme.BackgroundAware int backgroundAware) {
+        if (backgroundAware != Theme.BackgroundAware.UNKNOWN) {
+            setBackgroundAware(dynamic, backgroundAware);
+        }
+    }
+
+    /**
+     * Tint dynamic object according to the supplied colors.
+     *
+     * @param dynamic The dynamic object to be tinted.
+     * @param color The color to be set.
+     * @param contrastWithColor The contrast with color to be set.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see #setColor(Object, int)
+     * @see #setContrastWithColor(Object, int)
+     * @see #setScrollBarColor(Object, int)
+     */
+    public static <T> void tint(@Nullable T dynamic,
+            @ColorInt int color, @ColorInt int contrastWithColor) {
+        if (dynamic != null) {
+            setContrastWithColor(dynamic, contrastWithColor);
+            setColor(dynamic, color);
+
+            if (dynamic instanceof DynamicScrollableWidget) {
+                setScrollBarColor(dynamic, color);
+            }
         }
     }
 
@@ -368,25 +486,6 @@ public class Dynamic {
             setCorner(view, Math.min(((DynamicCardView) view).getCorner(), cornerMax));
         } else if (view instanceof DynamicMaterialCardView) {
             setCorner(view, Math.min(((DynamicMaterialCardView) view).getCorner(), cornerMax));
-        }
-    }
-
-    /**
-     * Tint dynamic widget according to the supplied colors.
-     *
-     * @param dynamicWidget The dynamic widget to be tinted.
-     * @param color The color to tint the widget.
-     * @param contrastWithColor The contrast with color for the widget.
-     */
-    public static void tint(@Nullable View dynamicWidget,
-            @ColorInt int color, @ColorInt int contrastWithColor) {
-        if (dynamicWidget != null) {
-            setContrastWithColor(dynamicWidget, contrastWithColor);
-            setColor(dynamicWidget, color);
-
-            if (dynamicWidget instanceof DynamicScrollableWidget) {
-                setScrollBarColor(dynamicWidget, color);
-            }
         }
     }
 

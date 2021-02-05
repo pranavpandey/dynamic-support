@@ -109,17 +109,9 @@ public class DynamicImagePreference extends DynamicSimplePreference {
     public void setColor() {
         super.setColor();
 
-        if (getBackgroundAware() != Theme.BackgroundAware.UNKNOWN) {
-            Dynamic.setBackgroundAware(getImageView(), getBackgroundAware());
-        }
-
-        if (getContrastWithColorType() != Theme.ColorType.NONE
-                && getContrastWithColorType() != Theme.ColorType.CUSTOM) {
-            Dynamic.setContrastWithColorType(getImageView(), getContrastWithColorType());
-        } else if (getContrastWithColorType() == Theme.ColorType.CUSTOM
-                && getContrastWithColor() != Theme.Color.UNKNOWN) {
-            Dynamic.setContrastWithColor(getImageView(), getContrastWithColor());
-        }
+        Dynamic.setContrastWithColorTypeOrColor(getImageView(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setBackgroundAwareSafe(getImageView(), getBackgroundAware());
     }
 
     /**

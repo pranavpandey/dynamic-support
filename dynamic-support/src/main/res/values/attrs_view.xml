@@ -58,6 +58,16 @@
 
     <!-- Attributes for the DynamicInfoView. -->
     <declare-styleable name="DynamicInfoView">
+        <!-- Color type for the info layout. -->
+        <attr name="ads_colorType" />
+        <!-- Contrast with color type for the info layout. -->
+        <attr name="ads_contrastWithColorType" />
+        <!-- Color for the item layout. -->
+        <attr name="ads_color" />
+        <!-- Contrast with color for the info layout. -->
+        <attr name="ads_contrastWithColor" />
+        <!-- Background aware options for the info layout. -->
+        <attr name="ads_backgroundAware" />
         <attr name="ads_icon" />
         <attr name="ads_title" />
         <attr name="ads_subtitle" />
@@ -73,13 +83,21 @@
 
     <!-- Attributes for the DynamicItemView. -->
     <declare-styleable name="DynamicItemView">
+        <!-- Color type for the item layout. -->
+        <attr name="ads_colorType" />
+        <!-- Contrast with color type for the item layout. -->
+        <attr name="ads_contrastWithColorType" />
+        <!-- Color for the item layout. -->
+        <attr name="ads_color" />
+        <!-- Contrast with color for the item layout. -->
+        <attr name="ads_contrastWithColor" />
+        <!-- Background aware options for the item layout. -->
+        <attr name="ads_backgroundAware" />
         <attr name="ads_icon" />
         <attr name="ads_title" />
         <attr name="ads_subtitle" />
         <attr name="ads_showDivider" />
         <attr name="ads_fillSpace" />
-        <attr name="ads_colorType" />
-        <attr name="ads_color" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicPopup. -->

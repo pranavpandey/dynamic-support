@@ -159,21 +159,13 @@ public abstract class ThemePreference<T extends DynamicAppTheme>
     public void setColor() {
         super.setColor();
 
-        if (getBackgroundAware() != Theme.BackgroundAware.UNKNOWN) {
-            Dynamic.setBackgroundAware(getThemePreviewIcon(), getBackgroundAware());
-            Dynamic.setBackgroundAware(getThemePreviewDescription(), getBackgroundAware());
-        }
+        Dynamic.setContrastWithColorTypeOrColor(getThemePreviewIcon(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setContrastWithColorTypeOrColor(getThemePreviewDescription(),
+                getContrastWithColorType(), getContrastWithColor());
 
-        if (getContrastWithColorType() != Theme.ColorType.NONE
-                && getContrastWithColorType() != Theme.ColorType.CUSTOM) {
-            Dynamic.setContrastWithColorType(getThemePreviewIcon(), getContrastWithColorType());
-            Dynamic.setContrastWithColorType(getThemePreviewDescription(),
-                    getContrastWithColorType());
-        } else if (getContrastWithColorType() == Theme.ColorType.CUSTOM
-                && getContrastWithColor() != Theme.Color.UNKNOWN) {
-            Dynamic.setContrastWithColor(getThemePreviewIcon(), getContrastWithColor());
-            Dynamic.setContrastWithColor(getThemePreviewDescription(), getContrastWithColor());
-        }
+        Dynamic.setBackgroundAwareSafe(getThemePreviewIcon(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getThemePreviewDescription(), getBackgroundAware());
     }
 
     /**

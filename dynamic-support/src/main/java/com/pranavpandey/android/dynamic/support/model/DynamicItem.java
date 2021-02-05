@@ -23,6 +23,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
@@ -31,6 +32,42 @@ import com.pranavpandey.android.dynamic.theme.Theme;
  */
 public class DynamicItem {
 
+    /**
+     * Icon tint color type used by this item.
+     */
+    private @Theme.ColorType int colorType;
+
+    /**
+     * Background color type for this item so that it will remain in contrast with this
+     * color type.
+     */
+    private @Theme.ColorType int contrastWithColorType;
+
+    /**
+     * Icon tint color used by this item.
+     */
+    private @ColorInt int color;
+
+    /**
+     * Background color for this item so that it will remain in contrast with this color.
+     */
+    private @ColorInt int contrastWithColor;
+
+    /**
+     * The background aware functionality to change this item color according to the background.
+     * It was introduced to provide better legibility for colored views and to avoid dark view
+     * on dark background like situations.
+     *
+     * <p>If this is enabled then, it will check for the contrast color and do color
+     * calculations according to that color so that this text view will always be visible on
+     * that background. If no contrast color is found then, it will take the default
+     * background color.
+     *
+     * @see Theme.BackgroundAware
+     * @see #contrastWithColor
+     */
+    private @Theme.BackgroundAware int backgroundAware;
+    
     /**
      * Icon used by this item.
      */
@@ -45,16 +82,6 @@ public class DynamicItem {
      * Subtitle used by this item.
      */
     private CharSequence subtitle;
-    
-    /**
-     * Icon tint color used by this item.
-     */
-    private @ColorInt int color;
-
-    /**
-     * Icon tint color type used by this item.
-     */
-    private @Theme.ColorType int colorType;
 
     /**
      * {@code true} to show horizontal divider. 
@@ -94,6 +121,141 @@ public class DynamicItem {
         this.color = color;
         this.colorType = colorType;
         this.showDivider = showDivider;
+
+        this.contrastWithColorType = Theme.ColorType.NONE;
+        this.contrastWithColor = Theme.ColorType.UNKNOWN;
+        this.backgroundAware = Theme.ColorType.UNKNOWN;
+    }
+
+    /**
+     * Get the icon tint color type used by this item.
+     *
+     * @return The icon tint color type used by this item.
+     *
+     * @see Theme.ColorType
+     */
+    public @Theme.ColorType int getColorType() {
+        return colorType;
+    }
+
+    /**
+     * Set the icon tint color type used by this item.
+     *
+     * @param colorType The icon tint color type to be set.
+     *
+     * @return The {@link DynamicItem} object to allow for chaining of calls to set methods.
+     *
+     * @see Theme.ColorType
+     */
+    public @NonNull DynamicItem setColorType(@Theme.ColorType int colorType) {
+        this.colorType = colorType;
+
+        return this;
+    }
+
+    /**
+     * Get the contrast with color type used by this item.
+     *
+     * @return The contrast with color type used by this item.
+     *
+     * @see Theme.ColorType
+     */
+    public @Theme.ColorType int getContrastWithColorType() {
+        return contrastWithColorType;
+    }
+
+    /**
+     * Set the contrast with color type used by this item.
+     *
+     * @param contrastWithColorType The contrast with color type to be set.
+     *
+     * @return The {@link DynamicItem} object to allow for chaining of calls to set methods.
+     *
+     * @see Theme.ColorType
+     */
+    public @NonNull DynamicItem setContrastWithColorType(
+            @Theme.ColorType int contrastWithColorType) {
+        this.contrastWithColorType = contrastWithColorType;
+
+        return this;
+    }
+
+    /**
+     * Get the icon tint color used by this item.
+     *
+     * @return The icon tint color used by this item.
+     */
+    public @ColorInt int getColor() {
+        return color;
+    }
+
+    /**
+     * Set the icon tint color used by this item.
+     *
+     * @param color The icon tint color to be set.
+     *
+     * @return The {@link DynamicItem} object to allow for chaining of calls to set methods.
+     */
+    public @NonNull DynamicItem setColor(@ColorInt int color) {
+        this.colorType = Theme.ColorType.CUSTOM;
+        this.color = color;
+
+        return this;
+    }
+
+    /**
+     * Get the contrast with color used by this item.
+     *
+     * @return The contrast with color used by this item.
+     */
+    public @ColorInt int getContrastWithColor() {
+        return contrastWithColor;
+    }
+
+    /**
+     * Set the contrast with color used by this item.
+     *
+     * @param contrastWithColor The contrast with color to be set.
+     *
+     * @return The {@link DynamicItem} object to allow for chaining of calls to set methods.
+     */
+    public @NonNull DynamicItem setContrastWithColor(@ColorInt int contrastWithColor) {
+        this.contrastWithColorType = Theme.ColorType.CUSTOM;
+        this.contrastWithColor = contrastWithColor;
+
+        return this;
+    }
+
+    /**
+     * Returns the background aware functionality used by this item.
+     *
+     * @return The background aware functionality used by this item.
+     */
+    public @Theme.BackgroundAware int getBackgroundAware() {
+        return backgroundAware;
+    }
+
+    /**
+     * Checks whether the background aware functionality is enabled.
+     *
+     * @return {@code true} if this item changes color according to the background.
+     */
+    public boolean isBackgroundAware() {
+        return DynamicTheme.getInstance().resolveBackgroundAware(
+                backgroundAware) != Theme.BackgroundAware.DISABLE;
+    }
+
+    /**
+     * Set the value to make this widget background aware or not.
+     *
+     * @param backgroundAware The background aware functionality to be set.
+     *
+     * @return The {@link DynamicItem} object to allow for chaining of calls to set methods.
+     */
+    public @NonNull DynamicItem setBackgroundAware(@Theme.BackgroundAware int backgroundAware) {
+        this.backgroundAware = backgroundAware;
+
+        return this;
     }
 
     /**
@@ -158,55 +320,6 @@ public class DynamicItem {
      */
     public @NonNull DynamicItem setSubtitle(@Nullable CharSequence subtitle) {
         this.subtitle = subtitle;
-
-        return this;
-    }
-
-    /**
-     * Get the icon tint color type used by this item.
-     *
-     * @return The icon tint color type used by this item.
-     * 
-     * @see Theme.ColorType
-     */
-    public @Theme.ColorType int getColorType() {
-        return colorType;
-    }
-
-    /**
-     * Set the icon tint color type used by this item.
-     *
-     * @param colorType The icon tint color type to be set.
-     *
-     * @return The {@link DynamicItem} object to allow for chaining of calls to set methods.
-     *         
-     * @see Theme.ColorType
-     */
-    public @NonNull DynamicItem setColorType(@Theme.ColorType int colorType) {
-        this.colorType = colorType;
-
-        return this;
-    }
-
-    /**
-     * Get the icon tint color used by this item.
-     *
-     * @return The icon tint color used by this item.
-     */
-    public @ColorInt int getColor() {
-        return color;
-    }
-
-    /**
-     * Set the icon tint color used by this item.
-     *
-     * @param color The icon tint color to be set.
-     *
-     * @return The {@link DynamicItem} object to allow for chaining of calls to set methods.
-     */
-    public @NonNull DynamicItem setColor(@ColorInt int color) {
-        this.colorType = Theme.ColorType.CUSTOM;
-        this.color = color;
 
         return this;
     }

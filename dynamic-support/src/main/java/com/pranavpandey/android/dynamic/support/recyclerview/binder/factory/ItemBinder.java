@@ -26,6 +26,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.flexbox.FlexboxLayoutManager;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicItem;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBinderAdapter;
@@ -60,11 +61,15 @@ public class ItemBinder extends DynamicDataBinder<DynamicItem, ItemBinder.ViewHo
             return;
         }
 
+        Dynamic.setColorType(viewHolder.getDynamicItem(), getData().getColorType());
+        Dynamic.setColor(viewHolder.getDynamicItem(), getData().getColor());
+        Dynamic.setContrastWithColorTypeOrColor(viewHolder.getDynamicItem(),
+                getData().getContrastWithColorType(), getData().getContrastWithColor());
+        Dynamic.setBackgroundAwareSafe(viewHolder.getDynamicItem(),
+                getData().getBackgroundAware());
         viewHolder.getDynamicItem().setIcon(getData().getIcon());
         viewHolder.getDynamicItem().setTitle(getData().getTitle());
         viewHolder.getDynamicItem().setSubtitle(getData().getSubtitle());
-        viewHolder.getDynamicItem().setColorType(getData().getColorType());
-        viewHolder.getDynamicItem().setColor(getData().getColor());
         viewHolder.getDynamicItem().setShowDivider(getData().isShowDivider());
 
         if (getData().getOnClickListener() != null) {

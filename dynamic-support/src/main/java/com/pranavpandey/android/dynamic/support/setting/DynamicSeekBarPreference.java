@@ -40,7 +40,6 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSeekBarResolver;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
-import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A {@link DynamicSpinnerPreference} to provide the functionality of a seek bar preference with
@@ -322,29 +321,22 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     public void setColor() {
         super.setColor();
 
-        if (getBackgroundAware() != Theme.BackgroundAware.UNKNOWN) {
-            Dynamic.setBackgroundAware(getSeekBar(), getBackgroundAware());
-            Dynamic.setBackgroundAware(getSeekBarValueView(), getBackgroundAware());
-            Dynamic.setBackgroundAware(getSeekBarLeftView(), getBackgroundAware());
-            Dynamic.setBackgroundAware(getSeekBarRightView(), getBackgroundAware());
-            Dynamic.setBackgroundAware(getActionView(), getBackgroundAware());
-        }
+        Dynamic.setContrastWithColorTypeOrColor(getSeekBar(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setContrastWithColorTypeOrColor(getSeekBarValueView(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setContrastWithColorTypeOrColor(getSeekBarLeftView(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setContrastWithColorTypeOrColor(getSeekBarRightView(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setContrastWithColorTypeOrColor(getActionView(),
+                getContrastWithColorType(), getContrastWithColor());
 
-        if (getContrastWithColorType() != Theme.ColorType.NONE
-                && getContrastWithColorType() != Theme.ColorType.CUSTOM) {
-            Dynamic.setContrastWithColorType(getSeekBar(), getContrastWithColorType());
-            Dynamic.setContrastWithColorType(getSeekBarValueView(), getContrastWithColorType());
-            Dynamic.setContrastWithColorType(getSeekBarLeftView(), getContrastWithColorType());
-            Dynamic.setContrastWithColorType(getSeekBarRightView(), getContrastWithColorType());
-            Dynamic.setContrastWithColorType(getActionView(), getContrastWithColorType());
-        } else if (getContrastWithColorType() == Theme.ColorType.CUSTOM
-                && getContrastWithColor() != Theme.Color.UNKNOWN) {
-            Dynamic.setContrastWithColor(getSeekBar(), getContrastWithColor());
-            Dynamic.setContrastWithColor(getSeekBarValueView(), getContrastWithColor());
-            Dynamic.setContrastWithColor(getSeekBarLeftView(), getContrastWithColor());
-            Dynamic.setContrastWithColor(getSeekBarRightView(), getContrastWithColor());
-            Dynamic.setContrastWithColor(getActionView(), getContrastWithColor());
-        }
+        Dynamic.setBackgroundAwareSafe(getSeekBar(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getSeekBarValueView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getSeekBarLeftView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getSeekBarRightView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getActionView(), getBackgroundAware());
     }
 
     /**

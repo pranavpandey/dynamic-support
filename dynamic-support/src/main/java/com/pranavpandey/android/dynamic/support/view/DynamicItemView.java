@@ -31,10 +31,12 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
@@ -43,7 +45,43 @@ import com.pranavpandey.android.dynamic.theme.Theme;
  *
  * <p>Use {@link #getItemView()} method to set click listeners or to perform other operations.
  */
-public class DynamicItemView extends DynamicView {
+public class DynamicItemView extends DynamicView implements DynamicWidget {
+
+    /**
+     * Icon tint color type used by this view.
+     */
+    private @Theme.ColorType int mColorType;
+
+    /**
+     * Background color type for this view so that it will remain in contrast with this
+     * color type.
+     */
+    private @Theme.ColorType int mContrastWithColorType;
+
+    /**
+     * Icon tint color used by this view.
+     */
+    private @ColorInt int mColor;
+
+    /**
+     * Background color for this view so that it will remain in contrast with this color.
+     */
+    private @ColorInt int mContrastWithColor;
+
+    /**
+     * The background aware functionality to change this view color according to the background.
+     * It was introduced to provide better legibility for colored views and to avoid dark view
+     * on dark background like situations.
+     *
+     * <p>If this is enabled then, it will check for the contrast color and do color
+     * calculations according to that color so that this text view will always be visible on
+     * that background. If no contrast color is found then, it will take the default
+     * background color.
+     *
+     * @see Theme.BackgroundAware
+     * @see #mContrastWithColor
+     */
+    private @Theme.BackgroundAware int mBackgroundAware;
 
     /**
      * Icon used by this view.
@@ -59,16 +97,6 @@ public class DynamicItemView extends DynamicView {
      * Subtitle used by this view.
      */
     private CharSequence mSubtitle;
-
-    /**
-     * Icon tint color type used by this view.
-     */
-    private @Theme.ColorType int mColorType;
-
-    /**
-     * Icon tint color used by this view.
-     */
-    private @ColorInt int mColor;
 
     /**
      * {@code true} to show horizontal divider.
@@ -159,6 +187,21 @@ public class DynamicItemView extends DynamicView {
                 R.styleable.DynamicItemView);
 
         try {
+            mColorType = a.getInt(
+                    R.styleable.DynamicItemView_ads_colorType,
+                    Defaults.ADS_COLOR_TYPE_ICON);
+            mContrastWithColorType = a.getInt(
+                    R.styleable.DynamicItemView_ads_contrastWithColorType,
+                    Theme.ColorType.NONE);
+            mColor = a.getColor(
+                    R.styleable.DynamicItemView_ads_color,
+                    Theme.Color.UNKNOWN);
+            mContrastWithColor = a.getColor(
+                    R.styleable.DynamicItemView_ads_contrastWithColor,
+                    Theme.Color.UNKNOWN);
+            mBackgroundAware = a.getInteger(
+                    R.styleable.DynamicItemView_ads_backgroundAware,
+                    Theme.BackgroundAware.UNKNOWN);
             mIcon = DynamicResourceUtils.getDrawable(getContext(),
                     a.getResourceId(
                             R.styleable.DynamicItemView_ads_icon,
@@ -173,12 +216,6 @@ public class DynamicItemView extends DynamicView {
             mFillSpace = a.getBoolean(
                     R.styleable.DynamicItemView_ads_fillSpace,
                     Defaults.ADS_FILL_SPACE);
-            mColorType = a.getInt(
-                    R.styleable.DynamicItemView_ads_colorType,
-                    Defaults.ADS_COLOR_TYPE_ICON);
-            mColor = a.getColor(
-                    R.styleable.DynamicItemView_ads_color,
-                    Theme.Color.UNKNOWN);
         } finally {
             a.recycle();
         }
@@ -206,6 +243,109 @@ public class DynamicItemView extends DynamicView {
     }
 
     @Override
+    public void initialize() {
+        setColor();
+    }
+
+    @Override
+    public @Theme.ColorType int getColorType() {
+        return mColorType;
+    }
+
+    @Override
+    public void setColorType(@Theme.ColorType int colorType) {
+        this.mColorType = colorType;
+
+        initialize();
+    }
+
+    @Override
+    public @Theme.ColorType int getContrastWithColorType() {
+        return mContrastWithColorType;
+    }
+
+    @Override
+    public void setContrastWithColorType(@Theme.ColorType int contrastWithColorType) {
+        this.mContrastWithColorType = contrastWithColorType;
+
+        initialize();
+    }
+
+    @Override
+    public @ColorInt int getColor(boolean resolve) {
+        return mColor;
+    }
+
+    @Override
+    public @ColorInt int getColor() {
+        return getColor(true);
+    }
+
+    @Override
+    public void setColor(@ColorInt int color) {
+        this.mColorType = Theme.ColorType.CUSTOM;
+        this.mColor = color;
+
+        setColor();
+    }
+
+    @Override
+    public @ColorInt int getContrastWithColor() {
+        return mContrastWithColor;
+    }
+
+    @Override
+    public void setContrastWithColor(@ColorInt int contrastWithColor) {
+        this.mContrastWithColorType = Theme.ColorType.CUSTOM;
+        this.mContrastWithColor = contrastWithColor;
+
+        setColor();
+    }
+
+    @Override
+    public @Theme.BackgroundAware int getBackgroundAware() {
+        return mBackgroundAware;
+    }
+
+    @Override
+    public boolean isBackgroundAware() {
+        return DynamicTheme.getInstance().resolveBackgroundAware(
+                mBackgroundAware) != Theme.BackgroundAware.DISABLE;
+    }
+
+    @Override
+    public void setBackgroundAware(@Theme.BackgroundAware int backgroundAware) {
+        this.mBackgroundAware = backgroundAware;
+
+        setColor();
+    }
+
+    @Override
+    public void setColor() {
+        Dynamic.setContrastWithColorTypeOrColor(getIconView(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setContrastWithColorTypeOrColor(getIconFooterView(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setContrastWithColorTypeOrColor(getTitleView(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setContrastWithColorTypeOrColor(getSubtitleView(),
+                getContrastWithColorType(), getContrastWithColor());
+
+        Dynamic.setBackgroundAwareSafe(getIconView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getIconFooterView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getTitleView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getSubtitleView(), getBackgroundAware());
+
+        if (getColorType() != Theme.ColorType.CUSTOM) {
+            Dynamic.setColorType(getIconView(), getColorType());
+        } else if (getColor() != Theme.Color.UNKNOWN) {
+            Dynamic.setColor(getIconView(), getColor());
+        } else {
+            getIconView().clearColorFilter();
+        }
+    }
+
+    @Override
     public void onUpdate() {
         Dynamic.set(getIconView(), getIcon());
         Dynamic.set(getTitleView(), getTitle());
@@ -213,20 +353,14 @@ public class DynamicItemView extends DynamicView {
 
         if (getIconView() != null) {
             Dynamic.setVisibility(getIconView(), isFillSpace() ? GONE : getVisibilityIconView());
-
-            if (getColor() != Theme.Color.UNKNOWN) {
-                Dynamic.setColor(getIconView(), getColor());
-            } else if (getColorType() != Theme.ColorType.CUSTOM) {
-                Dynamic.setColorType(getIconView(), getColorType());
-            } else {
-                getIconView().clearColorFilter();
-            }
         }
 
         if (getDivider() != null) {
             Dynamic.setVisibility(getDivider(), isShowDivider() ? VISIBLE : GONE);
         }
         Dynamic.setVisibility(getIconFooterView(), getIconView());
+
+        setColor();
     }
 
     @Override
@@ -293,49 +427,6 @@ public class DynamicItemView extends DynamicView {
      */
     public void setSubtitle(@Nullable CharSequence subtitle) {
         this.mSubtitle = subtitle;
-
-        onUpdate();
-    }
-
-    /**
-     * Get the icon tint color type used by this view.
-     *
-     * @return The icon tint color type used by this view.
-     */
-    public @Theme.ColorType int getColorType() {
-        return mColorType;
-    }
-
-    /**
-     * Set the icon tint color type used by this view.
-     *
-     * @param colorType The icon tint color type to be set.
-     *
-     * @see Theme.ColorType
-     */
-    public void setColorType(@Theme.ColorType int colorType) {
-        this.mColorType = colorType;
-
-        onUpdate();
-    }
-
-    /**
-     * Get the icon tint color used by this view.
-     *
-     * @return The icon tint color used by this view.
-     */
-    public @ColorInt int getColor() {
-        return mColor;
-    }
-
-    /**
-     * Set the icon tint color used by this view.
-     *
-     * @param color The icon tint color to be set.
-     */
-    public void setColor(@ColorInt int color) {
-        this.mColorType = Theme.ColorType.CUSTOM;
-        this.mColor = color;
 
         onUpdate();
     }

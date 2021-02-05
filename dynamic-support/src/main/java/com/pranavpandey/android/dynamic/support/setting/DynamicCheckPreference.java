@@ -31,7 +31,6 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A {@link DynamicSimplePreference} to provide the functionality of a
@@ -160,17 +159,9 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
     public void setColor() {
         super.setColor();
 
-        if (getBackgroundAware() != Theme.BackgroundAware.UNKNOWN) {
-            Dynamic.setBackgroundAware(getCompoundButton(), getBackgroundAware());
-        }
-
-        if (getContrastWithColorType() != Theme.ColorType.NONE
-                && getContrastWithColorType() != Theme.ColorType.CUSTOM) {
-            Dynamic.setContrastWithColorType(getCompoundButton(), getContrastWithColorType());
-        } else if (getContrastWithColorType() == Theme.ColorType.CUSTOM
-                && getContrastWithColor() != Theme.Color.UNKNOWN) {
-            Dynamic.setContrastWithColor(getCompoundButton(), getContrastWithColor());
-        }
+        Dynamic.setContrastWithColorTypeOrColor(getCompoundButton(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setBackgroundAwareSafe(getCompoundButton(), getBackgroundAware());
     }
 
     /**

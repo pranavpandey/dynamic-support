@@ -76,12 +76,12 @@ public class DynamicHeader extends DynamicItemView {
     }
 
     @Override
-    public void onUpdate() {
-        super.onUpdate();
+    public void setColor() {
+        super.setColor();
 
-        Dynamic.setColorType(getTitleView(), getColorType());
-
-        if (getColor() != Theme.Color.UNKNOWN) {
+        if (getColorType() != Theme.ColorType.CUSTOM) {
+            Dynamic.setColorType(getTitleView(), getColorType());
+        } else if (getColor() != Theme.Color.UNKNOWN) {
             Dynamic.setColor(getTitleView(), getColor());
         }
     }

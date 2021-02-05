@@ -101,6 +101,32 @@ public abstract class DynamicPreference extends DynamicView
     }
 
     /**
+     * Background color type for this view so that it will remain in contrast with this
+     * color type.
+     */
+    private @Theme.ColorType int mContrastWithColorType;
+
+    /**
+     * Background color for this view so that it will remain in contrast with this color.
+     */
+    private @ColorInt int mContrastWithColor;
+
+    /**
+     * The background aware functionality to change this view color according to the background.
+     * It was introduced to provide better legibility for colored views and to avoid dark view
+     * on dark background like situations.
+     *
+     * <p>If this is enabled then, it will check for the contrast color and do color
+     * calculations according to that color so that this text view will always be visible on
+     * that background. If no contrast color is found then, it will take the default
+     * background color.
+     *
+     * @see Theme.BackgroundAware
+     * @see #mContrastWithColor
+     */
+    private @Theme.BackgroundAware int mBackgroundAware;
+
+    /**
      * Default value for the enabled state.
      */
     public static final boolean DEFAULT_ENABLED = true;
@@ -170,32 +196,6 @@ public abstract class DynamicPreference extends DynamicView
      */
     private OnPromptListener mOnPromptListener;
 
-    /**
-     * Background color type for this view so that it will remain in contrast with this
-     * color type.
-     */
-    private @Theme.ColorType int mContrastWithColorType;
-
-    /**
-     * Background color for this view so that it will remain in contrast with this color.
-     */
-    private @ColorInt int mContrastWithColor;
-
-    /**
-     * The background aware functionality to change this view color according to the background.
-     * It was introduced to provide better legibility for colored views and to avoid dark view
-     * on dark background like situations.
-     *
-     * <p>If this is enabled then, it will check for the contrast color and do color
-     * calculations according to that color so that this text view will always be visible on
-     * that background. If no contrast color is found then, it will take the default
-     * background color.
-     *
-     * @see Theme.BackgroundAware
-     * @see #mContrastWithColor
-     */
-    private @Theme.BackgroundAware int mBackgroundAware;
-
     public DynamicPreference(@NonNull Context context) {
         this(context, null);
     }
@@ -216,6 +216,15 @@ public abstract class DynamicPreference extends DynamicView
                 attrs, R.styleable.DynamicPreference);
 
         try {
+            mContrastWithColorType = a.getInt(
+                    R.styleable.DynamicPreference_ads_contrastWithColorType,
+                    Theme.ColorType.NONE);
+            mContrastWithColor = a.getColor(
+                    R.styleable.DynamicPreference_ads_contrastWithColor,
+                    Theme.Color.UNKNOWN);
+            mBackgroundAware = a.getInteger(
+                    R.styleable.DynamicPreference_ads_backgroundAware,
+                    Theme.BackgroundAware.UNKNOWN);
             mIcon = DynamicResourceUtils.getDrawable(getContext(),
                     a.getResourceId(R.styleable.DynamicPreference_ads_icon,
                             DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
@@ -228,15 +237,6 @@ public abstract class DynamicPreference extends DynamicView
             mDependency = a.getString(R.styleable.DynamicPreference_ads_dependency);
             mActionString = a.getString(R.styleable.DynamicPreference_ads_action);
             mEnabled = a.getBoolean(R.styleable.DynamicPreference_ads_enabled, DEFAULT_ENABLED);
-            mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicPreference_ads_contrastWithColorType,
-                    Theme.ColorType.NONE);
-            mContrastWithColor = a.getColor(
-                    R.styleable.DynamicPreference_ads_contrastWithColor,
-                    Theme.Color.UNKNOWN);
-            mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicPreference_ads_backgroundAware,
-                    Theme.BackgroundAware.UNKNOWN);
         } finally {
             a.recycle();
         }

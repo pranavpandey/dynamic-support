@@ -34,7 +34,6 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 
 /**
@@ -229,35 +228,28 @@ public class DynamicSimplePreference extends DynamicPreference {
     public void setColor() {
         super.setColor();
 
-        if (getBackgroundAware() != Theme.BackgroundAware.UNKNOWN) {
-            Dynamic.setBackgroundAware(getIconView(), getBackgroundAware());
-            Dynamic.setBackgroundAware(getTitleView(), getBackgroundAware());
-            Dynamic.setBackgroundAware(getSummaryView(), getBackgroundAware());
-            Dynamic.setBackgroundAware(getDescriptionView(), getBackgroundAware());
-            Dynamic.setBackgroundAware(getValueView(), getBackgroundAware());
-            Dynamic.setBackgroundAware(getActionView(), getBackgroundAware());
-            Dynamic.setBackgroundAware(getIconFooterView(), getBackgroundAware());
-        }
+        Dynamic.setContrastWithColorTypeOrColor(getIconView(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setContrastWithColorTypeOrColor(getTitleView(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setContrastWithColorTypeOrColor(getSummaryView(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setContrastWithColorTypeOrColor(getDescriptionView(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setContrastWithColorTypeOrColor(getValueView(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setContrastWithColorTypeOrColor(getActionView(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setContrastWithColorTypeOrColor(getIconFooterView(),
+                getContrastWithColorType(), getContrastWithColor());
 
-        if (getContrastWithColorType() != Theme.ColorType.NONE
-                && getContrastWithColorType() != Theme.ColorType.CUSTOM) {
-            Dynamic.setContrastWithColorType(getIconView(), getContrastWithColorType());
-            Dynamic.setContrastWithColorType(getTitleView(), getContrastWithColorType());
-            Dynamic.setContrastWithColorType(getSummaryView(), getContrastWithColorType());
-            Dynamic.setContrastWithColorType(getDescriptionView(), getContrastWithColorType());
-            Dynamic.setContrastWithColorType(getValueView(), getContrastWithColorType());
-            Dynamic.setContrastWithColorType(getActionView(), getContrastWithColorType());
-            Dynamic.setContrastWithColorType(getIconFooterView(), getContrastWithColorType());
-        } else if (getContrastWithColorType() == Theme.ColorType.CUSTOM
-                && getContrastWithColor() != Theme.Color.UNKNOWN) {
-            Dynamic.setContrastWithColor(getIconView(), getContrastWithColor());
-            Dynamic.setContrastWithColor(getTitleView(), getContrastWithColor());
-            Dynamic.setContrastWithColor(getSummaryView(), getContrastWithColor());
-            Dynamic.setContrastWithColor(getDescriptionView(), getContrastWithColor());
-            Dynamic.setContrastWithColor(getValueView(), getContrastWithColor());
-            Dynamic.setContrastWithColor(getActionView(), getContrastWithColor());
-            Dynamic.setContrastWithColor(getIconFooterView(), getContrastWithColor());
-        }
+        Dynamic.setBackgroundAwareSafe(getIconView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getTitleView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getSummaryView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getDescriptionView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getValueView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getActionView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getIconFooterView(), getBackgroundAware());
     }
 
     @Override
