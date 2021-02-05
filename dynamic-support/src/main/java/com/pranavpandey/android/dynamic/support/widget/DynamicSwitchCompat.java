@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
@@ -257,21 +258,20 @@ public class DynamicSwitchCompat extends SwitchMaterial implements DynamicStateW
     }
 
     @Override
-    public void setBackgroundAware(@Theme.BackgroundAware int backgroundAware) {
-        this.mBackgroundAware = backgroundAware;
-
-        setColor();
-    }
-
-    @Override
     public @Theme.BackgroundAware int getBackgroundAware() {
         return mBackgroundAware;
     }
 
     @Override
     public boolean isBackgroundAware() {
-        return DynamicTheme.getInstance().resolveBackgroundAware(
-                mBackgroundAware) != Theme.BackgroundAware.DISABLE;
+        return Dynamic.isBackgroundAware(this);
+    }
+
+    @Override
+    public void setBackgroundAware(@Theme.BackgroundAware int backgroundAware) {
+        this.mBackgroundAware = backgroundAware;
+
+        setColor();
     }
 
     @Override

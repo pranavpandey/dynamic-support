@@ -23,7 +23,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
@@ -241,8 +241,7 @@ public class DynamicItem {
      * @return {@code true} if this item changes color according to the background.
      */
     public boolean isBackgroundAware() {
-        return DynamicTheme.getInstance().resolveBackgroundAware(
-                backgroundAware) != Theme.BackgroundAware.DISABLE;
+        return Dynamic.isBackgroundAware(this);
     }
 
     /**

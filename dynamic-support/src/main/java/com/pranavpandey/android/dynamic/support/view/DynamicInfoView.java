@@ -39,7 +39,6 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicItem;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicItemsAdapter;
-import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
@@ -366,8 +365,7 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
 
     @Override
     public boolean isBackgroundAware() {
-        return DynamicTheme.getInstance().resolveBackgroundAware(
-                mBackgroundAware) != Theme.BackgroundAware.DISABLE;
+        return Dynamic.isBackgroundAware(this);
     }
 
     @Override

@@ -341,21 +341,20 @@ public abstract class DynamicPreference extends DynamicView
     }
 
     @Override
-    public void setBackgroundAware(@Theme.BackgroundAware int backgroundAware) {
-        this.mBackgroundAware = backgroundAware;
-
-        setColor();
-    }
-
-    @Override
     public @Theme.BackgroundAware int getBackgroundAware() {
         return mBackgroundAware;
     }
 
     @Override
     public boolean isBackgroundAware() {
-        return DynamicTheme.getInstance().resolveBackgroundAware(
-                mBackgroundAware) != Theme.BackgroundAware.DISABLE;
+        return Dynamic.isBackgroundAware(this);
+    }
+
+    @Override
+    public void setBackgroundAware(@Theme.BackgroundAware int backgroundAware) {
+        this.mBackgroundAware = backgroundAware;
+
+        setColor();
     }
 
     @Override

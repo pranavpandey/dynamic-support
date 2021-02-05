@@ -107,18 +107,18 @@ public interface DynamicWidget extends BaseWidget {
     @Theme.BackgroundAware int getBackgroundAware();
 
     /**
+     * Checks whether the background aware functionality is enabled.
+     *
+     * @return {@code true} if this widget changes color according to the background.
+     */
+    boolean isBackgroundAware();
+
+    /**
      * Set the value to make this widget background aware or not.
      *
      * @param backgroundAware The background aware functionality to be set.
      */
     void setBackgroundAware(@Theme.BackgroundAware int backgroundAware);
-
-    /**
-     * Checks whether the background aware functionality is enabled.
-     * 
-     * @return {@code true} if this widget changes color according to the background.
-     */
-    boolean isBackgroundAware();
 
     /**
      * Override this method to handle state changes for this widget.

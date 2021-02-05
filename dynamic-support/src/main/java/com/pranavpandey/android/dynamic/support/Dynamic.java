@@ -46,6 +46,7 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener;
 import com.pranavpandey.android.dynamic.support.model.DynamicItem;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.inflater.DynamicLayoutInflater;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
@@ -339,6 +340,43 @@ public class Dynamic {
         if (dynamic instanceof DynamicScrollableWidget) {
             ((DynamicScrollableWidget) dynamic).setScrollBarColor(color);
         }
+    }
+
+    /**
+     * Checks whether the background aware functionality is enabled for the supplied value.
+     *
+     * @param backgroundAware The value to be checked.
+     *
+     * @return {@code true} if the supplied value changes color according to
+     *         the background.
+     *
+     * @see DynamicTheme#resolveBackgroundAware(int)
+     */
+    public static boolean isBackgroundAware(@Theme.BackgroundAware int backgroundAware) {
+        return DynamicTheme.getInstance().resolveBackgroundAware(backgroundAware)
+                != Theme.BackgroundAware.DISABLE;
+    }
+
+    /**
+     * Checks whether the background aware functionality is enabled for the supplied
+     * dynamic object.
+     *
+     * @param dynamic The dynamic object to be checked.
+     * @param <T> The type of the dynamic object.
+     *
+     * @return {@code true} if the supplied dynamic object changes color according to
+     *         the background.
+     *
+     * @see #isBackgroundAware(int)
+     */
+    public static <T> boolean isBackgroundAware(@Nullable T dynamic) {
+        if (dynamic instanceof DynamicWidget) {
+            return isBackgroundAware(((DynamicWidget) dynamic).getBackgroundAware());
+        } else if (dynamic instanceof DynamicItem) {
+            return isBackgroundAware(((DynamicItem) dynamic).getBackgroundAware());
+        }
+
+        return false;
     }
 
     /**
