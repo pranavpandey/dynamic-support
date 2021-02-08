@@ -18,6 +18,6 @@
 <resources>
 
     <!-- Activity -->
-    <dimen name="ads_collapsing_toolbar_height">240dp</dimen>
+    <dimen name="ads_collapsing_toolbar_height">200dp</dimen>
 
 </resources>
