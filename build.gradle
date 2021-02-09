@@ -26,7 +26,7 @@ buildscript {
             'flexbox'     : '2.0.1',
             'kotlin'      : '1.4.21',
             'locale'      : '1.2.1',
-            'material'    : '1.3.0-rc01',
+            'material'    : '1.3.0',
             'preferences' : '1.2.1',
             'swiperefresh': '1.1.0',
             'theme'       : '2.0.0',
