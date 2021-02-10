@@ -905,6 +905,12 @@
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
+    <style name="Widget.DynamicApp.Image.Borderless">
+        <item name="android:padding">@dimen/ads_margin_medium</item>
+        <item name="android:background">?selectableItemBackground</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
     <style name="Widget.DynamicApp.Image.Splash">
         <item name="android:layout_width">@dimen/ads_icon_splash</item>
         <item name="android:layout_height">@dimen/ads_icon_splash</item>

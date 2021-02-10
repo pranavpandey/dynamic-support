@@ -18,6 +18,7 @@ package com.pranavpandey.android.dynamic.support.model;
 
 import android.graphics.drawable.Drawable;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
@@ -99,7 +100,7 @@ public class DynamicMenu {
      *
      * @return The {@link DynamicMenu} object to allow for chaining of calls to set methods.
      */
-    public DynamicMenu setIcon(@Nullable Drawable icon) {
+    public @NonNull DynamicMenu setIcon(@Nullable Drawable icon) {
         this.icon = icon;
 
         return this;
@@ -121,7 +122,7 @@ public class DynamicMenu {
      *
      * @return The {@link DynamicMenu} object to allow for chaining of calls to set methods.
      */
-    public DynamicMenu setTitle(@Nullable CharSequence title) {
+    public @NonNull DynamicMenu setTitle(@Nullable CharSequence title) {
         this.title = title;
 
         return this;
@@ -143,7 +144,7 @@ public class DynamicMenu {
      *
      * @return The {@link DynamicMenu} object to allow for chaining of calls to set methods.
      */
-    public DynamicMenu setSubtitle(@Nullable CharSequence subtitle) {
+    public @NonNull DynamicMenu setSubtitle(@Nullable CharSequence subtitle) {
         this.subtitle = subtitle;
 
         return this;
@@ -162,8 +163,12 @@ public class DynamicMenu {
      * Sets if this menu has a submenu.
      *
      * @param hasSubmenu {@code true} to enable submenu.
+     *
+     * @return The {@link DynamicMenu} object to allow for chaining of calls to set methods.
      */
-    public void setHasSubmenu(boolean hasSubmenu) {
+    public @NonNull DynamicMenu setHasSubmenu(boolean hasSubmenu) {
         this.hasSubmenu = hasSubmenu;
+
+        return this;
     }
 }

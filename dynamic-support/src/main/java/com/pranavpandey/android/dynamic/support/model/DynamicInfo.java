@@ -20,6 +20,7 @@ import android.graphics.drawable.Drawable;
 
 import androidx.annotation.ArrayRes;
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
@@ -104,7 +105,7 @@ public class DynamicInfo {
      *
      * @return The {@link DynamicInfo} object to allow for chaining of calls to set methods.
      */
-    public DynamicInfo setIcon(@Nullable Drawable icon) {
+    public @NonNull DynamicInfo setIcon(@Nullable Drawable icon) {
         this.icon = icon;
 
         return this;
@@ -126,7 +127,7 @@ public class DynamicInfo {
      *
      * @return The {@link DynamicInfo} object to allow for chaining of calls to set methods.
      */
-    public DynamicInfo setIconBig(@Nullable Drawable iconBig) {
+    public @NonNull DynamicInfo setIconBig(@Nullable Drawable iconBig) {
         this.iconBig = iconBig;
 
         return this;
@@ -148,7 +149,7 @@ public class DynamicInfo {
      *
      * @return The {@link DynamicInfo} object to allow for chaining of calls to set methods.
      */
-    public DynamicInfo setTitle(@Nullable CharSequence title) {
+    public @NonNull DynamicInfo setTitle(@Nullable CharSequence title) {
         this.title = title;
 
         return this;
@@ -170,7 +171,7 @@ public class DynamicInfo {
      *
      * @return The {@link DynamicInfo} object to allow for chaining of calls to set methods.
      */
-    public DynamicInfo setSubtitle(@Nullable CharSequence subtitle) {
+    public @NonNull DynamicInfo setSubtitle(@Nullable CharSequence subtitle) {
         this.subtitle = subtitle;
 
         return this;
@@ -192,7 +193,7 @@ public class DynamicInfo {
      *
      * @return The {@link DynamicInfo} object to allow for chaining of calls to set methods.
      */
-    public DynamicInfo setDescription(@Nullable CharSequence description) {
+    public @NonNull DynamicInfo setDescription(@Nullable CharSequence description) {
         this.description = description;
 
         return this;
@@ -214,7 +215,7 @@ public class DynamicInfo {
      *
      * @return The {@link DynamicInfo} object to allow for chaining of calls to set methods.
      */
-    public DynamicInfo setLinks(@Nullable CharSequence[] links) {
+    public @NonNull DynamicInfo setLinks(@Nullable CharSequence[] links) {
         this.links = links;
 
         return this;
@@ -236,7 +237,7 @@ public class DynamicInfo {
      *
      * @return The {@link DynamicInfo} object to allow for chaining of calls to set methods.
      */
-    public DynamicInfo setLinksSubtitles(@Nullable CharSequence[] linksSubtitles) {
+    public @NonNull DynamicInfo setLinksSubtitles(@Nullable CharSequence[] linksSubtitles) {
         this.linksSubtitles = linksSubtitles;
 
         return this;
@@ -258,7 +259,7 @@ public class DynamicInfo {
      *
      * @return The {@link DynamicInfo} object to allow for chaining of calls to set methods.
      */
-    public DynamicInfo setLinksUrls(@Nullable CharSequence[] linksUrls) {
+    public @NonNull DynamicInfo setLinksUrls(@Nullable CharSequence[] linksUrls) {
         this.linksUrls = linksUrls;
 
         return this;
@@ -280,7 +281,7 @@ public class DynamicInfo {
      *
      * @return The {@link DynamicInfo} object to allow for chaining of calls to set methods.
      */
-    public DynamicInfo setLinksIconsResId(@ArrayRes int linksIconsResId) {
+    public @NonNull DynamicInfo setLinksIconsResId(@ArrayRes int linksIconsResId) {
         this.linksIconsResId = linksIconsResId;
 
         return this;
@@ -302,7 +303,7 @@ public class DynamicInfo {
      *
      * @return The {@link DynamicInfo} object to allow for chaining of calls to set methods.
      */
-    public DynamicInfo setLinksColorsResId(@ArrayRes int linksColorsResId) {
+    public @NonNull DynamicInfo setLinksColorsResId(@ArrayRes int linksColorsResId) {
         this.linksColorsResId = linksColorsResId;
 
         return this;
@@ -324,7 +325,7 @@ public class DynamicInfo {
      *
      * @return The {@link DynamicInfo} object to allow for chaining of calls to set methods.
      */
-    public DynamicInfo setLinksDrawables(@Nullable Drawable[] linksDrawables) {
+    public @NonNull DynamicInfo setLinksDrawables(@Nullable Drawable[] linksDrawables) {
         this.linksDrawables = linksDrawables;
 
         return this;
@@ -346,7 +347,7 @@ public class DynamicInfo {
      *
      * @return The {@link DynamicInfo} object to allow for chaining of calls to set methods.
      */
-    public DynamicInfo setLinksColors(@Nullable @ColorInt Integer[] linksColors) {
+    public @NonNull DynamicInfo setLinksColors(@Nullable @ColorInt Integer[] linksColors) {
         this.linksColors = linksColors;
 
         return this;
