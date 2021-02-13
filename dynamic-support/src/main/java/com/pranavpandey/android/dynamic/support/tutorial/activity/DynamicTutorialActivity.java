@@ -440,6 +440,15 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Dyna
     }
 
     /**
+     * Set the current position for the tutorial list.
+     *
+     * @param page The current page to be set.
+     */
+    protected void setTutorial(int page) {
+        setTutorial(page, DynamicMotion.getInstance().isMotion());
+    }
+
+    /**
      * Update activity background and system UI according to the supplied color.
      *
      * @param position The current position of the tutorial.
@@ -595,7 +604,7 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Dyna
      */
     public void onTutorialPrevious(@Nullable View view) {
         if (hasTutorialPrevious()) {
-            setTutorial(getCurrentPosition() - 1, true);
+            setTutorial(getCurrentPosition() - 1);
         }
     }
 
@@ -606,7 +615,7 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Dyna
      */
     public void onTutorialNext(@Nullable View view) {
         if (hasTutorialNext()) {
-            setTutorial(getCurrentPosition() + 1, true);
+            setTutorial(getCurrentPosition() + 1);
         } else {
             finishActivity();
         }
