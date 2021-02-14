@@ -489,10 +489,8 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Dyna
         mPageIndicator.setSelectedColour(tintColor);
         mPageIndicator.setUnselectedColour(DynamicColorUtils.adjustAlpha(
                 tintColor, Defaults.ADS_ALPHA_UNCHECKED));
-        DynamicTintUtils.setViewBackgroundTint(mActionPrevious,
-                color, tintColor, true, false);
-        DynamicTintUtils.setViewBackgroundTint(mActionNext, color,
-                tintColor, true, false);
+        DynamicTintUtils.setViewBackgroundTint(mActionPrevious, color, true);
+        DynamicTintUtils.setViewBackgroundTint(mActionNext, color, true);
 
         if (hasTutorialPrevious()) {
             Dynamic.setVisibility(mActionPrevious, View.VISIBLE);

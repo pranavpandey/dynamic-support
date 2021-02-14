@@ -66,6 +66,11 @@ public class DynamicThemeActivity extends DynamicActivity {
         setTitle(getString(R.string.ads_theme));
         setSubtitle(getString(R.string.ads_widget_preview));
         addHeader(R.layout.ads_header_appbar_text, true);
+
+        if (getIntent() != null) {
+            mThemeUrl = getIntent().getStringExtra(DynamicIntent.EXTRA_THEME_URL);
+            mThemeBitmapUri = getIntent().getParcelableExtra(DynamicIntent.EXTRA_THEME_BITMAP_URI);
+        }
     }
 
     @Override
@@ -134,9 +139,6 @@ public class DynamicThemeActivity extends DynamicActivity {
         if (getIntent() == null) {
             return;
         }
-
-        mThemeUrl = getIntent().getStringExtra(DynamicIntent.EXTRA_THEME_URL);
-        mThemeBitmapUri = getIntent().getParcelableExtra(DynamicIntent.EXTRA_THEME_BITMAP_URI);
 
         DynamicViewUtils.addView(getFrameContent(),
                 R.layout.ads_layout_image, true);
