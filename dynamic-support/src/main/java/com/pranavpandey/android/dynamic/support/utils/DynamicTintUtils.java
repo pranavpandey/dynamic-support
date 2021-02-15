@@ -154,7 +154,10 @@ public class DynamicTintUtils {
                     rippleDrawable.setColor(ColorStateList.valueOf(pressedColor));
                 }
 
-                rippleDrawable.setTintList(ColorStateList.valueOf(color));
+                if (!borderless) {
+                    rippleDrawable.setTintList(ColorStateList.valueOf(color));
+                }
+
                 rippleDrawable.invalidateSelf();
             } catch (Exception ignored) {
             }
@@ -228,7 +231,10 @@ public class DynamicTintUtils {
                     rippleDrawable.setTint(color);
                 }
 
-                rippleDrawable.setTintList(ColorStateList.valueOf(color));
+                if (!borderless) {
+                    rippleDrawable.setTintList(ColorStateList.valueOf(color));
+                }
+
                 rippleDrawable.invalidateSelf();
             } catch (Exception ignored) {
             }
