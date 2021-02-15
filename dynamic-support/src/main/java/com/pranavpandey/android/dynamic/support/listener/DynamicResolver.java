@@ -29,6 +29,13 @@ import java.util.Date;
 public interface DynamicResolver {
 
     /**
+     * Checks whether to hide the header and footer dividers.
+     *
+     * @return {@code true} if hide the header and footer dividers.
+     */
+    boolean isHideDividers();
+
+    /**
      * Checks whether the system night mode is enabled.
      *
      * @return {@code true} if the system night mode is enabled.

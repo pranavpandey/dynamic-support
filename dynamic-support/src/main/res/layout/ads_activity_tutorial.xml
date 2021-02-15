@@ -34,66 +34,74 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <LinearLayout
+        <FrameLayout
             android:id="@+id/ads_tutorial_footer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:paddingTop="@dimen/ads_margin_small"
-            android:paddingLeft="@dimen/ads_margin_medium"
-            android:paddingStart="@dimen/ads_margin_medium"
-            android:paddingRight="@dimen/ads_margin_medium"
-            android:paddingEnd="@dimen/ads_margin_medium"
-            android:paddingBottom="@dimen/ads_margin_medium"
-            android:orientation="horizontal">
-
-            <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
-                style="@style/Widget.DynamicApp.Button.ImageButton"
-                android:id="@+id/ads_tutorial_action_previous"
-                android:layout_width="@dimen/ads_icon_normal"
-                android:layout_height="@dimen/ads_icon_normal"
-                android:layout_marginRight="@dimen/ads_icon_small"
-                android:layout_marginEnd="@dimen/ads_icon_small"
-                android:layout_gravity="start|center_vertical"
-                app:srcCompat="@drawable/ads_ic_chevron_left"
-                app:ads_tintBackground="true" />
+            android:layout_alignParentBottom="true">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:paddingTop="@dimen/ads_margin_small"
+                android:paddingLeft="@dimen/ads_margin_medium"
+                android:paddingStart="@dimen/ads_margin_medium"
+                android:paddingRight="@dimen/ads_margin_medium"
+                android:paddingEnd="@dimen/ads_margin_medium"
+                android:paddingBottom="@dimen/ads_margin_medium"
+                android:orientation="horizontal">
 
-                <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-                    style="@style/Widget.DynamicApp.Button"
-                    android:id="@+id/ads_tutorial_action_custom"
-                    android:layout_width="wrap_content"
+                <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
+                    style="@style/Widget.DynamicApp.Button.ImageButton"
+                    android:id="@+id/ads_tutorial_action_previous"
+                    android:layout_width="@dimen/ads_icon_normal"
+                    android:layout_height="@dimen/ads_icon_normal"
+                    android:layout_marginRight="@dimen/ads_icon_small"
+                    android:layout_marginEnd="@dimen/ads_icon_small"
+                    android:layout_gravity="start|center_vertical"
+                    app:srcCompat="@drawable/ads_ic_chevron_left"
+                    app:ads_tintBackground="true" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/ads_margin_medium"
-                    android:visibility="gone" />
+                    android:layout_weight="1.0"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator2
-                    android:id="@+id/ads_tutorial_page_indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                        style="@style/Widget.DynamicApp.Button"
+                        android:id="@+id/ads_tutorial_action_custom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/ads_margin_medium"
+                        android:visibility="gone" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator2
+                        android:id="@+id/ads_tutorial_page_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
+                    style="@style/Widget.DynamicApp.Button.ImageButton"
+                    android:id="@+id/ads_tutorial_action_next_done"
+                    android:layout_width="@dimen/ads_icon_normal"
+                    android:layout_height="@dimen/ads_icon_normal"
+                    android:layout_marginLeft="@dimen/ads_icon_small"
+                    android:layout_marginStart="@dimen/ads_icon_small"
+                    android:layout_gravity="start|center_vertical"
+                    app:srcCompat="@drawable/ads_ic_chevron_right"
+                    app:ads_tintBackground="true" />
 
             </LinearLayout>
 
-            <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
-                style="@style/Widget.DynamicApp.Button.ImageButton"
-                android:id="@+id/ads_tutorial_action_next_done"
-                android:layout_width="@dimen/ads_icon_normal"
-                android:layout_height="@dimen/ads_icon_normal"
-                android:layout_marginLeft="@dimen/ads_icon_small"
-                android:layout_marginStart="@dimen/ads_icon_small"
-                android:layout_gravity="start|center_vertical"
-                app:srcCompat="@drawable/ads_ic_chevron_right"
-                app:ads_tintBackground="true" />
+            <include layout="@layout/ads_layout_bottom_bar_shadow" />
 
-        </LinearLayout>
+        </FrameLayout>
 
     </RelativeLayout>
 

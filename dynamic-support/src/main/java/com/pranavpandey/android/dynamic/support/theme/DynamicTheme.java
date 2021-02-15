@@ -22,7 +22,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -253,7 +252,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         this.mListener = listener;
         this.mPowerManager = (PowerManager) mListener.getContext()
                 .getSystemService(Context.POWER_SERVICE);
-        this.mDynamicResolver = dynamicResolver != null ? dynamicResolver : this;
+        this.mDynamicResolver = dynamicResolver;
         this.mDynamicThemes = new HashMap<>();
         this.mDefaultApplicationTheme = new DynamicAppTheme()
                 .setFontScale(FONT_SCALE_DEFAULT).setCornerRadius(CORNER_SIZE_DEFAULT)
@@ -1058,7 +1057,11 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      * @return The resolver used by the dynamic theme.
      */
     public @NonNull DynamicResolver getDynamicResolver() {
-        return mDynamicResolver != null ? mDynamicResolver : this;
+        if (mDynamicResolver == null) {
+            mDynamicResolver = new DynamicThemeResolver(getInstance());
+        }
+
+        return mDynamicResolver;
     }
 
     /**
@@ -1296,88 +1299,54 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     }
 
     @Override
+    public boolean isHideDividers() {
+        return getDynamicResolver().isHideDividers();
+    }
+
+    @Override
     public boolean isSystemNightMode() {
-        return (getContext().getResources().getConfiguration().uiMode
-                & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+        return getDynamicResolver().isSystemNightMode();
     }
 
     @Override
     public int resolveSystemColor(boolean isNight) {
-        if (DynamicSdkUtils.is28()) {
-            return isNight ? DynamicRemoteTheme.SYSTEM_COLOR_NIGHT
-                    : DynamicRemoteTheme.SYSTEM_COLOR;
-        } else if (DynamicSdkUtils.is21()) {
-            return DynamicRemoteTheme.SYSTEM_COLOR;
-        } else {
-            return DynamicRemoteTheme.SYSTEM_COLOR_NIGHT;
-        }
+        return getDynamicResolver().resolveSystemColor(isNight);
     }
 
     @Override
     public boolean isNight() {
-        Date date = new Date();
-        return date.getTime() >= getNightTimeStart().getTime()
-                || date.getTime() < getNightTimeEnd().getTime();
+        return getDynamicResolver().isNight();
     }
 
     @Override
     public boolean isNight(@Theme int theme) {
-        return theme == Theme.NIGHT || (theme == Theme.AUTO && isNight());
+        return getDynamicResolver().isNight(theme);
     }
 
     @Override
     public boolean isNight(@Theme.ToString String theme) {
-        return getDynamicResolver().isNight(Integer.parseInt(theme));
+        return getDynamicResolver().isNight(theme);
     }
 
     @Override
     public @NonNull Date getNightTimeStart() {
-        Date date = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.set(Calendar.HOUR_OF_DAY, 19);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-
-        return calendar.getTime();
+        return getDynamicResolver().getNightTimeStart();
     }
 
     @Override
     public @NonNull Date getNightTimeEnd() {
-        Date date = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.set(Calendar.HOUR_OF_DAY, 6);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-
-        return calendar.getTime();
+        return getDynamicResolver().getNightTimeEnd();
     }
 
     @Override
     public boolean resolveNightTheme(@Theme int appTheme, @Theme.Night int implementation) {
-        if (appTheme == Theme.AUTO) {
-            switch (implementation) {
-                case Theme.Night.CUSTOM:
-                    return false;
-                case Theme.Night.AUTO:
-                    return getDynamicResolver().isNight(appTheme);
-                case Theme.Night.BATTERY:
-                    return mPowerSaveMode;
-                case Theme.Night.SYSTEM:
-                default:
-                    return getDynamicResolver().isSystemNightMode();
-            }
-        }
-
-        return appTheme == Theme.NIGHT;
+        return getDynamicResolver().resolveNightTheme(appTheme, implementation);
     }
 
     @Override
     public boolean resolveNightTheme(@Theme.ToString String appTheme,
             @Theme.Night.ToString String implementation) {
-        return getDynamicResolver().resolveNightTheme(
-                Integer.parseInt(appTheme), Integer.parseInt(implementation));
+        return getDynamicResolver().resolveNightTheme(appTheme, implementation);
     }
 
     /**

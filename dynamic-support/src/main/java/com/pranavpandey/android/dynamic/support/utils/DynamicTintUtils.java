@@ -28,6 +28,7 @@ import android.view.View;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.TintableBackgroundView;
 import androidx.core.view.ViewCompat;
 
@@ -121,29 +122,41 @@ public class DynamicTintUtils {
 
         if (DynamicSdkUtils.is21() && view.getBackground() instanceof RippleDrawable) {
             if (borderless) {
-                pressedColor = DynamicColorUtils.adjustAlpha(
-                        color, Defaults.ADS_STATE_PRESSED);
+                pressedColor = DynamicColorUtils.adjustAlpha(color, Defaults.ADS_STATE_PRESSED);
             }
 
             pressedColor = DynamicColorUtils.getStateColor(pressedColor,
                     Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
 
-            RippleDrawable rippleDrawable = (RippleDrawable) view.getBackground();
-            if (rippleDrawable == null) {
-                return;
-            }
+            try {
+                RippleDrawable rippleDrawable = (RippleDrawable) view.getBackground();
+                if (rippleDrawable == null) {
+                    return;
+                } else {
+                    if (DynamicSdkUtils.is21(true)) {
+                        rippleDrawable.mutate();
+                    } else {
+                        rippleDrawable = (RippleDrawable)
+                                DrawableCompat.wrap(rippleDrawable.mutate());
+                    }
+                }
 
-            if (checkable && !(view instanceof DynamicCheckedTextView)) {
-                background = DynamicColorUtils.getStateColor(
-                        DynamicColorUtils.adjustAlpha(
-                                DynamicColorUtils.getTintColor(background),
-                                Defaults.ADS_STATE_PRESSED),
-                        Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
+                if (checkable && !(view instanceof DynamicCheckedTextView)) {
+                    background = DynamicColorUtils.getStateColor(
+                            DynamicColorUtils.adjustAlpha(
+                                    DynamicColorUtils.getTintColor(background),
+                                    Defaults.ADS_STATE_PRESSED),
+                            Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
 
-                rippleDrawable.setColor(DynamicResourceUtils.getColorStateList(
-                        Color.TRANSPARENT, background, pressedColor, true));
-            } else {
-                rippleDrawable.setColor(ColorStateList.valueOf(pressedColor));
+                    rippleDrawable.setColor(DynamicResourceUtils.getColorStateList(
+                            Color.TRANSPARENT, background, pressedColor, true));
+                } else {
+                    rippleDrawable.setColor(ColorStateList.valueOf(pressedColor));
+                }
+
+                rippleDrawable.setTintList(ColorStateList.valueOf(color));
+                rippleDrawable.invalidateSelf();
+            } catch (Exception ignored) {
             }
         }
     }
@@ -191,20 +204,32 @@ public class DynamicTintUtils {
 
             try {
                 RippleDrawable rippleDrawable = (RippleDrawable) view.getForeground();
-                if (rippleDrawable != null) {
-                    if (checkable && !(view instanceof DynamicCheckedTextView)) {
-                        background = DynamicColorUtils.getStateColor(
-                                DynamicColorUtils.adjustAlpha(
-                                        DynamicColorUtils.getTintColor(background),
-                                        Defaults.ADS_STATE_PRESSED),
-                                Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
-
-                        rippleDrawable.setColor(DynamicResourceUtils.getColorStateList(
-                                Color.TRANSPARENT, background, pressedColor, true));
+                if (rippleDrawable == null) {
+                    return;
+                } else {
+                    if (DynamicSdkUtils.is21(true)) {
+                        rippleDrawable.mutate();
                     } else {
-                        rippleDrawable.setColor(ColorStateList.valueOf(pressedColor));
+                        rippleDrawable = (RippleDrawable)
+                                DrawableCompat.wrap(rippleDrawable.mutate());
                     }
                 }
+
+                if (checkable && !(view instanceof DynamicCheckedTextView)) {
+                    background = DynamicColorUtils.getStateColor(
+                            DynamicColorUtils.adjustAlpha(
+                                    DynamicColorUtils.getTintColor(background),
+                                    Defaults.ADS_STATE_PRESSED),
+                            Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
+
+                    rippleDrawable.setColor(DynamicResourceUtils.getColorStateList(
+                            Color.TRANSPARENT, background, pressedColor, true));
+                } else {
+                    rippleDrawable.setTint(color);
+                }
+
+                rippleDrawable.setTintList(ColorStateList.valueOf(color));
+                rippleDrawable.invalidateSelf();
             } catch (Exception ignored) {
             }
         }
