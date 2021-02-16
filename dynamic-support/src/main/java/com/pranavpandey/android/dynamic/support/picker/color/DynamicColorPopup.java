@@ -34,6 +34,7 @@ import com.pranavpandey.android.dynamic.support.adapter.DynamicColorsAdapter;
 import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
 import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
 import com.pranavpandey.android.dynamic.support.popup.DynamicPopup;
+import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.task.WallpaperColorsTask;
 import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
@@ -50,7 +51,7 @@ import java.util.List;
 /**
  * A {@link PopupWindow} to display a grid of colors.
  * <p>It will be used internally by the
- * {@link com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference}
+ * {@link DynamicColorPreference}
  * but can be used by the other views also.
  */
 public class DynamicColorPopup extends DynamicPopup {

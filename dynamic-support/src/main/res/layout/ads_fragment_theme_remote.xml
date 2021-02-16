@@ -49,7 +49,7 @@
                         android:layout_height="wrap_content"
                         app:ads_title="@string/ads_theme" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
                         android:id="@+id/ads_pref_theme_color_background"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
                         app:ads_popup="true"
                         app:ads_popupColors="@array/ads_app_theme_colors" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
                         android:id="@+id/ads_pref_theme_color_surface"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                         app:ads_popup="true"
                         app:ads_popupColors="@array/ads_app_theme_surface_colors" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
                         android:id="@+id/ads_pref_theme_color_system"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
                         app:ads_popupColors="@array/ads_app_colors_dark"
                         app:ads_altPopupColors="@array/ads_app_theme_colors" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
                         android:id="@+id/ads_pref_theme_color_primary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
                         app:ads_popup="true"
                         app:ads_popupColors="@array/ads_app_colors" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
                         android:id="@+id/ads_pref_theme_color_accent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
                         app:ads_popup="true"
                         app:ads_popupColors="@array/ads_app_colors" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
                         android:id="@+id/ads_pref_theme_color_error"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
                         android:layout_height="wrap_content"
                         app:ads_title="@string/ads_text" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
                         android:id="@+id/ads_pref_theme_text_primary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -170,7 +170,7 @@
                         app:ads_popup="true"
                         app:ads_popupColors="@array/ads_app_colors_text_dark" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
                         android:id="@+id/ads_pref_theme_text_secondary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -200,7 +200,7 @@
                         android:layout_height="wrap_content"
                         app:ads_title="@string/ads_advanced" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicSpinnerPreference
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference
                         android:id="@+id/ads_pref_theme_style"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -212,7 +212,7 @@
                         app:ads_entries="@array/ads_style_entries"
                         app:ads_values="@array/ads_style_values" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarPreference
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicSeekBarPreference
                         android:id="@+id/ads_pref_theme_font_scale"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -232,7 +232,7 @@
                         app:ads_unit="@string/ads_unit_percent"
                         app:ads_controls="true" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarPreference
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicSeekBarPreference
                         android:id="@+id/ads_pref_theme_corner_size"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -251,7 +251,7 @@
                         app:ads_progress="@integer/ads_corner_radius"
                         app:ads_controls="true" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicSpinnerPreference
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference
                         android:id="@+id/ads_pref_theme_background_aware"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

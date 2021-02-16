@@ -20,43 +20,36 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPicker;
-import com.pranavpandey.android.dynamic.support.setting.base.DynamicSeekBarPreference;
+import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
- * A compact version of the DynamicSeekBarPreference for the {@link DynamicColorPicker}.
+ * A {@link DynamicSpinnerPreference} to display the locale setting.
  *
- * <p>It can also be used in other scenarios.
+ * <p>It will be available only for API 16 and above devices.
  */
-public class DynamicSeekBarCompact extends DynamicSeekBarPreference {
+public class DynamicLocalePreference extends DynamicSpinnerPreference {
 
-    public DynamicSeekBarCompact(@NonNull Context context) {
+    public DynamicLocalePreference(@NonNull Context context) {
         super(context);
     }
 
-    public DynamicSeekBarCompact(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicLocalePreference(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicSeekBarCompact(@NonNull Context context,
+    public DynamicLocalePreference(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-    }
-
-    @Override
-    protected @LayoutRes int getLayoutRes() {
-        return R.layout.ads_seek_bar_compact;
     }
 
     @Override
     protected void onInflate() {
         super.onInflate();
 
-        setActionButton(null, null);
+        setVisibility(DynamicSdkUtils.is16() ? VISIBLE : GONE);
     }
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.setting;
+package com.pranavpandey.android.dynamic.support.setting.theme;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -33,8 +33,8 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.listener.DynamicThemeResolver;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
 import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
-import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A {@link DynamicSpinnerPreference} to display and edit the {@link DynamicAppTheme}.

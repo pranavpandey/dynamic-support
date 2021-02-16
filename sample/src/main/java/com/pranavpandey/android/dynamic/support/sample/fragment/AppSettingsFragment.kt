@@ -20,13 +20,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.controller.ThemeController
-import com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils
-import com.pranavpandey.android.dynamic.utils.DynamicWindowUtils
+import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
 
 /**
  * App Settings fragment to control theme settings by using [DynamicFragment].
@@ -65,16 +62,6 @@ class AppSettingsFragment : DynamicFragment() {
 
         mAppThemeDay = view.findViewById(R.id.pref_app_theme_day)
         mAppThemeNight = view.findViewById(R.id.pref_app_theme_night)
-
-        // Hide navigation bar theme if not supported by the device.
-        if (!DynamicWindowUtils.isNavigationBarThemeSupported(requireContext())) {
-            view.findViewById<View>(R.id.pref_navigation_bar_theme).visibility = View.GONE
-        }
-
-        // Hide app shortcuts theme if not supported by the device.
-        if (!DynamicSdkUtils.is25()) {
-            view.findViewById<View>(R.id.pref_app_shortcuts_theme).visibility = View.GONE
-        }
     }
 
     override fun onResume() {

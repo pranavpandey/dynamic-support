@@ -29,13 +29,14 @@ import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.adapter.DynamicSpinnerChoiceAdapter;
+import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A {@link DynamicPopup} to display a list of items. It will be used internally by the
- * {@link com.pranavpandey.android.dynamic.support.setting.DynamicSpinnerPreference} but it can
+ * {@link DynamicSpinnerPreference} but it can
  * be used by the other views also.
  */
 public class DynamicMenuPopup extends DynamicPopup {

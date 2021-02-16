@@ -14,49 +14,44 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.setting;
+package com.pranavpandey.android.dynamic.support.setting.base;
 
 import android.content.Context;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPicker;
-import com.pranavpandey.android.dynamic.support.setting.base.DynamicSeekBarPreference;
+import com.pranavpandey.android.dynamic.support.Dynamic;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
- * A compact version of the DynamicSeekBarPreference for the {@link DynamicColorPicker}.
+ * A {@link DynamicSimplePreference} to provide the functionality of a
+ * {@link android.preference.PreferenceScreen} with an icon, title, summary, description,
+ * value and an action button.
  *
- * <p>It can also be used in other scenarios.
+ * <p>It can be extended to modify according to the need.
  */
-public class DynamicSeekBarCompact extends DynamicSeekBarPreference {
+public class DynamicScreenPreference extends DynamicSimplePreference {
 
-    public DynamicSeekBarCompact(@NonNull Context context) {
+    public DynamicScreenPreference(@NonNull Context context) {
         super(context);
     }
 
-    public DynamicSeekBarCompact(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicScreenPreference(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicSeekBarCompact(@NonNull Context context,
+    public DynamicScreenPreference(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-    }
-
-    @Override
-    protected @LayoutRes int getLayoutRes() {
-        return R.layout.ads_seek_bar_compact;
     }
 
     @Override
     protected void onInflate() {
         super.onInflate();
 
-        setActionButton(null, null);
+        Dynamic.setColorType(getValueView(), Theme.ColorType.ACCENT);
     }
 }

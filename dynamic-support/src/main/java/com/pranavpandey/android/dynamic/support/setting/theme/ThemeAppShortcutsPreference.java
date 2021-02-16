@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.setting;
+package com.pranavpandey.android.dynamic.support.setting.theme;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -23,27 +23,25 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.Dynamic;
-import com.pranavpandey.android.dynamic.theme.Theme;
+import com.pranavpandey.android.dynamic.support.setting.base.DynamicCheckPreference;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
- * A {@link DynamicSimplePreference} to provide the functionality of a
- * {@link android.preference.PreferenceScreen} with an icon, title, summary, description,
- * value and an action button.
+ * A {@link DynamicCheckPreference} to display the app shortcuts theme setting.
  *
- * <p>It can be extended to modify according to the need.
+ * <p>It will be available only for API 25 and above devices.
  */
-public class DynamicScreenPreference extends DynamicSimplePreference {
+public class ThemeAppShortcutsPreference extends DynamicCheckPreference {
 
-    public DynamicScreenPreference(@NonNull Context context) {
+    public ThemeAppShortcutsPreference(@NonNull Context context) {
         super(context);
     }
 
-    public DynamicScreenPreference(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public ThemeAppShortcutsPreference(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicScreenPreference(@NonNull Context context,
+    public ThemeAppShortcutsPreference(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
@@ -52,6 +50,6 @@ public class DynamicScreenPreference extends DynamicSimplePreference {
     protected void onInflate() {
         super.onInflate();
 
-        Dynamic.setColorType(getValueView(), Theme.ColorType.ACCENT);
+        setVisibility(DynamicSdkUtils.is25() ? VISIBLE : GONE);
     }
 }

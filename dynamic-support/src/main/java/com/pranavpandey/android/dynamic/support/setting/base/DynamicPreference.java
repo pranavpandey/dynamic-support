@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.setting;
+package com.pranavpandey.android.dynamic.support.setting.base;
 
 import android.content.Context;
 import android.content.SharedPreferences;

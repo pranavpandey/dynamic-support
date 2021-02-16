@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.setting;
+package com.pranavpandey.android.dynamic.support.setting.base;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -28,11 +28,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.popup.DynamicMenuPopup;
 import com.pranavpandey.android.dynamic.support.popup.DynamicPopup;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.widget.DynamicTextView;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 import java.util.Arrays;
@@ -104,9 +104,7 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
     protected void onInflate() {
         super.onInflate();
 
-        if (getValueView() != null) {
-            ((DynamicTextView) getValueView()).setColorType(Theme.ColorType.ACCENT);
-        }
+        Dynamic.setColorType(getValueView(), Theme.ColorType.ACCENT);
 
         setOnPreferenceClickListener(new OnClickListener() {
             @Override

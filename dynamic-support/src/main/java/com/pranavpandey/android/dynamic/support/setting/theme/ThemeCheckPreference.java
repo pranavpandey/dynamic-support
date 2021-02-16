@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.setting;
+package com.pranavpandey.android.dynamic.support.setting.theme;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -27,24 +27,25 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
+import com.pranavpandey.android.dynamic.support.setting.base.DynamicCheckPreference;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
 import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils;
 
 /**
- * A {@link DynamicSpinnerPreference} to display and edit the settings for the
+ * A {@link DynamicCheckPreference} to display and edit the settings for the
  * {@link com.pranavpandey.android.dynamic.theme.receiver.DynamicThemeReceiver}.
  */
-public class ThemeReceiverPreference extends DynamicSpinnerPreference {
+public class ThemeCheckPreference extends DynamicCheckPreference {
 
-    public ThemeReceiverPreference(@NonNull Context context) {
+    public ThemeCheckPreference(@NonNull Context context) {
         super(context);
     }
 
-    public ThemeReceiverPreference(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public ThemeCheckPreference(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ThemeReceiverPreference(@NonNull Context context,
+    public ThemeCheckPreference(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
@@ -54,7 +55,7 @@ public class ThemeReceiverPreference extends DynamicSpinnerPreference {
         super.onInflate();
 
         setActionButton(getContext().getString(R.string.ads_perm_info_required),
-                new View.OnClickListener() {
+                new OnClickListener() {
             @Override
             public void onClick(View v) {
                 DynamicPermissions.getInstance().isGranted(

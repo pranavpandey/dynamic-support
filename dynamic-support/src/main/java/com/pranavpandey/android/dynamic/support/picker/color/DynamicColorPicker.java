@@ -43,6 +43,7 @@ import com.pranavpandey.android.dynamic.support.adapter.DynamicColorsAdapter;
 import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
 import com.pranavpandey.android.dynamic.support.picker.DynamicPickerType;
 import com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact;
+import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference;
 import com.pranavpandey.android.dynamic.support.theme.task.WallpaperColorsTask;
 import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicView;
@@ -59,7 +60,7 @@ import java.util.List;
 /**
  * A color picker inside a DynamicView to display multiple grids of colors and their shades.
  * <p>It will be used internally by the
- * {@link com.pranavpandey.android.dynamic.support.setting.DynamicColorPreference}
+ * {@link DynamicColorPreference}
  * but can be used by the other views also.
  */
 public class DynamicColorPicker extends DynamicView {
