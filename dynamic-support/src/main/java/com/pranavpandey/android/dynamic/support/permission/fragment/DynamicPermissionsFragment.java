@@ -318,7 +318,7 @@ public class DynamicPermissionsFragment extends DynamicFragment {
      * Show hint if permission request is cancelled by the user.
      */
     private void showHint() {
-        Dynamic.showSnackBar(getActivity(),
+        Dynamic.showSnackbar(getActivity(),
                 R.string.ads_perm_info_grant_all, Snackbar.LENGTH_LONG);
     }
 

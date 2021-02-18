@@ -43,6 +43,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.snackbar.Snackbar;
 import com.pranavpandey.android.dynamic.support.activity.DynamicActivity;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener;
+import com.pranavpandey.android.dynamic.support.listener.DynamicSnackbar;
 import com.pranavpandey.android.dynamic.support.model.DynamicItem;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
@@ -730,58 +731,58 @@ public class Dynamic {
     }
 
     /**
-     * Show the snack bar for the {@link DynamicActivity}.
+     * Show the snackbar for the {@link DynamicSnackbar}.
      *
      * @param activity The activity context to be used.
-     * @param text The text for the snack bar.
-     * @param duration The duration of the snack bar.
+     * @param text The text for the snackbar.
+     * @param duration The duration of the snackbar.
      *                 <p>{@link Snackbar#LENGTH_SHORT}, {@link Snackbar#LENGTH_LONG}
      *                 or {@link Snackbar#LENGTH_INDEFINITE}.
      */
-    public static void showSnackBar(@Nullable Context activity,
+    public static void showSnackbar(@Nullable Context activity,
             @Nullable CharSequence text, @Snackbar.Duration int duration) {
-        if (activity instanceof DynamicActivity && text != null) {
-            ((DynamicActivity) activity).getSnackBar(text, duration).show();
+        if (activity instanceof DynamicSnackbar && text != null) {
+            ((DynamicSnackbar) activity).getSnackbar(text, duration).show();
         }
     }
 
     /**
-     * Show the snack bar for the {@link DynamicActivity}.
+     * Show the snackbar for the {@link DynamicSnackbar}.
      *
      * @param activity The activity context to be used.
-     * @param text The text for the snack bar.
+     * @param text The text for the snackbar.
      */
-    public static void showSnackBar(@Nullable Context activity, @Nullable CharSequence text) {
-        if (activity instanceof DynamicActivity && text != null) {
-            ((DynamicActivity) activity).getSnackBar(text).show();
+    public static void showSnackbar(@Nullable Context activity, @Nullable CharSequence text) {
+        if (activity instanceof DynamicSnackbar && text != null) {
+            ((DynamicSnackbar) activity).getSnackbar(text).show();
         }
     }
 
     /**
-     * Show the snack bar for the {@link DynamicActivity}.
+     * Show the snackbar for the {@link DynamicSnackbar}.
      *
      * @param activity The activity context to be used.
-     * @param stringRes The string resource for the snack bar.
-     * @param duration The duration of the snack bar.
+     * @param stringRes The string resource for the snackbar.
+     * @param duration The duration of the snackbar.
      *                 <p>{@link Snackbar#LENGTH_SHORT}, {@link Snackbar#LENGTH_LONG}
      *                 or {@link Snackbar#LENGTH_INDEFINITE}.
      */
-    public static void showSnackBar(@Nullable Context activity,
+    public static void showSnackbar(@Nullable Context activity,
             @StringRes int stringRes, @Snackbar.Duration int duration) {
-        if (activity instanceof DynamicActivity) {
-            ((DynamicActivity) activity).getSnackBar(stringRes, duration).show();
+        if (activity instanceof DynamicSnackbar) {
+            ((DynamicSnackbar) activity).getSnackbar(stringRes, duration).show();
         }
     }
 
     /**
-     * Show the snack bar for the {@link DynamicActivity}.
+     * Show the snackbar for the {@link DynamicSnackbar}.
      *
      * @param activity The activity context to be used.
-     * @param stringRes The string resource for the snack bar.
+     * @param stringRes The string resource for the snackbar.
      */
-    public static void showSnackBar(@Nullable Context activity, @StringRes int stringRes) {
-        if (activity instanceof DynamicActivity) {
-            ((DynamicActivity) activity).getSnackBar(stringRes).show();
+    public static void showSnackbar(@Nullable Context activity, @StringRes int stringRes) {
+        if (activity instanceof DynamicSnackbar) {
+            ((DynamicSnackbar) activity).getSnackbar(stringRes).show();
         }
     }
 

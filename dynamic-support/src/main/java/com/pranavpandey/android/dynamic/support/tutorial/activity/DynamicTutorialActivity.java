@@ -30,22 +30,26 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
+import com.pranavpandey.android.dynamic.support.listener.DynamicSnackbar;
 import com.pranavpandey.android.dynamic.support.listener.DynamicTransitionListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicWindowResolver;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.adapter.DynamicTutorialsAdapter;
+import com.pranavpandey.android.dynamic.support.utils.DynamicHintUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
@@ -63,7 +67,7 @@ import java.util.List;
  * <p>Extend this activity and supply tutorials or dataSet by using the provided methods.
  */
 public abstract class DynamicTutorialActivity<V extends Fragment, T extends DynamicTutorial<T, V>>
-        extends DynamicSystemActivity implements DynamicTransitionListener {
+        extends DynamicSystemActivity implements DynamicTransitionListener, DynamicSnackbar {
 
     /**
      * Coordinator layout used by this activity.
@@ -277,6 +281,15 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Dyna
     @Override
     public boolean isApplyEdgeToEdgeInsets() {
         return false;
+    }
+
+    /**
+     * Returns the coordinator layout used by this activity.
+     *
+     * @return The coordinator layout used by this activity.
+     */
+    public @Nullable CoordinatorLayout getCoordinatorLayout() {
+        return mCoordinatorLayout;
     }
 
     @Override
@@ -682,5 +695,31 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Dyna
         } else if (!isFinishing()) {
             finish();
         }
+    }
+
+    @Override
+    public @NonNull Snackbar getSnackbar(@NonNull CharSequence text,
+            @Snackbar.Duration int duration) {
+        return DynamicHintUtils.getSnackbar(getCoordinatorLayout(), text,
+                DynamicColorUtils.getTintColor(
+                        getTutorial(getCurrentPosition()).getBackgroundColor()),
+                getTutorial(getCurrentPosition()).getBackgroundColor(),
+                duration, false);
+    }
+
+    @Override
+    public @NonNull Snackbar getSnackbar(@StringRes int stringRes,
+            @Snackbar.Duration int duration) {
+        return getSnackbar(getString(stringRes), duration);
+    }
+
+    @Override
+    public @NonNull Snackbar getSnackbar(@NonNull CharSequence text) {
+        return getSnackbar(text, Snackbar.LENGTH_SHORT);
+    }
+
+    @Override
+    public @NonNull Snackbar getSnackbar(@StringRes int stringRes) {
+        return getSnackbar(getString(stringRes));
     }
 }

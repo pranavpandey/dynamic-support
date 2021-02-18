@@ -40,7 +40,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 public class DynamicHintUtils {
 
     /**
-     * Make a themed snack bar with text and action. Background will be accent color from the
+     * Make a themed snackbar with text and action. Background will be accent color from the
      * theme and it will automatically use its tint color for the text and icon to provide
      * best visibility.
      *
@@ -59,63 +59,85 @@ public class DynamicHintUtils {
     }
 
     /**
-     * Make a themed snack bar with text and action. Background will be primary color from the
-     * theme and it will automatically use its tint color for the text and action to provide
-     * best visibility.
+     * Make a themed snackbar with text and action.
+     * <p>The background of the snackbar will be of primary color from the theme and it will
+     * automatically use its tint color for the text and action to provide best visibility.
      *
-     * @param view The view to show the snack bar.
+     * @param view The view to show the snackbar.
      * @param text The text to show. Can be formatted text.
      *
-     * @return The snack bar with the supplied parameters.
-     *         <p>Use {@link Snackbar#show()} to display the snack bar.
+     * @return The snackbar with the supplied parameters.
+     *         <p>Use {@link Snackbar#show()} to display the snackbar.
      */
     @SuppressLint("Range")
-    public static @NonNull Snackbar getSnackBar(@NonNull View view, @NonNull CharSequence text) {
-        return getSnackBar(view, text, Snackbar.LENGTH_SHORT);
+    public static @NonNull Snackbar getSnackbar(@NonNull View view, @NonNull CharSequence text) {
+        return getSnackbar(view, text, Snackbar.LENGTH_SHORT);
     }
 
     /**
-     * Make a themed snack bar with text and action. Background will be primary color from the
-     * theme and it will automatically use its tint color for the text and action to provide
-     * best visibility.
+     * Make a themed snackbar with text and action.
+     * <p>The background of the snackbar will be of primary color from the theme and it will
+     * automatically use its tint color for the text and action to provide best visibility.
      *
-     * @param view The view to show the snack bar.
+     * @param view The view to show the snackbar.
      * @param text The text to show. Can be formatted text.
-     * @param duration The duration of the snack bar.
+     * @param duration The duration of the snackbar.
      *                 <p>Can be {@link Snackbar#LENGTH_SHORT}, {@link Snackbar#LENGTH_LONG}
      *                 or {@link Snackbar#LENGTH_INDEFINITE}.
      *
-     * @return The snack bar with the supplied parameters.
-     *         <p>Use {@link Snackbar#show()} to display the snack bar.
+     * @return The snackbar with the supplied parameters.
+     *         <p>Use {@link Snackbar#show()} to display the snackbar.
      */
-    public static @NonNull Snackbar getSnackBar(@NonNull View view,
+    public static @NonNull Snackbar getSnackbar(@NonNull View view,
             @NonNull CharSequence text, @Snackbar.Duration int duration) {
-        return getSnackBar(view, text, DynamicTheme.getInstance().get().getPrimaryColor(),
+        return getSnackbar(view, text, DynamicTheme.getInstance().get().getPrimaryColor(),
                 DynamicTheme.getInstance().get().getTintPrimaryColor(), duration);
     }
 
     /**
-     * Make a themed snack bar with text and action.
+     * Make a themed snackbar with text and action.
      *
-     * @param view The view to show the snack bar.
+     * @param view The view to show the snackbar.
      * @param text The text to show. Can be formatted text.
-     * @param backgroundColor The snack bar background color.
-     * @param tintColor The snack bar tint color based on the background. It will automatically
+     * @param backgroundColor The snackbar background color.
+     * @param tintColor The snackbar tint color based on the background. It will automatically
      *                  check for the contrast to provide bes visibility.
-     * @param duration The duration of the snack bar.
+     * @param duration The duration of the snackbar.
      *                 <p>Can be {@link Snackbar#LENGTH_SHORT}, {@link Snackbar#LENGTH_LONG}
      *                 or {@link Snackbar#LENGTH_INDEFINITE}.
      *
-     * @return The snack bar with the supplied parameters.
-     *         <p>Use {@link Snackbar#show()} to display the snack bar.
+     * @return The snackbar with the supplied parameters.
+     *         <p>Use {@link Snackbar#show()} to display the snackbar.
      */
-    public static @NonNull Snackbar getSnackBar(@NonNull View view,
+    public static @NonNull Snackbar getSnackbar(@NonNull View view,
             @NonNull CharSequence text, @ColorInt int backgroundColor,
             @ColorInt int tintColor, @Snackbar.Duration int duration) {
+        return getSnackbar(view, text, backgroundColor, tintColor, duration, true);
+    }
+
+    /**
+     * Make a themed snackbar with text and action.
+     *
+     * @param view The view to show the snackbar.
+     * @param text The text to show. Can be formatted text.
+     * @param backgroundColor The snackbar background color.
+     * @param tintColor The snackbar tint color based on the background. It will automatically
+     *                  check for the contrast to provide bes visibility.
+     * @param duration The duration of the snackbar.
+     *                 <p>Can be {@link Snackbar#LENGTH_SHORT}, {@link Snackbar#LENGTH_LONG}
+     *                 or {@link Snackbar#LENGTH_INDEFINITE}.
+     * @param backgroundAware {@code true} to consider background aware for the tint color.
+     *
+     * @return The snackbar with the supplied parameters.
+     *         <p>Use {@link Snackbar#show()} to display the snackbar.
+     */
+    public static @NonNull Snackbar getSnackbar(@NonNull View view,
+            @NonNull CharSequence text, @ColorInt int backgroundColor,
+            @ColorInt int tintColor, @Snackbar.Duration int duration, boolean backgroundAware) {
         backgroundColor = DynamicColorUtils.removeAlpha(backgroundColor);
         tintColor = DynamicColorUtils.removeAlpha(tintColor);
 
-        if (DynamicTheme.getInstance().get().isBackgroundAware()) {
+        if (backgroundAware && DynamicTheme.getInstance().get().isBackgroundAware()) {
             backgroundColor = DynamicColorUtils.getContrastColor(backgroundColor,
                     DynamicTheme.getInstance().get().getBackgroundColor());
             tintColor = DynamicColorUtils.getContrastColor(tintColor, backgroundColor);

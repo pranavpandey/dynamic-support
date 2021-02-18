@@ -327,7 +327,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
 
             onLoadTheme(mDynamicThemeDefault);
             Dynamic.setBottomSheetState(getActivity(), BottomSheetBehavior.STATE_EXPANDED);
-            Dynamic.showSnackBar(getActivity(), R.string.ads_theme_reset_desc);
+            Dynamic.showSnackbar(getActivity(), R.string.ads_theme_reset_desc);
             return true;
         }
 
@@ -363,7 +363,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
                                 setProgress(requestCode, false);
 
                                 if (getBooleanResult(result)) {
-                                    Dynamic.showSnackBar(getActivity(), String.format(
+                                    Dynamic.showSnackbar(getActivity(), String.format(
                                             getString(R.string.ads_theme_format_saved),
                                             DynamicFileUtils.getFileNameFromUri(
                                                     requireContext(), uri)));
@@ -443,11 +443,11 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
             case Theme.Action.SHARE_DATA:
             case Theme.Action.SHARE_FILE:
             case Theme.Action.SHARE_CODE:
-                Dynamic.showSnackBar(getActivity(), R.string.ads_theme_share_error);
+                Dynamic.showSnackbar(getActivity(), R.string.ads_theme_share_error);
                 break;
             case Theme.Action.SAVE_FILE:
             case Theme.Action.SAVE_CODE:
-                Dynamic.showSnackBar(getActivity(), themePreview != null
+                Dynamic.showSnackbar(getActivity(), themePreview != null
                         ? R.string.ads_theme_share_error : R.string.ads_theme_export_error);
                 break;
         }
@@ -480,7 +480,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
 
                 onLoadTheme(onImportTheme(theme));
                 Dynamic.setBottomSheetState(getActivity(), BottomSheetBehavior.STATE_EXPANDED);
-                Dynamic.showSnackBar(getActivity(), R.string.ads_theme_import_done);
+                Dynamic.showSnackbar(getActivity(), R.string.ads_theme_import_done);
             } catch (Exception e) {
                 onThemeError(themeAction, getThemePreview(), e);
             }

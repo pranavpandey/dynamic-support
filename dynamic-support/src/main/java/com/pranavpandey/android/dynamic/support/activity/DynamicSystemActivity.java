@@ -139,7 +139,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity implements
     protected static final String ADS_STATE_PAUSED = "ads_state_paused";
 
     /**
-     * Default tint color for the system UI elements like snack bars, etc.
+     * Default tint color for the system UI elements like snackbars, etc.
      */
     protected static final @ColorInt int ADS_DEFAULT_SYSTEM_UI_COLOR =
             Color.parseColor("#F5F5F5");

@@ -60,6 +60,7 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener;
+import com.pranavpandey.android.dynamic.support.listener.DynamicSnackbar;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicFABUtils;
@@ -81,7 +82,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
  * please check {@link DynamicDrawerActivity}.
  */
 public abstract class DynamicActivity extends DynamicStateActivity
-        implements DynamicSearchListener {
+        implements DynamicSearchListener, DynamicSnackbar {
 
     /**
      * Constant to use the default layout resource..
@@ -1484,69 +1485,27 @@ public abstract class DynamicActivity extends DynamicStateActivity
         }
     }
 
-    /**
-     * Make a themed snack bar with text and action. Background will be the tint background color
-     * to blend it smoothly and it will automatically use its tint color for the text and action
-     * to provide best visibility.
-     *
-     * @param text The text to show. Can be formatted text.
-     * @param duration The duration of the snack bar.
-     *                 <p>{@link Snackbar#LENGTH_SHORT}, {@link Snackbar#LENGTH_LONG}
-     *                 or {@link Snackbar#LENGTH_INDEFINITE}.
-     *
-     * @return The snack bar with the supplied parameters.
-     *         <p>Use {@link Snackbar#show()} to display the snack bar.
-     */
-    public @NonNull Snackbar getSnackBar(@NonNull CharSequence text,
+    @Override
+    public @NonNull Snackbar getSnackbar(@NonNull CharSequence text,
             @Snackbar.Duration int duration) {
-        return DynamicHintUtils.getSnackBar(mCoordinatorLayout, text,
+        return DynamicHintUtils.getSnackbar(getCoordinatorLayout(), text,
                 DynamicTheme.getInstance().get().getTintBackgroundColor(),
                 DynamicTheme.getInstance().get().getBackgroundColor(), duration);
     }
 
-    /**
-     * Make a themed snack bar with text and action. Background will be the tint background color
-     * to blend it smoothly and it will automatically use its tint color for the text and action
-     * to provide best visibility.
-     *
-     * @param stringRes The string resource for the snack bar.
-     * @param duration The duration of the snack bar.
-     *                 <p>{@link Snackbar#LENGTH_SHORT}, {@link Snackbar#LENGTH_LONG}
-     *                 or {@link Snackbar#LENGTH_INDEFINITE}.
-     *
-     * @return The snack bar with the supplied parameters.
-     *         <p>Use {@link Snackbar#show()} to display the snack bar.
-     */
-    public @NonNull Snackbar getSnackBar(@StringRes int stringRes,
+    @Override
+    public @NonNull Snackbar getSnackbar(@StringRes int stringRes,
             @Snackbar.Duration int duration) {
-        return getSnackBar(getString(stringRes), duration);
+        return getSnackbar(getString(stringRes), duration);
     }
 
-    /**
-     * Make a themed snack bar with text and action. Background will be the tint background color
-     * to blend it smoothly and it will automatically use its tint color for the text and action
-     * to provide best visibility.
-     *
-     * @param text The text to show. Can be formatted text.
-     *
-     * @return The snack bar with the supplied parameters.
-     *         <p>Use {@link Snackbar#show()} to display the snack bar.
-     */
-    public @NonNull Snackbar getSnackBar(@NonNull CharSequence text) {
-        return getSnackBar(text, Snackbar.LENGTH_SHORT);
+    @Override
+    public @NonNull Snackbar getSnackbar(@NonNull CharSequence text) {
+        return getSnackbar(text, Snackbar.LENGTH_SHORT);
     }
 
-    /**
-     * Make a themed snack bar with text and action. Background will be the tint background color
-     * to blend it smoothly and it will automatically use its tint color for the text and action
-     * to provide best visibility.
-     *
-     * @param stringRes The string resource for the snack bar.
-     *
-     * @return The snack bar with the supplied parameters.
-     *         <p>Use {@link Snackbar#show()} to display the snack bar.
-     */
-    public @NonNull Snackbar getSnackBar(@StringRes int stringRes) {
-        return getSnackBar(getString(stringRes));
+    @Override
+    public @NonNull Snackbar getSnackbar(@StringRes int stringRes) {
+        return getSnackbar(getString(stringRes));
     }
 }

@@ -1364,7 +1364,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         try {
             DynamicLinkUtils.copyToClipboard(context,
                     context.getString(R.string.ads_theme), theme);
-            Dynamic.showSnackBar(context, R.string.ads_theme_copy_done);
+            Dynamic.showSnackbar(context, R.string.ads_theme_copy_done);
         } catch (Exception ignored) {
             invalidTheme(context);
         }
@@ -1395,7 +1395,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      * @param context The context to get the {@link Snackbar}.
      */
     public void saveTheme(@NonNull Context context) {
-        Dynamic.showSnackBar(context, R.string.ads_theme_save_done);
+        Dynamic.showSnackbar(context, R.string.ads_theme_save_done);
     }
 
     /**
@@ -1404,6 +1404,6 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      * @param context The context to get the {@link Snackbar}.
      */
     public void invalidTheme(@NonNull Context context) {
-        Dynamic.showSnackBar(context, R.string.ads_theme_invalid_desc);
+        Dynamic.showSnackbar(context, R.string.ads_theme_invalid_desc);
     }
 }
