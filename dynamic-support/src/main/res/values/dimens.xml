@@ -27,6 +27,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="ads_page_horizontal_margin">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_page_vertical_margin">@dimen/ads_margin_medium</dimen>
+    <dimen name="ads_tutorial_margin">@dimen/ads_margin_regular</dimen>
     <dimen name="ads_corner_radius">2dp</dimen>
     <dimen name="ads_stroke_width">1.2dp</dimen>
     <dimen name="ads_theme_overlay_radius">0dp</dimen>

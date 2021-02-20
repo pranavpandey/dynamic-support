@@ -21,7 +21,6 @@
     android:id="@+id/ads_tutorial_simple"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/ads_margin_medium"
     android:orientation="horizontal">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
@@ -29,43 +28,49 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="@integer/ads_weight_tutorial_image"
-        android:layout_marginRight="@dimen/ads_margin_normal"
-        android:layout_marginEnd="@dimen/ads_margin_normal"
+        android:padding="@dimen/ads_tutorial_margin"
         android:layout_gravity="center_vertical" />
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
-        style="@style/Widget.DynamicApp.Scroller.Vertical"
+        style="@style/Widget.DynamicApp.Scroller.Padding.Vertical.Clip"
         android:id="@+id/ads_tutorial_simple_scroller"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:layout_weight="@integer/ads_weight_tutorial_text"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:scrollbars="vertical"
+        android:scrollbars="none"
         app:ads_windowInsets="false">
 
-        <LinearLayout
-            style="@style/Widget.DynamicApp.Content.Row.Vertical">
+        <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+            style="@style/Widget.DynamicApp.Card"
+            android:id="@+id/ads_tutorial_simple_card">
 
-            <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                style="@style/TextAppearance.DynamicApp.Headline5.Tutorial"
-                android:id="@+id/ads_tutorial_simple_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            <LinearLayout
+                style="@style/Widget.DynamicApp.Content.Card"
+                android:orientation="vertical">
 
-            <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                style="@style/TextAppearance.DynamicApp.Subtitle1.Tutorial"
-                android:id="@+id/ads_tutorial_simple_subtitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                    style="@style/TextAppearance.DynamicApp.Headline5.Tutorial"
+                    android:id="@+id/ads_tutorial_simple_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-            <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                style="@style/TextAppearance.DynamicApp.Body1.Tutorial"
-                android:id="@+id/ads_tutorial_simple_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ads_margin_tiny" />
+                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                    style="@style/TextAppearance.DynamicApp.Subtitle1.Tutorial"
+                    android:id="@+id/ads_tutorial_simple_subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-        </LinearLayout>
+                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                    style="@style/TextAppearance.DynamicApp.Body1.Tutorial"
+                    android:id="@+id/ads_tutorial_simple_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ads_margin_tiny" />
+
+            </LinearLayout>
+
+        </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
     </com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView>
 

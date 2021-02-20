@@ -57,6 +57,7 @@ import com.pranavpandey.android.dynamic.support.widget.base.DynamicLinkWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicScrollableWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicStateSelectedWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicStateWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicSurfaceWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTextWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -529,6 +530,18 @@ public class Dynamic {
     }
 
     /**
+     * Set the elevation on same background option for the supplied view.
+     *
+     * @param elevationOnSameBackground {@code true} to enable elevation on the same background.
+     */
+    public static void setElevationOnSameBackground(@Nullable View view,
+            boolean elevationOnSameBackground ) {
+        if (view instanceof DynamicSurfaceWidget) {
+            ((DynamicSurfaceWidget) view).setElevationOnSameBackground(elevationOnSameBackground );
+        }
+    }
+
+    /**
      * Set drawable for the image view and mange its visibility according to the data.
      *
      * @param imageView The image view to set the drawable.
@@ -750,7 +763,7 @@ public class Dynamic {
      * Show the snackbar for the {@link DynamicSnackbar}.
      *
      * @param activity The activity context to be used.
-     * @param text The text for the snackbar.
+     * @param text The text for the snackbar.D
      */
     public static void showSnackbar(@Nullable Context activity, @Nullable CharSequence text) {
         if (activity instanceof DynamicSnackbar && text != null) {

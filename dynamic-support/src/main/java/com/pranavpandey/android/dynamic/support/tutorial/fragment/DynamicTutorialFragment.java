@@ -26,9 +26,11 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
@@ -36,7 +38,6 @@ import com.pranavpandey.android.dynamic.support.tutorial.DynamicSimpleTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutorialActivity;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
@@ -75,6 +76,11 @@ public class DynamicTutorialFragment extends DynamicFragment implements
      * Scroll view to show the scrolling content.
      */
     private NestedScrollView mScrollView;
+
+    /**
+     * Card view of this fragment.
+     */
+    private CardView mCardView;
 
     /**
      * Text view to show the tutorial title.
@@ -136,6 +142,7 @@ public class DynamicTutorialFragment extends DynamicFragment implements
         mRootView = view.findViewById(R.id.ads_tutorial_simple);
         mImageView = view.findViewById(R.id.ads_tutorial_simple_image);
         mScrollView = view.findViewById(R.id.ads_tutorial_simple_scroller);
+        mCardView = view.findViewById(R.id.ads_tutorial_simple_card);
         mTitleView = view.findViewById(R.id.ads_tutorial_simple_title);
         mSubtitleView = view.findViewById(R.id.ads_tutorial_simple_subtitle);
         mDescriptionView = view.findViewById(R.id.ads_tutorial_simple_description);
@@ -194,6 +201,11 @@ public class DynamicTutorialFragment extends DynamicFragment implements
         if (mDynamicSimpleTutorial != null && mDynamicSimpleTutorial.isTintImage()) {
             Dynamic.tint(mImageView, tintColor, color);
         }
+
+        Dynamic.tint(mCardView, DynamicTheme.getInstance().get().isBackgroundSurface()
+                ? color : DynamicTheme.getInstance().generateSurfaceColor(color), color);
+        Dynamic.setElevationOnSameBackground(mCardView,
+                !DynamicTheme.getInstance().get().isBackgroundSurface());
 
         Dynamic.tint(mTitleView, tintColor, color);
         Dynamic.tint(mSubtitleView, tintColor, color);
