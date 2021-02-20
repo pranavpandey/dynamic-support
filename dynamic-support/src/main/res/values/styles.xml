@@ -784,6 +784,10 @@
         <item name="android:scrollbars">vertical</item>
     </style>
 
+    <style name="Widget.DynamicApp.Scroller.Clip">
+        <item name="android:clipToPadding">true</item>
+    </style>
+
     <style name="Widget.DynamicApp.Scroller.Padding.Clip">
         <item name="android:clipToPadding">true</item>
     </style>

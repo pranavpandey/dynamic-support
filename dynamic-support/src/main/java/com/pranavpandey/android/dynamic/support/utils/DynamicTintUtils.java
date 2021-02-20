@@ -21,6 +21,7 @@ import android.annotation.TargetApi;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.view.View;
@@ -28,7 +29,6 @@ import android.view.View;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.view.TintableBackgroundView;
 import androidx.core.view.ViewCompat;
 
@@ -47,6 +47,52 @@ import java.lang.reflect.Field;
  * Helper class to perform various tint operations on views.
  */
 public class DynamicTintUtils {
+
+    /**
+     * Colorize a ripple drawable tint according to the supplied view and color.
+     *
+     * @param view The view to check the background tint.
+     * @param drawable The ripple drawable to be colorized.
+     * @param background The background color to calculate the default color.
+     * @param color The tint color to be used.
+     * @param borderless {@code true} if the view is borderless.
+     * @param checkable {@code true} if the view is checkable.
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static void colorizeRippleDrawable(@Nullable View view, @Nullable Drawable drawable,
+            @ColorInt int background, @ColorInt int color, boolean borderless, boolean checkable) {
+        if (view == null) {
+            return;
+        }
+
+        if (DynamicSdkUtils.is21() && drawable instanceof RippleDrawable) {
+            @ColorInt int pressedColor = DynamicColorUtils.shiftColor(color,
+                    Defaults.ADS_SHIFT_LIGHT, Defaults.ADS_SHIFT_DARK);
+
+            if (borderless) {
+                pressedColor = DynamicColorUtils.adjustAlpha(color, Defaults.ADS_STATE_PRESSED);
+            }
+
+            pressedColor = DynamicColorUtils.getStateColor(pressedColor,
+                    Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
+
+            try {
+                if (checkable && !(view instanceof DynamicCheckedTextView)) {
+                    background = DynamicColorUtils.getStateColor(
+                            DynamicColorUtils.adjustAlpha(
+                                    DynamicColorUtils.getTintColor(background),
+                                    Defaults.ADS_STATE_PRESSED),
+                            Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
+
+                    ((RippleDrawable) drawable).setColor(DynamicResourceUtils.getColorStateList(
+                            Color.TRANSPARENT, background, pressedColor, true));
+                } else {
+                    ((RippleDrawable) drawable).setColor(ColorStateList.valueOf(pressedColor));
+                }
+            } catch (Exception ignored) {
+            }
+        }
+    }
 
     /**
      * Set a view background tint according to the supplied color.
@@ -100,67 +146,27 @@ public class DynamicTintUtils {
                                 DynamicColorUtils.getTintColor(background),
                                 color, pressedColor, checkable));
             }
-        } else {
-            if (!DynamicSdkUtils.is21()) {
-                background = DynamicColorUtils.getStateColor(
-                        DynamicColorUtils.adjustAlpha(DynamicColorUtils.getTintColor(background),
-                                Defaults.ADS_STATE_PRESSED),
-                        Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
-                pressedColor = DynamicColorUtils.getStateColor(
-                        DynamicColorUtils.adjustAlpha(color, Defaults.ADS_STATE_PRESSED),
-                        Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
+        } else if (!DynamicSdkUtils.is21()) {
+            background = DynamicColorUtils.getStateColor(
+                    DynamicColorUtils.adjustAlpha(DynamicColorUtils.getTintColor(background),
+                            Defaults.ADS_STATE_PRESSED),
+                    Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
+            pressedColor = DynamicColorUtils.getStateColor(
+                    DynamicColorUtils.adjustAlpha(color, Defaults.ADS_STATE_PRESSED),
+                    Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
 
-                if (borderless) {
-                    DynamicDrawableUtils.setBackground(view,
-                            DynamicResourceUtils.getStateListDrawable(Color.TRANSPARENT,
-                                    background, pressedColor, checkable));
-                } else {
-                    // TODO:
-                }
+            if (borderless) {
+                DynamicDrawableUtils.setBackground(view,
+                        DynamicResourceUtils.getStateListDrawable(Color.TRANSPARENT,
+                                background, pressedColor, checkable));
+            } else {
+                // TODO:
             }
         }
 
-        if (DynamicSdkUtils.is21() && view.getBackground() instanceof RippleDrawable) {
-            if (borderless) {
-                pressedColor = DynamicColorUtils.adjustAlpha(color, Defaults.ADS_STATE_PRESSED);
-            }
-
-            pressedColor = DynamicColorUtils.getStateColor(pressedColor,
-                    Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
-
-            try {
-                RippleDrawable rippleDrawable = (RippleDrawable) view.getBackground();
-                if (rippleDrawable == null) {
-                    return;
-                } else {
-                    if (DynamicSdkUtils.is21(true)) {
-                        rippleDrawable.mutate();
-                    } else {
-                        rippleDrawable = (RippleDrawable)
-                                DrawableCompat.wrap(rippleDrawable.mutate());
-                    }
-                }
-
-                if (checkable && !(view instanceof DynamicCheckedTextView)) {
-                    background = DynamicColorUtils.getStateColor(
-                            DynamicColorUtils.adjustAlpha(
-                                    DynamicColorUtils.getTintColor(background),
-                                    Defaults.ADS_STATE_PRESSED),
-                            Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
-
-                    rippleDrawable.setColor(DynamicResourceUtils.getColorStateList(
-                            Color.TRANSPARENT, background, pressedColor, true));
-                } else {
-                    rippleDrawable.setColor(ColorStateList.valueOf(pressedColor));
-                }
-
-                if (!borderless) {
-                    rippleDrawable.setTintList(ColorStateList.valueOf(color));
-                }
-
-                rippleDrawable.invalidateSelf();
-            } catch (Exception ignored) {
-            }
+        if (DynamicSdkUtils.is21()) {
+            colorizeRippleDrawable(view, view.getBackground(), background, color,
+                    borderless, checkable);
         }
     }
 
@@ -173,8 +179,8 @@ public class DynamicTintUtils {
      */
     public static void setViewBackgroundTint(@Nullable View view,
             @ColorInt int color, boolean borderless) {
-        setViewBackgroundTint(view, DynamicTheme.getInstance().get()
-                .getTintBackgroundColor(), color, borderless, false);
+        setViewBackgroundTint(view, color, DynamicTheme.getInstance().get()
+                .getTintBackgroundColor(), borderless, false);
     }
 
     /**
@@ -196,48 +202,8 @@ public class DynamicTintUtils {
         if (!DynamicSdkUtils.is23()) {
             setViewBackgroundTint(view, background, color, borderless, checkable);
         } else if (view instanceof CardView || view.getForeground() instanceof RippleDrawable) {
-            @ColorInt int pressedColor = DynamicColorUtils.shiftColor(color,
-                    Defaults.ADS_SHIFT_LIGHT, Defaults.ADS_SHIFT_DARK);
-            if (borderless) {
-                pressedColor = DynamicColorUtils.adjustAlpha(color, Defaults.ADS_STATE_PRESSED);
-            }
-
-            pressedColor = DynamicColorUtils.getStateColor(pressedColor,
-                    Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
-
-            try {
-                RippleDrawable rippleDrawable = (RippleDrawable) view.getForeground();
-                if (rippleDrawable == null) {
-                    return;
-                } else {
-                    if (DynamicSdkUtils.is21(true)) {
-                        rippleDrawable.mutate();
-                    } else {
-                        rippleDrawable = (RippleDrawable)
-                                DrawableCompat.wrap(rippleDrawable.mutate());
-                    }
-                }
-
-                if (checkable && !(view instanceof DynamicCheckedTextView)) {
-                    background = DynamicColorUtils.getStateColor(
-                            DynamicColorUtils.adjustAlpha(
-                                    DynamicColorUtils.getTintColor(background),
-                                    Defaults.ADS_STATE_PRESSED),
-                            Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
-
-                    rippleDrawable.setColor(DynamicResourceUtils.getColorStateList(
-                            Color.TRANSPARENT, background, pressedColor, true));
-                } else {
-                    rippleDrawable.setTint(color);
-                }
-
-                if (!borderless) {
-                    rippleDrawable.setTintList(ColorStateList.valueOf(color));
-                }
-
-                rippleDrawable.invalidateSelf();
-            } catch (Exception ignored) {
-            }
+            colorizeRippleDrawable(view, view.getForeground(), background,
+                    color, borderless, checkable);
         }
     }
 
@@ -250,8 +216,8 @@ public class DynamicTintUtils {
      */
     public static void setViewForegroundTint(@Nullable View view,
             @ColorInt int color, boolean borderless) {
-        setViewForegroundTint(view, DynamicTheme.getInstance().get()
-                .getTintBackgroundColor(), color, borderless, false);
+        setViewForegroundTint(view, color, DynamicTheme.getInstance().get()
+                .getTintBackgroundColor(), borderless, false);
     }
 
     /**
