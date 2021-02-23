@@ -40,8 +40,8 @@ import androidx.appcompat.view.menu.MenuView;
 import androidx.appcompat.widget.ActionMenuView;
 import androidx.core.widget.TextViewCompat;
 
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
+import com.google.android.material.navigation.NavigationBarItemView;
 import com.google.android.material.tabs.TabLayout;
 import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
@@ -63,6 +63,7 @@ public class DynamicMenuUtils {
      *
      * @param menu The menu to force icons to show.
      */
+    @SuppressLint("PrivateApi")
     public static void forceMenuIcons(@Nullable Menu menu) {
         if (menu == null) {
             return;
@@ -98,7 +99,7 @@ public class DynamicMenuUtils {
             for (int j = 0; j < ((BottomNavigationMenuView) view).getChildCount(); j++) {
                 final View innerView = ((BottomNavigationMenuView) view).getChildAt(j);
 
-                if (innerView instanceof BottomNavigationItemView) {
+                if (innerView instanceof NavigationBarItemView) {
                     if (tint) {
                         DynamicTintUtils.setViewBackgroundTint(view, color, true);
                     }
@@ -110,7 +111,9 @@ public class DynamicMenuUtils {
         } else if (view instanceof TabLayout) {
             for (int j = 0; j < ((TabLayout) view).getTabCount(); j++) {
                 final TabLayout.Tab innerView = ((TabLayout) view).getTabAt(j);
-                DynamicTooltip.set(innerView.view, color, background, innerView.getText());
+                if (innerView != null) {
+                    DynamicTooltip.set(innerView.view, color, background, innerView.getText());
+                }
             }
         } else {
             final PorterDuffColorFilter colorFilter
