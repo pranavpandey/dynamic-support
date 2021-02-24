@@ -103,23 +103,23 @@ public class DynamicRangeSlider extends RangeSlider implements DynamicProgressWi
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(attrs, 
-                R.styleable.DynamicSlider);
+                R.styleable.DynamicRangeSlider);
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicSlider_ads_colorType,
+                    R.styleable.DynamicRangeSlider_ads_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicSlider_ads_contrastWithColorType,
+                    R.styleable.DynamicRangeSlider_ads_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicSlider_ads_color,
+                    R.styleable.DynamicRangeSlider_ads_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicSlider_ads_contrastWithColor,
+                    R.styleable.DynamicRangeSlider_ads_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicSlider_ads_backgroundAware,
+                    R.styleable.DynamicRangeSlider_ads_backgroundAware,
                     Defaults.getBackgroundAware());
         } finally {
             a.recycle();

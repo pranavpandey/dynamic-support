@@ -346,6 +346,15 @@
         <attr name="ads_backgroundAware" />
     </declare-styleable>
 
+    <!-- Attributes for the DynamicRangeSlider. -->
+    <declare-styleable name="DynamicRangeSlider">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
     <!-- Attributes for the DynamicSpinner. -->
     <declare-styleable name="DynamicSpinner">
         <attr name="ads_colorType" />
