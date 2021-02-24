@@ -49,6 +49,8 @@
     <string name="everyday_subtitle">An app to show the widget customisations by extending the app theme. It also features some more advanced use cases like multiple locales, runtime permissions, remote views factory, etc. and can motivate to implement similar kind of functionality by exploring the sources of Dynamic Support.</string>
     <string name="palettes">Palettes - Theme manager</string>
     <string name="palettes_subtitle">A universal manager for apps supporting the dynamic theme on Android. It provides some default configurations which can be extended to create custom ones. Let\'s give it a try to explore its other useful features.</string>
+    <string name="zerocros">Zerocros - Tic-tac-toe Game</string>
+    <string name="zerocros_subtitle">A tic-tac-toe game set in the dynamic theme world with various customizations.</string>
 
     <!-- Widgets -->
     <string name="widget_buttons">Button</string>

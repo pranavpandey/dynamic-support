@@ -46,6 +46,11 @@ object Constants {
     const val PACKAGE_PALETTES = "com.pranavpandey.theme"
 
     /**
+     * Zerocros package name.
+     */
+    const val PACKAGE_ZEROCROS = "com.pranavpandey.tictactoe"
+
+    /**
      * Open source repository url.
      */
     const val URL_GITHUB = "https://github.com/pranavpandey/dynamic-support"
