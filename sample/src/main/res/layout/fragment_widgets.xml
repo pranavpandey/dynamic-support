@@ -306,10 +306,10 @@
                         android:progress="75" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicSeekBar
-                        android:id="@+id/seek_bar_disabled"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/ads_margin_small"
+                        android:enabled="false"
                         android:max="100"
                         android:progress="25"
                         app:ads_colorType="background" />
@@ -337,6 +337,7 @@
                             android:indeterminate="true" />
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
+                            android:id="@+id/seek_bar_disabled"
                             style="?android:attr/progressBarStyle"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/ads_icon_normal"
@@ -375,6 +376,69 @@
                         android:layout_height="wrap_content"
                         android:indeterminate="true"
                         app:ads_colorType="primary" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+            style="@style/Widget.DynamicApp.Card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.pranavpandey.android.dynamic.support.view.DynamicHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_title="@string/widget_slider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/ads_margin_small"
+                    android:orientation="vertical">
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicSlider
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:value="75.0"
+                        android:valueFrom="0.0"
+                        android:valueTo="100.0" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicSlider
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ads_margin_small"
+                        android:enabled="false"
+                        android:value="25.0"
+                        android:valueFrom="0.0"
+                        android:valueTo="100.0"
+                        app:ads_colorType="background" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicSlider
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ads_margin_small"
+                        android:value="50.0"
+                        android:valueFrom="0.0"
+                        android:valueTo="100.0"
+                        android:stepSize="5.0"
+                        app:labelBehavior="gone"
+                        app:ads_colorType="primary" />
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicRangeSlider
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ads_margin_small"
+                        android:valueFrom="0.0"
+                        android:valueTo="100.0"
+                        android:stepSize="1.0"
+                        app:values="@array/widget_slider_values"
+                        app:tickVisible="false" />
 
                 </LinearLayout>
 

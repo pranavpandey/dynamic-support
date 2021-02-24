@@ -16,35 +16,29 @@
 
 package com.pranavpandey.android.dynamic.support.widget;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Build;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatSeekBar;
 
+import com.google.android.material.slider.Slider;
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicProgressWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
- * An {@link AppCompatSeekBar} to apply {@link DynamicTheme} according to the supplied parameters.
+ * A {@link Slider} to apply {@link DynamicTheme} according to the supplied parameters.
  */
-@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class DynamicSeekBar extends AppCompatSeekBar implements DynamicProgressWidget {
+public class DynamicSlider extends Slider implements DynamicProgressWidget {
 
     /**
      * Color type applied to this view.
@@ -89,17 +83,17 @@ public class DynamicSeekBar extends AppCompatSeekBar implements DynamicProgressW
      */
     private @Theme.BackgroundAware int mBackgroundAware;
 
-    public DynamicSeekBar(@NonNull Context context) {
+    public DynamicSlider(@NonNull Context context) {
         this(context, null);
     }
 
-    public DynamicSeekBar(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicSlider(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         loadFromAttributes(attrs);
     }
 
-    public DynamicSeekBar(@NonNull Context context,
+    public DynamicSlider(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
@@ -109,23 +103,23 @@ public class DynamicSeekBar extends AppCompatSeekBar implements DynamicProgressW
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(attrs, 
-                R.styleable.DynamicSeekBar);
+                R.styleable.DynamicSlider);
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicSeekBar_ads_colorType,
+                    R.styleable.DynamicSlider_ads_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicSeekBar_ads_contrastWithColorType,
+                    R.styleable.DynamicSlider_ads_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicSeekBar_ads_color,
+                    R.styleable.DynamicSlider_ads_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicSeekBar_ads_contrastWithColor,
+                    R.styleable.DynamicSlider_ads_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicSeekBar_ads_backgroundAware,
+                    R.styleable.DynamicSlider_ads_backgroundAware,
                     Defaults.getBackgroundAware());
         } finally {
             a.recycle();
@@ -244,22 +238,19 @@ public class DynamicSeekBar extends AppCompatSeekBar implements DynamicProgressW
 
     @Override
     public void setProgressBarColor() {
-        if (DynamicSdkUtils.is21()) {
-            setProgressTintList(DynamicResourceUtils.getColorStateList(mAppliedColor));
-        } else {
-            setProgressDrawable(DynamicDrawableUtils
-                    .colorizeDrawable(getProgressDrawable(), mAppliedColor));
-        }
+        setTrackActiveTintList(DynamicResourceUtils.getColorStateList(mAppliedColor));
+        setTrackInactiveTintList(DynamicResourceUtils.getColorStateList(
+                DynamicColorUtils.adjustAlpha(DynamicColorUtils.getTintColor(mContrastWithColor),
+                        Defaults.ADS_ALPHA_DISABLED)));
+        setTickActiveTintList(DynamicResourceUtils.getColorStateList(
+                DynamicColorUtils.getTintColor(mAppliedColor)));
+        setTickInactiveTintList(DynamicResourceUtils.getColorStateList(mContrastWithColor));
     }
 
     @Override
     public void setThumbColor() {
-        if (DynamicSdkUtils.is21()) {
-            setThumbTintList(DynamicResourceUtils.getColorStateList(mAppliedColor));
-        } else if (DynamicSdkUtils.is16()) {
-            setThumb(DynamicDrawableUtils.colorizeDrawable(getThumb(), mAppliedColor));
-        } else {
-            DynamicInputUtils.setColor(this, mAppliedColor);
-        }
+        setThumbTintList(DynamicResourceUtils.getColorStateList(mAppliedColor));
+        setHaloTintList(DynamicResourceUtils.getColorStateList(
+                DynamicColorUtils.adjustAlpha(mAppliedColor, Defaults.ADS_ALPHA_PRESSED)));
     }
 }

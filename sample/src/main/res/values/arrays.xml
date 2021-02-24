@@ -74,6 +74,12 @@
         <item>@color/ads_window_background_gray</item>
     </integer-array>
 
+    <!-- Range slider values. -->
+    <string-array name="widget_slider_values">
+        <item>25.0</item>
+        <item>75.0</item>
+    </string-array>
+
     <!-- App links titles. -->
     <string-array name="info_app_links">
         <item>@string/ads_license_apache</item>
