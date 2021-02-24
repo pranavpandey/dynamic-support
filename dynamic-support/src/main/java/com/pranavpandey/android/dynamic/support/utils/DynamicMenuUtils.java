@@ -101,7 +101,8 @@ public class DynamicMenuUtils {
 
                 if (innerView instanceof NavigationBarItemView) {
                     if (tint) {
-                        DynamicTintUtils.setViewBackgroundTint(view, color, true);
+                        DynamicTintUtils.setViewBackgroundTint(view,
+                                background, color, true, false);
                     }
 
                     DynamicTooltip.set(innerView, color, background,
@@ -128,14 +129,16 @@ public class DynamicMenuUtils {
             if (tint && view instanceof ImageButton) {
                 ((ImageButton) view).getDrawable().setAlpha(255);
                 ((ImageButton) view).getDrawable().setColorFilter(colorFilter);
-                DynamicTintUtils.setViewBackgroundTint(view, color, true);
+                DynamicTintUtils.setViewBackgroundTint(view,
+                        background, color, true, false);
             }
 
             if (view instanceof ImageView) {
                 if (tint) {
                     ((ImageView) view).getDrawable().setAlpha(255);
                     ((ImageView) view).getDrawable().setColorFilter(colorFilter);
-                    DynamicTintUtils.setViewBackgroundTint(view, color, true);
+                    DynamicTintUtils.setViewBackgroundTint(view,
+                            background, color, true, false);
                 }
 
                 if (!TextUtils.isEmpty(view.getContentDescription())) {
@@ -149,7 +152,8 @@ public class DynamicMenuUtils {
 
             if (tint && view instanceof TextView) {
                 ((TextView) view).setTextColor(color);
-                DynamicTintUtils.setViewBackgroundTint(view, color, true);
+                DynamicTintUtils.setViewBackgroundTint(view,
+                        background, color, true, false);
             }
 
             if (tint && view instanceof EditText) {
@@ -178,7 +182,8 @@ public class DynamicMenuUtils {
 
                     if (innerView instanceof MenuView.ItemView) {
                         if (tint) {
-                            DynamicTintUtils.setViewBackgroundTint(view, color, true);
+                            DynamicTintUtils.setViewBackgroundTint(view,
+                                    background, color, true, false);
                         }
 
                         DynamicTooltip.set(innerView, color, background,
