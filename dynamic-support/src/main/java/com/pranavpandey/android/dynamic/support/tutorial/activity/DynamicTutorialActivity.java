@@ -174,21 +174,24 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Dyna
                 final @ColorInt int color;
                 if (position < (getTutorialsCount() - 1)) {
                     color = (Integer) mArgbEvaluator.evaluate(positionOffset,
-                            getTutorial(position).getBackgroundColor(),
-                            getTutorial(position + 1).getBackgroundColor());
+                            Dynamic.getBackgroundColor(
+                                    getTutorial(position), getBackgroundColor()),
+                            Dynamic.getBackgroundColor(
+                                    getTutorial(position + 1), getBackgroundColor()));
                 } else {
-                    color = getTutorial(getTutorialsCount() - 1).getBackgroundColor();
+                    color = Dynamic.getBackgroundColor(getTutorial(
+                            getTutorialsCount() - 1), getBackgroundColor());
                 }
 
                 onSetColor(position, color);
-                getTutorial(position).onPageScrolled(position,
+                Dynamic.onPageScrolled(getTutorial(position), position,
                         positionOffset, positionOffsetPixels);
-                getTutorial(position).onSetPadding(0, 0, 0, mFooterHeight);
-                getTutorial(Math.min(getTutorialsCount() - 1, position + 1))
-                        .onSetPadding(0, 0, 0, mFooterHeight);
-                getTutorial(position).onBackgroundColorChanged(color);
-                getTutorial(Math.min(getTutorialsCount() - 1, position + 1))
-                        .onBackgroundColorChanged(color);
+                Dynamic.onSetPadding(getTutorial(position), 0, 0, 0, mFooterHeight);
+                Dynamic.onSetPadding(getTutorial(Math.min(getTutorialsCount() - 1, position + 1)),
+                        0, 0, 0, mFooterHeight);
+                Dynamic.onBackgroundColorChanged(getTutorial(position), color);
+                Dynamic.onBackgroundColorChanged(
+                        getTutorial(Math.min(getTutorialsCount() - 1, position + 1)), color);
             }
 
             @Override
@@ -198,9 +201,11 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Dyna
                 setFooter(true);
 
                 if (getTutorial(position) != null) {
-                    getTutorial(position).onPageSelected(position);
-                    getTutorial(position).onSetPadding(0, 0, 0, mFooterHeight);
-                    onSetColor(position, getTutorial(position).getBackgroundColor());
+                    Dynamic.onPageSelected(getTutorial(position), position);
+                    Dynamic.onSetPadding(getTutorial(position),
+                            0, 0, 0, mFooterHeight);
+                    onSetColor(position, Dynamic.getBackgroundColor(
+                            getTutorial(position), getBackgroundColor()));
                 }
 
                 onUpdate(getCurrentPosition());
@@ -211,7 +216,7 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Dyna
                 super.onPageScrollStateChanged(state);
 
                 if (getTutorial(getCurrentPosition()) != null) {
-                    getTutorial(getCurrentPosition()).onPageScrollStateChanged(state);
+                    Dynamic.onPageScrollStateChanged(getTutorial(getCurrentPosition()), state);
                 }
             }
         });
@@ -405,14 +410,18 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Dyna
      *
      * @param page The current page to be set.
      * @param smoothScroll {@code true} to smoothly scroll the page.
+     * @param reload {@code true} to reload the tutorials state.
      */
-    protected void setTutorials(int page, boolean smoothScroll) {
+    protected void setTutorials(int page, boolean smoothScroll, boolean reload) {
         final List<DynamicTutorial<T, V>> tutorials;
-        if (mViewPager == null || (tutorials = getTutorials()) == null) {
+        if (mViewPager == null || (tutorials = getTutorials()).isEmpty()) {
             return;
         }
 
-        mAdapter = new DynamicTutorialsAdapter<>(this);
+        if (reload || mAdapter == null) {
+            mAdapter = new DynamicTutorialsAdapter<>(this);
+        }
+
         mAdapter.setTutorials(tutorials);
         mViewPager.setOffscreenPageLimit(getTutorialsCount());
         mViewPager.setAdapter(mAdapter);
@@ -421,6 +430,18 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Dyna
 
         // A hack to update the tutorials properly on lower API levels.
         mViewPager.post(mAdapterRunnable);
+    }
+
+    /**
+     * Set view pager adapter according to the tutorials list.
+     *
+     * @param page The current page to be set.
+     * @param smoothScroll {@code true} to smoothly scroll the page.
+     *
+     * @see #setTutorials(int, boolean, boolean)
+     */
+    protected void setTutorials(int page, boolean smoothScroll) {
+        setTutorials(page, smoothScroll, false);
     }
 
     /**
@@ -688,7 +709,7 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Dyna
 
     @Override
     public void finishActivity() {
-        DynamicTutorial<T, V> tutorial = getTutorial(getCurrentPosition());
+        final DynamicTutorial<T, V> tutorial = getTutorial(getCurrentPosition());
         if (tutorial instanceof DynamicTutorial.SharedElement
                 && ((DynamicTutorial.SharedElement<T, V>) tutorial).isSharedElement()) {
             super.finishActivity();
@@ -700,11 +721,14 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Dyna
     @Override
     public @NonNull Snackbar getSnackbar(@NonNull CharSequence text,
             @Snackbar.Duration int duration) {
-        return DynamicHintUtils.getSnackbar(getCoordinatorLayout(), text,
-                DynamicColorUtils.getTintColor(
-                        getTutorial(getCurrentPosition()).getBackgroundColor()),
-                getTutorial(getCurrentPosition()).getBackgroundColor(),
-                duration, false);
+        final DynamicTutorial<T, V> tutorial = getTutorial(getCurrentPosition());
+        if (getCoordinatorLayout() != null && tutorial != null) {
+            return DynamicHintUtils.getSnackbar(getCoordinatorLayout(), text,
+                    DynamicColorUtils.getTintColor(tutorial.getBackgroundColor()),
+                    tutorial.getBackgroundColor(), duration, false);
+        } else {
+            return DynamicHintUtils.getSnackbar(getContentView(), text, duration);
+        }
     }
 
     @Override

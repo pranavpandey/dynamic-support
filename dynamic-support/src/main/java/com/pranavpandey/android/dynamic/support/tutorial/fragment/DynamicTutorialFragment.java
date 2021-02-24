@@ -261,4 +261,67 @@ public class DynamicTutorialFragment extends DynamicFragment implements
                 mRootView.getPaddingRight() + right,
                 mRootView.getPaddingBottom() + bottom);
     }
+
+    /**
+     * Returns the root view of this fragment.
+     *
+     * @return The root view of this fragment.
+     */
+    public @NonNull ViewGroup getRootView() {
+        return mRootView;
+    }
+
+    /**
+     * Returns the image view to show the tutorial image.
+     *
+     * @return The image view to show the tutorial image.
+     */
+    public @NonNull ImageView getImageView() {
+        return mImageView;
+    }
+
+    /**
+     * Returns the scroll view to show the scrolling content.
+     *
+     * @return The scroll view to show the scrolling content.
+     */
+    public @NonNull NestedScrollView getScrollView() {
+        return mScrollView;
+    }
+
+    /**
+     * Returns the card view of this fragment.
+     *
+     * @return The card view of this fragment.
+     */
+    public @NonNull CardView getCardView() {
+        return mCardView;
+    }
+
+    /**
+     * Returns the text view to show the tutorial title.
+     *
+     * @return The text view to show the tutorial title.
+     */
+    public @NonNull TextView getTitleView() {
+        return mTitleView;
+    }
+
+    /**
+     * Returns the text view to show the tutorial subtitle.
+     *
+     * @return The text view to show the tutorial subtitle.
+     */
+    public @NonNull TextView getSubtitleView() {
+        return mSubtitleView;
+    }
+
+    /**
+     * Returns the text view to show the tutorial description.
+     *
+     * @return The text view to show the tutorial description.
+     */
+    public @NonNull TextView getDescriptionView() {
+        return mDescriptionView;
+    }
 }

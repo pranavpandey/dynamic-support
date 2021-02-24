@@ -35,9 +35,11 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
 import androidx.annotation.StringRes;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.snackbar.Snackbar;
@@ -49,6 +51,7 @@ import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.inflater.DynamicLayoutInflater;
+import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicMaterialCardView;
@@ -1075,6 +1078,107 @@ public class Dynamic {
         if (activity instanceof DynamicActivity) {
             ((DynamicActivity) activity).startMotionActivityFromFragment(
                     fragment, intent, requestCode, options);
+        }
+    }
+
+    /**
+     * Call {@link ViewPager.OnPageChangeListener#onPageScrolled(int, float, int)} method
+     * for the {@link ViewPager}.
+     *
+     * @param pager The view pager to be used.
+     * @param position The position index of the first page currently being displayed.
+     *                 <p>Page position+1 will be visible if positionOffset is nonzero.
+     * @param positionOffset The value from [0, 1) indicating the offset from the page at position.
+     * @param positionOffsetPixels The value in pixels indicating the offset from position.
+     */
+    public static void onPageScrolled(@Nullable ViewPager.OnPageChangeListener pager,
+            int position, float positionOffset, @Px int positionOffsetPixels) {
+        if (pager != null) {
+            pager.onPageScrolled(position, positionOffset, positionOffsetPixels);
+        }
+    }
+
+    /**
+     * Call {@link ViewPager.OnPageChangeListener#onPageSelected(int)} method
+     * for the {@link ViewPager}.
+     *
+     * @param pager The view pager to be used.
+     * @param position Position index of the new selected page.
+     */
+    public static void onPageSelected(@Nullable ViewPager.OnPageChangeListener pager,
+            int position) {
+        if (pager != null) {
+            pager.onPageSelected(position);
+        }
+    }
+
+    /**
+     * Call {@link ViewPager.OnPageChangeListener#onScreenStateChanged(int)} method
+     * for the {@link ViewPager}.
+     *
+     * @param pager The view pager to be used.
+     * @param state The new scroll state.
+     *
+     * @see ViewPager#SCROLL_STATE_IDLE
+     * @see ViewPager#SCROLL_STATE_DRAGGING
+     * @see ViewPager#SCROLL_STATE_SETTLING
+     */
+    public static void onPageScrollStateChanged(@Nullable ViewPager.OnPageChangeListener pager,
+            int state) {
+        if (pager != null) {
+            pager.onPageScrollStateChanged(state);
+        }
+    }
+
+    /**
+     * Call {@link DynamicTutorial#getBackgroundColor()} method for the {@link DynamicTutorial}.
+     *
+     * @param tutorial The dynamic tutorial to be used.
+     * @param defaultColor The default color for the background.
+     * @param <T> The type of the tutorial.
+     * @param <V> The type of the tutorial fragment.
+     */
+    public static @ColorInt <T, V> int getBackgroundColor(@Nullable DynamicTutorial<T, V> tutorial,
+            @ColorInt int defaultColor) {
+        if (tutorial != null) {
+            return tutorial.getBackgroundColor();
+        }
+
+        return defaultColor;
+    }
+
+    /**
+     * Call {@link DynamicTutorial#onBackgroundColorChanged(int)} method for the
+     * {@link DynamicTutorial}.
+     *
+     * @param tutorial The dynamic tutorial to be used.
+     * @param color The color of the background.
+     * @param <T> The type of the tutorial.
+     * @param <V> The type of the tutorial fragment.
+     */
+    public static <T, V> void onBackgroundColorChanged(@Nullable DynamicTutorial<T, V> tutorial,
+            @ColorInt int color) {
+        if (tutorial != null) {
+            tutorial.onBackgroundColorChanged(color);
+        }
+    }
+
+    /**
+     * Call {@link DynamicTutorial#onSetPadding(int, int, int, int)} method for the
+     * {@link DynamicTutorial}.
+     *
+     * @param tutorial The dynamic tutorial to be used.
+     * @param left The left padding supplied by the container.
+     * @param top The top padding supplied by the container.
+     * @param right The right padding supplied by the container.
+     * @param bottom The bottom padding supplied by the container.
+     * @param <T> The type of the tutorial.
+     * @param <V> The type of the tutorial fragment.
+     */
+    public static <T, V> void onSetPadding(@Nullable DynamicTutorial<T, V> tutorial,
+            int left, int top, int right, int bottom) {
+        if (tutorial != null) {
+            tutorial.onSetPadding(left, top, right, bottom);
         }
     }
 }

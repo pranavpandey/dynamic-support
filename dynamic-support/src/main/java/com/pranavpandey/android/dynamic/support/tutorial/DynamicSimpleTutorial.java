@@ -409,9 +409,17 @@ public class DynamicSimpleTutorial implements Parcelable,
 
     @Override
     public @NonNull DynamicTutorialFragment createTutorial() {
-        mFragment = DynamicTutorialFragment.newInstance(this);
+        setTutorialFragment(DynamicTutorialFragment.newInstance(this));
 
         return mFragment;
+    }
+
+    public @Nullable DynamicTutorialFragment getTutorialFragment() {
+        return mFragment;
+    }
+
+    public void setTutorialFragment(@Nullable DynamicTutorialFragment fragment) {
+        this.mFragment = fragment;
     }
 
     @Override
