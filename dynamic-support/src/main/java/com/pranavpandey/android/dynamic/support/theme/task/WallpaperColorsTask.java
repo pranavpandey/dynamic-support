@@ -59,6 +59,7 @@ public abstract class WallpaperColorsTask extends ContextTask<Void, Void, List<I
         super.onPreExecute();
     }
 
+    @SuppressWarnings({"MissingPermission"})
     @Override
     protected @Nullable List<Integer> doInBackground(@Nullable Void params) {
         if (getContext() == null) {
