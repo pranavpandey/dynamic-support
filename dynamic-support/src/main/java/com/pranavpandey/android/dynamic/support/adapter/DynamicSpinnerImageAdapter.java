@@ -27,8 +27,8 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.model.DynamicMenu;
 import com.pranavpandey.android.dynamic.support.Dynamic;
+import com.pranavpandey.android.dynamic.support.model.DynamicMenu;
 
 import java.util.List;
 

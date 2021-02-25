@@ -39,10 +39,10 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.Dynamic;
-import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.utils.DynamicWindowUtils;
 
 /**

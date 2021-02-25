@@ -24,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicPermission;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
@@ -31,7 +32,6 @@ import com.pranavpandey.android.dynamic.support.permission.view.DynamicPermissio
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicInfoView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
-import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.utils.DynamicTextUtils;
 
 import java.util.List;

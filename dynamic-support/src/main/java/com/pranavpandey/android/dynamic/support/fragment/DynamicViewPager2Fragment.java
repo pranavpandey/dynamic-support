@@ -29,11 +29,11 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.adapter.DynamicFragmentStateAdapter;
 import com.pranavpandey.android.dynamic.support.fragment.listener.DynamicOnPageChangeCallback;
 import com.pranavpandey.android.dynamic.support.listener.DynamicViewPagerCallback;
-import com.pranavpandey.android.dynamic.support.Dynamic;
 
 /**
  * An abstract {@link ViewPager} fragment to display multiple fragments inside the view pager
