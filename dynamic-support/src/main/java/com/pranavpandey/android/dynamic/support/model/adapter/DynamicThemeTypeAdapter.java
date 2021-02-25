@@ -128,11 +128,11 @@ public class DynamicThemeTypeAdapter<T extends AppTheme<?>> extends TypeAdapter<
 
         try {
             JsonToken token = reader.peek();
-            if (token.equals(JsonToken.BEGIN_OBJECT)) {
+            if (JsonToken.BEGIN_OBJECT.equals(token)) {
                 reader.beginObject();
 
-                while (!reader.peek().equals(JsonToken.END_OBJECT)) {
-                    if (reader.peek().equals(JsonToken.NAME)) {
+                while (!JsonToken.END_OBJECT.equals(reader.peek())) {
+                    if (JsonToken.NAME.equals(reader.peek())) {
                         switch (reader.nextName()) {
                             case Theme.Key.BACKGROUND:
                             case Theme.Key.Short.BACKGROUND:

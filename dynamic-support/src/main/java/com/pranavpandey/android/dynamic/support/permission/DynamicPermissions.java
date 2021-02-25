@@ -587,9 +587,9 @@ public class DynamicPermissions {
                 PermissionInfo permInfo = packageManager.getPermissionInfo(
                         permission, PackageManager.GET_META_DATA);
 
-                if (permission.equals(Manifest.permission.WRITE_SETTINGS)
-                        || permission.equals(Manifest.permission.PACKAGE_USAGE_STATS)
-                        || permission.equals(Manifest.permission.SYSTEM_ALERT_WINDOW)) {
+                if (Manifest.permission.WRITE_SETTINGS.equals(permission)
+                        || Manifest.permission.PACKAGE_USAGE_STATS.equals(permission)
+                        || Manifest.permission.SYSTEM_ALERT_WINDOW.equals(permission)) {
                     dynamicPermission = new DynamicPermission(permission,
                             DynamicResourceUtils.getDrawable(getContext(),
                             DynamicPermissionUtils.getPermissionIcon(permission)),
@@ -598,15 +598,15 @@ public class DynamicPermissions {
                             getContext().getString(DynamicPermissionUtils
                                     .getPermissionSubtitle(permission)));
 
-                    if (permission.equals(Manifest.permission.WRITE_SETTINGS)) {
+                    if (Manifest.permission.WRITE_SETTINGS.equals(permission)) {
                         dynamicPermission.setAllowed(canWriteSystemSettings());
                     }
 
-                    if (permission.equals(Manifest.permission.PACKAGE_USAGE_STATS)) {
+                    if (Manifest.permission.PACKAGE_USAGE_STATS.equals(permission)) {
                         dynamicPermission.setAllowed(hasUsageAccess());
                     }
 
-                    if (permission.equals(Manifest.permission.SYSTEM_ALERT_WINDOW)) {
+                    if (Manifest.permission.SYSTEM_ALERT_WINDOW.equals(permission)) {
                         dynamicPermission.setAllowed(canDrawOverlays());
                     }
                 } else {

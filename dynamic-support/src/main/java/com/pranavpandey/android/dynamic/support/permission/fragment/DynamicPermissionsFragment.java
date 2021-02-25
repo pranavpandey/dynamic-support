@@ -34,6 +34,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment;
 import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
@@ -44,7 +45,6 @@ import com.pranavpandey.android.dynamic.support.permission.activity.DynamicPermi
 import com.pranavpandey.android.dynamic.support.permission.listener.DynamicPermissionsListener;
 import com.pranavpandey.android.dynamic.support.permission.view.DynamicPermissionsView;
 import com.pranavpandey.android.dynamic.support.utils.DynamicPermissionUtils;
-import com.pranavpandey.android.dynamic.support.Dynamic;
 
 import java.util.List;
 
@@ -362,9 +362,9 @@ public class DynamicPermissionsFragment extends DynamicFragment {
                 requestDangerousPermissions(dynamicPermission.getPermission());
             }
         } else {
-            if (permission.equals(Manifest.permission.WRITE_SETTINGS)
-                    || permission.equals(Manifest.permission.PACKAGE_USAGE_STATS)
-                    || permission.equals(Manifest.permission.SYSTEM_ALERT_WINDOW)) {
+            if (Manifest.permission.WRITE_SETTINGS.equals(permission)
+                    || Manifest.permission.PACKAGE_USAGE_STATS.equals(permission)
+                    || Manifest.permission.SYSTEM_ALERT_WINDOW.equals(permission)) {
                 DynamicPermissionUtils.openPermissionSettings(requireContext(), permission);
             }
         }

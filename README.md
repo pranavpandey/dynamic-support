@@ -15,9 +15,9 @@ to provide best compatibility.
 <br/>Since v3.0.0, it is dependent on Java 8 due to the dependency on 
 [DrawerLayout](https://developer.android.com/jetpack/androidx/releases/drawerlayout).
  
-<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-1.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-3.png" width="280" height="486">
+<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-1.png" width="280" height="486">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-3.png" width="280" height="486">
 
-<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-6.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-7.png" width="280" height="486">
+<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-6.png" width="280" height="486">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-7.png" width="280" height="486">
 
 ---
 
@@ -68,7 +68,7 @@ color from the in-built picker which supports HEX, HSV and ARGB values.
 Below are the same colors applied on the light and dark backgrounds respectively. But the final 
 color is adjusted according to the colored view background to provide best visibility.
 
-<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-bg-aware-2.png" width="280" height="486"><img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-bg-aware-3.png" width="280" height="486">
+<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-bg-aware-2.png" width="280" height="486">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-bg-aware-3.png" width="280" height="486">
 
 ### Sample
 This library is fully commented so, please check the individual classes or files for the 
