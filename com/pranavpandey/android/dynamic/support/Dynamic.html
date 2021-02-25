@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9,"i15":9,"i16":9,"i17":9,"i18":9,"i19":9,"i20":9,"i21":9,"i22":9,"i23":9,"i24":9,"i25":9,"i26":9,"i27":9,"i28":9,"i29":9,"i30":9,"i31":9,"i32":9,"i33":9,"i34":9,"i35":9,"i36":9,"i37":9,"i38":9,"i39":9,"i40":9,"i41":9,"i42":9,"i43":9,"i44":9,"i45":9,"i46":9,"i47":9,"i48":9,"i49":9,"i50":9,"i51":9,"i52":9,"i53":9,"i54":9,"i55":9};
+var data = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9,"i15":9,"i16":9,"i17":9,"i18":9,"i19":9,"i20":9,"i21":9,"i22":9,"i23":9,"i24":9,"i25":9,"i26":9,"i27":9,"i28":9,"i29":9,"i30":9,"i31":9,"i32":9,"i33":9,"i34":9,"i35":9,"i36":9,"i37":9,"i38":9,"i39":9,"i40":9,"i41":9,"i42":9,"i43":9,"i44":9,"i45":9,"i46":9,"i47":9,"i48":9,"i49":9,"i50":9,"i51":9,"i52":9,"i53":9,"i54":9,"i55":9,"i56":9,"i57":9,"i58":9,"i59":9,"i60":9,"i61":9,"i62":9,"i63":9,"i64":9,"i65":9,"i66":9,"i67":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -149,7 +149,9 @@ extends java.lang.Object</pre>
 <a href="widget/base/DynamicScrollableWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base"><code>DynamicScrollableWidget</code></a>, 
 <a href="widget/base/DynamicStateWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base"><code>DynamicStateWidget</code></a>, 
 <a href="widget/base/DynamicStateSelectedWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base"><code>DynamicStateSelectedWidget</code></a>, 
-<a href="widget/base/DynamicTextWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base"><code>DynamicTextWidget</code></a></dd>
+<a href="widget/base/DynamicTextWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base"><code>DynamicTextWidget</code></a>, 
+<a href="picker/color/DynamicColorView.html" title="class in com.pranavpandey.android.dynamic.support.picker.color"><code>DynamicColorView</code></a>, 
+<a href="model/DynamicItem.html" title="class in com.pranavpandey.android.dynamic.support.model"><code>DynamicItem</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -272,13 +274,86 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
+<td class="colFirst"><code>static &lt;T,&#8203;V&gt;<br>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBackgroundColor(com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial,int)">getBackgroundColor</a></span>&#8203;(<a href="tutorial/DynamicTutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&lt;T,&#8203;V&gt;&nbsp;tutorial,
+                  int&nbsp;defaultColor)</code></th>
+<td class="colLast">
+<div class="block">Call <a href="tutorial/DynamicTutorial.html#getBackgroundColor()"><code>DynamicTutorial.getBackgroundColor()</code></a> method for the <a href="tutorial/DynamicTutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a>.</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>static boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isBackgroundAware(int)">isBackgroundAware</a></span>&#8203;(int&nbsp;backgroundAware)</code></th>
+<td class="colLast">
+<div class="block">Checks whether the background aware functionality is enabled for the supplied value.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isBackgroundAware(T)">isBackgroundAware</a></span>&#8203;(T&nbsp;dynamic)</code></th>
+<td class="colLast">
+<div class="block">Checks whether the background aware functionality is enabled for the supplied
+ dynamic object.</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isSearchViewExpanded(android.content.Context)">isSearchViewExpanded</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity)</code></th>
 <td class="colLast">
 <div class="block">Checks whether the search view is expanded for the <a href="activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity"><code>DynamicActivity</code></a>.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code>static &lt;T,&#8203;V&gt;<br>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onBackgroundColorChanged(com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial,int)">onBackgroundColorChanged</a></span>&#8203;(<a href="tutorial/DynamicTutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&lt;T,&#8203;V&gt;&nbsp;tutorial,
+                        int&nbsp;color)</code></th>
+<td class="colLast">
+<div class="block">Call <a href="tutorial/DynamicTutorial.html#onBackgroundColorChanged(int)"><code>DynamicTutorial.onBackgroundColorChanged(int)</code></a> method for the
+ <a href="tutorial/DynamicTutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a>.</div>
+</td>
+</tr>
+<tr id="i14" class="altColor">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onPageScrolled(androidx.viewpager.widget.ViewPager.OnPageChangeListener,int,float,int)">onPageScrolled</a></span>&#8203;(androidx.viewpager.widget.ViewPager.OnPageChangeListener&nbsp;pager,
+              int&nbsp;position,
+              float&nbsp;positionOffset,
+              int&nbsp;positionOffsetPixels)</code></th>
+<td class="colLast">
+<div class="block">Call <code>ViewPager.OnPageChangeListener.onPageScrolled(int, float, int)</code> method
+ for the <code>ViewPager</code>.</div>
+</td>
+</tr>
+<tr id="i15" class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onPageScrollStateChanged(androidx.viewpager.widget.ViewPager.OnPageChangeListener,int)">onPageScrollStateChanged</a></span>&#8203;(androidx.viewpager.widget.ViewPager.OnPageChangeListener&nbsp;pager,
+                        int&nbsp;state)</code></th>
+<td class="colLast">
+<div class="block">Call <a href="https://developer.android.com/reference/android/view/View.html?is-external=true#onScreenStateChanged(int)" title="class or interface in android.view" class="externalLink"><code>View.onScreenStateChanged(int)</code></a> method
+ for the <code>ViewPager</code>.</div>
+</td>
+</tr>
+<tr id="i16" class="altColor">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onPageSelected(androidx.viewpager.widget.ViewPager.OnPageChangeListener,int)">onPageSelected</a></span>&#8203;(androidx.viewpager.widget.ViewPager.OnPageChangeListener&nbsp;pager,
+              int&nbsp;position)</code></th>
+<td class="colLast">
+<div class="block">Call <code>ViewPager.OnPageChangeListener.onPageSelected(int)</code> method
+ for the <code>ViewPager</code>.</div>
+</td>
+</tr>
+<tr id="i17" class="rowColor">
+<td class="colFirst"><code>static &lt;T,&#8203;V&gt;<br>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onSetPadding(com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial,int,int,int,int)">onSetPadding</a></span>&#8203;(<a href="tutorial/DynamicTutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&lt;T,&#8203;V&gt;&nbsp;tutorial,
+            int&nbsp;left,
+            int&nbsp;top,
+            int&nbsp;right,
+            int&nbsp;bottom)</code></th>
+<td class="colLast">
+<div class="block">Call <a href="tutorial/DynamicTutorial.html#onSetPadding(int,int,int,int)"><code>DynamicTutorial.onSetPadding(int, int, int, int)</code></a> method for the
+ <a href="tutorial/DynamicTutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a>.</div>
+</td>
+</tr>
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeSearchViewTextChangedListener(android.content.Context,android.text.TextWatcher)">removeSearchViewTextChangedListener</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
                                    <a href="https://developer.android.com/reference/android/text/TextWatcher.html?is-external=true" title="class or interface in android.text" class="externalLink">TextWatcher</a>&nbsp;textWatcher)</code></th>
@@ -287,7 +362,7 @@ extends java.lang.Object</pre>
  for the <a href="activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity"><code>DynamicActivity</code></a>.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#restoreSearchViewState(android.content.Context)">restoreSearchViewState</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity)</code></th>
 <td class="colLast">
@@ -295,7 +370,7 @@ extends java.lang.Object</pre>
  for the <a href="activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity"><code>DynamicActivity</code></a>.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set(android.widget.ImageView,android.graphics.Bitmap)">set</a></span>&#8203;(<a href="https://developer.android.com/reference/android/widget/ImageView.html?is-external=true" title="class or interface in android.widget" class="externalLink">ImageView</a>&nbsp;imageView,
    <a href="https://developer.android.com/reference/android/graphics/Bitmap.html?is-external=true" title="class or interface in android.graphics" class="externalLink">Bitmap</a>&nbsp;bitmap)</code></th>
@@ -303,7 +378,7 @@ extends java.lang.Object</pre>
 <div class="block">Set bitmap for the image view and mange its visibility according to the data.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set(android.widget.ImageView,android.graphics.drawable.Drawable)">set</a></span>&#8203;(<a href="https://developer.android.com/reference/android/widget/ImageView.html?is-external=true" title="class or interface in android.widget" class="externalLink">ImageView</a>&nbsp;imageView,
    <a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>&nbsp;drawable)</code></th>
@@ -311,7 +386,7 @@ extends java.lang.Object</pre>
 <div class="block">Set drawable for the image view and mange its visibility according to the data.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set(android.widget.TextView,java.lang.CharSequence)">set</a></span>&#8203;(<a href="https://developer.android.com/reference/android/widget/TextView.html?is-external=true" title="class or interface in android.widget" class="externalLink">TextView</a>&nbsp;textView,
    java.lang.CharSequence&nbsp;text)</code></th>
@@ -319,7 +394,7 @@ extends java.lang.Object</pre>
 <div class="block">Set text for the text view and mange its visibility according to the data.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#set(android.widget.TextView,java.lang.String)">set</a></span>&#8203;(<a href="https://developer.android.com/reference/android/widget/TextView.html?is-external=true" title="class or interface in android.widget" class="externalLink">TextView</a>&nbsp;textView,
    java.lang.String&nbsp;text)</code></th>
@@ -327,7 +402,7 @@ extends java.lang.Object</pre>
 <div class="block">Set text for the text view and mange its visibility according to the data.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAlpha(android.view.View,float)">setAlpha</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
         float&nbsp;alpha)</code></th>
@@ -335,31 +410,39 @@ extends java.lang.Object</pre>
 <div class="block">Set alpha for the view.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setBackgroundAware(android.view.View,int)">setBackgroundAware</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+<tr id="i25" class="rowColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setBackgroundAware(T,int)">setBackgroundAware</a></span>&#8203;(T&nbsp;dynamic,
                   int&nbsp;backgroundAware)</code></th>
 <td class="colLast">
-<div class="block">Sets the background aware for the supplied view.</div>
+<div class="block">Sets the background aware for the supplied dynamic object.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setBackgroundColor(android.view.View,int)">setBackgroundColor</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+<tr id="i26" class="altColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setBackgroundAwareSafe(T,int)">setBackgroundAwareSafe</a></span>&#8203;(T&nbsp;dynamic,
+                      int&nbsp;backgroundAware)</code></th>
+<td class="colLast">
+<div class="block">Sets the background aware for the supplied dynamic object after doing appropriate checks.</div>
+</td>
+</tr>
+<tr id="i27" class="rowColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setBackgroundColor(T,int)">setBackgroundColor</a></span>&#8203;(T&nbsp;dynamic,
                   int&nbsp;color)</code></th>
 <td class="colLast">
-<div class="block">Sets the background color for the supplied view.</div>
+<div class="block">Sets the background color for the supplied dynamic object.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setBackgroundColorType(android.view.View,int)">setBackgroundColorType</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+<tr id="i28" class="altColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setBackgroundColorType(T,int)">setBackgroundColorType</a></span>&#8203;(T&nbsp;dynamic,
                       int&nbsp;colorType)</code></th>
 <td class="colLast">
-<div class="block">Sets the background color type for the supplied view.</div>
+<div class="block">Sets the background color type for the supplied dynamic object.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i29" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setBottomSheetState(android.content.Context,int)">setBottomSheetState</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
                    int&nbsp;bottomSheetState)</code></th>
@@ -367,7 +450,7 @@ extends java.lang.Object</pre>
 <div class="block">Sets the bottom sheet state if present for the <a href="activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity"><code>DynamicActivity</code></a>.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i30" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setClickListener(android.view.View,android.view.View.OnClickListener)">setClickListener</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
                 <a href="https://developer.android.com/reference/android/view/View.OnClickListener.html?is-external=true" title="class or interface in android.view" class="externalLink">View.OnClickListener</a>&nbsp;clickListener)</code></th>
@@ -375,7 +458,7 @@ extends java.lang.Object</pre>
 <div class="block">Set click listener for the view and mange its visibility according to the data.</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i31" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setClickListener(android.view.View,android.view.View.OnClickListener,boolean)">setClickListener</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
                 <a href="https://developer.android.com/reference/android/view/View.OnClickListener.html?is-external=true" title="class or interface in android.view" class="externalLink">View.OnClickListener</a>&nbsp;clickListener,
@@ -384,23 +467,33 @@ extends java.lang.Object</pre>
 <div class="block">Set click listener for the view and mange its visibility according to the data.</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setColor(android.view.View,int)">setColor</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+<tr id="i32" class="altColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setColor(T,int)">setColor</a></span>&#8203;(T&nbsp;dynamic,
         int&nbsp;color)</code></th>
 <td class="colLast">
-<div class="block">Sets the color for the supplied view.</div>
+<div class="block">Sets the color for the supplied dynamic object.</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setColorType(android.view.View,int)">setColorType</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+<tr id="i33" class="rowColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setColorType(T,int)">setColorType</a></span>&#8203;(T&nbsp;dynamic,
             int&nbsp;colorType)</code></th>
 <td class="colLast">
-<div class="block">Sets the color type for the supplied view.</div>
+<div class="block">Sets the color type for the supplied dynamic object.</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i34" class="altColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setColorTypeOrColor(T,int,int)">setColorTypeOrColor</a></span>&#8203;(T&nbsp;dynamic,
+                   int&nbsp;colorType,
+                   int&nbsp;color)</code></th>
+<td class="colLast">
+<div class="block">Sets the color type or color for the supplied dynamic object after doing 
+ the appropriate checks.</div>
+</td>
+</tr>
+<tr id="i35" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setContentDescription(android.widget.ImageView,java.lang.String)">setContentDescription</a></span>&#8203;(<a href="https://developer.android.com/reference/android/widget/ImageView.html?is-external=true" title="class or interface in android.widget" class="externalLink">ImageView</a>&nbsp;imageView,
                      java.lang.String&nbsp;text)</code></th>
@@ -408,23 +501,33 @@ extends java.lang.Object</pre>
 <div class="block">Set content description for the image view.</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setContrastWithColor(android.view.View,int)">setContrastWithColor</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+<tr id="i36" class="altColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setContrastWithColor(T,int)">setContrastWithColor</a></span>&#8203;(T&nbsp;dynamic,
                     int&nbsp;color)</code></th>
 <td class="colLast">
-<div class="block">Sets the contrast with color for the supplied view.</div>
+<div class="block">Sets the contrast with color for the supplied dynamic object.</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setContrastWithColorType(android.view.View,int)">setContrastWithColorType</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+<tr id="i37" class="rowColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setContrastWithColorType(T,int)">setContrastWithColorType</a></span>&#8203;(T&nbsp;dynamic,
                         int&nbsp;colorType)</code></th>
 <td class="colLast">
-<div class="block">Sets the contrast with color type for the supplied view.</div>
+<div class="block">Sets the contrast with color type for the supplied dynamic object.</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i38" class="altColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setContrastWithColorTypeOrColor(T,int,int)">setContrastWithColorTypeOrColor</a></span>&#8203;(T&nbsp;dynamic,
+                               int&nbsp;colorType,
+                               int&nbsp;color)</code></th>
+<td class="colLast">
+<div class="block">Sets the contrast with color type or color for the supplied dynamic object after doing
+ the appropriate checks.</div>
+</td>
+</tr>
+<tr id="i39" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCorner(android.view.View,float)">setCorner</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
          float&nbsp;corner)</code></th>
@@ -432,7 +535,7 @@ extends java.lang.Object</pre>
 <div class="block">Sets the corner for the supplied view.</div>
 </td>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i40" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCornerMin(android.view.View,float)">setCornerMin</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
             float&nbsp;cornerMax)</code></th>
@@ -440,7 +543,15 @@ extends java.lang.Object</pre>
 <div class="block">Sets the minimum corner value for the supplied view.</div>
 </td>
 </tr>
-<tr id="i30" class="altColor">
+<tr id="i41" class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setElevationOnSameBackground(android.view.View,boolean)">setElevationOnSameBackground</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+                            boolean&nbsp;elevationOnSameBackground)</code></th>
+<td class="colLast">
+<div class="block">Set the elevation on same background option for the supplied view.</div>
+</td>
+</tr>
+<tr id="i42" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEnabled(android.view.View,boolean)">setEnabled</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
           boolean&nbsp;enabled)</code></th>
@@ -448,23 +559,23 @@ extends java.lang.Object</pre>
 <div class="block">Set a view enabled or disabled.</div>
 </td>
 </tr>
-<tr id="i31" class="rowColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinkColor(android.view.View,int)">setLinkColor</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+<tr id="i43" class="rowColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinkColor(T,int)">setLinkColor</a></span>&#8203;(T&nbsp;dynamic,
             int&nbsp;color)</code></th>
 <td class="colLast">
-<div class="block">Sets the link color for the supplied view.</div>
+<div class="block">Sets the link color for the supplied dynamic object.</div>
 </td>
 </tr>
-<tr id="i32" class="altColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinkColorType(android.view.View,int)">setLinkColorType</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+<tr id="i44" class="altColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinkColorType(T,int)">setLinkColorType</a></span>&#8203;(T&nbsp;dynamic,
                 int&nbsp;colorType)</code></th>
 <td class="colLast">
-<div class="block">Sets the link color type for the supplied view.</div>
+<div class="block">Sets the link color type for the supplied dynamic object.</div>
 </td>
 </tr>
-<tr id="i33" class="rowColor">
+<tr id="i45" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPreventCornerOverlap(android.view.View,boolean)">setPreventCornerOverlap</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
                        boolean&nbsp;preventCornerOverlap)</code></th>
@@ -472,7 +583,7 @@ extends java.lang.Object</pre>
 <div class="block">Sets the prevent corner overlap for the supplied view.</div>
 </td>
 </tr>
-<tr id="i34" class="altColor">
+<tr id="i46" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setResource(android.widget.ImageView,int)">setResource</a></span>&#8203;(<a href="https://developer.android.com/reference/android/widget/ImageView.html?is-external=true" title="class or interface in android.widget" class="externalLink">ImageView</a>&nbsp;imageView,
            int&nbsp;drawableRes)</code></th>
@@ -480,23 +591,23 @@ extends java.lang.Object</pre>
 <div class="block">Set drawable for the image view and mange its visibility according to the data.</div>
 </td>
 </tr>
-<tr id="i35" class="rowColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setScrollBarColor(android.view.View,int)">setScrollBarColor</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+<tr id="i47" class="rowColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setScrollBarColor(T,int)">setScrollBarColor</a></span>&#8203;(T&nbsp;dynamic,
                  int&nbsp;color)</code></th>
 <td class="colLast">
-<div class="block">Sets the scroll bar color for the supplied view.</div>
+<div class="block">Sets the scroll bar color for the supplied dynamic object.</div>
 </td>
 </tr>
-<tr id="i36" class="altColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setScrollBarColorType(android.view.View,int)">setScrollBarColorType</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+<tr id="i48" class="altColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setScrollBarColorType(T,int)">setScrollBarColorType</a></span>&#8203;(T&nbsp;dynamic,
                      int&nbsp;colorType)</code></th>
 <td class="colLast">
-<div class="block">Sets the scroll bar color type for the supplied view.</div>
+<div class="block">Sets the scroll bar color type for the supplied dynamic object.</div>
 </td>
 </tr>
-<tr id="i37" class="rowColor">
+<tr id="i49" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSearchViewListener(android.content.Context,com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener)">setSearchViewListener</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
                      <a href="listener/DynamicSearchListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicSearchListener</a>&nbsp;searchListener)</code></th>
@@ -505,39 +616,39 @@ extends java.lang.Object</pre>
  for the <a href="activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity"><code>DynamicActivity</code></a>.</div>
 </td>
 </tr>
-<tr id="i38" class="altColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setStateNormalColor(android.view.View,int)">setStateNormalColor</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+<tr id="i50" class="altColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setStateNormalColor(T,int)">setStateNormalColor</a></span>&#8203;(T&nbsp;dynamic,
                    int&nbsp;color)</code></th>
 <td class="colLast">
-<div class="block">Sets the normal state color for the supplied view.</div>
+<div class="block">Sets the normal state color for the supplied dynamic object.</div>
 </td>
 </tr>
-<tr id="i39" class="rowColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setStateNormalColorType(android.view.View,int)">setStateNormalColorType</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+<tr id="i51" class="rowColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setStateNormalColorType(T,int)">setStateNormalColorType</a></span>&#8203;(T&nbsp;dynamic,
                        int&nbsp;colorType)</code></th>
 <td class="colLast">
-<div class="block">Sets the normal state color type for the supplied view.</div>
+<div class="block">Sets the normal state color type for the supplied dynamic object.</div>
 </td>
 </tr>
-<tr id="i40" class="altColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setStateSelectedColor(android.view.View,int)">setStateSelectedColor</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+<tr id="i52" class="altColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setStateSelectedColor(T,int)">setStateSelectedColor</a></span>&#8203;(T&nbsp;dynamic,
                      int&nbsp;color)</code></th>
 <td class="colLast">
-<div class="block">Sets the selected state color for the supplied view.</div>
+<div class="block">Sets the selected state color for the supplied dynamic object.</div>
 </td>
 </tr>
-<tr id="i41" class="rowColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setStateSelectedColorType(android.view.View,int)">setStateSelectedColorType</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+<tr id="i53" class="rowColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setStateSelectedColorType(T,int)">setStateSelectedColorType</a></span>&#8203;(T&nbsp;dynamic,
                          int&nbsp;colorType)</code></th>
 <td class="colLast">
-<div class="block">Sets the selected state color type for the supplied view.</div>
+<div class="block">Sets the selected state color type for the supplied dynamic object.</div>
 </td>
 </tr>
-<tr id="i42" class="altColor">
+<tr id="i54" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setText(android.widget.TextView,int)">setText</a></span>&#8203;(<a href="https://developer.android.com/reference/android/widget/TextView.html?is-external=true" title="class or interface in android.widget" class="externalLink">TextView</a>&nbsp;textView,
        int&nbsp;stringRes)</code></th>
@@ -545,23 +656,23 @@ extends java.lang.Object</pre>
 <div class="block">Set text for the text view and mange its visibility according to the data.</div>
 </td>
 </tr>
-<tr id="i43" class="rowColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTextColor(android.view.View,int)">setTextColor</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+<tr id="i55" class="rowColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTextColor(T,int)">setTextColor</a></span>&#8203;(T&nbsp;dynamic,
             int&nbsp;color)</code></th>
 <td class="colLast">
-<div class="block">Sets the text color for the supplied view.</div>
+<div class="block">Sets the text color for the supplied dynamic object.</div>
 </td>
 </tr>
-<tr id="i44" class="altColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTextColorType(android.view.View,int)">setTextColorType</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+<tr id="i56" class="altColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTextColorType(T,int)">setTextColorType</a></span>&#8203;(T&nbsp;dynamic,
                 int&nbsp;colorType)</code></th>
 <td class="colLast">
-<div class="block">Sets the text color type for the supplied view.</div>
+<div class="block">Sets the text color type for the supplied dynamic object.</div>
 </td>
 </tr>
-<tr id="i45" class="rowColor">
+<tr id="i57" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTransitionPosition(android.content.Context,int)">setTransitionPosition</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
                      int&nbsp;transitionPosition)</code></th>
@@ -569,7 +680,7 @@ extends java.lang.Object</pre>
 <div class="block">Sets the transition position for the <a href="activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity"><code>DynamicActivity</code></a>.</div>
 </td>
 </tr>
-<tr id="i46" class="altColor">
+<tr id="i58" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTransitionResultCode(android.content.Context,int)">setTransitionResultCode</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
                        int&nbsp;transitionResultCode)</code></th>
@@ -577,7 +688,7 @@ extends java.lang.Object</pre>
 <div class="block">Sets the transition result code for the <a href="activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity"><code>DynamicActivity</code></a>.</div>
 </td>
 </tr>
-<tr id="i47" class="rowColor">
+<tr id="i59" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setVisibility(android.view.View,int)">setVisibility</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
              int&nbsp;visibility)</code></th>
@@ -585,7 +696,7 @@ extends java.lang.Object</pre>
 <div class="block">Set visibility for the view.</div>
 </td>
 </tr>
-<tr id="i48" class="altColor">
+<tr id="i60" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setVisibility(android.view.View,android.view.View)">setVisibility</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
              <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;base)</code></th>
@@ -593,41 +704,41 @@ extends java.lang.Object</pre>
 <div class="block">Set visibility for the view according to the base view.</div>
 </td>
 </tr>
-<tr id="i49" class="rowColor">
+<tr id="i61" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showSnackBar(android.content.Context,int)">showSnackBar</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showSnackbar(android.content.Context,int)">showSnackbar</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
             int&nbsp;stringRes)</code></th>
 <td class="colLast">
-<div class="block">Show the snack bar for the <a href="activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity"><code>DynamicActivity</code></a>.</div>
+<div class="block">Show the snackbar for the <a href="listener/DynamicSnackbar.html" title="interface in com.pranavpandey.android.dynamic.support.listener"><code>DynamicSnackbar</code></a>.</div>
 </td>
 </tr>
-<tr id="i50" class="altColor">
+<tr id="i62" class="altColor">
 <td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showSnackBar(android.content.Context,int,int)">showSnackBar</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showSnackbar(android.content.Context,int,int)">showSnackbar</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
             int&nbsp;stringRes,
             int&nbsp;duration)</code></th>
 <td class="colLast">
-<div class="block">Show the snack bar for the <a href="activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity"><code>DynamicActivity</code></a>.</div>
+<div class="block">Show the snackbar for the <a href="listener/DynamicSnackbar.html" title="interface in com.pranavpandey.android.dynamic.support.listener"><code>DynamicSnackbar</code></a>.</div>
 </td>
 </tr>
-<tr id="i51" class="rowColor">
+<tr id="i63" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showSnackBar(android.content.Context,java.lang.CharSequence)">showSnackBar</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showSnackbar(android.content.Context,java.lang.CharSequence)">showSnackbar</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
             java.lang.CharSequence&nbsp;text)</code></th>
 <td class="colLast">
-<div class="block">Show the snack bar for the <a href="activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity"><code>DynamicActivity</code></a>.</div>
+<div class="block">Show the snackbar for the <a href="listener/DynamicSnackbar.html" title="interface in com.pranavpandey.android.dynamic.support.listener"><code>DynamicSnackbar</code></a>.</div>
 </td>
 </tr>
-<tr id="i52" class="altColor">
+<tr id="i64" class="altColor">
 <td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showSnackBar(android.content.Context,java.lang.CharSequence,int)">showSnackBar</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showSnackbar(android.content.Context,java.lang.CharSequence,int)">showSnackbar</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
             java.lang.CharSequence&nbsp;text,
             int&nbsp;duration)</code></th>
 <td class="colLast">
-<div class="block">Show the snack bar for the <a href="activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity"><code>DynamicActivity</code></a>.</div>
+<div class="block">Show the snackbar for the <a href="listener/DynamicSnackbar.html" title="interface in com.pranavpandey.android.dynamic.support.listener"><code>DynamicSnackbar</code></a>.</div>
 </td>
 </tr>
-<tr id="i53" class="rowColor">
+<tr id="i65" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#startMotionActivityFromFragment(android.content.Context,androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle)">startMotionActivityFromFragment</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
                                androidx.fragment.app.Fragment&nbsp;fragment,
@@ -639,7 +750,7 @@ extends java.lang.Object</pre>
  for the <a href="activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity"><code>DynamicActivity</code></a>.</div>
 </td>
 </tr>
-<tr id="i54" class="altColor">
+<tr id="i66" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#startMotionActivityFromFragment(android.content.Context,androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle,boolean,boolean)">startMotionActivityFromFragment</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
                                androidx.fragment.app.Fragment&nbsp;fragment,
@@ -653,13 +764,13 @@ extends java.lang.Object</pre>
  for the <a href="activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity"><code>DynamicActivity</code></a>.</div>
 </td>
 </tr>
-<tr id="i55" class="rowColor">
-<td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#tint(android.view.View,int,int)">tint</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;dynamicWidget,
+<tr id="i67" class="rowColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#tint(T,int,int)">tint</a></span>&#8203;(T&nbsp;dynamic,
     int&nbsp;color,
     int&nbsp;contrastWithColor)</code></th>
 <td class="colLast">
-<div class="block">Tint dynamic widget according to the supplied colors.</div>
+<div class="block">Tint dynamic object according to the supplied colors.</div>
 </td>
 </tr>
 </table>
@@ -705,334 +816,560 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="setColorType(android.view.View,int)">
+<a id="setColorType(java.lang.Object,int)">
+<!--   -->
+</a><a id="setColorType(T,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setColorType</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;setColorType&#8203;(@Nullable
-                                <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
-                                int&nbsp;colorType)</pre>
-<div class="block">Sets the color type for the supplied view.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setColorType&#8203;(@Nullable
+                                    T&nbsp;dynamic,
+                                    int&nbsp;colorType)</pre>
+<div class="block">Sets the color type for the supplied dynamic object.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The view to be used.</dd>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
 <dd><code>colorType</code> - The color type to be set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="widget/base/DynamicWidget.html#setColorType(int)"><code>DynamicWidget.setColorType(int)</code></a></dd>
+<dd><a href="widget/base/DynamicWidget.html#setColorType(int)"><code>DynamicWidget.setColorType(int)</code></a>, 
+<a href="model/DynamicItem.html#setColorType(int)"><code>DynamicItem.setColorType(int)</code></a></dd>
 </dl>
 </li>
 </ul>
-<a id="setBackgroundColorType(android.view.View,int)">
+<a id="setBackgroundColorType(java.lang.Object,int)">
+<!--   -->
+</a><a id="setBackgroundColorType(T,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setBackgroundColorType</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;setBackgroundColorType&#8203;(@Nullable
-                                          <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
-                                          int&nbsp;colorType)</pre>
-<div class="block">Sets the background color type for the supplied view.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setBackgroundColorType&#8203;(@Nullable
+                                              T&nbsp;dynamic,
+                                              int&nbsp;colorType)</pre>
+<div class="block">Sets the background color type for the supplied dynamic object.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The view to be used.</dd>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
 <dd><code>colorType</code> - The color type to be set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="widget/base/DynamicBackgroundWidget.html#setBackgroundColorType(int)"><code>DynamicBackgroundWidget.setBackgroundColorType(int)</code></a></dd>
 </dl>
 </li>
 </ul>
-<a id="setContrastWithColorType(android.view.View,int)">
+<a id="setContrastWithColorType(java.lang.Object,int)">
+<!--   -->
+</a><a id="setContrastWithColorType(T,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setContrastWithColorType</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;setContrastWithColorType&#8203;(@Nullable
-                                            <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
-                                            int&nbsp;colorType)</pre>
-<div class="block">Sets the contrast with color type for the supplied view.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setContrastWithColorType&#8203;(@Nullable
+                                                T&nbsp;dynamic,
+                                                int&nbsp;colorType)</pre>
+<div class="block">Sets the contrast with color type for the supplied dynamic object.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The view to be used.</dd>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
 <dd><code>colorType</code> - The color type to be set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="widget/base/DynamicWidget.html#setContrastWithColorType(int)"><code>DynamicWidget.setContrastWithColorType(int)</code></a></dd>
+<dd><a href="widget/base/DynamicWidget.html#setContrastWithColorType(int)"><code>DynamicWidget.setContrastWithColorType(int)</code></a>, 
+<a href="model/DynamicItem.html#setContrastWithColorType(int)"><code>DynamicItem.setContrastWithColorType(int)</code></a></dd>
 </dl>
 </li>
 </ul>
-<a id="setTextColorType(android.view.View,int)">
+<a id="setTextColorType(java.lang.Object,int)">
+<!--   -->
+</a><a id="setTextColorType(T,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setTextColorType</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;setTextColorType&#8203;(@Nullable
-                                    <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
-                                    int&nbsp;colorType)</pre>
-<div class="block">Sets the text color type for the supplied view.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setTextColorType&#8203;(@Nullable
+                                        T&nbsp;dynamic,
+                                        int&nbsp;colorType)</pre>
+<div class="block">Sets the text color type for the supplied dynamic object.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The view to be used.</dd>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
 <dd><code>colorType</code> - The color type to be set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="widget/base/DynamicTextWidget.html#setTextColorType(int)"><code>DynamicTextWidget.setTextColorType(int)</code></a></dd>
 </dl>
 </li>
 </ul>
-<a id="setLinkColorType(android.view.View,int)">
+<a id="setLinkColorType(java.lang.Object,int)">
+<!--   -->
+</a><a id="setLinkColorType(T,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setLinkColorType</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;setLinkColorType&#8203;(@Nullable
-                                    <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
-                                    int&nbsp;colorType)</pre>
-<div class="block">Sets the link color type for the supplied view.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setLinkColorType&#8203;(@Nullable
+                                        T&nbsp;dynamic,
+                                        int&nbsp;colorType)</pre>
+<div class="block">Sets the link color type for the supplied dynamic object.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The view to be used.</dd>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
 <dd><code>colorType</code> - The color type to be set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="widget/base/DynamicLinkWidget.html#setLinkColorType(int)"><code>DynamicLinkWidget.setLinkColorType(int)</code></a></dd>
 </dl>
 </li>
 </ul>
-<a id="setStateNormalColorType(android.view.View,int)">
+<a id="setStateNormalColorType(java.lang.Object,int)">
+<!--   -->
+</a><a id="setStateNormalColorType(T,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setStateNormalColorType</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;setStateNormalColorType&#8203;(@Nullable
-                                           <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
-                                           int&nbsp;colorType)</pre>
-<div class="block">Sets the normal state color type for the supplied view.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setStateNormalColorType&#8203;(@Nullable
+                                               T&nbsp;dynamic,
+                                               int&nbsp;colorType)</pre>
+<div class="block">Sets the normal state color type for the supplied dynamic object.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The view to be used.</dd>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
 <dd><code>colorType</code> - The color type to be set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="widget/base/DynamicStateWidget.html#setStateNormalColorType(int)"><code>DynamicStateWidget.setStateNormalColorType(int)</code></a></dd>
 </dl>
 </li>
 </ul>
-<a id="setStateSelectedColorType(android.view.View,int)">
+<a id="setStateSelectedColorType(java.lang.Object,int)">
+<!--   -->
+</a><a id="setStateSelectedColorType(T,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setStateSelectedColorType</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;setStateSelectedColorType&#8203;(@Nullable
-                                             <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
-                                             int&nbsp;colorType)</pre>
-<div class="block">Sets the selected state color type for the supplied view.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setStateSelectedColorType&#8203;(@Nullable
+                                                 T&nbsp;dynamic,
+                                                 int&nbsp;colorType)</pre>
+<div class="block">Sets the selected state color type for the supplied dynamic object.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The view to be used.</dd>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
 <dd><code>colorType</code> - The color type to be set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="widget/base/DynamicStateSelectedWidget.html#setStateSelectedColorType(int)"><code>DynamicStateSelectedWidget.setStateSelectedColorType(int)</code></a></dd>
 </dl>
 </li>
 </ul>
-<a id="setScrollBarColorType(android.view.View,int)">
+<a id="setScrollBarColorType(java.lang.Object,int)">
+<!--   -->
+</a><a id="setScrollBarColorType(T,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setScrollBarColorType</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;setScrollBarColorType&#8203;(@Nullable
-                                         <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
-                                         int&nbsp;colorType)</pre>
-<div class="block">Sets the scroll bar color type for the supplied view.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setScrollBarColorType&#8203;(@Nullable
+                                             T&nbsp;dynamic,
+                                             int&nbsp;colorType)</pre>
+<div class="block">Sets the scroll bar color type for the supplied dynamic object.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The view to be used.</dd>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
 <dd><code>colorType</code> - The color type to be set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="widget/base/DynamicScrollableWidget.html#setScrollBarColorType(int)"><code>DynamicScrollableWidget.setScrollBarColorType(int)</code></a></dd>
 </dl>
 </li>
 </ul>
-<a id="setColor(android.view.View,int)">
+<a id="setColor(java.lang.Object,int)">
+<!--   -->
+</a><a id="setColor(T,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setColor</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;setColor&#8203;(@Nullable
-                            <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
-                            @ColorInt
-                            int&nbsp;color)</pre>
-<div class="block">Sets the color for the supplied view.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setColor&#8203;(@Nullable
+                                T&nbsp;dynamic,
+                                @ColorInt
+                                int&nbsp;color)</pre>
+<div class="block">Sets the color for the supplied dynamic object.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The view to be used.</dd>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
 <dd><code>color</code> - The color to be set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="widget/base/DynamicWidget.html#setColor(int)"><code>DynamicWidget.setColor(int)</code></a></dd>
+<dd><a href="widget/base/DynamicWidget.html#setColor(int)"><code>DynamicWidget.setColor(int)</code></a>, 
+<a href="picker/color/DynamicColorView.html#setColor(int)"><code>DynamicColorView.setColor(int)</code></a>, 
+<a href="model/DynamicItem.html#setColor(int)"><code>DynamicItem.setColor(int)</code></a></dd>
 </dl>
 </li>
 </ul>
-<a id="setBackgroundColor(android.view.View,int)">
+<a id="setBackgroundColor(java.lang.Object,int)">
+<!--   -->
+</a><a id="setBackgroundColor(T,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setBackgroundColor</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;setBackgroundColor&#8203;(@Nullable
-                                      <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
-                                      @ColorInt
-                                      int&nbsp;color)</pre>
-<div class="block">Sets the background color for the supplied view.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setBackgroundColor&#8203;(@Nullable
+                                          T&nbsp;dynamic,
+                                          @ColorInt
+                                          int&nbsp;color)</pre>
+<div class="block">Sets the background color for the supplied dynamic object.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The view to be used.</dd>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
 <dd><code>color</code> - The color to be set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="widget/base/DynamicBackgroundWidget.html#setBackgroundColor(int)"><code>DynamicBackgroundWidget.setBackgroundColor(int)</code></a></dd>
 </dl>
 </li>
 </ul>
-<a id="setContrastWithColor(android.view.View,int)">
+<a id="setContrastWithColor(java.lang.Object,int)">
+<!--   -->
+</a><a id="setContrastWithColor(T,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setContrastWithColor</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;setContrastWithColor&#8203;(@Nullable
-                                        <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
-                                        @ColorInt
-                                        int&nbsp;color)</pre>
-<div class="block">Sets the contrast with color for the supplied view.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setContrastWithColor&#8203;(@Nullable
+                                            T&nbsp;dynamic,
+                                            @ColorInt
+                                            int&nbsp;color)</pre>
+<div class="block">Sets the contrast with color for the supplied dynamic object.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The view to be used.</dd>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
 <dd><code>color</code> - The color to be set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="widget/base/DynamicWidget.html#setContrastWithColor(int)"><code>DynamicWidget.setContrastWithColor(int)</code></a></dd>
+<dd><a href="widget/base/DynamicWidget.html#setContrastWithColor(int)"><code>DynamicWidget.setContrastWithColor(int)</code></a>, 
+<a href="model/DynamicItem.html#setContrastWithColor(int)"><code>DynamicItem.setContrastWithColor(int)</code></a></dd>
 </dl>
 </li>
 </ul>
-<a id="setTextColor(android.view.View,int)">
+<a id="setTextColor(java.lang.Object,int)">
+<!--   -->
+</a><a id="setTextColor(T,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setTextColor</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;setTextColor&#8203;(@Nullable
-                                <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
-                                @ColorInt
-                                int&nbsp;color)</pre>
-<div class="block">Sets the text color for the supplied view.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setTextColor&#8203;(@Nullable
+                                    T&nbsp;dynamic,
+                                    @ColorInt
+                                    int&nbsp;color)</pre>
+<div class="block">Sets the text color for the supplied dynamic object.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The view to be used.</dd>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
 <dd><code>color</code> - The color to be set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="widget/base/DynamicTextWidget.html#setTextColor(int)"><code>DynamicTextWidget.setTextColor(int)</code></a></dd>
 </dl>
 </li>
 </ul>
-<a id="setLinkColor(android.view.View,int)">
+<a id="setLinkColor(java.lang.Object,int)">
+<!--   -->
+</a><a id="setLinkColor(T,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setLinkColor</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;setLinkColor&#8203;(@Nullable
-                                <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
-                                @ColorInt
-                                int&nbsp;color)</pre>
-<div class="block">Sets the link color for the supplied view.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setLinkColor&#8203;(@Nullable
+                                    T&nbsp;dynamic,
+                                    @ColorInt
+                                    int&nbsp;color)</pre>
+<div class="block">Sets the link color for the supplied dynamic object.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The view to be used.</dd>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
 <dd><code>color</code> - The color to be set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="widget/base/DynamicLinkWidget.html#setLinkColor(int)"><code>DynamicLinkWidget.setLinkColor(int)</code></a></dd>
 </dl>
 </li>
 </ul>
-<a id="setStateNormalColor(android.view.View,int)">
+<a id="setStateNormalColor(java.lang.Object,int)">
+<!--   -->
+</a><a id="setStateNormalColor(T,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setStateNormalColor</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;setStateNormalColor&#8203;(@Nullable
-                                       <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
-                                       @ColorInt
-                                       int&nbsp;color)</pre>
-<div class="block">Sets the normal state color for the supplied view.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setStateNormalColor&#8203;(@Nullable
+                                           T&nbsp;dynamic,
+                                           @ColorInt
+                                           int&nbsp;color)</pre>
+<div class="block">Sets the normal state color for the supplied dynamic object.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The view to be used.</dd>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
 <dd><code>color</code> - The color to be set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="widget/base/DynamicStateWidget.html#setStateNormalColor(int)"><code>DynamicStateWidget.setStateNormalColor(int)</code></a></dd>
 </dl>
 </li>
 </ul>
-<a id="setStateSelectedColor(android.view.View,int)">
+<a id="setStateSelectedColor(java.lang.Object,int)">
+<!--   -->
+</a><a id="setStateSelectedColor(T,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setStateSelectedColor</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;setStateSelectedColor&#8203;(@Nullable
-                                         <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
-                                         @ColorInt
-                                         int&nbsp;color)</pre>
-<div class="block">Sets the selected state color for the supplied view.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setStateSelectedColor&#8203;(@Nullable
+                                             T&nbsp;dynamic,
+                                             @ColorInt
+                                             int&nbsp;color)</pre>
+<div class="block">Sets the selected state color for the supplied dynamic object.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The view to be used.</dd>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
 <dd><code>color</code> - The color to be set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="widget/base/DynamicStateSelectedWidget.html#setStateSelectedColorType(int)"><code>DynamicStateSelectedWidget.setStateSelectedColorType(int)</code></a></dd>
 </dl>
 </li>
 </ul>
-<a id="setScrollBarColor(android.view.View,int)">
+<a id="setScrollBarColor(java.lang.Object,int)">
+<!--   -->
+</a><a id="setScrollBarColor(T,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setScrollBarColor</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;setScrollBarColor&#8203;(@Nullable
-                                     <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
-                                     @ColorInt
-                                     int&nbsp;color)</pre>
-<div class="block">Sets the scroll bar color for the supplied view.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setScrollBarColor&#8203;(@Nullable
+                                         T&nbsp;dynamic,
+                                         @ColorInt
+                                         int&nbsp;color)</pre>
+<div class="block">Sets the scroll bar color for the supplied dynamic object.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The view to be used.</dd>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
 <dd><code>color</code> - The color to be set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="widget/base/DynamicScrollableWidget.html#setScrollBarColor(int)"><code>DynamicScrollableWidget.setScrollBarColor(int)</code></a></dd>
 </dl>
 </li>
 </ul>
-<a id="setBackgroundAware(android.view.View,int)">
+<a id="isBackgroundAware(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isBackgroundAware</h4>
+<pre class="methodSignature">public static&nbsp;boolean&nbsp;isBackgroundAware&#8203;(int&nbsp;backgroundAware)</pre>
+<div class="block">Checks whether the background aware functionality is enabled for the supplied value.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>backgroundAware</code> - The value to be checked.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the supplied value changes color according to
+         the background.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="theme/DynamicTheme.html#resolveBackgroundAware(int)"><code>DynamicTheme.resolveBackgroundAware(int)</code></a></dd>
+</dl>
+</li>
+</ul>
+<a id="isBackgroundAware(java.lang.Object)">
+<!--   -->
+</a><a id="isBackgroundAware(T)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isBackgroundAware</h4>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;boolean&nbsp;isBackgroundAware&#8203;(@Nullable
+                                            T&nbsp;dynamic)</pre>
+<div class="block">Checks whether the background aware functionality is enabled for the supplied
+ dynamic object.</div>
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>dynamic</code> - The dynamic object to be checked.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the supplied dynamic object changes color according to
+         the background.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="#isBackgroundAware(int)"><code>isBackgroundAware(int)</code></a></dd>
+</dl>
+</li>
+</ul>
+<a id="setBackgroundAware(java.lang.Object,int)">
+<!--   -->
+</a><a id="setBackgroundAware(T,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setBackgroundAware</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;setBackgroundAware&#8203;(@Nullable
-                                      <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
-                                      int&nbsp;backgroundAware)</pre>
-<div class="block">Sets the background aware for the supplied view.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setBackgroundAware&#8203;(@Nullable
+                                          T&nbsp;dynamic,
+                                          int&nbsp;backgroundAware)</pre>
+<div class="block">Sets the background aware for the supplied dynamic object.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>view</code> - The view to be used.</dd>
-<dd><code>backgroundAware</code> - The color to be set.</dd>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
+<dd><code>backgroundAware</code> - The background aware option to be set.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="widget/base/DynamicWidget.html#setBackgroundAware(int)"><code>DynamicWidget.setBackgroundAware(int)</code></a></dd>
+<dd><a href="widget/base/DynamicWidget.html#setBackgroundAware(int)"><code>DynamicWidget.setBackgroundAware(int)</code></a>, 
+<a href="model/DynamicItem.html#setBackgroundAware(int)"><code>DynamicItem.setBackgroundAware(int)</code></a></dd>
+</dl>
+</li>
+</ul>
+<a id="setColorTypeOrColor(java.lang.Object,int,int)">
+<!--   -->
+</a><a id="setColorTypeOrColor(T,int,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setColorTypeOrColor</h4>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setColorTypeOrColor&#8203;(@Nullable
+                                           T&nbsp;dynamic,
+                                           int&nbsp;colorType,
+                                           @ColorInt
+                                           int&nbsp;color)</pre>
+<div class="block">Sets the color type or color for the supplied dynamic object after doing 
+ the appropriate checks.</div>
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
+<dd><code>colorType</code> - The color type to be set.</dd>
+<dd><code>color</code> - The color to be set.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="#setColorType(T,int)"><code>setColorType(Object, int)</code></a>, 
+<a href="#setColor(T,int)"><code>setColor(Object, int)</code></a></dd>
+</dl>
+</li>
+</ul>
+<a id="setContrastWithColorTypeOrColor(java.lang.Object,int,int)">
+<!--   -->
+</a><a id="setContrastWithColorTypeOrColor(T,int,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setContrastWithColorTypeOrColor</h4>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setContrastWithColorTypeOrColor&#8203;(@Nullable
+                                                       T&nbsp;dynamic,
+                                                       int&nbsp;colorType,
+                                                       @ColorInt
+                                                       int&nbsp;color)</pre>
+<div class="block">Sets the contrast with color type or color for the supplied dynamic object after doing
+ the appropriate checks.</div>
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
+<dd><code>colorType</code> - The color type to be set.</dd>
+<dd><code>color</code> - The color to be set.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="#setContrastWithColorType(T,int)"><code>setContrastWithColorType(Object, int)</code></a>, 
+<a href="#setContrastWithColor(T,int)"><code>setContrastWithColor(Object, int)</code></a></dd>
+</dl>
+</li>
+</ul>
+<a id="setBackgroundAwareSafe(java.lang.Object,int)">
+<!--   -->
+</a><a id="setBackgroundAwareSafe(T,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setBackgroundAwareSafe</h4>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;setBackgroundAwareSafe&#8203;(@Nullable
+                                              T&nbsp;dynamic,
+                                              int&nbsp;backgroundAware)</pre>
+<div class="block">Sets the background aware for the supplied dynamic object after doing appropriate checks.</div>
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>dynamic</code> - The dynamic object to be used.</dd>
+<dd><code>backgroundAware</code> - The background aware option to be set.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="#setBackgroundAware(T,int)"><code>setBackgroundAware(Object, int)</code></a></dd>
+</dl>
+</li>
+</ul>
+<a id="tint(java.lang.Object,int,int)">
+<!--   -->
+</a><a id="tint(T,int,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>tint</h4>
+<pre class="methodSignature">public static&nbsp;&lt;T&gt;&nbsp;void&nbsp;tint&#8203;(@Nullable
+                            T&nbsp;dynamic,
+                            @ColorInt
+                            int&nbsp;color,
+                            @ColorInt
+                            int&nbsp;contrastWithColor)</pre>
+<div class="block">Tint dynamic object according to the supplied colors.</div>
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the dynamic object.</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>dynamic</code> - The dynamic object to be tinted.</dd>
+<dd><code>color</code> - The color to be set.</dd>
+<dd><code>contrastWithColor</code> - The contrast with color to be set.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="#setColor(T,int)"><code>setColor(Object, int)</code></a>, 
+<a href="#setContrastWithColor(T,int)"><code>setContrastWithColor(Object, int)</code></a>, 
+<a href="#setScrollBarColor(T,int)"><code>setScrollBarColor(Object, int)</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -1094,24 +1431,20 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="tint(android.view.View,int,int)">
+<a id="setElevationOnSameBackground(android.view.View,boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>tint</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;tint&#8203;(@Nullable
-                        <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;dynamicWidget,
-                        @ColorInt
-                        int&nbsp;color,
-                        @ColorInt
-                        int&nbsp;contrastWithColor)</pre>
-<div class="block">Tint dynamic widget according to the supplied colors.</div>
+<h4>setElevationOnSameBackground</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;setElevationOnSameBackground&#8203;(@Nullable
+                                                <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
+                                                boolean&nbsp;elevationOnSameBackground)</pre>
+<div class="block">Set the elevation on same background option for the supplied view.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>dynamicWidget</code> - The dynamic widget to be tinted.</dd>
-<dd><code>color</code> - The color to tint the widget.</dd>
-<dd><code>contrastWithColor</code> - The contrast with color for the widget.</dd>
+<dd><code>view</code> - The view to be used.</dd>
+<dd><code>elevationOnSameBackground</code> - <code>true</code> to enable elevation on the same background.</dd>
 </dl>
 </li>
 </ul>
@@ -1349,83 +1682,83 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="showSnackBar(android.content.Context,java.lang.CharSequence,int)">
+<a id="showSnackbar(android.content.Context,java.lang.CharSequence,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>showSnackBar</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;showSnackBar&#8203;(@Nullable
+<h4>showSnackbar</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;showSnackbar&#8203;(@Nullable
                                 <a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
                                 @Nullable
                                 java.lang.CharSequence&nbsp;text,
                                 int&nbsp;duration)</pre>
-<div class="block">Show the snack bar for the <a href="activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity"><code>DynamicActivity</code></a>.</div>
+<div class="block">Show the snackbar for the <a href="listener/DynamicSnackbar.html" title="interface in com.pranavpandey.android.dynamic.support.listener"><code>DynamicSnackbar</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>activity</code> - The activity context to be used.</dd>
-<dd><code>text</code> - The text for the snack bar.</dd>
-<dd><code>duration</code> - The duration of the snack bar.
+<dd><code>text</code> - The text for the snackbar.</dd>
+<dd><code>duration</code> - The duration of the snackbar.
                  <p><code>BaseTransientBottomBar.LENGTH_SHORT</code>, <code>BaseTransientBottomBar.LENGTH_LONG</code>
                  or <code>BaseTransientBottomBar.LENGTH_INDEFINITE</code>.</dd>
 </dl>
 </li>
 </ul>
-<a id="showSnackBar(android.content.Context,java.lang.CharSequence)">
+<a id="showSnackbar(android.content.Context,java.lang.CharSequence)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>showSnackBar</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;showSnackBar&#8203;(@Nullable
+<h4>showSnackbar</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;showSnackbar&#8203;(@Nullable
                                 <a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
                                 @Nullable
                                 java.lang.CharSequence&nbsp;text)</pre>
-<div class="block">Show the snack bar for the <a href="activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity"><code>DynamicActivity</code></a>.</div>
+<div class="block">Show the snackbar for the <a href="listener/DynamicSnackbar.html" title="interface in com.pranavpandey.android.dynamic.support.listener"><code>DynamicSnackbar</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>activity</code> - The activity context to be used.</dd>
-<dd><code>text</code> - The text for the snack bar.</dd>
+<dd><code>text</code> - The text for the snackbar.D</dd>
 </dl>
 </li>
 </ul>
-<a id="showSnackBar(android.content.Context,int,int)">
+<a id="showSnackbar(android.content.Context,int,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>showSnackBar</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;showSnackBar&#8203;(@Nullable
+<h4>showSnackbar</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;showSnackbar&#8203;(@Nullable
                                 <a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
                                 @StringRes
                                 int&nbsp;stringRes,
                                 int&nbsp;duration)</pre>
-<div class="block">Show the snack bar for the <a href="activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity"><code>DynamicActivity</code></a>.</div>
+<div class="block">Show the snackbar for the <a href="listener/DynamicSnackbar.html" title="interface in com.pranavpandey.android.dynamic.support.listener"><code>DynamicSnackbar</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>activity</code> - The activity context to be used.</dd>
-<dd><code>stringRes</code> - The string resource for the snack bar.</dd>
-<dd><code>duration</code> - The duration of the snack bar.
+<dd><code>stringRes</code> - The string resource for the snackbar.</dd>
+<dd><code>duration</code> - The duration of the snackbar.
                  <p><code>BaseTransientBottomBar.LENGTH_SHORT</code>, <code>BaseTransientBottomBar.LENGTH_LONG</code>
                  or <code>BaseTransientBottomBar.LENGTH_INDEFINITE</code>.</dd>
 </dl>
 </li>
 </ul>
-<a id="showSnackBar(android.content.Context,int)">
+<a id="showSnackbar(android.content.Context,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>showSnackBar</h4>
-<pre class="methodSignature">public static&nbsp;void&nbsp;showSnackBar&#8203;(@Nullable
+<h4>showSnackbar</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;showSnackbar&#8203;(@Nullable
                                 <a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;activity,
                                 @StringRes
                                 int&nbsp;stringRes)</pre>
-<div class="block">Show the snack bar for the <a href="activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity"><code>DynamicActivity</code></a>.</div>
+<div class="block">Show the snackbar for the <a href="listener/DynamicSnackbar.html" title="interface in com.pranavpandey.android.dynamic.support.listener"><code>DynamicSnackbar</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>activity</code> - The activity context to be used.</dd>
-<dd><code>stringRes</code> - The string resource for the snack bar.</dd>
+<dd><code>stringRes</code> - The string resource for the snackbar.</dd>
 </dl>
 </li>
 </ul>
@@ -1776,7 +2109,7 @@ extends java.lang.Object</pre>
 <a id="startMotionActivityFromFragment(android.content.Context,androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>startMotionActivityFromFragment</h4>
 <pre class="methodSignature">public static&nbsp;void&nbsp;startMotionActivityFromFragment&#8203;(@Nullable
@@ -1798,6 +2131,143 @@ extends java.lang.Object</pre>
 <dd><code>intent</code> - The intent to be used.</dd>
 <dd><code>requestCode</code> - The request code to be set.</dd>
 <dd><code>options</code> - The intent to be set.</dd>
+</dl>
+</li>
+</ul>
+<a id="onPageScrolled(androidx.viewpager.widget.ViewPager.OnPageChangeListener,int,float,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onPageScrolled</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;onPageScrolled&#8203;(@Nullable
+                                  androidx.viewpager.widget.ViewPager.OnPageChangeListener&nbsp;pager,
+                                  int&nbsp;position,
+                                  float&nbsp;positionOffset,
+                                  @Px
+                                  int&nbsp;positionOffsetPixels)</pre>
+<div class="block">Call <code>ViewPager.OnPageChangeListener.onPageScrolled(int, float, int)</code> method
+ for the <code>ViewPager</code>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>pager</code> - The view pager to be used.</dd>
+<dd><code>position</code> - The position index of the first page currently being displayed.
+                 <p>Page position+1 will be visible if positionOffset is nonzero.</dd>
+<dd><code>positionOffset</code> - The value from [0, 1) indicating the offset from the page at position.</dd>
+<dd><code>positionOffsetPixels</code> - The value in pixels indicating the offset from position.</dd>
+</dl>
+</li>
+</ul>
+<a id="onPageSelected(androidx.viewpager.widget.ViewPager.OnPageChangeListener,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onPageSelected</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;onPageSelected&#8203;(@Nullable
+                                  androidx.viewpager.widget.ViewPager.OnPageChangeListener&nbsp;pager,
+                                  int&nbsp;position)</pre>
+<div class="block">Call <code>ViewPager.OnPageChangeListener.onPageSelected(int)</code> method
+ for the <code>ViewPager</code>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>pager</code> - The view pager to be used.</dd>
+<dd><code>position</code> - Position index of the new selected page.</dd>
+</dl>
+</li>
+</ul>
+<a id="onPageScrollStateChanged(androidx.viewpager.widget.ViewPager.OnPageChangeListener,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onPageScrollStateChanged</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;onPageScrollStateChanged&#8203;(@Nullable
+                                            androidx.viewpager.widget.ViewPager.OnPageChangeListener&nbsp;pager,
+                                            int&nbsp;state)</pre>
+<div class="block">Call <a href="https://developer.android.com/reference/android/view/View.html?is-external=true#onScreenStateChanged(int)" title="class or interface in android.view" class="externalLink"><code>View.onScreenStateChanged(int)</code></a> method
+ for the <code>ViewPager</code>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>pager</code> - The view pager to be used.</dd>
+<dd><code>state</code> - The new scroll state.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>ViewPager.SCROLL_STATE_IDLE</code>, 
+<code>ViewPager.SCROLL_STATE_DRAGGING</code>, 
+<code>ViewPager.SCROLL_STATE_SETTLING</code></dd>
+</dl>
+</li>
+</ul>
+<a id="getBackgroundColor(com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getBackgroundColor</h4>
+<pre class="methodSignature">@ColorInt
+public static&nbsp;&lt;T,&#8203;V&gt;&nbsp;int&nbsp;getBackgroundColor&#8203;(@Nullable
+                                                 <a href="tutorial/DynamicTutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&lt;T,&#8203;V&gt;&nbsp;tutorial,
+                                                 @ColorInt
+                                                 int&nbsp;defaultColor)</pre>
+<div class="block">Call <a href="tutorial/DynamicTutorial.html#getBackgroundColor()"><code>DynamicTutorial.getBackgroundColor()</code></a> method for the <a href="tutorial/DynamicTutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the tutorial.</dd>
+<dd><code>V</code> - The type of the tutorial fragment.</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>tutorial</code> - The dynamic tutorial to be used.</dd>
+<dd><code>defaultColor</code> - The default color for the background.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The background color for the supplied tutorial.</dd>
+</dl>
+</li>
+</ul>
+<a id="onBackgroundColorChanged(com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onBackgroundColorChanged</h4>
+<pre class="methodSignature">public static&nbsp;&lt;T,&#8203;V&gt;&nbsp;void&nbsp;onBackgroundColorChanged&#8203;(@Nullable
+                                                        <a href="tutorial/DynamicTutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&lt;T,&#8203;V&gt;&nbsp;tutorial,
+                                                        @ColorInt
+                                                        int&nbsp;color)</pre>
+<div class="block">Call <a href="tutorial/DynamicTutorial.html#onBackgroundColorChanged(int)"><code>DynamicTutorial.onBackgroundColorChanged(int)</code></a> method for the
+ <a href="tutorial/DynamicTutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the tutorial.</dd>
+<dd><code>V</code> - The type of the tutorial fragment.</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>tutorial</code> - The dynamic tutorial to be used.</dd>
+<dd><code>color</code> - The color of the background.</dd>
+</dl>
+</li>
+</ul>
+<a id="onSetPadding(com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial,int,int,int,int)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>onSetPadding</h4>
+<pre class="methodSignature">public static&nbsp;&lt;T,&#8203;V&gt;&nbsp;void&nbsp;onSetPadding&#8203;(@Nullable
+                                            <a href="tutorial/DynamicTutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&lt;T,&#8203;V&gt;&nbsp;tutorial,
+                                            int&nbsp;left,
+                                            int&nbsp;top,
+                                            int&nbsp;right,
+                                            int&nbsp;bottom)</pre>
+<div class="block">Call <a href="tutorial/DynamicTutorial.html#onSetPadding(int,int,int,int)"><code>DynamicTutorial.onSetPadding(int, int, int, int)</code></a> method for the
+ <a href="tutorial/DynamicTutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The type of the tutorial.</dd>
+<dd><code>V</code> - The type of the tutorial fragment.</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>tutorial</code> - The dynamic tutorial to be used.</dd>
+<dd><code>left</code> - The left padding supplied by the container.</dd>
+<dd><code>top</code> - The top padding supplied by the container.</dd>
+<dd><code>right</code> - The right padding supplied by the container.</dd>
+<dd><code>bottom</code> - The bottom padding supplied by the container.</dd>
 </dl>
 </li>
 </ul>
@@ -1829,7 +2299,7 @@ extends java.lang.Object</pre>
 <li><a href="../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>4.0.0</h5></div>
+<div class="aboutLanguage"><h5>4.1.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">

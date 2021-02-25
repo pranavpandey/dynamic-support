@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":10,"i47":10,"i48":10,"i49":10,"i50":10,"i51":10,"i52":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -152,7 +152,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.Callback.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable.Callback</a></code>, <code><a href="https://developer.android.com/reference/android/view/accessibility/AccessibilityEventSource.html?is-external=true" title="class or interface in android.view.accessibility" class="externalLink">AccessibilityEventSource</a></code>, <code><a href="https://developer.android.com/reference/android/view/KeyEvent.Callback.html?is-external=true" title="class or interface in android.view" class="externalLink">KeyEvent.Callback</a></code>, <code><a href="https://developer.android.com/reference/android/view/ViewManager.html?is-external=true" title="class or interface in android.view" class="externalLink">ViewManager</a></code>, <code><a href="https://developer.android.com/reference/android/view/ViewParent.html?is-external=true" title="class or interface in android.view" class="externalLink">ViewParent</a></code></dd>
+<dd><code><a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.Callback.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable.Callback</a></code>, <code><a href="https://developer.android.com/reference/android/view/accessibility/AccessibilityEventSource.html?is-external=true" title="class or interface in android.view.accessibility" class="externalLink">AccessibilityEventSource</a></code>, <code><a href="https://developer.android.com/reference/android/view/KeyEvent.Callback.html?is-external=true" title="class or interface in android.view" class="externalLink">KeyEvent.Callback</a></code>, <code><a href="https://developer.android.com/reference/android/view/ViewManager.html?is-external=true" title="class or interface in android.view" class="externalLink">ViewManager</a></code>, <code><a href="https://developer.android.com/reference/android/view/ViewParent.html?is-external=true" title="class or interface in android.view" class="externalLink">ViewParent</a></code>, <code><a href="../widget/base/BaseWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">BaseWidget</a></code>, <code><a href="../widget/base/DynamicWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicWidget</a></code></dd>
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
@@ -160,7 +160,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dl>
 <hr>
 <pre>public class <span class="typeNameLabel">DynamicInfoView</span>
-extends <a href="DynamicView.html" title="class in com.pranavpandey.android.dynamic.support.view">DynamicView</a></pre>
+extends <a href="DynamicView.html" title="class in com.pranavpandey.android.dynamic.support.view">DynamicView</a>
+implements <a href="../widget/base/DynamicWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicWidget</a></pre>
 <div class="block">A <a href="DynamicView.html" title="class in com.pranavpandey.android.dynamic.support.view"><code>DynamicView</code></a> with an icon, title and subtitle, description and links functionality
  that can be used to show various information according to the requirement.
  <p>Links can be clickable or pass <code>null</code> url to just show or completely hide them.</div>
@@ -272,272 +273,370 @@ extends <a href="DynamicView.html" title="class in com.pranavpandey.android.dyna
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBackgroundAware()">getBackgroundAware</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns the background aware functionality used by this widget.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getColor()">getColor</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns the value of color applied to this widget.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getColor(boolean)">getColor</a></span>&#8203;(boolean&nbsp;resolve)</code></th>
+<td class="colLast">
+<div class="block">Returns the value of color applied to this widget.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getColorType()">getColorType</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns the color type applied to this widget.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getContrastWithColor()">getContrastWithColor</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns the value of contrast with color applied to this widget.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getContrastWithColorType()">getContrastWithColorType</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns the contrast with color type applied to this widget.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>java.lang.CharSequence</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDescription()">getDescription</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the description used by this view.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/android/widget/TextView.html?is-external=true" title="class or interface in android.widget" class="externalLink">TextView</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDescriptionView()">getDescriptionView</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the text view to show the description used by this view.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIcon()">getIcon</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the icon used by this view.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIconBig()">getIconBig</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Ge the big fallback icon used by this view.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/android/widget/ImageView.html?is-external=true" title="class or interface in android.widget" class="externalLink">ImageView</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIconBigView()">getIconBigView</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the image view to show big fallback icon used by this view.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/android/widget/ImageView.html?is-external=true" title="class or interface in android.widget" class="externalLink">ImageView</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIconFooterView()">getIconFooterView</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the image view to show the footer icon used by this view.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/android/widget/ImageView.html?is-external=true" title="class or interface in android.widget" class="externalLink">ImageView</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIconView()">getIconView</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the image view to show the icon used by this view.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>protected int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLayoutRes()">getLayoutRes</a></span>()</code></th>
 <td class="colLast">
 <div class="block">This method will be called to get the layout resource for this view.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>java.lang.CharSequence[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLinks()">getLinks</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the title for the links used by this view.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>java.lang.Integer[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLinksColors()">getLinksColors</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the icon tint color for the links used by this view.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLinksColorsId()">getLinksColorsId</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the icon tint colors array resource for the links used by this view.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLinksDrawables()">getLinksDrawables</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the icon for the links used by this view.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLinksIconsId()">getLinksIconsId</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the icons array resource for the links used by this view.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>java.lang.CharSequence[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLinksSubtitles()">getLinksSubtitles</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the subtitle for the links used by this view.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>java.lang.CharSequence[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLinksUrls()">getLinksUrls</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the url for the links used by this view.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>androidx.recyclerview.widget.RecyclerView</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLinksView()">getLinksView</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the recycler view to show the links associated with this view.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>java.lang.CharSequence</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStatus()">getStatus</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the status used by this view.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/android/widget/TextView.html?is-external=true" title="class or interface in android.widget" class="externalLink">TextView</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStatusView()">getStatusView</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the text view to show the status used by this view.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code>java.lang.CharSequence</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSubtitle()">getSubtitle</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the subtitle used by this view.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/android/widget/TextView.html?is-external=true" title="class or interface in android.widget" class="externalLink">TextView</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSubtitleView()">getSubtitleView</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the text view to show the subtitle used by this view.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code>java.lang.CharSequence</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTitle()">getTitle</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the title used by this view.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/android/widget/TextView.html?is-external=true" title="class or interface in android.widget" class="externalLink">TextView</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTitleView()">getTitleView</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the text view to show the title used by this view.</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i28" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVisibilityIconView()">getVisibilityIconView</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the visibility of the icon view.</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i29" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#initialize()">initialize</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Initialize this widget by setting color type.</div>
+</td>
+</tr>
+<tr id="i30" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isBackgroundAware()">isBackgroundAware</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Checks whether the background aware functionality is enabled.</div>
+</td>
+</tr>
+<tr id="i31" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onInflate()">onInflate</a></span>()</code></th>
 <td class="colLast">
 <div class="block">This method will be called after loading the attributed.</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i32" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onLoadAttributes(android.util.AttributeSet)">onLoadAttributes</a></span>&#8203;(<a href="https://developer.android.com/reference/android/util/AttributeSet.html?is-external=true" title="class or interface in android.util" class="externalLink">AttributeSet</a>&nbsp;attrs)</code></th>
 <td class="colLast">
 <div class="block">Load values from the supplied attribute set.</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i33" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onUpdate()">onUpdate</a></span>()</code></th>
 <td class="colLast">
 <div class="block">This method will be called whenever there is a change in the view attributes or parameters.</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i34" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setBackgroundAware(int)">setBackgroundAware</a></span>&#8203;(int&nbsp;backgroundAware)</code></th>
+<td class="colLast">
+<div class="block">Set the value to make this widget background aware or not.</div>
+</td>
+</tr>
+<tr id="i35" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setColor()">setColor</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Set color of this widget according to the supplied values.</div>
+</td>
+</tr>
+<tr id="i36" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setColor(int)">setColor</a></span>&#8203;(int&nbsp;color)</code></th>
+<td class="colLast">
+<div class="block">Set the value of color for this widget.</div>
+</td>
+</tr>
+<tr id="i37" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setColorType(int)">setColorType</a></span>&#8203;(int&nbsp;colorType)</code></th>
+<td class="colLast">
+<div class="block">Set the color type to this widget.</div>
+</td>
+</tr>
+<tr id="i38" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setContrastWithColor(int)">setContrastWithColor</a></span>&#8203;(int&nbsp;contrastWithColor)</code></th>
+<td class="colLast">
+<div class="block">Set the value of contrast with color for this widget.</div>
+</td>
+</tr>
+<tr id="i39" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setContrastWithColorType(int)">setContrastWithColorType</a></span>&#8203;(int&nbsp;contrastWithColorType)</code></th>
+<td class="colLast">
+<div class="block">Set the contrast with color type to this widget.</div>
+</td>
+</tr>
+<tr id="i40" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDescription(java.lang.CharSequence)">setDescription</a></span>&#8203;(java.lang.CharSequence&nbsp;description)</code></th>
 <td class="colLast">
 <div class="block">Set the description for this view.</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i41" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setIcon(android.graphics.drawable.Drawable)">setIcon</a></span>&#8203;(<a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>&nbsp;icon)</code></th>
 <td class="colLast">
 <div class="block">Set the icon for this view.</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i42" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setIconBig(android.graphics.drawable.Drawable)">setIconBig</a></span>&#8203;(<a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>&nbsp;iconBig)</code></th>
 <td class="colLast">
 <div class="block">Set the big fallback icon for this view.</div>
 </td>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i43" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinks(java.lang.CharSequence%5B%5D)">setLinks</a></span>&#8203;(java.lang.CharSequence[]&nbsp;links)</code></th>
 <td class="colLast">
 <div class="block">Set the title for the links used by this view.</div>
 </td>
 </tr>
-<tr id="i30" class="altColor">
+<tr id="i44" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinksColors(java.lang.Integer%5B%5D)">setLinksColors</a></span>&#8203;(java.lang.Integer[]&nbsp;linksColors)</code></th>
 <td class="colLast">
 <div class="block">Set the icon tint color for the links used by this view.</div>
 </td>
 </tr>
-<tr id="i31" class="rowColor">
+<tr id="i45" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinksColorsId(int)">setLinksColorsId</a></span>&#8203;(int&nbsp;linksColorsResId)</code></th>
 <td class="colLast">
 <div class="block">Set the icon tint colors array resource for the links used by this view.</div>
 </td>
 </tr>
-<tr id="i32" class="altColor">
+<tr id="i46" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinksDrawables(android.graphics.drawable.Drawable%5B%5D)">setLinksDrawables</a></span>&#8203;(<a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>[]&nbsp;linksDrawables)</code></th>
 <td class="colLast">
 <div class="block">Set the icon for the links used by this view.</div>
 </td>
 </tr>
-<tr id="i33" class="rowColor">
+<tr id="i47" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinksIconsId(int)">setLinksIconsId</a></span>&#8203;(int&nbsp;linksIconsResId)</code></th>
 <td class="colLast">
 <div class="block">Set the icons array resource for the links used by this view.</div>
 </td>
 </tr>
-<tr id="i34" class="altColor">
+<tr id="i48" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinksSubtitles(java.lang.CharSequence%5B%5D)">setLinksSubtitles</a></span>&#8203;(java.lang.CharSequence[]&nbsp;linksSubtitles)</code></th>
 <td class="colLast">
 <div class="block">Set the subtitle for the links used by this view.</div>
 </td>
 </tr>
-<tr id="i35" class="rowColor">
+<tr id="i49" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinksUrls(java.lang.CharSequence%5B%5D)">setLinksUrls</a></span>&#8203;(java.lang.CharSequence[]&nbsp;linksUrls)</code></th>
 <td class="colLast">
 <div class="block">Set the url for the links used by this view.</div>
 </td>
 </tr>
-<tr id="i36" class="altColor">
+<tr id="i50" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setStatus(java.lang.CharSequence)">setStatus</a></span>&#8203;(java.lang.CharSequence&nbsp;status)</code></th>
 <td class="colLast">
 <div class="block">Set the status for this view.</div>
 </td>
 </tr>
-<tr id="i37" class="rowColor">
+<tr id="i51" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSubtitle(java.lang.CharSequence)">setSubtitle</a></span>&#8203;(java.lang.CharSequence&nbsp;subtitle)</code></th>
 <td class="colLast">
 <div class="block">Set the subtitle for this view.</div>
 </td>
 </tr>
-<tr id="i38" class="altColor">
+<tr id="i52" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTitle(java.lang.CharSequence)">setTitle</a></span>&#8203;(java.lang.CharSequence&nbsp;title)</code></th>
 <td class="colLast">
@@ -579,6 +678,20 @@ extends <a href="DynamicView.html" title="class in com.pranavpandey.android.dyna
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
 <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.com.pranavpandey.android.dynamic.support.widget.base.BaseWidget">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;com.pranavpandey.android.dynamic.support.widget.base.<a href="../widget/base/BaseWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">BaseWidget</a></h3>
+<code><a href="../widget/base/BaseWidget.html#loadFromAttributes(android.util.AttributeSet)">loadFromAttributes</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;com.pranavpandey.android.dynamic.support.widget.base.<a href="../widget/base/DynamicWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicWidget</a></h3>
+<code><a href="../widget/base/DynamicWidget.html#setEnabled(boolean)">setEnabled</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.android.view.ViewParent">
@@ -699,6 +812,258 @@ protected&nbsp;int&nbsp;getLayoutRes()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="DynamicView.html#onInflate()">onInflate</a></code>&nbsp;in class&nbsp;<code><a href="DynamicView.html" title="class in com.pranavpandey.android.dynamic.support.view">DynamicView</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="initialize()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>initialize</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;initialize()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../widget/base/BaseWidget.html#initialize()">BaseWidget</a></code></span></div>
+<div class="block">Initialize this widget by setting color type. If it is background aware then, background
+ color will also taken into account while setting the color filter.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../widget/base/BaseWidget.html#initialize()">initialize</a></code>&nbsp;in interface&nbsp;<code><a href="../widget/base/BaseWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">BaseWidget</a></code></dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>Theme.ColorType</code></dd>
+</dl>
+</li>
+</ul>
+<a id="getColorType()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getColorType</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getColorType()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../widget/base/DynamicWidget.html#getColorType()">DynamicWidget</a></code></span></div>
+<div class="block">Returns the color type applied to this widget.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../widget/base/DynamicWidget.html#getColorType()">getColorType</a></code>&nbsp;in interface&nbsp;<code><a href="../widget/base/DynamicWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicWidget</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The color type applied to this widget.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>Theme.ColorType</code></dd>
+</dl>
+</li>
+</ul>
+<a id="setColorType(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setColorType</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setColorType&#8203;(int&nbsp;colorType)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../widget/base/DynamicWidget.html#setColorType(int)">DynamicWidget</a></code></span></div>
+<div class="block">Set the color type to this widget.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../widget/base/DynamicWidget.html#setColorType(int)">setColorType</a></code>&nbsp;in interface&nbsp;<code><a href="../widget/base/DynamicWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicWidget</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>colorType</code> - The color type for this widget.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>Theme.ColorType</code></dd>
+</dl>
+</li>
+</ul>
+<a id="getContrastWithColorType()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getContrastWithColorType</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getContrastWithColorType()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../widget/base/DynamicWidget.html#getContrastWithColorType()">DynamicWidget</a></code></span></div>
+<div class="block">Returns the contrast with color type applied to this widget.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../widget/base/DynamicWidget.html#getContrastWithColorType()">getContrastWithColorType</a></code>&nbsp;in interface&nbsp;<code><a href="../widget/base/DynamicWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicWidget</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The contrast with color type applied to this widget.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>Theme.ColorType</code></dd>
+</dl>
+</li>
+</ul>
+<a id="setContrastWithColorType(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setContrastWithColorType</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setContrastWithColorType&#8203;(int&nbsp;contrastWithColorType)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../widget/base/DynamicWidget.html#setContrastWithColorType(int)">DynamicWidget</a></code></span></div>
+<div class="block">Set the contrast with color type to this widget.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../widget/base/DynamicWidget.html#setContrastWithColorType(int)">setContrastWithColorType</a></code>&nbsp;in interface&nbsp;<code><a href="../widget/base/DynamicWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicWidget</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>contrastWithColorType</code> - The contrast with color type for this widget.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>Theme.ColorType</code></dd>
+</dl>
+</li>
+</ul>
+<a id="getColor(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getColor</h4>
+<pre class="methodSignature">@ColorInt
+public&nbsp;int&nbsp;getColor&#8203;(boolean&nbsp;resolve)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../widget/base/DynamicWidget.html#getColor(boolean)">DynamicWidget</a></code></span></div>
+<div class="block">Returns the value of color applied to this widget.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../widget/base/DynamicWidget.html#getColor(boolean)">getColor</a></code>&nbsp;in interface&nbsp;<code><a href="../widget/base/DynamicWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicWidget</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>resolve</code> - <code>true</code> to resolve the applied color.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The value of color applied to this widget.</dd>
+</dl>
+</li>
+</ul>
+<a id="getColor()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getColor</h4>
+<pre class="methodSignature">@ColorInt
+public&nbsp;int&nbsp;getColor()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../widget/base/DynamicWidget.html#getColor()">DynamicWidget</a></code></span></div>
+<div class="block">Returns the value of color applied to this widget.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../widget/base/DynamicWidget.html#getColor()">getColor</a></code>&nbsp;in interface&nbsp;<code><a href="../widget/base/DynamicWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicWidget</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The value of color applied to this widget.</dd>
+</dl>
+</li>
+</ul>
+<a id="setColor(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setColor</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setColor&#8203;(@ColorInt
+                     int&nbsp;color)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../widget/base/DynamicWidget.html#setColor(int)">DynamicWidget</a></code></span></div>
+<div class="block">Set the value of color for this widget.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../widget/base/DynamicWidget.html#setColor(int)">setColor</a></code>&nbsp;in interface&nbsp;<code><a href="../widget/base/DynamicWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicWidget</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>color</code> - Color for this widget.</dd>
+</dl>
+</li>
+</ul>
+<a id="getContrastWithColor()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getContrastWithColor</h4>
+<pre class="methodSignature">@ColorInt
+public&nbsp;int&nbsp;getContrastWithColor()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../widget/base/DynamicWidget.html#getContrastWithColor()">DynamicWidget</a></code></span></div>
+<div class="block">Returns the value of contrast with color applied to this widget.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../widget/base/DynamicWidget.html#getContrastWithColor()">getContrastWithColor</a></code>&nbsp;in interface&nbsp;<code><a href="../widget/base/DynamicWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicWidget</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The value of contrast with color applied to this widget.</dd>
+</dl>
+</li>
+</ul>
+<a id="setContrastWithColor(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setContrastWithColor</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setContrastWithColor&#8203;(@ColorInt
+                                 int&nbsp;contrastWithColor)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../widget/base/DynamicWidget.html#setContrastWithColor(int)">DynamicWidget</a></code></span></div>
+<div class="block">Set the value of contrast with color for this widget.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../widget/base/DynamicWidget.html#setContrastWithColor(int)">setContrastWithColor</a></code>&nbsp;in interface&nbsp;<code><a href="../widget/base/DynamicWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicWidget</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>contrastWithColor</code> - Contrast with color for this widget.</dd>
+</dl>
+</li>
+</ul>
+<a id="getBackgroundAware()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getBackgroundAware</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getBackgroundAware()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../widget/base/DynamicWidget.html#getBackgroundAware()">DynamicWidget</a></code></span></div>
+<div class="block">Returns the background aware functionality used by this widget.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../widget/base/DynamicWidget.html#getBackgroundAware()">getBackgroundAware</a></code>&nbsp;in interface&nbsp;<code><a href="../widget/base/DynamicWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicWidget</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The background aware functionality used by this widget.</dd>
+</dl>
+</li>
+</ul>
+<a id="isBackgroundAware()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isBackgroundAware</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isBackgroundAware()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../widget/base/DynamicWidget.html#isBackgroundAware()">DynamicWidget</a></code></span></div>
+<div class="block">Checks whether the background aware functionality is enabled.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../widget/base/DynamicWidget.html#isBackgroundAware()">isBackgroundAware</a></code>&nbsp;in interface&nbsp;<code><a href="../widget/base/DynamicWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicWidget</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if this widget changes color according to the background.</dd>
+</dl>
+</li>
+</ul>
+<a id="setBackgroundAware(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setBackgroundAware</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setBackgroundAware&#8203;(int&nbsp;backgroundAware)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../widget/base/DynamicWidget.html#setBackgroundAware(int)">DynamicWidget</a></code></span></div>
+<div class="block">Set the value to make this widget background aware or not.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../widget/base/DynamicWidget.html#setBackgroundAware(int)">setBackgroundAware</a></code>&nbsp;in interface&nbsp;<code><a href="../widget/base/DynamicWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicWidget</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>backgroundAware</code> - The background aware functionality to be set.</dd>
+</dl>
+</li>
+</ul>
+<a id="setColor()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setColor</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setColor()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../widget/base/DynamicWidget.html#setColor()">DynamicWidget</a></code></span></div>
+<div class="block">Set color of this widget according to the supplied values.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../widget/base/DynamicWidget.html#setColor()">setColor</a></code>&nbsp;in interface&nbsp;<code><a href="../widget/base/DynamicWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicWidget</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -1293,7 +1658,7 @@ public&nbsp;androidx.recyclerview.widget.RecyclerView&nbsp;getLinksView()</pre>
 <li><a href="../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>4.0.0</h5></div>
+<div class="aboutLanguage"><h5>4.1.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">

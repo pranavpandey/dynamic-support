@@ -29,6 +29,8 @@ com.pranavpandey.android.dynamic.support.recyclerview.adapter.factory
 com.pranavpandey.android.dynamic.support.recyclerview.binder
 com.pranavpandey.android.dynamic.support.recyclerview.binder.factory
 com.pranavpandey.android.dynamic.support.setting
+com.pranavpandey.android.dynamic.support.setting.base
+com.pranavpandey.android.dynamic.support.setting.theme
 com.pranavpandey.android.dynamic.support.splash.activity
 com.pranavpandey.android.dynamic.support.splash.fragment
 com.pranavpandey.android.dynamic.support.theme
