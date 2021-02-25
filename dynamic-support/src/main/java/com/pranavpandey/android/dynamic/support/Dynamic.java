@@ -535,6 +535,7 @@ public class Dynamic {
     /**
      * Set the elevation on same background option for the supplied view.
      *
+     * @param view The view to be used.
      * @param elevationOnSameBackground {@code true} to enable elevation on the same background.
      */
     public static void setElevationOnSameBackground(@Nullable View view,
@@ -1137,6 +1138,8 @@ public class Dynamic {
      * @param defaultColor The default color for the background.
      * @param <T> The type of the tutorial.
      * @param <V> The type of the tutorial fragment.
+     *
+     * @return The background color for the supplied tutorial.
      */
     public static @ColorInt <T, V> int getBackgroundColor(@Nullable DynamicTutorial<T, V> tutorial,
             @ColorInt int defaultColor) {
