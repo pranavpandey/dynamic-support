@@ -65,6 +65,7 @@
     <string name="ads_loading">Загрузка&#8230;</string>
     <string name="ads_play">Играть в</string>
     <string name="ads_pause">Пауза</string>
+    <string name="ads_resume">Продолжить</string>
     <string name="ads_exit">Выход</string>
     <string name="ads_finish">Завершить</string>
     <string name="ads_recents">Недавние</string>

@@ -65,6 +65,7 @@
     <string name="ads_loading">Cargando&#8230;</string>
     <string name="ads_play">Tocar</string>
     <string name="ads_pause">Pausa</string>
+    <string name="ads_resume">Reanudar</string>
     <string name="ads_exit">Salida</string>
     <string name="ads_finish">Terminar</string>
     <string name="ads_recents">Recientes</string>

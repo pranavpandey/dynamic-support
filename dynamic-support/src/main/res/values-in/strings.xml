@@ -65,6 +65,7 @@
     <string name="ads_loading">Memuat&#8230;</string>
     <string name="ads_play">Bermain</string>
     <string name="ads_pause">Berhenti sebentar</string>
+    <string name="ads_resume">Lanjut</string>
     <string name="ads_exit">Keluar</string>
     <string name="ads_finish">Selesai</string>
     <string name="ads_recents">Baru-baru ini</string>
