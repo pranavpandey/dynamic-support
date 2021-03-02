@@ -29,7 +29,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ViewSwitcher;
@@ -174,7 +173,7 @@ public abstract class DynamicActivity extends DynamicStateActivity
      * @see #switchFragment(FragmentTransaction, Fragment, boolean, String, boolean)
      * @see #switchNewFragment(Fragment, boolean)
      */
-    protected FrameLayout mFrameContent;
+    protected ViewGroup mFrameContent;
 
     /**
      * Frame layout for the bottom sheet.
@@ -217,15 +216,15 @@ public abstract class DynamicActivity extends DynamicStateActivity
         mAppBarLayout = findViewById(R.id.ads_app_bar_layout);
         mBottomBarShadow = findViewById(R.id.ads_bottom_bar_shadow);
 
-        mFrameContent.setBackgroundColor(DynamicTheme.getInstance().get().getBackgroundColor());
+        Dynamic.setBackgroundColor(mFrameContent,
+                DynamicTheme.getInstance().get().getBackgroundColor());
 
         if (mAppBarLayout != null) {
             mAppBarLayout.addOnOffsetChangedListener(mAppBarStateListener);
         }
 
         if (getContentRes() != ADS_DEFAULT_LAYOUT_RES) {
-            mFrameContent.addView(getLayoutInflater().inflate(getContentRes(),
-                    new LinearLayout(this), false));
+            DynamicViewUtils.addView(mFrameContent, getContentRes(), true);
         }
 
         if (setCollapsingToolbarLayout()) {

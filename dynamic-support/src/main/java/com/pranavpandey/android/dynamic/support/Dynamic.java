@@ -251,6 +251,8 @@ public class Dynamic {
     public static <T> void setBackgroundColor(@Nullable T dynamic, @ColorInt int color) {
         if (dynamic instanceof DynamicBackgroundWidget) {
             ((DynamicBackgroundWidget) dynamic).setBackgroundColor(color);
+        } else if (dynamic instanceof View) {
+            ((View) dynamic).setBackgroundColor(color);
         }
     }
 

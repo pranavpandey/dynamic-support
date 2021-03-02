@@ -97,14 +97,19 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
 
         mDrawer = findViewById(R.id.ads_drawer_layout);
         mNavigationView = findViewById(R.id.ads_navigation_view);
-        mNavHeaderIcon = mNavigationView.getHeaderView(0)
-                .findViewById(R.id.ads_header_drawer_icon);
-        mNavHeaderTitle = mNavigationView.getHeaderView(0)
-                .findViewById(R.id.ads_header_drawer_title);
-        mNavHeaderSubtitle = mNavigationView.getHeaderView(0)
-                .findViewById(R.id.ads_header_drawer_subtitle);
 
-        mDrawer.setDrawerElevation(DynamicUnitUtils.convertDpToPixels(8));
+        if (mNavigationView != null) {
+            mNavHeaderIcon = mNavigationView.getHeaderView(0)
+                    .findViewById(R.id.ads_header_drawer_icon);
+            mNavHeaderTitle = mNavigationView.getHeaderView(0)
+                    .findViewById(R.id.ads_header_drawer_title);
+            mNavHeaderSubtitle = mNavigationView.getHeaderView(0)
+                    .findViewById(R.id.ads_header_drawer_subtitle);
+        }
+
+        if (mDrawer != null) {
+            mDrawer.setDrawerElevation(DynamicUnitUtils.convertDpToPixels(8));
+        }
 
         setupDrawer();
         setStatusBarColor(getStatusBarColor());
