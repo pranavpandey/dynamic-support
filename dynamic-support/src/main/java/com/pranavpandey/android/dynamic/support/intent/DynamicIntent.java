@@ -141,6 +141,14 @@ public class DynamicIntent {
             Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS;
 
     /**
+     * Settings action constant for request to ignore battery optimizations.
+     *
+     * @see Settings#ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+     */
+    public static final String ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS =
+            Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS;
+
+    /**
      * Intent extra constant for the fragment argument key.
      */
     public static final String EXTRA_FRAGMENT_ARG_KEY = ":settings:fragment_args_key";

@@ -548,7 +548,7 @@ public class DynamicPermissions {
 
                 if (!ignoring && settings) {
                     DynamicPermissionUtils.openPermissionSettings(getContext(),
-                            Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                            DynamicIntent.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
                 }
             } catch (Exception ignored) {
                 return false;

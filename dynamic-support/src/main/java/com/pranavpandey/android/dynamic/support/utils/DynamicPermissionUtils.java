@@ -62,6 +62,9 @@ public class DynamicPermissionUtils {
             case Manifest.permission.BIND_ACCESSIBILITY_SERVICE:
                 return DynamicIntent.ACTION_ACCESSIBILITY_SETTINGS;
             case Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS:
+            case DynamicIntent.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS:
+                return DynamicIntent.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS;
+            case DynamicIntent.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS:
                 return DynamicIntent.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS;
             default:
                 return Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
@@ -86,9 +89,9 @@ public class DynamicPermissionUtils {
         intent.setAction(action);
 
         if (DynamicIntent.ACTION_OVERLAY_SETTINGS.equals(action)
-                || DynamicIntent.ACTION_WRITE_SYSTEM_SETTINGS.equals(action)) {
-            Uri uri = Uri.fromParts(SCHEME, context.getPackageName(), null);
-            intent.setData(uri);
+                || DynamicIntent.ACTION_WRITE_SYSTEM_SETTINGS.equals(action)
+                || DynamicIntent.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS.equals(action)) {
+            intent.setData(Uri.fromParts(SCHEME, context.getPackageName(), null));
         }
 
         if (clazz != null) {
