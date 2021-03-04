@@ -352,6 +352,6 @@ public class DynamicPermission implements Parcelable {
      * @return {@code true} if this permission must be granted after reinstalling the app.
      */
     public boolean isReinstall() {
-        return !isAskAgain() && !DynamicSdkUtils.is23();
+        return isDangerous() && !isAskAgain() && !DynamicSdkUtils.is23();
     }
 }
