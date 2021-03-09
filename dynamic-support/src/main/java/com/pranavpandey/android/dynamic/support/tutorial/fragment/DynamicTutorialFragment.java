@@ -34,8 +34,8 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.tutorial.DynamicSimpleTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
+import com.pranavpandey.android.dynamic.support.tutorial.Tutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutorialActivity;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
@@ -45,7 +45,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
  * will be used with the {@link DynamicTutorialActivity}.
  */
 public class DynamicTutorialFragment extends DynamicFragment implements
-        DynamicTutorial<DynamicSimpleTutorial, DynamicTutorialFragment> {
+        Tutorial<DynamicTutorial, DynamicTutorialFragment> {
 
     /**
      * Fragment argument key to set the dynamic tutorial.
@@ -58,9 +58,9 @@ public class DynamicTutorialFragment extends DynamicFragment implements
     public static final String ADS_STATE_TUTORIAL = "ads_state_tutorial";
 
     /**
-     * Dynamic simple tutorial used by this fragment.
+     * Dynamic tutorial used by this fragment.
      */
-    private DynamicSimpleTutorial mDynamicSimpleTutorial;
+    private DynamicTutorial mDynamicTutorial;
 
     /**
      * Root view of this fragment.
@@ -100,15 +100,15 @@ public class DynamicTutorialFragment extends DynamicFragment implements
     /**
      * Function to initialize this fragment.
      *
-     * @param dynamicSimpleTutorial The dynamic simple tutorial for this fragment.
+     * @param dynamicTutorial The dynamic tutorial for this fragment.
      *
      * @return An instance of {@link DynamicTutorialFragment}.
      */
     public static @NonNull DynamicTutorialFragment newInstance(
-            @NonNull DynamicSimpleTutorial dynamicSimpleTutorial) {
+            @NonNull DynamicTutorial dynamicTutorial) {
         DynamicTutorialFragment fragment = new DynamicTutorialFragment();
         Bundle args = new Bundle();
-        args.putParcelable(ADS_ARGS_TUTORIAL, dynamicSimpleTutorial);
+        args.putParcelable(ADS_ARGS_TUTORIAL, dynamicTutorial);
         fragment.setArguments(args);
 
         return fragment;
@@ -120,12 +120,12 @@ public class DynamicTutorialFragment extends DynamicFragment implements
 
         if (getArguments() != null) {
             if (requireArguments().containsKey(ADS_ARGS_TUTORIAL)) {
-                mDynamicSimpleTutorial = requireArguments().getParcelable(ADS_ARGS_TUTORIAL);
+                mDynamicTutorial = requireArguments().getParcelable(ADS_ARGS_TUTORIAL);
             }
         }
 
         if (savedInstanceState != null) {
-            mDynamicSimpleTutorial = savedInstanceState.getParcelable(ADS_STATE_TUTORIAL);
+            mDynamicTutorial = savedInstanceState.getParcelable(ADS_STATE_TUTORIAL);
         }
     }
 
@@ -147,11 +147,11 @@ public class DynamicTutorialFragment extends DynamicFragment implements
         mSubtitleView = view.findViewById(R.id.ads_tutorial_simple_subtitle);
         mDescriptionView = view.findViewById(R.id.ads_tutorial_simple_description);
 
-        if (mDynamicSimpleTutorial.isSharedElement()) {
-            ViewCompat.setTransitionName(mRootView, DynamicTutorial.ADS_NAME_TUTORIAL);
-            ViewCompat.setTransitionName(mImageView, DynamicTutorial.ADS_NAME_TUTORIAL_IMAGE);
-            ViewCompat.setTransitionName(mTitleView, DynamicTutorial.ADS_NAME_TUTORIAL_TITLE);
-            ViewCompat.setTransitionName(mSubtitleView, DynamicTutorial.ADS_NAME_TUTORIAL_SUBTITLE);
+        if (mDynamicTutorial.isSharedElement()) {
+            ViewCompat.setTransitionName(mRootView, Tutorial.ADS_NAME_TUTORIAL);
+            ViewCompat.setTransitionName(mImageView, Tutorial.ADS_NAME_TUTORIAL_IMAGE);
+            ViewCompat.setTransitionName(mTitleView, Tutorial.ADS_NAME_TUTORIAL_TITLE);
+            ViewCompat.setTransitionName(mSubtitleView, Tutorial.ADS_NAME_TUTORIAL_SUBTITLE);
         } else {
             ViewCompat.setTransitionName(mRootView, null);
             ViewCompat.setTransitionName(mImageView, null);
@@ -159,15 +159,15 @@ public class DynamicTutorialFragment extends DynamicFragment implements
             ViewCompat.setTransitionName(mSubtitleView, null);
         }
 
-        if (mDynamicSimpleTutorial != null) {
+        if (mDynamicTutorial != null) {
             if (mImageView != null) {
                 Dynamic.set(mImageView, DynamicResourceUtils.getDrawable(
-                        requireContext(), mDynamicSimpleTutorial.getImageRes()));
+                        requireContext(), mDynamicTutorial.getImageRes()));
             }
 
-            Dynamic.set(mTitleView, mDynamicSimpleTutorial.getTitle());
-            Dynamic.set(mSubtitleView, mDynamicSimpleTutorial.getSubtitle());
-            Dynamic.set(mDescriptionView, mDynamicSimpleTutorial.getDescription());
+            Dynamic.set(mTitleView, mDynamicTutorial.getTitle());
+            Dynamic.set(mSubtitleView, mDynamicTutorial.getSubtitle());
+            Dynamic.set(mDescriptionView, mDynamicTutorial.getDescription());
         }
 
         tintWidgets(getBackgroundColor());
@@ -187,7 +187,7 @@ public class DynamicTutorialFragment extends DynamicFragment implements
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putParcelable(ADS_STATE_TUTORIAL, mDynamicSimpleTutorial);
+        outState.putParcelable(ADS_STATE_TUTORIAL, mDynamicTutorial);
     }
 
     /**
@@ -198,7 +198,7 @@ public class DynamicTutorialFragment extends DynamicFragment implements
     private void tintWidgets(@ColorInt int color) {
         final @ColorInt int tintColor = DynamicColorUtils.getTintColor(color);
 
-        if (mDynamicSimpleTutorial != null && mDynamicSimpleTutorial.isTintImage()) {
+        if (mDynamicTutorial != null && mDynamicTutorial.isTintImage()) {
             Dynamic.tint(mImageView, tintColor, color);
         }
 
@@ -225,8 +225,8 @@ public class DynamicTutorialFragment extends DynamicFragment implements
     public void onPageScrollStateChanged(int state) { }
 
     @Override
-    public @NonNull DynamicSimpleTutorial getTutorial() {
-        return mDynamicSimpleTutorial;
+    public @NonNull DynamicTutorial getTutorial() {
+        return mDynamicTutorial;
     }
 
     @Override
@@ -236,12 +236,12 @@ public class DynamicTutorialFragment extends DynamicFragment implements
 
     @Override
     public int getTutorialId() {
-        return mDynamicSimpleTutorial.getId();
+        return mDynamicTutorial.getId();
     }
 
     @Override
     public int getBackgroundColor() {
-        return mDynamicSimpleTutorial != null ? mDynamicSimpleTutorial.getBackgroundColor()
+        return mDynamicTutorial != null ? mDynamicTutorial.getBackgroundColor()
                 : DynamicTheme.getInstance().get().getPrimaryColor();
     }
 

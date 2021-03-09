@@ -21,8 +21,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
-import com.pranavpandey.android.dynamic.support.tutorial.DynamicSimpleTutorial
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial
+import com.pranavpandey.android.dynamic.support.tutorial.Tutorial
 import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutorialActivity
 import com.pranavpandey.android.dynamic.support.tutorial.fragment.DynamicTutorialFragment
 import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils
@@ -32,7 +32,7 @@ import java.util.*
  * Implementing a into screen by using [DynamicTutorialActivity].
  */
 class TutorialActivity :
-        DynamicTutorialActivity<DynamicTutorialFragment, DynamicSimpleTutorial>() {
+        DynamicTutorialActivity<DynamicTutorialFragment, DynamicTutorial>() {
 
     companion object {
 
@@ -100,12 +100,12 @@ class TutorialActivity :
     }
 
     override fun getTutorials():
-            ArrayList<DynamicTutorial<DynamicSimpleTutorial, DynamicTutorialFragment>> {
+            ArrayList<Tutorial<DynamicTutorial, DynamicTutorialFragment>> {
         // Initialize an array list for tutorials.
-        val tutorials = ArrayList<DynamicTutorial<DynamicSimpleTutorial, DynamicTutorialFragment>>()
+        val tutorials = ArrayList<Tutorial<DynamicTutorial, DynamicTutorialFragment>>()
 
         // TODO: Add a simple dynamic tutorial.
-        tutorials.add(DynamicSimpleTutorial(TUTORIAL_WELCOME,
+        tutorials.add(DynamicTutorial(TUTORIAL_WELCOME,
                 DynamicTheme.getInstance().get().primaryColor,
                 getString(R.string.tutorial_welcome),
                 getString(R.string.tutorial_welcome_subtitle),
@@ -113,7 +113,7 @@ class TutorialActivity :
                 R.drawable.ic_sample_splash, true))
 
         // TODO: Add another simple dynamic tutorial.
-        tutorials.add(DynamicSimpleTutorial(TUTORIAL_FINISH,
+        tutorials.add(DynamicTutorial(TUTORIAL_FINISH,
                 DynamicTheme.getInstance().get().accentColor,
                 getString(R.string.tutorial_finish),
                 getString(R.string.tutorial_finish_subtitle),

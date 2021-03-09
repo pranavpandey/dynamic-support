@@ -51,7 +51,7 @@ import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.inflater.DynamicLayoutInflater;
-import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
+import com.pranavpandey.android.dynamic.support.tutorial.Tutorial;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicMaterialCardView;
@@ -1134,7 +1134,7 @@ public class Dynamic {
     }
 
     /**
-     * Call {@link DynamicTutorial#getBackgroundColor()} method for the {@link DynamicTutorial}.
+     * Call {@link Tutorial#getBackgroundColor()} method for the {@link Tutorial}.
      *
      * @param tutorial The dynamic tutorial to be used.
      * @param defaultColor The default color for the background.
@@ -1143,7 +1143,7 @@ public class Dynamic {
      *
      * @return The background color for the supplied tutorial.
      */
-    public static @ColorInt <T, V> int getBackgroundColor(@Nullable DynamicTutorial<T, V> tutorial,
+    public static @ColorInt <T, V> int getBackgroundColor(@Nullable Tutorial<T, V> tutorial,
             @ColorInt int defaultColor) {
         if (tutorial != null) {
             return tutorial.getBackgroundColor();
@@ -1153,15 +1153,15 @@ public class Dynamic {
     }
 
     /**
-     * Call {@link DynamicTutorial#onBackgroundColorChanged(int)} method for the
-     * {@link DynamicTutorial}.
+     * Call {@link Tutorial#onBackgroundColorChanged(int)} method for the
+     * {@link Tutorial}.
      *
      * @param tutorial The dynamic tutorial to be used.
      * @param color The color of the background.
      * @param <T> The type of the tutorial.
      * @param <V> The type of the tutorial fragment.
      */
-    public static <T, V> void onBackgroundColorChanged(@Nullable DynamicTutorial<T, V> tutorial,
+    public static <T, V> void onBackgroundColorChanged(@Nullable Tutorial<T, V> tutorial,
             @ColorInt int color) {
         if (tutorial != null) {
             tutorial.onBackgroundColorChanged(color);
@@ -1169,8 +1169,8 @@ public class Dynamic {
     }
 
     /**
-     * Call {@link DynamicTutorial#onSetPadding(int, int, int, int)} method for the
-     * {@link DynamicTutorial}.
+     * Call {@link Tutorial#onSetPadding(int, int, int, int)} method for the
+     * {@link Tutorial}.
      *
      * @param tutorial The dynamic tutorial to be used.
      * @param left The left padding supplied by the container.
@@ -1180,7 +1180,7 @@ public class Dynamic {
      * @param <T> The type of the tutorial.
      * @param <V> The type of the tutorial fragment.
      */
-    public static <T, V> void onSetPadding(@Nullable DynamicTutorial<T, V> tutorial,
+    public static <T, V> void onSetPadding(@Nullable Tutorial<T, V> tutorial,
             int left, int top, int right, int bottom) {
         if (tutorial != null) {
             tutorial.onSetPadding(left, top, right, bottom);

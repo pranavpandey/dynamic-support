@@ -22,7 +22,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pranavpandey.android.dynamic.support.adapter.DynamicFragmentStateAdapter;
-import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
+import com.pranavpandey.android.dynamic.support.tutorial.Tutorial;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,15 +31,15 @@ import java.util.List;
 /**
  * View pager adapter to display the supplied dynamic tutorials.
  *
- * @see DynamicTutorial
+ * @see Tutorial
  */
-public class DynamicTutorialsAdapter<V extends Fragment, T extends DynamicTutorial<T, V>>
+public class DynamicTutorialsAdapter<V extends Fragment, T extends Tutorial<T, V>>
         extends DynamicFragmentStateAdapter {
 
     /**
      * Fragments list for this adapter.
      */
-    private final List<DynamicTutorial<T, V>> mData;
+    private final List<Tutorial<T, V>> mData;
 
     /**
      * Constructor to initialize an object of this class.
@@ -79,7 +79,7 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends DynamicTutori
      *
      * @param tutorials The collection of tutorials to be set.
      */
-    public void setTutorials(@NonNull Collection<? extends DynamicTutorial<T, V>> tutorials) {
+    public void setTutorials(@NonNull Collection<? extends Tutorial<T, V>> tutorials) {
         mData.clear();
         mData.addAll(tutorials);
 
@@ -94,7 +94,7 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends DynamicTutori
      *
      * @return {@code true} if the tutorial added successfully.
      */
-    public boolean addTutorial(int location, @NonNull DynamicTutorial<T, V> tutorial) {
+    public boolean addTutorial(int location, @NonNull Tutorial<T, V> tutorial) {
         if (mData.contains(tutorial)) {
             return false;
         }
@@ -115,7 +115,7 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends DynamicTutori
      *
      * @return {@code true} if the tutorial added successfully.
      */
-    public boolean addTutorial(@NonNull DynamicTutorial<T, V> tutorial) {
+    public boolean addTutorial(@NonNull Tutorial<T, V> tutorial) {
         return addTutorial(mData.size(), tutorial);
     }
 
@@ -128,11 +128,11 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends DynamicTutori
      * @return {@code true} if the tutorials added successfully.
      */
     public boolean addTutorials(int location, 
-            @NonNull Collection<? extends DynamicTutorial<T, V>> tutorials) {
+            @NonNull Collection<? extends Tutorial<T, V>> tutorials) {
         boolean modified = false;
         int i = 0;
 
-        for (DynamicTutorial<T, V> dynamicTutorial : tutorials) {
+        for (Tutorial<T, V> dynamicTutorial : tutorials) {
             if (!mData.contains(dynamicTutorial)) {
                 mData.add(location + i, dynamicTutorial);
                 i++;
@@ -154,7 +154,7 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends DynamicTutori
      *
      * @return {@code true} if the tutorials added successfully.
      */
-    public boolean addTutorials(@NonNull Collection<? extends DynamicTutorial<T, V>> tutorials) {
+    public boolean addTutorials(@NonNull Collection<? extends Tutorial<T, V>> tutorials) {
         return addTutorials(mData.size(), tutorials);
     }
 
@@ -179,7 +179,7 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends DynamicTutori
      *
      * @return The tutorials shown by this adapter.
      */
-    public @NonNull List<DynamicTutorial<T, V>> getTutorials() {
+    public @NonNull List<Tutorial<T, V>> getTutorials() {
         return mData;
     }
 
@@ -190,7 +190,7 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends DynamicTutori
      *
      * @return The tutorial at the supplied position.
      */
-    public DynamicTutorial<T, V> getTutorial(int position) {
+    public Tutorial<T, V> getTutorial(int position) {
         return mData.get(position);
     }
 
@@ -201,7 +201,7 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends DynamicTutori
      *
      * @return {@code true} if the tutorial removed successfully.
      */
-    public boolean removeTutorial(@NonNull DynamicTutorial<T, V> tutorial) {
+    public boolean removeTutorial(@NonNull Tutorial<T, V> tutorial) {
         int locationToRemove = mData.indexOf(tutorial);
 
         if (locationToRemove >= 0) {
@@ -222,10 +222,10 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends DynamicTutori
      * @return {@code true} if the tutorials removed successfully.
      */
     public boolean removeTutorials(
-            @NonNull Collection<? extends DynamicTutorial<T, V>> tutorials) {
+            @NonNull Collection<? extends Tutorial<T, V>> tutorials) {
         boolean modified = false;
 
-        for (DynamicTutorial<T, V> dynamicTutorial : tutorials) {
+        for (Tutorial<T, V> dynamicTutorial : tutorials) {
             int locationToRemove = mData.indexOf(dynamicTutorial);
             if (locationToRemove >= 0) {
                 mData.remove(locationToRemove);
@@ -244,7 +244,7 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends DynamicTutori
      * @return {@code true} if the tutorials retained successfully.
      */
     public boolean retainTutorials(
-            @NonNull Collection<? extends DynamicTutorial<T, V>> tutorials) {
+            @NonNull Collection<? extends Tutorial<T, V>> tutorials) {
         boolean modified = false;
 
         for (int i = mData.size() - 1; i >= 0; i--) {

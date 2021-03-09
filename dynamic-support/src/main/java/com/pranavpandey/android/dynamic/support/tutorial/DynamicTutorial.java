@@ -16,98 +16,428 @@
 
 package com.pranavpandey.android.dynamic.support.tutorial;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.viewpager.widget.ViewPager;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutorialActivity;
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.pranavpandey.android.dynamic.support.tutorial.fragment.DynamicTutorialFragment;
 
 /**
- * Interface for the dynamic tutorial having useful methods which will be called by the
- * {@link DynamicTutorialActivity} to perform color transitions.
- *
- * <p>Any child view or fragment must implement this interface to support any color
- * transitions.
+ * A {@link Tutorial} item to display a title, subtitle and description along with an image
+ * which can be tinted according to the background color.
  */
-public interface DynamicTutorial<T, V> extends ViewPager.OnPageChangeListener {
+public class DynamicTutorial implements Parcelable,
+        Tutorial.SharedElement<DynamicTutorial, DynamicTutorialFragment> {
 
     /**
-     * A {@link DynamicTutorial} to support shared element(s) transition.
+     * Id to uniquely identify this tutorial.
      */
-    interface SharedElement<T, V> extends DynamicTutorial<T, V> {
+    private @ColorInt int id;
 
-        /**
-         * Returns whether this tutorial supports shared element(s) transition.
-         *
-         * @return {@code true} if this tutorial supports shared element(s) transition.
-         */
-        boolean isSharedElement();
+    /**
+     * Background color used by this tutorial.
+     */
+    private @ColorInt int backgroundColor;
+
+    /**
+     * Title used by this tutorial.
+     */
+    private String title;
+
+    /**
+     * Subtitle used by this tutorial.
+     */
+    private String subtitle;
+
+    /**
+     * Description used by this tutorial.
+     */
+    private String description;
+
+    /**
+     * Image resource used by this tutorial.
+     */
+    private @DrawableRes int imageRes;
+
+    /**
+     * {@code true} to tint the image according to the background color.
+     */
+    private boolean tintImage;
+
+    /**
+     * {@code true} to set the shared element name and make it available for the transition.
+     */
+    private boolean sharedElement;
+
+    /**
+     * Fragment to show this tutorial.
+     */
+    private DynamicTutorialFragment mFragment;
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param id The id to uniquely identify this tutorial.
+     * @param backgroundColor The background color for this tutorial.
+     * @param title The title for this tutorial.
+     * @param description The description for this tutorial.
+     * @param imageRes The image resource for this tutorial.
+     */
+    public DynamicTutorial(int id, @ColorInt int backgroundColor,
+            @Nullable String title, @Nullable String description, @DrawableRes int imageRes) {
+        this(id, backgroundColor, title, null, description, imageRes);
     }
 
     /**
-     *  Activity scene transition name for the tutorial.
-     */
-    String ADS_NAME_TUTORIAL = "ads_name:tutorial";
-
-    /**
-     *  Activity scene transition name for the tutorial image.
-     */
-    String ADS_NAME_TUTORIAL_IMAGE = ADS_NAME_TUTORIAL + ":image";
-
-    /**
-     *  Activity scene transition name for the tutorial title.
-     */
-    String ADS_NAME_TUTORIAL_TITLE = ADS_NAME_TUTORIAL + ":title";
-
-    /**
-     *  Activity scene transition name for the tutorial subtitle.
-     */
-    String ADS_NAME_TUTORIAL_SUBTITLE = ADS_NAME_TUTORIAL + ":subtitle";
-
-    /**
-     * Returns the tutorial object.
+     * Constructor to initialize an object of this class.
      *
-     * @return The tutorial object.
+     * @param id The id to uniquely identify this tutorial.
+     * @param backgroundColor The background color for this tutorial.
+     * @param title The title for this tutorial.
+     * @param subtitle The subtitle for this tutorial.
+     * @param description The description for this tutorial.
+     * @param imageRes The image resource for this tutorial.
      */
-    @NonNull T getTutorial();
+    public DynamicTutorial(int id, @ColorInt int backgroundColor,
+            @Nullable String title, @Nullable String subtitle,
+            @Nullable String description, @DrawableRes int imageRes) {
+        this(id, backgroundColor, title, subtitle, description, imageRes, false);
+    }
 
     /**
-     * Returns the tutorial view or fragment.
+     * Constructor to initialize an object of this class.
      *
-     * @return The tutorial view or fragment.
+     * @param id The id to uniquely identify this tutorial.
+     * @param backgroundColor The background color for this tutorial.
+     * @param title The title for this tutorial.
+     * @param subtitle The subtitle for this tutorial.
+     * @param description The description for this tutorial.
+     * @param imageRes The image resource for this tutorial.
+     * @param tintImage {@code true} to tint the image according to the background color.
      */
-    @NonNull V createTutorial();
+    public DynamicTutorial(int id, @ColorInt int backgroundColor,
+            @Nullable String title, @Nullable String subtitle, @Nullable String description,
+            @DrawableRes int imageRes, boolean tintImage) {
+        this(id, backgroundColor, title, subtitle, description, imageRes, tintImage, false);
+    }
 
     /**
-     * Returns the id for this tutorial.
+     * Constructor to initialize an object of this class.
      *
-     * @return The id of this tutorial.
+     * @param id The id to uniquely identify this tutorial.
+     * @param backgroundColor The background color for this tutorial.
+     * @param title The title for this tutorial.
+     * @param subtitle The subtitle for this tutorial.
+     * @param description The description for this tutorial.
+     * @param imageRes The image resource for this tutorial.
+     * @param tintImage {@code true} to tint the image according to the background color.
+     * @param sharedElement {@code true} to set the shared element.
      */
-    int getTutorialId();
+    public DynamicTutorial(int id, @ColorInt int backgroundColor,
+            @Nullable String title, @Nullable String subtitle, @Nullable String description,
+            @DrawableRes int imageRes, boolean tintImage, boolean sharedElement) {
+        this.id = id;
+        this.backgroundColor = backgroundColor;
+        this.title = title;
+        this.subtitle = subtitle;
+        this.description = description;
+        this.imageRes = imageRes;
+        this.tintImage = tintImage;
+        this.sharedElement = sharedElement;
+    }
 
     /**
-     * Returns the background color for this tutorial.
+     * Parcelable creator to create from parcel.
+     */
+    public static final Parcelable.Creator<DynamicTutorial> CREATOR =
+            new Parcelable.Creator<DynamicTutorial>() {
+        @Override
+        public DynamicTutorial createFromParcel(Parcel in) {
+            return new DynamicTutorial(in);
+        }
+
+        @Override
+        public DynamicTutorial[] newArray(int size) {
+            return new DynamicTutorial[size];
+        }
+    };
+
+    /**
+     * Read {@link DynamicTutorial} object from the parcel.
+     *
+     * @param in The parcel to read the values.
+     */
+    public DynamicTutorial(Parcel in) {
+        this.id = in.readInt();
+        this.backgroundColor = in.readInt();
+        this.title = in.readString();
+        this.subtitle = in.readString();
+        this.description = in.readString();
+        this.imageRes = in.readInt();
+        this.tintImage = in.readByte() != 0;
+        this.sharedElement = in.readByte() != 0;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeInt(backgroundColor);
+        dest.writeString(title);
+        dest.writeString(subtitle);
+        dest.writeString(description);
+        dest.writeInt(imageRes);
+        dest.writeByte((byte) (tintImage ? 1 : 0));
+        dest.writeByte((byte) (sharedElement ? 1 : 0));
+    }
+
+    /**
+     * Returns the id to uniquely identify this tutorial.
+     *
+     * @return The id to uniquely identify this tutorial.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Set the id to uniquely identify this tutorial.
+     *
+     * @param id The id to be set.
+     *
+     * @return The {@link DynamicTutorial} object to allow for chaining of calls to
+     *         set methods.
+     */
+    public @NonNull DynamicTutorial setId(int id) {
+        this.id = id;
+
+        return this;
+    }
+
+    /**
+     * Get the background color used by this tutorial.
      *
      * @return The background color used by this tutorial.
      */
-    @ColorInt int getBackgroundColor();
+    @Override
+    public @ColorInt int getBackgroundColor() {
+        return backgroundColor;
+    }
 
     /**
-     * This method will be called when there is a change in the background color of the activity.
-     * <p>Implement this method to update any views during the transition.
+     * Set the background color used by this tutorial.
      *
-     * @param color The color of the background.
+     * @param backgroundColor The background color to be set.
+     *
+     * @return The {@link DynamicTutorial} object to allow for chaining of calls to
+     *         set methods.
      */
-    void onBackgroundColorChanged(@ColorInt int color);
+    public @NonNull DynamicTutorial setBackgroundColor(@ColorInt int backgroundColor) {
+        this.backgroundColor = backgroundColor;
+
+        onBackgroundColorChanged(backgroundColor);
+        return this;
+    }
 
     /**
-     * This method will be called on setting the padding of the tutorial.
-     * <p>Implement this method to update any views according to the container.
+     * Get the title used by this tutorial.
      *
-     * @param left The left padding supplied by the container.
-     * @param top The top padding supplied by the container.
-     * @param right The right padding supplied by the container.
-     * @param bottom The bottom padding supplied by the container.
+     * @return The title used by this tutorial.
      */
-    void onSetPadding(int left, int top, int right, int bottom);
+    public @Nullable String getTitle() {
+        return title;
+    }
+
+    /**
+     * Set the title used by this tutorial.
+     *
+     * @param title The subtitle to be set.
+     *
+     * @return The {@link DynamicTutorial} object to allow for chaining of calls to
+     *         set methods.
+     */
+    public @NonNull DynamicTutorial setTitle(@Nullable String title) {
+        this.title = title;
+
+        return this;
+    }
+
+    /**
+     * Get the subtitle used by this tutorial.
+     *
+     * @return The subtitle used by this tutorial.
+     */
+    public @Nullable String getSubtitle() {
+        return subtitle;
+    }
+
+    /**
+     * Set the subtitle used by this tutorial.
+     *
+     * @param subtitle The subtitle to be set.
+     *
+     * @return The {@link DynamicTutorial} object to allow for chaining of calls to
+     *         set methods.
+     */
+    public @NonNull DynamicTutorial setSubtitle(@Nullable String subtitle) {
+        this.subtitle = subtitle;
+
+        return this;
+    }
+
+    /**
+     * Get the description used by this tutorial.
+     *
+     * @return The description used by this tutorial.
+     */
+    public @Nullable String getDescription() {
+        return description;
+    }
+
+    /**
+     * Set the description used by this tutorial.
+     *
+     * @param description The description to be set.
+     *
+     * @return The {@link DynamicTutorial} object to allow for chaining of calls to
+     *         set methods.
+     */
+    public @NonNull DynamicTutorial setDescription(@Nullable String description) {
+        this.description = description;
+
+        return this;
+    }
+
+    /**
+     * Get the image resource used by this tutorial.
+     *
+     * @return The image resource used by this tutorial.
+     */
+    public @DrawableRes int getImageRes() {
+        return imageRes;
+    }
+
+    /**
+     * Set the image resource used by this tutorial.
+     *
+     * @param imageRes The image resource to be set.
+     *
+     * @return The {@link DynamicTutorial} object to allow for chaining of calls to
+     *         set methods.
+     */
+    public @NonNull DynamicTutorial setImageRes(@DrawableRes int imageRes) {
+        this.imageRes = imageRes;
+
+        return this;
+    }
+
+    /**
+     * Returns whether to tint the image according to the background color.
+     *
+     * @return {@code true} to tint the image according to the background color.
+     */
+    public boolean isTintImage() {
+        return tintImage;
+    }
+
+    /**
+     * Set the image to be tinted or not.
+     *
+     * @param tintImage {@code true} to tint the image.
+     *
+     * @return The {@link DynamicTutorial} object to allow for chaining of calls to
+     *         set methods.
+     */
+    public @NonNull DynamicTutorial setTintImage(boolean tintImage) {
+        this.tintImage = tintImage;
+
+        return this;
+    }
+
+    @Override
+    public boolean isSharedElement() {
+        return sharedElement;
+    }
+
+    /**
+     * Set whether to set the shared element.
+     *
+     * @param sharedElement {@code true} to set the shared element.
+     *
+     * @return The {@link DynamicTutorial} object to allow for chaining of calls to
+     *         set methods.
+     */
+    public @NonNull DynamicTutorial setSharedElement(boolean sharedElement) {
+        this.sharedElement = sharedElement;
+
+        return this;
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        if (mFragment != null) {
+            mFragment.onPageScrolled(position, positionOffset, positionOffsetPixels);
+        }
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        if (mFragment != null) {
+            mFragment.onPageSelected(position);
+        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        if (mFragment != null) {
+            mFragment.onPageScrollStateChanged(state);
+        }
+    }
+
+    @Override
+    public @NonNull DynamicTutorial getTutorial() {
+        return this;
+    }
+
+    @Override
+    public @NonNull DynamicTutorialFragment createTutorial() {
+        setTutorialFragment(DynamicTutorialFragment.newInstance(this));
+
+        return mFragment;
+    }
+
+    public @Nullable DynamicTutorialFragment getTutorialFragment() {
+        return mFragment;
+    }
+
+    public void setTutorialFragment(@Nullable DynamicTutorialFragment fragment) {
+        this.mFragment = fragment;
+    }
+
+    @Override
+    public int getTutorialId() {
+        return getId();
+    }
+
+    @Override
+    public void onBackgroundColorChanged(int color) {
+        if (mFragment != null) {
+            mFragment.onBackgroundColorChanged(color);
+        }
+    }
+
+    @Override
+    public void onSetPadding(int left, int top, int right, int bottom) {
+        if (mFragment != null) {
+            mFragment.onSetPadding(left, top, right, bottom);
+        }
+    }
 }
