@@ -23,11 +23,11 @@
     <style name="Base.DynamicApp" parent="Theme.MaterialComponents">
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowBackground">@color/ads_window_background</item>
-        <item name="android:colorBackground">@color/ads_window_background</item>
+        <item name="android:colorBackground">?android:attr/windowBackground</item>
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp</item>
         <item name="android:textAppearanceMedium">@style/TextAppearance.DynamicApp.Subtitle1</item>
         <item name="android:textAppearanceSmall">@style/TextAppearance.DynamicApp.Body1</item>
-        <item name="background">@color/ads_window_background</item>
+        <item name="background">?android:attr/windowBackground</item>
         <item name="toolbarStyle">@style/Widget.DynamicApp.Toolbar</item>
         <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
         <item name="textAppearanceLargePopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
@@ -62,8 +62,6 @@
 
     <style name="Base.DynamicApp.Dark">
         <item name="android:windowBackground">@color/ads_window_background_dark</item>
-        <item name="android:colorBackground">@color/ads_window_background_dark</item>
-        <item name="background">@color/ads_window_background_dark</item>
         <item name="ads_contrastWithDefault">@color/ads_contrast_with_dark</item>
         <item name="ads_cardBackgroundColor">@color/ads_card_background_dark</item>
     </style>
@@ -71,11 +69,11 @@
     <style name="Base.DynamicApp.Light" parent="Theme.MaterialComponents.Light">
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowBackground">@color/ads_window_background_light</item>
-        <item name="android:colorBackground">@color/ads_window_background_light</item>
+        <item name="android:colorBackground">?android:attr/windowBackground</item>
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp</item>
         <item name="android:textAppearanceMedium">@style/TextAppearance.DynamicApp.Subtitle1</item>
         <item name="android:textAppearanceSmall">@style/TextAppearance.DynamicApp.Body1</item>
-        <item name="background">@color/ads_window_background_light</item>
+        <item name="background">?android:attr/windowBackground</item>
         <item name="toolbarStyle">@style/Widget.DynamicApp.Toolbar</item>
         <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
         <item name="textAppearanceLargePopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
@@ -111,11 +109,11 @@
     <style name="Base.DynamicApp.DayNight" parent="Theme.MaterialComponents.DayNight">
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowBackground">@color/ads_window_background_day_night</item>
-        <item name="android:colorBackground">@color/ads_window_background_day_night</item>
+        <item name="android:colorBackground">?android:attr/windowBackground</item>
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp</item>
         <item name="android:textAppearanceMedium">@style/TextAppearance.DynamicApp.Subtitle1</item>
         <item name="android:textAppearanceSmall">@style/TextAppearance.DynamicApp.Body1</item>
-        <item name="background">@color/ads_window_background_day_night</item>
+        <item name="background">?android:attr/windowBackground</item>
         <item name="toolbarStyle">@style/Widget.DynamicApp.Toolbar</item>
         <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
         <item name="textAppearanceLargePopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
