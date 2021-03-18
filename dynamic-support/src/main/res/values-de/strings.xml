@@ -63,10 +63,10 @@
     <string name="ads_next">Weiter</string>
     <string name="ads_skip">Überspringen</string>
     <string name="ads_loading">Lade&#8230;</string>
-    <string name="ads_play">Play</string>
-    <string name="ads_pause">Pause</string>
-    <string name="ads_resume">Weitermachen</string>
-    <string name="ads_exit">Ausgang</string>
+    <string name="ads_play">Abspielen</string>
+    <string name="ads_pause">Pausieren</string>
+    <string name="ads_resume">Fortsetzen</string>
+    <string name="ads_exit">Verlassen</string>
     <string name="ads_finish">Fertig</string>
     <string name="ads_recents">Letzte</string>
     <string name="ads_wallpaper">Hintergrund</string>
