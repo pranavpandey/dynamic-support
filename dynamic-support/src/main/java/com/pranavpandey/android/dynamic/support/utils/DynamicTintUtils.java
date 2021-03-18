@@ -20,6 +20,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
@@ -160,7 +161,8 @@ public class DynamicTintUtils {
                         DynamicResourceUtils.getStateListDrawable(Color.TRANSPARENT,
                                 background, pressedColor, checkable));
             } else {
-                // TODO:
+                DynamicDrawableUtils.setBackground(view, DynamicResourceUtils.colorizeDrawable(
+                        view.getBackground(), pressedColor, PorterDuff.Mode.SRC_ATOP));
             }
         }
 
