@@ -121,6 +121,7 @@
         <item>@string/ads_locale_ru</item>
         <item>@string/ads_locale_tr</item>
         <item>@string/ads_locale_zh_rCN</item>
+        <item>@string/ads_locale_zh_rTW</item>
         <item>@string/ads_translators_translate</item>
     </string-array>
 
@@ -135,6 +136,7 @@
         <item>Maxim Anisimov</item>
         <item>Fatih Fırıncı</item>
         <item>残念</item>
+        <item>會呼吸的風</item>
         <item>@string/ads_translators_translate_summary</item>
     </string-array>
 
@@ -148,6 +150,7 @@
         <item>@drawable/ads_ic_flag_pt</item>
         <item>@drawable/ads_ic_flag_ru</item>
         <item>@drawable/ads_ic_flag_tr</item>
+        <item>@drawable/ads_ic_flag_cn</item>
         <item>@drawable/ads_ic_flag_cn</item>
         <item>@drawable/ads_ic_translate</item>
     </string-array>
@@ -163,11 +166,13 @@
         <item>@null</item>
         <item>@null</item>
         <item>@null</item>
+        <item>@null</item>
         <item>https://github.com/pranavpandey/dynamic-support</item>
     </string-array>
 
     <!-- Supported locales tint colors. -->
     <integer-array name="info_translators_colors">
+        <item>0</item>
         <item>0</item>
         <item>0</item>
         <item>0</item>

@@ -161,7 +161,8 @@ checkout the `Rotation` and `Everyday` apps to experience the full potential of 
 - Russian (ru) - Maxim Anisimov
 - Spanish (es) - Dave
 - Turkish (tr) - Fatih Fırıncı
-- Chinese (Simplified) (zh-rCN) - John Canny
+- Chinese (Simplified) (zh-rCN) - 残念
+- Chinese (Traditional) (zh-rTW) - 會呼吸的風
 
 ---
 

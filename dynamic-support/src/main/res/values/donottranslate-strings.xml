@@ -54,6 +54,8 @@
     <string name="ads_locale_tr_value">tr</string>
     <string name="ads_locale_zh_rCN">中文 (简体)</string>
     <string name="ads_locale_zh_rCN_value">zh,CN</string>
+    <string name="ads_locale_zh_rTW">中文 (繁體)</string>
+    <string name="ads_locale_zh_rTW_value">zh,TW</string>
 
     <!-- FAB behavior -->
     <string name="ads_fab_behavior">com.pranavpandey.android.dynamic.support.behavior.DynamicFABScrollBehavior</string>
