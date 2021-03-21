@@ -106,6 +106,11 @@ public class Defaults {
     /**
      * Default alpha for the toast.
      */
+    public static final float ADS_ALPHA_DIVIDER = 0.5f;
+
+    /**
+     * Default alpha for the toast.
+     */
     public static final float ADS_ALPHA_TOAST = 0.94f;
 
     /**

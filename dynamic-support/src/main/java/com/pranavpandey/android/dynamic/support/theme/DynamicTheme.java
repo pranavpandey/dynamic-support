@@ -369,7 +369,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      * @param dynamicResolver The resolver for the dynamic theme.
      *                        <p>Pass {@code null} to use the default implementation.
      */
-    public static synchronized void initializeInstance(@Nullable DynamicListener listener,
+    public static synchronized void initializeInstance(@NonNull DynamicListener listener,
             @Nullable DynamicResolver dynamicResolver) {
         if (listener == null) {
             throw new NullPointerException("Context should not be null.");

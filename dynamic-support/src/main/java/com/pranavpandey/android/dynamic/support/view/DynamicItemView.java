@@ -328,11 +328,14 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
                 getContrastWithColorType(), getContrastWithColor());
         Dynamic.setContrastWithColorTypeOrColor(getSubtitleView(),
                 getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setContrastWithColorTypeOrColor(getDivider(),
+                getContrastWithColorType(), getContrastWithColor());
 
         Dynamic.setBackgroundAwareSafe(getIconView(), getBackgroundAware());
         Dynamic.setBackgroundAwareSafe(getIconFooterView(), getBackgroundAware());
         Dynamic.setBackgroundAwareSafe(getTitleView(), getBackgroundAware());
         Dynamic.setBackgroundAwareSafe(getSubtitleView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getDivider(), getBackgroundAware());
 
         if (getColorType() != Theme.ColorType.CUSTOM) {
             Dynamic.setColorType(getIconView(), getColorType());

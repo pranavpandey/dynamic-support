@@ -278,6 +278,7 @@ public class DynamicMenuPopup extends DynamicPopup {
         if (mTitle != null) {
             mHeaderView = new DynamicHeader(getAnchor().getContext());
             ((DynamicHeader) mHeaderView).setColorType(Theme.ColorType.PRIMARY);
+            ((DynamicHeader) mHeaderView).setContrastWithColorType(Theme.ColorType.SURFACE);
             ((DynamicHeader) mHeaderView).setTitle(mTitle);
             ((DynamicHeader) mHeaderView).setFillSpace(true);
         }

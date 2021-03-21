@@ -32,7 +32,8 @@
         android:layout_marginRight="@dimen/ads_page_horizontal_margin"
         android:layout_marginEnd="@dimen/ads_page_horizontal_margin"
         android:layout_gravity="center_vertical"
-        app:ads_colorType="tint_background" />
+        app:ads_colorType="tint_surface"
+        app:ads_contrastWithColorType="surface" />
 
     <LinearLayout
         style="@style/Widget.DynamicApp.Content.Row.Vertical.Weight">
@@ -41,13 +42,15 @@
             android:id="@+id/ads_array_item_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle1" />
+            android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle1"
+            app:ads_contrastWithColorType="surface" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
             android:id="@+id/ads_array_item_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.DynamicApp.Body1" />
+            android:textAppearance="@style/TextAppearance.DynamicApp.Body1"
+            app:ads_contrastWithColorType="surface" />
 
     </LinearLayout>
 
@@ -59,6 +62,7 @@
         android:layout_marginStart="@dimen/ads_page_horizontal_margin"
         android:layout_gravity="center_vertical"
         app:srcCompat="@drawable/ads_ic_check"
-        app:ads_colorType="accent" />
+        app:ads_colorType="accent"
+        app:ads_contrastWithColorType="surface" />
 
 </LinearLayout>

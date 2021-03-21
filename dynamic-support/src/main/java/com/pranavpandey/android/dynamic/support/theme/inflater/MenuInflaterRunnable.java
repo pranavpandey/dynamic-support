@@ -27,21 +27,21 @@ import android.view.ViewGroup;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
-import androidx.appcompat.view.menu.ListMenuItemView;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
 
+import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicPopupBackground;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
- * A {@link Runnable} to apply theme to the menu.
+ * A {@link Runnable} to apply theme to the {@link android.view.Menu}.
  */
 public class MenuInflaterRunnable implements Runnable {
 
@@ -74,20 +74,35 @@ public class MenuInflaterRunnable implements Runnable {
         try {
             cardView = new DynamicPopupBackground(mMenu.getContext(), mAttrs);
             backgroundColor = cardView.getColor();
-            tintColor = DynamicTheme.getInstance().get().getTintBackgroundColor();
+            tintColor = DynamicTheme.getInstance().get().getTintSurfaceColor();
         } catch (Exception e) {
             return;
         }
 
-        if (DynamicTheme.getInstance().get().isBackgroundAware()) {
-            tintColor = DynamicColorUtils.getContrastColor(tintColor, backgroundColor);
-        }
+        Dynamic.setColor(mMenu.findViewById(android.R.id.icon), tintColor);
+        Dynamic.setColor(mMenu.findViewById(androidx.appcompat.R.id.icon), tintColor);
+        Dynamic.setColor(mMenu.findViewById(androidx.appcompat.R.id.submenuarrow), tintColor);
+        Dynamic.setColor(mMenu.findViewById(androidx.appcompat.R.id.group_divider), tintColor);
+        Dynamic.setAlpha(mMenu.findViewById(androidx.appcompat.R.id.group_divider),
+                Defaults.ADS_ALPHA_DIVIDER);
 
-        if (mMenu instanceof ListMenuItemView
-                && ((ListMenuItemView) mMenu).getItemData() != null) {
-            DynamicDrawableUtils.colorizeDrawable(
-                    ((ListMenuItemView) mMenu).getItemData().getIcon(), tintColor);
-        }
+        Dynamic.setContrastWithColor(mMenu.findViewById(android.R.id.icon), backgroundColor);
+        Dynamic.setContrastWithColor(mMenu.findViewById(android.R.id.title), backgroundColor);
+        Dynamic.setContrastWithColor(mMenu.findViewById(android.R.id.checkbox), backgroundColor);
+        Dynamic.setContrastWithColor(mMenu.findViewById(
+                androidx.appcompat.R.id.icon), backgroundColor);
+        Dynamic.setContrastWithColor(mMenu.findViewById(
+                androidx.appcompat.R.id.title), backgroundColor);
+        Dynamic.setContrastWithColor(mMenu.findViewById(
+                androidx.appcompat.R.id.shortcut), backgroundColor);
+        Dynamic.setContrastWithColor(mMenu.findViewById(
+                androidx.appcompat.R.id.radio), backgroundColor);
+        Dynamic.setContrastWithColor(mMenu.findViewById(
+                androidx.appcompat.R.id.checkbox), backgroundColor);
+        Dynamic.setContrastWithColor(mMenu.findViewById(
+                androidx.appcompat.R.id.submenuarrow), backgroundColor);
+        Dynamic.setContrastWithColor(mMenu.findViewById(
+                androidx.appcompat.R.id.group_divider), backgroundColor);
 
         if (mMenu.getParent() != null) {
             ViewGroup menu = (ViewGroup) this.mMenu.getParent();

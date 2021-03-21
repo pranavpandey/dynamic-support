@@ -42,12 +42,12 @@ public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicMenu> {
     /**
      * Resource id for the image view.
      */
-    private @IdRes int mImageViewResourceId;
+    private final @IdRes int mImageViewResourceId;
 
     /**
      * Resource id for the text view.
      */
-    private @IdRes int mTextViewResourceId;
+    private final @IdRes int mTextViewResourceId;
 
     /**
      * Constructor to initialize an object of this class.

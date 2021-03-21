@@ -27,6 +27,15 @@
         <attr name="ads_windowInsets" />
     </declare-styleable>
 
+    <!-- Attributes for the DynamicBackgroundView. -->
+    <declare-styleable name="DynamicBackgroundView">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
     <!-- Attributes for the DynamicBottomAppBar. -->
     <declare-styleable name="DynamicBottomAppBar">
         <attr name="ads_colorType" />

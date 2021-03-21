@@ -110,6 +110,11 @@ public class DynamicTextView extends MaterialTextView implements
     private @Theme.BackgroundAware int mBackgroundAware;
 
     /**
+     * Original text appearance attribute resource.
+     */
+    private @AttrRes int mAppearanceAttrRes;
+
+    /**
      * Original text color attribute resource.
      */
     private @AttrRes int mColorAttrRes;
@@ -168,6 +173,8 @@ public class DynamicTextView extends MaterialTextView implements
                     Defaults.ADS_RTL_SUPPORT);
 
             if (attrs != null) {
+                mAppearanceAttrRes = DynamicResourceUtils.getResourceIdFromAttributes(
+                        getContext(), attrs, android.R.attr.textAppearance);
                 mColorAttrRes = DynamicResourceUtils.getResourceIdFromAttributes(
                         getContext(), attrs, android.R.attr.textColor);
             }
@@ -195,6 +202,14 @@ public class DynamicTextView extends MaterialTextView implements
                 mColorType = Theme.ColorType.TEXT_SECONDARY_INVERSE;
             } else {
                 mColorType = Theme.ColorType.TEXT_PRIMARY;
+            }
+
+            if (mAppearanceAttrRes == DynamicResourceUtils.getResourceId(
+                    getContext(), android.R.attr.textAppearancePopupMenuHeader)
+                    || mAppearanceAttrRes == DynamicResourceUtils.getResourceId(getContext(),
+                    androidx.appcompat.R.attr.textAppearancePopupMenuHeader)) {
+                mColorType = Theme.ColorType.PRIMARY;
+                mContrastWithColorType = Theme.ColorType.SURFACE;
             }
         }
 

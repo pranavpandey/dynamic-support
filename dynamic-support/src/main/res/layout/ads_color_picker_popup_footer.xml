@@ -35,14 +35,16 @@
                 android:id="@+id/ads_color_picker_popup_footer_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/ads_more" />
+                android:text="@string/ads_more"
+                app:ads_contrastWithColorType="surface" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                 style="@style/TextAppearance.DynamicApp.Body1"
                 android:id="@+id/ads_color_picker_popup_footer_subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone" />
+                android:visibility="gone"
+                app:ads_contrastWithColorType="surface" />
 
         </LinearLayout>
 
@@ -70,7 +72,8 @@
                 android:layout_marginStart="@dimen/ads_margin_small"
                 android:visibility="gone"
                 app:srcCompat="@drawable/ads_ic_picker"
-                app:ads_colorType="accent" />
+                app:ads_colorType="accent"
+                app:ads_contrastWithColorType="surface" />
 
             <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView
                 android:id="@+id/ads_color_picker_popup_footer_view"
@@ -87,12 +90,14 @@
                 android:orientation="horizontal"
                 android:visibility="gone">
 
-                <View
+                <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
                     android:layout_width="@dimen/ads_margin_extra_tiny"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/ads_margin_small"
                     android:layout_marginRight="@dimen/ads_margin_small"
-                    android:background="?android:attr/dividerVertical" />
+                    android:background="?android:attr/dividerVertical"
+                    app:ads_colorType="tint_surface"
+                    app:ads_contrastWithColorType="surface" />
 
                 <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView
                     android:id="@+id/ads_color_picker_popup_footer_view_recent"

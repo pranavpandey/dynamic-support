@@ -57,7 +57,7 @@
                     android:id="@+id/ads_color_picker_shades_root"
                     android:visibility="gone">
 
-                    <View
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/ads_margin_extra_tiny"
                         android:layout_marginTop="@dimen/ads_margin_small"
@@ -243,7 +243,7 @@
 
                 </com.pranavpandey.android.dynamic.support.widget.DynamicHorizontalScrollView>
 
-                <View
+                <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ads_margin_extra_tiny"
                     android:layout_marginTop="@dimen/ads_margin_small"

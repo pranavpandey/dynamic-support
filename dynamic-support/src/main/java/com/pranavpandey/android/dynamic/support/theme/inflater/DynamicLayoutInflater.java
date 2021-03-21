@@ -86,6 +86,7 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
 
         switch (name) {
             case "ListMenuItemView":
+            case "com.android.internal.view.menu.ListMenuItemView":
             case "android.support.v7.view.menu.ListMenuItemView":
             case "androidx.appcompat.view.menu.ListMenuItemView":
                 try {

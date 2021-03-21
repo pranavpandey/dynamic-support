@@ -28,7 +28,7 @@
         <LinearLayout
             style="@style/Widget.DynamicApp.Content.Row.Vertical.Weight">
 
-            <View
+            <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
                 android:id="@+id/ads_item_view_divider"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ads_margin_divider"

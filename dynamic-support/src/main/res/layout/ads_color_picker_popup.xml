@@ -17,6 +17,7 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/Widget.DynamicApp.Scroller.Vertical"
     android:id="@+id/ads_color_picker">
 
@@ -32,9 +33,10 @@
             android:paddingRight="@dimen/ads_margin_regular"
             android:columnWidth="@dimen/ads_picker_colors_size"
             android:horizontalSpacing="@dimen/ads_picker_colors_spacing"
-            android:verticalSpacing="@dimen/ads_picker_colors_spacing" />
+            android:verticalSpacing="@dimen/ads_picker_colors_spacing"
+            app:ads_contrastWithColorType="surface" />
 
-        <View
+        <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
             android:id="@+id/ads_color_picker_divider"
             android:layout_width="match_parent"
             android:layout_height="@dimen/ads_margin_extra_tiny"
@@ -43,7 +45,9 @@
             android:layout_marginLeft="@dimen/ads_margin_regular"
             android:layout_marginRight="@dimen/ads_margin_regular"
             android:background="?android:attr/dividerHorizontal"
-            android:visibility="gone" />
+            android:visibility="gone"
+            app:ads_colorType="tint_surface"
+            app:ads_contrastWithColorType="surface" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
             style="@style/Widget.DynamicApp.Scroller.Nested.GridView"
@@ -54,7 +58,8 @@
             android:paddingRight="@dimen/ads_margin_regular"
             android:columnWidth="@dimen/ads_picker_colors_size"
             android:horizontalSpacing="@dimen/ads_picker_colors_spacing"
-            android:verticalSpacing="@dimen/ads_picker_colors_spacing" />
+            android:verticalSpacing="@dimen/ads_picker_colors_spacing"
+            app:ads_contrastWithColorType="surface" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
             android:id="@+id/ads_color_picker_progress_bar"
@@ -62,7 +67,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:indeterminate="true"
-            android:visibility="gone" />
+            android:visibility="gone"
+            app:ads_contrastWithColorType="surface" />
 
     </LinearLayout>
 
