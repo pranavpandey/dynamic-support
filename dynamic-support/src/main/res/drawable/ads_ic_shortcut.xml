@@ -19,11 +19,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="24dp"
     android:height="24dp"
-    android:viewportHeight="24"
-    android:viewportWidth="24">
+    android:viewportWidth="24"
+    android:viewportHeight="24">
 
     <path
-        android:fillColor="@android:color/black"
+        android:fillColor="@android:color/white"
         android:pathData="M3,19.5c2.5,-3.5 6,-5.1 11,-5.1v4.1l7,-7l-7,-7v4C7,9.5 4,14.5 3,19.5z" />
 
 </vector>

@@ -17,10 +17,10 @@
 
 <vector
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:height="24dp"
     android:width="24dp"
-    android:viewportHeight="512"
-    android:viewportWidth="512">
+    android:height="24dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
 
     <path
         android:fillColor="#fff"
