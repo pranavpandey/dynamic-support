@@ -316,5 +316,9 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
             setSubtitleTextColor(mAppliedTextColor);
             DynamicMenuUtils.setViewItemsTint(this, mAppliedTextColor, mAppliedColor);
         }
+
+        if (getLogo() != null) {
+            getLogo().clearColorFilter();
+        }
     }
 }
