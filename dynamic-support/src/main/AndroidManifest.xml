@@ -27,10 +27,10 @@
         android:supportsRtl="true"
         tools:ignore="RtlEnabled">
 
-        <!-- Remove work manager initializer for on-demand initialization. -->
+        <!-- Remove startup initializer for on-demand initialization. -->
         <provider
-            android:name="androidx.work.impl.WorkManagerInitializer"
-            android:authorities="${applicationId}.workmanager-init"
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
             android:exported="false"
             tools:node="remove" />
 

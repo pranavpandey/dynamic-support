@@ -30,7 +30,7 @@ buildscript {
             'preferences' : '1.2.1',
             'swiperefresh': '1.1.0',
             'theme'       : '2.0.1',
-            'work'        : '2.5.0'
+            'work'        : '2.6.0-alpha01'
     ]
 
     repositories {
