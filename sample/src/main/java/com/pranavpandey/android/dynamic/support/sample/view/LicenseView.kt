@@ -77,41 +77,19 @@ class LicenseView : DynamicRecyclerViewFrame {
                 .setLinksColorsResId(R.array.ads_license_links_colors)
                 .setIconBig(DynamicResourceUtils.getDrawable(context, R.drawable.ads_ic_android)))
         licenses.add(DynamicInfo()
-                .setTitle(context.getString(R.string.ads_license_sas))
-                .setDescription(context.getString(R.string.ads_license_copy_me_16))
-                .setLinks(resources.getStringArray(R.array.ads_license_links_apache))
-                .setLinksSubtitles(resources.getStringArray(R.array.ads_license_links_subtitles))
-                .setLinksUrls(resources.getStringArray(R.array.ads_license_links_urls_sas))
-                .setLinksIconsResId(R.array.ads_license_links_icons)
-                .setLinksColorsResId(R.array.ads_license_links_colors)
-                .setIconBig(DynamicResourceUtils.getDrawable(
-                        context, R.drawable.ads_ic_extension)))
-        licenses.add(DynamicInfo()
-                .setTitle(context.getString(R.string.ads_license_ads_modules))
+                .setTitle(context.getString(R.string.ads_license_ads_dynamic))
                 .setDescription(context.getString(R.string.ads_license_copy_me_17))
-                .setLinks(resources.getStringArray(R.array.ads_license_links_ads_modules))
+                .setLinks(resources.getStringArray(R.array.ads_license_links_ads_dynamic))
                 .setLinksSubtitles(resources.getStringArray(
-                        R.array.ads_license_links_subtitles_ads_modules))
-                .setLinksUrls(resources.getStringArray(R.array.ads_license_links_urls_ads_modules))
-                .setLinksIconsResId(R.array.ads_license_links_icons_ads_modules)
-                .setLinksColorsResId(R.array.ads_license_links_colors_ads_modules)
-                .setIconBig(DynamicResourceUtils.getDrawable(
-                        context, R.drawable.ads_ic_extension)))
-        licenses.add(DynamicInfo()
-                .setTitle(context.getString(R.string.ads_license_ads))
-                .setDescription(context.getString(R.string.ads_license_copy_me_18))
-                .setLinks(resources.getStringArray(R.array.ads_license_links_ads))
-                .setLinksSubtitles(resources.getStringArray(
-                        R.array.ads_license_links_subtitles_ads))
-                .setLinksUrls(resources.getStringArray(R.array.ads_license_links_urls_ads))
-                .setLinksIconsResId(R.array.ads_license_links_icons_ads)
-                .setLinksColorsResId(R.array.ads_license_links_colors_ads)
+                        R.array.ads_license_links_subtitles_ads_dynamic))
+                .setLinksUrls(resources.getStringArray(R.array.ads_license_links_urls_ads_dynamic))
+                .setLinksIconsResId(R.array.ads_license_links_icons_website)
+                .setLinksColorsResId(R.array.ads_license_links_colors_website)
                 .setIconBig(DynamicResourceUtils.getDrawable(
                         context, R.drawable.ads_ic_extension)))
 
         // Set adapter for the recycler view.
         adapter = LicensesAdapter(licenses)
-
         return this
     }
 }

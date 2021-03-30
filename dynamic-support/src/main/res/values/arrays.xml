@@ -54,6 +54,12 @@
         <item>@string/ads_backup_option_delete</item>
     </string-array>
 
+    <!-- Reset options for the popup. -->
+    <string-array name="ads_popup_reset">
+        <item>@string/ads_cancel</item>>
+        <item>@string/ads_reset</item>
+    </string-array>
+
     <!-- String array with with titles for author links. -->
     <string-array name="ads_about_author_links">
         <item>@string/ads_info_website</item>
@@ -89,6 +95,12 @@
         <item>@drawable/ads_ic_license</item>
     </integer-array>
 
+    <!-- Drawables array with license and website icons. -->
+    <integer-array name="ads_license_links_icons_website">
+        <item>@drawable/ads_ic_license</item>
+        <item>@drawable/ads_ic_public</item>
+    </integer-array>
+
     <!-- Drawables array with license and github icons for dynamic support. -->
     <integer-array name="ads_license_links_icons_ads">
         <item>@drawable/ads_ic_license</item>
@@ -121,6 +133,12 @@
     <!-- Colors array with license color. -->
     <integer-array name="ads_license_links_colors_license">
         <item>@color/ads_link_license</item>
+    </integer-array>
+
+    <!-- Colors array with license and website colors. -->
+    <integer-array name="ads_license_links_colors_website">
+        <item>@color/ads_link_license</item>
+        <item>@color/ads_link_website</item>
     </integer-array>
 
     <!-- Colors array with license and github colors. -->
@@ -178,6 +196,12 @@
         <item>Dynamic Theme</item>
     </string-array>
 
+    <!-- String array with Apache 2.0 license and dynamic website. -->
+    <string-array name="ads_license_links_ads_dynamic">
+        <item>@string/ads_license_apache</item>
+        <item>@string/ads_info_website</item>
+    </string-array>
+
     <!-- String array with Apache 2.0 license and dynamic support modules titles. -->
     <string-array name="ads_license_links_ads_modules">
         <item>@string/ads_license_apache</item>
@@ -212,6 +236,12 @@
         <item>@string/ads_license_sources_desc</item>
     </string-array>
 
+    <!-- String array with license and dynamic website subtitles. -->
+    <string-array name="ads_license_links_subtitles_ads_dynamic">
+        <item>@string/ads_license_desc</item>
+        <item>@string/ads_info_website_desc</item>
+    </string-array>
+
     <!-- String array with license and sources subtitles. -->
     <string-array name="ads_license_links_subtitles_ads_modules">
         <item>@string/ads_license_desc</item>
@@ -244,6 +274,12 @@
         <item>http://www.apache.org/licenses/LICENSE-2.0</item>
         <item>https://github.com/pranavpandey/dynamic-support</item>
         <item>https://github.com/pranavpandey/dynamic-theme</item>
+    </string-array>
+
+    <!-- String array with Apache 2.0 license and dynamic website links. -->
+    <string-array name="ads_license_links_urls_ads_dynamic">
+        <item>http://www.apache.org/licenses/LICENSE-2.0</item>
+        <item>https://dynamic.pranavpandey.com</item>
     </string-array>
 
     <!-- String array with Apache 2.0 license and dynamic support modules links. -->

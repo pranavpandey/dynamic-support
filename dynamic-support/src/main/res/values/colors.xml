@@ -56,6 +56,7 @@
     <color name="ads_contrast_with_day_night">@color/ads_window_background_light</color>
 
     <!-- Icons -->
+    <color name="ads_link_website">#3F51B5</color>
     <color name="ads_link_privacy">#1976D2</color>
     <color name="ads_link_license">#43A047</color>
     <color name="ads_link_apps">#3DDC84</color>
