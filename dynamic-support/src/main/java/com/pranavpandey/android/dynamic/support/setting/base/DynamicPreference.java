@@ -252,6 +252,7 @@ public abstract class DynamicPreference extends DynamicView
     protected void onFinishInflate() {
         super.onFinishInflate();
 
+        initialize();
         update();
         setEnabled(mEnabled);
         updateDependency();
