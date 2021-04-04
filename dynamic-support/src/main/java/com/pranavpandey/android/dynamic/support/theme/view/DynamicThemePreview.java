@@ -17,7 +17,6 @@
 package com.pranavpandey.android.dynamic.support.theme.view;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -37,9 +36,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicShapeUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * A {@link ThemePreview} to show the {@link DynamicAppTheme} preview according to the
@@ -203,11 +200,8 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
         }
         drawable.setShapeAppearanceModel(shapeAppearanceModel);
 
-        if (DynamicSdkUtils.is16()
-                && DynamicColorUtils.removeAlpha(getDynamicTheme().getSurfaceColor())
-                == DynamicColorUtils.removeAlpha(getDynamicTheme().getBackgroundColor())
-                && Color.alpha(getDynamicTheme().getSurfaceColor())
-                < Defaults.ADS_ALPHA_SURFACE_STROKE) {
+        if (Dynamic.isStrokeRequired(getDynamicTheme().getBackgroundColor(),
+                getDynamicTheme().getSurfaceColor())) {
             drawable.setStroke(Defaults.ADS_STROKE_WIDTH_PIXEL,
                     getDynamicTheme().getTintBackgroundColor());
         }

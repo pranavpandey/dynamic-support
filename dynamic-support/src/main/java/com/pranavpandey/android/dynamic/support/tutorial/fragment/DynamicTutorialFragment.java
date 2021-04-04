@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.tutorial.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -202,10 +203,15 @@ public class DynamicTutorialFragment extends DynamicFragment implements
             Dynamic.tint(mImageView, tintColor, color);
         }
 
-        Dynamic.tint(mCardView, DynamicTheme.getInstance().get().isBackgroundSurface()
-                ? color : DynamicTheme.getInstance().generateSurfaceColor(color), color);
-        Dynamic.setElevationOnSameBackground(mCardView,
-                !DynamicTheme.getInstance().get().isBackgroundSurface());
+        Dynamic.setContrastWithColor(mCardView, color);
+        if (Dynamic.isStrokeRequired()) {
+            Dynamic.setColor(mCardView, DynamicColorUtils.setAlpha(color,
+                    Color.alpha(DynamicTheme.getInstance().get().getSurfaceColor())));
+            Dynamic.setStrokeColor(mCardView, DynamicColorUtils.getTintColor(color));
+        } else {
+            Dynamic.setColor(mCardView, DynamicTheme.getInstance().get().isBackgroundSurface()
+                    ? color : DynamicTheme.getInstance().generateSurfaceColor(color));
+        }
 
         Dynamic.tint(mTitleView, tintColor, color);
         Dynamic.tint(mSubtitleView, tintColor, color);

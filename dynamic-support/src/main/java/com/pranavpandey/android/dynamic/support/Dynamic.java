@@ -20,6 +20,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -42,6 +43,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.snackbar.Snackbar;
 import com.pranavpandey.android.dynamic.support.activity.DynamicActivity;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener;
@@ -64,6 +66,8 @@ import com.pranavpandey.android.dynamic.support.widget.base.DynamicSurfaceWidget
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTextWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
+import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * Helper class to manipulate {@link DynamicActivity} and inflated views at runtime according
@@ -253,6 +257,19 @@ public class Dynamic {
             ((DynamicBackgroundWidget) dynamic).setBackgroundColor(color);
         } else if (dynamic instanceof View) {
             ((View) dynamic).setBackgroundColor(color);
+        }
+    }
+
+    /**
+     * Sets the stroke color for the supplied dynamic object.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param color The stroke color to be set.
+     * @param <T> The type of the dynamic object.
+     */
+    public static <T> void setStrokeColor(@Nullable T dynamic, @ColorInt int color) {
+        if (dynamic instanceof MaterialCardView) {
+            ((MaterialCardView) dynamic).setStrokeColor(color);
         }
     }
 
@@ -1185,5 +1202,29 @@ public class Dynamic {
         if (tutorial != null) {
             tutorial.onSetPadding(left, top, right, bottom);
         }
+    }
+
+    /**
+     * Checks whether the stroke is required for the supplied background and surface colors.
+     *
+     * @return {@code true} if the stroke is required for the supplied background
+     *         and surface colors.
+     */
+    public static boolean isStrokeRequired(@ColorInt int background, @ColorInt int surface) {
+        return DynamicSdkUtils.is16()
+                && DynamicColorUtils.removeAlpha(background)
+                == DynamicColorUtils.removeAlpha(surface)
+                && Color.alpha(surface) < Defaults.ADS_ALPHA_SURFACE_STROKE;
+    }
+
+    /**
+     * Checks whether the stroke is required for the current background and surface colors.
+     *
+     * @return {@code true} if the stroke is required for the current background
+     *         and surface colors.
+     */
+    public static boolean isStrokeRequired() {
+        return isStrokeRequired(DynamicTheme.getInstance().get().getBackgroundColor(),
+                DynamicTheme.getInstance().get().getSurfaceColor());
     }
 }
