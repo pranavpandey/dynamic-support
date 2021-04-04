@@ -39,49 +39,28 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.Defaults;
-import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
- * A {@link DynamicItemView} to provide the empty view with an icon, title and subtitle.
+ * A {@link DynamicEmptyView} to provide the empty view with an icon, title and subtitle.
  */
-public class DynamicEmptyView extends DynamicItemView {
+public class DynamicEmptyViewBig extends DynamicEmptyView {
 
-    public DynamicEmptyView(@NonNull Context context) {
+    public DynamicEmptyViewBig(@NonNull Context context) {
         super(context);
     }
 
-    public DynamicEmptyView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicEmptyViewBig(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicEmptyView(@NonNull Context context,
+    public DynamicEmptyViewBig(@NonNull Context context,
             @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
     protected @LayoutRes int getLayoutRes() {
-        return R.layout.ads_empty_view;
-    }
-
-    @Override
-    protected void onInflate() {
-        super.onInflate();
-
-        setColorType(Defaults.ADS_COLOR_TYPE_ICON);
-    }
-
-    @Override
-    public void onUpdate() {
-        super.onUpdate();
-
-        if (getColorType() != Theme.ColorType.CUSTOM) {
-            Dynamic.setColorType(getIconView(), getColorType());
-        } else if (getColor() != Theme.Color.UNKNOWN) {
-            Dynamic.setColor(getIconView(), getColor());
-        }
+        return R.layout.ads_empty_view_big;
     }
 }

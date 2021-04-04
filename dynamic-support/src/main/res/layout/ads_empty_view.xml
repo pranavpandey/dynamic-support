@@ -20,39 +20,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/Widget.DynamicApp.Content.Card"
     android:id="@+id/ads_item_view"
-    android:orientation="vertical"
-    android:alpha="@integer/ads_alpha_empty_view">
+    android:orientation="horizontal">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-        style="@style/Widget.DynamicApp.Image.Empty"
+        style="@style/Widget.DynamicApp.Image.Preference"
         android:id="@+id/ads_item_view_icon"
-        android:layout_marginBottom="@dimen/ads_margin_extra_tiny"
-        android:layout_gravity="center_horizontal" />
+        android:visibility="visible"
+        app:srcCompat="@drawable/ads_ic_search" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+        style="@style/TextAppearance.DynamicApp.Headline5.Card"
+        android:id="@+id/ads_item_view_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            style="@style/TextAppearance.DynamicApp.Headline6"
-            android:id="@+id/ads_item_view_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:textAllCaps="true"
-            app:ads_rtlSupport="false" />
-
-        <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            style="@style/TextAppearance.DynamicApp.Subtitle1.Secondary"
-            android:id="@+id/ads_item_view_subtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            app:ads_rtlSupport="false" />
-
-    </LinearLayout>
+        android:layout_gravity="center_vertical" />
 
 </LinearLayout>

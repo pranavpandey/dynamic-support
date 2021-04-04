@@ -20,8 +20,6 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +31,7 @@ import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicDataB
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicQueryBinder;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.view.DynamicEmptyView;
 
 /**
  * A {@link DynamicDataBinder} to bind the search or any other query results that can be
@@ -57,19 +56,16 @@ public class EmptyBinder extends DynamicQueryBinder<String, String, EmptyBinder.
     @Override
     public @NonNull ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.ads_layout_empty, parent, false));
+                R.layout.ads_layout_empty_view, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        viewHolder.getTitle().setText(getData());
+        viewHolder.getEmptyView().setIcon(getDrawable());
+        viewHolder.getEmptyView().setTitle(getData());
 
-        if (getDrawable() != null) {
-            viewHolder.getIcon().setImageDrawable(getDrawable());
-        }
-
-        DynamicResourceUtils.highlightQueryTextColor(
-                getQuery(), viewHolder.getTitle(), getHighlightColor());
+        DynamicResourceUtils.highlightQueryTextColor(getQuery(),
+                viewHolder.getEmptyView().getTitleView(), getHighlightColor());
 
         if (isFullSpanForStaggeredGrid()) {
             DynamicLayoutUtils.setFullSpanForView(viewHolder.itemView);
@@ -112,14 +108,9 @@ public class EmptyBinder extends DynamicQueryBinder<String, String, EmptyBinder.
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         /**
-         * Image view to show the icon for this view holder.
+         * Empty view to show the icon and text for this view holder.
          */
-        private final ImageView icon;
-
-        /**
-         * Text view to show the title for this view holder.
-         */
-        private final TextView title;
+        private final DynamicEmptyView emptyView;
 
         /**
          * Constructor to initialize views from the supplied layout.
@@ -129,26 +120,16 @@ public class EmptyBinder extends DynamicQueryBinder<String, String, EmptyBinder.
         ViewHolder(@NonNull View view) {
             super(view);
 
-            this.icon = view.findViewById(R.id.ads_empty_icon);
-            this.title = view.findViewById(R.id.ads_empty_title);
+            this.emptyView = view.findViewById(R.id.ads_empty_view);
         }
 
         /**
-         * Get the icon view for this view holder.
+         * Get the empty view for this view holder.
          *
-         * @return The icon view for this view holder.
+         * @return The empty view for this view holder.
          */
-        @NonNull ImageView getIcon() {
-            return icon;
-        }
-
-        /**
-         * Get the title view for this view holder.
-         *
-         * @return The title view for this view holder.
-         */
-        @NonNull TextView getTitle() {
-            return title;
+        @NonNull DynamicEmptyView getEmptyView() {
+            return emptyView;
         }
     }
 }

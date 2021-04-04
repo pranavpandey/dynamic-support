@@ -15,11 +15,8 @@
 	limitations under the License.
 -->
 
-<com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+<com.pranavpandey.android.dynamic.support.view.DynamicEmptyView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.DynamicApp.Card.Clickable"
-    android:id="@+id/ads_empty_card">
-
-    <include layout="@layout/ads_layout_empty_view" />
-
-</com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+    android:id="@+id/ads_empty_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
