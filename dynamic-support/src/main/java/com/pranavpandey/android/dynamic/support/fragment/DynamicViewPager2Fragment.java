@@ -103,6 +103,11 @@ public abstract class DynamicViewPager2Fragment extends DynamicFragment
                     new TabLayoutMediator.TabConfigurationStrategy() {
                         @Override
                         public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                            // Fix illegal state exception on some devices.
+                            if (getContext() == null) {
+                                return;
+                            }
+
                             tab.setText(getTitle(position));
                         }
                     }).attach();
