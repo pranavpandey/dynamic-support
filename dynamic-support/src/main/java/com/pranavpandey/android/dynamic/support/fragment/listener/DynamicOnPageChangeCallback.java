@@ -47,7 +47,7 @@ public class DynamicOnPageChangeCallback extends ViewPager2.OnPageChangeCallback
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
         super.onPageScrolled(position, positionOffset, positionOffsetPixels);
 
-        if (getFragmentManager() == null || positionOffset == 0) {
+        if (positionOffset == 0 || getFragmentManager() == null) {
             return;
         }
 
@@ -63,7 +63,7 @@ public class DynamicOnPageChangeCallback extends ViewPager2.OnPageChangeCallback
     public void onPageSelected(int position) {
         super.onPageSelected(position);
 
-        if (getFragmentManager() == null) {
+        if (position < 0 || getFragmentManager() == null) {
             return;
         }
 
