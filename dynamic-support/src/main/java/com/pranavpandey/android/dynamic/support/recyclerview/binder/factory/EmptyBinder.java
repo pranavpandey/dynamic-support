@@ -117,7 +117,7 @@ public class EmptyBinder extends DynamicQueryBinder<String, String, EmptyBinder.
          *
          * @param view The view for this view holder.
          */
-        ViewHolder(@NonNull View view) {
+        public ViewHolder(@NonNull View view) {
             super(view);
 
             this.emptyView = view.findViewById(R.id.ads_empty_view);
@@ -128,7 +128,7 @@ public class EmptyBinder extends DynamicQueryBinder<String, String, EmptyBinder.
          *
          * @return The empty view for this view holder.
          */
-        @NonNull DynamicEmptyView getEmptyView() {
+        public @NonNull DynamicEmptyView getEmptyView() {
             return emptyView;
         }
     }

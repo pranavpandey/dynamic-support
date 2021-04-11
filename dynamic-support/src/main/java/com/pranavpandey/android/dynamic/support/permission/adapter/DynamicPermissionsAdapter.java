@@ -164,7 +164,7 @@ public class DynamicPermissionsAdapter extends
     /**
      * View holder to hold the permission root.
      */
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         /**
          * Root view used by this view holder.
@@ -181,7 +181,7 @@ public class DynamicPermissionsAdapter extends
          *
          * @param view The view for this view holder.
          */
-        ViewHolder(@NonNull View view) {
+        public ViewHolder(@NonNull View view) {
             super(view);
 
             root = view.findViewById(R.id.ads_info_card);
@@ -199,7 +199,7 @@ public class DynamicPermissionsAdapter extends
          *
          * @return The root view used by this view holder.
          */
-        @NonNull ViewGroup getRoot() {
+        public @NonNull ViewGroup getRoot() {
             return root;
         }
 
@@ -208,7 +208,7 @@ public class DynamicPermissionsAdapter extends
          *
          * @return The dynamic info view used by this view holder.
          */
-        @NonNull DynamicInfoView getInfoView() {
+        public @NonNull DynamicInfoView getInfoView() {
             return dynamicInfo;
         }
     }

@@ -98,7 +98,7 @@ public class InfoBinder<Query> extends DynamicQueryBinder<
          *
          * @return The dynamic info view for this view holder.
          */
-        public DynamicInfoView getDynamicInfo() {
+        public @NonNull DynamicInfoView getDynamicInfo() {
             return dynamicInfo;
         }
     }

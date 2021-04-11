@@ -80,14 +80,14 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
     /**
      * Type of the preset layout used by this adapter.
      */
-    private @Type int mType;
+    private final @Type int mType;
 
     /**
      * Layout resource containing the theme preview.
      *
      * @see ThemePreview
      */
-    private @LayoutRes int mLayoutRes;
+    private final @LayoutRes int mLayoutRes;
 
     /**
      * Listener to handle the preset events.
@@ -235,7 +235,7 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
     /**
      * View holder class to hold the preset view.
      */
-    static class ViewHolder<T extends DynamicAppTheme> extends RecyclerView.ViewHolder {
+    public static class ViewHolder<T extends DynamicAppTheme> extends RecyclerView.ViewHolder {
 
         /**
          * Item view root.
@@ -252,7 +252,7 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
          *
          * @param view The view for this view holder.
          */
-        ViewHolder(@NonNull View view) {
+        public ViewHolder(@NonNull View view) {
             super(view);
 
             root = view.findViewById(R.id.ads_preset_root);
@@ -264,7 +264,7 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
          *
          * @return The item view root.
          */
-        ViewGroup getRoot() {
+        public @NonNull ViewGroup getRoot() {
             return root;
         }
 
@@ -273,7 +273,7 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
          *
          * @return The theme preview to display the preset.
          */
-        ThemePreview<T> getThemePreview() {
+        public @NonNull ThemePreview<T> getThemePreview() {
             return themePreview;
         }
     }
