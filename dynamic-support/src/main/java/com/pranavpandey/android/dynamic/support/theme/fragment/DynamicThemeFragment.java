@@ -264,6 +264,17 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
                 return mThemePreview.getDynamicTheme().getSurfaceColor();
             }
         });
+        mColorSurfacePreference.setAltDynamicColorResolver(new DynamicColorResolver() {
+            @Override
+            public int getDefaultColor(@Nullable String tag) {
+                return mDynamicThemeDefault.getTintSurfaceColor(false);
+            }
+
+            @Override
+            public int getAutoColor(@Nullable String tag) {
+                return mThemePreview.getDynamicTheme().getTintSurfaceColor();
+            }
+        });
 
         mColorPrimaryPreference.setDynamicColorResolver(new DynamicColorResolver() {
             @Override
@@ -477,6 +488,7 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
         mColorBackgroundPreference.setColor(theme.getBackgroundColor(false));
         mColorBackgroundPreference.setAltColor(theme.getTintBackgroundColor(false));
         mColorSurfacePreference.setColor(theme.getSurfaceColor(false));
+        mColorSurfacePreference.setAltColor(theme.getTintSurfaceColor(false));
         mColorPrimaryPreference.setColor(theme.getPrimaryColor(false));
         mColorPrimaryPreference.setAltColor(theme.getTintPrimaryColor(false));
         mColorAccentPreference.setColor(theme.getAccentColor(false));
@@ -599,7 +611,7 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
                         .setBackgroundColor(mColorBackgroundPreference.getColor(false))
                         .setTintBackgroundColor(mColorBackgroundPreference.getAltColor(false))
                         .setSurfaceColor(mColorSurfacePreference.getColor(false))
-                        .setTintSurfaceColor(mDynamicTheme.getTintSurfaceColor(false))
+                        .setTintSurfaceColor(mColorSurfacePreference.getAltColor(false))
                         .setPrimaryColor(mColorPrimaryPreference.getColor(false))
                         .setTintPrimaryColor(mColorPrimaryPreference.getAltColor(false))
                         .setPrimaryColorDark(mColorSystemPreference.getColor(false))

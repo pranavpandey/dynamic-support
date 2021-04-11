@@ -69,8 +69,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:ads_key="ads_pref_settings_theme_color_surface"
+                        app:ads_altKey="ads_pref_settings_theme_color_tint_surface"
                         app:ads_title="@string/ads_theme_color_surface"
                         app:ads_description="@string/ads_theme_color_default_desc"
+                        app:ads_action="@string/ads_theme_color_tint"
                         app:ads_alphaEnabled="true"
                         app:ads_popup="true"
                         app:ads_popupColors="@array/ads_app_theme_surface_colors" />

@@ -232,8 +232,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
             mTextSecondaryEnd.setImageResource(R.drawable.ads_theme_overlay);
             mTextDescriptionStart.setImageResource(R.drawable.ads_theme_overlay);
             mTextDescriptionEnd.setImageResource(R.drawable.ads_theme_overlay);
-        } else if (getDynamicTheme().getCornerSizeDp()
-                < Defaults.ADS_CORNER_MIN_THEME_ROUND) {
+        } else if (getDynamicTheme().getCornerSizeDp() < Defaults.ADS_CORNER_MIN_THEME_ROUND) {
             mHeaderTitle.setImageResource(R.drawable.ads_theme_overlay_rect);
             mError.setImageResource(R.drawable.ads_theme_overlay_rect);
             mTextPrimaryStart.setImageResource(R.drawable.ads_theme_overlay_rect_start);
@@ -284,14 +283,14 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
         Dynamic.setColor(mHeaderTitle, getDynamicTheme().getTintPrimaryColor());
         Dynamic.setColor(mHeaderMenu, getDynamicTheme().getTintPrimaryColor());
         Dynamic.setColor(mHeaderShadow, getDynamicTheme().getAccentColorDark());
-        Dynamic.setColor(mIcon, getDynamicTheme().getTintBackgroundColor());
+        Dynamic.setColor(mIcon, getDynamicTheme().getPrimaryColor());
         Dynamic.setColor(mError, getDynamicTheme().getErrorColor());
         Dynamic.setColor(mTextPrimaryStart, getDynamicTheme().getTextPrimaryColor());
         Dynamic.setColor(mTextPrimaryEnd, getDynamicTheme().getTextPrimaryColor());
         Dynamic.setColor(mTextSecondaryStart, getDynamicTheme().getTextSecondaryColor());
         Dynamic.setColor(mTextSecondaryEnd, getDynamicTheme().getTextSecondaryColor());
-        Dynamic.setColor(mTextDescriptionStart, getDynamicTheme().getPrimaryColor());
-        Dynamic.setColor(mTextDescriptionEnd, getDynamicTheme().getPrimaryColor());
+        Dynamic.setColor(mTextDescriptionStart, getDynamicTheme().getTintSurfaceColor());
+        Dynamic.setColor(mTextDescriptionEnd, getDynamicTheme().getTintBackgroundColor());
         Dynamic.setColor(mFAB, getDynamicTheme().getAccentColor());
     }
 
