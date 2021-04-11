@@ -49,6 +49,7 @@ public class DynamicPopupBackground extends DynamicCardView {
 
         setContrastWithColorType(Theme.ColorType.SURFACE);
         setElevationOnSameBackground(true);
+        setFloatingView(true);
     }
 
     @Override

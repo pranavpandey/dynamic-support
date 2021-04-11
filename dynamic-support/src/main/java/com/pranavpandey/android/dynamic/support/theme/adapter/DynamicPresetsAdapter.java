@@ -156,11 +156,11 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
                     .setImageResource(R.drawable.ads_ic_palette);
             holder.getThemePreview().setDynamicTheme(theme);
             Dynamic.setCorner(holder.getRoot(), theme.getCornerRadius());
-            DynamicTintUtils.setViewForegroundTint(holder.getRoot(),
+            DynamicTintUtils.setViewForegroundTint(holder.getThemePreview(),
                     theme.getBackgroundColor(), false);
 
             if (mDynamicPresetsListener != null) {
-                holder.getRoot().setOnClickListener(new View.OnClickListener() {
+                Dynamic.setOnClickListener(holder.getThemePreview(), new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         mDynamicPresetsListener.onPresetClick(v,
@@ -168,18 +168,18 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
                                 holder.getThemePreview());
                     }
                 });
-                holder.getThemePreview().getActionView().setOnClickListener(
+                Dynamic.setOnClickListener(holder.getThemePreview().getActionView(),
                         new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                mDynamicPresetsListener.onPresetClick(v,
-                                        holder.getThemePreview().getDynamicTheme().toDynamicString(),
-                                        holder.getThemePreview());
-                            }
-                        });
+                    @Override
+                    public void onClick(View v) {
+                        mDynamicPresetsListener.onPresetClick(v,
+                                holder.getThemePreview().getDynamicTheme().toDynamicString(),
+                                holder.getThemePreview());
+                    }
+                });
             } else {
-                holder.getRoot().setClickable(false);
-                holder.getThemePreview().getActionView().setClickable(false);
+                Dynamic.setClickable(holder.getThemePreview(), false);
+                Dynamic.setClickable(holder.getThemePreview().getActionView(), false);
             }
         } catch (Exception ignored) {
             Dynamic.setVisibility(holder.getRoot(), View.GONE);

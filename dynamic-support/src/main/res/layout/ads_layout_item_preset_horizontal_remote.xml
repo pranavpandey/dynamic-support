@@ -18,13 +18,14 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Card.Clickable"
+    style="@style/Widget.DynamicApp.Card"
     android:id="@+id/ads_preset_root"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:ads_elevationOnSameBackground="true">
 
     <com.pranavpandey.android.dynamic.support.theme.view.DynamicRemoteThemePreview
+        style="@style/Widget.DynamicApp.Content.Clickable"
         android:id="@+id/ads_preset_theme_preview"
         android:layout_width="@dimen/ads_theme_preview_width"
         android:layout_height="wrap_content" />

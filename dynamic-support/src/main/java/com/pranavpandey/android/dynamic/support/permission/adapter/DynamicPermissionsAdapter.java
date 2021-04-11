@@ -25,6 +25,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicPermission;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
@@ -76,14 +77,14 @@ public class DynamicPermissionsAdapter extends
     @Override
     public void onBindViewHolder(final @NonNull ViewHolder viewHolder, final int position) {
         if (mPermissionListener != null) {
-            viewHolder.getRoot().setOnClickListener(new View.OnClickListener() {
+            Dynamic.setOnClickListener(viewHolder.getInfoView(), new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mPermissionListener.onPermissionSelected(v, position, getItem(position));
                 }
             });
         } else {
-            viewHolder.getRoot().setClickable(false);
+            Dynamic.setClickable(viewHolder.getInfoView(), false);
         }
 
         DynamicPermission dynamicPermission = getItem(position);
@@ -101,7 +102,7 @@ public class DynamicPermissionsAdapter extends
                     .getContext().getString(R.string.ads_perm_granted_desc));
             viewHolder.getInfoView().setStatus(viewHolder.getInfoView()
                     .getContext().getString(R.string.ads_perm_granted));
-            viewHolder.getRoot().setClickable(false);
+            Dynamic.setClickable(viewHolder.getRoot(), false);
         } else {
             viewHolder.getInfoView().setIcon(DynamicResourceUtils.getDrawable(
                     viewHolder.getInfoView().getContext(), R.drawable.ads_ic_close));
@@ -119,7 +120,7 @@ public class DynamicPermissionsAdapter extends
                         .getContext().getString(R.string.ads_perm_denied));
             }
 
-            viewHolder.getRoot().setClickable(true);
+            Dynamic.setClickable(viewHolder.getRoot(), true);
         }
 
         if (dynamicPermission.isReinstall()) {
@@ -127,7 +128,7 @@ public class DynamicPermissionsAdapter extends
                     .getContext().getString(R.string.ads_perm_reinstall_desc));
             viewHolder.getInfoView().setStatus(viewHolder.getInfoView()
                     .getContext().getString(R.string.ads_perm_reinstall));
-            viewHolder.getRoot().setClickable(true);
+            Dynamic.setClickable(viewHolder.getRoot(), true);
         }
 
         if (dynamicPermission.isUnknown()) {
@@ -135,7 +136,7 @@ public class DynamicPermissionsAdapter extends
                     .getContext().getString(R.string.ads_perm_unknown_desc));
             viewHolder.getInfoView().setStatus(viewHolder.getInfoView()
                     .getContext().getString(R.string.ads_perm_unknown));
-            viewHolder.getRoot().setClickable(false);
+            Dynamic.setClickable(viewHolder.getRoot(), false);
         }
     }
 

@@ -692,6 +692,16 @@
         <item name="android:layout_marginBottom">@dimen/ads_card_view_margin_layout</item>
     </style>
 
+    <style name="Widget.DynamicApp.Card.Empty">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Card.Margin.Empty">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <style name="Widget.DynamicApp.Card.Floating">
         <item name="android:layout_margin">@dimen/ads_card_view_margin_floating</item>
         <item name="cardElevation">@dimen/ads_card_view_elevation_floating</item>
@@ -864,6 +874,15 @@
         <item name="android:layout_weight">1.0</item>
     </style>
 
+    <style name="Widget.DynamicApp.Content.Clickable">
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Content.Clickable.Background"
+        parent="Widget.DynamicApp.Content">
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
     <style name="Widget.DynamicApp.Content.Card">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -1034,6 +1053,7 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:alpha">@integer/ads_alpha_drag_indicator</item>
         <item name="ads_colorType">accent</item>
+        <item name="ads_contrastWithColorType">surface</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.Info">

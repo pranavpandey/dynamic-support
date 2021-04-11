@@ -557,7 +557,7 @@ public class DynamicColorPicker extends DynamicView {
         mSeekBarBlack.setOnSeekBarControlListener(mCMYKSeekBarListener);
 
         mUpdatingCustomColor = true;
-        mPreviousColor = Theme.ColorType.UNKNOWN;
+        mPreviousColor = Theme.Color.UNKNOWN;
         mColorShape = DynamicColorShape.CIRCLE;
         mType = DynamicPickerType.PRESETS;
         mControl = DynamicPreferences.getInstance().load(
@@ -591,7 +591,7 @@ public class DynamicColorPicker extends DynamicView {
 
     @Override
     public void onUpdate() {
-        if (mPreviousColor != Theme.ColorType.UNKNOWN) {
+        if (mPreviousColor != Theme.Color.UNKNOWN) {
             mPreviousColorView.setColor(mPreviousColor);
             Dynamic.setVisibility(mPreviousColorView, VISIBLE);
         } else {
@@ -610,8 +610,9 @@ public class DynamicColorPicker extends DynamicView {
             Dynamic.setVisibility(mSeekBarAlpha, GONE);
         }
 
-        mColorsGridView.setAdapter(new DynamicColorsAdapter(mColors,
-                mSelectedColor, mColorShape, mAlpha, new DynamicColorListener() {
+        mColorsGridView.setAdapter(new DynamicColorsAdapter(mColors, mSelectedColor,
+                mColorShape, mAlpha, Dynamic.getContrastWithColor(
+                        mColorsGridView, Theme.Color.UNKNOWN), new DynamicColorListener() {
             @Override
             public void onColorSelected(@Nullable String tag, int position, int color) {
                 if (mShades != null && position < mShades.length) {
@@ -645,6 +646,11 @@ public class DynamicColorPicker extends DynamicView {
         super.onDetachedFromWindow();
 
         DynamicTaskUtils.cancelTask(mWallpaperColorsTask, true);
+    }
+
+    @Override
+    public @Nullable View getBackgroundView() {
+        return null;
     }
 
     /**
@@ -812,7 +818,8 @@ public class DynamicColorPicker extends DynamicView {
                 Dynamic.setVisibility(mShadesView, VISIBLE);
                 mShadesCurrent = mShades[position];
                 mShadesGridView.setAdapter(new DynamicColorsAdapter(mShadesCurrent,
-                        color, mColorShape, mAlpha, new DynamicColorListener() {
+                        color, mColorShape, mAlpha, Dynamic.getContrastWithColor(
+                                mShadesGridView, Theme.Color.UNKNOWN), new DynamicColorListener() {
                     @Override
                     public void onColorSelected(@Nullable String tag, int position, int color) {
                         setCustom(color, true, true, true);
@@ -832,16 +839,17 @@ public class DynamicColorPicker extends DynamicView {
     protected void setRecents(@ColorInt int color) {
         if (mRecents != null && mRecents.length > 0) {
             Dynamic.setVisibility(findViewById(R.id.ads_color_picker_recents_root), VISIBLE);
-            mRecentsGridView.setAdapter(new DynamicColorsAdapter(mRecents,
-                    color, mColorShape == DynamicColorShape.CIRCLE
-                    ? DynamicColorShape.SQUARE : DynamicColorShape.CIRCLE, mAlpha,
+            mRecentsGridView.setAdapter(new DynamicColorsAdapter(mRecents, color,
+                    mColorShape == DynamicColorShape.CIRCLE
+                            ? DynamicColorShape.SQUARE : DynamicColorShape.CIRCLE, mAlpha,
+                    Dynamic.getContrastWithColor(mRecentsGridView, Theme.Color.UNKNOWN),
                     new DynamicColorListener() {
-                        @Override
-                        public void onColorSelected(
-                                @Nullable String tag, int position, int color) {
-                            setCustom(color, true, true, true);
-                        }
-                    }));
+                @Override
+                public void onColorSelected(
+                        @Nullable String tag, int position, int color) {
+                    setCustom(color, true, true, true);
+                }
+            }));
         } else {
             Dynamic.setVisibility(findViewById(R.id.ads_color_picker_recents_root), GONE);
         }
@@ -855,16 +863,17 @@ public class DynamicColorPicker extends DynamicView {
     protected void setDynamics(@ColorInt int color) {
         if (mDynamics != null && mDynamics.length > 0) {
             Dynamic.setVisibility(findViewById(R.id.ads_color_picker_dynamics_root), VISIBLE);
-            mDynamicGridView.setAdapter(new DynamicColorsAdapter(mDynamics,
-                    color, mColorShape == DynamicColorShape.CIRCLE
-                    ? DynamicColorShape.SQUARE : DynamicColorShape.CIRCLE, mAlpha,
+            mDynamicGridView.setAdapter(new DynamicColorsAdapter(mDynamics, color,
+                    mColorShape == DynamicColorShape.CIRCLE
+                            ? DynamicColorShape.SQUARE : DynamicColorShape.CIRCLE, mAlpha,
+                    Dynamic.getContrastWithColor(mDynamicGridView, Theme.Color.UNKNOWN),
                     new DynamicColorListener() {
-                        @Override
-                        public void onColorSelected(
-                                @Nullable String tag, int position, int color) {
-                            setCustom(color, true, true, true);
-                        }
-                    }));
+                @Override
+                public void onColorSelected(
+                        @Nullable String tag, int position, int color) {
+                    setCustom(color, true, true, true);
+                }
+            }));
         } else {
             Dynamic.setVisibility(findViewById(R.id.ads_color_picker_dynamics_root), GONE);
         }

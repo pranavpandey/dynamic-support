@@ -25,6 +25,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape;
@@ -64,6 +65,11 @@ public class DynamicColorsAdapter extends BaseAdapter {
     private boolean mAlpha;
 
     /**
+     * Contrast with color for the swatches.
+     */
+    private @ColorInt int mContrastWithColor;
+
+    /**
      * Constructor to initialize an object of this class.
      *
      * @param colors The array of colors to be handled by this adapter.
@@ -74,7 +80,24 @@ public class DynamicColorsAdapter extends BaseAdapter {
     public DynamicColorsAdapter(@NonNull @ColorInt Integer[] colors,
             @DynamicColorShape int colorShape, boolean alpha,
             @NonNull DynamicColorListener dynamicColorListener) {
-        this(colors, Theme.ColorType.UNKNOWN, colorShape, alpha, dynamicColorListener);
+        this(colors, Theme.Color.UNKNOWN, colorShape, alpha,
+                Theme.Color.UNKNOWN, dynamicColorListener);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param colors The array of colors to be handled by this adapter.
+     * @param colorShape The shape of the color swatches.
+     * @param alpha {@code true} to enable alpha for the color.
+     * @param contrastWithColor The contrast with color for the swatches.
+     * @param dynamicColorListener The listener to get the callback when a color is selected.
+     */
+    public DynamicColorsAdapter(@NonNull @ColorInt Integer[] colors,
+            @DynamicColorShape int colorShape, boolean alpha, @ColorInt int contrastWithColor,
+            @NonNull DynamicColorListener dynamicColorListener) {
+        this(colors, Theme.Color.UNKNOWN, colorShape, alpha,
+                contrastWithColor, dynamicColorListener);
     }
 
     /**
@@ -84,15 +107,17 @@ public class DynamicColorsAdapter extends BaseAdapter {
      * @param selectedColor The selected color.
      * @param colorShape The shape of the color swatches.
      * @param alpha {@code true} to enable alpha for the color.
+     * @param contrastWithColor The contrast with color for the swatches.
      * @param dynamicColorListener The listener to get the callback when a color is selected.
      */
     public DynamicColorsAdapter(@NonNull @ColorInt Integer[] colors,
             @ColorInt int selectedColor, @DynamicColorShape int colorShape, boolean alpha,
-            @NonNull DynamicColorListener dynamicColorListener) {
+            @ColorInt int contrastWithColor, @NonNull DynamicColorListener dynamicColorListener) {
         this.mData = colors;
         this.mSelectedColor = selectedColor;
         this.mColorShape = colorShape;
         this.mAlpha = alpha;
+        this.mContrastWithColor = contrastWithColor;
         this.mDynamicColorListener = dynamicColorListener;
     }
 
@@ -103,7 +128,7 @@ public class DynamicColorsAdapter extends BaseAdapter {
 
         if (convertView == null) {
         	convertView = LayoutInflater.from(parent.getContext()).inflate(
-        	        R.layout.ads_layout_color_item, parent, false);
+        	        R.layout.ads_layout_color_view, parent, false);
         	viewHolder = new ViewHolder(convertView);
         	convertView.setTag(viewHolder);
         } else {
@@ -120,7 +145,7 @@ public class DynamicColorsAdapter extends BaseAdapter {
         }
 
         dynamicColorView.setTooltip();
-        dynamicColorView.setOnClickListener(new View.OnClickListener() {
+        Dynamic.setOnClickListener(dynamicColorView, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mDynamicColorListener != null) {
@@ -132,6 +157,10 @@ public class DynamicColorsAdapter extends BaseAdapter {
                 }
             }
         });
+
+        if (mContrastWithColor != Theme.Color.UNKNOWN) {
+            Dynamic.setContrastWithColor(dynamicColorView, mContrastWithColor);
+        }
 
         return convertView;
     }
@@ -176,7 +205,7 @@ public class DynamicColorsAdapter extends BaseAdapter {
      *
      * @return The listener to get the callback when a color is selected.
      */
-    public DynamicColorListener getDynamicColorListener() {
+    public @Nullable DynamicColorListener getDynamicColorListener() {
         return mDynamicColorListener;
     }
 
@@ -268,7 +297,7 @@ public class DynamicColorsAdapter extends BaseAdapter {
          * @param view The view for this view holder.
          */
     	ViewHolder(@NonNull View view) {
-    	    dynamicColorView = view.findViewById(R.id.ads_color_item_view);
+    	    dynamicColorView = view.findViewById(R.id.ads_color_view);
     	}
 
         /**

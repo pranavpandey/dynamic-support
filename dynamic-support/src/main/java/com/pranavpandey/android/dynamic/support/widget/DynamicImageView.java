@@ -241,6 +241,34 @@ public class DynamicImageView extends AppCompatImageView implements DynamicWidge
     }
 
     @Override
+    public void setClickable(boolean clickable) {
+        super.setClickable(clickable);
+
+        setColor();
+    }
+
+    @Override
+    public void setOnClickListener(@Nullable OnClickListener l) {
+        super.setOnClickListener(l);
+
+        setColor();
+    }
+
+    @Override
+    public void setLongClickable(boolean longClickable) {
+        super.setLongClickable(longClickable);
+
+        setColor();
+    }
+
+    @Override
+    public void setOnLongClickListener(@Nullable OnLongClickListener l) {
+        super.setOnLongClickListener(l);
+
+        setColor();
+    }
+
+    @Override
     public void setColor() {
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
@@ -253,6 +281,10 @@ public class DynamicImageView extends AppCompatImageView implements DynamicWidge
 
         if (mColorType == Theme.ColorType.NONE) {
             clearColorFilter();
+        }
+
+        if (isBackgroundAware()) {
+            Dynamic.tintBackground(this, mContrastWithColor);
         }
     }
 }

@@ -52,7 +52,6 @@ import com.pranavpandey.android.dynamic.support.tutorial.adapter.DynamicTutorial
 import com.pranavpandey.android.dynamic.support.utils.DynamicHintUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator2;
 import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -538,8 +537,6 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
         mPageIndicator.setSelectedColour(tintColor);
         mPageIndicator.setUnselectedColour(DynamicColorUtils.adjustAlpha(
                 tintColor, Defaults.ADS_ALPHA_UNCHECKED));
-        DynamicTintUtils.setViewBackgroundTint(mActionPrevious, color, true);
-        DynamicTintUtils.setViewBackgroundTint(mActionNext, color, true);
 
         if (hasTutorialPrevious()) {
             Dynamic.setVisibility(mActionPrevious, View.VISIBLE);

@@ -123,8 +123,8 @@ public class DynamicItem {
         this.showDivider = showDivider;
 
         this.contrastWithColorType = Theme.ColorType.NONE;
-        this.contrastWithColor = Theme.ColorType.UNKNOWN;
-        this.backgroundAware = Theme.ColorType.UNKNOWN;
+        this.contrastWithColor = Theme.Color.UNKNOWN;
+        this.backgroundAware = Theme.BackgroundAware.UNKNOWN;
     }
 
     /**

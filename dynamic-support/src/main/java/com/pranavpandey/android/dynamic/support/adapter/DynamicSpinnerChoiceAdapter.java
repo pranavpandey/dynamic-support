@@ -197,7 +197,7 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
         }
 
         if (mOnItemClickListener != null) {
-            viewHolder.getRoot().setOnClickListener(new View.OnClickListener() {
+            Dynamic.setOnClickListener(viewHolder.getRoot(), new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mOnItemClickListener.onItemClick((AdapterView<?>) parent,
@@ -208,7 +208,7 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
                 }
             });
         } else {
-            viewHolder.getRoot().setClickable(false);
+            Dynamic.setClickable(viewHolder.getRoot(), false);
         }
 
         Dynamic.set(viewHolder.getIcon(), getIcons() != null

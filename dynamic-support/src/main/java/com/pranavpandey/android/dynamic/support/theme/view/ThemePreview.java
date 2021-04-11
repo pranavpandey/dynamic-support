@@ -64,6 +64,8 @@ public abstract class ThemePreview<T extends DynamicAppTheme> extends DynamicVie
 
     @Override
     protected void onEnabled(boolean enabled) {
+        super.onEnabled(enabled);
+
         setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
 
         getActionView().setEnabled(enabled);
@@ -96,6 +98,11 @@ public abstract class ThemePreview<T extends DynamicAppTheme> extends DynamicVie
         this.mDynamicTheme = dynamicTheme;
 
         onUpdate();
+    }
+
+    @Override
+    public @Nullable View getBackgroundView() {
+        return null;
     }
 
     /**

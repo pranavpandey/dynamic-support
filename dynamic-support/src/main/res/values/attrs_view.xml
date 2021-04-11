@@ -121,6 +121,12 @@
 
     <!-- Attributes for the DynamicColorView. -->
     <declare-styleable name="DynamicColorView">
+        <!-- Inherited attributes from the parent view. -->
+        <attr name="ads_colorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
         <!-- Shape options for the dynamic color view. -->
         <attr name="ads_shape" format="enum">
             <!-- Constant for the circle color shape. -->
@@ -130,8 +136,6 @@
             <!-- Constant for the rectangle color shape. -->
             <enum name="rectangle" value="2" />
         </attr>
-        <!-- Color value for the dynamic color view. -->
-        <attr name="ads_color" />
         <!-- true to enable alpha for the color. -->
         <attr name="ads_alphaEnabled" format="boolean" />
         <!-- Corner radius in case of square or rectangle shape. -->

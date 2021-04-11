@@ -15,13 +15,12 @@
 	limitations under the License.
 -->
 
-<FrameLayout
+<com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Content.Card.Small.Clickable"
+    style="@style/Widget.DynamicApp.Content.Card.Small.Clickable.Background"
     android:id="@+id/ads_color_picker_popup_footer"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    app:ads_contrastWithColorType="surface">
 
     <LinearLayout
         style="@style/Widget.DynamicApp.Content.Row.Horizontal"
@@ -111,4 +110,4 @@
 
     </LinearLayout>
 
-</FrameLayout>
+</com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout>

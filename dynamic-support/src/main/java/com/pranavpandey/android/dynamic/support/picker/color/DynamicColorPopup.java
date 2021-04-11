@@ -242,7 +242,8 @@ public class DynamicColorPopup extends DynamicPopup {
                 });
 
         gridView.setAdapter(new DynamicColorsAdapter(mEntries, mSelectedColor,
-                mColorShape, mAlpha, new DynamicColorListener() {
+                mColorShape, mAlpha, Dynamic.getContrastWithColor(gridView, Theme.Color.UNKNOWN),
+                new DynamicColorListener() {
             @Override
             public void onColorSelected(@Nullable String tag, int position, int color) {
                 getPopupWindow().dismiss();
@@ -298,7 +299,8 @@ public class DynamicColorPopup extends DynamicPopup {
             gridView.setAdapter(new DynamicColorsAdapter(mDynamics, mSelectedColor,
                     mColorShape == DynamicColorShape.CIRCLE
                             ? DynamicColorShape.SQUARE : DynamicColorShape.CIRCLE,
-                    mAlpha, new DynamicColorListener() {
+                    mAlpha, Dynamic.getContrastWithColor(gridView, Theme.Color.UNKNOWN),
+                    new DynamicColorListener() {
                 @Override
                 public void onColorSelected(@Nullable String tag, int position, int color) {
                     getPopupWindow().dismiss();

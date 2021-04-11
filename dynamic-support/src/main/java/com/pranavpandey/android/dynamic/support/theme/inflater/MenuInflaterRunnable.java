@@ -20,6 +20,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
@@ -27,6 +28,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
+import androidx.appcompat.graphics.drawable.DrawableWrapper;
+import androidx.appcompat.widget.MenuPopupWindow;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
 
@@ -35,8 +38,11 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
+import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicPopupBackground;
+import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
@@ -68,82 +74,115 @@ public class MenuInflaterRunnable implements Runnable {
             return;
         }
 
-        DynamicCardView cardView;
-        @ColorInt int backgroundColor;
-        @ColorInt int tintColor;
         try {
-            cardView = new DynamicPopupBackground(mMenu.getContext(), mAttrs);
-            backgroundColor = cardView.getColor();
-            tintColor = DynamicTheme.getInstance().get().getTintSurfaceColor();
-        } catch (Exception e) {
-            return;
-        }
+            DynamicCardView cardView = new DynamicPopupBackground(mMenu.getContext(), mAttrs);
+            @ColorInt int backgroundColor = DynamicColorUtils.removeAlpha(cardView.getColor());
+            @ColorInt int tintColor = DynamicTheme.getInstance().get().getTintSurfaceColor();
+            @ColorInt int edgeEffectColor = DynamicTheme.getInstance().resolveColorType(
+                    Defaults.ADS_COLOR_TYPE_EDGE_EFFECT);
 
-        Dynamic.setColor(mMenu.findViewById(android.R.id.icon), tintColor);
-        Dynamic.setColor(mMenu.findViewById(androidx.appcompat.R.id.icon), tintColor);
-        Dynamic.setColor(mMenu.findViewById(androidx.appcompat.R.id.submenuarrow), tintColor);
-        Dynamic.setColor(mMenu.findViewById(androidx.appcompat.R.id.group_divider), tintColor);
-        Dynamic.setAlpha(mMenu.findViewById(androidx.appcompat.R.id.group_divider),
-                Defaults.ADS_ALPHA_DIVIDER);
-
-        Dynamic.setContrastWithColor(mMenu.findViewById(android.R.id.icon), backgroundColor);
-        Dynamic.setContrastWithColor(mMenu.findViewById(android.R.id.title), backgroundColor);
-        Dynamic.setContrastWithColor(mMenu.findViewById(android.R.id.checkbox), backgroundColor);
-        Dynamic.setContrastWithColor(mMenu.findViewById(
-                androidx.appcompat.R.id.icon), backgroundColor);
-        Dynamic.setContrastWithColor(mMenu.findViewById(
-                androidx.appcompat.R.id.title), backgroundColor);
-        Dynamic.setContrastWithColor(mMenu.findViewById(
-                androidx.appcompat.R.id.shortcut), backgroundColor);
-        Dynamic.setContrastWithColor(mMenu.findViewById(
-                androidx.appcompat.R.id.radio), backgroundColor);
-        Dynamic.setContrastWithColor(mMenu.findViewById(
-                androidx.appcompat.R.id.checkbox), backgroundColor);
-        Dynamic.setContrastWithColor(mMenu.findViewById(
-                androidx.appcompat.R.id.submenuarrow), backgroundColor);
-        Dynamic.setContrastWithColor(mMenu.findViewById(
-                androidx.appcompat.R.id.group_divider), backgroundColor);
-
-        if (mMenu.getParent() != null) {
-            ViewGroup menu = (ViewGroup) this.mMenu.getParent();
-            ViewGroup group = (ViewGroup) menu.getParent();
-
-            if (group == null) {
-                return;
+            if (DynamicTheme.getInstance().get().isBackgroundAware()) {
+                tintColor = DynamicColorUtils.getContrastColor(tintColor, backgroundColor);
+                edgeEffectColor = DynamicColorUtils.getContrastColor(
+                        edgeEffectColor, backgroundColor);
             }
 
-            if (DynamicSdkUtils.is21()) {
-                if (!(group instanceof CardView)) {
-                    if (group.getBackground() != null) {
-                        if (group.getBackground() instanceof GradientDrawable) {
-                            GradientDrawable background = (GradientDrawable) group.getBackground();
-                            background.setCornerRadius(DynamicTheme
-                                    .getInstance().get().getCornerRadius());
-                        } else if (group.getBackground() instanceof LayerDrawable) {
-                            GradientDrawable background = (GradientDrawable)
-                                    ((LayerDrawable) group.getBackground()).getDrawable(0);
-                            background.setCornerRadius(DynamicTheme
-                                    .getInstance().get().getCornerRadius());
-                            ViewCompat.setBackground(group, background);
+            Dynamic.setColor(mMenu.findViewById(android.R.id.icon), tintColor);
+            Dynamic.setColor(mMenu.findViewById(androidx.appcompat.R.id.icon), tintColor);
+            Dynamic.setColor(mMenu.findViewById(androidx.appcompat.R.id.submenuarrow), tintColor);
+            Dynamic.setColor(mMenu.findViewById(androidx.appcompat.R.id.group_divider), tintColor);
+            Dynamic.setAlpha(mMenu.findViewById(androidx.appcompat.R.id.group_divider),
+                    Defaults.ADS_ALPHA_DIVIDER);
+
+            Dynamic.setContrastWithColor(mMenu.findViewById(android.R.id.icon), backgroundColor);
+            Dynamic.setContrastWithColor(mMenu.findViewById(android.R.id.title), backgroundColor);
+            Dynamic.setContrastWithColor(mMenu.findViewById(
+                    android.R.id.checkbox), backgroundColor);
+            Dynamic.setContrastWithColor(mMenu.findViewById(
+                    androidx.appcompat.R.id.icon), backgroundColor);
+            Dynamic.setContrastWithColor(mMenu.findViewById(
+                    androidx.appcompat.R.id.title), backgroundColor);
+            Dynamic.setContrastWithColor(mMenu.findViewById(
+                    androidx.appcompat.R.id.shortcut), backgroundColor);
+            Dynamic.setContrastWithColor(mMenu.findViewById(
+                    androidx.appcompat.R.id.radio), backgroundColor);
+            Dynamic.setContrastWithColor(mMenu.findViewById(
+                    androidx.appcompat.R.id.checkbox), backgroundColor);
+            Dynamic.setContrastWithColor(mMenu.findViewById(
+                    androidx.appcompat.R.id.submenuarrow), backgroundColor);
+            Dynamic.setContrastWithColor(mMenu.findViewById(
+                    androidx.appcompat.R.id.group_divider), backgroundColor);
+
+            if (mMenu.getParent() != null) {
+                ViewGroup menu = (ViewGroup) this.mMenu.getParent();
+                ViewGroup group = (ViewGroup) menu.getParent();
+
+                if (menu instanceof MenuPopupWindow.MenuDropDownListView) {
+                    DynamicScrollUtils.setEdgeEffectColor(
+                            (MenuPopupWindow.MenuDropDownListView) menu, edgeEffectColor);
+
+                    if (((MenuPopupWindow.MenuDropDownListView) menu).getSelector()
+                            instanceof DrawableWrapper) {
+                        final DrawableWrapper drawable = ((DrawableWrapper)
+                                ((MenuPopupWindow.MenuDropDownListView) menu).getSelector());
+                        if (drawable != null && DynamicSdkUtils.is21()
+                                && drawable.getWrappedDrawable() instanceof RippleDrawable) {
+                            DynamicTintUtils.colorizeRippleDrawable(menu,
+                                    drawable.getWrappedDrawable(), backgroundColor,
+                                    tintColor, false, false);
+                        } else {
+                            DynamicDrawableUtils.colorizeDrawable(drawable, tintColor);
+                        }
+                    } else {
+                        DynamicDrawableUtils.colorizeDrawable(
+                                ((MenuPopupWindow.MenuDropDownListView) menu)
+                                        .getSelector(), tintColor);
+                    }
+                }
+
+                if (group == null) {
+                    return;
+                }
+
+                if (DynamicSdkUtils.is21()) {
+                    if (!(group instanceof CardView)) {
+                        if (group.getBackground() != null) {
+                            if (group.getBackground() instanceof GradientDrawable) {
+                                GradientDrawable background =
+                                        (GradientDrawable) group.getBackground();
+                                background.setCornerRadius(DynamicTheme
+                                        .getInstance().get().getCornerRadius());
+                            } else if (group.getBackground() instanceof LayerDrawable) {
+                                GradientDrawable background = (GradientDrawable)
+                                        ((LayerDrawable) group.getBackground()).getDrawable(0);
+                                background.setCornerRadius(DynamicTheme
+                                        .getInstance().get().getCornerRadius());
+                                ViewCompat.setBackground(group, background);
+                            }
+
+                            DynamicDrawableUtils.colorizeDrawable(
+                                    group.getBackground(), backgroundColor);
                         }
 
-                        DynamicDrawableUtils.colorizeDrawable(
-                                group.getBackground(), backgroundColor);
+                        group.removeAllViews();
+                        group.addView(cardView);
+                        cardView.addView(menu);
+                    } else {
+                        group.setElevation(0);
+                        group.removeAllViews();
+                        group.addView(menu);
                     }
-
-                    group.removeAllViews();
-                    group.addView(cardView);
-                    cardView.addView(menu);
+                } else if (group != null) {
+//                    ViewCompat.setBackground(menu, null);
+                    ViewCompat.setBackground(group, cardView.getBackground());
                 } else {
-                    group.setElevation(0);
-                    group.removeAllViews();
-                    group.addView(menu);
+                    ViewCompat.setBackground(menu, DynamicDrawableUtils.colorizeDrawable(
+                            DynamicResourceUtils.getDrawable(mMenu.getContext(),
+                                    R.drawable.ads_background), backgroundColor));
                 }
-            } else {
-                ViewCompat.setBackground(menu, DynamicDrawableUtils.colorizeDrawable(
-                        DynamicResourceUtils.getDrawable(mMenu.getContext(),
-                                R.drawable.ads_background), backgroundColor));
             }
+
+        } catch (Exception ignored) {
         }
     }
 }

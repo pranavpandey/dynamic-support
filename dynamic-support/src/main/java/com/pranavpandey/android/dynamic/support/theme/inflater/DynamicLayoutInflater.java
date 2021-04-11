@@ -39,10 +39,12 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicDrawerLayout;
 import com.pranavpandey.android.dynamic.support.widget.DynamicEditText;
 import com.pranavpandey.android.dynamic.support.widget.DynamicExtendedFloatingActionButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicFloatingActionButton;
+import com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout;
 import com.pranavpandey.android.dynamic.support.widget.DynamicGridView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicHorizontalScrollView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
+import com.pranavpandey.android.dynamic.support.widget.DynamicLinearLayout;
 import com.pranavpandey.android.dynamic.support.widget.DynamicListView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicMaterialCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicNavigationView;
@@ -50,6 +52,7 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar;
 import com.pranavpandey.android.dynamic.support.widget.DynamicRadioButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView;
+import com.pranavpandey.android.dynamic.support.widget.DynamicRelativeLayout;
 import com.pranavpandey.android.dynamic.support.widget.DynamicScrollView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicSeekBar;
 import com.pranavpandey.android.dynamic.support.widget.DynamicSpinner;
@@ -180,6 +183,18 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
             case "androidx.SwipeRefreshLayout.widget.SwipeRefreshLayout":
             case "com.pranavpandey.android.dynamic.support.widget.DynamicSwipeRefreshLayout":
                 view = new DynamicSwipeRefreshLayout(context, attrs);
+                break;
+            case "FrameLayout":
+            case "com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout":
+                view = new DynamicFrameLayout(context, attrs);
+                break;
+            case "LinearLayout":
+            case "com.pranavpandey.android.dynamic.support.widget.DynamicLinearLayout":
+                view = new DynamicLinearLayout(context, attrs);
+                break;
+            case "RelativeLayout":
+            case "com.pranavpandey.android.dynamic.support.widget.DynamicRelativeLayout":
+                view = new DynamicRelativeLayout(context, attrs);
                 break;
             case "ScrollView":
             case "com.pranavpandey.android.dynamic.support.widget.DynamicScrollView":

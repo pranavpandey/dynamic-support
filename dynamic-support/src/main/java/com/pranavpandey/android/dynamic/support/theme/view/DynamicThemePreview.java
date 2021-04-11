@@ -36,6 +36,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicShapeUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 
 /**
@@ -203,7 +204,11 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
         if (Dynamic.isStrokeRequired(getDynamicTheme().getBackgroundColor(),
                 getDynamicTheme().getSurfaceColor())) {
             drawable.setStroke(Defaults.ADS_STROKE_WIDTH_PIXEL,
-                    getDynamicTheme().getTintBackgroundColor());
+                    getDynamicTheme().isBackgroundAware()
+                            ? DynamicColorUtils.getContrastColor(
+                                    getDynamicTheme().getTintBackgroundColor(),
+                            getDynamicTheme().getBackgroundColor())
+                            : getDynamicTheme().getTintBackgroundColor());
         }
 
         mBackground.setImageDrawable(background);
@@ -265,13 +270,13 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
         Dynamic.setContrastWithColor(mHeaderTitle, getDynamicTheme().getPrimaryColor());
         Dynamic.setContrastWithColor(mHeaderMenu, getDynamicTheme().getPrimaryColor());
         Dynamic.setContrastWithColor(mHeaderShadow, getDynamicTheme().getBackgroundColor());
-        Dynamic.setContrastWithColor(mIcon, getDynamicTheme().getBackgroundColor());
-        Dynamic.setContrastWithColor(mError, getDynamicTheme().getBackgroundColor());
-        Dynamic.setContrastWithColor(mTextPrimaryStart, getDynamicTheme().getBackgroundColor());
+        Dynamic.setContrastWithColor(mIcon, getDynamicTheme().getSurfaceColor());
+        Dynamic.setContrastWithColor(mError, getDynamicTheme().getSurfaceColor());
+        Dynamic.setContrastWithColor(mTextPrimaryStart, getDynamicTheme().getSurfaceColor());
         Dynamic.setContrastWithColor(mTextPrimaryEnd, getDynamicTheme().getBackgroundColor());
-        Dynamic.setContrastWithColor(mTextSecondaryStart, getDynamicTheme().getBackgroundColor());
+        Dynamic.setContrastWithColor(mTextSecondaryStart, getDynamicTheme().getSurfaceColor());
         Dynamic.setContrastWithColor(mTextSecondaryEnd, getDynamicTheme().getBackgroundColor());
-        Dynamic.setContrastWithColor(mTextDescriptionStart, getDynamicTheme().getBackgroundColor());
+        Dynamic.setContrastWithColor(mTextDescriptionStart, getDynamicTheme().getSurfaceColor());
         Dynamic.setContrastWithColor(mTextDescriptionEnd, getDynamicTheme().getBackgroundColor());
         Dynamic.setContrastWithColor(mFAB, getDynamicTheme().getBackgroundColor());
 

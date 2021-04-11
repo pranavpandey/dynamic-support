@@ -15,13 +15,13 @@
 	limitations under the License.
 -->
 
-<LinearLayout
+<com.pranavpandey.android.dynamic.support.widget.DynamicLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.DynamicApp.Content.Card.Small.Clickable.Background"
     android:id="@+id/ads_spinner_item_root"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/ads_card_view_content_margin"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    app:ads_contrastWithColorType="surface">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
         style="@style/Widget.DynamicApp.Image.Preference"
@@ -37,4 +37,4 @@
         android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle1"
         android:layout_gravity="center_vertical" />
 
-</LinearLayout>
+</com.pranavpandey.android.dynamic.support.widget.DynamicLinearLayout>

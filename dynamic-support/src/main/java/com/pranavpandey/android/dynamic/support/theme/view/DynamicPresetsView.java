@@ -146,10 +146,11 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
         super.initialize();
 
         mHeader = findViewById(R.id.ads_theme_presets_header_card);
-        mViewInfo = findViewById(R.id.ads_theme_presets_info_view);
+        mViewInfo = findViewById(R.id.ads_theme_presets_info_card);
         mInfo = findViewById(R.id.ads_theme_presets_info);
 
-        mViewInfo.setOnClickListener(new OnClickListener() {
+        Dynamic.setOnClickListener(findViewById(R.id.ads_theme_presets_info),
+                new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isPackageExists()) {

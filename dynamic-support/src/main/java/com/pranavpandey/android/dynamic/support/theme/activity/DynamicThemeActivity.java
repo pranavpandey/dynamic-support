@@ -167,7 +167,8 @@ public class DynamicThemeActivity extends DynamicActivity {
             Dynamic.setVisibility(findViewById(R.id.ads_image_text_card), View.GONE);
         } else if (DynamicThemeUtils.isValidTheme(mThemeUrl)) {
             Dynamic.setVisibility(findViewById(R.id.ads_image_text_card), View.VISIBLE);
-            findViewById(R.id.ads_image_text_card).setOnClickListener(new View.OnClickListener() {
+            Dynamic.setOnClickListener(findViewById(R.id.ads_image_text_content),
+                    new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     DynamicLinkUtils.viewUrl(DynamicThemeActivity.this, mThemeUrl);

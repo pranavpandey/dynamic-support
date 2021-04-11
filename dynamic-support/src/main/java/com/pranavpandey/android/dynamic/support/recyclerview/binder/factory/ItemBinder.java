@@ -73,9 +73,10 @@ public class ItemBinder extends DynamicDataBinder<DynamicItem, ItemBinder.ViewHo
         viewHolder.getDynamicItem().setShowDivider(getData().isShowDivider());
 
         if (getData().getOnClickListener() != null) {
-            viewHolder.getDynamicItem().setOnClickListener(getData().getOnClickListener());
+            Dynamic.setOnClickListener(viewHolder.getDynamicItem(),
+                    getData().getOnClickListener());
         } else {
-            viewHolder.getDynamicItem().setClickable(false);
+            Dynamic.setClickable(viewHolder.getDynamicItem(), false);
         }
 
         if (getBinderAdapter().getRecyclerView() != null

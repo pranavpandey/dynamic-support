@@ -21,6 +21,7 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -162,6 +163,11 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
     private int mVisibilityIconView;
 
     /**
+     * Root element of this view.
+     */
+    private ViewGroup mInfoView;
+
+    /**
      * Image view to show the icon.
      */
     private ImageView mIconView;
@@ -230,7 +236,7 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
                     Defaults.ADS_COLOR_TYPE_ICON);
             mContrastWithColorType = a.getInt(
                     R.styleable.DynamicInfoView_ads_contrastWithColorType,
-                    Theme.ColorType.NONE);
+                    Theme.ColorType.SURFACE);
             mColor = a.getColor(
                     R.styleable.DynamicInfoView_ads_color,
                     Theme.Color.UNKNOWN);
@@ -282,6 +288,7 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
     protected void onInflate() {
         inflate(getContext(), getLayoutRes(), this);
 
+        mInfoView = findViewById(R.id.ads_info_view);
         mIconView = findViewById(R.id.ads_info_view_icon);
         mIconFooterView = findViewById(R.id.ads_info_view_icon_footer);
         mTitleView = findViewById(R.id.ads_info_view_title);
@@ -377,6 +384,8 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
 
     @Override
     public void setColor() {
+        Dynamic.setContrastWithColorTypeOrColor(getInfoView(),
+                getContrastWithColorType(), getContrastWithColor());
         Dynamic.setContrastWithColorTypeOrColor(getIconView(),
                 getContrastWithColorType(), getContrastWithColor());
         Dynamic.setContrastWithColorTypeOrColor(getIconBigView(),
@@ -493,6 +502,23 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
                 mLinksView.setAdapter(new DynamicItemsAdapter(mDynamicItems));
             }
         }
+    }
+
+    @Override
+    protected void onEnabled(boolean enabled) {
+        super.onEnabled(enabled);
+
+        Dynamic.setEnabled(getInfoView(), enabled);
+        Dynamic.setEnabled(getIconView(), enabled);
+        Dynamic.setEnabled(getTitleView(), enabled);
+        Dynamic.setEnabled(getSubtitleView(), enabled);
+        Dynamic.setEnabled(getDescriptionView(), enabled);
+        Dynamic.setEnabled(getStatusView(), enabled);
+    }
+
+    @Override
+    public @Nullable View getBackgroundView() {
+        return getInfoView();
     }
 
     /**
@@ -769,6 +795,15 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
      */
     public int getVisibilityIconView() {
         return mVisibilityIconView;
+    }
+
+    /**
+     * Get the root element of this view.
+     *
+     * @return The root element of this view
+     */
+    public ViewGroup getInfoView() {
+        return mInfoView;
     }
 
     /**

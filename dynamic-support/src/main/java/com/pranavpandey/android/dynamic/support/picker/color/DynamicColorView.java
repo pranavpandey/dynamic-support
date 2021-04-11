@@ -35,7 +35,6 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
@@ -49,6 +48,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout;
 import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicBitmapUtils;
@@ -57,11 +57,11 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 
 /**
- * A FrameLayout to display a color in different {@link DynamicColorShape}.
+ * A {@link DynamicFrameLayout} to display a color in different {@link DynamicColorShape}.
  * <p>It will provide various useful methods for the {@link DynamicColorPicker}
  * to represent a set of colors and select a color from it.
  */
-public class DynamicColorView extends FrameLayout {
+public class DynamicColorView extends DynamicFrameLayout {
 
     /**
      * Constant for color view icon divisor.
@@ -116,11 +116,6 @@ public class DynamicColorView extends FrameLayout {
     private @DynamicColorShape int mColorShape;
 
     /**
-     * Color used by this color view.
-     */
-    private @ColorInt int mColor;
-
-    /**
      * {@code true} if this color view is selected.
      */
     private boolean mSelected;
@@ -157,7 +152,7 @@ public class DynamicColorView extends FrameLayout {
      *
      * @param attrs The supplied attribute set to load the values.
      */
-    protected void loadFromAttributes(@Nullable AttributeSet attrs) {
+    public void loadFromAttributes(@Nullable AttributeSet attrs) {
         setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
         TypedArray a = getContext().obtainStyledAttributes(attrs,
@@ -166,7 +161,6 @@ public class DynamicColorView extends FrameLayout {
         try {
             mColorShape = a.getInt(R.styleable.DynamicColorView_ads_shape,
                     DynamicColorShape.CIRCLE);
-            mColor = a.getColor(R.styleable.DynamicColorView_ads_color, 0);
             mAlpha = a.getBoolean(R.styleable.DynamicColorView_ads_alphaEnabled,
                     false);
             mCornerRadius = a.getDimensionPixelOffset(
@@ -176,7 +170,8 @@ public class DynamicColorView extends FrameLayout {
             a.recycle();
         }
 
-        mAlphaPaint = DynamicPickerUtils.getAlphaPatternPaint(DynamicUnitUtils.convertDpToPixels(4));
+        mAlphaPaint = DynamicPickerUtils.getAlphaPatternPaint(
+                DynamicUnitUtils.convertDpToPixels(4));
         mColorPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mColorStrokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mSelectorPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -189,7 +184,7 @@ public class DynamicColorView extends FrameLayout {
         mColorStrokePaint.setStrokeCap(Paint.Cap.ROUND);
         mSelectorPaint.setFilterBitmap(true);
 
-        onUpdate(mColor);
+        setColor(getColor());
         setWillNotDraw(false);
 
         getViewTreeObserver().addOnGlobalLayoutListener(
@@ -203,25 +198,26 @@ public class DynamicColorView extends FrameLayout {
                             getViewTreeObserver().removeGlobalOnLayoutListener(this);
                         }
 
-                        setColor(mColor);
+                        setColor(getColor());
                     }
         });
+
+        super.loadFromAttributes(attrs);
     }
 
     /**
      * Update this color view according to the current parameters.
      */
-    private void onUpdate(@ColorInt int color) {
-        this.mColor = color;
+    private void onUpdate() {
+        @ColorInt int color = getColor();
 
-        if (mColor == Theme.AUTO) {
-            @ColorInt int tintColor = DynamicColorUtils.getTintColor(
-                    DynamicTheme.getInstance().get().getBackgroundColor());
+        if (color == Theme.AUTO) {
+            @ColorInt int tintColor = DynamicColorUtils.getTintColor(getContrastWithColor());
 
             mSelectorBitmap = DynamicBitmapUtils.getBitmap(
                     DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_play));
             mColorStrokePaint.setColor(tintColor);
-            mColorPaint.setColor(DynamicTheme.getInstance().get().getBackgroundColor());
+            mColorPaint.setColor(getContrastWithColor());
 
             if (getMeasuredWidth() > 0) {
                 RadialGradient gradient =
@@ -242,7 +238,7 @@ public class DynamicColorView extends FrameLayout {
             mColorPaint.setShader(null);
         }
 
-        if (Color.alpha(getColor()) < ALPHA_SELECTOR) {
+        if (Color.alpha(color) < ALPHA_SELECTOR) {
             mSelectorPaint.setColor(DynamicColorUtils.getContrastColor(
                     mColorStrokePaint.getColor(), Color.LTGRAY));
         } else {
@@ -356,15 +352,14 @@ public class DynamicColorView extends FrameLayout {
      * Set a tooltip for this color view with hexadecimal color string according to its color.
      */
     public void setTooltip() {
-        @ColorInt int color;
+        @ColorInt int color = getColor();
         @ColorInt int tintColor;
         Drawable icon = null;
 
-        if (mColor == Theme.AUTO) {
+        if (color == Theme.AUTO) {
             color = mSelectorPaint.getColor();
             tintColor = DynamicColorUtils.getTintColor(color);
         } else {
-            color = mColor;
             tintColor = mSelectorPaint.getColor();
         }
 
@@ -372,29 +367,21 @@ public class DynamicColorView extends FrameLayout {
         tintColor = DynamicColorUtils.removeAlpha(tintColor);
 
         if (mSelected) {
-            icon = DynamicResourceUtils.getDrawable(getContext(), mColor == Theme.AUTO
+            icon = DynamicResourceUtils.getDrawable(getContext(), color == Theme.AUTO
                             ? R.drawable.ads_ic_play : R.drawable.ads_ic_check);
         }
 
         DynamicTooltip.set(this, color, tintColor, icon, getColorString());
     }
 
-    /**
-     * Get the color used by this color view.
-     *
-     * @return The color used by this color view.
-     */
+    @Override
     public @ColorInt int getColor() {
-        return mColor;
+        return getColor(false);
     }
 
-    /**
-     * Set the color for this color view.
-     *
-     * @param color The color to be set.
-     */
-    public void setColor(final @ColorInt int color) {
-        onUpdate(color);
+    @Override
+    public void setColor() {
+        onUpdate();
         requestLayout();
         invalidate();
     }
@@ -488,8 +475,8 @@ public class DynamicColorView extends FrameLayout {
      *         <p>It will return {@link R.string#ads_theme_entry_auto} if the color value is
      *         {@link Theme#AUTO}.
      */
-    public String getColorString() {
-        return getColorString(getContext(), mColor, mAlpha);
+    public @NonNull String getColorString() {
+        return getColorString(getContext(), getColor(), mAlpha);
     }
 
     /**
@@ -503,7 +490,8 @@ public class DynamicColorView extends FrameLayout {
      *         <p>It will return {@link R.string#ads_theme_entry_auto} if the color value is
      *         {@link Theme#AUTO}.
      */
-    public static String getColorString(@NonNull Context context, int color, boolean alpha) {
+    public static @NonNull String getColorString(@NonNull Context context,
+            int color, boolean alpha) {
         return color == Theme.AUTO
                 ? context.getString(R.string.ads_theme_entry_auto)
                 : DynamicColorUtils.getColorString(color, alpha, true);

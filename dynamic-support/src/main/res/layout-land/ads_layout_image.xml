@@ -42,21 +42,31 @@
                 app:ads_colorType="primary" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-                style="@style/Widget.DynamicApp.Card.Clickable"
+                style="@style/Widget.DynamicApp.Card"
                 android:id="@+id/ads_image_text_card"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.55">
 
-                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Headline5.Card.Info"
-                    android:id="@+id/ads_image_text"
+                <com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout
+                    style="@style/Widget.DynamicApp.Content.Clickable.Background"
+                    android:id="@+id/ads_image_text_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/ads_card_view_content_margin"
-                    android:gravity="center"
-                    android:textColor="?android:attr/textColorSecondary"
-                    app:ads_rtlSupport="false" />
+                    app:ads_contrastWithColorType="surface">
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                        style="@style/TextAppearance.DynamicApp.Headline5.Card.Info"
+                        android:id="@+id/ads_image_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/ads_card_view_content_margin"
+                        android:gravity="center"
+                        android:textColor="?android:attr/textColorSecondary"
+                        app:ads_contrastWithColorType="surface"
+                        app:ads_rtlSupport="false" />
+
+                </com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout>
 
             </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 

@@ -218,7 +218,7 @@ public abstract class DynamicPreference extends DynamicView
         try {
             mContrastWithColorType = a.getInt(
                     R.styleable.DynamicPreference_ads_contrastWithColorType,
-                    Theme.ColorType.NONE);
+                    Theme.ColorType.SURFACE);
             mContrastWithColor = a.getColor(
                     R.styleable.DynamicPreference_ads_contrastWithColor,
                     Theme.Color.UNKNOWN);
@@ -278,6 +278,11 @@ public abstract class DynamicPreference extends DynamicView
         this.mEnabled = enabled;
 
         super.setEnabled(enabled);
+    }
+
+    @Override
+    public @Nullable View getBackgroundView() {
+        return getPreferenceView();
     }
 
     @Override
@@ -359,7 +364,11 @@ public abstract class DynamicPreference extends DynamicView
     }
 
     @Override
-    public void setColor() { }
+    public void setColor() {
+        Dynamic.setContrastWithColorTypeOrColor(getPreferenceView(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setBackgroundAwareSafe(getPreferenceView(), getBackgroundAware());
+    }
 
     /**
      * Manage the shared preferences listener according to the preference keys.

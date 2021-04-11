@@ -51,10 +51,14 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicSnackbar;
 import com.pranavpandey.android.dynamic.support.model.DynamicItem;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
+import com.pranavpandey.android.dynamic.support.setting.base.DynamicPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.inflater.DynamicLayoutInflater;
 import com.pranavpandey.android.dynamic.support.tutorial.Tutorial;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
+import com.pranavpandey.android.dynamic.support.view.DynamicInfoView;
+import com.pranavpandey.android.dynamic.support.view.DynamicItemView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicMaterialCardView;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicBackgroundWidget;
@@ -223,6 +227,26 @@ public class Dynamic {
     }
 
     /**
+     * Returns the color for the supplied dynamic object.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param defaultColor The default color to be used.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see DynamicWidget#getColor()
+     * @see DynamicColorView#setColor(int)
+     */
+    public static @ColorInt <T> int getColor(@Nullable T dynamic, @ColorInt int defaultColor) {
+        if (dynamic instanceof DynamicWidget) {
+            return ((DynamicWidget) dynamic).getColor();
+        } else if (dynamic instanceof DynamicColorView) {
+            return ((DynamicColorView) dynamic).getColor();
+        }
+
+        return defaultColor;
+    }
+
+    /**
      * Sets the color for the supplied dynamic object.
      *
      * @param dynamic The dynamic object to be used.
@@ -271,6 +295,24 @@ public class Dynamic {
         if (dynamic instanceof MaterialCardView) {
             ((MaterialCardView) dynamic).setStrokeColor(color);
         }
+    }
+
+    /**
+     * Returns the contrast with color for the supplied dynamic object.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param defaultColor The default color to be used.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see DynamicWidget#getContrastWithColor()
+     */
+    public static @ColorInt <T> int getContrastWithColor(
+            @Nullable T dynamic, @ColorInt int defaultColor) {
+        if (dynamic instanceof DynamicWidget) {
+            return ((DynamicWidget) dynamic).getContrastWithColor();
+        }
+
+        return defaultColor;
     }
 
     /**
@@ -501,6 +543,106 @@ public class Dynamic {
             if (dynamic instanceof DynamicScrollableWidget) {
                 setScrollBarColor(dynamic, color);
             }
+        }
+    }
+
+    /**
+     * Tint background according to the supplied contrast color.
+     *
+     * @param dynamic The dynamic object to be tinted.
+     * @param contrastWithColor The contrast with color to be considered.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see DynamicTintUtils#setViewBackgroundTint(View, int, boolean)
+     */
+    public static <T> void tintBackground(@Nullable T dynamic, @ColorInt int contrastWithColor) {
+        if (contrastWithColor == Theme.Color.UNKNOWN) {
+            return;
+        }
+
+        if (dynamic instanceof View && (((View) dynamic).isClickable()
+                || ((View) dynamic).isLongClickable())) {
+            DynamicTintUtils.setViewBackgroundTint((View) dynamic,
+                    contrastWithColor, true);
+        }
+    }
+
+    /**
+     * Set on click listener for the dynamic object.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param onClickListener The click listener to be set.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see DynamicItemView#getItemView()
+     * @see DynamicInfoView#getInfoView()
+     * @see DynamicPreference#getPreferenceView()
+     * @see View#setOnClickListener(View.OnClickListener)
+     */
+    public static <T> void setOnClickListener(@Nullable T dynamic,
+            @Nullable View.OnClickListener onClickListener) {
+        if (dynamic instanceof DynamicItemView) {
+            ((DynamicItemView) dynamic).setOnClickListener(onClickListener);
+        } else if (dynamic instanceof DynamicInfoView) {
+            ((DynamicInfoView) dynamic).setOnClickListener(onClickListener);
+        } else if (dynamic instanceof DynamicPreference) {
+            ((DynamicPreference) dynamic).setOnClickListener(onClickListener);
+        } else if (dynamic instanceof View) {
+            ((View) dynamic).setOnClickListener(onClickListener);
+        }
+    }
+
+    /**
+     * Set on long click listener for the dynamic object.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param onLongClickListener The long click listener to be set.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see DynamicItemView#getItemView()
+     * @see DynamicPreference#getPreferenceView()
+     * @see View#setOnLongClickListener(View.OnLongClickListener)
+     */
+    public static <T> void setOnLongClickListener(@Nullable T dynamic,
+            @Nullable View.OnLongClickListener onLongClickListener) {
+        if (dynamic instanceof DynamicItemView) {
+            ((DynamicItemView) dynamic).setOnLongClickListener(onLongClickListener);
+        } else if (dynamic instanceof DynamicInfoView) {
+            ((DynamicInfoView) dynamic).setOnLongClickListener(onLongClickListener);
+        } else if (dynamic instanceof DynamicPreference) {
+            ((DynamicPreference) dynamic).setOnLongClickListener(onLongClickListener);
+        } else if (dynamic instanceof View) {
+            ((View) dynamic).setOnLongClickListener(onLongClickListener);
+        }
+    }
+
+    /**
+     * Set the clickable property for the dynamic object.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param clickable {@code true} to make it clickable.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see View#setClickable(boolean)
+     */
+    public static <T> void setClickable(@Nullable T dynamic, boolean clickable) {
+        if (dynamic instanceof View) {
+            ((View) dynamic).setClickable(clickable);
+        }
+    }
+
+    /**
+     * Set the long clickable property for the dynamic object.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param longClickable {@code true} to make it long clickable.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see View#setLongClickable(boolean)
+     */
+    public static <T> void setLongClickable(@Nullable T dynamic, boolean longClickable) {
+        if (dynamic instanceof View) {
+            ((View) dynamic).setLongClickable(longClickable);
         }
     }
 

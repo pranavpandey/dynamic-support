@@ -18,12 +18,15 @@ package com.pranavpandey.android.dynamic.support.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.pranavpandey.android.dynamic.support.Dynamic;
 
 /**
  * A FrameLayout with basic functionality to create views according to the need.
@@ -120,10 +123,46 @@ public abstract class DynamicView extends FrameLayout {
      */
     protected void onEnabled(boolean enabled) { }
 
+    /**
+     * This method will be called to return the optional background view.
+     * <p>It will be useful in tinting the background according to the contrast with color.
+     *
+     * @return The optional background view.
+     */
+    public abstract @Nullable View getBackgroundView();
+
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
         onEnabled(enabled);
+    }
+
+    @Override
+    public void setClickable(boolean clickable) {
+        super.setClickable(clickable);
+
+        Dynamic.setClickable(getBackgroundView(), clickable);
+    }
+
+    @Override
+    public void setOnClickListener(@Nullable OnClickListener l) {
+        super.setOnClickListener(l);
+
+        Dynamic.setOnClickListener(getBackgroundView(), l);
+    }
+
+    @Override
+    public void setLongClickable(boolean longClickable) {
+        super.setLongClickable(longClickable);
+
+        Dynamic.setClickable(getBackgroundView(), longClickable);
+    }
+
+    @Override
+    public void setOnLongClickListener(@Nullable OnLongClickListener l) {
+        super.setOnLongClickListener(l);
+
+        Dynamic.setOnLongClickListener(getBackgroundView(), l);
     }
 }

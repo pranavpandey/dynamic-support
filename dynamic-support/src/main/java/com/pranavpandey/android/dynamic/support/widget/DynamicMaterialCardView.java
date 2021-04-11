@@ -324,10 +324,16 @@ public class DynamicMaterialCardView extends MaterialCardView implements
     public void setSurface() {
         setStrokeColor(Color.TRANSPARENT);
 
+        @ColorInt int strokeColor = DynamicTheme.getInstance().get().getTintBackgroundColor();
+        if (DynamicTheme.getInstance().get().isBackgroundAware()
+                && mContrastWithColor != Theme.Color.UNKNOWN) {
+            strokeColor = DynamicColorUtils.getContrastColor(strokeColor, mContrastWithColor);
+        }
+
          if (mFloatingView) {
             if (Color.alpha(mColor) < Defaults.ADS_ALPHA_SURFACE_STROKE
                     || Color.alpha(mContrastWithColor) < Defaults.ADS_ALPHA_SURFACE_STROKE) {
-                setStrokeColor(DynamicTheme.getInstance().get().getTintBackgroundColor());
+                setStrokeColor(strokeColor);
             }
         } else if (isBackgroundSurface()) {
              if (!mElevationOnSameBackground) {
@@ -335,7 +341,7 @@ public class DynamicMaterialCardView extends MaterialCardView implements
              }
 
              if (Color.alpha(mColor) < Defaults.ADS_ALPHA_SURFACE_STROKE) {
-                 setStrokeColor(DynamicTheme.getInstance().get().getTintBackgroundColor());
+                 setStrokeColor(strokeColor);
              }
          } else {
             setCardElevation(mElevation);

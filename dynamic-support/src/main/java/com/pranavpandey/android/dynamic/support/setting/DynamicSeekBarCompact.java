@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPicker;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSeekBarPreference;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A compact version of the DynamicSeekBarPreference for the {@link DynamicColorPicker}.
@@ -57,6 +58,7 @@ public class DynamicSeekBarCompact extends DynamicSeekBarPreference {
     protected void onInflate() {
         super.onInflate();
 
+        setContrastWithColorType(Theme.ColorType.BACKGROUND);
         setActionButton(null, null);
     }
 }

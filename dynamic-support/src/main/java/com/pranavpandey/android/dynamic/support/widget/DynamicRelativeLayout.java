@@ -225,6 +225,34 @@ public class DynamicRelativeLayout extends RelativeLayout implements DynamicWidg
     }
 
     @Override
+    public void setClickable(boolean clickable) {
+        super.setClickable(clickable);
+
+        setColor();
+    }
+
+    @Override
+    public void setOnClickListener(@Nullable OnClickListener l) {
+        super.setOnClickListener(l);
+
+        setColor();
+    }
+
+    @Override
+    public void setLongClickable(boolean longClickable) {
+        super.setLongClickable(longClickable);
+
+        setColor();
+    }
+
+    @Override
+    public void setOnLongClickListener(@Nullable OnLongClickListener l) {
+        super.setOnLongClickListener(l);
+
+        setColor();
+    }
+
+    @Override
     public void setColor() {
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
@@ -233,6 +261,10 @@ public class DynamicRelativeLayout extends RelativeLayout implements DynamicWidg
             }
 
             DynamicDrawableUtils.setBackground(this, new ColorDrawable(mAppliedColor));
+        }
+
+        if (isBackgroundAware()) {
+            Dynamic.tintBackground(this, mContrastWithColor);
         }
     }
 }

@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.AttrRes;
+import androidx.annotation.CallSuper;
 import androidx.annotation.ColorInt;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -34,6 +35,7 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -144,7 +146,7 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
     private View mDivider;
 
     public DynamicItemView(@NonNull Context context) {
-        super(context);
+        this(context, null);
     }
 
     public DynamicItemView(@NonNull Context context, @Nullable AttributeSet attrs) {
@@ -180,6 +182,7 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
         onUpdate();
     }
 
+    @CallSuper
     @Override
     protected void onLoadAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(attrs, 
@@ -191,7 +194,7 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
                     Defaults.ADS_COLOR_TYPE_ICON);
             mContrastWithColorType = a.getInt(
                     R.styleable.DynamicItemView_ads_contrastWithColorType,
-                    Theme.ColorType.NONE);
+                    Theme.ColorType.SURFACE);
             mColor = a.getColor(
                     R.styleable.DynamicItemView_ads_color,
                     Theme.Color.UNKNOWN);
@@ -238,11 +241,19 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
 
         mVisibilityIconView = mIconView != null ? mIconView.getVisibility() : VISIBLE;
 
+        setDuplicateParentStateEnabled(true);
+        initialize();
         onUpdate();
     }
 
     @Override
     public void initialize() {
+        if (mContrastWithColorType != Theme.ColorType.NONE
+                && mContrastWithColorType != Theme.ColorType.CUSTOM) {
+            mContrastWithColor = DynamicTheme.getInstance()
+                    .resolveColorType(mContrastWithColorType);
+        }
+
         setColor();
     }
 
@@ -320,6 +331,8 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
 
     @Override
     public void setColor() {
+        Dynamic.setContrastWithColorTypeOrColor(getItemView(),
+                getContrastWithColorType(), getContrastWithColor());
         Dynamic.setContrastWithColorTypeOrColor(getIconView(),
                 getContrastWithColorType(), getContrastWithColor());
         Dynamic.setContrastWithColorTypeOrColor(getIconFooterView(),
@@ -331,6 +344,7 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
         Dynamic.setContrastWithColorTypeOrColor(getDivider(),
                 getContrastWithColorType(), getContrastWithColor());
 
+        Dynamic.setBackgroundAwareSafe(getItemView(), getBackgroundAware());
         Dynamic.setBackgroundAwareSafe(getIconView(), getBackgroundAware());
         Dynamic.setBackgroundAwareSafe(getIconFooterView(), getBackgroundAware());
         Dynamic.setBackgroundAwareSafe(getTitleView(), getBackgroundAware());
@@ -366,10 +380,17 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
 
     @Override
     protected void onEnabled(boolean enabled) {
+        super.onEnabled(enabled);
+
         Dynamic.setEnabled(getItemView(), enabled);
         Dynamic.setEnabled(getIconView(), enabled);
         Dynamic.setEnabled(getTitleView(), enabled);
         Dynamic.setEnabled(getSubtitleView(), enabled);
+    }
+
+    @Override
+    public @Nullable View getBackgroundView() {
+        return getItemView();
     }
 
     /**

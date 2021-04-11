@@ -204,6 +204,8 @@ public class DynamicTutorialFragment extends DynamicFragment implements
         }
 
         Dynamic.setContrastWithColor(mCardView, color);
+        Dynamic.setElevationOnSameBackground(mCardView,
+                !DynamicTheme.getInstance().get().isBackgroundSurface());
         if (Dynamic.isStrokeRequired()) {
             Dynamic.setColor(mCardView, DynamicColorUtils.setAlpha(color,
                     Color.alpha(DynamicTheme.getInstance().get().getSurfaceColor())));
@@ -213,10 +215,10 @@ public class DynamicTutorialFragment extends DynamicFragment implements
                     ? color : DynamicTheme.getInstance().generateSurfaceColor(color));
         }
 
-        Dynamic.tint(mTitleView, tintColor, color);
-        Dynamic.tint(mSubtitleView, tintColor, color);
-        Dynamic.tint(mDescriptionView, tintColor, color);
-        Dynamic.tint(mScrollView, tintColor, color);
+        Dynamic.tint(mTitleView, tintColor, Dynamic.getColor(mCardView, color));
+        Dynamic.tint(mSubtitleView, tintColor, Dynamic.getColor(mCardView, color));
+        Dynamic.tint(mDescriptionView, tintColor, Dynamic.getColor(mCardView, color));
+        Dynamic.tint(mScrollView, tintColor, Dynamic.getColor(mCardView, color));
     }
 
     @Override
