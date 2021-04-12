@@ -119,6 +119,11 @@ public class Defaults {
     public static final float ADS_ALPHA_ENABLED = 1f;
 
     /**
+     * Default alpha when the widget is enabled integer.
+     */
+    public static final int ADS_ALPHA_ENABLED_INTEGER = 255;
+
+    /**
      * Default alpha for the hint.
      */
     public static final float ADS_ALPHA_HINT = 0.8f;
@@ -127,6 +132,11 @@ public class Defaults {
      * Default alpha for the unselected state.
      */
     public static final float ADS_ALPHA_UNSELECTED = 0.8f;
+
+    /**
+     * Default alpha for the unselected state in integer.
+     */
+    public static final int ADS_ALPHA_UNSELECTED_INTEGER = 200;
 
     /**
      * Default alpha value for the unselected state to generate color state list dynamically.
@@ -147,6 +157,11 @@ public class Defaults {
      * Default alpha for the scrim insets.
      */
     public static final float ADS_ALPHA_SCRIM = 0.7f;
+
+    /**
+     * Default alpha for the backdrop view.
+     */
+    public static final float ADS_ALPHA_BACKDROP = 0.4f;
 
     /**
      * Default alpha when the widget is disabled.
