@@ -21,7 +21,7 @@
 
 # Keep methods in Activity that could be used in the XML.
 -keepclassmembers class * extends android.app.Activity {
-   public void *(android.view.View);
+    public void *(android.view.View);
 }
 
 # Keep support library classes.
@@ -44,3 +44,6 @@
 
 # Keep all the Dynamic Support models.
 -keep class com.pranavpandey.android.dynamic.support.model.** { *; }
+-keepclassmembers class * implements android.os.Parcelable {
+    static ** CREATOR;
+}

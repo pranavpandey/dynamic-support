@@ -97,7 +97,7 @@ The following rules will be applied by this library:
 
 # Keep methods in Activity that could be used in the XML.
 -keepclassmembers class * extends android.app.Activity {
-   public void *(android.view.View);
+    public void *(android.view.View);
 }
 
 # Keep support library classes.
@@ -120,6 +120,9 @@ The following rules will be applied by this library:
 
 # Keep all the Dynamic Support models.
 -keep class com.pranavpandey.android.dynamic.support.model.** { *; }
+-keepclassmembers class * implements android.os.Parcelable {
+    static ** CREATOR;
+}
 
 # Dynamic Theme rules
 
