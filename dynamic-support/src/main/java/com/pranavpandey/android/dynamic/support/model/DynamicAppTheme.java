@@ -1233,7 +1233,27 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
                 + getStyle() + '}';
     }
 
+    /**
+     * Returns the highlight color for this theme.
+     *
+     * @param contrastWithColor The contrast with color to be used.
+     *
+     * @return The highlight color for this theme.
+     */
+    public @ColorInt int getHighlightColor(@ColorInt int contrastWithColor) {
+        if (isBackgroundAware() && contrastWithColor != Theme.Color.UNKNOWN) {
+            return DynamicColorUtils.getContrastColor(getPrimaryColor(), contrastWithColor);
+        }
+
+        return getPrimaryColor();
+    }
+
+    /**
+     * Returns the highlight color for this theme.
+     *
+     * @return The highlight color for this theme.
+     */
     public @ColorInt int getHighlightColor() {
-        return DynamicColorUtils.getContrastColor(getPrimaryColor(), getBackgroundColor());
+        return getHighlightColor(getBackgroundColor());
     }
 }

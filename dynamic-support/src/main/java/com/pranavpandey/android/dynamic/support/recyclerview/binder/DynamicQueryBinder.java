@@ -52,7 +52,8 @@ public abstract class DynamicQueryBinder<T, Q, VH extends RecyclerView.ViewHolde
     public DynamicQueryBinder(@NonNull DynamicBinderAdapter<?> binderAdapter) {
         super(binderAdapter);
 
-        mHighlightColor = DynamicTheme.getInstance().get().getHighlightColor();
+        mHighlightColor = DynamicTheme.getInstance().get().getHighlightColor(
+                DynamicTheme.getInstance().get().getSurfaceColor());
     }
 
     /**
