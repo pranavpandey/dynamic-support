@@ -586,7 +586,7 @@ public class Dynamic {
         } else if (dynamic instanceof DynamicInfoView) {
             ((DynamicInfoView) dynamic).setOnClickListener(onClickListener);
         } else if (dynamic instanceof DynamicPreference) {
-            ((DynamicPreference) dynamic).setOnClickListener(onClickListener);
+            ((DynamicPreference) dynamic).setOnPreferenceClickListener(onClickListener);
         } else if (dynamic instanceof View) {
             ((View) dynamic).setOnClickListener(onClickListener);
         }

@@ -162,7 +162,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     private static DynamicTheme sInstance;
 
     /**
-     * Dynamic application lister used by this theme instance.
+     * Dynamic application listener used by this theme instance.
      */
     private DynamicListener mListener;
 
