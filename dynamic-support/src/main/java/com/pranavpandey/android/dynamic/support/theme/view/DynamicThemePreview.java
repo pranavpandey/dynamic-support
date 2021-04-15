@@ -96,6 +96,16 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
     private ImageView mIcon;
 
     /**
+     * Title used by this preview.
+     */
+    private ImageView mTitle;
+
+    /**
+     * Subtitle used by this preview.
+     */
+    private ImageView mSubtitle;
+
+    /**
      * Error image used by this preview.
      */
     private ImageView mError;
@@ -172,6 +182,8 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
         mContent = findViewById(R.id.ads_theme_content);
         mSurface = findViewById(R.id.ads_theme_content_start);
         mIcon = findViewById(R.id.ads_theme_icon);
+        mTitle = findViewById(R.id.ads_theme_title);
+        mSubtitle = findViewById(R.id.ads_theme_subtitle);
         mError = findViewById(R.id.ads_theme_error);
         mTextPrimaryStart = findViewById(R.id.ads_theme_text_primary_start);
         mTextPrimaryEnd = findViewById(R.id.ads_theme_text_primary_end);
@@ -225,6 +237,8 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
 
         if (getDynamicTheme().getCornerSizeDp() < Defaults.ADS_CORNER_MIN_THEME) {
             mHeaderTitle.setImageResource(R.drawable.ads_theme_overlay);
+            mTitle.setImageResource(R.drawable.ads_theme_overlay);
+            mSubtitle.setImageResource(R.drawable.ads_theme_overlay);
             mError.setImageResource(R.drawable.ads_theme_overlay);
             mTextPrimaryStart.setImageResource(R.drawable.ads_theme_overlay);
             mTextPrimaryEnd.setImageResource(R.drawable.ads_theme_overlay);
@@ -234,6 +248,8 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
             mTextDescriptionEnd.setImageResource(R.drawable.ads_theme_overlay);
         } else if (getDynamicTheme().getCornerSizeDp() < Defaults.ADS_CORNER_MIN_THEME_ROUND) {
             mHeaderTitle.setImageResource(R.drawable.ads_theme_overlay_rect);
+            mTitle.setImageResource(R.drawable.ads_theme_overlay_rect);
+            mSubtitle.setImageResource(R.drawable.ads_theme_overlay_rect);
             mError.setImageResource(R.drawable.ads_theme_overlay_rect);
             mTextPrimaryStart.setImageResource(R.drawable.ads_theme_overlay_rect_start);
             mTextPrimaryEnd.setImageResource(R.drawable.ads_theme_overlay_rect_end);
@@ -243,6 +259,8 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
             mTextDescriptionEnd.setImageResource(R.drawable.ads_theme_overlay_rect_end);
         } else {
             mHeaderTitle.setImageResource(R.drawable.ads_theme_overlay_round);
+            mTitle.setImageResource(R.drawable.ads_theme_overlay_round);
+            mSubtitle.setImageResource(R.drawable.ads_theme_overlay_round);
             mError.setImageResource(R.drawable.ads_theme_overlay_round);
             mTextPrimaryStart.setImageResource(R.drawable.ads_theme_overlay_round_start);
             mTextPrimaryEnd.setImageResource(R.drawable.ads_theme_overlay_round_end);
@@ -256,6 +274,8 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
         Dynamic.setBackgroundAware(mHeaderTitle, getDynamicTheme().getBackgroundAware());
         Dynamic.setBackgroundAware(mHeaderMenu, getDynamicTheme().getBackgroundAware());
         Dynamic.setBackgroundAware(mIcon, getDynamicTheme().getBackgroundAware());
+        Dynamic.setBackgroundAware(mTitle, getDynamicTheme().getBackgroundAware());
+        Dynamic.setBackgroundAware(mSubtitle, getDynamicTheme().getBackgroundAware());
         Dynamic.setBackgroundAware(mError, getDynamicTheme().getBackgroundAware());
         Dynamic.setBackgroundAware(mTextPrimaryStart, getDynamicTheme().getBackgroundAware());
         Dynamic.setBackgroundAware(mTextPrimaryEnd, getDynamicTheme().getBackgroundAware());
@@ -270,6 +290,8 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
         Dynamic.setContrastWithColor(mHeaderMenu, getDynamicTheme().getPrimaryColor());
         Dynamic.setContrastWithColor(mHeaderShadow, getDynamicTheme().getBackgroundColor());
         Dynamic.setContrastWithColor(mIcon, getDynamicTheme().getSurfaceColor());
+        Dynamic.setContrastWithColor(mTitle, getDynamicTheme().getSurfaceColor());
+        Dynamic.setContrastWithColor(mSubtitle, getDynamicTheme().getSurfaceColor());
         Dynamic.setContrastWithColor(mError, getDynamicTheme().getSurfaceColor());
         Dynamic.setContrastWithColor(mTextPrimaryStart, getDynamicTheme().getSurfaceColor());
         Dynamic.setContrastWithColor(mTextPrimaryEnd, getDynamicTheme().getBackgroundColor());
@@ -283,7 +305,9 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
         Dynamic.setColor(mHeaderTitle, getDynamicTheme().getTintPrimaryColor());
         Dynamic.setColor(mHeaderMenu, getDynamicTheme().getTintPrimaryColor());
         Dynamic.setColor(mHeaderShadow, getDynamicTheme().getAccentColorDark());
-        Dynamic.setColor(mIcon, getDynamicTheme().getPrimaryColor());
+        Dynamic.setColor(mIcon, getDynamicTheme().getTintBackgroundColor());
+        Dynamic.setColor(mTitle, getDynamicTheme().getPrimaryColor());
+        Dynamic.setColor(mSubtitle, getDynamicTheme().getAccentColor());
         Dynamic.setColor(mError, getDynamicTheme().getErrorColor());
         Dynamic.setColor(mTextPrimaryStart, getDynamicTheme().getTextPrimaryColor());
         Dynamic.setColor(mTextPrimaryEnd, getDynamicTheme().getTextPrimaryColor());
