@@ -45,7 +45,6 @@ import androidx.core.content.ContextCompat;
 
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout;
@@ -220,12 +219,11 @@ public class DynamicColorView extends DynamicFrameLayout {
             mColorPaint.setColor(getContrastWithColor());
 
             if (getMeasuredWidth() > 0) {
-                RadialGradient gradient =
-                        new RadialGradient(getMeasuredWidth() / 2f, getMeasuredWidth() / 2f,
-                                getMeasuredWidth(), new int[] {
-                                        DynamicTheme.getInstance().get().getBackgroundColor(),
-                                tintColor, DynamicTheme.getInstance().get().getPrimaryColor() },
-                                null, Shader.TileMode.CLAMP);
+                RadialGradient gradient = new RadialGradient(
+                        getMeasuredWidth() / 2f, getMeasuredWidth() / 2f,
+                        getMeasuredWidth(), new int[] {
+                                getContrastWithColor(), tintColor, getContrastWithColor() },
+                        null, Shader.TileMode.CLAMP);
                 mColorPaint.setShader(gradient);
             }
         } else {
@@ -367,7 +365,7 @@ public class DynamicColorView extends DynamicFrameLayout {
         tintColor = DynamicColorUtils.removeAlpha(tintColor);
 
         if (mSelected) {
-            icon = DynamicResourceUtils.getDrawable(getContext(), color == Theme.AUTO
+            icon = DynamicResourceUtils.getDrawable(getContext(), getColor() == Theme.AUTO
                             ? R.drawable.ads_ic_play : R.drawable.ads_ic_check);
         }
 

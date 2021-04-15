@@ -61,7 +61,8 @@
                 android:layout_height="@dimen/ads_icon_popup_footer"
                 android:layout_marginLeft="@dimen/ads_margin_small"
                 android:layout_marginStart="@dimen/ads_margin_small"
-                android:visibility="gone" />
+                android:visibility="gone"
+                app:ads_contrastWithColorType="surface" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                 android:id="@+id/ads_color_picker_popup_footer_image"
@@ -80,7 +81,8 @@
                 android:layout_height="@dimen/ads_icon_popup_footer"
                 android:layout_marginLeft="@dimen/ads_margin_small"
                 android:layout_marginStart="@dimen/ads_margin_small"
-                android:visibility="gone" />
+                android:visibility="gone"
+                app:ads_contrastWithColorType="surface" />
 
             <LinearLayout
                 android:id="@+id/ads_color_picker_popup_footer_recent"
@@ -97,7 +99,8 @@
                     android:id="@+id/ads_color_picker_popup_footer_view_recent"
                     android:layout_width="@dimen/ads_icon_popup_footer"
                     android:layout_height="@dimen/ads_icon_popup_footer"
-                    android:layout_gravity="center_vertical" />
+                    android:layout_gravity="center_vertical"
+                    app:ads_contrastWithColorType="surface" />
 
             </LinearLayout>
 

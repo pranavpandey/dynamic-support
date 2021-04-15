@@ -124,7 +124,8 @@ public class DynamicColorsAdapter extends BaseAdapter {
     @Override
 	public View getView(final int position,
             @Nullable View convertView, @NonNull ViewGroup parent) {
-		ViewHolder viewHolder;
+		final ViewHolder viewHolder;
+        final int color = (int) getItem(position);
 
         if (convertView == null) {
         	convertView = LayoutInflater.from(parent.getContext()).inflate(
@@ -135,33 +136,30 @@ public class DynamicColorsAdapter extends BaseAdapter {
         	viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        int color = (int) getItem(position);
-        final DynamicColorView dynamicColorView = viewHolder.getDynamicColorView();
-        dynamicColorView.setColor(color);
-        dynamicColorView.setColorShape(mColorShape);
-        dynamicColorView.setAlpha(mAlpha);
+        viewHolder.getDynamicColorView().setColor(color);
+        viewHolder.getDynamicColorView().setColorShape(mColorShape);
+        viewHolder.getDynamicColorView().setAlpha(mAlpha);
         if (mSelectedColor != Theme.Color.UNKNOWN) {
-            dynamicColorView.setSelected(mSelectedColor == color);
+            viewHolder.getDynamicColorView().setSelected(mSelectedColor == color);
+        }
+        if (mContrastWithColor != Theme.Color.UNKNOWN) {
+            Dynamic.setContrastWithColor(viewHolder.getDynamicColorView(), mContrastWithColor);
         }
 
-        dynamicColorView.setTooltip();
-        Dynamic.setOnClickListener(dynamicColorView, new View.OnClickListener() {
+        Dynamic.setOnClickListener(viewHolder.getDynamicColorView(), new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mDynamicColorListener != null) {
-                    mDynamicColorListener.onColorSelected(
-                            null, position, dynamicColorView.getColor());
-                    mSelectedColor = dynamicColorView.getColor();
+                    mDynamicColorListener.onColorSelected(null, position,
+                            viewHolder.getDynamicColorView().getColor());
+                    mSelectedColor = viewHolder.getDynamicColorView().getColor();
 
                     notifyDataSetChanged();
                 }
             }
         });
 
-        if (mContrastWithColor != Theme.Color.UNKNOWN) {
-            Dynamic.setContrastWithColor(dynamicColorView, mContrastWithColor);
-        }
-
+        viewHolder.getDynamicColorView().setTooltip();
         return convertView;
     }
 

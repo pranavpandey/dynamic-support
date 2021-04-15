@@ -161,17 +161,17 @@ public final class DynamicScrollUtils {
     /**
      * Scroll bar cache constant for the view.
      */
-    private static Field F_SCROLL_BAR_FIELD_CACHE;
+    private static Field F_VIEW_SCROLL_CACHE;
 
     /**
      * Scroll bar vertical thumb constant for the view.
      */
-    private static Field V_SCROLL_BAR_VERTICAL_THUMB;
+    private static Field F_VIEW_SCROLL_BAR_VERTICAL_THUMB;
 
     /**
      * Scroll bar horizontal thumb constant for the view.
      */
-    private static Field V_SCROLL_BAR_HORIZONTAL_THUMB;
+    private static Field F_VIEW_SCROLL_BAR_HORIZONTAL_THUMB;
 
     /**
      * Initialize edge effect or glow fields so that we can access them via reflection.
@@ -376,8 +376,8 @@ public final class DynamicScrollUtils {
     private static void initializeScrollBarFields(@Nullable Object clazz) {
         if (clazz instanceof View) {
             try {
-                F_SCROLL_BAR_FIELD_CACHE = View.class.getDeclaredField("mScrollCache");
-                F_SCROLL_BAR_FIELD_CACHE.setAccessible(true);
+                F_VIEW_SCROLL_CACHE = View.class.getDeclaredField("mScrollCache");
+                F_VIEW_SCROLL_CACHE.setAccessible(true);
             } catch (Exception ignored) {
             }
         }
@@ -611,7 +611,7 @@ public final class DynamicScrollUtils {
         initializeScrollBarFields(view);
 
         try {
-            Object mScrollCache = F_SCROLL_BAR_FIELD_CACHE.get(view);
+            Object mScrollCache = F_VIEW_SCROLL_CACHE.get(view);
 
             if (mScrollCache != null) {
                 F_VIEW_SCROLL_BAR =
@@ -620,13 +620,13 @@ public final class DynamicScrollUtils {
                 Object scrollBar = F_VIEW_SCROLL_BAR.get(mScrollCache);
 
                 if (scrollBar != null) {
-                    V_SCROLL_BAR_VERTICAL_THUMB =
+                    F_VIEW_SCROLL_BAR_VERTICAL_THUMB =
                             scrollBar.getClass().getDeclaredField("mVerticalThumb");
-                    V_SCROLL_BAR_VERTICAL_THUMB.setAccessible(true);
+                    F_VIEW_SCROLL_BAR_VERTICAL_THUMB.setAccessible(true);
 
-                    if (V_SCROLL_BAR_VERTICAL_THUMB != null) {
+                    if (F_VIEW_SCROLL_BAR_VERTICAL_THUMB != null) {
                         DynamicDrawableUtils.colorizeDrawable((Drawable)
-                                V_SCROLL_BAR_VERTICAL_THUMB.get(scrollBar), color);
+                                F_VIEW_SCROLL_BAR_VERTICAL_THUMB.get(scrollBar), color);
                     }
                 }
             }
@@ -634,12 +634,12 @@ public final class DynamicScrollUtils {
             // Fix for Android 9 developer preview. For more info, please
             // visit g.co/dev/appcompat.
             if (!DynamicSdkUtils.is28()) {
-                V_SCROLL_BAR_HORIZONTAL_THUMB =
+                F_VIEW_SCROLL_BAR_HORIZONTAL_THUMB =
                         view.getClass().getDeclaredField("mHorizontalThumb");
-                V_SCROLL_BAR_HORIZONTAL_THUMB.setAccessible(true);
-                if (V_SCROLL_BAR_HORIZONTAL_THUMB != null) {
+                F_VIEW_SCROLL_BAR_HORIZONTAL_THUMB.setAccessible(true);
+                if (F_VIEW_SCROLL_BAR_HORIZONTAL_THUMB != null) {
                     DynamicDrawableUtils.colorizeDrawable((Drawable)
-                            V_SCROLL_BAR_HORIZONTAL_THUMB.get(view), color);
+                            F_VIEW_SCROLL_BAR_HORIZONTAL_THUMB.get(view), color);
                 }
             }
         } catch(Exception ignored) {

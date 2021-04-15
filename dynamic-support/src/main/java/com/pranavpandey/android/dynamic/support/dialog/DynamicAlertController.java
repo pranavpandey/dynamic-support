@@ -24,7 +24,6 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -37,9 +36,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.ViewStub;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -54,17 +53,16 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.DynamicListView;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 
 import java.lang.ref.WeakReference;
 
@@ -612,140 +610,69 @@ class DynamicAlertController {
         View indicatorUp = mWindow.findViewById(R.id.scrollIndicatorUp);
         View indicatorDown = mWindow.findViewById(R.id.scrollIndicatorDown);
 
-        if (Build.VERSION.SDK_INT >= 23) {
-            // We're on Marshmallow so can rely on the View APIs
-            ViewCompat.setScrollIndicators(content, indicators, mask);
-            // We can also remove the compat indicator views
-            if (indicatorUp != null) {
-                contentPanel.removeView(indicatorUp);
-            }
-            if (indicatorDown != null) {
-                contentPanel.removeView(indicatorDown);
-            }
-        } else {
-            // First, remove the indicator views if we're not set to use them
-            if (indicatorUp != null && (indicators & ViewCompat.SCROLL_INDICATOR_TOP) == 0) {
-                contentPanel.removeView(indicatorUp);
-                indicatorUp = null;
-            }
-            if (indicatorDown != null && (indicators & ViewCompat.SCROLL_INDICATOR_BOTTOM) == 0) {
-                contentPanel.removeView(indicatorDown);
-                indicatorDown = null;
-            }
+        // First, remove the indicator views if we're not set to use them
+        if (indicatorUp != null && (indicators & ViewCompat.SCROLL_INDICATOR_TOP) == 0) {
+            contentPanel.removeView(indicatorUp);
+            indicatorUp = null;
+        }
+        if (indicatorDown != null && (indicators & ViewCompat.SCROLL_INDICATOR_BOTTOM) == 0) {
+            contentPanel.removeView(indicatorDown);
+            indicatorDown = null;
+        }
 
-            if (indicatorUp != null || indicatorDown != null) {
-                final View top = indicatorUp;
-                final View bottom = indicatorDown;
+        if (indicatorUp != null || indicatorDown != null) {
+            final View top = indicatorUp;
+            final View bottom = indicatorDown;
 
-                if (mMessage != null) {
-                    // We're just showing the ScrollView, set up listener.
-                    mScrollView.setOnScrollChangeListener(
-                            new NestedScrollView.OnScrollChangeListener() {
-                                @Override
-                                public void onScrollChange(NestedScrollView v, int scrollX,
-                                        int scrollY, int oldScrollX, int oldScrollY) {
-                                    manageScrollIndicators(v, top, bottom);
-                                }
-                            });
-
-                    // Set up the indicators following layout.
-                    mScrollView.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            manageScrollIndicators(mScrollView, top, bottom);
-                        }
-                    });
-                } else if (mListView != null) {
-                    // We're just showing the AbsListView, set up listener.
-                    mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
-                        @Override
-                        public void onScrollStateChanged(AbsListView view, int scrollState) {
-                            manageScrollIndicators(view, top, bottom);
-                        }
-
-                        @Override
-                        public void onScroll(AbsListView view, int firstVisibleItem,
-                                int visibleItemCount, int totalItemCount) {
-                            manageScrollIndicators(view, top, bottom);
-                        }
-                    });
-
-                    // Set up the indicators following layout.
-                    mListView.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            manageScrollIndicators(mListView, top, bottom);
-                        }
-                    });
-                } else if (mViewRoot != null) {
-                    if (mViewRoot instanceof NestedScrollView) {
-                        ((NestedScrollView) mViewRoot).setOnScrollChangeListener(
-                                new NestedScrollView.OnScrollChangeListener() {
-                                    @Override
-                                    public void onScrollChange(NestedScrollView v, int scrollX,
-                                            int scrollY, int oldScrollX, int oldScrollY) {
-                                        manageScrollIndicators(v, top, bottom);
-                                    }
-                                });
-
-                        // Set up the indicators following layout.
-                        mViewRoot.post(new Runnable() {
+            if (mMessage != null) {
+                mScrollView.getViewTreeObserver().addOnScrollChangedListener(
+                        new ViewTreeObserver.OnScrollChangedListener() {
                             @Override
-                            public void run() {
-                                manageScrollIndicators(mViewRoot, top, bottom);
+                            public void onScrollChanged() {
+                                DynamicViewUtils.manageScrollIndicators(mScrollView, top, bottom);
                             }
                         });
-                    } else if (mViewRoot instanceof AbsListView) {
-                        ((AbsListView) mViewRoot).setOnScrollListener(new AbsListView.OnScrollListener() {
-                            @Override
-                            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                                manageScrollIndicators(view, top, bottom);
-                            }
-
-                            @Override
-                            public void onScroll(AbsListView view, int firstVisibleItem,
-                                    int visibleItemCount, int totalItemCount) {
-                                manageScrollIndicators(view, top, bottom);
-                            }
-                        });
-
-                        mViewRoot.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                manageScrollIndicators(mViewRoot, top, bottom);
-                            }
-                        });
-                    } else if (mViewRoot instanceof RecyclerView) {
-                        ((RecyclerView) mViewRoot).addOnScrollListener(
-                                new RecyclerView.OnScrollListener() {
-                                    @Override
-                                    public void onScrollStateChanged(
-                                            @NonNull RecyclerView recyclerView, int newState) {
-                                        manageScrollIndicators(recyclerView, top, bottom);
-                                    }
-
-                                    @Override
-                                    public void onScrolled(@NonNull RecyclerView recyclerView,
-                                            int dx, int dy) {
-                                        manageScrollIndicators(recyclerView, top, bottom);
-                                    }
-                                });
-
-                        mViewRoot.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                manageScrollIndicators(mViewRoot, top, bottom);
-                            }
-                        });
+                mScrollView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        DynamicViewUtils.manageScrollIndicators(mScrollView, top, bottom);
                     }
-                } else {
-                    // We don't have any content to scroll, remove the indicators.
-                    if (top != null) {
-                        contentPanel.removeView(top);
+                });
+            } else if (mListView != null) {
+                mListView.getViewTreeObserver().addOnScrollChangedListener(
+                        new ViewTreeObserver.OnScrollChangedListener() {
+                            @Override
+                            public void onScrollChanged() {
+                                DynamicViewUtils.manageScrollIndicators(mListView, top, bottom);
+                            }
+                        });
+                mListView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        DynamicViewUtils.manageScrollIndicators(mListView, top, bottom);
                     }
-                    if (bottom != null) {
-                        contentPanel.removeView(bottom);
+                });
+            } else if (mViewRoot != null) {
+                mViewRoot.getViewTreeObserver().addOnScrollChangedListener(
+                        new ViewTreeObserver.OnScrollChangedListener() {
+                            @Override
+                            public void onScrollChanged() {
+                                DynamicViewUtils.manageScrollIndicators(mViewRoot, top, bottom);
+                            }
+                        });
+                mViewRoot.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        DynamicViewUtils.manageScrollIndicators(mViewRoot, top, bottom);
                     }
+                });
+            } else {
+                // We don't have any content to scroll, remove the indicators.
+                if (top != null) {
+                    contentPanel.removeView(top);
+                }
+                if (bottom != null) {
+                    contentPanel.removeView(bottom);
                 }
             }
         }

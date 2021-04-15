@@ -23,8 +23,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
-import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
@@ -33,9 +33,7 @@ import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
-import androidx.core.widget.NestedScrollView;
 import androidx.core.widget.PopupWindowCompat;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.TransitionManager;
 
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
@@ -239,8 +237,8 @@ public abstract class DynamicPopup {
     public void show() {
         View view = LayoutInflater.from(getAnchor().getContext()).inflate(
                 R.layout.ads_popup, (ViewGroup) getAnchor().getRootView(), false);
-        ViewGroup layout = view.findViewById(R.id.ads_popup_content_layout);
         ViewGroup card = view.findViewById(R.id.ads_popup_card);
+        ViewGroup layout = view.findViewById(R.id.ads_popup_content_layout);
         ViewGroup header = view.findViewById(R.id.ads_popup_header);
         ViewGroup content = view.findViewById(R.id.ads_popup_content);
         ViewGroup footer = view.findViewById(R.id.ads_popup_footer);
@@ -274,84 +272,33 @@ public abstract class DynamicPopup {
                 final int mask = ViewCompat.SCROLL_INDICATOR_TOP
                         | ViewCompat.SCROLL_INDICATOR_BOTTOM;
 
-                if (DynamicSdkUtils.is23()) {
-                    ViewCompat.setScrollIndicators(mViewRoot, indicators, mask);
-
+                if ((indicators & ViewCompat.SCROLL_INDICATOR_TOP) == 0) {
                     layout.removeView(indicatorUp);
+                    indicatorUp = null;
+                }
+
+                if ((indicators & ViewCompat.SCROLL_INDICATOR_BOTTOM) == 0) {
                     layout.removeView(indicatorDown);
-                } else {
-                    if ((indicators & ViewCompat.SCROLL_INDICATOR_TOP) == 0) {
-                        layout.removeView(indicatorUp);
-                        indicatorUp = null;
-                    }
+                    indicatorDown = null;
+                }
 
-                    if ((indicators & ViewCompat.SCROLL_INDICATOR_BOTTOM) == 0) {
-                        layout.removeView(indicatorDown);
-                        indicatorDown = null;
-                    }
+                if (indicatorUp != null || indicatorDown != null) {
+                    final View top = indicatorUp;
+                    final View bottom = indicatorDown;
 
-                    if (indicatorUp != null || indicatorDown != null) {
-                        final View top = indicatorUp;
-                        final View bottom = indicatorDown;
-
-                        if (mViewRoot instanceof NestedScrollView) {
-                            ((NestedScrollView) mViewRoot).setOnScrollChangeListener(
-                                    new NestedScrollView.OnScrollChangeListener() {
-                                        @Override
-                                        public void onScrollChange(NestedScrollView v,
-                                                int scrollX, int scrollY,
-                                                int oldScrollX, int oldScrollY) {
-                                            DynamicViewUtils.manageScrollIndicators(v, top, bottom);
-                                        }
-                                    });
-                        } else if (mViewRoot instanceof AbsListView) {
-                            ((AbsListView) mViewRoot).setOnScrollListener(
-                                    new AbsListView.OnScrollListener() {
-                                        @Override
-                                        public void onScrollStateChanged(AbsListView view,
-                                                int scrollState) {
-                                            DynamicViewUtils.manageScrollIndicators(
-                                                    view, top, bottom);
-                                        }
-
-                                        @Override
-                                        public void onScroll(AbsListView view,
-                                                int firstVisibleItem, int visibleItemCount,
-                                                int totalItemCount) {
-                                            DynamicViewUtils.manageScrollIndicators(
-                                                    view, top, bottom);
-                                        }
-                            });
-                        } else if (mViewRoot instanceof RecyclerView) {
-                            ((RecyclerView) mViewRoot).addOnScrollListener(
-                                    new RecyclerView.OnScrollListener() {
-                                        @Override
-                                        public void onScrollStateChanged(
-                                                @NonNull RecyclerView recyclerView, int newState) {
-                                            DynamicViewUtils.manageScrollIndicators(
-                                                    recyclerView, top, bottom);
-                                        }
-
-                                        @Override
-                                        public void onScrolled(@NonNull RecyclerView recyclerView,
-                                                int dx, int dy) {
-                                            DynamicViewUtils.manageScrollIndicators(
-                                                    recyclerView, top, bottom);
-                                        }
-                            });
-                        }
-
-                        if (mViewRoot instanceof NestedScrollView
-                                || mViewRoot instanceof AbsListView
-                                || mViewRoot instanceof RecyclerView) {
-                            mViewRoot.post(new Runnable() {
+                    mViewRoot.getViewTreeObserver().addOnScrollChangedListener(
+                            new ViewTreeObserver.OnScrollChangedListener() {
                                 @Override
-                                public void run() {
+                                public void onScrollChanged() {
                                     DynamicViewUtils.manageScrollIndicators(mViewRoot, top, bottom);
                                 }
                             });
+                    mViewRoot.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            DynamicViewUtils.manageScrollIndicators(mViewRoot, top, bottom);
                         }
-                    }
+                    });
                 }
             }
         } else {
