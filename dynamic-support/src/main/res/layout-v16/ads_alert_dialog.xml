@@ -46,12 +46,10 @@
                     android:layout_height="@dimen/ads_dialog_margin_title_top"
                     android:visibility="gone" />
 
-                <View
+                <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
+                    style="@style/Widget.DynamicApp.Divider"
                     android:id="@+id/scrollIndicatorUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/ads_margin_divider"
                     android:layout_gravity="top"
-                    android:background="?attr/colorControlHighlight"
                     android:visibility="gone" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
@@ -94,12 +92,10 @@
 
             </LinearLayout>
 
-            <View
+            <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
+                style="@style/Widget.DynamicApp.Divider"
                 android:id="@+id/scrollIndicatorDown"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/ads_margin_divider"
                 android:layout_gravity="bottom"
-                android:background="?attr/colorControlHighlight"
                 android:visibility="gone" />
 
         </FrameLayout>

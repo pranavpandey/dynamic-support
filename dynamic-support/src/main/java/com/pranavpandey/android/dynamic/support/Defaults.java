@@ -154,6 +154,11 @@ public class Defaults {
     public static final float ADS_ALPHA_PRESSED = 0.2f;
 
     /**
+     * Default alpha when the selector is pressed.
+     */
+    public static final float ADS_ALPHA_PRESSED_SELECTOR = 0.4f;
+
+    /**
      * Default alpha for the scrim insets.
      */
     public static final float ADS_ALPHA_SCRIM = 0.7f;

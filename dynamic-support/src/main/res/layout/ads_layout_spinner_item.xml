@@ -17,11 +17,9 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/Widget.DynamicApp.Content.Card.Small.Clickable.Background"
     android:id="@+id/ads_spinner_item_root"
-    android:orientation="horizontal"
-    app:ads_contrastWithColorType="surface">
+    android:orientation="horizontal">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
         style="@style/Widget.DynamicApp.Image.Preference"

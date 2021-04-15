@@ -56,6 +56,7 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.inflater.DynamicLayoutInflater;
 import com.pranavpandey.android.dynamic.support.tutorial.Tutorial;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicInfoView;
 import com.pranavpandey.android.dynamic.support.view.DynamicItemView;
@@ -547,7 +548,20 @@ public class Dynamic {
     }
 
     /**
-     * Tint background according to the supplied contrast color.
+     * Tint dynamic object according to the supplied colors.
+     *
+     * @param dynamic The dynamic object to be tinted.
+     * @param color The color to be set.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see #tint(Object, int, int)
+     */
+    public static <T> void tint(@Nullable T dynamic, @ColorInt int color) {
+        tint(dynamic, color, DynamicTheme.getInstance().getDefaultContrastWith());
+    }
+
+    /**
+     * Tint background according to the supplied contrast with color.
      *
      * @param dynamic The dynamic object to be tinted.
      * @param contrastWithColor The contrast with color to be considered.
@@ -565,6 +579,47 @@ public class Dynamic {
             DynamicTintUtils.setViewBackgroundTint((View) dynamic,
                     contrastWithColor, true);
         }
+    }
+
+    /**
+     * Tint background according to the default contrast with color.
+     *
+     * @param dynamic The dynamic object to be tinted.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see #tintBackground(Object, int)
+     */
+    public static <T> void tintBackground(@Nullable T dynamic) {
+        tintBackground(dynamic, DynamicTheme.getInstance().getDefaultContrastWith());
+    }
+
+    /**
+     * Tint scrollable according to the supplied contrast with color.
+     *
+     * @param dynamic The dynamic object to be tinted.
+     * @param contrastWithColor The contrast with color to be considered.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see DynamicScrollUtils#tint(Object, int)
+     */
+    public static <T> void tintScrollable(@Nullable T dynamic, @ColorInt int contrastWithColor) {
+        if (contrastWithColor == Theme.Color.UNKNOWN) {
+            return;
+        }
+
+        DynamicScrollUtils.tint(dynamic, contrastWithColor);
+    }
+
+    /**
+     * Tint scrollable according to the default contrast with color.
+     *
+     * @param dynamic The dynamic object to be tinted.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see #tintScrollable(Object, int)
+     */
+    public static <T> void tintScrollable(@Nullable T dynamic) {
+        tintScrollable(dynamic, DynamicTheme.getInstance().getDefaultContrastWith());
     }
 
     /**

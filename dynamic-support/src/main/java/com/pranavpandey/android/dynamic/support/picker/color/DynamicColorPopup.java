@@ -334,7 +334,7 @@ public class DynamicColorPopup extends DynamicPopup {
 
         if (mDynamics == null) {
             DynamicTaskUtils.executeTask(mWallpaperColorsTask);
-        } else {
+        } else if (getView() != null) {
             setDynamics(getView().findViewById(R.id.ads_color_picker_dynamics),
                     getView().findViewById(R.id.ads_color_picker_divider));
         }

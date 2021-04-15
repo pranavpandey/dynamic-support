@@ -17,8 +17,10 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicListView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ads_selector_list_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:listSelector="@null"
-    android:divider="@null" />
+    android:divider="@null"
+    app:ads_contrastWithColorType="surface" />

@@ -643,11 +643,11 @@ class DynamicAlertController {
                             new NestedScrollView.OnScrollChangeListener() {
                                 @Override
                                 public void onScrollChange(NestedScrollView v, int scrollX,
-                                        int scrollY,
-                                        int oldScrollX, int oldScrollY) {
+                                        int scrollY, int oldScrollX, int oldScrollY) {
                                     manageScrollIndicators(v, top, bottom);
                                 }
                             });
+
                     // Set up the indicators following layout.
                     mScrollView.post(new Runnable() {
                         @Override
@@ -659,14 +659,17 @@ class DynamicAlertController {
                     // We're just showing the AbsListView, set up listener.
                     mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
                         @Override
-                        public void onScrollStateChanged(AbsListView view, int scrollState) {}
+                        public void onScrollStateChanged(AbsListView view, int scrollState) {
+                            manageScrollIndicators(view, top, bottom);
+                        }
 
                         @Override
-                        public void onScroll(AbsListView v, int firstVisibleItem,
+                        public void onScroll(AbsListView view, int firstVisibleItem,
                                 int visibleItemCount, int totalItemCount) {
-                            manageScrollIndicators(v, top, bottom);
+                            manageScrollIndicators(view, top, bottom);
                         }
                     });
+
                     // Set up the indicators following layout.
                     mListView.post(new Runnable() {
                         @Override
@@ -680,11 +683,11 @@ class DynamicAlertController {
                                 new NestedScrollView.OnScrollChangeListener() {
                                     @Override
                                     public void onScrollChange(NestedScrollView v, int scrollX,
-                                            int scrollY,
-                                            int oldScrollX, int oldScrollY) {
+                                            int scrollY, int oldScrollX, int oldScrollY) {
                                         manageScrollIndicators(v, top, bottom);
                                     }
                                 });
+
                         // Set up the indicators following layout.
                         mViewRoot.post(new Runnable() {
                             @Override
@@ -695,12 +698,14 @@ class DynamicAlertController {
                     } else if (mViewRoot instanceof AbsListView) {
                         ((AbsListView) mViewRoot).setOnScrollListener(new AbsListView.OnScrollListener() {
                             @Override
-                            public void onScrollStateChanged(AbsListView view, int scrollState) {}
+                            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                                manageScrollIndicators(view, top, bottom);
+                            }
 
                             @Override
-                            public void onScroll(AbsListView v, int firstVisibleItem,
+                            public void onScroll(AbsListView view, int firstVisibleItem,
                                     int visibleItemCount, int totalItemCount) {
-                                manageScrollIndicators(v, top, bottom);
+                                manageScrollIndicators(view, top, bottom);
                             }
                         });
 
@@ -715,12 +720,14 @@ class DynamicAlertController {
                                 new RecyclerView.OnScrollListener() {
                                     @Override
                                     public void onScrollStateChanged(
-                                            @NonNull RecyclerView view, int scrollState) { }
+                                            @NonNull RecyclerView recyclerView, int newState) {
+                                        manageScrollIndicators(recyclerView, top, bottom);
+                                    }
 
                                     @Override
-                                    public void onScrolled(@NonNull RecyclerView view,
+                                    public void onScrolled(@NonNull RecyclerView recyclerView,
                                             int dx, int dy) {
-                                        manageScrollIndicators(view, top, bottom);
+                                        manageScrollIndicators(recyclerView, top, bottom);
                                     }
                                 });
 
@@ -873,12 +880,13 @@ class DynamicAlertController {
 
     static void manageScrollIndicators(View v, View upIndicator, View downIndicator) {
         if (upIndicator != null) {
-            upIndicator.setVisibility(
-                    v.canScrollVertically(-1) ? View.VISIBLE : View.INVISIBLE);
+            upIndicator.setVisibility(v.canScrollVertically(-1)
+                    ? View.VISIBLE : View.INVISIBLE);
         }
+
         if (downIndicator != null) {
-            downIndicator.setVisibility(
-                    v.canScrollVertically(1) ? View.VISIBLE : View.INVISIBLE);
+            downIndicator.setVisibility(v.canScrollVertically(1)
+                    ? View.VISIBLE : View.INVISIBLE);
         }
     }
 

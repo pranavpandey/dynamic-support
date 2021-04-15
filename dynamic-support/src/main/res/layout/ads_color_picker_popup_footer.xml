@@ -90,12 +90,7 @@
                 android:visibility="gone">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
-                    android:layout_width="@dimen/ads_margin_extra_tiny"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/ads_margin_small"
-                    android:layout_marginRight="@dimen/ads_margin_small"
-                    android:background="?android:attr/dividerVertical"
-                    app:ads_colorType="tint_surface"
+                    style="@style/Widget.DynamicApp.Divider.Vertical.Large"
                     app:ads_contrastWithColorType="surface" />
 
                 <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView

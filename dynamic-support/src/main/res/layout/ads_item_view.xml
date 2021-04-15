@@ -19,14 +19,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
-        style="@style/Widget.DynamicApp.Content.Card.Clickable.Background"
-        android:id="@+id/ads_item_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
-            style="@style/Widget.DynamicApp.Content.Row.Horizontal">
+            style="@style/Widget.DynamicApp.Content.Card.Clickable.Background"
+            android:id="@+id/ads_item_view"
+            android:orientation="horizontal">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                 style="@style/Widget.DynamicApp.Image.Preference"

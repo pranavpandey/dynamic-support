@@ -58,11 +58,9 @@
                     android:visibility="gone">
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/ads_margin_extra_tiny"
-                        android:layout_marginTop="@dimen/ads_margin_small"
-                        android:layout_marginBottom="@dimen/ads_margin_small"
-                        android:background="?android:attr/dividerHorizontal" />
+                        style="@style/Widget.DynamicApp.Divider.Large"
+                        android:layout_marginTop="@dimen/ads_margin_regular"
+                        android:layout_marginBottom="@dimen/ads_margin_regular" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
                         style="@style/Widget.DynamicApp.Scroller.Nested.GridView"
@@ -244,11 +242,7 @@
                 </com.pranavpandey.android.dynamic.support.widget.DynamicHorizontalScrollView>
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/ads_margin_extra_tiny"
-                    android:layout_marginTop="@dimen/ads_margin_small"
-                    android:layout_marginBottom="@dimen/ads_margin_small"
-                    android:background="?android:attr/dividerHorizontal" />
+                    style="@style/Widget.DynamicApp.Divider.Large" />
 
                 <LinearLayout
                     style="@style/Widget.DynamicApp.Content.Row.Vertical"

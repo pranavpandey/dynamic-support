@@ -19,6 +19,7 @@
 
     <!-- Window -->
     <color name="ads_window_background_day_night">@color/ads_window_background</color>
+    <color name="ads_window_background_day_night_inverse">@color/ads_window_background_light</color>
 
     <!-- Card -->
     <color name="ads_card_background_day_night">@color/ads_card_background</color>

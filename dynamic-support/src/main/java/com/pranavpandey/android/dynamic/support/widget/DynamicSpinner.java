@@ -19,7 +19,6 @@ package com.pranavpandey.android.dynamic.support.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
@@ -97,6 +96,11 @@ public class DynamicSpinner extends AppCompatSpinner
      */
     private boolean mElevationOnSameBackground;
 
+    /**
+     * Popup background used by this view.
+     */
+    private DynamicPopupBackground mPopupBackground;
+
     public DynamicSpinner(@NonNull Context context) {
         this(context, null);
     }
@@ -138,6 +142,8 @@ public class DynamicSpinner extends AppCompatSpinner
             mElevationOnSameBackground = a.getBoolean(
                     R.styleable.DynamicSpinner_ads_elevationOnSameBackground,
                     Defaults.ADS_ELEVATION_ON_SAME_BACKGROUND);
+            mPopupBackground = new DynamicPopupBackground(getContext(), attrs);
+            mPopupBackground.setCorner(0f);
         } finally {
             a.recycle();
         }
@@ -269,19 +275,10 @@ public class DynamicSpinner extends AppCompatSpinner
     @Override
     public void setSurface() {
         if (mContrastWithColor != Theme.Color.UNKNOWN) {
-            @ColorInt int color = mContrastWithColor;
-
-            if (isBackgroundSurface()) {
-                color = DynamicTheme.getInstance().generateSurfaceColor(color);
-            }
-
-            if (DynamicSdkUtils.is21()) {
-                DynamicDrawableUtils.colorizeDrawable(getPopupBackground(), color);
-            } else {
-                DynamicDrawableUtils.colorizeDrawable(getPopupBackground(),
-                        color, PorterDuff.Mode.MULTIPLY);
-            }
+            mPopupBackground.setColor(mContrastWithColor);
         }
+
+        setPopupBackgroundDrawable(mPopupBackground.getBackground());
     }
 
     @Override

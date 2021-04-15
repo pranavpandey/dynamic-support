@@ -33,7 +33,6 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView;
 import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
-import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
 import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
 
@@ -156,11 +155,10 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
                     .setImageResource(R.drawable.ads_ic_palette);
             holder.getThemePreview().setDynamicTheme(theme);
             Dynamic.setCorner(holder.getRoot(), theme.getCornerRadius());
-            DynamicTintUtils.setViewForegroundTint(holder.getThemePreview(),
-                    theme.getBackgroundColor(), false);
+            Dynamic.setContrastWithColor(holder.getForeground(), theme.getBackgroundColor());
 
             if (mDynamicPresetsListener != null) {
-                Dynamic.setOnClickListener(holder.getThemePreview(), new View.OnClickListener() {
+                Dynamic.setOnClickListener(holder.getForeground(), new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         mDynamicPresetsListener.onPresetClick(v,
@@ -178,7 +176,7 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
                     }
                 });
             } else {
-                Dynamic.setClickable(holder.getThemePreview(), false);
+                Dynamic.setClickable(holder.getForeground(), false);
                 Dynamic.setClickable(holder.getThemePreview().getActionView(), false);
             }
         } catch (Exception ignored) {
@@ -248,6 +246,11 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
         private final ThemePreview<T> themePreview;
 
         /**
+         * The foreground to provide the touch feedback.
+         */
+        private final ViewGroup foreground;
+
+        /**
          * Constructor to initialize views from the supplied layout.
          *
          * @param view The view for this view holder.
@@ -257,6 +260,7 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
 
             root = view.findViewById(R.id.ads_preset_root);
             themePreview = view.findViewById(R.id.ads_preset_theme_preview);
+            foreground = view.findViewById(R.id.ads_preset_theme_preview_foreground);
         }
 
         /**
@@ -275,6 +279,15 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
          */
         public @NonNull ThemePreview<T> getThemePreview() {
             return themePreview;
+        }
+
+        /**
+         * Get the foreground to provide the touch feedback.
+         *
+         * @return The foreground to provide the touch feedback.
+         */
+        public @Nullable ViewGroup getForeground() {
+            return foreground;
         }
     }
 }

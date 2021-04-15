@@ -17,14 +17,13 @@
 package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
@@ -32,51 +31,8 @@ import com.pranavpandey.android.dynamic.theme.Theme;
  */
 public class DynamicDivider extends DynamicBackgroundView {
 
-    /**
-     * Color type applied to this view.
-     *
-     * @see Theme.ColorType
-     */
-    private @Theme.ColorType int mColorType;
-
-    /**
-     * Background color type for this view so that it will remain in contrast with this
-     * color type.
-     */
-    private @Theme.ColorType int mContrastWithColorType;
-
-    /**
-     * Color applied to this view.
-     */
-    private @ColorInt int mColor;
-
-    /**
-     * Color applied to this view after considering the background aware properties.
-     */
-    private @ColorInt int mAppliedColor;
-
-    /**
-     * Background color for this view so that it will remain in contrast with this color.
-     */
-    private @ColorInt int mContrastWithColor;
-
-    /**
-     * The background aware functionality to change this view color according to the background.
-     * It was introduced to provide better legibility for colored views and to avoid dark view
-     * on dark background like situations.
-     *
-     * <p>If this is enabled then, it will check for the contrast color and do color
-     * calculations according to that color so that this text view will always be visible on
-     * that background. If no contrast color is found then, it will take the default
-     * background color.
-     *
-     * @see Theme.BackgroundAware
-     * @see #mContrastWithColor
-     */
-    private @Theme.BackgroundAware int mBackgroundAware;
-
     public DynamicDivider(@NonNull Context context) {
-        super(context, null);
+        super(context);
     }
 
     public DynamicDivider(@NonNull Context context, @Nullable AttributeSet attrs) {
@@ -88,20 +44,14 @@ public class DynamicDivider extends DynamicBackgroundView {
         super(context, attrs, defStyleAttr);
     }
 
-    /**
-     * Returns the filter mode to be used to tint this view.
-     *
-     * @return The filter mode to be used to tint this view.
-     */
-    public PorterDuff.Mode getFilterMode() {
-        return PorterDuff.Mode.SRC_IN;
-    }
-
     @Override
-    public void initialize() {
-        super.initialize();
+    public void loadFromAttributes(@Nullable AttributeSet attrs) {
+        super.loadFromAttributes(attrs);
 
-        if (getColorType() == Theme.ColorType.NONE && getColor() == Theme.Color.UNKNOWN) {
+        setAlpha(Defaults.ADS_ALPHA_DIVIDER);
+
+        if (getColorType() == Theme.ColorType.NONE
+                && getColor(false) == Theme.Color.UNKNOWN) {
             setColorType(Theme.ColorType.TINT_BACKGROUND);
         }
     }

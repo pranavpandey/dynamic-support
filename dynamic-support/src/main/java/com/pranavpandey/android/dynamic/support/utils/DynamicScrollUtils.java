@@ -16,9 +16,11 @@
 
 package com.pranavpandey.android.dynamic.support.utils;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.view.View;
 import android.widget.AbsListView;
@@ -30,6 +32,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.appcompat.graphics.drawable.DrawableWrapper;
 import androidx.core.widget.EdgeEffectCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,6 +41,9 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.internal.NavigationMenuPresenter;
 import com.google.android.material.internal.NavigationMenuView;
 import com.google.android.material.navigation.NavigationView;
+import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
@@ -155,7 +161,7 @@ public final class DynamicScrollUtils {
     /**
      * Scroll bar cache constant for the view.
      */
-    private static Field V_SCROLL_BAR_FIELD_CACHE;
+    private static Field F_SCROLL_BAR_FIELD_CACHE;
 
     /**
      * Scroll bar vertical thumb constant for the view.
@@ -169,316 +175,272 @@ public final class DynamicScrollUtils {
 
     /**
      * Initialize edge effect or glow fields so that we can access them via reflection.
+     *
+     * @param clazz The class object to be used.
      */
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    private static void initializeEdgeEffectFields() {
-        if (F_EDGE_EFFECT_EDGE != null && F_EDGE_EFFECT_GLOW != null
-                && F_EDGE_EFFECT_COMPAT_EDGE_EFFECT != null) {
-            F_EDGE_EFFECT_EDGE.setAccessible(true);
-            F_EDGE_EFFECT_GLOW.setAccessible(true);
-            F_EDGE_EFFECT_COMPAT_EDGE_EFFECT.setAccessible(true);
-
-            return;
-        }
-
-        if (DynamicSdkUtils.is21()) {
-            F_EDGE_EFFECT_EDGE = null;
-            F_EDGE_EFFECT_GLOW = null;
-        } else if (DynamicSdkUtils.is14()) {
-            Field edge = null;
-            Field glow = null;
-            for (Field field : EdgeEffect.class.getDeclaredFields()) {
-                switch (field.getName()) {
-                    case "mEdge":
-                        field.setAccessible(true);
-                        edge = field;
-                        break;
-                    case "mGlow":
-                        field.setAccessible(true);
-                        glow = field;
-                        break;
-                }
+    private static void initializeEdgeEffectFields(@Nullable Object clazz) {
+        if (clazz instanceof EdgeEffectCompat) {
+            try {
+                F_EDGE_EFFECT_COMPAT_EDGE_EFFECT = EdgeEffectCompat.class
+                        .getDeclaredField("mEdgeEffect");
+                F_EDGE_EFFECT_COMPAT_EDGE_EFFECT.setAccessible(true);
+            } catch (Exception ignored) {
             }
-
-            F_EDGE_EFFECT_EDGE = edge;
-            F_EDGE_EFFECT_GLOW = glow;
+        } else if (clazz instanceof EdgeEffect) {
+            try {
+                F_EDGE_EFFECT_EDGE = EdgeEffect.class.getDeclaredField("mEdge");
+                F_EDGE_EFFECT_EDGE.setAccessible(true);
+                F_EDGE_EFFECT_GLOW = EdgeEffect.class.getDeclaredField("mGlow");;
+                F_EDGE_EFFECT_GLOW.setAccessible(true);
+            } catch (Exception ignored) {
+            }
         }
-
-        Field edgeEffectCompat = null;
-        try {
-            edgeEffectCompat = EdgeEffectCompat.class.getDeclaredField("mEdgeEffect");
-        } catch (NoSuchFieldException ignored) {
-        }
-        F_EDGE_EFFECT_COMPAT_EDGE_EFFECT = edgeEffectCompat;
     }
 
     /**
-     * Initialize recycler view fields so that we can access them via reflection.
+     * Set the edge effect or glow color for the navigation view.
+     *
+     * @param view The navigation view to be used.
+     * @param color The edge effect color to be set.
      */
-    private static void initializeRecyclerViewFields() {
-        if (F_RECYCLER_VIEW_EDGE_GLOW_TOP != null
-                && F_RECYCLER_VIEW_EDGE_GLOW_LEFT != null
-                && F_RECYCLER_VIEW_EDGE_GLOW_RIGHT != null
-                && F_RECYCLER_VIEW_EDGE_GLOW_BOTTOM != null) {
-            F_RECYCLER_VIEW_EDGE_GLOW_TOP.setAccessible(true);
-            F_RECYCLER_VIEW_EDGE_GLOW_LEFT.setAccessible(true);
-            F_RECYCLER_VIEW_EDGE_GLOW_RIGHT.setAccessible(true);
-            F_RECYCLER_VIEW_EDGE_GLOW_BOTTOM.setAccessible(true);
-
+    public static void setEdgeEffectColor(@Nullable NavigationView view, @ColorInt int color) {
+        if (view == null) {
             return;
         }
 
-        Class<?> clazz = RecyclerView.class;
-        for (Field field : clazz.getDeclaredFields()) {
-            switch (field.getName()) {
-                case "mTopGlow":
-                    field.setAccessible(true);
-                    F_RECYCLER_VIEW_EDGE_GLOW_TOP = field;
-                    break;
-                case "mBottomGlow":
-                    field.setAccessible(true);
-                    F_RECYCLER_VIEW_EDGE_GLOW_BOTTOM = field;
-                    break;
-                case "mLeftGlow":
-                    field.setAccessible(true);
-                    F_RECYCLER_VIEW_EDGE_GLOW_LEFT = field;
-                    break;
-                case "mRightGlow":
-                    field.setAccessible(true);
-                    F_RECYCLER_VIEW_EDGE_GLOW_RIGHT = field;
-                    break;
-            }
+        initializeNavigationViewFields(view);
+
+        try {
+            NavigationMenuPresenter presenter = (NavigationMenuPresenter)
+                    F_NAVIGATION_VIEW_PRESENTER.get(view);
+            initializeNavigationViewFields(presenter);
+
+            NavigationMenuView navigationMenuView = (NavigationMenuView)
+                    F_NAVIGATION_VIEW_RECYCLER_VIEW.get(presenter);
+            setEdgeEffectColor(navigationMenuView, color, null);
+        } catch (Exception ignored) {
         }
     }
 
     /**
      * Initialize abs list view fields so that we can access them via reflection.
+     *
+     * @param clazz The class object to be used.
      */
-    private static void initializeListViewFields() {
-        if (F_LIST_VIEW_EDGE_GLOW_TOP != null && F_LIST_VIEW_EDGE_GLOW_BOTTOM != null) {
-            F_LIST_VIEW_EDGE_GLOW_TOP.setAccessible(true);
-            F_LIST_VIEW_EDGE_GLOW_BOTTOM.setAccessible(true);
-
-            return;
+    private static void initializeListViewFields(@Nullable Object clazz) {
+        if (clazz instanceof AbsListView) {
+            try {
+                F_LIST_VIEW_EDGE_GLOW_TOP = AbsListView.class
+                        .getDeclaredField("mEdgeGlowTop");
+                F_LIST_VIEW_EDGE_GLOW_TOP.setAccessible(true);
+                F_LIST_VIEW_EDGE_GLOW_BOTTOM = AbsListView.class
+                        .getDeclaredField("mEdgeGlowBottom");
+                F_LIST_VIEW_EDGE_GLOW_BOTTOM.setAccessible(true);
+            } catch (Exception ignored) {
+            }
         }
+    }
 
-        final Class<?> clazz = AbsListView.class;
-        for (Field field : clazz.getDeclaredFields()) {
-            switch (field.getName()) {
-                case "mEdgeGlowTop":
-                    field.setAccessible(true);
-                    F_LIST_VIEW_EDGE_GLOW_TOP = field;
-                    break;
-                case "mEdgeGlowBottom":
-                    field.setAccessible(true);
-                    F_LIST_VIEW_EDGE_GLOW_BOTTOM = field;
-                    break;
+    /**
+     * Initialize recycler view fields so that we can access them via reflection.
+     *
+     * @param clazz The class object to be used.
+     */
+    private static void initializeRecyclerViewFields(@Nullable Object clazz) {
+        if (clazz instanceof RecyclerView) {
+            try {
+                F_RECYCLER_VIEW_EDGE_GLOW_TOP = RecyclerView.class
+                        .getDeclaredField("mTopGlow");
+                F_RECYCLER_VIEW_EDGE_GLOW_TOP.setAccessible(true);
+                F_RECYCLER_VIEW_EDGE_GLOW_BOTTOM = RecyclerView.class
+                        .getDeclaredField("mBottomGlow");
+                F_RECYCLER_VIEW_EDGE_GLOW_BOTTOM.setAccessible(true);
+                F_RECYCLER_VIEW_EDGE_GLOW_LEFT = RecyclerView.class
+                        .getDeclaredField("mLeftGlow");
+                F_RECYCLER_VIEW_EDGE_GLOW_LEFT.setAccessible(true);
+                F_RECYCLER_VIEW_EDGE_GLOW_RIGHT = RecyclerView.class
+                        .getDeclaredField("mRightGlow");
+                F_RECYCLER_VIEW_EDGE_GLOW_RIGHT.setAccessible(true);
+            } catch (Exception ignored) {
             }
         }
     }
 
     /**
      * Initialize scroll view fields so that we can access them via reflection.
+     *
+     * @param clazz The class object to be used.
      */
-    private static void initializeScrollViewFields() {
-        if (F_SCROLL_VIEW_EDGE_GLOW_TOP != null && F_SCROLL_VIEW_EDGE_GLOW_BOTTOM != null) {
-            F_SCROLL_VIEW_EDGE_GLOW_TOP.setAccessible(true);
-            F_SCROLL_VIEW_EDGE_GLOW_BOTTOM.setAccessible(true);
-
-            return;
-        }
-
-        final Class<?> clazz = ScrollView.class;
-        for (Field field : clazz.getDeclaredFields()) {
-            switch (field.getName()) {
-                case "mEdgeGlowTop":
-                    field.setAccessible(true);
-                    F_SCROLL_VIEW_EDGE_GLOW_TOP = field;
-                    break;
-                case "mEdgeGlowBottom":
-                    field.setAccessible(true);
-                    F_SCROLL_VIEW_EDGE_GLOW_BOTTOM = field;
-                    break;
+    private static void initializeScrollViewFields(@Nullable Object clazz) {
+        if (clazz instanceof ScrollView) {
+            try {
+                F_SCROLL_VIEW_EDGE_GLOW_TOP = ScrollView.class
+                        .getDeclaredField("mEdgeGlowTop");
+                F_SCROLL_VIEW_EDGE_GLOW_TOP.setAccessible(true);
+                F_SCROLL_VIEW_EDGE_GLOW_BOTTOM = ScrollView.class
+                        .getDeclaredField("mEdgeGlowBottom");
+                F_SCROLL_VIEW_EDGE_GLOW_BOTTOM.setAccessible(true);
+            } catch (Exception ignored) {
             }
         }
     }
 
     /**
      * Initialize horizontal scroll view fields so that we can access them via reflection.
+     *
+     * @param clazz The class object to be used.
      */
-    private static void initializeHorizontalScrollViewFields() {
-        if (F_SCROLL_VIEW_EDGE_GLOW_LEFT != null && F_SCROLL_VIEW_EDGE_GLOW_RIGHT != null) {
-            F_SCROLL_VIEW_EDGE_GLOW_LEFT.setAccessible(true);
-            F_SCROLL_VIEW_EDGE_GLOW_RIGHT.setAccessible(true);
-
-            return;
-        }
-
-        final Class<?> clazz = HorizontalScrollView.class;
-        for (Field field : clazz.getDeclaredFields()) {
-            switch (field.getName()) {
-                case "mEdgeGlowLeft":
-                    field.setAccessible(true);
-                    F_SCROLL_VIEW_EDGE_GLOW_LEFT = field;
-                    break;
-                case "mEdgeGlowRight":
-                    field.setAccessible(true);
-                    F_SCROLL_VIEW_EDGE_GLOW_RIGHT = field;
-                    break;
+    private static void initializeHorizontalScrollViewFields(@Nullable Object clazz) {
+        if (clazz instanceof HorizontalScrollView) {
+            try {
+                F_SCROLL_VIEW_EDGE_GLOW_LEFT = HorizontalScrollView.class
+                        .getDeclaredField("mEdgeGlowLeft");
+                F_SCROLL_VIEW_EDGE_GLOW_LEFT.setAccessible(true);
+                F_SCROLL_VIEW_EDGE_GLOW_RIGHT = ScrollView.class
+                        .getDeclaredField("mEdgeGlowRight");
+                F_SCROLL_VIEW_EDGE_GLOW_RIGHT.setAccessible(true);
+            } catch (Exception ignored) {
             }
         }
     }
 
     /**
      * Initialize nested scroll view fields so that we can access them via reflection.
+     *
+     * @param clazz The class object to be used.
      */
-    private static void initializeNestedScrollViewFields() {
-        if (F_NESTED_SCROLL_VIEW_EDGE_GLOW_TOP != null
-                && F_NESTED_SCROLL_VIEW_EDGE_GLOW_BOTTOM != null) {
-            F_NESTED_SCROLL_VIEW_EDGE_GLOW_TOP.setAccessible(true);
-            F_NESTED_SCROLL_VIEW_EDGE_GLOW_BOTTOM.setAccessible(true);
-
-            return;
-        }
-
-        Class<?> clazz = NestedScrollView.class;
-        for (Field field : clazz.getDeclaredFields()) {
-            switch (field.getName()) {
-                case "mEdgeGlowTop":
-                    field.setAccessible(true);
-                    F_NESTED_SCROLL_VIEW_EDGE_GLOW_TOP = field;
-                    break;
-                case "mEdgeGlowBottom":
-                    field.setAccessible(true);
-                    F_NESTED_SCROLL_VIEW_EDGE_GLOW_BOTTOM = field;
-                    break;
+    private static void initializeNestedScrollViewFields(@Nullable Object clazz) {
+        if (clazz instanceof NestedScrollView) {
+            try {
+                F_NESTED_SCROLL_VIEW_EDGE_GLOW_TOP = NestedScrollView.class
+                        .getDeclaredField("mEdgeGlowTop");
+                F_NESTED_SCROLL_VIEW_EDGE_GLOW_TOP.setAccessible(true);
+                F_NESTED_SCROLL_VIEW_EDGE_GLOW_BOTTOM = NestedScrollView.class
+                        .getDeclaredField("mEdgeGlowBottom");
+                F_NESTED_SCROLL_VIEW_EDGE_GLOW_BOTTOM.setAccessible(true);
+            } catch (Exception ignored) {
             }
         }
     }
 
     /**
      * Initialize view pager fields so that we can access them via reflection.
+     *
+     * @param clazz The class object to be used.
      */
-    private static void initializeViewPagerFields() {
-        if (F_VIEW_PAGER_EDGE_GLOW_LEFT != null
-                && F_VIEW_PAGER_EDGE_GLOW_RIGHT != null) {
-            F_VIEW_PAGER_EDGE_GLOW_LEFT.setAccessible(true);
-            F_VIEW_PAGER_EDGE_GLOW_RIGHT.setAccessible(true);
-
-            return;
-        }
-
-        Class<?> clazz = ViewPager.class;
-        for (Field field : clazz.getDeclaredFields()) {
-            switch (field.getName()) {
-                case "mLeftEdge":
-                    field.setAccessible(true);
-                    F_VIEW_PAGER_EDGE_GLOW_LEFT = field;
-                    break;
-                case "mRightEdge":
-                    field.setAccessible(true);
-                    F_VIEW_PAGER_EDGE_GLOW_RIGHT = field;
-                    break;
+    private static void initializeViewPagerFields(@Nullable Object clazz) {
+        if (clazz instanceof ViewPager) {
+            try {
+                F_VIEW_PAGER_EDGE_GLOW_LEFT = ViewPager.class
+                        .getDeclaredField("mLeftEdge");
+                F_VIEW_PAGER_EDGE_GLOW_LEFT.setAccessible(true);
+                F_VIEW_PAGER_EDGE_GLOW_RIGHT = ViewPager.class
+                        .getDeclaredField("mRightEdge");
+                F_VIEW_PAGER_EDGE_GLOW_RIGHT.setAccessible(true);
+            } catch (Exception ignored) {
             }
         }
     }
 
     /**
      * Initialize navigation view fields so that we can access them via reflection.
+     *
+     * @param clazz The class object to be used.
      */
-    private static void initializeNavigationViewFields() {
-        if (F_NAVIGATION_VIEW_PRESENTER != null
-                && F_NAVIGATION_VIEW_RECYCLER_VIEW != null) {
-            F_NAVIGATION_VIEW_PRESENTER.setAccessible(true);
-            F_NAVIGATION_VIEW_RECYCLER_VIEW.setAccessible(true);
-
-            return;
-        }
-
-        Class<?> clazz = NavigationView.class;
-        for (Field field : clazz.getDeclaredFields()) {
-            if (field.getName().equals("presenter")) {
-                field.setAccessible(true);
-                F_NAVIGATION_VIEW_PRESENTER = field;
-
-                break;
+    private static void initializeNavigationViewFields(@Nullable Object clazz) {
+        if (clazz instanceof NavigationView) {
+            try {
+                F_NAVIGATION_VIEW_PRESENTER = NavigationView.class
+                        .getDeclaredField("presenter");
+                F_NAVIGATION_VIEW_PRESENTER.setAccessible(true);
+            } catch (Exception ignored) {
             }
         }
 
-        Class<?> clazz1 = NavigationMenuPresenter.class;
-        for (Field field : clazz1.getDeclaredFields()) {
-            if (field.getName().equals("menuView")) {
-                field.setAccessible(true);
-                F_NAVIGATION_VIEW_RECYCLER_VIEW = field;
-
-                break;
+        if (clazz instanceof NavigationMenuPresenter) {
+            try {
+                F_NAVIGATION_VIEW_RECYCLER_VIEW = NavigationMenuPresenter.class
+                        .getDeclaredField("menuView");
+                F_NAVIGATION_VIEW_RECYCLER_VIEW.setAccessible(true);
+            } catch (Exception ignored) {
             }
         }
     }
 
     /**
      * Initialize scroll bar fields so that we can access them via reflection.
+     *
+     * @param clazz The class object to be used.
      */
-    private static void initializeScrollBarFields(@NonNull View view) {
-        try {
-            if (V_SCROLL_BAR_FIELD_CACHE == null) {
-                V_SCROLL_BAR_FIELD_CACHE = View.class.getDeclaredField("mScrollCache");
-                V_SCROLL_BAR_FIELD_CACHE.setAccessible(true);
+    private static void initializeScrollBarFields(@Nullable Object clazz) {
+        if (clazz instanceof View) {
+            try {
+                F_SCROLL_BAR_FIELD_CACHE = View.class.getDeclaredField("mScrollCache");
+                F_SCROLL_BAR_FIELD_CACHE.setAccessible(true);
+            } catch (Exception ignored) {
             }
-        } catch (Exception ignored) {
         }
     }
 
     /**
-     * Set edge effect or glow color for list view.
+     * Set the edge effect or glow color for the list view.
      *
-     * @param listView The list view to set the edge effect color.
+     * @param view The list view to be used.
      * @param color The edge effect color to be set.
      */
-    public static void setEdgeEffectColor(@NonNull AbsListView listView, @ColorInt int color) {
-        initializeListViewFields();
+    @TargetApi(Build.VERSION_CODES.Q)
+    public static void setEdgeEffectColor(@Nullable AbsListView view, @ColorInt int color) {
+        if (view == null) {
+            return;
+        }
+
+        if (DynamicSdkUtils.is29()) {
+            view.setEdgeEffectColor(color);
+            return;
+        }
+
+        initializeListViewFields(view);
 
         try {
-            Object edgeEffect = F_LIST_VIEW_EDGE_GLOW_TOP.get(listView);
-            setEdgeEffectColor(edgeEffect, color);
-            edgeEffect = F_LIST_VIEW_EDGE_GLOW_BOTTOM.get(listView);
-            setEdgeEffectColor(edgeEffect, color);
+            setEdgeEffectColor(F_LIST_VIEW_EDGE_GLOW_TOP.get(view), color);
+            setEdgeEffectColor(F_LIST_VIEW_EDGE_GLOW_BOTTOM.get(view), color);
         } catch (Exception ignored) {
         }
     }
 
     /**
-     * Set edge effect or glow color for recycler view.
+     * Set the edge effect or glow color for the recycler view.
      *
-     * @param recyclerView The recycler view to set the edge effect color.
+     * @param view The recycler view to be used.
      * @param color The edge effect color to be set.
      */
-    public static void setEdgeEffectColor(@NonNull RecyclerView recyclerView, @ColorInt int color) {
-        initializeRecyclerViewFields();
+    public static void setEdgeEffectColor(@Nullable RecyclerView view, @ColorInt int color) {
+        if (view == null) {
+            return;
+        }
+
+        initializeRecyclerViewFields(view);
 
         try {
-            Object edgeEffect = F_RECYCLER_VIEW_EDGE_GLOW_TOP.get(recyclerView);
-            setEdgeEffectColor(edgeEffect, color);
-            edgeEffect = F_RECYCLER_VIEW_EDGE_GLOW_BOTTOM.get(recyclerView);
-            setEdgeEffectColor(edgeEffect, color);
-            edgeEffect = F_RECYCLER_VIEW_EDGE_GLOW_LEFT.get(recyclerView);
-            setEdgeEffectColor(edgeEffect, color);
-            edgeEffect = F_RECYCLER_VIEW_EDGE_GLOW_RIGHT.get(recyclerView);
-            setEdgeEffectColor(edgeEffect, color);
+            setEdgeEffectColor(F_RECYCLER_VIEW_EDGE_GLOW_TOP.get(view), color);
+            setEdgeEffectColor(F_RECYCLER_VIEW_EDGE_GLOW_BOTTOM.get(view), color);
+            setEdgeEffectColor(F_RECYCLER_VIEW_EDGE_GLOW_LEFT.get(view), color);
+            setEdgeEffectColor(F_RECYCLER_VIEW_EDGE_GLOW_RIGHT.get(view), color);
         } catch (Exception ignored) {
         }
     }
 
     /**
-     * Set edge effect or glow color for recycler view.
+     * Set the edge effect or glow color for the recycler view.
      *
-     * @param recyclerView The recycler view to set the edge effect color.
+     * @param view The recycler view to be used.
      * @param color The edge effect color to be set.
-     * @param scrollListener Scroll listener to set color on over scroll.
+     * @param scrollListener The scroll listener to set the color on over scroll.
      */
-    public static void setEdgeEffectColor(@Nullable RecyclerView recyclerView,
-            final @ColorInt int color, @Nullable RecyclerView.OnScrollListener scrollListener) {
-        if (recyclerView == null) {
+    public static void setEdgeEffectColor(@Nullable RecyclerView view, final @ColorInt int color,
+            @Nullable RecyclerView.OnScrollListener scrollListener) {
+        if (view == null) {
             return;
         }
 
@@ -494,105 +456,90 @@ public final class DynamicScrollUtils {
                         }
                     };
 
-            recyclerView.removeOnScrollListener(scrollListener);
-            recyclerView.addOnScrollListener(scrollListener);
+            view.removeOnScrollListener(scrollListener);
+            view.addOnScrollListener(scrollListener);
         }
 
-        setEdgeEffectColor(recyclerView, color);
+        setEdgeEffectColor(view, color);
     }
 
     /**
-     * Set edge effect or glow color for scroll view.
+     * Set the edge effect or glow color for the scroll view.
      *
-     * @param scrollView The scroll view to set the edge effect color.
+     * @param view The scroll view to be used.
      * @param color The edge effect color to be set.
      */
-    public static void setEdgeEffectColor(@NonNull ScrollView scrollView, @ColorInt int color) {
-        initializeScrollViewFields();
+    public static void setEdgeEffectColor(@Nullable ScrollView view, @ColorInt int color) {
+        if (view == null) {
+            return;
+        }
+
+        initializeScrollViewFields(view);
 
         try {
-            Object edgeEffect = F_SCROLL_VIEW_EDGE_GLOW_TOP.get(scrollView);
-            setEdgeEffectColor(edgeEffect, color);
-            edgeEffect = F_SCROLL_VIEW_EDGE_GLOW_BOTTOM.get(scrollView);
-            setEdgeEffectColor(edgeEffect, color);
+            setEdgeEffectColor(F_SCROLL_VIEW_EDGE_GLOW_TOP.get(view), color);
+            setEdgeEffectColor(F_SCROLL_VIEW_EDGE_GLOW_BOTTOM.get(view), color);
         } catch (Exception ignored) {
         }
     }
 
     /**
-     * Set edge effect or glow color for horizontal scroll view.
+     * Set the edge effect or glow color for the horizontal scroll view.
      *
-     * @param horizontalScrollView The horizontal scroll view to set the edge effect color.
+     * @param view The horizontal scroll view to be used.
      * @param color The edge effect color to be set.
      */
-    public static void setEdgeEffectColor(
-            @NonNull HorizontalScrollView horizontalScrollView, @ColorInt int color) {
-        initializeHorizontalScrollViewFields();
+    public static void setEdgeEffectColor(@Nullable HorizontalScrollView view,
+            @ColorInt int color) {
+        if (view == null) {
+            return;
+        }
+
+        initializeHorizontalScrollViewFields(view);
 
         try {
-            Object edgeEffect = F_SCROLL_VIEW_EDGE_GLOW_LEFT.get(horizontalScrollView);
-            setEdgeEffectColor(edgeEffect, color);
-            edgeEffect = F_SCROLL_VIEW_EDGE_GLOW_RIGHT.get(horizontalScrollView);
-            setEdgeEffectColor(edgeEffect, color);
+            setEdgeEffectColor(F_SCROLL_VIEW_EDGE_GLOW_LEFT.get(view), color);
+            setEdgeEffectColor(F_SCROLL_VIEW_EDGE_GLOW_RIGHT.get(view), color);
         } catch (Exception ignored) {
         }
     }
 
     /**
-     * Set edge effect or glow color for nested scroll view.
+     * Set the edge effect or glow color for the nested scroll view.
      *
-     * @param nestedScrollView The nested scroll view to set the edge effect color.
+     * @param view The nested scroll view to be used.
      * @param color The edge effect color to be set.
      */
-    public static void setEdgeEffectColor(
-            @NonNull NestedScrollView nestedScrollView, @ColorInt int color) {
-        initializeNestedScrollViewFields();
+    public static void setEdgeEffectColor(@Nullable NestedScrollView view, @ColorInt int color) {
+        if (view == null) {
+            return;
+        }
+
+        initializeNestedScrollViewFields(view);
 
         try {
-            Object edgeEffect =
-                    F_NESTED_SCROLL_VIEW_EDGE_GLOW_TOP.get(nestedScrollView);
-            setEdgeEffectColor(edgeEffect, color);
-            edgeEffect =
-                    F_NESTED_SCROLL_VIEW_EDGE_GLOW_BOTTOM.get(nestedScrollView);
-            setEdgeEffectColor(edgeEffect, color);
+            setEdgeEffectColor(F_NESTED_SCROLL_VIEW_EDGE_GLOW_TOP.get(view), color);
+            setEdgeEffectColor(F_NESTED_SCROLL_VIEW_EDGE_GLOW_BOTTOM.get(view), color);
         } catch (Exception ignored) {
         }
     }
 
     /**
-     * Set edge effect or glow color for view pager.
+     * Set the edge effect or glow color for the view pager.
      *
-     * @param viewPager The view pager to set the edge effect color.
+     * @param view The view pager to be used.
      * @param color The edge effect color to be set.
      */
-    public static void setEdgeEffectColor(@NonNull ViewPager viewPager, @ColorInt int color) {
-        initializeViewPagerFields();
-
-        try {
-            Object edgeEffect = F_VIEW_PAGER_EDGE_GLOW_LEFT.get(viewPager);
-            setEdgeEffectColor(edgeEffect, color);
-            edgeEffect = F_VIEW_PAGER_EDGE_GLOW_RIGHT.get(viewPager);
-            setEdgeEffectColor(edgeEffect, color);
-        } catch (Exception ignored) {
+    public static void setEdgeEffectColor(@Nullable ViewPager view, @ColorInt int color) {
+        if (view == null) {
+            return;
         }
-    }
 
-    /**
-     * Set edge effect or glow color for navigation view.
-     *
-     * @param navigationView The navigation view to set the edge effect color.
-     * @param color The edge effect color to be set.
-     */
-    public static void setEdgeEffectColor(
-            @NonNull NavigationView navigationView, @ColorInt int color) {
-        initializeNavigationViewFields();
+        initializeViewPagerFields(view);
 
         try {
-            NavigationMenuPresenter presenter = (NavigationMenuPresenter)
-                    F_NAVIGATION_VIEW_PRESENTER.get(navigationView);
-            NavigationMenuView navigationMenuView = (NavigationMenuView)
-                    F_NAVIGATION_VIEW_RECYCLER_VIEW.get(presenter);
-            setEdgeEffectColor(navigationMenuView, color, null);
+            setEdgeEffectColor(F_VIEW_PAGER_EDGE_GLOW_LEFT.get(view), color);
+            setEdgeEffectColor(F_VIEW_PAGER_EDGE_GLOW_RIGHT.get(view), color);
         } catch (Exception ignored) {
         }
     }
@@ -600,18 +547,16 @@ public final class DynamicScrollUtils {
     /**
      * Set color of the supplied edge effect object.
      *
-     * @param edgeEffect The edge effect object to set the color.
+     * @param edgeEffect The edge effect object to be used.
      * @param color The edge effect color to be set.
      */
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void setEdgeEffectColor(@Nullable Object edgeEffect, @ColorInt int color) {
-        initializeEdgeEffectFields();
-
         if (edgeEffect instanceof EdgeEffectCompat) {
             try {
-                F_EDGE_EFFECT_COMPAT_EDGE_EFFECT.setAccessible(true);
+                initializeEdgeEffectFields(edgeEffect);
                 edgeEffect = F_EDGE_EFFECT_COMPAT_EDGE_EFFECT.get(edgeEffect);
-            } catch (IllegalAccessException illegalAccessException) {
+            } catch (Exception ignored) {
                 return;
             }
         }
@@ -622,19 +567,19 @@ public final class DynamicScrollUtils {
 
         if (DynamicSdkUtils.is21()) {
             ((EdgeEffect) edgeEffect).setColor(color);
-        } else {
+        } else if (edgeEffect instanceof EdgeEffect){
+            initializeEdgeEffectFields(edgeEffect);
+
             try {
-                F_EDGE_EFFECT_EDGE.setAccessible(true);
-                final Drawable mEdge = (Drawable) F_EDGE_EFFECT_EDGE.get(edgeEffect);
-                F_EDGE_EFFECT_GLOW.setAccessible(true);
-                final Drawable mGlow = (Drawable) F_EDGE_EFFECT_GLOW.get(edgeEffect);
+                Drawable mEdge = (Drawable) F_EDGE_EFFECT_EDGE.get(edgeEffect);
+                Drawable mGlow = (Drawable) F_EDGE_EFFECT_GLOW.get(edgeEffect);
                 if (mGlow != null) {
-                    mGlow.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+                    mGlow.mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN);
                     mGlow.setCallback(null);
                 }
 
                 if (mEdge != null) {
-                    mEdge.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+                    mEdge.mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN);
                     mEdge.setCallback(null);
                 }
             } catch (Exception ignored) {
@@ -643,44 +588,30 @@ public final class DynamicScrollUtils {
     }
 
     /**
-     * Set scroll bar color for navigation view.
+     * Set the scroll bar color for the view.
      *
-     * @param navigationView The navigation view to set the scroll bar color.
-     * @param color The edge effect color to be set.
+     * @param view The view to be used.
+     * @param color The scroll bar color to be set.
      */
-    public static void setScrollBarColor(
-            @NonNull NavigationView navigationView, @ColorInt int color) {
-        initializeNavigationViewFields();
-
-        try {
-            NavigationMenuPresenter presenter = (NavigationMenuPresenter)
-                    F_NAVIGATION_VIEW_PRESENTER.get(navigationView);
-            NavigationMenuView navigationMenuView = (NavigationMenuView)
-                    F_NAVIGATION_VIEW_RECYCLER_VIEW.get(presenter);
-            setScrollBarColor(navigationMenuView, color);
-        } catch (Exception ignored) {
-        }
-    }
-
-    /**
-     * Set scroll bar color for view.
-     *
-     * @param view The view to set the scroll bar color.
-     * @param color The scroll bar color.
-     */
+    @TargetApi(Build.VERSION_CODES.Q)
     public static void setScrollBarColor(@Nullable View view, @ColorInt int color) {
         if (view == null) {
             return;
         }
 
-        initializeScrollBarFields(view);
+        if (DynamicSdkUtils.is29()) {
+            DynamicDrawableUtils.colorizeDrawable(
+                    view.getVerticalScrollbarThumbDrawable(), color);
+            DynamicDrawableUtils.colorizeDrawable(
+                    view.getHorizontalScrollbarThumbDrawable(), color);
 
-        if (V_SCROLL_BAR_FIELD_CACHE == null) {
             return;
         }
 
+        initializeScrollBarFields(view);
+
         try {
-            Object mScrollCache = V_SCROLL_BAR_FIELD_CACHE.get(view);
+            Object mScrollCache = F_SCROLL_BAR_FIELD_CACHE.get(view);
 
             if (mScrollCache != null) {
                 F_VIEW_SCROLL_BAR =
@@ -712,6 +643,130 @@ public final class DynamicScrollUtils {
                 }
             }
         } catch(Exception ignored) {
+        }
+    }
+
+    /**
+     * Set the scroll bar color for the navigation view.
+     *
+     * @param view The navigation view to be used.
+     * @param color The edge effect color to be set.
+     */
+    public static void setScrollBarColor(@Nullable NavigationView view, @ColorInt int color) {
+        if (view == null) {
+            return;
+        }
+
+        initializeNavigationViewFields(view);
+
+        try {
+            NavigationMenuPresenter presenter = (NavigationMenuPresenter)
+                    F_NAVIGATION_VIEW_PRESENTER.get(view);
+            initializeNavigationViewFields(presenter);
+
+            NavigationMenuView navigationMenuView = (NavigationMenuView)
+                    F_NAVIGATION_VIEW_RECYCLER_VIEW.get(presenter);
+            setScrollBarColor(navigationMenuView, color);
+        } catch (Exception ignored) {
+        }
+    }
+
+    /**
+     * Set the selector color for the list view.
+     *
+     * @param view The list view to be used.
+     * @param color The selector color to be set.
+     * @param background The background color to be used.
+     */
+    @SuppressLint("RestrictedApi")
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static void setSelectorColor(@Nullable AbsListView view,
+            @ColorInt int color, @ColorInt int background) {
+        if (view == null) {
+            return;
+        }
+
+        if (view.getSelector() instanceof DrawableWrapper) {
+            DrawableWrapper drawable = (DrawableWrapper) view.getSelector();
+            drawable.mutate();
+
+            if (DynamicSdkUtils.is21()
+                    && drawable.getWrappedDrawable() instanceof RippleDrawable) {
+                color = DynamicColorUtils.getLighterColor(DynamicColorUtils.adjustAlpha(color,
+                        Defaults.ADS_ALPHA_PRESSED_SELECTOR), Defaults.ADS_STATE_LIGHT);
+
+                DynamicTintUtils.colorizeRippleDrawable(view, drawable.getWrappedDrawable(),
+                        background, color, false, false);
+            } else {
+                DynamicDrawableUtils.colorizeDrawable(drawable, color);
+            }
+        } else {
+            DynamicDrawableUtils.colorizeDrawable(view.getSelector(), color);
+        }
+    }
+
+    /**
+     * Tint view according to the supplied contrast with color.
+     *
+     * @param view The scrollable to be tinted.
+     * @param contrastWithColor The contrast with color to be considered.
+     * @param <T> The type of the view.
+     *
+     * @see #setEdgeEffectColor(AbsListView, int)
+     * @see #setEdgeEffectColor(RecyclerView, int)
+     * @see #setEdgeEffectColor(ScrollView, int)
+     * @see #setEdgeEffectColor(HorizontalScrollView, int)
+     * @see #setEdgeEffectColor(NestedScrollView, int)
+     * @see #setEdgeEffectColor(ViewPager, int)
+     * @see #setEdgeEffectColor(NavigationView, int)
+     *
+     * @see #setScrollBarColor(NavigationView, int)
+     * @see #setScrollBarColor(View, int)
+     *
+     * @see #setSelectorColor(AbsListView, int, int)
+     */
+    public static <T> void tint(@Nullable T view, @ColorInt int contrastWithColor) {
+        if (view == null) {
+            return;
+        }
+
+        @ColorInt int edgeEffectColor = DynamicTheme.getInstance().resolveColorType(
+                Defaults.ADS_COLOR_TYPE_EDGE_EFFECT);
+        @ColorInt int scrollBarColor = DynamicTheme.getInstance().resolveColorType(
+                Defaults.ADS_COLOR_TYPE_SCROLLABLE);
+        @ColorInt int selectorColor = DynamicTheme.getInstance().get().getTintBackgroundColor();
+
+        if (DynamicTheme.getInstance().get().isBackgroundAware()) {
+            edgeEffectColor = DynamicColorUtils.getContrastColor(
+                    edgeEffectColor, contrastWithColor);
+            scrollBarColor = DynamicColorUtils.getContrastColor(scrollBarColor, contrastWithColor);
+            selectorColor = DynamicColorUtils.getContrastColor(selectorColor, contrastWithColor);
+        }
+
+        if (view instanceof AbsListView) {
+            setEdgeEffectColor((AbsListView) view, edgeEffectColor);
+        } else if (view instanceof RecyclerView) {
+            setEdgeEffectColor((RecyclerView) view, edgeEffectColor);
+        } else if (view instanceof ScrollView) {
+            setEdgeEffectColor((ScrollView) view, edgeEffectColor);
+        } else if (view instanceof HorizontalScrollView) {
+            setEdgeEffectColor((HorizontalScrollView) view, edgeEffectColor);
+        } else if (view instanceof NestedScrollView) {
+            setEdgeEffectColor((NestedScrollView) view, edgeEffectColor);
+        } else if (view instanceof ViewPager) {
+            setEdgeEffectColor((ViewPager) view, edgeEffectColor);
+        } else if (view instanceof NavigationView) {
+            setEdgeEffectColor((NavigationView) view, edgeEffectColor);
+        }
+
+        if (view instanceof NavigationView) {
+            setScrollBarColor((NavigationView) view, scrollBarColor);
+        } else if (view instanceof View) {
+            setScrollBarColor((View) view, scrollBarColor);
+        }
+
+        if (view instanceof AbsListView) {
+            setSelectorColor((AbsListView) view, selectorColor, contrastWithColor);
         }
     }
 }

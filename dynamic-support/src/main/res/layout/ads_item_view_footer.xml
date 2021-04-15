@@ -25,16 +25,9 @@
             style="@style/Widget.DynamicApp.Image.Preference.Placeholder.Big"
             android:id="@+id/ads_item_view_icon_footer" />
 
-        <LinearLayout
-            style="@style/Widget.DynamicApp.Content.Row.Vertical.Weight">
-
-            <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
-                android:id="@+id/ads_item_view_divider"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/ads_margin_divider"
-                android:background="?android:attr/dividerHorizontal" />
-
-        </LinearLayout>
+        <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
+            style="@style/Widget.DynamicApp.Divider"
+            android:id="@+id/ads_item_view_divider" />
 
     </LinearLayout>
 

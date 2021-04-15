@@ -308,13 +308,18 @@ public abstract class DynamicPopup {
                             ((AbsListView) mViewRoot).setOnScrollListener(
                                     new AbsListView.OnScrollListener() {
                                         @Override
-                                        public void onScrollStateChanged(
-                                                AbsListView view, int scrollState) { }
+                                        public void onScrollStateChanged(AbsListView view,
+                                                int scrollState) {
+                                            DynamicViewUtils.manageScrollIndicators(
+                                                    view, top, bottom);
+                                        }
 
                                         @Override
-                                        public void onScroll(AbsListView v, int firstVisibleItem,
-                                                int visibleItemCount, int totalItemCount) {
-                                            DynamicViewUtils.manageScrollIndicators(v, top, bottom);
+                                        public void onScroll(AbsListView view,
+                                                int firstVisibleItem, int visibleItemCount,
+                                                int totalItemCount) {
+                                            DynamicViewUtils.manageScrollIndicators(
+                                                    view, top, bottom);
                                         }
                             });
                         } else if (mViewRoot instanceof RecyclerView) {
@@ -322,12 +327,16 @@ public abstract class DynamicPopup {
                                     new RecyclerView.OnScrollListener() {
                                         @Override
                                         public void onScrollStateChanged(
-                                                @NonNull RecyclerView view, int scrollState) { }
+                                                @NonNull RecyclerView recyclerView, int newState) {
+                                            DynamicViewUtils.manageScrollIndicators(
+                                                    recyclerView, top, bottom);
+                                        }
 
                                         @Override
-                                        public void onScrolled(@NonNull RecyclerView v,
+                                        public void onScrolled(@NonNull RecyclerView recyclerView,
                                                 int dx, int dy) {
-                                            DynamicViewUtils.manageScrollIndicators(v, top, bottom);
+                                            DynamicViewUtils.manageScrollIndicators(
+                                                    recyclerView, top, bottom);
                                         }
                             });
                         }

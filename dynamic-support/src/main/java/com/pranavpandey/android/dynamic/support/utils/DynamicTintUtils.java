@@ -66,6 +66,10 @@ public class DynamicTintUtils {
             return;
         }
 
+        if (DynamicTheme.getInstance().get().isBackgroundAware()) {
+            color = DynamicColorUtils.getContrastColor(color, background);
+        }
+
         if (DynamicSdkUtils.is21() && drawable instanceof RippleDrawable) {
             @ColorInt int pressedColor = DynamicColorUtils.shiftColor(color,
                     Defaults.ADS_SHIFT_LIGHT, Defaults.ADS_SHIFT_DARK);
@@ -85,10 +89,12 @@ public class DynamicTintUtils {
                                     Defaults.ADS_STATE_PRESSED),
                             Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
 
-                    ((RippleDrawable) drawable).setColor(DynamicResourceUtils.getColorStateList(
-                            Color.TRANSPARENT, background, pressedColor, true));
+                    ((RippleDrawable) drawable.mutate()).setColor(
+                            DynamicResourceUtils.getColorStateList(Color.TRANSPARENT,
+                                    background, pressedColor, true));
                 } else {
-                    ((RippleDrawable) drawable).setColor(ColorStateList.valueOf(pressedColor));
+                    ((RippleDrawable) drawable.mutate()).setColor(
+                            ColorStateList.valueOf(pressedColor));
                 }
             } catch (Exception ignored) {
             }

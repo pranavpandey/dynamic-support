@@ -24,10 +24,14 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowBackground">@color/ads_window_background</item>
         <item name="android:colorBackground">?android:attr/windowBackground</item>
+        <item name="android:dividerHorizontal">@drawable/ads_theme_overlay</item>
+        <item name="android:dividerVertical">@drawable/ads_theme_overlay</item>
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp</item>
         <item name="android:textAppearanceMedium">@style/TextAppearance.DynamicApp.Subtitle1</item>
         <item name="android:textAppearanceSmall">@style/TextAppearance.DynamicApp.Body1</item>
         <item name="background">?android:attr/windowBackground</item>
+        <item name="dividerHorizontal">?android:attr/dividerHorizontal</item>
+        <item name="dividerVertical">?android:attr/dividerVertical</item>
         <item name="toolbarStyle">@style/Widget.DynamicApp.Toolbar</item>
         <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
         <item name="textAppearanceLargePopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
@@ -70,10 +74,14 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowBackground">@color/ads_window_background_light</item>
         <item name="android:colorBackground">?android:attr/windowBackground</item>
+        <item name="android:dividerHorizontal">@drawable/ads_theme_overlay</item>
+        <item name="android:dividerVertical">@drawable/ads_theme_overlay</item>
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp</item>
         <item name="android:textAppearanceMedium">@style/TextAppearance.DynamicApp.Subtitle1</item>
         <item name="android:textAppearanceSmall">@style/TextAppearance.DynamicApp.Body1</item>
         <item name="background">?android:attr/windowBackground</item>
+        <item name="dividerHorizontal">?android:attr/dividerHorizontal</item>
+        <item name="dividerVertical">?android:attr/dividerVertical</item>
         <item name="toolbarStyle">@style/Widget.DynamicApp.Toolbar</item>
         <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
         <item name="textAppearanceLargePopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
@@ -110,10 +118,14 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowBackground">@color/ads_window_background_day_night</item>
         <item name="android:colorBackground">?android:attr/windowBackground</item>
+        <item name="android:dividerHorizontal">@drawable/ads_theme_overlay</item>
+        <item name="android:dividerVertical">@drawable/ads_theme_overlay</item>
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp</item>
         <item name="android:textAppearanceMedium">@style/TextAppearance.DynamicApp.Subtitle1</item>
         <item name="android:textAppearanceSmall">@style/TextAppearance.DynamicApp.Body1</item>
         <item name="background">?android:attr/windowBackground</item>
+        <item name="dividerHorizontal">?android:attr/dividerHorizontal</item>
+        <item name="dividerVertical">?android:attr/dividerVertical</item>
         <item name="toolbarStyle">@style/Widget.DynamicApp.Toolbar</item>
         <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
         <item name="textAppearanceLargePopupMenu">@style/TextAppearance.DynamicApp.Subtitle1.Toolbar</item>
@@ -459,6 +471,32 @@
     <style name="Widget.DynamicApp.Theme.Content" />
     <style name="Widget.DynamicApp.Theme.Preview" />
 
+    <style name="Widget.DynamicApp.Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/ads_margin_divider</item>
+        <item name="android:background">?attr/dividerVertical</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Divider.Large">
+        <item name="android:layout_height">@dimen/ads_margin_divider_large</item>
+        <item name="android:layout_marginTop">@dimen/ads_margin_small</item>
+        <item name="android:layout_marginBottom">@dimen/ads_margin_small</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Divider.Vertical">
+        <item name="android:layout_width">@dimen/ads_margin_divider</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">?attr/dividerHorizontal</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Divider.Vertical.Large">
+        <item name="android:layout_width">@dimen/ads_margin_divider_large</item>
+        <item name="android:layout_marginLeft">@dimen/ads_margin_small</item>
+        <item name="android:layout_marginStart">@dimen/ads_margin_small</item>
+        <item name="android:layout_marginRight">@dimen/ads_margin_small</item>
+        <item name="android:layout_marginEnd">@dimen/ads_margin_small</item>
+    </style>
+
     <style name="Widget.DynamicApp.Theme.Background.Image">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -536,7 +574,6 @@
     </style>
 
     <style name="Widget.DynamicApp.NavigationView" parent="">
-        <item name="android:background">@android:color/transparent</item>
         <item name="android:textSize">@dimen/ads_font_size_navigation_view</item>
         <item name="itemBackground">@null</item>
     </style>
