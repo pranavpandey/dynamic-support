@@ -16,6 +16,8 @@
 
 package com.pranavpandey.android.dynamic.support.adapter;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +26,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -52,7 +53,12 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
     /**
      * Array of icons used by this adapter.
      */
-    private @DrawableRes int[] mIcons;
+    private int[] mIconsRes;
+
+    /**
+     * Array of icons used by this adapter.
+     */
+    private Drawable[] mIcons;
 
     /**
      * Array of titles used by this adapter.
@@ -82,7 +88,19 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
      */
     public DynamicSpinnerChoiceAdapter(@Nullable CharSequence[] titles,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
-        this(null, titles, onItemClickListener);
+        this((int[]) null, titles, onItemClickListener);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param iconsRes The icons for this adapter.
+     * @param titles The titles for this adapter.
+     * @param onItemClickListener The listener to get the callback when an item is clicked.
+     */
+    public DynamicSpinnerChoiceAdapter(@Nullable int[] iconsRes, @Nullable CharSequence[] titles,
+            @Nullable AdapterView.OnItemClickListener onItemClickListener) {
+        this(iconsRes, titles, DEFAULT_SELECTED_POSITION, onItemClickListener);
     }
 
     /**
@@ -92,10 +110,23 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
      * @param titles The titles for this adapter.
      * @param onItemClickListener The listener to get the callback when an item is clicked.
      */
-    public DynamicSpinnerChoiceAdapter(@Nullable @DrawableRes int[] icons,
-            @Nullable CharSequence[] titles,
+    public DynamicSpinnerChoiceAdapter(@Nullable Drawable[] icons, @Nullable CharSequence[] titles,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
         this(icons, titles, DEFAULT_SELECTED_POSITION, onItemClickListener);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param iconsRes The icons for this adapter.
+     * @param titles The titles for this adapter.
+     * @param selectedPosition The selected menu position for this adapter.
+     * @param onItemClickListener The listener to get the callback when an item is clicked.
+     */
+    public DynamicSpinnerChoiceAdapter(@Nullable int[] iconsRes,
+            @Nullable CharSequence[] titles, int selectedPosition,
+            @Nullable AdapterView.OnItemClickListener onItemClickListener) {
+        this(iconsRes, titles, null, selectedPosition, onItemClickListener);
     }
 
     /**
@@ -106,7 +137,7 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
      * @param selectedPosition The selected menu position for this adapter.
      * @param onItemClickListener The listener to get the callback when an item is clicked.
      */
-    public DynamicSpinnerChoiceAdapter(@Nullable @DrawableRes int[] icons,
+    public DynamicSpinnerChoiceAdapter(@Nullable Drawable[] icons,
             @Nullable CharSequence[] titles, int selectedPosition,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
         this(icons, titles, null, selectedPosition, onItemClickListener);
@@ -115,18 +146,45 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
     /**
      * Constructor to initialize an object of this class.
      *
+     * @param iconsRes The icons for this adapter.
+     * @param titles The titles for this adapter.
+     * @param subtitles The subtitles for this adapter.
+     * @param selectedPosition The selected menu position for this adapter.
+     * @param onItemClickListener The listener to get the callback when an item is clicked.
+     */
+    public DynamicSpinnerChoiceAdapter(@Nullable int[] iconsRes,
+            @Nullable CharSequence[] titles, @Nullable CharSequence[] subtitles,
+            int selectedPosition, @Nullable AdapterView.OnItemClickListener onItemClickListener) {
+        this(iconsRes, titles, subtitles, null, selectedPosition, onItemClickListener);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
      * @param icons The icons for this adapter.
      * @param titles The titles for this adapter.
      * @param subtitles The subtitles for this adapter.
      * @param selectedPosition The selected menu position for this adapter.
      * @param onItemClickListener The listener to get the callback when an item is clicked.
      */
-    public DynamicSpinnerChoiceAdapter(@Nullable @DrawableRes int[] icons,
+    public DynamicSpinnerChoiceAdapter(@Nullable Drawable[] icons,
             @Nullable CharSequence[] titles, @Nullable CharSequence[] subtitles,
             int selectedPosition, @Nullable AdapterView.OnItemClickListener onItemClickListener) {
-        this(icons, titles, subtitles, null, onItemClickListener);
+        this(icons, titles, subtitles, null, selectedPosition, onItemClickListener);
+    }
 
-        this.mSelectedPosition = selectedPosition;
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param iconsRes The icons for this adapter.
+     * @param titles The titles for this adapter.
+     * @param hasSubmenus The submenu states for this adapter.
+     * @param onItemClickListener The listener to get the callback when an item is clicked.
+     */
+    public DynamicSpinnerChoiceAdapter(@Nullable int[] iconsRes,
+            @Nullable CharSequence[] titles, @Nullable boolean[] hasSubmenus,
+            @Nullable AdapterView.OnItemClickListener onItemClickListener) {
+        this(iconsRes, titles, null, hasSubmenus, onItemClickListener);
     }
 
     /**
@@ -137,7 +195,7 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
      * @param hasSubmenus The submenu states for this adapter.
      * @param onItemClickListener The listener to get the callback when an item is clicked.
      */
-    public DynamicSpinnerChoiceAdapter(@Nullable @DrawableRes int[] icons,
+    public DynamicSpinnerChoiceAdapter(@Nullable Drawable[] icons,
             @Nullable CharSequence[] titles, @Nullable boolean[] hasSubmenus,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
         this(icons, titles, null, hasSubmenus, onItemClickListener);
@@ -146,17 +204,16 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
     /**
      * Constructor to initialize an object of this class.
      *
-     * @param icons The icons for this adapter.
+     * @param iconsRes The icons for this adapter.
      * @param titles The titles for this adapter.
      * @param subtitles The subtitles for this adapter.
      * @param hasSubmenus The submenu states for this adapter.
      * @param onItemClickListener The listener to get the callback when an item is clicked.
      */
-    public DynamicSpinnerChoiceAdapter(@Nullable @DrawableRes int[] icons,
-            @Nullable CharSequence[] titles, @Nullable CharSequence[] subtitles,
-            @Nullable boolean[] hasSubmenus,
+    public DynamicSpinnerChoiceAdapter(@Nullable int[] iconsRes, @Nullable CharSequence[] titles,
+            @Nullable CharSequence[] subtitles, @Nullable boolean[] hasSubmenus,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
-        this(icons, titles, subtitles, hasSubmenus,
+        this(iconsRes, titles, subtitles, hasSubmenus,
                 DEFAULT_SELECTED_POSITION, onItemClickListener);
     }
 
@@ -167,19 +224,73 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
      * @param titles The titles for this adapter.
      * @param subtitles The subtitles for this adapter.
      * @param hasSubmenus The submenu states for this adapter.
+     * @param onItemClickListener The listener to get the callback when an item is clicked.
+     */
+    public DynamicSpinnerChoiceAdapter(@Nullable Drawable[] icons, @Nullable CharSequence[] titles,
+            @Nullable CharSequence[] subtitles, @Nullable boolean[] hasSubmenus,
+            @Nullable AdapterView.OnItemClickListener onItemClickListener) {
+        this(icons, titles, subtitles, hasSubmenus,
+                DEFAULT_SELECTED_POSITION, onItemClickListener);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param iconsRes The icons for this adapter.
+     * @param titles The titles for this adapter.
+     * @param subtitles The subtitles for this adapter.
+     * @param hasSubmenus The submenu states for this adapter.
      * @param selectedPosition The selected menu position for this adapter.
      * @param onItemClickListener The listener to get the callback when an item is clicked.
      */
-    public DynamicSpinnerChoiceAdapter(@Nullable @DrawableRes int[] icons,
+    public DynamicSpinnerChoiceAdapter(@Nullable int[] iconsRes,
             @Nullable CharSequence[] titles, @Nullable CharSequence[] subtitles,
             @Nullable boolean[] hasSubmenus, int selectedPosition,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
+        this(iconsRes, null, titles, subtitles, hasSubmenus,
+                selectedPosition, onItemClickListener);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param icons The icons for this adapter.
+     * @param titles The titles for this adapter.
+     * @param subtitles The subtitles for this adapter.
+     * @param hasSubmenus The submenu states for this adapter.
+     * @param selectedPosition The selected menu position for this adapter.
+     * @param onItemClickListener The listener to get the callback when an item is clicked.
+     */
+    public DynamicSpinnerChoiceAdapter(@Nullable Drawable[] icons,
+            @Nullable CharSequence[] titles, @Nullable CharSequence[] subtitles,
+            @Nullable boolean[] hasSubmenus, int selectedPosition,
+            @Nullable AdapterView.OnItemClickListener onItemClickListener) {
+        this(null, icons, titles, subtitles, hasSubmenus,
+                selectedPosition, onItemClickListener);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param iconsRes The icons for this adapter.
+     * @param icons The icons for this adapter.
+     * @param titles The titles for this adapter.
+     * @param subtitles The subtitles for this adapter.
+     * @param hasSubmenus The submenu states for this adapter.
+     * @param selectedPosition The selected menu position for this adapter.
+     * @param onItemClickListener The listener to get the callback when an item is clicked.
+     */
+    public DynamicSpinnerChoiceAdapter(@Nullable int[] iconsRes, @Nullable Drawable[] icons,
+            @Nullable CharSequence[] titles, @Nullable CharSequence[] subtitles,
+            @Nullable boolean[] hasSubmenus, int selectedPosition,
+            @Nullable AdapterView.OnItemClickListener onItemClickListener) {
+        this.mIconsRes = iconsRes;
         this.mIcons = icons;
         this.mTitles = titles;
         this.mSubtitles = subtitles;
         this.mHasSubmenus = hasSubmenus;
-        this.mOnItemClickListener = onItemClickListener;
         this.mSelectedPosition = selectedPosition;
+        this.mOnItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -211,9 +322,7 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
             Dynamic.setClickable(viewHolder.getRoot(), false);
         }
 
-        Dynamic.set(viewHolder.getIcon(), getIcons() != null
-                ? DynamicResourceUtils.getDrawable(
-                        parent.getContext(), getIcons()[position]) : null);
+        Dynamic.set(viewHolder.getIcon(), getIcon(parent.getContext(), position));
         Dynamic.set(viewHolder.getTitle(), getTitles() != null
                 ? getTitles()[position] : null);
         Dynamic.set(viewHolder.getSubtitle(), getSubtitles() != null
@@ -238,7 +347,7 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (mTitles == null) {
-            return mIcons != null ? mIcons.length : 0;
+            return mIconsRes != null ? mIconsRes.length : 0;
         }
 
         return mTitles.length;
@@ -259,7 +368,28 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
      *
      * @return The array of icons used by this adapter.
      */
-    public @Nullable @DrawableRes int[] getIcons() {
+    public @Nullable int[] getIconsRes() {
+        return mIconsRes;
+    }
+
+    /**
+     * Sets the array of icons for this adapter.
+     *
+     * @param iconsRes The array of drawable resource ids to be set.
+     */
+    public void setIconsRes(@Nullable int[] iconsRes) {
+        this.mIconsRes = iconsRes;
+        this.mIcons = null;
+
+        notifyDataSetChanged();
+    }
+
+    /**
+     * Get the array of icons used by this adapter.
+     *
+     * @return The array of icons used by this adapter.
+     */
+    public @Nullable Drawable[] getIcons() {
         return mIcons;
     }
 
@@ -268,10 +398,26 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
      *
      * @param icons The array of drawable resource ids to be set.
      */
-    public void setIcons(@Nullable @DrawableRes int[] icons) {
+    public void setIcons(@Nullable Drawable[] icons) {
+        this.mIconsRes = null;
         this.mIcons = icons;
 
         notifyDataSetChanged();
+    }
+
+    /**
+     * Returns the icon for the supplied position
+     *
+     * @return The icon for the supplied position.
+     */
+    public @Nullable Drawable getIcon(@Nullable Context context, int position) {
+        if (context != null && getIconsRes() != null && position <= getIconsRes().length - 1) {
+            return DynamicResourceUtils.getDrawable(context, getIconsRes()[position]);
+        } else if (getIcons() != null && position <= getIcons().length - 1) {
+            return getIcons()[position];
+        } else {
+            return null;
+        }
     }
 
     /**

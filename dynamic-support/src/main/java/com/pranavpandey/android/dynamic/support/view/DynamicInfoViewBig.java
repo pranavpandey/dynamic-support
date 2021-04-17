@@ -25,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView;
 
 /**
  * A {@link DynamicInfoView} with bigger fallback icon.

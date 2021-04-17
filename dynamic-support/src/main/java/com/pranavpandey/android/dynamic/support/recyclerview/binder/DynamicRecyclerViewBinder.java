@@ -34,7 +34,7 @@ public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHold
     /**
      * The dynamic binder adapter for the recycler view.
      */
-    private DynamicBinderAdapter mBinderAdapter;
+    private final DynamicBinderAdapter mBinderAdapter;
 
     /**
      * Constructor to initialize an object of this class.

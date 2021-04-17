@@ -148,6 +148,7 @@
     <string name="ads_backup_create_new_info">Bitte erstelle eine neue Sicherung.</string>
     <string name="ads_backup_import_info">Bitte versuche, eine Sicherung aus dem Gerätespeicher zu importieren.</string>
     <string name="ads_backup_name">Name der Sicherung</string>
+    <string name="ads_backup_location">Pfad der Sicherung</string>
     <string name="ads_backup_rename">Sicherung umbenennen</string>
     <string name="ads_backup_complete">Sicherung wurde erfolgreich erstellt</string>
     <string name="ads_backup_error">Sicherung kann nicht erstellt werden</string>

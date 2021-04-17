@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.view;
+package com.pranavpandey.android.dynamic.support.view.base;
 
 import android.content.Context;
 import android.util.AttributeSet;

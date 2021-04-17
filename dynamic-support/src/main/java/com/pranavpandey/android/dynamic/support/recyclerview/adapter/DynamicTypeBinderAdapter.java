@@ -53,7 +53,7 @@ public abstract class DynamicTypeBinderAdapter<E extends Enum<E>,
     /**
      * Map to hold the data binders.
      */
-    private Map<E, VB> mDataBinderMap = new HashMap<>();
+    private final Map<E, VB> mDataBinderMap = new HashMap<>();
 
     @Override
     public int getItemCount() {

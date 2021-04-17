@@ -31,8 +31,7 @@ import com.pranavpandey.android.dynamic.support.model.DynamicPermission;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.permission.view.DynamicPermissionsView;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.view.DynamicInfoView;
-import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
+import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView;
 import com.pranavpandey.android.dynamic.utils.DynamicTextUtils;
 
 import java.util.List;
@@ -187,10 +186,9 @@ public class DynamicPermissionsAdapter extends
             root = view.findViewById(R.id.ads_info_card);
             dynamicInfo = view.findViewById(R.id.ads_dynamic_info_view);
 
-            dynamicInfo.getSubtitleView().setAllCaps(true);
-            if (dynamicInfo.getIconView() instanceof DynamicImageView) {
-                ((DynamicImageView) dynamicInfo.getIconView())
-                        .setColorType(Defaults.ADS_COLOR_TYPE_ICON);
+            Dynamic.setColorType(dynamicInfo.getIconView(), Defaults.ADS_COLOR_TYPE_ICON);
+            if (dynamicInfo.getSubtitleView() != null) {
+                dynamicInfo.getSubtitleView().setAllCaps(true);
             }
         }
 

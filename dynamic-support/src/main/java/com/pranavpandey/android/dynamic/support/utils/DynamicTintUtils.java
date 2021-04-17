@@ -187,8 +187,8 @@ public class DynamicTintUtils {
      */
     public static void setViewBackgroundTint(@Nullable View view,
             @ColorInt int color, boolean borderless) {
-        setViewBackgroundTint(view, color, DynamicTheme.getInstance().get()
-                .getTintBackgroundColor(), borderless, false);
+        setViewBackgroundTint(view, color, DynamicTheme.getInstance().resolveColorType(
+                Defaults.ADS_COLOR_TYPE_SYSTEM_SECONDARY), borderless, false);
     }
 
     /**

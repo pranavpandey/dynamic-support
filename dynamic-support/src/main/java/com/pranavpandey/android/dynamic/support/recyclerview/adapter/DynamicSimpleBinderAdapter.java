@@ -35,7 +35,7 @@ public abstract class DynamicSimpleBinderAdapter<VB extends DynamicRecyclerViewB
     /**
      * List of data binders displayed by this adapter.
      */
-    private List<VB> mDataBinders = new ArrayList<>();
+    private final List<VB> mDataBinders = new ArrayList<>();
 
     @Override
     public int getItemCount() {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.view;
+package com.pranavpandey.android.dynamic.support.view.base;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -155,7 +155,7 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
     /**
      * Icon tint color for the links used by this view.
      */
-    private @ColorInt Integer[] mLinksColors;
+    private Integer[] mLinksColors;
 
     /**
      * Default visibility of the icon view.
@@ -772,7 +772,7 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
      *
      * @return The icon tint color for the links used by this view.
      */
-    public @Nullable @ColorInt Integer[] getLinksColors() {
+    public @Nullable Integer[] getLinksColors() {
         return mLinksColors;
     }
 
@@ -784,7 +784,7 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
      *
      * @param linksColors The icon tint color for the links to be set.
      */
-    public void setLinksColors(@Nullable @ColorInt Integer[] linksColors) {
+    public void setLinksColors(@Nullable Integer[] linksColors) {
         this.mLinksColors = linksColors;
     }
 
@@ -802,7 +802,7 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
      *
      * @return The root element of this view
      */
-    public ViewGroup getInfoView() {
+    public @NonNull ViewGroup getInfoView() {
         return mInfoView;
     }
 

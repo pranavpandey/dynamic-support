@@ -19,13 +19,14 @@ package com.pranavpandey.android.dynamic.support.model;
 import android.graphics.drawable.Drawable;
 
 import androidx.annotation.ArrayRes;
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView;
+
 /**
  * A model class to hold the dynamic information which can be used by the
- * {@link com.pranavpandey.android.dynamic.support.view.DynamicInfoView}.
+ * {@link DynamicInfoView}.
  */
 public class DynamicInfo {
 
@@ -87,7 +88,7 @@ public class DynamicInfo {
     /**
      * Icon tint color for the links used by this info.
      */
-    private @ColorInt Integer[] linksColors;
+    private Integer[] linksColors;
 
     /**
      * Ge the icon used by this info.
@@ -336,7 +337,7 @@ public class DynamicInfo {
      *
      * @return The icon tint color for the links used by this info.
      */
-    public @Nullable @ColorInt Integer[] getLinksColors() {
+    public @Nullable Integer[] getLinksColors() {
         return linksColors;
     }
 
@@ -347,7 +348,7 @@ public class DynamicInfo {
      *
      * @return The {@link DynamicInfo} object to allow for chaining of calls to set methods.
      */
-    public @NonNull DynamicInfo setLinksColors(@Nullable @ColorInt Integer[] linksColors) {
+    public @NonNull DynamicInfo setLinksColors(@Nullable Integer[] linksColors) {
         this.linksColors = linksColors;
 
         return this;

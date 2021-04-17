@@ -29,7 +29,7 @@
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
             style="@style/Widget.DynamicApp.Card">
 
-            <com.pranavpandey.android.dynamic.support.view.DynamicItemView
+            <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
                 android:id="@+id/item_gradle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
             style="@style/Widget.DynamicApp.Card">
 
-            <com.pranavpandey.android.dynamic.support.view.DynamicItemView
+            <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
                 android:id="@+id/item_rotation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
             style="@style/Widget.DynamicApp.Card">
 
-            <com.pranavpandey.android.dynamic.support.view.DynamicItemView
+            <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
                 android:id="@+id/item_everyday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
             style="@style/Widget.DynamicApp.Card">
 
-            <com.pranavpandey.android.dynamic.support.view.DynamicItemView
+            <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
                 android:id="@+id/item_palettes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
             style="@style/Widget.DynamicApp.Card">
 
-            <com.pranavpandey.android.dynamic.support.view.DynamicItemView
+            <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
                 android:id="@+id/item_zerocors"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -148,6 +148,7 @@
     <string name="ads_backup_create_new_info">Lütfen yeni bir yedek oluşturun.</string>
     <string name="ads_backup_import_info">Lütfen cihaz belleğinden yedek almayı deneyin.</string>
     <string name="ads_backup_name">Yedek adı</string>
+    <string name="ads_backup_location">Yedek konumu</string>
     <string name="ads_backup_rename">Yedeği yeniden adlandır</string>
     <string name="ads_backup_complete">Yedek başarıyla oluşturuldu</string>
     <string name="ads_backup_error">Yedek oluşturulamadı</string>

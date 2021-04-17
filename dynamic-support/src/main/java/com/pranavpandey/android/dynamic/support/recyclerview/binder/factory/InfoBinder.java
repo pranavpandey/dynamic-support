@@ -27,7 +27,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicInfo;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBinderAdapter;
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicQueryBinder;
-import com.pranavpandey.android.dynamic.support.view.DynamicInfoView;
+import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView;
 
 /**
  * A {@link DynamicQueryBinder} to bind the {@link DynamicInfo} that can be used

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.view;
+package com.pranavpandey.android.dynamic.support.view.base;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -356,7 +356,7 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
         } else if (getColor() != Theme.Color.UNKNOWN) {
             Dynamic.setColor(getIconView(), getColor());
         } else {
-            getIconView().clearColorFilter();
+            Dynamic.setColorType(getIconView(), Theme.ColorType.NONE);
         }
     }
 
@@ -509,7 +509,7 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
      *
      * @return The root element of this view
      */
-    public ViewGroup getItemView() {
+    public @NonNull ViewGroup getItemView() {
         return mItemView;
     }
 
@@ -518,7 +518,7 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
      *
      * @return The image view to show the icon used by this view.
      */
-    public ImageView getIconView() {
+    public @Nullable ImageView getIconView() {
         return mIconView;
     }
 
@@ -536,7 +536,7 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
      *
      * @return The text view to show the title used by this view.
      */
-    public TextView getTitleView() {
+    public @Nullable TextView getTitleView() {
         return mTitleView;
     }
 
@@ -545,7 +545,7 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
      *
      * @return The text view to show the subtitle used by this view.
      */
-    public TextView getSubtitleView() {
+    public @Nullable TextView getSubtitleView() {
         return mSubtitleView;
     }
 
@@ -554,7 +554,7 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
      *
      * @return The view to show the divider used by this view.
      */
-    public View getDivider() {
+    public @Nullable View getDivider() {
         return mDivider;
     }
 }

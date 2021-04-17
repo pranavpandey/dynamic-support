@@ -206,6 +206,7 @@
     <dimen name="ads_widget_text_input_edit_text_padding_vertical_outlined">16dp</dimen>
 
     <!-- Dialog -->
+    <dimen name="ads_dialog_margin">@dimen/ads_margin_regular</dimen>
     <dimen name="ads_dialog_margin_horizontal">24dp</dimen>
     <dimen name="ads_dialog_margin_horizontal_edit_text">@dimen/ads_dialog_margin_horizontal</dimen>
     <dimen name="ads_dialog_margin_select_start">20dp</dimen>

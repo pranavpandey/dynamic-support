@@ -24,11 +24,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.Dynamic;
+import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A model class to hold the dynamic item information which can be used by the
- * {@link com.pranavpandey.android.dynamic.support.view.DynamicItemView}.
+ * {@link DynamicItemView}.
  */
 public class DynamicItem {
 

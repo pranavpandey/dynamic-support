@@ -46,7 +46,7 @@ import com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference;
 import com.pranavpandey.android.dynamic.support.theme.task.WallpaperColorsTask;
 import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
-import com.pranavpandey.android.dynamic.support.view.DynamicView;
+import com.pranavpandey.android.dynamic.support.view.base.DynamicView;
 import com.pranavpandey.android.dynamic.theme.DynamicPalette;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
@@ -1020,8 +1020,7 @@ public class DynamicColorPicker extends DynamicView {
      * @param colors The color entries to be set.
      * @param shades The shade entries to be set.
      */
-    public void setColors(@NonNull @ColorInt Integer[] colors,
-            @Nullable @ColorInt Integer[][] shades) {
+    public void setColors(@NonNull Integer[] colors, @Nullable Integer[][] shades) {
         this.mColors = colors;
         this.mShades = shades;
     }
@@ -1040,7 +1039,7 @@ public class DynamicColorPicker extends DynamicView {
      *
      * @param colors The color entries to be set.
      */
-    public void setDynamics(@Nullable @ColorInt Integer[] colors) {
+    public void setDynamics(@Nullable Integer[] colors) {
         this.mDynamics = colors;
     }
 

@@ -27,7 +27,7 @@ import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
-import com.pranavpandey.android.dynamic.support.view.DynamicView;
+import com.pranavpandey.android.dynamic.support.view.base.DynamicView;
 
 /**
  * A {@link DynamicView} to show the theme preview according to the {@link DynamicAppTheme}.

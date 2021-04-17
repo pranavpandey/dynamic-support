@@ -46,7 +46,7 @@ import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerView
 import com.pranavpandey.android.dynamic.support.theme.adapter.DynamicPresetsAdapter;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
-import com.pranavpandey.android.dynamic.support.view.DynamicItemView;
+import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
 import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;

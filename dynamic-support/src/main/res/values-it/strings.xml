@@ -148,6 +148,7 @@
     <string name="ads_backup_create_new_info">Per favore crea un nuovo backup</string>
     <string name="ads_backup_import_info">Per favore prova ad importare il backup dalla memoria del dispositivo.</string>
     <string name="ads_backup_name">Nome backup</string>
+    <string name="ads_backup_location">Posizione backup</string>
     <string name="ads_backup_rename">Rinomina backup</string>
     <string name="ads_backup_complete">Il backup è stato creato correttamente</string>
     <string name="ads_backup_error">Impossibile creare il backup</string>

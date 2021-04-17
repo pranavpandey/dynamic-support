@@ -733,7 +733,7 @@ public class DynamicResourceUtils {
      *
      * @return The drawable resource array from its resource id.
      */
-    public static @Nullable @DrawableRes int[] convertToDrawableResArray(
+    public static @Nullable int[] convertToDrawableResArray(
             @NonNull Context context, @ArrayRes int arrayRes) {
         @DrawableRes int[] resources = null;
 
@@ -794,7 +794,7 @@ public class DynamicResourceUtils {
      *
      * @return The color array from its resource id.
      */
-    public static @Nullable @ColorInt Integer[] convertToColorArray(
+    public static @Nullable Integer[] convertToColorArray(
             @NonNull Context context, @ArrayRes int arrayRes) {
         Integer[] colors = null;
 

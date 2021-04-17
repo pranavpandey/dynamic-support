@@ -37,7 +37,7 @@ public class DynamicItemsAdapter extends DynamicSimpleBinderAdapter<ItemBinder> 
      * The data used by this adapter.
      * <p>A list of {@link DynamicItem}.
      */
-    private List<DynamicItem> mData;
+    private final List<DynamicItem> mData;
 
     /**
      * Constructor to initialize an object of this class.

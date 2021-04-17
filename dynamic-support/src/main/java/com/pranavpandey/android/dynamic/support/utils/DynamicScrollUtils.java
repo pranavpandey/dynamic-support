@@ -734,7 +734,8 @@ public final class DynamicScrollUtils {
                 Defaults.ADS_COLOR_TYPE_EDGE_EFFECT);
         @ColorInt int scrollBarColor = DynamicTheme.getInstance().resolveColorType(
                 Defaults.ADS_COLOR_TYPE_SCROLLABLE);
-        @ColorInt int selectorColor = DynamicTheme.getInstance().get().getTintBackgroundColor();
+        @ColorInt int selectorColor = DynamicTheme.getInstance().resolveColorType(
+                Defaults.ADS_COLOR_TYPE_SYSTEM_SECONDARY);
 
         if (DynamicTheme.getInstance().get().isBackgroundAware()) {
             edgeEffectColor = DynamicColorUtils.getContrastColor(

@@ -34,42 +34,74 @@ package com.pranavpandey.android.dynamic.support.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.ImageView;
 
+import androidx.annotation.AttrRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
 
 /**
- * A {@link DynamicItemView} to provide the empty view with an icon, title and subtitle.
+ * A {@link DynamicItemView} to provide the spinner with an icon, title and subtitle.
  */
-public class DynamicEmptyView extends DynamicItemView {
+public class DynamicSpinnerView extends DynamicItemView {
 
-    public DynamicEmptyView(@NonNull Context context) {
+    /**
+     * Image view to show the drop down icon.
+     */
+    private ImageView mSelectorView;
+
+    public DynamicSpinnerView(@NonNull Context context) {
         super(context);
     }
 
-    public DynamicEmptyView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicSpinnerView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicEmptyView(@NonNull Context context,
-            @Nullable AttributeSet attrs, int defStyleAttr) {
+    public DynamicSpinnerView(@NonNull Context context,
+            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
     protected @LayoutRes int getLayoutRes() {
-        return R.layout.ads_empty_view;
+        return R.layout.ads_spinner_view;
     }
 
     @Override
     protected void onInflate() {
         super.onInflate();
 
-        setColorType(Defaults.ADS_COLOR_TYPE_ICON);
+        mSelectorView = findViewById(R.id.ads_item_view_selector);
+    }
+
+    @Override
+    public void setColor() {
+        super.setColor();
+
+        Dynamic.setContrastWithColorTypeOrColor(getSelectorView(),
+                getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setBackgroundAwareSafe(getSelectorView(), getBackgroundAware());
+    }
+
+    @Override
+    protected void onEnabled(boolean enabled) {
+        super.onEnabled(enabled);
+
+        Dynamic.setEnabled(getSelectorView(), enabled);
+    }
+
+    /**
+     * Get the image view to show the drop down icon used by this view.
+     *
+     * @return The image view to show the drop down icon used by this view.
+     */
+    public @Nullable ImageView getSelectorView() {
+        return mSelectorView;
     }
 }

@@ -300,8 +300,8 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      *
      * @return The {@link DynamicColorDialog} object to allow for chaining of calls to set methods.
      */
-    public @NonNull DynamicColorDialog setColors(@NonNull @ColorInt Integer[] colors,
-            @Nullable @ColorInt Integer[][] shades) {
+    public @NonNull DynamicColorDialog setColors(@NonNull Integer[] colors,
+            @Nullable Integer[][] shades) {
         this.mColors = colors;
         this.mShades = shades;
 
@@ -324,7 +324,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
      *
      * @return The {@link DynamicColorDialog} object to allow for chaining of calls to set methods.
      */
-    public @NonNull DynamicColorDialog setDynamics(@Nullable @ColorInt Integer[] colors) {
+    public @NonNull DynamicColorDialog setDynamics(@Nullable Integer[] colors) {
         this.mDynamics = colors;
 
         return this;

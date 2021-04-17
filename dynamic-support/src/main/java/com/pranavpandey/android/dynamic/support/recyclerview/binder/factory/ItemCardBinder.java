@@ -43,6 +43,7 @@ public class ItemCardBinder extends ItemBinder {
     @Override
     public @NonNull ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.ads_layout_item_card, parent, false), R.id.ads_dynamic_item_view);
+                R.layout.ads_layout_item_card, parent, false),
+                R.id.ads_dynamic_item_view);
     }
 }

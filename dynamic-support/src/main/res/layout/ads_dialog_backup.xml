@@ -63,14 +63,15 @@
 
             </com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout>
 
-            <com.pranavpandey.android.dynamic.support.widget.DynamicSpinner
+            <com.pranavpandey.android.dynamic.support.view.DynamicSpinnerView
                 android:id="@+id/ads_dialog_backup_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ads_margin_small"
-                android:layout_marginLeft="@dimen/ads_dialog_margin_input"
-                android:layout_marginRight="@dimen/ads_dialog_margin_input"
-                app:ads_elevationOnSameBackground="true" />
+                android:layout_marginLeft="@dimen/ads_dialog_margin_horizontal"
+                android:layout_marginRight="@dimen/ads_dialog_margin_horizontal"
+                app:ads_title="@string/ads_backup_location"
+                app:ads_contrastWithColorType="background" />
 
         </LinearLayout>
 

@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.popup;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,16 +24,19 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.adapter.DynamicSpinnerChoiceAdapter;
+import com.pranavpandey.android.dynamic.support.model.DynamicMenu;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
 import com.pranavpandey.android.dynamic.theme.Theme;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A {@link DynamicPopup} to display a list of items. It will be used internally by the
@@ -59,7 +63,12 @@ public class DynamicMenuPopup extends DynamicPopup {
     /**
      * Menu icons used by this popup.
      */
-    private @DrawableRes int[] mIcons;
+    private int[] mIconsRes;
+
+    /**
+     * Menu icons used by this popup.
+     */
+    private Drawable[] mIcons;
 
     /**
      * Menu titles used by this popup.
@@ -90,12 +99,65 @@ public class DynamicMenuPopup extends DynamicPopup {
      * Constructor to initialize an object of this class.
      *
      * @param anchor The anchor view for this popup.
+     * @param menus The menu items for this popup.
+     * @param selectedPosition The selected menu position for this popup.
+     * @param onItemClickListener The on click listener for the list view.
+     */
+    public DynamicMenuPopup(@NonNull View anchor, @NonNull List<DynamicMenu> menus,
+            int selectedPosition, @NonNull AdapterView.OnItemClickListener onItemClickListener) {
+        List<Drawable> drawables = new ArrayList<>();
+        List<CharSequence> titles = new ArrayList<>();
+        List<CharSequence> subtitles = new ArrayList<>();
+        List<Boolean> hasSubMenus = new ArrayList<>();
+        for (DynamicMenu menu : menus) {
+            drawables.add(menu.getIcon());
+            titles.add(menu.getTitle());
+            subtitles.add(menu.getSubtitle());
+            hasSubMenus.add(menu.isHasSubmenu());
+        }
+
+        boolean[] subMenus = null;
+        if (selectedPosition == DynamicSpinnerChoiceAdapter.DEFAULT_SELECTED_POSITION) {
+            subMenus = new boolean[hasSubMenus.size()];
+            int index = 0;
+            for (Boolean hasSumMenu : hasSubMenus) {
+                subMenus[index++] = hasSumMenu;
+            }
+        }
+
+        this.mAnchor = anchor;
+        this.mIcons = drawables.toArray(new Drawable[0]);
+        this.mTitles = titles.toArray(new CharSequence[0]);
+        this.mSubtitles = subtitles.toArray(new CharSequence[0]);
+        this.mHasSubmenus = subMenus;
+        this.mSelectedPosition = selectedPosition;
+        this.mOnItemClickListener = onItemClickListener;
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param anchor The anchor view for this popup.
      * @param titles The titles for this popup.
      * @param onItemClickListener The on click listener for the list view.
      */
     public DynamicMenuPopup(@NonNull View anchor, @NonNull CharSequence[] titles,
             @NonNull AdapterView.OnItemClickListener onItemClickListener) {
-        this(anchor, null, titles, null, null, onItemClickListener);
+        this(anchor, (int[]) null, titles, null, null, onItemClickListener);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param anchor The anchor view for this popup.
+     * @param iconsRes The icons for this popup.
+     * @param titles The titles for this popup.
+     * @param onItemClickListener The on click listener for the list view.
+     */
+    public DynamicMenuPopup(@NonNull View anchor,
+            @Nullable int[] iconsRes, @Nullable CharSequence[] titles,
+            @Nullable AdapterView.OnItemClickListener onItemClickListener) {
+        this(anchor, iconsRes, titles, null, onItemClickListener);
     }
 
     /**
@@ -107,7 +169,7 @@ public class DynamicMenuPopup extends DynamicPopup {
      * @param onItemClickListener The on click listener for the list view.
      */
     public DynamicMenuPopup(@NonNull View anchor,
-            @Nullable @DrawableRes int[] icons, @Nullable CharSequence[] titles,
+            @Nullable Drawable[] icons, @Nullable CharSequence[] titles,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
         this(anchor, icons, titles, null, onItemClickListener);
     }
@@ -116,17 +178,15 @@ public class DynamicMenuPopup extends DynamicPopup {
      * Constructor to initialize an object of this class.
      *
      * @param anchor The anchor view for this popup.
-     * @param icons The icons for this popup.
+     * @param iconsRes The icons for this popup.
      * @param titles The titles for this popup.
-     * @param subtitles The subtitles for this popup.
      * @param selectedPosition The selected menu position for this popup.
      * @param onItemClickListener The on click listener for the list view.
      */
-    public DynamicMenuPopup(@NonNull View anchor,
-            @Nullable @DrawableRes int[] icons, @Nullable CharSequence[] titles,
-            @Nullable CharSequence[] subtitles, int selectedPosition,
+    public DynamicMenuPopup(@NonNull View anchor, @Nullable int[] iconsRes,
+            @Nullable CharSequence[] titles, int selectedPosition,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
-        this(anchor, icons, titles, subtitles, selectedPosition, onItemClickListener, Type.LIST);
+        this(anchor, iconsRes, titles, null, selectedPosition, onItemClickListener);
     }
 
     /**
@@ -138,7 +198,7 @@ public class DynamicMenuPopup extends DynamicPopup {
      * @param selectedPosition The selected menu position for this popup.
      * @param onItemClickListener The on click listener for the list view.
      */
-    public DynamicMenuPopup(@NonNull View anchor, @Nullable @DrawableRes int[] icons,
+    public DynamicMenuPopup(@NonNull View anchor, @Nullable Drawable[] icons,
             @Nullable CharSequence[] titles, int selectedPosition,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
         this(anchor, icons, titles, null, selectedPosition, onItemClickListener);
@@ -148,6 +208,61 @@ public class DynamicMenuPopup extends DynamicPopup {
      * Constructor to initialize an object of this class.
      *
      * @param anchor The anchor view for this popup.
+     * @param iconsRes The icons for this popup.
+     * @param titles The titles for this popup.
+     * @param subtitles The subtitles for this popup.
+     * @param selectedPosition The selected menu position for this popup.
+     * @param onItemClickListener The on click listener for the list view.
+     */
+    public DynamicMenuPopup(@NonNull View anchor,
+            @Nullable int[] iconsRes, @Nullable CharSequence[] titles,
+            @Nullable CharSequence[] subtitles, int selectedPosition,
+            @Nullable AdapterView.OnItemClickListener onItemClickListener) {
+        this(anchor, iconsRes, titles, subtitles, selectedPosition,
+                onItemClickListener, Type.LIST);
+    }
+
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param anchor The anchor view for this popup.
+     * @param icons The icons for this popup.
+     * @param titles The titles for this popup.
+     * @param subtitles The subtitles for this popup.
+     * @param selectedPosition The selected menu position for this popup.
+     * @param onItemClickListener The on click listener for the list view.
+     */
+    public DynamicMenuPopup(@NonNull View anchor,
+            @Nullable Drawable[] icons, @Nullable CharSequence[] titles,
+            @Nullable CharSequence[] subtitles, int selectedPosition,
+            @Nullable AdapterView.OnItemClickListener onItemClickListener) {
+        this(anchor, icons, titles, subtitles, selectedPosition, onItemClickListener, Type.LIST);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param anchor The anchor view for this popup.
+     * @param iconsRes The icons for this popup.
+     * @param titles The titles for this popup.
+     * @param subtitles The subtitles for this popup.
+     * @param selectedPosition The selected menu position for this popup.
+     * @param onItemClickListener The on click listener for the list view.
+     * @param viewType The view type for the popup.
+     */
+    public DynamicMenuPopup(@NonNull View anchor,
+            @Nullable int[] iconsRes, @Nullable CharSequence[] titles,
+            @Nullable CharSequence[] subtitles, int selectedPosition,
+            @Nullable AdapterView.OnItemClickListener onItemClickListener, @Type int viewType) {
+        this(anchor, iconsRes, null, titles, subtitles, null,
+                selectedPosition, onItemClickListener, viewType);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param anchor The anchor view for this popup.
      * @param icons The icons for this popup.
      * @param titles The titles for this popup.
      * @param subtitles The subtitles for this popup.
@@ -156,12 +271,26 @@ public class DynamicMenuPopup extends DynamicPopup {
      * @param viewType The view type for the popup.
      */
     public DynamicMenuPopup(@NonNull View anchor,
-            @Nullable @DrawableRes int[] icons, @Nullable CharSequence[] titles,
+            @Nullable Drawable[] icons, @Nullable CharSequence[] titles,
             @Nullable CharSequence[] subtitles, int selectedPosition,
             @Nullable AdapterView.OnItemClickListener onItemClickListener, @Type int viewType) {
-        this(anchor, icons, titles, subtitles, null, onItemClickListener, viewType);
+        this(anchor, null, icons, titles, subtitles, null,
+                selectedPosition, onItemClickListener, viewType);
+    }
 
-        this.mSelectedPosition = selectedPosition;
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param anchor The anchor view for this popup.
+     * @param iconsRes The icons for this popup.
+     * @param titles The titles for this popup.
+     * @param hasSubmenus The submenu states for this popup.
+     * @param onItemClickListener The on click listener for the list view.
+     */
+    public DynamicMenuPopup(@NonNull View anchor, @Nullable int[] iconsRes,
+            @Nullable CharSequence[] titles, @Nullable boolean[] hasSubmenus,
+            @Nullable AdapterView.OnItemClickListener onItemClickListener) {
+        this(anchor, iconsRes, titles, null, hasSubmenus, onItemClickListener);
     }
 
     /**
@@ -173,7 +302,7 @@ public class DynamicMenuPopup extends DynamicPopup {
      * @param hasSubmenus The submenu states for this popup.
      * @param onItemClickListener The on click listener for the list view.
      */
-    public DynamicMenuPopup(@NonNull View anchor, @Nullable @DrawableRes int[] icons,
+    public DynamicMenuPopup(@NonNull View anchor, @Nullable Drawable[] icons,
             @Nullable CharSequence[] titles, @Nullable boolean[] hasSubmenus,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
         this(anchor, icons, titles, null, hasSubmenus, onItemClickListener);
@@ -183,17 +312,17 @@ public class DynamicMenuPopup extends DynamicPopup {
      * Constructor to initialize an object of this class.
      *
      * @param anchor The anchor view for this popup.
-     * @param icons The icons for this popup.
+     * @param iconsRes The icons for this popup.
      * @param titles The titles for this popup.
      * @param subtitles The subtitles for this popup.
      * @param hasSubmenus The submenu states for this popup.
      * @param onItemClickListener The on click listener for the list view.
      */
     public DynamicMenuPopup(@NonNull View anchor,
-            @Nullable @DrawableRes int[] icons, @Nullable CharSequence[] titles,
+            @Nullable int[] iconsRes, @Nullable CharSequence[] titles,
             @Nullable CharSequence[] subtitles, @Nullable boolean[] hasSubmenus,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
-        this(anchor, icons, titles, subtitles, hasSubmenus, onItemClickListener, Type.LIST);
+        this(anchor, iconsRes, titles, subtitles, hasSubmenus, onItemClickListener, Type.LIST);
     }
 
     /**
@@ -205,13 +334,30 @@ public class DynamicMenuPopup extends DynamicPopup {
      * @param subtitles The subtitles for this popup.
      * @param hasSubmenus The submenu states for this popup.
      * @param onItemClickListener The on click listener for the list view.
+     */
+    public DynamicMenuPopup(@NonNull View anchor,
+            @Nullable Drawable[] icons, @Nullable CharSequence[] titles,
+            @Nullable CharSequence[] subtitles, @Nullable boolean[] hasSubmenus,
+            @Nullable AdapterView.OnItemClickListener onItemClickListener) {
+        this(anchor, icons, titles, subtitles, hasSubmenus, onItemClickListener, Type.LIST);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param anchor The anchor view for this popup.
+     * @param iconsRes The icons for this popup.
+     * @param titles The titles for this popup.
+     * @param subtitles The subtitles for this popup.
+     * @param hasSubmenus The submenu states for this popup.
+     * @param onItemClickListener The on click listener for the list view.
      * @param viewType The view type for the popup.
      */
     public DynamicMenuPopup(@NonNull View anchor,
-            @Nullable @DrawableRes int[] icons, @Nullable CharSequence[] titles,
+            @Nullable int[] iconsRes, @Nullable CharSequence[] titles,
             @Nullable CharSequence[] subtitles, @Nullable boolean[] hasSubmenus,
             @Nullable AdapterView.OnItemClickListener onItemClickListener, @Type int viewType) {
-        this(anchor, icons, titles, subtitles, hasSubmenus,
+        this(anchor, iconsRes, null, titles, subtitles, hasSubmenus,
                 DynamicSpinnerChoiceAdapter.DEFAULT_SELECTED_POSITION,
                 onItemClickListener, viewType);
     }
@@ -224,14 +370,34 @@ public class DynamicMenuPopup extends DynamicPopup {
      * @param titles The titles for this popup.
      * @param subtitles The subtitles for this popup.
      * @param hasSubmenus The submenu states for this popup.
+     * @param onItemClickListener The on click listener for the list view.
+     * @param viewType The view type for the popup.
+     */
+    public DynamicMenuPopup(@NonNull View anchor,
+            @Nullable Drawable[] icons, @Nullable CharSequence[] titles,
+            @Nullable CharSequence[] subtitles, @Nullable boolean[] hasSubmenus,
+            @Nullable AdapterView.OnItemClickListener onItemClickListener, @Type int viewType) {
+        this(anchor, null, icons, titles, subtitles, hasSubmenus,
+                DynamicSpinnerChoiceAdapter.DEFAULT_SELECTED_POSITION,
+                onItemClickListener, viewType);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param anchor The anchor view for this popup.
+     * @param iconsRes The icons for this popup.
+     * @param titles The titles for this popup.
+     * @param subtitles The subtitles for this popup.
+     * @param hasSubmenus The submenu states for this popup.
      * @param selectedPosition The selected menu position for this popup.
      * @param onItemClickListener The on click listener for the list view.
      */
-    public DynamicMenuPopup(@NonNull View anchor, @Nullable @DrawableRes int[] icons,
+    public DynamicMenuPopup(@NonNull View anchor, @Nullable int[] iconsRes,
             @Nullable CharSequence[] titles, @Nullable CharSequence[] subtitles,
             @Nullable boolean[] hasSubmenus, int selectedPosition,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
-        this(anchor, icons, titles, subtitles, hasSubmenus,
+        this(anchor, iconsRes, null, titles, subtitles, hasSubmenus,
                 selectedPosition, onItemClickListener, Type.LIST);
     }
 
@@ -245,19 +411,41 @@ public class DynamicMenuPopup extends DynamicPopup {
      * @param hasSubmenus The submenu states for this popup.
      * @param selectedPosition The selected menu position for this popup.
      * @param onItemClickListener The on click listener for the list view.
-     * @param viewType The view type for the popup.
      */
-    public DynamicMenuPopup(@NonNull View anchor, @Nullable @DrawableRes int[] icons,
+    public DynamicMenuPopup(@NonNull View anchor, @Nullable Drawable[] icons,
             @Nullable CharSequence[] titles, @Nullable CharSequence[] subtitles,
             @Nullable boolean[] hasSubmenus, int selectedPosition,
-            @Nullable AdapterView.OnItemClickListener onItemClickListener, @Type int viewType) {
+            @Nullable AdapterView.OnItemClickListener onItemClickListener) {
+        this(anchor, null, icons, titles, subtitles, hasSubmenus,
+                selectedPosition, onItemClickListener, Type.LIST);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param anchor The anchor view for this popup.
+     * @param iconsRes The icons for this popup.
+     * @param icons The icons for this popup.
+     * @param titles The titles for this popup.
+     * @param subtitles The subtitles for this popup.
+     * @param hasSubmenus The submenu states for this popup.
+     * @param selectedPosition The selected menu position for this popup.
+     * @param onItemClickListener The on click listener for the list view.
+     * @param viewType The view type for the popup.
+     */
+    public DynamicMenuPopup(@NonNull View anchor, @Nullable int[] iconsRes,
+            @Nullable Drawable[] icons, @Nullable CharSequence[] titles,
+            @Nullable CharSequence[] subtitles, @Nullable boolean[] hasSubmenus,
+            int selectedPosition, @Nullable AdapterView.OnItemClickListener onItemClickListener,
+            @Type int viewType) {
         this.mAnchor = anchor;
+        this.mIconsRes = iconsRes;
         this.mIcons = icons;
         this.mTitles = titles;
         this.mSubtitles = subtitles;
         this.mHasSubmenus = hasSubmenus;
-        this.mOnItemClickListener = onItemClickListener;
         this.mSelectedPosition = selectedPosition;
+        this.mOnItemClickListener = onItemClickListener;
         this.mViewType = viewType;
     }
 
@@ -284,18 +472,17 @@ public class DynamicMenuPopup extends DynamicPopup {
         }
 
         if (mOnItemClickListener != null) {
-            listView.setAdapter(new DynamicSpinnerChoiceAdapter(
-                    mIcons, mTitles, mSubtitles, mHasSubmenus, mSelectedPosition,
+            listView.setAdapter(new DynamicSpinnerChoiceAdapter(mIconsRes, mIcons,
+                    mTitles, mSubtitles, mHasSubmenus, mSelectedPosition,
                     new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> adapterView,
-                                View view, int position, long id) {
-                            mOnItemClickListener.onItemClick(adapterView, view, position, id);
+                @Override
+                public void onItemClick(AdapterView<?> adapterView,
+                        View view, int position, long id) {
+                    mOnItemClickListener.onItemClick(adapterView, view, position, id);
 
-                            getPopupWindow().dismiss();
-                        }
-                    })
-            );
+                    getPopupWindow().dismiss();
+                }
+            }));
         }
 
         setViewRoot(listView);
@@ -335,7 +522,26 @@ public class DynamicMenuPopup extends DynamicPopup {
      *
      * @return The menu icons used by this popup.
      */
-    public @Nullable @DrawableRes int[] getIcons() {
+    public @Nullable int[] getIconsRes() {
+        return mIconsRes;
+    }
+
+    /**
+     * Set the menu icons for this popup.
+     *
+     * @param iconsRes The menu icons to be set.
+     */
+    public void setIconsRes(@Nullable int[] iconsRes) {
+        this.mIconsRes = iconsRes;
+        this.mIcons = null;
+    }
+
+    /**
+     * Get the menu icons used by this popup.
+     *
+     * @return The menu icons used by this popup.
+     */
+    public @Nullable Drawable[] getIcons() {
         return mIcons;
     }
 
@@ -344,7 +550,8 @@ public class DynamicMenuPopup extends DynamicPopup {
      *
      * @param icons The menu icons to be set.
      */
-    public void setIcons(@Nullable @DrawableRes int[] icons) {
+    public void setIcons(@Nullable Drawable[] icons) {
+        this.mIconsRes = null;
         this.mIcons = icons;
     }
 

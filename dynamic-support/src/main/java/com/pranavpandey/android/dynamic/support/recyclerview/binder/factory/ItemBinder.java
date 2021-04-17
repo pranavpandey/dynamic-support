@@ -22,7 +22,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.flexbox.FlexboxLayoutManager;
@@ -32,7 +31,7 @@ import com.pranavpandey.android.dynamic.support.model.DynamicItem;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBinderAdapter;
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicDataBinder;
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder;
-import com.pranavpandey.android.dynamic.support.view.DynamicItemView;
+import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
 
 /**
  * A {@link DynamicRecyclerViewBinder} to bind the {@link DynamicItem} that can be used
@@ -57,32 +56,32 @@ public class ItemBinder extends DynamicDataBinder<DynamicItem, ItemBinder.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        if (getData() == null || viewHolder.getDynamicItem() == null) {
+        if (getData() == null) {
             return;
         }
 
-        Dynamic.setColorType(viewHolder.getDynamicItem(), getData().getColorType());
-        Dynamic.setColor(viewHolder.getDynamicItem(), getData().getColor());
-        Dynamic.setContrastWithColorTypeOrColor(viewHolder.getDynamicItem(),
+        Dynamic.setColorType(viewHolder.getDynamicItemView(), getData().getColorType());
+        Dynamic.setColor(viewHolder.getDynamicItemView(), getData().getColor());
+        Dynamic.setContrastWithColorTypeOrColor(viewHolder.getDynamicItemView(),
                 getData().getContrastWithColorType(), getData().getContrastWithColor());
-        Dynamic.setBackgroundAwareSafe(viewHolder.getDynamicItem(),
+        Dynamic.setBackgroundAwareSafe(viewHolder.getDynamicItemView(),
                 getData().getBackgroundAware());
-        viewHolder.getDynamicItem().setIcon(getData().getIcon());
-        viewHolder.getDynamicItem().setTitle(getData().getTitle());
-        viewHolder.getDynamicItem().setSubtitle(getData().getSubtitle());
-        viewHolder.getDynamicItem().setShowDivider(getData().isShowDivider());
+        viewHolder.getDynamicItemView().setIcon(getData().getIcon());
+        viewHolder.getDynamicItemView().setTitle(getData().getTitle());
+        viewHolder.getDynamicItemView().setSubtitle(getData().getSubtitle());
+        viewHolder.getDynamicItemView().setShowDivider(getData().isShowDivider());
 
         if (getData().getOnClickListener() != null) {
-            Dynamic.setOnClickListener(viewHolder.getDynamicItem(),
+            Dynamic.setOnClickListener(viewHolder.getDynamicItemView(),
                     getData().getOnClickListener());
         } else {
-            Dynamic.setClickable(viewHolder.getDynamicItem(), false);
+            Dynamic.setClickable(viewHolder.getDynamicItemView(), false);
         }
 
         if (getBinderAdapter().getRecyclerView() != null
                 && getBinderAdapter().getRecyclerView().getLayoutManager()
                 instanceof FlexboxLayoutManager) {
-            viewHolder.getDynamicItem().getLayoutParams().width
+            viewHolder.getDynamicItemView().getLayoutParams().width
                     = ViewGroup.LayoutParams.WRAP_CONTENT;
         }
     }
@@ -95,7 +94,7 @@ public class ItemBinder extends DynamicDataBinder<DynamicItem, ItemBinder.ViewHo
         /**
          * Dynamic item view for this view holder.
          */
-        private final DynamicItemView dynamicItem;
+        private final DynamicItemView dynamicItemView;
 
         /**
          * Constructor to initialize views from the supplied layout.
@@ -106,7 +105,7 @@ public class ItemBinder extends DynamicDataBinder<DynamicItem, ItemBinder.ViewHo
         public ViewHolder(@NonNull View view, @IdRes int itemViewId) {
             super(view);
 
-            dynamicItem = view.findViewById(itemViewId);
+            dynamicItemView = view.findViewById(itemViewId);
         }
 
         /**
@@ -114,8 +113,8 @@ public class ItemBinder extends DynamicDataBinder<DynamicItem, ItemBinder.ViewHo
          *
          * @return The dynamic item view for this view holder.
          */
-        public @Nullable DynamicItemView getDynamicItem() {
-            return dynamicItem;
+        public @NonNull DynamicItemView getDynamicItemView() {
+            return dynamicItemView;
         }
     }
 }

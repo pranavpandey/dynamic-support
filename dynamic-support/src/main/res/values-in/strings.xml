@@ -148,6 +148,7 @@
     <string name="ads_backup_create_new_info">Mohon buat cadangan baru.</string>
     <string name="ads_backup_import_info">Mohon coba untuk mengimpor cadangan dari penyimpanan device.</string>
     <string name="ads_backup_name">Nama cadangan</string>
+    <string name="ads_backup_location">Lokasi cadangan</string>
     <string name="ads_backup_rename">Ubah nama cadangan</string>
     <string name="ads_backup_complete">Cadangan telah sukses dibuat</string>
     <string name="ads_backup_error">Tidak dapat membuat cadangan</string>

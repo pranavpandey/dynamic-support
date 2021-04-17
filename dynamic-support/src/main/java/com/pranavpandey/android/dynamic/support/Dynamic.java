@@ -58,8 +58,8 @@ import com.pranavpandey.android.dynamic.support.tutorial.Tutorial;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
-import com.pranavpandey.android.dynamic.support.view.DynamicInfoView;
-import com.pranavpandey.android.dynamic.support.view.DynamicItemView;
+import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView;
+import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicMaterialCardView;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicBackgroundWidget;
@@ -238,10 +238,10 @@ public class Dynamic {
      * @see DynamicColorView#setColor(int)
      */
     public static @ColorInt <T> int getColor(@Nullable T dynamic, @ColorInt int defaultColor) {
-        if (dynamic instanceof DynamicWidget) {
-            return ((DynamicWidget) dynamic).getColor();
-        } else if (dynamic instanceof DynamicColorView) {
+        if (dynamic instanceof DynamicColorView) {
             return ((DynamicColorView) dynamic).getColor();
+        } else if (dynamic instanceof DynamicWidget) {
+            return ((DynamicWidget) dynamic).getColor();
         }
 
         return defaultColor;
@@ -259,10 +259,10 @@ public class Dynamic {
      * @see DynamicItem#setColor(int)
      */
     public static <T> void setColor(@Nullable T dynamic, @ColorInt int color) {
-        if (dynamic instanceof DynamicWidget) {
-            ((DynamicWidget) dynamic).setColor(color);
-        } else if (dynamic instanceof DynamicColorView) {
+        if (dynamic instanceof DynamicColorView) {
             ((DynamicColorView) dynamic).setColor(color);
+        } else if (dynamic instanceof DynamicWidget) {
+            ((DynamicWidget) dynamic).setColor(color);
         } else if (dynamic instanceof DynamicItem) {
             ((DynamicItem) dynamic).setColor(color);
         }

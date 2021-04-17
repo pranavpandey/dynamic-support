@@ -40,7 +40,7 @@
         android:id="@+id/ads_theme_presets_info_card"
         android:layout_marginBottom="@dimen/ads_scroller_margin">
 
-        <com.pranavpandey.android.dynamic.support.view.DynamicItemView
+        <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
             android:id="@+id/ads_theme_presets_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

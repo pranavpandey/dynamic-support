@@ -132,8 +132,7 @@ public class DynamicImageView extends AppCompatImageView implements DynamicWidge
                     R.styleable.DynamicImageView_ads_backgroundAware,
                     Defaults.getBackgroundAware());
 
-            if (mColorType == Theme.ColorType.NONE
-                    && mColor == Theme.Color.UNKNOWN) {
+            if (mColorType == Theme.ColorType.NONE && mColor == Theme.Color.UNKNOWN) {
                 if (getId() == R.id.submenuarrow) {
                     mColorType = Defaults.ADS_COLOR_TYPE_SYSTEM_SECONDARY;
                 }

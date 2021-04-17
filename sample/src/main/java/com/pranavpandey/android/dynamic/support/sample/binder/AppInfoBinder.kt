@@ -24,7 +24,7 @@ import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyc
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.adapter.AppInfoAdapter
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils
-import com.pranavpandey.android.dynamic.support.view.DynamicInfoView
+import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView
 
 /**
  * A recycler view binder to display app info by using [DynamicRecyclerViewBinder].

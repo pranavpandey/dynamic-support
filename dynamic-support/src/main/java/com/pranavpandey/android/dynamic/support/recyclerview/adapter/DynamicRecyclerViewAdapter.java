@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.recyclerview.adapter;
 
 import androidx.annotation.IntDef;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.lang.annotation.Retention;
@@ -96,6 +97,6 @@ public abstract class DynamicRecyclerViewAdapter extends
          *
          * @return The section title for the item type {@link #TYPE_SECTION_HEADER}.
          */
-        String getSectionTitle();
+        @Nullable String getSectionTitle();
     }
 }

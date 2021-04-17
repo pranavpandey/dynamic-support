@@ -43,7 +43,7 @@
             android:paddingEnd="@dimen/ads_margin_regular"
             app:ads_colorType="primary" />
 
-        <com.pranavpandey.android.dynamic.support.view.DynamicItemView
+        <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
             android:id="@+id/ads_dialog_theme_select_app"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
             app:ads_subtitle="@string/ads_theme_app_summary"
             app:ads_colorType="accent" />
 
-        <com.pranavpandey.android.dynamic.support.view.DynamicItemView
+        <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
             android:id="@+id/ads_dialog_theme_select_day"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
             app:ads_subtitle="@string/ads_theme_app_day_summary"
             app:ads_colorType="accent" />
 
-        <com.pranavpandey.android.dynamic.support.view.DynamicItemView
+        <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
             android:id="@+id/ads_dialog_theme_select_night"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
             app:ads_subtitle="@string/ads_theme_app_night_summary"
             app:ads_colorType="accent" />
 
-        <com.pranavpandey.android.dynamic.support.view.DynamicItemView
+        <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
             android:id="@+id/ads_dialog_theme_select_remote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

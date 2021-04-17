@@ -45,7 +45,7 @@ public class DynamicColorsAdapter extends BaseAdapter {
     /**
      * Array of colors to be handled by this adapter.
      */
-    private @ColorInt Integer[] mData;
+    private Integer[] mData;
 
     /**
      * The selected color.
@@ -77,9 +77,8 @@ public class DynamicColorsAdapter extends BaseAdapter {
      * @param alpha {@code true} to enable alpha for the color.
      * @param dynamicColorListener The listener to get the callback when a color is selected.
      */
-    public DynamicColorsAdapter(@NonNull @ColorInt Integer[] colors,
-            @DynamicColorShape int colorShape, boolean alpha,
-            @NonNull DynamicColorListener dynamicColorListener) {
+    public DynamicColorsAdapter(@NonNull Integer[] colors, @DynamicColorShape int colorShape,
+            boolean alpha, @NonNull DynamicColorListener dynamicColorListener) {
         this(colors, Theme.Color.UNKNOWN, colorShape, alpha,
                 Theme.Color.UNKNOWN, dynamicColorListener);
     }
@@ -93,7 +92,7 @@ public class DynamicColorsAdapter extends BaseAdapter {
      * @param contrastWithColor The contrast with color for the swatches.
      * @param dynamicColorListener The listener to get the callback when a color is selected.
      */
-    public DynamicColorsAdapter(@NonNull @ColorInt Integer[] colors,
+    public DynamicColorsAdapter(@NonNull Integer[] colors,
             @DynamicColorShape int colorShape, boolean alpha, @ColorInt int contrastWithColor,
             @NonNull DynamicColorListener dynamicColorListener) {
         this(colors, Theme.Color.UNKNOWN, colorShape, alpha,
@@ -110,9 +109,9 @@ public class DynamicColorsAdapter extends BaseAdapter {
      * @param contrastWithColor The contrast with color for the swatches.
      * @param dynamicColorListener The listener to get the callback when a color is selected.
      */
-    public DynamicColorsAdapter(@NonNull @ColorInt Integer[] colors,
-            @ColorInt int selectedColor, @DynamicColorShape int colorShape, boolean alpha,
-            @ColorInt int contrastWithColor, @NonNull DynamicColorListener dynamicColorListener) {
+    public DynamicColorsAdapter(@NonNull Integer[] colors, @ColorInt int selectedColor,
+            @DynamicColorShape int colorShape, boolean alpha, @ColorInt int contrastWithColor,
+            @NonNull DynamicColorListener dynamicColorListener) {
         this.mData = colors;
         this.mSelectedColor = selectedColor;
         this.mColorShape = colorShape;
@@ -183,7 +182,7 @@ public class DynamicColorsAdapter extends BaseAdapter {
      *
      * @return The array of colors to be handled by this adapter.
      */
-    public @NonNull @ColorInt Integer[] getData() {
+    public @NonNull Integer[] getData() {
         return mData;
     }
 
@@ -192,7 +191,7 @@ public class DynamicColorsAdapter extends BaseAdapter {
      *
      * @param data The array of colors to be set.
      */
-    public void setData(@NonNull @ColorInt Integer[] data) {
+    public void setData(@NonNull Integer[] data) {
         this.mData = data;
 
         notifyDataSetChanged();

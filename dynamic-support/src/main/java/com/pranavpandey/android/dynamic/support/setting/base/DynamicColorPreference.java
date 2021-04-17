@@ -70,22 +70,22 @@ public class DynamicColorPreference extends DynamicSimplePreference {
     /**
      * Color entries used by this preference.
      */
-    private @ColorInt Integer[] mColors;
+    private Integer[] mColors;
 
     /**
      * Popup color entries used by this preference.
      */
-    private @ColorInt Integer[] mPopupColors;
+    private Integer[] mPopupColors;
 
     /**
      * Alternate popup color entries used by this preference.
      */
-    private @ColorInt Integer[] mAltPopupColors;
+    private Integer[] mAltPopupColors;
 
     /**
      * Shade color entries used by this preference.
      */
-    private @ColorInt Integer[][] mShades;
+    private Integer[][] mShades;
 
     /**
      * Shape for the color view.
@@ -324,7 +324,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      * @see DynamicColorPopup
      */
     private void showColorPopup(final @NonNull View view, final @Nullable CharSequence title,
-            @NonNull @ColorInt Integer[] colors, @ColorInt int defaultColor,
+            @NonNull Integer[] colors, @ColorInt int defaultColor,
             final @ColorInt int color, final @ColorInt int resolvedColor,
             final @NonNull DynamicColorListener dynamicColorListener) {
         final DynamicColorPopup colorPopup = new DynamicColorPopup(
@@ -385,7 +385,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      *
      * @return The color entries used by this preference.
      */
-    public @NonNull @ColorInt Integer[] getColors() {
+    public @NonNull Integer[] getColors() {
         if (mColorsResId != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
             mColors = DynamicResourceUtils
                     .convertToColorArray(getContext(), mColorsResId);
@@ -403,7 +403,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      *
      * @param colors The color entries to be set.
      */
-    public void setColors(@Nullable @ColorInt Integer[] colors) {
+    public void setColors(@Nullable Integer[] colors) {
         this.mColors = colors;
         this.mColorsResId = DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
     }
@@ -413,7 +413,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      *
      * @return The popup color entries used by this preference.
      */
-    public @NonNull @ColorInt Integer[] getPopupColors() {
+    public @NonNull Integer[] getPopupColors() {
         if (mPopupColorsResId != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
             mPopupColors = DynamicResourceUtils.convertToColorArray(
                     getContext(), mPopupColorsResId);
@@ -431,7 +431,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      *
      * @param popupColors The popup color entries to be set.
      */
-    public void setPopupColors(@Nullable @ColorInt Integer[] popupColors) {
+    public void setPopupColors(@Nullable Integer[] popupColors) {
         this.mPopupColors = popupColors;
         this.mPopupColorsResId = DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
     }
@@ -441,7 +441,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      *
      * @return The alternate popup color entries used by this preference.
      */
-    public @NonNull @ColorInt Integer[] getAltPopupColors() {
+    public @NonNull Integer[] getAltPopupColors() {
         if (mAltPopupColorsResId != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
             mAltPopupColors = DynamicResourceUtils
                     .convertToColorArray(getContext(), mAltPopupColorsResId);
@@ -459,7 +459,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      *
      * @param altPopupColors The alternate popup color entries to be set.
      */
-    public void setAltPopupColors(@Nullable @ColorInt Integer[] altPopupColors) {
+    public void setAltPopupColors(@Nullable Integer[] altPopupColors) {
         this.mAltPopupColors = altPopupColors;
         this.mAltPopupColorsResId = DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
     }
@@ -469,7 +469,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      *
      * @return The shade color entries used by this preference.
      */
-    public @Nullable @ColorInt Integer[][] getShades() {
+    public @Nullable Integer[][] getShades() {
         if (getColors() == DynamicPalette.MATERIAL_COLORS) {
             mShades = DynamicPalette.MATERIAL_COLORS_SHADES;
         }
@@ -482,7 +482,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      *
      * @param shades The shade color entries to be set.
      */
-    public void setShades(@Nullable @ColorInt Integer[][] shades) {
+    public void setShades(@Nullable Integer[][] shades) {
         this.mShades = shades;
     }
 

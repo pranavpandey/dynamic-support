@@ -148,6 +148,7 @@
     <string name="ads_backup_create_new_info">請創建一個新的備份。</string>
     <string name="ads_backup_import_info">請嘗試從設備存儲中導入備份。</string>
     <string name="ads_backup_name">備份名稱</string>
+    <string name="ads_backup_location">備份位置</string>
     <string name="ads_backup_rename">重命名備份</string>
     <string name="ads_backup_complete">備份已成功創建</string>
     <string name="ads_backup_error">無法創建備份</string>

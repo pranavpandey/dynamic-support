@@ -61,6 +61,10 @@ public class EmptyBinder extends DynamicQueryBinder<String, String, EmptyBinder.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        if (getData() == null) {
+            return;
+        }
+
         viewHolder.getEmptyView().setIcon(getDrawable());
         viewHolder.getEmptyView().setTitle(getData());
 

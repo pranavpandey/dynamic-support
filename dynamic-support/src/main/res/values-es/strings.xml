@@ -148,6 +148,7 @@
     <string name="ads_backup_create_new_info">Por favor crear un nuevo respaldo.</string>
     <string name="ads_backup_import_info">Por favor intentar la importación de un respaldo desde el almacenamiento del dispositivo.</string>
     <string name="ads_backup_name">Nombre del respaldo</string>
+    <string name="ads_backup_location">Ruta del respaldo</string>
     <string name="ads_backup_rename">Renombrar respaldo</string>
     <string name="ads_backup_complete">El respaldo se creó exitosamente</string>
     <string name="ads_backup_error">No se pudo crear el respaldo</string>

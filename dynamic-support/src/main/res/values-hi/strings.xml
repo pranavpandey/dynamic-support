@@ -148,6 +148,7 @@
     <string name="ads_backup_create_new_info">नया बैकअप बनाएं।</string>
     <string name="ads_backup_import_info">बैकअप सेटिंग्स को अपने फोन में से लाने का प्रयास करें।</string>
     <string name="ads_backup_name">बैकअप का नाम</string>
+    <string name="ads_backup_location">बैकअप की जगह</string>
     <string name="ads_backup_rename">बैकअप का नया नाम रखें</string>
     <string name="ads_backup_complete">बैकअप हो गया है</string>
     <string name="ads_backup_error">बैकअप नहीं हो पाया</string>
