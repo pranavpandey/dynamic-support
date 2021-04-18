@@ -42,8 +42,8 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 /**
  * A {@link MaterialCardView} to apply {@link DynamicTheme} according to the supplied parameters.
  */
-public class DynamicMaterialCardView extends MaterialCardView implements
-        DynamicWidget, DynamicCornerWidget<Float>, DynamicSurfaceWidget, DynamicFloatingWidget {
+public class DynamicMaterialCardView extends MaterialCardView implements DynamicWidget,
+        DynamicCornerWidget<Float>, DynamicSurfaceWidget, DynamicFloatingWidget {
 
     /**
      * Color type applied to this view.

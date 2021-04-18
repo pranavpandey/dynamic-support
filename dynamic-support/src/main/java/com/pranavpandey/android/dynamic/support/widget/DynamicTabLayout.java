@@ -42,8 +42,8 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 /**
  * A {@link TabLayout} to apply {@link DynamicTheme} according to the supplied parameters.
  */
-public class DynamicTabLayout extends TabLayout implements
-        DynamicBackgroundWidget, DynamicTextWidget {
+public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidget,
+        DynamicTextWidget {
 
     /**
      * Color type applied to this view.
@@ -363,11 +363,8 @@ public class DynamicTabLayout extends TabLayout implements
                             >= Defaults.ADS_CORNER_MIN_TABS
                             ? R.drawable.ads_tabs_indicator_corner
                             : R.drawable.ads_tabs_indicator);
-            if (getTabSelectedIndicator() != null) {
+            if (indicator != null) {
                 indicator.setBounds(getTabSelectedIndicator().getBounds());
-            } else {
-                indicator.setBounds(0, 0, 0,
-                        Defaults.ADS_HEIGHT_TAB_SELECTED_PIXEL);
             }
 
             setSelectedTabIndicator(indicator);

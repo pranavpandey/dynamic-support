@@ -45,8 +45,8 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
  * A {@link DynamicTutorialFragment} with an image, title, subtitle and description that
  * will be used with the {@link DynamicTutorialActivity}.
  */
-public class DynamicTutorialFragment extends DynamicFragment implements
-        Tutorial<DynamicTutorial, DynamicTutorialFragment> {
+public class DynamicTutorialFragment extends DynamicFragment
+        implements Tutorial<DynamicTutorial, DynamicTutorialFragment> {
 
     /**
      * Fragment argument key to set the dynamic tutorial.

@@ -34,7 +34,6 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -300,12 +299,16 @@ public class DynamicImageButton extends AppCompatImageButton
                 mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
-            DynamicTintUtils.setViewBackgroundTint(this, mContrastWithColor,
-                    mTintBackground ? mAppliedColor : DynamicColorUtils.getTintColor(
-                            mContrastWithColor), mStyleBorderless, false);
-
             setSupportImageTintList(DynamicResourceUtils.getColorStateList(
                     mAppliedColor, mAppliedColor, mAppliedColor, false));
+        }
+
+        if (getBackground() != null) {
+            getBackground().clearColorFilter();
+        }
+
+        if (isBackgroundAware() && isTintBackground()) {
+            Dynamic.tintBackground(this, mContrastWithColor);
         }
     }
 }

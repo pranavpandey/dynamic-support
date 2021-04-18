@@ -41,8 +41,8 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 /**
  * An {@link MaterialButton} to apply {@link DynamicTheme} according to the supplied parameters.
  */
-public class DynamicButton extends MaterialButton implements
-        DynamicWidget, DynamicCornerWidget<Integer>, DynamicTintWidget {
+public class DynamicButton extends MaterialButton implements DynamicWidget,
+        DynamicCornerWidget<Integer>, DynamicTintWidget {
 
     /**
      * Color type applied to this view.

@@ -159,6 +159,7 @@
         <attr name="ads_color" />
         <attr name="ads_contrastWithColor" />
         <attr name="ads_backgroundAware" />
+        <attr name="ads_tintBackground" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicGridView. -->
@@ -200,6 +201,7 @@
         <attr name="ads_color" />
         <attr name="ads_contrastWithColor" />
         <attr name="ads_backgroundAware" />
+        <attr name="ads_tintBackground" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicListView. -->
@@ -318,6 +320,7 @@
         <attr name="ads_color" />
         <attr name="ads_contrastWithColor" />
         <attr name="ads_backgroundAware" />
+        <attr name="ads_tintBackground" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicRootLayout. -->

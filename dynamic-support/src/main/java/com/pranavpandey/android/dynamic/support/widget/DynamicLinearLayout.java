@@ -31,6 +31,7 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
@@ -39,7 +40,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 /**
  * A {@link LinearLayout} to apply {@link DynamicTheme} according to the supplied parameters.
  */
-public class DynamicLinearLayout extends LinearLayout implements DynamicWidget {
+public class DynamicLinearLayout extends LinearLayout implements DynamicWidget, DynamicTintWidget {
 
     /**
      * Color type applied to this view.
@@ -84,6 +85,11 @@ public class DynamicLinearLayout extends LinearLayout implements DynamicWidget {
      */
     private @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * {@code true} to tint background according to the widget color.
+     */
+    private boolean mTintBackground;
+
     public DynamicLinearLayout(@NonNull Context context) {
         this(context, null);
     }
@@ -122,6 +128,9 @@ public class DynamicLinearLayout extends LinearLayout implements DynamicWidget {
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicLinearLayout_ads_backgroundAware,
                     Defaults.getBackgroundAware());
+            mTintBackground = a.getBoolean(
+                    R.styleable.DynamicImageButton_ads_tintBackground,
+                    Defaults.ADS_TINT_BACKGROUND);
         } finally {
             a.recycle();
         }
@@ -253,6 +262,18 @@ public class DynamicLinearLayout extends LinearLayout implements DynamicWidget {
     }
 
     @Override
+    public boolean isTintBackground() {
+        return mTintBackground;
+    }
+
+    @Override
+    public void setTintBackground(boolean tintBackground) {
+        this.mTintBackground = tintBackground;
+
+        setColor();
+    }
+
+    @Override
     public void setColor() {
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
@@ -263,7 +284,11 @@ public class DynamicLinearLayout extends LinearLayout implements DynamicWidget {
             DynamicDrawableUtils.setBackground(this, new ColorDrawable(mAppliedColor));
         }
 
-        if (isBackgroundAware()) {
+        if (getBackground() != null) {
+            getBackground().clearColorFilter();
+        }
+
+        if (isBackgroundAware() && isTintBackground()) {
             Dynamic.tintBackground(this, mContrastWithColor);
         }
     }

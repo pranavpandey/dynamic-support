@@ -31,6 +31,7 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
@@ -39,7 +40,8 @@ import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
  * An {@link AppCompatImageView} to apply {@link DynamicTheme} according to the supplied
  * parameters.
  */
-public class DynamicImageView extends AppCompatImageView implements DynamicWidget {
+public class DynamicImageView extends AppCompatImageView
+        implements DynamicWidget, DynamicTintWidget {
 
     /**
      * Color type applied to this view.
@@ -83,6 +85,11 @@ public class DynamicImageView extends AppCompatImageView implements DynamicWidge
      * @see #mContrastWithColor
      */
     private @Theme.BackgroundAware int mBackgroundAware;
+
+    /**
+     * {@code true} to tint background according to the widget color.
+     */
+    private boolean mTintBackground;
 
     public DynamicImageView(@NonNull Context context) {
         this(context, null);
@@ -131,6 +138,9 @@ public class DynamicImageView extends AppCompatImageView implements DynamicWidge
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicImageView_ads_backgroundAware,
                     Defaults.getBackgroundAware());
+            mTintBackground = a.getBoolean(
+                    R.styleable.DynamicImageButton_ads_tintBackground,
+                    Defaults.ADS_TINT_BACKGROUND);
 
             if (mColorType == Theme.ColorType.NONE && mColor == Theme.Color.UNKNOWN) {
                 if (getId() == R.id.submenuarrow) {
@@ -268,6 +278,18 @@ public class DynamicImageView extends AppCompatImageView implements DynamicWidge
     }
 
     @Override
+    public boolean isTintBackground() {
+        return mTintBackground;
+    }
+
+    @Override
+    public void setTintBackground(boolean tintBackground) {
+        this.mTintBackground = tintBackground;
+
+        setColor();
+    }
+
+    @Override
     public void setColor() {
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
@@ -282,7 +304,11 @@ public class DynamicImageView extends AppCompatImageView implements DynamicWidge
             clearColorFilter();
         }
 
-        if (isBackgroundAware()) {
+        if (getBackground() != null) {
+            getBackground().clearColorFilter();
+        }
+
+        if (isBackgroundAware() && isTintBackground()) {
             Dynamic.tintBackground(this, mContrastWithColor);
         }
     }

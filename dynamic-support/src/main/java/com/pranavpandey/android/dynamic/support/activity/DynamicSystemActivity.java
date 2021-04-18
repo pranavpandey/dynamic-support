@@ -92,8 +92,8 @@ import java.util.Map;
  * <p>Extend this activity and implement the various methods according to the need.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public abstract class DynamicSystemActivity extends AppCompatActivity implements
-        DynamicLocale, DynamicListener, DynamicTransitionListener,
+public abstract class DynamicSystemActivity extends AppCompatActivity
+        implements DynamicLocale, DynamicListener, DynamicTransitionListener,
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     /**

@@ -42,8 +42,8 @@ import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 /**
  * A {@link TextInputLayout} to apply {@link DynamicTheme} according to the supplied parameters.
  */
-public class DynamicTextInputLayout extends TextInputLayout implements
-        DynamicWidget, DynamicCornerWidget<Float>, DynamicErrorWidget {
+public class DynamicTextInputLayout extends TextInputLayout implements DynamicWidget,
+        DynamicCornerWidget<Float>, DynamicErrorWidget {
 
     /**
      * Color type applied to this view.

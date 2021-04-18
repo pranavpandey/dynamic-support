@@ -46,8 +46,8 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
  * A {@link MaterialTextView} to apply {@link DynamicTheme} according to the supplied parameters.
  */
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-public class DynamicTextView extends MaterialTextView implements
-        DynamicWidget, DynamicLinkWidget, DynamicRtlWidget {
+public class DynamicTextView extends MaterialTextView implements DynamicWidget,
+        DynamicLinkWidget, DynamicRtlWidget {
 
     /**
      * Color type applied to this view.

@@ -275,7 +275,7 @@ public class Defaults {
      * Default tint background value for the widgets.
      * <p>{@code true} to enable the background tinting.
      */
-    public static final boolean ADS_TINT_BACKGROUND = false;
+    public static final boolean ADS_TINT_BACKGROUND = true;
 
     /**
      * Default value to show a divider below the widgets.
