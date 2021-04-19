@@ -322,14 +322,15 @@ public class DynamicBottomNavigationView extends BottomNavigationView
     @Override
     public void setTextColor() {
         if (mTextColor != Theme.Color.UNKNOWN) {
+            @ColorInt int normalColor = DynamicColorUtils.adjustAlpha(
+                    mContrastWithColor, Defaults.ADS_ALPHA_UNSELECTED);
             mAppliedTextColor = mTextColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                normalColor = DynamicColorUtils.getContrastColor(normalColor, mContrastWithColor);
                 mAppliedTextColor = DynamicColorUtils.getContrastColor(
                         mTextColor, mContrastWithColor);
             }
 
-            @ColorInt int normalColor = DynamicColorUtils.adjustAlpha(
-                    DynamicColorUtils.getTintColor(mAppliedColor), Defaults.ADS_ALPHA_UNSELECTED);
             setItemTextColor(DynamicResourceUtils.getColorStateList(
                     normalColor, mAppliedTextColor, true));
             setItemIconTintList(DynamicResourceUtils.getColorStateList(

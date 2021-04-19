@@ -111,7 +111,7 @@ public class DynamicPickerUtils {
         shape.getPaint().setShader(gradient);
 
         Rect bounds = seekBar.getProgressDrawable().getBounds();
-        bounds.inset(0, (int) (bounds.height() * Defaults.ADS_INSET_HUE));
+        bounds.inset(0, (int) (bounds.height() * Defaults.ADS_INSET_HUE_SMALL));
 
         seekBar.setProgressDrawable(shape);
         seekBar.getProgressDrawable().setBounds(bounds);

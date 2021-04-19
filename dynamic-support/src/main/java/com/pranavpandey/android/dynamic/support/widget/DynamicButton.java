@@ -289,33 +289,26 @@ public class DynamicButton extends MaterialButton implements DynamicWidget,
     public void setColor() {
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
+            @ColorInt int mTextColor = DynamicColorUtils.getTintColor(mColor);
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
                 mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mTextColor = DynamicColorUtils.getContrastColor(
+                        isStyleBorderless() ? mAppliedColor : mContrastWithColor,
+                        isStyleBorderless() ? mContrastWithColor : mAppliedColor);
             }
 
-            DynamicTintUtils.setViewBackgroundTint(this, mContrastWithColor,
-                    mTintBackground ? mAppliedColor : DynamicColorUtils.getTintColor(
-                            mContrastWithColor), mStyleBorderless, false);
+            // Reversing the order to compensate background aware while applying the tint.
+            DynamicTintUtils.setViewBackgroundTint(this,
+                    isStyleBorderless() ? mAppliedColor : mContrastWithColor,
+                    isStyleBorderless() ? DynamicColorUtils.getTintColor(mAppliedColor)
+                            : mAppliedColor, isStyleBorderless(), false);
 
-            if (!mStyleBorderless) {
-                if (mTintBackground) {
-                    setTextColor(DynamicResourceUtils.getColorStateList(
-                            mContrastWithColor,
-                            DynamicColorUtils.getTintColor(mAppliedColor),
-                            DynamicColorUtils.getTintColor(mAppliedColor), false));
-                } else {
-                    setTextColor(DynamicResourceUtils.getColorStateList(
-                            mContrastWithColor,
-                            DynamicColorUtils.getContrastColor(mAppliedColor,
-                                    DynamicColorUtils.getTintColor(mContrastWithColor)),
-                            DynamicColorUtils.getContrastColor(mAppliedColor,
-                                    DynamicColorUtils.getTintColor(mContrastWithColor)),
-                            false));
-                }
+            if (isStyleBorderless()) {
+                setTextColor(DynamicResourceUtils.getColorStateList(mTextColor,
+                        mAppliedColor, mAppliedColor, false));
             } else {
                 setTextColor(DynamicResourceUtils.getColorStateList(
-                        DynamicColorUtils.getTintColor(mContrastWithColor),
-                        mAppliedColor, mAppliedColor, false));
+                        mTextColor, mTextColor, false));
             }
         }
     }

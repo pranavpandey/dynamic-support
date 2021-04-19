@@ -18,7 +18,6 @@ package com.pranavpandey.android.dynamic.support.widget;
 
 import android.animation.Animator;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -327,12 +326,9 @@ public class DynamicExtendedFloatingActionButton extends
 
             DynamicTintUtils.setViewBackgroundTint(this,
                     mContrastWithColor, mAppliedColor, false, false);
-
-            ColorStateList colorStateList = DynamicResourceUtils.getColorStateList(
-                    mContrastWithColor, DynamicColorUtils.getTintColor(mAppliedColor),
-                    DynamicColorUtils.getTintColor(mAppliedColor), false);
-            setIconTint(colorStateList);
-            setTextColor(colorStateList);
+            setIconTint(DynamicResourceUtils.getColorStateList(
+                    mContrastWithColor, mContrastWithColor, false));
+            setTextColor(getIconTint());
         }
     }
 }

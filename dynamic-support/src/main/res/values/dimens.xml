@@ -116,7 +116,7 @@
     <dimen name="ads_toolbar_inset_start_card">64dp</dimen>
     <dimen name="ads_toolbar_inset_start_collapsing">68dp</dimen>
     <dimen name="ads_toolbar_margin_start_collapsing">@dimen/ads_toolbar_inset_start</dimen>
-    <dimen name="ads_toolbar_margin_end_collapsing">@dimen/ads_margin_medium</dimen>
+    <dimen name="ads_toolbar_margin_end_collapsing">@dimen/ads_page_horizontal_margin</dimen>
     <dimen name="ads_tab_height">44dp</dimen>
     <dimen name="ads_tab_min_width">48dp</dimen>
     <dimen name="ads_tab_indicator_margin_vertical">@dimen/ads_margin_divider</dimen>

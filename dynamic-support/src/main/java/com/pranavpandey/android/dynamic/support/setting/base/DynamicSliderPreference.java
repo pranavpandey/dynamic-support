@@ -175,17 +175,17 @@ public class DynamicSliderPreference extends DynamicSpinnerPreference {
             mSeekInterval = a.getInt(
                     R.styleable.DynamicSliderPreference_ads_interval,
                     DEFAULT_SEEK_INTERVAL);
+            mUnit = a.getString(
+                    R.styleable.DynamicSliderPreference_ads_unit);
             mControls = a.getBoolean(
                     R.styleable.DynamicSliderPreference_ads_controls,
                     DEFAULT_SEEK_CONTROLS);
-            mUnit = a.getString(
-                    R.styleable.DynamicSliderPreference_ads_unit);
             mSeekEnabled = a.getBoolean(
                     R.styleable.DynamicSliderPreference_ads_seek_enabled,
                     DEFAULT_SEEK_CONTROLS);
             mTickVisible = a.getBoolean(
                     R.styleable.DynamicSliderPreference_ads_tick_visible,
-                    mSeekInterval > DEFAULT_SEEK_INTERVAL);
+                    DEFAULT_SEEK_CONTROLS);
         } finally {
             a.recycle();
         }
@@ -390,7 +390,7 @@ public class DynamicSliderPreference extends DynamicSpinnerPreference {
      * @return {@code true} if slider tick mark are enabled.
      */
     public boolean isTickVisible() {
-        return mTickVisible;
+        return mTickVisible && getSeekInterval() > DEFAULT_SEEK_INTERVAL;
     }
 
     /**

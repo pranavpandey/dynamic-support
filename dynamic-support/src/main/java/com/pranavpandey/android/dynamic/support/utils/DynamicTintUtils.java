@@ -34,6 +34,7 @@ import androidx.core.view.TintableBackgroundView;
 import androidx.core.view.ViewCompat;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.internal.ScrimInsetsFrameLayout;
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
@@ -177,7 +178,12 @@ public class DynamicTintUtils {
             }
         }
 
-        if (DynamicSdkUtils.is21()) {
+        // Fix floating action button background tint on API level 21 and above.
+        if (view instanceof FloatingActionButton) {
+            return;
+        }
+
+        if (DynamicSdkUtils.is21() && view.getBackground() instanceof RippleDrawable) {
             colorizeRippleDrawable(view, view.getBackground(), background, color,
                     borderless, checkable);
         }

@@ -18,7 +18,6 @@ package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
@@ -33,6 +32,7 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -251,7 +251,8 @@ public class DynamicFloatingActionButton extends FloatingActionButton implements
 
             DynamicTintUtils.setViewBackgroundTint(this, mContrastWithColor,
                     mAppliedColor, false, false);
-            setColorFilter(DynamicColorUtils.getTintColor(mAppliedColor), PorterDuff.Mode.SRC_IN);
+            setSupportImageTintList(DynamicResourceUtils.getColorStateList(
+                    mContrastWithColor, mContrastWithColor, false));
         }
     }
 }

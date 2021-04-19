@@ -59,7 +59,7 @@ public class DynamicHueSlider extends DynamicSlider {
 
         Rect bounds = new Rect(getTrackSidePadding(), 0,
                 getTrackWidth() + getTrackSidePadding(), h);
-        bounds.inset(0, (int) (bounds.height() * Defaults.ADS_INSET_HUE));
+        bounds.inset(0, (int) ((bounds.height() - getTrackHeight()) * Defaults.ADS_INSET_HUE));
 
         LinearGradient gradient = DynamicPickerUtils.getHueGradient(
                 bounds.width(), bounds.height());

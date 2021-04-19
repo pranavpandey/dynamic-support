@@ -174,9 +174,19 @@ public class Defaults {
     public static final float ADS_ALPHA_DISABLED = 0.5f;
 
     /**
-     * Default inset for the hue drawable.
+     * Default dim alpha when the widget is disabled.
      */
-    public static final float ADS_INSET_HUE = 0.45f;
+    public static final float ADS_ALPHA_DISABLED_DIM = 0.4f;
+
+    /**
+     * Default inset for the slider hue drawable.
+     */
+    public static final float ADS_INSET_HUE = 0.5f;
+
+    /**
+     * Default inset for the seek bar hue drawable.
+     */
+    public static final float ADS_INSET_HUE_SMALL = 0.45f;
 
     /**
      * Default light state value for the box background.

@@ -865,10 +865,12 @@
     </style>
 
     <style name="Widget.DynamicApp.Slider">
+        <item name="trackHeight">@dimen/ads_margin_small</item>
         <item name="labelBehavior">gone</item>
     </style>
 
     <style name="Widget.DynamicApp.Slider.Compact">
+        <item name="trackHeight">@dimen/ads_margin_tiny</item>
         <item name="thumbRadius">@dimen/ads_margin_small</item>
         <item name="thumbElevation">0dp</item>
     </style>
@@ -981,6 +983,7 @@
         <item name="android:padding">@dimen/ads_margin_medium</item>
         <item name="android:background">?selectableItemBackground</item>
         <item name="android:scaleType">fitCenter</item>
+        <item name="ads_styleBorderless">true</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.Splash">

@@ -60,8 +60,7 @@
                     android:layout_marginRight="@dimen/ads_icon_small"
                     android:layout_marginEnd="@dimen/ads_icon_small"
                     android:layout_gravity="start|center_vertical"
-                    app:srcCompat="@drawable/ads_ic_chevron_left"
-                    app:ads_tintBackground="true" />
+                    app:srcCompat="@drawable/ads_ic_chevron_left" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -94,8 +93,7 @@
                     android:layout_marginLeft="@dimen/ads_icon_small"
                     android:layout_marginStart="@dimen/ads_icon_small"
                     android:layout_gravity="start|center_vertical"
-                    app:srcCompat="@drawable/ads_ic_chevron_right"
-                    app:ads_tintBackground="true" />
+                    app:srcCompat="@drawable/ads_ic_chevron_right" />
 
             </LinearLayout>
 
