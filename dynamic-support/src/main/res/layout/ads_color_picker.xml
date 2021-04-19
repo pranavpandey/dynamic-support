@@ -248,81 +248,74 @@
                     style="@style/Widget.DynamicApp.Content.Row.Vertical"
                     android:id="@+id/ads_color_picker_view_hsv">
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarHue
-                        android:id="@+id/ads_color_picker_seek_hue"
+                    <com.pranavpandey.android.dynamic.support.setting.DynamicSliderHue
+                        android:id="@+id/ads_color_picker_slider_hue"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:ads_title="H"
                         app:ads_min="0"
                         app:ads_max="360"
-                        app:ads_interval="1"
-                        app:ads_controls="true" />
+                        app:ads_interval="1" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
-                        android:id="@+id/ads_color_picker_seek_saturation"
+                    <com.pranavpandey.android.dynamic.support.setting.DynamicSliderCompact
+                        android:id="@+id/ads_color_picker_slider_saturation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:ads_title="S"
                         app:ads_min="0"
                         app:ads_max="100"
-                        app:ads_interval="1"
-                        app:ads_controls="true" />
+                        app:ads_interval="1" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
-                        android:id="@+id/ads_color_picker_seek_value"
+                    <com.pranavpandey.android.dynamic.support.setting.DynamicSliderCompact
+                        android:id="@+id/ads_color_picker_slider_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:ads_title="V"
                         app:ads_min="0"
                         app:ads_max="100"
-                        app:ads_interval="1"
-                        app:ads_controls="true" />
+                        app:ads_interval="1" />
 
                 </LinearLayout>
 
-                <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
-                    android:id="@+id/ads_color_picker_seek_alpha"
+                <com.pranavpandey.android.dynamic.support.setting.DynamicSliderCompact
+                    android:id="@+id/ads_color_picker_slider_alpha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:ads_title="A"
                     app:ads_min="0"
                     app:ads_max="255"
-                    app:ads_interval="1"
-                    app:ads_controls="true" />
+                    app:ads_interval="1" />
 
                 <LinearLayout
                     style="@style/Widget.DynamicApp.Content.Row.Vertical"
                     android:id="@+id/ads_color_picker_view_rgb">
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
-                        android:id="@+id/ads_color_picker_seek_red"
+                    <com.pranavpandey.android.dynamic.support.setting.DynamicSliderCompact
+                        android:id="@+id/ads_color_picker_slider_red"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:ads_title="R"
                         app:ads_min="0"
                         app:ads_max="255"
-                        app:ads_interval="1"
-                        app:ads_controls="true" />
+                        app:ads_interval="1" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
-                        android:id="@+id/ads_color_picker_seek_green"
+                    <com.pranavpandey.android.dynamic.support.setting.DynamicSliderCompact
+                        android:id="@+id/ads_color_picker_slider_green"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:ads_title="G"
                         app:ads_min="0"
                         app:ads_max="255"
-                        app:ads_interval="1"
-                        app:ads_controls="true" />
+                        app:ads_interval="1" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
-                        android:id="@+id/ads_color_picker_seek_blue"
+                    <com.pranavpandey.android.dynamic.support.setting.DynamicSliderCompact
+                        android:id="@+id/ads_color_picker_slider_blue"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:ads_title="B"
                         app:ads_min="0"
                         app:ads_max="255"
-                        app:ads_interval="1"
-                        app:ads_controls="true" />
+                        app:ads_interval="1" />
 
                 </LinearLayout>
 
@@ -330,45 +323,41 @@
                     style="@style/Widget.DynamicApp.Content.Row.Vertical"
                     android:id="@+id/ads_color_picker_view_cmyk">
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
-                        android:id="@+id/ads_color_picker_seek_cyan"
+                    <com.pranavpandey.android.dynamic.support.setting.DynamicSliderCompact
+                        android:id="@+id/ads_color_picker_slider_cyan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:ads_title="C"
                         app:ads_min="0"
                         app:ads_max="100"
-                        app:ads_interval="1"
-                        app:ads_controls="true" />
+                        app:ads_interval="1" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
-                        android:id="@+id/ads_color_picker_seek_magenta"
+                    <com.pranavpandey.android.dynamic.support.setting.DynamicSliderCompact
+                        android:id="@+id/ads_color_picker_slider_magenta"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:ads_title="M"
                         app:ads_min="0"
                         app:ads_max="100"
-                        app:ads_interval="1"
-                        app:ads_controls="true" />
+                        app:ads_interval="1" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
-                        android:id="@+id/ads_color_picker_seek_yellow"
+                    <com.pranavpandey.android.dynamic.support.setting.DynamicSliderCompact
+                        android:id="@+id/ads_color_picker_slider_yellow"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:ads_title="Y"
                         app:ads_min="0"
                         app:ads_max="100"
-                        app:ads_interval="1"
-                        app:ads_controls="true" />
+                        app:ads_interval="1" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact
-                        android:id="@+id/ads_color_picker_seek_black"
+                    <com.pranavpandey.android.dynamic.support.setting.DynamicSliderCompact
+                        android:id="@+id/ads_color_picker_slider_black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:ads_title="K"
                         app:ads_min="0"
                         app:ads_max="100"
-                        app:ads_interval="1"
-                        app:ads_controls="true" />
+                        app:ads_interval="1" />
 
                 </LinearLayout>
 

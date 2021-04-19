@@ -17,7 +17,7 @@
 package com.pranavpandey.android.dynamic.support.setting.base;
 
 import android.animation.Animator;
-import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
@@ -25,7 +25,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageButton;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.AttrRes;
@@ -33,19 +32,20 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatSeekBar;
 
+import com.google.android.material.slider.Slider;
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.listener.DynamicSeekBarResolver;
+import com.pranavpandey.android.dynamic.support.listener.DynamicSliderChangeListener;
+import com.pranavpandey.android.dynamic.support.listener.DynamicSliderResolver;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 
 /**
- * A {@link DynamicSpinnerPreference} to provide the functionality of a seek bar preference with
+ * A {@link DynamicSpinnerPreference} to provide the functionality of a slider preference with
  * control buttons to modify the value.
  */
-public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
+public class DynamicSliderPreference extends DynamicSpinnerPreference {
 
     /**
      * Default value for the minimum seek value.
@@ -73,7 +73,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     private int mDefaultValue;
 
     /**
-     * The current seek bar progress.
+     * The current slider progress.
      */
     private int mProgress;
 
@@ -88,7 +88,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     private int mMinValue;
 
     /**
-     * Seek interval for the seek bar.
+     * Seek interval for the slider.
      */
     private int mSeekInterval;
 
@@ -98,22 +98,22 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     private CharSequence mUnit;
 
     /**
-     * {@code true} to show seek bar buttons to increase or decrease the value.
+     * {@code true} to show slider buttons to increase or decrease the value.
      */
     private boolean mControls;
 
     /**
-     * Seek bar change listener and value resolver to get the various callbacks.
+     * Slider change listener and value resolver to get the various callbacks.
      */
-    private SeekBar.OnSeekBarChangeListener mDynamicSeekBarResolver;
+    private DynamicSliderChangeListener<Slider> mDynamicSliderResolver;
 
     /**
-     * Seek bar change listener to get the callback for control events.
+     * Slider change listener to get the callback for control events.
      */
-    private SeekBar.OnSeekBarChangeListener mOnSeekBarControlListener;
+    private DynamicSliderChangeListener<Slider> mOnSliderControlListener;
 
     /**
-     * Text view to show the seek bar value.
+     * Text view to show the slider value.
      */
     private TextView mPreferenceValueView;
 
@@ -128,24 +128,29 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     private ImageButton mControlRightView;
 
     /**
-     * Seek bar to display and modify the preference value.
+     * Slider to display and modify the preference value.
      */
-    private AppCompatSeekBar mSeekBar;
+    private Slider mSlider;
 
     /**
-     * {@code true} if seek bar and controls are enabled.
+     * {@code true} if slider and controls are enabled.
      */
     private boolean mSeekEnabled;
 
-    public DynamicSeekBarPreference(@NonNull Context context) {
+    /**
+     * {@code true} to show the slider tick marks.
+     */
+    private boolean mTickVisible;
+
+    public DynamicSliderPreference(@NonNull Context context) {
         super(context);
     }
 
-    public DynamicSeekBarPreference(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicSliderPreference(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicSeekBarPreference(@NonNull Context context,
+    public DynamicSliderPreference(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
@@ -154,30 +159,33 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     protected void onLoadAttributes(@Nullable AttributeSet attrs) {
         super.onLoadAttributes(attrs);
 
-        TypedArray a = getContext().obtainStyledAttributes(attrs, 
-                R.styleable.DynamicSeekBarPreference);
+        TypedArray a = getContext().obtainStyledAttributes(attrs,
+                R.styleable.DynamicSliderPreference);
 
         try {
-            mMaxValue = a.getInteger(
-                    R.styleable.DynamicSeekBarPreference_ads_max,
+            mMaxValue = a.getInt(
+                    R.styleable.DynamicSliderPreference_ads_max,
                     DEFAULT_MAX_VALUE);
-            mMinValue = a.getInteger(
-                    R.styleable.DynamicSeekBarPreference_ads_min,
+            mMinValue = a.getInt(
+                    R.styleable.DynamicSliderPreference_ads_min,
                     DEFAULT_MIN_VALUE);
-            mDefaultValue = a.getInteger(
-                    R.styleable.DynamicSeekBarPreference_ads_progress,
+            mDefaultValue = a.getInt(
+                    R.styleable.DynamicSliderPreference_ads_progress,
                     mMinValue);
-            mSeekInterval = a.getInteger(
-                    R.styleable.DynamicSeekBarPreference_ads_interval,
+            mSeekInterval = a.getInt(
+                    R.styleable.DynamicSliderPreference_ads_interval,
                     DEFAULT_SEEK_INTERVAL);
             mControls = a.getBoolean(
-                    R.styleable.DynamicSeekBarPreference_ads_controls,
+                    R.styleable.DynamicSliderPreference_ads_controls,
                     DEFAULT_SEEK_CONTROLS);
             mUnit = a.getString(
-                    R.styleable.DynamicSeekBarPreference_ads_unit);
+                    R.styleable.DynamicSliderPreference_ads_unit);
             mSeekEnabled = a.getBoolean(
-                    R.styleable.DynamicSeekBarPreference_ads_seek_enabled,
+                    R.styleable.DynamicSliderPreference_ads_seek_enabled,
                     DEFAULT_SEEK_CONTROLS);
+            mTickVisible = a.getBoolean(
+                    R.styleable.DynamicSliderPreference_ads_tick_visible,
+                    mSeekInterval > DEFAULT_SEEK_INTERVAL);
         } finally {
             a.recycle();
         }
@@ -185,45 +193,47 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
 
     @Override
     protected @LayoutRes int getLayoutRes() {
-        return R.layout.ads_preference_seek_bar;
+        return R.layout.ads_preference_slider;
     }
 
     @Override
     protected void onInflate() {
         super.onInflate();
 
-        mPreferenceValueView = findViewById(R.id.ads_preference_seek_bar_value);
-        mSeekBar = findViewById(R.id.ads_preference_seek_bar_seek);
-        mControlLeftView = findViewById(R.id.ads_preference_seek_bar_left);
-        mControlRightView = findViewById(R.id.ads_preference_seek_bar_right);
+        mPreferenceValueView = findViewById(R.id.ads_preference_slider_value);
+        mSlider = findViewById(R.id.ads_preference_slider_seek);
+        mControlLeftView = findViewById(R.id.ads_preference_slider_left);
+        mControlRightView = findViewById(R.id.ads_preference_slider_right);
 
-        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        mSlider.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                if (getDynamicSeekBarResolver() != null) {
-                    getDynamicSeekBarResolver().onStartTrackingTouch(seekBar);
+            public void onStartTrackingTouch(@NonNull Slider slider) {
+                if (getDynamicSliderResolver() != null) {
+                    getDynamicSliderResolver().onStartTrackingTouch(slider);
                 }
             }
 
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            public void onStopTrackingTouch(@NonNull Slider slider) {
+                setProgress(getProgress());
+
+                if (getDynamicSliderResolver() != null) {
+                    getDynamicSliderResolver().onStopTrackingTouch(slider);
+                }
+            }
+        });
+
+        mSlider.addOnChangeListener(new Slider.OnChangeListener() {
+            @Override
+            public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
                 if (fromUser) {
-                    mProgress = progress;
+                    mProgress = (int) value;
                     updateSeekFunctions();
                 }
 
-                if (getDynamicSeekBarResolver() != null) {
-                    getDynamicSeekBarResolver().onProgressChanged(
-                            seekBar, getValueFromProgress(), fromUser);
-                }
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                setProgress(getProgress());
-
-                if (getDynamicSeekBarResolver() != null) {
-                    getDynamicSeekBarResolver().onStopTrackingTouch(seekBar);
+                if (getDynamicSliderResolver() != null) {
+                    getDynamicSliderResolver().onProgressChanged(
+                            slider, getValueFromProgress(), fromUser);
                 }
             }
         });
@@ -231,21 +241,21 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
         mControlLeftView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                setProgressFromControl(getProgress() - 1);
+                setProgressFromControl(getProgress() - DEFAULT_SEEK_INTERVAL);
             }
         });
 
         mControlRightView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                setProgressFromControl(getProgress() + 1);
+                setProgressFromControl(getProgress() + DEFAULT_SEEK_INTERVAL);
             }
         });
 
         setActionButton(getContext().getString(R.string.ads_default), new OnClickListener() {
             @Override
             public void onClick(View v) {
-                animateSeekBar(getDefaultValue());
+                animateSlider(getDefaultValue());
             }
         });
 
@@ -265,9 +275,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
         mProgress = getProgressFromValue(DynamicPreferences.getInstance()
                 .load(super.getPreferenceKey(), getValueFromProgress()));
 
-        if (getSeekBar() != null) {
-            getSeekBar().setMax(getMax());
-
+        if (getSlider() != null) {
             if (isControls()) {
                 Dynamic.setVisibility(getControlLeftView(), VISIBLE);
                 Dynamic.setVisibility(getControlRightView(), VISIBLE);
@@ -284,7 +292,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
                 Dynamic.setVisibility(getActionView(), GONE);
             }
 
-            getSeekBar().post(mUpdateRunnable);
+            getSlider().post(mUpdateRunnable);
         }
     }
 
@@ -294,8 +302,11 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     private final Runnable mUpdateRunnable = new Runnable() {
         @Override
         public void run() {
-            if (getSeekBar() != null) {
-                getSeekBar().setProgress(getProgress());
+            if (getSlider() != null) {
+                getSlider().setValue(getProgress());
+                getSlider().setValueTo(getMax());
+                getSlider().setStepSize(DEFAULT_SEEK_INTERVAL);
+                getSlider().setTickVisible(isTickVisible());
                 updateSeekFunctions();
             }
         }
@@ -305,7 +316,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     protected void onEnabled(boolean enabled) {
         super.onEnabled(enabled);
 
-        Dynamic.setEnabled(getSeekBar(), enabled && isSeekEnabled());
+        Dynamic.setEnabled(getSlider(), enabled && isSeekEnabled());
         Dynamic.setEnabled(getPreferenceValueView(), enabled && isSeekEnabled());
         Dynamic.setEnabled(getControlLeftView(), enabled && isSeekEnabled());
         Dynamic.setEnabled(getControlRightView(), enabled && isSeekEnabled());
@@ -316,7 +327,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     public void setColor(@ColorInt int color) {
         super.setColor(color);
 
-        Dynamic.setColor(getSeekBar(), color);
+        Dynamic.setColor(getSlider(), color);
         Dynamic.setColor(getPreferenceValueView(), color);
     }
 
@@ -324,7 +335,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     public void setColor() {
         super.setColor();
 
-        Dynamic.setContrastWithColorTypeOrColor(getSeekBar(),
+        Dynamic.setContrastWithColorTypeOrColor(getSlider(),
                 getContrastWithColorType(), getContrastWithColor());
         Dynamic.setContrastWithColorTypeOrColor(getPreferenceValueView(),
                 getContrastWithColorType(), getContrastWithColor());
@@ -335,7 +346,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
         Dynamic.setContrastWithColorTypeOrColor(getActionView(),
                 getContrastWithColorType(), getContrastWithColor());
 
-        Dynamic.setBackgroundAwareSafe(getSeekBar(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getSlider(), getBackgroundAware());
         Dynamic.setBackgroundAwareSafe(getPreferenceValueView(), getBackgroundAware());
         Dynamic.setBackgroundAwareSafe(getControlLeftView(), getBackgroundAware());
         Dynamic.setBackgroundAwareSafe(getControlRightView(), getBackgroundAware());
@@ -343,9 +354,18 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     }
 
     /**
-     * Enable or disable the seek bar.
+     * Returns whether the slider is enabled.
      *
-     * @param seekEnabled {@code true} to enable the seek bar.
+     * @return {@code true} if slider is enabled.
+     */
+    public boolean isSeekEnabled() {
+        return mSeekEnabled;
+    }
+
+    /**
+     * Enable or disable the slider.
+     *
+     * @param seekEnabled {@code true} to enable the slider.
      */
     public void setSeekEnabled(boolean seekEnabled) {
         this.mSeekEnabled = seekEnabled;
@@ -354,12 +374,23 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     }
 
     /**
-     * Returns whether the seek bar is enabled.
+     * Enable or disable the slider tick marks.
      *
-     * @return {@code true} if seek bar is enabled.
+     * @param tickVisible {@code true} to enable the slider tick marks.
      */
-    public boolean isSeekEnabled() {
-        return mSeekEnabled;
+    public void setTickVisible(boolean tickVisible) {
+        this.mTickVisible = tickVisible;
+
+        update();
+    }
+
+    /**
+     * Returns whether the slider tick marks are enabled.
+     *
+     * @return {@code true} if slider tick mark are enabled.
+     */
+    public boolean isTickVisible() {
+        return mTickVisible;
     }
 
     /**
@@ -423,16 +454,16 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     }
 
     /**
-     * Returns the current seek bar progress.
+     * Returns the current slider progress.
      *
-     * @return The current seek bar progress.
+     * @return The current slider progress.
      */
     public int getProgress() {
         return mProgress;
     }
 
     /**
-     * Get the current seek bar progress.
+     * Get the current slider progress.
      *
      * @param progress The progress to be set.
      */
@@ -448,16 +479,16 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     }
 
     /**
-     * Get the seek interval for the seek bar.
+     * Get the seek interval for the slider.
      *
-     * @return The seek interval for the seek bar.
+     * @return The seek interval for the slider.
      */
     public int getSeekInterval() {
         return mSeekInterval;
     }
 
     /**
-     * Set the seek interval for the seek bar.
+     * Set the seek interval for the slider.
      *
      * @param seekInterval The seek interval to be set.
      */
@@ -497,19 +528,19 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     }
 
     /**
-     * Returns whether the seek bar seek bar buttons to increase or decrease the value
+     * Returns whether the slider slider buttons to increase or decrease the value
      * are enabled.
      *
-     * @return {@code true} to show seek bar buttons to increase or decrease the value.
+     * @return {@code true} to show slider buttons to increase or decrease the value.
      */
     public boolean isControls() {
         return mControls;
     }
 
     /**
-     * Set the seek bar controls to be enabled or disabled.
+     * Set the slider controls to be enabled or disabled.
      *
-     * @param controls {@code true} to show seek bar buttons to increase or decrease the value.
+     * @param controls {@code true} to show slider buttons to increase or decrease the value.
      */
     public void setControls(boolean controls) {
         this.mControls = controls;
@@ -518,41 +549,41 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     }
 
     /**
-     * Returns the seek bar change listener to get the callback for seek events.
+     * Returns the slider change listener to get the callback for seek events.
      *
-     * @return The seek bar change listener to get the callback for seek events.
+     * @return The slider change listener to get the callback for seek events.
      */
-    public @Nullable SeekBar.OnSeekBarChangeListener getDynamicSeekBarResolver() {
-        return mDynamicSeekBarResolver;
+    public @Nullable DynamicSliderChangeListener<Slider> getDynamicSliderResolver() {
+        return mDynamicSliderResolver;
     }
 
     /**
-     * Set the seek bar change listener and value resolver to get the various callbacks.
+     * Set the slider change listener and value resolver to get the various callbacks.
      *
-     * @param dynamicSeekBarResolver The resolver to be set.
+     * @param dynamicSliderResolver The resolver to be set.
      */
-    public void setDynamicSeekBarResolver(
-            @Nullable SeekBar.OnSeekBarChangeListener dynamicSeekBarResolver) {
-        this.mDynamicSeekBarResolver = dynamicSeekBarResolver;
+    public void setDynamicSliderResolver(
+            @Nullable DynamicSliderChangeListener<Slider> dynamicSliderResolver) {
+        this.mDynamicSliderResolver = dynamicSliderResolver;
     }
 
     /**
-     * Returns the seek bar change listener and value resolver to get the various callbacks.
+     * Returns the slider change listener and value resolver to get the various callbacks.
      *
-     * @return The seek bar change listener and value resolver to get the various callbacks.
+     * @return The slider change listener and value resolver to get the various callbacks.
      */
-    public @Nullable SeekBar.OnSeekBarChangeListener getOnSeekBarControlListener() {
-        return mOnSeekBarControlListener;
+    public @Nullable DynamicSliderChangeListener<Slider> getOnSliderControlListener() {
+        return mOnSliderControlListener;
     }
 
     /**
-     * Set the seek bar change listener to get the callback for control events.
+     * Set the slider change listener to get the callback for control events.
      *
-     * @param onSeekBarControlListener The listener to be set.
+     * @param onSliderControlListener The listener to be set.
      */
-    public void setOnSeekBarControlListener(
-            @Nullable SeekBar.OnSeekBarChangeListener onSeekBarControlListener) {
-        this.mOnSeekBarControlListener= onSeekBarControlListener;
+    public void setOnSliderControlListener(
+            @Nullable DynamicSliderChangeListener<Slider> onSliderControlListener) {
+        this.mOnSliderControlListener = onSliderControlListener;
     }
 
     /**
@@ -565,32 +596,32 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     }
 
     /**
-     * Returns the seek bar progress according to the supplied value.
+     * Returns the slider progress according to the supplied value.
      *
-     * @param value The value to converted into seek bar progress.
+     * @param value The value to converted into slider progress.
      *
-     * @return The seek bar progress according to the supplied value.
+     * @return The slider progress according to the supplied value.
      */
     private int getProgressFromValue(int value) {
         return (Math.min(value, getMaxValue()) - getMinValue()) / getSeekInterval();
     }
 
     /**
-     * Returns the preference value according to the seek bar progress.
+     * Returns the preference value according to the slider progress.
      *
-     * @return The preference value according to the seek bar progress.
+     * @return The preference value according to the slider progress.
      */
     public int getValueFromProgress() {
         return getMinValue() + (getProgress() * getSeekInterval());
     }
 
     /**
-     * Get the seek bar to display and modify the preference value.
+     * Get the slider to display and modify the preference value.
      *
-     * @return The seek bar to display and modify the preference value.
+     * @return The slider to display and modify the preference value.
      */
-    public @Nullable AppCompatSeekBar getSeekBar() {
-        return mSeekBar;
+    public @Nullable Slider getSlider() {
+        return mSlider;
     }
 
     /**
@@ -621,20 +652,25 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     }
 
     /**
-     * Set the preference value after animating the seek bar.
+     * Set the preference value after animating the slider.
      *
      * @param value The preference value to be set.
      */
-    private void animateSeekBar(int value) {
-        if (getSeekBar() == null) {
+    private void animateSlider(int value) {
+        if (getSlider() == null) {
             return;
         }
 
         final int progress = getProgressFromValue(value);
-        ObjectAnimator animation = ObjectAnimator.ofInt(getSeekBar(),
-                "progress", getProgress(), progress);
+        ValueAnimator animation = ValueAnimator.ofInt(getProgress(), progress);
         animation.setDuration(DynamicMotion.Duration.LONG);
         animation.setInterpolator(new AccelerateDecelerateInterpolator());
+        animation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                getSlider().setValue((int) animation.getAnimatedValue());
+            }
+        });
         animation.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -655,7 +691,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     }
 
     /**
-     * Update seek bar functions according to the current parameters.
+     * Update slider functions according to the current parameters.
      */
     private void updateSeekFunctions() {
         int actualValue = getValueFromProgress();
@@ -669,9 +705,9 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
                 setTextView(getPreferenceValueView(), String.valueOf(actualValue));
             }
 
-            if (getDynamicSeekBarResolver() instanceof DynamicSeekBarResolver) {
+            if (getDynamicSliderResolver() instanceof DynamicSliderResolver) {
                 setTextView(getPreferenceValueView(),
-                        ((DynamicSeekBarResolver) getDynamicSeekBarResolver())
+                        ((DynamicSliderResolver<Slider>) getDynamicSliderResolver())
                                 .getValueString(getPreferenceValueView().getText(),
                                         getProgress(), actualValue, getUnit()));
             }
@@ -685,19 +721,19 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     }
 
     /**
-     * Update seek bar controls according to the current parameters.
+     * Update slider controls according to the current parameters.
      */
     private void setProgressFromControl(int progress) {
-        if (getOnSeekBarControlListener() != null) {
-            getOnSeekBarControlListener().onStartTrackingTouch(getSeekBar());
+        if (getOnSliderControlListener() != null) {
+            getOnSliderControlListener().onStartTrackingTouch(getSlider());
         }
 
         setProgress(progress);
 
-        if (getOnSeekBarControlListener() != null) {
-            getOnSeekBarControlListener().onProgressChanged(
-                    getSeekBar(), getProgress(), true);
-            getOnSeekBarControlListener().onStopTrackingTouch(getSeekBar());
+        if (getOnSliderControlListener() != null) {
+            getOnSliderControlListener().onProgressChanged(
+                    getSlider(), getProgress(), true);
+            getOnSliderControlListener().onStopTrackingTouch(getSlider());
         }
     }
 

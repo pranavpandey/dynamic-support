@@ -36,6 +36,7 @@ import androidx.core.view.ViewCompat;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.internal.ScrimInsetsFrameLayout;
 import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCheckedTextView;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
@@ -66,7 +67,7 @@ public class DynamicTintUtils {
             return;
         }
 
-        if (DynamicTheme.getInstance().get().isBackgroundAware()) {
+        if (Dynamic.isBackgroundAware(view)) {
             color = DynamicColorUtils.getContrastColor(color, background);
         }
 
@@ -115,6 +116,10 @@ public class DynamicTintUtils {
             @ColorInt int color, boolean borderless, boolean checkable) {
         if (view == null) {
             return;
+        }
+
+        if (Dynamic.isBackgroundAware(view)) {
+            color = DynamicColorUtils.getContrastColor(color, background);
         }
 
         @ColorInt int pressedColor = DynamicColorUtils.shiftColor(color,
@@ -182,12 +187,12 @@ public class DynamicTintUtils {
      * Set a view background tint according to the supplied color.
      *
      * @param view The view to set the background tint.
-     * @param color The tint color to be used.
+     * @param background The background color to consider the background aware.
      * @param borderless {@code true} if the view is borderless.
      */
     public static void setViewBackgroundTint(@Nullable View view,
-            @ColorInt int color, boolean borderless) {
-        setViewBackgroundTint(view, color, DynamicTheme.getInstance().resolveColorType(
+            @ColorInt int background, boolean borderless) {
+        setViewBackgroundTint(view, background, DynamicTheme.getInstance().resolveColorType(
                 Defaults.ADS_COLOR_TYPE_SYSTEM_SECONDARY), borderless, false);
     }
 
@@ -195,7 +200,7 @@ public class DynamicTintUtils {
      * Set a view foreground tint according to the supplied color.
      *
      * @param view The view to set the foreground tint.
-     * @param background The background color to calculate the default color.
+     * @param background The background color to consider the background aware.
      * @param color The tint color to be used.
      * @param borderless {@code true} if the view is borderless.
      * @param checkable {@code true} if the view is checkable.
@@ -219,12 +224,12 @@ public class DynamicTintUtils {
      * Set a view background tint according to the supplied color.
      *
      * @param view The view to set the foreground tint.
-     * @param color The tint color to be used.
+     * @param background The background color to consider the background aware.
      * @param borderless {@code true} if the view is borderless.
      */
     public static void setViewForegroundTint(@Nullable View view,
-            @ColorInt int color, boolean borderless) {
-        setViewForegroundTint(view, color, DynamicTheme.getInstance().get()
+            @ColorInt int background, boolean borderless) {
+        setViewForegroundTint(view, background, DynamicTheme.getInstance().get()
                 .getTintBackgroundColor(), borderless, false);
     }
 

@@ -211,7 +211,7 @@
                         app:ads_entries="@array/ads_style_entries"
                         app:ads_values="@array/ads_style_values" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicSeekBarPreference
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference
                         android:id="@+id/ads_pref_theme_font_scale"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -227,10 +227,9 @@
                         app:ads_max="@integer/ads_font_scale_max"
                         app:ads_interval="@integer/ads_font_scale_interval"
                         app:ads_progress="@integer/ads_font_scale"
-                        app:ads_unit="@string/ads_unit_percent"
-                        app:ads_controls="true" />
+                        app:ads_unit="@string/ads_unit_percent" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicSeekBarPreference
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference
                         android:id="@+id/ads_pref_theme_corner_size"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -245,8 +244,7 @@
                         app:ads_min="@integer/ads_corner_radius_min"
                         app:ads_max="@integer/ads_corner_radius_max"
                         app:ads_interval="@integer/ads_corner_radius_interval"
-                        app:ads_progress="@integer/ads_corner_radius"
-                        app:ads_controls="true" />
+                        app:ads_progress="@integer/ads_corner_radius" />
 
                     <com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference
                         android:id="@+id/ads_pref_theme_background_aware"

@@ -27,7 +27,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ProgressBar;
-import android.widget.SeekBar;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
@@ -35,15 +34,17 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.material.slider.Slider;
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.adapter.DynamicColorsAdapter;
 import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
+import com.pranavpandey.android.dynamic.support.listener.DynamicSliderChangeListener;
 import com.pranavpandey.android.dynamic.support.picker.DynamicPickerType;
-import com.pranavpandey.android.dynamic.support.setting.DynamicSeekBarCompact;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference;
+import com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference;
 import com.pranavpandey.android.dynamic.support.theme.task.WallpaperColorsTask;
 import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicView;
@@ -184,19 +185,19 @@ public class DynamicColorPicker extends DynamicView {
     private TextWatcher mEditTextWatcher;
 
     /**
-     * Seek bar listener for HSV color space to update the values accordingly.
+     * Slider listener for HSV color space to update the values accordingly.
      */
-    private SeekBar.OnSeekBarChangeListener mHSVSeekBarListener;
+    private DynamicSliderChangeListener<Slider> mHSVListener;
 
     /**
-     * Seek bar listener for RGB color space to update the values accordingly.
+     * Slider listener for RGB color space to update the values accordingly.
      */
-    private SeekBar.OnSeekBarChangeListener mRGBSeekBarListener;
+    private DynamicSliderChangeListener<Slider> mRGBListener;
 
     /**
-     * Seek bar listener for CMYK color space to update the values accordingly.
+     * Slider listener for CMYK color space to update the values accordingly.
      */
-    private SeekBar.OnSeekBarChangeListener mCMYKSeekBarListener;
+    private DynamicSliderChangeListener<Slider> mCMYKListener;
 
     /**
      * Root view of the color shades.
@@ -274,59 +275,59 @@ public class DynamicColorPicker extends DynamicView {
     private ViewGroup mViewCMYK;
 
     /**
-     * Seek bar used for the color hue.
+     * Slider used for the color hue.
      */
-    private DynamicSeekBarCompact mSeekBarHue;
+    private DynamicSliderPreference mSliderHue;
 
     /**
-     * Seek bar used for the color saturation.
+     * Slider used for the color saturation.
      */
-    private DynamicSeekBarCompact mSeekBarSaturation;
+    private DynamicSliderPreference mSliderSaturation;
 
     /**
-     * Seek bar used for the color value.
+     * Slider used for the color value.
      */
-    private DynamicSeekBarCompact mSeekBarValue;
+    private DynamicSliderPreference mSliderValue;
 
     /**
-     * Seek bar used for the color alpha value.
+     * Slider used for the color alpha value.
      */
-    private DynamicSeekBarCompact mSeekBarAlpha;
+    private DynamicSliderPreference mSliderAlpha;
 
     /**
-     * Seek bar used for the color red value.
+     * Slider used for the color red value.
      */
-    private DynamicSeekBarCompact mSeekBarRed;
+    private DynamicSliderPreference mSliderRed;
 
     /**
-     * Seek bar used for the color green value.
+     * Slider used for the color green value.
      */
-    private DynamicSeekBarCompact mSeekBarGreen;
+    private DynamicSliderPreference mSliderGreen;
 
     /**
-     * Seek bar used for the color blue value.
+     * Slider used for the color blue value.
      */
-    private DynamicSeekBarCompact mSeekBarBlue;
+    private DynamicSliderPreference mSliderBlue;
 
     /**
-     * Seek bar used for the color cyan value.
+     * Slider used for the color cyan value.
      */
-    private DynamicSeekBarCompact mSeekBarCyan;
+    private DynamicSliderPreference mSliderCyan;
 
     /**
-     * Seek bar used for the color magenta value.
+     * Slider used for the color magenta value.
      */
-    private DynamicSeekBarCompact mSeekBarMagenta;
+    private DynamicSliderPreference mSliderMagenta;
 
     /**
-     * Seek bar used for the color yellow value.
+     * Slider used for the color yellow value.
      */
-    private DynamicSeekBarCompact mSeekBarYellow;
+    private DynamicSliderPreference mSliderYellow;
 
     /**
-     * Seek bar used for the color black value.
+     * Slider used for the color black value.
      */
-    private DynamicSeekBarCompact mSeekBarBlack;
+    private DynamicSliderPreference mSliderBlack;
 
     /**
      * Progress bar used by this view.
@@ -381,26 +382,26 @@ public class DynamicColorPicker extends DynamicView {
         mViewHSV = findViewById(R.id.ads_color_picker_view_hsv);
         mViewRGB = findViewById(R.id.ads_color_picker_view_rgb);
         mViewCMYK = findViewById(R.id.ads_color_picker_view_cmyk);
-        mSeekBarHue = findViewById(R.id.ads_color_picker_seek_hue);
-        mSeekBarSaturation = findViewById(R.id.ads_color_picker_seek_saturation);
-        mSeekBarValue = findViewById(R.id.ads_color_picker_seek_value);
-        mSeekBarAlpha = findViewById(R.id.ads_color_picker_seek_alpha);
-        mSeekBarRed = findViewById(R.id.ads_color_picker_seek_red);
-        mSeekBarGreen = findViewById(R.id.ads_color_picker_seek_green);
-        mSeekBarBlue = findViewById(R.id.ads_color_picker_seek_blue);
-        mSeekBarCyan = findViewById(R.id.ads_color_picker_seek_cyan);
-        mSeekBarMagenta = findViewById(R.id.ads_color_picker_seek_magenta);
-        mSeekBarYellow = findViewById(R.id.ads_color_picker_seek_yellow);
-        mSeekBarBlack = findViewById(R.id.ads_color_picker_seek_black);
+        mSliderHue = findViewById(R.id.ads_color_picker_slider_hue);
+        mSliderSaturation = findViewById(R.id.ads_color_picker_slider_saturation);
+        mSliderValue = findViewById(R.id.ads_color_picker_slider_value);
+        mSliderAlpha = findViewById(R.id.ads_color_picker_slider_alpha);
+        mSliderRed = findViewById(R.id.ads_color_picker_slider_red);
+        mSliderGreen = findViewById(R.id.ads_color_picker_slider_green);
+        mSliderBlue = findViewById(R.id.ads_color_picker_slider_blue);
+        mSliderCyan = findViewById(R.id.ads_color_picker_slider_cyan);
+        mSliderMagenta = findViewById(R.id.ads_color_picker_slider_magenta);
+        mSliderYellow = findViewById(R.id.ads_color_picker_slider_yellow);
+        mSliderBlack = findViewById(R.id.ads_color_picker_slider_black);
         mProgressBar = findViewById(R.id.ads_color_picker_progress_bar);
 
-        mSeekBarRed.setColor(Color.RED);
-        mSeekBarGreen.setColor(Color.GREEN);
-        mSeekBarBlue.setColor(Color.BLUE);
-        mSeekBarCyan.setColor(Color.CYAN);
-        mSeekBarMagenta.setColor(Color.MAGENTA);
-        mSeekBarYellow.setColor(Color.YELLOW);
-        mSeekBarBlack.setColor(Color.BLACK);
+        mSliderRed.setColor(Color.RED);
+        mSliderGreen.setColor(Color.GREEN);
+        mSliderBlue.setColor(Color.BLUE);
+        mSliderCyan.setColor(Color.CYAN);
+        mSliderMagenta.setColor(Color.MAGENTA);
+        mSliderYellow.setColor(Color.YELLOW);
+        mSliderBlack.setColor(Color.BLACK);
 
         mPreviousColorView.setOnClickListener(new OnClickListener() {
             @Override
@@ -437,16 +438,20 @@ public class DynamicColorPicker extends DynamicView {
             public void afterTextChanged(Editable s) { }
         };
 
-        mHSVSeekBarListener = new SeekBar.OnSeekBarChangeListener() {
+        mHSVListener = new DynamicSliderChangeListener<Slider>() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            public void onStartTrackingTouch(@Nullable Slider slider) { }
+
+            @Override
+            public void onProgressChanged(@Nullable Slider slider, 
+                    float progress, boolean fromUser) {
                 if (!mUpdatingCustomColor && fromUser) {
-                    mHSVHue = mSeekBarHue.getProgress();
-                    mHSVSaturation = mSeekBarSaturation.getProgress() / 100f;
-                    mHSVValue = mSeekBarValue.getProgress() / 100f;
+                    mHSVHue = mSliderHue.getProgress();
+                    mHSVSaturation = mSliderSaturation.getProgress() / 100f;
+                    mHSVValue = mSliderValue.getProgress() / 100f;
 
                     if (mAlpha) {
-                        setCustom(Color.HSVToColor(mSeekBarAlpha.getProgress(),
+                        setCustom(Color.HSVToColor(mSliderAlpha.getProgress(),
                                 new float[] { mHSVHue, mHSVSaturation, mHSVValue }),
                                 false, true, true);
                     } else {
@@ -458,50 +463,49 @@ public class DynamicColorPicker extends DynamicView {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) { }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) { }
+            public void onStopTrackingTouch(@Nullable Slider slider) { }
         };
 
-        mRGBSeekBarListener = new SeekBar.OnSeekBarChangeListener() {
+        mRGBListener = new DynamicSliderChangeListener<Slider>() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            public void onStartTrackingTouch(@Nullable Slider slider) { }
+
+            @Override
+            public void onProgressChanged(@Nullable Slider slider, 
+                    float progress, boolean fromUser) {
                 if (!mUpdatingCustomColor && fromUser) {
                     if (mAlpha) {
-                        setCustom(Color.argb(mSeekBarAlpha.getProgress(),
-                                mSeekBarRed.getProgress(), mSeekBarGreen.getProgress(),
-                                mSeekBarBlue.getProgress()), true, true, true);
+                        setCustom(Color.argb(mSliderAlpha.getProgress(),
+                                mSliderRed.getProgress(), mSliderGreen.getProgress(),
+                                mSliderBlue.getProgress()), true, true, true);
                     } else {
-                        setCustom(Color.rgb(mSeekBarRed.getProgress(),
-                                mSeekBarGreen.getProgress(), mSeekBarBlue.getProgress()),
+                        setCustom(Color.rgb(mSliderRed.getProgress(),
+                                mSliderGreen.getProgress(), mSliderBlue.getProgress()),
                                 true, true, true);
                     }
                 }
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) { }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) { }
+            public void onStopTrackingTouch(@Nullable Slider slider) { }
         };
 
-        mCMYKSeekBarListener = new SeekBar.OnSeekBarChangeListener() {
+        mCMYKListener = new DynamicSliderChangeListener<Slider>() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            public void onStartTrackingTouch(@Nullable Slider slider) { }
+
+            @Override
+            public void onProgressChanged(@Nullable Slider slider, 
+                    float progress, boolean fromUser) {
                 if (!mUpdatingCustomColor && fromUser) {
-                    setCustom(DynamicColorUtils.CMYKToRGB(mSeekBarCyan.getProgress(),
-                            mSeekBarMagenta.getProgress(), mSeekBarYellow.getProgress(),
-                            mSeekBarBlack.getProgress()), true, true, false);
+                    setCustom(DynamicColorUtils.CMYKToRGB(mSliderCyan.getProgress(),
+                            mSliderMagenta.getProgress(), mSliderYellow.getProgress(),
+                            mSliderBlack.getProgress()), true, true, false);
                 }
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) { }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) { }
+            public void onStopTrackingTouch(@Nullable Slider slider) { }
         };
 
         mControlAll.setOnClickListener(new OnClickListener() {
@@ -533,28 +537,28 @@ public class DynamicColorPicker extends DynamicView {
         });
 
         mEditText.addTextChangedListener(mEditTextWatcher);
-        mSeekBarHue.setDynamicSeekBarResolver(mHSVSeekBarListener);
-        mSeekBarSaturation.setDynamicSeekBarResolver(mHSVSeekBarListener);
-        mSeekBarValue.setDynamicSeekBarResolver(mHSVSeekBarListener);
-        mSeekBarAlpha.setDynamicSeekBarResolver(mRGBSeekBarListener);
-        mSeekBarRed.setDynamicSeekBarResolver(mRGBSeekBarListener);
-        mSeekBarGreen.setDynamicSeekBarResolver(mRGBSeekBarListener);
-        mSeekBarBlue.setDynamicSeekBarResolver(mRGBSeekBarListener);
-        mSeekBarCyan.setDynamicSeekBarResolver(mCMYKSeekBarListener);
-        mSeekBarMagenta.setDynamicSeekBarResolver(mCMYKSeekBarListener);
-        mSeekBarYellow.setDynamicSeekBarResolver(mCMYKSeekBarListener);
-        mSeekBarBlack.setDynamicSeekBarResolver(mCMYKSeekBarListener);
-        mSeekBarHue.setOnSeekBarControlListener(mHSVSeekBarListener);
-        mSeekBarSaturation.setOnSeekBarControlListener(mHSVSeekBarListener);
-        mSeekBarValue.setOnSeekBarControlListener(mHSVSeekBarListener);
-        mSeekBarAlpha.setOnSeekBarControlListener(mRGBSeekBarListener);
-        mSeekBarRed.setOnSeekBarControlListener(mRGBSeekBarListener);
-        mSeekBarGreen.setOnSeekBarControlListener(mRGBSeekBarListener);
-        mSeekBarBlue.setOnSeekBarControlListener(mRGBSeekBarListener);
-        mSeekBarCyan.setOnSeekBarControlListener(mCMYKSeekBarListener);
-        mSeekBarMagenta.setOnSeekBarControlListener(mCMYKSeekBarListener);
-        mSeekBarYellow.setOnSeekBarControlListener(mCMYKSeekBarListener);
-        mSeekBarBlack.setOnSeekBarControlListener(mCMYKSeekBarListener);
+        mSliderHue.setDynamicSliderResolver(mHSVListener);
+        mSliderSaturation.setDynamicSliderResolver(mHSVListener);
+        mSliderValue.setDynamicSliderResolver(mHSVListener);
+        mSliderAlpha.setDynamicSliderResolver(mRGBListener);
+        mSliderRed.setDynamicSliderResolver(mRGBListener);
+        mSliderGreen.setDynamicSliderResolver(mRGBListener);
+        mSliderBlue.setDynamicSliderResolver(mRGBListener);
+        mSliderCyan.setDynamicSliderResolver(mCMYKListener);
+        mSliderMagenta.setDynamicSliderResolver(mCMYKListener);
+        mSliderYellow.setDynamicSliderResolver(mCMYKListener);
+        mSliderBlack.setDynamicSliderResolver(mCMYKListener);
+        mSliderHue.setOnSliderControlListener(mHSVListener);
+        mSliderSaturation.setOnSliderControlListener(mHSVListener);
+        mSliderValue.setOnSliderControlListener(mHSVListener);
+        mSliderAlpha.setOnSliderControlListener(mRGBListener);
+        mSliderRed.setOnSliderControlListener(mRGBListener);
+        mSliderGreen.setOnSliderControlListener(mRGBListener);
+        mSliderBlue.setOnSliderControlListener(mRGBListener);
+        mSliderCyan.setOnSliderControlListener(mCMYKListener);
+        mSliderMagenta.setOnSliderControlListener(mCMYKListener);
+        mSliderYellow.setOnSliderControlListener(mCMYKListener);
+        mSliderBlack.setOnSliderControlListener(mCMYKListener);
 
         mUpdatingCustomColor = true;
         mPreviousColor = Theme.Color.UNKNOWN;
@@ -604,10 +608,10 @@ public class DynamicColorPicker extends DynamicView {
 
         if (mAlpha) {
             mEditText.setHint("FF123456");
-            Dynamic.setVisibility(mSeekBarAlpha, VISIBLE);
+            Dynamic.setVisibility(mSliderAlpha, VISIBLE);
         } else {
             mEditText.setHint("123456");
-            Dynamic.setVisibility(mSeekBarAlpha, GONE);
+            Dynamic.setVisibility(mSliderAlpha, GONE);
         }
 
         mColorsGridView.setAdapter(new DynamicColorsAdapter(mColors, mSelectedColor,
@@ -706,7 +710,7 @@ public class DynamicColorPicker extends DynamicView {
 
         mEditText.setText(DynamicColorUtils.getColorString(color, mAlpha, false));
         mEditText.setSelection(mEditText.getText().length());
-        mSeekBarAlpha.setProgress(Color.alpha(color));
+        mSliderAlpha.setProgress(Color.alpha(color));
 
         if (setRGB) {
             setARGBColor(color);
@@ -726,9 +730,9 @@ public class DynamicColorPicker extends DynamicView {
      * @param color The selected color.
      */
     private void setARGBColor(@ColorInt int color) {
-        mSeekBarRed.setProgress(Color.red(color));
-        mSeekBarGreen.setProgress(Color.green(color));
-        mSeekBarBlue.setProgress(Color.blue(color));
+        mSliderRed.setProgress(Color.red(color));
+        mSliderGreen.setProgress(Color.green(color));
+        mSliderBlue.setProgress(Color.blue(color));
     }
 
     /**
@@ -740,10 +744,10 @@ public class DynamicColorPicker extends DynamicView {
         float[] cmyk = new float[4];
         DynamicColorUtils.colorToCMYK(color, cmyk);
 
-        mSeekBarCyan.setProgress(Math.round(cmyk[0] * 100));
-        mSeekBarMagenta.setProgress(Math.round(cmyk[1] * 100));
-        mSeekBarYellow.setProgress(Math.round(cmyk[2] * 100));
-        mSeekBarBlack.setProgress(Math.round(cmyk[3] * 100));
+        mSliderCyan.setProgress(Math.round(cmyk[0] * 100));
+        mSliderMagenta.setProgress(Math.round(cmyk[1] * 100));
+        mSliderYellow.setProgress(Math.round(cmyk[2] * 100));
+        mSliderBlack.setProgress(Math.round(cmyk[3] * 100));
     }
 
     /**
@@ -759,14 +763,14 @@ public class DynamicColorPicker extends DynamicView {
         mHSVValue = hsv[2] * 100;
 
         if (setProgress) {
-            mSeekBarHue.setProgress(Math.round(hsv[0]));
-            mSeekBarSaturation.setProgress(Math.round(mHSVSaturation));
-            mSeekBarValue.setProgress(Math.round(mHSVValue));
+            mSliderHue.setProgress(Math.round(hsv[0]));
+            mSliderSaturation.setProgress(Math.round(mHSVSaturation));
+            mSliderValue.setProgress(Math.round(mHSVValue));
         }
 
-        mSeekBarHue.setColor(Color.HSVToColor(new float[] { mSeekBarHue.getProgress(), 1f, 1f }));
-        mSeekBarSaturation.setColor(Color.HSVToColor(new float[] { mHSVHue, mHSVSaturation, 1f }));
-        mSeekBarValue.setColor(color);
+        mSliderHue.setColor(Color.HSVToColor(new float[] { mSliderHue.getProgress(), 1f, 1f }));
+        mSliderSaturation.setColor(Color.HSVToColor(new float[] { mHSVHue, mHSVSaturation, 1f }));
+        mSliderValue.setColor(color);
     }
 
     /**

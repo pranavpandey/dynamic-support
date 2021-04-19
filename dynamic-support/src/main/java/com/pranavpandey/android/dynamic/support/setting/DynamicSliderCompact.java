@@ -25,28 +25,37 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPicker;
+import com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
- * A {@link DynamicSeekBarCompact} for the {@link DynamicColorPicker} to show the hue bar.
+ * A compact version of the {@link DynamicSliderPreference} suitable for dialogs.
  */
-public class DynamicSeekBarHue extends DynamicSeekBarCompact {
+public class DynamicSliderCompact extends DynamicSliderPreference {
 
-    public DynamicSeekBarHue(@NonNull Context context) {
+    public DynamicSliderCompact(@NonNull Context context) {
         super(context);
     }
 
-    public DynamicSeekBarHue(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicSliderCompact(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicSeekBarHue(@NonNull Context context,
+    public DynamicSliderCompact(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
     protected @LayoutRes int getLayoutRes() {
-        return R.layout.ads_seek_bar_hue;
+        return R.layout.ads_slider_compact;
+    }
+
+    @Override
+    protected void onInflate() {
+        super.onInflate();
+
+        setContrastWithColorType(Theme.ColorType.BACKGROUND);
+        setActionButton(null, null);
     }
 }

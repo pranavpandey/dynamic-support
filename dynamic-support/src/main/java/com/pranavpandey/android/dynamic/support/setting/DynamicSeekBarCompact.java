@@ -25,14 +25,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPicker;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSeekBarPreference;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
- * A compact version of the DynamicSeekBarPreference for the {@link DynamicColorPicker}.
- *
- * <p>It can also be used in other scenarios.
+ * A compact version of the {@link DynamicSeekBarPreference} suitable for dialogs.
  */
 public class DynamicSeekBarCompact extends DynamicSeekBarPreference {
 

@@ -39,7 +39,7 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicColorResolver;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference;
-import com.pranavpandey.android.dynamic.support.setting.base.DynamicSeekBarPreference;
+import com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView;
@@ -99,14 +99,14 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
     private DynamicColorPreference mTextSecondaryPreference;
 
     /**
-     * Dynamic seek bar preference to control the font scale.
+     * Dynamic slider preference to control the font scale.
      */
-    private DynamicSeekBarPreference mFontScalePreference;
+    private DynamicSliderPreference mFontScalePreference;
 
     /**
-     * Dynamic seek bar preference to control the corner radius.
+     * Dynamic slider preference to control the corner radius.
      */
-    private DynamicSeekBarPreference mCornerSizePreference;
+    private DynamicSliderPreference mCornerSizePreference;
 
     /**
      * Dynamic spinner preference to control the background aware functionality.
@@ -596,8 +596,8 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
         mColorErrorPreference.update();
         mTextPrimaryPreference.update();
         mTextSecondaryPreference.update();
-        mFontScalePreference.setSeekBarEnabled(getFontScale() != Theme.AUTO);
-        mCornerSizePreference.setSeekBarEnabled(getCornerSize() != Theme.AUTO);
+        mFontScalePreference.setSeekEnabled(getFontScale() != Theme.AUTO);
+        mCornerSizePreference.setSeekEnabled(getCornerSize() != Theme.AUTO);
         mBackgroundAwarePreference.update();
         mStylePreference.update();
     }

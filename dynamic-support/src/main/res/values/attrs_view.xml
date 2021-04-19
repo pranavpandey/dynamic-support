@@ -226,7 +226,28 @@
              value by one. -->
         <attr name="ads_controls" format="boolean" />
         <!-- false to disable the seek bar. -->
-        <attr name="ads_seek_bar" format="boolean" />
+        <attr name="ads_seek_enabled" format="boolean" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicSliderPreference. -->
+    <declare-styleable name="DynamicSliderPreference">
+        <!-- Maximum value that will be applied to the slider. -->
+        <attr name="ads_max" />
+        <!-- Minimum value that will be applied to the slider. -->
+        <attr name="ads_min" />
+        <!-- Progress value that will be applied to the slider. -->
+        <attr name="ads_progress" />
+        <!-- Progress interval that will be applied to the slider. -->
+        <attr name="ads_interval" />
+        <!-- Optional text which will be shown after the progress value. -->
+        <attr name="ads_unit" />
+        <!-- true to show the optional seek bar controls to increment or decrement the slider
+             value by one. -->
+        <attr name="ads_controls" />
+        <!-- false to disable the slider. -->
+        <attr name="ads_seek_enabled" />
+        <!-- true to enable the slider tick marks. -->
+        <attr name="ads_tick_visible" format="boolean" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicSpinnerPreference. -->

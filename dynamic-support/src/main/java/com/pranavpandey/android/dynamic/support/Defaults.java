@@ -174,6 +174,11 @@ public class Defaults {
     public static final float ADS_ALPHA_DISABLED = 0.5f;
 
     /**
+     * Default inset for the hue drawable.
+     */
+    public static final float ADS_INSET_HUE = 0.45f;
+
+    /**
      * Default light state value for the box background.
      */
     public static final float ADS_STATE_BOX_LIGHT = 0.12f;

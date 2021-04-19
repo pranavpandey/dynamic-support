@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -565,6 +566,29 @@ public class Dynamic {
      *
      * @param dynamic The dynamic object to be tinted.
      * @param contrastWithColor The contrast with color to be considered.
+     * @param borderless {@code true} if the view is borderless.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see DynamicTintUtils#setViewBackgroundTint(View, int, boolean)
+     */
+    public static <T> void tintBackground(@Nullable T dynamic,
+            @ColorInt int contrastWithColor, boolean borderless) {
+        if (contrastWithColor == Theme.Color.UNKNOWN) {
+            return;
+        }
+
+        if (dynamic instanceof View && (dynamic instanceof Button
+                || ((View) dynamic).isClickable() || ((View) dynamic).isLongClickable())) {
+            DynamicTintUtils.setViewBackgroundTint((View) dynamic,
+                    contrastWithColor, borderless);
+        }
+    }
+
+    /**
+     * Tint background according to the supplied contrast with color.
+     *
+     * @param dynamic The dynamic object to be tinted.
+     * @param contrastWithColor The contrast with color to be considered.
      * @param <T> The type of the dynamic object.
      *
      * @see DynamicTintUtils#setViewBackgroundTint(View, int, boolean)
@@ -574,8 +598,8 @@ public class Dynamic {
             return;
         }
 
-        if (dynamic instanceof View && (((View) dynamic).isClickable()
-                || ((View) dynamic).isLongClickable())) {
+        if (dynamic instanceof View && (dynamic instanceof Button
+                || ((View) dynamic).isClickable() || ((View) dynamic).isLongClickable())) {
             DynamicTintUtils.setViewBackgroundTint((View) dynamic,
                     contrastWithColor, true);
         }

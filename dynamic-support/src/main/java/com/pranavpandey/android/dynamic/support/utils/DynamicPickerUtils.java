@@ -31,8 +31,10 @@ import android.widget.SeekBar;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPicker;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
@@ -43,29 +45,18 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 public class DynamicPickerUtils {
 
     /**
-     * Set a hue gradient progress drawable for a seek bar.
+     * Returns the hue gradient.
      *
-     * @param seekBar The seek bar to set the hue gradient.
+     * @param width The gradient width.
+     * @param height The gradient height.
+     *
+     * @return The hue gradient.
      */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public static void setHueDrawable(@NonNull SeekBar seekBar) {
-        if (DynamicSdkUtils.is21()) {
-            seekBar.setProgressTintList(null);
-        }
-
-        LinearGradient gradient =
-                new LinearGradient(0.0f, 0.0f, (float) seekBar.getWidth(), 0.0f,
-                        new int[] { 0xFFFF0000, 0xFFFFFF00, 0xFF00FF00,
-                                0xFF00FFFF, 0xFF0000FF, 0xFFFF00FF, 0xFFFF0000 },
-                        null, Shader.TileMode.CLAMP);
-        ShapeDrawable shape = new ShapeDrawable(new RectShape());
-        shape.getPaint().setShader(gradient);
-
-        Rect bounds = seekBar.getProgressDrawable().getBounds();
-        bounds.inset(0, (int) (bounds.height() * 0.45f));
-
-        seekBar.setProgressDrawable(shape);
-        seekBar.getProgressDrawable().setBounds(bounds);
+    public static @NonNull LinearGradient getHueGradient(float width, float height) {
+        return new LinearGradient(0.0f, 0.0f, width, height,
+                new int[] { 0xFFFF0000, 0xFFFFFF00, 0xFF00FF00,
+                        0xFF00FFFF, 0xFF0000FF, 0xFFFF00FF, 0xFFFF0000 },
+                null, Shader.TileMode.CLAMP);
     }
 
     /**
@@ -98,6 +89,32 @@ public class DynamicPickerUtils {
                 BitmapShader.TileMode.REPEAT));
 
         return paint;
+    }
+
+    /**
+     * Set a hue gradient progress drawable for a seek bar.
+     *
+     * @param seekBar The seek bar to set the hue gradient.
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static void setHueDrawable(@Nullable SeekBar seekBar) {
+        if (seekBar == null) {
+            return;
+        }
+
+        if (DynamicSdkUtils.is21()) {
+            seekBar.setProgressTintList(null);
+        }
+
+        LinearGradient gradient = getHueGradient(seekBar.getWidth(), 0);
+        ShapeDrawable shape = new ShapeDrawable(new RectShape());
+        shape.getPaint().setShader(gradient);
+
+        Rect bounds = seekBar.getProgressDrawable().getBounds();
+        bounds.inset(0, (int) (bounds.height() * Defaults.ADS_INSET_HUE));
+
+        seekBar.setProgressDrawable(shape);
+        seekBar.getProgressDrawable().setBounds(bounds);
     }
 
     /**

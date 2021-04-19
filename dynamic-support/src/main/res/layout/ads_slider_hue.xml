@@ -57,7 +57,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ads_preference_seek_bar_controls"
+            android:id="@+id/ads_preference_slider_controls"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -76,21 +76,22 @@
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
                 style="@style/Widget.DynamicApp.Button.ImageButton"
-                android:id="@+id/ads_preference_seek_bar_left"
+                android:id="@+id/ads_preference_slider_left"
                 android:layout_width="@dimen/ads_icon_preference"
                 android:layout_height="@dimen/ads_icon_preference"
                 app:srcCompat="@drawable/ads_ic_chevron_left"
                 app:ads_colorType="accent_dark" />
 
-            <com.pranavpandey.android.dynamic.support.widget.DynamicSeekBar
-                android:id="@+id/ads_preference_seek_bar_seek"
+            <com.pranavpandey.android.dynamic.support.widget.DynamicHueSlider
+                style="@style/Widget.DynamicApp.Slider.Compact"
+                android:id="@+id/ads_preference_slider_seek"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
                 style="@style/Widget.DynamicApp.Button.ImageButton"
-                android:id="@+id/ads_preference_seek_bar_right"
+                android:id="@+id/ads_preference_slider_right"
                 android:layout_width="@dimen/ads_icon_preference"
                 android:layout_height="@dimen/ads_icon_preference"
                 app:srcCompat="@drawable/ads_ic_chevron_right"
@@ -98,7 +99,7 @@
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                 style="@style/TextAppearance.DynamicApp.PreferenceValue"
-                android:id="@+id/ads_preference_seek_bar_value"
+                android:id="@+id/ads_preference_slider_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="@dimen/ads_picker_value_width"

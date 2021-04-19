@@ -601,7 +601,6 @@
         <item name="rippleColor">@android:color/transparent</item>
         <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
         <item name="ads_colorType">accent</item>
-        <item name="ads_tintBackground">true</item>
     </style>
 
     <style name="Widget.DynamicApp.TextInputEditText">
@@ -645,7 +644,6 @@
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp.Button</item>
         <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
         <item name="ads_colorType">accent</item>
-        <item name="ads_tintBackground">true</item>
     </style>
 
     <style name="Widget.DynamicApp.Button.UnelevatedButton"
@@ -655,7 +653,6 @@
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp.Button</item>
         <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
         <item name="ads_colorType">accent</item>
-        <item name="ads_tintBackground">true</item>
     </style>
 
     <style name="Widget.DynamicApp.Button.UnelevatedButton.Icon"
@@ -665,7 +662,6 @@
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp.Button</item>
         <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
         <item name="ads_colorType">accent</item>
-        <item name="ads_tintBackground">true</item>
     </style>
 
     <style name="Widget.DynamicApp.Button.TextButton"
@@ -675,9 +671,8 @@
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp.Button</item>
         <item name="rippleColor">@android:color/transparent</item>
         <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
-        <item name="ads_styleBorderless">true</item>
         <item name="ads_colorType">accent</item>
-        <item name="ads_tintBackground">true</item>
+        <item name="ads_styleBorderless">true</item>
     </style>
 
     <style name="Widget.DynamicApp.Button.TextButton.Small">
@@ -690,9 +685,8 @@
         <item name="android:insetRight">@dimen/ads_margin_tiny</item>
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp.Button</item>
         <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
-        <item name="ads_styleBorderless">true</item>
         <item name="ads_colorType">accent</item>
-        <item name="ads_tintBackground">true</item>
+        <item name="ads_styleBorderless">true</item>
     </style>
 
     <style name="Widget.DynamicApp.Button.TextButton.Dialog" />
@@ -701,7 +695,6 @@
         <item name="android:padding">0dp</item>
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="ads_styleBorderless">true</item>
-        <item name="ads_tintBackground">false</item>
     </style>
 
     <style name="Widget.DynamicApp.Card" parent="Widget.MaterialComponents.CardView">
@@ -869,6 +862,15 @@
         <item name="android:stretchColumns">spacingWidth</item>
         <item name="android:listSelector">@android:color/transparent</item>
         <item name="android:cacheColorHint">@null</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Slider">
+        <item name="labelBehavior">gone</item>
+    </style>
+
+    <style name="Widget.DynamicApp.Slider.Compact">
+        <item name="thumbRadius">@dimen/ads_margin_small</item>
+        <item name="thumbElevation">0dp</item>
     </style>
 
     <style name="Widget.DynamicApp.Content.Splash">
