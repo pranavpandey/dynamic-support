@@ -91,6 +91,11 @@ public class DynamicImageView extends AppCompatImageView
      */
     private boolean mTintBackground;
 
+    /**
+     * {@code true} if the style applied to this view is borderless.
+     */
+    private boolean mStyleBorderless;
+
     public DynamicImageView(@NonNull Context context) {
         this(context, null);
     }
@@ -139,8 +144,11 @@ public class DynamicImageView extends AppCompatImageView
                     R.styleable.DynamicImageView_ads_backgroundAware,
                     Defaults.getBackgroundAware());
             mTintBackground = a.getBoolean(
-                    R.styleable.DynamicImageButton_ads_tintBackground,
+                    R.styleable.DynamicImageView_ads_tintBackground,
                     Defaults.ADS_TINT_BACKGROUND);
+            mStyleBorderless = a.getBoolean(
+                    R.styleable.DynamicImageView_ads_styleBorderless,
+                    Defaults.ADS_STYLE_BORDERLESS);
 
             if (mColorType == Theme.ColorType.NONE && mColor == Theme.Color.UNKNOWN) {
                 if (getId() == R.id.submenuarrow) {
@@ -290,6 +298,18 @@ public class DynamicImageView extends AppCompatImageView
     }
 
     @Override
+    public boolean isStyleBorderless() {
+        return mStyleBorderless;
+    }
+
+    @Override
+    public void setStyleBorderless(boolean styleBorderless) {
+        this.mStyleBorderless = styleBorderless;
+
+        setColor();
+    }
+
+    @Override
     public void setColor() {
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
@@ -309,7 +329,7 @@ public class DynamicImageView extends AppCompatImageView
         }
 
         if (isBackgroundAware() && isTintBackground()) {
-            Dynamic.tintBackground(this, mContrastWithColor);
+            Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
         }
     }
 }

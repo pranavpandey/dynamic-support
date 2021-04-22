@@ -282,9 +282,15 @@ public class Defaults {
 
     /**
      * Default borderless value for the widgets.
-     * <p>{@code true} if the widget is borderless.
+     * <p>{@code true} if the widget has borderless style.
      */
     public static final boolean ADS_STYLE_BORDERLESS = false;
+
+    /**
+     * Default borderless value for the group widgets.
+     * <p>{@code true} if the widget has borderless style.
+     */
+    public static final boolean ADS_STYLE_BORDERLESS_GROUP = true;
 
     /**
      * Default tint background value for the widgets.

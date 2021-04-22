@@ -37,4 +37,18 @@ public interface DynamicTintWidget {
      * @param tintBackground {@code true} to tint background according to the widget color.
      */
     void setTintBackground(boolean tintBackground);
+
+    /**
+     * Returns whether the borderless style is applied to this widget.
+     *
+     * @return {@code true} if the borderless style is applied to this widget.
+     */
+    boolean isStyleBorderless();
+
+    /**
+     * Sets whether the borderless style is applied to this widget.
+     *
+     * @param styleBorderless {@code true} if the borderless style is applied to this widget.
+     */
+    void setStyleBorderless(boolean styleBorderless);
 }

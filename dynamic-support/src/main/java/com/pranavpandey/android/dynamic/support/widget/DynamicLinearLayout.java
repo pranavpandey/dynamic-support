@@ -90,6 +90,11 @@ public class DynamicLinearLayout extends LinearLayout implements DynamicWidget, 
      */
     private boolean mTintBackground;
 
+    /**
+     * {@code true} if the style applied to this view is borderless.
+     */
+    private boolean mStyleBorderless;
+
     public DynamicLinearLayout(@NonNull Context context) {
         this(context, null);
     }
@@ -131,6 +136,9 @@ public class DynamicLinearLayout extends LinearLayout implements DynamicWidget, 
             mTintBackground = a.getBoolean(
                     R.styleable.DynamicImageButton_ads_tintBackground,
                     Defaults.ADS_TINT_BACKGROUND);
+            mStyleBorderless = a.getBoolean(
+                    R.styleable.DynamicImageButton_ads_styleBorderless,
+                    Defaults.ADS_STYLE_BORDERLESS_GROUP);
         } finally {
             a.recycle();
         }
@@ -274,6 +282,18 @@ public class DynamicLinearLayout extends LinearLayout implements DynamicWidget, 
     }
 
     @Override
+    public boolean isStyleBorderless() {
+        return mStyleBorderless;
+    }
+
+    @Override
+    public void setStyleBorderless(boolean styleBorderless) {
+        this.mStyleBorderless = styleBorderless;
+
+        setColor();
+    }
+
+    @Override
     public void setColor() {
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
@@ -289,7 +309,7 @@ public class DynamicLinearLayout extends LinearLayout implements DynamicWidget, 
         }
 
         if (isBackgroundAware() && isTintBackground()) {
-            Dynamic.tintBackground(this, mContrastWithColor);
+            Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
         }
     }
 }

@@ -90,14 +90,14 @@ public class DynamicImageButton extends AppCompatImageButton
     private @Theme.BackgroundAware int mBackgroundAware;
 
     /**
-     * {@code true} if style applied to this view is borderless.
-     */
-    private boolean mStyleBorderless;
-
-    /**
      * {@code true} to tint background according to the widget color.
      */
     private boolean mTintBackground;
+
+    /**
+     * {@code true} if the style applied to this view is borderless.
+     */
+    private boolean mStyleBorderless;
 
     public DynamicImageButton(@NonNull Context context) {
         this(context, null);
@@ -114,25 +114,6 @@ public class DynamicImageButton extends AppCompatImageButton
         super(context, attrs, defStyleAttr);
 
         loadFromAttributes(attrs);
-    }
-
-    /**
-     * @return {@code true} if style applied to this view is borderless.
-     */
-    public boolean isStyleBorderless() {
-        return mStyleBorderless;
-    }
-
-    /**
-     * Set the value of {@link #mStyleBorderless}.
-     *
-     * @param styleBorderless {@code true} if style applied to this view
-     *                        is borderless.
-     */
-    public void setStyleBorderless(boolean styleBorderless) {
-        this.mStyleBorderless = styleBorderless;
-
-        setColor();
     }
 
     @Override
@@ -156,12 +137,12 @@ public class DynamicImageButton extends AppCompatImageButton
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicImageButton_ads_backgroundAware,
                     Defaults.getBackgroundAware());
-            mStyleBorderless = a.getBoolean(
-                    R.styleable.DynamicImageButton_ads_styleBorderless,
-                    Defaults.ADS_STYLE_BORDERLESS);
             mTintBackground = a.getBoolean(
                     R.styleable.DynamicImageButton_ads_tintBackground,
                     Defaults.ADS_TINT_BACKGROUND);
+            mStyleBorderless = a.getBoolean(
+                    R.styleable.DynamicImageButton_ads_styleBorderless,
+                    Defaults.ADS_STYLE_BORDERLESS);
         } finally {
             a.recycle();
         }
@@ -290,6 +271,18 @@ public class DynamicImageButton extends AppCompatImageButton
         setColor();
     }
 
+    @Override
+    public boolean isStyleBorderless() {
+        return mStyleBorderless;
+    }
+
+    @Override
+    public void setStyleBorderless(boolean styleBorderless) {
+        this.mStyleBorderless = styleBorderless;
+
+        setColor();
+    }
+
     @SuppressLint("RestrictedApi")
     @Override
     public void setColor() {
@@ -308,7 +301,7 @@ public class DynamicImageButton extends AppCompatImageButton
         }
 
         if (isBackgroundAware() && isTintBackground()) {
-            Dynamic.tintBackground(this, mContrastWithColor, mStyleBorderless);
+            Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
         }
     }
 }
