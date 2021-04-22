@@ -23,22 +23,24 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
- * A {@link DynamicCardView} for the popup background.
+ * An {@link DynamicImageView} to implement shadow divider.
  */
-public class DynamicPopupBackground extends DynamicCardView {
+public class DynamicShadowDivider extends DynamicImageView {
 
-    public DynamicPopupBackground(@NonNull Context context) {
+    public DynamicShadowDivider(@NonNull Context context) {
         super(context);
     }
 
-    public DynamicPopupBackground(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicShadowDivider(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicPopupBackground(@NonNull Context context,
+    public DynamicShadowDivider(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
@@ -47,9 +49,22 @@ public class DynamicPopupBackground extends DynamicCardView {
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
         super.loadFromAttributes(attrs);
 
-        setContrastWithColorType(Theme.ColorType.SURFACE);
-        setElevationOnSameBackground(true);
-        setFloatingView(true);
-        setClipToPadding(false);
+        if (getColorType() == Theme.ColorType.NONE
+                && getColor(false) == Theme.Color.UNKNOWN) {
+            setColorType(Defaults.ADS_COLOR_TYPE_SYSTEM_SECONDARY);
+        }
+    }
+
+    @Override
+    public void setColor() {
+        super.setColor();
+
+        if (DynamicTheme.getInstance().isHideDividers()
+                && getContrastWithColor() != Theme.Color.UNKNOWN) {
+            setColorFilter(getContrastWithColor(), getFilterMode());
+            setVisibility(INVISIBLE);
+        } else if (getVisibility() != GONE) {
+            setVisibility(VISIBLE);
+        }
     }
 }

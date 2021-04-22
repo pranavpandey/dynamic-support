@@ -198,7 +198,7 @@ public class DynamicColorPopup extends DynamicPopup {
                     && mRecentColor != mDefaultColor && mRecentColor != mSelectedColor) {
                 Dynamic.setVisibility(mFooterView.findViewById(
                         R.id.ads_color_picker_popup_footer_recent), View.VISIBLE);
-                setColorView((DynamicColorView) mFooterView.findViewById(
+                setColorView(mFooterView.findViewById(
                         R.id.ads_color_picker_popup_footer_view_recent), mRecentColor);
             }
         }
@@ -315,6 +315,17 @@ public class DynamicColorPopup extends DynamicPopup {
             Dynamic.setVisibility(divider, View.GONE);
             Dynamic.setVisibility(gridView, View.GONE);
         }
+    }
+
+    @Override
+    protected void onCustomisePopup(@NonNull PopupWindow popupWindow,
+            @NonNull View content, @ColorInt int backgroundColor) {
+        super.onCustomisePopup(popupWindow, content, backgroundColor);
+
+        Dynamic.setContrastWithColor(content.findViewById(
+                R.id.ads_color_picker_divider), backgroundColor);
+        Dynamic.setContrastWithColor(content.findViewById(
+                R.id.ads_color_picker_popup_footer_divider), backgroundColor);
     }
 
     @Override

@@ -94,8 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/ads_app_bar_shadow_size"
             android:contentDescription="@null"
-            app:srcCompat="@drawable/ads_app_bar_shadow"
-            app:ads_backgroundAware="disable" />
+            app:srcCompat="@drawable/ads_app_bar_shadow" />
 
         <LinearLayout
             android:id="@+id/ads_theme_content"

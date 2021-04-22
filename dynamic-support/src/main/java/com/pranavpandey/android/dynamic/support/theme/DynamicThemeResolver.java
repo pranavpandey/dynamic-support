@@ -60,8 +60,8 @@ public class DynamicThemeResolver implements DynamicResolver {
 
     @Override
     public boolean isHideDividers() {
-        return getDynamicTheme().get().getPrimaryColor()
-                == getDynamicTheme().get().getAccentColorDark();
+        return getDynamicTheme().get().getAccentColorDark()
+                == getDynamicTheme().get().getPrimaryColor();
     }
 
     @Override

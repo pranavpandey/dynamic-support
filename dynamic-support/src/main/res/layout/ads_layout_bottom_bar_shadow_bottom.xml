@@ -15,14 +15,11 @@
 	limitations under the License.
 -->
 
-<com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+<com.pranavpandey.android.dynamic.support.widget.DynamicShadowDivider
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ads_bottom_bar_shadow"
     android:layout_width="match_parent"
     android:layout_height="@dimen/ads_bottom_bar_shadow_size"
     android:layout_gravity="bottom"
     android:src="@drawable/ads_bottom_bar_shadow"
-    android:alpha="@integer/ads_alpha_shadow"
-    app:ads_colorType="accent_dark"
-    app:ads_backgroundAware="disable" />
+    android:alpha="@integer/ads_alpha_shadow" />

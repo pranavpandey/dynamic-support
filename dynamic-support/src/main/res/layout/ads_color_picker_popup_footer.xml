@@ -93,6 +93,7 @@
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
                     style="@style/Widget.DynamicApp.Divider.Vertical.Large"
+                    android:id="@+id/ads_color_picker_popup_footer_divider"
                     app:ads_contrastWithColorType="surface" />
 
                 <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView

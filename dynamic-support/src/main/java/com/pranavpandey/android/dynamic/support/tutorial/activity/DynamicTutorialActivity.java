@@ -527,8 +527,7 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
             DynamicScrollUtils.setEdgeEffectColor(mAdapter.getRecyclerView(), tintColor);
         }
 
-        Dynamic.setColor(findViewById(R.id.ads_bottom_bar_shadow),
-                DynamicTheme.getInstance().isHideDividers() ? color : tintColor);
+        Dynamic.setContrastWithColor(findViewById(R.id.ads_bottom_bar_shadow), color);
 
         Dynamic.tint(mActionPrevious, tintColor, color);
         Dynamic.tint(mActionNext, tintColor, color);

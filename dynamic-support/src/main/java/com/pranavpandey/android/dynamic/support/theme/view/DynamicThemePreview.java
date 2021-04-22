@@ -36,6 +36,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicShapeUtils;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 
@@ -273,6 +274,8 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
         Dynamic.setBackgroundAware(mHeaderIcon, getDynamicTheme().getBackgroundAware());
         Dynamic.setBackgroundAware(mHeaderTitle, getDynamicTheme().getBackgroundAware());
         Dynamic.setBackgroundAware(mHeaderMenu, getDynamicTheme().getBackgroundAware());
+        Dynamic.setBackgroundAware(mHeaderShadow, !DynamicTheme.getInstance().isHideDividers()
+                ? getDynamicTheme().getBackgroundAware() : Theme.BackgroundAware.DISABLE);
         Dynamic.setBackgroundAware(mIcon, getDynamicTheme().getBackgroundAware());
         Dynamic.setBackgroundAware(mTitle, getDynamicTheme().getBackgroundAware());
         Dynamic.setBackgroundAware(mSubtitle, getDynamicTheme().getBackgroundAware());

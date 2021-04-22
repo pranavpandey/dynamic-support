@@ -18,7 +18,8 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.DynamicApp.Card.Floating.Dialog">
+    style="@style/Widget.DynamicApp.Card.Floating.Dialog"
+    android:id="@+id/dialogRoot">
 
     <androidx.appcompat.widget.AlertDialogLayout
         android:id="@+id/parentPanel"

@@ -282,7 +282,8 @@ public class DynamicCardView extends CardView implements DynamicWidget,
                 mAppliedColor = DynamicTheme.getInstance().generateSurfaceColor(mAppliedColor);
             }
 
-            setCardBackgroundColor(DynamicColorUtils.removeAlpha(mAppliedColor));
+            mAppliedColor = DynamicColorUtils.removeAlpha(mAppliedColor);
+            setCardBackgroundColor(mAppliedColor);
             setSurface();
         }
     }

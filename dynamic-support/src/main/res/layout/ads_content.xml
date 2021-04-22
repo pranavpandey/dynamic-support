@@ -29,15 +29,13 @@
 
     </androidx.fragment.app.FragmentContainerView>
 
-    <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+    <com.pranavpandey.android.dynamic.support.widget.DynamicShadowDivider
         android:id="@+id/ads_app_bar_shadow"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ads_app_bar_shadow_size"
         android:src="@drawable/ads_app_bar_shadow"
         app:layout_anchor="@id/ads_app_bar_layout"
         app:layout_anchorGravity="bottom"
-        app:layout_behavior="@string/ads_fab_behavior"
-        app:ads_colorType="accent_dark"
-        app:ads_backgroundAware="disable" />
+        app:layout_behavior="@string/ads_fab_behavior" />
 
 </merge>

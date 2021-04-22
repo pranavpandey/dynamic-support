@@ -55,9 +55,11 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.DynamicListView;
@@ -607,8 +609,16 @@ class DynamicAlertController {
     private void setScrollIndicators(ViewGroup contentPanel, View content,
             final int indicators, final int mask) {
         // Set up scroll indicators (if present).
+        ViewGroup card = mWindow.findViewById(R.id.dialogRoot);
         View indicatorUp = mWindow.findViewById(R.id.scrollIndicatorUp);
         View indicatorDown = mWindow.findViewById(R.id.scrollIndicatorDown);
+
+        if (card instanceof CardView) {
+            Dynamic.setContrastWithColor(indicatorUp, Dynamic.getColor(card,
+                    ((CardView) card).getCardBackgroundColor().getDefaultColor()));
+            Dynamic.setContrastWithColor(indicatorDown, Dynamic.getColor(card,
+                    ((CardView) card).getCardBackgroundColor().getDefaultColor()));
+        }
 
         // First, remove the indicator views if we're not set to use them
         if (indicatorUp != null && (indicators & ViewCompat.SCROLL_INDICATOR_TOP) == 0) {

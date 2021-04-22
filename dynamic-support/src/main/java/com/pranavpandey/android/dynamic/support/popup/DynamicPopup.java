@@ -32,6 +32,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.PopupWindowCompat;
 import androidx.transition.TransitionManager;
@@ -39,6 +40,7 @@ import androidx.transition.TransitionManager;
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
@@ -231,6 +233,16 @@ public abstract class DynamicPopup {
     }
 
     /**
+     * This method will be called just before showing this popup.
+     *
+     * @param popupWindow The popup window to be displayed by this popup.
+     * @param content The content to be displayed by this popup.
+     * @param backgroundColor The background color of this popup.
+     */
+    protected void onCustomisePopup(@NonNull PopupWindow popupWindow,
+            @NonNull View content, @ColorInt int backgroundColor) { }
+
+    /**
      * Build and show {@link PopupWindow} according to the supplied parameters.
      */
     @SuppressLint("PrivateResource")
@@ -244,9 +256,17 @@ public abstract class DynamicPopup {
         ViewGroup footer = view.findViewById(R.id.ads_popup_footer);
         View indicatorUp = view.findViewById(R.id.ads_popup_scroll_indicator_up);
         View indicatorDown = view.findViewById(R.id.ads_popup_scroll_indicator_down);
+        @ColorInt int backgroundColor = DynamicTheme.getInstance().get().getSurfaceColor();
 
         if (mPopupWindowColor != null) {
             Dynamic.setColor(card, mPopupWindowColor);
+        }
+
+        if (card instanceof CardView) {
+            backgroundColor = Dynamic.getColor(card,
+                    ((CardView) card).getCardBackgroundColor().getDefaultColor());
+            Dynamic.setContrastWithColor(indicatorUp, backgroundColor);
+            Dynamic.setContrastWithColor(indicatorDown, backgroundColor);
         }
 
         if (getHeaderView() != null) {
@@ -333,6 +353,9 @@ public abstract class DynamicPopup {
             viewCenterX = viewCenterX + getAnchor().getWidth() - getMaxWidth();
             OFFSET_X = -OFFSET_X;
         }
+
+        // Do any further customisations for this popup.
+        onCustomisePopup(mPopupWindow, view, backgroundColor);
 
         // Handle issues with popup not expanding.
         if (DynamicSdkUtils.is24(true)) {

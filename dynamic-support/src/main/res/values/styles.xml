@@ -475,6 +475,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/ads_margin_divider</item>
         <item name="android:background">?attr/dividerVertical</item>
+        <item name="android:alpha">@integer/ads_alpha_divider</item>
     </style>
 
     <style name="Widget.DynamicApp.Divider.Large">

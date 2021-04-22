@@ -211,18 +211,17 @@ public class DynamicColorView extends DynamicFrameLayout {
         @ColorInt int color = getColor();
 
         if (color == Theme.AUTO) {
+            color = getContrastWithColor();
             @ColorInt int tintColor = DynamicColorUtils.getTintColor(getContrastWithColor());
-
             mSelectorBitmap = DynamicBitmapUtils.getBitmap(
                     DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_play));
-            mColorStrokePaint.setColor(tintColor);
             mColorPaint.setColor(getContrastWithColor());
+            mColorStrokePaint.setColor(DynamicColorUtils.removeAlpha(tintColor));
 
             if (getMeasuredWidth() > 0) {
                 RadialGradient gradient = new RadialGradient(
                         getMeasuredWidth() / 2f, getMeasuredWidth() / 2f,
-                        getMeasuredWidth(), new int[] {
-                                getContrastWithColor(), tintColor, getContrastWithColor() },
+                        getMeasuredWidth(), new int[] { getContrastWithColor(), tintColor },
                         null, Shader.TileMode.CLAMP);
                 mColorPaint.setShader(gradient);
             }
