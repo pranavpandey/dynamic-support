@@ -231,11 +231,11 @@ public class DynamicTextView extends MaterialTextView implements DynamicWidget,
             }
         }
 
-        if (mColorType != Theme.ColorType.CUSTOM) {
+        if (mColorType != Theme.ColorType.NONE && mColorType != Theme.ColorType.CUSTOM) {
             mColor = DynamicTheme.getInstance().resolveColorType(mColorType);
         }
 
-        if (mLinkColorType != Theme.ColorType.CUSTOM) {
+        if (mLinkColorType != Theme.ColorType.NONE && mLinkColorType != Theme.ColorType.CUSTOM) {
             mLinkColor = DynamicTheme.getInstance().resolveColorType(mLinkColorType);
         }
 

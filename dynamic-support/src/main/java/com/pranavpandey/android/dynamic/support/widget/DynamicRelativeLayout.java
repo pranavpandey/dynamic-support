@@ -239,7 +239,11 @@ public class DynamicRelativeLayout extends RelativeLayout
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
-        setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
+        if (mColorType != Theme.ColorType.NONE) {
+            setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
+        } else {
+            setAlpha(Defaults.ADS_ALPHA_ENABLED);
+        }
     }
 
     @Override
