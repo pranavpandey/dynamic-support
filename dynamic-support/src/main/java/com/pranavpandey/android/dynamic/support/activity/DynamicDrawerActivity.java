@@ -44,6 +44,8 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicTextWidget;
+import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 
 /**
@@ -180,6 +182,11 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
                     R.string.ads_navigation_drawer_close);
             mDrawer.addDrawerListener(mDrawerToggle);
             mDrawerToggle.syncState();
+
+            if (getToolbar() instanceof DynamicTextWidget) {
+                mDrawerToggle.getDrawerArrowDrawable().setColor(
+                        ((DynamicTextWidget) getToolbar()).getTextColor());
+            }
         } else {
             showDrawerToggle(false);
         }
@@ -348,6 +355,11 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
                             onBackPressed();
                         }
                     });
+
+                    if (getToolbar() instanceof DynamicTextWidget) {
+                        DynamicDrawableUtils.colorizeDrawable(getToolbar().getNavigationIcon(),
+                                ((DynamicTextWidget) getToolbar()).getTextColor());
+                    }
                 }
             } else {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);

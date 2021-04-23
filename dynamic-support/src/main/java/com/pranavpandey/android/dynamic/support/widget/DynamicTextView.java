@@ -359,8 +359,7 @@ public class DynamicTextView extends MaterialTextView implements DynamicWidget,
         super.setEnabled(enabled);
 
         if (mColorType != Theme.ColorType.NONE) {
-            setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED
-                    : Defaults.ADS_ALPHA_DISABLED);
+            setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
         } else {
             setAlpha(Defaults.ADS_ALPHA_ENABLED);
         }
