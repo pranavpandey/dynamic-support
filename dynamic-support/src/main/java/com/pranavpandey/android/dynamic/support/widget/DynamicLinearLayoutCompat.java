@@ -16,16 +16,17 @@
 
 package com.pranavpandey.android.dynamic.support.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.LinearLayoutCompat;
 
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
@@ -35,12 +36,14 @@ import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 
 /**
- * An {@link AppCompatImageView} to apply {@link DynamicTheme} according to the supplied
- * parameters.
+ * A {@link LinearLayoutCompat} to apply {@link DynamicTheme} according to the
+ * supplied parameters.
  */
-public class DynamicImageView extends AppCompatImageView
+@SuppressLint("RestrictedApi")
+public class DynamicLinearLayoutCompat extends LinearLayoutCompat 
         implements DynamicWidget, DynamicTintWidget {
 
     /**
@@ -96,65 +99,50 @@ public class DynamicImageView extends AppCompatImageView
      */
     private boolean mStyleBorderless;
 
-    public DynamicImageView(@NonNull Context context) {
+    public DynamicLinearLayoutCompat(@NonNull Context context) {
         this(context, null);
     }
 
-    public DynamicImageView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicLinearLayoutCompat(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         loadFromAttributes(attrs);
     }
 
-    public DynamicImageView(@NonNull Context context,
+    public DynamicLinearLayoutCompat(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         loadFromAttributes(attrs);
     }
 
-    /**
-     * Returns the filter mode to be used to tint this view.
-     *
-     * @return The filter mode to be used to tint this view.
-     */
-    public PorterDuff.Mode getFilterMode() {
-        return PorterDuff.Mode.SRC_IN;
-    }
-
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(attrs, 
-                R.styleable.DynamicImageView);
+                R.styleable.DynamicLinearLayoutCompat);
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicImageView_ads_colorType,
+                    R.styleable.DynamicLinearLayoutCompat_ads_colorType,
                     Theme.ColorType.NONE);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicImageView_ads_contrastWithColorType,
+                    R.styleable.DynamicLinearLayoutCompat_ads_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicImageView_ads_color,
+                    R.styleable.DynamicLinearLayoutCompat_ads_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicImageView_ads_contrastWithColor,
+                    R.styleable.DynamicLinearLayoutCompat_ads_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicImageView_ads_backgroundAware,
+                    R.styleable.DynamicLinearLayoutCompat_ads_backgroundAware,
                     Defaults.getBackgroundAware());
             mTintBackground = a.getBoolean(
-                    R.styleable.DynamicImageView_ads_tintBackground,
+                    R.styleable.DynamicLinearLayoutCompat_ads_tintBackground,
                     Defaults.ADS_TINT_BACKGROUND);
             mStyleBorderless = a.getBoolean(
-                    R.styleable.DynamicImageView_ads_styleBorderless,
-                    Defaults.ADS_STYLE_BORDERLESS);
-
-            if (mColorType == Theme.ColorType.NONE && mColor == Theme.Color.UNKNOWN) {
-                if (getId() == R.id.submenuarrow) {
-                    mColorType = Defaults.ADS_COLOR_TYPE_SYSTEM_SECONDARY;
-                }
-            }
+                    R.styleable.DynamicLinearLayoutCompat_ads_styleBorderless,
+                    Defaults.ADS_STYLE_BORDERLESS_GROUP);
         } finally {
             a.recycle();
         }
@@ -254,7 +242,11 @@ public class DynamicImageView extends AppCompatImageView
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
-        setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
+        if (mColorType != Theme.ColorType.NONE) {
+            setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
+        } else {
+            setAlpha(Defaults.ADS_ALPHA_ENABLED);
+        }
     }
 
     @Override
@@ -317,11 +309,7 @@ public class DynamicImageView extends AppCompatImageView
                 mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
 
-            setColorFilter(mAppliedColor, getFilterMode());
-        }
-
-        if (mColorType == Theme.ColorType.NONE) {
-            clearColorFilter();
+            DynamicDrawableUtils.setBackground(this, new ColorDrawable(mAppliedColor));
         }
 
         if (getBackground() != null) {

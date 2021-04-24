@@ -310,10 +310,10 @@ public class DynamicFrameLayout extends FrameLayout implements DynamicWidget, Dy
 
         if (getBackground() != null) {
             getBackground().clearColorFilter();
-        }
 
-        if (isBackgroundAware() && isTintBackground()) {
-            Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
+            if (isTintBackground()) {
+                Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
+            }
         }
     }
 }

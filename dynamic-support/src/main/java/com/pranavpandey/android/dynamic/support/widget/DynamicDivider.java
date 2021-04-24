@@ -23,6 +23,7 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
@@ -51,7 +52,7 @@ public class DynamicDivider extends DynamicBackgroundView {
 
         if (getColorType() == Theme.ColorType.NONE
                 && getColor(false) == Theme.Color.UNKNOWN) {
-            setColorType(Theme.ColorType.TINT_BACKGROUND);
+            setColorType(Defaults.ADS_COLOR_TYPE_DIVIDER);
         }
     }
 

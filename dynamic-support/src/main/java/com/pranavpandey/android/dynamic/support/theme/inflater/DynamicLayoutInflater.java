@@ -28,6 +28,7 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicAppBarLayout;
+import com.pranavpandey.android.dynamic.support.widget.DynamicBackgroundView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicBottomAppBar;
 import com.pranavpandey.android.dynamic.support.widget.DynamicBottomNavigationView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicButton;
@@ -39,14 +40,17 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicDrawerLayout;
 import com.pranavpandey.android.dynamic.support.widget.DynamicEditText;
 import com.pranavpandey.android.dynamic.support.widget.DynamicExtendedFloatingActionButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicFloatingActionButton;
+import com.pranavpandey.android.dynamic.support.widget.DynamicForegroundLinearLayout;
 import com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout;
 import com.pranavpandey.android.dynamic.support.widget.DynamicGridView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicHorizontalScrollView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicLinearLayout;
+import com.pranavpandey.android.dynamic.support.widget.DynamicLinearLayoutCompat;
 import com.pranavpandey.android.dynamic.support.widget.DynamicListView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicMaterialCardView;
+import com.pranavpandey.android.dynamic.support.widget.DynamicNavigationMenuItemView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicNavigationView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar;
@@ -88,6 +92,9 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
         View view = null;
 
         switch (name) {
+            case "View":
+                view = new DynamicBackgroundView(context, attrs);
+                break;
             case "ListMenuItemView":
             case "com.android.internal.view.menu.ListMenuItemView":
             case "android.support.v7.view.menu.ListMenuItemView":
@@ -192,6 +199,16 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
             case "com.pranavpandey.android.dynamic.support.widget.DynamicLinearLayout":
                 view = new DynamicLinearLayout(context, attrs);
                 break;
+            case "android.support.v7.widget.LinearLayoutCompat":
+            case "androidx.appcompat.widget.LinearLayoutCompat":
+            case "com.pranavpandey.android.dynamic.support.widget.DynamicLinearLayoutCompat":
+                view = new DynamicLinearLayoutCompat(context, attrs);
+                break;
+            case "android.support.design.internal.ForegroundLinearLayout":
+            case "com.google.android.material.internal.ForegroundLinearLayout":
+            case "com.pranavpandey.android.dynamic.support.widget.DynamicForegroundLinearLayout":
+                view = new DynamicForegroundLinearLayout(context, attrs);
+                break;
             case "RelativeLayout":
             case "com.pranavpandey.android.dynamic.support.widget.DynamicRelativeLayout":
                 view = new DynamicRelativeLayout(context, attrs);
@@ -256,6 +273,11 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
             case "com.google.android.material.navigation.NavigationView":
             case "com.pranavpandey.android.dynamic.support.widget.DynamicNavigationView":
                 view = new DynamicNavigationView(context, attrs);
+                break;
+            case "android.support.design.internal.NavigationMenuItemView":
+            case "com.google.android.material.internal.NavigationMenuItemView":
+            case "com.pranavpandey.android.dynamic.support.widget.DynamicNavigationMenuItemView":
+                view = new DynamicNavigationMenuItemView(context, attrs);
                 break;
             case "android.support.design.widget.BottomNavigationView":
             case "com.google.android.material.bottomnavigation.BottomNavigationView":

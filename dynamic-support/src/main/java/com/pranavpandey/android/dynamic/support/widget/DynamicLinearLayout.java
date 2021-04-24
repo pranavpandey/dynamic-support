@@ -134,10 +134,10 @@ public class DynamicLinearLayout extends LinearLayout implements DynamicWidget, 
                     R.styleable.DynamicLinearLayout_ads_backgroundAware,
                     Defaults.getBackgroundAware());
             mTintBackground = a.getBoolean(
-                    R.styleable.DynamicImageButton_ads_tintBackground,
+                    R.styleable.DynamicLinearLayout_ads_tintBackground,
                     Defaults.ADS_TINT_BACKGROUND);
             mStyleBorderless = a.getBoolean(
-                    R.styleable.DynamicImageButton_ads_styleBorderless,
+                    R.styleable.DynamicLinearLayout_ads_styleBorderless,
                     Defaults.ADS_STYLE_BORDERLESS_GROUP);
         } finally {
             a.recycle();
@@ -310,10 +310,10 @@ public class DynamicLinearLayout extends LinearLayout implements DynamicWidget, 
 
         if (getBackground() != null) {
             getBackground().clearColorFilter();
-        }
 
-        if (isBackgroundAware() && isTintBackground()) {
-            Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
+            if (isTintBackground()) {
+                Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
+            }
         }
     }
 }

@@ -18,7 +18,6 @@ package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -31,15 +30,17 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 
 /**
- * An {@link View} to apply {@link DynamicTheme} according to the supplied parameters.
+ * A {@link View} to apply {@link DynamicTheme} according to the supplied parameters.
  */
-public class DynamicBackgroundView extends View implements DynamicWidget {
+public class DynamicBackgroundView extends View implements DynamicWidget, DynamicTintWidget {
 
     /**
      * Color type applied to this view.
@@ -84,6 +85,21 @@ public class DynamicBackgroundView extends View implements DynamicWidget {
      */
     private @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * {@code true} to tint background according to the widget color.
+     */
+    private boolean mTintBackground;
+
+    /**
+     * {@code true} if the style applied to this view is borderless.
+     */
+    private boolean mStyleBorderless;
+
+    /**
+     * Original background attribute resource.
+     */
+    private @AttrRes int mBackgroundAttrRes;
+
     public DynamicBackgroundView(@NonNull Context context) {
         this(context, null);
     }
@@ -99,15 +115,6 @@ public class DynamicBackgroundView extends View implements DynamicWidget {
         super(context, attrs, defStyleAttr);
 
         loadFromAttributes(attrs);
-    }
-
-    /**
-     * Returns the filter mode to be used to tint this view.
-     *
-     * @return The filter mode to be used to tint this view.
-     */
-    public PorterDuff.Mode getFilterMode() {
-        return PorterDuff.Mode.SRC_IN;
     }
 
     @Override
@@ -131,11 +138,16 @@ public class DynamicBackgroundView extends View implements DynamicWidget {
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicBackgroundView_ads_backgroundAware,
                     Defaults.getBackgroundAware());
+            mTintBackground = a.getBoolean(
+                    R.styleable.DynamicBackgroundView_ads_tintBackground,
+                    Defaults.ADS_TINT_BACKGROUND);
+            mStyleBorderless = a.getBoolean(
+                    R.styleable.DynamicBackgroundView_ads_styleBorderless,
+                    Defaults.ADS_STYLE_BORDERLESS_GROUP);
 
-            if (mColorType == Theme.ColorType.NONE && mColor == Theme.Color.UNKNOWN) {
-                if (getId() == R.id.submenuarrow) {
-                    mColorType = Defaults.ADS_COLOR_TYPE_SYSTEM_SECONDARY;
-                }
+            if (attrs != null) {
+                mBackgroundAttrRes = DynamicResourceUtils.getResourceIdFromAttributes(
+                        getContext(), attrs, android.R.attr.background);
             }
         } finally {
             a.recycle();
@@ -146,6 +158,29 @@ public class DynamicBackgroundView extends View implements DynamicWidget {
 
     @Override
     public void initialize() {
+        if (mColorType == Theme.ColorType.NONE) {
+            if (mBackgroundAttrRes == DynamicResourceUtils.getResourceId(
+                    getContext(), android.R.attr.divider)
+                    || mBackgroundAttrRes == DynamicResourceUtils.getResourceId(
+                    getContext(), androidx.appcompat.R.attr.divider)
+                    || mBackgroundAttrRes == DynamicResourceUtils.getResourceId(
+                    getContext(), android.R.attr.listDivider)
+                    || mBackgroundAttrRes == DynamicResourceUtils.getResourceId(
+                    getContext(), android.R.attr.listDividerAlertDialog)
+                    || mBackgroundAttrRes == DynamicResourceUtils.getResourceId(
+                    getContext(), androidx.appcompat.R.attr.listDividerAlertDialog)
+                    || mBackgroundAttrRes == DynamicResourceUtils.getResourceId(
+                    getContext(), android.R.attr.dividerHorizontal)
+                    || mBackgroundAttrRes == DynamicResourceUtils.getResourceId(
+                    getContext(), androidx.appcompat.R.attr.dividerHorizontal)
+                    || mBackgroundAttrRes == DynamicResourceUtils.getResourceId(
+                    getContext(), android.R.attr.dividerVertical)
+                    || mBackgroundAttrRes == DynamicResourceUtils.getResourceId(
+                    getContext(), androidx.appcompat.R.attr.dividerVertical)) {
+                mColorType = Defaults.ADS_COLOR_TYPE_DIVIDER;
+            }
+        }
+
         if (mColorType != Theme.ColorType.NONE
                 && mColorType != Theme.ColorType.CUSTOM) {
             mColor = DynamicTheme.getInstance().resolveColorType(mColorType);
@@ -236,7 +271,63 @@ public class DynamicBackgroundView extends View implements DynamicWidget {
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
-        setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
+        if (mColorType != Theme.ColorType.NONE) {
+            setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
+        } else {
+            setAlpha(Defaults.ADS_ALPHA_ENABLED);
+        }
+    }
+
+    @Override
+    public void setClickable(boolean clickable) {
+        super.setClickable(clickable);
+
+        setColor();
+    }
+
+    @Override
+    public void setOnClickListener(@Nullable OnClickListener l) {
+        super.setOnClickListener(l);
+
+        setColor();
+    }
+
+    @Override
+    public void setLongClickable(boolean longClickable) {
+        super.setLongClickable(longClickable);
+
+        setColor();
+    }
+
+    @Override
+    public void setOnLongClickListener(@Nullable OnLongClickListener l) {
+        super.setOnLongClickListener(l);
+
+        setColor();
+    }
+
+    @Override
+    public boolean isTintBackground() {
+        return mTintBackground;
+    }
+
+    @Override
+    public void setTintBackground(boolean tintBackground) {
+        this.mTintBackground = tintBackground;
+
+        setColor();
+    }
+
+    @Override
+    public boolean isStyleBorderless() {
+        return mStyleBorderless;
+    }
+
+    @Override
+    public void setStyleBorderless(boolean styleBorderless) {
+        this.mStyleBorderless = styleBorderless;
+
+        setColor();
     }
 
     @Override
@@ -246,12 +337,14 @@ public class DynamicBackgroundView extends View implements DynamicWidget {
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
                 mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
             }
-
-            DynamicDrawableUtils.colorizeDrawable(getBackground(), mAppliedColor);
         }
 
-        if (mColorType == Theme.ColorType.NONE && getBackground() != null) {
+        if (getBackground() != null) {
             getBackground().clearColorFilter();
+
+            if (isTintBackground() && mAppliedColor != Theme.Color.UNKNOWN) {
+                DynamicDrawableUtils.colorizeDrawable(getBackground(), mAppliedColor);
+            }
         }
     }
 }

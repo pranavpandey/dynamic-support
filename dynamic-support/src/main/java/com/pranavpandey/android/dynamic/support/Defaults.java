@@ -254,6 +254,11 @@ public class Defaults {
     public static final int ADS_COLOR_TYPE_ICON = ADS_COLOR_TYPE_SCROLLABLE;
 
     /**
+     * Default color type for the divider.
+     */
+    public static final int ADS_COLOR_TYPE_DIVIDER = Theme.ColorType.TINT_BACKGROUND;
+
+    /**
      * Default value to make widgets background aware so that they can change color according
      * to the theme background to provide best visibility.
      * <p>{@code true} to make widgets background aware.

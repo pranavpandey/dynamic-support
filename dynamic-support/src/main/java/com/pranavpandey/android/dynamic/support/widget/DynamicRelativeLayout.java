@@ -311,10 +311,10 @@ public class DynamicRelativeLayout extends RelativeLayout
 
         if (getBackground() != null) {
             getBackground().clearColorFilter();
-        }
 
-        if (isBackgroundAware() && isTintBackground()) {
-            Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
+            if (isTintBackground()) {
+                Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
+            }
         }
     }
 }

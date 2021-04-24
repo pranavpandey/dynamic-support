@@ -298,10 +298,10 @@ public class DynamicImageButton extends AppCompatImageButton
 
         if (getBackground() != null) {
             getBackground().clearColorFilter();
-        }
 
-        if (isBackgroundAware() && isTintBackground()) {
-            Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
+            if (isTintBackground()) {
+                Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
+            }
         }
     }
 }

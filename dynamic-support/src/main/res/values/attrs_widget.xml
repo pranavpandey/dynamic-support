@@ -34,6 +34,8 @@
         <attr name="ads_color" />
         <attr name="ads_contrastWithColor" />
         <attr name="ads_backgroundAware" />
+        <attr name="ads_tintBackground" />
+        <attr name="ads_styleBorderless" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicBottomAppBar. -->
@@ -208,6 +210,28 @@
         <attr name="ads_styleBorderless" />
     </declare-styleable>
 
+    <!-- Attributes for the DynamicLinearLayoutCompat. -->
+    <declare-styleable name="DynamicLinearLayoutCompat">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+        <attr name="ads_tintBackground" />
+        <attr name="ads_styleBorderless" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicForegroundLinearLayout. -->
+    <declare-styleable name="DynamicForegroundLinearLayout">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+        <attr name="ads_tintBackground" />
+        <attr name="ads_styleBorderless" />
+    </declare-styleable>
+
     <!-- Attributes for the DynamicListView. -->
     <declare-styleable name="DynamicListView">
         <attr name="ads_colorType" />
@@ -248,6 +272,17 @@
         <attr name="ads_contrastWithColor" />
         <attr name="ads_backgroundAware" />
         <attr name="ads_windowInsets" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicNavigationMenuItemView. -->
+    <declare-styleable name="DynamicNavigationMenuItemView">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+        <attr name="ads_tintBackground" />
+        <attr name="ads_styleBorderless" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicNestedScrollView. -->

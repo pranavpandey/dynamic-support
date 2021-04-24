@@ -618,6 +618,50 @@ public class Dynamic {
     }
 
     /**
+     * Tint foreground according to the supplied contrast with color.
+     *
+     * @param dynamic The dynamic object to be tinted.
+     * @param contrastWithColor The contrast with color to be considered.
+     * @param borderless {@code true} if the view is borderless.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see DynamicTintUtils#setViewForegroundTint(View, int, boolean)
+     */
+    public static <T> void tintForeground(@Nullable T dynamic,
+            @ColorInt int contrastWithColor, boolean borderless) {
+        if (contrastWithColor == Theme.Color.UNKNOWN) {
+            return;
+        }
+
+        if (dynamic instanceof View && (dynamic instanceof Button
+                || ((View) dynamic).isClickable() || ((View) dynamic).isLongClickable())) {
+            DynamicTintUtils.setViewForegroundTint((View) dynamic,
+                    contrastWithColor, borderless);
+        }
+    }
+
+    /**
+     * Tint foreground according to the supplied contrast with color.
+     *
+     * @param dynamic The dynamic object to be tinted.
+     * @param contrastWithColor The contrast with color to be considered.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see DynamicTintUtils#setViewForegroundTint(View, int, boolean)
+     */
+    public static <T> void tintForeground(@Nullable T dynamic, @ColorInt int contrastWithColor) {
+        if (contrastWithColor == Theme.Color.UNKNOWN) {
+            return;
+        }
+
+        if (dynamic instanceof View && (dynamic instanceof Button
+                || ((View) dynamic).isClickable() || ((View) dynamic).isLongClickable())) {
+            DynamicTintUtils.setViewForegroundTint((View) dynamic,
+                    contrastWithColor, true);
+        }
+    }
+
+    /**
      * Tint scrollable according to the supplied contrast with color.
      *
      * @param dynamic The dynamic object to be tinted.
