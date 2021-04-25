@@ -91,11 +91,5 @@ class SettingsFragment : DynamicViewPager2Fragment() {
         dynamicActivity.setToolbarLayoutFlags(
                 AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
                         or AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS)
-
-        // Select current page from the bundle arguments.
-        if (arguments != null && requireArguments().containsKey(
-                        DynamicViewPagerFragment.ADS_ARGS_VIEW_PAGER_PAGE)) {
-            setPage(requireArguments().getInt(DynamicViewPagerFragment.ADS_ARGS_VIEW_PAGER_PAGE))
-        }
     }
 }

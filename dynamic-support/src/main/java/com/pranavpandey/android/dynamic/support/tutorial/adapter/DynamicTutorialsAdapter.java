@@ -70,8 +70,8 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends Tutorial<T, V
     }
 
     @Override
-    protected void onTintRecyclerView() {
-        // Disable default tinting.
+    protected void onSetupRecyclerView() {
+        tintRecyclerView();
     }
 
     /**

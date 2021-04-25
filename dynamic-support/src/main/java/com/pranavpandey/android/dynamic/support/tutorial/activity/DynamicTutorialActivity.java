@@ -51,7 +51,6 @@ import com.pranavpandey.android.dynamic.support.tutorial.Tutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.adapter.DynamicTutorialsAdapter;
 import com.pranavpandey.android.dynamic.support.utils.DynamicHintUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator2;
 import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -523,15 +522,12 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
         mCoordinatorLayout.setBackgroundColor(color);
         updateTaskDescription(color);
 
-        if (mAdapter.getRecyclerView() != null) {
-            DynamicScrollUtils.setEdgeEffectColor(mAdapter.getRecyclerView(), tintColor);
-        }
-
         Dynamic.setContrastWithColor(findViewById(R.id.ads_bottom_bar_shadow), color);
-
         Dynamic.tint(mActionPrevious, tintColor, color);
         Dynamic.tint(mActionNext, tintColor, color);
         Dynamic.tint(mActionCustom, tintColor, color);
+
+        mAdapter.setContrastWithColor(color);
         mActionCustom.setTextColor(color);
         mPageIndicator.setSelectedColour(tintColor);
         mPageIndicator.setUnselectedColour(DynamicColorUtils.adjustAlpha(

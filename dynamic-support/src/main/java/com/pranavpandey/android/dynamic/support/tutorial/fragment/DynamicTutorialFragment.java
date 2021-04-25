@@ -215,10 +215,10 @@ public class DynamicTutorialFragment extends DynamicFragment
                     ? color : DynamicTheme.getInstance().generateSurfaceColor(color));
         }
 
+        Dynamic.setContrastWithColor(mScrollView, color);
         Dynamic.tint(mTitleView, tintColor, Dynamic.getColor(mCardView, color));
         Dynamic.tint(mSubtitleView, tintColor, Dynamic.getColor(mCardView, color));
         Dynamic.tint(mDescriptionView, tintColor, Dynamic.getColor(mCardView, color));
-        Dynamic.tint(mScrollView, tintColor, Dynamic.getColor(mCardView, color));
     }
 
     @Override

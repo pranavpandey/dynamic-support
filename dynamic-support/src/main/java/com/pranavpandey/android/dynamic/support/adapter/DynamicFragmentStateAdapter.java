@@ -17,6 +17,7 @@
 
 package com.pranavpandey.android.dynamic.support.adapter;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
@@ -41,6 +43,16 @@ public abstract class DynamicFragmentStateAdapter extends FragmentStateAdapter {
      * Recycler view attached to this adapter.
      */
     private RecyclerView mRecyclerView;
+
+    /**
+     * The contrast with color used by this adapter.
+     */
+    private @ColorInt int mContrastWithColor;
+
+    /**
+     * The recycler view on scroll listener used by this adapter.
+     */
+    private RecyclerView.OnScrollListener mOnScrollListener;
 
     public DynamicFragmentStateAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -61,30 +73,62 @@ public abstract class DynamicFragmentStateAdapter extends FragmentStateAdapter {
 
         this.mRecyclerView = recyclerView;
 
-        onTintRecyclerView();
+        setContrastWithColor(Defaults.getContrastWithColor(recyclerView.getContext()));
+        onSetupRecyclerView();
     }
 
     /**
-     * This method will be called to tint the recycler view.
+     * This method will be called to setup the recycler view.
      */
-    protected void onTintRecyclerView() {
-        if (mRecyclerView == null) {
+    protected void onSetupRecyclerView() {
+        if (getRecyclerView() == null || mOnScrollListener != null) {
             return;
         }
 
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        mOnScrollListener = new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
 
-                DynamicScrollUtils.setEdgeEffectColor(recyclerView,
-                        !DynamicTheme.getInstance().get().isBackgroundAware()
-                                ? DynamicTheme.getInstance().get().getPrimaryColor()
-                                : DynamicColorUtils.getContrastColor(
-                                DynamicTheme.getInstance().get().getPrimaryColor(),
-                                DynamicTheme.getInstance().get().getBackgroundColor()));
+                if (newState != RecyclerView.SCROLL_STATE_IDLE) {
+                    return;
+                }
+
+                tintRecyclerView();
             }
-        });
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                tintRecyclerView();
+            }
+        };
+
+        getRecyclerView().addOnScrollListener(mOnScrollListener);
+    }
+
+    /**
+     * Tint the recycler view attached to this adapter.
+     */
+    public void tintRecyclerView() {
+        DynamicScrollUtils.setEdgeEffectColor(getRecyclerView(),
+                DynamicTheme.getInstance().get().isBackgroundAware()
+                        ? DynamicColorUtils.getContrastColor(
+                                DynamicTheme.getInstance().resolveColorType(
+                                        Defaults.ADS_COLOR_TYPE_EDGE_EFFECT),
+                        getContrastWithColor())
+                        : DynamicTheme.getInstance().resolveColorType(
+                                Defaults.ADS_COLOR_TYPE_EDGE_EFFECT));
+
+        DynamicScrollUtils.setScrollBarColor(getRecyclerView(),
+                DynamicTheme.getInstance().get().isBackgroundAware()
+                        ? DynamicColorUtils.getContrastColor(
+                                DynamicTheme.getInstance().resolveColorType(
+                                        Defaults.ADS_COLOR_TYPE_SCROLLABLE),
+                        getContrastWithColor())
+                        : DynamicTheme.getInstance().resolveColorType(
+                                Defaults.ADS_COLOR_TYPE_SCROLLABLE));
     }
 
     /**
@@ -94,5 +138,25 @@ public abstract class DynamicFragmentStateAdapter extends FragmentStateAdapter {
      */
     public @Nullable RecyclerView getRecyclerView() {
         return mRecyclerView;
+    }
+
+    /**
+     * Returns the contrast with color used by this adapter.
+     *
+     * @return The contrast with color used by this adapter.
+     */
+    public @ColorInt int getContrastWithColor() {
+        return mContrastWithColor;
+    }
+
+    /**
+     * Set the contrast with color used by this adapter.
+     *
+     * @param contrastWithColor The contrast with color to be set.
+     */
+    public void setContrastWithColor(@ColorInt int contrastWithColor) {
+        this.mContrastWithColor = contrastWithColor;
+
+        tintRecyclerView();
     }
 }
