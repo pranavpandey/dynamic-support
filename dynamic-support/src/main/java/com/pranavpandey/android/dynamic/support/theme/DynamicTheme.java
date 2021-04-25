@@ -1006,8 +1006,11 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      * @return The generated error color.
      */
     public @ColorInt int generateErrorColor(@ColorInt int primary, @ColorInt int secondary) {
-        return DynamicColorUtils.getAccentColor(Color.argb(Color.alpha(secondary),
-                Color.blue(primary), Color.green(secondary), Color.red(primary)));
+        return DynamicColorUtils.getAccentColor(Color.argb(
+                Math.max(Color.alpha(primary), Color.alpha(secondary)),
+                Math.max(Color.red(primary), Color.red(secondary)),
+                Math.min(Color.green(primary), Color.blue(primary)),
+                Math.min(Color.blue(secondary), Color.green(secondary))));
     }
 
     /**
