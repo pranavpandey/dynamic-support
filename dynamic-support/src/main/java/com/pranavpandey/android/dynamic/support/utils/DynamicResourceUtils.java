@@ -561,7 +561,7 @@ public class DynamicResourceUtils {
                     new int[] { pressed, disabled, normal, pressed, color, color, normal });
         } else {
             return new ColorStateList(
-                    new int[][]{
+                    new int[][] {
                             new int[] { android.R.attr.state_enabled,
                                     android.R.attr.state_focused },
                             new int[] { -android.R.attr.state_enabled,

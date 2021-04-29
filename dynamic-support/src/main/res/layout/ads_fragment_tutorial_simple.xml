@@ -49,7 +49,7 @@
                     style="@style/TextAppearance.DynamicApp.Headline5.Tutorial"
                     android:id="@+id/ads_tutorial_simple_title"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"/>
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                     style="@style/TextAppearance.DynamicApp.Subtitle1.Tutorial"

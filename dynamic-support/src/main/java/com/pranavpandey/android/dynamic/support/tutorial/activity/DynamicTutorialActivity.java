@@ -170,26 +170,32 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
 
                 final @ColorInt int color;
+                final @ColorInt int tintColor;
                 if (position < (getTutorialsCount() - 1)) {
                     color = (Integer) mArgbEvaluator.evaluate(positionOffset,
-                            Dynamic.getBackgroundColor(
-                                    getTutorial(position), getBackgroundColor()),
-                            Dynamic.getBackgroundColor(
-                                    getTutorial(position + 1), getBackgroundColor()));
+                            Dynamic.getColor(getTutorial(position), getBackgroundColor()),
+                            Dynamic.getColor(getTutorial(position + 1),
+                                    getBackgroundColor()));
+                    tintColor = (Integer) mArgbEvaluator.evaluate(positionOffset,
+                            Dynamic.getTintColor(getTutorial(position), getTintColor()),
+                            Dynamic.getTintColor(getTutorial(position + 1),
+                                    getTintColor()));
                 } else {
-                    color = Dynamic.getBackgroundColor(getTutorial(
+                    color = Dynamic.getColor(getTutorial(
                             getTutorialsCount() - 1), getBackgroundColor());
+                    tintColor = Dynamic.getTintColor(getTutorial(
+                            getTutorialsCount() - 1), getTintColor());
                 }
 
-                onSetColor(position, color);
+                onSetColor(position, color, tintColor);
                 Dynamic.onPageScrolled(getTutorial(position), position,
                         positionOffset, positionOffsetPixels);
                 Dynamic.onSetPadding(getTutorial(position), 0, 0, 0, mFooterHeight);
                 Dynamic.onSetPadding(getTutorial(Math.min(getTutorialsCount() - 1, position + 1)),
                         0, 0, 0, mFooterHeight);
-                Dynamic.onBackgroundColorChanged(getTutorial(position), color);
-                Dynamic.onBackgroundColorChanged(getTutorial(
-                        Math.min(getTutorialsCount() - 1, position + 1)), color);
+                Dynamic.onColorChanged(getTutorial(position), color, tintColor);
+                Dynamic.onColorChanged(getTutorial(Math.min(
+                        getTutorialsCount() - 1, position + 1)), color, tintColor);
             }
 
             @Override
@@ -198,14 +204,15 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
 
                 setFooter(true);
 
-                onSetColor(position, Dynamic.getBackgroundColor(
-                        getTutorial(position), getBackgroundColor()));
+                onSetColor(position, Dynamic.getColor(
+                        getTutorial(position), getBackgroundColor()),
+                        Dynamic.getTintColor(getTutorial(position), getTintColor()));
                 Dynamic.onPageSelected(getTutorial(position), position);
                 Dynamic.onSetPadding(getTutorial(position),
                         0, 0, 0, mFooterHeight);
-                Dynamic.onBackgroundColorChanged(getTutorial(position),
-                        Dynamic.getBackgroundColor(getTutorial(position),
-                                getBackgroundColor()));
+                Dynamic.onColorChanged(getTutorial(position),
+                        Dynamic.getColor(getTutorial(position), getBackgroundColor()),
+                        Dynamic.getTintColor(getTutorial(position), getTintColor()));
 
                 onUpdate(position);
             }
@@ -218,11 +225,16 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
                     @Override
                     public void run() {
                         if (state == ViewPager2.SCROLL_STATE_IDLE) {
-                            onSetColor(getCurrentPosition(), Dynamic.getBackgroundColor(
-                                    getTutorial(getCurrentPosition()), getBackgroundColor()));
-                            Dynamic.onBackgroundColorChanged(getTutorial(getCurrentPosition()),
-                                    Dynamic.getBackgroundColor(getTutorial(getCurrentPosition()),
-                                            getBackgroundColor()));
+                            onSetColor(getCurrentPosition(),
+                                    Dynamic.getColor(getTutorial(getCurrentPosition()),
+                                            getBackgroundColor()),
+                                    Dynamic.getTintColor(getTutorial(getCurrentPosition()),
+                                            getTintColor()));
+                            Dynamic.onColorChanged(getTutorial(getCurrentPosition()),
+                                    Dynamic.getColor(getTutorial(getCurrentPosition()),
+                                            getBackgroundColor()),
+                                    Dynamic.getTintColor(getTutorial(getCurrentPosition()),
+                                            getTintColor()));
                         }
 
                         Dynamic.onPageScrollStateChanged(getTutorial(getCurrentPosition()), state);
@@ -278,6 +290,15 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
     @Override
     public @ColorInt int getBackgroundColor() {
         return DynamicTheme.getInstance().get().getPrimaryColor();
+    }
+
+    /**
+     * Returns the tint color used by this activity.
+     *
+     * @return The tint color used by this activity.
+     */
+    public @ColorInt int getTintColor() {
+        return DynamicTheme.getInstance().get().getTintPrimaryColor();
     }
 
     @Override
@@ -496,11 +517,11 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
      * Update activity background and system UI according to the supplied color.
      *
      * @param position The current position of the tutorial.
-     * @param color The activity color to be applied.
+     * @param color The background color to be applied.
+     * @param tintColor The tint color to be applied.
      */
-    protected void onSetColor(int position, @ColorInt int color) {
+    protected void onSetColor(int position, @ColorInt int color, @ColorInt int tintColor) {
         @ColorInt int systemUIColor = color;
-        @ColorInt int tintColor = DynamicColorUtils.getTintColor(color);
 
         if (mDynamicWindowResolver != null) {
             systemUIColor = mDynamicWindowResolver.getSystemUIColor(color);
@@ -529,9 +550,10 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
 
         mAdapter.setContrastWithColor(color);
         mActionCustom.setTextColor(color);
-        mPageIndicator.setSelectedColour(tintColor);
+        mPageIndicator.setSelectedColour(DynamicTheme.getInstance().get().isBackgroundAware()
+                ? DynamicColorUtils.getContrastColor(tintColor, color) : tintColor);
         mPageIndicator.setUnselectedColour(DynamicColorUtils.adjustAlpha(
-                tintColor, Defaults.ADS_ALPHA_UNCHECKED));
+                mPageIndicator.getSelectedColour(), Defaults.ADS_ALPHA_UNCHECKED));
 
         if (hasTutorialPrevious()) {
             Dynamic.setVisibility(mActionPrevious, View.VISIBLE);
@@ -551,9 +573,11 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
             Dynamic.setContentDescription(mActionNext, getString(R.string.ads_finish));
         }
 
-        DynamicTooltip.set(mActionPrevious, tintColor, color,
+        DynamicTooltip.set(mActionPrevious, Dynamic.getColor(mActionPrevious, tintColor),
+                Dynamic.getContrastWithColor(mActionPrevious, color),
                 mActionPrevious.getContentDescription());
-        DynamicTooltip.set(mActionNext, tintColor, color,
+        DynamicTooltip.set(mActionNext, Dynamic.getColor(mActionNext, tintColor),
+                Dynamic.getContrastWithColor(mActionNext, color),
                 mActionNext.getContentDescription());
     }
 
@@ -728,8 +752,8 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
         final Tutorial<T, V> tutorial = getTutorial(getCurrentPosition());
         if (getCoordinatorLayout() != null && tutorial != null) {
             return DynamicHintUtils.getSnackbar(getCoordinatorLayout(), text,
-                    DynamicColorUtils.getTintColor(tutorial.getBackgroundColor()),
-                    tutorial.getBackgroundColor(), duration, false);
+                    DynamicColorUtils.getTintColor(tutorial.getColor()),
+                    tutorial.getColor(), duration, false);
         } else {
             return DynamicHintUtils.getSnackbar(getContentView(), text, duration);
         }

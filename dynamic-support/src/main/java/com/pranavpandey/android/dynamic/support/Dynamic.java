@@ -1416,7 +1416,7 @@ public class Dynamic {
     }
 
     /**
-     * Call {@link Tutorial#getBackgroundColor()} method for the {@link Tutorial}.
+     * Call {@link Tutorial#getColor()} method for the {@link Tutorial}.
      *
      * @param tutorial The dynamic tutorial to be used.
      * @param defaultColor The default color for the background.
@@ -1425,28 +1425,48 @@ public class Dynamic {
      *
      * @return The background color for the supplied tutorial.
      */
-    public static @ColorInt <T, V> int getBackgroundColor(@Nullable Tutorial<T, V> tutorial,
+    public static @ColorInt <T, V> int getColor(@Nullable Tutorial<T, V> tutorial,
             @ColorInt int defaultColor) {
         if (tutorial != null) {
-            return tutorial.getBackgroundColor();
+            return tutorial.getColor();
         }
 
         return defaultColor;
     }
 
     /**
-     * Call {@link Tutorial#onBackgroundColorChanged(int)} method for the
+     * Call {@link Tutorial#getTintColor()} method for the {@link Tutorial}.
+     *
+     * @param tutorial The dynamic tutorial to be used.
+     * @param defaultColor The default tint color.
+     * @param <T> The type of the tutorial.
+     * @param <V> The type of the tutorial fragment.
+     *
+     * @return The tint color for the supplied tutorial.
+     */
+    public static @ColorInt <T, V> int getTintColor(@Nullable Tutorial<T, V> tutorial,
+            @ColorInt int defaultColor) {
+        if (tutorial != null) {
+            return tutorial.getTintColor();
+        }
+
+        return defaultColor;
+    }
+
+    /**
+     * Call {@link Tutorial#onColorChanged(int, int)} method for the
      * {@link Tutorial}.
      *
      * @param tutorial The dynamic tutorial to be used.
      * @param color The color of the background.
+     * @param tint The tint color used by the tutorial.
      * @param <T> The type of the tutorial.
      * @param <V> The type of the tutorial fragment.
      */
-    public static <T, V> void onBackgroundColorChanged(@Nullable Tutorial<T, V> tutorial,
-            @ColorInt int color) {
+    public static <T, V> void onColorChanged(@Nullable Tutorial<T, V> tutorial,
+            @ColorInt int color, @ColorInt int tint) {
         if (tutorial != null) {
-            tutorial.onBackgroundColorChanged(color);
+            tutorial.onColorChanged(color, tint);
         }
     }
 

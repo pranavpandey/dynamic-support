@@ -65,6 +65,13 @@ public interface Tutorial<T, V> extends ViewPager.OnPageChangeListener {
     String ADS_NAME_TUTORIAL_SUBTITLE = ADS_NAME_TUTORIAL + ":subtitle";
 
     /**
+     * Returns the id for this tutorial.
+     *
+     * @return The id of this tutorial.
+     */
+    int getTutorialId();
+
+    /**
      * Returns the tutorial object.
      *
      * @return The tutorial object.
@@ -79,26 +86,27 @@ public interface Tutorial<T, V> extends ViewPager.OnPageChangeListener {
     @NonNull V createTutorial();
 
     /**
-     * Returns the id for this tutorial.
+     * Returns the color used by this tutorial.
      *
-     * @return The id of this tutorial.
+     * @return The color used by this tutorial.
      */
-    int getTutorialId();
+    @ColorInt int getColor();
 
     /**
-     * Returns the background color for this tutorial.
+     * Returns the tint color used by this tutorial.
      *
-     * @return The background color used by this tutorial.
+     * @return The tint color used by this tutorial.
      */
-    @ColorInt int getBackgroundColor();
+    @ColorInt int getTintColor();
 
     /**
-     * This method will be called when there is a change in the background color of the activity.
+     * This method will be called when there is a change in the colors of the activity.
      * <p>Implement this method to update any views during the transition.
      *
-     * @param color The color of the background.
+     * @param color The color used by the tutorial.
+     * @param tintColor The tint color used by this tutorial.
      */
-    void onBackgroundColorChanged(@ColorInt int color);
+    void onColorChanged(@ColorInt int color, @ColorInt int tintColor);
 
     /**
      * This method will be called on setting the padding of the tutorial.

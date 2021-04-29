@@ -25,10 +25,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.tutorial.fragment.DynamicTutorialFragment;
+import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * A {@link Tutorial} item to display a title, subtitle and description along with an image
- * which can be tinted according to the background color.
+ * which can be tinted according to the tutorial colors.
  */
 public class DynamicTutorial implements Parcelable,
         Tutorial.SharedElement<DynamicTutorial, DynamicTutorialFragment> {
@@ -39,9 +40,14 @@ public class DynamicTutorial implements Parcelable,
     private @ColorInt int id;
 
     /**
-     * Background color used by this tutorial.
+     * Color used by this tutorial.
      */
-    private @ColorInt int backgroundColor;
+    private @ColorInt int color;
+
+    /**
+     * Tint color used by this tutorial.
+     */
+    private @ColorInt int tintColor;
 
     /**
      * Title used by this tutorial.
@@ -64,7 +70,7 @@ public class DynamicTutorial implements Parcelable,
     private @DrawableRes int imageRes;
 
     /**
-     * {@code true} to tint the image according to the background color.
+     * {@code true} to tint the image according to the tint color.
      */
     private boolean tintImage;
 
@@ -82,66 +88,73 @@ public class DynamicTutorial implements Parcelable,
      * Constructor to initialize an object of this class.
      *
      * @param id The id to uniquely identify this tutorial.
-     * @param backgroundColor The background color for this tutorial.
+     * @param color The color for this tutorial.
+     * @param tintColor The tint color for this tutorial.
      * @param title The title for this tutorial.
      * @param description The description for this tutorial.
      * @param imageRes The image resource for this tutorial.
      */
-    public DynamicTutorial(int id, @ColorInt int backgroundColor,
+    public DynamicTutorial(int id, @ColorInt int color, @ColorInt int tintColor,
             @Nullable String title, @Nullable String description, @DrawableRes int imageRes) {
-        this(id, backgroundColor, title, null, description, imageRes);
+        this(id, color, tintColor, title, null, description, imageRes);
     }
 
     /**
      * Constructor to initialize an object of this class.
      *
      * @param id The id to uniquely identify this tutorial.
-     * @param backgroundColor The background color for this tutorial.
+     * @param color The color for this tutorial.
+     * @param tintColor The tint color for this tutorial.
      * @param title The title for this tutorial.
      * @param subtitle The subtitle for this tutorial.
      * @param description The description for this tutorial.
      * @param imageRes The image resource for this tutorial.
      */
-    public DynamicTutorial(int id, @ColorInt int backgroundColor,
-            @Nullable String title, @Nullable String subtitle,
+    public DynamicTutorial(int id, @ColorInt int color,
+            @ColorInt int tintColor, @Nullable String title, @Nullable String subtitle,
             @Nullable String description, @DrawableRes int imageRes) {
-        this(id, backgroundColor, title, subtitle, description, imageRes, false);
+        this(id, color, tintColor, title, subtitle, description,
+                imageRes, false);
     }
 
     /**
      * Constructor to initialize an object of this class.
      *
      * @param id The id to uniquely identify this tutorial.
-     * @param backgroundColor The background color for this tutorial.
+     * @param color The color for this tutorial.
+     * @param tintColor The tint color for this tutorial.
      * @param title The title for this tutorial.
      * @param subtitle The subtitle for this tutorial.
      * @param description The description for this tutorial.
      * @param imageRes The image resource for this tutorial.
-     * @param tintImage {@code true} to tint the image according to the background color.
+     * @param tintImage {@code true} to tint the image according to the tint color.
      */
-    public DynamicTutorial(int id, @ColorInt int backgroundColor,
+    public DynamicTutorial(int id, @ColorInt int color, @ColorInt int tintColor,
             @Nullable String title, @Nullable String subtitle, @Nullable String description,
             @DrawableRes int imageRes, boolean tintImage) {
-        this(id, backgroundColor, title, subtitle, description, imageRes, tintImage, false);
+        this(id, color, tintColor, title, subtitle, description,
+                imageRes, tintImage, false);
     }
 
     /**
      * Constructor to initialize an object of this class.
      *
      * @param id The id to uniquely identify this tutorial.
-     * @param backgroundColor The background color for this tutorial.
+     * @param color The color for this tutorial.
+     * @param tintColor The tint color for this tutorial.
      * @param title The title for this tutorial.
      * @param subtitle The subtitle for this tutorial.
      * @param description The description for this tutorial.
      * @param imageRes The image resource for this tutorial.
-     * @param tintImage {@code true} to tint the image according to the background color.
+     * @param tintImage {@code true} to tint the image according to the tint color.
      * @param sharedElement {@code true} to set the shared element.
      */
-    public DynamicTutorial(int id, @ColorInt int backgroundColor,
+    public DynamicTutorial(int id, @ColorInt int color, @ColorInt int tintColor,
             @Nullable String title, @Nullable String subtitle, @Nullable String description,
             @DrawableRes int imageRes, boolean tintImage, boolean sharedElement) {
         this.id = id;
-        this.backgroundColor = backgroundColor;
+        this.color = color;
+        this.tintColor = tintColor;
         this.title = title;
         this.subtitle = subtitle;
         this.description = description;
@@ -173,7 +186,8 @@ public class DynamicTutorial implements Parcelable,
      */
     public DynamicTutorial(Parcel in) {
         this.id = in.readInt();
-        this.backgroundColor = in.readInt();
+        this.color = in.readInt();
+        this.tintColor = in.readInt();
         this.title = in.readString();
         this.subtitle = in.readString();
         this.description = in.readString();
@@ -190,7 +204,8 @@ public class DynamicTutorial implements Parcelable,
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
-        dest.writeInt(backgroundColor);
+        dest.writeInt(color);
+        dest.writeInt(tintColor);
         dest.writeString(title);
         dest.writeString(subtitle);
         dest.writeString(description);
@@ -199,13 +214,71 @@ public class DynamicTutorial implements Parcelable,
         dest.writeByte((byte) (sharedElement ? 1 : 0));
     }
 
-    /**
-     * Returns the id to uniquely identify this tutorial.
-     *
-     * @return The id to uniquely identify this tutorial.
-     */
-    public int getId() {
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        if (mFragment != null) {
+            mFragment.onPageScrolled(position, positionOffset, positionOffsetPixels);
+        }
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        if (mFragment != null) {
+            mFragment.onPageSelected(position);
+        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        if (mFragment != null) {
+            mFragment.onPageScrollStateChanged(state);
+        }
+    }
+
+    @Override
+    public int getTutorialId() {
         return id;
+    }
+
+    @Override
+    public @NonNull DynamicTutorial getTutorial() {
+        return this;
+    }
+
+    @Override
+    public @NonNull DynamicTutorialFragment createTutorial() {
+        setTutorialFragment(DynamicTutorialFragment.newInstance(this));
+
+        return mFragment;
+    }
+
+    @Override
+    public @ColorInt int getColor() {
+        return color;
+    }
+
+    @Override
+    public @ColorInt int getTintColor() {
+        return tintColor;
+    }
+
+    @Override
+    public void onColorChanged(@ColorInt int color, @ColorInt int tintColor) {
+        if (mFragment != null) {
+            mFragment.onColorChanged(color, tintColor);
+        }
+    }
+
+    @Override
+    public void onSetPadding(int left, int top, int right, int bottom) {
+        if (mFragment != null) {
+            mFragment.onSetPadding(left, top, right, bottom);
+        }
+    }
+
+    @Override
+    public boolean isSharedElement() {
+        return sharedElement;
     }
 
     /**
@@ -216,34 +289,39 @@ public class DynamicTutorial implements Parcelable,
      * @return The {@link DynamicTutorial} object to allow for chaining of calls to
      *         set methods.
      */
-    public @NonNull DynamicTutorial setId(int id) {
+    public @NonNull DynamicTutorial setTutorialId(int id) {
         this.id = id;
 
         return this;
     }
 
     /**
-     * Get the background color used by this tutorial.
+     * Set the colors used by this tutorial.
      *
-     * @return The background color used by this tutorial.
-     */
-    @Override
-    public @ColorInt int getBackgroundColor() {
-        return backgroundColor;
-    }
-
-    /**
-     * Set the background color used by this tutorial.
-     *
-     * @param backgroundColor The background color to be set.
+     * @param color The tutorial color to be set.
+     * @param tintColor The tint color to be set.
      *
      * @return The {@link DynamicTutorial} object to allow for chaining of calls to
      *         set methods.
      */
-    public @NonNull DynamicTutorial setBackgroundColor(@ColorInt int backgroundColor) {
-        this.backgroundColor = backgroundColor;
+    public @NonNull DynamicTutorial setColor(@ColorInt int color, @ColorInt int tintColor) {
+        this.color = color;
+        this.tintColor = tintColor;
 
-        onBackgroundColorChanged(backgroundColor);
+        onColorChanged(color, tintColor);
+        return this;
+    }
+
+    /**
+     * Set the color used by this tutorial.
+     *
+     * @param color The color to be set.
+     *
+     * @return The {@link DynamicTutorial} object to allow for chaining of calls to
+     *         set methods.
+     */
+    public @NonNull DynamicTutorial setColor(@ColorInt int color) {
+        setColor(color, DynamicColorUtils.getTintColor(getTintColor()));
         return this;
     }
 
@@ -340,9 +418,9 @@ public class DynamicTutorial implements Parcelable,
     }
 
     /**
-     * Returns whether to tint the image according to the background color.
+     * Returns whether to tint the image according to the tint color.
      *
-     * @return {@code true} to tint the image according to the background color.
+     * @return {@code true} to tint the image according to the tint color.
      */
     public boolean isTintImage() {
         return tintImage;
@@ -362,11 +440,6 @@ public class DynamicTutorial implements Parcelable,
         return this;
     }
 
-    @Override
-    public boolean isSharedElement() {
-        return sharedElement;
-    }
-
     /**
      * Set whether to set the shared element.
      *
@@ -381,63 +454,11 @@ public class DynamicTutorial implements Parcelable,
         return this;
     }
 
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        if (mFragment != null) {
-            mFragment.onPageScrolled(position, positionOffset, positionOffsetPixels);
-        }
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        if (mFragment != null) {
-            mFragment.onPageSelected(position);
-        }
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-        if (mFragment != null) {
-            mFragment.onPageScrollStateChanged(state);
-        }
-    }
-
-    @Override
-    public @NonNull DynamicTutorial getTutorial() {
-        return this;
-    }
-
-    @Override
-    public @NonNull DynamicTutorialFragment createTutorial() {
-        setTutorialFragment(DynamicTutorialFragment.newInstance(this));
-
-        return mFragment;
-    }
-
     public @Nullable DynamicTutorialFragment getTutorialFragment() {
         return mFragment;
     }
 
     public void setTutorialFragment(@Nullable DynamicTutorialFragment fragment) {
         this.mFragment = fragment;
-    }
-
-    @Override
-    public int getTutorialId() {
-        return getId();
-    }
-
-    @Override
-    public void onBackgroundColorChanged(int color) {
-        if (mFragment != null) {
-            mFragment.onBackgroundColorChanged(color);
-        }
-    }
-
-    @Override
-    public void onSetPadding(int left, int top, int right, int bottom) {
-        if (mFragment != null) {
-            mFragment.onSetPadding(left, top, right, bottom);
-        }
     }
 }

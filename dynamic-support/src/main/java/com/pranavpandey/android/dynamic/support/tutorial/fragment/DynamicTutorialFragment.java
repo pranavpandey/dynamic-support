@@ -39,6 +39,7 @@ import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.Tutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutorialActivity;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
@@ -171,7 +172,7 @@ public class DynamicTutorialFragment extends DynamicFragment
             Dynamic.set(mDescriptionView, mDynamicTutorial.getDescription());
         }
 
-        tintWidgets(getBackgroundColor());
+        tintWidgets(getColor(), getTintColor());
     }
 
     @Override
@@ -192,15 +193,16 @@ public class DynamicTutorialFragment extends DynamicFragment
     }
 
     /**
-     * Tint the widgets according to the supplied background color.
+     * Tint the widgets according to the supplied colors.
      *
-     * @param color The color to generate the tint.
+     * @param color The color to be applied.
+     * @param tintColor The tint color to be applied.
      */
-    private void tintWidgets(@ColorInt int color) {
-        final @ColorInt int tintColor = DynamicColorUtils.getTintColor(color);
-
+    private void tintWidgets(@ColorInt int color, @ColorInt int tintColor) {
         if (mDynamicTutorial != null && mDynamicTutorial.isTintImage()) {
             Dynamic.tint(mImageView, tintColor, color);
+        } else {
+            Dynamic.setColorType(mImageView, Theme.ColorType.NONE);
         }
 
         Dynamic.setContrastWithColor(mCardView, color);
@@ -209,16 +211,15 @@ public class DynamicTutorialFragment extends DynamicFragment
         if (Dynamic.isStrokeRequired()) {
             Dynamic.setColor(mCardView, DynamicColorUtils.setAlpha(color,
                     Color.alpha(DynamicTheme.getInstance().get().getSurfaceColor())));
-            Dynamic.setStrokeColor(mCardView, DynamicColorUtils.getTintColor(color));
         } else {
             Dynamic.setColor(mCardView, DynamicTheme.getInstance().get().isBackgroundSurface()
                     ? color : DynamicTheme.getInstance().generateSurfaceColor(color));
         }
 
         Dynamic.setContrastWithColor(mScrollView, color);
-        Dynamic.tint(mTitleView, tintColor, Dynamic.getColor(mCardView, color));
-        Dynamic.tint(mSubtitleView, tintColor, Dynamic.getColor(mCardView, color));
-        Dynamic.tint(mDescriptionView, tintColor, Dynamic.getColor(mCardView, color));
+        Dynamic.setContrastWithColor(mTitleView, Dynamic.getColor(mCardView, color));
+        Dynamic.setContrastWithColor(mSubtitleView, Dynamic.getColor(mCardView, color));
+        Dynamic.setContrastWithColor(mDescriptionView, Dynamic.getColor(mCardView, color));
     }
 
     @Override
@@ -226,11 +227,16 @@ public class DynamicTutorialFragment extends DynamicFragment
 
     @Override
     public void onPageSelected(int position) {
-        onBackgroundColorChanged(getBackgroundColor());
+        onColorChanged(getColor(), getTintColor());
     }
 
     @Override
     public void onPageScrollStateChanged(int state) { }
+
+    @Override
+    public int getTutorialId() {
+        return mDynamicTutorial.getTutorialId();
+    }
 
     @Override
     public @NonNull DynamicTutorial getTutorial() {
@@ -243,19 +249,20 @@ public class DynamicTutorialFragment extends DynamicFragment
     }
 
     @Override
-    public int getTutorialId() {
-        return mDynamicTutorial.getId();
-    }
-
-    @Override
-    public int getBackgroundColor() {
-        return mDynamicTutorial != null ? mDynamicTutorial.getBackgroundColor()
+    public @ColorInt int getColor() {
+        return mDynamicTutorial != null ? mDynamicTutorial.getColor()
                 : DynamicTheme.getInstance().get().getPrimaryColor();
     }
 
     @Override
-    public void onBackgroundColorChanged(int color) {
-        tintWidgets(color);
+    public @ColorInt int getTintColor() {
+        return mDynamicTutorial != null ? mDynamicTutorial.getTintColor()
+                : DynamicTheme.getInstance().get().getTintPrimaryColor();
+    }
+
+    @Override
+    public void onColorChanged(@ColorInt int color, @ColorInt int tintColor) {
+        tintWidgets(color, tintColor);
     }
 
     @Override

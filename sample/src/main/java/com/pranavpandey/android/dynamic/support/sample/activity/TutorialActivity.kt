@@ -107,6 +107,7 @@ class TutorialActivity :
         // TODO: Add a simple dynamic tutorial.
         tutorials.add(DynamicTutorial(TUTORIAL_WELCOME,
                 DynamicTheme.getInstance().get().primaryColor,
+                DynamicTheme.getInstance().get().tintPrimaryColor,
                 getString(R.string.tutorial_welcome),
                 getString(R.string.tutorial_welcome_subtitle),
                 getString(R.string.tutorial_welcome_desc),
@@ -115,6 +116,7 @@ class TutorialActivity :
         // TODO: Add another simple dynamic tutorial.
         tutorials.add(DynamicTutorial(TUTORIAL_FINISH,
                 DynamicTheme.getInstance().get().accentColor,
+                DynamicTheme.getInstance().get().tintAccentColor,
                 getString(R.string.tutorial_finish),
                 getString(R.string.tutorial_finish_subtitle),
                 getString(R.string.tutorial_finish_desc),

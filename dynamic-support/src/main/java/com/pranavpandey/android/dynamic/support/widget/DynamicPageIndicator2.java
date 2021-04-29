@@ -233,10 +233,18 @@ public class DynamicPageIndicator2 extends View implements View.OnAttachStateCha
         setCurrentPageImmediate();
     }
 
+    public int getUnselectedColour() {
+        return unselectedColour;
+    }
+
     public void setUnselectedColour(int unselectedColour) {
         this.unselectedColour = unselectedColour;
         unselectedPaint.setColor(unselectedColour);
         invalidate();
+    }
+
+    public int getSelectedColour() {
+        return selectedColour;
     }
 
     public void setSelectedColour(int selectedColour) {

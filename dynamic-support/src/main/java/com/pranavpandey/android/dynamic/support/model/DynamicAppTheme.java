@@ -506,7 +506,7 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
 
     @Override
     public @ColorInt int getStrokeColor() {
-        return DynamicTheme.getInstance().generateStrokeColor(getBackgroundColor());
+        return getTintBackgroundColor();
     }
 
     @Override

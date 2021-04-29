@@ -222,7 +222,6 @@ public class DynamicMenuPopup extends DynamicPopup {
                 onItemClickListener, Type.LIST);
     }
 
-
     /**
      * Constructor to initialize an object of this class.
      *

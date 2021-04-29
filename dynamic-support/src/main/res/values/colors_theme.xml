@@ -32,8 +32,8 @@
     <!-- White theme -->
     <color name="ads_color_white">#F5F5F5</color>
     <color name="ads_color_white_dark">#D3D3D3</color>
-    <color name="ads_color_white_text">#B3FFFFFF</color>
-    <color name="ads_color_white_text_dark">#B3FFFFFF</color>
+    <color name="ads_color_white_text">#8AFFFFFF</color>
+    <color name="ads_color_white_text_dark">#DEFFFFFF</color>
     <color name="ads_window_background_white">#FFFFFF</color>
     <color name="ads_window_background_white_surface">#FFFFFF</color>
     <color name="ads_window_background_white_light">#EAEAEA</color>

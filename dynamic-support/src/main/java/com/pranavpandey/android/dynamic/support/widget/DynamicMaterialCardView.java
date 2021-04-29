@@ -325,7 +325,7 @@ public class DynamicMaterialCardView extends MaterialCardView implements Dynamic
     public void setSurface() {
         setStrokeColor(Color.TRANSPARENT);
 
-        @ColorInt int strokeColor = DynamicTheme.getInstance().get().getTintBackgroundColor();
+        @ColorInt int strokeColor = DynamicTheme.getInstance().get().getStrokeColor();
         if (DynamicTheme.getInstance().get().isBackgroundAware()
                 && mContrastWithColor != Theme.Color.UNKNOWN) {
             strokeColor = DynamicColorUtils.getContrastColor(strokeColor, mContrastWithColor);

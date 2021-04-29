@@ -76,7 +76,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/ads_margin_medium"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:ads_colorType="primary" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator2
                         android:id="@+id/ads_tutorial_page_indicator"
