@@ -47,6 +47,7 @@
 
     <!-- Labels -->
     <string name="ads_warning">Uyarı</string>
+    <string name="ads_error">Bir hata oluştu.</string>
     <string name="ads_i_got_it">Tamam, Anladım</string>
     <string name="ads_not_now">Şimdi değil</string>
     <string name="ads_yes_in">Evet, İlgiliyim</string>

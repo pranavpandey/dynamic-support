@@ -47,6 +47,7 @@
 
     <!-- Labels -->
     <string name="ads_warning">Warnung</string>
+    <string name="ads_error">Ein Fehler ist aufgetreten.</string>
     <string name="ads_i_got_it">OK, verstanden</string>
     <string name="ads_not_now">Nicht jetzt</string>
     <string name="ads_yes_in">Ja, bin dabei</string>

@@ -47,6 +47,7 @@
 
     <!-- Labels -->
     <string name="ads_warning">警告</string>
+    <string name="ads_error">发生了错误。</string>
     <string name="ads_i_got_it">好的，我知道了</string>
     <string name="ads_not_now">不是现在</string>
     <string name="ads_yes_in">是的，我在</string>

@@ -47,6 +47,7 @@
 
     <!-- Labels -->
     <string name="ads_warning">Peringatan</string>
+    <string name="ads_error">Sebuah kesalahan telah terjadi.</string>
     <string name="ads_i_got_it">Oke, saya paham</string>
     <string name="ads_not_now">Lain kali</string>
     <string name="ads_yes_in">Ya, saya mau</string>

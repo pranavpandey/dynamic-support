@@ -47,6 +47,7 @@
 
     <!-- Labels -->
     <string name="ads_warning">चेतावनी</string>
+    <string name="ads_error">एक त्रुटि हुई है।</string>
     <string name="ads_i_got_it">समझ लिया</string>
     <string name="ads_not_now">अभी नहीं</string>
     <string name="ads_yes_in">हां, में तैयार हूं</string>
