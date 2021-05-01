@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.widget;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -295,6 +296,7 @@ public class DynamicCheckedTextView extends
         setColor();
     }
 
+    @SuppressLint("UseCompatTextViewDrawableApis")
     @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void setColor() {

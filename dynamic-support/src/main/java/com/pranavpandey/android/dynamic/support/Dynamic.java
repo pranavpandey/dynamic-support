@@ -562,6 +562,30 @@ public class Dynamic {
     }
 
     /**
+     * Tint background according to the supplied colors.
+     *
+     * @param dynamic The dynamic object to be tinted.
+     * @param contrastWithColor The contrast with color to be considered.
+     * @param color The tint color to be applied.
+     * @param borderless {@code true} if the view is borderless.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see DynamicTintUtils#setViewBackgroundTint(View, int, boolean)
+     */
+    public static <T> void tintBackground(@Nullable T dynamic,
+            @ColorInt int contrastWithColor, @ColorInt int color, boolean borderless) {
+        if (contrastWithColor == Theme.Color.UNKNOWN) {
+            return;
+        }
+
+        if (dynamic instanceof View && (dynamic instanceof Button
+                || ((View) dynamic).isClickable() || ((View) dynamic).isLongClickable())) {
+            DynamicTintUtils.setViewBackgroundTint((View) dynamic,
+                    contrastWithColor, color, borderless, false);
+        }
+    }
+
+    /**
      * Tint background according to the supplied contrast with color.
      *
      * @param dynamic The dynamic object to be tinted.
@@ -615,6 +639,30 @@ public class Dynamic {
      */
     public static <T> void tintBackground(@Nullable T dynamic) {
         tintBackground(dynamic, DynamicTheme.getInstance().getDefaultContrastWith());
+    }
+
+    /**
+     * Tint foreground according to the supplied colors.
+     *
+     * @param dynamic The dynamic object to be tinted.
+     * @param contrastWithColor The contrast with color to be considered.
+     * @param color The tint color to be applied.
+     * @param borderless {@code true} if the view is borderless.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see DynamicTintUtils#setViewForegroundTint(View, int, boolean)
+     */
+    public static <T> void tintForeground(@Nullable T dynamic,
+            @ColorInt int contrastWithColor, @ColorInt int color, boolean borderless) {
+        if (contrastWithColor == Theme.Color.UNKNOWN) {
+            return;
+        }
+
+        if (dynamic instanceof View && (dynamic instanceof Button
+                || ((View) dynamic).isClickable() || ((View) dynamic).isLongClickable())) {
+            DynamicTintUtils.setViewForegroundTint((View) dynamic,
+                    contrastWithColor, color, borderless, false);
+        }
     }
 
     /**

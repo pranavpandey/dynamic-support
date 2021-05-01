@@ -31,7 +31,6 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicCornerWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
@@ -290,11 +289,14 @@ public class DynamicButton extends MaterialButton implements DynamicWidget,
                         isStyleBorderless() ? mContrastWithColor : mAppliedColor);
             }
 
-            // Reversing the order to compensate background aware while applying the tint.
-            DynamicTintUtils.setViewBackgroundTint(this,
-                    isStyleBorderless() ? mAppliedColor : mContrastWithColor,
-                    isStyleBorderless() ? DynamicColorUtils.getTintColor(mAppliedColor)
-                            : mAppliedColor, isStyleBorderless(), false);
+            if (getBackground() != null) {
+                getBackground().clearColorFilter();
+
+                if (isTintBackground()) {
+                    Dynamic.tintBackground(this, mContrastWithColor,
+                            mAppliedColor, isStyleBorderless());
+                }
+            }
 
             if (isStyleBorderless()) {
                 setTextColor(DynamicResourceUtils.getColorStateList(mTextColor,
