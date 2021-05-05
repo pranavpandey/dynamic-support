@@ -135,6 +135,12 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
             "ads_pref_settings_theme_color_primary_dark";
 
     /**
+     * Key for the tint dark primary color preference.
+     */
+    public static final String ADS_PREF_THEME_COLOR_TINT_PRIMARY_DARK =
+            "ads_pref_settings_theme_color_tint_primary_dark";
+
+    /**
      * Key for the accent color preference.
      */
     public static final String ADS_PREF_THEME_COLOR_ACCENT =
@@ -151,6 +157,12 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
      */
     public static final String ADS_PREF_THEME_COLOR_ACCENT_DARK =
             "ads_pref_settings_theme_color_accent_dark";
+
+    /**
+     * Key for the tint dark accent color preference.
+     */
+    public static final String ADS_PREF_THEME_COLOR_TINT_ACCENT_DARK =
+            "ads_pref_settings_theme_color_tint_accent_dark";
 
     /**
      * Key for the error color preference.

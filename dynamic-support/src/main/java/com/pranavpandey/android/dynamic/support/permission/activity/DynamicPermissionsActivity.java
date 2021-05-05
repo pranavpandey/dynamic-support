@@ -88,15 +88,17 @@ public class DynamicPermissionsActivity extends DynamicActivity
     public void onAddHeader(@Nullable View view) {
         super.onAddHeader(view);
 
-        if (view != null) {
-            Dynamic.set(view.findViewById(R.id.ads_header_appbar_icon),
-                    DynamicPackageUtils.getAppIcon(this));
-            Dynamic.set(view.findViewById(R.id.ads_header_appbar_title),
-                    DynamicPackageUtils.getAppLabel(this));
+        if (view == null) {
+            return;
+        }
 
-            if (mPermissionsCount > 0) {
-                updateSubtitle(mPermissionsCount);
-            }
+        Dynamic.set(view.findViewById(R.id.ads_header_appbar_icon),
+                DynamicPackageUtils.getAppIcon(this));
+        Dynamic.set(view.findViewById(R.id.ads_header_appbar_title),
+                DynamicPackageUtils.getAppLabel(this));
+
+        if (mPermissionsCount > 0) {
+            updateSubtitle(mPermissionsCount);
         }
     }
 

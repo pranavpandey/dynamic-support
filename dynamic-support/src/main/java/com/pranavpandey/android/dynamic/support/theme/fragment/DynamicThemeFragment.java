@@ -79,9 +79,14 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
     private DynamicColorPreference mColorAccentPreference;
 
     /**
-     * Dynamic color preference to control the system colors.
+     * Dynamic color preference to control the dark primary colors.
      */
-    private DynamicColorPreference mColorSystemPreference;
+    private DynamicColorPreference mColorPrimaryDarkPreference;
+
+    /**
+     * Dynamic color preference to control the dark accent colors.
+     */
+    private DynamicColorPreference mColorAccentDarkPreference;
 
     /**
      * Dynamic color preference to control the error colors.
@@ -192,7 +197,8 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
         mColorSurfacePreference = view.findViewById(R.id.ads_pref_theme_color_surface);
         mColorPrimaryPreference = view.findViewById(R.id.ads_pref_theme_color_primary);
         mColorAccentPreference = view.findViewById(R.id.ads_pref_theme_color_accent);
-        mColorSystemPreference = view.findViewById(R.id.ads_pref_theme_color_system);
+        mColorPrimaryDarkPreference = view.findViewById(R.id.ads_pref_theme_color_primary_dark);
+        mColorAccentDarkPreference = view.findViewById(R.id.ads_pref_theme_color_accent_dark);
         mColorErrorPreference = view.findViewById(R.id.ads_pref_theme_color_error);
         mTextPrimaryPreference = view.findViewById(R.id.ads_pref_theme_text_primary);
         mTextSecondaryPreference = view.findViewById(R.id.ads_pref_theme_text_secondary);
@@ -322,7 +328,7 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
             }
         });
 
-        mColorSystemPreference.setDynamicColorResolver(new DynamicColorResolver() {
+        mColorPrimaryDarkPreference.setDynamicColorResolver(new DynamicColorResolver() {
             @Override
             public int getDefaultColor(@Nullable String tag) {
                 return mDynamicThemeDefault.getPrimaryColorDark(false);
@@ -333,7 +339,19 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
                 return mThemePreview.getDynamicTheme().getPrimaryColorDark();
             }
         });
-        mColorSystemPreference.setAltDynamicColorResolver(new DynamicColorResolver() {
+        mColorPrimaryDarkPreference.setAltDynamicColorResolver(new DynamicColorResolver() {
+            @Override
+            public int getDefaultColor(@Nullable String tag) {
+                return mDynamicThemeDefault.getTintPrimaryColorDark(false);
+            }
+
+            @Override
+            public int getAutoColor(@Nullable String tag) {
+                return mThemePreview.getDynamicTheme().getTintPrimaryColorDark();
+            }
+        });
+
+        mColorAccentDarkPreference.setDynamicColorResolver(new DynamicColorResolver() {
             @Override
             public int getDefaultColor(@Nullable String tag) {
                 return mDynamicThemeDefault.getAccentColorDark(false);
@@ -342,6 +360,17 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
             @Override
             public int getAutoColor(@Nullable String tag) {
                 return mThemePreview.getDynamicTheme().getAccentColorDark();
+            }
+        });
+        mColorAccentDarkPreference.setAltDynamicColorResolver(new DynamicColorResolver() {
+            @Override
+            public int getDefaultColor(@Nullable String tag) {
+                return mDynamicThemeDefault.getTintAccentColorDark(false);
+            }
+
+            @Override
+            public int getAutoColor(@Nullable String tag) {
+                return mThemePreview.getDynamicTheme().getTintAccentColorDark();
             }
         });
 
@@ -493,8 +522,10 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
         mColorPrimaryPreference.setAltColor(theme.getTintPrimaryColor(false));
         mColorAccentPreference.setColor(theme.getAccentColor(false));
         mColorAccentPreference.setAltColor(theme.getTintAccentColor(false));
-        mColorSystemPreference.setColor(theme.getPrimaryColorDark(false));
-        mColorSystemPreference.setAltColor(theme.getAccentColorDark(false));
+        mColorPrimaryDarkPreference.setColor(theme.getPrimaryColorDark(false));
+        mColorPrimaryDarkPreference.setAltColor(theme.getTintPrimaryColorDark(false));
+        mColorAccentDarkPreference.setColor(theme.getAccentColorDark(false));
+        mColorAccentDarkPreference.setAltColor(theme.getTintAccentColorDark(false));
         mColorErrorPreference.setColor(theme.getErrorColor(false));
         mColorErrorPreference.setAltColor(theme.getTintErrorColor(false));
         mTextPrimaryPreference.setColor(theme.getTextPrimaryColor(false, false));
@@ -592,7 +623,8 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
         mColorSurfacePreference.update();
         mColorPrimaryPreference.update();
         mColorAccentPreference.update();
-        mColorSystemPreference.update();
+        mColorPrimaryDarkPreference.update();
+        mColorAccentDarkPreference.update();
         mColorErrorPreference.update();
         mTextPrimaryPreference.update();
         mTextSecondaryPreference.update();
@@ -614,12 +646,12 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
                         .setTintSurfaceColor(mColorSurfacePreference.getAltColor(false))
                         .setPrimaryColor(mColorPrimaryPreference.getColor(false))
                         .setTintPrimaryColor(mColorPrimaryPreference.getAltColor(false))
-                        .setPrimaryColorDark(mColorSystemPreference.getColor(false))
-                        .setTintPrimaryColorDark(mDynamicTheme.getTintPrimaryColorDark(false))
+                        .setPrimaryColorDark(mColorPrimaryDarkPreference.getColor(false))
+                        .setTintPrimaryColorDark(mColorPrimaryDarkPreference.getAltColor(false))
                         .setAccentColor(mColorAccentPreference.getColor(false))
                         .setTintAccentColor(mColorAccentPreference.getAltColor(false))
-                        .setAccentColorDark(mColorSystemPreference.getAltColor(false))
-                        .setTintAccentColorDark(mDynamicTheme.getTintAccentColorDark(false))
+                        .setAccentColorDark(mColorAccentDarkPreference.getColor(false))
+                        .setTintAccentColorDark(mColorAccentDarkPreference.getAltColor(false))
                         .setErrorColor(mColorErrorPreference.getColor(false))
                         .setTintErrorColor(mColorErrorPreference.getAltColor(false))
                         .setTextPrimaryColor(mTextPrimaryPreference.getColor(false))
@@ -655,9 +687,11 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
             case ADS_PREF_THEME_COLOR_PRIMARY:
             case ADS_PREF_THEME_COLOR_TINT_PRIMARY:
             case ADS_PREF_THEME_COLOR_PRIMARY_DARK:
+            case ADS_PREF_THEME_COLOR_TINT_PRIMARY_DARK:
             case ADS_PREF_THEME_COLOR_ACCENT:
             case ADS_PREF_THEME_COLOR_TINT_ACCENT:
             case ADS_PREF_THEME_COLOR_ACCENT_DARK:
+            case ADS_PREF_THEME_COLOR_TINT_ACCENT_DARK:
             case ADS_PREF_THEME_COLOR_ERROR:
             case ADS_PREF_THEME_COLOR_TINT_ERROR:
             case ADS_PREF_THEME_TEXT_PRIMARY:
