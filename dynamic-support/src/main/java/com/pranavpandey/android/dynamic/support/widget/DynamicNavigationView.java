@@ -574,7 +574,9 @@ public class DynamicNavigationView extends NavigationView
                 setItemBackgroundResource(R.drawable.ads_list_selector);
             }
 
-            DynamicDrawableUtils.colorizeDrawable(getItemBackground(), mAppliedStateSelectedColor);
+            DynamicDrawableUtils.colorizeDrawable(getItemBackground(),
+                    DynamicColorUtils.getLighterColor(mAppliedStateSelectedColor,
+                            Defaults.ADS_STATE_LIGHT));
 
             if (getItemIconTintList() != null) {
                 setItemIconTintList(DynamicResourceUtils.convertColorStateListWithNormal(
