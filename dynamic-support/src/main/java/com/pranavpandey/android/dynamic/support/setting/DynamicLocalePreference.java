@@ -29,7 +29,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 /**
  * A {@link DynamicSpinnerPreference} to display the locale setting.
  *
- * <p>It will be available only for API 16 and above devices.
+ * <p>It will be available only for API 16 and above.
  */
 public class DynamicLocalePreference extends DynamicSpinnerPreference {
 

@@ -153,7 +153,7 @@ class SampleApplication : DynamicApplication() {
      */
     @TargetApi(Build.VERSION_CODES.N_MR1)
     private fun setShortcuts() {
-        // Do not set for API 24 and below devices.
+        // Do not set for API 24 and below.
         if (!DynamicSdkUtils.is25()) {
             return;
         }
@@ -214,7 +214,7 @@ class SampleApplication : DynamicApplication() {
             DynamicDrawableUtils.colorizeDrawable(drawable
                     .findDrawableByLayerId(R.id.foreground), tintPrimaryColor)
 
-            // Use IconCompat to support adaptive icons on API 26 and above devices.
+            // Use IconCompat to support adaptive icons on API 26 and above.
             return IconCompat.createWithAdaptiveBitmap(DynamicResourceUtils
                     .getBitmapFromVectorDrawable(drawable)).toIcon(getContext())
         }

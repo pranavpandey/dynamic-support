@@ -132,7 +132,7 @@ public interface DynamicListener {
 
     /**
      * Returns whether the navigation bar theme should be applied for the activity.
-     * <p>It will be applied only on the API 21 and above devices.
+     * <p>It will be applied only on the API 21 and above.
      *
      * @return {@code true} to apply navigation bar theme for the activity.
      */

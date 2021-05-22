@@ -29,7 +29,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 /**
  * A {@link DynamicCheckPreference} to display the toast theme setting.
  *
- * <p>It will be hidden ({@link #GONE}) on API 30 and above devices.
+ * <p>It will be hidden ({@link #GONE}) on API 30 and above.
  */
 public class DynamicToastPreference extends DynamicCheckPreference {
 

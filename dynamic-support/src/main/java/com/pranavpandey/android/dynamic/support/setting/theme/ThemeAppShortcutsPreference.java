@@ -29,7 +29,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 /**
  * A {@link DynamicCheckPreference} to display the app shortcuts theme setting.
  *
- * <p>It will be available only for API 25 and above devices.
+ * <p>It will be available only for API 25 and above.
  */
 public class ThemeAppShortcutsPreference extends DynamicCheckPreference {
 

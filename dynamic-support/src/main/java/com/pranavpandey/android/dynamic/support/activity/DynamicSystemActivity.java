@@ -915,7 +915,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
 
     /**
      * Sets whether the navigation bar theme should be applied for this activity in landscape mode.
-     * <p>It will be applied only on the API 21 and above devices.
+     * <p>It will be applied only on the API 21 and above.
      *
      * <p>By default it will use the {@link Theme.ColorType#PRIMARY_DARK} color, use
      * {@link #setNavigationBarColor(int)} to set a custom color.
@@ -976,7 +976,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
 
     /**
      * Set the status bar color.
-     * <p>It will be applied only on the API 21 and above devices.
+     * <p>It will be applied only on the API 21 and above.
      *
      * @param color Color to be applied on the status bar.
      */
@@ -988,7 +988,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
 
     /**
      * Set the status bar color.
-     * <p>It will be applied only on the API 21 and above devices.
+     * <p>It will be applied only on the API 21 and above.
      *
      * @param color The color to be applied.
      */
@@ -1001,7 +1001,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
 
     /**
      * Set the status bar color resource.
-     * <p>It will be applied only on the API 21 and above devices.
+     * <p>It will be applied only on the API 21 and above.
      *
      * @param colorRes The color resource to be applied.
      */
@@ -1011,7 +1011,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
 
     /**
      * Set the translucent status bar flag, useful in case of {@link CollapsingToolbarLayout}.
-     * <p>It will be applied only on the API 21 and above devices.
+     * <p>It will be applied only on the API 21 and above.
      */
     public void setTranslucentStatusBar() {
         if (DynamicSdkUtils.is21()) {
@@ -1081,7 +1081,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
 
     /**
      * Set the navigation bar color.
-     * <p>It will be applied only on the API 21 and above devices.
+     * <p>It will be applied only on the API 21 and above.
      *
      * @param color The color to be applied.
      */
@@ -1151,7 +1151,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
 
     /**
      * Set the navigation bar color resource.
-     * <p>It will be applied only on the API 21 and above devices.
+     * <p>It will be applied only on the API 21 and above.
      *
      * @param colorRes The color resource to be applied.
      */
@@ -1162,7 +1162,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     /**
      * Set the translucent navigation bar flag, useful in case of to show the layout behind the
      * navigation bar.
-     * <p>It will be applied only on the API 21 and above devices.
+     * <p>It will be applied only on the API 21 and above.
      */
     public void setTranslucentNavigationBar() {
         if (DynamicSdkUtils.is21()) {
@@ -1562,7 +1562,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
 
     /**
      * Sets whether the navigation bar theme should be applied for this activity.
-     * <p>It will be applied only on the API 21 and above devices.
+     * <p>It will be applied only on the API 21 and above.
      *
      * <p>By default it will use the {@link Theme.ColorType#PRIMARY_DARK} color, use
      * {@link #setNavigationBarColor(int)} to set a custom color.
@@ -1583,8 +1583,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { }
 
     /**
-     * Update the task description on API 21 and above devices to match it with the theme
-     * color.
+     * Update the task description on API 21 and above to match it with the theme color.
      *
      * @param color The color to be set.
      */
