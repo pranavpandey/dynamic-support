@@ -34,12 +34,13 @@ buildscript {
     ]
 
     repositories {
-        jcenter()
+        mavenCentral()
         google()
+        jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.0-alpha05'
+        classpath 'com.android.tools.build:gradle:7.1.0-alpha01'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
     }
@@ -47,8 +48,9 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
+        mavenCentral()
         google()
+        jcenter()
     }
 }
 
@@ -58,8 +60,8 @@ task clean(type: Delete) {
 
 ext {
     projectName = 'dynamic-support'
-    projectDesc = 'A complete library to build Android apps with a built-in theme engine.'
-    versionDesc = 'A complete library to build apps for Android 4.0 (API 14) and above devices ' +
+    projectDesc = 'A complete library to build apps for Android with a built-in theme engine.'
+    versionDesc = 'A complete library to build apps for Android 4.0 (API 14) and above ' +
             'with a built-in theme engine.'
     referenceTitle = 'Dynamic Support API reference'
 

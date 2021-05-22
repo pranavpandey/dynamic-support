@@ -4,9 +4,9 @@
 
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![Build Status](https://travis-ci.org/pranavpandey/dynamic-support.svg?branch=master)](https://travis-ci.org/pranavpandey/dynamic-support)
-[![Download](https://api.bintray.com/packages/pranavpandey/android/dynamic-support/images/download.svg)](https://bintray.com/pranavpandey/android/dynamic-support/_latestVersion)
+[![Release](https://img.shields.io/maven-central/v/com.pranavpandey.android/dynamic-support)](https://search.maven.org/artifact/com.pranavpandey.android/dynamic-support)
 
-A complete library to build apps for Android 4.0 (API 14) and above devices with a built-in theme 
+A complete library to build apps for Android 4.0 (API 14) and above with a built-in theme 
 engine. It is built on top of the latest [app compat library](https://developer.android.com/topic/libraries/support-library/features.html) 
 to provide best compatibility. 
 
