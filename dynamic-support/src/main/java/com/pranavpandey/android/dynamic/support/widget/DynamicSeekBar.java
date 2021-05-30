@@ -246,9 +246,14 @@ public class DynamicSeekBar extends AppCompatSeekBar implements DynamicProgressW
     public void setProgressBarColor() {
         if (DynamicSdkUtils.is21()) {
             setProgressTintList(DynamicResourceUtils.getColorStateList(mAppliedColor));
+            setSecondaryProgressTintList(DynamicResourceUtils.getColorStateList(mAppliedColor));
+            setProgressBackgroundTintList(DynamicResourceUtils.getColorStateList(mAppliedColor));
+            setIndeterminateTintList(DynamicResourceUtils.getColorStateList(mAppliedColor));
         } else {
-            setProgressDrawable(DynamicDrawableUtils
-                    .colorizeDrawable(getProgressDrawable(), mAppliedColor));
+            setProgressDrawable(DynamicDrawableUtils.colorizeDrawable(
+                    getProgressDrawable(), mAppliedColor));
+            setIndeterminateDrawable(DynamicDrawableUtils.colorizeDrawable(
+                    getIndeterminateDrawable(), mAppliedColor));
         }
     }
 

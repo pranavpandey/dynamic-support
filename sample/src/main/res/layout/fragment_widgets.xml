@@ -128,9 +128,8 @@
                     <com.pranavpandey.android.dynamic.support.widget.DynamicSwitchCompat
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
-                        android:padding="@dimen/ads_margin_small"
-                        android:text="@string/widget_switch" />
+                        android:layout_weight="0.5"
+                        android:padding="@dimen/ads_margin_small" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicSwitchCompat
                         android:layout_width="0dp"
@@ -146,7 +145,6 @@
                         android:layout_weight="1.0"
                         android:padding="@dimen/ads_margin_small"
                         android:checked="true"
-                        android:enabled="false"
                         app:ads_colorType="primary"
                         android:text="@string/color_primary" />
 
@@ -161,9 +159,8 @@
                     <com.pranavpandey.android.dynamic.support.widget.DynamicCheckBox
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
-                        android:padding="@dimen/ads_margin_small"
-                        android:text="@string/widget_checkbox" />
+                        android:layout_weight="0.5"
+                        android:padding="@dimen/ads_margin_small" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicCheckBox
                         android:layout_width="0dp"
@@ -179,7 +176,6 @@
                         android:layout_weight="1.0"
                         android:padding="@dimen/ads_margin_small"
                         android:checked="true"
-                        android:enabled="false"
                         app:ads_colorType="primary"
                         android:text="@string/color_primary" />
 
@@ -194,9 +190,8 @@
                     <com.pranavpandey.android.dynamic.support.widget.DynamicRadioButton
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
-                        android:padding="@dimen/ads_margin_small"
-                        android:text="@string/widget_radio" />
+                        android:layout_weight="0.5"
+                        android:padding="@dimen/ads_margin_small" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicRadioButton
                         android:layout_width="0dp"
@@ -212,7 +207,6 @@
                         android:layout_weight="1.0"
                         android:padding="@dimen/ads_margin_small"
                         android:checked="true"
-                        android:enabled="false"
                         app:ads_colorType="primary"
                         android:text="@string/color_primary" />
 
@@ -354,6 +348,14 @@
                             android:layout_gravity="center"
                             android:indeterminate="true"
                             app:ads_colorType="primary" />
+
+<!--                        <com.pranavpandey.android.dynamic.support.widget.DynamicRatingBar-->
+<!--                            style="?attr/ratingBarStyle"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:numStars="5"-->
+<!--                            android:stepSize="1" />-->
 
                     </LinearLayout>
 

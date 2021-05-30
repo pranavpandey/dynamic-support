@@ -389,6 +389,15 @@
         <attr name="ads_backgroundAware" />
     </declare-styleable>
 
+    <!-- Attributes for the DynamicRatingBar. -->
+    <declare-styleable name="DynamicRatingBar">
+        <attr name="ads_colorType" />
+        <attr name="ads_contrastWithColorType" />
+        <attr name="ads_color" />
+        <attr name="ads_contrastWithColor" />
+        <attr name="ads_backgroundAware" />
+    </declare-styleable>
+
     <!-- Attributes for the DynamicSlider. -->
     <declare-styleable name="DynamicSlider">
         <attr name="ads_colorType" />

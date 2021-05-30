@@ -54,6 +54,9 @@
         <item name="buttonBarNeutralButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
         <item name="buttonBarPositiveButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
         <item name="buttonBarNegativeButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
+        <item name="ratingBarStyle">@style/Widget.DynamicApp.RatingBar</item>
+        <item name="ratingBarStyleIndicator">@style/Widget.DynamicApp.RatingBar.Indicator</item>
+        <item name="ratingBarStyleSmall">@style/Widget.DynamicApp.RatingBar.Small</item>
         <item name="ads_colorControlNormal">@color/ads_color_control</item>
         <item name="ads_contrastWithDefault">@color/ads_contrast_with</item>
         <item name="ads_fontScale">@integer/ads_font_scale</item>
@@ -104,6 +107,9 @@
         <item name="buttonBarNeutralButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
         <item name="buttonBarPositiveButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
         <item name="buttonBarNegativeButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
+        <item name="ratingBarStyle">@style/Widget.DynamicApp.RatingBar</item>
+        <item name="ratingBarStyleIndicator">@style/Widget.DynamicApp.RatingBar.Indicator</item>
+        <item name="ratingBarStyleSmall">@style/Widget.DynamicApp.RatingBar.Small</item>
         <item name="ads_colorControlNormal">@color/ads_color_control_light</item>
         <item name="ads_contrastWithDefault">@color/ads_contrast_with_light</item>
         <item name="ads_fontScale">@integer/ads_font_scale</item>
@@ -148,6 +154,9 @@
         <item name="buttonBarNeutralButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
         <item name="buttonBarPositiveButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
         <item name="buttonBarNegativeButtonStyle">@style/Widget.DynamicApp.Button.TextButton.Dialog</item>
+        <item name="ratingBarStyle">@style/Widget.DynamicApp.RatingBar</item>
+        <item name="ratingBarStyleIndicator">@style/Widget.DynamicApp.RatingBar.Indicator</item>
+        <item name="ratingBarStyleSmall">@style/Widget.DynamicApp.RatingBar.Small</item>
         <item name="ads_colorControlNormal">@color/ads_color_control_day_night</item>
         <item name="ads_contrastWithDefault">@color/ads_contrast_with_day_night</item>
         <item name="ads_fontScale">@integer/ads_font_scale</item>
@@ -696,6 +705,21 @@
         <item name="android:padding">0dp</item>
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="ads_styleBorderless">true</item>
+    </style>
+
+    <style name="Widget.DynamicApp.RatingBar" parent="Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/ads_rating_bar</item>
+        <item name="android:indeterminateDrawable">@drawable/ads_rating_bar</item>
+    </style>
+
+    <style name="Widget.DynamicApp.RatingBar.Indicator" parent="Widget.AppCompat.RatingBar.Indicator">
+        <item name="android:progressDrawable">@drawable/ads_rating_bar_indicator</item>
+        <item name="android:indeterminateDrawable">@drawable/ads_rating_bar_indicator</item>
+    </style>
+
+    <style name="Widget.DynamicApp.RatingBar.Small" parent="Widget.AppCompat.RatingBar.Small">
+        <item name="android:progressDrawable">@drawable/ads_rating_bar_small</item>
+        <item name="android:indeterminateDrawable">@drawable/ads_rating_bar_small</item>
     </style>
 
     <style name="Widget.DynamicApp.Card" parent="Widget.MaterialComponents.CardView">

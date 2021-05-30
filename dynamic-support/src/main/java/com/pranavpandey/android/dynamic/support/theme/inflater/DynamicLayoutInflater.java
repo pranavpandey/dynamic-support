@@ -55,6 +55,7 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicNavigationView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar;
 import com.pranavpandey.android.dynamic.support.widget.DynamicRadioButton;
+import com.pranavpandey.android.dynamic.support.widget.DynamicRatingBar;
 import com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicRelativeLayout;
 import com.pranavpandey.android.dynamic.support.widget.DynamicScrollView;
@@ -173,6 +174,12 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
             case "androidx.appcompat.widget.AppCompatSeekBar":
             case "com.pranavpandey.android.dynamic.support.widget.DynamicSeekBar":
                 view = new DynamicSeekBar(context, attrs);
+                break;
+            case "RatingBar":
+            case "android.support.v7.widget.AppCompatRatingBar":
+            case "androidx.appcompat.widget.AppCompatRatingBar":
+            case "com.pranavpandey.android.dynamic.support.widget.DynamicRatingBar":
+                view = new DynamicRatingBar(context, attrs);
                 break;
             case "Spinner":
             case "android.support.v7.widget.AppCompatSpinner":
