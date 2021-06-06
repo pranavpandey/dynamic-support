@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.theme;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -159,6 +160,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     /**
      * Singleton instance of {@link DynamicTheme}.
      */
+    @SuppressLint("StaticFieldLeak")
     private static DynamicTheme sInstance;
 
     /**

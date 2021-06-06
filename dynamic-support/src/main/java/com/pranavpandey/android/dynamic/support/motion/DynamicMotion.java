@@ -19,6 +19,7 @@ package com.pranavpandey.android.dynamic.support.motion;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.transition.Transition;
@@ -125,6 +126,7 @@ public class DynamicMotion {
     /**
      * Singleton instance of {@link DynamicMotion}.
      */
+    @SuppressLint("StaticFieldLeak")
     private static DynamicMotion sInstance;
 
     /**

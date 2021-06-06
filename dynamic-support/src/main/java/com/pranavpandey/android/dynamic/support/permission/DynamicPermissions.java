@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.permission;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AppOpsManager;
@@ -64,6 +65,7 @@ public class DynamicPermissions {
     /**
      * Singleton instance of {@link DynamicPermissions}.
      */
+    @SuppressLint("StaticFieldLeak")
     private static DynamicPermissions sInstance;
 
     /**
