@@ -65,8 +65,9 @@
     <!-- Widget -->
     <style name="Widget.DynamicApp.Image.Borderless">
         <item name="android:padding">@dimen/ads_margin_medium</item>
-        <item name="android:background">?selectableItemBackgroundBorderless</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
         <item name="android:scaleType">fitCenter</item>
+        <item name="ads_styleBorderless">true</item>
     </style>
 
     <style name="Widget.DynamicApp.Button.ImageButton">
