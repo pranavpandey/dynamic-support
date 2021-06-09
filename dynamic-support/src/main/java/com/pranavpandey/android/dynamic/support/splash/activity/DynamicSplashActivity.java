@@ -33,6 +33,7 @@ import androidx.fragment.app.Fragment;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSplashListener;
+import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.splash.fragment.DynamicSplashFragment;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
@@ -53,11 +54,6 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
      * Splash fragment TAG key which will be used to find it during the configuration changes.
      */
     protected static final String ADS_STATE_SPLASH_FRAGMENT_TAG = "ads_state_splash_fragment_tag";
-
-    /**
-     * Default minimum time to show the splash.
-     */
-    private static final long ADS_MIN_SPLASH_TIME = 1000;
 
     /**
      * Boolean to save the fragment state.
@@ -153,7 +149,7 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
 
     @Override
     public long getMinSplashTime() {
-        return ADS_MIN_SPLASH_TIME;
+        return DynamicMotion.Duration.SPLASH;
     }
 
     @Override

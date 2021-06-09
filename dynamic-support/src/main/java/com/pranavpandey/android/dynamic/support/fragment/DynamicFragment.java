@@ -526,7 +526,16 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
     }
 
     /**
-     * Get the parent activity.
+     * Get the parent activity for this fragment.
+     *
+     * @return The parent activity as the instance of {@link DynamicSystemActivity}.
+     */
+    public @NonNull DynamicSystemActivity getSystemActivity() {
+        return (DynamicSystemActivity) requireActivity();
+    }
+
+    /**
+     * Get the parent activity for this fragment.
      *
      * @return The parent activity as the instance of {@link DynamicActivity}.
      */

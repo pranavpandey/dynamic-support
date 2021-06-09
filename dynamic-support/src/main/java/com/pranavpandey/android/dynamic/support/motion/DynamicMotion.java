@@ -96,6 +96,11 @@ public class DynamicMotion {
         long LONGER = 650L;
 
         /**
+         * Constant for the splash duration.
+         */
+        long SPLASH = 1000L;
+
+        /**
          * Constant for the default duration.
          */
         long DEFAULT = MEDIUM;
