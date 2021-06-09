@@ -64,7 +64,7 @@ public class DynamicTintUtils {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void colorizeRippleDrawable(@Nullable View view, @Nullable Drawable drawable,
             @ColorInt int background, @ColorInt int color, boolean borderless, boolean checkable) {
-        if (view == null) {
+        if (view == null || !DynamicSdkUtils.is21() || !(drawable instanceof RippleDrawable)) {
             return;
         }
 
@@ -72,34 +72,35 @@ public class DynamicTintUtils {
             color = DynamicColorUtils.getContrastColor(color, background);
         }
 
-        if (DynamicSdkUtils.is21() && drawable instanceof RippleDrawable) {
-            @ColorInt int pressedColor = DynamicColorUtils.shiftColor(color,
-                    Defaults.ADS_SHIFT_LIGHT, Defaults.ADS_SHIFT_DARK);
+        @ColorInt int pressedColor;
+        if (borderless) {
+            pressedColor = DynamicColorUtils.adjustAlpha(color, Defaults.ADS_STATE_PRESSED);
+        } else if (view instanceof MaterialButton) {
+            pressedColor = DynamicColorUtils.adjustAlpha(
+                    DynamicColorUtils.getTintColor(color), Defaults.ADS_STATE_PRESSED);
+        } else {
+            pressedColor = color;
+        }
 
-            if (borderless) {
-                pressedColor = DynamicColorUtils.adjustAlpha(color, Defaults.ADS_STATE_PRESSED);
+        pressedColor = DynamicColorUtils.getStateColor(pressedColor,
+                Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
+
+        try {
+            if (checkable && !(view instanceof DynamicCheckedTextView)) {
+                background = DynamicColorUtils.getStateColor(
+                        DynamicColorUtils.adjustAlpha(
+                                DynamicColorUtils.getTintColor(background),
+                                Defaults.ADS_STATE_PRESSED),
+                        Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
+
+                ((RippleDrawable) drawable.mutate()).setColor(
+                        DynamicResourceUtils.getColorStateList(Color.TRANSPARENT,
+                                background, pressedColor, true));
+            } else {
+                ((RippleDrawable) drawable.mutate()).setColor(
+                        ColorStateList.valueOf(pressedColor));
             }
-
-            pressedColor = DynamicColorUtils.getStateColor(pressedColor,
-                    Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
-
-            try {
-                if (checkable && !(view instanceof DynamicCheckedTextView)) {
-                    background = DynamicColorUtils.getStateColor(
-                            DynamicColorUtils.adjustAlpha(
-                                    DynamicColorUtils.getTintColor(background),
-                                    Defaults.ADS_STATE_PRESSED),
-                            Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
-
-                    ((RippleDrawable) drawable.mutate()).setColor(
-                            DynamicResourceUtils.getColorStateList(Color.TRANSPARENT,
-                                    background, pressedColor, true));
-                } else {
-                    ((RippleDrawable) drawable.mutate()).setColor(
-                            ColorStateList.valueOf(pressedColor));
-                }
-            } catch (Exception ignored) {
-            }
+        } catch (Exception ignored) {
         }
     }
 
@@ -128,17 +129,17 @@ public class DynamicTintUtils {
 
         if (view instanceof MaterialButton) {
             if (borderless) {
-                if (!DynamicSdkUtils.is21()) {
+                if (DynamicSdkUtils.is21()) {
+                    ((MaterialButton) view).setRippleColor(
+                            DynamicResourceUtils.getColorStateList(
+                                    Color.TRANSPARENT, pressedColor, checkable));
+                } else {
                     pressedColor = DynamicColorUtils.getStateColor(
                             DynamicColorUtils.adjustAlpha(
                                     pressedColor, Defaults.ADS_STATE_PRESSED),
                             Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
 
                     ViewCompat.setBackgroundTintList(view,
-                            DynamicResourceUtils.getColorStateList(
-                                    Color.TRANSPARENT, pressedColor, checkable));
-                } else {
-                    ((MaterialButton) view).setRippleColor(
                             DynamicResourceUtils.getColorStateList(
                                     Color.TRANSPARENT, pressedColor, checkable));
                 }
@@ -160,9 +161,8 @@ public class DynamicTintUtils {
                                 color, pressedColor, checkable));
             }
         } else if (!DynamicSdkUtils.is21()) {
-            background = DynamicColorUtils.getStateColor(
-                    DynamicColorUtils.adjustAlpha(DynamicColorUtils.getTintColor(background),
-                            Defaults.ADS_STATE_PRESSED),
+            background = DynamicColorUtils.getStateColor(DynamicColorUtils.adjustAlpha(
+                    DynamicColorUtils.getTintColor(background), Defaults.ADS_STATE_PRESSED),
                     Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
             pressedColor = DynamicColorUtils.getStateColor(
                     DynamicColorUtils.adjustAlpha(color, Defaults.ADS_STATE_PRESSED),

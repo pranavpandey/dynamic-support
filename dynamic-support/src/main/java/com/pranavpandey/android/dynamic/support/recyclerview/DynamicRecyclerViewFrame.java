@@ -324,8 +324,9 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
                 TransitionManager.beginDelayedTransition(this);
             }
 
-            mProgressBar.hide();
+            Dynamic.setVisibility(mProgressBar, GONE);
             Dynamic.setVisibility(mRecyclerView, VISIBLE);
+            mProgressBar.hide();
         }
     }
 
