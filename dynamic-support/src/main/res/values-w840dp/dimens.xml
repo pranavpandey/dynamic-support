@@ -25,6 +25,6 @@
     <dimen name="ads_popup_max_width_large">400dp</dimen>
 
     <!-- Bottom Sheet -->
-    <dimen name="ads_bottom_sheet_max_width">560dp</dimen>
+    <dimen name="ads_bottom_sheet_max_width">600dp</dimen>
 
 </resources>
