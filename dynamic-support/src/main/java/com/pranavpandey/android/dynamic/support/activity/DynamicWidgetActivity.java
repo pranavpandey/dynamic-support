@@ -71,10 +71,6 @@ public abstract class DynamicWidgetActivity extends DynamicActivity {
      */
     public void addWidget(boolean finishActivity) {
         if (!mUpdateWidget) {
-            // Push widget update to surface with newly set configuration.
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-            appWidgetManager.updateAppWidget(mAppWidgetId, null);
-
             // Make sure we pass back the original appWidgetId.
             Intent resultValue = new Intent();
             resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
