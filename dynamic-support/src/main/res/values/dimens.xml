@@ -52,6 +52,7 @@
     <dimen name="ads_margin_fab_compat_mini_bottom">@dimen/ads_margin_small</dimen>
     <dimen name="ads_margin_divider">1dp</dimen>
     <dimen name="ads_margin_divider_large">@dimen/ads_margin_extra_tiny</dimen>
+    <dimen name="ads_margin_swipe_refresh_layout">@dimen/ads_margin_huge</dimen>
     <dimen name="ads_margin_preference_value">@dimen/ads_margin_normal</dimen>
     <dimen name="ads_margin_preference_icon_end">@dimen/ads_margin_normal</dimen>
     <dimen name="ads_margin_preference_icon_end_big">@dimen/ads_margin_large_big</dimen>

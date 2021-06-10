@@ -122,6 +122,9 @@ public class DynamicSwipeRefreshLayout extends SwipeRefreshLayout implements Dyn
 
     @Override
     public void initialize() {
+        setProgressViewEndTarget(true, getResources().getDimensionPixelOffset(
+                R.dimen.ads_margin_swipe_refresh_layout));
+
         if (mColorType != Theme.ColorType.NONE
                 && mColorType != Theme.ColorType.CUSTOM) {
             mColor = DynamicTheme.getInstance().resolveColorType(mColorType);

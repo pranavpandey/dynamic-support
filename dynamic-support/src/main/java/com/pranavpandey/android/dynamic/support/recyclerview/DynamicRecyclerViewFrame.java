@@ -293,15 +293,21 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      * @param animate {@code true} to animate the changes.
      */
     public void showProgress(boolean animate) {
-        if (mProgressBar != null) {
-            if (animate) {
-                TransitionManager.beginDelayedTransition(this);
-            }
-
-            Dynamic.setVisibility(mProgressBar, VISIBLE);
-            Dynamic.setVisibility(mRecyclerView, GONE);
-            mProgressBar.show();
+        if (mProgressBar == null) {
+            return;
         }
+
+        post(new Runnable() {
+            @Override
+            public void run() {
+                if (animate) {
+                    TransitionManager.beginDelayedTransition(DynamicRecyclerViewFrame.this);
+                }
+
+                Dynamic.setVisibility(mProgressBar, VISIBLE);
+                Dynamic.setVisibility(mRecyclerView, GONE);
+            }
+        });
     }
 
     /**
@@ -319,15 +325,21 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      * @param animate {@code true} to animate the changes.
      */
     public void hideProgress(boolean animate) {
-        if (mProgressBar != null) {
-            if (animate) {
-                TransitionManager.beginDelayedTransition(this);
-            }
-
-            Dynamic.setVisibility(mProgressBar, GONE);
-            Dynamic.setVisibility(mRecyclerView, VISIBLE);
-            mProgressBar.hide();
+        if (mProgressBar == null) {
+            return;
         }
+
+        post(new Runnable() {
+            @Override
+            public void run() {
+                if (animate) {
+                    TransitionManager.beginDelayedTransition(DynamicRecyclerViewFrame.this);
+                }
+
+                Dynamic.setVisibility(mProgressBar, GONE);
+                Dynamic.setVisibility(mRecyclerView, VISIBLE);
+            }
+        });
     }
 
     /**
