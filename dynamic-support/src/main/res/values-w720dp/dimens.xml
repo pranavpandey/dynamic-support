@@ -23,4 +23,7 @@
     <!-- Icon -->
     <dimen name="ads_icon_tutorial">240dp</dimen>
 
+    <!-- Bottom Sheet -->
+    <dimen name="ads_bottom_sheet_max_width">520dp</dimen>
+
 </resources>

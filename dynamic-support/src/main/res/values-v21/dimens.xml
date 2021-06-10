@@ -21,8 +21,10 @@
     <dimen name="ads_card_view_margin">@dimen/ads_margin_tiny</dimen>
     <dimen name="ads_card_view_margin_layout">@dimen/ads_margin_small</dimen>
     <dimen name="ads_card_view_margin_dialog">@dimen/ads_margin_regular</dimen>
-    <dimen name="ads_margin_bottom_sheet">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_card_view_elevation">2.6dp</dimen>
     <dimen name="ads_card_view_elevation_dialog">5dp</dimen>
+
+    <!-- Bottom Sheet -->
+    <dimen name="ads_bottom_sheet_margin">@dimen/ads_margin_medium</dimen>
 
 </resources>

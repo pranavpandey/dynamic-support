@@ -34,8 +34,8 @@
     <color name="ads_card_background_day_night">@color/ads_card_background_light</color>
 
     <!-- Notification -->
-    <color name="notification_background">#323232</color>
-    <color name="notification_background_light">#F9F9F9</color>
+    <color name="ads_notification_background">#323232</color>
+    <color name="ads_notification_background_light">#F9F9F9</color>
 
     <!-- App palette -->
     <color name="ads_primary">#3F51B5</color>

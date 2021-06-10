@@ -595,7 +595,8 @@
     <style name="Widget.DynamicApp.BottomSheet">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">@dimen/ads_margin_bottom_sheet</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:padding">@dimen/ads_bottom_sheet_margin</item>
         <item name="android:clipToPadding">false</item>
         <item name="android:clickable">true</item>
         <item name="layout_behavior">com.pranavpandey.android.dynamic.support.behavior.DynamicBottomSheetBehavior</item>

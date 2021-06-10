@@ -46,7 +46,6 @@
     <dimen name="ads_margin_extra_large">48dp</dimen>
     <dimen name="ads_margin_huge">64dp</dimen>
     <dimen name="ads_margin_header_icon_end">@dimen/ads_margin_large</dimen>
-    <dimen name="ads_margin_bottom_sheet">@dimen/ads_margin_regular</dimen>
     <dimen name="ads_margin_fab">76dp</dimen>
     <dimen name="ads_margin_fab_compat_mini">@dimen/ads_margin_small</dimen>
     <dimen name="ads_margin_fab_compat_mini_bottom">@dimen/ads_margin_small</dimen>
@@ -75,9 +74,6 @@
     <dimen name="ads_fab_margin_small">@dimen/ads_margin_small</dimen>
     <dimen name="ads_margin_splash">@dimen/ads_margin_normal</dimen>
     <dimen name="ads_margin_splash_small">@dimen/ads_margin_regular</dimen>
-    <dimen name="ads_bottom_sheet_peek_height">72dp</dimen>
-    <dimen name="ads_bottom_sheet_indicator_width">@dimen/ads_icon_normal</dimen>
-    <dimen name="ads_bottom_sheet_indicator_height">@dimen/ads_margin_tiny</dimen>
 
     <!-- Font -->
     <dimen name="ads_font_size_tiny">10sp</dimen>
@@ -224,9 +220,16 @@
     <dimen name="ads_dialog_button_icon_size">@dimen/ads_icon_normal</dimen>
 
     <!-- Popup -->
-    <dimen name="ads_popup_selector_icon_size">24dp</dimen>
     <dimen name="ads_popup_max_width">300dp</dimen>
     <dimen name="ads_popup_max_width_large">340dp</dimen>
+    <dimen name="ads_popup_selector_icon_size">24dp</dimen>
+
+    <!-- Bottom Sheet -->
+    <dimen name="ads_bottom_sheet_max_width">480dp</dimen>
+    <dimen name="ads_bottom_sheet_margin">@dimen/ads_margin_regular</dimen>
+    <dimen name="ads_bottom_sheet_peek_height">72dp</dimen>
+    <dimen name="ads_bottom_sheet_indicator_width">@dimen/ads_icon_normal</dimen>
+    <dimen name="ads_bottom_sheet_indicator_height">@dimen/ads_margin_tiny</dimen>
 
     <!-- Picker -->
     <dimen name="ads_picker_colors_size">@dimen/ads_icon_medium</dimen>

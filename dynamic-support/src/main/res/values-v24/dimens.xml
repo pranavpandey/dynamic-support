@@ -17,10 +17,10 @@
 
 <resources>
 
-    <!-- Margin presets -->
-    <dimen name="ads_margin_bottom_sheet">0dp</dimen>
+    <!-- Bottom Sheet -->
+    <dimen name="ads_bottom_sheet_margin">0dp</dimen>
 
-    <!-- Notification -->
+    <!-- Remote -->
     <dimen name="ads_remote_margin_vertical">12dp</dimen>
     <dimen name="ads_remote_margin_horizontal">16dp</dimen>
     <dimen name="ads_remote_footer_margin_horizontal">12dp</dimen>
