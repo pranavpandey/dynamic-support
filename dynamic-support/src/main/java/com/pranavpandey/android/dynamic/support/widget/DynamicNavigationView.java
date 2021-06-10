@@ -37,6 +37,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
+import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicBackgroundWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicScrollableWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicStateSelectedWidget;
@@ -510,6 +511,7 @@ public class DynamicNavigationView extends NavigationView
     public void setBackgroundColor(@ColorInt int backgroundColor) {
         super.setBackgroundColor(backgroundColor);
 
+        this.mBackgroundColor = backgroundColor;
         this.mBackgroundColorType = Theme.ColorType.CUSTOM;
 
         setColor(true);
@@ -575,8 +577,10 @@ public class DynamicNavigationView extends NavigationView
             }
 
             DynamicDrawableUtils.colorizeDrawable(getItemBackground(),
-                    DynamicColorUtils.getLighterColor(mAppliedStateSelectedColor,
-                            Defaults.ADS_STATE_LIGHT));
+                    DynamicColorUtils.getStateColor(mAppliedStateSelectedColor,
+                            Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK));
+            DynamicTintUtils.colorizeRippleDrawable(this, getItemBackground(),
+                    mContrastWithColor, mAppliedStateSelectedColor, false, true);
 
             if (getItemIconTintList() != null) {
                 setItemIconTintList(DynamicResourceUtils.convertColorStateListWithNormal(
