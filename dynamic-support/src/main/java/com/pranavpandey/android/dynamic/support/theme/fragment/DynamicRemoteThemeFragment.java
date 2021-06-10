@@ -572,7 +572,7 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
             return;
         }
 
-        themePreview.getActionView().setImageResource(enable
+        Dynamic.setResource(themePreview.getActionView(), enable
                 ? R.drawable.ads_ic_save : R.drawable.ads_ic_customise);
     }
 

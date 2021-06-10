@@ -39,12 +39,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.StringRes;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.pranavpandey.android.dynamic.support.activity.DynamicActivity;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener;
@@ -878,7 +880,7 @@ public class Dynamic {
     }
 
     /**
-     * Set drawable for the image view and mange its visibility according to the data.
+     * Set drawable for the image view and manage its visibility according to the data.
      *
      * @param imageView The image view to set the drawable.
      * @param drawable The drawable to be set.
@@ -897,7 +899,7 @@ public class Dynamic {
     }
 
     /**
-     * Set bitmap for the image view and mange its visibility according to the data.
+     * Set bitmap for the image view and manage its visibility according to the data.
      *
      * @param imageView The image view to set the drawable.
      * @param bitmap The bitmap to be set.
@@ -931,7 +933,7 @@ public class Dynamic {
     }
 
     /**
-     * Set text for the text view and mange its visibility according to the data.
+     * Set text for the text view and manage its visibility according to the data.
      *
      * @param textView The text view to set the text.
      * @param text The text to be set.
@@ -950,7 +952,7 @@ public class Dynamic {
     }
 
     /**
-     * Set text for the text view and mange its visibility according to the data.
+     * Set text for the text view and manage its visibility according to the data.
      *
      * @param textView The text view to set the text.
      * @param text The text to be set.
@@ -969,19 +971,22 @@ public class Dynamic {
     }
 
     /**
-     * Set drawable for the image view and mange its visibility according to the data.
+     * Set drawable for the image view and manage its visibility according to the data.
      *
-     * @param imageView The image view to set the drawable.
+     * @param view The view to set the drawable.
      * @param drawableRes The drawable resource id to be set.
      */
-    public static void setResource(@Nullable ImageView imageView, @DrawableRes int drawableRes) {
-        if (imageView != null) {
-            set(imageView, DynamicResourceUtils.getDrawable(imageView.getContext(), drawableRes));
+    public static void setResource(@Nullable View view, @DrawableRes int drawableRes) {
+        if (view instanceof AppCompatImageView || view instanceof FloatingActionButton) {
+            ((ImageView) view).setImageResource(drawableRes);
+        } else if (view instanceof ImageView) {
+            set((ImageView) view, DynamicResourceUtils.getDrawable(
+                    view.getContext(), drawableRes));
         }
     }
 
     /**
-     * Set text for the text view and mange its visibility according to the data.
+     * Set text for the text view and manage its visibility according to the data.
      *
      * @param textView The text view to set the text.
      * @param stringRes The string resource id to be set.
@@ -993,11 +998,11 @@ public class Dynamic {
     }
 
     /**
-     * Set click listener for the view and mange its visibility according to the data.
+     * Set click listener for the view and manage its visibility according to the data.
      *
      * @param view The view to set the click listener.
      * @param clickListener The click listener to be set.
-     * @param visibility {@code true} to mange the visibility.
+     * @param visibility {@code true} to manage the visibility.
      */
     public static void setClickListener(@Nullable View view,
             @Nullable View.OnClickListener clickListener, boolean visibility) {
@@ -1021,7 +1026,7 @@ public class Dynamic {
     }
 
     /**
-     * Set click listener for the view and mange its visibility according to the data.
+     * Set click listener for the view and manage its visibility according to the data.
      *
      * @param view The view to set the click listener.
      * @param clickListener The click listener to be set.

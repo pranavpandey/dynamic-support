@@ -19,6 +19,7 @@ package com.pranavpandey.android.dynamic.support.theme.view;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.AttrRes;
@@ -200,7 +201,7 @@ public class DynamicRemoteThemePreview extends ThemePreview<DynamicRemoteTheme> 
     }
 
     @Override
-    public @NonNull ImageView getActionView() {
+    public @NonNull View getActionView() {
         return mHeaderMenu;
     }
 }

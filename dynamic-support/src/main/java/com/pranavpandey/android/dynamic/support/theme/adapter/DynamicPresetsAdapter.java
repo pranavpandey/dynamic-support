@@ -151,9 +151,9 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
                 return;
             }
 
-            holder.getThemePreview().getActionView()
-                    .setImageResource(R.drawable.ads_ic_palette);
             holder.getThemePreview().setDynamicTheme(theme);
+            Dynamic.setResource(holder.getThemePreview().getActionView(),
+                    R.drawable.ads_ic_palette);
             Dynamic.setCorner(holder.getRoot(), theme.getCornerRadius());
             Dynamic.setContrastWithColor(holder.getForeground(), theme.getBackgroundColor());
 

@@ -18,6 +18,7 @@ package com.pranavpandey.android.dynamic.support.theme.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -322,7 +323,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
     }
 
     @Override
-    public @NonNull ImageView getActionView() {
+    public @NonNull View getActionView() {
         return getFAB();
     }
 

@@ -19,7 +19,6 @@ package com.pranavpandey.android.dynamic.support.theme.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
@@ -110,7 +109,7 @@ public abstract class ThemePreview<T extends DynamicAppTheme> extends DynamicVie
      *
      * @return The action view used by this preview.
      */
-    public abstract @NonNull ImageView getActionView();
+    public abstract @NonNull View getActionView();
 
     /**
      * Get the on click listener to receive action view click events.
