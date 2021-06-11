@@ -440,14 +440,17 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
                 } else if (!mFinishAfterTransition) {
                     if (mDynamicTransitionListener != null) {
                         for (Map.Entry<String, Integer> entry : mSharedElementMap.entrySet()) {
-                            if (!names.contains(entry.getKey())) {
-                                names.add(entry.getKey());
-                            }
+                            if (entry.getKey() != null) {
+                                if (!names.contains(entry.getKey())) {
+                                    names.add(entry.getKey());
+                                }
 
-                            if (sharedElements.size() < names.size()) {
-                                sharedElements.put(entry.getKey(), onFindView(
-                                        mTransitionResultCode, mTransitionPosition,
-                                        entry.getKey(), entry.getValue()));
+                                if (!sharedElements.containsKey(entry.getKey())
+                                        || sharedElements.get(entry.getKey()) == null) {
+                                    sharedElements.put(entry.getKey(), onFindView(
+                                            mTransitionResultCode, mTransitionPosition,
+                                            entry.getKey(), entry.getValue()));
+                                }
                             }
                         }
                     }
@@ -570,10 +573,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
                     new ViewTreeObserver.OnPreDrawListener() {
                         @Override
                         public boolean onPreDraw() {
-                            if (transitionView != null) {
-                                transitionView.getViewTreeObserver()
-                                        .removeOnPreDrawListener(this);
-                            }
+                            transitionView.getViewTreeObserver().removeOnPreDrawListener(this);
                             supportStartPostponedEnterTransition();
 
                             return true;

@@ -31,6 +31,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.theme.fragment.DynamicThemeFragment;
 import com.pranavpandey.android.dynamic.utils.DynamicIntentUtils;
@@ -321,6 +322,8 @@ public class DynamicIntent {
             context.startActivity(DynamicIntent.getThemeIntent(context,
                     clazz, action, theme, defaultTheme, text));
         }
+
+        Dynamic.setTransitionResultCode(context, requestCode);
     }
 
     /**

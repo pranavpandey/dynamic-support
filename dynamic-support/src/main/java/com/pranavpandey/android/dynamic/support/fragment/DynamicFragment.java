@@ -115,6 +115,24 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
     }
 
     @Override
+    public void postponeEnterTransition() {
+        super.postponeEnterTransition();
+
+        if (getActivity() instanceof AppCompatActivity) {
+            requireActivity().supportPostponeEnterTransition();
+        }
+    }
+
+    @Override
+    public void startPostponedEnterTransition() {
+        super.startPostponedEnterTransition();
+
+        if (getActivity() instanceof AppCompatActivity) {
+            requireActivity().supportStartPostponedEnterTransition();
+        }
+    }
+
+    @Override
     public void onApplyTransitions(boolean exit) {
         if (getActivity() != null) {
             setEnterTransition(onAdjustEnterReturnTransition(
@@ -147,20 +165,14 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
                     new ViewTreeObserver.OnPreDrawListener() {
                         @Override
                         public boolean onPreDraw() {
-                            if (transitionView != null) {
-                                transitionView.getViewTreeObserver()
-                                        .removeOnPreDrawListener(this);
-                            }
-
-                            if (getActivity() != null) {
-                                requireActivity().supportStartPostponedEnterTransition();
-                            }
+                            transitionView.getViewTreeObserver().removeOnPreDrawListener(this);
+                            startPostponedEnterTransition();
 
                             return true;
                         }
                     });
         } else {
-            requireActivity().startPostponedEnterTransition();
+            startPostponedEnterTransition();
         }
     }
 
