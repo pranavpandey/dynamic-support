@@ -82,9 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ads_margin_small" />
 
-        <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-            style="@style/Widget.DynamicApp.Button.Preference"
-            android:id="@+id/ads_preference_action_button" />
+        <include layout="@layout/ads_preference_footer" />
 
     </LinearLayout>
 

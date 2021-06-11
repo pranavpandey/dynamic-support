@@ -62,17 +62,20 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/ads_margin_tiny" />
 
+                <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                    style="@style/Widget.DynamicApp.Button.Preference"
+                    android:id="@+id/ads_preference_action_button" />
+
             </LinearLayout>
 
+            <include
+                layout="@layout/ads_layout_theme_preview_inline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ads_margin_preference_value"
+                android:layout_marginStart="@dimen/ads_margin_preference_value" />
+
         </LinearLayout>
-
-        <include
-            layout="@layout/ads_layout_theme_preview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ads_margin_small" />
-
-        <include layout="@layout/ads_preference_footer" />
 
     </LinearLayout>
 
