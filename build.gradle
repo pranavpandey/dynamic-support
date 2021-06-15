@@ -36,21 +36,22 @@ buildscript {
     repositories {
         mavenCentral()
         google()
-        jcenter()
     }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:7.1.0-alpha02'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
     }
+}
+
+plugins {
+    id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
 }
 
 allprojects {
     repositories {
         mavenCentral()
         google()
-        jcenter()
     }
 }
 
@@ -87,4 +88,33 @@ ext {
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     licenseDistribution = 'repo'
     allLicenses = ["Apache-2.0"]
+
+    publication = 'local.properties'
+
+    ext["signing.keyId"] = ''
+    ext["signing.password"] = ''
+    ext["signing.secretKeyRingFile"] = ''
+
+    ossrhUsername = ''
+    ossrhPassword = ''
+    sonatypeStagingProfileId = ''
+}
+
+apply plugin: 'io.github.gradle-nexus.publish-plugin'
+
+File publish = project.rootProject.file("${publication}")
+if (publish.exists()) {
+    Properties properties = new Properties()
+    new FileInputStream(publish).withCloseable { is -> properties.load(is) }
+    properties.each { name, value -> ext[name] = value }
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            username = ossrhUsername
+            password = ossrhPassword
+            stagingProfileId = sonatypeStagingProfileId
+        }
+    }
 }
