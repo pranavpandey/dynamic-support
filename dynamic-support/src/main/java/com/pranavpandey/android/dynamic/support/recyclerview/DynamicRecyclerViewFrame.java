@@ -35,6 +35,7 @@ import androidx.transition.TransitionManager;
 
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
 
 import static androidx.recyclerview.widget.StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS;
@@ -300,7 +301,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
         post(new Runnable() {
             @Override
             public void run() {
-                if (animate) {
+                if (animate && DynamicMotion.getInstance().isMotion()) {
                     TransitionManager.beginDelayedTransition(DynamicRecyclerViewFrame.this);
                 }
 
@@ -332,7 +333,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
         post(new Runnable() {
             @Override
             public void run() {
-                if (animate) {
+                if (animate && DynamicMotion.getInstance().isMotion()) {
                     TransitionManager.beginDelayedTransition(DynamicRecyclerViewFrame.this);
                 }
 

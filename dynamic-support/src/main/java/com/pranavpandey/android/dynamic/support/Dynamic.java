@@ -83,7 +83,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
  *
  * <p>These methods are provided to avoid any exceptions when views are replaced by the
  * {@link DynamicLayoutInflater} or not using the {@link DynamicActivity}.
- * So, this is the recommended way to modify the activity ot any of the following view types
+ * So, this is the recommended way to modify the activity or any of the following view types
  * at runtime.
  *
  * @see DynamicWidget
