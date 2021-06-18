@@ -84,30 +84,35 @@
 
     <!-- App links titles. -->
     <string-array name="info_app_links">
+        <item>@string/ads_version</item>
         <item>@string/ads_license_apache</item>
         <item>@string/ads_license_sources</item>
     </string-array>
 
     <!-- App links subtitles. -->
     <string-array name="info_app_subtitles">
+        <item>@null</item>
         <item>@string/ads_license_desc</item>
         <item>@string/ads_license_sources_desc</item>
     </string-array>
 
     <!-- App links urls. -->
     <string-array name="info_app_urls">
+        <item>@null</item>
         <item>http://www.apache.org/licenses/LICENSE-2.0</item>
         <item>https://github.com/pranavpandey/dynamic-support</item>
     </string-array>
 
     <!-- App links icons. -->
     <integer-array name="info_app_icons">
+        <item>@drawable/ads_ic_android</item>
         <item>@drawable/ads_ic_license</item>
         <item>@drawable/ads_ic_social_github</item>
     </integer-array>
 
     <!-- App links tint colors. -->
     <integer-array name="info_app_colors">
+        <item>@color/ads_link_apps</item>
         <item>@color/ads_link_license</item>
         <item>@color/ads_social_github</item>
     </integer-array>

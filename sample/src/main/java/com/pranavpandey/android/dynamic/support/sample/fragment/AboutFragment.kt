@@ -26,7 +26,6 @@ import com.pranavpandey.android.dynamic.support.fragment.DynamicViewPager2Fragme
 import com.pranavpandey.android.dynamic.support.fragment.DynamicViewPagerFragment
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.utils.DynamicPermissionUtils
-import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils
 
 
 /**
@@ -73,7 +72,7 @@ class AboutFragment : DynamicViewPager2Fragment() {
 
     override fun getSubtitle(): CharSequence? {
         // Set subtitle for the app compat activity.
-        return DynamicPackageUtils.getVersionName(requireContext())
+        return getString(R.string.ads_about);
     }
 
     override fun getBottomNavigationViewId(): Int {
@@ -87,7 +86,7 @@ class AboutFragment : DynamicViewPager2Fragment() {
     }
 
     override fun getTitle(position: Int): String? {
-        // TODO: Return tab tiles.
+        // TODO: Return tab titles.
         return when (position) {
             1 -> getString(R.string.ads_notices)
             else -> getString(R.string.ads_menu_info)

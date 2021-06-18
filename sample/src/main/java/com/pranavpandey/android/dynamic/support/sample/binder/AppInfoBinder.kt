@@ -25,6 +25,8 @@ import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.adapter.AppInfoAdapter
 import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils
 import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView
+import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils
+
 
 /**
  * A recycler view binder to display app info by using [DynamicRecyclerViewBinder].
@@ -55,6 +57,18 @@ class AppInfoBinder(binderAdapter: AppInfoAdapter)
             app.linksView!!.layoutManager =
                     DynamicLayoutUtils.getGridLayoutManager(app.context,
                             DynamicLayoutUtils.getGridCount(app.context))
+            DynamicLayoutUtils.setFullSpanForPosition(app.linksView);
+
+            if (app.linksSubtitles != null) {
+                val subtitles = app.linksSubtitles
+                subtitles!![0] = String.format(
+                    app.context.getString(R.string.ads_format_separator),
+                    DynamicPackageUtils.getVersionName(app.context),
+                    DynamicPackageUtils.getVersionCode(app.context)
+                )
+                app.linksSubtitles = subtitles
+                app.onUpdate()
+            }
         }
     }
 }
