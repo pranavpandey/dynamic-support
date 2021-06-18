@@ -27,6 +27,7 @@
 
     <!-- Headings -->
     <string name="ads_app">App</string>
+    <string name="ads_version">Versione</string>
     <string name="ads_actions">Azioni</string>
     <string name="ads_text">Testo</string>
     <string name="ads_icon">Icona</string>
@@ -50,6 +51,7 @@
     <string name="ads_error">C\'è stato un errore.</string>
     <string name="ads_i_got_it">Ok, capito</string>
     <string name="ads_not_now">Non adesso</string>
+    <string name="ads_later">Dopo</string>
     <string name="ads_yes_in">Si, ci sto</string>
     <string name="ads_more">Di Più</string>
     <string name="ads_more_info">Più informazioni</string>

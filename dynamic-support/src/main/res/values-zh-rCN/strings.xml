@@ -27,6 +27,7 @@
 
     <!-- Headings -->
     <string name="ads_app">应用</string>
+    <string name="ads_version">版本</string>
     <string name="ads_actions">动作</string>
     <string name="ads_text">文本</string>
     <string name="ads_icon">图标</string>
@@ -50,6 +51,7 @@
     <string name="ads_error">发生了错误。</string>
     <string name="ads_i_got_it">好的，我知道了</string>
     <string name="ads_not_now">不是现在</string>
+    <string name="ads_later">之后</string>
     <string name="ads_yes_in">是的，我在</string>
     <string name="ads_more">更多</string>
     <string name="ads_more_info">更多信息</string>

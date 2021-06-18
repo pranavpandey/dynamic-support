@@ -27,6 +27,7 @@
 
     <!-- Headings -->
     <string name="ads_app">Приложение</string>
+    <string name="ads_version">Версия</string>
     <string name="ads_actions">действия</string>
     <string name="ads_text">Текст</string>
     <string name="ads_icon">Иконка</string>
@@ -50,6 +51,7 @@
     <string name="ads_error">Произошла ошибка.</string>
     <string name="ads_i_got_it">ОК, понятно</string>
     <string name="ads_not_now">Не сейчас</string>
+    <string name="ads_later">Позже</string>
     <string name="ads_yes_in">Да, я в игре</string>
     <string name="ads_more">Еще</string>
     <string name="ads_more_info">Больше информации</string>

@@ -27,6 +27,7 @@
 
     <!-- Headings -->
     <string name="ads_app">ऐप</string>
+    <string name="ads_version">संस्करण</string>
     <string name="ads_actions">क्रिया</string>
     <string name="ads_text">लेख</string>
     <string name="ads_icon">आइकन</string>
@@ -50,6 +51,7 @@
     <string name="ads_error">एक त्रुटि हुई है।</string>
     <string name="ads_i_got_it">समझ लिया</string>
     <string name="ads_not_now">अभी नहीं</string>
+    <string name="ads_later">बाद में</string>
     <string name="ads_yes_in">हां, में तैयार हूं</string>
     <string name="ads_more">और</string>
     <string name="ads_more_info">इसके बारे में और बताएं</string>

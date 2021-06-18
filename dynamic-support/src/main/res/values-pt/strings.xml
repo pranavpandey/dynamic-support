@@ -20,12 +20,14 @@
     <!-- Activity -->
     <string name="ads_navigation_drawer_open">Abrir gaveta de navegação</string>
     <string name="ads_navigation_drawer_close">Fechar gaveta de notificação</string>
+
     <!-- String formats -->
     <string name="ads_format_version">Versão %1$s</string>
     <string name="ads_search_empty">Sem resultados para \"%1$s\".</string>
 
     <!-- Headings -->
     <string name="ads_app">App</string>
+    <string name="ads_version">Versão</string>
     <string name="ads_actions">Ações</string>
     <string name="ads_text">Texto</string>
     <string name="ads_icon">Ícone</string>
@@ -49,6 +51,7 @@
     <string name="ads_error">Ocorreu um erro.</string>
     <string name="ads_i_got_it">Ok, entendi</string>
     <string name="ads_not_now">Agora não</string>
+    <string name="ads_later">Mais tarde</string>
     <string name="ads_yes_in">Sim, conte comigo</string>
     <string name="ads_more">Mais</string>
     <string name="ads_more_info">Mais informações</string>
