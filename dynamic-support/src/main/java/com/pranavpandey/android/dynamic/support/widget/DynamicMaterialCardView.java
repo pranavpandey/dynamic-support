@@ -132,29 +132,29 @@ public class DynamicMaterialCardView extends MaterialCardView implements Dynamic
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicMaterialCardView_ads_colorType,
+                    R.styleable.DynamicMaterialCardView_adt_colorType,
                     Theme.ColorType.SURFACE);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicMaterialCardView_ads_contrastWithColorType,
+                    R.styleable.DynamicMaterialCardView_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicMaterialCardView_ads_color,
+                    R.styleable.DynamicMaterialCardView_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicMaterialCardView_ads_contrastWithColor,
+                    R.styleable.DynamicMaterialCardView_adt_contrastWithColor,
                     Theme.Color.UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicMaterialCardView_ads_backgroundAware,
+                    R.styleable.DynamicMaterialCardView_adt_backgroundAware,
                     Theme.BackgroundAware.DISABLE);
             mElevationOnSameBackground = a.getBoolean(
-                    R.styleable.DynamicMaterialCardView_ads_elevationOnSameBackground,
+                    R.styleable.DynamicMaterialCardView_adt_elevationOnSameBackground,
                     Defaults.ADS_ELEVATION_ON_SAME_BACKGROUND);
             mFloatingView = a.getBoolean(
-                    R.styleable.DynamicMaterialCardView_ads_floatingView,
+                    R.styleable.DynamicMaterialCardView_adt_floatingView,
                     Defaults.ADS_FLOATING_VIEW);
             mElevation = getCardElevation();
 
-            if (a.getBoolean(R.styleable.DynamicMaterialCardView_ads_dynamicCornerRadius,
+            if (a.getBoolean(R.styleable.DynamicMaterialCardView_adt_dynamicCornerRadius,
                     Defaults.ADS_DYNAMIC_CORNER_RADIUS)) {
                 setCorner((float) DynamicTheme.getInstance().get().getCornerRadius());
             }

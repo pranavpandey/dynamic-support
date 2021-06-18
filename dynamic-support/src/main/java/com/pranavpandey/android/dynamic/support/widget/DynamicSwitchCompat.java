@@ -123,25 +123,25 @@ public class DynamicSwitchCompat extends SwitchMaterial implements DynamicStateW
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicSwitchCompat_ads_colorType,
+                    R.styleable.DynamicSwitchCompat_adt_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicSwitchCompat_ads_contrastWithColorType,
+                    R.styleable.DynamicSwitchCompat_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mStateNormalColorType = a.getInt(
-                    R.styleable.DynamicSwitchCompat_ads_stateNormalColorType,
+                    R.styleable.DynamicSwitchCompat_adt_stateNormalColorType,
                     Defaults.ADS_COLOR_TYPE_ICON);
             mColor = a.getColor(
-                    R.styleable.DynamicSwitchCompat_ads_color,
+                    R.styleable.DynamicSwitchCompat_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicSwitchCompat_ads_contrastWithColor,
+                    R.styleable.DynamicSwitchCompat_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mStateNormalColor = a.getColor(
-                    R.styleable.DynamicSwitchCompat_ads_stateNormalColor,
+                    R.styleable.DynamicSwitchCompat_adt_stateNormalColor,
                     Theme.Color.UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicSwitchCompat_ads_backgroundAware,
+                    R.styleable.DynamicSwitchCompat_adt_backgroundAware,
                     Defaults.getBackgroundAware());
         } finally {
             a.recycle();

@@ -120,25 +120,25 @@ public class DynamicRelativeLayout extends RelativeLayout
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicRelativeLayout_ads_colorType,
+                    R.styleable.DynamicRelativeLayout_adt_colorType,
                     Theme.ColorType.NONE);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicRelativeLayout_ads_contrastWithColorType,
+                    R.styleable.DynamicRelativeLayout_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicRelativeLayout_ads_color,
+                    R.styleable.DynamicRelativeLayout_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicRelativeLayout_ads_contrastWithColor,
+                    R.styleable.DynamicRelativeLayout_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicRelativeLayout_ads_backgroundAware,
+                    R.styleable.DynamicRelativeLayout_adt_backgroundAware,
                     Defaults.getBackgroundAware());
             mTintBackground = a.getBoolean(
-                    R.styleable.DynamicRelativeLayout_ads_tintBackground,
+                    R.styleable.DynamicRelativeLayout_adt_tintBackground,
                     Defaults.ADS_TINT_BACKGROUND);
             mStyleBorderless = a.getBoolean(
-                    R.styleable.DynamicRelativeLayout_ads_styleBorderless,
+                    R.styleable.DynamicRelativeLayout_adt_styleBorderless,
                     Defaults.ADS_STYLE_BORDERLESS_GROUP);
         } finally {
             a.recycle();

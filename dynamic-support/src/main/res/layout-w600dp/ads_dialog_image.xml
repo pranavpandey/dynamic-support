@@ -43,7 +43,7 @@
             android:id="@+id/ads_dialog_image_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:ads_colorType="primary" />
+            app:adt_colorType="primary" />
 
     </LinearLayout>
 

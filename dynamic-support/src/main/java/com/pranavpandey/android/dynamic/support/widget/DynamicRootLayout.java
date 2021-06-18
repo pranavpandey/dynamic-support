@@ -62,7 +62,7 @@ public class DynamicRootLayout extends RelativeLayout
 
         try {
             if (a.getBoolean(
-                    R.styleable.DynamicRootLayout_ads_windowInsets,
+                    R.styleable.DynamicRootLayout_adt_windowInsets,
                     Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }

@@ -60,7 +60,7 @@
             android:padding="@dimen/ads_margin_tiny"
             android:background="?attr/selectableItemBackgroundBorderless"
             app:srcCompat="@drawable/ads_ic_more"
-            app:ads_colorType="accent" />
+            app:adt_colorType="accent" />
 
     </LinearLayout>
 

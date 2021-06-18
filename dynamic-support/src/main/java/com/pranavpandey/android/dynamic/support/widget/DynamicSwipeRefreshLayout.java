@@ -99,19 +99,19 @@ public class DynamicSwipeRefreshLayout extends SwipeRefreshLayout implements Dyn
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicSwipeRefreshLayout_ads_colorType,
+                    R.styleable.DynamicSwipeRefreshLayout_adt_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicSwipeRefreshLayout_ads_contrastWithColorType,
+                    R.styleable.DynamicSwipeRefreshLayout_adt_contrastWithColorType,
                     Theme.ColorType.TINT_BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicSwipeRefreshLayout_ads_color,
+                    R.styleable.DynamicSwipeRefreshLayout_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicSwipeRefreshLayout_ads_contrastWithColor,
+                    R.styleable.DynamicSwipeRefreshLayout_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicSwipeRefreshLayout_ads_backgroundAware,
+                    R.styleable.DynamicSwipeRefreshLayout_adt_backgroundAware,
                     Defaults.getBackgroundAware());
         } finally {
             a.recycle();

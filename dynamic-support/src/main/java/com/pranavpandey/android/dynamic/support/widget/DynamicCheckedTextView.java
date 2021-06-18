@@ -131,25 +131,25 @@ public class DynamicCheckedTextView extends
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicCheckedTextView_ads_colorType,
+                    R.styleable.DynamicCheckedTextView_adt_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicCheckedTextView_ads_contrastWithColorType,
+                    R.styleable.DynamicCheckedTextView_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mStateNormalColorType = a.getInt(
-                    R.styleable.DynamicCheckedTextView_ads_stateNormalColorType,
+                    R.styleable.DynamicCheckedTextView_adt_stateNormalColorType,
                     Defaults.ADS_COLOR_TYPE_ICON);
             mColor = a.getColor(
-                    R.styleable.DynamicCheckedTextView_ads_color,
+                    R.styleable.DynamicCheckedTextView_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicCheckedTextView_ads_contrastWithColor,
+                    R.styleable.DynamicCheckedTextView_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mStateNormalColor = a.getColor(
-                    R.styleable.DynamicCheckedTextView_ads_stateNormalColor,
+                    R.styleable.DynamicCheckedTextView_adt_stateNormalColor,
                     Theme.Color.UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicCheckedTextView_ads_backgroundAware,
+                    R.styleable.DynamicCheckedTextView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
         } finally {
             a.recycle();

@@ -26,7 +26,7 @@
         android:id="@+id/ads_theme_preview_icon"
         android:visibility="gone"
         app:srcCompat="@drawable/ads_ic_palette"
-        app:ads_contrastWithColorType="surface" />
+        app:adt_contrastWithColorType="surface" />
 
     <LinearLayout
         style="@style/Widget.DynamicApp.Content.Row.Vertical"
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ads_margin_tiny"
             android:text="@string/ads_theme_adjust_desc"
-            app:ads_contrastWithColorType="surface" />
+            app:adt_contrastWithColorType="surface" />
 
     </LinearLayout>
 

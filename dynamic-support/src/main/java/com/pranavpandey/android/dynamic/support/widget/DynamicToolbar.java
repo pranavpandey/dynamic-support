@@ -126,24 +126,24 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicToolbar_ads_colorType,
+                    R.styleable.DynamicToolbar_adt_colorType,
                     Theme.ColorType.PRIMARY);
             mTextColorType = a.getInt(
-                    R.styleable.DynamicToolbar_ads_textColorType,
+                    R.styleable.DynamicToolbar_adt_textColorType,
                     Theme.ColorType.TINT_PRIMARY);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicToolbar_ads_contrastWithColor,
+                    R.styleable.DynamicToolbar_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
-            mColor = a.getColor(R.styleable.DynamicToolbar_ads_color,
+            mColor = a.getColor(R.styleable.DynamicToolbar_adt_color,
                     Theme.Color.UNKNOWN);
             mTextColor = a.getColor(
-                    R.styleable.DynamicToolbar_ads_textColor,
+                    R.styleable.DynamicToolbar_adt_textColor,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicToolbar_ads_contrastWithColor,
+                    R.styleable.DynamicToolbar_adt_contrastWithColor,
                     Theme.Color.UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicToolbar_ads_backgroundAware,
+                    R.styleable.DynamicToolbar_adt_backgroundAware,
                     Defaults.getBackgroundAware());
         } finally {
             a.recycle();

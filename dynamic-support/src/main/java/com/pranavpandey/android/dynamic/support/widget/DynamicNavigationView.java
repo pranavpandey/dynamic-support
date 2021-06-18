@@ -185,47 +185,47 @@ public class DynamicNavigationView extends NavigationView
 
         try {
             mBackgroundColorType = a.getInt(
-                    R.styleable.DynamicNavigationView_ads_backgroundColorType,
+                    R.styleable.DynamicNavigationView_adt_backgroundColorType,
                     Theme.ColorType.BACKGROUND);
             mColorType = a.getInt(
-                    R.styleable.DynamicNavigationView_ads_colorType,
+                    R.styleable.DynamicNavigationView_adt_colorType,
                     Defaults.ADS_COLOR_TYPE_EDGE_EFFECT);
             mScrollBarColorType = a.getInt(
-                    R.styleable.DynamicNavigationView_ads_scrollBarColorType,
+                    R.styleable.DynamicNavigationView_adt_scrollBarColorType,
                     Defaults.ADS_COLOR_TYPE_SCROLLABLE);
             mStateNormalColorType = a.getInt(
-                    R.styleable.DynamicNavigationView_ads_stateNormalColorType,
+                    R.styleable.DynamicNavigationView_adt_stateNormalColorType,
                     Theme.ColorType.TEXT_PRIMARY);
             mStateSelectedColorType = a.getInt(
-                    R.styleable.DynamicNavigationView_ads_stateSelectedColorType,
+                    R.styleable.DynamicNavigationView_adt_stateSelectedColorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicNavigationView_ads_contrastWithColorType,
+                    R.styleable.DynamicNavigationView_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mBackgroundColor = a.getColor(
-                    R.styleable.DynamicNavigationView_ads_backgroundColor,
+                    R.styleable.DynamicNavigationView_adt_backgroundColor,
                     Theme.Color.UNKNOWN);
             mColor = a.getColor(
-                    R.styleable.DynamicNavigationView_ads_color,
+                    R.styleable.DynamicNavigationView_adt_color,
                     Theme.Color.UNKNOWN);
             mScrollBarColor = a.getColor(
-                    R.styleable.DynamicNavigationView_ads_scrollBarColor,
+                    R.styleable.DynamicNavigationView_adt_scrollBarColor,
                     Theme.Color.UNKNOWN);
             mStateNormalColor = a.getColor(
-                    R.styleable.DynamicNavigationView_ads_stateNormalColor,
+                    R.styleable.DynamicNavigationView_adt_stateNormalColor,
                     Theme.Color.UNKNOWN);
             mStateSelectedColor = a.getColor(
-                    R.styleable.DynamicNavigationView_ads_stateSelectedColor,
+                    R.styleable.DynamicNavigationView_adt_stateSelectedColor,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicNavigationView_ads_contrastWithColor,
+                    R.styleable.DynamicNavigationView_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicNavigationView_ads_backgroundAware,
+                    R.styleable.DynamicNavigationView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
 
             if (a.getBoolean(
-                    R.styleable.DynamicNavigationView_ads_windowInsets,
+                    R.styleable.DynamicNavigationView_adt_windowInsets,
                     Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }

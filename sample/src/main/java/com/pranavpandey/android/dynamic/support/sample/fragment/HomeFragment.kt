@@ -84,7 +84,7 @@ class HomeFragment : DynamicFragment() {
         // Set subtitle for the dynamic item view.
         (view.findViewById<View>(R.id.item_gradle) as DynamicItemView).subtitle =
                 String.format(getString(R.string.format_version),
-                DynamicPackageUtils.getAppVersion(requireContext()))
+                DynamicPackageUtils.getVersionName(requireContext()))
 
         // Set on click listener for the dynamic item view.
         (view.findViewById<View>(R.id.item_rotation) as DynamicItemView)

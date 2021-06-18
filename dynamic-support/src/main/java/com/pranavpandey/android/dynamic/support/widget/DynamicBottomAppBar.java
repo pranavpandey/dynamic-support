@@ -126,24 +126,24 @@ public class DynamicBottomAppBar extends BottomAppBar implements DynamicTextWidg
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicBottomAppBar_ads_colorType,
+                    R.styleable.DynamicBottomAppBar_adt_colorType,
                     Theme.ColorType.PRIMARY);
             mTextColorType = a.getInt(
-                    R.styleable.DynamicBottomAppBar_ads_textColorType,
+                    R.styleable.DynamicBottomAppBar_adt_textColorType,
                     Theme.ColorType.TINT_PRIMARY);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicBottomAppBar_ads_contrastWithColor,
+                    R.styleable.DynamicBottomAppBar_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
-            mColor = a.getColor(R.styleable.DynamicBottomAppBar_ads_color,
+            mColor = a.getColor(R.styleable.DynamicBottomAppBar_adt_color,
                     Theme.Color.UNKNOWN);
             mTextColor = a.getColor(
-                    R.styleable.DynamicBottomAppBar_ads_textColor,
+                    R.styleable.DynamicBottomAppBar_adt_textColor,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicBottomAppBar_ads_contrastWithColor,
+                    R.styleable.DynamicBottomAppBar_adt_contrastWithColor,
                     Theme.Color.UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicBottomAppBar_ads_backgroundAware,
+                    R.styleable.DynamicBottomAppBar_adt_backgroundAware,
                     Defaults.getBackgroundAware());
         } finally {
             a.recycle();

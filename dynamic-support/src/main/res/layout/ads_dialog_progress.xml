@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/ads_margin_normal"
             android:paddingRight="@dimen/ads_margin_normal"
-            app:ads_colorType="primary" />
+            app:adt_colorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
             android:id="@+id/ads_dialog_progress_bar"

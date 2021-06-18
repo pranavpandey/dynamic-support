@@ -20,7 +20,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/Widget.DynamicApp.Scroller.Vertical"
     android:id="@+id/ads_color_picker"
-    app:ads_contrastWithColorType="surface">
+    app:adt_contrastWithColorType="surface">
 
     <LinearLayout
         style="@style/Widget.DynamicApp.Content.Row.Vertical">
@@ -39,7 +39,7 @@
                 android:columnWidth="@dimen/ads_picker_colors_size"
                 android:horizontalSpacing="@dimen/ads_picker_colors_spacing"
                 android:verticalSpacing="@dimen/ads_picker_colors_spacing"
-                app:ads_contrastWithColorType="surface" />
+                app:adt_contrastWithColorType="surface" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
                 style="@style/Widget.DynamicApp.Divider.Large"
@@ -47,7 +47,7 @@
                 android:layout_marginLeft="@dimen/ads_margin_regular"
                 android:layout_marginRight="@dimen/ads_margin_regular"
                 android:visibility="gone"
-                app:ads_contrastWithColorType="surface" />
+                app:adt_contrastWithColorType="surface" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
                 style="@style/Widget.DynamicApp.Scroller.Nested.GridView"
@@ -59,7 +59,7 @@
                 android:columnWidth="@dimen/ads_picker_colors_size"
                 android:horizontalSpacing="@dimen/ads_picker_colors_spacing"
                 android:verticalSpacing="@dimen/ads_picker_colors_spacing"
-                app:ads_contrastWithColorType="surface" />
+                app:adt_contrastWithColorType="surface" />
 
         </LinearLayout>
 
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:indeterminate="true"
             android:visibility="gone"
-            app:ads_contrastWithColorType="surface" />
+            app:adt_contrastWithColorType="surface" />
 
     </LinearLayout>
 

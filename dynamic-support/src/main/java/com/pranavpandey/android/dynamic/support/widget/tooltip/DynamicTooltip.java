@@ -255,6 +255,7 @@ public class DynamicTooltip implements View.OnLongClickListener, View.OnHoverLis
      *
      * @param fromTouch {@code true} to show from the touch.
      */
+    @SuppressWarnings("deprecation")
     private void show(boolean fromTouch) {
         if (!ViewCompat.isAttachedToWindow(mAnchor)) {
             return;

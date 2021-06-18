@@ -20,11 +20,11 @@
 
     <item
         android:state_checked="true"
-        android:color="?attr/ads_colorControlNormal" />
+        android:color="?attr/adt_colorControlNormal" />
 
     <item
         android:state_selected="true"
-        android:color="?attr/ads_colorControlNormal" />
+        android:color="?attr/adt_colorControlNormal" />
 
     <item
         android:color="@android:color/transparent" />

@@ -107,19 +107,19 @@ public class DynamicSlider extends Slider implements DynamicProgressWidget {
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicSlider_ads_colorType,
+                    R.styleable.DynamicSlider_adt_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicSlider_ads_contrastWithColorType,
+                    R.styleable.DynamicSlider_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicSlider_ads_color,
+                    R.styleable.DynamicSlider_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicSlider_ads_contrastWithColor,
+                    R.styleable.DynamicSlider_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicSlider_ads_backgroundAware,
+                    R.styleable.DynamicSlider_adt_backgroundAware,
                     Defaults.getBackgroundAware());
         } finally {
             a.recycle();

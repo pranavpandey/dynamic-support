@@ -125,22 +125,22 @@ public class DynamicSpinner extends AppCompatSpinner
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicSpinner_ads_colorType,
+                    R.styleable.DynamicSpinner_adt_colorType,
                     Defaults.ADS_COLOR_TYPE_SYSTEM_SECONDARY);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicSpinner_ads_contrastWithColorType,
+                    R.styleable.DynamicSpinner_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicSpinner_ads_color,
+                    R.styleable.DynamicSpinner_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicSpinner_ads_contrastWithColor,
+                    R.styleable.DynamicSpinner_adt_contrastWithColor,
                     Theme.Color.UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicSpinner_ads_backgroundAware,
+                    R.styleable.DynamicSpinner_adt_backgroundAware,
                     Defaults.getBackgroundAware());
             mElevationOnSameBackground = a.getBoolean(
-                    R.styleable.DynamicSpinner_ads_elevationOnSameBackground,
+                    R.styleable.DynamicSpinner_adt_elevationOnSameBackground,
                     Defaults.ADS_ELEVATION_ON_SAME_BACKGROUND);
             mPopupBackground = new DynamicPopupBackground(getContext(), attrs);
             mPopupBackground.setCorner(0f);

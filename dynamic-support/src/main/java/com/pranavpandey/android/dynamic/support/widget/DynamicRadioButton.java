@@ -128,25 +128,25 @@ public class DynamicRadioButton extends MaterialRadioButton implements DynamicSt
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicRadioButton_ads_colorType,
+                    R.styleable.DynamicRadioButton_adt_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicRadioButton_ads_contrastWithColorType,
+                    R.styleable.DynamicRadioButton_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mStateNormalColorType = a.getInt(
-                    R.styleable.DynamicRadioButton_ads_stateNormalColorType,
+                    R.styleable.DynamicRadioButton_adt_stateNormalColorType,
                     Defaults.ADS_COLOR_TYPE_ICON);
             mColor = a.getColor(
-                    R.styleable.DynamicRadioButton_ads_color,
+                    R.styleable.DynamicRadioButton_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicRadioButton_ads_contrastWithColor,
+                    R.styleable.DynamicRadioButton_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mStateNormalColor = a.getColor(
-                    R.styleable.DynamicRadioButton_ads_stateNormalColor,
+                    R.styleable.DynamicRadioButton_adt_stateNormalColor,
                     Theme.Color.UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicRadioButton_ads_backgroundAware,
+                    R.styleable.DynamicRadioButton_adt_backgroundAware,
                     Defaults.getBackgroundAware());
         } finally {
             a.recycle();

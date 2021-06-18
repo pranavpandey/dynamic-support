@@ -190,19 +190,19 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicItemView_ads_colorType,
+                    R.styleable.DynamicItemView_adt_colorType,
                     Defaults.ADS_COLOR_TYPE_ICON);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicItemView_ads_contrastWithColorType,
+                    R.styleable.DynamicItemView_adt_contrastWithColorType,
                     Theme.ColorType.SURFACE);
             mColor = a.getColor(
-                    R.styleable.DynamicItemView_ads_color,
+                    R.styleable.DynamicItemView_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicItemView_ads_contrastWithColor,
+                    R.styleable.DynamicItemView_adt_contrastWithColor,
                     Theme.Color.UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicItemView_ads_backgroundAware,
+                    R.styleable.DynamicItemView_adt_backgroundAware,
                     Theme.BackgroundAware.UNKNOWN);
             mIcon = DynamicResourceUtils.getDrawable(getContext(),
                     a.getResourceId(

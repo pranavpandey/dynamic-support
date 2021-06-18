@@ -36,9 +36,9 @@
         android:hint="@string/ads_search"
         android:singleLine="true"
         android:imeOptions="actionSearch|flagNoExtractUi"
-        app:ads_colorType="tint_primary"
-        app:ads_textColorType="tint_primary"
-        app:ads_contrastWithColorType="primary" />
+        app:adt_colorType="tint_primary"
+        app:adt_textColorType="tint_primary"
+        app:adt_contrastWithColorType="primary" />
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
         android:id="@+id/ads_search_view_clear"
@@ -50,7 +50,7 @@
         android:layout_gravity="center_vertical"
         android:background="?attr/selectableItemBackgroundBorderless"
         app:srcCompat="@drawable/ads_ic_close"
-        app:ads_colorType="tint_primary"
-        app:ads_contrastWithColorType="primary" />
+        app:adt_colorType="tint_primary"
+        app:adt_contrastWithColorType="primary" />
 
 </LinearLayout>

@@ -34,7 +34,7 @@
             android:id="@+id/ads_dialog_restore_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:ads_colorType="primary" />
+            app:adt_colorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
             style="@style/TextAppearance.DynamicApp.Dialog"

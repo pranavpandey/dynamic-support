@@ -103,23 +103,23 @@ public class DynamicAppBarLayout extends AppBarLayout
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicAppBarLayout_ads_colorType,
+                    R.styleable.DynamicAppBarLayout_adt_colorType,
                     Theme.ColorType.PRIMARY);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicAppBarLayout_ads_contrastWithColorType,
+                    R.styleable.DynamicAppBarLayout_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicAppBarLayout_ads_color,
+                    R.styleable.DynamicAppBarLayout_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicAppBarLayout_ads_contrastWithColor,
+                    R.styleable.DynamicAppBarLayout_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicAppBarLayout_ads_backgroundAware,
+                    R.styleable.DynamicAppBarLayout_adt_backgroundAware,
                     Defaults.getBackgroundAware());
 
             if (a.getBoolean(
-                    R.styleable.DynamicAppBarLayout_ads_windowInsets,
+                    R.styleable.DynamicAppBarLayout_adt_windowInsets,
                     Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }

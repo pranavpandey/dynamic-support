@@ -67,7 +67,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:text="@string/color_primary"
-                        app:ads_colorType="primary" />
+                        app:adt_colorType="primary" />
 
                 </LinearLayout>
 
@@ -98,7 +98,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:text="@string/color_primary"
-                        app:ads_colorType="primary" />
+                        app:adt_colorType="primary" />
 
                 </LinearLayout>
 
@@ -145,7 +145,7 @@
                         android:layout_weight="1.0"
                         android:padding="@dimen/ads_margin_small"
                         android:checked="true"
-                        app:ads_colorType="primary"
+                        app:adt_colorType="primary"
                         android:text="@string/color_primary" />
 
                 </LinearLayout>
@@ -176,7 +176,7 @@
                         android:layout_weight="1.0"
                         android:padding="@dimen/ads_margin_small"
                         android:checked="true"
-                        app:ads_colorType="primary"
+                        app:adt_colorType="primary"
                         android:text="@string/color_primary" />
 
                 </LinearLayout>
@@ -207,7 +207,7 @@
                         android:layout_weight="1.0"
                         android:padding="@dimen/ads_margin_small"
                         android:checked="true"
-                        app:ads_colorType="primary"
+                        app:adt_colorType="primary"
                         android:text="@string/color_primary" />
 
                 </LinearLayout>
@@ -306,7 +306,7 @@
                         android:enabled="false"
                         android:max="100"
                         android:progress="25"
-                        app:ads_colorType="background" />
+                        app:adt_colorType="background" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicSeekBar
                         android:layout_width="match_parent"
@@ -314,7 +314,7 @@
                         android:layout_marginTop="@dimen/ads_margin_small"
                         android:max="100"
                         android:progress="50"
-                        app:ads_colorType="primary" />
+                        app:adt_colorType="primary" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -338,7 +338,7 @@
                             android:layout_weight="1.0"
                             android:layout_gravity="center"
                             android:indeterminate="true"
-                            app:ads_colorType="background" />
+                            app:adt_colorType="background" />
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
                             style="?android:attr/progressBarStyle"
@@ -347,7 +347,7 @@
                             android:layout_weight="1.0"
                             android:layout_gravity="center"
                             android:indeterminate="true"
-                            app:ads_colorType="primary" />
+                            app:adt_colorType="primary" />
 
 <!--                        <com.pranavpandey.android.dynamic.support.widget.DynamicRatingBar-->
 <!--                            style="?attr/ratingBarStyle"-->
@@ -370,14 +370,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:progress="50"
-                        app:ads_colorType="background" />
+                        app:adt_colorType="background" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:indeterminate="true"
-                        app:ads_colorType="primary" />
+                        app:adt_colorType="primary" />
 
                 </LinearLayout>
 
@@ -419,7 +419,7 @@
                         android:value="25.0"
                         android:valueFrom="0.0"
                         android:valueTo="100.0"
-                        app:ads_colorType="background" />
+                        app:adt_colorType="background" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicSlider
                         android:layout_width="match_parent"
@@ -430,7 +430,7 @@
                         android:valueTo="100.0"
                         android:stepSize="5.0"
                         app:labelBehavior="gone"
-                        app:ads_colorType="primary" />
+                        app:adt_colorType="primary" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicRangeSlider
                         android:layout_width="match_parent"
@@ -477,14 +477,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/ads_margin_small"
-                        app:ads_colorType="background" />
+                        app:adt_colorType="background" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicSpinner
                         android:id="@+id/spinner_three"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/ads_margin_small"
-                        app:ads_colorType="primary" />
+                        app:adt_colorType="primary" />
 
                 </LinearLayout>
 

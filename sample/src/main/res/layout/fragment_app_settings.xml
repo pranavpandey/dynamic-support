@@ -60,7 +60,7 @@
                     app:ads_title="@string/ads_theme_app_day"
                     app:ads_summary="@string/ads_theme_app_day_summary"
                     app:ads_description="@string/ads_theme_app_day_night_desc"
-                    app:ads_color="@color/ads_window_background_light"
+                    app:adt_color="@color/ads_window_background_light"
                     app:ads_shape="square"
                     app:ads_popup="true"
                     app:ads_popupColors="@array/pref_app_theme_day_colors" />
@@ -74,7 +74,7 @@
                     app:ads_title="@string/ads_theme_app_night"
                     app:ads_summary="@string/ads_theme_app_night_summary"
                     app:ads_description="@string/ads_theme_app_day_night_desc"
-                    app:ads_color="@color/ads_window_background"
+                    app:adt_color="@color/ads_window_background"
                     app:ads_shape="square"
                     app:ads_popup="true"
                     app:ads_popupColors="@array/pref_app_theme_night_colors" />
@@ -87,7 +87,7 @@
                     app:ads_title="@string/ads_theme_color_primary"
                     app:ads_summary="@string/ads_theme_color_primary_summary"
                     app:ads_description="@string/ads_theme_background_aware_desc"
-                    app:ads_color="@color/color_primary"
+                    app:adt_color="@color/color_primary"
                     app:ads_alphaEnabled="true"
                     app:ads_popup="true" />
 
@@ -99,7 +99,7 @@
                     app:ads_title="@string/ads_theme_color_accent"
                     app:ads_summary="@string/ads_theme_color_accent_summary"
                     app:ads_description="@string/ads_theme_background_aware_desc"
-                    app:ads_color="@color/color_accent"
+                    app:adt_color="@color/color_accent"
                     app:ads_alphaEnabled="true"
                     app:ads_popup="true" />
 

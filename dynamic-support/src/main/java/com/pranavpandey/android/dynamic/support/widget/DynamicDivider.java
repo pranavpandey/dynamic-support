@@ -60,7 +60,7 @@ public class DynamicDivider extends DynamicBackgroundView {
     public void setColor() {
         super.setColor();
 
-        if (DynamicTheme.getInstance().isHideDividers()
+        if (!DynamicTheme.getInstance().get().isShowDividers()
                 && getContrastWithColor() != Theme.Color.UNKNOWN) {
             DynamicDrawableUtils.colorizeDrawable(getBackground(), getContrastWithColor());
         }

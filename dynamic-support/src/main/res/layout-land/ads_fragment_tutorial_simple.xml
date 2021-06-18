@@ -38,7 +38,7 @@
         android:layout_weight="@integer/ads_weight_tutorial_text"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        app:ads_windowInsets="false">
+        app:adt_windowInsets="false">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
             style="@style/Widget.DynamicApp.Card"

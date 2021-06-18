@@ -64,7 +64,7 @@ public class DynamicBottomSheet extends FrameLayout implements WindowInsetsWidge
 
         try {
             if (a.getBoolean(
-                    R.styleable.DynamicBottomSheet_ads_windowInsets,
+                    R.styleable.DynamicBottomSheet_adt_windowInsets,
                     Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }

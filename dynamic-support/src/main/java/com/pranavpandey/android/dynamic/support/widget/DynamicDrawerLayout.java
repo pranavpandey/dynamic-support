@@ -65,7 +65,7 @@ public class DynamicDrawerLayout extends DrawerLayout implements WindowInsetsWid
 
         try {
             if (a.getBoolean(
-                    R.styleable.DynamicDrawerLayout_ads_windowInsets,
+                    R.styleable.DynamicDrawerLayout_adt_windowInsets,
                     Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }

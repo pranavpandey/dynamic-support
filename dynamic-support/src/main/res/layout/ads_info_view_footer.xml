@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/ads_font_size_medium"
-                app:ads_colorType="accent" />
+                app:adt_colorType="accent" />
 
         </LinearLayout>
 

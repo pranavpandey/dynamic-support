@@ -103,7 +103,7 @@ public abstract class ThemePreference<T extends DynamicAppTheme>
                 R.styleable.ThemePreference);
 
         try {
-            mDefaultTheme = a.getString(R.styleable.DynamicThemePreference_ads_theme);
+            mDefaultTheme = a.getString(R.styleable.DynamicThemePreference_adt_theme);
         } finally {
             a.recycle();
         }

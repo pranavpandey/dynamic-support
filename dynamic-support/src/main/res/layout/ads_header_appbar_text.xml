@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        app:ads_colorType="tint_primary"
-        app:ads_contrastWithColorType="primary" />
+        app:adt_colorType="tint_primary"
+        app:adt_contrastWithColorType="primary" />
 
 </LinearLayout>

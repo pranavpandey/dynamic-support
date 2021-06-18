@@ -111,19 +111,19 @@ public class DynamicFloatingActionButton extends FloatingActionButton implements
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicFloatingActionButton_ads_colorType,
+                    R.styleable.DynamicFloatingActionButton_adt_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicFloatingActionButton_ads_contrastWithColorType,
+                    R.styleable.DynamicFloatingActionButton_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicFloatingActionButton_ads_color,
+                    R.styleable.DynamicFloatingActionButton_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicFloatingActionButton_ads_contrastWithColor,
+                    R.styleable.DynamicFloatingActionButton_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicFloatingActionButton_ads_backgroundAware,
+                    R.styleable.DynamicFloatingActionButton_adt_backgroundAware,
                     Defaults.getBackgroundAware());
         } finally {
             a.recycle();

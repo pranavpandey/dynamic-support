@@ -275,7 +275,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
         Dynamic.setBackgroundAware(mHeaderIcon, getDynamicTheme().getBackgroundAware());
         Dynamic.setBackgroundAware(mHeaderTitle, getDynamicTheme().getBackgroundAware());
         Dynamic.setBackgroundAware(mHeaderMenu, getDynamicTheme().getBackgroundAware());
-        Dynamic.setBackgroundAware(mHeaderShadow, !DynamicTheme.getInstance().isHideDividers()
+        Dynamic.setBackgroundAware(mHeaderShadow, getDynamicTheme().isShowDividers()
                 ? getDynamicTheme().getBackgroundAware() : Theme.BackgroundAware.DISABLE);
         Dynamic.setBackgroundAware(mIcon, getDynamicTheme().getBackgroundAware());
         Dynamic.setBackgroundAware(mTitle, getDynamicTheme().getBackgroundAware());

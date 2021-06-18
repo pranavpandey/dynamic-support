@@ -122,19 +122,19 @@ public class DynamicExtendedFloatingActionButton extends
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicExtendedFloatingActionButton_ads_colorType,
+                    R.styleable.DynamicExtendedFloatingActionButton_adt_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicExtendedFloatingActionButton_ads_contrastWithColorType,
+                    R.styleable.DynamicExtendedFloatingActionButton_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicExtendedFloatingActionButton_ads_color,
+                    R.styleable.DynamicExtendedFloatingActionButton_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicExtendedFloatingActionButton_ads_contrastWithColor,
+                    R.styleable.DynamicExtendedFloatingActionButton_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicExtendedFloatingActionButton_ads_backgroundAware,
+                    R.styleable.DynamicExtendedFloatingActionButton_adt_backgroundAware,
                     Defaults.getBackgroundAware());
         } finally {
             a.recycle();

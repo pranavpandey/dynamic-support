@@ -58,7 +58,7 @@
                 android:layout_marginStart="@dimen/ads_page_horizontal_margin"
                 android:layout_gravity="center_vertical"
                 app:srcCompat="@drawable/ads_ic_arrow_down"
-                app:ads_colorType="accent_dark" />
+                app:adt_colorType="accent_dark" />
 
         </LinearLayout>
 

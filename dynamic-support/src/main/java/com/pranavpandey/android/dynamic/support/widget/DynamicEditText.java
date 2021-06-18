@@ -107,19 +107,19 @@ public class DynamicEditText extends AppCompatEditText implements DynamicWidget 
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicEditText_ads_colorType,
+                    R.styleable.DynamicEditText_adt_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicEditText_ads_contrastWithColorType,
+                    R.styleable.DynamicEditText_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicEditText_ads_color,
+                    R.styleable.DynamicEditText_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicEditText_ads_contrastWithColor,
+                    R.styleable.DynamicEditText_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicEditText_ads_backgroundAware,
+                    R.styleable.DynamicEditText_adt_backgroundAware,
                     Defaults.getBackgroundAware());
 
             if (mColorType == Theme.ColorType.ACCENT) {

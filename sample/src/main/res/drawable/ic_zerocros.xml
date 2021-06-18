@@ -27,9 +27,9 @@
         android:pathData="m14.98 4.43h78.68c5.59 0 10.13 4.53 10.13 10.13v78.89c0 5.59 -4.53 10.13 -10.13 10.13h-78.68c-5.59 0 -10.13 -4.53 -10.13 -10.13v-78.89c0 -5.59 4.53 -10.13 10.13 -10.13z" />
 
     <path
-        android:fillColor="@color/ads_icon_fill_light"
+        android:fillColor="@color/adt_icon_fill_light"
         android:pathData="m68.55 39.45v28.9h-28.9v-28.9zm-34.8 -35.02v29.11h-28.9v5.91h28.9v28.9h-28.9v5.91h28.9v29.32h5.91v-29.32h28.9v29.32h5.91v-29.32h29.32v-5.91h-29.32v-28.9h29.32v-5.91h-29.32v-29.11h-5.91v29.11h-28.9v-29.11z"
-        android:fillAlpha="@dimen/ads_fill_alpha_base" />
+        android:fillAlpha="@dimen/adt_fill_alpha_base" />
 
     <path
         android:fillColor="#00E676"

@@ -127,29 +127,29 @@ public class DynamicListView extends ListView
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicListView_ads_colorType,
+                    R.styleable.DynamicListView_adt_colorType,
                     Defaults.ADS_COLOR_TYPE_EDGE_EFFECT);
             mScrollBarColorType = a.getInt(
-                    R.styleable.DynamicListView_ads_scrollBarColorType,
+                    R.styleable.DynamicListView_adt_scrollBarColorType,
                     Defaults.ADS_COLOR_TYPE_SCROLLABLE);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicListView_ads_contrastWithColorType,
+                    R.styleable.DynamicListView_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicListView_ads_color,
+                    R.styleable.DynamicListView_adt_color,
                     Theme.Color.UNKNOWN);
             mScrollBarColor = a.getColor(
-                    R.styleable.DynamicListView_ads_scrollBarColor,
+                    R.styleable.DynamicListView_adt_scrollBarColor,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicListView_ads_contrastWithColor,
+                    R.styleable.DynamicListView_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicListView_ads_backgroundAware,
+                    R.styleable.DynamicListView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
 
             if (a.getBoolean(
-                    R.styleable.DynamicListView_ads_windowInsets,
+                    R.styleable.DynamicListView_adt_windowInsets,
                     Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }

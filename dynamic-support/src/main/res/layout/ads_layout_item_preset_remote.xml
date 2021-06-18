@@ -22,7 +22,7 @@
     android:id="@+id/ads_preset_root"
     android:layout_width="match_parent"
     android:layout_height="@dimen/ads_theme_preview_height_remote"
-    app:ads_elevationOnSameBackground="true">
+    app:adt_elevationOnSameBackground="true">
 
     <com.pranavpandey.android.dynamic.support.theme.view.DynamicRemoteThemePreview
         style="@style/Widget.DynamicApp.Content"

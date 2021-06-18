@@ -35,7 +35,7 @@
         style="@style/Widget.DynamicApp.Scroller.Padding.Vertical.Clip"
         android:id="@+id/ads_tutorial_simple_scroller"
         android:layout_height="wrap_content"
-        app:ads_windowInsets="false">
+        app:adt_windowInsets="false">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
             style="@style/Widget.DynamicApp.Card"

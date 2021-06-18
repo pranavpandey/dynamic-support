@@ -128,29 +128,29 @@ public class DynamicHorizontalScrollView extends HorizontalScrollView
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicScrollView_ads_colorType,
+                    R.styleable.DynamicScrollView_adt_colorType,
                     Defaults.ADS_COLOR_TYPE_EDGE_EFFECT);
             mScrollBarColorType = a.getInt(
-                    R.styleable.DynamicScrollView_ads_scrollBarColorType,
+                    R.styleable.DynamicScrollView_adt_scrollBarColorType,
                     Defaults.ADS_COLOR_TYPE_SCROLLABLE);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicScrollView_ads_contrastWithColorType,
+                    R.styleable.DynamicScrollView_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicScrollView_ads_color,
+                    R.styleable.DynamicScrollView_adt_color,
                     Theme.Color.UNKNOWN);
             mScrollBarColor = a.getColor(
-                    R.styleable.DynamicScrollView_ads_scrollBarColor,
+                    R.styleable.DynamicScrollView_adt_scrollBarColor,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicScrollView_ads_contrastWithColor,
+                    R.styleable.DynamicScrollView_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicScrollView_ads_backgroundAware,
+                    R.styleable.DynamicScrollView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
 
             if (a.getBoolean(
-                    R.styleable.DynamicScrollView_ads_windowInsets,
+                    R.styleable.DynamicScrollView_adt_windowInsets,
                     Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }

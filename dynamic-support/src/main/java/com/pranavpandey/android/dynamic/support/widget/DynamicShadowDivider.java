@@ -59,7 +59,7 @@ public class DynamicShadowDivider extends DynamicImageView {
     public void setColor() {
         super.setColor();
 
-        if (DynamicTheme.getInstance().isHideDividers()
+        if (!DynamicTheme.getInstance().get().isShowDividers()
                 && getContrastWithColor() != Theme.Color.UNKNOWN) {
             setColorFilter(getContrastWithColor(), getFilterMode());
             setVisibility(INVISIBLE);

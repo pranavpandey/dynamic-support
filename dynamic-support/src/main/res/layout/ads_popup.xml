@@ -50,7 +50,7 @@
                     android:id="@+id/ads_popup_scroll_indicator_up"
                     android:gravity="top"
                     android:visibility="gone"
-                    app:ads_contrastWithColorType="surface" />
+                    app:adt_contrastWithColorType="surface" />
 
                 <FrameLayout
                     android:id="@+id/ads_popup_content"
@@ -66,7 +66,7 @@
                     android:id="@+id/ads_popup_scroll_indicator_down"
                     android:gravity="bottom"
                     android:visibility="gone"
-                    app:ads_contrastWithColorType="surface" />
+                    app:adt_contrastWithColorType="surface" />
 
             </LinearLayout>
 

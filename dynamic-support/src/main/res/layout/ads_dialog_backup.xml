@@ -35,7 +35,7 @@
             android:layout_marginTop="@dimen/ads_margin_extra_tiny"
             android:paddingLeft="@dimen/ads_margin_normal"
             android:paddingRight="@dimen/ads_margin_normal"
-            app:ads_colorType="primary" />
+            app:adt_colorType="primary" />
 
         <LinearLayout
             android:id="@+id/ads_backup_create"
@@ -71,7 +71,7 @@
                 android:layout_marginLeft="@dimen/ads_dialog_margin_horizontal"
                 android:layout_marginRight="@dimen/ads_dialog_margin_horizontal"
                 app:ads_title="@string/ads_backup_location"
-                app:ads_contrastWithColorType="background" />
+                app:adt_contrastWithColorType="background" />
 
         </LinearLayout>
 

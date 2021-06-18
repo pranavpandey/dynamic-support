@@ -22,7 +22,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    app:ads_windowInsets="false">
+    app:adt_windowInsets="false">
 
     <RelativeLayout
         android:id="@+id/ads_tutorial"
@@ -77,7 +77,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/ads_margin_medium"
                         android:visibility="gone"
-                        app:ads_colorType="primary" />
+                        app:adt_colorType="primary" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator2
                         android:id="@+id/ads_tutorial_page_indicator"

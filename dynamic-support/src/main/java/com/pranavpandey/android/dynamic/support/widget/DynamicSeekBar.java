@@ -113,19 +113,19 @@ public class DynamicSeekBar extends AppCompatSeekBar implements DynamicProgressW
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicSeekBar_ads_colorType,
+                    R.styleable.DynamicSeekBar_adt_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicSeekBar_ads_contrastWithColorType,
+                    R.styleable.DynamicSeekBar_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicSeekBar_ads_color,
+                    R.styleable.DynamicSeekBar_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicSeekBar_ads_contrastWithColor,
+                    R.styleable.DynamicSeekBar_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicSeekBar_ads_backgroundAware,
+                    R.styleable.DynamicSeekBar_adt_backgroundAware,
                     Defaults.getBackgroundAware());
         } finally {
             a.recycle();

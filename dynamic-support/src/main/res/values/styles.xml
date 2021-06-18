@@ -57,20 +57,20 @@
         <item name="ratingBarStyle">@style/Widget.DynamicApp.RatingBar</item>
         <item name="ratingBarStyleIndicator">@style/Widget.DynamicApp.RatingBar.Indicator</item>
         <item name="ratingBarStyleSmall">@style/Widget.DynamicApp.RatingBar.Small</item>
-        <item name="ads_colorControlNormal">@color/ads_color_control</item>
-        <item name="ads_contrastWithDefault">@color/ads_contrast_with</item>
-        <item name="ads_fontScale">@integer/ads_font_scale</item>
-        <item name="ads_cornerRadius">@dimen/ads_corner_radius</item>
-        <item name="ads_strokeWidth">@dimen/ads_stroke_width</item>
-        <item name="ads_cardBackgroundColor">@color/ads_card_background</item>
-        <item name="ads_cardCornerRadius">@dimen/ads_corner_radius</item>
-        <item name="ads_cardElevation">@dimen/ads_card_view_elevation</item>
+        <item name="adt_colorControlNormal">@color/ads_color_control</item>
+        <item name="adt_contrastWithDefault">@color/ads_contrast_with</item>
+        <item name="adt_fontScale">@integer/ads_font_scale</item>
+        <item name="adt_cornerRadius">@dimen/ads_corner_radius</item>
+        <item name="adt_strokeWidth">@dimen/ads_stroke_width</item>
+        <item name="adt_cardBackgroundColor">@color/ads_card_background</item>
+        <item name="adt_cardCornerRadius">@dimen/ads_corner_radius</item>
+        <item name="adt_cardElevation">@dimen/ads_card_view_elevation</item>
     </style>
 
     <style name="Base.DynamicApp.Dark">
         <item name="android:windowBackground">@color/ads_window_background_dark</item>
-        <item name="ads_contrastWithDefault">@color/ads_contrast_with_dark</item>
-        <item name="ads_cardBackgroundColor">@color/ads_card_background_dark</item>
+        <item name="adt_contrastWithDefault">@color/ads_contrast_with_dark</item>
+        <item name="adt_cardBackgroundColor">@color/ads_card_background_dark</item>
     </style>
 
     <style name="Base.DynamicApp.Light" parent="Theme.MaterialComponents.Light">
@@ -110,14 +110,14 @@
         <item name="ratingBarStyle">@style/Widget.DynamicApp.RatingBar</item>
         <item name="ratingBarStyleIndicator">@style/Widget.DynamicApp.RatingBar.Indicator</item>
         <item name="ratingBarStyleSmall">@style/Widget.DynamicApp.RatingBar.Small</item>
-        <item name="ads_colorControlNormal">@color/ads_color_control_light</item>
-        <item name="ads_contrastWithDefault">@color/ads_contrast_with_light</item>
-        <item name="ads_fontScale">@integer/ads_font_scale</item>
-        <item name="ads_cornerRadius">@dimen/ads_corner_radius</item>
-        <item name="ads_strokeWidth">@dimen/ads_stroke_width</item>
-        <item name="ads_cardBackgroundColor">@color/ads_card_background_light</item>
-        <item name="ads_cardCornerRadius">@dimen/ads_corner_radius</item>
-        <item name="ads_cardElevation">@dimen/ads_card_view_elevation</item>
+        <item name="adt_colorControlNormal">@color/ads_color_control_light</item>
+        <item name="adt_contrastWithDefault">@color/ads_contrast_with_light</item>
+        <item name="adt_fontScale">@integer/ads_font_scale</item>
+        <item name="adt_cornerRadius">@dimen/ads_corner_radius</item>
+        <item name="adt_strokeWidth">@dimen/ads_stroke_width</item>
+        <item name="adt_cardBackgroundColor">@color/ads_card_background_light</item>
+        <item name="adt_cardCornerRadius">@dimen/ads_corner_radius</item>
+        <item name="adt_cardElevation">@dimen/ads_card_view_elevation</item>
     </style>
 
     <style name="Base.DynamicApp.DayNight" parent="Theme.MaterialComponents.DayNight">
@@ -157,14 +157,14 @@
         <item name="ratingBarStyle">@style/Widget.DynamicApp.RatingBar</item>
         <item name="ratingBarStyleIndicator">@style/Widget.DynamicApp.RatingBar.Indicator</item>
         <item name="ratingBarStyleSmall">@style/Widget.DynamicApp.RatingBar.Small</item>
-        <item name="ads_colorControlNormal">@color/ads_color_control_day_night</item>
-        <item name="ads_contrastWithDefault">@color/ads_contrast_with_day_night</item>
-        <item name="ads_fontScale">@integer/ads_font_scale</item>
-        <item name="ads_cornerRadius">@dimen/ads_corner_radius</item>
-        <item name="ads_strokeWidth">@dimen/ads_stroke_width</item>
-        <item name="ads_cardBackgroundColor">@color/ads_card_background_day_night</item>
-        <item name="ads_cardCornerRadius">@dimen/ads_corner_radius</item>
-        <item name="ads_cardElevation">@dimen/ads_card_view_elevation</item>
+        <item name="adt_colorControlNormal">@color/ads_color_control_day_night</item>
+        <item name="adt_contrastWithDefault">@color/ads_contrast_with_day_night</item>
+        <item name="adt_fontScale">@integer/ads_font_scale</item>
+        <item name="adt_cornerRadius">@dimen/ads_corner_radius</item>
+        <item name="adt_strokeWidth">@dimen/ads_stroke_width</item>
+        <item name="adt_cardBackgroundColor">@color/ads_card_background_day_night</item>
+        <item name="adt_cardCornerRadius">@dimen/ads_corner_radius</item>
+        <item name="adt_cardElevation">@dimen/ads_card_view_elevation</item>
     </style>
 
     <style name="Base.DynamicApp.NoActionBar">
@@ -336,9 +336,9 @@
         <item name="android:alpha">0.8</item>
         <item name="android:textSize">@dimen/ads_font_size_headline6_splash</item>
         <item name="textAllCaps">true</item>
-        <item name="ads_rtlSupport">false</item>
-        <item name="ads_colorType">tint_primary</item>
-        <item name="ads_contrastWithColorType">primary</item>
+        <item name="adt_rtlSupport">false</item>
+        <item name="adt_colorType">tint_primary</item>
+        <item name="adt_contrastWithColorType">primary</item>
     </style>
 
     <style name="TextAppearance.DynamicApp.Subtitle1"
@@ -367,9 +367,9 @@
         <item name="android:gravity">center_horizontal</item>
         <item name="android:alpha">0.8</item>
         <item name="android:textSize">@dimen/ads_font_size_subtitle1_splash</item>
-        <item name="ads_rtlSupport">false</item>
-        <item name="ads_colorType">tint_primary</item>
-        <item name="ads_contrastWithColorType">primary</item>
+        <item name="adt_rtlSupport">false</item>
+        <item name="adt_colorType">tint_primary</item>
+        <item name="adt_contrastWithColorType">primary</item>
     </style>
 
     <style name="TextAppearance.DynamicApp.Subtitle1.Tutorial">
@@ -430,9 +430,9 @@
 
     <style name="TextAppearance.DynamicApp.PreferenceValue">
         <item name="android:textSize">@dimen/ads_font_size_preference_value</item>
-        <item name="ads_rtlSupport">false</item>
-        <item name="ads_colorType">accent</item>
-        <item name="ads_contrastWithColor">?attr/ads_contrastWithDefault</item>
+        <item name="adt_rtlSupport">false</item>
+        <item name="adt_colorType">accent</item>
+        <item name="adt_contrastWithColor">?attr/adt_contrastWithDefault</item>
     </style>
 
     <style name="TextAppearance.DynamicApp.Dialog"
@@ -443,12 +443,12 @@
 
     <style name="TextAppearance.DynamicApp.Dialog.Primary"
         parent="TextAppearance.DynamicApp.Body1">
-        <item name="ads_colorType">primary</item>
+        <item name="adt_colorType">primary</item>
     </style>
 
     <style name="TextAppearance.DynamicApp.Dialog.Accent"
         parent="TextAppearance.DynamicApp.Body1">
-        <item name="ads_colorType">accent</item>
+        <item name="adt_colorType">accent</item>
     </style>
 
     <style name="TextAppearance.DynamicApp.Toolbar"
@@ -611,7 +611,7 @@
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp.Button</item>
         <item name="rippleColor">@android:color/transparent</item>
         <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
-        <item name="ads_colorType">accent</item>
+        <item name="adt_colorType">accent</item>
     </style>
 
     <style name="Widget.DynamicApp.TextInputEditText">
@@ -636,7 +636,7 @@
         <item name="android:layout_marginLeft">@dimen/ads_button_preference_card_margin_start</item>
         <item name="android:layout_marginStart">@dimen/ads_button_preference_card_margin_start</item>
         <item name="android:layout_gravity">start|left</item>
-        <item name="ads_colorType">primary</item>
+        <item name="adt_colorType">primary</item>
     </style>
 
     <style name="Widget.DynamicApp.Button.Remote">
@@ -654,7 +654,7 @@
         <item name="android:insetRight">@dimen/ads_margin_tiny</item>
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp.Button</item>
         <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
-        <item name="ads_colorType">accent</item>
+        <item name="adt_colorType">accent</item>
     </style>
 
     <style name="Widget.DynamicApp.Button.UnelevatedButton"
@@ -663,7 +663,7 @@
         <item name="android:insetRight">@dimen/ads_margin_tiny</item>
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp.Button</item>
         <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
-        <item name="ads_colorType">accent</item>
+        <item name="adt_colorType">accent</item>
     </style>
 
     <style name="Widget.DynamicApp.Button.UnelevatedButton.Icon"
@@ -672,7 +672,7 @@
         <item name="android:insetRight">@dimen/ads_margin_tiny</item>
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp.Button</item>
         <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
-        <item name="ads_colorType">accent</item>
+        <item name="adt_colorType">accent</item>
     </style>
 
     <style name="Widget.DynamicApp.Button.TextButton"
@@ -682,8 +682,8 @@
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp.Button</item>
         <item name="rippleColor">@android:color/transparent</item>
         <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
-        <item name="ads_colorType">accent</item>
-        <item name="ads_styleBorderless">true</item>
+        <item name="adt_colorType">accent</item>
+        <item name="adt_styleBorderless">true</item>
     </style>
 
     <style name="Widget.DynamicApp.Button.TextButton.Small">
@@ -696,8 +696,8 @@
         <item name="android:insetRight">@dimen/ads_margin_tiny</item>
         <item name="android:textAppearance">@style/TextAppearance.DynamicApp.Button</item>
         <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
-        <item name="ads_colorType">accent</item>
-        <item name="ads_styleBorderless">true</item>
+        <item name="adt_colorType">accent</item>
+        <item name="adt_styleBorderless">true</item>
     </style>
 
     <style name="Widget.DynamicApp.Button.TextButton.Dialog" />
@@ -705,7 +705,7 @@
     <style name="Widget.DynamicApp.Button.ImageButton" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:padding">0dp</item>
         <item name="android:background">?attr/selectableItemBackground</item>
-        <item name="ads_styleBorderless">true</item>
+        <item name="adt_styleBorderless">true</item>
     </style>
 
     <style name="Widget.DynamicApp.RatingBar" parent="Widget.AppCompat.RatingBar">
@@ -733,10 +733,10 @@
         <item name="android:layout_marginEnd">@dimen/ads_card_view_margin_horizontal</item>
         <item name="android:layout_marginBottom">@dimen/ads_card_view_margin_vertical</item>
         <item name="android:clipToPadding">false</item>
-        <item name="cardBackgroundColor">?ads_cardBackgroundColor</item>
-        <item name="cardCornerRadius">?ads_cardCornerRadius</item>
-        <item name="cardElevation">?ads_cardElevation</item>
-        <item name="strokeWidth">?ads_strokeWidth</item>
+        <item name="cardBackgroundColor">?attr/adt_cardBackgroundColor</item>
+        <item name="cardCornerRadius">?attr/adt_cardCornerRadius</item>
+        <item name="cardElevation">?attr/adt_cardElevation</item>
+        <item name="strokeWidth">?attr/adt_strokeWidth</item>
     </style>
 
     <style name="Widget.DynamicApp.Card.Margin">
@@ -761,15 +761,15 @@
     <style name="Widget.DynamicApp.Card.Floating">
         <item name="android:layout_margin">@dimen/ads_card_view_margin_floating</item>
         <item name="cardElevation">@dimen/ads_card_view_elevation_floating</item>
-        <item name="ads_contrastWithColorType">surface</item>
-        <item name="ads_elevationOnSameBackground">true</item>
-        <item name="ads_floatingView">true</item>
+        <item name="adt_contrastWithColorType">surface</item>
+        <item name="adt_elevationOnSameBackground">true</item>
+        <item name="adt_floatingView">true</item>
     </style>
 
     <style name="Widget.DynamicApp.Card.Floating.Dialog">
         <item name="android:layout_margin">@dimen/ads_card_view_margin_dialog</item>
         <item name="cardElevation">@dimen/ads_card_view_elevation_dialog</item>
-        <item name="ads_colorType">background</item>
+        <item name="adt_colorType">background</item>
     </style>
 
     <style name="Widget.DynamicApp.Card.Floating.BottomSheet">
@@ -869,7 +869,7 @@
         <item name="android:fillViewport">false</item>
         <item name="android:overScrollMode">never</item>
         <item name="android:scrollbars">none</item>
-        <item name="ads_windowInsets">false</item>
+        <item name="adt_windowInsets">false</item>
     </style>
 
     <style name="Widget.DynamicApp.Scroller.Nested.Padding">
@@ -905,8 +905,8 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:padding">@dimen/ads_margin_splash</item>
-        <item name="ads_colorType">primary</item>
-        <item name="ads_backgroundAware">disable</item>
+        <item name="adt_colorType">primary</item>
+        <item name="adt_backgroundAware">disable</item>
     </style>
 
     <style name="Widget.DynamicApp.Content.Row">
@@ -1009,15 +1009,15 @@
         <item name="android:padding">@dimen/ads_margin_medium</item>
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:scaleType">fitCenter</item>
-        <item name="ads_styleBorderless">true</item>
+        <item name="adt_styleBorderless">true</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.Splash">
         <item name="android:layout_width">@dimen/ads_icon_splash</item>
         <item name="android:layout_height">@dimen/ads_icon_splash</item>
         <item name="android:layout_margin">@dimen/ads_margin_splash</item>
-        <item name="ads_colorType">accent</item>
-        <item name="ads_contrastWithColorType">primary</item>
+        <item name="adt_colorType">accent</item>
+        <item name="adt_contrastWithColorType">primary</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.Backdrop">
@@ -1026,8 +1026,8 @@
         <item name="android:scaleType">fitCenter</item>
         <item name="android:layout_gravity">center_vertical|end</item>
         <item name="android:alpha">@integer/ads_alpha_backdrop</item>
-        <item name="ads_colorType">accent</item>
-        <item name="ads_contrastWithColorType">primary</item>
+        <item name="adt_colorType">accent</item>
+        <item name="adt_contrastWithColorType">primary</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.Header">
@@ -1037,7 +1037,7 @@
         <item name="android:layout_marginEnd">@dimen/ads_margin_header_icon_end</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:visibility">@integer/ads_visibility_preference_icon</item>
-        <item name="ads_colorType">accent</item>
+        <item name="adt_colorType">accent</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.Header.Appbar">
@@ -1046,13 +1046,13 @@
         <item name="android:layout_marginRight">@dimen/ads_margin_normal</item>
         <item name="android:layout_marginEnd">@dimen/ads_margin_normal</item>
         <item name="android:visibility">visible</item>
-        <item name="ads_colorType">none</item>
+        <item name="adt_colorType">none</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.Empty">
         <item name="android:layout_width">@dimen/ads_icon_empty</item>
         <item name="android:layout_height">@dimen/ads_icon_empty</item>
-        <item name="ads_colorType">tint_background</item>
+        <item name="adt_colorType">tint_background</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.Preference">
@@ -1063,7 +1063,7 @@
         <item name="android:layout_marginEnd">@dimen/ads_margin_preference_icon_end</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:visibility">@integer/ads_visibility_preference_icon</item>
-        <item name="ads_colorType">tint_background</item>
+        <item name="adt_colorType">tint_background</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.Preference.Placeholder">
@@ -1088,7 +1088,7 @@
         <item name="android:layout_marginEnd">0dp</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:visibility">visible</item>
-        <item name="ads_colorType">accent</item>
+        <item name="adt_colorType">accent</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.Preference.Value.Center">
@@ -1110,8 +1110,8 @@
         <item name="android:layout_width">@dimen/ads_icon_card_big</item>
         <item name="android:layout_height">@dimen/ads_icon_card_big</item>
         <item name="android:alpha">@integer/ads_alpha_image_card</item>
-        <item name="ads_colorType">tint_primary</item>
-        <item name="ads_contrastWithColor">?attr/ads_contrastWithDefault</item>
+        <item name="adt_colorType">tint_primary</item>
+        <item name="adt_contrastWithColor">?attr/adt_contrastWithDefault</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.DragIndicator">
@@ -1120,8 +1120,8 @@
         <item name="android:layout_margin">@dimen/ads_margin_regular</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:alpha">@integer/ads_alpha_drag_indicator</item>
-        <item name="ads_colorType">accent</item>
-        <item name="ads_contrastWithColorType">surface</item>
+        <item name="adt_colorType">accent</item>
+        <item name="adt_contrastWithColorType">surface</item>
     </style>
 
     <style name="Widget.DynamicApp.Image.Info">

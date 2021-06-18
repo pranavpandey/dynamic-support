@@ -406,6 +406,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      *
      * @return The {@link DynamicTheme} object to allow for chaining of calls to set methods.
      */
+    @TargetApi(Build.VERSION_CODES.Q)
     public @NonNull DynamicTheme setThemeRes(@StyleRes int theme,
             @Nullable AppTheme<?> dynamicTheme, boolean initializeRemoteColors) {
         if (theme == DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
@@ -422,8 +423,8 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         getDefaultApplication().setThemeRes(theme);
 
         getDefaultApplication().setBackgroundColor(DynamicResourceUtils.resolveColor(
-                        getContext(), theme, android.R.attr.windowBackground,
-                        getDefaultApplication().getBackgroundColor()), false)
+                getContext(), theme, android.R.attr.windowBackground,
+                getDefaultApplication().getBackgroundColor()), false)
                 .setSurfaceColor(DynamicResourceUtils.resolveColor(
                         getContext(), theme, R.attr.colorSurface,
                         getDefaultApplication().getSurfaceColor()), false)
@@ -465,13 +466,13 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                         getContext(), theme, android.R.attr.textColorSecondaryInverse,
                         DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE))
                 .setFontScale(DynamicResourceUtils.resolveInteger(
-                        getContext(), theme, R.attr.ads_fontScale,
+                        getContext(), theme, R.attr.adt_fontScale,
                         getDefaultApplication().getFontScale()))
                 .setCornerRadius(DynamicResourceUtils.resolveDimensionPixelOffSet(
-                        getContext(), theme, R.attr.ads_cornerRadius,
+                        getContext(), theme, R.attr.adt_cornerRadius,
                         getDefaultApplication().getCornerRadius()))
                 .setBackgroundAware(DynamicResourceUtils.resolveInteger(
-                        getContext(), theme, R.attr.ads_backgroundAware,
+                        getContext(), theme, R.attr.adt_backgroundAware,
                         getDefaultApplication().getBackgroundAware()));
 
         mApplicationTheme = new DynamicAppTheme(dynamicTheme == null
@@ -512,6 +513,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      *
      * @return The {@link DynamicTheme} object to allow for chaining of calls to set methods.
      */
+    @TargetApi(Build.VERSION_CODES.Q)
     public @NonNull DynamicTheme setLocalThemeRes(@StyleRes int theme,
             @Nullable AppTheme<?> dynamicTheme) {
         if (getLocalContext() == null) {
@@ -532,8 +534,8 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         getDefaultLocal().setThemeRes(theme);
 
         getDefaultLocal().setBackgroundColor(DynamicResourceUtils.resolveColor(
-                        getLocalContext(), theme, android.R.attr.windowBackground,
-                        getDefaultLocal().getBackgroundColor()), false)
+                getLocalContext(), theme, android.R.attr.windowBackground,
+                getDefaultLocal().getBackgroundColor()), false)
                 .setSurfaceColor(DynamicResourceUtils.resolveColor(
                         getLocalContext(), theme, R.attr.colorSurface,
                         getDefaultLocal().getSurfaceColor()), false)
@@ -575,13 +577,13 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                         getLocalContext(), theme, android.R.attr.textColorSecondaryInverse,
                         DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE))
                 .setFontScale(DynamicResourceUtils.resolveInteger(
-                        getLocalContext(), theme, R.attr.ads_fontScale,
+                        getLocalContext(), theme, R.attr.adt_fontScale,
                         getDefaultLocal().getFontScale()))
                 .setCornerRadius(DynamicResourceUtils.resolveDimensionPixelOffSet(
-                        getLocalContext(), theme, R.attr.ads_cornerRadius,
+                        getLocalContext(), theme, R.attr.adt_cornerRadius,
                         getDefaultLocal().getCornerRadius()))
                 .setBackgroundAware(DynamicResourceUtils.resolveInteger(
-                        getLocalContext(), theme, R.attr.ads_backgroundAware,
+                        getLocalContext(), theme, R.attr.adt_backgroundAware,
                         getDefaultLocal().getBackgroundAware()));
 
         mLocalTheme = new DynamicAppTheme(dynamicTheme == null
@@ -1301,11 +1303,6 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         } catch (Exception e) {
             return null;
         }
-    }
-
-    @Override
-    public boolean isHideDividers() {
-        return getDynamicResolver().isHideDividers();
     }
 
     @Override

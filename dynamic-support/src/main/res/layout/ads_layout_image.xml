@@ -40,7 +40,7 @@
                 android:minHeight="@dimen/ads_theme_code_size_small"
                 android:layout_margin="@dimen/ads_card_view_content_margin_small"
                 android:scaleType="fitCenter"
-                app:ads_colorType="primary" />
+                app:adt_colorType="primary" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -56,7 +56,7 @@
                         android:id="@+id/ads_image_text_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:ads_contrastWithColorType="surface">
+                        app:adt_contrastWithColorType="surface">
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                             style="@style/TextAppearance.DynamicApp.Headline5.Card.Info"
@@ -66,8 +66,8 @@
                             android:layout_margin="@dimen/ads_card_view_content_margin"
                             android:gravity="center"
                             android:textColor="?android:attr/textColorSecondary"
-                            app:ads_contrastWithColorType="surface"
-                            app:ads_rtlSupport="false" />
+                            app:adt_contrastWithColorType="surface"
+                            app:adt_rtlSupport="false" />
 
                     </com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout>
 

@@ -129,25 +129,25 @@ public class DynamicImageView extends AppCompatImageView
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicImageView_ads_colorType,
+                    R.styleable.DynamicImageView_adt_colorType,
                     Theme.ColorType.NONE);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicImageView_ads_contrastWithColorType,
+                    R.styleable.DynamicImageView_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicImageView_ads_color,
+                    R.styleable.DynamicImageView_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicImageView_ads_contrastWithColor,
+                    R.styleable.DynamicImageView_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicImageView_ads_backgroundAware,
+                    R.styleable.DynamicImageView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
             mTintBackground = a.getBoolean(
-                    R.styleable.DynamicImageView_ads_tintBackground,
+                    R.styleable.DynamicImageView_adt_tintBackground,
                     Defaults.ADS_TINT_BACKGROUND);
             mStyleBorderless = a.getBoolean(
-                    R.styleable.DynamicImageView_ads_styleBorderless,
+                    R.styleable.DynamicImageView_adt_styleBorderless,
                     Defaults.ADS_STYLE_BORDERLESS);
 
             if (mColorType == Theme.ColorType.NONE && mColor == Theme.Color.UNKNOWN) {

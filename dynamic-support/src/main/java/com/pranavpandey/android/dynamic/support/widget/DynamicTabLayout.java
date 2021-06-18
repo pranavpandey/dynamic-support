@@ -141,31 +141,31 @@ public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidg
 
         try {
             mBackgroundColorType = a.getInt(
-                    R.styleable.DynamicTabLayout_ads_backgroundColorType,
+                    R.styleable.DynamicTabLayout_adt_backgroundColorType,
                     Theme.ColorType.PRIMARY);
             mColorType = a.getInt(
-                    R.styleable.DynamicTabLayout_ads_colorType,
+                    R.styleable.DynamicTabLayout_adt_colorType,
                     Theme.ColorType.ACCENT);
             mTextColorType = a.getInt(
-                    R.styleable.DynamicTabLayout_ads_textColorType,
+                    R.styleable.DynamicTabLayout_adt_textColorType,
                     Theme.ColorType.TINT_PRIMARY);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicTabLayout_ads_contrastWithColorType,
+                    R.styleable.DynamicTabLayout_adt_contrastWithColorType,
                     Theme.ColorType.PRIMARY);
             mBackgroundColor = a.getColor(
-                    R.styleable.DynamicTabLayout_ads_backgroundColor,
+                    R.styleable.DynamicTabLayout_adt_backgroundColor,
                     Theme.Color.UNKNOWN);
             mColor = a.getColor(
-                    R.styleable.DynamicTabLayout_ads_color,
+                    R.styleable.DynamicTabLayout_adt_color,
                     Theme.Color.UNKNOWN);
             mTextColor = a.getColor(
-                    R.styleable.DynamicTabLayout_ads_textColor,
+                    R.styleable.DynamicTabLayout_adt_textColor,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicTabLayout_ads_contrastWithColor,
+                    R.styleable.DynamicTabLayout_adt_contrastWithColor,
                     Theme.Color.UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicTabLayout_ads_backgroundAware,
+                    R.styleable.DynamicTabLayout_adt_backgroundAware,
                     Defaults.getBackgroundAware());
         } finally {
             a.recycle();

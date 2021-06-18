@@ -59,15 +59,15 @@
     <!-- Attributes for the DynamicInfoView. -->
     <declare-styleable name="DynamicInfoView">
         <!-- Color type for the info layout. -->
-        <attr name="ads_colorType" />
+        <attr name="adt_colorType" />
         <!-- Contrast with color type for the info layout. -->
-        <attr name="ads_contrastWithColorType" />
+        <attr name="adt_contrastWithColorType" />
         <!-- Color for the item layout. -->
-        <attr name="ads_color" />
+        <attr name="adt_color" />
         <!-- Contrast with color for the info layout. -->
-        <attr name="ads_contrastWithColor" />
+        <attr name="adt_contrastWithColor" />
         <!-- Background aware options for the info layout. -->
-        <attr name="ads_backgroundAware" />
+        <attr name="adt_backgroundAware" />
         <attr name="ads_icon" />
         <attr name="ads_title" />
         <attr name="ads_subtitle" />
@@ -84,15 +84,15 @@
     <!-- Attributes for the DynamicItemView. -->
     <declare-styleable name="DynamicItemView">
         <!-- Color type for the item layout. -->
-        <attr name="ads_colorType" />
+        <attr name="adt_colorType" />
         <!-- Contrast with color type for the item layout. -->
-        <attr name="ads_contrastWithColorType" />
+        <attr name="adt_contrastWithColorType" />
         <!-- Color for the item layout. -->
-        <attr name="ads_color" />
+        <attr name="adt_color" />
         <!-- Contrast with color for the item layout. -->
-        <attr name="ads_contrastWithColor" />
+        <attr name="adt_contrastWithColor" />
         <!-- Background aware options for the item layout. -->
-        <attr name="ads_backgroundAware" />
+        <attr name="adt_backgroundAware" />
         <attr name="ads_icon" />
         <attr name="ads_title" />
         <attr name="ads_subtitle" />
@@ -122,11 +122,11 @@
     <!-- Attributes for the DynamicColorView. -->
     <declare-styleable name="DynamicColorView">
         <!-- Inherited attributes from the parent view. -->
-        <attr name="ads_colorType" />
-        <attr name="ads_color" />
-        <attr name="ads_contrastWithColorType" />
-        <attr name="ads_contrastWithColor" />
-        <attr name="ads_backgroundAware" />
+        <attr name="adt_colorType" />
+        <attr name="adt_color" />
+        <attr name="adt_contrastWithColorType" />
+        <attr name="adt_contrastWithColor" />
+        <attr name="adt_backgroundAware" />
         <!-- Shape options for the dynamic color view. -->
         <attr name="ads_shape" format="enum">
             <!-- Constant for the circle color shape. -->
@@ -139,7 +139,7 @@
         <!-- true to enable alpha for the color. -->
         <attr name="ads_alphaEnabled" format="boolean" />
         <!-- Corner radius in case of square or rectangle shape. -->
-        <attr name="ads_cornerRadius" />
+        <attr name="adt_cornerRadius" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicColorPicker. -->
@@ -157,11 +157,11 @@
     <!-- Attributes for the DynamicPreference. -->
     <declare-styleable name="DynamicPreference">
         <!-- Contrast with color type for the preference layout. -->
-        <attr name="ads_contrastWithColorType" />
+        <attr name="adt_contrastWithColorType" />
         <!-- Contrast with color for the preference layout. -->
-        <attr name="ads_contrastWithColor" />
+        <attr name="adt_contrastWithColor" />
         <!-- Background aware options for the preference layout. -->
-        <attr name="ads_backgroundAware" />
+        <attr name="adt_backgroundAware" />
         <!-- Drawable that will be applied to this preference. -->
         <attr name="ads_icon" />
         <!-- Title that will be applied to this preference. -->
@@ -194,8 +194,8 @@
 
     <!-- Attributes for the DynamicColorPreference. -->
     <declare-styleable name="DynamicColorPreference">
-        <attr name="ads_color" />
-        <attr name="ads_altColor" />
+        <attr name="adt_color" />
+        <attr name="adt_altColor" />
         <attr name="ads_popup" />
         <attr name="ads_shape" />
         <attr name="ads_alphaEnabled" />
@@ -265,13 +265,13 @@
     <!-- Attributes for the DynamicThemePreference. -->
     <declare-styleable name="ThemePreference">
         <!-- Dynamic theme that will be applied to this preference. -->
-        <attr name="ads_theme" />
+        <attr name="adt_theme" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicThemePreference. -->
     <declare-styleable name="DynamicThemePreference">
         <!-- Dynamic theme that will be applied to this preference. -->
-        <attr name="ads_theme" />
+        <attr name="adt_theme" />
     </declare-styleable>
 
 </resources>

@@ -130,29 +130,29 @@ public class DynamicBottomNavigationView extends BottomNavigationView
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicBottomNavigationView_ads_colorType,
+                    R.styleable.DynamicBottomNavigationView_adt_colorType,
                     Theme.ColorType.PRIMARY);
             mTextColorType = a.getInt(
-                    R.styleable.DynamicBottomNavigationView_ads_textColorType,
+                    R.styleable.DynamicBottomNavigationView_adt_textColorType,
                     Theme.ColorType.TINT_PRIMARY);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicBottomNavigationView_ads_contrastWithColorType,
+                    R.styleable.DynamicBottomNavigationView_adt_contrastWithColorType,
                     Theme.ColorType.PRIMARY);
             mColor = a.getColor(
-                    R.styleable.DynamicBottomNavigationView_ads_color,
+                    R.styleable.DynamicBottomNavigationView_adt_color,
                     Theme.Color.UNKNOWN);
             mTextColor = a.getColor(
-                    R.styleable.DynamicBottomNavigationView_ads_textColor,
+                    R.styleable.DynamicBottomNavigationView_adt_textColor,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicBottomNavigationView_ads_contrastWithColor,
+                    R.styleable.DynamicBottomNavigationView_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicBottomNavigationView_ads_backgroundAware,
+                    R.styleable.DynamicBottomNavigationView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
 
             if (a.getBoolean(
-                    R.styleable.DynamicBottomNavigationView_ads_windowInsets,
+                    R.styleable.DynamicBottomNavigationView_adt_windowInsets,
                     Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }

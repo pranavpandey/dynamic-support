@@ -127,25 +127,25 @@ public class DynamicCheckBox extends MaterialCheckBox implements DynamicStateWid
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicCheckBox_ads_colorType,
+                    R.styleable.DynamicCheckBox_adt_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicCheckBox_ads_contrastWithColorType,
+                    R.styleable.DynamicCheckBox_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mStateNormalColorType = a.getInt(
-                    R.styleable.DynamicCheckBox_ads_stateNormalColorType,
+                    R.styleable.DynamicCheckBox_adt_stateNormalColorType,
                     Defaults.ADS_COLOR_TYPE_ICON);
             mColor = a.getColor(
-                    R.styleable.DynamicCheckBox_ads_color,
+                    R.styleable.DynamicCheckBox_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicCheckBox_ads_contrastWithColor,
+                    R.styleable.DynamicCheckBox_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mStateNormalColor = a.getColor(
-                    R.styleable.DynamicCheckBox_ads_stateNormalColor,
+                    R.styleable.DynamicCheckBox_adt_stateNormalColor,
                     Theme.Color.UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicCheckBox_ads_backgroundAware,
+                    R.styleable.DynamicCheckBox_adt_backgroundAware,
                     Defaults.getBackgroundAware());
         } finally {
             a.recycle();

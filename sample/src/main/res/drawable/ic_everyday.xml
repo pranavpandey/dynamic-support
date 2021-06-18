@@ -27,14 +27,14 @@
         android:pathData="m24.33 4.33v9.93h-4.95c-5.49 0 -9.84 4.47 -9.84 9.93l-0.05 69.54c0 5.46 4.4 9.93 9.89 9.93h69.23c5.44 0 9.89 -4.47 9.89 -9.93v-69.54c0 -5.46 -4.45 -9.93 -9.89 -9.93h-4.95v-9.93h-9.89v9.93h-39.56v-9.93z" />
 
     <path
-        android:fillColor="@color/ads_icon_fill_light"
+        android:fillColor="@color/adt_icon_fill_light"
         android:pathData="m38.81 35.65v9.28h30.38v-9.28z"
-        android:fillAlpha="@dimen/ads_fill_alpha_secondary" />
+        android:fillAlpha="@dimen/adt_fill_alpha_secondary" />
 
     <path
-        android:fillColor="@color/ads_icon_fill_dark"
+        android:fillColor="@color/adt_icon_fill_dark"
         android:pathData="m54.32 59.27c-2.88 0 -5.76 0.68 -7.92 2.02c-3.9 2.43 -7.17 6.72 -7.17 13.08c0.07 1.2 0.14 2.39 0.21 3.59c0.37 1.25 1.02 3.15 1.69 4.22c1.89 3.03 4.91 5.33 7.38 7.8c4.22 4.29 8.44 8.58 12.66 12.87c0.27 0.27 0.55 0.55 0.82 0.82h26.63c4.41 0 8.17 -2.94 9.44 -6.97c-0.62 -0.62 -1.24 -1.24 -1.87 -1.87c-7.45 -7.45 -14.91 -14.91 -22.36 -22.36c-2.32 -2.32 -4.64 -4.64 -6.96 -6.96c-1.46 -1.46 -2.85 -3.1 -4.64 -4.22c-2.16 -1.35 -5.03 -2.02 -7.9 -2.02z"
-        android:fillAlpha="@dimen/ads_fill_alpha_shadow" />
+        android:fillAlpha="@dimen/adt_fill_alpha_shadow" />
 
     <path
         android:fillColor="#4DB6AC"

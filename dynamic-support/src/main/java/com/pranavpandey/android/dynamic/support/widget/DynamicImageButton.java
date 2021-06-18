@@ -123,25 +123,25 @@ public class DynamicImageButton extends AppCompatImageButton
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicImageButton_ads_colorType,
+                    R.styleable.DynamicImageButton_adt_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicImageButton_ads_contrastWithColorType,
+                    R.styleable.DynamicImageButton_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicImageButton_ads_color,
+                    R.styleable.DynamicImageButton_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicImageButton_ads_contrastWithColor,
+                    R.styleable.DynamicImageButton_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicImageButton_ads_backgroundAware,
+                    R.styleable.DynamicImageButton_adt_backgroundAware,
                     Defaults.getBackgroundAware());
             mTintBackground = a.getBoolean(
-                    R.styleable.DynamicImageButton_ads_tintBackground,
+                    R.styleable.DynamicImageButton_adt_tintBackground,
                     Defaults.ADS_TINT_BACKGROUND);
             mStyleBorderless = a.getBoolean(
-                    R.styleable.DynamicImageButton_ads_styleBorderless,
+                    R.styleable.DynamicImageButton_adt_styleBorderless,
                     Defaults.ADS_STYLE_BORDERLESS);
         } finally {
             a.recycle();

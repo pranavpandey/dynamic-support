@@ -104,19 +104,19 @@ public class DynamicProgressBar extends ContentLoadingProgressBar implements Dyn
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicProgressBar_ads_colorType,
+                    R.styleable.DynamicProgressBar_adt_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicProgressBar_ads_contrastWithColorType,
+                    R.styleable.DynamicProgressBar_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicProgressBar_ads_color,
+                    R.styleable.DynamicProgressBar_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicProgressBar_ads_contrastWithColor,
+                    R.styleable.DynamicProgressBar_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicProgressBar_ads_backgroundAware,
+                    R.styleable.DynamicProgressBar_adt_backgroundAware,
                     Defaults.getBackgroundAware());
         } finally {
             a.recycle();

@@ -127,29 +127,29 @@ public class DynamicGridView extends GridView
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicGridView_ads_colorType,
+                    R.styleable.DynamicGridView_adt_colorType,
                     Defaults.ADS_COLOR_TYPE_EDGE_EFFECT);
             mScrollBarColorType = a.getInt(
-                    R.styleable.DynamicGridView_ads_scrollBarColorType,
+                    R.styleable.DynamicGridView_adt_scrollBarColorType,
                     Defaults.ADS_COLOR_TYPE_SCROLLABLE);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicGridView_ads_contrastWithColorType,
+                    R.styleable.DynamicGridView_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicGridView_ads_color,
+                    R.styleable.DynamicGridView_adt_color,
                     Theme.Color.UNKNOWN);
             mScrollBarColor = a.getColor(
-                    R.styleable.DynamicGridView_ads_scrollBarColor,
+                    R.styleable.DynamicGridView_adt_scrollBarColor,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicGridView_ads_contrastWithColor,
+                    R.styleable.DynamicGridView_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicGridView_ads_backgroundAware,
+                    R.styleable.DynamicGridView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
 
             if (a.getBoolean(
-                    R.styleable.DynamicGridView_ads_windowInsets,
+                    R.styleable.DynamicGridView_adt_windowInsets,
                     Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }

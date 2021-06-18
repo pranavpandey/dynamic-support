@@ -346,7 +346,7 @@ public class Defaults {
      *
      * @return The default contrast with color.
      *
-     * @see com.pranavpandey.android.dynamic.support.R.attr#ads_contrastWithDefault
+     * @see com.pranavpandey.android.dynamic.support.R.attr#adt_contrastWithDefault
      */
     public static @ColorInt int getContrastWithColor(@NonNull Context context) {
         return DynamicTheme.getInstance().getDefaultContrastWith();

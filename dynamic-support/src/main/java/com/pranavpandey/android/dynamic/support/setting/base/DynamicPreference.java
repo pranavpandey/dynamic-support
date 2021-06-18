@@ -217,13 +217,13 @@ public abstract class DynamicPreference extends DynamicView
 
         try {
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicPreference_ads_contrastWithColorType,
+                    R.styleable.DynamicPreference_adt_contrastWithColorType,
                     Theme.ColorType.SURFACE);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicPreference_ads_contrastWithColor,
+                    R.styleable.DynamicPreference_adt_contrastWithColor,
                     Theme.Color.UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicPreference_ads_backgroundAware,
+                    R.styleable.DynamicPreference_adt_backgroundAware,
                     Theme.BackgroundAware.UNKNOWN);
             mIcon = DynamicResourceUtils.getDrawable(getContext(),
                     a.getResourceId(R.styleable.DynamicPreference_ads_icon,

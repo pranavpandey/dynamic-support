@@ -71,11 +71,11 @@ public class DynamicCollapsingToolbarLayout extends CollapsingToolbarLayout
         try {
             if (attrs != null) {
                 mRtlSupport = a.getBoolean(
-                        R.styleable.DynamicCollapsingToolbarLayout_ads_rtlSupport,
+                        R.styleable.DynamicCollapsingToolbarLayout_adt_rtlSupport,
                         Defaults.ADS_RTL_SUPPORT);
 
                 if (a.getBoolean(
-                        R.styleable.DynamicCollapsingToolbarLayout_ads_windowInsets,
+                        R.styleable.DynamicCollapsingToolbarLayout_adt_windowInsets,
                         Defaults.ADS_WINDOW_INSETS)) {
                     applyWindowInsets();
                 }

@@ -61,7 +61,7 @@ public class DynamicCoordinatorLayout extends CoordinatorLayout implements Windo
 
         try {
             if (a.getBoolean(
-                    R.styleable.DynamicCoordinatorLayout_ads_windowInsets,
+                    R.styleable.DynamicCoordinatorLayout_adt_windowInsets,
                     Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }

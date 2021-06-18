@@ -67,13 +67,13 @@
         <item name="android:padding">@dimen/ads_margin_medium</item>
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
         <item name="android:scaleType">fitCenter</item>
-        <item name="ads_styleBorderless">true</item>
+        <item name="adt_styleBorderless">true</item>
     </style>
 
     <style name="Widget.DynamicApp.Button.ImageButton">
         <item name="android:padding">0dp</item>
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-        <item name="ads_styleBorderless">true</item>
+        <item name="adt_styleBorderless">true</item>
     </style>
 
     <style name="Widget.DynamicApp.Button.Remote">

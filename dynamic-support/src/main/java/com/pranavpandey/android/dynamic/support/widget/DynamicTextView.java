@@ -148,28 +148,28 @@ public class DynamicTextView extends MaterialTextView implements DynamicWidget,
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicTextView_ads_colorType,
+                    R.styleable.DynamicTextView_adt_colorType,
                     Theme.ColorType.NONE);
             mLinkColorType = a.getInt(
-                    R.styleable.DynamicTextView_ads_linkColorType,
+                    R.styleable.DynamicTextView_adt_linkColorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicTextView_ads_contrastWithColorType,
+                    R.styleable.DynamicTextView_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicTextView_ads_color,
+                    R.styleable.DynamicTextView_adt_color,
                     Theme.Color.UNKNOWN);
             mLinkColor = a.getColor(
-                    R.styleable.DynamicTextView_ads_linkColor,
+                    R.styleable.DynamicTextView_adt_linkColor,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicTextView_ads_contrastWithColor,
+                    R.styleable.DynamicTextView_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicTextView_ads_backgroundAware,
+                    R.styleable.DynamicTextView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
             mRtlSupport = a.getBoolean(
-                    R.styleable.DynamicTextView_ads_rtlSupport,
+                    R.styleable.DynamicTextView_adt_rtlSupport,
                     Defaults.ADS_RTL_SUPPORT);
 
             if (attrs != null) {

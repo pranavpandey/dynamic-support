@@ -163,7 +163,7 @@ public class DynamicColorView extends DynamicFrameLayout {
             mAlpha = a.getBoolean(R.styleable.DynamicColorView_ads_alphaEnabled,
                     false);
             mCornerRadius = a.getDimensionPixelOffset(
-                    R.styleable.DynamicColorView_ads_cornerRadius,
+                    R.styleable.DynamicColorView_adt_cornerRadius,
                     getResources().getDimensionPixelOffset(R.dimen.ads_corner_radius));
         } finally {
             a.recycle();

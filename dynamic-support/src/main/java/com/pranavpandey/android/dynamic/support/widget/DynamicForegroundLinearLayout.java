@@ -122,25 +122,25 @@ public class DynamicForegroundLinearLayout extends ForegroundLinearLayout
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicForegroundLinearLayout_ads_colorType,
+                    R.styleable.DynamicForegroundLinearLayout_adt_colorType,
                     Theme.ColorType.NONE);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicForegroundLinearLayout_ads_contrastWithColorType,
+                    R.styleable.DynamicForegroundLinearLayout_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicForegroundLinearLayout_ads_color,
+                    R.styleable.DynamicForegroundLinearLayout_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicForegroundLinearLayout_ads_contrastWithColor,
+                    R.styleable.DynamicForegroundLinearLayout_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicForegroundLinearLayout_ads_backgroundAware,
+                    R.styleable.DynamicForegroundLinearLayout_adt_backgroundAware,
                     Defaults.getBackgroundAware());
             mTintBackground = a.getBoolean(
-                    R.styleable.DynamicForegroundLinearLayout_ads_tintBackground,
+                    R.styleable.DynamicForegroundLinearLayout_adt_tintBackground,
                     Defaults.ADS_TINT_BACKGROUND);
             mStyleBorderless = a.getBoolean(
-                    R.styleable.DynamicForegroundLinearLayout_ads_styleBorderless,
+                    R.styleable.DynamicForegroundLinearLayout_adt_styleBorderless,
                     Defaults.ADS_STYLE_BORDERLESS_GROUP);
         } finally {
             a.recycle();

@@ -114,19 +114,19 @@ public class DynamicRatingBar extends AppCompatRatingBar implements DynamicProgr
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicRatingBar_ads_colorType,
+                    R.styleable.DynamicRatingBar_adt_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicRatingBar_ads_contrastWithColorType,
+                    R.styleable.DynamicRatingBar_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicRatingBar_ads_color,
+                    R.styleable.DynamicRatingBar_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicRatingBar_ads_contrastWithColor,
+                    R.styleable.DynamicRatingBar_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicRatingBar_ads_backgroundAware,
+                    R.styleable.DynamicRatingBar_adt_backgroundAware,
                     Defaults.getBackgroundAware());
         } finally {
             a.recycle();

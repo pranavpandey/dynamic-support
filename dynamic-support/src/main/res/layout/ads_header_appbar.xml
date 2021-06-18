@@ -39,16 +39,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.DynamicApp.Headline6"
-            app:ads_colorType="tint_primary"
-            app:ads_contrastWithColorType="primary" />
+            app:adt_colorType="tint_primary"
+            app:adt_contrastWithColorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
             android:id="@+id/ads_header_appbar_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle1"
-            app:ads_colorType="tint_primary"
-            app:ads_contrastWithColorType="primary" />
+            app:adt_colorType="tint_primary"
+            app:adt_contrastWithColorType="primary" />
 
     </LinearLayout>
 

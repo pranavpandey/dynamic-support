@@ -127,29 +127,29 @@ public class DynamicRecyclerView extends RecyclerView
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicRecyclerView_ads_colorType,
+                    R.styleable.DynamicRecyclerView_adt_colorType,
                     Defaults.ADS_COLOR_TYPE_EDGE_EFFECT);
             mScrollBarColorType = a.getInt(
-                    R.styleable.DynamicRecyclerView_ads_scrollBarColorType,
+                    R.styleable.DynamicRecyclerView_adt_scrollBarColorType,
                     Defaults.ADS_COLOR_TYPE_SCROLLABLE);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicRecyclerView_ads_contrastWithColorType,
+                    R.styleable.DynamicRecyclerView_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicRecyclerView_ads_color,
+                    R.styleable.DynamicRecyclerView_adt_color,
                     Theme.Color.UNKNOWN);
             mScrollBarColor = a.getColor(
-                    R.styleable.DynamicRecyclerView_ads_scrollBarColor,
+                    R.styleable.DynamicRecyclerView_adt_scrollBarColor,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicRecyclerView_ads_contrastWithColor,
+                    R.styleable.DynamicRecyclerView_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicRecyclerView_ads_backgroundAware,
+                    R.styleable.DynamicRecyclerView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
 
             if (a.getBoolean(
-                    R.styleable.DynamicRecyclerView_ads_windowInsets,
+                    R.styleable.DynamicRecyclerView_adt_windowInsets,
                     Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }

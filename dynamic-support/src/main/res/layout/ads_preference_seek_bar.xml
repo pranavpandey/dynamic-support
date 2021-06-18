@@ -53,7 +53,7 @@
                     android:id="@+id/ads_preference_value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:ads_colorType="accent" />
+                    app:adt_colorType="accent" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                     style="@style/TextAppearance.DynamicApp.Body1"
@@ -94,7 +94,7 @@
                 android:layout_marginRight="@dimen/ads_margin_preference_icon_end"
                 android:layout_marginEnd="@dimen/ads_margin_preference_icon_end"
                 app:srcCompat="@drawable/ads_ic_chevron_left"
-                app:ads_colorType="accent_dark" />
+                app:adt_colorType="accent_dark" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicSeekBar
                 android:id="@+id/ads_preference_seek_bar_seek"
@@ -111,7 +111,7 @@
                 android:layout_marginLeft="@dimen/ads_margin_preference_icon_end"
                 android:layout_marginStart="@dimen/ads_margin_preference_icon_end"
                 app:srcCompat="@drawable/ads_ic_chevron_right"
-                app:ads_colorType="accent_dark" />
+                app:adt_colorType="accent_dark" />
 
         </LinearLayout>
 

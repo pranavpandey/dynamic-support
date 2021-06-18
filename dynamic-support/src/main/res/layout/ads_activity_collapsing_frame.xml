@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             app:elevation="0dp"
-            app:ads_backgroundAware="disable">
+            app:adt_backgroundAware="disable">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicCollapsingToolbarLayout
                 android:id="@+id/ads_collapsing_toolbar_layout"

@@ -232,19 +232,19 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicInfoView_ads_colorType,
+                    R.styleable.DynamicInfoView_adt_colorType,
                     Defaults.ADS_COLOR_TYPE_ICON);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicInfoView_ads_contrastWithColorType,
+                    R.styleable.DynamicInfoView_adt_contrastWithColorType,
                     Theme.ColorType.SURFACE);
             mColor = a.getColor(
-                    R.styleable.DynamicInfoView_ads_color,
+                    R.styleable.DynamicInfoView_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicInfoView_ads_contrastWithColor,
+                    R.styleable.DynamicInfoView_adt_contrastWithColor,
                     Theme.Color.UNKNOWN);
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicInfoView_ads_backgroundAware,
+                    R.styleable.DynamicInfoView_adt_backgroundAware,
                     Theme.BackgroundAware.UNKNOWN);
             mIcon = DynamicResourceUtils.getDrawable(getContext(), 
                     a.getResourceId(

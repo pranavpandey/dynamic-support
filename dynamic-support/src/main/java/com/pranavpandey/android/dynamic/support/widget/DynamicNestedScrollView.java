@@ -127,29 +127,29 @@ public class DynamicNestedScrollView extends NestedScrollView
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicNestedScrollView_ads_colorType,
+                    R.styleable.DynamicNestedScrollView_adt_colorType,
                     Defaults.ADS_COLOR_TYPE_EDGE_EFFECT);
             mScrollBarColorType = a.getInt(
-                    R.styleable.DynamicNestedScrollView_ads_scrollBarColorType,
+                    R.styleable.DynamicNestedScrollView_adt_scrollBarColorType,
                     Defaults.ADS_COLOR_TYPE_SCROLLABLE);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicNestedScrollView_ads_contrastWithColorType,
+                    R.styleable.DynamicNestedScrollView_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicNestedScrollView_ads_color,
+                    R.styleable.DynamicNestedScrollView_adt_color,
                     Theme.Color.UNKNOWN);
             mScrollBarColor = a.getColor(
-                    R.styleable.DynamicNestedScrollView_ads_scrollBarColor,
+                    R.styleable.DynamicNestedScrollView_adt_scrollBarColor,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicNestedScrollView_ads_contrastWithColor,
+                    R.styleable.DynamicNestedScrollView_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicNestedScrollView_ads_backgroundAware,
+                    R.styleable.DynamicNestedScrollView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
 
             if (a.getBoolean(
-                    R.styleable.DynamicNestedScrollView_ads_windowInsets,
+                    R.styleable.DynamicNestedScrollView_adt_windowInsets,
                     Defaults.ADS_WINDOW_INSETS)) {
                 applyWindowInsets();
             }

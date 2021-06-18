@@ -129,28 +129,28 @@ public class DynamicTextInputLayout extends TextInputLayout implements DynamicWi
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicTextInputLayout_ads_colorType,
+                    R.styleable.DynamicTextInputLayout_adt_colorType,
                     Theme.ColorType.ACCENT);
             mErrorColorType = a.getInt(
-                    R.styleable.DynamicTextInputLayout_ads_errorColorType,
+                    R.styleable.DynamicTextInputLayout_adt_errorColorType,
                     Defaults.ADS_COLOR_TYPE_ERROR);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicTextInputLayout_ads_contrastWithColorType,
+                    R.styleable.DynamicTextInputLayout_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicTextInputLayout_ads_color,
+                    R.styleable.DynamicTextInputLayout_adt_color,
                     Theme.Color.UNKNOWN);
             mErrorColor = a.getColor(
-                    R.styleable.DynamicTextInputLayout_ads_errorColor,
+                    R.styleable.DynamicTextInputLayout_adt_errorColor,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicTextInputLayout_ads_contrastWithColor,
+                    R.styleable.DynamicTextInputLayout_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicTextInputLayout_ads_backgroundAware,
+                    R.styleable.DynamicTextInputLayout_adt_backgroundAware,
                     Defaults.getBackgroundAware());
 
-            if (a.getBoolean(R.styleable.DynamicTextInputLayout_ads_dynamicCornerRadius,
+            if (a.getBoolean(R.styleable.DynamicTextInputLayout_adt_dynamicCornerRadius,
                     Defaults.ADS_DYNAMIC_CORNER_RADIUS)) {
                 setCorner((float) DynamicTheme.getInstance().get().getCornerRadius());
             }

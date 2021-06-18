@@ -20,7 +20,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/Widget.DynamicApp.Content.Card.Small.Clickable.Background"
     android:id="@+id/ads_popup_footer_root"
-    app:ads_contrastWithColorType="surface">
+    app:adt_contrastWithColorType="surface">
 
     <LinearLayout
         style="@style/Widget.DynamicApp.Content.Row.Horizontal">
@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/ads_menu_info"
-                app:ads_contrastWithColorType="surface" />
+                app:adt_contrastWithColorType="surface" />
 
         </LinearLayout>
 
@@ -45,8 +45,8 @@
             android:layout_marginLeft="@dimen/ads_card_view_content_margin_horizontal_small"
             android:layout_marginStart="@dimen/ads_card_view_content_margin_horizontal_small"
             android:layout_gravity="center_vertical"
-            app:ads_colorType="accent"
-            app:ads_contrastWithColorType="surface" />
+            app:adt_colorType="accent"
+            app:adt_contrastWithColorType="surface" />
 
     </LinearLayout>
 

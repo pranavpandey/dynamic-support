@@ -20,4 +20,4 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/Widget.DynamicApp.Scroller.Padding.Vertical"
     android:id="@+id/ads_recycler_view"
-    app:ads_windowInsets="false" />
+    app:adt_windowInsets="false" />

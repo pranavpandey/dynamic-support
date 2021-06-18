@@ -124,25 +124,25 @@ public class DynamicBackgroundView extends View implements DynamicWidget, Dynami
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicBackgroundView_ads_colorType,
+                    R.styleable.DynamicBackgroundView_adt_colorType,
                     Theme.ColorType.NONE);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicBackgroundView_ads_contrastWithColorType,
+                    R.styleable.DynamicBackgroundView_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicBackgroundView_ads_color,
+                    R.styleable.DynamicBackgroundView_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicBackgroundView_ads_contrastWithColor,
+                    R.styleable.DynamicBackgroundView_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicBackgroundView_ads_backgroundAware,
+                    R.styleable.DynamicBackgroundView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
             mTintBackground = a.getBoolean(
-                    R.styleable.DynamicBackgroundView_ads_tintBackground,
+                    R.styleable.DynamicBackgroundView_adt_tintBackground,
                     Defaults.ADS_TINT_BACKGROUND);
             mStyleBorderless = a.getBoolean(
-                    R.styleable.DynamicBackgroundView_ads_styleBorderless,
+                    R.styleable.DynamicBackgroundView_adt_styleBorderless,
                     Defaults.ADS_STYLE_BORDERLESS_GROUP);
 
             if (attrs != null) {

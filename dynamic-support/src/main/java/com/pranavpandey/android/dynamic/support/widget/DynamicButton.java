@@ -120,25 +120,25 @@ public class DynamicButton extends MaterialButton implements DynamicWidget,
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicButton_ads_colorType,
+                    R.styleable.DynamicButton_adt_colorType,
                     Theme.ColorType.TINT_BACKGROUND);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicButton_ads_contrastWithColorType,
+                    R.styleable.DynamicButton_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicButton_ads_color,
+                    R.styleable.DynamicButton_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicButton_ads_contrastWithColor,
+                    R.styleable.DynamicButton_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicButton_ads_backgroundAware,
+                    R.styleable.DynamicButton_adt_backgroundAware,
                     Defaults.getBackgroundAware());
             mTintBackground = a.getBoolean(
-                    R.styleable.DynamicButton_ads_tintBackground,
+                    R.styleable.DynamicButton_adt_tintBackground,
                     Defaults.ADS_TINT_BACKGROUND);
             mStyleBorderless = a.getBoolean(
-                    R.styleable.DynamicButton_ads_styleBorderless,
+                    R.styleable.DynamicButton_adt_styleBorderless,
                     Defaults.ADS_STYLE_BORDERLESS);
         } finally {
             a.recycle();

@@ -175,10 +175,10 @@ public class DynamicColorPreference extends DynamicSimplePreference {
 
         try {
             mDefaultColor = a.getColor(
-                    R.styleable.DynamicColorPreference_ads_color,
+                    R.styleable.DynamicColorPreference_adt_color,
                     Theme.AUTO);
             mAltDefaultColor = a.getColor(
-                    R.styleable.DynamicColorPreference_ads_altColor,
+                    R.styleable.DynamicColorPreference_adt_altColor,
                     Theme.AUTO);
             mShowColorPopup = a.getBoolean(
                     R.styleable.DynamicColorPreference_ads_popup,

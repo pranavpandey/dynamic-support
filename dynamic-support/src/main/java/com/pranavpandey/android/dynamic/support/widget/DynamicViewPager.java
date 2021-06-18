@@ -99,19 +99,19 @@ public class DynamicViewPager extends ViewPager implements DynamicWidget {
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicViewPager_ads_colorType,
+                    R.styleable.DynamicViewPager_adt_colorType,
                     Defaults.ADS_COLOR_TYPE_EDGE_EFFECT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicViewPager_ads_contrastWithColorType,
+                    R.styleable.DynamicViewPager_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicViewPager_ads_color,
+                    R.styleable.DynamicViewPager_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicViewPager_ads_contrastWithColor,
+                    R.styleable.DynamicViewPager_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicViewPager_ads_backgroundAware,
+                    R.styleable.DynamicViewPager_adt_backgroundAware,
                     Defaults.getBackgroundAware());
         } finally {
             a.recycle();

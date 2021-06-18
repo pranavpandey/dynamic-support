@@ -73,7 +73,7 @@ class AboutFragment : DynamicViewPager2Fragment() {
 
     override fun getSubtitle(): CharSequence? {
         // Set subtitle for the app compat activity.
-        return DynamicPackageUtils.getAppVersion(requireContext())
+        return DynamicPackageUtils.getVersionName(requireContext())
     }
 
     override fun getBottomNavigationViewId(): Int {

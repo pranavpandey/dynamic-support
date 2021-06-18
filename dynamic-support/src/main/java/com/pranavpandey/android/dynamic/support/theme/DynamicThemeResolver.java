@@ -59,12 +59,6 @@ public class DynamicThemeResolver implements DynamicResolver {
     }
 
     @Override
-    public boolean isHideDividers() {
-        return getDynamicTheme().get().getAccentColorDark()
-                == getDynamicTheme().get().getPrimaryColor();
-    }
-
-    @Override
     public boolean isSystemNightMode() {
         return (getDynamicTheme().getContext().getResources().getConfiguration().uiMode
                 & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;

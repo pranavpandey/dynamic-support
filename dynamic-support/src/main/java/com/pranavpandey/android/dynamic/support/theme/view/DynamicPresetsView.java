@@ -299,7 +299,7 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
     /**
      * Checks whether the required permissions are granted to read the theme presets.
      *
-     * @return {@code true} the required permissions are granted to read the theme presets.
+     * @return {@code true} if the required permissions are granted to read the theme presets.
      */
     public boolean isPermissionGranted() {
         return DynamicPermissions.getInstance().isGranted(

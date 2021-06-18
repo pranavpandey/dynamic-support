@@ -53,7 +53,7 @@
                     android:id="@+id/ads_preference_value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:ads_colorType="accent" />
+                    app:adt_colorType="accent" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                     style="@style/TextAppearance.DynamicApp.Body1"

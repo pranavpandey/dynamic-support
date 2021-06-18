@@ -87,7 +87,7 @@
                         android:layout_gravity="center_vertical"
                         android:textSize="@dimen/ads_font_size_small"
                         android:text="@string/ads_wallpaper"
-                        app:ads_colorType="primary" />
+                        app:adt_colorType="primary" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
                         style="@style/Widget.DynamicApp.Scroller.Nested.GridView"
@@ -114,7 +114,7 @@
                         android:layout_gravity="center_vertical"
                         android:textSize="@dimen/ads_font_size_small"
                         android:text="@string/ads_recents"
-                        app:ads_colorType="primary" />
+                        app:adt_colorType="primary" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
                         style="@style/Widget.DynamicApp.Scroller.Nested.GridView"
@@ -153,7 +153,7 @@
                         android:layout_marginRight="@dimen/ads_margin_tiny"
                         android:layout_marginEnd="@dimen/ads_margin_tiny"
                         app:ads_shape="rectangle"
-                        app:ads_color= "#123456" />
+                        app:adt_color= "#123456" />
 
                     <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView
                         android:id="@+id/ads_color_picker_color"
@@ -163,7 +163,7 @@
                         android:layout_marginRight="@dimen/ads_margin_small"
                         android:layout_marginEnd="@dimen/ads_margin_small"
                         app:ads_shape="rectangle"
-                        app:ads_color= "#123456" />
+                        app:adt_color= "#123456" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -189,7 +189,7 @@
                             android:digits="0123456789abcdefABCDEF"
                             android:singleLine="true"
                             android:textSize="@dimen/ads_picker_font_size_medium"
-                            app:ads_colorType="accent" />
+                            app:adt_colorType="accent" />
 
                     </LinearLayout>
 
@@ -211,7 +211,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/ads_picker_all"
-                            app:ads_colorType="primary" />
+                            app:adt_colorType="primary" />
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicButton
                             style="@style/Widget.DynamicApp.Button.TextButton.Small"
@@ -219,7 +219,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/ads_picker_hsv"
-                            app:ads_colorType="primary" />
+                            app:adt_colorType="primary" />
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicButton
                             style="@style/Widget.DynamicApp.Button.TextButton.Small"
@@ -227,7 +227,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/ads_picker_rgb"
-                            app:ads_colorType="primary" />
+                            app:adt_colorType="primary" />
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicButton
                             style="@style/Widget.DynamicApp.Button.TextButton.Small"
@@ -235,7 +235,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/ads_picker_cmyk"
-                            app:ads_colorType="primary" />
+                            app:adt_colorType="primary" />
 
                     </LinearLayout>
 

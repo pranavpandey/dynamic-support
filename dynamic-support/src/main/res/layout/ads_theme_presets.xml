@@ -47,7 +47,7 @@
             app:ads_icon="@drawable/adt_ic_presets"
             app:ads_title="@string/ads_theme_presets"
             app:ads_subtitle="@string/ads_theme_presets_desc"
-            app:ads_colorType="none" />
+            app:adt_colorType="none" />
 
     </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 

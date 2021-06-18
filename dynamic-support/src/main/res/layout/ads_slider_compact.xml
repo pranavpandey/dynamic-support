@@ -80,7 +80,7 @@
                 android:layout_width="@dimen/ads_icon_preference"
                 android:layout_height="@dimen/ads_icon_preference"
                 app:srcCompat="@drawable/ads_ic_chevron_left"
-                app:ads_colorType="accent_dark" />
+                app:adt_colorType="accent_dark" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicSlider
                 style="@style/Widget.DynamicApp.Slider.Compact"
@@ -95,7 +95,7 @@
                 android:layout_width="@dimen/ads_icon_preference"
                 android:layout_height="@dimen/ads_icon_preference"
                 app:srcCompat="@drawable/ads_ic_chevron_right"
-                app:ads_colorType="accent_dark" />
+                app:adt_colorType="accent_dark" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                 style="@style/TextAppearance.DynamicApp.PreferenceValue"

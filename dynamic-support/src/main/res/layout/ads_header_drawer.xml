@@ -22,8 +22,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fitsSystemWindows="true"
-    app:ads_colorType="primary"
-    app:ads_backgroundAware="disable">
+    app:adt_colorType="primary"
+    app:adt_backgroundAware="disable">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,8 +40,8 @@
             android:layout_width="@dimen/ads_icon_header_drawer"
             android:layout_height="@dimen/ads_icon_header_drawer"
             android:layout_gravity="start"
-            app:ads_colorType="tint_primary"
-            app:ads_contrastWithColorType="primary" />
+            app:adt_colorType="tint_primary"
+            app:adt_contrastWithColorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
             style="@style/TextAppearance.DynamicApp.Caption.Drawer"
@@ -49,16 +49,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ads_nav_header_spacing"
-            app:ads_colorType="tint_primary"
-            app:ads_contrastWithColorType="primary" />
+            app:adt_colorType="tint_primary"
+            app:adt_contrastWithColorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
             style="@style/TextAppearance.DynamicApp.Subtitle1"
             android:id="@+id/ads_header_drawer_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:ads_colorType="tint_primary"
-            app:ads_contrastWithColorType="primary" />
+            app:adt_colorType="tint_primary"
+            app:adt_contrastWithColorType="primary" />
 
     </LinearLayout>
 

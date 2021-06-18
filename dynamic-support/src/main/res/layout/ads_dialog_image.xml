@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/ads_margin_small"
-            app:ads_colorType="primary" />
+            app:adt_colorType="primary" />
 
         <ImageView
             android:id="@+id/ads_dialog_image_view"
