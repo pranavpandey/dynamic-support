@@ -99,7 +99,7 @@ public class DynamicSpinner extends AppCompatSpinner
     /**
      * Popup background used by this view.
      */
-    private DynamicPopupBackground mPopupBackground;
+    private final DynamicPopupBackground mPopupBackground;
 
     public DynamicSpinner(@NonNull Context context) {
         this(context, null);
@@ -108,6 +108,7 @@ public class DynamicSpinner extends AppCompatSpinner
     public DynamicSpinner(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
+        mPopupBackground = new DynamicPopupBackground(getContext(), attrs);
         loadFromAttributes(attrs);
     }
 
@@ -115,6 +116,7 @@ public class DynamicSpinner extends AppCompatSpinner
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
+        mPopupBackground = new DynamicPopupBackground(getContext(), attrs);
         loadFromAttributes(attrs);
     }
 
@@ -142,7 +144,6 @@ public class DynamicSpinner extends AppCompatSpinner
             mElevationOnSameBackground = a.getBoolean(
                     R.styleable.DynamicSpinner_adt_elevationOnSameBackground,
                     Defaults.ADS_ELEVATION_ON_SAME_BACKGROUND);
-            mPopupBackground = new DynamicPopupBackground(getContext(), attrs);
             mPopupBackground.setCorner(0f);
         } finally {
             a.recycle();
@@ -274,10 +275,7 @@ public class DynamicSpinner extends AppCompatSpinner
 
     @Override
     public void setSurface() {
-        if (mContrastWithColor != Theme.Color.UNKNOWN) {
-            mPopupBackground.setColor(mContrastWithColor);
-        }
-
+        Dynamic.setColorTypeOrColor(mPopupBackground, mContrastWithColorType, mContrastWithColor);
         setPopupBackgroundDrawable(mPopupBackground.getBackground());
     }
 

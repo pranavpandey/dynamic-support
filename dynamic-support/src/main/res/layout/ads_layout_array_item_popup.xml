@@ -18,12 +18,9 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.DynamicApp.Content.Card.Clickable.Background"
     android:id="@+id/ads_array_item"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/ads_card_view_content_margin"
-    android:orientation="horizontal"
-    android:background="?attr/selectableItemBackground">
+    android:orientation="horizontal">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
         android:id="@+id/ads_array_item_icon"

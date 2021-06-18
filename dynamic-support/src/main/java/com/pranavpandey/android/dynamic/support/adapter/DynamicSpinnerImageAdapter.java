@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -29,6 +30,7 @@ import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.model.DynamicMenu;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 
 import java.util.List;
 
@@ -50,6 +52,11 @@ public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicMenu> {
     private final @IdRes int mTextViewResourceId;
 
     /**
+     * View handling this adapter.
+     */
+    private final View mParent;
+
+    /**
      * Constructor to initialize an object of this class.
      *
      * @param context The context to retrieve the resources.
@@ -61,10 +68,27 @@ public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicMenu> {
     public DynamicSpinnerImageAdapter(@NonNull Context context,
             int resource, int imageViewResourceId, int textViewResourceId,
             @NonNull List<DynamicMenu> data) {
+        this(context, resource, imageViewResourceId, textViewResourceId, data, null);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param context The context to retrieve the resources.
+     * @param resource The layout resource to be used.
+     * @param imageViewResourceId The resource id for the image view.
+     * @param textViewResourceId The resource id for the text view.
+     * @param data The data to be handled by this adapter.
+     * @param parent The view handling this adapter.
+     */
+    public DynamicSpinnerImageAdapter(@NonNull Context context,
+            int resource, int imageViewResourceId, int textViewResourceId,
+            @NonNull List<DynamicMenu> data, @Nullable View parent) {
         super(context, resource, textViewResourceId, data);
 
         this.mImageViewResourceId = imageViewResourceId;
         this.mTextViewResourceId = textViewResourceId;
+        this.mParent = parent;
     }
 
     @Override
@@ -78,6 +102,33 @@ public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicMenu> {
         if (item != null) {
             Dynamic.set(imageView, item.getIcon());
             Dynamic.set(textView, item.getTitle());
+
+            if (mParent instanceof DynamicWidget) {
+                Dynamic.setContrastWithColorTypeOrColor(imageView,
+                        ((DynamicWidget) mParent).getContrastWithColorType(),
+                        ((DynamicWidget) mParent).getContrastWithColor());
+                Dynamic.setContrastWithColorTypeOrColor(textView,
+                        ((DynamicWidget) mParent).getContrastWithColorType(),
+                        ((DynamicWidget) mParent).getContrastWithColor());
+                Dynamic.setBackgroundAwareSafe(imageView,
+                        ((DynamicWidget) mParent).getBackgroundAware());
+                Dynamic.setBackgroundAwareSafe(textView,
+                        ((DynamicWidget) mParent).getBackgroundAware());
+
+                if (imageView != null && imageView.getParent() instanceof DynamicWidget) {
+                    Dynamic.setContrastWithColorTypeOrColor(imageView.getParent(),
+                            ((DynamicWidget) mParent).getContrastWithColorType(),
+                            ((DynamicWidget) mParent).getContrastWithColor());
+                    Dynamic.setBackgroundAwareSafe(imageView.getParent(),
+                            ((DynamicWidget) mParent).getBackgroundAware());
+                } else if (textView != null && textView.getParent() instanceof DynamicWidget) {
+                    Dynamic.setContrastWithColorTypeOrColor(textView.getParent(),
+                            ((DynamicWidget) mParent).getContrastWithColorType(),
+                            ((DynamicWidget) mParent).getContrastWithColor());
+                    Dynamic.setBackgroundAwareSafe(textView.getParent(),
+                            ((DynamicWidget) mParent).getBackgroundAware());
+                }
+            }
         }
 
         return itemView;
