@@ -27,8 +27,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -90,13 +90,13 @@ loadScripts(document, 'script');</script>
 <li>Summary:&nbsp;</li>
 <li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
@@ -116,32 +116,30 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <main role="main">
 <div class="header">
 <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.pranavpandey.android.dynamic.support.tutorial</a></div>
-<h2 title="Interface DynamicTutorial" class="title">Interface DynamicTutorial&lt;T,&#8203;V&gt;</h2>
+<h2 title="Class DynamicTutorial" class="title">Class DynamicTutorial</h2>
 </div>
 <div class="contentContainer">
+<ul class="inheritance">
+<li>java.lang.Object</li>
+<li>
+<ul class="inheritance">
+<li>com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial</li>
+</ul>
+</li>
+</ul>
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
 <dl>
-<dt>All Superinterfaces:</dt>
-<dd><code>androidx.viewpager.widget.ViewPager.OnPageChangeListener</code></dd>
-</dl>
-<dl>
-<dt>All Known Subinterfaces:</dt>
-<dd><code><a href="DynamicTutorial.SharedElement.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial.SharedElement</a>&lt;T,&#8203;V&gt;</code></dd>
-</dl>
-<dl>
-<dt>All Known Implementing Classes:</dt>
-<dd><code><a href="DynamicSimpleTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicSimpleTutorial</a></code>, <code><a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a></code></dd>
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable</a></code>, <code>androidx.viewpager.widget.ViewPager.OnPageChangeListener</code>, <code><a href="Tutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">Tutorial</a>&lt;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>,&#8203;<a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a>&gt;</code>, <code><a href="Tutorial.SharedElement.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">Tutorial.SharedElement</a>&lt;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>,&#8203;<a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a>&gt;</code></dd>
 </dl>
 <hr>
-<pre>public interface <span class="typeNameLabel">DynamicTutorial&lt;T,&#8203;V&gt;</span>
-extends androidx.viewpager.widget.ViewPager.OnPageChangeListener</pre>
-<div class="block">Interface for the dynamic tutorial having useful methods which will be called by the
- <a href="activity/DynamicTutorialActivity.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.activity"><code>DynamicTutorialActivity</code></a> to perform color transitions.
-
- <p>Any child view or fragment must implement this interface to support any color
- transitions.</div>
+<pre>public class <span class="typeNameLabel">DynamicTutorial</span>
+extends java.lang.Object
+implements <a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable</a>, <a href="Tutorial.SharedElement.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">Tutorial.SharedElement</a>&lt;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>,&#8203;<a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a>&gt;</pre>
+<div class="block">A <a href="Tutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial"><code>Tutorial</code></a> item to display a title, subtitle and description along with an image
+ which can be tinted according to the tutorial colors.</div>
 </li>
 </ul>
 </div>
@@ -155,21 +153,20 @@ extends androidx.viewpager.widget.ViewPager.OnPageChangeListener</pre>
 <!--   -->
 </a>
 <h3>Nested Class Summary</h3>
-<table class="memberSummary">
-<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colSecond" scope="col">Interface</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static interface&nbsp;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="DynamicTutorial.SharedElement.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial.SharedElement</a>&lt;<a href="DynamicTutorial.SharedElement.html" title="type parameter in DynamicTutorial.SharedElement">T</a>,&#8203;<a href="DynamicTutorial.SharedElement.html" title="type parameter in DynamicTutorial.SharedElement">V</a>&gt;</span></code></th>
-<td class="colLast">
-<div class="block">A <a href="DynamicTutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a> to support shared element(s) transition.</div>
-</td>
-</tr>
-</table>
+<ul class="blockList">
+<li class="blockList"><a id="nested.classes.inherited.from.class.android.os.Parcelable">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from interface&nbsp;android.os.<a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable</a></h3>
+<code><a href="https://developer.android.com/reference/android/os/Parcelable.ClassLoaderCreator.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable.ClassLoaderCreator</a>&lt;<a href="https://developer.android.com/reference/android/os/Parcelable.ClassLoaderCreator.html?is-external=true" title="class or interface in android.os" class="externalLink">T</a> extends java.lang.Object&gt;, <a href="https://developer.android.com/reference/android/os/Parcelable.Creator.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable.Creator</a>&lt;<a href="https://developer.android.com/reference/android/os/Parcelable.Creator.html?is-external=true" title="class or interface in android.os" class="externalLink">T</a> extends java.lang.Object&gt;</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a id="nested.classes.inherited.from.class.com.pranavpandey.android.dynamic.support.tutorial.Tutorial">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from interface&nbsp;com.pranavpandey.android.dynamic.support.tutorial.<a href="Tutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">Tutorial</a></h3>
+<code><a href="Tutorial.SharedElement.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">Tutorial.SharedElement</a>&lt;<a href="Tutorial.SharedElement.html" title="type parameter in Tutorial.SharedElement">T</a>,&#8203;<a href="Tutorial.SharedElement.html" title="type parameter in Tutorial.SharedElement">V</a>&gt;</code></li>
+</ul>
 </li>
 </ul>
 </section>
@@ -188,31 +185,97 @@ extends androidx.viewpager.widget.ViewPager.OnPageChangeListener</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ADS_NAME_TUTORIAL">ADS_NAME_TUTORIAL</a></span></code></th>
+<td class="colFirst"><code>static <a href="https://developer.android.com/reference/android/os/Parcelable.Creator.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable.Creator</a>&lt;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#CREATOR">CREATOR</a></span></code></th>
 <td class="colLast">
-<div class="block">Activity scene transition name for the tutorial.</div>
+<div class="block">Parcelable creator to create from parcel.</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a id="fields.inherited.from.class.android.os.Parcelable">
+<!--   -->
+</a>
+<h3>Fields inherited from interface&nbsp;android.os.<a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable</a></h3>
+<code><a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true#CONTENTS_FILE_DESCRIPTOR" title="class or interface in android.os" class="externalLink">CONTENTS_FILE_DESCRIPTOR</a>, <a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true#PARCELABLE_WRITE_RETURN_VALUE" title="class or interface in android.os" class="externalLink">PARCELABLE_WRITE_RETURN_VALUE</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a id="fields.inherited.from.class.com.pranavpandey.android.dynamic.support.tutorial.Tutorial">
+<!--   -->
+</a>
+<h3>Fields inherited from interface&nbsp;com.pranavpandey.android.dynamic.support.tutorial.<a href="Tutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">Tutorial</a></h3>
+<code><a href="Tutorial.html#ADS_NAME_TUTORIAL">ADS_NAME_TUTORIAL</a>, <a href="Tutorial.html#ADS_NAME_TUTORIAL_IMAGE">ADS_NAME_TUTORIAL_IMAGE</a>, <a href="Tutorial.html#ADS_NAME_TUTORIAL_SUBTITLE">ADS_NAME_TUTORIAL_SUBTITLE</a>, <a href="Tutorial.html#ADS_NAME_TUTORIAL_TITLE">ADS_NAME_TUTORIAL_TITLE</a></code></li>
+</ul>
+</li>
+</ul>
+</section>
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="constructor.summary">
+<!--   -->
+</a>
+<h3>Constructor Summary</h3>
+<table class="memberSummary">
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Constructor</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr class="altColor">
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int,int,int,java.lang.String,java.lang.String,int)">DynamicTutorial</a></span>&#8203;(int&nbsp;id,
+               int&nbsp;color,
+               int&nbsp;tintColor,
+               java.lang.String&nbsp;title,
+               java.lang.String&nbsp;description,
+               int&nbsp;imageRes)</code></th>
+<td class="colLast">
+<div class="block">Constructor to initialize an object of this class.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ADS_NAME_TUTORIAL_IMAGE">ADS_NAME_TUTORIAL_IMAGE</a></span></code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int,int,int,java.lang.String,java.lang.String,java.lang.String,int)">DynamicTutorial</a></span>&#8203;(int&nbsp;id,
+               int&nbsp;color,
+               int&nbsp;tintColor,
+               java.lang.String&nbsp;title,
+               java.lang.String&nbsp;subtitle,
+               java.lang.String&nbsp;description,
+               int&nbsp;imageRes)</code></th>
 <td class="colLast">
-<div class="block">Activity scene transition name for the tutorial image.</div>
+<div class="block">Constructor to initialize an object of this class.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ADS_NAME_TUTORIAL_SUBTITLE">ADS_NAME_TUTORIAL_SUBTITLE</a></span></code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int,int,int,java.lang.String,java.lang.String,java.lang.String,int,boolean)">DynamicTutorial</a></span>&#8203;(int&nbsp;id,
+               int&nbsp;color,
+               int&nbsp;tintColor,
+               java.lang.String&nbsp;title,
+               java.lang.String&nbsp;subtitle,
+               java.lang.String&nbsp;description,
+               int&nbsp;imageRes,
+               boolean&nbsp;tintImage)</code></th>
 <td class="colLast">
-<div class="block">Activity scene transition name for the tutorial subtitle.</div>
+<div class="block">Constructor to initialize an object of this class.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ADS_NAME_TUTORIAL_TITLE">ADS_NAME_TUTORIAL_TITLE</a></span></code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int,int,int,java.lang.String,java.lang.String,java.lang.String,int,boolean,boolean)">DynamicTutorial</a></span>&#8203;(int&nbsp;id,
+               int&nbsp;color,
+               int&nbsp;tintColor,
+               java.lang.String&nbsp;title,
+               java.lang.String&nbsp;subtitle,
+               java.lang.String&nbsp;description,
+               int&nbsp;imageRes,
+               boolean&nbsp;tintImage,
+               boolean&nbsp;sharedElement)</code></th>
 <td class="colLast">
-<div class="block">Activity scene transition name for the tutorial title.</div>
+<div class="block">Constructor to initialize an object of this class.</div>
+</td>
+</tr>
+<tr class="altColor">
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(android.os.Parcel)">DynamicTutorial</a></span>&#8203;(<a href="https://developer.android.com/reference/android/os/Parcel.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcel</a>&nbsp;in)</code></th>
+<td class="colLast">
+<div class="block">Read <a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a> object from the parcel.</div>
 </td>
 </tr>
 </table>
@@ -227,14 +290,14 @@ extends androidx.viewpager.widget.ViewPager.OnPageChangeListener</pre>
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Method</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="DynamicTutorial.html" title="type parameter in DynamicTutorial">V</a></code></td>
+<td class="colFirst"><code><a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#createTutorial()">createTutorial</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the tutorial view or fragment.</div>
@@ -242,33 +305,110 @@ extends androidx.viewpager.widget.ViewPager.OnPageChangeListener</pre>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBackgroundColor()">getBackgroundColor</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Returns the background color for this tutorial.</div>
-</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#describeContents()">describeContents</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="DynamicTutorial.html" title="type parameter in DynamicTutorial">T</a></code></td>
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getColor()">getColor</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns the color used by this tutorial.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDescription()">getDescription</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the description used by this tutorial.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getImageRes()">getImageRes</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the image resource used by this tutorial.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSubtitle()">getSubtitle</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the subtitle used by this tutorial.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTintColor()">getTintColor</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns the tint color used by this tutorial.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTitle()">getTitle</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the title used by this tutorial.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code><a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTutorial()">getTutorial</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the tutorial object.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code><a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTutorialFragment()">getTutorialFragment</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTutorialId()">getTutorialId</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the id for this tutorial.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onBackgroundColorChanged(int)">onBackgroundColorChanged</a></span>&#8203;(int&nbsp;color)</code></th>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isSharedElement()">isSharedElement</a></span>()</code></th>
 <td class="colLast">
-<div class="block">This method will be called when there is a change in the background color of the activity.</div>
+<div class="block">Returns whether this tutorial supports shared element(s) transition.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i12" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isTintImage()">isTintImage</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns whether to tint the image according to the tint color.</div>
+</td>
+</tr>
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onColorChanged(int,int)">onColorChanged</a></span>&#8203;(int&nbsp;color,
+              int&nbsp;tintColor)</code></th>
+<td class="colLast">
+<div class="block">This method will be called when there is a change in the colors of the activity.</div>
+</td>
+</tr>
+<tr id="i14" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onPageScrolled(int,float,int)">onPageScrolled</a></span>&#8203;(int&nbsp;position,
+              float&nbsp;positionOffset,
+              int&nbsp;positionOffsetPixels)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i15" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onPageScrollStateChanged(int)">onPageScrollStateChanged</a></span>&#8203;(int&nbsp;state)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i16" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onPageSelected(int)">onPageSelected</a></span>&#8203;(int&nbsp;position)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onSetPadding(int,int,int,int)">onSetPadding</a></span>&#8203;(int&nbsp;left,
             int&nbsp;top,
@@ -278,13 +418,88 @@ extends androidx.viewpager.widget.ViewPager.OnPageChangeListener</pre>
 <div class="block">This method will be called on setting the padding of the tutorial.</div>
 </td>
 </tr>
+<tr id="i18" class="altColor">
+<td class="colFirst"><code><a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setColor(int)">setColor</a></span>&#8203;(int&nbsp;color)</code></th>
+<td class="colLast">
+<div class="block">Set the color used by this tutorial.</div>
+</td>
+</tr>
+<tr id="i19" class="rowColor">
+<td class="colFirst"><code><a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setColor(int,int)">setColor</a></span>&#8203;(int&nbsp;color,
+        int&nbsp;tintColor)</code></th>
+<td class="colLast">
+<div class="block">Set the colors used by this tutorial.</div>
+</td>
+</tr>
+<tr id="i20" class="altColor">
+<td class="colFirst"><code><a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDescription(java.lang.String)">setDescription</a></span>&#8203;(java.lang.String&nbsp;description)</code></th>
+<td class="colLast">
+<div class="block">Set the description used by this tutorial.</div>
+</td>
+</tr>
+<tr id="i21" class="rowColor">
+<td class="colFirst"><code><a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setImageRes(int)">setImageRes</a></span>&#8203;(int&nbsp;imageRes)</code></th>
+<td class="colLast">
+<div class="block">Set the image resource used by this tutorial.</div>
+</td>
+</tr>
+<tr id="i22" class="altColor">
+<td class="colFirst"><code><a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSharedElement(boolean)">setSharedElement</a></span>&#8203;(boolean&nbsp;sharedElement)</code></th>
+<td class="colLast">
+<div class="block">Set whether to set the shared element.</div>
+</td>
+</tr>
+<tr id="i23" class="rowColor">
+<td class="colFirst"><code><a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSubtitle(java.lang.String)">setSubtitle</a></span>&#8203;(java.lang.String&nbsp;subtitle)</code></th>
+<td class="colLast">
+<div class="block">Set the subtitle used by this tutorial.</div>
+</td>
+</tr>
+<tr id="i24" class="altColor">
+<td class="colFirst"><code><a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTintImage(boolean)">setTintImage</a></span>&#8203;(boolean&nbsp;tintImage)</code></th>
+<td class="colLast">
+<div class="block">Set the image to be tinted or not.</div>
+</td>
+</tr>
+<tr id="i25" class="rowColor">
+<td class="colFirst"><code><a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTitle(java.lang.String)">setTitle</a></span>&#8203;(java.lang.String&nbsp;title)</code></th>
+<td class="colLast">
+<div class="block">Set the title used by this tutorial.</div>
+</td>
+</tr>
+<tr id="i26" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTutorialFragment(com.pranavpandey.android.dynamic.support.tutorial.fragment.DynamicTutorialFragment)">setTutorialFragment</a></span>&#8203;(<a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a>&nbsp;fragment)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i27" class="rowColor">
+<td class="colFirst"><code><a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTutorialId(int)">setTutorialId</a></span>&#8203;(int&nbsp;id)</code></th>
+<td class="colLast">
+<div class="block">Set the id to uniquely identify this tutorial.</div>
+</td>
+</tr>
+<tr id="i28" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#writeToParcel(android.os.Parcel,int)">writeToParcel</a></span>&#8203;(<a href="https://developer.android.com/reference/android/os/Parcel.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcel</a>&nbsp;dest,
+             int&nbsp;flags)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a id="methods.inherited.from.class.androidx.viewpager.widget.ViewPager.OnPageChangeListener">
+<li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from interface&nbsp;androidx.viewpager.widget.ViewPager.OnPageChangeListener</h3>
-<code>onPageScrolled, onPageScrollStateChanged, onPageSelected</code></li>
+<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -302,59 +517,168 @@ extends androidx.viewpager.widget.ViewPager.OnPageChangeListener</pre>
 <!--   -->
 </a>
 <h3>Field Detail</h3>
-<a id="ADS_NAME_TUTORIAL">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>ADS_NAME_TUTORIAL</h4>
-<pre>static final&nbsp;java.lang.String ADS_NAME_TUTORIAL</pre>
-<div class="block">Activity scene transition name for the tutorial.</div>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../../../constant-values.html#com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial.ADS_NAME_TUTORIAL">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
-<a id="ADS_NAME_TUTORIAL_IMAGE">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>ADS_NAME_TUTORIAL_IMAGE</h4>
-<pre>static final&nbsp;java.lang.String ADS_NAME_TUTORIAL_IMAGE</pre>
-<div class="block">Activity scene transition name for the tutorial image.</div>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../../../constant-values.html#com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial.ADS_NAME_TUTORIAL_IMAGE">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
-<a id="ADS_NAME_TUTORIAL_TITLE">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>ADS_NAME_TUTORIAL_TITLE</h4>
-<pre>static final&nbsp;java.lang.String ADS_NAME_TUTORIAL_TITLE</pre>
-<div class="block">Activity scene transition name for the tutorial title.</div>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../../../constant-values.html#com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial.ADS_NAME_TUTORIAL_TITLE">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
-<a id="ADS_NAME_TUTORIAL_SUBTITLE">
+<a id="CREATOR">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>ADS_NAME_TUTORIAL_SUBTITLE</h4>
-<pre>static final&nbsp;java.lang.String ADS_NAME_TUTORIAL_SUBTITLE</pre>
-<div class="block">Activity scene transition name for the tutorial subtitle.</div>
+<h4>CREATOR</h4>
+<pre>public static final&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.Creator.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable.Creator</a>&lt;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&gt; CREATOR</pre>
+<div class="block">Parcelable creator to create from parcel.</div>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="constructor.detail">
+<!--   -->
+</a>
+<h3>Constructor Detail</h3>
+<a id="&lt;init&gt;(int,int,int,java.lang.String,java.lang.String,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DynamicTutorial</h4>
+<pre>public&nbsp;DynamicTutorial&#8203;(int&nbsp;id,
+                       @ColorInt
+                       int&nbsp;color,
+                       @ColorInt
+                       int&nbsp;tintColor,
+                       @Nullable
+                       java.lang.String&nbsp;title,
+                       @Nullable
+                       java.lang.String&nbsp;description,
+                       @DrawableRes
+                       int&nbsp;imageRes)</pre>
+<div class="block">Constructor to initialize an object of this class.</div>
 <dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../../../constant-values.html#com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial.ADS_NAME_TUTORIAL_SUBTITLE">Constant Field Values</a></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>id</code> - The id to uniquely identify this tutorial.</dd>
+<dd><code>color</code> - The color for this tutorial.</dd>
+<dd><code>tintColor</code> - The tint color for this tutorial.</dd>
+<dd><code>title</code> - The title for this tutorial.</dd>
+<dd><code>description</code> - The description for this tutorial.</dd>
+<dd><code>imageRes</code> - The image resource for this tutorial.</dd>
+</dl>
+</li>
+</ul>
+<a id="&lt;init&gt;(int,int,int,java.lang.String,java.lang.String,java.lang.String,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DynamicTutorial</h4>
+<pre>public&nbsp;DynamicTutorial&#8203;(int&nbsp;id,
+                       @ColorInt
+                       int&nbsp;color,
+                       @ColorInt
+                       int&nbsp;tintColor,
+                       @Nullable
+                       java.lang.String&nbsp;title,
+                       @Nullable
+                       java.lang.String&nbsp;subtitle,
+                       @Nullable
+                       java.lang.String&nbsp;description,
+                       @DrawableRes
+                       int&nbsp;imageRes)</pre>
+<div class="block">Constructor to initialize an object of this class.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>id</code> - The id to uniquely identify this tutorial.</dd>
+<dd><code>color</code> - The color for this tutorial.</dd>
+<dd><code>tintColor</code> - The tint color for this tutorial.</dd>
+<dd><code>title</code> - The title for this tutorial.</dd>
+<dd><code>subtitle</code> - The subtitle for this tutorial.</dd>
+<dd><code>description</code> - The description for this tutorial.</dd>
+<dd><code>imageRes</code> - The image resource for this tutorial.</dd>
+</dl>
+</li>
+</ul>
+<a id="&lt;init&gt;(int,int,int,java.lang.String,java.lang.String,java.lang.String,int,boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DynamicTutorial</h4>
+<pre>public&nbsp;DynamicTutorial&#8203;(int&nbsp;id,
+                       @ColorInt
+                       int&nbsp;color,
+                       @ColorInt
+                       int&nbsp;tintColor,
+                       @Nullable
+                       java.lang.String&nbsp;title,
+                       @Nullable
+                       java.lang.String&nbsp;subtitle,
+                       @Nullable
+                       java.lang.String&nbsp;description,
+                       @DrawableRes
+                       int&nbsp;imageRes,
+                       boolean&nbsp;tintImage)</pre>
+<div class="block">Constructor to initialize an object of this class.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>id</code> - The id to uniquely identify this tutorial.</dd>
+<dd><code>color</code> - The color for this tutorial.</dd>
+<dd><code>tintColor</code> - The tint color for this tutorial.</dd>
+<dd><code>title</code> - The title for this tutorial.</dd>
+<dd><code>subtitle</code> - The subtitle for this tutorial.</dd>
+<dd><code>description</code> - The description for this tutorial.</dd>
+<dd><code>imageRes</code> - The image resource for this tutorial.</dd>
+<dd><code>tintImage</code> - <code>true</code> to tint the image according to the tint color.</dd>
+</dl>
+</li>
+</ul>
+<a id="&lt;init&gt;(int,int,int,java.lang.String,java.lang.String,java.lang.String,int,boolean,boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DynamicTutorial</h4>
+<pre>public&nbsp;DynamicTutorial&#8203;(int&nbsp;id,
+                       @ColorInt
+                       int&nbsp;color,
+                       @ColorInt
+                       int&nbsp;tintColor,
+                       @Nullable
+                       java.lang.String&nbsp;title,
+                       @Nullable
+                       java.lang.String&nbsp;subtitle,
+                       @Nullable
+                       java.lang.String&nbsp;description,
+                       @DrawableRes
+                       int&nbsp;imageRes,
+                       boolean&nbsp;tintImage,
+                       boolean&nbsp;sharedElement)</pre>
+<div class="block">Constructor to initialize an object of this class.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>id</code> - The id to uniquely identify this tutorial.</dd>
+<dd><code>color</code> - The color for this tutorial.</dd>
+<dd><code>tintColor</code> - The tint color for this tutorial.</dd>
+<dd><code>title</code> - The title for this tutorial.</dd>
+<dd><code>subtitle</code> - The subtitle for this tutorial.</dd>
+<dd><code>description</code> - The description for this tutorial.</dd>
+<dd><code>imageRes</code> - The image resource for this tutorial.</dd>
+<dd><code>tintImage</code> - <code>true</code> to tint the image according to the tint color.</dd>
+<dd><code>sharedElement</code> - <code>true</code> to set the shared element.</dd>
+</dl>
+</li>
+</ul>
+<a id="&lt;init&gt;(android.os.Parcel)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>DynamicTutorial</h4>
+<pre>public&nbsp;DynamicTutorial&#8203;(<a href="https://developer.android.com/reference/android/os/Parcel.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcel</a>&nbsp;in)</pre>
+<div class="block">Read <a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a> object from the parcel.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>in</code> - The parcel to read the values.</dd>
 </dl>
 </li>
 </ul>
@@ -368,6 +692,91 @@ extends androidx.viewpager.widget.ViewPager.OnPageChangeListener</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="describeContents()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>describeContents</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;describeContents()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true#describeContents()" title="class or interface in android.os" class="externalLink">describeContents</a></code>&nbsp;in interface&nbsp;<code><a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="writeToParcel(android.os.Parcel,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>writeToParcel</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;writeToParcel&#8203;(<a href="https://developer.android.com/reference/android/os/Parcel.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcel</a>&nbsp;dest,
+                          int&nbsp;flags)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true#writeToParcel(android.os.Parcel,int)" title="class or interface in android.os" class="externalLink">writeToParcel</a></code>&nbsp;in interface&nbsp;<code><a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="onPageScrolled(int,float,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onPageScrolled</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;onPageScrolled&#8203;(int&nbsp;position,
+                           float&nbsp;positionOffset,
+                           int&nbsp;positionOffsetPixels)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>onPageScrolled</code>&nbsp;in interface&nbsp;<code>androidx.viewpager.widget.ViewPager.OnPageChangeListener</code></dd>
+</dl>
+</li>
+</ul>
+<a id="onPageSelected(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onPageSelected</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;onPageSelected&#8203;(int&nbsp;position)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>onPageSelected</code>&nbsp;in interface&nbsp;<code>androidx.viewpager.widget.ViewPager.OnPageChangeListener</code></dd>
+</dl>
+</li>
+</ul>
+<a id="onPageScrollStateChanged(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onPageScrollStateChanged</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;onPageScrollStateChanged&#8203;(int&nbsp;state)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>onPageScrollStateChanged</code>&nbsp;in interface&nbsp;<code>androidx.viewpager.widget.ViewPager.OnPageChangeListener</code></dd>
+</dl>
+</li>
+</ul>
+<a id="getTutorialId()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getTutorialId</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getTutorialId()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Tutorial.html#getTutorialId()">Tutorial</a></code></span></div>
+<div class="block">Returns the id for this tutorial.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Tutorial.html#getTutorialId()">getTutorialId</a></code>&nbsp;in interface&nbsp;<code><a href="Tutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">Tutorial</a>&lt;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>,&#8203;<a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The id of this tutorial.</dd>
+</dl>
+</li>
+</ul>
 <a id="getTutorial()">
 <!--   -->
 </a>
@@ -375,9 +784,12 @@ extends androidx.viewpager.widget.ViewPager.OnPageChangeListener</pre>
 <li class="blockList">
 <h4>getTutorial</h4>
 <pre class="methodSignature">@NonNull
-<a href="DynamicTutorial.html" title="type parameter in DynamicTutorial">T</a>&nbsp;getTutorial()</pre>
+public&nbsp;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&nbsp;getTutorial()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Tutorial.html#getTutorial()">Tutorial</a></code></span></div>
 <div class="block">Returns the tutorial object.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Tutorial.html#getTutorial()">getTutorial</a></code>&nbsp;in interface&nbsp;<code><a href="Tutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">Tutorial</a>&lt;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>,&#8203;<a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The tutorial object.</dd>
 </dl>
@@ -390,78 +802,379 @@ extends androidx.viewpager.widget.ViewPager.OnPageChangeListener</pre>
 <li class="blockList">
 <h4>createTutorial</h4>
 <pre class="methodSignature">@NonNull
-<a href="DynamicTutorial.html" title="type parameter in DynamicTutorial">V</a>&nbsp;createTutorial()</pre>
+public&nbsp;<a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a>&nbsp;createTutorial()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Tutorial.html#createTutorial()">Tutorial</a></code></span></div>
 <div class="block">Returns the tutorial view or fragment.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Tutorial.html#createTutorial()">createTutorial</a></code>&nbsp;in interface&nbsp;<code><a href="Tutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">Tutorial</a>&lt;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>,&#8203;<a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The tutorial view or fragment.</dd>
 </dl>
 </li>
 </ul>
-<a id="getTutorialId()">
+<a id="getColor()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getTutorialId</h4>
-<pre class="methodSignature">int&nbsp;getTutorialId()</pre>
-<div class="block">Returns the id for this tutorial.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The id of this tutorial.</dd>
-</dl>
-</li>
-</ul>
-<a id="getBackgroundColor()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getBackgroundColor</h4>
+<h4>getColor</h4>
 <pre class="methodSignature">@ColorInt
-int&nbsp;getBackgroundColor()</pre>
-<div class="block">Returns the background color for this tutorial.</div>
+public&nbsp;int&nbsp;getColor()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Tutorial.html#getColor()">Tutorial</a></code></span></div>
+<div class="block">Returns the color used by this tutorial.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Tutorial.html#getColor()">getColor</a></code>&nbsp;in interface&nbsp;<code><a href="Tutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">Tutorial</a>&lt;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>,&#8203;<a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The background color used by this tutorial.</dd>
+<dd>The color used by this tutorial.</dd>
 </dl>
 </li>
 </ul>
-<a id="onBackgroundColorChanged(int)">
+<a id="getTintColor()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>onBackgroundColorChanged</h4>
-<pre class="methodSignature">void&nbsp;onBackgroundColorChanged&#8203;(@ColorInt
-                              int&nbsp;color)</pre>
-<div class="block">This method will be called when there is a change in the background color of the activity.
+<h4>getTintColor</h4>
+<pre class="methodSignature">@ColorInt
+public&nbsp;int&nbsp;getTintColor()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Tutorial.html#getTintColor()">Tutorial</a></code></span></div>
+<div class="block">Returns the tint color used by this tutorial.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Tutorial.html#getTintColor()">getTintColor</a></code>&nbsp;in interface&nbsp;<code><a href="Tutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">Tutorial</a>&lt;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>,&#8203;<a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The tint color used by this tutorial.</dd>
+</dl>
+</li>
+</ul>
+<a id="onColorChanged(int,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onColorChanged</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;onColorChanged&#8203;(@ColorInt
+                           int&nbsp;color,
+                           @ColorInt
+                           int&nbsp;tintColor)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Tutorial.html#onColorChanged(int,int)">Tutorial</a></code></span></div>
+<div class="block">This method will be called when there is a change in the colors of the activity.
  <p>Implement this method to update any views during the transition.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Tutorial.html#onColorChanged(int,int)">onColorChanged</a></code>&nbsp;in interface&nbsp;<code><a href="Tutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">Tutorial</a>&lt;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>,&#8203;<a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>color</code> - The color of the background.</dd>
+<dd><code>color</code> - The color used by the tutorial.</dd>
+<dd><code>tintColor</code> - The tint color used by this tutorial.</dd>
 </dl>
 </li>
 </ul>
 <a id="onSetPadding(int,int,int,int)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>onSetPadding</h4>
-<pre class="methodSignature">void&nbsp;onSetPadding&#8203;(int&nbsp;left,
-                  int&nbsp;top,
-                  int&nbsp;right,
-                  int&nbsp;bottom)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;onSetPadding&#8203;(int&nbsp;left,
+                         int&nbsp;top,
+                         int&nbsp;right,
+                         int&nbsp;bottom)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Tutorial.html#onSetPadding(int,int,int,int)">Tutorial</a></code></span></div>
 <div class="block">This method will be called on setting the padding of the tutorial.
  <p>Implement this method to update any views according to the container.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Tutorial.html#onSetPadding(int,int,int,int)">onSetPadding</a></code>&nbsp;in interface&nbsp;<code><a href="Tutorial.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">Tutorial</a>&lt;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>,&#8203;<a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>left</code> - The left padding supplied by the container.</dd>
 <dd><code>top</code> - The top padding supplied by the container.</dd>
 <dd><code>right</code> - The right padding supplied by the container.</dd>
 <dd><code>bottom</code> - The bottom padding supplied by the container.</dd>
 </dl>
+</li>
+</ul>
+<a id="isSharedElement()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isSharedElement</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isSharedElement()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="Tutorial.SharedElement.html#isSharedElement()">Tutorial.SharedElement</a></code></span></div>
+<div class="block">Returns whether this tutorial supports shared element(s) transition.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Tutorial.SharedElement.html#isSharedElement()">isSharedElement</a></code>&nbsp;in interface&nbsp;<code><a href="Tutorial.SharedElement.html" title="interface in com.pranavpandey.android.dynamic.support.tutorial">Tutorial.SharedElement</a>&lt;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>,&#8203;<a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if this tutorial supports shared element(s) transition.</dd>
+</dl>
+</li>
+</ul>
+<a id="setTutorialId(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setTutorialId</h4>
+<pre class="methodSignature">@NonNull
+public&nbsp;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&nbsp;setTutorialId&#8203;(int&nbsp;id)</pre>
+<div class="block">Set the id to uniquely identify this tutorial.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>id</code> - The id to be set.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The <a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a> object to allow for chaining of calls to
+         set methods.</dd>
+</dl>
+</li>
+</ul>
+<a id="setColor(int,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setColor</h4>
+<pre class="methodSignature">@NonNull
+public&nbsp;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&nbsp;setColor&#8203;(@ColorInt
+                                int&nbsp;color,
+                                @ColorInt
+                                int&nbsp;tintColor)</pre>
+<div class="block">Set the colors used by this tutorial.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>color</code> - The tutorial color to be set.</dd>
+<dd><code>tintColor</code> - The tint color to be set.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The <a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a> object to allow for chaining of calls to
+         set methods.</dd>
+</dl>
+</li>
+</ul>
+<a id="setColor(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setColor</h4>
+<pre class="methodSignature">@NonNull
+public&nbsp;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&nbsp;setColor&#8203;(@ColorInt
+                                int&nbsp;color)</pre>
+<div class="block">Set the color used by this tutorial.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>color</code> - The color to be set.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The <a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a> object to allow for chaining of calls to
+         set methods.</dd>
+</dl>
+</li>
+</ul>
+<a id="getTitle()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getTitle</h4>
+<pre class="methodSignature">@Nullable
+public&nbsp;java.lang.String&nbsp;getTitle()</pre>
+<div class="block">Get the title used by this tutorial.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The title used by this tutorial.</dd>
+</dl>
+</li>
+</ul>
+<a id="setTitle(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setTitle</h4>
+<pre class="methodSignature">@NonNull
+public&nbsp;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&nbsp;setTitle&#8203;(@Nullable
+                                java.lang.String&nbsp;title)</pre>
+<div class="block">Set the title used by this tutorial.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>title</code> - The subtitle to be set.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The <a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a> object to allow for chaining of calls to
+         set methods.</dd>
+</dl>
+</li>
+</ul>
+<a id="getSubtitle()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSubtitle</h4>
+<pre class="methodSignature">@Nullable
+public&nbsp;java.lang.String&nbsp;getSubtitle()</pre>
+<div class="block">Get the subtitle used by this tutorial.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The subtitle used by this tutorial.</dd>
+</dl>
+</li>
+</ul>
+<a id="setSubtitle(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setSubtitle</h4>
+<pre class="methodSignature">@NonNull
+public&nbsp;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&nbsp;setSubtitle&#8203;(@Nullable
+                                   java.lang.String&nbsp;subtitle)</pre>
+<div class="block">Set the subtitle used by this tutorial.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>subtitle</code> - The subtitle to be set.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The <a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a> object to allow for chaining of calls to
+         set methods.</dd>
+</dl>
+</li>
+</ul>
+<a id="getDescription()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getDescription</h4>
+<pre class="methodSignature">@Nullable
+public&nbsp;java.lang.String&nbsp;getDescription()</pre>
+<div class="block">Get the description used by this tutorial.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The description used by this tutorial.</dd>
+</dl>
+</li>
+</ul>
+<a id="setDescription(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setDescription</h4>
+<pre class="methodSignature">@NonNull
+public&nbsp;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&nbsp;setDescription&#8203;(@Nullable
+                                      java.lang.String&nbsp;description)</pre>
+<div class="block">Set the description used by this tutorial.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>description</code> - The description to be set.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The <a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a> object to allow for chaining of calls to
+         set methods.</dd>
+</dl>
+</li>
+</ul>
+<a id="getImageRes()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getImageRes</h4>
+<pre class="methodSignature">@DrawableRes
+public&nbsp;int&nbsp;getImageRes()</pre>
+<div class="block">Get the image resource used by this tutorial.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The image resource used by this tutorial.</dd>
+</dl>
+</li>
+</ul>
+<a id="setImageRes(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setImageRes</h4>
+<pre class="methodSignature">@NonNull
+public&nbsp;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&nbsp;setImageRes&#8203;(@DrawableRes
+                                   int&nbsp;imageRes)</pre>
+<div class="block">Set the image resource used by this tutorial.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>imageRes</code> - The image resource to be set.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The <a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a> object to allow for chaining of calls to
+         set methods.</dd>
+</dl>
+</li>
+</ul>
+<a id="isTintImage()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isTintImage</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isTintImage()</pre>
+<div class="block">Returns whether to tint the image according to the tint color.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> to tint the image according to the tint color.</dd>
+</dl>
+</li>
+</ul>
+<a id="setTintImage(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setTintImage</h4>
+<pre class="methodSignature">@NonNull
+public&nbsp;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&nbsp;setTintImage&#8203;(boolean&nbsp;tintImage)</pre>
+<div class="block">Set the image to be tinted or not.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>tintImage</code> - <code>true</code> to tint the image.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The <a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a> object to allow for chaining of calls to
+         set methods.</dd>
+</dl>
+</li>
+</ul>
+<a id="setSharedElement(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setSharedElement</h4>
+<pre class="methodSignature">@NonNull
+public&nbsp;<a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial">DynamicTutorial</a>&nbsp;setSharedElement&#8203;(boolean&nbsp;sharedElement)</pre>
+<div class="block">Set whether to set the shared element.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>sharedElement</code> - <code>true</code> to set the shared element.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The <a href="DynamicTutorial.html" title="class in com.pranavpandey.android.dynamic.support.tutorial"><code>DynamicTutorial</code></a> object to allow for chaining of calls to
+         set methods.</dd>
+</dl>
+</li>
+</ul>
+<a id="getTutorialFragment()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getTutorialFragment</h4>
+<pre class="methodSignature">@Nullable
+public&nbsp;<a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a>&nbsp;getTutorialFragment()</pre>
+</li>
+</ul>
+<a id="setTutorialFragment(com.pranavpandey.android.dynamic.support.tutorial.fragment.DynamicTutorialFragment)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>setTutorialFragment</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setTutorialFragment&#8203;(@Nullable
+                                <a href="fragment/DynamicTutorialFragment.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.fragment">DynamicTutorialFragment</a>&nbsp;fragment)</pre>
 </li>
 </ul>
 </li>
@@ -492,7 +1205,7 @@ int&nbsp;getBackgroundColor()</pre>
 <li><a href="../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>4.1.0</h5></div>
+<div class="aboutLanguage"><h5>5.0.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">
@@ -518,13 +1231,13 @@ int&nbsp;getBackgroundColor()</pre>
 <li>Summary:&nbsp;</li>
 <li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>

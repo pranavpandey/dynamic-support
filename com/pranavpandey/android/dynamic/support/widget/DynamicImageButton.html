@@ -312,7 +312,9 @@ implements <a href="base/DynamicWidget.html" title="interface in com.pranavpande
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isStyleBorderless()">isStyleBorderless</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Returns whether the borderless style is applied to this widget.</div>
+</td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
@@ -391,7 +393,7 @@ implements <a href="base/DynamicWidget.html" title="interface in com.pranavpande
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setStyleBorderless(boolean)">setStyleBorderless</a></span>&#8203;(boolean&nbsp;styleBorderless)</code></th>
 <td class="colLast">
-<div class="block">Set the value of <a href="#mStyleBorderless"><code>mStyleBorderless</code></a>.</div>
+<div class="block">Sets whether the borderless style is applied to this widget.</div>
 </td>
 </tr>
 <tr id="i21" class="rowColor">
@@ -499,34 +501,6 @@ implements <a href="base/DynamicWidget.html" title="interface in com.pranavpande
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="isStyleBorderless()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>isStyleBorderless</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;isStyleBorderless()</pre>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if style applied to this view is borderless.</dd>
-</dl>
-</li>
-</ul>
-<a id="setStyleBorderless(boolean)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setStyleBorderless</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setStyleBorderless&#8203;(boolean&nbsp;styleBorderless)</pre>
-<div class="block">Set the value of <a href="#mStyleBorderless"><code>mStyleBorderless</code></a>.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>styleBorderless</code> - <code>true</code> if style applied to this view
-                        is borderless.</dd>
-</dl>
-</li>
-</ul>
 <a id="loadFromAttributes(android.util.AttributeSet)">
 <!--   -->
 </a>
@@ -864,6 +838,40 @@ public&nbsp;int&nbsp;getContrastWithColor()</pre>
 </dl>
 </li>
 </ul>
+<a id="isStyleBorderless()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isStyleBorderless</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isStyleBorderless()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="base/DynamicTintWidget.html#isStyleBorderless()">DynamicTintWidget</a></code></span></div>
+<div class="block">Returns whether the borderless style is applied to this widget.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="base/DynamicTintWidget.html#isStyleBorderless()">isStyleBorderless</a></code>&nbsp;in interface&nbsp;<code><a href="base/DynamicTintWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicTintWidget</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the borderless style is applied to this widget.</dd>
+</dl>
+</li>
+</ul>
+<a id="setStyleBorderless(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setStyleBorderless</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setStyleBorderless&#8203;(boolean&nbsp;styleBorderless)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="base/DynamicTintWidget.html#setStyleBorderless(boolean)">DynamicTintWidget</a></code></span></div>
+<div class="block">Sets whether the borderless style is applied to this widget.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="base/DynamicTintWidget.html#setStyleBorderless(boolean)">setStyleBorderless</a></code>&nbsp;in interface&nbsp;<code><a href="base/DynamicTintWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicTintWidget</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>styleBorderless</code> - <code>true</code> if the borderless style is applied to this widget.</dd>
+</dl>
+</li>
+</ul>
 <a id="setColor()">
 <!--   -->
 </a>
@@ -907,7 +915,7 @@ public&nbsp;int&nbsp;getContrastWithColor()</pre>
 <li><a href="../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>4.1.0</h5></div>
+<div class="aboutLanguage"><h5>5.0.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">

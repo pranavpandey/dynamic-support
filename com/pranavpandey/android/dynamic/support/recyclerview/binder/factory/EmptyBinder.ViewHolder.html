@@ -27,6 +27,12 @@
     catch(err) {
     }
 //-->
+var data = {"i0":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var altColor = "altColor";
+var rowColor = "rowColor";
+var tableTab = "tableTab";
+var activeTableTab = "activeTableTab";
 var pathtoroot = "../../../../../../../../";
 var useModuleDirectories = true;
 loadScripts(document, 'script');</script>
@@ -84,14 +90,14 @@ loadScripts(document, 'script');</script>
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <a id="skip.navbar.top">
@@ -160,6 +166,29 @@ extends androidx.recyclerview.widget.RecyclerView.ViewHolder</pre>
 </li>
 </ul>
 </section>
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="constructor.summary">
+<!--   -->
+</a>
+<h3>Constructor Summary</h3>
+<table class="memberSummary">
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Constructor</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr class="altColor">
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(android.view.View)">ViewHolder</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view)</code></th>
+<td class="colLast">
+<div class="block">Constructor to initialize views from the supplied layout.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+</section>
 <!-- ========== METHOD SUMMARY =========== -->
 <section role="region">
 <ul class="blockList">
@@ -167,6 +196,21 @@ extends androidx.recyclerview.widget.RecyclerView.ViewHolder</pre>
 <!--   -->
 </a>
 <h3>Method Summary</h3>
+<table class="memberSummary">
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Method</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr id="i0" class="altColor">
+<td class="colFirst"><code><a href="../../../view/DynamicEmptyView.html" title="class in com.pranavpandey.android.dynamic.support.view">DynamicEmptyView</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEmptyView()">getEmptyView</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the empty view for this view holder.</div>
+</td>
+</tr>
+</table>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.androidx.recyclerview.widget.RecyclerView.ViewHolder">
 <!--   -->
@@ -180,6 +224,62 @@ extends androidx.recyclerview.widget.RecyclerView.ViewHolder</pre>
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
 <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
+</ul>
+</li>
+</ul>
+</section>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="constructor.detail">
+<!--   -->
+</a>
+<h3>Constructor Detail</h3>
+<a id="&lt;init&gt;(android.view.View)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>ViewHolder</h4>
+<pre>public&nbsp;ViewHolder&#8203;(@NonNull
+                  <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view)</pre>
+<div class="block">Constructor to initialize views from the supplied layout.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>view</code> - The view for this view holder.</dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<!-- ============ METHOD DETAIL ========== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="method.detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a id="getEmptyView()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getEmptyView</h4>
+<pre class="methodSignature">@NonNull
+public&nbsp;<a href="../../../view/DynamicEmptyView.html" title="class in com.pranavpandey.android.dynamic.support.view">DynamicEmptyView</a>&nbsp;getEmptyView()</pre>
+<div class="block">Get the empty view for this view holder.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The empty view for this view holder.</dd>
+</dl>
+</li>
 </ul>
 </li>
 </ul>
@@ -209,7 +309,7 @@ extends androidx.recyclerview.widget.RecyclerView.ViewHolder</pre>
 <li><a href="../../../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>4.1.0</h5></div>
+<div class="aboutLanguage"><h5>5.0.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">
@@ -235,14 +335,14 @@ extends androidx.recyclerview.widget.RecyclerView.ViewHolder</pre>
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <a id="skip.navbar.bottom">

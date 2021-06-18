@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -282,54 +282,64 @@ implements androidx.viewpager.widget.ViewPager.OnPageChangeListener, <a href="ht
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSelectedColour()">getSelectedColour</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getUnselectedColour()">getUnselectedColour</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDraw(android.graphics.Canvas)">onDraw</a></span>&#8203;(<a href="https://developer.android.com/reference/android/graphics/Canvas.html?is-external=true" title="class or interface in android.graphics" class="externalLink">Canvas</a>&nbsp;canvas)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onMeasure(int,int)">onMeasure</a></span>&#8203;(int&nbsp;widthMeasureSpec,
          int&nbsp;heightMeasureSpec)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onPageScrolled(int,float,int)">onPageScrolled</a></span>&#8203;(int&nbsp;position,
               float&nbsp;positionOffset,
               int&nbsp;positionOffsetPixels)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onPageScrollStateChanged(int)">onPageScrollStateChanged</a></span>&#8203;(int&nbsp;state)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onPageSelected(int)">onPageSelected</a></span>&#8203;(int&nbsp;position)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onViewAttachedToWindow(android.view.View)">onViewAttachedToWindow</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onViewDetachedFromWindow(android.view.View)">onViewDetachedFromWindow</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSelectedColour(int)">setSelectedColour</a></span>&#8203;(int&nbsp;selectedColour)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setUnselectedColour(int)">setUnselectedColour</a></span>&#8203;(int&nbsp;unselectedColour)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setViewPager(androidx.viewpager.widget.ViewPager)">setViewPager</a></span>&#8203;(androidx.viewpager.widget.ViewPager&nbsp;viewPager)</code></th>
 <td class="colLast">&nbsp;</td>
@@ -414,6 +424,15 @@ implements androidx.viewpager.widget.ViewPager.OnPageChangeListener, <a href="ht
 <pre class="methodSignature">public&nbsp;void&nbsp;setViewPager&#8203;(androidx.viewpager.widget.ViewPager&nbsp;viewPager)</pre>
 </li>
 </ul>
+<a id="getUnselectedColour()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getUnselectedColour</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getUnselectedColour()</pre>
+</li>
+</ul>
 <a id="setUnselectedColour(int)">
 <!--   -->
 </a>
@@ -421,6 +440,15 @@ implements androidx.viewpager.widget.ViewPager.OnPageChangeListener, <a href="ht
 <li class="blockList">
 <h4>setUnselectedColour</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setUnselectedColour&#8203;(int&nbsp;unselectedColour)</pre>
+</li>
+</ul>
+<a id="getSelectedColour()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSelectedColour</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getSelectedColour()</pre>
 </li>
 </ul>
 <a id="setSelectedColour(int)">
@@ -554,7 +582,7 @@ implements androidx.viewpager.widget.ViewPager.OnPageChangeListener, <a href="ht
 <li><a href="../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>4.1.0</h5></div>
+<div class="aboutLanguage"><h5>5.0.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">

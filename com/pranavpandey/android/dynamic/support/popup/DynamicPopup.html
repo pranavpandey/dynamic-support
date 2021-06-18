@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":6,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
+var data = {"i0":6,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":6,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -315,34 +315,43 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i10" class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onCustomisePopup(android.widget.PopupWindow,android.view.View,int)">onCustomisePopup</a></span>&#8203;(<a href="https://developer.android.com/reference/android/widget/PopupWindow.html?is-external=true" title="class or interface in android.widget" class="externalLink">PopupWindow</a>&nbsp;popupWindow,
+                <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;content,
+                int&nbsp;backgroundColor)</code></th>
+<td class="colLast">
+<div class="block">This method will be called just before showing this popup.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAnchor(android.view.View)">setAnchor</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;anchor)</code></th>
 <td class="colLast">
 <div class="block">Set the anchor view to display the popup.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPopupWindowColor(int)">setPopupWindowColor</a></span>&#8203;(int&nbsp;popupWindowColor)</code></th>
 <td class="colLast">
 <div class="block">Set the popup window color.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setViewRoot(android.view.View)">setViewRoot</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;viewRoot)</code></th>
 <td class="colLast">
 <div class="block">Set the view root for this the popup.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setViewType(int)">setViewType</a></span>&#8203;(int&nbsp;viewType)</code></th>
 <td class="colLast">
 <div class="block">Set the view type used by the popup.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#show()">show</a></span>()</code></th>
 <td class="colLast">
@@ -641,6 +650,27 @@ protected abstract&nbsp;<a href="DynamicPopup.html" title="class in com.pranavpa
 </dl>
 </li>
 </ul>
+<a id="onCustomisePopup(android.widget.PopupWindow,android.view.View,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onCustomisePopup</h4>
+<pre class="methodSignature">protected&nbsp;void&nbsp;onCustomisePopup&#8203;(@NonNull
+                                <a href="https://developer.android.com/reference/android/widget/PopupWindow.html?is-external=true" title="class or interface in android.widget" class="externalLink">PopupWindow</a>&nbsp;popupWindow,
+                                @NonNull
+                                <a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;content,
+                                @ColorInt
+                                int&nbsp;backgroundColor)</pre>
+<div class="block">This method will be called just before showing this popup.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>popupWindow</code> - The popup window to be displayed by this popup.</dd>
+<dd><code>content</code> - The content to be displayed by this popup.</dd>
+<dd><code>backgroundColor</code> - The background color of this popup.</dd>
+</dl>
+</li>
+</ul>
 <a id="show()">
 <!--   -->
 </a>
@@ -679,7 +709,7 @@ protected abstract&nbsp;<a href="DynamicPopup.html" title="class in com.pranavpa
 <li><a href="../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>4.1.0</h5></div>
+<div class="aboutLanguage"><h5>5.0.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">

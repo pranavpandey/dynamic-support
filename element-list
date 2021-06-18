@@ -50,6 +50,7 @@ com.pranavpandey.android.dynamic.support.tutorial.adapter
 com.pranavpandey.android.dynamic.support.tutorial.fragment
 com.pranavpandey.android.dynamic.support.utils
 com.pranavpandey.android.dynamic.support.view
+com.pranavpandey.android.dynamic.support.view.base
 com.pranavpandey.android.dynamic.support.widget
 com.pranavpandey.android.dynamic.support.widget.base
 com.pranavpandey.android.dynamic.support.widget.tooltip

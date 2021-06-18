@@ -379,6 +379,13 @@ implements com.pranavpandey.android.dynamic.locale.DynamicLocale, <a href="../li
 <h3>Fields inherited from interface&nbsp;android.content.<a href="https://developer.android.com/reference/android/content/ComponentCallbacks2.html?is-external=true" title="class or interface in android.content" class="externalLink">ComponentCallbacks2</a></h3>
 <code><a href="https://developer.android.com/reference/android/content/ComponentCallbacks2.html?is-external=true#TRIM_MEMORY_BACKGROUND" title="class or interface in android.content" class="externalLink">TRIM_MEMORY_BACKGROUND</a>, <a href="https://developer.android.com/reference/android/content/ComponentCallbacks2.html?is-external=true#TRIM_MEMORY_COMPLETE" title="class or interface in android.content" class="externalLink">TRIM_MEMORY_COMPLETE</a>, <a href="https://developer.android.com/reference/android/content/ComponentCallbacks2.html?is-external=true#TRIM_MEMORY_MODERATE" title="class or interface in android.content" class="externalLink">TRIM_MEMORY_MODERATE</a>, <a href="https://developer.android.com/reference/android/content/ComponentCallbacks2.html?is-external=true#TRIM_MEMORY_RUNNING_CRITICAL" title="class or interface in android.content" class="externalLink">TRIM_MEMORY_RUNNING_CRITICAL</a>, <a href="https://developer.android.com/reference/android/content/ComponentCallbacks2.html?is-external=true#TRIM_MEMORY_RUNNING_LOW" title="class or interface in android.content" class="externalLink">TRIM_MEMORY_RUNNING_LOW</a>, <a href="https://developer.android.com/reference/android/content/ComponentCallbacks2.html?is-external=true#TRIM_MEMORY_RUNNING_MODERATE" title="class or interface in android.content" class="externalLink">TRIM_MEMORY_RUNNING_MODERATE</a>, <a href="https://developer.android.com/reference/android/content/ComponentCallbacks2.html?is-external=true#TRIM_MEMORY_UI_HIDDEN" title="class or interface in android.content" class="externalLink">TRIM_MEMORY_UI_HIDDEN</a></code></li>
 </ul>
+<ul class="blockList">
+<li class="blockList"><a id="fields.inherited.from.class.com.pranavpandey.android.dynamic.locale.DynamicLocale">
+<!--   -->
+</a>
+<h3>Fields inherited from interface&nbsp;com.pranavpandey.android.dynamic.locale.DynamicLocale</h3>
+<code>HINDI, INDONESIA, PORTUGUESE, RUSSIAN, SPANISH, SPLIT, SYSTEM, TURKISH</code></li>
+</ul>
 </li>
 </ul>
 </section>
@@ -866,7 +873,7 @@ implements com.pranavpandey.android.dynamic.locale.DynamicLocale, <a href="../li
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onSetFallbackActivityOptions()">onSetFallbackActivityOptions</a></span>()</code></th>
 <td class="colLast">
 <div class="block">This method will be called on setting the fallback activity options on unsupported
- API level like overriding a pending transition on API 15 and below.</div>
+ API levels like overriding a pending transition on API 15 and below.</div>
 </td>
 </tr>
 <tr id="i66" class="altColor">
@@ -1162,8 +1169,7 @@ implements com.pranavpandey.android.dynamic.locale.DynamicLocale, <a href="../li
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#updateTaskDescription(int)">updateTaskDescription</a></span>&#8203;(int&nbsp;color)</code></th>
 <td class="colLast">
-<div class="block">Update the task description on API 21 and above devices to match it with the theme
- color.</div>
+<div class="block">Update the task description on API 21 and above to match it with the theme color.</div>
 </td>
 </tr>
 </table>
@@ -2287,7 +2293,7 @@ public&nbsp;<a href="../listener/DynamicTransitionListener.html" title="interfac
 <h4>setNavigationBarThemeInLandscape</h4>
 <pre class="methodSignature">protected&nbsp;boolean&nbsp;setNavigationBarThemeInLandscape()</pre>
 <div class="block">Sets whether the navigation bar theme should be applied for this activity in landscape mode.
- <p>It will be applied only on the API 21 and above devices.
+ <p>It will be applied only on the API 21 and above.
 
  <p>By default it will use the <code>Theme.ColorType.PRIMARY_DARK</code> color, use
  <a href="#setNavigationBarColor(int)"><code>setNavigationBarColor(int)</code></a> to set a custom color.</div>
@@ -2375,7 +2381,7 @@ public&nbsp;int&nbsp;getBackgroundColor()</pre>
 <pre class="methodSignature">protected&nbsp;void&nbsp;setWindowStatusBarColor&#8203;(@ColorInt
                                        int&nbsp;color)</pre>
 <div class="block">Set the status bar color.
- <p>It will be applied only on the API 21 and above devices.</div>
+ <p>It will be applied only on the API 21 and above.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>color</code> - Color to be applied on the status bar.</dd>
@@ -2391,7 +2397,7 @@ public&nbsp;int&nbsp;getBackgroundColor()</pre>
 <pre class="methodSignature">public&nbsp;void&nbsp;setStatusBarColor&#8203;(@ColorInt
                               int&nbsp;color)</pre>
 <div class="block">Set the status bar color.
- <p>It will be applied only on the API 21 and above devices.</div>
+ <p>It will be applied only on the API 21 and above.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>color</code> - The color to be applied.</dd>
@@ -2407,7 +2413,7 @@ public&nbsp;int&nbsp;getBackgroundColor()</pre>
 <pre class="methodSignature">public&nbsp;void&nbsp;setStatusBarColorRes&#8203;(@ColorRes
                                  int&nbsp;colorRes)</pre>
 <div class="block">Set the status bar color resource.
- <p>It will be applied only on the API 21 and above devices.</div>
+ <p>It will be applied only on the API 21 and above.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>colorRes</code> - The color resource to be applied.</dd>
@@ -2422,7 +2428,7 @@ public&nbsp;int&nbsp;getBackgroundColor()</pre>
 <h4>setTranslucentStatusBar</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setTranslucentStatusBar()</pre>
 <div class="block">Set the translucent status bar flag, useful in case of <code>CollapsingToolbarLayout</code>.
- <p>It will be applied only on the API 21 and above devices.</div>
+ <p>It will be applied only on the API 21 and above.</div>
 </li>
 </ul>
 <a id="updateStatusBar()">
@@ -2511,7 +2517,7 @@ public&nbsp;<a href="https://developer.android.com/reference/android/view/View.h
 <pre class="methodSignature">public&nbsp;void&nbsp;setNavigationBarColor&#8203;(@ColorInt
                                   int&nbsp;color)</pre>
 <div class="block">Set the navigation bar color.
- <p>It will be applied only on the API 21 and above devices.</div>
+ <p>It will be applied only on the API 21 and above.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>color</code> - The color to be applied.</dd>
@@ -2527,7 +2533,7 @@ public&nbsp;<a href="https://developer.android.com/reference/android/view/View.h
 <pre class="methodSignature">public&nbsp;void&nbsp;setNavigationBarColorRes&#8203;(@ColorRes
                                      int&nbsp;colorRes)</pre>
 <div class="block">Set the navigation bar color resource.
- <p>It will be applied only on the API 21 and above devices.</div>
+ <p>It will be applied only on the API 21 and above.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>colorRes</code> - The color resource to be applied.</dd>
@@ -2543,7 +2549,7 @@ public&nbsp;<a href="https://developer.android.com/reference/android/view/View.h
 <pre class="methodSignature">public&nbsp;void&nbsp;setTranslucentNavigationBar()</pre>
 <div class="block">Set the translucent navigation bar flag, useful in case of to show the layout behind the
  navigation bar.
- <p>It will be applied only on the API 21 and above devices.</div>
+ <p>It will be applied only on the API 21 and above.</div>
 </li>
 </ul>
 <a id="updateNavigationBar()">
@@ -2688,25 +2694,6 @@ public&nbsp;<a href="https://developer.android.com/reference/android/view/View.h
 </dl>
 </li>
 </ul>
-<a id="startMotionActivity(android.content.Intent,android.os.Bundle)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>startMotionActivity</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;startMotionActivity&#8203;(<a href="https://developer.android.com/reference/android/content/Intent.html?is-external=true" title="class or interface in android.content" class="externalLink">Intent</a>&nbsp;intent,
-                                @Nullable
-                                <a href="https://developer.android.com/reference/android/os/Bundle.html?is-external=true" title="class or interface in android.os" class="externalLink">Bundle</a>&nbsp;options)</pre>
-<div class="block">Call <a href="https://developer.android.com/reference/android/app/Activity.html?is-external=true#startActivity(android.content.Intent,android.os.Bundle)" title="class or interface in android.app" class="externalLink"><code>Activity.startActivity(Intent, Bundle)</code></a> for this activity.
-
- <p>It will allow <a href="https://developer.android.com/reference/android/os/Bundle.html?is-external=true" title="class or interface in android.os" class="externalLink"><code>Bundle</code></a> options if <a href="../motion/DynamicMotion.html#isMotion()"><code>DynamicMotion.isMotion()</code></a> is enabled.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>intent</code> - The intent to be used.</dd>
-<dd><code>options</code> - The intent to be set.</dd>
-</dl>
-</li>
-</ul>
 <a id="startMotionActivityForResult(android.content.Intent,int,android.os.Bundle,boolean,boolean,boolean)">
 <!--   -->
 </a>
@@ -2778,6 +2765,25 @@ public&nbsp;<a href="https://developer.android.com/reference/android/view/View.h
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>intent</code> - The intent to be used.</dd>
 <dd><code>requestCode</code> - The request code to be set.</dd>
+<dd><code>options</code> - The intent to be set.</dd>
+</dl>
+</li>
+</ul>
+<a id="startMotionActivity(android.content.Intent,android.os.Bundle)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>startMotionActivity</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;startMotionActivity&#8203;(<a href="https://developer.android.com/reference/android/content/Intent.html?is-external=true" title="class or interface in android.content" class="externalLink">Intent</a>&nbsp;intent,
+                                @Nullable
+                                <a href="https://developer.android.com/reference/android/os/Bundle.html?is-external=true" title="class or interface in android.os" class="externalLink">Bundle</a>&nbsp;options)</pre>
+<div class="block">Call <a href="https://developer.android.com/reference/android/app/Activity.html?is-external=true#startActivity(android.content.Intent,android.os.Bundle)" title="class or interface in android.app" class="externalLink"><code>Activity.startActivity(Intent, Bundle)</code></a> for this activity.
+
+ <p>It will allow <a href="https://developer.android.com/reference/android/os/Bundle.html?is-external=true" title="class or interface in android.os" class="externalLink"><code>Bundle</code></a> options if <a href="../motion/DynamicMotion.html#isMotion()"><code>DynamicMotion.isMotion()</code></a> is enabled.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>intent</code> - The intent to be used.</dd>
 <dd><code>options</code> - The intent to be set.</dd>
 </dl>
 </li>
@@ -3106,7 +3112,7 @@ public&nbsp;int&nbsp;getDefaultColor&#8203;(int&nbsp;colorType)</pre>
 <h4>setNavigationBarTheme</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;setNavigationBarTheme()</pre>
 <div class="block">Sets whether the navigation bar theme should be applied for this activity.
- <p>It will be applied only on the API 21 and above devices.
+ <p>It will be applied only on the API 21 and above.
 
  <p>By default it will use the <code>Theme.ColorType.PRIMARY_DARK</code> color, use
  <a href="#setNavigationBarColor(int)"><code>setNavigationBarColor(int)</code></a> to set a custom color.</div>
@@ -3155,8 +3161,7 @@ public&nbsp;int&nbsp;getDefaultColor&#8203;(int&nbsp;colorType)</pre>
 <h4>updateTaskDescription</h4>
 <pre class="methodSignature">protected&nbsp;void&nbsp;updateTaskDescription&#8203;(@ColorInt
                                      int&nbsp;color)</pre>
-<div class="block">Update the task description on API 21 and above devices to match it with the theme
- color.</div>
+<div class="block">Update the task description on API 21 and above to match it with the theme color.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>color</code> - The color to be set.</dd>
@@ -3223,7 +3228,7 @@ public&nbsp;int&nbsp;getDefaultColor&#8203;(int&nbsp;colorType)</pre>
 <h4>onSetFallbackActivityOptions</h4>
 <pre class="methodSignature">protected&nbsp;void&nbsp;onSetFallbackActivityOptions()</pre>
 <div class="block">This method will be called on setting the fallback activity options on unsupported
- API level like overriding a pending transition on API 15 and below.</div>
+ API levels like overriding a pending transition on API 15 and below.</div>
 </li>
 </ul>
 <a id="isSupportFinishAfterTransition()">
@@ -3294,7 +3299,7 @@ public&nbsp;int&nbsp;getDefaultColor&#8203;(int&nbsp;colorType)</pre>
 <li><a href="../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>4.1.0</h5></div>
+<div class="aboutLanguage"><h5>5.0.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">
