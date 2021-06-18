@@ -550,6 +550,7 @@ public final class DynamicScrollUtils {
      * @param edgeEffect The edge effect object to be used.
      * @param color The edge effect color to be set.
      */
+    @SuppressWarnings("deprecation")
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void setEdgeEffectColor(@Nullable Object edgeEffect, @ColorInt int color) {
         if (edgeEffect instanceof EdgeEffectCompat) {

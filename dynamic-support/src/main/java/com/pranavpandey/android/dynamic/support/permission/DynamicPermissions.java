@@ -50,7 +50,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Help class to request and manage runtime permissions introduced in API 23.
+ * Helper class to request and manage runtime permissions introduced in API 23.
  * <p>It must be initialized before using any of its functions or requesting any permissions.
  *
  * <p>Register the {@link DynamicPermissionsActivity} via {@link #setPermissionActivity(Class)}
@@ -478,6 +478,8 @@ public class DynamicPermissions {
      *
      * @see Manifest.permission#PACKAGE_USAGE_STATS
      */
+    @SuppressWarnings("deprecation")
+    @TargetApi(Build.VERSION_CODES.R)
     public boolean hasUsageAccess() {
         if (DynamicSdkUtils.is21()) {
             try {
@@ -487,8 +489,15 @@ public class DynamicPermissions {
                 AppOpsManager appOpsManager = (AppOpsManager) getContext()
                         .getSystemService(Context.APP_OPS_SERVICE);
 
-                int mode = AppOpsManager.MODE_ERRORED;
-                if (appOpsManager != null) {
+                if (appOpsManager == null) {
+                    return false;
+                }
+
+                int mode;
+                if (DynamicSdkUtils.is30()) {
+                    mode = appOpsManager.unsafeCheckOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
+                            applicationInfo.uid, applicationInfo.packageName);
+                } else {
                     mode = appOpsManager.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
                             applicationInfo.uid, applicationInfo.packageName);
                 }

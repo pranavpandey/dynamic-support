@@ -188,6 +188,7 @@ public class DynamicColorView extends DynamicFrameLayout {
 
         getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @SuppressWarnings("deprecation")
                     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onGlobalLayout() {
