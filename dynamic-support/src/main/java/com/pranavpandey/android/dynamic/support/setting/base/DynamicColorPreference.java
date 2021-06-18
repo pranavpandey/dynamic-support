@@ -577,7 +577,10 @@ public class DynamicColorPreference extends DynamicSimplePreference {
         this.mColor = color;
 
         setValueString(getColorString());
-        DynamicPreferences.getInstance().save(getPreferenceKey(), getColor(false));
+
+        if (save) {
+            DynamicPreferences.getInstance().save(getPreferenceKey(), getColor(false));
+        }
     }
 
     /**
