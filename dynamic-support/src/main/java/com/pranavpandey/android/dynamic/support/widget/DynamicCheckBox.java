@@ -310,5 +310,7 @@ public class DynamicCheckBox extends MaterialCheckBox implements DynamicStateWid
                     DynamicResourceUtils.getColorStateList(mAppliedStateNormalColor,
                             mAppliedColor, true));
         }
+
+        setTextColor(CompoundButtonCompat.getButtonTintList(this));
     }
 }

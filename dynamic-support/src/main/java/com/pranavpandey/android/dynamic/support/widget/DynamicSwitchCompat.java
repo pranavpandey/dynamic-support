@@ -308,5 +308,7 @@ public class DynamicSwitchCompat extends SwitchMaterial implements DynamicStateW
                     DynamicColorUtils.getLighterColor(mAppliedColor,
                             Defaults.ADS_STATE_LIGHT), true));
         }
+
+        setTextColor(getTrackTintList());
     }
 }

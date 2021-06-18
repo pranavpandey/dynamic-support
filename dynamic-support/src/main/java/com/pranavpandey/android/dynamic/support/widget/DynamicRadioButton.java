@@ -311,5 +311,7 @@ public class DynamicRadioButton extends MaterialRadioButton implements DynamicSt
                     DynamicResourceUtils.getColorStateList(mAppliedStateNormalColor,
                             mAppliedColor, true));
         }
+
+        setTextColor(CompoundButtonCompat.getButtonTintList(this));
     }
 }
