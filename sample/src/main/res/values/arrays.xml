@@ -46,6 +46,7 @@
 
     <!-- Default app theme day colors. -->
     <integer-array name="pref_app_theme_day_colors">
+        <item>-3</item>
         <item>@color/ads_window_background_light</item>
         <item>@color/ads_window_background_yellow</item>
         <item>@color/ads_window_background_indigo_light</item>
@@ -61,6 +62,7 @@
 
     <!-- Default app theme night colors. -->
     <integer-array name="pref_app_theme_night_colors">
+        <item>-3</item>
         <item>@color/ads_window_background</item>
         <item>@color/ads_window_background_dark</item>
         <item>@color/ads_window_background_indigo</item>

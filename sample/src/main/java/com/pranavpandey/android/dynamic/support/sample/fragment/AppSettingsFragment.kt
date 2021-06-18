@@ -20,10 +20,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.Nullable
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment
+import com.pranavpandey.android.dynamic.support.listener.DynamicColorResolver
 import com.pranavpandey.android.dynamic.support.sample.R
+import com.pranavpandey.android.dynamic.support.sample.controller.Constants
 import com.pranavpandey.android.dynamic.support.sample.controller.ThemeController
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
 
 /**
  * App Settings fragment to control theme settings by using [DynamicFragment].
@@ -31,14 +35,24 @@ import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPrefere
 class AppSettingsFragment : DynamicFragment() {
 
     /**
-     * Dynamic color preference for day theme.
+     * Dynamic color preference for the day theme.
      */
     private var mAppThemeDay: DynamicColorPreference? = null
 
     /**
-     * Dynamic color preference for night theme.
+     * Dynamic color preference for the night theme.
      */
     private var mAppThemeNight: DynamicColorPreference? = null
+
+    /**
+     * Dynamic color preference for the primary color.
+     */
+    private var mAppThemeColorPrimary: DynamicColorPreference? = null
+
+    /**
+     * Dynamic color preference for the accent color.
+     */
+    private var mAppThemeColorAccent: DynamicColorPreference? = null
 
     companion object {
 
@@ -62,6 +76,50 @@ class AppSettingsFragment : DynamicFragment() {
 
         mAppThemeDay = view.findViewById(R.id.pref_app_theme_day)
         mAppThemeNight = view.findViewById(R.id.pref_app_theme_night)
+        mAppThemeColorPrimary = view.findViewById(R.id.pref_app_theme_color_primary)
+        mAppThemeColorAccent = view.findViewById(R.id.pref_app_theme_color_accent)
+
+        // Set the dynamic color resolvers to resolve the default and auto color.
+
+        mAppThemeDay!!.dynamicColorResolver = object : DynamicColorResolver {
+            override fun getDefaultColor(@Nullable tag: String?): Int {
+                return Constants.APP_THEME_DAY_COLOR
+            }
+
+            override fun getAutoColor(@Nullable tag: String?): Int {
+                return DynamicTheme.getInstance().get().backgroundColor
+            }
+        }
+
+        mAppThemeNight!!.dynamicColorResolver = object : DynamicColorResolver {
+            override fun getDefaultColor(@Nullable tag: String?): Int {
+                return Constants.APP_THEME_NIGHT_COLOR
+            }
+
+            override fun getAutoColor(@Nullable tag: String?): Int {
+                return DynamicTheme.getInstance().get().backgroundColor
+            }
+        }
+
+        mAppThemeColorPrimary!!.dynamicColorResolver = object : DynamicColorResolver {
+            override fun getDefaultColor(@Nullable tag: String?): Int {
+                return Constants.APP_THEME_COLOR_PRIMARY
+            }
+
+            override fun getAutoColor(@Nullable tag: String?): Int {
+                return DynamicTheme.getInstance().get().primaryColor
+            }
+        }
+
+        mAppThemeColorAccent!!.dynamicColorResolver = object : DynamicColorResolver {
+            override fun getDefaultColor(@Nullable tag: String?): Int {
+                return Constants.APP_THEME_COLOR_ACCENT
+            }
+
+            override fun getAutoColor(@Nullable tag: String?): Int {
+                return DynamicTheme.getInstance().get().accentColor
+            }
+        }
     }
 
     override fun onResume() {
