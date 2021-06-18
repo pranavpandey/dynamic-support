@@ -73,7 +73,9 @@ import com.pranavpandey.android.dynamic.support.theme.listener.ThemeListener;
 import com.pranavpandey.android.dynamic.theme.AppTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicBitmapUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicWindowUtils;
@@ -1013,8 +1015,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      * Set the translucent status bar flag, useful in case of {@link CollapsingToolbarLayout}.
      * <p>It will be applied only on the API 21 and above.
      */
+    @SuppressWarnings("deprecation")
     public void setTranslucentStatusBar() {
-        if (DynamicSdkUtils.is21()) {
+        if (DynamicSdkUtils.is30()) {
+            setStatusBarColor(ContextCompat.getColor(getContext(), R.color.ads_immersive_bars));
+        } else if (DynamicSdkUtils.is21()) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
     }
@@ -1105,11 +1110,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
             this.mNavigationBarTheme = setNavigationBarTheme();
 
             if (isEdgeToEdgeContent()) {
-                if ((getWindow().getDecorView().getSystemUiVisibility()
-                        & View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
-                        != View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION) {
-                    DynamicViewUtils.setEdgeToEdge(getWindow().getDecorView(), true);
-                }
+                DynamicWindowUtils.setEdgeToEdge(getWindow(), true);
 
                 if (isApplyEdgeToEdgeInsets() && getEdgeToEdgeView() != null) {
                     ViewCompat.setOnApplyWindowInsetsListener(getEdgeToEdgeView(),
@@ -1164,8 +1165,12 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      * navigation bar.
      * <p>It will be applied only on the API 21 and above.
      */
+    @SuppressWarnings("deprecation")
     public void setTranslucentNavigationBar() {
-        if (DynamicSdkUtils.is21()) {
+        if (DynamicSdkUtils.is30()) {
+            setNavigationBarColor(ContextCompat.getColor(
+                    getContext(), R.color.ads_immersive_bars));
+        } else if (DynamicSdkUtils.is21()) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
@@ -1241,8 +1246,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      * @param afterTransition {@code true} to finish the calling activity after transition.
      */
     public void startMotionActivity(@SuppressLint("UnknownNullness") Intent intent,
-            @Nullable Bundle options, boolean motion, boolean finish,
-            boolean afterTransition) {
+            @Nullable Bundle options, boolean motion, boolean finish, boolean afterTransition) {
         if (motion) {
             ActivityCompat.startActivity(this, intent, options);
         } else {
@@ -1268,19 +1272,6 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
             @Nullable Bundle options, boolean finish, boolean afterTransition) {
         startMotionActivity(intent, options, DynamicMotion.getInstance().isMotion(),
                 finish, afterTransition);
-    }
-
-    /**
-     * Call {@link #startActivity(Intent, Bundle)} for this activity.
-     *
-     * <p>It will allow {@link Bundle} options if {@link DynamicMotion#isMotion()} is enabled.
-     *
-     * @param intent The intent to be used.
-     * @param options The intent to be set.
-     */
-    public void startMotionActivity(@SuppressLint("UnknownNullness") Intent intent,
-            @Nullable Bundle options) {
-        startMotionActivity(intent, options, false, false);
     }
 
     /**
@@ -1338,6 +1329,19 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     public void startMotionActivityForResult(@SuppressLint("UnknownNullness") Intent intent,
             int requestCode, @Nullable Bundle options) {
         startMotionActivityForResult(intent, requestCode, options, false, false);
+    }
+
+    /**
+     * Call {@link #startActivity(Intent, Bundle)} for this activity.
+     *
+     * <p>It will allow {@link Bundle} options if {@link DynamicMotion#isMotion()} is enabled.
+     *
+     * @param intent The intent to be used.
+     * @param options The intent to be set.
+     */
+    public void startMotionActivity(@SuppressLint("UnknownNullness") Intent intent,
+            @Nullable Bundle options) {
+        startMotionActivity(intent, options, false, false);
     }
 
     /**
@@ -1587,9 +1591,19 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      *
      * @param color The color to be set.
      */
+    @SuppressWarnings("deprecation")
+    @TargetApi(Build.VERSION_CODES.P)
     protected void updateTaskDescription(@ColorInt int color) {
-        if (DynamicSdkUtils.is21()) {
-            setTaskDescription(new ActivityManager.TaskDescription(null, null,
+        String title = getTitle() != null ? getTitle().toString() : null;
+
+        if (DynamicSdkUtils.is28()) {
+            setTaskDescription(new ActivityManager.TaskDescription(title,
+                    DynamicPackageUtils.getActivityIconRes(getContext(), getComponentName()),
+                    DynamicColorUtils.removeAlpha(color)));
+        } else if (DynamicSdkUtils.is21()) {
+            setTaskDescription(new ActivityManager.TaskDescription(title,
+                    DynamicBitmapUtils.getBitmap(DynamicPackageUtils.getActivityIcon(
+                            getContext(), getComponentName())),
                     DynamicColorUtils.removeAlpha(color)));
         }
     }
@@ -1630,7 +1644,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
 
     /**
      * This method will be called on setting the fallback activity options on unsupported
-     * API level like overriding a pending transition on API 15 and below.
+     * API levels like overriding a pending transition on API 15 and below.
      */
     protected void onSetFallbackActivityOptions() { }
 

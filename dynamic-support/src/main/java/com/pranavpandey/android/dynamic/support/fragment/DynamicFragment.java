@@ -155,10 +155,6 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
             ((DynamicSystemActivity) requireActivity()).setDynamicTransitionListener(this);
         }
 
-        if (getPostponeTransitionView() == null) {
-            return;
-        }
-
         final View transitionView = getPostponeTransitionView();
         if (transitionView != null) {
             transitionView.getViewTreeObserver().addOnPreDrawListener(
