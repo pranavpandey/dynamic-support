@@ -85,7 +85,7 @@
                     android:layout_height="wrap_content"
                     app:ads_key="pref_settings_app_theme_color_surface"
                     app:ads_title="@string/ads_theme_color_surface"
-                    app:ads_description="@string/ads_theme_color_accent"
+                    app:ads_description="@string/ads_theme_color_auto_desc"
                     app:ads_shape="square"
                     app:ads_alphaEnabled="true"
                     app:ads_popup="true"
