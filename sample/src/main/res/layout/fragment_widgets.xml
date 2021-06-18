@@ -51,7 +51,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
-                        android:text="@string/widget_button_raised" />
+                        android:text="@string/widget_button_raised"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
                         style="@style/Widget.DynamicApp.Button"
@@ -59,7 +60,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:text="@string/ads_disabled"
-                        android:enabled="false" />
+                        android:enabled="false"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
                         style="@style/Widget.DynamicApp.Button"
@@ -67,7 +69,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:text="@string/color_primary"
-                        app:adt_colorType="primary" />
+                        app:adt_colorType="primary"
+                        app:adt_contrastWithColorType="surface" />
 
                 </LinearLayout>
 
@@ -82,7 +85,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
-                        android:text="@string/widget_button_flat" />
+                        android:text="@string/widget_button_flat"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
                         style="@style/Widget.DynamicApp.Button.TextButton"
@@ -90,7 +94,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:text="@string/ads_disabled"
-                        android:enabled="false" />
+                        android:enabled="false"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
                         style="@style/Widget.DynamicApp.Button.TextButton"
@@ -98,7 +103,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:text="@string/color_primary"
-                        app:adt_colorType="primary" />
+                        app:adt_colorType="primary"
+                        app:adt_contrastWithColorType="surface" />
 
                 </LinearLayout>
 
@@ -129,7 +135,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
-                        android:padding="@dimen/ads_margin_small" />
+                        android:padding="@dimen/ads_margin_small"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicSwitchCompat
                         android:layout_width="0dp"
@@ -137,7 +144,8 @@
                         android:layout_weight="1.0"
                         android:padding="@dimen/ads_margin_small"
                         android:enabled="false"
-                        android:text="@string/ads_disabled"/>
+                        android:text="@string/ads_disabled"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicSwitchCompat
                         android:layout_width="0dp"
@@ -145,8 +153,9 @@
                         android:layout_weight="1.0"
                         android:padding="@dimen/ads_margin_small"
                         android:checked="true"
+                        android:text="@string/color_primary"
                         app:adt_colorType="primary"
-                        android:text="@string/color_primary" />
+                        app:adt_contrastWithColorType="surface" />
 
                 </LinearLayout>
 
@@ -160,7 +169,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
-                        android:padding="@dimen/ads_margin_small" />
+                        android:padding="@dimen/ads_margin_small"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicCheckBox
                         android:layout_width="0dp"
@@ -168,7 +178,8 @@
                         android:layout_weight="1.0"
                         android:enabled="false"
                         android:padding="@dimen/ads_margin_small"
-                        android:text="@string/ads_disabled" />
+                        android:text="@string/ads_disabled"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicCheckBox
                         android:layout_width="0dp"
@@ -176,8 +187,9 @@
                         android:layout_weight="1.0"
                         android:padding="@dimen/ads_margin_small"
                         android:checked="true"
+                        android:text="@string/color_primary"
                         app:adt_colorType="primary"
-                        android:text="@string/color_primary" />
+                        app:adt_contrastWithColorType="surface" />
 
                 </LinearLayout>
 
@@ -191,7 +203,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
-                        android:padding="@dimen/ads_margin_small" />
+                        android:padding="@dimen/ads_margin_small"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicRadioButton
                         android:layout_width="0dp"
@@ -199,7 +212,8 @@
                         android:layout_weight="1.0"
                         android:enabled="false"
                         android:padding="@dimen/ads_margin_small"
-                        android:text="@string/ads_disabled" />
+                        android:text="@string/ads_disabled"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicRadioButton
                         android:layout_width="0dp"
@@ -207,8 +221,9 @@
                         android:layout_weight="1.0"
                         android:padding="@dimen/ads_margin_small"
                         android:checked="true"
+                        android:text="@string/color_primary"
                         app:adt_colorType="primary"
-                        android:text="@string/color_primary" />
+                        app:adt_contrastWithColorType="surface" />
 
                 </LinearLayout>
 
@@ -238,19 +253,22 @@
                     <com.pranavpandey.android.dynamic.support.widget.DynamicEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/widget_edit_text" />
+                        android:hint="@string/widget_edit_text"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/ads_margin_small">
+                        android:layout_marginTop="@dimen/ads_margin_small"
+                        app:adt_contrastWithColorType="surface" >
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
                             style="@style/Widget.DynamicApp.TextInputEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/widget_text_input_layout" />
+                            android:hint="@string/widget_text_input_layout"
+                            app:adt_contrastWithColorType="surface" />
 
                     </com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout>
 
@@ -258,13 +276,15 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/ads_margin_small">
+                        android:layout_marginTop="@dimen/ads_margin_small"
+                        app:adt_contrastWithColorType="surface" >
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
                             style="@style/Widget.DynamicApp.TextInputEditText.Outlined"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/widget_text_input_layout_outlined" />
+                            android:hint="@string/widget_text_input_layout_outlined"
+                            app:adt_contrastWithColorType="surface" />
 
                     </com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout>
 
@@ -285,7 +305,7 @@
                 <com.pranavpandey.android.dynamic.support.view.DynamicHeader
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:ads_title="@string/widget_progress" />
+                    app:ads_title="@string/widget_progress"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -297,7 +317,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:max="100"
-                        android:progress="75" />
+                        android:progress="75"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicSeekBar
                         android:layout_width="match_parent"
@@ -306,7 +327,8 @@
                         android:enabled="false"
                         android:max="100"
                         android:progress="25"
-                        app:adt_colorType="background" />
+                        app:adt_colorType="background"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicSeekBar
                         android:layout_width="match_parent"
@@ -314,7 +336,8 @@
                         android:layout_marginTop="@dimen/ads_margin_small"
                         android:max="100"
                         android:progress="50"
-                        app:adt_colorType="primary" />
+                        app:adt_colorType="primary"
+                        app:adt_contrastWithColorType="surface" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -328,7 +351,8 @@
                             android:layout_height="@dimen/ads_icon_normal"
                             android:layout_weight="1.0"
                             android:layout_gravity="center"
-                            android:indeterminate="true" />
+                            android:indeterminate="true"
+                            app:adt_contrastWithColorType="surface" />
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
                             android:id="@+id/seek_bar_disabled"
@@ -338,7 +362,8 @@
                             android:layout_weight="1.0"
                             android:layout_gravity="center"
                             android:indeterminate="true"
-                            app:adt_colorType="background" />
+                            app:adt_colorType="background"
+                            app:adt_contrastWithColorType="surface" />
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
                             style="?android:attr/progressBarStyle"
@@ -347,7 +372,8 @@
                             android:layout_weight="1.0"
                             android:layout_gravity="center"
                             android:indeterminate="true"
-                            app:adt_colorType="primary" />
+                            app:adt_colorType="primary"
+                            app:adt_contrastWithColorType="surface" />
 
 <!--                        <com.pranavpandey.android.dynamic.support.widget.DynamicRatingBar-->
 <!--                            style="?attr/ratingBarStyle"-->
@@ -355,7 +381,8 @@
 <!--                            android:layout_height="wrap_content"-->
 <!--                            android:layout_gravity="center"-->
 <!--                            android:numStars="5"-->
-<!--                            android:stepSize="1" />-->
+<!--                            android:stepSize="1"-->
+<!--                            app:adt_contrastWithColorType="surface" />-->
 
                     </LinearLayout>
 
@@ -363,21 +390,24 @@
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:indeterminate="true" />
+                        android:indeterminate="true"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:progress="50"
-                        app:adt_colorType="background" />
+                        app:adt_colorType="background"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:indeterminate="true"
-                        app:adt_colorType="primary" />
+                        app:adt_colorType="primary"
+                        app:adt_contrastWithColorType="surface" />
 
                 </LinearLayout>
 
@@ -409,7 +439,8 @@
                         android:layout_height="wrap_content"
                         android:value="75.0"
                         android:valueFrom="0.0"
-                        android:valueTo="100.0" />
+                        android:valueTo="100.0"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicSlider
                         android:layout_width="match_parent"
@@ -419,7 +450,8 @@
                         android:value="25.0"
                         android:valueFrom="0.0"
                         android:valueTo="100.0"
-                        app:adt_colorType="background" />
+                        app:adt_colorType="background"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicSlider
                         android:layout_width="match_parent"
@@ -430,7 +462,8 @@
                         android:valueTo="100.0"
                         android:stepSize="5.0"
                         app:labelBehavior="gone"
-                        app:adt_colorType="primary" />
+                        app:adt_colorType="primary"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicRangeSlider
                         android:layout_width="match_parent"
@@ -440,7 +473,8 @@
                         android:valueTo="100.0"
                         android:stepSize="1.0"
                         app:values="@array/widget_slider_values"
-                        app:tickVisible="false" />
+                        app:tickVisible="false"
+                        app:adt_contrastWithColorType="surface" />
 
                 </LinearLayout>
 
@@ -470,21 +504,24 @@
                     <com.pranavpandey.android.dynamic.support.widget.DynamicSpinner
                         android:id="@+id/spinner_one"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicSpinner
                         android:id="@+id/spinner_two"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/ads_margin_small"
-                        app:adt_colorType="background" />
+                        app:adt_colorType="background"
+                        app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicSpinner
                         android:id="@+id/spinner_three"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/ads_margin_small"
-                        app:adt_colorType="primary" />
+                        app:adt_colorType="primary"
+                        app:adt_contrastWithColorType="surface" />
 
                 </LinearLayout>
 

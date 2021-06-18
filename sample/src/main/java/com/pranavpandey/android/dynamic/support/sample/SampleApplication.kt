@@ -128,6 +128,7 @@ class SampleApplication : DynamicApplication() {
                     DynamicTheme.getInstance().onDynamicChanged(false, true)
                 }
             Constants.PREF_SETTINGS_APP_THEME_COLOR,
+            Constants.PREF_SETTINGS_APP_THEME_COLOR_SURFACE,
             Constants.PREF_SETTINGS_APP_THEME_COLOR_PRIMARY,
             Constants.PREF_SETTINGS_APP_THEME_COLOR_ACCENT ->
                 DynamicTheme.getInstance().onDynamicChanged(false, true)

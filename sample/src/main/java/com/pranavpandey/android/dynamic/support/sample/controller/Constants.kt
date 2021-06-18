@@ -84,6 +84,11 @@ object Constants {
     @ColorInt val APP_THEME_NIGHT_COLOR = Color.parseColor("#252525")
 
     /**
+     * TODO: Default value for app theme surface color.
+     */
+    @ColorInt val APP_THEME_COLOR_SURFACE = Theme.AUTO
+
+    /**
      * TODO: Default value for app theme primary color.
      */
     @ColorInt val APP_THEME_COLOR_PRIMARY = Color.parseColor("#3F51B5")
@@ -112,6 +117,11 @@ object Constants {
      * Shared preferences key for app theme night color.
      */
     const val PREF_SETTINGS_APP_THEME_NIGHT_COLOR = "pref_settings_app_theme_night_color"
+
+    /**
+     * Shared preferences key for app theme surface color.
+     */
+    const val PREF_SETTINGS_APP_THEME_COLOR_SURFACE = "pref_settings_app_theme_color_surface"
 
     /**
      * Shared preferences key for app theme primary color.
@@ -152,6 +162,11 @@ object Constants {
      * Shared preferences default value for app theme night color.
      */
     @ColorInt val PREF_SETTINGS_APP_THEME_NIGHT_COLOR_DEFAULT = APP_THEME_NIGHT_COLOR
+
+    /**
+     * Shared preferences default value for app theme surface color.
+     */
+    @ColorInt val PREF_SETTINGS_APP_THEME_COLOR_SURFACE_DEFAULT = APP_THEME_COLOR_SURFACE
 
     /**
      * Shared preferences default value for app theme primary color.

@@ -83,26 +83,25 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
 
         // Array list for spinner items with icon.
         val spinnerItemsIcon = ArrayList<DynamicMenu>()
-        spinnerItemsIcon.add(DynamicMenu(DynamicResourceUtils.getDrawable(requireContext(),
-                R.drawable.ads_ic_extension), "Spinner one"))
-        spinnerItemsIcon.add(DynamicMenu(DynamicResourceUtils.getDrawable(requireContext(),
-                R.drawable.ads_ic_android), "Spinner two"))
-        spinnerItemsIcon.add(DynamicMenu(DynamicResourceUtils.getDrawable(requireContext(),
-                R.drawable.ads_ic_check), "Spinner three"))
-        spinnerItemsIcon.add(DynamicMenu(DynamicResourceUtils.getDrawable(requireContext(),
-                R.drawable.ads_ic_close), "Spinner four"))
+        spinnerItemsIcon.add(DynamicMenu(DynamicResourceUtils.getDrawable(
+            requireContext(), R.drawable.ads_ic_extension), "Spinner one"))
+        spinnerItemsIcon.add(DynamicMenu(DynamicResourceUtils.getDrawable(
+            requireContext(), R.drawable.ads_ic_android), "Spinner two"))
+        spinnerItemsIcon.add(DynamicMenu(DynamicResourceUtils.getDrawable(
+            requireContext(), R.drawable.ads_ic_check), "Spinner three"))
+        spinnerItemsIcon.add(DynamicMenu(DynamicResourceUtils.getDrawable(
+            requireContext(), R.drawable.ads_ic_close), "Spinner four"))
 
         // Set dynamic spinner image adapter with text and image view ids.
         mSpinnerOne!!.adapter = DynamicSpinnerImageAdapter(requireContext(),
-                R.layout.ads_layout_spinner_item, R.id.ads_spinner_item_icon,
-                R.id.ads_spinner_item_text, spinnerItemsIcon)
+            R.layout.ads_layout_spinner_item, R.id.ads_spinner_item_icon,
+            R.id.ads_spinner_item_text, spinnerItemsIcon, mSpinnerOne)
 
         // Set dynamic spinner image adapter with text view id. Setting a
         // default image view id to disable icons.
         mSpinnerTwo!!.adapter = DynamicSpinnerImageAdapter(requireContext(),
-                R.layout.ads_layout_spinner_item,
-                DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID,
-                R.id.ads_spinner_item_text, spinnerItemsIcon)
+            R.layout.ads_layout_spinner_item, DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID,
+            R.id.ads_spinner_item_text, spinnerItemsIcon, mSpinnerTwo)
 
         // Array list for spinner items without icon.
         val spinnerItems = ArrayList<DynamicMenu>()
@@ -114,9 +113,8 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
         // Set dynamic spinner image adapter with text and image view ids.
         // Now, passing an array without icons to hide the image view.
         mSpinnerThree!!.adapter = DynamicSpinnerImageAdapter(requireContext(),
-                R.layout.ads_layout_spinner_item,
-                R.id.ads_spinner_item_icon,
-                R.id.ads_spinner_item_text, spinnerItems)
+            R.layout.ads_layout_spinner_item, R.id.ads_spinner_item_icon,
+            R.id.ads_spinner_item_text, spinnerItems, mSpinnerThree)
 
         mSpinnerTwo!!.setSelection(1)
         mSpinnerThree!!.setSelection(2)
@@ -159,7 +157,7 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
         if (dynamicActivity is DynamicDrawerActivity) {
             if ((dynamicActivity as DynamicDrawerActivity).isPersistentDrawer) {
                 dynamicActivity.setNavigationClickListener(
-                        R.drawable.ads_ic_back, null)
+                    R.drawable.ads_ic_back, null)
             }
 
             (dynamicActivity as DynamicDrawerActivity).animateDrawerToggle(0f, 1f)
@@ -185,7 +183,7 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
 
             if ((dynamicActivity as DynamicDrawerActivity).isPersistentDrawer) {
                 dynamicActivity.setNavigationClickListener(
-                        R.drawable.ads_ic_extension, null)
+                    R.drawable.ads_ic_extension, null)
             }
         }
     }

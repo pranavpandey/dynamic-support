@@ -80,6 +80,18 @@
                     app:ads_popupColors="@array/pref_app_theme_night_colors" />
 
                 <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
+                    android:id="@+id/pref_app_theme_color_surface"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_key="pref_settings_app_theme_color_surface"
+                    app:ads_title="@string/ads_theme_color_surface"
+                    app:ads_description="@string/ads_theme_color_accent"
+                    app:ads_shape="square"
+                    app:ads_alphaEnabled="true"
+                    app:ads_popup="true"
+                    app:ads_popupColors="@array/ads_app_theme_surface_colors" />
+
+                <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
                     android:id="@+id/pref_app_theme_color_primary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

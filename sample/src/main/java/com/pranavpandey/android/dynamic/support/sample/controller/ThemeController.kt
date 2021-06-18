@@ -37,34 +37,34 @@ object ThemeController {
 
 
     /**
-     * Getter and Setter for the app theme color.
+     * Getter and setter for the app theme color.
      */
     private var appThemeColor: Int
         get() = DynamicPreferences.getInstance().load(
-                Constants.PREF_SETTINGS_APP_THEME_COLOR,
-                Constants.PREF_SETTINGS_APP_THEME_COLOR_DEFAULT)
+            Constants.PREF_SETTINGS_APP_THEME_COLOR,
+            Constants.PREF_SETTINGS_APP_THEME_COLOR_DEFAULT)
         set(@ColorInt color) = DynamicPreferences.getInstance().save(
-                Constants.PREF_SETTINGS_APP_THEME_COLOR, color)
+            Constants.PREF_SETTINGS_APP_THEME_COLOR, color)
 
     /**
-     * Getter and Setter for the app theme day color.
+     * Getter and setter for the app theme day color.
      */
     private var appThemeDayColor: Int
         @ColorInt get() = DynamicPreferences.getInstance().load(
-                Constants.PREF_SETTINGS_APP_THEME_DAY_COLOR,
-                Constants.PREF_SETTINGS_APP_THEME_DAY_COLOR_DEFAULT)
+            Constants.PREF_SETTINGS_APP_THEME_DAY_COLOR,
+            Constants.PREF_SETTINGS_APP_THEME_DAY_COLOR_DEFAULT)
         set(@ColorInt color) = DynamicPreferences.getInstance().save(
-                Constants.PREF_SETTINGS_APP_THEME_DAY_COLOR, color)
+            Constants.PREF_SETTINGS_APP_THEME_DAY_COLOR, color)
 
     /**
-     * Getter and Setter for the app theme night color.
+     * Getter and setter for the app theme night color.
      */
     private var appThemeNightColor: Int
         @ColorInt get() = DynamicPreferences.getInstance().load(
-                Constants.PREF_SETTINGS_APP_THEME_NIGHT_COLOR,
-                Constants.PREF_SETTINGS_APP_THEME_NIGHT_COLOR_DEFAULT)
+            Constants.PREF_SETTINGS_APP_THEME_NIGHT_COLOR,
+            Constants.PREF_SETTINGS_APP_THEME_NIGHT_COLOR_DEFAULT)
         set(@ColorInt color) = DynamicPreferences.getInstance().save(
-                Constants.PREF_SETTINGS_APP_THEME_NIGHT_COLOR, color)
+            Constants.PREF_SETTINGS_APP_THEME_NIGHT_COLOR, color)
 
     /**
      * The app theme splash style according to the current settings.
@@ -86,27 +86,36 @@ object ThemeController {
         }
 
     /**
+     * The app theme surface color.
+     */
+    val colorSurfaceApp: Int
+        @ColorInt get() = DynamicPreferences.getInstance().load(
+            Constants.PREF_SETTINGS_APP_THEME_COLOR_SURFACE,
+            Constants.PREF_SETTINGS_APP_THEME_COLOR_SURFACE_DEFAULT)
+
+    /**
      * The app theme primary color.
      */
     val colorPrimaryApp: Int
         @ColorInt get() = DynamicPreferences.getInstance().load(
-                Constants.PREF_SETTINGS_APP_THEME_COLOR_PRIMARY,
-                Constants.PREF_SETTINGS_APP_THEME_COLOR_PRIMARY_DEFAULT)
+            Constants.PREF_SETTINGS_APP_THEME_COLOR_PRIMARY,
+            Constants.PREF_SETTINGS_APP_THEME_COLOR_PRIMARY_DEFAULT)
 
     /**
      * The app theme accent color.
      */
     val colorAccentApp: Int
         @ColorInt get() = DynamicPreferences.getInstance().load(
-                Constants.PREF_SETTINGS_APP_THEME_COLOR_ACCENT,
-                Constants.PREF_SETTINGS_APP_THEME_COLOR_ACCENT_DEFAULT)
+            Constants.PREF_SETTINGS_APP_THEME_COLOR_ACCENT,
+            Constants.PREF_SETTINGS_APP_THEME_COLOR_ACCENT_DEFAULT)
 
     /**
      * The background color according to the current settings.
      */
     val dynamicAppTheme: DynamicAppTheme
-        get() = DynamicAppTheme().setBackgroundColor(backgroundColor)
-                .setPrimaryColor(colorPrimaryApp).setAccentColor(colorAccentApp)
+        get() = DynamicAppTheme()
+            .setBackgroundColor(backgroundColor).setSurfaceColor(colorSurfaceApp)
+            .setPrimaryColor(colorPrimaryApp).setAccentColor(colorAccentApp)
 
     /**
      * Returns the app theme style according to the supplied color.

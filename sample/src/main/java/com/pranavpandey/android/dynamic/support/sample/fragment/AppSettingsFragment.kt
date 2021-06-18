@@ -45,6 +45,11 @@ class AppSettingsFragment : DynamicFragment() {
     private var mAppThemeNight: DynamicColorPreference? = null
 
     /**
+     * Dynamic color preference for the surface color.
+     */
+    private var mAppThemeColorSurface: DynamicColorPreference? = null
+
+    /**
      * Dynamic color preference for the primary color.
      */
     private var mAppThemeColorPrimary: DynamicColorPreference? = null
@@ -76,6 +81,7 @@ class AppSettingsFragment : DynamicFragment() {
 
         mAppThemeDay = view.findViewById(R.id.pref_app_theme_day)
         mAppThemeNight = view.findViewById(R.id.pref_app_theme_night)
+        mAppThemeColorSurface = view.findViewById(R.id.pref_app_theme_color_surface)
         mAppThemeColorPrimary = view.findViewById(R.id.pref_app_theme_color_primary)
         mAppThemeColorAccent = view.findViewById(R.id.pref_app_theme_color_accent)
 
@@ -98,6 +104,16 @@ class AppSettingsFragment : DynamicFragment() {
 
             override fun getAutoColor(@Nullable tag: String?): Int {
                 return DynamicTheme.getInstance().get().backgroundColor
+            }
+        }
+
+        mAppThemeColorSurface!!.dynamicColorResolver = object : DynamicColorResolver {
+            override fun getDefaultColor(@Nullable tag: String?): Int {
+                return Constants.APP_THEME_COLOR_SURFACE
+            }
+
+            override fun getAutoColor(@Nullable tag: String?): Int {
+                return DynamicTheme.getInstance().get().surfaceColor
             }
         }
 

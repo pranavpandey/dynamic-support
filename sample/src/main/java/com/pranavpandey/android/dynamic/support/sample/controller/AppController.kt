@@ -30,7 +30,7 @@ class AppController {
     var context: Application? = null
 
     /**
-     * Getter and Setter for the [Constants.PREF_FIRST_LAUNCH] shared preference.
+     * Getter and setter for the [Constants.PREF_FIRST_LAUNCH] shared preference.
      */
     var isFirstLaunch: Boolean
         get() = DynamicPreferences.getInstance().load(
