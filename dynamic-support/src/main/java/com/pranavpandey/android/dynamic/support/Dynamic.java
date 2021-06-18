@@ -237,6 +237,8 @@ public class Dynamic {
      * @param defaultColor The default color to be used.
      * @param <T> The type of the dynamic object.
      *
+     * @return The color for the supplied dynamic object.
+     *
      * @see DynamicWidget#getColor()
      * @see DynamicColorView#setColor(int)
      */
@@ -307,6 +309,8 @@ public class Dynamic {
      * @param dynamic The dynamic object to be used.
      * @param defaultColor The default color to be used.
      * @param <T> The type of the dynamic object.
+     *
+     * @return The contrast color for the supplied dynamic object.
      *
      * @see DynamicWidget#getContrastWithColor()
      */
@@ -1544,6 +1548,9 @@ public class Dynamic {
 
     /**
      * Checks whether the stroke is required for the supplied background and surface colors.
+     *
+     * @param background The background color to be used.
+     * @param surface The surface color to be used.
      *
      * @return {@code true} if the stroke is required for the supplied background
      *         and surface colors.

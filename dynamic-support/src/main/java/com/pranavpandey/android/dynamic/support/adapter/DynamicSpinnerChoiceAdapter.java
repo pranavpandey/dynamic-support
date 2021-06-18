@@ -406,7 +406,10 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
     }
 
     /**
-     * Returns the icon for the supplied position
+     * Returns the icon for the supplied position.
+     *
+     * @param context The context to be used.
+     * @param position The position of the icon.
      *
      * @return The icon for the supplied position.
      */
