@@ -374,7 +374,12 @@ public class DynamicTextView extends MaterialTextView implements DynamicWidget,
             }
 
             setTextColor(mAppliedColor);
+            setHintTextColor(DynamicColorUtils.adjustAlpha(
+                    mAppliedColor, Defaults.ADS_ALPHA_HINT));
         }
+
+        setHighlightColor(DynamicColorUtils.getContrastColor(
+                getCurrentTextColor(), getCurrentTextColor()));
     }
 
     @Override

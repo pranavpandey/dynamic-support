@@ -86,6 +86,11 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
      */
     private @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * Internal text view used by this view.
+     */
+    private final DynamicTextView mTextView;
+
     public DynamicTextInputEditText(@NonNull Context context) {
         this(context, null);
     }
@@ -93,6 +98,7 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
     public DynamicTextInputEditText(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
+        mTextView = new DynamicTextView(context, attrs);
         loadFromAttributes(attrs);
     }
 
@@ -100,6 +106,7 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
+        mTextView = new DynamicTextView(context, attrs, defStyleAttr);
         loadFromAttributes(attrs);
     }
 
@@ -124,15 +131,6 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicTextInputEditText_adt_backgroundAware,
                     Defaults.getBackgroundAware());
-
-            if (mColorType == Theme.ColorType.ACCENT) {
-                setTextColor(DynamicColorUtils.getContrastColor(
-                        DynamicTheme.getInstance().get().getTextPrimaryColor(),
-                        DynamicTheme.getInstance().get().getBackgroundColor()));
-                setHintTextColor(DynamicColorUtils.getContrastColor(
-                        DynamicTheme.getInstance().get().getTextSecondaryColor(),
-                        DynamicTheme.getInstance().get().getBackgroundColor()));
-            }
         } finally {
             a.recycle();
         }
@@ -247,7 +245,6 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
                 @Override
                 public void run() {
                     TextInputLayout parent = getParentTextInputLayout();
-
                     if (parent != null) {
                         DynamicInputUtils.setColor(DynamicTextInputEditText.this,
                                 parent.getBoxBackgroundColor(), mAppliedColor);
@@ -255,6 +252,16 @@ public class DynamicTextInputEditText extends TextInputEditText implements Dynam
                 }
             });
         }
+
+        Dynamic.setColorType(mTextView, Theme.ColorType.NONE);
+        Dynamic.setContrastWithColorTypeOrColor(mTextView,
+                mContrastWithColorType, mContrastWithColor);
+        Dynamic.setBackgroundAware(mTextView, mBackgroundAware);
+        setTextColor(mTextView.getTextColors());
+        setHintTextColor(mTextView.getHintTextColors());
+        setLinkTextColor(mTextView.getLinkTextColors());
+        setHighlightColor(DynamicColorUtils.getContrastColor(
+                getCurrentTextColor(), getCurrentTextColor()));
     }
 
     /**

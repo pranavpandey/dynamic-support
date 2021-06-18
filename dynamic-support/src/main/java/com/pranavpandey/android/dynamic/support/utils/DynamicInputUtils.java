@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.utils;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Service;
 import android.content.res.ColorStateList;
@@ -32,8 +33,7 @@ import androidx.annotation.RestrictTo;
 import androidx.core.view.ViewCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
-import com.pranavpandey.android.dynamic.support.Defaults;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
@@ -58,14 +58,9 @@ public final class DynamicInputUtils {
      * @param textView The text view to set the cursor color.
      * @param color The color for the cursor.
      */
+    @SuppressLint("PrivateApi")
     @TargetApi(Build.VERSION_CODES.Q)
     public static void setCursorColor(@NonNull TextView textView, @ColorInt int color) {
-        @ColorInt int hintColor = DynamicColorUtils.adjustAlpha(
-                color, Defaults.ADS_ALPHA_HINT);
-        textView.setHintTextColor(hintColor);
-        textView.setHighlightColor(DynamicColorUtils.getContrastColor(
-                hintColor, textView.getCurrentTextColor()));
-
         if (DynamicSdkUtils.is29()) {
             DynamicDrawableUtils.colorizeDrawable(textView.getTextCursorDrawable(), color);
             DynamicDrawableUtils.colorizeDrawable(textView.getTextSelectHandle(), color);
@@ -199,7 +194,9 @@ public final class DynamicInputUtils {
             e.printStackTrace();
         }
 
-        if (textInputLayout.getEditText() != null) {
+        if (textInputLayout.getEditText() instanceof DynamicWidget) {
+            ((DynamicWidget) textInputLayout.getEditText()).setColor();
+        } else if (textInputLayout.getEditText() != null) {
             setColor(textInputLayout.getEditText(), textInputLayout.getBoxBackgroundColor(), color);
             textInputLayout.setHintTextColor(textInputLayout.getEditText().getHintTextColors());
         }
@@ -211,6 +208,7 @@ public final class DynamicInputUtils {
      * @param seekBar The seek bar to be colorized.
      * @param color The color to be used.
      */
+    @SuppressLint("PrivateApi")
     public static void setColor(@NonNull AbsSeekBar seekBar, @ColorInt int color) {
         try {
             Field fThumb = AbsSeekBar.class.getDeclaredField("mThumb");

@@ -32,6 +32,7 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
+import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicCornerWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicErrorWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
@@ -105,6 +106,11 @@ public class DynamicTextInputLayout extends TextInputLayout implements DynamicWi
      */
     private @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * Internal text view used by this view.
+     */
+    private final DynamicTextView mTextView;
+
     public DynamicTextInputLayout(@NonNull Context context) {
         this(context, null);
     }
@@ -112,6 +118,7 @@ public class DynamicTextInputLayout extends TextInputLayout implements DynamicWi
     public DynamicTextInputLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
+        mTextView = new DynamicTextView(context, attrs);
         loadFromAttributes(attrs);
     }
 
@@ -119,6 +126,7 @@ public class DynamicTextInputLayout extends TextInputLayout implements DynamicWi
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
+        mTextView = new DynamicTextView(context, attrs, defStyleAttr);
         loadFromAttributes(attrs);
     }
 
@@ -331,12 +339,12 @@ public class DynamicTextInputLayout extends TextInputLayout implements DynamicWi
             @ColorInt int boxColor = DynamicColorUtils.removeAlpha(
                     DynamicColorUtils.getStateColor(mContrastWithColor,
                     Defaults.ADS_STATE_BOX_LIGHT, Defaults.ADS_STATE_BOX_DARK));
-            setHelperTextColor(ColorStateList.valueOf(mAppliedColor));
 
             post(new Runnable() {
                 @Override
                 public void run() {
-                    setBoxStrokeColor(mAppliedColor);
+                    setBoxStrokeColorStateList(DynamicResourceUtils.getColorStateList(
+                            boxColor, mAppliedColor, false));
                     if (getBoxBackgroundMode() == BOX_BACKGROUND_FILLED) {
                         setBoxBackgroundColor(boxColor);
                     }
@@ -346,6 +354,14 @@ public class DynamicTextInputLayout extends TextInputLayout implements DynamicWi
                 }
             });
         }
+
+        Dynamic.setColorType(mTextView, Theme.ColorType.NONE);
+        Dynamic.setContrastWithColorTypeOrColor(mTextView,
+                mContrastWithColorType, mContrastWithColor);
+        Dynamic.setBackgroundAware(mTextView, mBackgroundAware);
+        setHelperTextColor(mTextView.getHintTextColors());
+        setDefaultHintTextColor(mTextView.getHintTextColors());
+        setHintTextColor(mTextView.getHintTextColors());
     }
 
     @Override

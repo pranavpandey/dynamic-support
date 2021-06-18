@@ -19,6 +19,7 @@ package com.pranavpandey.android.dynamic.support.picker.color;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
@@ -606,13 +607,19 @@ public class DynamicColorPicker extends DynamicView {
             mColors = DynamicPalette.MATERIAL_COLORS;
         }
 
+        final InputFilter[] editFilters = mEditText.getFilters();
+        final InputFilter[] newFilters = new InputFilter[editFilters.length + 1];
+        System.arraycopy(editFilters, 0, newFilters, 0, editFilters.length);
         if (mAlpha) {
             mEditText.setHint("FF123456");
+            newFilters[editFilters.length] = new InputFilter.LengthFilter(8);
             Dynamic.setVisibility(mSliderAlpha, VISIBLE);
         } else {
             mEditText.setHint("123456");
+            newFilters[editFilters.length] = new InputFilter.LengthFilter(6);
             Dynamic.setVisibility(mSliderAlpha, GONE);
         }
+        mEditText.setFilters(newFilters);
 
         mColorsGridView.setAdapter(new DynamicColorsAdapter(mColors, mSelectedColor,
                 mColorShape, mAlpha, Dynamic.getContrastWithColor(

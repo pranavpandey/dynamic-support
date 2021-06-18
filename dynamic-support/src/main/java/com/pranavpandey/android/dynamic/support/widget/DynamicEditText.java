@@ -83,6 +83,11 @@ public class DynamicEditText extends AppCompatEditText implements DynamicWidget 
      */
     private @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * Internal text view used by this view.
+     */
+    private final DynamicTextView mTextView;
+
     public DynamicEditText(@NonNull Context context) {
         this(context, null);
     }
@@ -90,6 +95,7 @@ public class DynamicEditText extends AppCompatEditText implements DynamicWidget 
     public DynamicEditText(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
+        mTextView = new DynamicTextView(context, attrs);
         loadFromAttributes(attrs);
     }
 
@@ -97,6 +103,7 @@ public class DynamicEditText extends AppCompatEditText implements DynamicWidget 
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
+        mTextView = new DynamicTextView(context, attrs, defStyleAttr);
         loadFromAttributes(attrs);
     }
 
@@ -121,15 +128,6 @@ public class DynamicEditText extends AppCompatEditText implements DynamicWidget 
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicEditText_adt_backgroundAware,
                     Defaults.getBackgroundAware());
-
-            if (mColorType == Theme.ColorType.ACCENT) {
-                setTextColor(DynamicColorUtils.getContrastColor(
-                        DynamicTheme.getInstance().get().getTextPrimaryColor(),
-                        DynamicTheme.getInstance().get().getBackgroundColor()));
-                setHintTextColor(DynamicColorUtils.getContrastColor(
-                        DynamicTheme.getInstance().get().getTextSecondaryColor(),
-                        DynamicTheme.getInstance().get().getBackgroundColor()));
-            }
         } finally {
             a.recycle();
         }
@@ -242,5 +240,15 @@ public class DynamicEditText extends AppCompatEditText implements DynamicWidget 
 
             DynamicInputUtils.setColor(this, mAppliedColor, mAppliedColor);
         }
+
+        Dynamic.setColorType(mTextView, Theme.ColorType.NONE);
+        Dynamic.setContrastWithColorTypeOrColor(mTextView,
+                mContrastWithColorType, mContrastWithColor);
+        Dynamic.setBackgroundAware(mTextView, mBackgroundAware);
+        setTextColor(mTextView.getTextColors());
+        setHintTextColor(mTextView.getHintTextColors());
+        setLinkTextColor(mTextView.getLinkTextColors());
+        setHighlightColor(DynamicColorUtils.getContrastColor(
+                getCurrentTextColor(), getCurrentTextColor()));
     }
 }

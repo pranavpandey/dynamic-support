@@ -185,11 +185,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:maxWidth="@dimen/ads_icon_big"
-                            android:inputType="textNoSuggestions|textCapCharacters"
-                            android:digits="0123456789abcdefABCDEF"
-                            android:singleLine="true"
                             android:textSize="@dimen/ads_picker_font_size_medium"
-                            app:adt_colorType="accent" />
+                            android:singleLine="true"
+                            android:inputType="textNoSuggestions|textCapCharacters"
+                            android:digits="0123456789abcdefABCDEF" />
 
                     </LinearLayout>
 

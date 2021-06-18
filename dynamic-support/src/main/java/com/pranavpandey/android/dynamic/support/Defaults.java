@@ -126,7 +126,7 @@ public class Defaults {
     /**
      * Default alpha for the hint.
      */
-    public static final float ADS_ALPHA_HINT = 0.8f;
+    public static final float ADS_ALPHA_HINT = 0.6f;
 
     /**
      * Default alpha for the unselected state.
