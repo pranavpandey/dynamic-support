@@ -248,7 +248,9 @@ public abstract class DynamicApplication extends Application
     }
 
     @Override
-    public void onAutoThemeChanged() { }
+    public void onAutoThemeChanged() {
+        DynamicTheme.getInstance().onDynamicChanged(false, true);
+    }
 
     @Override
     public void onPowerSaveModeChanged(boolean powerSaveMode) { }

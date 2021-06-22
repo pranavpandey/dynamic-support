@@ -19,6 +19,8 @@ package com.pranavpandey.android.dynamic.support.theme;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.WallpaperColors;
+import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -229,6 +231,11 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     private final DynamicThemeHandler mMainThreadHandler;
 
     /**
+     * Listener to update theme on wallpaper colors change.
+     */
+    private WallpaperManager.OnColorsChangedListener mOnColorsChangedListener;
+
+    /**
      * Making default constructor private so that it cannot be initialized without a listener.
      * <p>Use {@link #initializeInstance(DynamicListener, DynamicResolver)} instead.
      */
@@ -289,6 +296,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         }
         mListener.getContext().registerReceiver(mBroadcastReceiver, intentFilter);
 
+        setDynamicColorsListener(true);
         setRemoteTheme(null);
         addDynamicListener(listener);
     }
@@ -320,6 +328,36 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                             .build());
         } else {
             WorkManager.getInstance(getContext()).cancelUniqueWork(DynamicThemeWork.TAG);
+        }
+    }
+
+    /**
+     * Sets the {@link WallpaperManager.OnColorsChangedListener} to enable dynamic colors
+     * on API 31.
+     *
+     * @param enable {@code true} to enable dynamic colors listener.
+     */
+    @TargetApi(Build.VERSION_CODES.O_MR1)
+    public void setDynamicColorsListener(boolean enable) {
+        if (!DynamicSdkUtils.isS()) {
+            return;
+        }
+
+        if (mOnColorsChangedListener == null) {
+            mOnColorsChangedListener = new WallpaperManager.OnColorsChangedListener() {
+                @Override
+                public void onColorsChanged(WallpaperColors colors, int which) {
+                    onDynamicChanged(false, true);
+                }
+            };
+        }
+
+        if (enable) {
+            WallpaperManager.getInstance(mListener.getContext()).addOnColorsChangedListener(
+                    mOnColorsChangedListener, getMainThreadHandler());
+        } else {
+            WallpaperManager.getInstance(mListener.getContext())
+                    .removeOnColorsChangedListener(mOnColorsChangedListener);
         }
     }
 
@@ -951,6 +989,9 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         }
 
         getContext().unregisterReceiver(mBroadcastReceiver);
+        setDynamicColorsListener(false);
+        clearDynamicListeners();
+
         mListener = null;
         mLocalListener.clear();
         mLocalListener = null;
@@ -969,8 +1010,6 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         sInstance.mLocalTheme = null;
         sInstance.mRemoteTheme = null;
         sInstance = null;
-
-        clearDynamicListeners();
     }
 
     /**

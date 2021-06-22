@@ -29,6 +29,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.annotation.Nullable
 import androidx.annotation.StyleRes
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
 import com.pranavpandey.android.dynamic.support.DynamicApplication
 import com.pranavpandey.android.dynamic.support.sample.activity.ActionActivity
@@ -160,21 +161,20 @@ class SampleApplication : DynamicApplication() {
         }
 
         // Initialize ShortcutManager.
-        val shortcutManager = getSystemService(ShortcutManager::class.java)
-
+        val shortcutManager = ContextCompat.getSystemService(
+            this, ShortcutManager::class.java)
         // Do not proceed if shortcut manager is null or rate limit is active.
         if (shortcutManager == null || shortcutManager.isRateLimitingActive) {
             return
         }
-
-        // Initialize ShortcutInfo list.
-        val shortcuts = ArrayList<ShortcutInfo>()
 
         // Sources app shortcut intent.
         val intent = Intent(context, ActionActivity::class.java)
         intent.action = Constants.ACTION_APP_SHORTCUT
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
+        // Initialize ShortcutInfo list.
+        val shortcuts = ArrayList<ShortcutInfo>()
         // Add Sources app shortcut to open GitHub page.
         shortcuts.add(ShortcutInfo.Builder(context,
                 Constants.APP_SHORTCUT_SOURCES)
