@@ -131,6 +131,8 @@ public class DynamicThemeResolver implements DynamicResolver {
                 default:
                     return isSystemNightMode();
             }
+        } else if (isSystemNightMode()) {
+            return true;
         }
 
         return appTheme == Theme.NIGHT;

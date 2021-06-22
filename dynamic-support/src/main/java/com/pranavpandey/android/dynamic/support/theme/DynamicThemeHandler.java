@@ -257,6 +257,16 @@ public class DynamicThemeHandler extends Handler implements DynamicListener {
     }
 
     @Override
+    public boolean isNightMode() {
+        DynamicListener listener;
+        if ((listener = resolveListener(true)) == null) {
+            return DynamicTheme.getInstance().getListener().isNightMode();
+        }
+
+        return listener.isNightMode();
+    }
+
+    @Override
     public @StyleRes int getThemeRes(@Nullable AppTheme<?> theme) {
         DynamicListener listener;
         if ((listener = resolveListener(true)) == null) {

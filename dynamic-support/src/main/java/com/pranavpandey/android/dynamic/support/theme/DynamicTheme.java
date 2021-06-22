@@ -436,6 +436,22 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     }
 
     /**
+     * Returns the style resource used by the system.
+     *
+     * @return The style resource used by the system.
+     */
+    @TargetApi(Build.VERSION_CODES.Q)
+    public @StyleRes int getSystemThemeRes(@Nullable DynamicListener dynamicListener) {
+        if (dynamicListener == null) {
+            return android.R.style.Theme_DeviceDefault;
+        }
+
+        return DynamicSdkUtils.is29() ? android.R.style.Theme_DeviceDefault_DayNight
+                : dynamicListener.isNightMode() ? android.R.style.Theme_DeviceDefault
+                : android.R.style.Theme_DeviceDefault_Light;
+    }
+
+    /**
      * Initialize colors from the supplied theme resource.
      *
      * @param theme The theme resource to initialize colors.
@@ -444,7 +460,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      *
      * @return The {@link DynamicTheme} object to allow for chaining of calls to set methods.
      */
-    @TargetApi(Build.VERSION_CODES.Q)
+    @TargetApi(Build.VERSION_CODES.P)
     public @NonNull DynamicTheme setThemeRes(@StyleRes int theme,
             @Nullable AppTheme<?> dynamicTheme, boolean initializeRemoteColors) {
         if (theme == DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
@@ -460,23 +476,32 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         getContext().getTheme().applyStyle(theme, true);
         getDefaultApplication().setThemeRes(theme);
 
-        if (DynamicSdkUtils.isS()) {
-            final @StyleRes int device = android.R.style.Theme_DeviceDefault_DayNight;
+        if (DynamicSdkUtils.is21()) {
+            final @StyleRes int systemTheme = getSystemThemeRes(getListener());
             getDefaultApplication().setBackgroundColor(DynamicResourceUtils.resolveColor(
-                    getContext(), device, android.R.attr.colorBackground,
+                    getContext(), systemTheme, android.R.attr.colorBackground,
                     getDefaultApplication().getBackgroundColor()), false)
                     .setPrimaryColor(DynamicResourceUtils.resolveColor(
-                            getContext(), device, android.R.attr.colorPrimary,
+                            getContext(), systemTheme, android.R.attr.colorPrimary,
                             getDefaultApplication().getPrimaryColor()), false)
                     .setPrimaryColorDark(DynamicResourceUtils.resolveColor(
-                            getContext(), device, android.R.attr.colorPrimaryDark,
+                            getContext(), systemTheme, android.R.attr.colorPrimaryDark,
                             getDefaultApplication().getPrimaryColorDark()), false)
                     .setAccentColor(DynamicResourceUtils.resolveColor(
-                            getContext(), device, android.R.attr.colorAccent,
-                            getDefaultApplication().getAccentColor()), false)
-                    .setCornerRadius(DynamicResourceUtils.resolveDimensionPixelOffSet(
-                            getContext(), device, android.R.attr.dialogCornerRadius,
-                            getDefaultApplication().getCornerRadius()));
+                            getContext(), systemTheme, android.R.attr.colorAccent,
+                            getDefaultApplication().getAccentColor()), false);
+
+            if (DynamicSdkUtils.isS()) {
+                getDefaultApplication().setCornerRadius(
+                        DynamicResourceUtils.resolveDimensionPixelOffSet(
+                                getContext(), systemTheme, android.R.attr.dialogCornerRadius,
+                                getDefaultApplication().getCornerRadius()));
+            } else {
+                getDefaultApplication().setCornerRadius(
+                        DynamicResourceUtils.resolveDimensionPixelOffSet(
+                                getContext(), theme, R.attr.adt_cornerRadius,
+                                getDefaultApplication().getCornerRadius()));
+            }
         } else {
             getDefaultApplication().setBackgroundColor(DynamicResourceUtils.resolveColor(
                     getContext(), theme, android.R.attr.windowBackground,
@@ -571,7 +596,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      *
      * @return The {@link DynamicTheme} object to allow for chaining of calls to set methods.
      */
-    @TargetApi(Build.VERSION_CODES.Q)
+    @TargetApi(Build.VERSION_CODES.P)
     public @NonNull DynamicTheme setLocalThemeRes(@StyleRes int theme,
             @Nullable AppTheme<?> dynamicTheme) {
         if (getLocalContext() == null) {
@@ -591,23 +616,32 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         getLocalContext().getTheme().applyStyle(theme, true);
         getDefaultLocal().setThemeRes(theme);
 
-        if (DynamicSdkUtils.isS()) {
-            final @StyleRes int device = android.R.style.Theme_DeviceDefault_DayNight;
+        if (DynamicSdkUtils.is21()) {
+            final @StyleRes int systemTheme = getSystemThemeRes(getLocalListener());
             getDefaultLocal().setBackgroundColor(DynamicResourceUtils.resolveColor(
-                    getLocalContext(), device, android.R.attr.colorBackground,
+                    getLocalContext(), systemTheme, android.R.attr.colorBackground,
                     getDefaultLocal().getBackgroundColor()), false)
                     .setPrimaryColor(DynamicResourceUtils.resolveColor(
-                            getLocalContext(), device, android.R.attr.colorPrimary,
+                            getLocalContext(), systemTheme, android.R.attr.colorPrimary,
                             getDefaultLocal().getPrimaryColor()))
                     .setPrimaryColorDark(DynamicResourceUtils.resolveColor(
-                            getLocalContext(), device, android.R.attr.colorPrimaryDark,
+                            getLocalContext(), systemTheme, android.R.attr.colorPrimaryDark,
                             getDefaultLocal().getPrimaryColorDark()), false)
                     .setAccentColor(DynamicResourceUtils.resolveColor(
-                            getLocalContext(), device, android.R.attr.colorAccent,
-                            getDefaultLocal().getAccentColor()), false)
-                    .setCornerRadius(DynamicResourceUtils.resolveDimensionPixelOffSet(
-                            getLocalContext(), device, android.R.attr.dialogCornerRadius,
-                            getDefaultLocal().getCornerRadius()));
+                            getLocalContext(), systemTheme, android.R.attr.colorAccent,
+                            getDefaultLocal().getAccentColor()), false);
+
+            if (DynamicSdkUtils.is28()) {
+                getDefaultLocal().setCornerRadius(
+                        DynamicResourceUtils.resolveDimensionPixelOffSet(
+                                getLocalContext(), systemTheme, android.R.attr.dialogCornerRadius,
+                                getDefaultLocal().getCornerRadius()));
+            } else {
+                getDefaultLocal().setCornerRadius(
+                        DynamicResourceUtils.resolveDimensionPixelOffSet(
+                                getLocalContext(), theme, R.attr.adt_cornerRadius,
+                                getDefaultLocal().getCornerRadius()));
+            }
         } else {
             getDefaultLocal().setBackgroundColor(DynamicResourceUtils.resolveColor(
                     getLocalContext(), theme, android.R.attr.windowBackground,
@@ -1218,6 +1252,11 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     @Override
     public @NonNull Context getContext() {
         return getMainThreadHandler().getContext();
+    }
+
+    @Override
+    public boolean isNightMode() {
+        return getMainThreadHandler().isNightMode();
     }
 
     @Override

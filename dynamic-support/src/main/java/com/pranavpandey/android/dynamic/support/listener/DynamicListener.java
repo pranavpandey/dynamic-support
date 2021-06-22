@@ -43,6 +43,13 @@ public interface DynamicListener {
     @NonNull Context getContext();
 
     /**
+     * Checks whether the night mode is enabled for this listener.
+     *
+     * @return {@code true} if the night mode is enabled for this listener.
+     */
+    boolean isNightMode();
+
+    /**
      * This method will be called to return the theme style resource for this listener.
      * <p>Override this method to supply your own customised style.
      *

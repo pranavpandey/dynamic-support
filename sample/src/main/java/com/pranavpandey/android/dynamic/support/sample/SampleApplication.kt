@@ -63,6 +63,11 @@ class SampleApplication : DynamicApplication() {
         return null
     }
 
+    override fun isNightMode(): Boolean {
+        // TODO: Using the default Night mode implementation.
+        return DynamicTheme.getInstance().isSystemNightMode
+    }
+
     @StyleRes
     override fun getThemeRes(@Nullable theme: AppTheme<*>?): Int {
         return if (theme != null) {

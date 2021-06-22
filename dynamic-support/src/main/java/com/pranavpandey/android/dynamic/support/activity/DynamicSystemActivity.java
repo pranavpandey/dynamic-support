@@ -1520,6 +1520,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     }
 
     @Override
+    public boolean isNightMode() {
+        return DynamicTheme.getInstance().getListener().isNightMode();
+    }
+
+    @Override
     public @StyleRes int getThemeRes(@Nullable AppTheme<?> theme) {
         return DynamicTheme.getInstance().getListener().getThemeRes(theme);
     }
