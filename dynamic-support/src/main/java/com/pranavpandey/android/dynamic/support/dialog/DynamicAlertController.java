@@ -56,6 +56,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
 
@@ -1002,7 +1003,7 @@ class DynamicAlertController {
         public AlertParams(Context context) {
             mContext = context;
             mCancelable = true;
-            mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            mInflater = ContextCompat.getSystemService(context, LayoutInflater.class);
         }
 
         public void apply(DynamicAlertController dialog) {

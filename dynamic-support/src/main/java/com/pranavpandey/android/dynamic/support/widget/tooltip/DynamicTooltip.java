@@ -17,7 +17,6 @@
 
 package com.pranavpandey.android.dynamic.support.widget.tooltip;
 
-import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -30,6 +29,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.ViewConfigurationCompat;
 
@@ -219,8 +219,8 @@ public class DynamicTooltip implements View.OnLongClickListener, View.OnHoverLis
             return false;
         }
 
-        AccessibilityManager manager = (AccessibilityManager)
-                mAnchor.getContext().getSystemService(Context.ACCESSIBILITY_SERVICE);
+        AccessibilityManager manager = ContextCompat.getSystemService(
+                mAnchor.getContext(), AccessibilityManager.class);
         if (manager != null && manager.isEnabled() && manager.isTouchExplorationEnabled()) {
             return false;
         }

@@ -38,6 +38,7 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
@@ -164,12 +165,14 @@ public class DynamicTooltipPopup {
         set(icon, text);
         computePosition(anchorView, anchorX, anchorY, fromTouch, mLayoutParams);
 
-        WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-        if (wm != null) {
-            try {
-                wm.addView(mContentView, mLayoutParams);
-            } catch (Exception ignored) {
-            }
+        WindowManager wm = ContextCompat.getSystemService(mContext, WindowManager.class);
+        if (wm == null) {
+            return;
+        }
+
+        try {
+            wm.addView(mContentView, mLayoutParams);
+        } catch (Exception ignored) {
         }
     }
 
@@ -195,10 +198,12 @@ public class DynamicTooltipPopup {
             return;
         }
 
-        WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-        if (wm != null) {
-            wm.removeView(mContentView);
+        WindowManager wm = ContextCompat.getSystemService(mContext, WindowManager.class);
+        if (wm == null) {
+            return;
         }
+
+        wm.removeView(mContentView);
     }
 
     /**

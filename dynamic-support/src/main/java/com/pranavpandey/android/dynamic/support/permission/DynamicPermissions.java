@@ -483,17 +483,17 @@ public class DynamicPermissions {
     public boolean hasUsageAccess() {
         if (DynamicSdkUtils.is21()) {
             try {
-                PackageManager packageManager = getContext().getPackageManager();
-                ApplicationInfo applicationInfo = packageManager
-                        .getApplicationInfo(getContext().getPackageName(), 0);
-                AppOpsManager appOpsManager = (AppOpsManager) getContext()
-                        .getSystemService(Context.APP_OPS_SERVICE);
-
+                AppOpsManager appOpsManager = ContextCompat.getSystemService(
+                        getContext(), AppOpsManager.class);
                 if (appOpsManager == null) {
                     return false;
                 }
 
+                PackageManager packageManager = getContext().getPackageManager();
+                ApplicationInfo applicationInfo = packageManager
+                        .getApplicationInfo(getContext().getPackageName(), 0);
                 int mode;
+
                 if (DynamicSdkUtils.is30()) {
                     mode = appOpsManager.unsafeCheckOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
                             applicationInfo.uid, applicationInfo.packageName);
@@ -528,8 +528,9 @@ public class DynamicPermissions {
                     getContext().getPackageName() + "/" + clazz.getName());
         } catch (Exception e) {
             try {
-                return ((AccessibilityManager) getContext().getSystemService(
-                        Context.ACCESSIBILITY_SERVICE)).isEnabled();
+                AccessibilityManager am = ContextCompat.getSystemService(
+                        getContext(), AccessibilityManager.class);
+                return am != null && am.isEnabled();
             } catch (Exception f) {
                 return false;
             }
@@ -549,8 +550,8 @@ public class DynamicPermissions {
             boolean ignoring = false;
 
             try {
-                PowerManager powerManager = ((PowerManager)
-                        getContext().getSystemService(Context.POWER_SERVICE));
+                PowerManager powerManager = ContextCompat.getSystemService(
+                        getContext(), PowerManager.class);
 
                 if (powerManager != null) {
                     ignoring = powerManager.isIgnoringBatteryOptimizations(

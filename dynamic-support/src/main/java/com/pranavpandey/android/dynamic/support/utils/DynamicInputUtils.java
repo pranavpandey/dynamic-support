@@ -18,7 +18,6 @@ package com.pranavpandey.android.dynamic.support.utils;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.Service;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -30,6 +29,7 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -230,13 +230,15 @@ public final class DynamicInputUtils {
         editText.post(new Runnable() {
             @Override
             public void run() {
-                InputMethodManager inputMethodManager = (InputMethodManager)
-                        editText.getContext().getSystemService(Service.INPUT_METHOD_SERVICE);
-                if (inputMethodManager != null) {
-                    inputMethodManager.showSoftInput(editText, 0);
-                    editText.clearFocus();
-                    editText.requestFocus();
+                InputMethodManager inputMethodManager = ContextCompat.getSystemService(
+                        editText.getContext(), InputMethodManager.class);
+                if (inputMethodManager == null) {
+                    return;
                 }
+
+                inputMethodManager.showSoftInput(editText, 0);
+                editText.clearFocus();
+                editText.requestFocus();
             }
         });
     }
@@ -249,10 +251,12 @@ public final class DynamicInputUtils {
     public static void hideSoftInput(final @NonNull EditText editText) {
         editText.clearFocus();
 
-        InputMethodManager inputMethodManager = (InputMethodManager)
-                editText.getContext().getSystemService(Service.INPUT_METHOD_SERVICE);
-        if (inputMethodManager != null) {
-            inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+        InputMethodManager inputMethodManager = ContextCompat.getSystemService(
+                editText.getContext(), InputMethodManager.class);
+        if (inputMethodManager == null) {
+            return;
         }
+
+        inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
     }
 }

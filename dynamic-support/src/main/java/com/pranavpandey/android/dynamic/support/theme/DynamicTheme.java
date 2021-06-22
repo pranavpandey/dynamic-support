@@ -252,8 +252,8 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         DynamicPermissions.initializeInstance(listener.getContext());
 
         this.mListener = listener;
-        this.mPowerManager = (PowerManager) mListener.getContext()
-                .getSystemService(Context.POWER_SERVICE);
+        this.mPowerManager = ContextCompat.getSystemService(
+                mListener.getContext(), PowerManager.class);
         this.mDynamicResolver = dynamicResolver;
         this.mDynamicThemes = new HashMap<>();
         this.mDefaultApplicationTheme = new DynamicAppTheme()
