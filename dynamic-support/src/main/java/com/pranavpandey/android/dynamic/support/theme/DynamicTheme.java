@@ -478,6 +478,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
 
         if (DynamicSdkUtils.is21()) {
             final @StyleRes int systemTheme = getSystemThemeRes(getListener());
+
             getDefaultApplication().setBackgroundColor(DynamicResourceUtils.resolveColor(
                     getContext(), systemTheme, android.R.attr.colorBackground,
                     getDefaultApplication().getBackgroundColor()), false)
@@ -491,7 +492,32 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                             getContext(), systemTheme, android.R.attr.colorAccent,
                             getDefaultApplication().getAccentColor()), false);
 
-            if (DynamicSdkUtils.isS()) {
+            if (dynamicTheme != null) {
+                if (DynamicSdkUtils.is23()
+                        && dynamicTheme.getBackgroundColor(false) == Theme.AUTO) {
+                    getDefaultApplication().setSurfaceColor(DynamicResourceUtils.resolveColor(
+                            getContext(), systemTheme, android.R.attr.colorBackgroundFloating,
+                            getDefaultApplication().getSurfaceColor()), false);
+                } else {
+                    getDefaultApplication().setSurfaceColor(DynamicResourceUtils.resolveColor(
+                            getContext(), theme, R.attr.colorSurface,
+                            getDefaultApplication().getSurfaceColor()), false);
+                }
+
+                if (DynamicSdkUtils.is26()
+                        && dynamicTheme.getPrimaryColor(false) == Theme.AUTO
+                        && dynamicTheme.getAccentColor(false) == Theme.AUTO) {
+                    getDefaultApplication().setErrorColor(DynamicResourceUtils.resolveColor(
+                            getContext(), systemTheme, android.R.attr.colorError,
+                            getDefaultApplication().getErrorColor()), false);
+                } else {
+                    getDefaultApplication().setErrorColor(DynamicResourceUtils.resolveColor(
+                            getContext(), theme, R.attr.colorError,
+                            getDefaultApplication().getErrorColor()), false);
+                }
+            }
+
+            if (DynamicSdkUtils.is28()) {
                 getDefaultApplication().setCornerRadius(
                         DynamicResourceUtils.resolveDimensionPixelOffSet(
                                 getContext(), systemTheme, android.R.attr.dialogCornerRadius,
@@ -506,6 +532,9 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
             getDefaultApplication().setBackgroundColor(DynamicResourceUtils.resolveColor(
                     getContext(), theme, android.R.attr.windowBackground,
                     getDefaultApplication().getBackgroundColor()), false)
+                    .setSurfaceColor(DynamicResourceUtils.resolveColor(
+                            getContext(), theme, R.attr.colorSurface,
+                            getDefaultApplication().getSurfaceColor()), false)
                     .setPrimaryColor(DynamicResourceUtils.resolveColor(
                             getContext(), theme, R.attr.colorPrimary,
                             getDefaultApplication().getPrimaryColor()), false)
@@ -515,18 +544,16 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                     .setAccentColor(DynamicResourceUtils.resolveColor(
                             getContext(), theme, R.attr.colorAccent,
                             getDefaultApplication().getAccentColor()), false)
+                    .setErrorColor(DynamicResourceUtils.resolveColor(
+                            getContext(), theme, R.attr.colorError,
+                            getDefaultApplication().getErrorColor()), false)
                     .setCornerRadius(DynamicResourceUtils.resolveDimensionPixelOffSet(
                             getContext(), theme, R.attr.adt_cornerRadius,
                             getDefaultApplication().getCornerRadius()));
         }
 
-        getDefaultApplication().setSurfaceColor(DynamicResourceUtils.resolveColor(
-                getContext(), theme, R.attr.colorSurface,
-                getDefaultApplication().getSurfaceColor()), false)
-                .setAccentColorDark(getDefaultApplication().getAccentColor(), false)
-                .setErrorColor(DynamicResourceUtils.resolveColor(
-                        getContext(), theme, R.attr.colorError,
-                        getDefaultApplication().getErrorColor()), false)
+        getDefaultApplication().setAccentColorDark(
+                getDefaultApplication().getAccentColor(), false)
                 .setTintSurfaceColor(DynamicResourceUtils.resolveColor(
                         getContext(), theme, R.attr.colorOnSurface,
                         getDefaultApplication().getTintSurfaceColor()))
@@ -618,6 +645,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
 
         if (DynamicSdkUtils.is21()) {
             final @StyleRes int systemTheme = getSystemThemeRes(getLocalListener());
+
             getDefaultLocal().setBackgroundColor(DynamicResourceUtils.resolveColor(
                     getLocalContext(), systemTheme, android.R.attr.colorBackground,
                     getDefaultLocal().getBackgroundColor()), false)
@@ -630,6 +658,31 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                     .setAccentColor(DynamicResourceUtils.resolveColor(
                             getLocalContext(), systemTheme, android.R.attr.colorAccent,
                             getDefaultLocal().getAccentColor()), false);
+
+            if (dynamicTheme != null) {
+                if (DynamicSdkUtils.is23()
+                        && dynamicTheme.getBackgroundColor(false) == Theme.AUTO) {
+                    getDefaultLocal().setSurfaceColor(DynamicResourceUtils.resolveColor(
+                            getLocalContext(), systemTheme, android.R.attr.colorBackgroundFloating,
+                            getDefaultLocal().getSurfaceColor()), false);
+                } else {
+                    getDefaultLocal().setSurfaceColor(DynamicResourceUtils.resolveColor(
+                            getLocalContext(), theme, R.attr.colorSurface,
+                            getDefaultLocal().getSurfaceColor()), false);
+                }
+
+                if (DynamicSdkUtils.is26()
+                        && dynamicTheme.getPrimaryColor(false) == Theme.AUTO
+                        && dynamicTheme.getAccentColor(false) == Theme.AUTO) {
+                    getDefaultLocal().setErrorColor(DynamicResourceUtils.resolveColor(
+                            getLocalContext(), systemTheme, android.R.attr.colorError,
+                            getDefaultLocal().getErrorColor()), false);
+                } else {
+                    getDefaultLocal().setErrorColor(DynamicResourceUtils.resolveColor(
+                            getLocalContext(), theme, R.attr.colorError,
+                            getDefaultLocal().getErrorColor()), false);
+                }
+            }
 
             if (DynamicSdkUtils.is28()) {
                 getDefaultLocal().setCornerRadius(
@@ -646,6 +699,9 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
             getDefaultLocal().setBackgroundColor(DynamicResourceUtils.resolveColor(
                     getLocalContext(), theme, android.R.attr.windowBackground,
                     getDefaultLocal().getBackgroundColor()), false)
+                    .setSurfaceColor(DynamicResourceUtils.resolveColor(
+                            getLocalContext(), theme, R.attr.colorSurface,
+                            getDefaultLocal().getSurfaceColor()), false)
                     .setPrimaryColor(DynamicResourceUtils.resolveColor(
                             getLocalContext(), theme, R.attr.colorPrimary,
                             getDefaultLocal().getPrimaryColor()))
@@ -655,18 +711,15 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                     .setAccentColor(DynamicResourceUtils.resolveColor(
                             getLocalContext(), theme, R.attr.colorAccent,
                             getDefaultLocal().getAccentColor()), false)
+                    .setErrorColor(DynamicResourceUtils.resolveColor(
+                            getLocalContext(), theme, R.attr.colorError,
+                            getDefaultLocal().getErrorColor()), false)
                     .setCornerRadius(DynamicResourceUtils.resolveDimensionPixelOffSet(
                             getLocalContext(), theme, R.attr.adt_cornerRadius,
                             getDefaultLocal().getCornerRadius()));
         }
 
-        getDefaultLocal().setSurfaceColor(DynamicResourceUtils.resolveColor(
-                getLocalContext(), theme, R.attr.colorSurface,
-                getDefaultLocal().getSurfaceColor()), false)
-                .setAccentColorDark(getDefaultLocal().getAccentColor(), false)
-                .setErrorColor(DynamicResourceUtils.resolveColor(
-                        getLocalContext(), theme, R.attr.colorError,
-                        getDefaultLocal().getErrorColor()), false)
+        getDefaultLocal().setAccentColorDark(getDefaultLocal().getAccentColor(), false)
                 .setTintSurfaceColor(DynamicResourceUtils.resolveColor(
                         getLocalContext(), theme, R.attr.colorOnSurface,
                         getDefaultLocal().getTintSurfaceColor()))
