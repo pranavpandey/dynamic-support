@@ -148,6 +148,11 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
     }
 
     @Override
+    protected void onAppThemeChange() {
+        // Skip activity recreation on app theme change.
+    }
+
+    @Override
     public long getMinSplashTime() {
         return DynamicMotion.Duration.SPLASH;
     }

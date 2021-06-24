@@ -306,9 +306,6 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         intentFilter.addAction(Intent.ACTION_TIME_CHANGED);
         intentFilter.addAction(Intent.ACTION_DATE_CHANGED);
         intentFilter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
-        if (!DynamicSdkUtils.is27()) {
-            intentFilter.addAction(Intent.ACTION_WALLPAPER_CHANGED);
-        }
         if (DynamicSdkUtils.is21()) {
             intentFilter.addAction(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED);
             this.mPowerSaveMode = getPowerManager().isPowerSaveMode();
@@ -377,27 +374,28 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                 WallpaperManager.getInstance(getListener().getContext())
                         .addOnColorsChangedListener(mOnColorsChangedListener, getHandler());
             }
-        } else {
-            DynamicTaskUtils.cancelTask(mWallpaperColorsTask, true);
+        }
 
-            if (enable) {
-                mWallpaperColorsTask = new WallpaperColorsTask(getContext()) {
-                    @Override
-                    protected void onPostExecute(
-                            @Nullable DynamicResult<Map<Integer, Integer>> result) {
-                        super.onPostExecute(result);
+        DynamicTaskUtils.cancelTask(mWallpaperColorsTask, true);
 
-                        if (result != null && result.getData() != null) {
-                            getDynamicColors().putColors(result.getData());
-                            onDynamicColorsChanged(getDynamicColors());
-                        }
+        if (enable) {
+            mWallpaperColorsTask = new WallpaperColorsTask(getContext()) {
+                @Override
+                protected void onPostExecute(
+                        @Nullable DynamicResult<Map<Integer, Integer>> result) {
+                    super.onPostExecute(result);
+
+                    if (result != null && result.getData() != null) {
+                        getDynamicColors().putColors(result.getData());
+                        onDynamicColorsChanged(getDynamicColors());
                     }
-                };
+                }
+            };
 
-                mWallpaperColorsTask.execute();
-            } else {
-                onDynamicColorsChanged(getDynamicColors());
-            }
+            mWallpaperColorsTask.execute();
+        } else {
+            getDynamicColors().clear();
+            onDynamicColorsChanged(getDynamicColors());
         }
     }
 

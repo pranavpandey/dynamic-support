@@ -38,6 +38,11 @@ import java.util.Map;
 public class DynamicColors implements Parcelable {
 
     /**
+     * Factor to generate shades of a color.
+     */
+    private static final float FACTOR = 0.7f;
+
+    /**
      * Map to store the original colors.
      */
     private final Map<Integer, Integer> mColors;
@@ -118,7 +123,7 @@ public class DynamicColors implements Parcelable {
      * @return The map of mutated colors.
      */
     public @NonNull Map<Integer, Integer> getMutatedColors() {
-        return mMutatedColors.isEmpty() ? mColors : mMutatedColors;
+        return mMutatedColors;
     }
 
     /**
@@ -202,7 +207,7 @@ public class DynamicColors implements Parcelable {
             return;
         }
 
-        colors.clear();
+        clear();
         colors.putAll(newColors);
     }
 
@@ -236,7 +241,7 @@ public class DynamicColors implements Parcelable {
             return;
         }
 
-        colors.clear();
+        clear();
 
         if (newColors.getTertiaryColor() != null) {
             colors.put(Theme.ColorType.BACKGROUND, newColors.getTertiaryColor().toArgb());
@@ -278,50 +283,43 @@ public class DynamicColors implements Parcelable {
      * @param dynamicTheme The dynamic theme to be used.
      */
     public void mutate(@NonNull DynamicTheme dynamicTheme) {
+        @ColorInt int background = getColor(Theme.ColorType.BACKGROUND,
+                dynamicTheme.get().getBackgroundColor());
+        @ColorInt int backgroundMutated = background;
         @ColorInt int primary = getColor(Theme.ColorType.PRIMARY,
                 dynamicTheme.get().getPrimaryColor());
         @ColorInt int accent = getColor(Theme.ColorType.ACCENT,
                 dynamicTheme.get().getAccentColor());
 
         if (dynamicTheme.isNightMode()) {
-            putMutatedColor(Theme.ColorType.PRIMARY,
-                    DynamicColorUtils.isColorDark(primary)
-                            ? DynamicColorUtils.getLessVisibleColor(primary)
-                            : DynamicColorUtils.getTintColor(primary));
-            putMutatedColor(Theme.ColorType.ACCENT,
-                    DynamicColorUtils.isColorDark(accent)
-                            ? DynamicColorUtils.getLessVisibleColor(accent)
-                            : DynamicColorUtils.getTintColor(accent));
+            backgroundMutated = DynamicColorUtils.getDarkerColor(backgroundMutated, FACTOR);
+            primary = DynamicColorUtils.getDarkerColor(primary, FACTOR);
         } else {
-            putMutatedColor(Theme.ColorType.PRIMARY,
-                    DynamicColorUtils.isColorDark(primary)
-                            ? DynamicColorUtils.getTintColor(primary)
-                            : DynamicColorUtils.getLessVisibleColor(primary));
-            putMutatedColor(Theme.ColorType.ACCENT,
-                    DynamicColorUtils.isColorDark(accent)
-                            ? DynamicColorUtils.getTintColor(accent)
-                            : DynamicColorUtils.getLessVisibleColor(accent));
+            backgroundMutated = DynamicColorUtils.getLighterColor(backgroundMutated, FACTOR);
+            primary = DynamicColorUtils.getLighterColor(primary, FACTOR);
         }
 
-        if (getColors().containsKey(Theme.ColorType.BACKGROUND)) {
-            @ColorInt int background = getColor(Theme.ColorType.BACKGROUND,
-                    dynamicTheme.get().getBackgroundColor());
-
-            if (dynamicTheme.isNightMode()) {
-                putMutatedColor(Theme.ColorType.BACKGROUND,
-                        DynamicColorUtils.isColorDark(background)
-                                ? DynamicColorUtils.getLessVisibleColor(background)
-                                : DynamicColorUtils.getTintColor(background));
-            } else {
-                putMutatedColor(Theme.ColorType.BACKGROUND,
-                        DynamicColorUtils.isColorDark(background)
-                                ? DynamicColorUtils.getTintColor(background)
-                                : DynamicColorUtils.getLessVisibleColor(background));
-            }
-        } else {
-            putMutatedColor(Theme.ColorType.BACKGROUND,
-                    DynamicColorUtils.getLessVisibleColor(getMutatedColor(
-                            Theme.ColorType.PRIMARY, dynamicTheme.get().getPrimaryColor())));
+        if (!getColors().containsKey(Theme.ColorType.PRIMARY)) {
+            primary = backgroundMutated;
         }
+
+        if (!getColors().containsKey(Theme.ColorType.ACCENT)) {
+            accent = background;
+        }
+
+        putMutatedColor(Theme.ColorType.BACKGROUND, backgroundMutated);
+        putMutatedColor(Theme.ColorType.SURFACE, Theme.AUTO);
+        putMutatedColor(Theme.ColorType.PRIMARY, primary);
+        putMutatedColor(Theme.ColorType.PRIMARY_DARK, Theme.AUTO);
+        putMutatedColor(Theme.ColorType.ACCENT, accent);
+        putMutatedColor(Theme.ColorType.ACCENT_DARK, Theme.AUTO);
+    }
+
+    /**
+     * Clear original and mutated colors.
+     */
+    public void clear() {
+        getColors().clear();
+        getMutatedColors().clear();
     }
 }

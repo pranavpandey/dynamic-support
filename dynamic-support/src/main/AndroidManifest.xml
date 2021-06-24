@@ -46,6 +46,15 @@
             android:label="@string/ads_permissions"
             android:launchMode="singleTop" />
 
+        <!-- Broadcast receiver to receive color events. -->
+        <receiver
+            android:name=".theme.receiver.DynamicColorsReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.WALLPAPER_CHANGED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

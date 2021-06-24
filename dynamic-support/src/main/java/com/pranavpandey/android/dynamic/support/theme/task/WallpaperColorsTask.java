@@ -93,13 +93,19 @@ public abstract class WallpaperColorsTask extends ContextTask<Void, Void, Map<In
             if (wallpaper != null) {
                 final Palette palette = new Palette.Builder(wallpaper).generate();
 
-                if (palette.getLightMutedSwatch() != null) {
-                    colors.put(Theme.ColorType.BACKGROUND, palette.getLightMutedSwatch().getRgb());
-                } else if (palette.getDarkMutedSwatch() != null) {
-                    colors.put(Theme.ColorType.BACKGROUND, palette.getDarkMutedSwatch().getRgb());
+                if (palette.getDominantSwatch() != null) {
+                    colors.put(Theme.ColorType.BACKGROUND, palette.getDominantSwatch().getRgb());
+                } else if (palette.getVibrantSwatch() != null) {
+                    colors.put(Theme.ColorType.BACKGROUND, palette.getVibrantSwatch().getRgb());
                 }
 
-                if (palette.getDominantSwatch() != null) {
+                if (palette.getLightMutedSwatch() != null) {
+                    colors.put(Theme.ColorType.PRIMARY, palette.getLightMutedSwatch().getRgb());
+                } else if (palette.getDarkMutedSwatch() != null) {
+                    colors.put(Theme.ColorType.PRIMARY, palette.getDarkMutedSwatch().getRgb());
+                } else if (palette.getMutedSwatch() != null) {
+                    colors.put(Theme.ColorType.PRIMARY, palette.getMutedSwatch().getRgb());
+                } else if (palette.getDominantSwatch() != null) {
                     colors.put(Theme.ColorType.PRIMARY, palette.getDominantSwatch().getRgb());
                 } else if (palette.getVibrantSwatch() != null) {
                     colors.put(Theme.ColorType.PRIMARY, palette.getVibrantSwatch().getRgb());
@@ -109,6 +115,8 @@ public abstract class WallpaperColorsTask extends ContextTask<Void, Void, Map<In
                     colors.put(Theme.ColorType.ACCENT, palette.getLightVibrantSwatch().getRgb());
                 } else if (palette.getDarkVibrantSwatch() != null) {
                     colors.put(Theme.ColorType.ACCENT, palette.getDarkVibrantSwatch().getRgb());
+                } else if (palette.getDominantSwatch() != null) {
+                    colors.put(Theme.ColorType.ACCENT, palette.getDominantSwatch().getRgb());
                 }
             }
         }
