@@ -601,7 +601,7 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
 
         if (animate && mFooter.getVisibility() != View.VISIBLE) {
             // Animation fix for lower API levels.
-            DynamicTheme.getInstance().getMainThreadHandler().post(mFooterRunnable);
+            DynamicTheme.getInstance().getHandler().post(mFooterRunnable);
         }
     }
 

@@ -126,18 +126,18 @@ class SampleApplication : DynamicApplication() {
         // Update themes on shared preferences change.
         when (key) {
             Constants.PREF_SETTINGS_APP_THEME_DAY_COLOR ->
-                if (!DynamicTheme.getInstance().isNight && ThemeController.isAutoTheme) {
-                    DynamicTheme.getInstance().onDynamicChanged(false, true)
+                if (!isNightMode) {
+                    onAutoThemeChanged()
                 }
             Constants.PREF_SETTINGS_APP_THEME_NIGHT_COLOR ->
-                if (DynamicTheme.getInstance().isNight && ThemeController.isAutoTheme) {
-                    DynamicTheme.getInstance().onDynamicChanged(false, true)
+                if (isNightMode) {
+                    onAutoThemeChanged()
                 }
             Constants.PREF_SETTINGS_APP_THEME_COLOR,
             Constants.PREF_SETTINGS_APP_THEME_COLOR_SURFACE,
             Constants.PREF_SETTINGS_APP_THEME_COLOR_PRIMARY,
             Constants.PREF_SETTINGS_APP_THEME_COLOR_ACCENT ->
-                DynamicTheme.getInstance().onDynamicChanged(false, true)
+                onAutoThemeChanged()
             Constants.PREF_SETTINGS_NAVIGATION_BAR_THEME ->
                 DynamicTheme.getInstance().onNavigationBarThemeChanged()
             Constants.PREF_SETTINGS_APP_SHORTCUTS_THEME ->
@@ -149,7 +149,7 @@ class SampleApplication : DynamicApplication() {
      * Method to do some delayed work.
      */
     private fun setDelayedTheme() {
-        DynamicTheme.getInstance().mainThreadHandler.postDelayed({
+        DynamicTheme.getInstance().handler.postDelayed({
             // Add dynamic app shortcuts after the delay.
             setShortcuts()
         }, DynamicTheme.DELAY_THEME_CHANGE)

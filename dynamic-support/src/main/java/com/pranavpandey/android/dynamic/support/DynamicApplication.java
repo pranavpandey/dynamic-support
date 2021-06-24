@@ -38,6 +38,7 @@ import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicResolver;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.support.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.AppTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -214,6 +215,11 @@ public abstract class DynamicApplication extends Application
     }
 
     @Override
+    public boolean isDynamicColor() {
+        return false;
+    }
+
+    @Override
     public @ColorInt int getDefaultColor(@Theme.ColorType int colorType) {
         if (colorType == Theme.ColorType.BACKGROUND) {
             return DynamicTheme.COLOR_BACKGROUND_DEFAULT;
@@ -248,12 +254,23 @@ public abstract class DynamicApplication extends Application
     }
 
     @Override
-    public void onAutoThemeChanged() {
+    public void onDynamicColorsChanged(@Nullable DynamicColors dynamicColors) {
+        if (dynamicColors != null) {
+            dynamicColors.mutate(DynamicTheme.getInstance());
+        }
+
         DynamicTheme.getInstance().onDynamicChanged(false, true);
     }
 
     @Override
-    public void onPowerSaveModeChanged(boolean powerSaveMode) { }
+    public void onAutoThemeChanged() {
+        DynamicTheme.getInstance().setDynamicColors(isDynamicColor());
+    }
+
+    @Override
+    public void onPowerSaveModeChanged(boolean powerSaveMode) {
+        onAutoThemeChanged();
+    }
 
     @Override
     public boolean setNavigationBarTheme() {

@@ -19,6 +19,7 @@ package com.pranavpandey.android.dynamic.support.listener;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
+import com.pranavpandey.android.dynamic.support.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 import java.util.Date;
@@ -108,4 +109,11 @@ public interface DynamicResolver {
      */
     boolean resolveNightTheme(@Theme.ToString String appTheme,
             @Theme.Night.ToString String implementation);
+
+    /**
+     * Get the dynamic colors used by this resolver.
+     *
+     * @return The dynamic colors used by this resolver.
+     */
+    @NonNull DynamicColors getDynamicColors();
 }

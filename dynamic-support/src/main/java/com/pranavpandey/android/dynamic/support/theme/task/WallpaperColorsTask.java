@@ -26,12 +26,13 @@ import android.os.Build;
 import androidx.annotation.Nullable;
 import androidx.palette.graphics.Palette;
 
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicBitmapUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.utils.concurrent.task.ContextTask;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A {@link ContextTask} to extract the wallpaper colors.
@@ -41,7 +42,7 @@ import java.util.List;
  * @see WallpaperManager#getWallpaperColors(int)
  */
 @TargetApi(Build.VERSION_CODES.O_MR1)
-public abstract class WallpaperColorsTask extends ContextTask<Void, Void, List<Integer>> {
+public abstract class WallpaperColorsTask extends ContextTask<Void, Void, Map<Integer, Integer>> {
 
     /**
      * Constructor to initialize an object of this class.
@@ -59,27 +60,30 @@ public abstract class WallpaperColorsTask extends ContextTask<Void, Void, List<I
         super.onPreExecute();
     }
 
-    @SuppressWarnings({"MissingPermission"})
     @Override
-    protected @Nullable List<Integer> doInBackground(@Nullable Void params) {
+    protected @Nullable Map<Integer, Integer> doInBackground(@Nullable Void params) {
         if (getContext() == null) {
             return null;
         }
 
-        final List<Integer> colors = new ArrayList<>();
+        final Map<Integer, Integer> colors = new HashMap<>();
 
         if (DynamicSdkUtils.is27()) {
-            final WallpaperColors wallpaperColors =
-                    WallpaperManager.getInstance(getContext())
-                            .getWallpaperColors(WallpaperManager.FLAG_SYSTEM);
+            final WallpaperColors wallpaperColors = WallpaperManager.getInstance(
+                    getContext()).getWallpaperColors(WallpaperManager.FLAG_SYSTEM);
 
             if (wallpaperColors != null) {
-                colors.add(wallpaperColors.getPrimaryColor().toArgb());
-                if (wallpaperColors.getSecondaryColor() != null) {
-                    colors.add(wallpaperColors.getSecondaryColor().toArgb());
-                }
                 if (wallpaperColors.getTertiaryColor() != null) {
-                    colors.add(wallpaperColors.getTertiaryColor().toArgb());
+                    colors.put(Theme.ColorType.BACKGROUND,
+                            wallpaperColors.getTertiaryColor().toArgb());
+                }
+
+                colors.put(Theme.ColorType.PRIMARY,
+                        wallpaperColors.getPrimaryColor().toArgb());
+
+                if (wallpaperColors.getSecondaryColor() != null) {
+                    colors.put(Theme.ColorType.ACCENT,
+                            wallpaperColors.getSecondaryColor().toArgb());
                 }
             }
         } else {
@@ -88,16 +92,23 @@ public abstract class WallpaperColorsTask extends ContextTask<Void, Void, List<I
 
             if (wallpaper != null) {
                 final Palette palette = new Palette.Builder(wallpaper).generate();
-                final List<Palette.Swatch> swatches = new ArrayList<>();
-                swatches.add(palette.getVibrantSwatch());
-                swatches.add(palette.getDominantSwatch());
-                swatches.add(palette.getLightVibrantSwatch());
-                swatches.add(palette.getDarkVibrantSwatch());
 
-                for (Palette.Swatch swatch : swatches) {
-                    if (swatch != null && !colors.contains(swatch.getRgb())) {
-                        colors.add(swatch.getRgb());
-                    }
+                if (palette.getLightMutedSwatch() != null) {
+                    colors.put(Theme.ColorType.BACKGROUND, palette.getLightMutedSwatch().getRgb());
+                } else if (palette.getDarkMutedSwatch() != null) {
+                    colors.put(Theme.ColorType.BACKGROUND, palette.getDarkMutedSwatch().getRgb());
+                }
+
+                if (palette.getDominantSwatch() != null) {
+                    colors.put(Theme.ColorType.PRIMARY, palette.getDominantSwatch().getRgb());
+                } else if (palette.getVibrantSwatch() != null) {
+                    colors.put(Theme.ColorType.PRIMARY, palette.getVibrantSwatch().getRgb());
+                }
+
+                if (palette.getLightVibrantSwatch() != null) {
+                    colors.put(Theme.ColorType.ACCENT, palette.getLightVibrantSwatch().getRgb());
+                } else if (palette.getDarkVibrantSwatch() != null) {
+                    colors.put(Theme.ColorType.ACCENT, palette.getDarkVibrantSwatch().getRgb());
                 }
             }
         }

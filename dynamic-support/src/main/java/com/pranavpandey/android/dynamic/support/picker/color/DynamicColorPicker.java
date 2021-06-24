@@ -58,6 +58,7 @@ import com.pranavpandey.android.dynamic.utils.concurrent.DynamicResult;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A color picker inside a DynamicView to display multiple grids of colors and their shades.
@@ -578,7 +579,7 @@ public class DynamicColorPicker extends DynamicView {
             }
 
             @Override
-            protected void onPostExecute(@Nullable DynamicResult<List<Integer>> result) {
+            protected void onPostExecute(@Nullable DynamicResult<Map<Integer, Integer>> result) {
                 super.onPostExecute(result);
 
                 Dynamic.setVisibility(mProgressBar, GONE);
@@ -588,7 +589,7 @@ public class DynamicColorPicker extends DynamicView {
                     return;
                 }
 
-                mDynamics = result.getData().toArray(new Integer[0]);
+                mDynamics = result.getData().values().toArray(new Integer[0]);
                 setDynamics(mSelectedColor);
             }
         };

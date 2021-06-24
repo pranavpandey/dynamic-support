@@ -46,7 +46,7 @@ import com.pranavpandey.android.dynamic.utils.DynamicTaskUtils;
 import com.pranavpandey.android.dynamic.utils.concurrent.DynamicResult;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Map;
 
 /**
  * A {@link PopupWindow} to display a grid of colors.
@@ -266,7 +266,7 @@ public class DynamicColorPopup extends DynamicPopup {
             }
 
             @Override
-            protected void onPostExecute(@Nullable DynamicResult<List<Integer>> result) {
+            protected void onPostExecute(@Nullable DynamicResult<Map<Integer, Integer>> result) {
                 super.onPostExecute(result);
 
                 Dynamic.setVisibility(progressBar, View.GONE);
@@ -276,7 +276,7 @@ public class DynamicColorPopup extends DynamicPopup {
                     return;
                 }
 
-                mDynamics = result.getData().toArray(new Integer[0]);
+                mDynamics = result.getData().values().toArray(new Integer[0]);
                 setDynamics(gridViewDynamic, divider);
             }
         };

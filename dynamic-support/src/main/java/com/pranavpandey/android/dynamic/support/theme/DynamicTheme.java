@@ -59,6 +59,7 @@ import com.pranavpandey.android.dynamic.support.model.DynamicWidgetTheme;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.theme.inflater.DynamicLayoutInflater;
+import com.pranavpandey.android.dynamic.support.theme.task.WallpaperColorsTask;
 import com.pranavpandey.android.dynamic.support.theme.work.DynamicThemeWork;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.theme.AppTheme;
@@ -66,7 +67,9 @@ import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicTaskUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
+import com.pranavpandey.android.dynamic.utils.concurrent.DynamicResult;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -88,11 +91,6 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      * Tag for the dynamic theme.
      */
     private static final String TAG = "Dynamic Theme";
-
-    /**
-     * Dynamic theme shared preferences.
-     */
-    public static final String ADS_PREF_THEME = "ads_dynamic_theme";
 
     /**
      * Key for the theme preference.
@@ -166,6 +164,11 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     private static DynamicTheme sInstance;
 
     /**
+     * Main thread handler to publish results.
+     */
+    private final DynamicThemeHandler mHandler;
+
+    /**
      * Dynamic application listener used by this theme instance.
      */
     private DynamicListener mListener;
@@ -218,7 +221,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     /**
      * Collection of dynamic themes to properly resume them.
      */
-    private Map<String, String> mDynamicThemes;
+    private final Map<String, String> mDynamicThemes;
 
     /**
      * Resolver used by the dynamic theme.
@@ -226,9 +229,9 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     private DynamicResolver mDynamicResolver;
 
     /**
-     * Main thread handler to publish results.
+     * Dynamic colors task used by the dynamic theme.
      */
-    private final DynamicThemeHandler mMainThreadHandler;
+    private WallpaperColorsTask mWallpaperColorsTask;
 
     /**
      * Listener to update theme on wallpaper colors change.
@@ -241,8 +244,8 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      */
     @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
     private DynamicTheme() {
-        this.mMainThreadHandler = new DynamicThemeHandler(
-                Looper.getMainLooper(), new ArrayList<>());
+        this.mHandler = new DynamicThemeHandler(Looper.getMainLooper(), new ArrayList<>());
+        this.mDynamicThemes = new HashMap<>();
     }
 
     /**
@@ -252,17 +255,30 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      * @param dynamicResolver The resolver for the dynamic theme.
      *                        <p>Pass {@code null} to use the default implementation.
      */
-    private DynamicTheme(@NonNull DynamicListener listener,
+    private DynamicTheme(@Nullable DynamicListener listener,
             @Nullable DynamicResolver dynamicResolver) {
         this();
+        
+        if (listener != null) {
+            initialize(listener, dynamicResolver);
+        }
+    }
 
+    /**
+     * Initialize this class with default values.
+     *
+     * @param listener The application dynamic listener to be attached with this theme.
+     * @param dynamicResolver The resolver for the dynamic theme.
+     *                        <p>Pass {@code null} to use the default implementation.
+     */
+    public void initialize(@NonNull DynamicListener listener,
+            @Nullable DynamicResolver dynamicResolver) {
         DynamicPermissions.initializeInstance(listener.getContext());
-
+        
         this.mListener = listener;
         this.mPowerManager = ContextCompat.getSystemService(
                 mListener.getContext(), PowerManager.class);
         this.mDynamicResolver = dynamicResolver;
-        this.mDynamicThemes = new HashMap<>();
         this.mDefaultApplicationTheme = new DynamicAppTheme()
                 .setFontScale(FONT_SCALE_DEFAULT).setCornerRadius(CORNER_SIZE_DEFAULT)
                 .setBackgroundAware(Theme.BackgroundAware.ENABLE);
@@ -275,6 +291,8 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                     if (PowerManager.ACTION_POWER_SAVE_MODE_CHANGED.equals(intent.getAction())) {
                         mPowerSaveMode = getPowerManager().isPowerSaveMode();
                         onPowerSaveModeChanged(mPowerSaveMode);
+                    } else if (Intent.ACTION_WALLPAPER_CHANGED.equals(intent.getAction())) {
+                        setDynamicColors(isDynamicColor());
                     } else {
                         setDynamicThemeWork(!WorkManager.getInstance(context)
                                 .getWorkInfosForUniqueWork(DynamicThemeWork.TAG).isDone());
@@ -288,6 +306,9 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         intentFilter.addAction(Intent.ACTION_TIME_CHANGED);
         intentFilter.addAction(Intent.ACTION_DATE_CHANGED);
         intentFilter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
+        if (!DynamicSdkUtils.is27()) {
+            intentFilter.addAction(Intent.ACTION_WALLPAPER_CHANGED);
+        }
         if (DynamicSdkUtils.is21()) {
             intentFilter.addAction(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED);
             this.mPowerSaveMode = getPowerManager().isPowerSaveMode();
@@ -296,7 +317,6 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         }
         mListener.getContext().registerReceiver(mBroadcastReceiver, intentFilter);
 
-        setDynamicColorsListener(true);
         setRemoteTheme(null);
         addDynamicListener(listener);
     }
@@ -333,31 +353,51 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
 
     /**
      * Sets the {@link WallpaperManager.OnColorsChangedListener} to enable dynamic colors
-     * on API 31.
+     * on API 27 and above. Otherwise, use the custom implementation for older API levels.
      *
      * @param enable {@code true} to enable dynamic colors listener.
      */
     @TargetApi(Build.VERSION_CODES.O_MR1)
-    public void setDynamicColorsListener(boolean enable) {
-        if (!DynamicSdkUtils.isS()) {
-            return;
-        }
+    public void setDynamicColors(boolean enable) {
+        if (DynamicSdkUtils.is27()) {
+            if (mOnColorsChangedListener == null) {
+                mOnColorsChangedListener = new WallpaperManager.OnColorsChangedListener() {
+                    @Override
+                    public void onColorsChanged(WallpaperColors colors, int which) {
+                        getDynamicColors().putColors(colors);
+                        onDynamicColorsChanged(getDynamicColors());
+                    }
+                };
+            }
 
-        if (mOnColorsChangedListener == null) {
-            mOnColorsChangedListener = new WallpaperManager.OnColorsChangedListener() {
-                @Override
-                public void onColorsChanged(WallpaperColors colors, int which) {
-                    onDynamicChanged(false, true);
-                }
-            };
-        }
-
-        if (enable) {
-            WallpaperManager.getInstance(mListener.getContext()).addOnColorsChangedListener(
-                    mOnColorsChangedListener, getMainThreadHandler());
-        } else {
-            WallpaperManager.getInstance(mListener.getContext())
+            WallpaperManager.getInstance(getListener().getContext())
                     .removeOnColorsChangedListener(mOnColorsChangedListener);
+
+            if (enable) {
+                WallpaperManager.getInstance(getListener().getContext())
+                        .addOnColorsChangedListener(mOnColorsChangedListener, getHandler());
+            }
+        } else {
+            DynamicTaskUtils.cancelTask(mWallpaperColorsTask, true);
+
+            if (enable) {
+                mWallpaperColorsTask = new WallpaperColorsTask(getContext()) {
+                    @Override
+                    protected void onPostExecute(
+                            @Nullable DynamicResult<Map<Integer, Integer>> result) {
+                        super.onPostExecute(result);
+
+                        if (result != null && result.getData() != null) {
+                            getDynamicColors().putColors(result.getData());
+                            onDynamicColorsChanged(getDynamicColors());
+                        }
+                    }
+                };
+
+                mWallpaperColorsTask.execute();
+            } else {
+                onDynamicColorsChanged(getDynamicColors());
+            }
         }
     }
 
@@ -409,7 +449,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      * @param dynamicResolver The resolver for the dynamic theme.
      *                        <p>Pass {@code null} to use the default implementation.
      */
-    public static synchronized void initializeInstance(@NonNull DynamicListener listener,
+    public static synchronized void initializeInstance(@Nullable DynamicListener listener,
             @Nullable DynamicResolver dynamicResolver) {
         if (listener == null) {
             throw new NullPointerException("Context should not be null.");
@@ -436,19 +476,33 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     }
 
     /**
+     * Get the main thread handler.
+     *
+     * @return The main thread handler.
+     */
+    public @NonNull DynamicThemeHandler getHandler() {
+        return mHandler;
+    }
+
+    /**
      * Returns the style resource used by the system.
+     *
+     * @param dynamicListener The dynamic listener to be used.
+     * @param dynamicTheme The dynamic theme to be used.
      *
      * @return The style resource used by the system.
      */
     @TargetApi(Build.VERSION_CODES.Q)
-    public @StyleRes int getSystemThemeRes(@Nullable DynamicListener dynamicListener) {
+    public @StyleRes int getSystemThemeRes(@Nullable DynamicListener dynamicListener,
+            @NonNull DynamicAppTheme dynamicTheme) {
         if (dynamicListener == null) {
-            return android.R.style.Theme_DeviceDefault;
+            return dynamicTheme.getThemeRes() != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID
+                    ? dynamicTheme.getThemeRes() : getDefaultApplication().getThemeRes();
         }
 
         return DynamicSdkUtils.is29() ? android.R.style.Theme_DeviceDefault_DayNight
-                : dynamicListener.isNightMode() ? android.R.style.Theme_DeviceDefault
-                : android.R.style.Theme_DeviceDefault_Light;
+                : dynamicListener.isNightMode() || dynamicTheme.isDarkTheme()
+                ? android.R.style.Theme_DeviceDefault : android.R.style.Theme_DeviceDefault_Light;
     }
 
     /**
@@ -477,7 +531,8 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         getDefaultApplication().setThemeRes(theme);
 
         if (DynamicSdkUtils.is21()) {
-            final @StyleRes int systemTheme = getSystemThemeRes(getListener());
+            final @StyleRes int systemTheme = getSystemThemeRes(
+                    getListener(), getDefaultApplication());
 
             getDefaultApplication().setBackgroundColor(DynamicResourceUtils.resolveColor(
                     getContext(), systemTheme, android.R.attr.colorBackground,
@@ -585,6 +640,24 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                         getContext(), theme, R.attr.adt_backgroundAware,
                         getDefaultApplication().getBackgroundAware()));
 
+        if (isDynamicColor() && !getDynamicColors().getMutatedColors().isEmpty()) {
+            getDefaultApplication().setBackgroundColor(
+                    getDynamicColors().getMutatedColor(Theme.ColorType.BACKGROUND,
+                            getDefaultApplication().getBackgroundColor()), false)
+                    .setSurfaceColor(getDynamicColors().getMutatedColor(Theme.ColorType.SURFACE,
+                            getDefaultApplication().getSurfaceColor()), false)
+                    .setPrimaryColor(getDynamicColors().getMutatedColor(Theme.ColorType.PRIMARY,
+                            getDefaultApplication().getPrimaryColor()), false)
+                    .setPrimaryColorDark(
+                            getDynamicColors().getMutatedColor(Theme.ColorType.PRIMARY_DARK,
+                                    getDefaultApplication().getPrimaryColorDark()), false)
+                    .setAccentColor(getDynamicColors().getMutatedColor(Theme.ColorType.ACCENT,
+                            getDefaultApplication().getAccentColor()), false)
+                    .setAccentColorDark(
+                            getDynamicColors().getMutatedColor(Theme.ColorType.ACCENT_DARK,
+                                    getDefaultApplication().getAccentColorDark()), false);
+        }
+
         mApplicationTheme = new DynamicAppTheme(dynamicTheme == null
                 ? getDefaultApplication() : dynamicTheme);
 
@@ -607,9 +680,9 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     public @NonNull DynamicTheme setTheme(@StyleRes int theme,
             @Nullable AppTheme<?> dynamicTheme, boolean initializeRemoteColors) {
         if (dynamicTheme != null) {
-            setThemeRes(dynamicTheme.getThemeRes(), dynamicTheme, false);
+            setThemeRes(dynamicTheme.getThemeRes(), dynamicTheme, initializeRemoteColors);
         } else {
-            setThemeRes(theme, null, false);
+            setThemeRes(theme, null, initializeRemoteColors);
         }
 
         return this;
@@ -644,7 +717,8 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         getDefaultLocal().setThemeRes(theme);
 
         if (DynamicSdkUtils.is21()) {
-            final @StyleRes int systemTheme = getSystemThemeRes(getLocalListener());
+            final @StyleRes int systemTheme = getSystemThemeRes(
+                    getLocalListener(), getDefaultLocal());
 
             getDefaultLocal().setBackgroundColor(DynamicResourceUtils.resolveColor(
                     getLocalContext(), systemTheme, android.R.attr.colorBackground,
@@ -750,6 +824,24 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                 .setBackgroundAware(DynamicResourceUtils.resolveInteger(
                         getLocalContext(), theme, R.attr.adt_backgroundAware,
                         getDefaultLocal().getBackgroundAware()));
+
+        if (isDynamicColor() && !getDynamicColors().getMutatedColors().isEmpty()) {
+            getDefaultLocal().setBackgroundColor(
+                    getDynamicColors().getMutatedColor(Theme.ColorType.BACKGROUND,
+                            getDefaultLocal().getBackgroundColor()), false)
+                    .setSurfaceColor(getDynamicColors().getMutatedColor(Theme.ColorType.SURFACE,
+                            getDefaultLocal().getSurfaceColor()), false)
+                    .setPrimaryColor(getDynamicColors().getMutatedColor(Theme.ColorType.PRIMARY,
+                            getDefaultLocal().getPrimaryColor()), false)
+                    .setPrimaryColorDark(
+                            getDynamicColors().getMutatedColor(Theme.ColorType.PRIMARY_DARK,
+                                    getDefaultLocal().getPrimaryColorDark()), false)
+                    .setAccentColor(getDynamicColors().getMutatedColor(Theme.ColorType.ACCENT,
+                            getDefaultLocal().getAccentColor()), false)
+                    .setAccentColorDark(
+                            getDynamicColors().getMutatedColor(Theme.ColorType.ACCENT_DARK,
+                                    getDefaultLocal().getAccentColorDark()), false);
+        }
 
         mLocalTheme = new DynamicAppTheme(dynamicTheme == null
                 ? getDefaultLocal() : dynamicTheme);
@@ -1076,7 +1168,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         }
 
         getContext().unregisterReceiver(mBroadcastReceiver);
-        setDynamicColorsListener(false);
+        setDynamicColors(false);
         clearDynamicListeners();
 
         mListener = null;
@@ -1245,16 +1337,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     public void setDynamicResolver(@Nullable DynamicResolver dynamicResolver) {
         this.mDynamicResolver = dynamicResolver;
     }
-
-    /**
-     * Get the main thread handler.
-     *
-     * @return The main thread handler.
-     */
-    public @NonNull DynamicThemeHandler getMainThreadHandler() {
-        return mMainThreadHandler;
-    }
-
+    
     /**
      * Add a dynamic listener to receive the various callbacks.
      *
@@ -1263,8 +1346,8 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      * @see DynamicListener
      */
     public void addDynamicListener(@Nullable DynamicListener listener) {
-        synchronized (getMainThreadHandler()) {
-            getMainThreadHandler().addListener(listener);
+        synchronized (getHandler()) {
+            getHandler().addListener(listener);
         }
     }
 
@@ -1276,8 +1359,8 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      * @see DynamicListener
      */
     public void removeDynamicListener(@Nullable DynamicListener listener) {
-        synchronized (getMainThreadHandler()) {
-            getMainThreadHandler().removeListener(listener);
+        synchronized (getHandler()) {
+            getHandler().removeListener(listener);
         }
     }
 
@@ -1291,45 +1374,50 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      * @see DynamicListener
      */
     public boolean isDynamicListener(@Nullable DynamicListener listener) {
-        return getMainThreadHandler().isListener(listener);
+        return getHandler().isListener(listener);
     }
 
     /**
      * Remove all the dynamic listeners and themes.
      */
     public void clearDynamicListeners() {
-        getMainThreadHandler().clearListeners();
+        getHandler().clearListeners();
         getDynamicThemes().clear();
     }
 
     @Override
     public @NonNull Context getContext() {
-        return getMainThreadHandler().getContext();
+        return getHandler().getContext();
     }
 
     @Override
     public boolean isNightMode() {
-        return getMainThreadHandler().isNightMode();
+        return getHandler().isNightMode();
     }
 
     @Override
     public @StyleRes int getThemeRes(@Nullable AppTheme<?> theme) {
-        return getMainThreadHandler().getThemeRes(theme);
+        return getHandler().getThemeRes(theme);
     }
 
     @Override
     public @StyleRes int getThemeRes() {
-        return getMainThreadHandler().getThemeRes();
+        return getHandler().getThemeRes();
     }
 
     @Override
     public @Nullable AppTheme<?> getDynamicTheme() {
-        return getMainThreadHandler().getDynamicTheme();
+        return getHandler().getDynamicTheme();
+    }
+
+    @Override
+    public boolean isDynamicColor() {
+        return getHandler().isDynamicColor();
     }
 
     @Override
     public @ColorInt int getDefaultColor(@Theme.ColorType int colorType) {
-        return getMainThreadHandler().getDefaultColor(colorType);
+        return getHandler().getDefaultColor(colorType);
     }
 
     @Override
@@ -1338,8 +1426,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         bundle.putBoolean(DynamicThemeHandler.DATA_BOOLEAN_CONTEXT, context);
         bundle.putBoolean(DynamicThemeHandler.DATA_BOOLEAN_RECREATE, recreate);
 
-        Message message = getMainThreadHandler().obtainMessage(
-                DynamicThemeHandler.MESSAGE_POST_DYNAMIC);
+        Message message = getHandler().obtainMessage(DynamicThemeHandler.MESSAGE_POST_DYNAMIC);
         message.setData(bundle);
         message.sendToTarget();
     }
@@ -1354,16 +1441,26 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         bundle.putBoolean(DynamicThemeHandler.DATA_BOOLEAN_UI_MODE, uiMode);
         bundle.putBoolean(DynamicThemeHandler.DATA_BOOLEAN_DENSITY, density);
 
-        Message message = getMainThreadHandler().obtainMessage(
+        Message message = getHandler().obtainMessage(
                 DynamicThemeHandler.MESSAGE_POST_DYNAMIC_CONFIGURATION);
         message.setData(bundle);
         message.sendToTarget();
     }
 
     @Override
+    public void onDynamicColorsChanged(@Nullable DynamicColors dynamicColors) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(DynamicThemeHandler.DATA_PARCELABLE_COLORS, dynamicColors);
+
+        Message message = getHandler().obtainMessage(
+                DynamicThemeHandler.MESSAGE_POST_DYNAMIC_COLOR);
+        message.setData(bundle);
+        message.sendToTarget();
+    }
+
+    @Override
     public void onAutoThemeChanged() {
-        getMainThreadHandler().obtainMessage(
-                DynamicThemeHandler.MESSAGE_POST_AUTO_THEME).sendToTarget();
+        getHandler().obtainMessage(DynamicThemeHandler.MESSAGE_POST_AUTO_THEME).sendToTarget();
     }
 
     @Override
@@ -1371,7 +1468,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         Bundle bundle = new Bundle();
         bundle.putBoolean(DynamicThemeHandler.DATA_BOOLEAN_POWER_SAVE_MODE, powerSaveMode);
 
-        Message message = getMainThreadHandler().obtainMessage(
+        Message message = getHandler().obtainMessage(
                 DynamicThemeHandler.MESSAGE_POST_POWER_SAVE_MODE);
         message.setData(bundle);
         message.sendToTarget();
@@ -1379,12 +1476,12 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
 
     @Override
     public boolean setNavigationBarTheme() {
-        return getMainThreadHandler().setNavigationBarTheme();
+        return getHandler().setNavigationBarTheme();
     }
 
     @Override
     public void onNavigationBarThemeChanged() {
-        getMainThreadHandler().obtainMessage(
+        getHandler().obtainMessage(
                 DynamicThemeHandler.MESSAGE_POST_NAVIGATION_BAR_THEME).sendToTarget();
     }
 
@@ -1520,6 +1617,11 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     public boolean resolveNightTheme(@Theme.ToString String appTheme,
             @Theme.Night.ToString String implementation) {
         return getDynamicResolver().resolveNightTheme(appTheme, implementation);
+    }
+    
+    @Override
+    public @NonNull DynamicColors getDynamicColors() {
+        return getDynamicResolver().getDynamicColors();
     }
 
     /**

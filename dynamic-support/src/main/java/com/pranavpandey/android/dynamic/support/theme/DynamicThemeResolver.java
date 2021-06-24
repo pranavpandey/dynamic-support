@@ -40,13 +40,32 @@ public class DynamicThemeResolver implements DynamicResolver {
     private final DynamicTheme mDynamicTheme;
 
     /**
+     * Dynamic colors used by this resolver.
+     */
+    private final DynamicColors mDynamicColors;
+
+    /**
      * Constructor to initialize an object of this class.
      *
      * @param dynamicTheme The dynamic theme instance for this resolver.
      *                     <p>If {@code null}, then it will try to use the the default instance.
      */
     public DynamicThemeResolver(@Nullable DynamicTheme dynamicTheme) {
+        this(dynamicTheme, null);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param dynamicTheme The dynamic theme instance for this resolver.
+     *                     <p>If {@code null}, then it will try to use the the default instance.
+     * @param dynamicColors The dynamic colors for this resolver.
+     *                      <p>Pass {@code null}, to use the default implementation.
+     */
+    public DynamicThemeResolver(@Nullable DynamicTheme dynamicTheme,
+            @Nullable DynamicColors dynamicColors) {
         this.mDynamicTheme = dynamicTheme;
+        this.mDynamicColors = dynamicColors != null ? dynamicColors : new DynamicColors();
     }
 
     /**
@@ -121,18 +140,18 @@ public class DynamicThemeResolver implements DynamicResolver {
     public boolean resolveNightTheme(@Theme int appTheme, @Theme.Night int implementation) {
         if (appTheme == Theme.AUTO) {
             switch (implementation) {
-                case Theme.Night.CUSTOM:
-                    return false;
                 case Theme.Night.AUTO:
-                    return isNight(appTheme);
+                    return isNight(implementation);
                 case Theme.Night.BATTERY:
                     return getDynamicTheme().isPowerSaveMode();
                 case Theme.Night.SYSTEM:
-                default:
                     return isSystemNightMode();
+                case Theme.Night.CUSTOM:
+                default:
+                    return false;
             }
-        } else if (isSystemNightMode()) {
-            return true;
+        } else if (appTheme == Theme.CUSTOM) {
+            return isSystemNightMode() || getDynamicTheme().isPowerSaveMode();
         }
 
         return appTheme == Theme.NIGHT;
@@ -142,5 +161,10 @@ public class DynamicThemeResolver implements DynamicResolver {
     public boolean resolveNightTheme(@Theme.ToString String appTheme,
             @Theme.Night.ToString String implementation) {
         return resolveNightTheme(Integer.parseInt(appTheme), Integer.parseInt(implementation));
+    }
+
+    @Override
+    public @NonNull DynamicColors getDynamicColors() {
+        return mDynamicColors;
     }
 }

@@ -66,6 +66,7 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicTransitionListener;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
+import com.pranavpandey.android.dynamic.support.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog;
 import com.pranavpandey.android.dynamic.support.theme.inflater.DynamicLayoutInflater;
@@ -1540,6 +1541,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     }
 
     @Override
+    public boolean isDynamicColor() {
+        return DynamicTheme.getInstance().getListener().isDynamicColor();
+    }
+
+    @Override
     public @ColorInt int getDefaultColor(@Theme.ColorType int colorType) {
         return DynamicTheme.getInstance().getListener().getDefaultColor(colorType);
     }
@@ -1562,6 +1568,9 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
         onDynamicChanged(locale || fontScale || orientation
                 || uiMode || density, locale || uiMode);
     }
+
+    @Override
+    public void onDynamicColorsChanged(@Nullable DynamicColors dynamicColors) { }
 
     @Override
     public void onAutoThemeChanged() { }

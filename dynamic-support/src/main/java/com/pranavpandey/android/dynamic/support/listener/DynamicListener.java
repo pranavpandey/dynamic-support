@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.support.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.theme.AppTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
@@ -80,6 +81,13 @@ public interface DynamicListener {
     @Nullable AppTheme<?> getDynamicTheme();
 
     /**
+     * Returns whether the dynamic colors are enabled for this listener.
+     *
+     * @return {@code true} if the dynamic colors are enabled for this listener.
+     */
+    boolean isDynamicColor();
+
+    /**
      * This method will be called to resolve the default color according to it's type.
      * <p>It is useful in resolving the color if the default theme also has auto values.
      *
@@ -120,6 +128,15 @@ public interface DynamicListener {
      */
     void onDynamicConfigurationChanged(boolean locale, boolean fontScale,
             boolean orientation, boolean uiMode, boolean density);
+
+    /**
+     * This method will be called when the dynamic color change event occurs according
+     * to the wallpaper.
+     * <p>Recreate the activity or application here to adapt changes.
+     *
+     * @param dynamicColors The new dynamic colors.
+     */
+    void onDynamicColorsChanged(@Nullable DynamicColors dynamicColors);
 
     /**
      * This method will be called when the auto theme change event occurs according to the time.

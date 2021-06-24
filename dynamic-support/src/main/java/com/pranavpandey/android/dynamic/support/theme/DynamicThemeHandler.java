@@ -50,30 +50,37 @@ public class DynamicThemeHandler extends Handler implements DynamicListener {
      * Message constant to post the dynamic configuration changes.
      *
      * @see DynamicListener#onDynamicConfigurationChanged(
-     *boolean, boolean, boolean, boolean, boolean)
+     * boolean, boolean, boolean, boolean, boolean)
      */
     public static final int MESSAGE_POST_DYNAMIC_CONFIGURATION = 0x2;
+
+    /**
+     * Message constant to post the dynamic color changes.
+     *
+     * @see DynamicListener#onDynamicColorsChanged(DynamicColors)
+     */
+    public static final int MESSAGE_POST_DYNAMIC_COLOR = 0x3;
 
     /**
      * Message constant to post the auto theme changes.
      *
      * @see DynamicListener#onAutoThemeChanged()
      */
-    public static final int MESSAGE_POST_AUTO_THEME = 0x3;
+    public static final int MESSAGE_POST_AUTO_THEME = 0x4;
 
     /**
      * Message constant to post the power save mode changes.
      *
      * @see DynamicListener#onPowerSaveModeChanged(boolean)
      */
-    public static final int MESSAGE_POST_POWER_SAVE_MODE = 0x4;
+    public static final int MESSAGE_POST_POWER_SAVE_MODE = 0x5;
 
     /**
      * Message constant to post the navigation bar theme changes.
      *
      * @see DynamicListener#onNavigationBarThemeChanged()
      */
-    public static final int MESSAGE_POST_NAVIGATION_BAR_THEME = 0x5;
+    public static final int MESSAGE_POST_NAVIGATION_BAR_THEME = 0x6;
 
     /**
      * Bundle key to store the context changes.
@@ -116,6 +123,11 @@ public class DynamicThemeHandler extends Handler implements DynamicListener {
     public static final String DATA_BOOLEAN_POWER_SAVE_MODE = "ads_data_boolean_power_save_mode";
 
     /**
+     * Bundle key to store the dynamic color changes.
+     */
+    public static final String DATA_PARCELABLE_COLORS = "ads_data_parcelable_colors";
+
+    /**
      * List of listeners to receive the callbacks.
      */
     private final List<DynamicListener> mListeners;
@@ -152,6 +164,9 @@ public class DynamicThemeHandler extends Handler implements DynamicListener {
                             msg.getData().getBoolean(DATA_BOOLEAN_UI_MODE),
                             msg.getData().getBoolean(DATA_BOOLEAN_DENSITY));
                 }
+                break;
+            case MESSAGE_POST_DYNAMIC_COLOR:
+                onDynamicColorsChanged(msg.getData().getParcelable(DATA_PARCELABLE_COLORS));
                 break;
             case MESSAGE_POST_AUTO_THEME:
                 onAutoThemeChanged();
@@ -292,6 +307,16 @@ public class DynamicThemeHandler extends Handler implements DynamicListener {
     }
 
     @Override
+    public boolean isDynamicColor() {
+        DynamicListener listener;
+        if ((listener = resolveListener(true)) == null) {
+            return DynamicTheme.getInstance().getListener().isDynamicColor();
+        }
+
+        return listener.isDynamicColor();
+    }
+
+    @Override
     public @ColorInt int getDefaultColor(@Theme.ColorType int colorType) {
         DynamicListener listener;
         if ((listener = resolveListener(true)) == null) {
@@ -322,6 +347,17 @@ public class DynamicThemeHandler extends Handler implements DynamicListener {
         for (DynamicListener listener : getListeners()) {
             listener.onDynamicConfigurationChanged(locale,
                     fontScale, orientation, uiMode, density);
+        }
+    }
+
+    @Override
+    public void onDynamicColorsChanged(@Nullable DynamicColors dynamicColors) {
+        if (getListeners() == null) {
+            return;
+        }
+
+        for (DynamicListener listener : getListeners()) {
+            listener.onDynamicColorsChanged(dynamicColors);
         }
     }
 
