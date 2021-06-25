@@ -63,7 +63,7 @@ class SampleApplication : DynamicApplication() {
         return null
     }
 
-    override fun isNightMode(): Boolean {
+    override fun isNightMode(resolve: Boolean): Boolean {
         // TODO: Using the default Night mode implementation.
         return DynamicTheme.getInstance().isSystemNightMode
     }
@@ -126,11 +126,11 @@ class SampleApplication : DynamicApplication() {
         // Update themes on shared preferences change.
         when (key) {
             Constants.PREF_SETTINGS_APP_THEME_DAY_COLOR ->
-                if (!isNightMode) {
+                if (ThemeController.getCurrentTheme() == Theme.DAY) {
                     onAutoThemeChanged()
                 }
             Constants.PREF_SETTINGS_APP_THEME_NIGHT_COLOR ->
-                if (isNightMode) {
+                if (ThemeController.getCurrentTheme() == Theme.NIGHT) {
                     onAutoThemeChanged()
                 }
             Constants.PREF_SETTINGS_APP_THEME_COLOR,

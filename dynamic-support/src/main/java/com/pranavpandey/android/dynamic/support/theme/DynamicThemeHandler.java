@@ -272,13 +272,13 @@ public class DynamicThemeHandler extends Handler implements DynamicListener {
     }
 
     @Override
-    public boolean isNightMode() {
+    public boolean isNightMode(boolean resolve) {
         DynamicListener listener;
         if ((listener = resolveListener(true)) == null) {
-            return DynamicTheme.getInstance().getListener().isNightMode();
+            return DynamicTheme.getInstance().getListener().isNightMode(resolve);
         }
 
-        return listener.isNightMode();
+        return listener.isNightMode(resolve);
     }
 
     @Override
@@ -351,13 +351,13 @@ public class DynamicThemeHandler extends Handler implements DynamicListener {
     }
 
     @Override
-    public void onDynamicColorsChanged(@Nullable DynamicColors dynamicColors) {
+    public void onDynamicColorsChanged(@Nullable DynamicColors colors) {
         if (getListeners() == null) {
             return;
         }
 
         for (DynamicListener listener : getListeners()) {
-            listener.onDynamicColorsChanged(dynamicColors);
+            listener.onDynamicColorsChanged(colors);
         }
     }
 

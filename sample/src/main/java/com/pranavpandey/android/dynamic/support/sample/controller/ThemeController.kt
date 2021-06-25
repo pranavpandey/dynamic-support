@@ -36,6 +36,12 @@ object ThemeController {
     val isAutoTheme: Boolean get() = appThemeColor == Theme.AUTO
 
 
+    @Theme fun getCurrentTheme(): Int {
+        return DynamicTheme.getInstance().resolveAppTheme(
+            appThemeColor, Theme.Night.AUTO, false
+        )
+    }
+
     /**
      * Getter and setter for the app theme color.
      */

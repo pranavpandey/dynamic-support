@@ -46,9 +46,11 @@ public interface DynamicListener {
     /**
      * Checks whether the night mode is enabled for this listener.
      *
+     * @param resolve {@code true} to resolve based on the theme data.
+     *
      * @return {@code true} if the night mode is enabled for this listener.
      */
-    boolean isNightMode();
+    boolean isNightMode(boolean resolve);
 
     /**
      * This method will be called to return the theme style resource for this listener.
@@ -134,9 +136,9 @@ public interface DynamicListener {
      * to the wallpaper.
      * <p>Recreate the activity or application here to adapt changes.
      *
-     * @param dynamicColors The new dynamic colors.
+     * @param colors The new dynamic colors.
      */
-    void onDynamicColorsChanged(@Nullable DynamicColors dynamicColors);
+    void onDynamicColorsChanged(@Nullable DynamicColors colors);
 
     /**
      * This method will be called when the auto theme change event occurs according to the time.

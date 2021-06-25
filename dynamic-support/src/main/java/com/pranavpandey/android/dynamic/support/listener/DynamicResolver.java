@@ -20,6 +20,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 import com.pranavpandey.android.dynamic.support.theme.DynamicColors;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 import java.util.Date;
@@ -28,6 +29,29 @@ import java.util.Date;
  * An interface to resolve dynamic theme according to the various conditions.
  */
 public interface DynamicResolver {
+
+    /**
+     * Get the dynamic theme instance used by this resolver.
+     *
+     * @return The dynamic theme instance used by this resolver.
+     */
+    @NonNull DynamicTheme getTheme();
+
+    /**
+     * Get the dynamic colors used by this resolver.
+     *
+     * @param resolve {@code true} to resolve the dynamic colors.
+     *
+     * @return The dynamic colors used by this resolver.
+     */
+    @NonNull DynamicColors getColors(boolean resolve);
+
+    /**
+     * Get the dynamic colors used by this resolver.
+     *
+     * @return The dynamic colors used by this resolver.
+     */
+    @NonNull DynamicColors getColors();
 
     /**
      * Checks whether the system night mode is enabled.
@@ -90,30 +114,56 @@ public interface DynamicResolver {
     /**
      * Resolves night theme according to the selected implementation.
      *
-     * @param appTheme The app theme to resolve the auto night theme.
+     * @param theme The app theme to resolve the auto night theme.
      * @param implementation The implementation for the night theme.
+     * @param data {@code true} to resolve based on the theme data.
      *
      * @return {@code true} if the night theme is enabled according to the selected
      *         implementation.
      */
-    boolean resolveNightTheme(@Theme int appTheme, @Theme.Night int implementation);
+    boolean resolveNightTheme(@Theme int theme, @Theme.Night int implementation, boolean data);
 
     /**
      * Resolves night theme according to the selected implementation.
      *
-     * @param appTheme The app theme to resolve the auto night theme.
+     * @param theme The app theme to resolve the auto night theme.
      * @param implementation The implementation for the night theme.
+     * @param data {@code true} to resolve based on the theme data.
      *
      * @return {@code true} if the night theme is enabled according to the selected
      *         implementation.
      */
-    boolean resolveNightTheme(@Theme.ToString String appTheme,
-            @Theme.Night.ToString String implementation);
+    boolean resolveNightTheme(@Theme.ToString String theme,
+            @Theme.Night.ToString String implementation, boolean data);
 
     /**
-     * Get the dynamic colors used by this resolver.
+     * Resolves current theme according to the supplied implementation.
      *
-     * @return The dynamic colors used by this resolver.
+     * @param theme The theme to be resolved.
+     * @param night The implementation for the night theme.
+     * @param data {@code true} to resolve based on the theme data.
+     *
+     * @return The resolved theme constant according to the supplied implementation.
+     *
+     * @see Theme#DAY
+     * @see Theme#NIGHT
+     * @see Theme#CUSTOM
      */
-    @NonNull DynamicColors getDynamicColors();
+    @Theme int resolveAppTheme(@Theme int theme, @Theme.Night int night, boolean data);
+
+    /**
+     * Resolves current theme according to the supplied implementation.
+     *
+     * @param theme The theme to be resolved.
+     * @param night The implementation for the night theme.
+     * @param data {@code true} to resolve based on the theme data.
+     *
+     * @return The resolved theme constant according to the supplied implementation.
+     *
+     * @see Theme#DAY
+     * @see Theme#NIGHT
+     * @see Theme#CUSTOM
+     */
+    @Theme int resolveAppTheme(@Theme.ToString String theme,
+            @Theme.Night.ToString String night, boolean data);
 }

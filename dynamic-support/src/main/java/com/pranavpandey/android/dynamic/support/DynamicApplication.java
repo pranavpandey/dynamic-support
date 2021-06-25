@@ -254,11 +254,7 @@ public abstract class DynamicApplication extends Application
     }
 
     @Override
-    public void onDynamicColorsChanged(@Nullable DynamicColors dynamicColors) {
-        if (dynamicColors != null) {
-            dynamicColors.mutate(DynamicTheme.getInstance());
-        }
-
+    public void onDynamicColorsChanged(@Nullable DynamicColors colors) {
         DynamicTheme.getInstance().onDynamicChanged(false, true);
     }
 

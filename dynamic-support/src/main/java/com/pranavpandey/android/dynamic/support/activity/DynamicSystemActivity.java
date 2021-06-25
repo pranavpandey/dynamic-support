@@ -1521,8 +1521,8 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean isNightMode() {
-        return DynamicTheme.getInstance().getListener().isNightMode();
+    public boolean isNightMode(boolean resolve) {
+        return DynamicTheme.getInstance().getListener().isNightMode(resolve);
     }
 
     @Override
@@ -1570,7 +1570,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     }
 
     @Override
-    public void onDynamicColorsChanged(@Nullable DynamicColors dynamicColors) { }
+    public void onDynamicColorsChanged(@Nullable DynamicColors colors) { }
 
     @Override
     public void onAutoThemeChanged() { }

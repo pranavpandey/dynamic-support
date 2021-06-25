@@ -26,6 +26,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.theme.AppTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
@@ -40,17 +41,17 @@ public class DynamicColors implements Parcelable {
     /**
      * Factor to generate shades of a color.
      */
-    private static final float FACTOR = 0.7f;
+    private static final float FACTOR = 0.8f;
 
     /**
      * Map to store the original colors.
      */
-    private final Map<Integer, Integer> mColors;
+    private final Map<Integer, Integer> mOriginal;
 
     /**
      * Map to store the mutated colors.
      */
-    private final Map<Integer, Integer> mMutatedColors;
+    private final Map<Integer, Integer> mMutated;
 
     /**
      * Constructor to initialize an object of this class.
@@ -62,11 +63,11 @@ public class DynamicColors implements Parcelable {
     /**
      * Constructor to initialize an object of this class.
      *
-     * @param colors The dynamic colors to be handled.
+     * @param original The original colors to be handled.
      */
-    public DynamicColors(@NonNull Map<Integer, Integer> colors) {
-        this.mColors = colors;
-        this.mMutatedColors = colors;
+    public DynamicColors(@NonNull Map<Integer, Integer> original) {
+        this.mOriginal = new HashMap<>(original);
+        this.mMutated = new HashMap<>(original);
     }
 
     /**
@@ -93,8 +94,8 @@ public class DynamicColors implements Parcelable {
     public DynamicColors(Parcel in) {
         this();
 
-        in.readMap(mColors, mColors.getClass().getClassLoader());
-        in.readMap(mMutatedColors, mMutatedColors.getClass().getClassLoader());
+        in.readMap(mOriginal, mOriginal.getClass().getClassLoader());
+        in.readMap(mMutated, mMutated.getClass().getClassLoader());
     }
 
     @Override
@@ -104,8 +105,8 @@ public class DynamicColors implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeMap(mColors);
-        dest.writeMap(mMutatedColors);
+        dest.writeMap(mOriginal);
+        dest.writeMap(mMutated);
     }
 
     /**
@@ -113,8 +114,8 @@ public class DynamicColors implements Parcelable {
      *
      * @return The map of original colors.
      */
-    public @NonNull Map<Integer, Integer> getColors() {
-        return mColors;
+    public @NonNull Map<Integer, Integer> getOriginal() {
+        return mOriginal;
     }
 
     /**
@@ -122,8 +123,8 @@ public class DynamicColors implements Parcelable {
      *
      * @return The map of mutated colors.
      */
-    public @NonNull Map<Integer, Integer> getMutatedColors() {
-        return mMutatedColors;
+    public @NonNull Map<Integer, Integer> getMutated() {
+        return mMutated;
     }
 
     /**
@@ -149,8 +150,8 @@ public class DynamicColors implements Parcelable {
      * @param colorType The type of the color.
      * @param fallback The fallback color if the request color type is not found.
      */
-    public @ColorInt int getColor(@Theme.ColorType int colorType, @ColorInt int fallback) {
-        return get(getColors(), colorType, fallback);
+    public @ColorInt int getOriginal(@Theme.ColorType int colorType, @ColorInt int fallback) {
+        return get(getOriginal(), colorType, fallback);
     }
 
     /**
@@ -159,8 +160,8 @@ public class DynamicColors implements Parcelable {
      * @param colorType The type of the color.
      * @param fallback The fallback color if the request color type is not found.
      */
-    public @ColorInt int getMutatedColor(@Theme.ColorType int colorType, @ColorInt int fallback) {
-        return get(getMutatedColors(), colorType, fallback);
+    public @ColorInt int getMutated(@Theme.ColorType int colorType, @ColorInt int fallback) {
+        return get(getMutated(), colorType, fallback);
     }
 
     /**
@@ -181,8 +182,8 @@ public class DynamicColors implements Parcelable {
      * @param colorType The type of the color.
      * @param color The color to be stored.
      */
-    public void putColor(@Theme.ColorType int colorType, @ColorInt int color) {
-        put(getColors(), colorType, color);
+    public void putOriginal(@Theme.ColorType int colorType, @ColorInt int color) {
+        put(getOriginal(), colorType, color);
     }
 
     /**
@@ -191,8 +192,8 @@ public class DynamicColors implements Parcelable {
      * @param colorType The type of the color.
      * @param color The color to be stored.
      */
-    public void putMutatedColor(@Theme.ColorType int colorType, @ColorInt int color) {
-        put(getMutatedColors(), colorType, color);
+    public void putMutated(@Theme.ColorType int colorType, @ColorInt int color) {
+        put(getMutated(), colorType, color);
     }
 
     /**
@@ -216,8 +217,8 @@ public class DynamicColors implements Parcelable {
      *
      * @param colors The colors to be stored.
      */
-    public void putColors(@Nullable Map<Integer, Integer> colors) {
-        put(getColors(), colors);
+    public void putOriginal(@Nullable Map<Integer, Integer> colors) {
+        put(getOriginal(), colors);
     }
 
     /**
@@ -225,8 +226,8 @@ public class DynamicColors implements Parcelable {
      *
      * @param colors The colors to be stored.
      */
-    public void putMutatedColors(@Nullable Map<Integer, Integer> colors) {
-        put(getMutatedColors(), colors);
+    public void putMutated(@Nullable Map<Integer, Integer> colors) {
+        put(getMutated(), colors);
     }
 
     /**
@@ -263,8 +264,8 @@ public class DynamicColors implements Parcelable {
      * @param colors The wallpaper colors to be stored.
      */
     @TargetApi(Build.VERSION_CODES.O_MR1)
-    public void putColors(@Nullable WallpaperColors colors) {
-        put(getColors(), colors);
+    public void putOriginal(@Nullable WallpaperColors colors) {
+        put(getOriginal(), colors);
     }
 
     /**
@@ -273,25 +274,26 @@ public class DynamicColors implements Parcelable {
      * @param colors The wallpaper colors to be stored.
      */
     @TargetApi(Build.VERSION_CODES.O_MR1)
-    public void putMutatedColors(@Nullable WallpaperColors colors) {
-        put(getMutatedColors(), colors);
+    public void putMutated(@Nullable WallpaperColors colors) {
+        put(getMutated(), colors);
     }
 
     /**
-     * Mutate original colors for the supplied dynamic theme.
+     * Mutate original colors for the supplied app theme.
      *
-     * @param dynamicTheme The dynamic theme to be used.
+     * @param colors The map to store the mutated colors.
+     * @param appTheme The app theme to be used.
      */
-    public void mutate(@NonNull DynamicTheme dynamicTheme) {
-        @ColorInt int background = getColor(Theme.ColorType.BACKGROUND,
-                dynamicTheme.get().getBackgroundColor());
-        @ColorInt int backgroundMutated = background;
-        @ColorInt int primary = getColor(Theme.ColorType.PRIMARY,
-                dynamicTheme.get().getPrimaryColor());
-        @ColorInt int accent = getColor(Theme.ColorType.ACCENT,
-                dynamicTheme.get().getAccentColor());
+    public void mutate(@NonNull Map<Integer, Integer> colors, @NonNull AppTheme<?> appTheme) {
+        colors.clear();
 
-        if (dynamicTheme.isNightMode()) {
+        @ColorInt int background = getOriginal(Theme.ColorType.BACKGROUND,
+                appTheme.getBackgroundColor());
+        @ColorInt int backgroundMutated = background;
+        @ColorInt int primary = getOriginal(Theme.ColorType.PRIMARY, appTheme.getPrimaryColor());
+        @ColorInt int accent = getOriginal(Theme.ColorType.ACCENT, appTheme.getAccentColor());
+
+        if (appTheme.isDarkTheme()) {
             backgroundMutated = DynamicColorUtils.getDarkerColor(backgroundMutated, FACTOR);
             primary = DynamicColorUtils.getDarkerColor(primary, FACTOR);
         } else {
@@ -299,27 +301,36 @@ public class DynamicColors implements Parcelable {
             primary = DynamicColorUtils.getLighterColor(primary, FACTOR);
         }
 
-        if (!getColors().containsKey(Theme.ColorType.PRIMARY)) {
+        if (!getOriginal().containsKey(Theme.ColorType.PRIMARY)) {
             primary = backgroundMutated;
         }
 
-        if (!getColors().containsKey(Theme.ColorType.ACCENT)) {
+        if (!getOriginal().containsKey(Theme.ColorType.ACCENT)) {
             accent = background;
         }
 
-        putMutatedColor(Theme.ColorType.BACKGROUND, backgroundMutated);
-        putMutatedColor(Theme.ColorType.SURFACE, Theme.AUTO);
-        putMutatedColor(Theme.ColorType.PRIMARY, primary);
-        putMutatedColor(Theme.ColorType.PRIMARY_DARK, Theme.AUTO);
-        putMutatedColor(Theme.ColorType.ACCENT, accent);
-        putMutatedColor(Theme.ColorType.ACCENT_DARK, Theme.AUTO);
+        put(colors, Theme.ColorType.BACKGROUND, backgroundMutated);
+        put(colors, Theme.ColorType.SURFACE, Theme.AUTO);
+        put(colors, Theme.ColorType.PRIMARY, primary);
+        put(colors, Theme.ColorType.PRIMARY_DARK, Theme.AUTO);
+        put(colors, Theme.ColorType.ACCENT, accent);
+        put(colors, Theme.ColorType.ACCENT_DARK, Theme.AUTO);
+    }
+
+    /**
+     * Mutate original colors for the supplied app theme.
+     *
+     * @param appTheme The app theme to be used.
+     */
+    public void mutate(@NonNull AppTheme<?> appTheme) {
+        mutate(getMutated(), appTheme);
     }
 
     /**
      * Clear original and mutated colors.
      */
     public void clear() {
-        getColors().clear();
-        getMutatedColors().clear();
+        getOriginal().clear();
+        getMutated().clear();
     }
 }
