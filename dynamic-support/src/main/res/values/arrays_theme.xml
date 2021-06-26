@@ -23,16 +23,16 @@
         <item>@drawable/ads_ic_check</item>
     </integer-array>
 
-    <!-- Theme entries for the dynamic theme. -->
-    <string-array name="ads_theme_dynamic_entries">
+    <!-- Entries for the dynamic theme. -->
+    <string-array name="ads_dynamic_theme_entries">
         <item>@string/ads_theme_entry_auto</item>
         <item>@string/ads_theme_entry_value</item>
         <item>@string/ads_theme_entry_data</item>
         <item>@string/ads_theme_entry_disable</item>
     </string-array>
 
-    <!-- Theme values for the dynamic theme. -->
-    <string-array name="ads_theme_dynamic_values">
+    <!-- Values for the dynamic theme. -->
+    <string-array name="ads_dynamic_theme_values">
         <!-- Auto -->
         <item>-3</item>
         <!-- Value -->
@@ -41,6 +41,20 @@
         <item>2</item>
         <!-- Disable -->
         <item>0</item>
+    </string-array>
+
+    <!-- Entries for the dynamic color. -->
+    <string-array name="ads_dynamic_color_entries">
+        <item>@string/ads_theme_entry_system</item>
+        <item>@string/ads_theme_entry_wallpaper</item>
+    </string-array>
+
+    <!-- Values for the dynamic color. -->
+    <string-array name="ads_dynamic_color_values">
+        <!-- Auto (System) -->
+        <item>-3</item>
+        <!-- Custom (Wallpaper) -->
+        <item>-2</item>
     </string-array>
 
     <!-- Theme entries for auto, day and night. -->

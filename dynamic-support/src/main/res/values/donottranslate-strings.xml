@@ -61,7 +61,9 @@
     <string name="ads_fab_behavior">com.pranavpandey.android.dynamic.support.behavior.DynamicFABScrollBehavior</string>
 
     <!-- Theme -->
+    <string name="ads_dynamic_color">@string/ads_theme_color_palette</string>
     <string name="ads_theme_entry_system">@string/ads_locale_system</string>
+    <string name="ads_theme_entry_wallpaper">@string/ads_wallpaper</string>
     <string name="ads_theme_entry_app">@string/ads_app</string>
     <string name="ads_theme_entry_value">@string/ads_app</string>
     <string name="ads_theme_entry_data">@string/ads_data</string>
@@ -83,6 +85,7 @@
 
     <!-- Developer and App info -->
     <string name="ads_info_me">&#169; Pranav Pandey</string>
+    <string name="ads_info_google_play">Google Play</string>
     <string name="ads_info_gplus">Google+</string>
     <string name="ads_info_facebook">Facebook</string>
     <string name="ads_info_xda">XDA-Developers</string>

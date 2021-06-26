@@ -202,6 +202,7 @@
     <!-- Theme -->
     <string name="ads_dynamic_theme">動態主題</string>
     <string name="ads_dynamic_theme_summary">接收者應用的主題。</string>
+    <string name="ads_dynamic_color_summary">自動顏色的實現。</string>
     <string name="ads_theme">主題</string>
     <string name="ads_theme_code">程式碼</string>
     <string name="ads_theme_code_desc">應用程序存儲掃描或共亯主題。</string>

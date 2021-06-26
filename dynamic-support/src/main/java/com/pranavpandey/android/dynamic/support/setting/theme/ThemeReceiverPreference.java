@@ -29,6 +29,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
+import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils;
 
 /**
@@ -58,8 +59,14 @@ public class ThemeReceiverPreference extends DynamicSpinnerPreference {
                 new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DynamicPermissions.getInstance().isGranted(
-                        ThemeContract.Preset.RECEIVER_PERMISSIONS, true);
+                if (DynamicPackageUtils.isPackageExists(getContext(),
+                        ThemeContract.Preset.AUTHORITY)) {
+                    DynamicPermissions.getInstance().isGranted(
+                            ThemeContract.Preset.RECEIVER_PERMISSIONS, true);
+                } else {
+                    DynamicLinkUtils.viewInGooglePlay(getContext(),
+                            ThemeContract.Preset.AUTHORITY);
+                }
             }
         });
     }
@@ -68,9 +75,15 @@ public class ThemeReceiverPreference extends DynamicSpinnerPreference {
     protected void onUpdate() {
         super.onUpdate();
 
-        setVisibility(DynamicPackageUtils.isPackageExists(
-                getContext(), ThemeContract.Preset.AUTHORITY) ? VISIBLE : GONE);
-        Dynamic.setVisibility(getActionView(), DynamicPermissions.getInstance().isGranted(
-                ThemeContract.Preset.RECEIVER_PERMISSIONS, false) ? GONE :VISIBLE);
+        if (DynamicPackageUtils.isPackageExists(getContext(), ThemeContract.Preset.AUTHORITY)) {
+            Dynamic.setText(getActionView(), R.string.ads_perm_info_required);
+            Dynamic.setVisibility(getDescriptionView(), GONE);
+            Dynamic.setVisibility(getActionView(), DynamicPermissions.getInstance().isGranted(
+                    ThemeContract.Preset.RECEIVER_PERMISSIONS, false) ? GONE :VISIBLE);
+        } else {
+            Dynamic.setText(getActionView(), R.string.ads_info_google_play);
+            Dynamic.setVisibility(getDescriptionView(), VISIBLE);
+            Dynamic.setVisibility(getActionView(), VISIBLE);
+        }
     }
 }

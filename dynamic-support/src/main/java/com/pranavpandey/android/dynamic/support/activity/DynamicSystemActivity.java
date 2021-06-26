@@ -1570,7 +1570,9 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     }
 
     @Override
-    public void onDynamicColorsChanged(@Nullable DynamicColors colors) { }
+    public void onDynamicColorsChanged(@Nullable DynamicColors colors) {
+        onDynamicChanged(false, true);
+    }
 
     @Override
     public void onAutoThemeChanged() { }

@@ -282,18 +282,18 @@ public class DynamicColors implements Parcelable {
      * Mutate original colors for the supplied app theme.
      *
      * @param colors The map to store the mutated colors.
-     * @param appTheme The app theme to be used.
+     * @param theme The app theme to be used.
      */
-    public void mutate(@NonNull Map<Integer, Integer> colors, @NonNull AppTheme<?> appTheme) {
+    public void mutate(@NonNull Map<Integer, Integer> colors, @NonNull AppTheme<?> theme) {
         colors.clear();
 
         @ColorInt int background = getOriginal(Theme.ColorType.BACKGROUND,
-                appTheme.getBackgroundColor());
+                theme.getBackgroundColor());
         @ColorInt int backgroundMutated = background;
-        @ColorInt int primary = getOriginal(Theme.ColorType.PRIMARY, appTheme.getPrimaryColor());
-        @ColorInt int accent = getOriginal(Theme.ColorType.ACCENT, appTheme.getAccentColor());
+        @ColorInt int primary = getOriginal(Theme.ColorType.PRIMARY, theme.getPrimaryColor());
+        @ColorInt int accent = getOriginal(Theme.ColorType.ACCENT, theme.getAccentColor());
 
-        if (appTheme.isDarkTheme()) {
+        if (theme.isDarkTheme()) {
             backgroundMutated = DynamicColorUtils.getDarkerColor(backgroundMutated, FACTOR);
             primary = DynamicColorUtils.getDarkerColor(primary, FACTOR);
         } else {
@@ -320,10 +320,10 @@ public class DynamicColors implements Parcelable {
     /**
      * Mutate original colors for the supplied app theme.
      *
-     * @param appTheme The app theme to be used.
+     * @param theme The app theme to be used.
      */
-    public void mutate(@NonNull AppTheme<?> appTheme) {
-        mutate(getMutated(), appTheme);
+    public void mutate(@NonNull AppTheme<?> theme) {
+        mutate(getMutated(), theme);
     }
 
     /**

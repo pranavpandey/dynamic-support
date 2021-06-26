@@ -202,6 +202,7 @@
     <!-- Theme -->
     <string name="ads_dynamic_theme">动态主题</string>
     <string name="ads_dynamic_theme_summary">接收者应用的主题。</string>
+    <string name="ads_dynamic_color_summary">自动颜色的实现。</string>
     <string name="ads_theme">主题</string>
     <string name="ads_theme_code">码</string>
     <string name="ads_theme_code_desc">扫描或共享主题。</string>

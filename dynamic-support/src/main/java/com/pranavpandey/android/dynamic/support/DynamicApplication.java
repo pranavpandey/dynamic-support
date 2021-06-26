@@ -91,6 +91,10 @@ public abstract class DynamicApplication extends Application
 
         onInitialize();
         setDynamicTheme();
+
+        if (isDynamicColor()) {
+            DynamicTheme.getInstance().setDynamicColors(true);
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -103,7 +107,7 @@ public abstract class DynamicApplication extends Application
                 (diff & ActivityInfo.CONFIG_LOCALE) != 0,
                 (diff & ActivityInfo.CONFIG_FONT_SCALE) != 0,
                 (diff & ActivityInfo.CONFIG_ORIENTATION) != 0,
-                (diff & ActivityInfo.CONFIG_UI_MODE) != 0,
+                (diff & ActivityInfo.CONFIG_UI_MODE) != 0, 
                 DynamicSdkUtils.is17() && (diff & ActivityInfo.CONFIG_DENSITY) != 0);
 
         mConfiguration = new Configuration(newConfig);
@@ -255,7 +259,7 @@ public abstract class DynamicApplication extends Application
 
     @Override
     public void onDynamicColorsChanged(@Nullable DynamicColors colors) {
-        DynamicTheme.getInstance().onDynamicChanged(false, true);
+        onDynamicChanged(false, true);
     }
 
     @Override

@@ -202,6 +202,7 @@
     <!-- Theme -->
     <string name="ads_dynamic_theme">Dynamisches Thema</string>
     <string name="ads_dynamic_theme_summary">Thema vom Empfänger angewendet.</string>
+    <string name="ads_dynamic_color_summary">Implementierung für die automatische Farbe.</string>
     <string name="ads_theme">Thema</string>
     <string name="ads_theme_code">Code</string>
     <string name="ads_theme_code_desc">Scannen oder teilen Sie das Thema.</string>

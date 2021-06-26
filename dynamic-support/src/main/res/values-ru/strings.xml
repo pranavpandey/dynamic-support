@@ -202,6 +202,7 @@
     <!-- Theme -->
     <string name="ads_dynamic_theme">Динамическая тема</string>
     <string name="ads_dynamic_theme_summary">Тема применена получателем.</string>
+    <string name="ads_dynamic_color_summary">Реализация автоматической окраски.</string>
     <string name="ads_theme">Тема</string>
     <string name="ads_theme_code">Код</string>
     <string name="ads_theme_code_desc">Отсканируйте или поделитесь темой.</string>

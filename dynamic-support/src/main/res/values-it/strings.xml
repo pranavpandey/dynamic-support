@@ -202,6 +202,7 @@
     <!-- Theme -->
     <string name="ads_dynamic_theme">Motivo dinamico</string>
     <string name="ads_dynamic_theme_summary">Motivo applicato dal destinatario.</string>
+    <string name="ads_dynamic_color_summary">Implementazione per il colore automatico.</string>
     <string name="ads_theme">Motivo</string>
     <string name="ads_theme_code">Codice</string>
     <string name="ads_theme_code_desc">Scansiona o condividi il motivo.</string>

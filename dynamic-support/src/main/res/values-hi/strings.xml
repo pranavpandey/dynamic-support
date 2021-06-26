@@ -202,6 +202,7 @@
     <!-- Theme -->
     <string name="ads_dynamic_theme">गतिशील रंग-रूप</string>
     <string name="ads_dynamic_theme_summary">रिसीवर द्वारा लागू रंग-रूप।</string>
+    <string name="ads_dynamic_color_summary">स्वचालित रंग के लिए कार्यान्वयन।</string>
     <string name="ads_theme">रंग-रूप</string>
     <string name="ads_theme_code">कोड</string>
     <string name="ads_theme_code_desc">रंग-रूप को स्कैन या साझा करें।</string>
