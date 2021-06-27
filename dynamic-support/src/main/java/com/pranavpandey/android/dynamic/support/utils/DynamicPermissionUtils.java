@@ -29,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
 import com.pranavpandey.android.dynamic.support.model.DynamicPermission;
@@ -115,6 +116,7 @@ public class DynamicPermissionUtils {
                 context.startActivity(intent);
                 return true;
             } catch (Exception ignored) {
+                Dynamic.showSnackbar(context, R.string.ads_error);
             }
         }
 
@@ -154,6 +156,7 @@ public class DynamicPermissionUtils {
             context.startActivity(intent);
             return true;
         } catch (Exception ignored) {
+            Dynamic.showSnackbar(context, R.string.ads_error);
         }
 
         return false;
