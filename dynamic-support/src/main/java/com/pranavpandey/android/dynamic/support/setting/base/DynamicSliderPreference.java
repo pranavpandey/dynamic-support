@@ -68,6 +68,11 @@ public class DynamicSliderPreference extends DynamicSpinnerPreference {
     public static final boolean DEFAULT_SEEK_CONTROLS = true;
 
     /**
+     * Default maximum threshold to enable tick.
+     */
+    public static final int DEFAULT_MAX_TICK_THRESHOLD = 25;
+
+    /**
      * Default value for this preference.
      */
     private int mDefaultValue;
@@ -390,7 +395,8 @@ public class DynamicSliderPreference extends DynamicSpinnerPreference {
      * @return {@code true} if slider tick mark are enabled.
      */
     public boolean isTickVisible() {
-        return mTickVisible && getSeekInterval() > DEFAULT_SEEK_INTERVAL;
+        return mTickVisible && (getSeekInterval() > DEFAULT_SEEK_INTERVAL
+                || (getMax() < DEFAULT_MAX_TICK_THRESHOLD));
     }
 
     /**
