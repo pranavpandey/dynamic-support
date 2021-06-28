@@ -73,17 +73,17 @@ public abstract class WallpaperColorsTask extends ContextTask<Void, Void, Map<In
                     getContext()).getWallpaperColors(WallpaperManager.FLAG_SYSTEM);
 
             if (wallpaperColors != null) {
-                if (wallpaperColors.getTertiaryColor() != null) {
+                if (wallpaperColors.getSecondaryColor() != null) {
                     colors.put(Theme.ColorType.BACKGROUND,
-                            wallpaperColors.getTertiaryColor().toArgb());
+                            wallpaperColors.getSecondaryColor().toArgb());
                 }
 
                 colors.put(Theme.ColorType.PRIMARY,
                         wallpaperColors.getPrimaryColor().toArgb());
 
-                if (wallpaperColors.getSecondaryColor() != null) {
+                if (wallpaperColors.getTertiaryColor() != null) {
                     colors.put(Theme.ColorType.ACCENT,
-                            wallpaperColors.getSecondaryColor().toArgb());
+                            wallpaperColors.getTertiaryColor().toArgb());
                 }
             }
         } else {
