@@ -64,6 +64,7 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.DynamicListView;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
 
@@ -506,6 +507,7 @@ class DynamicAlertController {
     }
 
     private void setupView() {
+        final View card = mWindow.findViewById(R.id.dialogRoot);
         final View parentPanel = mWindow.findViewById(R.id.parentPanel);
         final View defaultTopPanel = parentPanel.findViewById(R.id.topPanel);
         final View defaultContentPanel = parentPanel.findViewById(R.id.contentPanel);
@@ -513,6 +515,12 @@ class DynamicAlertController {
 
         // Make default drawable transparent as we are using card view as background.
         mWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        if (card instanceof DynamicWidget
+                && DynamicTheme.getInstance().get().isBackgroundAware()) {
+            Dynamic.setColor(card, DynamicTheme.getInstance()
+                    .generateSurfaceColor(((DynamicWidget) card).getColor()));
+        }
 
         // Install custom content before setting up the title or buttons so
         // that we can handle panel overrides.
