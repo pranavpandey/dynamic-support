@@ -49,7 +49,7 @@
     <!-- Labels -->
     <string name="ads_warning">Warning</string>
     <string name="ads_error">An error has occurred.</string>
-    <string name="ads_i_got_it">OK, Got it</string>
+    <string name="ads_i_got_it">Got it</string>
     <string name="ads_not_now">Not now</string>
     <string name="ads_later">Later</string>
     <string name="ads_yes_in">Yes, I\'m in</string>

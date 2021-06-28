@@ -49,7 +49,7 @@
     <!-- Labels -->
     <string name="ads_warning">Aviso</string>
     <string name="ads_error">Ocorreu um erro.</string>
-    <string name="ads_i_got_it">Ok, entendi</string>
+    <string name="ads_i_got_it">Entendi</string>
     <string name="ads_not_now">Agora não</string>
     <string name="ads_later">Mais tarde</string>
     <string name="ads_yes_in">Sim, conte comigo</string>

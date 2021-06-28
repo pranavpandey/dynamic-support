@@ -49,7 +49,7 @@
     <!-- Labels -->
     <string name="ads_warning">Предупреждение</string>
     <string name="ads_error">Произошла ошибка.</string>
-    <string name="ads_i_got_it">ОК, понятно</string>
+    <string name="ads_i_got_it">Понятно</string>
     <string name="ads_not_now">Не сейчас</string>
     <string name="ads_later">Позже</string>
     <string name="ads_yes_in">Да, я в игре</string>
