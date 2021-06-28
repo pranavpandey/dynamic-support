@@ -36,6 +36,7 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicSplashListener;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.splash.fragment.DynamicSplashFragment;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
@@ -100,8 +101,14 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
                     ((DynamicSplashFragment) mContentFragment).getBackgroundColor());
         }
 
-        setStatusBarColor(getStatusBarColor());
-        setNavigationBarColor(getNavigationBarColor());
+        if (DynamicTheme.getInstance().get().getPrimaryColorDark(false) == Theme.AUTO) {
+            setStatusBarColor(DynamicTheme.getInstance()
+                    .generateSystemColor(getBackgroundColor()));
+            setNavigationBarColor(getStatusBarColor());
+        } else {
+            setStatusBarColor(getStatusBarColor());
+            setNavigationBarColor(getNavigationBarColor());
+        }
 
         ((DynamicSplashFragment) mContentFragment).setOnSplashListener(this);
         commitFragmentTransaction(getSupportFragmentManager().beginTransaction()
@@ -149,7 +156,9 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
 
     @Override
     protected void onAppThemeChange() {
-        // Skip activity recreation on app theme change.
+        finish();
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
     }
 
     @Override

@@ -124,6 +124,10 @@ public class DynamicSplashFragment extends DynamicFragment {
      * @return The background color for this fragment.
      */
     public @ColorInt int getBackgroundColor() {
+        if (getActivity() instanceof DynamicSplashActivity) {
+            return ((DynamicSplashActivity) requireActivity()).getBackgroundColor();
+        }
+
         return DynamicTheme.getInstance().get().getPrimaryColor();
     }
 
