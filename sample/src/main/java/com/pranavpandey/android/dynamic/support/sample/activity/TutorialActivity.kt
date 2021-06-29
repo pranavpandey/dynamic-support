@@ -57,7 +57,7 @@ class TutorialActivity :
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
 
                 if (viewPagerAdapter!!.getTutorial(position) != null) {
-                    setTutorialAction(viewPagerAdapter!!.getTutorial(position).tutorialId)
+                    setTutorialAction(viewPagerAdapter!!.getTutorial(position)!!.tutorialId)
                 }
             }
 
@@ -65,7 +65,7 @@ class TutorialActivity :
                 super.onPageSelected(position)
 
                 if (viewPagerAdapter!!.getTutorial(position) != null) {
-                    setTutorialAction(viewPagerAdapter!!.getTutorial(position).tutorialId)
+                    setTutorialAction(viewPagerAdapter!!.getTutorial(position)!!.tutorialId)
                 }
             }
         })

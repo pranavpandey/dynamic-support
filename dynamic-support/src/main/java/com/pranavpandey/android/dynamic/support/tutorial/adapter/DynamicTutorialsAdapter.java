@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.tutorial.adapter;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -190,7 +191,11 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends Tutorial<T, V
      *
      * @return The tutorial at the supplied position.
      */
-    public Tutorial<T, V> getTutorial(int position) {
+    public @Nullable Tutorial<T, V> getTutorial(int position) {
+        if (position < 0) {
+            return null;
+        }
+
         return mData.get(position);
     }
 

@@ -751,7 +751,7 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
     public @NonNull Snackbar getSnackbar(@NonNull CharSequence text,
             @Snackbar.Duration int duration) {
         final Tutorial<T, V> tutorial = getTutorial(getCurrentPosition());
-        if (getCoordinatorLayout() != null && tutorial != null) {
+        if (tutorial != null && getCoordinatorLayout() != null) {
             return DynamicHintUtils.getSnackbar(getCoordinatorLayout(), text,
                     DynamicColorUtils.getTintColor(tutorial.getColor()),
                     tutorial.getColor(), duration, false);
