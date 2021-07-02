@@ -65,6 +65,7 @@
     <string name="widget_text_input_layout">Text Input Layout</string>
     <string name="widget_text_input_layout_outlined">Text Input Layout Outlined</string>
     <string name="widget_progress">Progress</string>
+    <string name="widget_rating">Rating</string>
     <string name="widget_slider">Slider</string>
     <string name="widget_spinner">Spinner</string>
     <string name="widget_icon">Icon</string>

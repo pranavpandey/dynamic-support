@@ -375,15 +375,6 @@
                             app:adt_colorType="primary"
                             app:adt_contrastWithColorType="surface" />
 
-<!--                        <com.pranavpandey.android.dynamic.support.widget.DynamicRatingBar-->
-<!--                            style="?attr/ratingBarStyle"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_gravity="center"-->
-<!--                            android:numStars="5"-->
-<!--                            android:stepSize="1"-->
-<!--                            app:adt_contrastWithColorType="surface" />-->
-
                     </LinearLayout>
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
@@ -410,6 +401,53 @@
                         app:adt_contrastWithColorType="surface" />
 
                 </LinearLayout>
+
+            </LinearLayout>
+
+        </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+            style="@style/Widget.DynamicApp.Card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.pranavpandey.android.dynamic.support.view.DynamicHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_title="@string/widget_rating"/>
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicRatingBar
+                    style="?attr/ratingBarStyleIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:numStars="5"
+                    android:stepSize="1"
+                    android:rating="3"
+                    app:adt_contrastWithColorType="surface" />
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicRatingBar
+                    style="?attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:numStars="5"
+                    android:stepSize="1"
+                    android:rating="5"
+                    app:adt_colorType="primary"
+                    app:adt_contrastWithColorType="surface" />
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicRatingBar
+                    style="?attr/ratingBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:numStars="5"
+                    android:stepSize="1"
+                    app:adt_contrastWithColorType="surface" />
 
             </LinearLayout>
 
