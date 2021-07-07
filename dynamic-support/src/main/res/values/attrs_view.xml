@@ -58,16 +58,15 @@
 
     <!-- Attributes for the DynamicInfoView. -->
     <declare-styleable name="DynamicInfoView">
-        <!-- Color type for the info layout. -->
+        <!-- Inherited attributes from the parent view. -->
         <attr name="adt_colorType" />
-        <!-- Contrast with color type for the info layout. -->
         <attr name="adt_contrastWithColorType" />
-        <!-- Color for the item layout. -->
         <attr name="adt_color" />
-        <!-- Contrast with color for the info layout. -->
         <attr name="adt_contrastWithColor" />
-        <!-- Background aware options for the info layout. -->
         <attr name="adt_backgroundAware" />
+        <attr name="adt_tintBackground" />
+        <attr name="adt_styleBorderless" />
+        <!-- Inherited attributes from the info. -->
         <attr name="ads_icon" />
         <attr name="ads_title" />
         <attr name="ads_subtitle" />
@@ -83,16 +82,14 @@
 
     <!-- Attributes for the DynamicItemView. -->
     <declare-styleable name="DynamicItemView">
-        <!-- Color type for the item layout. -->
+        <!-- Inherited attributes from the parent view. -->
         <attr name="adt_colorType" />
-        <!-- Contrast with color type for the item layout. -->
         <attr name="adt_contrastWithColorType" />
-        <!-- Color for the item layout. -->
         <attr name="adt_color" />
-        <!-- Contrast with color for the item layout. -->
         <attr name="adt_contrastWithColor" />
-        <!-- Background aware options for the item layout. -->
         <attr name="adt_backgroundAware" />
+        <attr name="adt_tintBackground" />
+        <!-- Inherited attributes from the info. -->
         <attr name="ads_icon" />
         <attr name="ads_title" />
         <attr name="ads_subtitle" />
@@ -123,10 +120,12 @@
     <declare-styleable name="DynamicColorView">
         <!-- Inherited attributes from the parent view. -->
         <attr name="adt_colorType" />
-        <attr name="adt_color" />
         <attr name="adt_contrastWithColorType" />
+        <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_tintBackground" />
+        <attr name="adt_styleBorderless" />
         <!-- Shape options for the dynamic color view. -->
         <attr name="ads_shape" format="enum">
             <!-- Constant for the circle color shape. -->
@@ -156,12 +155,14 @@
 
     <!-- Attributes for the DynamicPreference. -->
     <declare-styleable name="DynamicPreference">
-        <!-- Contrast with color type for the preference layout. -->
+        <!-- Inherited attributes from the parent view. -->
+        <attr name="adt_colorType" />
         <attr name="adt_contrastWithColorType" />
-        <!-- Contrast with color for the preference layout. -->
+        <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
-        <!-- Background aware options for the preference layout. -->
         <attr name="adt_backgroundAware" />
+        <attr name="adt_tintBackground" />
+        <attr name="adt_styleBorderless" />
         <!-- Drawable that will be applied to this preference. -->
         <attr name="ads_icon" />
         <!-- Title that will be applied to this preference. -->

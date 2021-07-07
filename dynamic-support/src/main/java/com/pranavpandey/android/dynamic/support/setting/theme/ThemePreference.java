@@ -137,6 +137,7 @@ public abstract class ThemePreference<T extends DynamicAppTheme>
         mDynamicTheme = getDynamicTheme(getTheme());
 
         if (getDynamicTheme() != null) {
+            mTheme = getDynamicTheme().toJsonString();
             getThemePreview().setDynamicTheme(getDynamicTheme());
             Dynamic.setVisibility(getThemePreviewDescription(),
                     getDynamicTheme().isBackgroundAware() ? VISIBLE : GONE);
@@ -147,12 +148,9 @@ public abstract class ThemePreference<T extends DynamicAppTheme>
     protected void onEnabled(boolean enabled) {
         super.onEnabled(enabled);
 
-        Dynamic.setEnabled(getThemePreview(),
-                enabled && isThemePreviewEnabled());
-        Dynamic.setEnabled(getThemePreviewIcon(),
-                enabled && isThemePreviewEnabled());
-        Dynamic.setEnabled(getThemePreviewDescription(),
-                enabled && isThemePreviewEnabled());
+        Dynamic.setEnabled(getThemePreview(), enabled && isThemePreviewEnabled());
+        Dynamic.setEnabled(getThemePreviewIcon(), enabled && isThemePreviewEnabled());
+        Dynamic.setEnabled(getThemePreviewDescription(), enabled && isThemePreviewEnabled());
     }
 
     @Override

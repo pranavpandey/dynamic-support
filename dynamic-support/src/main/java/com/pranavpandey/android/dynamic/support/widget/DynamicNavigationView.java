@@ -60,91 +60,91 @@ public class DynamicNavigationView extends NavigationView
      *
      * @see Theme.ColorType
      */
-    private @Theme.ColorType int mColorType;
+    protected @Theme.ColorType int mColorType;
 
     /**
      * Color type applied to the background of this view.
      *
      * @see Theme.ColorType
      */
-    private @Theme.ColorType int mBackgroundColorType;
+    protected @Theme.ColorType int mBackgroundColorType;
 
     /**
      * Scroll bar color type applied to this view.
      *
      * @see Theme.ColorType
      */
-    private @Theme.ColorType int mScrollBarColorType;
+    protected @Theme.ColorType int mScrollBarColorType;
 
     /**
      * Normal item color type applied to this view.
      *
      * @see Theme.ColorType
      */
-    private @Theme.ColorType int mStateNormalColorType;
+    protected @Theme.ColorType int mStateNormalColorType;
 
     /**
      * Selected item color type applied to this view.
      *
      * @see Theme.ColorType
      */
-    private @Theme.ColorType int mStateSelectedColorType;
+    protected @Theme.ColorType int mStateSelectedColorType;
 
     /**
      * Background color type for this view so that it will remain in contrast with this
      * color type.
      */
-    private @Theme.ColorType int mContrastWithColorType;
+    protected @Theme.ColorType int mContrastWithColorType;
 
     /**
      * Color applied to this view.
      */
-    private @ColorInt int mColor;
+    protected @ColorInt int mColor;
 
     /**
      * Color applied to this view after considering the background aware properties.
      */
-    private @ColorInt int mAppliedColor;
+    protected @ColorInt int mAppliedColor;
 
     /**
      * Background color applied to this view.
      */
-    private @ColorInt int mBackgroundColor;
+    protected @ColorInt int mBackgroundColor;
 
     /**
      * Scroll bar color applied to this view.
      */
-    private @ColorInt int mScrollBarColor;
+    protected @ColorInt int mScrollBarColor;
 
     /**
      * Scroll bar color applied to this view after considering the background aware properties.
      */
-    private @ColorInt int mAppliedScrollBarColor;
+    protected @ColorInt int mAppliedScrollBarColor;
 
     /**
      * Normal item color applied to this view.
      */
-    private @ColorInt int mStateNormalColor;
+    protected @ColorInt int mStateNormalColor;
 
     /**
      * Normal item color applied to this view after considering the background aware properties.
      */
-    private @ColorInt int mAppliedStateNormalColor;
+    protected @ColorInt int mAppliedStateNormalColor;
 
     /**
      * Selected item color applied to this view.
      */
-    private @ColorInt int mStateSelectedColor;
+    protected @ColorInt int mStateSelectedColor;
 
     /**
      * Selected item color applied to this view after considering the background aware properties.
      */
-    private @ColorInt int mAppliedStateSelectedColor;
+    protected @ColorInt int mAppliedStateSelectedColor;
 
     /**
      * Background color for this view so that it will remain in contrast with this color.
      */
-    private @ColorInt int mContrastWithColor;
+    protected @ColorInt int mContrastWithColor;
 
     /**
      * The background aware functionality to change this view color according to the background.
@@ -159,7 +159,7 @@ public class DynamicNavigationView extends NavigationView
      * @see Theme.BackgroundAware
      * @see #mContrastWithColor
      */
-    private @Theme.BackgroundAware int mBackgroundAware;
+    protected @Theme.BackgroundAware int mBackgroundAware;
 
     public DynamicNavigationView(@NonNull Context context) {
         this(context, null);

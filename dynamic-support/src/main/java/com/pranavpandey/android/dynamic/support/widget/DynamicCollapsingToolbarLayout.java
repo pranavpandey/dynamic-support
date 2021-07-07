@@ -44,7 +44,7 @@ public class DynamicCollapsingToolbarLayout extends CollapsingToolbarLayout
     /**
      * {@code true} if dynamic RTL support is enabled for this widget.
      */
-    private boolean mRtlSupport;
+    protected boolean mRtlSupport;
 
     public DynamicCollapsingToolbarLayout(@NonNull Context context) {
         this(context, null);

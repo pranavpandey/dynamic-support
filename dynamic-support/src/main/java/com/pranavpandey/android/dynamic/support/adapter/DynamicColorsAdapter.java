@@ -279,6 +279,26 @@ public class DynamicColorsAdapter extends BaseAdapter {
     }
 
     /**
+     * Returns the contrast with color used by the swatches.
+     *
+     * @return The contrast with color used by the swatches.
+     */
+    public @ColorInt int getContrastWithColor() {
+        return mContrastWithColor;
+    }
+
+    /**
+     * Sets the contrast with color used by the swatches.
+     *
+     * @param contrastWithColor The contrast with color to be set.
+     */
+    public void setContrastWithColor(@ColorInt int contrastWithColor) {
+        this.mContrastWithColor = contrastWithColor;
+
+        notifyDataSetChanged();
+    }
+
+    /**
      * View holder class to hold the color view.
      */
     static class ViewHolder {
@@ -302,7 +322,7 @@ public class DynamicColorsAdapter extends BaseAdapter {
          *
          * @return The color view to display color on the adapter view.
          */
-        DynamicColorView getDynamicColorView() {
+        @NonNull DynamicColorView getDynamicColorView() {
             return dynamicColorView;
         }
     }

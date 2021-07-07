@@ -48,45 +48,45 @@ public class DynamicNestedScrollView extends NestedScrollView
      *
      * @see Theme.ColorType
      */
-    private @Theme.ColorType int mColorType;
+    protected @Theme.ColorType int mColorType;
 
     /**
      * Scroll bar color type applied to this view.
      *
      * @see Theme.ColorType
      */
-    private @Theme.ColorType int mScrollBarColorType;
+    protected @Theme.ColorType int mScrollBarColorType;
 
     /**
      * Background color type for this view so that it will remain in contrast with this
      * color type.
      */
-    private @Theme.ColorType int mContrastWithColorType;
+    protected @Theme.ColorType int mContrastWithColorType;
 
     /**
      * Color applied to this view.
      */
-    private @ColorInt int mColor;
+    protected @ColorInt int mColor;
 
     /**
      * Color applied to this view after considering the background aware properties.
      */
-    private @ColorInt int mAppliedColor;
+    protected @ColorInt int mAppliedColor;
 
     /**
      * Scroll bar color applied to this view.
      */
-    private @ColorInt int mScrollBarColor;
+    protected @ColorInt int mScrollBarColor;
 
     /**
      * Scroll bar color applied to this view after considering the background aware properties.
      */
-    private @ColorInt int mAppliedScrollBarColor;
+    protected @ColorInt int mAppliedScrollBarColor;
 
     /**
      * Background color for this view so that it will remain in contrast with this color.
      */
-    private @ColorInt int mContrastWithColor;
+    protected @ColorInt int mContrastWithColor;
 
     /**
      * The background aware functionality to change this view color according to the background.
@@ -101,7 +101,7 @@ public class DynamicNestedScrollView extends NestedScrollView
      * @see Theme.BackgroundAware
      * @see #mContrastWithColor
      */
-    private @Theme.BackgroundAware int mBackgroundAware;
+    protected @Theme.BackgroundAware int mBackgroundAware;
 
     public DynamicNestedScrollView(@NonNull Context context) {
         this(context, null);

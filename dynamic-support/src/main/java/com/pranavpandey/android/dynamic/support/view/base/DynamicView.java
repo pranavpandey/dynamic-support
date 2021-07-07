@@ -19,7 +19,6 @@ package com.pranavpandey.android.dynamic.support.view.base;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.FrameLayout;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.LayoutRes;
@@ -27,35 +26,32 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.Dynamic;
+import com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout;
+import com.pranavpandey.android.dynamic.theme.Theme;
+import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * A FrameLayout with basic functionality to create views according to the need.
+ * A {@link DynamicFrameLayout} with basic functionality to create views according to the need.
  */
-public abstract class DynamicView extends FrameLayout {
+public abstract class DynamicView extends DynamicFrameLayout {
 
     public DynamicView(@NonNull Context context) {
-        this(context, null);
+        super(context);
     }
 
     public DynamicView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-
-        loadFromAttributes(attrs);
     }
 
     public DynamicView(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-        loadFromAttributes(attrs);
     }
 
-    /**
-     * Load values from the supplied attribute set.
-     *
-     * @param attrs The supplied attribute set to load the values.
-     */
+    @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
+        super.loadFromAttributes(attrs);
+
         onLoadAttributes(attrs);
         onInflate();
     }
@@ -164,5 +160,23 @@ public abstract class DynamicView extends FrameLayout {
         super.setOnLongClickListener(l);
 
         Dynamic.setOnLongClickListener(getBackgroundView(), l);
+    }
+
+    @Override
+    public void setColor() {
+        if (mColor != Theme.Color.UNKNOWN) {
+            mAppliedColor = mColor;
+            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
+                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+            }
+        }
+
+        if (getBackground() != null) {
+            getBackground().clearColorFilter();
+
+            if (isTintBackground()) {
+                Dynamic.tintBackground(this, getContrastWithColor(), isStyleBorderless());
+            }
+        }
     }
 }

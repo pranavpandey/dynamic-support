@@ -57,42 +57,6 @@ import java.util.List;
 public class DynamicInfoView extends DynamicView implements DynamicWidget {
 
     /**
-     * Icon tint color type used by this view.
-     */
-    private @Theme.ColorType int mColorType;
-
-    /**
-     * Background color type for this view so that it will remain in contrast with this
-     * color type.
-     */
-    private @Theme.ColorType int mContrastWithColorType;
-
-    /**
-     * Icon tint color used by this view.
-     */
-    private @ColorInt int mColor;
-
-    /**
-     * Background color for this view so that it will remain in contrast with this color.
-     */
-    private @ColorInt int mContrastWithColor;
-
-    /**
-     * The background aware functionality to change this view color according to the background.
-     * It was introduced to provide better legibility for colored views and to avoid dark view
-     * on dark background like situations.
-     *
-     * <p>If this is enabled then, it will check for the contrast color and do color
-     * calculations according to that color so that this text view will always be visible on
-     * that background. If no contrast color is found then, it will take the default
-     * background color.
-     *
-     * @see Theme.BackgroundAware
-     * @see #mContrastWithColor
-     */
-    private @Theme.BackgroundAware int mBackgroundAware;
-
-    /**
      * Icon used by this view.
      */
     private Drawable mIcon;
@@ -277,6 +241,8 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
         } finally {
             a.recycle();
         }
+
+        initialize();
     }
 
     @Override
@@ -306,84 +272,9 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
     }
 
     @Override
-    public void initialize() {
-        onUpdate();
-    }
-
-    @Override
-    public @Theme.ColorType int getColorType() {
-        return mColorType;
-    }
-
-    @Override
-    public void setColorType(@Theme.ColorType int colorType) {
-        this.mColorType = colorType;
-
-        initialize();
-    }
-
-    @Override
-    public @Theme.ColorType int getContrastWithColorType() {
-        return mContrastWithColorType;
-    }
-
-    @Override
-    public void setContrastWithColorType(@Theme.ColorType int contrastWithColorType) {
-        this.mContrastWithColorType = contrastWithColorType;
-
-        initialize();
-    }
-
-    @Override
-    public @ColorInt int getColor(boolean resolve) {
-        return mColor;
-    }
-
-    @Override
-    public @ColorInt int getColor() {
-        return getColor(true);
-    }
-
-    @Override
-    public void setColor(@ColorInt int color) {
-        this.mColorType = Theme.ColorType.CUSTOM;
-        this.mColor = color;
-
-        setColor();
-    }
-
-    @Override
-    public @ColorInt int getContrastWithColor() {
-        return mContrastWithColor;
-    }
-
-    @Override
-    public void setContrastWithColor(@ColorInt int contrastWithColor) {
-        this.mContrastWithColorType = Theme.ColorType.CUSTOM;
-        this.mContrastWithColor = contrastWithColor;
-
-        initialize();
-    }
-
-    @Override
-    public @Theme.BackgroundAware int getBackgroundAware() {
-        return mBackgroundAware;
-    }
-
-    @Override
-    public boolean isBackgroundAware() {
-        return Dynamic.isBackgroundAware(this);
-    }
-
-    @Override
-    public void setBackgroundAware(@Theme.BackgroundAware int backgroundAware) {
-        this.mBackgroundAware = backgroundAware;
-
-        initialize();
-    }
-
-    @Override
     public void setColor() {
+        super.setColor();
+
         Dynamic.setContrastWithColorTypeOrColor(getInfoView(),
                 getContrastWithColorType(), getContrastWithColor());
         Dynamic.setContrastWithColorTypeOrColor(getIconView(),

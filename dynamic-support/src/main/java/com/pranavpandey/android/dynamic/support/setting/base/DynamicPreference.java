@@ -29,7 +29,6 @@ import android.widget.TextView;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.CallSuper;
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
@@ -99,32 +98,6 @@ public abstract class DynamicPreference extends DynamicView
          */
         boolean onDialog();
     }
-
-    /**
-     * Background color type for this view so that it will remain in contrast with this
-     * color type.
-     */
-    private @Theme.ColorType int mContrastWithColorType;
-
-    /**
-     * Background color for this view so that it will remain in contrast with this color.
-     */
-    private @ColorInt int mContrastWithColor;
-
-    /**
-     * The background aware functionality to change this view color according to the background.
-     * It was introduced to provide better legibility for colored views and to avoid dark view
-     * on dark background like situations.
-     *
-     * <p>If this is enabled then, it will check for the contrast color and do color
-     * calculations according to that color so that this text view will always be visible on
-     * that background. If no contrast color is found then, it will take the default
-     * background color.
-     *
-     * @see Theme.BackgroundAware
-     * @see #mContrastWithColor
-     */
-    private @Theme.BackgroundAware int mBackgroundAware;
 
     /**
      * Default value for the enabled state.
@@ -297,74 +270,9 @@ public abstract class DynamicPreference extends DynamicView
     }
 
     @Override
-    public @Theme.ColorType int getColorType() {
-        return Theme.ColorType.NONE;
-    }
-
-    @Override
-    public void setColorType(@Theme.ColorType int colorType) {
-        initialize();
-    }
-
-    @Override
-    public @Theme.ColorType int getContrastWithColorType() {
-        return mContrastWithColorType;
-    }
-
-    @Override
-    public void setContrastWithColorType(@Theme.ColorType int contrastWithColorType) {
-        this.mContrastWithColorType = contrastWithColorType;
-
-        initialize();
-    }
-
-    @Override
-    public @ColorInt int getColor(boolean resolve) {
-        return Theme.Color.UNKNOWN;
-    }
-
-    @Override
-    public @ColorInt int getColor() {
-        return getColor(true);
-    }
-
-    @Override
-    public void setColor(@ColorInt int color) {
-        setColor();
-    }
-
-    @Override
-    public @ColorInt int getContrastWithColor() {
-        return mContrastWithColor;
-    }
-
-    @Override
-    public void setContrastWithColor(@ColorInt int contrastWithColor) {
-        this.mContrastWithColorType = Theme.ColorType.CUSTOM;
-        this.mContrastWithColor = contrastWithColor;
-
-        setColor();
-    }
-
-    @Override
-    public @Theme.BackgroundAware int getBackgroundAware() {
-        return mBackgroundAware;
-    }
-
-    @Override
-    public boolean isBackgroundAware() {
-        return Dynamic.isBackgroundAware(this);
-    }
-
-    @Override
-    public void setBackgroundAware(@Theme.BackgroundAware int backgroundAware) {
-        this.mBackgroundAware = backgroundAware;
-
-        setColor();
-    }
-
-    @Override
     public void setColor() {
+        super.setColor();
+
         Dynamic.setContrastWithColorTypeOrColor(getPreferenceView(),
                 getContrastWithColorType(), getContrastWithColor());
         Dynamic.setBackgroundAwareSafe(getPreferenceView(), getBackgroundAware());

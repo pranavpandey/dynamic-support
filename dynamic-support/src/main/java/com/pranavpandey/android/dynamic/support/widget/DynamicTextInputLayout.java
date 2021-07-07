@@ -51,45 +51,45 @@ public class DynamicTextInputLayout extends TextInputLayout implements DynamicWi
      *
      * @see Theme.ColorType
      */
-    private @Theme.ColorType int mColorType;
+    protected @Theme.ColorType int mColorType;
 
     /**
      * Error color type applied to this view.
      *
      * @see Theme.ColorType
      */
-    private @Theme.ColorType int mErrorColorType;
+    protected @Theme.ColorType int mErrorColorType;
 
     /**
      * Background color type for this view so that it will remain in contrast with this
      * color type.
      */
-    private @Theme.ColorType int mContrastWithColorType;
+    protected @Theme.ColorType int mContrastWithColorType;
 
     /**
      * Color applied to this view.
      */
-    private @ColorInt int mColor;
+    protected @ColorInt int mColor;
 
     /**
      * Color applied to this view after considering the background aware properties.
      */
-    private @ColorInt int mAppliedColor;
+    protected @ColorInt int mAppliedColor;
 
     /**
      * Error color applied to this view.
      */
-    private @ColorInt int mErrorColor;
+    protected @ColorInt int mErrorColor;
 
     /**
      * Error color applied to this view after considering the background aware properties.
      */
-    private @ColorInt int mAppliedErrorColor;
+    protected @ColorInt int mAppliedErrorColor;
 
     /**
      * Background color for this view so that it will remain in contrast with this color.
      */
-    private @ColorInt int mContrastWithColor;
+    protected @ColorInt int mContrastWithColor;
 
     /**
      * The background aware functionality to change this view color according to the background.
@@ -104,7 +104,7 @@ public class DynamicTextInputLayout extends TextInputLayout implements DynamicWi
      * @see Theme.BackgroundAware
      * @see #mContrastWithColor
      */
-    private @Theme.BackgroundAware int mBackgroundAware;
+    protected @Theme.BackgroundAware int mBackgroundAware;
 
     /**
      * Internal text view used by this view.

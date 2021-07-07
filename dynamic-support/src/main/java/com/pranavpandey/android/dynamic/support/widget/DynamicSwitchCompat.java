@@ -46,43 +46,43 @@ public class DynamicSwitchCompat extends SwitchMaterial implements DynamicStateW
      *
      * @see Theme.ColorType
      */
-    private @Theme.ColorType int mColorType;
+    protected @Theme.ColorType int mColorType;
 
     /**
      * Background color type for this view so that it will remain in contrast with this
      * color type.
      */
-    private @Theme.ColorType int mContrastWithColorType;
+    protected @Theme.ColorType int mContrastWithColorType;
 
     /**
      * Normal state color type for this view.
      */
-    private @Theme.ColorType int mStateNormalColorType;
+    protected @Theme.ColorType int mStateNormalColorType;
 
     /**
      * Color applied to this view.
      */
-    private @ColorInt int mColor;
+    protected @ColorInt int mColor;
 
     /**
      * Color applied to this view after considering the background aware properties.
      */
-    private @ColorInt int mAppliedColor;
+    protected @ColorInt int mAppliedColor;
 
     /**
      * Background color for this view so that it will remain in contrast with this color.
      */
-    private @ColorInt int mContrastWithColor;
+    protected @ColorInt int mContrastWithColor;
 
     /**
      * Normal state color applied to this view.
      */
-    private @ColorInt int mStateNormalColor;
+    protected @ColorInt int mStateNormalColor;
 
     /**
      * Normal state color applied to this view after considering the background aware properties.
      */
-    private @ColorInt int mAppliedStateNormalColor;
+    protected @ColorInt int mAppliedStateNormalColor;
 
     /**
      * The background aware functionality to change this view color according to the background.
@@ -97,7 +97,7 @@ public class DynamicSwitchCompat extends SwitchMaterial implements DynamicStateW
      * @see Theme.BackgroundAware
      * @see #mContrastWithColor
      */
-    private @Theme.BackgroundAware int mBackgroundAware;
+    protected @Theme.BackgroundAware int mBackgroundAware;
 
     public DynamicSwitchCompat(@NonNull Context context) {
         this(context, null);

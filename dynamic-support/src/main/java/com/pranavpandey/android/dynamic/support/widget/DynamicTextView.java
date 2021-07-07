@@ -54,45 +54,45 @@ public class DynamicTextView extends MaterialTextView implements DynamicWidget,
      *
      * @see Theme.ColorType
      */
-    private @Theme.ColorType int mColorType;
+    protected @Theme.ColorType int mColorType;
 
     /**
      * Link color type applied to this view.
      *
      * @see Theme.ColorType
      */
-    private @Theme.ColorType int mLinkColorType;
+    protected @Theme.ColorType int mLinkColorType;
 
     /**
      * Background color type for this view so that it will remain in contrast with this
      * color type.
      */
-    private @Theme.ColorType int mContrastWithColorType;
+    protected @Theme.ColorType int mContrastWithColorType;
 
     /**
      * Color applied to this view.
      */
-    private @ColorInt int mColor;
+    protected @ColorInt int mColor;
 
     /**
      * Color applied to this view after considering the background aware properties.
      */
-    private @ColorInt int mAppliedColor;
+    protected @ColorInt int mAppliedColor;
 
     /**
      * Link color applied to this view.
      */
-    private @ColorInt int mLinkColor;
+    protected @ColorInt int mLinkColor;
 
     /**
      * Link color applied to this view after considering the background aware properties.
      */
-    private @ColorInt int mAppliedLinkColor;
+    protected @ColorInt int mAppliedLinkColor;
 
     /**
      * Background color for this view so that it will remain in contrast with this color.
      */
-    private @ColorInt int mContrastWithColor;
+    protected @ColorInt int mContrastWithColor;
 
     /**
      * The background aware functionality to change this view color according to the background.
@@ -107,22 +107,22 @@ public class DynamicTextView extends MaterialTextView implements DynamicWidget,
      * @see Theme.BackgroundAware
      * @see #mContrastWithColor
      */
-    private @Theme.BackgroundAware int mBackgroundAware;
+    protected @Theme.BackgroundAware int mBackgroundAware;
 
     /**
      * Original text appearance attribute resource.
      */
-    private @AttrRes int mAppearanceAttrRes;
+    protected @AttrRes int mAppearanceAttrRes;
 
     /**
      * Original text color attribute resource.
      */
-    private @AttrRes int mColorAttrRes;
+    protected @AttrRes int mColorAttrRes;
 
     /**
      * {@code true} if dynamic RTL support is enabled for this widget.
      */
-    private boolean mRtlSupport;
+    protected boolean mRtlSupport;
 
     public DynamicTextView(@NonNull Context context) {
         this(context, null);
@@ -358,11 +358,7 @@ public class DynamicTextView extends MaterialTextView implements DynamicWidget,
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
-        if (mColorType != Theme.ColorType.NONE) {
-            setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
-        } else {
-            setAlpha(Defaults.ADS_ALPHA_ENABLED);
-        }
+        setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
     }
 
     @Override

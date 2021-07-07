@@ -572,7 +572,7 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
          *
          * @return The item view root.
          */
-        ViewGroup getRoot() {
+        @NonNull ViewGroup getRoot() {
             return root;
         }
 
@@ -581,7 +581,7 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
          *
          * @return The image view to show the icon.
          */
-        ImageView getIcon() {
+        @Nullable ImageView getIcon() {
             return icon;
         }
 
@@ -590,7 +590,7 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
          *
          * @return The text view to display the title.
          */
-        TextView getTitle() {
+        @Nullable TextView getTitle() {
             return title;
         }
 
@@ -599,7 +599,7 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
          *
          * @return The text view to display the subtitle.
          */
-        TextView getSubtitle() {
+        @Nullable TextView getSubtitle() {
             return subtitle;
         }
 
@@ -608,7 +608,7 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
          *
          * @return The image view to show the selected item.
          */
-        ImageView getSelector() {
+        @Nullable ImageView getSelector() {
             return selector;
         }
     }
