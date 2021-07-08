@@ -45,6 +45,16 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 public class DynamicPickerUtils {
 
     /**
+     * Returns the hue colors.
+     *
+     * @return The hue colors.
+     */
+    public static @NonNull int[] getHueColors() {
+        return new int[] { 0xFFFF0000, 0xFFFFFF00, 0xFF00FF00,
+                0xFF00FFFF, 0xFF0000FF, 0xFFFF00FF, 0xFFFF0000 };
+    }
+
+    /**
      * Returns the hue gradient.
      *
      * @param width The gradient width.
@@ -54,9 +64,7 @@ public class DynamicPickerUtils {
      */
     public static @NonNull LinearGradient getHueGradient(float width, float height) {
         return new LinearGradient(0.0f, 0.0f, width, height,
-                new int[] { 0xFFFF0000, 0xFFFFFF00, 0xFF00FF00,
-                        0xFF00FFFF, 0xFF0000FF, 0xFFFF00FF, 0xFFFF0000 },
-                null, Shader.TileMode.CLAMP);
+                getHueColors(), null, Shader.TileMode.CLAMP);
     }
 
     /**

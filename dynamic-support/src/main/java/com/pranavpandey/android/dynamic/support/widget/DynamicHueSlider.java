@@ -20,28 +20,27 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.LinearGradient;
 import android.graphics.Rect;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RectShape;
+import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 
-import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
+import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
 
 /**
  * A {@link DynamicSlider} to provide a hue bar for the color picker.
  */
 public class DynamicHueSlider extends DynamicSlider {
 
-    private ShapeDrawable mHueDrawable;
+    private GradientDrawable mHueDrawable;
 
     public DynamicHueSlider(@NonNull Context context) {
-        this(context, null);
+        super(context);
     }
 
     public DynamicHueSlider(@NonNull Context context, @Nullable AttributeSet attrs) {
@@ -57,14 +56,23 @@ public class DynamicHueSlider extends DynamicSlider {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
-        Rect bounds = new Rect(getTrackSidePadding(), 0,
+        final Rect bounds = new Rect(getTrackSidePadding(), 0,
                 getTrackWidth() + getTrackSidePadding(), h);
-        bounds.inset(0, (int) ((bounds.height() - getTrackHeight()) * Defaults.ADS_INSET_HUE));
+        mHueDrawable = new GradientDrawable(ViewCompat.getLayoutDirection(this)
+                == ViewCompat.LAYOUT_DIRECTION_RTL ? GradientDrawable.Orientation.RIGHT_LEFT
+                : GradientDrawable.Orientation.LEFT_RIGHT, DynamicPickerUtils.getHueColors());
 
-        LinearGradient gradient = DynamicPickerUtils.getHueGradient(
-                bounds.width(), bounds.height());
-        mHueDrawable = new ShapeDrawable(new RectShape());
-        mHueDrawable.getPaint().setShader(gradient);
+        if (DynamicSdkUtils.is18()) {
+            bounds.inset((int) -(getTrackSidePadding() / 8f),
+                    (int) ((bounds.height() - getTrackHeight()) / 2f));
+            mHueDrawable.setCornerRadius(bounds.height() / 2f);
+        } else {
+            bounds.inset(0, (int) ((bounds.height() - getTrackHeight()) / 2f));
+        }
+
+        mHueDrawable.setShape(GradientDrawable.RECTANGLE);
+        mHueDrawable.setGradientType(GradientDrawable.LINEAR_GRADIENT);
+        mHueDrawable.setSize(bounds.width(), bounds.height());
         mHueDrawable.setBounds(bounds);
     }
 
