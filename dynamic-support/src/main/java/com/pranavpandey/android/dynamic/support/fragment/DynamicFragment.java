@@ -79,6 +79,7 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
         onApplyTransitions(false);
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -90,12 +91,11 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
         }
 
         if (isSupportActionBar()) {
+            requireActivity().setTitle(getTitle());
+
             if (getActivity() instanceof DynamicActivity) {
-                ((DynamicActivity) requireActivity()).setTitle(getTitle());
                 ((DynamicActivity) requireActivity()).setSubtitle(getSubtitle());
             } else {
-                ((AppCompatActivity) requireActivity())
-                        .getSupportActionBar().setTitle(getTitle());
                 ((AppCompatActivity) requireActivity())
                         .getSupportActionBar().setSubtitle(getSubtitle());
             }
@@ -345,8 +345,8 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
      * @return The title used by the parent activity.
      */
     protected @Nullable CharSequence getTitle() {
-        if (isSupportActionBar()) {
-            return ((AppCompatActivity) requireActivity()).getSupportActionBar().getTitle();
+        if (getActivity() != null) {
+            return requireActivity().getTitle();
         }
 
         return null;
@@ -357,6 +357,7 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
      *
      * @return The subtitle used by the parent activity.
      */
+    @SuppressWarnings("ConstantConditions")
     protected @Nullable CharSequence getSubtitle() {
         if (isSupportActionBar()) {
             return ((AppCompatActivity) requireActivity()).getSupportActionBar().getSubtitle();
