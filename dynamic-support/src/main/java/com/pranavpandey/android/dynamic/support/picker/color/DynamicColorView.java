@@ -45,6 +45,7 @@ import androidx.core.content.ContextCompat;
 
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.graphics.DynamicPaint;
 import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout;
@@ -171,10 +172,11 @@ public class DynamicColorView extends DynamicFrameLayout {
 
         mAlphaPaint = DynamicPickerUtils.getAlphaPatternPaint(
                 DynamicUnitUtils.convertDpToPixels(4));
-        mColorPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mColorStrokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mSelectorPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mRectF = new RectF(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        mColorPaint = new DynamicPaint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
+        mColorStrokePaint = new DynamicPaint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
+        mSelectorPaint = new DynamicPaint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
+        mRectF = new RectF(getPaddingLeft(), getPaddingTop(),
+                getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
 
         mColorPaint.setStyle(Paint.Style.FILL);
         mColorStrokePaint.setStyle(Paint.Style.STROKE);
@@ -219,10 +221,10 @@ public class DynamicColorView extends DynamicFrameLayout {
             mColorPaint.setColor(getContrastWithColor());
             mColorStrokePaint.setColor(DynamicColorUtils.removeAlpha(tintColor));
 
-            if (getMeasuredWidth() > 0) {
-                RadialGradient gradient = new RadialGradient(
-                        getMeasuredWidth() / 2f, getMeasuredWidth() / 2f,
-                        getMeasuredWidth(), new int[] { getContrastWithColor(), tintColor },
+            if (getWidth() > 0 && getHeight() > 0) {
+                RadialGradient gradient = new RadialGradient(getWidth() / 2f,
+                        getHeight() / 2f, Math.max(getWidth(), getHeight()),
+                        new int[] { getContrastWithColor(), tintColor },
                         null, Shader.TileMode.CLAMP);
                 mColorPaint.setShader(gradient);
             }
@@ -246,6 +248,7 @@ public class DynamicColorView extends DynamicFrameLayout {
                 mSelectorPaint.getColor(), PorterDuff.Mode.SRC_ATOP));
     }
 
+    @SuppressWarnings("SuspiciousNameCombination")
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         if (mColorShape != DynamicColorShape.RECTANGLE) {
@@ -257,19 +260,21 @@ public class DynamicColorView extends DynamicFrameLayout {
         }
     }
 
+    @SuppressWarnings("SuspiciousNameCombination")
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
-        mRectF.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        mRectF.set(getPaddingLeft(), getPaddingTop(), getWidth(), getHeight());
         mRectF.set(Defaults.ADS_STROKE_WIDTH_PIXEL, Defaults.ADS_STROKE_WIDTH_PIXEL,
                 mRectF.width() - Defaults.ADS_STROKE_WIDTH_PIXEL,
                 mRectF.height() - Defaults.ADS_STROKE_WIDTH_PIXEL);
 
         if (mSelected) {
-            int selectorSize = (int) (getMeasuredWidth() - getMeasuredWidth() / ICON_DIVISOR);
-            mSelectorBitmap = DynamicBitmapUtils
-                    .resizeBitmap(mSelectorBitmap, selectorSize, selectorSize);
+            int selectorSize = (int) (Math.min(getWidth(), getHeight())
+                    - Math.min(getWidth(), getHeight()) / ICON_DIVISOR);
+            mSelectorBitmap = DynamicBitmapUtils.resizeBitmap(
+                    mSelectorBitmap, selectorSize, selectorSize);
         }
 
         if (isClickable()) {
@@ -292,9 +297,8 @@ public class DynamicColorView extends DynamicFrameLayout {
         }
 
         if (mSelected) {
-            canvas.drawBitmap(mSelectorBitmap,
-                    (getMeasuredWidth() - mSelectorBitmap.getWidth()) / 2f,
-                    (getMeasuredWidth() - mSelectorBitmap.getHeight()) / 2f, mSelectorPaint);
+            canvas.drawBitmap(mSelectorBitmap, (getWidth() - mSelectorBitmap.getWidth()) / 2f,
+                    (getHeight() - mSelectorBitmap.getHeight()) / 2f, mSelectorPaint);
         }
     }
 

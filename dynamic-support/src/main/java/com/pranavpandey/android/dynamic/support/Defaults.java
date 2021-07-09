@@ -229,6 +229,11 @@ public class Defaults {
     public static final float ADS_FACTOR_SURFACE = 0.04f;
 
     /**
+     * Default factor to calculate the stroke width.
+     */
+    public static final float ADS_FACTOR_STROKE = 0.1f;
+
+    /**
      * Default color type used by the system secondary widgets.
      */
     public static final int ADS_COLOR_TYPE_SYSTEM_SECONDARY = Theme.ColorType.ACCENT_DARK;
