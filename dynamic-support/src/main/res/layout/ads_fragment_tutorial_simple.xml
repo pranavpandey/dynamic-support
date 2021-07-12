@@ -15,7 +15,7 @@
 	limitations under the License.
 -->
 
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ads_tutorial_simple"
@@ -23,51 +23,57 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-        android:id="@+id/ads_tutorial_simple_image"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.0"
-        android:padding="@dimen/ads_tutorial_margin"
-        android:layout_gravity="center_vertical" />
-
     <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
-        style="@style/Widget.DynamicApp.Scroller.Padding.Vertical.Clip"
+        style="@style/Widget.DynamicApp.Scroller.Vertical.Clip"
         android:id="@+id/ads_tutorial_simple_scroller"
-        android:layout_height="wrap_content"
         app:adt_windowInsets="false">
 
-        <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-            style="@style/Widget.DynamicApp.Card"
-            android:id="@+id/ads_tutorial_simple_card">
+        <LinearLayout
+            style="@style/Widget.DynamicApp.Content.Row.Vertical"
+            android:orientation="vertical">
 
-            <LinearLayout
-                style="@style/Widget.DynamicApp.Content.Card"
-                android:orientation="vertical">
+            <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+                android:id="@+id/ads_tutorial_simple_image"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.0"
+                android:layout_gravity="center_vertical"
+                android:padding="@dimen/ads_tutorial_margin"
+                android:minHeight="@dimen/ads_icon_tutorial" />
 
-                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Headline5.Tutorial"
-                    android:id="@+id/ads_tutorial_simple_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+            <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+                style="@style/Widget.DynamicApp.Card.Margin"
+                android:id="@+id/ads_tutorial_simple_card">
 
-                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Subtitle1.Tutorial"
-                    android:id="@+id/ads_tutorial_simple_subtitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    style="@style/Widget.DynamicApp.Content.Card"
+                    android:orientation="vertical">
 
-                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Body1.Tutorial"
-                    android:id="@+id/ads_tutorial_simple_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/ads_margin_tiny" />
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                        style="@style/TextAppearance.DynamicApp.Headline5.Tutorial"
+                        android:id="@+id/ads_tutorial_simple_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-            </LinearLayout>
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                        style="@style/TextAppearance.DynamicApp.Subtitle1.Tutorial"
+                        android:id="@+id/ads_tutorial_simple_subtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-        </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                        style="@style/TextAppearance.DynamicApp.Body1.Tutorial"
+                        android:id="@+id/ads_tutorial_simple_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ads_margin_tiny" />
+
+                </LinearLayout>
+
+            </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
+        </LinearLayout>
 
     </com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView>
 
-</LinearLayout>
+</FrameLayout>
