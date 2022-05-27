@@ -23,8 +23,6 @@ android {
     defaultConfig {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
-        versionCode mavenVersionCode
-        versionName mavenVersion
 
         vectorDrawables.useSupportLibrary = true
         consumerProguardFiles 'proguard-rules.pro'
@@ -89,7 +87,7 @@ project.afterEvaluate {
             }
 
             options.windowTitle = "${referenceTitle}"
-            options.footer = "<h5>${project.android.defaultConfig.versionName}</h5>"
+            options.footer = "<h5>${mavenVersion}</h5>"
             options.links('http://docs.oracle.com/javase/8/docs/api')
             options.links('https://developer.android.com/reference')
             options.memberLevel = JavadocMemberLevel.PROTECTED
