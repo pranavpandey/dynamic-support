@@ -153,11 +153,11 @@ checkout the `Rotation` and `Everyday` apps to experience the full potential of 
 - [EZ Notes](https://play.google.com/store/apps/details?id=com.pristineusa.android.speechtotext)
 
 ### Developed
-- [Rotation | Orientation Manager](https://play.google.com/store/apps/details?id=com.pranavpandey.rotation)
-- [Everyday | Calendar Widget](https://play.google.com/store/apps/details?id=com.pranavpandey.calendar)
-- [Palettes | Theme Manager](https://play.google.com/store/apps/details?id=com.pranavpandey.theme)
-- [Barquode | Matrix Manager](https://play.google.com/store/apps/details?id=com.pranavpandey.matrix)
-- [Zerocros | Tic-tac-toe Game](https://play.google.com/store/apps/details?id=com.pranavpandey.tictactoe)
+- [Rotation](https://play.google.com/store/apps/details?id=com.pranavpandey.rotation)
+- [Everyday](https://play.google.com/store/apps/details?id=com.pranavpandey.calendar)
+- [Palettes](https://play.google.com/store/apps/details?id=com.pranavpandey.theme)
+- [Barquode](https://play.google.com/store/apps/details?id=com.pranavpandey.matrix)
+- [Zerocros](https://play.google.com/store/apps/details?id=com.pranavpandey.tictactoe)
 
 ---
 
