@@ -55,34 +55,32 @@ public class ItemBinder extends DynamicDataBinder<DynamicItem, ItemBinder.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (getData() == null) {
             return;
         }
 
-        Dynamic.setColorType(viewHolder.getDynamicItemView(), getData().getColorType());
-        Dynamic.setColor(viewHolder.getDynamicItemView(), getData().getColor());
-        Dynamic.setContrastWithColorTypeOrColor(viewHolder.getDynamicItemView(),
+        Dynamic.setColorType(holder.getDynamicItemView(), getData().getColorType());
+        Dynamic.setColor(holder.getDynamicItemView(), getData().getColor());
+        Dynamic.setContrastWithColorTypeOrColor(holder.getDynamicItemView(),
                 getData().getContrastWithColorType(), getData().getContrastWithColor());
-        Dynamic.setBackgroundAwareSafe(viewHolder.getDynamicItemView(),
+        Dynamic.setBackgroundAwareSafe(holder.getDynamicItemView(),
                 getData().getBackgroundAware());
-        viewHolder.getDynamicItemView().setIcon(getData().getIcon());
-        viewHolder.getDynamicItemView().setTitle(getData().getTitle());
-        viewHolder.getDynamicItemView().setSubtitle(getData().getSubtitle());
-        viewHolder.getDynamicItemView().setShowDivider(getData().isShowDivider());
+        holder.getDynamicItemView().setIcon(getData().getIcon());
+        holder.getDynamicItemView().setTitle(getData().getTitle());
+        holder.getDynamicItemView().setSubtitle(getData().getSubtitle());
+        holder.getDynamicItemView().setShowDivider(getData().isShowDivider());
 
         if (getData().getOnClickListener() != null) {
-            Dynamic.setOnClickListener(viewHolder.getDynamicItemView(),
+            Dynamic.setOnClickListener(holder.getDynamicItemView(),
                     getData().getOnClickListener());
         } else {
-            Dynamic.setClickable(viewHolder.getDynamicItemView(), false);
+            Dynamic.setClickable(holder.getDynamicItemView(), false);
         }
 
-        if (getBinderAdapter().getRecyclerView() != null
-                && getBinderAdapter().getRecyclerView().getLayoutManager()
-                instanceof FlexboxLayoutManager) {
-            viewHolder.getDynamicItemView().getLayoutParams().width
-                    = ViewGroup.LayoutParams.WRAP_CONTENT;
+        if (getBinderAdapter().getLayoutManager() instanceof FlexboxLayoutManager) {
+            holder.getDynamicItemView().getLayoutParams().width =
+                    ViewGroup.LayoutParams.WRAP_CONTENT;
         }
     }
 

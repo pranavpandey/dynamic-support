@@ -48,11 +48,11 @@ public class HeaderBinder extends ItemBinder {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        super.onBindViewHolder(viewHolder, position);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        super.onBindViewHolder(holder, position);
 
         if (isFullSpanForStaggeredGrid()) {
-            DynamicLayoutUtils.setFullSpanForView(viewHolder.itemView);
+            DynamicLayoutUtils.setFullSpanForView(holder.itemView);
         }
     }
 

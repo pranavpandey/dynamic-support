@@ -17,6 +17,16 @@
 
 <resources>
 
+    <!-- Attributes for the DynamicRecyclerViewFrame. -->
+    <declare-styleable name="DynamicRecyclerViewFrame">
+        <!-- Drawable that will be applied to the empty view. -->
+        <attr name="ads_empty_view_icon" format="reference" />
+        <!-- Title that will be applied to the empty view. -->
+        <attr name="ads_empty_view_title" format="string|reference" />
+        <!-- Subtitle that will be applied to the empty view. -->
+        <attr name="ads_empty_view_subtitle" format="string|reference" />
+    </declare-styleable>
+
     <!-- Attributes for the DynamicInfo. -->
     <declare-styleable name="DynamicInfo">
         <!-- Drawable that will be applied to this view. -->

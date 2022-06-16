@@ -51,7 +51,7 @@ class AppInfoView : DynamicRecyclerViewFrame {
 
     private fun setAdapter(): AppInfoView {
         // Set adapter for the recycler view.
-        adapter = AppInfoAdapter()
+        setAdapter(AppInfoAdapter())
 
         return this
     }

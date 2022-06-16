@@ -26,7 +26,6 @@ import com.pranavpandey.android.dynamic.support.sample.fragment.SettingsFragment
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
 import com.pranavpandey.android.dynamic.support.widget.DynamicBottomNavigationView
 import com.pranavpandey.android.dynamic.util.DynamicLinkUtils
-import java.util.*
 
 /**
  * Implementing a bottom navigation view by using [DynamicActivity].
@@ -62,7 +61,7 @@ class BottomNavigationActivity : DynamicActivity() {
         mBottomNavigationView!!.inflateMenu(R.menu.menu_bottom_navigation)
 
         // TODO: Set a navigation item selected listener for the bottom navigation view.
-        mBottomNavigationView!!.setOnNavigationItemSelectedListener { item ->
+        mBottomNavigationView!!.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> if (contentFragment !is HomeFragment) {
                     switchFragment(HomeFragment.newInstance(), false)

@@ -58,10 +58,10 @@ public abstract class DynamicRecyclerViewBinder<VH extends RecyclerView.ViewHold
     /**
      * Bind {@link RecyclerView.ViewHolder} at a particular position.
      *
-     * @param viewHolder The view holder for the recycler view.
+     * @param holder The view holder for the recycler view.
      * @param position The position to bind the view holder.
      */
-    public abstract void onBindViewHolder(@NonNull VH viewHolder, int position);
+    public abstract void onBindViewHolder(@NonNull VH holder, int position);
 
     /**
      * Get the recycler view adapter associated with this data binder.

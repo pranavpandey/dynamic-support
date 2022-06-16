@@ -26,7 +26,6 @@ import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.adapter.LicensesAdapter
 import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils
-import java.util.*
 
 /**
  * License view to display a list of licences by using [LicensesAdapter]
@@ -89,7 +88,8 @@ class LicenseView : DynamicRecyclerViewFrame {
                         context, R.drawable.ads_ic_extension)))
 
         // Set adapter for the recycler view.
-        adapter = LicensesAdapter(licenses)
+        setAdapter(LicensesAdapter(licenses))
+
         return this
     }
 }

@@ -36,8 +36,8 @@
         android:id="@+id/ads_progress"
         android:layout_width="@dimen/ads_circular_progress_size"
         android:layout_height="@dimen/ads_circular_progress_size"
-        android:gravity="center"
         android:layout_gravity="center"
+        android:gravity="center"
         android:indeterminate="true"
         android:visibility="gone" />
 

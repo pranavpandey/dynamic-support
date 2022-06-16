@@ -51,9 +51,9 @@ public class DynamicItemsAdapter extends DynamicSimpleBinderAdapter<ItemBinder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         getDataBinder(getItemViewType(position)).setData(getItem(position));
-        super.onBindViewHolder(viewHolder, position);
+        super.onBindViewHolder(holder, position);
     }
 
     @Override
