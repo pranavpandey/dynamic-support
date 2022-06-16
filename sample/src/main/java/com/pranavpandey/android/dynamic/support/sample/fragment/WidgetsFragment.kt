@@ -27,9 +27,7 @@ import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment
 import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener
 import com.pranavpandey.android.dynamic.support.model.DynamicMenu
 import com.pranavpandey.android.dynamic.support.sample.R
-import com.pranavpandey.android.dynamic.support.util.DynamicMenuUtils
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils
-import java.util.*
 
 /**
  * Widgets fragment to show various widgets and their states by using [DynamicFragment].
@@ -120,21 +118,18 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
         mSpinnerThree!!.setSelection(2)
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        super.onPrepareOptionsMenu(menu)
-
-        // Try to force the menu icons.
-        DynamicMenuUtils.forceMenuIcons(menu)
+    override fun setHasOptionsMenu(): Boolean {
+        return true
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
+    override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateMenu(menu, inflater)
 
         // Inflate menu for this fragment.
         inflater.inflate(R.menu.menu_widgets, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    override fun onMenuItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_search -> {
                 // Expand search view on search menu selected.
@@ -142,14 +137,7 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
             }
         }
 
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        // TODO: Enable app bar options menu.
-        setHasOptionsMenu(true)
+        return super.onMenuItemSelected(item)
     }
 
     override fun onSearchViewExpanded() {

@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.AppBarLayout
 import com.pranavpandey.android.dynamic.support.fragment.DynamicViewPager2Fragment
@@ -52,22 +53,29 @@ class AboutFragment : DynamicViewPager2Fragment() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Scroll toolbar for this fragment.
+        dynamicActivity.setToolbarLayoutFlags(
+            AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+                    or AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS)
+    }
+
+    override fun setHasOptionsMenu(): Boolean {
+        return true
+    }
+
+    override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateMenu(menu, inflater)
         inflater.inflate(R.menu.ads_menu_info, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    override fun onMenuItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.ads_menu_info) {
             DynamicPermissionUtils.launchAppInfo(requireContext())
         }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        
-        setHasOptionsMenu(true)
+        return super.onMenuItemSelected(item)
     }
 
     override fun getSubtitle(): CharSequence? {
@@ -104,14 +112,5 @@ class AboutFragment : DynamicViewPager2Fragment() {
     override fun getItemCount(): Int {
         // TODO: Return item count.
         return 2
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        // Scroll toolbar for this fragment.
-        dynamicActivity.setToolbarLayoutFlags(
-                AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
-                        or AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS)
     }
 }

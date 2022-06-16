@@ -274,8 +274,8 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
     }
 
     @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
+    public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateMenu(menu, inflater);
 
         inflater.inflate(R.menu.ads_menu_theme, menu);
 
@@ -289,7 +289,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onMenuItemSelected(@NonNull MenuItem item) {
         int i = item.getItemId();
 
         if (i == R.id.ads_menu_theme_data_copy) {
@@ -343,7 +343,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        return super.onMenuItemSelected(item);
     }
 
     @Override

@@ -156,19 +156,19 @@ public class DynamicPermissionsFragment extends DynamicFragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
+    public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateMenu(menu, inflater);
 
         inflater.inflate(R.menu.ads_menu_info, menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onMenuItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.ads_menu_info) {
             DynamicPermissionUtils.launchAppInfo(requireContext());
         }
 
-        return super.onOptionsItemSelected(item);
+        return super.onMenuItemSelected(item);
     }
 
     @Override
