@@ -45,7 +45,7 @@ import androidx.core.content.ContextCompat;
 
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.graphics.DynamicPaint;
+import com.pranavpandey.android.dynamic.support.graphic.DynamicPaint;
 import com.pranavpandey.android.dynamic.support.util.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout;
