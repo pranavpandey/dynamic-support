@@ -127,6 +127,20 @@
             style="@style/Widget.DynamicApp.Card">
 
             <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
+                android:id="@+id/item_barquode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ads_icon="@drawable/ic_barquode"
+                app:ads_title="@string/barquode"
+                app:ads_subtitle="@string/barquode_subtitle"
+                app:adt_colorType="none" />
+
+        </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+            style="@style/Widget.DynamicApp.Card">
+
+            <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
                 android:id="@+id/item_zerocors"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

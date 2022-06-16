@@ -88,31 +88,38 @@ class HomeFragment : DynamicFragment() {
 
         // Set on click listener for the dynamic item view.
         (view.findViewById<View>(R.id.item_rotation) as DynamicItemView)
-                .setOnClickListener {
-                    // View an app in Google Play by supplying the package name.
-                    DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_ROTATION)
-                }
+            .setOnClickListener {
+                // View an app in Google Play by supplying the package name.
+                DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_ROTATION)
+            }
 
         // Set on click listener for the dynamic item view.
         (view.findViewById<View>(R.id.item_everyday) as DynamicItemView)
-                .setOnClickListener {
-                    // View an app in Google Play by supplying the package name.
-                    DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_EVERYDAY)
-                }
+            .setOnClickListener {
+                // View an app in Google Play by supplying the package name.
+                DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_EVERYDAY)
+            }
 
         // Set on click listener for the dynamic item view.
         (view.findViewById<View>(R.id.item_palettes) as DynamicItemView)
-                .setOnClickListener {
-                    // View an app in Google Play by supplying the package name.
-                    DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_PALETTES)
-                }
+            .setOnClickListener {
+                // View an app in Google Play by supplying the package name.
+                DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_PALETTES)
+            }
+
+        // Set on click listener for the dynamic item view.
+        (view.findViewById<View>(R.id.item_barquode) as DynamicItemView)
+            .setOnClickListener {
+                // View an app in Google Play by supplying the package name.
+                DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_BARQUODE)
+            }
 
         // Set on click listener for the dynamic item view.
         (view.findViewById<View>(R.id.item_zerocors) as DynamicItemView)
-                .setOnClickListener {
-                    // View an app in Google Play by supplying the package name.
-                    DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_ZEROCROS)
-                }
+            .setOnClickListener {
+                // View an app in Google Play by supplying the package name.
+                DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_ZEROCROS)
+            }
 
         // Set on preference click listeners.
         // Start tutorial activity.

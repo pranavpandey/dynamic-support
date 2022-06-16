@@ -46,6 +46,11 @@ object Constants {
     const val PACKAGE_PALETTES = "com.pranavpandey.theme"
 
     /**
+     * Barquode package name.
+     */
+    const val PACKAGE_BARQUODE = "com.pranavpandey.matrix"
+
+    /**
      * Zerocros package name.
      */
     const val PACKAGE_ZEROCROS = "com.pranavpandey.tictactoe"
