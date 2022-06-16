@@ -25,7 +25,7 @@ import com.pranavpandey.android.dynamic.support.sample.fragment.HomeFragment
 import com.pranavpandey.android.dynamic.support.sample.fragment.SettingsFragment
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
 import com.pranavpandey.android.dynamic.support.widget.DynamicBottomNavigationView
-import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils
+import com.pranavpandey.android.dynamic.util.DynamicLinkUtils
 import java.util.*
 
 /**

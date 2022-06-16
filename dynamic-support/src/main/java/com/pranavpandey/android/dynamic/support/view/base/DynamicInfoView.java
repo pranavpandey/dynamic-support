@@ -40,11 +40,11 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicItem;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicItemsAdapter;
-import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicLinkUtils;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.utils;
+package com.pranavpandey.android.dynamic.support.util;
 
 import android.Manifest;
 import android.content.ComponentName;
@@ -33,7 +33,7 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
 import com.pranavpandey.android.dynamic.support.model.DynamicPermission;
-import com.pranavpandey.android.dynamic.utils.DynamicIntentUtils;
+import com.pranavpandey.android.dynamic.util.DynamicIntentUtils;
 
 /**
  * Helper class to work with permissions and {@link DynamicPermission}.

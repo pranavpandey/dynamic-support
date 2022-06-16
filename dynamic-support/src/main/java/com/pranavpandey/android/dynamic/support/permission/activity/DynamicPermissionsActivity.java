@@ -30,7 +30,7 @@ import com.pranavpandey.android.dynamic.support.model.DynamicPermission;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.permission.fragment.DynamicPermissionsFragment;
 import com.pranavpandey.android.dynamic.support.permission.listener.DynamicPermissionsListener;
-import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils;
+import com.pranavpandey.android.dynamic.util.DynamicPackageUtils;
 
 import java.util.List;
 

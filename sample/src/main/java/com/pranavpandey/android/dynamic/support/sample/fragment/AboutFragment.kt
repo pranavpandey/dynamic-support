@@ -25,7 +25,7 @@ import com.google.android.material.appbar.AppBarLayout
 import com.pranavpandey.android.dynamic.support.fragment.DynamicViewPager2Fragment
 import com.pranavpandey.android.dynamic.support.fragment.DynamicViewPagerFragment
 import com.pranavpandey.android.dynamic.support.sample.R
-import com.pranavpandey.android.dynamic.support.utils.DynamicPermissionUtils
+import com.pranavpandey.android.dynamic.support.util.DynamicPermissionUtils
 
 
 /**

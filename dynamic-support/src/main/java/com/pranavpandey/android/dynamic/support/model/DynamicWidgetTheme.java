@@ -36,7 +36,7 @@ import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.annotation.Exclude;
 import com.pranavpandey.android.dynamic.theme.strategy.ExcludeStrategy;
 import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 
 /**
  * An app widget theme to store various colors and attributes for app widget which can be

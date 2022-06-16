@@ -23,7 +23,7 @@ import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
 import com.pranavpandey.android.dynamic.theme.Theme
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils
 
 /**
  * Helper class to perform theme related operations.

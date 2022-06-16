@@ -27,9 +27,9 @@ import androidx.annotation.Nullable;
 import androidx.palette.graphics.Palette;
 
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicBitmapUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
-import com.pranavpandey.android.dynamic.utils.concurrent.task.ContextTask;
+import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.concurrent.task.ContextTask;
 
 import java.util.HashMap;
 import java.util.Map;

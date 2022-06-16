@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.utils;
+package com.pranavpandey.android.dynamic.support.util;
 
 import androidx.annotation.NonNull;
 

@@ -23,7 +23,7 @@ import androidx.annotation.NonNull;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBinderAdapter;
-import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
 
 /**
  * An {@link ItemBinder} to bind the

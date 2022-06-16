@@ -44,7 +44,7 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.utils.DynamicWindowUtils;
+import com.pranavpandey.android.dynamic.util.DynamicWindowUtils;
 
 /**
  * A popup window displaying a text message aligned to a specified view.

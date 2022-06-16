@@ -37,13 +37,13 @@ import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.splash.fragment.DynamicSplashFragment;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
  * An activity to show a splash screen before the actual app launch. Its layout can be fully
  * customised and it also provides multiple methods to do any background work before launching
  * the main activity by running the
- * {@link com.pranavpandey.android.dynamic.utils.concurrent.DynamicTask}.
+ * {@link com.pranavpandey.android.dynamic.util.concurrent.DynamicTask}.
  *
  * <p>Extend this activity and implement the required methods to show a splash screen.
  * It should be declared as the main activity in the project's manifest for best performance.

@@ -29,7 +29,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
-import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
+import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 /**
  * A fixed {@link DrawerLayout} when in persistent or {@link #LOCK_MODE_LOCKED_OPEN} state.

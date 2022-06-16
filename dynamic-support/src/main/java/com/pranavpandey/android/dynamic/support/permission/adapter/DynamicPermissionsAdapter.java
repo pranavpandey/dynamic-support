@@ -30,10 +30,10 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicPermission;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.permission.view.DynamicPermissionsView;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView;
-import com.pranavpandey.android.dynamic.utils.DynamicTextUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
+import com.pranavpandey.android.dynamic.util.DynamicTextUtils;
+import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 import java.util.List;
 import java.util.Locale;

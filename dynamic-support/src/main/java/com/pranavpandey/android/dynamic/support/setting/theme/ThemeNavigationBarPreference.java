@@ -24,7 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicCheckPreference;
-import com.pranavpandey.android.dynamic.utils.DynamicWindowUtils;
+import com.pranavpandey.android.dynamic.util.DynamicWindowUtils;
 
 /**
  * A {@link DynamicCheckPreference} to display the navigation bar theme setting.

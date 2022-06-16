@@ -62,15 +62,15 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSnackbar;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicFABUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicHintUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicFABUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicHintUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicInputUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicBottomSheet;
 import com.pranavpandey.android.dynamic.support.widget.DynamicExtendedFloatingActionButton;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
+import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 /**
  * Base activity to handle everything related to design support and the app compat library.

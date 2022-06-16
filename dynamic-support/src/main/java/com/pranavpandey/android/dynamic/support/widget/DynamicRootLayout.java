@@ -30,7 +30,7 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.widget.base.BaseWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
-import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
+import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 /**
  * A {@link RelativeLayout} to apply window insets to act as a root view.

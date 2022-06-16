@@ -27,8 +27,8 @@ import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment
 import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener
 import com.pranavpandey.android.dynamic.support.model.DynamicMenu
 import com.pranavpandey.android.dynamic.support.sample.R
-import com.pranavpandey.android.dynamic.support.utils.DynamicMenuUtils
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils
+import com.pranavpandey.android.dynamic.support.util.DynamicMenuUtils
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils
 import java.util.*
 
 /**

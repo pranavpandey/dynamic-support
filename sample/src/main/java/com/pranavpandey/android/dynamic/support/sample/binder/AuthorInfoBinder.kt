@@ -25,7 +25,7 @@ import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyc
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.adapter.AppInfoAdapter
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
-import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils
+import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils
 import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView
 
 /**

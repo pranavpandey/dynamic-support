@@ -29,8 +29,8 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
-import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils;
+import com.pranavpandey.android.dynamic.util.DynamicLinkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicPackageUtils;
 
 /**
  * A {@link DynamicSpinnerPreference} to display and edit the settings for the

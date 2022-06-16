@@ -47,13 +47,13 @@ import com.pranavpandey.android.dynamic.support.picker.DynamicPickerType;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference;
 import com.pranavpandey.android.dynamic.support.theme.task.WallpaperColorsTask;
-import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicView;
 import com.pranavpandey.android.dynamic.theme.DynamicPalette;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicTaskUtils;
-import com.pranavpandey.android.dynamic.utils.concurrent.DynamicResult;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicTaskUtils;
+import com.pranavpandey.android.dynamic.util.concurrent.DynamicResult;
 
 import java.util.ArrayList;
 import java.util.Arrays;

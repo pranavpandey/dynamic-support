@@ -44,7 +44,7 @@ import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.permission.activity.DynamicPermissionsActivity;
 import com.pranavpandey.android.dynamic.support.permission.listener.DynamicPermissionsListener;
 import com.pranavpandey.android.dynamic.support.permission.view.DynamicPermissionsView;
-import com.pranavpandey.android.dynamic.support.utils.DynamicPermissionUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicPermissionUtils;
 
 import java.util.List;
 

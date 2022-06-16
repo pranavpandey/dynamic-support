@@ -58,9 +58,9 @@ import com.pranavpandey.android.dynamic.support.setting.base.DynamicPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.inflater.DynamicLayoutInflater;
 import com.pranavpandey.android.dynamic.support.tutorial.Tutorial;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicScrollUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
@@ -74,8 +74,8 @@ import com.pranavpandey.android.dynamic.support.widget.base.DynamicSurfaceWidget
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTextWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
  * Helper class to manipulate {@link DynamicActivity} and inflated views at runtime according

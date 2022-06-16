@@ -37,11 +37,11 @@ import com.pranavpandey.android.dynamic.support.sample.controller.AppController
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
 import com.pranavpandey.android.dynamic.support.sample.controller.ThemeController
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils
 import com.pranavpandey.android.dynamic.theme.AppTheme
 import com.pranavpandey.android.dynamic.theme.Theme
-import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils
+import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils
 import java.util.*
 
 

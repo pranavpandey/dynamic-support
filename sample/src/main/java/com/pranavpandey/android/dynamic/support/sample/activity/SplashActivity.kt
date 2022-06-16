@@ -21,7 +21,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.splash.activity.DynamicSplashActivity
-import com.pranavpandey.android.dynamic.utils.DynamicIntentUtils
+import com.pranavpandey.android.dynamic.util.DynamicIntentUtils
 
 /**
  * Implementing a splash screen by using [DynamicSplashActivity].

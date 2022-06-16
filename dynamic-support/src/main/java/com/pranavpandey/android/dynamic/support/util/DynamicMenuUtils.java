@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.utils;
+package com.pranavpandey.android.dynamic.support.util;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -44,8 +44,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.navigation.NavigationBarItemView;
 import com.google.android.material.tabs.TabLayout;
 import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
-import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 import java.lang.reflect.Method;
 

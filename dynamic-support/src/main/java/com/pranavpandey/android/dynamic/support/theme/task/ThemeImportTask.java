@@ -25,9 +25,9 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.support.theme.listener.ThemeListener;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
-import com.pranavpandey.android.dynamic.utils.concurrent.DynamicResult;
-import com.pranavpandey.android.dynamic.utils.concurrent.DynamicTask;
-import com.pranavpandey.android.dynamic.utils.concurrent.task.ContextTask;
+import com.pranavpandey.android.dynamic.util.concurrent.DynamicResult;
+import com.pranavpandey.android.dynamic.util.concurrent.DynamicTask;
+import com.pranavpandey.android.dynamic.util.concurrent.task.ContextTask;
 
 /**
  * A {@link DynamicTask} to perform the theme import operations.

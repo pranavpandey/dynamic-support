@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.utils;
+package com.pranavpandey.android.dynamic.support.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -31,8 +31,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.toasts.DynamicToast;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
 
 /**
  * A collection of useful functions to display hints throughout the app.

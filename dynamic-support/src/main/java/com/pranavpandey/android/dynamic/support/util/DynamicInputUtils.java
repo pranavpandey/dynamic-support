@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.utils;
+package com.pranavpandey.android.dynamic.support.util;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -34,8 +34,8 @@ import androidx.core.view.ViewCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
-import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

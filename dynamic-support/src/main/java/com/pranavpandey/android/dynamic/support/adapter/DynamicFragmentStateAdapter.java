@@ -29,8 +29,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicScrollUtils;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 
 /**
  * A {@link FragmentStateAdapter} to be used with the {@link androidx.viewpager2.widget.ViewPager2}.

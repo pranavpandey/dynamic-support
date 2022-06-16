@@ -20,7 +20,7 @@ import android.app.Activity
 import android.os.Bundle
 
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
-import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils
+import com.pranavpandey.android.dynamic.util.DynamicLinkUtils
 
 /**
  * Activity to handle app shortcuts intent.

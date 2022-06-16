@@ -31,8 +31,8 @@ import com.pranavpandey.android.dynamic.support.sample.activity.TutorialActivity
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicScreenPreference
 import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
-import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils
-import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils
+import com.pranavpandey.android.dynamic.util.DynamicLinkUtils
+import com.pranavpandey.android.dynamic.util.DynamicPackageUtils
 
 /**
  * Home fragment to show some of the features of dynamic-support library by

@@ -29,7 +29,7 @@ import com.pranavpandey.android.dynamic.support.sample.controller.Constants
 import com.pranavpandey.android.dynamic.support.sample.fragment.AboutFragment
 import com.pranavpandey.android.dynamic.support.sample.fragment.HomeFragment
 import com.pranavpandey.android.dynamic.support.sample.fragment.SettingsFragment
-import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils
+import com.pranavpandey.android.dynamic.util.DynamicLinkUtils
 import java.util.*
 
 /**

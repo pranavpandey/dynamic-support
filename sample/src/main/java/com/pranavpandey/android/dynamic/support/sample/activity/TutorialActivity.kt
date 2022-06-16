@@ -25,7 +25,7 @@ import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial
 import com.pranavpandey.android.dynamic.support.tutorial.Tutorial
 import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutorialActivity
 import com.pranavpandey.android.dynamic.support.tutorial.fragment.DynamicTutorialFragment
-import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils
+import com.pranavpandey.android.dynamic.util.DynamicLinkUtils
 import java.util.*
 
 /**

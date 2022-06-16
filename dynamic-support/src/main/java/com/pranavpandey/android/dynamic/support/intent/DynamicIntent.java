@@ -34,7 +34,7 @@ import androidx.core.app.ActivityOptionsCompat;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.theme.fragment.DynamicThemeFragment;
-import com.pranavpandey.android.dynamic.utils.DynamicIntentUtils;
+import com.pranavpandey.android.dynamic.util.DynamicIntentUtils;
 
 /**
  * Helper class to manage the intent and extras.

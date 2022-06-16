@@ -45,15 +45,15 @@ import com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog;
 import com.pranavpandey.android.dynamic.support.theme.listener.ThemeListener;
 import com.pranavpandey.android.dynamic.support.theme.task.ThemeExportTask;
 import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
-import com.pranavpandey.android.dynamic.support.utils.DynamicMenuUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicMenuUtils;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicFileUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
-import com.pranavpandey.android.dynamic.utils.concurrent.DynamicResult;
-import com.pranavpandey.android.dynamic.utils.concurrent.DynamicTask;
-import com.pranavpandey.android.dynamic.utils.concurrent.task.FileWriteTask;
+import com.pranavpandey.android.dynamic.util.DynamicFileUtils;
+import com.pranavpandey.android.dynamic.util.DynamicLinkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.concurrent.DynamicResult;
+import com.pranavpandey.android.dynamic.util.concurrent.DynamicTask;
+import com.pranavpandey.android.dynamic.util.concurrent.task.FileWriteTask;
 
 /**
  * Base theme fragment to provide theme editing functionality.

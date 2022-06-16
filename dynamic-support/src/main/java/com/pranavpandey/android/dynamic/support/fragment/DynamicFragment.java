@@ -46,8 +46,8 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicLifecycle;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicTransitionListener;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
  * Base fragment class to provide basic functionality and to work with the {@link DynamicActivity}.

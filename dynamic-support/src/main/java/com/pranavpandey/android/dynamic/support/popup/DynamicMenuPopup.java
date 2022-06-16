@@ -31,7 +31,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.adapter.DynamicSpinnerChoiceAdapter;
 import com.pranavpandey.android.dynamic.support.model.DynamicMenu;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
-import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
 import com.pranavpandey.android.dynamic.theme.Theme;
 

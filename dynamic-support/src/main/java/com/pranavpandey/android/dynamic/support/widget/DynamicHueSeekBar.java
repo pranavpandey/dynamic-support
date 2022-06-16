@@ -23,7 +23,7 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicPickerUtils;
 
 /**
  * A {@link DynamicSeekBar} to provide a hue bar for the color picker.

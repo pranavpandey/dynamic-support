@@ -34,9 +34,9 @@ import com.pranavpandey.android.dynamic.support.model.DynamicTaskViewModel;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.splash.activity.DynamicSplashActivity;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.utils.concurrent.DynamicResult;
-import com.pranavpandey.android.dynamic.utils.concurrent.DynamicStatus;
-import com.pranavpandey.android.dynamic.utils.concurrent.DynamicTask;
+import com.pranavpandey.android.dynamic.util.concurrent.DynamicResult;
+import com.pranavpandey.android.dynamic.util.concurrent.DynamicStatus;
+import com.pranavpandey.android.dynamic.util.concurrent.DynamicTask;
 
 /**
  * A fragment to display splash before launching the main activity.

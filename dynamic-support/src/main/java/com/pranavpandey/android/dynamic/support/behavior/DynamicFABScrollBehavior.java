@@ -29,7 +29,7 @@ import androidx.core.view.ViewCompat;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.pranavpandey.android.dynamic.support.utils.DynamicFABUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicFABUtils;
 
 import java.util.List;
 

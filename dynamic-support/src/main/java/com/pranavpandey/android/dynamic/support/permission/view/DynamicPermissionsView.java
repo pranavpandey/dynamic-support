@@ -31,7 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pranavpandey.android.dynamic.support.model.DynamicPermission;
 import com.pranavpandey.android.dynamic.support.permission.adapter.DynamicPermissionsAdapter;
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewFrame;
-import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
 
 import java.util.ArrayList;
 import java.util.List;

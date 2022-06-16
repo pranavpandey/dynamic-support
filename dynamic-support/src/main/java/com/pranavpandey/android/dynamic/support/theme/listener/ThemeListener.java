@@ -26,7 +26,7 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.concurrent.DynamicTask;
+import com.pranavpandey.android.dynamic.util.concurrent.DynamicTask;
 
 /**
  * Interface to listen various theme events.

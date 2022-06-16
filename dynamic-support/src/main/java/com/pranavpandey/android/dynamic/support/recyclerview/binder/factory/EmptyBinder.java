@@ -29,8 +29,8 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBinderAdapter;
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicDataBinder;
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicQueryBinder;
-import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicEmptyView;
 
 /**

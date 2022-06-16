@@ -26,7 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicAppBarLayout;
 import com.pranavpandey.android.dynamic.support.widget.DynamicBackgroundView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicBottomAppBar;

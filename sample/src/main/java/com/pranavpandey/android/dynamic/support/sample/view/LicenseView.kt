@@ -24,8 +24,8 @@ import com.pranavpandey.android.dynamic.support.model.DynamicInfo
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewFrame
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.adapter.LicensesAdapter
-import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils
+import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils
 import java.util.*
 
 /**

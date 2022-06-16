@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewFrame
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.sample.adapter.AppInfoAdapter
-import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils
+import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils
 
 /**
  * App info view to display app and developer info by using [AppInfoAdapter]
