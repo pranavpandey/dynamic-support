@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018-2022 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<resources>
+
+    <!-- Activity -->
+    <string name="ads_navigation_drawer_open">Ouvrir le tiroir de navigation</string>
+    <string name="ads_navigation_drawer_close">Ferme le tiroir d\'applications</string>
+
+    <!-- String formats -->
+    <string name="ads_format_version">Version %1$s</string>
+    <string name="ads_search_empty">Aucun résultat trouvé pour \"%1$s\".</string>
+
+    <!-- Headings -->
+    <string name="ads_app">Application</string>
+    <string name="ads_game">Jeu</string>
+    <string name="ads_version">Version</string>
+    <string name="ads_actions">Actions</string>
+    <string name="ads_text">Texte</string>
+    <string name="ads_icon">Icône</string>
+    <string name="ads_size">Taille</string>
+    <string name="ads_value">Valeur</string>
+    <string name="ads_notification">Notification</string>
+    <string name="ads_notification_tile">Tuile</string>
+    <string name="ads_widgets">Widgets</string>
+    <string name="ads_instructions">Instructions</string>
+    <string name="ads_tutorial">Tutoriel</string>
+    <string name="ads_product_tour">Démonstration</string>
+    <string name="ads_troubleshoot">Résolutions de problèmes</string>
+    <string name="ads_about">A propos</string>
+    <string name="ads_overview">Aperçu</string>
+    <string name="ads_general">Général</string>
+    <string name="ads_advanced">Avancés</string>
+    <string name="ads_fixes">Solutions</string>
+
+    <!-- Labels -->
+    <string name="ads_warning">Alerte</string>
+    <string name="ads_error">Une erreur est survenue.</string>
+    <string name="ads_i_got_it">Ok, compris</string>
+    <string name="ads_not_now">Pas maintenant</string>
+    <string name="ads_later">Plus tard</string>
+    <string name="ads_yes_in">Oui, bien sûr</string>
+    <string name="ads_accept">J\'accepte</string>
+    <string name="ads_more">Plus</string>
+    <string name="ads_more_info">Plus d\'informations</string>
+    <string name="ads_select">Sélectionner</string>
+    <string name="ads_copy">Copier</string>
+    <string name="ads_save">Sauvegarder</string>
+    <string name="ads_load">Charger</string>
+    <string name="ads_file">Fichier</string>
+    <string name="ads_create">Créer</string>
+    <string name="ads_configure">Configurer</string>
+    <string name="ads_open">Ouverte</string>
+    <string name="ads_previous">Précédent</string>
+    <string name="ads_next">Suivant</string>
+    <string name="ads_skip">Passer</string>
+    <string name="ads_loading">Chargement&#8230;</string>
+    <string name="ads_play">Jouer</string>
+    <string name="ads_pause">Pause</string>
+    <string name="ads_resume">Continuer</string>
+    <string name="ads_exit">Sortir</string>
+    <string name="ads_finish">Terminer</string>
+    <string name="ads_recents">Récents</string>
+    <string name="ads_wallpaper">Fond d\'écran</string>
+    <string name="ads_custom">Personnalisé</string>
+    <string name="ads_edit">Éditer</string>
+    <string name="ads_refresh">Rafraîchir</string>
+    <string name="ads_reset">Réinitialiser</string>
+    <string name="ads_default">Par défaut</string>
+    <string name="ads_normal">Normal</string>
+    <string name="ads_minimum">Le minimum</string>
+    <string name="ads_experimental">Expérimental</string>
+    <string name="ads_sort">Trier</string>
+    <string name="ads_sort_category">Catégorie</string>
+    <string name="ads_sort_name">Nom</string>
+    <string name="ads_search">Rechercher</string>
+    <string name="ads_enable">Activer</string>
+    <string name="ads_enabled">Activé</string>
+    <string name="ads_disable">Désactiver</string>
+    <string name="ads_disabled">Désactivé</string>
+    <string name="ads_toggle">Basculer</string>
+    <string name="ads_shortcut">Raccourci</string>
+    <string name="ads_shortcuts">Raccourcis</string>
+    <string name="ads_shortcut_created">Raccourci crée</string>
+    <string name="ads_shortcuts_desc">Sélectionner un raccourci pour l\'ajouter sur l\'écran d\'accueil</string>
+
+    <!-- Navigation drawer and Menu -->
+    <string name="ads_nav_category_features">Menu</string>
+    <string name="ads_nav_category_support">Soutenir le développement</string>
+    <string name="ads_nav_category_contribute">Soutenir</string>
+    <string name="ads_nav_home">Accueil</string>
+    <string name="ads_nav_settings">Paramètres</string>
+    <string name="ads_nav_help">Aide</string>
+    <string name="ads_nav_support">Assistance</string>
+    <string name="ads_nav_about">A propos</string>
+    <string name="ads_nav_buy">Acheter</string>
+    <string name="ads_nav_rate">Évalue</string>
+    <string name="ads_nav_share">Partager</string>
+    <string name="ads_nav_uninstall">Désinstaller</string>
+    <string name="ads_menu_info">Infos</string>
+    <string name="ads_menu_app_info">Infos appli</string>
+
+    <!-- Runtime permissions -->
+    <string name="ads_permissions">Permissions</string>
+    <string name="ads_permissions_subtitle">Merci d\'activer les permissions requises</string>
+    <string name="ads_permissions_subtitle_single">Merci d\'activer les permissions requises</string>
+    <string name="ads_perm_info_required">Autorisation requise</string>
+    <string name="ads_perm_info_grant_all">Merci d\'activer toutes permissions requises afin que l\'application puisse fonctionner correctement</string>
+    <string name="ads_perm_info_accept">Cette fonctionnalité est facultative, veuillez accepter pour continuer.</string>
+    <string name="ads_perm_request">Requête</string>
+    <string name="ads_perm_request_desc">Cette permission n\'a pas été accordée. Appuyez pour demander.</string>
+    <string name="ads_perm_granted">Accordée</string>
+    <string name="ads_perm_granted_desc">Cette permission a été accordée</string>
+    <string name="ads_perm_denied">Refusée</string>
+    <string name="ads_perm_denied_desc">Pour accorder cette permission, allez dans Infos appli &gt; Autorisations. Cliquez pour aller dans Infos appli.</string>
+    <string name="ads_perm_reinstall">Réinstaller</string>
+    <string name="ads_perm_reinstall_desc">Pour accorder cette autorisation, veuillez réinstaller l\'application. Appuyez sur pour accéder aux informations sur l\'application.</string>
+    <string name="ads_perm_unknown">Inconnue</string>
+    <string name="ads_perm_unknown_desc">Cette autorisation n\'est pas présente dans le système.</string>
+    <string name="ads_perm_default">Autorisation</string>
+    <string name="ads_perm_default_desc">Cette autorisation est requise pour effectuer certaines actions.</string>
+    <string name="ads_perm_default_explain">Explications.</string>
+    <string name="ads_perm_write_system_settings">Modifier param. système</string>
+    <string name="ads_perm_write_system_settings_desc">Autoriser l\'écriture des paramètres système.</string>
+    <string name="ads_perm_overlay">Superposer aux autres applis</string>
+    <string name="ads_perm_overlay_desc">Autoriser le dessin sur d\'autres applications.</string>
+    <string name="ads_perm_usage_access">Accès aux données d\'utilisation</string>
+    <string name="ads_perm_usage_access_desc">Autoriser l\'accès à l\'utilisation.</string>
+    <string name="ads_perm_accessibility">Accessibilité</string>
+    <string name="ads_perm_accessibility_desc">Il doit être géré via les paramètres système.</string>
+
+    <!-- Backup and Restore -->
+    <string name="ads_data">Données</string>
+    <string name="ads_data_invalid">Données invalides</string>
+    <string name="ads_data_invalid_desc">Veuillez réessayer avec les données appropriées.</string>
+    <string name="ads_data_operations">Opérations de données</string>
+    <string name="ads_backup_and_restore">Sauvegarde &amp; Restauration</string>
+    <string name="ads_backup">Sauvegarde</string>
+    <string name="ads_backup_desc">Les paramètres du widget ne seront pas sauvegardés. Veuillez les configurer manuellement après une restauration.</string>
+    <string name="ads_backup_title">Créer une sauvegarde</string>
+    <string name="ads_backup_select">Sélectionner</string>
+    <string name="ads_backup_summary">Sauvegarder ou partager les réglages actuels d\'application</string>
+    <string name="ads_backup_new">Nouveau</string>
+    <string name="ads_backup_create_new_info">Veuillez effectuer une nouvelle sauvegarde</string>
+    <string name="ads_backup_import_info">S\'il vous plaît essayez d\'importer une sauvegarde à partir du stockage de l\'appareil.</string>
+    <string name="ads_backup_name">Nom de la sauvegarde</string>
+    <string name="ads_backup_location">Emplacement de sauvegarde</string>
+    <string name="ads_backup_rename">Renommer une sauvegarde</string>
+    <string name="ads_backup_complete">La sauvegarde a été créée avec succès</string>
+    <string name="ads_backup_error">Impossible d\'effectuer une sauvegarde</string>
+    <string name="ads_backup_exists">La sauvegarde existe déjà</string>
+    <string name="ads_backup_replace">Remplacer si existe déjà</string>
+    <string name="ads_backup_invalid">Sauvegarde invalide</string>
+    <string name="ads_backup_restore">Restaurer</string>
+    <string name="ads_backup_restore_title">Restaurer une sauvegarde</string>
+    <string name="ads_backup_error_save">Impossible d\'effectuer la sauvegarde</string>
+    <string name="ads_backup_error_rename">Impossible de renommer la sauvegarde</string>
+    <string name="ads_backup_restore_summary">Charger ou gérer les sauvegardes précédemment enregistrées.</string>
+    <string name="ads_backup_restore_desc">Sélectionner une sauvegarde a restaurer.</string>
+    <string name="ads_backup_restore_backup">Restaurer une sauvegarde</string>
+    <string name="ads_backup_restore_backup_desc">Cela supprimera tous les paramètres actuels (à l\'exception des widgets) et les restaurera à partir de la sauvegarde sélectionnée. Voulez-vous continuer?</string>
+    <string name="ads_backup_restore_backup_verify_error">Impossible de vérifier cette sauvegarde. Sélectionnez un autre type de sauvegarde.</string>
+    <string name="ads_backup_modify">Modifier</string>
+    <string name="ads_backup_modify_desc">Sélectionner une sauvegarde à modifier.</string>
+    <string name="ads_backup_restore_done">La sauvegarde a été restaurée avec succès</string>
+    <string name="ads_backup_restore_error">Impossible de restaurer la sauvegarde.</string>
+    <string name="ads_backup_not_found">Aucune sauvegarde trouvée.</string>
+    <string name="ads_backup_modify_complete">La sauvegarde a été modifiée avec succès</string>
+    <string name="ads_backup_delete_all">Tout supprimer</string>
+    <string name="ads_backup_delete_all_title">Supprimer toutes les sauvegardes</string>
+    <string name="ads_backup_delete_all_desc">Toutes les sauvegardes enregistrées vont être supprimées. Voulez-vous continuer ?</string>
+    <string name="ads_backup_delete_all_done">Toutes les sauvegardes ont été supprimées avec succès.</string>
+    <string name="ads_backup_import">Importer</string>
+    <string name="ads_backup_import_title">Importer une sauvegarde</string>
+    <string name="ads_backup_import_summary">Commencer à partir d\'un état d\'application précédent</string>
+    <string name="ads_backup_import_desc">Importer une sauvegarde depuis le périphérique ou un autre stockage.</string>
+    <string name="ads_backup_format_location">Emplacement de sauvegarde : %1$s</string>
+    <string name="ads_backup_format_created">Sauvegarde créée : %1$s</string>
+    <string name="ads_backup_format_saved">Sauvegarde effectuée : %1$s</string>
+    <string name="ads_backup_format_last">Dernière sauvegarde : %1$s</string>
+    <string name="ads_backup_format_last_storage">Stockage de l\'application: %1$s</string>
+    <string name="ads_backup_format_modified">Sauvegarde modifiée : %1$s</string>
+    <string name="ads_backup_format_last_modified">Dernière sauvegarde modifiée : %1$s</string>
+    <string name="ads_backup_format_renamed">Sauvegarde renommée : %1$s</string>
+    <string name="ads_backup_format_deleted">Sauvegarde supprimée : %1$s</string>
+    <string name="ads_backup_format_restored">Sauvegarde restaurée : %1$s</string>
+
+    <!-- Backup options -->
+    <string name="ads_backup_storage_app">Stockage d\'applications</string>
+    <string name="ads_backup_storage_device">Stockage de l\'appareil</string>
+    <string name="ads_backup_option_rename">Renommer</string>
+    <string name="ads_backup_option_delete">Supprimer</string>
+    <string name="ads_backup_send">Envoyer la sauvegarde</string>
+
+    <!-- Theme -->
+    <string name="ads_dynamic_theme">Thème dynamique</string>
+    <string name="ads_dynamic_theme_summary">Thème appliqué par le récepteur.</string>
+    <string name="ads_dynamic_color_summary">Implémentation pour la couleur automatique.</string>
+    <string name="ads_dynamic">Dynamique</string>
+    <string name="ads_theme">Thème</string>
+    <string name="ads_theme_code">Code</string>
+    <string name="ads_theme_code_desc">Scannez ou partagez le thème.</string>
+    <string name="ads_theme_code_capture">Capturer</string>
+    <string name="ads_theme_customise_desc">Configuration du thème ci-dessous</string>
+    <string name="ads_theme_adjust_desc">Le thème sera ajusté automatiquement en fonction de la version Android utilisée.</string>
+    <string name="ads_theme_invalid">Thème invalide</string>
+    <string name="ads_theme_invalid_desc">Impossible de vérifier ce thème. Veuillez réessayer.</string>
+    <string name="ads_theme_color_palette">Palette de couleurs</string>
+    <string name="ads_theme_color_palette_summary">Préréglages de couleurs primaires et d\'accentuation.</string>
+    <string name="ads_theme_color_background">Couleur de fond</string>
+    <string name="ads_theme_color_background_summary">Couleur de fond du thème.</string>
+    <string name="ads_theme_color_background_summary_system">Couleur de fond du système.</string>
+    <string name="ads_theme_color_stroke">Couleur du trait</string>
+    <string name="ads_theme_color_primary">Couleur principale</string>
+    <string name="ads_theme_color_primary_summary">Couleur utilisée par les éléments principaux</string>
+    <string name="ads_theme_color_primary_dark">Couleur du système</string>
+    <string name="ads_theme_color_primary_summary_dark">Couleur utilisée par les éléments du système.</string>
+    <string name="ads_theme_color_accent">Couleur d\'accentuation</string>
+    <string name="ads_theme_color_secondary">Couleur secondaire</string>
+    <string name="ads_theme_color_accent_summary">Couleur utilisée par les éléments secondaires.</string>
+    <string name="ads_theme_color_error">Couleur d\'erreur</string>
+    <string name="ads_theme_color_error_summary">Couleur utilisée pour montrer les erreurs.</string>
+    <string name="ads_theme_color_surface">Couleur de surface</string>
+    <string name="ads_theme_color_tint">Teinte couleur</string>
+    <string name="ads_theme_color_inverse">Inverser la couleur</string>
+    <string name="ads_theme_font_scale">Échelle de la police</string>
+    <string name="ads_theme_font_scale_summary">Facteur d\'échelle qui rendra le texte plus petit ou plus gros.</string>
+    <string name="ads_theme_corner_size">Taille des coins</string>
+    <string name="ads_theme_corner_size_summary">Rayon d\'angle de l\'application.</string>
+    <string name="ads_theme_background_aware">Conscient de l\'arrière-plan</string>
+    <string name="ads_theme_background_aware_desc">Ajustez les couleurs en fonction de l\'arrière-plan pour offrir une meilleure visibilité.</string>
+    <string name="ads_theme_contrast">Contrast ratio</string>
+    <string name="ads_theme_contrast_summary">Rapport minimum pour le contraste visible.</string>
+    <string name="ads_theme_opacity">Opacité de fond</string>
+    <string name="ads_theme_opacity_summary">Opacité de l\'arrière-plan de l\'application.</string>
+    <string name="ads_theme_opacity_summary_widget">Opacité de l\'arrière-plan du widget.</string>
+    <string name="ads_theme_elevation">Élévation</string>
+    <string name="ads_theme_elevation_summary">Contrôlez l\'ombre des éléments de surface.</string>
+    <string name="ads_theme_style">Style</string>
+    <string name="ads_theme_style_summary">Style du thème.</string>
+    <string name="ads_theme_app">Thème de l\'application</string>
+    <string name="ads_theme_app_summary">Style de l\'application</string>
+    <string name="ads_theme_app_desc">Sélectionnez auto pour utiliser le thème lumineux en journée et le thème sombre la nuit.</string>
+    <string name="ads_theme_app_day">Thème lumineux</string>
+    <string name="ads_theme_app_day_summary">Style de l\'application pendant la journée.</string>
+    <string name="ads_theme_app_night">Thème sombre</string>
+    <string name="ads_theme_app_night_summary">Style de l\'application la nuit.</string>
+    <string name="ads_theme_app_day_night_desc">Cela ne fonctionnera que lorsque le thème automatique est choisi.</string>
+    <string name="ads_theme_toast">Thème des messages Toast</string>
+    <string name="ads_theme_toast_summary">Affichez les toasts thématiques en fonction de la couleur d\'accentuation de l\'application.</string>
+    <string name="ads_theme_toast_summary_unchecked">Affiche les messages Toast par défaut.</string>
+    <string name="ads_theme_navigation_bar">Thème de la barre de navigation</string>
+    <string name="ads_theme_navigation_bar_summary">Afficher la barre de navigation en fonction du thème de l\'application.</string>
+    <string name="ads_theme_navigation_bar_summary_unchecked">Afficher la barre de navigation par défaut.</string>
+    <string name="ads_theme_navigation_bar_desc">Le thème de la barre de navigation ne sera pas visible à certains endroits pour offrir la meilleure expérience visuelle.</string>
+    <string name="ads_theme_notification">Thème des notifications</string>
+    <string name="ads_theme_notification_summary">Palette de couleurs de la notification.</string>
+    <string name="ads_theme_notification_style">Style de notification</string>
+    <string name="ads_theme_notification_style_summary">Style de la notification.</string>
+    <string name="ads_theme_style_classic_desc">Sélectionnez classique pour utiliser la palette de couleurs comme arrière-plan.</string>
+    <string name="ads_theme_widget">Thème des widgets</string>
+    <string name="ads_theme_widget_summary">Palette de couleurs pour le widget.</string>
+    <string name="ads_theme_app_shortcuts">Thème des raccourcis d\'application</string>
+    <string name="ads_theme_app_shortcuts_summary">Afficher les raccourcis d\'applications thématiques en fonction de la couleur principale de l\'application.</string>
+    <string name="ads_theme_app_shortcuts_summary_unchecked">Afficher les raccourcis d\'application par défaut en fonction du thème de l\'application et de la couleur de la marque.</string>
+    <string name="ads_theme_app_shortcuts_desc">Appuyez longuement sur l\'icône du lanceur pour afficher les raccourcis d\'applications. Un lanceur compatible est requis.</string>
+    <string name="ads_theme_reset_desc">Le thème a été réinitialisé par défaut.</string>
+    <string name="ads_theme_import_done">Le thème a été importé avec succès.</string>
+    <string name="ads_theme_export_done">Le thème a été exporté avec succès.</string>
+    <string name="ads_theme_export_error">Impossible de sauvegarder le thème.</string>
+    <string name="ads_theme_share_error">Impossible de partager le thème.</string>
+    <string name="ads_theme_copy_done">Le thème a été copié avec succès.</string>
+    <string name="ads_theme_edit_done">Le thème a été modifié avec succès.</string>
+    <string name="ads_theme_save_done">Thème enregistré avec succès.</string>
+    <string name="ads_theme_delete_done">Thème supprimé avec succès.</string>
+    <string name="ads_theme_format_saved">Thème sauvegardé : %1$s</string>
+    <string name="ads_theme_presets">Thèmes prédéfinis</string>
+    <string name="ads_theme_presets_desc">Télécharger via Google Play.</string>
+    <string name="ads_theme_presets_options">Appuyez pour les options</string>
+    <string name="ads_theme_presets_import">Appuyez pour importer</string>
+    <string name="ads_theme_presets_empty">Aucun préréglage</string>
+
+    <!-- Theme -->
+    <string name="ads_theme_toast_default">Message toast par défaut</string>
+    <string name="ads_theme_toast_themed">Message de toast à thème</string>
+    <string name="ads_theme_entry_auto">Auto</string>
+    <string name="ads_theme_settings_auto_desc">Sélectionnez auto pour utiliser les paramètres de l\'application.</string>
+    <string name="ads_theme_settings_default_desc">Sélectionnez auto pour utiliser les paramètres par défaut.</string>
+    <string name="ads_theme_color_auto_desc">Sélectionnez auto pour utiliser la palette de couleurs de l\'application.</string>
+    <string name="ads_theme_color_default_desc">Sélectionnez auto pour utiliser la palette de couleurs par défaut.</string>
+    <string name="ads_theme_entry_auto_background_aware_desc">Sélectionner auto pour utiliser la palette de couleurs de l\'application. Ajuste les couleurs en fonction de l\'arrière plan pour une meilleure visibilité.</string>
+    <string name="ads_theme_entry_day">Jour</string>
+    <string name="ads_theme_entry_night">Nuit</string>
+    <string name="ads_theme_entry_light">Clair</string>
+    <string name="ads_theme_entry_dark">Foncé</string>
+    <string name="ads_theme_entry_custom">Personnalisé</string>
+    <string name="ads_theme_entry_classic">Classique</string>
+    <string name="ads_theme_entry_battery">Économiseur de batterie</string>
+    <string name="ads_theme_entry_always">Toujours</string>
+    <string name="ads_theme_entry_true_dark">Noir</string>
+    <string name="ads_theme_entry_light_indigo">Indigo clair</string>
+    <string name="ads_theme_entry_light_red">Rouge clair</string>
+    <string name="ads_theme_entry_light_blue">Bleu clair</string>
+    <string name="ads_theme_entry_light_green">Vert clair</string>
+    <string name="ads_theme_entry_light_yellow">Jaune clair</string>
+    <string name="ads_theme_entry_light_purple">Violet clair</string>
+    <string name="ads_theme_entry_light_orange">Orange clair</string>
+    <string name="ads_theme_entry_light_brown">Marron clair</string>
+    <string name="ads_theme_entry_light_gray">Gris clair</string>
+    <string name="ads_theme_entry_dark_indigo">Indigo foncé</string>
+    <string name="ads_theme_entry_dark_red">Rouge foncé</string>
+    <string name="ads_theme_entry_dark_blue">Bleu foncé</string>
+    <string name="ads_theme_entry_dark_green">Vert foncé</string>
+    <string name="ads_theme_entry_dark_teal">Bleu sarcelle</string>
+    <string name="ads_theme_entry_dark_purple">Violet foncé</string>
+    <string name="ads_theme_entry_dark_orange">Orange sombre</string>
+    <string name="ads_theme_entry_dark_brown">Marron foncé</string>
+    <string name="ads_theme_entry_dark_gray">Gris foncé</string>
+
+    <!-- Visibility -->
+    <string name="ads_visibility_show">Afficher</string>
+    <string name="ads_visibility_hide">Cacher</string>
+
+    <!-- Picker -->
+    <string name="ads_picker_all">Toutes</string>
+    <string name="ads_picker_pick">Choisir</string>
+    <string name="ads_picker_more_colors">Plus de couleurs</string>
+    <string name="ads_picker_presets">Préréglages</string>
+    <string name="ads_picker_size_small">Petit</string>
+    <string name="ads_picker_size_normal">Normal</string>
+    <string name="ads_picker_size_large">Grand</string>
+    <string name="ads_picker_size_info">Valeur pour la largeur et la hauteur.</string>
+
+    <!-- Miscellaneous -->
+    <string name="ads_language">Langue</string>
+    <string name="ads_language_summary">Langue utilisée par l\'application.</string>
+    <string name="ads_language_system">Système</string>
+    <string name="ads_dynamic_vibration">Vibration</string>
+    <string name="ads_dynamic_vibration_intensity">Intensité des vibrations</string>
+    <string name="ads_dynamic_vibration_intensity_summary">Durée de la vibration en millisecondes.</string>
+    <string name="ads_dynamic_vibration_intensity_unit">ms</string>
+    <string name="ads_dynamic_motion">Motion</string>
+    <string name="ads_dynamic_motion_summary">Mouvement dynamique en jouant toutes les animations.</string>
+    <string name="ads_dynamic_motion_summary_unchecked">Réduisez le mouvement en sautant certaines animations.</string>
+    <string name="ads_dynamic_motion_desc">Réduisez toujours le mouvement lorsque l\'économiseur de batterie est activé. Certaines animations ne peuvent pas être ignorées.</string>
+
+    <!-- Notification and Channel -->
+    <string name="ads_notification_priority">Priorité de notification</string>
+    <string name="ads_notification_priority_summary">Sélectionnez une priorité pour déterminer son ordre dans le tiroir de notification.</string>
+    <string name="ads_notification_priority_desc">Sélectionnez priorité faible pour masquer la notification dans la barre d’état et sur le verrouillage de l’écran.</string>
+    <string name="ads_notification_priority_high">Haute</string>
+    <string name="ads_notification_priority_normal">Normal</string>
+    <string name="ads_notification_priority_low">Basse</string>
+    <string name="ads_notification_category">Catégorie de notification</string>
+    <string name="ads_notification_category_summary">Configurer la notification affichée par l\'application</string>
+    <string name="ads_notification_category_desc">Sélectionner la priorité basse pour masquer les notifications de la barre d\'état et de l\'écran de verrouillage.</string>
+    <string name="ads_notification_close_drawer">Fermer le tiroir</string>
+    <string name="ads_notification_close_drawer_summary">Fermez le tiroir de notification après avoir effectué l\'action.</string>
+    <string name="ads_notification_close_drawer_summary_unchecked">Ne modifiez pas l\'état du tiroir de notification après avoir effectué l\'action.</string>
+
+    <!-- App widget -->
+    <string name="ads_widget_customise">Personnaliser</string>
+    <string name="ads_widget_customise_desc">Configurer le widget ci-dessous</string>
+    <string name="ads_widget_preview">Aperçu</string>
+    <string name="ads_widget_preview_desc">La disposition des widgets peut changer automatiquement pour offrir une expérience optimale.</string>
+    <string name="ads_widget_header">En-tête</string>
+    <string name="ads_widget_header_summary">Visibilité de l\'en-tête du widget</string>
+    <string name="ads_widget_header_desc">Sélectionner auto afin d\'afficher l\'en-tête si assez d\'espace est diponible</string>
+    <string name="ads_widget_corner_size_bg_summary">Rayon d\'angle de l\'arrière-plan du widget.</string>
+    <string name="ads_widget_corner_size_bg_desc">Sélectionnez auto pour utiliser la taille du coin de l\'application.</string>
+    <string name="ads_widget_reset_desc">Le widget a été réinitialisé par défaut.</string>
+    <string name="ads_widget_not_added">Aucun widget n\'a été ajouté.</string>
+
+    <!-- Setup -->
+    <string name="ads_setup">Installation</string>
+    <string name="ads_setup_desc">Configurer les fonctionnalités ci-dessous</string>
+
+    <!-- About and Support -->
+    <string name="ads_rate">Évaluez</string>
+    <string name="ads_support_contact">Contact</string>
+    <string name="ads_support_feedback">Retour d\'expèrience</string>
+    <string name="ads_support_report">Rapport</string>
+    <string name="ads_support_report_bug">Soumettre un rapport de bug</string>
+    <string name="ads_support_report_bug_summary">Contacter le développeur par email.</string>
+    <string name="ads_support_report_bug_desc">Pour tous problèmes ou questions concernant cette application, veuillez me contacter par mail.</string>
+    <string name="ads_support_donate">Faire une donation</string>
+    <string name="ads_support_donate_paypal">Donner via PayPal.</string>
+    <string name="ads_support_donate_desc">Faites un don au développeur afin de le remercier et de soutenir le développement d\'autres projets. Les donations ne sont pas obligatoires, vous pouvez toujours acheter une licence pour soutenir le développement de cette application.</string>
+    <string name="ads_support_reset_to_default">Réinitialiser par défaut</string>
+    <string name="ads_support_reset_to_default_alert">Tous les paramètres vont être réinitialisés. Êtes-vous sur de vouloir continuer ?</string>
+    <string name="ads_support_reset_to_default_summary">Réinitialiser tous les paramètres par défaut.</string>
+    <string name="ads_support_reset_to_default_desc">Il peut résoudre certains problèmes généraux causés par la mise à jour de l\'application ou du système. Tous les paramètres utilisateur (à l\'exception des widgets) seront perdus après avoir effectué cette opération.</string>
+    <string name="ads_support_restart_app">Redémarrer l\'application</string>
+    <string name="ads_support_restart_app_summary">Redémarrer l\'application et le service afin actualiser l\'état de l\'application.</string>
+    <string name="ads_support_restart_app_desc">A utiliser si le service ne démarre pas ou si l\'application ne se comporte pas correctement. Tous les paramètres resteront inchangés après cette opération.</string>
+
+    <!-- Developer and App info -->
+    <string name="ads_info_made_in">Made in India</string>
+    <string name="ads_info_made_by">Développé et designé par</string>
+    <string name="ads_info_made_by_alt">Développé par</string>
+    <string name="ads_info_quote">Rien n\'est parfait mais peut être mieux. Développer de telles meilleures choses !</string>
+    <string name="ads_info_privacy_policy">Politique de confidentialité</string>
+    <string name="ads_info_privacy_policy_desc">Afficher la politique de confidentialité de cette application.</string>
+    <string name="ads_info_terms_of_use">Conditions d\'utilisation.</string>
+    <string name="ads_info_terms_of_use_desc">Afficher les conditions d\'utilisation de cette application.</string>
+    <string name="ads_info_privacy_policy_terms_desc">Politique de confidentialité et conditions d\'utilisation.</string>
+    <string name="ads_info_apps">Plus d\'applications.</string>
+    <string name="ads_info_apps_desc">Tester mes autres applications disponibles sur le Google Playstore</string>
+    <string name="ads_info_gplus_desc">Rejoignez la communauté officielle pour essayer les versions de test.</string>
+    <string name="ads_info_facebook_desc">Aimez la page officielle pour obtenir les dernières nouvelles et mises à jour.</string>
+    <string name="ads_info_xda_desc">Notre forum officiel sur XDA.</string>
+    <string name="ads_info_website">Site internet</string>
+    <string name="ads_info_website_desc">Visitez le site officiel pour plus d\'informations.</string>
+    <string name="ads_info_website_me_desc">Une place pour moi sur le web.</string>
+    <string name="ads_info_twitter_me_desc">Recevez les derniers tweets sur ma vie et mon travail.</string>
+    <string name="ads_info_facebook_me_desc">Devenez un ami ou suivez-moi pour en savoir plus sur moi.</string>
+    <string name="ads_info_gplus_me_desc">Encerclez ou suivez pour développer la communauté.</string>
+    <string name="ads_info_linkedin_me_desc">Quelque chose de bon pour moi ? Contactez-moi via LinkedIn.</string>
+    <string name="ads_info_github_me_desc">Redonner à la communauté en open source certains de mes projets.</string>
+
+    <!-- Contributors and Translators -->
+    <string name="ads_contributors">Contributeurs</string>
+    <string name="ads_contributors_desc">Un énorme merci pour leur aide</string>
+    <string name="ads_translations">Traductions</string>
+    <string name="ads_translators">Traducteurs</string>
+    <string name="ads_translators_translate">Traduire</string>
+    <string name="ads_translators_translate_summary">Devenir traducteur</string>
+    <string name="ads_translators_translate_desc">Contribuer à rendre cette application disponible dans d\'autres langues.</string>
+    <string name="ads_translators_contact">Si vous souhaitez devenir traducteur contactez moi par mail.</string>
+
+    <!-- Licenses -->
+    <string name="ads_notice">Remarquer</string>
+    <string name="ads_notices">Avis</string>
+    <string name="ads_license">Licence</string>
+    <string name="ads_licenses">Licences</string>
+    <string name="ads_license_desc">Afficher la licence complète.</string>
+    <string name="ads_license_sources">Sources.</string>
+    <string name="ads_license_sources_desc">Consulter le code source sur GitHub.</string>
+
+</resources>
