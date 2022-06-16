@@ -27,6 +27,7 @@
 
     <!-- Headings -->
     <string name="ads_app">ऐप</string>
+    <string name="ads_game">खेल</string>
     <string name="ads_version">संस्करण</string>
     <string name="ads_actions">क्रिया</string>
     <string name="ads_text">लेख</string>
@@ -53,6 +54,7 @@
     <string name="ads_not_now">अभी नहीं</string>
     <string name="ads_later">बाद में</string>
     <string name="ads_yes_in">हां, में तैयार हूं</string>
+    <string name="ads_accept">स्वीकार करें</string>
     <string name="ads_more">और</string>
     <string name="ads_more_info">इसके बारे में और बताएं</string>
     <string name="ads_select">चुनें</string>
@@ -61,6 +63,7 @@
     <string name="ads_load">लोड करें</string>
     <string name="ads_file">फ़ाइल</string>
     <string name="ads_create">बनाएं</string>
+    <string name="ads_configure">बदलें</string>
     <string name="ads_open">खोलें</string>
     <string name="ads_previous">पिछला</string>
     <string name="ads_next">अगला</string>
@@ -117,6 +120,7 @@
     <string name="ads_permissions_subtitle_single">आवश्यक अनुमती दें।</string>
     <string name="ads_perm_info_required">अनुमति की आवश्यकता है</string>
     <string name="ads_perm_info_grant_all">ऐप को सही ढंग से प्रयोग लेने के लिए सभी आवश्यक अनुमतियां दें।</string>
+    <string name="ads_perm_info_accept">यह सुविधा वैकल्पिक है, कृपया जारी रखना स्वीकार करें।</string>
     <string name="ads_perm_request">इच्छा प्रस्तुत करें</string>
     <string name="ads_perm_request_desc">यह अनुमति नहीं दी गई है। देने के लिए दबाएं।</string>
     <string name="ads_perm_granted">दे दी गई है</string>
@@ -137,9 +141,12 @@
     <string name="ads_perm_usage_access">यूसेज ऐकसेस</string>
     <string name="ads_perm_usage_access_desc">यूसेज एक्सेस की अनुमति दें।</string>
     <string name="ads_perm_accessibility">सुलभता</string>
+    <string name="ads_perm_accessibility_desc">इसे सिस्टम सेटिंग्स के माध्यम से प्रबंधित किया जाना चाहिए।</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">डेटा</string>
+    <string name="ads_data_invalid">अमान्य डेटा</string>
+    <string name="ads_data_invalid_desc">दोबारा प्रयास करें।</string>
     <string name="ads_data_operations">डेटा ऑपरेशन</string>
     <string name="ads_backup_and_restore">बैकअप व रीस्टोर</string>
     <string name="ads_backup">बैकअप</string>
@@ -203,9 +210,11 @@
     <string name="ads_dynamic_theme">गतिशील रंग-रूप</string>
     <string name="ads_dynamic_theme_summary">रिसीवर द्वारा लागू रंग-रूप।</string>
     <string name="ads_dynamic_color_summary">स्वचालित रंग के लिए कार्यान्वयन।</string>
+    <string name="ads_dynamic">गत्यात्मक</string>
     <string name="ads_theme">रंग-रूप</string>
     <string name="ads_theme_code">कोड</string>
     <string name="ads_theme_code_desc">रंग-रूप को स्कैन या साझा करें।</string>
+    <string name="ads_theme_code_capture">कैद करें</string>
     <string name="ads_theme_customise_desc">रंग-रूप बदलें।</string>
     <string name="ads_theme_adjust_desc">आपके Android संस्करण के अनुसार रंग-रूप बदला जाएगा।</string>
     <string name="ads_theme_invalid">अमान्य रंग-रूप</string>
@@ -231,9 +240,16 @@
     <string name="ads_theme_font_scale">लेख पैमाना</string>
     <string name="ads_theme_font_scale_summary">लेख को छोटा या बड़ा करने के लिए पैमाना कारक।</string>
     <string name="ads_theme_corner_size">कोने का आकर</string>
-    <string name="ads_theme_corner_size_summary">आप के कोने का आकार।</string>
+    <string name="ads_theme_corner_size_summary">समर्थित तत्वों के लिए कोने की त्रिज्या।</string>
     <string name="ads_theme_background_aware">बैकग्राउंड अवेयर</string>
     <string name="ads_theme_background_aware_desc">आसानी से देखने के लिए बैकग्राउंड के अनुसार रंग बदलें।</string>
+    <string name="ads_theme_contrast">कंट्रास्ट अनुपात</string>
+    <string name="ads_theme_contrast_summary">दृश्यमान कंट्रास्ट के लिए न्यूनतम अनुपात।</string>
+    <string name="ads_theme_opacity">बैकग्राउंड की जटिलता</string>
+    <string name="ads_theme_opacity_summary">ऐप के बैकग्राउंड की जटिलता।</string>
+    <string name="ads_theme_opacity_summary_widget">विडजेट के बैकग्राउंड की जटिलता।</string>
+    <string name="ads_theme_elevation">ऊंचाई</string>
+    <string name="ads_theme_elevation_summary">सतह के तत्वों के लिए छाया को नियंत्रित करें।</string>
     <string name="ads_theme_style">स्टाइल</string>
     <string name="ads_theme_style_summary">रंग-रूप का स्टाइल।</string>
     <string name="ads_theme_app">ऐप का रंग-रूप</string>
@@ -324,11 +340,20 @@
     <string name="ads_picker_pick">उठाएं</string>
     <string name="ads_picker_more_colors">और रंग</string>
     <string name="ads_picker_presets">प्रीसेट</string>
+    <string name="ads_picker_size_small">छोटा</string>
+    <string name="ads_picker_size_normal">साधारण</string>
+    <string name="ads_picker_size_large">बड़ा</string>
+    <string name="ads_picker_size_info">चौड़ाई और लंबाई के लिए मान।</string>
+
 
     <!-- Miscellaneous -->
     <string name="ads_language">भाषा</string>
     <string name="ads_language_summary">ऐप द्वारा प्रयोग की जाने वाली भाषा।</string>
     <string name="ads_language_system">सिस्टम</string>
+    <string name="ads_dynamic_vibration">कंपन</string>
+    <string name="ads_dynamic_vibration_intensity">कंपन तीव्रता</string>
+    <string name="ads_dynamic_vibration_intensity_summary">मिलीसेकंड में कंपन की समय अवधि।</string>
+    <string name="ads_dynamic_vibration_intensity_unit">मिसे</string>
     <string name="ads_dynamic_motion">चाल</string>
     <string name="ads_dynamic_motion_summary">सभी एनिमेशन प्रदर्शित करके गतिशील चाल।</string>
     <string name="ads_dynamic_motion_summary_unchecked">कुछ एनिमेशन प्रदर्शित न करके चाल को कम करें।</string>
@@ -358,8 +383,6 @@
     <string name="ads_widget_header_desc">जगह होने पर अपने आप ऊपरी भाग दिखने के लिए \"ऑटो\" चुनें।</string>
     <string name="ads_widget_corner_size_bg_summary">कोनों का आकार।</string>
     <string name="ads_widget_corner_size_bg_desc">ऐप के कोनों का आकार का प्रयोग करने के लिए \"ऑटो\" चुनें।</string>
-    <string name="ads_widget_opacity_bg">बैकग्राउंड की जटिलता</string>
-    <string name="ads_widget_opacity_bg_summary">विडजेट के बैकग्राउंड की जटिलता।</string>
     <string name="ads_widget_reset_desc">विडजेट को डिफॉल्ट पर रीसेट कर दिया गया है।</string>
     <string name="ads_widget_not_added">कोई विडजेट नहीं लगाया गया है।</string>
 
@@ -387,9 +410,10 @@
     <string name="ads_support_restart_app_desc">ऐप या सर्विस के शुरू ना होने की स्थिति में इसका प्रयोग करें। इसके बाद सैटिंग्स पर कोई प्रभाव नहीं पड़ेगा।</string>
 
     <!-- Developer and App info -->
-    <string name="ads_info_made_by">लिखित और डिजाइन द्वारा</string>
     <string name="ads_info_made_in">भारत में निर्मित</string>
-    <string name="ads_info_quote">कुछ भी सही नहीं है लेकिन बेहतर हो सकता है।</string>
+    <string name="ads_info_made_by">लिखित और डिजाइन द्वारा</string>
+    <string name="ads_info_made_by_alt">विकसित द्वारा</string>
+    <string name="ads_info_quote">कुछ भी पूर्ण रूप से उत्तम नहीं है लेकिन बेहतर हो सकता है।</string>
     <string name="ads_info_privacy_policy">प्राइवेसी पॉलिसी</string>
     <string name="ads_info_privacy_policy_desc">इस ऐप की पूरी प्राइवेसी पॉलिसी देखें।</string>
     <string name="ads_info_terms_of_use">टर्म्स ऑफ यूज</string>
@@ -420,9 +444,10 @@
     <string name="ads_translators_contact">अनुवाद करने के लिए ईमेल द्वारा संपर्क करें।</string>
 
     <!-- Licenses -->
+    <string name="ads_notice">सूचना</string>
     <string name="ads_notices">सूचना</string>
-    <string name="ads_licenses">लाइसेंस</string>
     <string name="ads_license">लाइसेंस</string>
+    <string name="ads_licenses">लाइसेंस</string>
     <string name="ads_license_desc">पूरा लाइसेंस देखें।</string>
     <string name="ads_license_sources">स्रोत</string>
     <string name="ads_license_sources_desc">GitHub पर स्रोत देखें।</string>

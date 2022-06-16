@@ -27,6 +27,7 @@
 
     <!-- Headings -->
     <string name="ads_app">App</string>
+    <string name="ads_game">Game</string>
     <string name="ads_version">Version</string>
     <string name="ads_actions">Actions</string>
     <string name="ads_text">Text</string>
@@ -53,6 +54,7 @@
     <string name="ads_not_now">Not now</string>
     <string name="ads_later">Later</string>
     <string name="ads_yes_in">Yes, I\'m in</string>
+    <string name="ads_accept">Accept</string>
     <string name="ads_more">More</string>
     <string name="ads_more_info">More info</string>
     <string name="ads_select">Select</string>
@@ -61,6 +63,7 @@
     <string name="ads_load">Load</string>
     <string name="ads_file">File</string>
     <string name="ads_create">Create</string>
+    <string name="ads_configure">Configure</string>
     <string name="ads_open">Open</string>
     <string name="ads_previous">Previous</string>
     <string name="ads_next">Next</string>
@@ -117,6 +120,7 @@
     <string name="ads_permissions_subtitle_single">Please allow the required permission.</string>
     <string name="ads_perm_info_required">Permission required</string>
     <string name="ads_perm_info_grant_all">Please allow all the permissions to make the app working properly.</string>
+    <string name="ads_perm_info_accept">This feature is optional, please accept to continue.</string>
     <string name="ads_perm_request">Request</string>
     <string name="ads_perm_request_desc">This permission is not granted. Tap to request.</string>
     <string name="ads_perm_granted">Granted</string>
@@ -137,9 +141,12 @@
     <string name="ads_perm_usage_access">Usage access</string>
     <string name="ads_perm_usage_access_desc">Permit usage access.</string>
     <string name="ads_perm_accessibility">Accessibility</string>
+    <string name="ads_perm_accessibility_desc">It must be managed via system settings.</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">Data</string>
+    <string name="ads_data_invalid">Invalid data</string>
+    <string name="ads_data_invalid_desc">Please try again with the appropriate data.</string>
     <string name="ads_data_operations">Data operations</string>
     <string name="ads_backup_and_restore">Backup &amp; Restore</string>
     <string name="ads_backup">Backup</string>
@@ -203,9 +210,11 @@
     <string name="ads_dynamic_theme">Dynamic theme</string>
     <string name="ads_dynamic_theme_summary">Theme applied by the receiver.</string>
     <string name="ads_dynamic_color_summary">Implementation for the auto color.</string>
+    <string name="ads_dynamic">Dynamic</string>
     <string name="ads_theme">Theme</string>
     <string name="ads_theme_code">Code</string>
     <string name="ads_theme_code_desc">Scan or share the theme.</string>
+    <string name="ads_theme_code_capture">Capture</string>
     <string name="ads_theme_customise_desc">Configure the theme below.</string>
     <string name="ads_theme_adjust_desc">Theme will be adjusted automatically according to the current Android version.</string>
     <string name="ads_theme_invalid">Invalid theme</string>
@@ -231,9 +240,16 @@
     <string name="ads_theme_font_scale">Font scale</string>
     <string name="ads_theme_font_scale_summary">Scaling factor to make the text smaller or larger.</string>
     <string name="ads_theme_corner_size">Corner size</string>
-    <string name="ads_theme_corner_size_summary">Corner radius of the app.</string>
+    <string name="ads_theme_corner_size_summary">Corner radius for the supported elements.</string>
     <string name="ads_theme_background_aware">Background aware</string>
-    <string name="ads_theme_background_aware_desc">Adjust colors according to the background to provide best visibility.</string>
+    <string name="ads_theme_background_aware_desc">Adjust colors according to the background to provide the best visibility.</string>
+    <string name="ads_theme_contrast">Contrast ratio</string>
+    <string name="ads_theme_contrast_summary">Minimum ratio for the visible contrast.</string>
+    <string name="ads_theme_opacity">Background opacity</string>
+    <string name="ads_theme_opacity_summary">Opacity of the app background.</string>
+    <string name="ads_theme_opacity_summary_widget">Opacity of the widget background.</string>
+    <string name="ads_theme_elevation">Elevation</string>
+    <string name="ads_theme_elevation_summary">Control shadow for the surface elements.</string>
     <string name="ads_theme_style">Style</string>
     <string name="ads_theme_style_summary">Style of the theme.</string>
     <string name="ads_theme_app">App theme</string>
@@ -250,7 +266,7 @@
     <string name="ads_theme_navigation_bar">Navigation bar theme</string>
     <string name="ads_theme_navigation_bar_summary">Show navigation bar according to the app theme.</string>
     <string name="ads_theme_navigation_bar_summary_unchecked">Show default navigation bar.</string>
-    <string name="ads_theme_navigation_bar_desc">Navigation bar theme will not be visible at some places to provide best visual experience.</string>
+    <string name="ads_theme_navigation_bar_desc">Navigation bar theme will not be visible at some places to provide the best visual experience.</string>
     <string name="ads_theme_notification">Notification theme</string>
     <string name="ads_theme_notification_summary">Color palette of the notification.</string>
     <string name="ads_theme_notification_style">Notification style</string>
@@ -286,7 +302,7 @@
     <string name="ads_theme_settings_default_desc">Select auto to use the default settings.</string>
     <string name="ads_theme_color_auto_desc">Select auto to use the app color palette.</string>
     <string name="ads_theme_color_default_desc">Select auto to use the default color palette.</string>
-    <string name="ads_theme_entry_auto_background_aware_desc">Select auto to use the app color palette. Adjust colors according to the background to provide best visibility.</string>
+    <string name="ads_theme_entry_auto_background_aware_desc">Select auto to use the app color palette. Adjust colors according to the background to provide the best visibility.</string>
     <string name="ads_theme_entry_day">Day</string>
     <string name="ads_theme_entry_night">Night</string>
     <string name="ads_theme_entry_light">Light</string>
@@ -324,11 +340,19 @@
     <string name="ads_picker_pick">Pick</string>
     <string name="ads_picker_more_colors">More colors</string>
     <string name="ads_picker_presets">Presets</string>
+    <string name="ads_picker_size_small">Small</string>
+    <string name="ads_picker_size_normal">Normal</string>
+    <string name="ads_picker_size_large">Large</string>
+    <string name="ads_picker_size_info">Value for the width and height.</string>
 
     <!-- Miscellaneous -->
     <string name="ads_language">Language</string>
     <string name="ads_language_summary">Language used by the app.</string>
     <string name="ads_language_system">System</string>
+    <string name="ads_dynamic_vibration">Vibration</string>
+    <string name="ads_dynamic_vibration_intensity">Vibration intensity</string>
+    <string name="ads_dynamic_vibration_intensity_summary">Time duration for vibration in milliseconds.</string>
+    <string name="ads_dynamic_vibration_intensity_unit">ms</string>
     <string name="ads_dynamic_motion">Motion</string>
     <string name="ads_dynamic_motion_summary">Dynamic motion by playing all the animations.</string>
     <string name="ads_dynamic_motion_summary_unchecked">Reduce motion by skipping some animations.</string>
@@ -349,17 +373,15 @@
     <string name="ads_notification_close_drawer_summary_unchecked">Do not change notification drawer state after performing the action.</string>
 
     <!-- App widget -->
-    <string name="ads_widget_customise">Customise</string>
+    <string name="ads_widget_customise">Customize</string>
     <string name="ads_widget_customise_desc">Configure the widget below.</string>
     <string name="ads_widget_preview">Preview</string>
-    <string name="ads_widget_preview_desc">Widget layout might change automatically according to the actual size in use to provide best experience.</string>
+    <string name="ads_widget_preview_desc">Widget layout might change automatically according to the actual size in use to provide the best experience.</string>
     <string name="ads_widget_header">Header</string>
     <string name="ads_widget_header_summary">Visibility of the widget header.</string>
     <string name="ads_widget_header_desc">Select auto to show the header if enough space is available.</string>
     <string name="ads_widget_corner_size_bg_summary">Corner radius of the widget background.</string>
     <string name="ads_widget_corner_size_bg_desc">Select auto to use the app corner size.</string>
-    <string name="ads_widget_opacity_bg">Background opacity</string>
-    <string name="ads_widget_opacity_bg_summary">Opacity of the widget background.</string>
     <string name="ads_widget_reset_desc">Widget has been reset to default.</string>
     <string name="ads_widget_not_added">No widgets have been added.</string>
 
@@ -387,8 +409,9 @@
     <string name="ads_support_restart_app_desc">Use if service is not starting or app is not behaving properly. All settings will remain unchanged after performing this operation.</string>
 
     <!-- Developer and App info -->
-    <string name="ads_info_made_by">Written and designed by</string>
     <string name="ads_info_made_in">Made in India</string>
+    <string name="ads_info_made_by">Written and designed by</string>
+    <string name="ads_info_made_by_alt">Developed by</string>
     <string name="ads_info_quote">Nothing is perfect but can be better. Developing such better things!</string>
     <string name="ads_info_privacy_policy">Privacy Policy</string>
     <string name="ads_info_privacy_policy_desc">View complete privacy policy of this product.</string>
@@ -420,9 +443,10 @@
     <string name="ads_translators_contact">Contact via email if you want to translate.</string>
 
     <!-- Licenses -->
+    <string name="ads_notice">Notice</string>
     <string name="ads_notices">Notices</string>
-    <string name="ads_licenses">Licenses</string>
     <string name="ads_license">License</string>
+    <string name="ads_licenses">Licenses</string>
     <string name="ads_license_desc">View full license.</string>
     <string name="ads_license_sources">Sources</string>
     <string name="ads_license_sources_desc">View sources on GitHub.</string>

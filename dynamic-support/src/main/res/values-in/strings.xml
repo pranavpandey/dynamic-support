@@ -27,6 +27,7 @@
 
     <!-- Headings -->
     <string name="ads_app">Aplikasi</string>
+    <string name="ads_game">Permainan</string>
     <string name="ads_version">Versi</string>
     <string name="ads_actions">Aksi</string>
     <string name="ads_text">Teks</string>
@@ -53,6 +54,7 @@
     <string name="ads_not_now">Lain kali</string>
     <string name="ads_later">Kemudian</string>
     <string name="ads_yes_in">Ya, saya mau</string>
+    <string name="ads_accept">Menerima</string>
     <string name="ads_more">Lebih</string>
     <string name="ads_more_info">Info lebih lanjut</string>
     <string name="ads_select">Pilih</string>
@@ -61,6 +63,7 @@
     <string name="ads_load">Muat</string>
     <string name="ads_file">File</string>
     <string name="ads_create">Buat</string>
+    <string name="ads_configure">Atur</string>
     <string name="ads_open">Buka</string>
     <string name="ads_previous">Sebelumnya</string>
     <string name="ads_next">Setelahnya</string>
@@ -117,6 +120,7 @@
     <string name="ads_permissions_subtitle_single">Mohon berikan perijinan berikut.</string>
     <string name="ads_perm_info_required">Perijinan diperlukan</string>
     <string name="ads_perm_info_grant_all">Mohon berikan seluruh perijinan agar aplikasi dapat berjalan sebagaimana mestinya.</string>
+    <string name="ads_perm_info_accept">Fitur ini opsional, setujui untuk melanjutkan.</string>
     <string name="ads_perm_request">Minta</string>
     <string name="ads_perm_request_desc">Perijinan ini belum diberikan. Tekan untuk meminta.</string>
     <string name="ads_perm_granted">Diberikan</string>
@@ -137,9 +141,12 @@
     <string name="ads_perm_usage_access">Akses penggunaan</string>
     <string name="ads_perm_usage_access_desc">ijinkan akses penggunaan.</string>
     <string name="ads_perm_accessibility">Aksesibilitas</string>
+    <string name="ads_perm_accessibility_desc">Itu harus dikelola melalui pengaturan sistem.</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">Data</string>
+    <string name="ads_data_invalid">Data tidak valid</string>
+    <string name="ads_data_invalid_desc">Mohon coba lagi dengan data yang sesuai.</string>
     <string name="ads_data_operations">Operasi data</string>
     <string name="ads_backup_and_restore">Cadangkan &amp; Pulihkan</string>
     <string name="ads_backup">Cadangkan</string>
@@ -203,9 +210,11 @@
     <string name="ads_dynamic_theme">Tema dinamis</string>
     <string name="ads_dynamic_theme_summary">Tema diterapkan oleh penerima.</string>
     <string name="ads_dynamic_color_summary">Implementasi untuk warna otomatis.</string>
+    <string name="ads_dynamic">Dinamis</string>
     <string name="ads_theme">Tema</string>
     <string name="ads_theme_code">Kode</string>
     <string name="ads_theme_code_desc">Pindai atau bagikan tema.</string>
+    <string name="ads_theme_code_capture">Menangkap</string>
     <string name="ads_theme_customise_desc">Atur tema di bawah ini.</string>
     <string name="ads_theme_adjust_desc">Tema akan otomatis disesuaikan berdasarkan versi Android saat ini.</string>
     <string name="ads_theme_invalid">Tema tidak sah</string>
@@ -231,9 +240,16 @@
     <string name="ads_theme_font_scale">Skala font</string>
     <string name="ads_theme_font_scale_summary">Faktor penskalaan untuk membuat teks lebih kecil atau lebih besar.</string>
     <string name="ads_theme_corner_size">Ukuran pojok</string>
-    <string name="ads_theme_corner_size_summary">Radius pojok aplikasi.</string>
+    <string name="ads_theme_corner_size_summary">Radius sudut untuk elemen yang didukung.</string>
     <string name="ads_theme_background_aware">Sadar latar belakang</string>
     <string name="ads_theme_background_aware_desc">Beberaoa warna akan otomatis berganti berdasarkan latar belakang untuk menyediakan visibilitas terbaik.</string>
+    <string name="ads_theme_contrast">Rasio kontras</string>
+    <string name="ads_theme_contrast_summary">Rasio minimum untuk kontras yang terlihat.</string>
+    <string name="ads_theme_opacity">Kegelapan latar belakang</string>
+    <string name="ads_theme_opacity_summary">Kegelapan latar belakang aplikasi.</string>
+    <string name="ads_theme_opacity_summary_widget">Kegelapan latar belakang widget.</string>
+    <string name="ads_theme_elevation">Ketinggian</string>
+    <string name="ads_theme_elevation_summary">Kontrol bayangan untuk elemen permukaan.</string>
     <string name="ads_theme_style">Gaya</string>
     <string name="ads_theme_style_summary">Gaya tema.</string>
     <string name="ads_theme_app">Tema aplikasi</string>
@@ -324,11 +340,19 @@
     <string name="ads_picker_pick">Pilih</string>
     <string name="ads_picker_more_colors">Warna lain</string>
     <string name="ads_picker_presets">Contoh aturan</string>
+    <string name="ads_picker_size_small">Kecil</string>
+    <string name="ads_picker_size_normal">Normal</string>
+    <string name="ads_picker_size_large">Besar</string>
+    <string name="ads_picker_size_info">Nilai untuk lebar dan tinggi.</string>
 
     <!-- Miscellaneous -->
     <string name="ads_language">Bahasa</string>
     <string name="ads_language_summary">Bahasa yang digunakan aplikasi.</string>
     <string name="ads_language_system">Sistem</string>
+    <string name="ads_dynamic_vibration">Getar</string>
+    <string name="ads_dynamic_vibration_intensity">Intensitas getaran</string>
+    <string name="ads_dynamic_vibration_intensity_summary">Waktu getaran dalam milidetik.</string>
+    <string name="ads_dynamic_vibration_intensity_unit">md</string>
     <string name="ads_dynamic_motion">Gerakan</string>
     <string name="ads_dynamic_motion_summary">Gerak dinamis dengan memainkan semua animasi.</string>
     <string name="ads_dynamic_motion_summary_unchecked">Kurangi gerakan dengan melewatkan beberapa animasi.</string>
@@ -358,8 +382,6 @@
     <string name="ads_widget_header_desc">Pilih auto untuk menampilkan kepala apabila ada cukup ruang tersedia.</string>
     <string name="ads_widget_corner_size_bg_summary">Radius pojok dari latar belakang widget.</string>
     <string name="ads_widget_corner_size_bg_desc">Pilih auto untuk menggunakan ukuran pojok aplikasi.</string>
-    <string name="ads_widget_opacity_bg">Kegelapan latar belakang</string>
-    <string name="ads_widget_opacity_bg_summary">Kegelapan latar belakang widget.</string>
     <string name="ads_widget_reset_desc">Widget telah direset ke default.</string>
     <string name="ads_widget_not_added">Tidak ada widget yang ditambahkan.</string>
 
@@ -387,8 +409,9 @@
     <string name="ads_support_restart_app_desc">Gunakan bila service tidak kunjung mulai atau aplikasi tidak berjalan sebagaimana mestinya. Seluruh pengaturan tidak akan berubah setelah melakukan tindakan ini.</string>
 
     <!-- Developer and App info -->
-    <string name="ads_info_made_by">Ditulis dan didesain oleh</string>
     <string name="ads_info_made_in">Dibuat di India</string>
+    <string name="ads_info_made_by">Ditulis dan didesain oleh</string>
+    <string name="ads_info_made_by_alt">Dikembangkan oleh</string>
     <string name="ads_info_quote">Tidak ada yang sempurna namun masih dapat lebih baik. Mengembangkan hal-hal yang lebih baik!</string>
     <string name="ads_info_privacy_policy">Kebijakan Pribadi</string>
     <string name="ads_info_privacy_policy_desc">Tampilkan kebijakan pribadi produk ini secara lengkap.</string>
@@ -420,9 +443,10 @@
     <string name="ads_translators_contact">Hubungi via email bila anda ingin menerjemahkan.</string>
 
     <!-- Licenses -->
+    <string name="ads_notice">Melihat</string>
     <string name="ads_notices">Pemberitahuan</string>
-    <string name="ads_licenses">Lisensi</string>
     <string name="ads_license">Lisensi</string>
+    <string name="ads_licenses">Lisensi</string>
     <string name="ads_license_desc">Tampilkan lisensi penuh.</string>
     <string name="ads_license_sources">Sumber</string>
     <string name="ads_license_sources_desc">Tampilkan sumber dari GitHub.</string>

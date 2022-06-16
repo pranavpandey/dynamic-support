@@ -27,6 +27,7 @@
 
     <!-- Headings -->
     <string name="ads_app">App</string>
+    <string name="ads_game">Jogo</string>
     <string name="ads_version">Versão</string>
     <string name="ads_actions">Ações</string>
     <string name="ads_text">Texto</string>
@@ -53,6 +54,7 @@
     <string name="ads_not_now">Agora não</string>
     <string name="ads_later">Mais tarde</string>
     <string name="ads_yes_in">Sim, conte comigo</string>
+    <string name="ads_accept">Aceitar</string>
     <string name="ads_more">Mais</string>
     <string name="ads_more_info">Mais informações</string>
     <string name="ads_select">Selecionar</string>
@@ -61,6 +63,7 @@
     <string name="ads_load">Carregar</string>
     <string name="ads_file">Arquivo</string>
     <string name="ads_create">Criar</string>
+    <string name="ads_configure">Configurar</string>
     <string name="ads_open">Abrir</string>
     <string name="ads_previous">Anterior</string>
     <string name="ads_next">Próximo</string>
@@ -117,6 +120,7 @@
     <string name="ads_permissions_subtitle_single">Por favor permita a permissão requerida.</string>
     <string name="ads_perm_info_required">Permissão necessária</string>
     <string name="ads_perm_info_grant_all">Por favor permita todas as permissões para fazer o app funcionar corretamente.</string>
+    <string name="ads_perm_info_accept">Este recurso é opcional, aceite para continuar.</string>
     <string name="ads_perm_request">Pedido</string>
     <string name="ads_perm_request_desc">Essa permissão não foi garantida. Toque para requisitar.</string>
     <string name="ads_perm_granted">Garantida</string>
@@ -137,9 +141,12 @@
     <string name="ads_perm_usage_access">Acesso de uso</string>
     <string name="ads_perm_usage_access_desc">permitir acesso de uso</string>
     <string name="ads_perm_accessibility">Acessibilidade</string>
+    <string name="ads_perm_accessibility_desc">Deve ser gerenciado por meio das configurações do sistema.</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">Dados</string>
+    <string name="ads_data_invalid">Dados inválidos</string>
+    <string name="ads_data_invalid_desc">Por favor tente novamente com os dados apropriados.</string>
     <string name="ads_data_operations">Operações de dados</string>
     <string name="ads_backup_and_restore">Backup &amp; Restauração</string>
     <string name="ads_backup">Backup</string>
@@ -203,9 +210,11 @@
     <string name="ads_dynamic_theme">Tema dinâmico</string>
     <string name="ads_dynamic_theme_summary">Tema aplicado pelo receptor.</string>
     <string name="ads_dynamic_color_summary">Implementação para a cor automática.</string>
+    <string name="ads_dynamic">Dinâmico</string>
     <string name="ads_theme">Tema</string>
     <string name="ads_theme_code">Código</string>
     <string name="ads_theme_code_desc">Digitalize ou compartilhe o tema.</string>
+    <string name="ads_theme_code_capture">Capturar</string>
     <string name="ads_theme_customise_desc">Configurar o tema abaixo.</string>
     <string name="ads_theme_adjust_desc">O tema será ajustado automaticamente de acordo com a versão atual do Android.</string>
     <string name="ads_theme_invalid">Tema inválido</string>
@@ -231,9 +240,16 @@
     <string name="ads_theme_font_scale">Escala da fonte</string>
     <string name="ads_theme_font_scale_summary">Fator de escala para tornar o texto menor ou maior.</string>
     <string name="ads_theme_corner_size">Tamanho do canto</string>
-    <string name="ads_theme_corner_size_summary">Raio do canto do app.</string>
+    <string name="ads_theme_corner_size_summary">Raio de canto para os elementos suportados.</string>
     <string name="ads_theme_background_aware">Marca do plano de fundo</string>
     <string name="ads_theme_background_aware_desc">Algumas cores irão mudar automaticamente de acordo com o plano de fundo para providenciar melhor visibilidade.</string>
+    <string name="ads_theme_contrast">Relação de contraste</string>
+    <string name="ads_theme_contrast_summary">Proporção mínima para o contraste visível.</string>
+    <string name="ads_theme_opacity">Opacidade do plano de fundo</string>
+    <string name="ads_theme_opacity_summary">Opacidade do plano de fundo do aplicativo.</string>
+    <string name="ads_theme_opacity_summary_widget">Opacidade do plano de fundo do widget.</string>
+    <string name="ads_theme_elevation">Elevação</string>
+    <string name="ads_theme_elevation_summary">Controle de sombra para os elementos de superfície.</string>
     <string name="ads_theme_style">Estilo</string>
     <string name="ads_theme_style_summary">Estilo do tema.</string>
     <string name="ads_theme_app">Tema do app</string>
@@ -324,11 +340,19 @@
     <string name="ads_picker_pick">Escolher</string>
     <string name="ads_picker_more_colors">Mais cores</string>
     <string name="ads_picker_presets">Predefinições</string>
+    <string name="ads_picker_size_small">Pequeno</string>
+    <string name="ads_picker_size_normal">Normal</string>
+    <string name="ads_picker_size_large">Grande</string>
+    <string name="ads_picker_size_info">Valor para largura e altura.</string>
 
     <!-- Miscellaneous -->
     <string name="ads_language">Idioma</string>
     <string name="ads_language_summary">Idioma usado pelo app.</string>
     <string name="ads_language_system">Sistema</string>
+    <string name="ads_dynamic_vibration">Vibração</string>
+    <string name="ads_dynamic_vibration_intensity">Intensidade da vibração</string>
+    <string name="ads_dynamic_vibration_intensity_summary">Período de tempo para vibração em milissegundos.</string>
+    <string name="ads_dynamic_vibration_intensity_unit">ms</string>
     <string name="ads_dynamic_motion">Movimento</string>
     <string name="ads_dynamic_motion_summary">Movimento dinâmico reproduzindo todas as animações.</string>
     <string name="ads_dynamic_motion_summary_unchecked">Reduza o movimento pulando algumas animações.</string>
@@ -358,8 +382,6 @@
     <string name="ads_widget_header_desc">Selecionar automático para mostrar o cabeçalho se espaço suficiente estiver disponível.</string>
     <string name="ads_widget_corner_size_bg_summary">Raio do canto do plano de fundo do widget.</string>
     <string name="ads_widget_corner_size_bg_desc">Selecione automático para usar o tamanho de canto do app.</string>
-    <string name="ads_widget_opacity_bg">Opacidade do plano de fundo</string>
-    <string name="ads_widget_opacity_bg_summary">Opacidade do plano de fundo do widget.</string>
     <string name="ads_widget_reset_desc">O widget foi restaurado para o padrão.</string>
     <string name="ads_widget_not_added">Nenhum widget foi adicionado.</string>
 
@@ -387,8 +409,9 @@
     <string name="ads_support_restart_app_desc">Use se o serviço não está iniciando ou o app não está se comportando apropriadamente. Todas as configurações permanecerão inalteradas após realizar essa operação.</string>
 
     <!-- Developer and App info -->
-    <string name="ads_info_made_by">Escrito e projetado por</string>
     <string name="ads_info_made_in">Feito na India</string>
+    <string name="ads_info_made_by">Escrito e projetado por</string>
+    <string name="ads_info_made_by_alt">Desenvolvido por</string>
     <string name="ads_info_quote">Nada é perfeito mas pode ser melhor. Desenvolvendo coisas melhores!</string>
     <string name="ads_info_privacy_policy">Política de Privacidade</string>
     <string name="ads_info_privacy_policy_desc">Veja a política de privacidade completa deste produto.</string>
@@ -420,9 +443,10 @@
     <string name="ads_translators_contact">Entre em contato via e-mail se você quiser traduzir.</string>
 
     <!-- Licenses -->
+    <string name="ads_notice">Aviso</string>
     <string name="ads_notices">Avisos</string>
-    <string name="ads_licenses">Licenças</string>
     <string name="ads_license">Licença</string>
+    <string name="ads_licenses">Licenças</string>
     <string name="ads_license_desc">Ver licença completa.</string>
     <string name="ads_license_sources">Fontes</string>
     <string name="ads_license_sources_desc">Ver fontes no GitHub.</string>

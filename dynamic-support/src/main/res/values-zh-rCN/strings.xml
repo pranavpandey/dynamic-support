@@ -27,6 +27,7 @@
 
     <!-- Headings -->
     <string name="ads_app">应用</string>
+    <string name="ads_game">游戏</string>
     <string name="ads_version">版本</string>
     <string name="ads_actions">动作</string>
     <string name="ads_text">文本</string>
@@ -53,6 +54,7 @@
     <string name="ads_not_now">不是现在</string>
     <string name="ads_later">之后</string>
     <string name="ads_yes_in">是的，我在</string>
+    <string name="ads_accept">接受</string>
     <string name="ads_more">更多</string>
     <string name="ads_more_info">更多信息</string>
     <string name="ads_select">选择</string>
@@ -61,6 +63,7 @@
     <string name="ads_load">加载</string>
     <string name="ads_file">文件</string>
     <string name="ads_create">创建</string>
+    <string name="ads_configure">配置</string>
     <string name="ads_open">打开</string>
     <string name="ads_previous">保持现状</string>
     <string name="ads_next">下一个</string>
@@ -117,6 +120,7 @@
     <string name="ads_permissions_subtitle_single">请允许所需的权限。</string>
     <string name="ads_perm_info_required">需要权限</string>
     <string name="ads_perm_info_grant_all">请允许所有的权限，使应用程序正常工作。</string>
+    <string name="ads_perm_info_accept">此功能是可选的，请接受以继续。</string>
     <string name="ads_perm_request">请求</string>
     <string name="ads_perm_request_desc">此权限不被允许。点按即可请求。</string>
     <string name="ads_perm_granted">允许</string>
@@ -137,9 +141,12 @@
     <string name="ads_perm_usage_access">使用情况访问权限</string>
     <string name="ads_perm_usage_access_desc">使用情况访问权限。</string>
     <string name="ads_perm_accessibility">无障碍</string>
+    <string name="ads_perm_accessibility_desc">它必须通过系统设置进行管理。</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">数据</string>
+    <string name="ads_data_invalid">无效数据</string>
+    <string name="ads_data_invalid_desc">请使用适当的数据再试一次。</string>
     <string name="ads_data_operations">数据操作</string>
     <string name="ads_backup_and_restore">备份和恢复</string>
     <string name="ads_backup">备份</string>
@@ -203,9 +210,11 @@
     <string name="ads_dynamic_theme">动态主题</string>
     <string name="ads_dynamic_theme_summary">接收者应用的主题。</string>
     <string name="ads_dynamic_color_summary">自动颜色的实现。</string>
+    <string name="ads_dynamic">动态</string>
     <string name="ads_theme">主题</string>
     <string name="ads_theme_code">码</string>
     <string name="ads_theme_code_desc">扫描或共享主题。</string>
+    <string name="ads_theme_code_capture">捕获</string>
     <string name="ads_theme_customise_desc">配置以下主题。</string>
     <string name="ads_theme_adjust_desc">主题会根据当前的Android版本自动调整。</string>
     <string name="ads_theme_invalid">主题无效</string>
@@ -231,9 +240,16 @@
     <string name="ads_theme_font_scale">字体比例</string>
     <string name="ads_theme_font_scale_summary">调整缩放系数，变小或变大文本。</string>
     <string name="ads_theme_corner_size">边角大小</string>
-    <string name="ads_theme_corner_size_summary">应用程序的角半径。</string>
+    <string name="ads_theme_corner_size_summary">支持元素的角半径。</string>
     <string name="ads_theme_background_aware">背景感知</string>
     <string name="ads_theme_background_aware_desc">根据背景调整颜色以提供最佳可见性。</string>
+    <string name="ads_theme_contrast">对比度</string>
+    <string name="ads_theme_contrast_summary">可见对比度的最小比率。</string>
+    <string name="ads_theme_opacity">背景不透明</string>
+    <string name="ads_theme_opacity_summary">应用程序背景的不透明度。</string>
+    <string name="ads_theme_opacity_summary_widget">小部件背景的不透明度。</string>
+    <string name="ads_theme_elevation">海拔</string>
+    <string name="ads_theme_elevation_summary">控制表面元素的阴影。</string>
     <string name="ads_theme_style">样式</string>
     <string name="ads_theme_style_summary">主题样式。</string>
     <string name="ads_theme_app">应用主题</string>
@@ -324,11 +340,19 @@
     <string name="ads_picker_pick">挑选</string>
     <string name="ads_picker_more_colors">更多色彩</string>
     <string name="ads_picker_presets">预置</string>
+    <string name="ads_picker_size_small">小的</string>
+    <string name="ads_picker_size_normal">普通的</string>
+    <string name="ads_picker_size_large">大的</string>
+    <string name="ads_picker_size_info">宽度和高度的值。</string>
 
     <!-- Miscellaneous -->
     <string name="ads_language">语言</string>
     <string name="ads_language_summary">应用程序使用的语言。</string>
     <string name="ads_language_system">系统</string>
+    <string name="ads_dynamic_vibration">振动</string>
+    <string name="ads_dynamic_vibration_intensity">振动强度</string>
+    <string name="ads_dynamic_vibration_intensity_summary">选择以毫秒为单位的振动持续时间。</string>
+    <string name="ads_dynamic_vibration_intensity_unit">ms</string>
     <string name="ads_dynamic_motion">运动</string>
     <string name="ads_dynamic_motion_summary">通过播放所有动画进行动态运动。</string>
     <string name="ads_dynamic_motion_summary_unchecked">通过跳过一些动画来减少运动。</string>
@@ -358,8 +382,6 @@
     <string name="ads_widget_header_desc">如果有足够的空间，请选择自动以显示标题。</string>
     <string name="ads_widget_corner_size_bg_summary">小部件背景的圆角半径。</string>
     <string name="ads_widget_corner_size_bg_desc">选择自动使用应用圆角尺寸。</string>
-    <string name="ads_widget_opacity_bg">背景不透明</string>
-    <string name="ads_widget_opacity_bg_summary">小部件背景的不透明度。</string>
     <string name="ads_widget_reset_desc">小部件已被重置为默认值。</string>
     <string name="ads_widget_not_added">没有添加小部件。</string>
 
@@ -387,8 +409,9 @@
     <string name="ads_support_restart_app_desc">如果服务未启动或应用程序运行不正常，请使用此选项。执行此操作后，所有设置将保持不变。</string>
 
     <!-- Developer and App info -->
-    <string name="ads_info_made_by">书面和设计</string>
     <string name="ads_info_made_in">印度制造</string>
+    <string name="ads_info_made_by">书面和设计</string>
+    <string name="ads_info_made_by_alt">由开发</string>
     <string name="ads_info_quote">没有什么是完美的，但可以更好。开发这样更好的东西！</string>
     <string name="ads_info_privacy_policy">隐私政策</string>
     <string name="ads_info_privacy_policy_desc">查看该产品的完整隐私政策。</string>
@@ -420,9 +443,10 @@
     <string name="ads_translators_contact">如果您想翻译，请通过电子邮件联系。</string>
 
     <!-- Licenses -->
+    <string name="ads_notice">注意</string>
     <string name="ads_notices">告示</string>
-    <string name="ads_licenses">许可证</string>
     <string name="ads_license">许可证</string>
+    <string name="ads_licenses">许可证</string>
     <string name="ads_license_desc">查看完整许可证。</string>
     <string name="ads_license_sources">来源</string>
     <string name="ads_license_sources_desc">在GitHub上查看源代码。</string>

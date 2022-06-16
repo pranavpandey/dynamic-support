@@ -27,6 +27,7 @@
 
     <!-- Headings -->
     <string name="ads_app">應用程序</string>
+    <string name="ads_game">遊戲</string>
     <string name="ads_version">版本</string>
     <string name="ads_actions">動作</string>
     <string name="ads_text">文字</string>
@@ -53,6 +54,7 @@
     <string name="ads_not_now">現在不要</string>
     <string name="ads_later">之後</string>
     <string name="ads_yes_in">是的，我在</string>
+    <string name="ads_accept">接受</string>
     <string name="ads_more">更多</string>
     <string name="ads_more_info">更多信息</string>
     <string name="ads_select">選擇</string>
@@ -61,6 +63,7 @@
     <string name="ads_load">加載</string>
     <string name="ads_file">文件</string>
     <string name="ads_create">創造</string>
+    <string name="ads_configure">配置</string>
     <string name="ads_open">開啟</string>
     <string name="ads_previous">以前</string>
     <string name="ads_next">下一個</string>
@@ -117,6 +120,7 @@
     <string name="ads_permissions_subtitle_single">請允許所需的權限</string>
     <string name="ads_perm_info_required">需要權限</string>
     <string name="ads_perm_info_grant_all">請允許所有權限以使應用正常運行</string>
+    <string name="ads_perm_info_accept">此功能是可選的，請接受以繼續。</string>
     <string name="ads_perm_request">請求</string>
     <string name="ads_perm_request_desc">不授予此權限。點擊以請求</string>
     <string name="ads_perm_granted">已授予</string>
@@ -137,9 +141,12 @@
     <string name="ads_perm_usage_access">使用權限</string>
     <string name="ads_perm_usage_access_desc">允許使用權限</string>
     <string name="ads_perm_accessibility">可達性</string>
+    <string name="ads_perm_accessibility_desc">它必須通過系統設置進行管理。</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">數據</string>
+    <string name="ads_data_invalid">無效數據</string>
+    <string name="ads_data_invalid_desc">請用適當的數據再試一次。</string>
     <string name="ads_data_operations">數據運算</string>
     <string name="ads_backup_and_restore">備份與還原</string>
     <string name="ads_backup">備份</string>
@@ -203,9 +210,11 @@
     <string name="ads_dynamic_theme">動態主題</string>
     <string name="ads_dynamic_theme_summary">接收者應用的主題。</string>
     <string name="ads_dynamic_color_summary">自動顏色的實現。</string>
+    <string name="ads_dynamic">動態的</string>
     <string name="ads_theme">主題</string>
     <string name="ads_theme_code">程式碼</string>
     <string name="ads_theme_code_desc">應用程序存儲掃描或共亯主題。</string>
+    <string name="ads_theme_code_capture">捕獲</string>
     <string name="ads_theme_customise_desc">在下面配置主題。</string>
     <string name="ads_theme_adjust_desc">主題將根據當前的Android版本自動調整。</string>
     <string name="ads_theme_invalid">無效的主題</string>
@@ -217,7 +226,7 @@
     <string name="ads_theme_color_background_summary_system">系統的背景色。</string>
     <string name="ads_theme_color_stroke">筆劃顏色</string>
     <string name="ads_theme_color_primary">主題色</string>
-    <string name="ads_theme_color_primary_summary">主要元素使用的顏色</string>
+    <string name="ads_theme_color_primary_summary">主要元素使用的顏色。</string>
     <string name="ads_theme_color_primary_dark">系統顏色</string>
     <string name="ads_theme_color_primary_summary_dark">系統元素使用的顏色。</string>
     <string name="ads_theme_color_accent">強調色</string>
@@ -231,14 +240,21 @@
     <string name="ads_theme_font_scale">字體比例</string>
     <string name="ads_theme_font_scale_summary">調整縮放係數，縮小或放大文本。</string>
     <string name="ads_theme_corner_size">邊角大小</string>
-    <string name="ads_theme_corner_size_summary">應用的邊角大小。</string>
+    <string name="ads_theme_corner_size_summary">支持元素的角半徑。</string>
     <string name="ads_theme_background_aware">背景感知</string>
     <string name="ads_theme_background_aware_desc">某些顏色會根據背景自動更改以提供最佳可見性。</string>
+    <string name="ads_theme_contrast">對比度</string>
+    <string name="ads_theme_contrast_summary">可見對比度的最小比率。</string>
+    <string name="ads_theme_opacity">背景不透明度</string>
+    <string name="ads_theme_opacity_summary">應用程序背景不透明度。</string>
+    <string name="ads_theme_opacity_summary_widget">小部背景不透明度。</string>
+    <string name="ads_theme_elevation">海拔</string>
+    <string name="ads_theme_elevation_summary">控製表面元素的陰影。</string>
     <string name="ads_theme_style">樣式</string>
     <string name="ads_theme_style_summary">主題樣式。</string>
     <string name="ads_theme_app">應用主題</string>
     <string name="ads_theme_app_summary">應用程序主題。</string>
-    <string name="ads_theme_app_desc">選擇自動使用日間和夜間主題</string>
+    <string name="ads_theme_app_desc">選擇自動使用日間和夜間主題。</string>
     <string name="ads_theme_app_day">日間主題</string>
     <string name="ads_theme_app_day_summary">應用在日間的主題。</string>
     <string name="ads_theme_app_night">夜間主題</string>
@@ -324,11 +340,19 @@
     <string name="ads_picker_pick">挑選</string>
     <string name="ads_picker_more_colors">更多顏色</string>
     <string name="ads_picker_presets">預設值</string>
+    <string name="ads_picker_size_small">小的</string>
+    <string name="ads_picker_size_normal">普通的</string>
+    <string name="ads_picker_size_large">大的</string>
+    <string name="ads_picker_size_info">寬度和高度的值。</string>
 
     <!-- Miscellaneous -->
     <string name="ads_language">語言</string>
     <string name="ads_language_summary">應用程序使用的語言。</string>
     <string name="ads_language_system">系統</string>
+    <string name="ads_dynamic_vibration">振動</string>
+    <string name="ads_dynamic_vibration_intensity">振動強度</string>
+    <string name="ads_dynamic_vibration_intensity_summary">選擇振動時間（毫秒）。</string>
+    <string name="ads_dynamic_vibration_intensity_unit">毫秒</string>
     <string name="ads_dynamic_motion">運動</string>
     <string name="ads_dynamic_motion_summary">動議摘要動態運動播放所有的動畫。</string>
     <string name="ads_dynamic_motion_summary_unchecked">通過跳過一些動畫來减少運動。</string>
@@ -358,8 +382,6 @@
     <string name="ads_widget_header_desc">如果有足夠的可用空間，請選擇自動以顯示標題。</string>
     <string name="ads_widget_corner_size_bg_summary">小部件的邊角大小。</string>
     <string name="ads_widget_corner_size_bg_desc">選擇自動以使用應用邊角大小。</string>
-    <string name="ads_widget_opacity_bg">背景不透明度</string>
-    <string name="ads_widget_opacity_bg_summary">小部背景不透明度。</string>
     <string name="ads_widget_reset_desc">小部件已重設為默認值。</string>
     <string name="ads_widget_not_added">尚未添加任何小部件。</string>
 
@@ -387,8 +409,9 @@
     <string name="ads_support_restart_app_desc">如果服務未啟動或應用無法正常運行，請使用此選項。執行此操作後，所有設置將保持不變。</string>
 
     <!-- Developer and App info -->
-    <string name="ads_info_made_by">由&#8230;設計和編寫</string>
     <string name="ads_info_made_in">印度製造</string>
+    <string name="ads_info_made_by">由設計和編寫</string>
+    <string name="ads_info_made_by_alt">由開發</string>
     <string name="ads_info_quote">沒有什麼東西是完美的，但是可以做的更好。開發更好的東西!</string>
     <string name="ads_info_privacy_policy">隱私政策</string>
     <string name="ads_info_privacy_policy_desc">查看此產品的完整隱私政策。</string>
@@ -420,9 +443,10 @@
     <string name="ads_translators_contact">如果你想翻譯，請通過電子郵件聯繫。</string>
 
     <!-- Licenses -->
+    <string name="ads_notice">注意</string>
     <string name="ads_notices">通知</string>
-    <string name="ads_licenses">許可證</string>
     <string name="ads_license">許可證</string>
+    <string name="ads_licenses">許可證</string>
     <string name="ads_license_desc">查看完整許可證。</string>
     <string name="ads_license_sources">來源</string>
     <string name="ads_license_sources_desc">在GitHub上查看源代碼。</string>
