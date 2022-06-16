@@ -187,7 +187,7 @@ Pranav Pandey
 
 ## License
 
-    Copyright 2018-2021 Pranav Pandey
+    Copyright 2018-2022 Pranav Pandey
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
