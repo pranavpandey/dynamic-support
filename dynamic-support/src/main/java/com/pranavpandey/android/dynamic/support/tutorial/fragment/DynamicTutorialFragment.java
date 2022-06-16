@@ -126,8 +126,8 @@ public class DynamicTutorialFragment extends DynamicFragment
             }
         }
 
-        if (savedInstanceState != null) {
-            mDynamicTutorial = savedInstanceState.getParcelable(ADS_STATE_TUTORIAL);
+        if (getSavedInstanceState() != null) {
+            mDynamicTutorial = getSavedInstanceState().getParcelable(ADS_STATE_TUTORIAL);
         }
     }
 
@@ -206,9 +206,9 @@ public class DynamicTutorialFragment extends DynamicFragment
         }
 
         Dynamic.setContrastWithColor(mCardView, color);
-        Dynamic.setElevationOnSameBackground(mCardView,
+        Dynamic.setForceElevation(mCardView,
                 !DynamicTheme.getInstance().get().isBackgroundSurface());
-        if (Dynamic.isStrokeRequired()) {
+        if (Dynamic.isStroke()) {
             Dynamic.setColor(mCardView, DynamicColorUtils.setAlpha(color,
                     Color.alpha(DynamicTheme.getInstance().get().getSurfaceColor())));
         } else {

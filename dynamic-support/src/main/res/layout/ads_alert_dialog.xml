@@ -64,9 +64,12 @@
                         android:id="@android:id/message"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/ads_margin_extra_tiny"
+                        android:layout_marginTop="@dimen/ads_dialog_margin_top"
+                        android:layout_marginBottom="@dimen/ads_dialog_margin"
                         android:paddingLeft="?attr/dialogPreferredPadding"
-                        android:paddingRight="?attr/dialogPreferredPadding" />
+                        android:paddingStart="?attr/dialogPreferredPadding"
+                        android:paddingRight="?attr/dialogPreferredPadding"
+                        android:paddingEnd="?attr/dialogPreferredPadding" />
 
                 </com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView>
 

@@ -20,30 +20,27 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.FloatRange;
-import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.SerializedName;
-import com.pranavpandey.android.dynamic.support.model.adapter.DynamicThemeTypeAdapter;
+import com.pranavpandey.android.dynamic.support.provider.DynamicAppWidgetProvider;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.AppTheme;
-import com.pranavpandey.android.dynamic.theme.AppWidgetTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
+import com.pranavpandey.android.dynamic.theme.adapter.DynamicThemeTypeAdapter;
 import com.pranavpandey.android.dynamic.theme.annotation.Exclude;
+import com.pranavpandey.android.dynamic.theme.base.WidgetTheme;
 import com.pranavpandey.android.dynamic.theme.strategy.ExcludeStrategy;
-import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
-import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
 
 /**
  * An app widget theme to store various colors and attributes for app widget which can be
  * modified at runtime.
  */
 public class DynamicWidgetTheme extends DynamicAppTheme
-        implements AppWidgetTheme<DynamicAppTheme> {
+        implements WidgetTheme<DynamicWidgetTheme, DynamicAppTheme> {
 
     /**
      * App widget id used by this theme.
@@ -57,21 +54,12 @@ public class DynamicWidgetTheme extends DynamicAppTheme
      */
     @SerializedName(Theme.Key.HEADER)
     private @Theme.Visibility int header;
-    
-    /**
-     * Opacity value used by this theme.
-     */
-    @SerializedName(Theme.Key.OPACITY)
-    private int opacity;
 
     /**
      * Constructor to initialize an object of this class.
      */
     public DynamicWidgetTheme() {
-        super();
-
-        this.header = Theme.Visibility.AUTO;
-        this.opacity = AppWidgetTheme.OPACITY_DEFAULT;
+        this(DynamicAppWidgetProvider.NO_ID);
     }
 
     /**
@@ -80,9 +68,7 @@ public class DynamicWidgetTheme extends DynamicAppTheme
      * @param widgetId The widget id to be used.
      */
     public DynamicWidgetTheme(int widgetId) {
-        this();
-
-        this.widgetId = widgetId;
+        this(widgetId, new DynamicAppTheme());
     }
 
     /**
@@ -91,34 +77,49 @@ public class DynamicWidgetTheme extends DynamicAppTheme
      * @param theme The theme string to initialize the instance.
      */
     public DynamicWidgetTheme(@NonNull String theme) throws JsonSyntaxException {
-        this(new GsonBuilder().setExclusionStrategies(new ExcludeStrategy())
-                .registerTypeAdapter(DynamicWidgetTheme.class,
-                        new DynamicThemeTypeAdapter<DynamicWidgetTheme>()).create()
-                .fromJson(DynamicThemeUtils.formatTheme(theme), DynamicWidgetTheme.class));
+        this(new GsonBuilder().setExclusionStrategies(new ExcludeStrategy()).registerTypeAdapter(
+                DynamicWidgetTheme.class, new DynamicThemeTypeAdapter<>(new DynamicWidgetTheme()))
+                .create().fromJson(DynamicThemeUtils.format(theme), DynamicWidgetTheme.class));
     }
 
     /**
      * Constructor to initialize an object of this class.
      *
-     * @param dynamicTheme The dynamic theme to copy the theme.
+     * @param theme The dynamic theme to copy the theme.
      */
-    public DynamicWidgetTheme(@NonNull AppTheme<?> dynamicTheme) {
-        super(dynamicTheme);
-
-        this.header = Theme.Visibility.AUTO;
-        this.opacity = AppWidgetTheme.OPACITY_DEFAULT;
+    public DynamicWidgetTheme(@NonNull AppTheme<?> theme) {
+        this(DynamicAppWidgetProvider.NO_ID, theme);
     }
 
     /**
      * Constructor to initialize an object of this class.
      *
-     * @param dynamicWidgetTheme The dynamic widget theme to copy the theme.
+     * @param widgetId The widget id to be used.
+     * @param theme The dynamic theme to copy the theme.
      */
-    public DynamicWidgetTheme(@NonNull DynamicWidgetTheme dynamicWidgetTheme) {
-        super(dynamicWidgetTheme);
+    public DynamicWidgetTheme(int widgetId, @NonNull AppTheme<?> theme) {
+        super(theme);
 
-        this.header = dynamicWidgetTheme.getHeader();
-        this.opacity = dynamicWidgetTheme.getOpacity();
+        this.widgetId = widgetId;
+        if (theme instanceof WidgetTheme) {
+            this.header = ((WidgetTheme<?, ?>) theme).getHeader();
+        } else {
+            this.header = Theme.Visibility.AUTO;
+        }
+
+        setType(Theme.WIDGET);
+    }
+
+    /**
+     * Read an object of this class from the parcel.
+     *
+     * @param in The parcel to read the values.
+     */
+    public DynamicWidgetTheme(@NonNull Parcel in) {
+        super(in);
+
+        this.widgetId = in.readInt();
+        this.header = in.readInt();
     }
 
     /**
@@ -137,67 +138,30 @@ public class DynamicWidgetTheme extends DynamicAppTheme
         }
     };
 
-    /**
-     * Read an object of this class from the parcel.
-     *
-     * @param in The parcel to read the values.
-     */
-    public DynamicWidgetTheme(Parcel in) {
-        super(in);
-
-        this.widgetId = in.readInt();
-        this.header = in.readInt();
-        this.opacity = in.readInt();
-    }
-
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest, flags);
 
         dest.writeInt(widgetId);
         dest.writeInt(header);
-        dest.writeInt(opacity);
-    }
-
-    /**
-     * Returns background color after considering the opacity value of this theme.
-     *
-     * @return The background color with alpha according to the opacity value.
-     */
-    public @ColorInt int getBackgroundColorWithOpacity() {
-        return DynamicColorUtils.setAlpha(getBackgroundColor(), getOpacity());
-    }
-
-    /**
-     * Returns stroke color after considering the opacity value of this theme.
-     *
-     * @return The stroke color with alpha according to the opacity value.
-     */
-    public @ColorInt int getStrokeColorWithOpacity() {
-        return DynamicColorUtils.setAlpha(getStrokeColor(), getOpacity());
-    }
-
-    /**
-     * Returns opacity after converting it into the float range.
-     *
-     * @return The opacity after converting it into the float range.
-     */
-    public @FloatRange(from = 0f, to = 1f) float getAlpha() {
-        return getOpacity() / 255f;
     }
 
     @Override
     public @NonNull DynamicAppTheme getThemeFallback(boolean resolve) {
-        return DynamicTheme.getInstance().get(false);
+        if (resolve) {
+            return DynamicTheme.getInstance().get();
+        }
+
+        return DynamicTheme.getInstance().getApplication();
     }
 
     @Override
-    public @ColorInt int getBackgroundColor(boolean resolve) {
-        if (resolve && super.getBackgroundColor(false) == Theme.AUTO) {
-            return getThemeFallback(false).getBackgroundColor();
+    public @ColorInt int getBackgroundColor(boolean resolve, boolean inverse) {
+        if (resolve && super.getBackgroundColor(false, false) == Theme.AUTO) {
+            return getThemeFallback(false).getBackgroundColor(true, inverse);
         }
 
-        return super.getBackgroundColor(resolve);
+        return super.getBackgroundColor(resolve, inverse);
     }
 
     @Override
@@ -210,84 +174,111 @@ public class DynamicWidgetTheme extends DynamicAppTheme
     }
 
     @Override
-    public @ColorInt int getStrokeColor() {
-        if (getPrimaryColorDark(false) == Theme.AUTO) {
-            return super.getStrokeColor();
+    public @ColorInt int getSurfaceColor(boolean resolve, boolean inverse) {
+        if (resolve && super.getSurfaceColor(false, false) == Theme.AUTO) {
+            return getThemeFallback(false).getSurfaceColor(true, inverse);
         }
 
-        return getPrimaryColorDark();
+        return super.getSurfaceColor(resolve, inverse);
     }
 
     @Override
-    public @ColorInt int getTintSurfaceColor(boolean resolve) {
-        if (resolve && super.getTintSurfaceColor(false) == Theme.AUTO) {
-            return getThemeFallback(false).getTintSurfaceColor();
+    public @ColorInt int getTintSurfaceColor(boolean resolve, boolean inverse) {
+        if (resolve && super.getTintSurfaceColor(false, false) == Theme.AUTO) {
+            return getThemeFallback(false).getTintSurfaceColor(true, inverse);
         }
 
-        return super.getTintSurfaceColor(resolve);
+        return super.getTintSurfaceColor(resolve, inverse);
     }
 
     @Override
-    public @ColorInt int getPrimaryColor(boolean resolve) {
-        if (resolve && super.getPrimaryColor(false) == Theme.AUTO) {
-            return getThemeFallback(false).getPrimaryColor();
+    public @ColorInt int getPrimaryColor(boolean resolve, boolean inverse) {
+        if (resolve && super.getPrimaryColor(false, false) == Theme.AUTO) {
+            return getThemeFallback(false).getPrimaryColor(true, inverse);
         }
 
-        return super.getPrimaryColor(resolve);
+        return super.getPrimaryColor(resolve, inverse);
     }
 
     @Override
-    public @ColorInt int getTintPrimaryColor(boolean resolve) {
-        if (resolve && super.getTintPrimaryColor(false) == Theme.AUTO) {
-            return getThemeFallback(false).getTintPrimaryColor();
+    public @ColorInt int getPrimaryColorDark(boolean resolve, boolean inverse) {
+        if (resolve && super.getPrimaryColorDark(false, false) == Theme.AUTO) {
+            return getThemeFallback(false).getPrimaryColorDark(true, inverse);
         }
 
-        return super.getTintPrimaryColor(resolve);
+        return super.getPrimaryColorDark(resolve, inverse);
     }
 
     @Override
-    public @ColorInt int getTintPrimaryColorDark(boolean resolve) {
-        if (resolve && super.getTintPrimaryColorDark(false) == Theme.AUTO) {
-            return getThemeFallback(false).getTintPrimaryColorDark();
+    public @ColorInt int getTintPrimaryColor(boolean resolve, boolean inverse) {
+        if (resolve && super.getTintPrimaryColor(false, false) == Theme.AUTO) {
+            return getThemeFallback(false).getTintPrimaryColor(true, inverse);
         }
 
-        return super.getTintPrimaryColorDark(resolve);
+        return super.getTintPrimaryColor(resolve, inverse);
     }
 
     @Override
-    public @ColorInt int getAccentColor(boolean resolve) {
-        if (resolve && super.getAccentColor(false) == Theme.AUTO) {
-            return getThemeFallback(false).getAccentColor();
+    public @ColorInt int getTintPrimaryColorDark(boolean resolve, boolean inverse) {
+        if (resolve && super.getTintPrimaryColorDark(false, false) == Theme.AUTO) {
+            return getThemeFallback(false).getTintPrimaryColorDark(true, inverse);
         }
 
-        return super.getAccentColor(resolve);
+        return super.getTintPrimaryColorDark(resolve, inverse);
     }
 
     @Override
-    public @ColorInt int getTintAccentColor(boolean resolve) {
-        if (resolve && super.getTintAccentColor(false) == Theme.AUTO) {
-            return getThemeFallback(false).getTintAccentColor();
+    public @ColorInt int getAccentColor(boolean resolve, boolean inverse) {
+        if (resolve && super.getAccentColor(false, false) == Theme.AUTO) {
+            return getThemeFallback(false).getAccentColor(true, inverse);
         }
 
-        return super.getTintAccentColor(resolve);
+        return super.getAccentColor(resolve, inverse);
     }
 
     @Override
-    public @ColorInt int getTintAccentColorDark(boolean resolve) {
-        if (resolve && super.getTintAccentColorDark(false) == Theme.AUTO) {
-            return getThemeFallback(false).getTintAccentColorDark();
+    public @ColorInt int getAccentColorDark(boolean resolve, boolean inverse) {
+        if (resolve && super.getAccentColorDark(false, false) == Theme.AUTO) {
+            return getThemeFallback(false).getAccentColorDark(true, inverse);
         }
 
-        return super.getTintAccentColorDark(resolve);
+        return super.getAccentColorDark(resolve, inverse);
     }
 
     @Override
-    public @ColorInt int getTintErrorColor(boolean resolve) {
-        if (resolve && super.getTintErrorColor(false) == Theme.AUTO) {
-            return getThemeFallback(false).getTintErrorColor();
+    public @ColorInt int getTintAccentColor(boolean resolve, boolean inverse) {
+        if (resolve && super.getTintAccentColor(false, false) == Theme.AUTO) {
+            return getThemeFallback(false).getTintAccentColor(true, inverse);
         }
 
-        return super.getTintErrorColor(resolve);
+        return super.getTintAccentColor(resolve, inverse);
+    }
+
+    @Override
+    public @ColorInt int getTintAccentColorDark(boolean resolve, boolean inverse) {
+        if (resolve && super.getTintAccentColorDark(false, false) == Theme.AUTO) {
+            return getThemeFallback(false).getTintAccentColorDark(true, inverse);
+        }
+
+        return super.getTintAccentColorDark(resolve, inverse);
+    }
+
+    @Override
+    public @ColorInt int getErrorColor(boolean resolve, boolean inverse) {
+        if (resolve && super.getErrorColor(false, false) == Theme.AUTO) {
+            return getThemeFallback(false).getErrorColor(true, inverse);
+        }
+
+        return super.getErrorColor(resolve, inverse);
+    }
+
+    @Override
+    public @ColorInt int getTintErrorColor(boolean resolve, boolean inverse) {
+        if (resolve && super.getTintErrorColor(false, false) == Theme.AUTO) {
+            return getThemeFallback(false).getTintErrorColor(true, inverse);
+        }
+
+        return super.getTintErrorColor(resolve, inverse);
     }
 
     @Override
@@ -300,22 +291,21 @@ public class DynamicWidgetTheme extends DynamicAppTheme
     }
 
     @Override
-    public @ColorInt int getTextPrimaryColorInverse(boolean resolve, boolean inverse) {
-        if (resolve && super.getTextPrimaryColorInverse(
-                false, false) == Theme.AUTO) {
-            return getThemeFallback(false).getTextPrimaryColorInverse();
-        }
-
-        return super.getTextPrimaryColorInverse(resolve, inverse);
-    }
-
-    @Override
     public @ColorInt int getTextSecondaryColor(boolean resolve, boolean inverse) {
         if (resolve && super.getTextSecondaryColor(false, false) == Theme.AUTO) {
             return getThemeFallback(false).getTextSecondaryColor();
         }
 
         return super.getTextSecondaryColor(resolve, inverse);
+    }
+
+    @Override
+    public @ColorInt int getTextPrimaryColorInverse(boolean resolve, boolean inverse) {
+        if (resolve && super.getTextPrimaryColorInverse(false, false) == Theme.AUTO) {
+            return getThemeFallback(false).getTextPrimaryColorInverse();
+        }
+
+        return super.getTextPrimaryColorInverse(resolve, inverse);
     }
 
     @Override
@@ -326,6 +316,38 @@ public class DynamicWidgetTheme extends DynamicAppTheme
         }
 
         return super.getTextSecondaryColorInverse(resolve, inverse);
+    }
+
+    @Override
+    public @ColorInt int getStrokeColor() {
+        if (getPrimaryColorDark(false) == Theme.AUTO) {
+            return super.getStrokeColor();
+        }
+
+        return getPrimaryColorDark();
+    }
+
+    @Override
+    public @Theme int getType(boolean resolve) {
+        if (resolve && super.getType(false) == Theme.WIDGET) {
+            return Theme.APP;
+        }
+
+        return super.getType(resolve);
+    }
+
+    @Override
+    public @NonNull String toJsonString(boolean resolve, boolean inverse) {
+        return new GsonBuilder().registerTypeAdapter(DynamicWidgetTheme.class,
+                new DynamicThemeTypeAdapter<>(new DynamicWidgetTheme(), resolve, inverse))
+                .create().toJson(new DynamicWidgetTheme(this));
+    }
+
+    @Override
+    public @NonNull String toDynamicString() {
+        return new GsonBuilder().setExclusionStrategies(new ExcludeStrategy()).registerTypeAdapter(
+                DynamicWidgetTheme.class, new DynamicThemeTypeAdapter<>(new DynamicWidgetTheme()))
+                .setPrettyPrinting().create().toJson(new DynamicWidgetTheme(this));
     }
 
     @Override
@@ -366,57 +388,30 @@ public class DynamicWidgetTheme extends DynamicAppTheme
     }
 
     @Override
-    public int getOpacity() {
-        return Math.min(AppWidgetTheme.OPACITY_MAX, opacity);
-    }
-
-    @Override
-    public @NonNull DynamicWidgetTheme setOpacity(
-            @IntRange(from = 0, to = AppWidgetTheme.OPACITY_MAX) int opacity) {
-        this.opacity = opacity;
-
-        return this;
-    }
-
-    @Override
-    public @NonNull String toJsonString() {
-        return new Gson().toJson(new DynamicWidgetTheme(this));
-    }
-
-    @Override
-    public @NonNull String toDynamicString() {
-        return new GsonBuilder().setExclusionStrategies(new ExcludeStrategy())
-                .registerTypeAdapter(DynamicWidgetTheme.class,
-                        new DynamicThemeTypeAdapter<DynamicWidgetTheme>())
-                .setPrettyPrinting().create().toJson(new DynamicWidgetTheme(this));
-    }
-
-    @Override
     public @NonNull String toString() {
         return getClass().getSimpleName()
-                + "{" + getThemeRes()
+                + "{" + isHost() + getThemeRes()
                 + getBackgroundColor(false, false)
-                + getSurfaceColor(false)
-                + getPrimaryColor(false)
-                + getPrimaryColorDark(false)
-                + getAccentColor(false)
-                + getAccentColorDark(false)
-                + getErrorColor(false)
+                + getSurfaceColor(false, false)
+                + getPrimaryColor(false, false)
+                + getPrimaryColorDark(false, false)
+                + getAccentColor(false, false)
+                + getAccentColorDark(false, false)
+                + getErrorColor(false, false)
                 + getTintBackgroundColor(false, false)
-                + getTintSurfaceColor(false)
-                + getTintPrimaryColor(false)
-                + getTintPrimaryColorDark(false)
-                + getTintAccentColor(false)
-                + getTintAccentColorDark(false)
-                + getTintErrorColor(false)
+                + getTintSurfaceColor(false, false)
+                + getTintPrimaryColor(false, false)
+                + getTintPrimaryColorDark(false, false)
+                + getTintAccentColor(false, false)
+                + getTintAccentColorDark(false, false)
+                + getTintErrorColor(false, false)
                 + getTextPrimaryColor(false, false)
                 + getTextSecondaryColor(false, false)
                 + getTextPrimaryColorInverse(false, false)
                 + getTextSecondaryColorInverse(false, false)
-                + getFontScale(false)
-                + getCornerRadius(false)
-                + getBackgroundAware(false)
-                + getStyle()
-                + getWidgetId() + getHeader() + getOpacity() + '}';
+                + getFontScale(false) + getCornerRadius(false)
+                + getBackgroundAware(false) + getContrast(false)
+                + getOpacity(false) + getElevation(false)
+                + getStyle()+ getType() + getWidgetId() + getHeader() + '}';
     }
 }

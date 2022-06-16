@@ -52,9 +52,8 @@
     </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
-        style="@style/Widget.DynamicApp.Scroller.Nested.Padding"
+        style="@style/Widget.DynamicApp.Scroller.Nested.Padding.Horizontal"
         android:id="@+id/ads_recycler_view"
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp" />
+        android:paddingTop="0dp" />
 
 </LinearLayout>

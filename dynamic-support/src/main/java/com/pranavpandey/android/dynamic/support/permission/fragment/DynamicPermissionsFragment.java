@@ -31,7 +31,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.pranavpandey.android.dynamic.support.Dynamic;
@@ -112,7 +111,8 @@ public class DynamicPermissionsFragment extends DynamicFragment {
      *
      * @return An instance of {@link DynamicPermissionsFragment}.
      */
-    public static @NonNull Fragment newInstance(@Nullable Intent permissionsIntent) {
+    public static @NonNull DynamicPermissionsFragment newInstance(
+            @Nullable Intent permissionsIntent) {
         DynamicPermissionsFragment fragment = new DynamicPermissionsFragment();
         Bundle args = new Bundle();
         args.putParcelable(DynamicIntent.ACTION_PERMISSIONS, permissionsIntent);
@@ -139,11 +139,10 @@ public class DynamicPermissionsFragment extends DynamicFragment {
         super.onViewCreated(view, savedInstanceState);
 
         mDynamicPermissionsView = view.findViewById(R.id.ads_permissions_view);
-    }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+        if (getActivity() == null) {
+            return;
+        }
 
         getDynamicActivity().setExtendedFAB(R.drawable.ads_ic_done_all,
                 R.string.ads_perm_request, View.VISIBLE, new View.OnClickListener() {
@@ -156,9 +155,14 @@ public class DynamicPermissionsFragment extends DynamicFragment {
     }
 
     @Override
+    public boolean setHasOptionsMenu() {
+        return true;
+    }
+
+    @Override
     public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateMenu(menu, inflater);
-
+        
         inflater.inflate(R.menu.ads_menu_info, menu);
     }
 
@@ -175,7 +179,6 @@ public class DynamicPermissionsFragment extends DynamicFragment {
     public void onResume() {
         super.onResume();
 
-        setHasOptionsMenu(true);
         initPermissions();
 
         if (!mRequestingDangerousPermissions) {
@@ -307,6 +310,7 @@ public class DynamicPermissionsFragment extends DynamicFragment {
 
                 Intent intent = new Intent();
                 intent.putExtra(DynamicIntent.EXTRA_PERMISSIONS, getPermissions());
+
                 setResult(Activity.RESULT_OK, intent);
             }
         } else {

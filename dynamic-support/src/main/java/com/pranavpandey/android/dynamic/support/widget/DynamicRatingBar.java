@@ -36,7 +36,6 @@ import com.pranavpandey.android.dynamic.support.util.DynamicInputUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicProgressWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
@@ -90,6 +89,11 @@ public class DynamicRatingBar extends AppCompatRatingBar implements DynamicProgr
      */
     protected @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
+
     public DynamicRatingBar(@NonNull Context context) {
         this(context, null);
     }
@@ -128,6 +132,9 @@ public class DynamicRatingBar extends AppCompatRatingBar implements DynamicProgr
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicRatingBar_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicRatingBar_adt_contrast,
+                    Theme.Contrast.AUTO);
         } finally {
             a.recycle();
         }
@@ -224,6 +231,32 @@ public class DynamicRatingBar extends AppCompatRatingBar implements DynamicProgr
     }
 
     @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
+    }
+
+    @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
@@ -235,7 +268,7 @@ public class DynamicRatingBar extends AppCompatRatingBar implements DynamicProgr
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
             }
 
             setProgressBarColor();

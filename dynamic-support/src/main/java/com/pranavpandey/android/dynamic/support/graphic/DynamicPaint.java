@@ -18,11 +18,11 @@ package com.pranavpandey.android.dynamic.support.graphic;
 
 import android.graphics.Paint;
 
-import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
- * A {@link Paint} to apply the {@link Paint.Cap} according ot the {@link DynamicTheme}.
+ * A {@link Paint} to apply the {@link Paint.Cap} according to the {@link DynamicTheme}.
  *
  * @see Paint.Cap#BUTT
  * @see Paint.Cap#ROUND
@@ -30,7 +30,7 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 public class DynamicPaint extends Paint {
 
     public DynamicPaint() {
-        super();
+        this(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
 
         initialize();
     }
@@ -48,10 +48,10 @@ public class DynamicPaint extends Paint {
     }
 
     /**
-     * Apply the {@link Paint.Cap} according ot the {@link DynamicTheme}.
+     * Apply the {@link Paint.Cap} according to the {@link DynamicTheme}.
      */
     private void initialize() {
-        setStrokeCap(DynamicTheme.getInstance().get().getCornerSizeDp()
-                >= Defaults.ADS_CORNER_MIN_THEME_ROUND ? Paint.Cap.ROUND : Paint.Cap.BUTT);
+        setStrokeCap(DynamicTheme.getInstance().get().getCornerSize()
+                >= Theme.Corner.MIN_OVAL ? Paint.Cap.ROUND : Paint.Cap.BUTT);
     }
 }

@@ -47,8 +47,8 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.util.concurrent.DynamicCallback;
@@ -76,7 +76,7 @@ public class DynamicResourceUtils {
     /**
      * Extract the supplied attribute value resource id from the theme.
      *
-     * @param context The context to retrieve the resources.
+     * @param context The context to be used.
      * @param attr The attribute whose value resource id to be extracted.
      *
      * @return The value resource id of the supplied attribute.
@@ -91,7 +91,7 @@ public class DynamicResourceUtils {
     /**
      * Extract the supplied integer attribute value from the theme.
      *
-     * @param context The context to retrieve the resources.
+     * @param context The context to be used.
      * @param theme The theme to get the styled attributes.
      * @param attr The integer attribute whose value should be extracted.
      * @param defaultValue The value to return if the attribute is not defined or not a resource.
@@ -115,7 +115,7 @@ public class DynamicResourceUtils {
      * Extract the supplied color attribute value from the theme.
      *
      * @param theme The theme to get the styled attributes.
-     * @param context The context to retrieve the resources.
+     * @param context The context to be used.
      * @param attr The color attribute whose value to be extracted.
      * @param defaultValue The value to return if the attribute is not defined or not a resource.
      *
@@ -138,7 +138,7 @@ public class DynamicResourceUtils {
      * Extract the supplied drawable attribute value from the theme.
      *
      * @param theme The theme to get the styled attributes.
-     * @param context The context to retrieve the resources.
+     * @param context The context to be used.
      * @param attr The drawable attribute whose value to be extracted.
      *
      * @return The value of the supplied attribute.
@@ -157,7 +157,7 @@ public class DynamicResourceUtils {
     /**
      * Extract the supplied dimension attribute value from the theme.
      *
-     * @param context The context to retrieve the resources.
+     * @param context The context to be used.
      * @param theme The theme to get the styled attributes.
      * @param attr The dimension attribute whose value should be extracted.
      * @param defaultValue The value to return if the attribute is not defined or not a resource.
@@ -181,7 +181,7 @@ public class DynamicResourceUtils {
      * Extract the supplied dimension attribute value from the theme.
      * <p>The extracted value will be converted into the integer pixels.
      *
-     * @param context The context to retrieve the resources.
+     * @param context The context to be used.
      * @param theme The theme to get the styled attributes.
      * @param attr The dimension attribute whose value to be extracted.
      * @param defaultValue The value to return if the attribute is not defined or not a resource.
@@ -204,13 +204,17 @@ public class DynamicResourceUtils {
     /**
      * Get the drawable from the supplied resource.
      *
-     * @param context The context to retrieve the resources.
+     * @param context The context to be used.
      * @param drawableRes The drawable resource to get the drawable.
      *
      * @return The drawable retrieved from the resource.
      */
-    public static @Nullable Drawable getDrawable(@NonNull Context context,
+    public static @Nullable Drawable getDrawable(@Nullable Context context,
             @DrawableRes int drawableRes) {
+        if (context == null) {
+            return null;
+        }
+
         try {
             return AppCompatResources.getDrawable(context, drawableRes);
         } catch (Exception e) {
@@ -456,8 +460,8 @@ public class DynamicResourceUtils {
             @NonNull ColorStateList colorStateList, @ColorInt int normalColor,
             @ColorInt int tintColor, @ColorInt int contrastWith) {
         return convertColorStateList(colorStateList,
-                DynamicColorUtils.getContrastColor(normalColor, contrastWith),
-                DynamicColorUtils.getContrastColor(tintColor, contrastWith));
+                Dynamic.withContrastRatio(normalColor, contrastWith),
+                Dynamic.withContrastRatio(tintColor, contrastWith));
     }
 
     /**
@@ -508,7 +512,7 @@ public class DynamicResourceUtils {
             @NonNull ColorStateList colorStateList,
             @ColorInt int color, @ColorInt int contrastWith) {
         return convertColorStateList(colorStateList,
-                DynamicColorUtils.getContrastColor(color, contrastWith));
+                Dynamic.withContrastRatio(color, contrastWith));
     }
 
     /**
@@ -690,7 +694,7 @@ public class DynamicResourceUtils {
     /**
      * Get the value resource id of a given attribute.
      *
-     * @param context The context to retrieve the resources.
+     * @param context The context to be used.
      * @param attrRes The resource id of the attribute.
      *
      * @return The value resource id of the supplied attribute.
@@ -708,7 +712,7 @@ public class DynamicResourceUtils {
     /**
      * Get the value resource id of a given attribute.
      *
-     * @param context The context to retrieve the resources.
+     * @param context The context to be used.
      * @param attrs The supplied attribute set to load the values.
      * @param attrRes The resource id of the attribute.
      *
@@ -728,14 +732,14 @@ public class DynamicResourceUtils {
     /**
      * Get drawable resource array from its resource id.
      *
-     * @param context The context to retrieve the resources.
+     * @param context The context to be used.
      * @param arrayRes The resource id of the drawable array.
      *
      * @return The drawable resource array from its resource id.
      */
     public static @Nullable int[] convertToDrawableResArray(
             @NonNull Context context, @ArrayRes int arrayRes) {
-        @DrawableRes int[] resources = null;
+        int[] resources = null;
 
         if (arrayRes != ADS_DEFAULT_RESOURCE_ID) {
             TypedArray drawableArray = context.getResources().obtainTypedArray(arrayRes);
@@ -758,7 +762,7 @@ public class DynamicResourceUtils {
     /**
      * Get drawable array from ts resource id.
      *
-     * @param context The context to retrieve the resources.
+     * @param context The context to be used.
      * @param arrayRes The resource id of the drawable array.
      *
      * @return The drawable array from its resource id.
@@ -789,7 +793,7 @@ public class DynamicResourceUtils {
     /**
      * Get color array from its resource id.
      *
-     * @param context The context to retrieve the resources.
+     * @param context The context to be used.
      * @param arrayRes The resource id of the color array.
      *
      * @return The color array from its resource id.

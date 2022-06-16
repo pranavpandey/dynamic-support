@@ -52,7 +52,7 @@ public class DynamicTouchListener extends ItemTouchHelper.Callback {
 
     @Override
     public int getMovementFlags(@NonNull RecyclerView recyclerView,
-            @NonNull RecyclerView.ViewHolder viewHolder) {
+            @NonNull RecyclerView.ViewHolder holder) {
         int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
         int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
 
@@ -61,15 +61,14 @@ public class DynamicTouchListener extends ItemTouchHelper.Callback {
 
     @Override
     public boolean onMove(@NonNull RecyclerView recyclerView,
-            @NonNull RecyclerView.ViewHolder viewHolder,
-            @NonNull RecyclerView.ViewHolder target) {
-        mAdapter.onItemMove(viewHolder.getAdapterPosition(), target.getAdapterPosition());
+            @NonNull RecyclerView.ViewHolder holder, @NonNull RecyclerView.ViewHolder target) {
+        mAdapter.onItemMove(holder.getAdapterPosition(), target.getAdapterPosition());
 
         return true;
     }
 
     @Override
-    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-        mAdapter.onItemDismiss(viewHolder.getAdapterPosition());
+    public void onSwiped(@NonNull RecyclerView.ViewHolder holder, int direction) {
+        mAdapter.onItemDismiss(holder.getAdapterPosition());
     }
 }

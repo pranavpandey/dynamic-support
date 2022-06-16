@@ -611,7 +611,7 @@ public class DynamicMenuPopup extends DynamicPopup {
     /**
      * Get the selected position.
      *
-     * @return The the selected position.
+     * @return The selected position.
      */
     public int getSelectedPosition() {
         return mSelectedPosition;

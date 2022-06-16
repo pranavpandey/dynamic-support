@@ -167,8 +167,8 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends Tutorial<T, V
     public boolean clearTutorials() {
         if (!mData.isEmpty()) {
             mData.clear();
-
             notifyDataSetChanged();
+
             return true;
         }
 
@@ -211,8 +211,8 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends Tutorial<T, V
 
         if (locationToRemove >= 0) {
             mData.remove(locationToRemove);
-
             notifyDataSetChanged();
+
             return true;
         }
 
@@ -248,8 +248,7 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends Tutorial<T, V
      *
      * @return {@code true} if the tutorials retained successfully.
      */
-    public boolean retainTutorials(
-            @NonNull Collection<? extends Tutorial<T, V>> tutorials) {
+    public boolean retainTutorials(@NonNull Collection<? extends Tutorial<T, V>> tutorials) {
         boolean modified = false;
 
         for (int i = mData.size() - 1; i >= 0; i--) {

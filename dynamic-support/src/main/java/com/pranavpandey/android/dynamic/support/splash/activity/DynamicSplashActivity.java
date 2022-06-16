@@ -18,18 +18,17 @@ package com.pranavpandey.android.dynamic.support.splash.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.fragment.app.Fragment;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSplashListener;
@@ -95,13 +94,15 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
         }
 
         if (mContentFragment instanceof DynamicSplashFragment) {
-            getWindow().setBackgroundDrawable(new ColorDrawable(
-                    ((DynamicSplashFragment) mContentFragment).getBackgroundColor()));
-            mCoordinatorLayout.setBackgroundColor(
-                    ((DynamicSplashFragment) mContentFragment).getBackgroundColor());
+            ((DynamicSplashFragment) mContentFragment).setOnSplashListener(this);
+            setWindowBackground(((DynamicSplashFragment) mContentFragment).getBackgroundColor());
         }
 
-        if (DynamicTheme.getInstance().get().getPrimaryColorDark(false) == Theme.AUTO) {
+        commitFragmentTransaction(getSupportFragmentManager().beginTransaction()
+                .replace(R.id.ads_container, mContentFragment, ADS_STATE_SPLASH_FRAGMENT_TAG));
+
+        if (DynamicTheme.getInstance().get().getPrimaryColorDark(
+                false, false) == Theme.AUTO) {
             setStatusBarColor(DynamicTheme.getInstance()
                     .generateSystemColor(getBackgroundColor()));
             setNavigationBarColor(getStatusBarColor());
@@ -109,10 +110,6 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
             setStatusBarColor(getStatusBarColor());
             setNavigationBarColor(getNavigationBarColor());
         }
-
-        ((DynamicSplashFragment) mContentFragment).setOnSplashListener(this);
-        commitFragmentTransaction(getSupportFragmentManager().beginTransaction()
-                .replace(R.id.ads_container, mContentFragment, ADS_STATE_SPLASH_FRAGMENT_TAG));
     }
 
     @Override
@@ -129,13 +126,17 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
     }
 
     @Override
-    public @NonNull View getContentView() {
+    public @Nullable View getContentView() {
         return findViewById(R.id.ads_container);
     }
 
     @Override
     public @ColorInt int getBackgroundColor() {
-        return DynamicTheme.getInstance().get().getPrimaryColor();
+        return Dynamic.resolveColor(
+                DynamicTheme.getInstance().get().getBackgroundColor(),
+                DynamicTheme.getInstance().get().getPrimaryColor(),
+                DynamicTheme.getInstance().get().getTintPrimaryColor(),
+                DynamicTheme.getInstance().get().isBackgroundAware());
     }
 
     @Override
@@ -143,22 +144,26 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
         super.setStatusBarColor(color);
 
         setWindowStatusBarColor(getStatusBarColor());
-
-        if (mCoordinatorLayout != null) {
-            mCoordinatorLayout.setStatusBarBackgroundColor(getStatusBarColor());
-        }
     }
 
     @Override
     public @Nullable View getEdgeToEdgeView() {
-        return ADS_SPLASH_MAGIC ? null : getContentView();
+        return ADS_SPLASH_MAGIC ? null : getCoordinatorLayout();
+    }
+
+    @Override
+    public @Nullable CoordinatorLayout getCoordinatorLayout() {
+        return mCoordinatorLayout;
+    }
+
+    @Override
+    public boolean isApplyEdgeToEdgeInsets() {
+        return false;
     }
 
     @Override
     protected void onAppThemeChange() {
-        finish();
-        startActivity(getIntent());
-        overridePendingTransition(0, 0);
+        // Skip theme change event for splash.
     }
 
     @Override

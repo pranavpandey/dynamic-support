@@ -38,7 +38,6 @@ import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicStateWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
@@ -107,6 +106,11 @@ public class DynamicCheckedTextView extends
      */
     protected @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
+
     public DynamicCheckedTextView(@NonNull Context context) {
         this(context, null);
     }
@@ -151,6 +155,9 @@ public class DynamicCheckedTextView extends
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicCheckedTextView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicCheckedTextView_adt_contrast,
+                    Theme.Contrast.AUTO);
         } finally {
             a.recycle();
         }
@@ -283,6 +290,32 @@ public class DynamicCheckedTextView extends
     }
 
     @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
+    }
+
+    @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
@@ -303,15 +336,16 @@ public class DynamicCheckedTextView extends
         if (mColor != Theme.Color.UNKNOWN) {
             if (mContrastWithColor != Theme.Color.UNKNOWN) {
                 if (mStateNormalColor == Theme.Color.UNKNOWN) {
-                    mStateNormalColor = DynamicColorUtils.getTintColor(mContrastWithColor);
+                    mStateNormalColor = Dynamic.getTintColor(mContrastWithColor, this);
                 }
 
                 mAppliedColor = mColor;
                 mAppliedStateNormalColor = mStateNormalColor;
                 if (isBackgroundAware()) {
-                    mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
-                    mAppliedStateNormalColor = DynamicColorUtils.getContrastColor(
-                            mStateNormalColor, mContrastWithColor);
+                    mAppliedColor = Dynamic.withContrastRatio(
+                            mColor, mContrastWithColor, this);
+                    mAppliedStateNormalColor = Dynamic.withContrastRatio(
+                            mStateNormalColor, mContrastWithColor, this);
                 }
             }
 

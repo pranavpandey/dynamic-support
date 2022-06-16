@@ -50,7 +50,9 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicLinearLayout;
 import com.pranavpandey.android.dynamic.support.widget.DynamicLinearLayoutCompat;
 import com.pranavpandey.android.dynamic.support.widget.DynamicListView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicMaterialCardView;
+import com.pranavpandey.android.dynamic.support.widget.DynamicMaterialSwitch;
 import com.pranavpandey.android.dynamic.support.widget.DynamicNavigationMenuItemView;
+import com.pranavpandey.android.dynamic.support.widget.DynamicNavigationRailView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicNavigationView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar;
@@ -168,6 +170,10 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
             case "com.google.android.material.switchmaterial.SwitchMaterial":
             case "com.pranavpandey.android.dynamic.support.widget.DynamicSwitchCompat":
                 view = new DynamicSwitchCompat(context, attrs);
+                break;
+            case "com.google.android.material.materialswitch.MaterialSwitch":
+            case "com.pranavpandey.android.dynamic.support.widget.DynamicMaterialSwitch":
+                view = new DynamicMaterialSwitch(context, attrs);
                 break;
             case "SeekBar":
             case "android.support.v7.widget.AppCompatSeekBar":
@@ -290,6 +296,11 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
             case "com.google.android.material.bottomnavigation.BottomNavigationView":
             case "com.pranavpandey.android.dynamic.support.widget.DynamicBottomNavigationView":
                 view = new DynamicBottomNavigationView(context, attrs);
+                break;
+            case "android.support.design.widget.NavigationRailView":
+            case "com.google.android.material.navigationrail.NavigationRailView":
+            case "com.pranavpandey.android.dynamic.support.widget.DynamicNavigationRailView":
+                view = new DynamicNavigationRailView(context, attrs);
                 break;
             case "android.support.design.widget.TabLayout":
             case "com.google.android.material.tabs.TabLayout":

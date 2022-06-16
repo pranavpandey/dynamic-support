@@ -34,7 +34,6 @@ import com.pranavpandey.android.dynamic.support.util.DynamicScrollUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicScrollableWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 /**
@@ -103,6 +102,11 @@ public class DynamicNestedScrollView extends NestedScrollView
      */
     protected @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
+
     public DynamicNestedScrollView(@NonNull Context context) {
         this(context, null);
     }
@@ -147,6 +151,9 @@ public class DynamicNestedScrollView extends NestedScrollView
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicNestedScrollView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicNestedScrollView_adt_contrast,
+                    Theme.Contrast.AUTO);
 
             if (a.getBoolean(
                     R.styleable.DynamicNestedScrollView_adt_windowInsets,
@@ -179,7 +186,7 @@ public class DynamicNestedScrollView extends NestedScrollView
                     .resolveColorType(mContrastWithColorType);
         }
 
-        setColor(true);
+        setScrollableWidgetColor(true);
     }
 
     @Override
@@ -238,7 +245,7 @@ public class DynamicNestedScrollView extends NestedScrollView
         this.mColorType = Theme.ColorType.CUSTOM;
         this.mColor = color;
 
-        setColor(true);
+        setScrollableWidgetColor(true);
     }
 
     @Override
@@ -269,7 +276,7 @@ public class DynamicNestedScrollView extends NestedScrollView
         this.mContrastWithColorType = Theme.ColorType.CUSTOM;
         this.mContrastWithColor = contrastWithColor;
 
-        setColor(true);
+        setScrollableWidgetColor(true);
     }
 
     @Override
@@ -290,6 +297,32 @@ public class DynamicNestedScrollView extends NestedScrollView
     }
 
     @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
+    }
+
+    @Override
     protected void onOverScrolled(int scrollX, int scrollY, boolean clampedX, boolean clampedY) {
         super.onOverScrolled(scrollX, scrollY, clampedX, clampedY);
 
@@ -301,7 +334,7 @@ public class DynamicNestedScrollView extends NestedScrollView
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
             }
 
             DynamicScrollUtils.setEdgeEffectColor(this, mAppliedColor);
@@ -314,8 +347,8 @@ public class DynamicNestedScrollView extends NestedScrollView
         if (mScrollBarColor != Theme.Color.UNKNOWN) {
             mAppliedScrollBarColor = mScrollBarColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedScrollBarColor = DynamicColorUtils.getContrastColor(
-                        mScrollBarColor, mContrastWithColor);
+                mAppliedScrollBarColor = Dynamic.withContrastRatio(
+                        mScrollBarColor, mContrastWithColor, this);
             }
 
             DynamicScrollUtils.setScrollBarColor(this, mAppliedScrollBarColor);
@@ -323,7 +356,7 @@ public class DynamicNestedScrollView extends NestedScrollView
     }
 
     @Override
-    public void setColor(boolean setScrollBarColor) {
+    public void setScrollableWidgetColor(boolean setScrollBarColor) {
         setColor();
 
         if (setScrollBarColor) {

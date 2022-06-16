@@ -24,7 +24,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ads_margin_extra_tiny"
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
@@ -32,16 +31,18 @@
             android:id="@+id/ads_dialog_backup_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ads_margin_extra_tiny"
-            android:paddingLeft="@dimen/ads_margin_normal"
-            android:paddingRight="@dimen/ads_margin_normal"
+            android:layout_marginTop="@dimen/ads_dialog_margin_top"
+            android:layout_marginBottom="@dimen/ads_dialog_margin"
+            android:paddingLeft="@dimen/ads_dialog_margin_horizontal"
+            android:paddingStart="@dimen/ads_dialog_margin_horizontal"
+            android:paddingRight="@dimen/ads_dialog_margin_horizontal"
+            android:paddingEnd="@dimen/ads_dialog_margin_horizontal"
             app:adt_colorType="primary" />
 
         <LinearLayout
             android:id="@+id/ads_backup_create"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ads_margin_extra_tiny"
             android:orientation="vertical">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout
@@ -49,27 +50,26 @@
                 android:id="@+id/ads_dialog_backup_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ads_dialog_margin_top"
+                android:layout_marginBottom="@dimen/ads_dialog_margin"
                 android:layout_marginLeft="@dimen/ads_dialog_margin_horizontal_edit_text"
                 android:layout_marginRight="@dimen/ads_dialog_margin_horizontal_edit_text"
-                android:hint="@string/ads_backup_name">
+                android:hint="@string/ads_sort_name"
+                app:startIconDrawable="@drawable/ads_ic_file">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
-                    style="@style/Widget.DynamicApp.TextInputEditText.Outlined"
+                    style="@style/Widget.DynamicApp.TextInputEditText.Outlined.SingleLine"
                     android:id="@+id/ads_backup_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textNoSuggestions"
-                    android:singleLine="true" />
+                    android:inputType="text|textNoSuggestions" />
 
             </com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout>
 
-            <com.pranavpandey.android.dynamic.support.view.DynamicSpinnerView
+            <com.pranavpandey.android.dynamic.support.view.DynamicSpinnerViewDialog
                 android:id="@+id/ads_dialog_backup_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ads_margin_small"
-                android:layout_marginLeft="@dimen/ads_dialog_margin_horizontal"
-                android:layout_marginRight="@dimen/ads_dialog_margin_horizontal"
                 app:ads_title="@string/ads_backup_location"
                 app:adt_contrastWithColorType="background" />
 
@@ -80,7 +80,6 @@
             android:id="@+id/ads_dialog_backup_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ads_margin_regular"
             android:divider="@null" />
 
     </LinearLayout>

@@ -30,10 +30,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:paddingTop="@dimen/ads_margin_hint_vertical"
-            android:paddingBottom="@dimen/ads_margin_hint_vertical"
             android:paddingLeft="@dimen/ads_margin_hint_horizontal"
+            android:paddingStart="@dimen/ads_margin_hint_horizontal"
+            android:paddingTop="@dimen/ads_margin_hint_vertical"
             android:paddingRight="@dimen/ads_margin_hint_horizontal"
+            android:paddingEnd="@dimen/ads_margin_hint_horizontal"
+            android:paddingBottom="@dimen/ads_margin_hint_vertical"
             android:orientation="horizontal"
             android:background="@android:color/transparent">
 

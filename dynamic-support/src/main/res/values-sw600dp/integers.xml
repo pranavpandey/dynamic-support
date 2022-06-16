@@ -21,8 +21,4 @@
     <item name="ads_weight_tutorial_image" type="integer" format="float">0.44</item>
     <item name="ads_weight_tutorial_text" type="integer" format="float">0.56</item>
 
-    <!-- Dialog -->
-    <item name="ads_dialog_min_width_major" type="dimen">75%</item>
-    <item name="ads_dialog_min_width_minor" type="dimen">85%</item>
-
 </resources>

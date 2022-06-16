@@ -34,15 +34,16 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicTintUtils;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicCornerWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 
 /**
  * A {@link FloatingActionButton} to apply {@link DynamicTheme} according to the supplied
  * parameters.
  */
-public class DynamicFloatingActionButton extends FloatingActionButton implements DynamicWidget {
+public class DynamicFloatingActionButton extends FloatingActionButton
+        implements DynamicWidget, DynamicCornerWidget<Integer> {
 
     /**
      * Color type applied to this view.
@@ -87,6 +88,16 @@ public class DynamicFloatingActionButton extends FloatingActionButton implements
      */
     protected @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
+
+    /**
+     * Corner size used by this view.
+     */
+    protected int mCornerSize;
+
     public DynamicFloatingActionButton(@NonNull Context context) {
         this(context, null);
     }
@@ -125,6 +136,15 @@ public class DynamicFloatingActionButton extends FloatingActionButton implements
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicFloatingActionButton_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicFloatingActionButton_adt_contrast,
+                    Theme.Contrast.AUTO);
+
+            if (a.getBoolean(
+                    R.styleable.DynamicFloatingActionButton_adt_dynamicCornerSize,
+                    Defaults.ADS_DYNAMIC_CORNER_SIZE)) {
+                setCorner(DynamicTheme.getInstance().get().getCornerRadius());
+            }
         } finally {
             a.recycle();
         }
@@ -221,10 +241,57 @@ public class DynamicFloatingActionButton extends FloatingActionButton implements
     }
 
     @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        Dynamic.setCornerMin(this, Math.min(
+                getWidth() / Theme.Corner.FACTOR_MAX,
+                getHeight() / Theme.Corner.FACTOR_MAX));
+    }
+
+    @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
         setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
+    }
+
+    @Override
+    public @NonNull Integer getCorner() {
+        return mCornerSize;
+    }
+
+    @Override
+    public void setCorner(@NonNull Integer cornerSize) {
+        this.mCornerSize = cornerSize;
+
+        setShapeAppearanceModel(getShapeAppearanceModel().withCornerSize(cornerSize));
     }
 
     @Override
@@ -245,14 +312,16 @@ public class DynamicFloatingActionButton extends FloatingActionButton implements
     public void setColor() {
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
+            @ColorInt int iconColor = Dynamic.getTintColor(mColor, this);
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
+                iconColor = Dynamic.withContrastRatio(mContrastWithColor, mAppliedColor, this);
             }
 
             DynamicTintUtils.setViewBackgroundTint(this, mContrastWithColor,
                     mAppliedColor, false, false);
             setSupportImageTintList(DynamicResourceUtils.getColorStateList(
-                    mContrastWithColor, mContrastWithColor, false));
+                    iconColor, iconColor, false));
         }
     }
 }

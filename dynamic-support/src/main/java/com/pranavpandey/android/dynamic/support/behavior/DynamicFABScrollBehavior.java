@@ -71,32 +71,36 @@ public class DynamicFABScrollBehavior extends AppBarLayout.ScrollingViewBehavior
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed,
                 dyConsumed, dxUnconsumed, dyUnconsumed, type, consumed);
 
-        if (dyConsumed > 0) {
-            // User scrolled up -> hide the FAB.
-            List<View> dependencies = coordinatorLayout.getDependencies(child);
-            for (View view : dependencies) {
-                if (view instanceof FloatingActionButton
-                        && ((FloatingActionButton) view).getDrawable() != null) {
-                    DynamicFABUtils.hide((FloatingActionButton) view);
-                } else if (view instanceof ExtendedFloatingActionButton
-                        && (((ExtendedFloatingActionButton) view).getIcon() != null
-                        || !TextUtils.isEmpty(((ExtendedFloatingActionButton) view).getText()))) {
-                    DynamicFABUtils.hide((ExtendedFloatingActionButton) view, true);
+        // Fix concurrent modification exception.
+        try {
+            if (dyConsumed > 0) {
+                // User scrolled up -> hide the FAB.
+                final List<View> dependencies = coordinatorLayout.getDependencies(child);
+                for (View view : dependencies) {
+                    if (view instanceof FloatingActionButton
+                            && ((FloatingActionButton) view).getDrawable() != null) {
+                        DynamicFABUtils.hide((FloatingActionButton) view);
+                    } else if (view instanceof ExtendedFloatingActionButton
+                            && (((ExtendedFloatingActionButton) view).getIcon() != null
+                            || !TextUtils.isEmpty(((ExtendedFloatingActionButton) view).getText()))) {
+                        DynamicFABUtils.hide((ExtendedFloatingActionButton) view, true);
+                    }
+                }
+            } else if (dyConsumed < 0) {
+                // User scrolled down -> show the FAB.
+                final List<View> dependencies = coordinatorLayout.getDependencies(child);
+                for (View view : dependencies) {
+                    if (view instanceof FloatingActionButton
+                            && ((FloatingActionButton) view).getDrawable() != null) {
+                        DynamicFABUtils.show((FloatingActionButton) view);
+                    } else if (view instanceof ExtendedFloatingActionButton
+                            && (((ExtendedFloatingActionButton) view).getIcon() != null
+                            || !TextUtils.isEmpty(((ExtendedFloatingActionButton) view).getText()))) {
+                        DynamicFABUtils.show((ExtendedFloatingActionButton) view, true);
+                    }
                 }
             }
-        } else if (dyConsumed < 0) {
-            // User scrolled down -> show the FAB.
-            List<View> dependencies = coordinatorLayout.getDependencies(child);
-            for (View view : dependencies) {
-                if (view instanceof FloatingActionButton
-                        && ((FloatingActionButton) view).getDrawable() != null) {
-                    DynamicFABUtils.show((FloatingActionButton) view);
-                } else if (view instanceof ExtendedFloatingActionButton
-                        && (((ExtendedFloatingActionButton) view).getIcon() != null
-                        || !TextUtils.isEmpty(((ExtendedFloatingActionButton) view).getText()))) {
-                    DynamicFABUtils.show((ExtendedFloatingActionButton) view, true);
-                }
-            }
+        } catch (Exception ignored) {
         }
     }
 }

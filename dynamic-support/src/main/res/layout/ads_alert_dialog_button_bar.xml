@@ -28,13 +28,15 @@
     <androidx.appcompat.widget.ButtonBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layoutDirection="locale"
         android:gravity="bottom"
-        android:paddingBottom="4dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:paddingTop="4dp"
-        android:orientation="horizontal">
+        android:paddingLeft="@dimen/ads_dialog_margin"
+        android:paddingStart="@dimen/ads_dialog_margin"
+        android:paddingTop="@dimen/ads_dialog_margin_tiny"
+        android:paddingRight="@dimen/ads_dialog_margin"
+        android:paddingEnd="@dimen/ads_dialog_margin"
+        android:paddingBottom="@dimen/ads_dialog_margin_tiny"
+        android:orientation="horizontal"
+        android:layoutDirection="locale">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicButton
             style="?attr/buttonBarNeutralButtonStyle"

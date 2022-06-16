@@ -53,7 +53,7 @@ import java.util.List;
  * Helper class to request and manage runtime permissions introduced in API 23.
  * <p>It must be initialized before using any of its functions or requesting any permissions.
  *
- * <p>Register the {@link DynamicPermissionsActivity} via {@link #setPermissionActivity(Class)}
+ * <p>Register the {@link DynamicPermissionsActivity} via {@link #setPermissionsActivity(Class)}
  * to request the permissions via this manager.
  *
  * @see <a href="https://developer.android.com/training/permissions/requesting.html">
@@ -76,7 +76,7 @@ public class DynamicPermissions {
     /**
      * Permissions activity used by this manager.
      */
-    private Class<?> mPermissionActivity;
+    private Class<?> mPermissionsActivity;
 
     /**
      * Making the default constructor private so that it cannot be initialized without a context.
@@ -87,7 +87,6 @@ public class DynamicPermissions {
 
     private DynamicPermissions(@NonNull Context context) {
         this.mContext = context;
-        this.mPermissionActivity = DynamicPermissionsActivity.class;
     }
 
     /**
@@ -133,7 +132,7 @@ public class DynamicPermissions {
     public static synchronized @NonNull DynamicPermissions getInstance() {
         if (sInstance == null) {
             throw new IllegalStateException(DynamicPermissions.class.getSimpleName() +
-                    " is not initialized, call initializeInstance(..) method first.");
+                    " is not initialized, call initializeInstance(...) method first.");
         }
 
         return sInstance;
@@ -144,17 +143,18 @@ public class DynamicPermissions {
      *
      * @return The permission activity used by this manager.
      */
-    public @Nullable Class<?> getPermissionActivity() {
-        return mPermissionActivity;
+    public @NonNull Class<?> getPermissionsActivity() {
+        return mPermissionsActivity != null
+                ? mPermissionsActivity : DynamicPermissionsActivity.class;
     }
 
     /**
      * Sets the permission activity for this instance.
      *
-     * @param permissionActivity The permission activity class to be set.
+     * @param permissionsActivity The permission activity class to be set.
      */
-    public void setPermissionActivity(@NonNull Class<?> permissionActivity) {
-        this.mPermissionActivity = permissionActivity;
+    public void setPermissionsActivity(@NonNull Class<?> permissionsActivity) {
+        this.mPermissionsActivity = permissionsActivity;
     }
 
     /**
@@ -181,8 +181,7 @@ public class DynamicPermissions {
         if (context instanceof Activity) {
             ((Activity) context).startActivityForResult(intent, requestCode);
         } else {
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
+            context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
     }
 
@@ -201,20 +200,20 @@ public class DynamicPermissions {
     public @Nullable Intent requestPermissionsIntent(@NonNull Context context,
             @NonNull String[] permissions, boolean history,
             @Nullable Intent actionIntent, @DynamicAction int action) {
-        if (getPermissionActivity() == null) {
+        if (getPermissionsActivity() == null) {
             return null;
         }
 
-        Intent intent = new Intent(context, getPermissionActivity());
+        Intent intent = new Intent(context, getPermissionsActivity());
         intent.setAction(DynamicIntent.ACTION_PERMISSIONS);
         intent.putExtra(DynamicIntent.EXTRA_PERMISSIONS, permissions);
-        if (!history) {
-            intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-        }
-
         if (actionIntent != null) {
             intent.putExtra(DynamicIntent.EXTRA_PERMISSIONS_INTENT, actionIntent);
             intent.putExtra(DynamicIntent.EXTRA_PERMISSIONS_ACTION, action);
+        }
+
+        if (!history) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
         }
 
         return intent;
@@ -524,12 +523,14 @@ public class DynamicPermissions {
         try {
             String prefString = Settings.Secure.getString(getContext().getContentResolver(),
                     Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+
             return prefString != null && prefString.contains(
                     getContext().getPackageName() + "/" + clazz.getName());
         } catch (Exception e) {
             try {
                 AccessibilityManager am = ContextCompat.getSystemService(
                         getContext(), AccessibilityManager.class);
+
                 return am != null && am.isEnabled();
             } catch (Exception f) {
                 return false;

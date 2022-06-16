@@ -28,6 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.toasts.DynamicToast;
@@ -42,7 +43,7 @@ public class DynamicHintUtils {
     /**
      * Make a themed snackbar with text and action. Background will be accent color from the
      * theme and it will automatically use its tint color for the text and icon to provide
-     * best visibility.
+     * the best visibility.
      *
      * @param context The context to use.
      * @param text The text to show. Can be formatted text.
@@ -61,7 +62,7 @@ public class DynamicHintUtils {
     /**
      * Make a themed snackbar with text and action.
      * <p>The background of the snackbar will be of primary color from the theme and it will
-     * automatically use its tint color for the text and action to provide best visibility.
+     * automatically use its tint color for the text and action to provide the best visibility.
      *
      * @param view The view to show the snackbar.
      * @param text The text to show. Can be formatted text.
@@ -77,7 +78,7 @@ public class DynamicHintUtils {
     /**
      * Make a themed snackbar with text and action.
      * <p>The background of the snackbar will be of primary color from the theme and it will
-     * automatically use its tint color for the text and action to provide best visibility.
+     * automatically use its tint color for the text and action to provide the best visibility.
      *
      * @param view The view to show the snackbar.
      * @param text The text to show. Can be formatted text.
@@ -138,15 +139,15 @@ public class DynamicHintUtils {
         tintColor = DynamicColorUtils.removeAlpha(tintColor);
 
         if (backgroundAware && DynamicTheme.getInstance().get().isBackgroundAware()) {
-            backgroundColor = DynamicColorUtils.getContrastColor(backgroundColor,
+            backgroundColor = Dynamic.withContrastRatio(backgroundColor,
                     DynamicTheme.getInstance().get().getBackgroundColor());
-            tintColor = DynamicColorUtils.getContrastColor(tintColor, backgroundColor);
+            tintColor = Dynamic.withContrastRatio(tintColor, backgroundColor);
         }
 
         Snackbar snackbar = Snackbar.make(view, text, duration);
         DynamicDrawableUtils.setBackground(snackbar.getView(),
                 DynamicDrawableUtils.getCornerDrawable(DynamicTheme.getInstance()
-                        .get().getCornerSizeDp(), backgroundColor));
+                        .get().getCornerSize(), backgroundColor));
         ((TextView) snackbar.getView().findViewById(
                 R.id.snackbar_text)).setTextColor(tintColor);
         ((TextView) snackbar.getView().findViewById(

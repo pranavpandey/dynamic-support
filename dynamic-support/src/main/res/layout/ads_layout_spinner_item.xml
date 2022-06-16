@@ -32,7 +32,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1.0"
-        android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle1"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center_vertical"
+        android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle1" />
 
 </com.pranavpandey.android.dynamic.support.widget.DynamicLinearLayout>

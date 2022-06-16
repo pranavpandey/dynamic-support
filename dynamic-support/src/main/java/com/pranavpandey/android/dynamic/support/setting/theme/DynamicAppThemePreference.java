@@ -23,14 +23,17 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A {@link DynamicThemePreference} to display the app theme setting.
+ * <p>It will automatically set the theme type to custom.
  *
  * @see Theme#CUSTOM
+ * @see com.pranavpandey.android.dynamic.theme.AppTheme#setType(int)
  */
 public class DynamicAppThemePreference extends DynamicThemePreference {
 
@@ -49,6 +52,6 @@ public class DynamicAppThemePreference extends DynamicThemePreference {
 
     @Override
     public @Nullable DynamicAppTheme getDynamicTheme(@Nullable String theme) {
-        return DynamicTheme.getInstance().getTheme(theme);
+        return Dynamic.setThemeType(DynamicTheme.getInstance().getTheme(theme), Theme.APP);
     }
 }

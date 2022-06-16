@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.listener;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -40,7 +41,7 @@ public interface DynamicSnackbar {
      * @return The snackbar with the supplied parameters.
      *         <p>Use {@link Snackbar#show()} to display the snackbar.
      */
-    @NonNull Snackbar getSnackbar(@NonNull CharSequence text, @Snackbar.Duration int duration);
+    @Nullable Snackbar getSnackbar(@NonNull CharSequence text, @Snackbar.Duration int duration);
 
     /**
      * Make a themed snackbar with text and action.
@@ -56,7 +57,7 @@ public interface DynamicSnackbar {
      * @return The snackbar with the supplied parameters.
      *         <p>Use {@link Snackbar#show()} to display the snackbar.
      */
-    @NonNull Snackbar getSnackbar(@StringRes int stringRes, @Snackbar.Duration int duration);
+    @Nullable Snackbar getSnackbar(@StringRes int stringRes, @Snackbar.Duration int duration);
 
     /**
      * Make a themed snackbar with text and action.
@@ -69,7 +70,7 @@ public interface DynamicSnackbar {
      * @return The snackbar with the supplied parameters.
      *         <p>Use {@link Snackbar#show()} to display the snackbar.
      */
-    @NonNull Snackbar getSnackbar(@NonNull CharSequence text);
+    @Nullable Snackbar getSnackbar(@NonNull CharSequence text);
 
     /**
      * Make a themed snackbar with text and action.
@@ -82,5 +83,12 @@ public interface DynamicSnackbar {
      * @return The snackbar with the supplied parameters.
      *         <p>Use {@link Snackbar#show()} to display the snackbar.
      */
-    @NonNull Snackbar getSnackbar(@StringRes int stringRes);
+    @Nullable Snackbar getSnackbar(@StringRes int stringRes);
+
+    /**
+     * This method will be called to show the snackbar.
+     *
+     * @param snackbar The snackbar to be shown.
+     */
+    void onSnackbarShow(@Nullable Snackbar snackbar);
 }

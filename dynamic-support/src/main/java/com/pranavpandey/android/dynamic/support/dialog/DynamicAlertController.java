@@ -17,12 +17,11 @@
 
 package com.pranavpandey.android.dynamic.support.dialog;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
@@ -65,7 +64,6 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.DynamicListView;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
-import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 import java.lang.ref.WeakReference;
@@ -201,7 +199,7 @@ class DynamicAlertController {
         mHandler = new ButtonHandler(di);
 
         final TypedArray a = context.obtainStyledAttributes(null,
-                R.styleable.DynamicDialog, R.attr.alertDialogStyle, 0);
+                R.styleable.DynamicDialog, R.attr.add_alertDialogStyle, 0);
 
         mAlertDialogLayout = a.getResourceId(
                 R.styleable.DynamicDialog_android_layout, 0);
@@ -290,6 +288,13 @@ class DynamicAlertController {
     }
 
     /**
+     * Get the view displayed in the dialog.
+     */
+    public @Nullable View getView() {
+        return mView;
+    }
+
+    /**
      * Set the view resource to display in the dialog.
      */
     public void setView(int layoutResId) {
@@ -335,7 +340,7 @@ class DynamicAlertController {
      *
      * @param viewRoot The root view of the custom view.
      */
-    public void setViewRoot(View viewRoot) {
+    public void setViewRoot(@Nullable View viewRoot) {
         mViewRoot = viewRoot;
     }
 
@@ -514,7 +519,7 @@ class DynamicAlertController {
         final View defaultButtonPanel = parentPanel.findViewById(R.id.buttonPanel);
 
         // Make default drawable transparent as we are using card view as background.
-        mWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mWindow.setBackgroundDrawableResource(android.R.color.transparent);
 
         if (card instanceof DynamicWidget
                 && DynamicTheme.getInstance().get().isBackgroundAware()) {
@@ -586,21 +591,19 @@ class DynamicAlertController {
         }
 
         // Update scroll indicators as needed.
+        final int indicators = (hasTopPanel ? ViewCompat.SCROLL_INDICATOR_TOP : 0)
+                | (hasButtonPanel ? ViewCompat.SCROLL_INDICATOR_BOTTOM : 0);
+        final int mask = ViewCompat.SCROLL_INDICATOR_TOP | ViewCompat.SCROLL_INDICATOR_BOTTOM;
+
         if (!hasCustomPanel) {
             final View content = mListView != null ? mListView : mScrollView;
             if (content != null) {
-                final int indicators = (hasTopPanel ? ViewCompat.SCROLL_INDICATOR_TOP : 0)
-                        | (hasButtonPanel ? ViewCompat.SCROLL_INDICATOR_BOTTOM : 0);
-                setScrollIndicators(contentPanel, content, indicators,
-                        ViewCompat.SCROLL_INDICATOR_TOP | ViewCompat.SCROLL_INDICATOR_BOTTOM);
+                setScrollIndicators(contentPanel, content, indicators, mask);
             }
         } else {
             final View content = mViewRoot;
             if (content != null) {
-                final int indicators = (hasTopPanel ? ViewCompat.SCROLL_INDICATOR_TOP : 0)
-                        | (hasButtonPanel ? ViewCompat.SCROLL_INDICATOR_BOTTOM : 0);
-                setScrollIndicators(contentPanel, content, indicators,
-                        ViewCompat.SCROLL_INDICATOR_TOP | ViewCompat.SCROLL_INDICATOR_BOTTOM);
+                setScrollIndicators(contentPanel, content, indicators, mask);
             }
         }
 
@@ -765,8 +768,8 @@ class DynamicAlertController {
                 // Set title color to match the theme.
                 mTitleView.setTextColor(!DynamicTheme.getInstance().get().isBackgroundAware()
                         ? DynamicTheme.getInstance().get().getTextPrimaryColor()
-                        : DynamicColorUtils.getContrastColor(
-                        DynamicTheme.getInstance().get().getTextPrimaryColor(),
+                        : Dynamic.withContrastRatio(
+                                DynamicTheme.getInstance().get().getTextPrimaryColor(),
                         DynamicTheme.getInstance().get().getBackgroundColor()));
 
                 // Do this last so that if the user has supplied any icons we
@@ -1076,6 +1079,7 @@ class DynamicAlertController {
             */
         }
 
+        @SuppressLint("Range")
         private void createListView(final DynamicAlertController dialog) {
             final RecycleListView listView =
                     (RecycleListView) mInflater.inflate(dialog.mListLayout, null);

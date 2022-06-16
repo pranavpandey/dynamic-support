@@ -52,7 +52,7 @@ import java.util.List;
 /**
  * A {@link DynamicView} with an icon, title and subtitle, description and links functionality
  * that can be used to show various information according to the requirement.
- * <p>Links can be clickable or pass {@code null} url to just show or completely hide them.
+ * <p>Links can be clickable or pass {@code null} URL to just show or completely hide them.
  */
 public class DynamicInfoView extends DynamicView implements DynamicWidget {
 
@@ -210,6 +210,9 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicInfoView_adt_backgroundAware,
                     Theme.BackgroundAware.UNKNOWN);
+            mContrast = a.getInteger(
+                    R.styleable.DynamicInfoView_adt_contrast,
+                    Theme.Contrast.UNKNOWN);
             mIcon = DynamicResourceUtils.getDrawable(getContext(), 
                     a.getResourceId(
                             R.styleable.DynamicInfoView_ads_icon, 
@@ -290,12 +293,18 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
         Dynamic.setContrastWithColorTypeOrColor(getStatusView(),
                 getContrastWithColorType(), getContrastWithColor());
 
-        Dynamic.setBackgroundAwareSafe(getIconView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getIconBigView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getTitleView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getSubtitleView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getDescriptionView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getStatusView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getIconView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getIconBigView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getTitleView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getSubtitleView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getDescriptionView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getStatusView(),
+                getBackgroundAware(), getContrast(false));
     }
 
     @Override
@@ -370,7 +379,8 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
                         color, Theme.ColorType.CUSTOM, false);
                 Dynamic.setContrastWithColorTypeOrColor(dynamicItem,
                         getContrastWithColorType(), getContrastWithColor());
-                Dynamic.setBackgroundAwareSafe(dynamicItem, getBackgroundAware());
+                Dynamic.setBackgroundAwareSafe(dynamicItem,
+                        getBackgroundAware(), getContrast(false));
 
                 if (url != null) {
                     dynamicItem.setOnClickListener(new OnClickListener() {
@@ -433,7 +443,7 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
     }
 
     /**
-     * Ge the big fallback icon used by this view.
+     * Get the big fallback icon used by this view.
      *
      * @return The big fallback icon used by this view.
      */
@@ -575,16 +585,16 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
     }
 
     /**
-     * Get the url for the links used by this view.
+     * Get the URL for the links used by this view.
      *
-     * @return The url for the links used by this view.
+     * @return The URL for the links used by this view.
      */
     public @Nullable CharSequence[] getLinksUrls() {
         return mLinksUrls;
     }
 
     /**
-     * Set the url for the links used by this view.
+     * Set the URL for the links used by this view.
      *
      * <p>Automatic refresh is disabled due to the stability reasons.
      * <p>Please call {@link #onUpdate()} to refresh the view.

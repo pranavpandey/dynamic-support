@@ -21,7 +21,7 @@
     style="@style/Widget.DynamicApp.Content.Card.Clickable.Background"
     android:id="@+id/ads_item_view"
     android:orientation="vertical"
-    android:alpha="@integer/ads_alpha_empty_view">
+    android:alpha="@integer/ads_alpha_placeholder">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
         style="@style/Widget.DynamicApp.Image.Empty"

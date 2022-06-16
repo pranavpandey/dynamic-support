@@ -26,15 +26,14 @@
         android:id="@+id/ads_coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/ads_footer_frame">
+        android:layout_above="@id/ads_footer_frame"
+        android:fitsSystemWindows="true">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicAppBarLayout
             android:id="@+id/ads_app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            app:elevation="0dp"
-            app:adt_backgroundAware="disable">
+            app:elevation="0dp">
 
             <include layout="@layout/ads_toolbar_scroll" />
 
@@ -73,12 +72,18 @@
 
     </com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout>
 
-    <FrameLayout
+    <com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout
         android:id="@+id/ads_footer_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        app:adt_colorType="primary">
 
-    </FrameLayout>
+    </com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout>
+
+    <include
+        layout="@layout/ads_layout_navigation_shadow"
+        android:layout_width="@dimen/ads_navigation_bar_shadow_size"
+        android:layout_height="match_parent" />
 
 </com.pranavpandey.android.dynamic.support.widget.DynamicRootLayout>

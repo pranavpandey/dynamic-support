@@ -82,6 +82,11 @@ public class DynamicSwipeRefreshLayout extends SwipeRefreshLayout implements Dyn
      */
     protected @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
+
     public DynamicSwipeRefreshLayout(@NonNull Context context) {
         this(context, null);
     }
@@ -103,7 +108,7 @@ public class DynamicSwipeRefreshLayout extends SwipeRefreshLayout implements Dyn
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
                     R.styleable.DynamicSwipeRefreshLayout_adt_contrastWithColorType,
-                    Theme.ColorType.TINT_BACKGROUND);
+                    Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
                     R.styleable.DynamicSwipeRefreshLayout_adt_color,
                     Theme.Color.UNKNOWN);
@@ -113,6 +118,9 @@ public class DynamicSwipeRefreshLayout extends SwipeRefreshLayout implements Dyn
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicSwipeRefreshLayout_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicSwipeRefreshLayout_adt_contrast,
+                    Theme.Contrast.AUTO);
         } finally {
             a.recycle();
         }
@@ -212,6 +220,32 @@ public class DynamicSwipeRefreshLayout extends SwipeRefreshLayout implements Dyn
     }
 
     @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
+    }
+
+    @Override
     public void setColor() {
         if (mColor != Theme.Color.UNKNOWN) {
             @ColorInt int accentColor = DynamicColorUtils.getAccentColor(mColor);
@@ -222,10 +256,10 @@ public class DynamicSwipeRefreshLayout extends SwipeRefreshLayout implements Dyn
 
             mAppliedColor = mColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
-                accentColor = DynamicColorUtils.getContrastColor(accentColor, mContrastWithColor);
-                color1 = DynamicColorUtils.getContrastColor(color1, mContrastWithColor);
-                color2 = DynamicColorUtils.getContrastColor(color2, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
+                accentColor = Dynamic.withContrastRatio(accentColor, mContrastWithColor, this);
+                color1 = Dynamic.withContrastRatio(color1, mContrastWithColor, this);
+                color2 = Dynamic.withContrastRatio(color2, mContrastWithColor, this);
             }
 
             setProgressBackgroundColorSchemeColor(mContrastWithColor);

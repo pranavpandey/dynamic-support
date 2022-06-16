@@ -48,7 +48,7 @@ public class DynamicPopupBackground extends DynamicCardView {
         super.loadFromAttributes(attrs);
 
         setContrastWithColorType(Theme.ColorType.SURFACE);
-        setElevationOnSameBackground(true);
+        setForceElevation(true);
         setFloatingView(true);
         setClipToPadding(false);
     }

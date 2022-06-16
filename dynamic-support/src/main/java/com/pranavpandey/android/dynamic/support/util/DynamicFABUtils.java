@@ -16,7 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.util;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,7 +33,11 @@ public class DynamicFABUtils {
      *
      * @param fab The FAB to set hide animation.
      */
-    public static void hide(@NonNull FloatingActionButton fab) {
+    public static void hide(@Nullable FloatingActionButton fab) {
+        if (fab == null) {
+            return;
+        }
+
         fab.hide();
     }
 
@@ -44,11 +48,16 @@ public class DynamicFABUtils {
      * @param extendedFab The extended FAB to set hide animation.
      * @param shrinkBefore {@code true} to shrink the FAB before hiding it.
      */
-    public static void hide(@NonNull ExtendedFloatingActionButton extendedFab,
+    public static void hide(@Nullable ExtendedFloatingActionButton extendedFab,
             boolean shrinkBefore) {
+        if (extendedFab == null) {
+            return;
+        }
+
         if (shrinkBefore && (extendedFab instanceof DynamicExtendedFloatingActionButton
                 && ((DynamicExtendedFloatingActionButton) extendedFab).isFABExtended())) {
             extendedFab.shrink();
+
             return;
         }
 
@@ -61,7 +70,11 @@ public class DynamicFABUtils {
      *
      * @param fab The FAB to set show animation.
      */
-    public static void show(@NonNull FloatingActionButton fab) {
+    public static void show(@Nullable FloatingActionButton fab) {
+        if (fab == null) {
+            return;
+        }
+
         fab.show();
     }
 
@@ -72,8 +85,12 @@ public class DynamicFABUtils {
      * @param extendedFab The FAB to set show animation.
      * @param extendAfter {@code true} to extend the FAB after showing it.
      */
-    public static void show(@NonNull ExtendedFloatingActionButton extendedFab,
+    public static void show(@Nullable ExtendedFloatingActionButton extendedFab,
             boolean extendAfter) {
+        if (extendedFab == null) {
+            return;
+        }
+
         extendedFab.show();
 
         if (extendAfter && (extendedFab instanceof DynamicExtendedFloatingActionButton

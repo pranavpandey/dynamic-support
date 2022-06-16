@@ -369,15 +369,17 @@ public class DynamicColorPreference extends DynamicSimplePreference {
         color = color == Theme.AUTO
                 ? DynamicTheme.getInstance().get().getBackgroundColor() : color;
 
-        DynamicColorDialog.newInstance().setColors(getColors(), getShades())
-                .setDynamics(dynamics)
-                .setColorShape(getColorShape())
-                .setAlpha(isAlpha())
-                .setPreviousColor(color)
-                .setSelectedColor(color)
-                .setDynamicColorListener(dynamicColorListener)
-                .setBuilder(new DynamicDialog.Builder(getContext()).setTitle(title))
-                .showDialog((FragmentActivity) getContext());
+        if (getContext() instanceof FragmentActivity) {
+            DynamicColorDialog.newInstance().setColors(getColors(), getShades())
+                    .setDynamics(dynamics)
+                    .setColorShape(getColorShape())
+                    .setAlpha(isAlpha())
+                    .setPreviousColor(color)
+                    .setSelectedColor(color)
+                    .setDynamicColorListener(dynamicColorListener)
+                    .setBuilder(new DynamicDialog.Builder(getContext()).setTitle(title))
+                    .showDialog((FragmentActivity) getContext());
+        }
     }
 
     /**

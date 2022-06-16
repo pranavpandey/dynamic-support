@@ -132,17 +132,17 @@ class SampleApplication : DynamicApplication() {
         when (key) {
             Constants.PREF_SETTINGS_APP_THEME_DAY_COLOR ->
                 if (ThemeController.getCurrentTheme() == Theme.DAY) {
-                    onAutoThemeChanged()
+                    onAutoThemeChanged(false)
                 }
             Constants.PREF_SETTINGS_APP_THEME_NIGHT_COLOR ->
                 if (ThemeController.getCurrentTheme() == Theme.NIGHT) {
-                    onAutoThemeChanged()
+                    onAutoThemeChanged(false)
                 }
             Constants.PREF_SETTINGS_APP_THEME_COLOR,
             Constants.PREF_SETTINGS_APP_THEME_COLOR_SURFACE,
             Constants.PREF_SETTINGS_APP_THEME_COLOR_PRIMARY,
             Constants.PREF_SETTINGS_APP_THEME_COLOR_ACCENT ->
-                onAutoThemeChanged()
+                onAutoThemeChanged(false)
             Constants.PREF_SETTINGS_NAVIGATION_BAR_THEME ->
                 DynamicTheme.getInstance().onNavigationBarThemeChanged()
             Constants.PREF_SETTINGS_APP_SHORTCUTS_THEME ->

@@ -24,7 +24,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ads_margin_extra_tiny"
+        android:layout_marginTop="@dimen/ads_dialog_margin_top"
+        android:layout_marginBottom="@dimen/ads_dialog_margin"
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout
@@ -33,7 +34,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ads_dialog_margin_horizontal_edit_text"
+            android:layout_marginStart="@dimen/ads_dialog_margin_horizontal_edit_text"
             android:layout_marginRight="@dimen/ads_dialog_margin_horizontal_edit_text"
+            android:layout_marginEnd="@dimen/ads_dialog_margin_horizontal_edit_text"
             android:hint="@string/ads_data"
             android:textDirection="ltr"
             tools:targetApi="jelly_bean_mr1">
@@ -43,7 +46,7 @@
                 android:id="@+id/ads_dialog_theme_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textNoSuggestions|textLongMessage|textMultiLine"
+                android:inputType="textLongMessage|textMultiLine|textNoSuggestions"
                 android:textDirection="ltr" />
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout>

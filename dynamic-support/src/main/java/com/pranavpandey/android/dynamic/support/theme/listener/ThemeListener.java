@@ -34,6 +34,194 @@ import com.pranavpandey.android.dynamic.util.concurrent.DynamicTask;
 public interface ThemeListener<T extends DynamicAppTheme> {
 
     /**
+     *  Activity scene transition name for the theme preview.
+     */
+    String ADS_NAME_THEME_PREVIEW = "ads_name:theme_preview";
+
+    /**
+     *  Activity scene transition name for the theme preview action.
+     */
+    String ADS_NAME_THEME_PREVIEW_ACTION = ADS_NAME_THEME_PREVIEW + ":action";
+
+    /**
+     *  Activity scene transition name for the theme preview icon.
+     */
+    String ADS_NAME_THEME_PREVIEW_ICON = ADS_NAME_THEME_PREVIEW + ":icon";
+
+    /**
+     * Constant to request the theme file location.
+     */
+    int REQUEST_THEME_LOCATION = 0;
+
+    /**
+     * Constant to request the theme file (code) location.
+     */
+    int REQUEST_THEME_CODE_LOCATION = 1;
+
+    /**
+     * Constant to request the custom theme file (code) location.
+     */
+    int REQUEST_THEME_CODE_LOCATION_ALT = 2;
+
+    /**
+     * Constant to request the theme import from file.
+     */
+    int REQUEST_THEME_IMPORT = 5;
+
+    /**
+     * Constant to request the theme from other apps.
+     */
+    int REQUEST_THEME_CAPTURE = 8;
+
+    /**
+     * Key for the background color preference.
+     */
+    String ADS_PREF_THEME_COLOR_BACKGROUND = "ads_pref_settings_theme_color_background";
+
+    /**
+     * Key for the tint background color preference.
+     */
+    String ADS_PREF_THEME_COLOR_TINT_BACKGROUND = "ads_pref_settings_theme_color_tint_background";
+
+    /**
+     * Key for the surface color preference.
+     */
+    String ADS_PREF_THEME_COLOR_SURFACE = "ads_pref_settings_theme_color_surface";
+
+    /**
+     * Key for the tint surface color preference.
+     */
+    String ADS_PREF_THEME_COLOR_TINT_SURFACE = "ads_pref_settings_theme_color_tint_surface";
+
+    /**
+     * Key for the primary color preference.
+     */
+    String ADS_PREF_THEME_COLOR_PRIMARY = "ads_pref_settings_theme_color_primary";
+
+    /**
+     * Key for the tint primary color preference.
+     */
+    String ADS_PREF_THEME_COLOR_TINT_PRIMARY = "ads_pref_settings_theme_color_tint_primary";
+
+    /**
+     * Key for the dark primary color preference.
+     */
+    String ADS_PREF_THEME_COLOR_PRIMARY_DARK = "ads_pref_settings_theme_color_primary_dark";
+
+    /**
+     * Key for the tint dark primary color preference.
+     */
+    String ADS_PREF_THEME_COLOR_TINT_PRIMARY_DARK =
+            "ads_pref_settings_theme_color_tint_primary_dark";
+
+    /**
+     * Key for the accent color preference.
+     */
+    String ADS_PREF_THEME_COLOR_ACCENT = "ads_pref_settings_theme_color_accent";
+
+    /**
+     * Key for the tint accent color preference.
+     */
+    String ADS_PREF_THEME_COLOR_TINT_ACCENT = "ads_pref_settings_theme_color_tint_accent";
+
+    /**
+     * Key for the dark accent color preference.
+     */
+    String ADS_PREF_THEME_COLOR_ACCENT_DARK = "ads_pref_settings_theme_color_accent_dark";
+
+    /**
+     * Key for the tint dark accent color preference.
+     */
+    String ADS_PREF_THEME_COLOR_TINT_ACCENT_DARK =
+            "ads_pref_settings_theme_color_tint_accent_dark";
+
+    /**
+     * Key for the error color preference.
+     */
+    String ADS_PREF_THEME_COLOR_ERROR = "ads_pref_settings_theme_color_error";
+
+    /**
+     * Key for the tint error color preference.
+     */
+    String ADS_PREF_THEME_COLOR_TINT_ERROR = "ads_pref_settings_theme_color_tint_error";
+
+    /**
+     * Key for the primary text color preference.
+     */
+    String ADS_PREF_THEME_TEXT_PRIMARY = "ads_pref_settings_theme_text_primary";
+
+    /**
+     * Key for the inverse primary text color preference.
+     */
+    String ADS_PREF_THEME_TEXT_INVERSE_PRIMARY = "ads_pref_settings_theme_text_inverse_primary";
+
+    /**
+     * Key for the secondary text color preference.
+     */
+    String ADS_PREF_THEME_TEXT_SECONDARY = "ads_pref_settings_theme_text_secondary";
+
+    /**
+     * Key for the inverse secondary text color preference.
+     */
+    String ADS_PREF_THEME_TEXT_INVERSE_SECONDARY =
+            "ads_pref_settings_theme_text_inverse_secondary";
+
+    /**
+     * Key for the font scale preference.
+     */
+    String ADS_PREF_THEME_FONT_SCALE = "ads_pref_settings_theme_font_scale";
+
+    /**
+     * Key for the font scale alternate preference.
+     */
+    String ADS_PREF_THEME_FONT_SCALE_ALT = "ads_pref_settings_theme_font_scale_alt";
+
+    /**
+     * Key for the corner size preference.
+     */
+    String ADS_PREF_THEME_CORNER_SIZE = "ads_pref_settings_theme_corner_size";
+
+    /**
+     * Key for the corner size alternate preference.
+     */
+    String ADS_PREF_THEME_CORNER_SIZE_ALT = "ads_pref_settings_theme_corner_size_alt";
+
+    /**
+     * Key for the background aware preference.
+     */
+    String ADS_PREF_THEME_BACKGROUND_AWARE = "ads_pref_settings_theme_background_aware";
+
+    /**
+     * Key for the contrast preference.
+     */
+    String ADS_PREF_THEME_CONTRAST = "ads_pref_settings_theme_contrast";
+
+    /**
+     * Key for the contrast alternate preference.
+     */
+    String ADS_PREF_THEME_CONTRAST_ALT = "ads_pref_settings_theme_contrast_alt";
+
+    /**
+     * Key for the opacity preference.
+     */
+    String ADS_PREF_THEME_OPACITY = "ads_pref_settings_theme_opacity";
+
+    /**
+     * Key for the opacity alternate preference.
+     */
+    String ADS_PREF_THEME_OPACITY_ALT = "ads_pref_settings_theme_opacity_alt";
+
+    /**
+     * Key for the elevation preference.
+     */
+    String ADS_PREF_THEME_ELEVATION = "ads_pref_settings_theme_elevation";
+
+    /**
+     * Key for the style preference.
+     */
+    String ADS_PREF_THEME_STYLE = "ads_pref_settings_theme_style";
+
+    /**
      * This method will called to load settings from the supplied theme.
      *
      * @param theme The dynamic app theme to be loaded.
@@ -167,9 +355,9 @@ public interface ThemeListener<T extends DynamicAppTheme> {
         @Nullable String getThemeData();
 
         /**
-         * This method will be called to retrieve the theme code bitmap uri.
+         * This method will be called to retrieve the theme code bitmap URI.
          *
-         * @return The theme code bitmap uri.
+         * @return The theme code bitmap URI.
          */
         @Nullable Uri getThemeCode();
     }

@@ -26,16 +26,15 @@
         style="@style/Widget.DynamicApp.Content.Row.Vertical">
 
         <LinearLayout
-            style="@style/Widget.DynamicApp.Content.Row.Vertical"
-            android:focusableInTouchMode="true">
+            style="@style/Widget.DynamicApp.Content.Row.Vertical">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
                 style="@style/Widget.DynamicApp.Scroller.Nested.GridView"
                 android:id="@+id/ads_color_picker_presets"
-                android:paddingTop="@dimen/ads_margin_tiny"
-                android:paddingBottom="@dimen/ads_margin_tiny"
                 android:paddingLeft="@dimen/ads_margin_regular"
                 android:paddingRight="@dimen/ads_margin_regular"
+                android:paddingTop="@dimen/ads_margin_tiny"
+                android:paddingBottom="@dimen/ads_margin_tiny"
                 android:columnWidth="@dimen/ads_picker_colors_size"
                 android:horizontalSpacing="@dimen/ads_picker_colors_spacing"
                 android:verticalSpacing="@dimen/ads_picker_colors_spacing"
@@ -46,16 +45,15 @@
                 android:id="@+id/ads_color_picker_divider"
                 android:layout_marginLeft="@dimen/ads_margin_regular"
                 android:layout_marginRight="@dimen/ads_margin_regular"
-                android:visibility="gone"
                 app:adt_contrastWithColorType="surface" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
                 style="@style/Widget.DynamicApp.Scroller.Nested.GridView"
                 android:id="@+id/ads_color_picker_dynamics"
-                android:paddingTop="@dimen/ads_margin_tiny"
-                android:paddingBottom="@dimen/ads_margin_tiny"
                 android:paddingLeft="@dimen/ads_margin_regular"
                 android:paddingRight="@dimen/ads_margin_regular"
+                android:paddingTop="@dimen/ads_margin_tiny"
+                android:paddingBottom="@dimen/ads_margin_tiny"
                 android:columnWidth="@dimen/ads_picker_colors_size"
                 android:horizontalSpacing="@dimen/ads_picker_colors_spacing"
                 android:verticalSpacing="@dimen/ads_picker_colors_spacing"

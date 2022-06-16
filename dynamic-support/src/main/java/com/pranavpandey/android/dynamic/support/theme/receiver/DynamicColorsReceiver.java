@@ -37,7 +37,7 @@ public class DynamicColorsReceiver extends BroadcastReceiver {
     public void onReceive(@NonNull Context context, @Nullable Intent intent) {
         if (intent != null && Intent.ACTION_WALLPAPER_CHANGED.equals(intent.getAction())) {
             try {
-                DynamicTheme.getInstance().onAutoThemeChanged();
+                DynamicTheme.getInstance().onAutoThemeChanged(false);
             } catch (Exception ignored) {
             }
         }

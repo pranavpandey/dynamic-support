@@ -19,7 +19,6 @@ package com.pranavpandey.android.dynamic.support.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.AttrRes;
@@ -78,30 +77,8 @@ public class DynamicRootLayout extends RelativeLayout
 
     @Override
     public void applyWindowInsets() {
-        if (isRootLayout()) {
+        if (DynamicViewUtils.isRootLayout(this)) {
             DynamicViewUtils.applyWindowInsetsHorizontal(this, true);
         }
-    }
-
-    /**
-     * Checks if this is the only root layout in the view heirarchy.
-     *
-     * @return {@code true} if this is the only root layout in the view heirarchy.
-     */
-    private boolean isRootLayout() {
-        if (!(getParent() instanceof View)) {
-            return true;
-        }
-
-        View view = (View) getParent();
-        while (view != null && !(view instanceof DynamicRootLayout)) {
-            if (view.getParent() instanceof View) {
-                view = (View) view.getParent();
-            } else {
-                view = null;
-            }
-        }
-
-        return view == null;
     }
 }

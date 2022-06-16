@@ -21,22 +21,29 @@
     package="com.pranavpandey.android.dynamic.support">
 
     <uses-sdk tools:overrideLibrary="com.pranavpandey.android.dynamic.locale" />
+
     <uses-permission android:name="com.pranavpandey.theme.permission.READ_THEME" />
 
     <application
         android:supportsRtl="true"
         tools:ignore="RtlEnabled">
 
-        <!-- Remove startup initializer for on-demand initialization. -->
+        <!-- Startup initializer to initialize components. -->
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
             android:exported="false"
-            tools:node="remove" />
+            tools:node="merge">
+            <!-- Remove initialization for work manager. -->
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup"
+                tools:node="remove" />
+        </provider>
 
         <!-- Theme activity to handle share intent. -->
         <activity
-            android:name=".theme.activity.DynamicThemeActivity"
+            android:name=".preview.activity.DynamicPreviewActivity"
             android:label="@string/ads_theme"
             android:launchMode="singleTop" />
 

@@ -24,15 +24,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ads_margin_extra_tiny"
+        android:layout_marginTop="@dimen/ads_dialog_margin_top"
         android:paddingLeft="@dimen/ads_margin_normal"
+        android:paddingStart="@dimen/ads_margin_normal"
         android:paddingRight="@dimen/ads_margin_normal"
+        android:paddingEnd="@dimen/ads_margin_normal"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/ads_dialog_image_view"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/ads_theme_code_preview_size"
+            android:layout_height="@dimen/ads_preview_code_preview_size"
             android:layout_marginRight="@dimen/ads_margin_small"
             android:layout_marginEnd="@dimen/ads_margin_small"
             android:contentDescription="@string/ads_theme_code"

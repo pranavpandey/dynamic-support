@@ -17,25 +17,23 @@
 package com.pranavpandey.android.dynamic.support.theme.task;
 
 import android.annotation.TargetApi;
-import android.app.WallpaperColors;
 import android.app.WallpaperManager;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Build;
 
 import androidx.annotation.Nullable;
 import androidx.palette.graphics.Palette;
 
-import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
-import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
 import com.pranavpandey.android.dynamic.util.concurrent.task.ContextTask;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
  * A {@link ContextTask} to extract the wallpaper colors.
+ *
+ * <p>It requires {@link android.Manifest.permission#READ_EXTERNAL_STORAGE} permission on
+ * API 26 and below.
  *
  * @see Palette
  * @see WallpaperManager#getDrawable()
@@ -66,61 +64,6 @@ public abstract class WallpaperColorsTask extends ContextTask<Void, Void, Map<In
             return null;
         }
 
-        final Map<Integer, Integer> colors = new HashMap<>();
-
-        if (DynamicSdkUtils.is27()) {
-            final WallpaperColors wallpaperColors = WallpaperManager.getInstance(
-                    getContext()).getWallpaperColors(WallpaperManager.FLAG_SYSTEM);
-
-            if (wallpaperColors != null) {
-                if (wallpaperColors.getSecondaryColor() != null) {
-                    colors.put(Theme.ColorType.BACKGROUND,
-                            wallpaperColors.getSecondaryColor().toArgb());
-                }
-
-                colors.put(Theme.ColorType.PRIMARY,
-                        wallpaperColors.getPrimaryColor().toArgb());
-
-                if (wallpaperColors.getTertiaryColor() != null) {
-                    colors.put(Theme.ColorType.ACCENT,
-                            wallpaperColors.getTertiaryColor().toArgb());
-                }
-            }
-        } else {
-            final Bitmap wallpaper = DynamicBitmapUtils.getBitmap(
-                    WallpaperManager.getInstance(getContext()).getDrawable());
-
-            if (wallpaper != null) {
-                final Palette palette = new Palette.Builder(wallpaper).generate();
-
-                if (palette.getDominantSwatch() != null) {
-                    colors.put(Theme.ColorType.BACKGROUND, palette.getDominantSwatch().getRgb());
-                } else if (palette.getVibrantSwatch() != null) {
-                    colors.put(Theme.ColorType.BACKGROUND, palette.getVibrantSwatch().getRgb());
-                }
-
-                if (palette.getLightMutedSwatch() != null) {
-                    colors.put(Theme.ColorType.PRIMARY, palette.getLightMutedSwatch().getRgb());
-                } else if (palette.getDarkMutedSwatch() != null) {
-                    colors.put(Theme.ColorType.PRIMARY, palette.getDarkMutedSwatch().getRgb());
-                } else if (palette.getMutedSwatch() != null) {
-                    colors.put(Theme.ColorType.PRIMARY, palette.getMutedSwatch().getRgb());
-                } else if (palette.getDominantSwatch() != null) {
-                    colors.put(Theme.ColorType.PRIMARY, palette.getDominantSwatch().getRgb());
-                } else if (palette.getVibrantSwatch() != null) {
-                    colors.put(Theme.ColorType.PRIMARY, palette.getVibrantSwatch().getRgb());
-                }
-
-                if (palette.getLightVibrantSwatch() != null) {
-                    colors.put(Theme.ColorType.ACCENT, palette.getLightVibrantSwatch().getRgb());
-                } else if (palette.getDarkVibrantSwatch() != null) {
-                    colors.put(Theme.ColorType.ACCENT, palette.getDarkVibrantSwatch().getRgb());
-                } else if (palette.getDominantSwatch() != null) {
-                    colors.put(Theme.ColorType.ACCENT, palette.getDominantSwatch().getRgb());
-                }
-            }
-        }
-
-        return colors;
+        return DynamicThemeUtils.getWallpaperColors(getContext());
     }
 }

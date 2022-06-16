@@ -18,8 +18,6 @@
 <resources>
 
     <!-- Span -->
-    <integer name="ads_span_normal">1</integer>
-    <integer name="ads_span_compact">2</integer>
-    <integer name="ads_span_compact_dialog">3</integer>
+    <integer name="ads_span_compact">3</integer>
 
 </resources>

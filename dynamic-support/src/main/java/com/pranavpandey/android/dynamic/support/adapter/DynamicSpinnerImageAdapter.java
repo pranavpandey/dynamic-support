@@ -17,7 +17,6 @@
 package com.pranavpandey.android.dynamic.support.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -37,7 +36,7 @@ import java.util.List;
 /**
  * A simple array adapter for the {@link android.widget.Spinner} which can display an icon
  * and text together as an item. Use the constructor to pass the layout resource, image and the
- * text id with a list of items according to the need.
+ * text id with a list of items according to the requirements.
  */
 public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicMenu> {
 
@@ -59,7 +58,7 @@ public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicMenu> {
     /**
      * Constructor to initialize an object of this class.
      *
-     * @param context The context to retrieve the resources.
+     * @param context The context to be used.
      * @param resource The layout resource to be used.
      * @param imageViewResourceId The resource id for the image view.
      * @param textViewResourceId The resource id for the text view.
@@ -74,7 +73,7 @@ public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicMenu> {
     /**
      * Constructor to initialize an object of this class.
      *
-     * @param context The context to retrieve the resources.
+     * @param context The context to be used.
      * @param resource The layout resource to be used.
      * @param imageViewResourceId The resource id for the image view.
      * @param textViewResourceId The resource id for the text view.
@@ -111,22 +110,26 @@ public class DynamicSpinnerImageAdapter extends ArrayAdapter<DynamicMenu> {
                         ((DynamicWidget) mParent).getContrastWithColorType(),
                         ((DynamicWidget) mParent).getContrastWithColor());
                 Dynamic.setBackgroundAwareSafe(imageView,
-                        ((DynamicWidget) mParent).getBackgroundAware());
+                        ((DynamicWidget) mParent).getBackgroundAware(),
+                        ((DynamicWidget) mParent).getContrast(false));
                 Dynamic.setBackgroundAwareSafe(textView,
-                        ((DynamicWidget) mParent).getBackgroundAware());
+                        ((DynamicWidget) mParent).getBackgroundAware(),
+                        ((DynamicWidget) mParent).getContrast(false));
 
                 if (imageView != null && imageView.getParent() instanceof DynamicWidget) {
                     Dynamic.setContrastWithColorTypeOrColor(imageView.getParent(),
                             ((DynamicWidget) mParent).getContrastWithColorType(),
                             ((DynamicWidget) mParent).getContrastWithColor());
                     Dynamic.setBackgroundAwareSafe(imageView.getParent(),
-                            ((DynamicWidget) mParent).getBackgroundAware());
+                            ((DynamicWidget) mParent).getBackgroundAware(),
+                            ((DynamicWidget) mParent).getContrast(false));
                 } else if (textView != null && textView.getParent() instanceof DynamicWidget) {
                     Dynamic.setContrastWithColorTypeOrColor(textView.getParent(),
                             ((DynamicWidget) mParent).getContrastWithColorType(),
                             ((DynamicWidget) mParent).getContrastWithColor());
                     Dynamic.setBackgroundAwareSafe(textView.getParent(),
-                            ((DynamicWidget) mParent).getBackgroundAware());
+                            ((DynamicWidget) mParent).getBackgroundAware(),
+                            ((DynamicWidget) mParent).getContrast(false));
                 }
             }
         }

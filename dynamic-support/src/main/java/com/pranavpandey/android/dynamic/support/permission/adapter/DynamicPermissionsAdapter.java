@@ -47,12 +47,12 @@ public class DynamicPermissionsAdapter extends
     /**
      * List of permissions shown by this adapter.
      */
-    private List<DynamicPermission> mData;
+    private final List<DynamicPermission> mData;
 
     /**
      * Callback when a permission is selected.
      */
-    private DynamicPermissionsView.PermissionListener mPermissionListener;
+    private final DynamicPermissionsView.PermissionListener mPermissionListener;
 
     /**
      * Constructor to initialize an object of this class.
@@ -64,90 +64,87 @@ public class DynamicPermissionsAdapter extends
             @Nullable DynamicPermissionsView.PermissionListener permissionListener) {
         mData = data;
         mPermissionListener = permissionListener;
-
-        setHasStableIds(true);
     }
 
     @Override
     public @NonNull ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        return new ViewHolder(LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.ads_layout_info_card, viewGroup, false));
+        return new ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(
+                R.layout.ads_layout_info_card, viewGroup, false));
     }
 
     @Override
-    public void onBindViewHolder(final @NonNull ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(final @NonNull ViewHolder holder, int position) {
+        final DynamicPermission dynamicPermission;
+        if ((dynamicPermission = getItem(position)) == null) {
+            return;
+        }
+
         if (mPermissionListener != null) {
-            Dynamic.setOnClickListener(viewHolder.getInfoView(), new View.OnClickListener() {
+            Dynamic.setOnClickListener(holder.getInfoView(), new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mPermissionListener.onPermissionSelected(v, position, getItem(position));
+                    mPermissionListener.onPermissionSelected(v,
+                            holder.getAdapterPosition(), dynamicPermission);
                 }
             });
         } else {
-            Dynamic.setClickable(viewHolder.getInfoView(), false);
+            Dynamic.setClickable(holder.getInfoView(), false);
         }
 
-        DynamicPermission dynamicPermission = getItem(position);
-
-        viewHolder.getInfoView().setIconBig(dynamicPermission.getIcon());
-        viewHolder.getInfoView().setTitle(DynamicTextUtils.capitalize(
+        holder.getInfoView().setIconBig(dynamicPermission.getIcon());
+        holder.getInfoView().setTitle(DynamicTextUtils.capitalize(
                 dynamicPermission.getTitle(), Locale.getDefault()));
-        viewHolder.getInfoView().setSubtitle(dynamicPermission.getSubtitle());
-        viewHolder.getInfoView().setDescription(dynamicPermission.getDescription());
+        holder.getInfoView().setSubtitle(dynamicPermission.getSubtitle());
+        holder.getInfoView().setDescription(dynamicPermission.getDescription());
 
         if (dynamicPermission.isAllowed()) {
-            viewHolder.getInfoView().setIcon(DynamicResourceUtils.getDrawable(
-                    viewHolder.getInfoView().getContext(), R.drawable.ads_ic_check));
-            viewHolder.getInfoView().setDescription(viewHolder.getInfoView()
+            holder.getInfoView().setIcon(DynamicResourceUtils.getDrawable(
+                    holder.getInfoView().getContext(), R.drawable.ads_ic_check));
+            holder.getInfoView().setDescription(holder.getInfoView()
                     .getContext().getString(R.string.ads_perm_granted_desc));
-            viewHolder.getInfoView().setStatus(viewHolder.getInfoView()
+            holder.getInfoView().setStatus(holder.getInfoView()
                     .getContext().getString(R.string.ads_perm_granted));
-            Dynamic.setClickable(viewHolder.getRoot(), false);
+            Dynamic.setClickable(holder.getRoot(), false);
         } else {
-            viewHolder.getInfoView().setIcon(DynamicResourceUtils.getDrawable(
-                    viewHolder.getInfoView().getContext(), R.drawable.ads_ic_close));
-            viewHolder.getInfoView().setDescription(viewHolder.getInfoView()
+            holder.getInfoView().setIcon(DynamicResourceUtils.getDrawable(
+                    holder.getInfoView().getContext(), R.drawable.ads_ic_close));
+            holder.getInfoView().setDescription(holder.getInfoView()
                     .getContext().getString(R.string.ads_perm_request_desc));
-            viewHolder.getInfoView().setStatus(viewHolder.getInfoView()
+            holder.getInfoView().setStatus(holder.getInfoView()
                     .getContext().getString(R.string.ads_perm_request));
 
             if (!dynamicPermission.isAskAgain()) {
-                viewHolder.getInfoView().setIcon(DynamicResourceUtils.getDrawable(
-                        viewHolder.getInfoView().getContext(), R.drawable.ads_ic_error_outline));
-                viewHolder.getInfoView().setDescription(viewHolder.getInfoView()
+                holder.getInfoView().setIcon(DynamicResourceUtils.getDrawable(
+                        holder.getInfoView().getContext(), R.drawable.ads_ic_error_outline));
+                holder.getInfoView().setDescription(holder.getInfoView()
                         .getContext().getString(R.string.ads_perm_denied_desc));
-                viewHolder.getInfoView().setStatus(viewHolder.getInfoView()
+                holder.getInfoView().setStatus(holder.getInfoView()
                         .getContext().getString(R.string.ads_perm_denied));
             }
 
-            Dynamic.setClickable(viewHolder.getRoot(), true);
+            Dynamic.setClickable(holder.getRoot(), true);
         }
 
         if (dynamicPermission.isReinstall()) {
-            viewHolder.getInfoView().setDescription(viewHolder.getInfoView()
+            holder.getInfoView().setDescription(holder.getInfoView()
                     .getContext().getString(R.string.ads_perm_reinstall_desc));
-            viewHolder.getInfoView().setStatus(viewHolder.getInfoView()
+            holder.getInfoView().setStatus(holder.getInfoView()
                     .getContext().getString(R.string.ads_perm_reinstall));
-            Dynamic.setClickable(viewHolder.getRoot(), true);
+            Dynamic.setClickable(holder.getRoot(), true);
         }
 
         if (dynamicPermission.isUnknown()) {
-            viewHolder.getInfoView().setDescription(viewHolder.getInfoView()
+            holder.getInfoView().setDescription(holder.getInfoView()
                     .getContext().getString(R.string.ads_perm_unknown_desc));
-            viewHolder.getInfoView().setStatus(viewHolder.getInfoView()
+            holder.getInfoView().setStatus(holder.getInfoView()
                     .getContext().getString(R.string.ads_perm_unknown));
-            Dynamic.setClickable(viewHolder.getRoot(), false);
+            Dynamic.setClickable(holder.getRoot(), false);
         }
     }
 
     @Override
     public int getItemCount() {
         return mData == null ? 0 : mData.size();
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return getItem(position).hashCode();
     }
 
     /**
@@ -157,8 +154,8 @@ public class DynamicPermissionsAdapter extends
      *
      * @return The dynamic permission according to the supplied position.
      */
-    public @NonNull DynamicPermission getItem(int position) {
-        return mData.get(position);
+    public @Nullable DynamicPermission getItem(int position) {
+        return mData != null ? mData.get(position) : null;
     }
 
     /**

@@ -106,14 +106,14 @@ public class DynamicPermissionUtils {
 
         try {
             context.startActivity(intent);
+
             return true;
         } catch (Exception e) {
             e.printStackTrace();
 
             try {
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                        | Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        | Intent.FLAG_ACTIVITY_NEW_TASK));
                 return true;
             } catch (Exception ignored) {
                 Dynamic.showSnackbar(context, R.string.ads_error);
@@ -154,6 +154,7 @@ public class DynamicPermissionUtils {
 
         try {
             context.startActivity(intent);
+
             return true;
         } catch (Exception ignored) {
             Dynamic.showSnackbar(context, R.string.ads_error);

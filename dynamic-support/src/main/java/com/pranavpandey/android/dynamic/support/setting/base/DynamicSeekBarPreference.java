@@ -68,6 +68,16 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     public static final boolean DEFAULT_SEEK_CONTROLS = true;
 
     /**
+     * Minimum value for this preference.
+     */
+    private int mMinValue;
+
+    /**
+     * Maximum value for this preference.
+     */
+    private int mMaxValue;
+
+    /**
      * Default value for this preference.
      */
     private int mDefaultValue;
@@ -76,16 +86,6 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
      * The current seek bar progress.
      */
     private int mProgress;
-
-    /**
-     * Maximum value for this preference.
-     */
-    private int mMaxValue;
-
-    /**
-     * Minimum value for this preference.
-     */
-    private int mMinValue;
 
     /**
      * Seek interval for the seek bar.
@@ -158,12 +158,12 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
                 R.styleable.DynamicSeekBarPreference);
 
         try {
-            mMaxValue = a.getInteger(
-                    R.styleable.DynamicSeekBarPreference_ads_max,
-                    DEFAULT_MAX_VALUE);
             mMinValue = a.getInteger(
                     R.styleable.DynamicSeekBarPreference_ads_min,
                     DEFAULT_MIN_VALUE);
+            mMaxValue = a.getInteger(
+                    R.styleable.DynamicSeekBarPreference_ads_max,
+                    DEFAULT_MAX_VALUE);
             mDefaultValue = a.getInteger(
                     R.styleable.DynamicSeekBarPreference_ads_progress,
                     mMinValue);
@@ -249,21 +249,26 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
             }
         });
 
-        mProgress = getProgressFromValue(DynamicPreferences.getInstance()
-                .load(super.getPreferenceKey(), mDefaultValue));
+        mProgress = getProgressFromValue(DynamicPreferences.getInstance().load(
+                getAltPreferenceKey(), mDefaultValue));
     }
 
     @Override
     public @Nullable String getPreferenceKey() {
-        return getAltPreferenceKey();
+        return super.getAltPreferenceKey();
+    }
+
+    @Override
+    public @Nullable String getAltPreferenceKey() {
+        return super.getPreferenceKey();
     }
 
     @Override
     protected void onUpdate() {
         super.onUpdate();
 
-        mProgress = getProgressFromValue(DynamicPreferences.getInstance()
-                .load(super.getPreferenceKey(), getValueFromProgress()));
+        mProgress = getProgressFromValue(DynamicPreferences.getInstance().load(
+                getAltPreferenceKey(), getValueFromProgress()));
 
         if (getSeekBar() != null) {
             getSeekBar().setMax(getMax());
@@ -335,11 +340,16 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
         Dynamic.setContrastWithColorTypeOrColor(getActionView(),
                 getContrastWithColorType(), getContrastWithColor());
 
-        Dynamic.setBackgroundAwareSafe(getSeekBar(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getPreferenceValueView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getControlLeftView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getControlRightView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getActionView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getSeekBar(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getPreferenceValueView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getControlLeftView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getControlRightView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getActionView(),
+                getBackgroundAware(), getContrast(false));
     }
 
     /**
@@ -363,21 +373,21 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     }
 
     /**
-     * Get the default value for this preference.
+     * Get the minimum value for this preference.
      *
-     * @return The default value for this preference.
+     * @return The minimum value for this preference.
      */
-    public int getDefaultValue() {
-        return mDefaultValue;
+    public int getMinValue() {
+        return mMinValue;
     }
 
     /**
-     * Set the default value for this preference.
+     * Set the minimum value for this preference.
      *
-     * @param defaultValue The default value to be set.
+     * @param minValue The minimum value to be set.
      */
-    public void setDefaultValue(int defaultValue) {
-        this.mDefaultValue = defaultValue;
+    public void setMinValue(int minValue) {
+        this.mMinValue = Math.max(DEFAULT_MIN_VALUE, minValue);
 
         update();
     }
@@ -397,27 +407,27 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
      * @param maxValue The maximum value to be set.
      */
     public void setMaxValue(int maxValue) {
-        this.mMaxValue = maxValue;
+        this.mMaxValue = Math.max(DEFAULT_MIN_VALUE, maxValue);
 
         update();
     }
 
     /**
-     * Get the minimum value for this preference.
+     * Get the default value for this preference.
      *
-     * @return The minimum value for this preference.
+     * @return The default value for this preference.
      */
-    public int getMinValue() {
-        return mMinValue;
+    public int getDefaultValue() {
+        return mDefaultValue;
     }
 
     /**
-     * Set the minimum value for this preference.
+     * Set the default value for this preference.
      *
-     * @param minValue The minimum value to be set.
+     * @param defaultValue The default value to be set.
      */
-    public void setMinValue(int minValue) {
-        this.mMinValue = minValue;
+    public void setDefaultValue(int defaultValue) {
+        this.mDefaultValue = Math.max(DEFAULT_MIN_VALUE, defaultValue);
 
         update();
     }
@@ -439,9 +449,8 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     public void setProgress(int progress) {
         this.mProgress = progress;
 
-        if (super.getPreferenceKey() != null) {
-            DynamicPreferences.getInstance().save(
-                    super.getPreferenceKey(), getValueFromProgress());
+        if (getAltPreferenceKey() != null) {
+            DynamicPreferences.getInstance().save(getAltPreferenceKey(), getValueFromProgress());
         } else {
             update();
         }
@@ -462,7 +471,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
      * @param seekInterval The seek interval to be set.
      */
     public void setSeekInterval(int seekInterval) {
-        this.mSeekInterval = seekInterval;
+        this.mSeekInterval = Math.max(DEFAULT_SEEK_INTERVAL, seekInterval);
 
         update();
     }
@@ -493,7 +502,24 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
      * @param value The value to be set.
      */
     public void setValue(int value) {
-        setProgress(getProgressFromValue(value));
+        setProgress(getProgressFromValue(getValidValue(value)));
+    }
+
+    /**
+     * Returns the valid value after performing various checks.
+     *
+     * @param value The value to be checked.
+     *
+     * @return The valid value after performing various checks.
+     */
+    public int getValidValue(int value) {
+        if (value < getMinValue()) {
+            value = getMinValue();
+        } else if (value > getMaxValue()) {
+            value = getMaxValue();
+        }
+
+        return value;
     }
 
     /**
@@ -567,7 +593,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
     /**
      * Returns the seek bar progress according to the supplied value.
      *
-     * @param value The value to converted into seek bar progress.
+     * @param value The value to be converted into seek bar progress.
      *
      * @return The seek bar progress according to the supplied value.
      */
@@ -630,7 +656,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
             return;
         }
 
-        final int progress = getProgressFromValue(value);
+        final int progress = getProgressFromValue(getValidValue(value));
         ObjectAnimator animation = ObjectAnimator.ofInt(getSeekBar(),
                 "progress", getProgress(), progress);
         animation.setDuration(DynamicMotion.Duration.LONG);
@@ -709,7 +735,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
             return;
         }
 
-        if (key.equals(super.getPreferenceKey())) {
+        if (key.equals(getAltPreferenceKey())) {
             update();
         }
     }

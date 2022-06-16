@@ -44,6 +44,7 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.util.DynamicWindowUtils;
 
 /**
@@ -108,6 +109,13 @@ public class DynamicTooltipPopup {
 
     public DynamicTooltipPopup(@NonNull Context context,
             @ColorInt int backgroundColor, @ColorInt int tintColor) {
+        backgroundColor = DynamicColorUtils.removeAlpha(backgroundColor);
+        tintColor = DynamicColorUtils.removeAlpha(tintColor);
+
+        if (DynamicTheme.getInstance().get().isBackgroundAware()) {
+            tintColor = Dynamic.withContrastRatio(tintColor, backgroundColor);
+        }
+
         mContext = context;
         mContentView = LayoutInflater.from(mContext).inflate(R.layout.ads_hint,
                 new LinearLayout(context), false);
@@ -264,6 +272,7 @@ public class DynamicTooltipPopup {
         final View appView = getAppRootView(anchorView);
         if (appView == null) {
             Log.e(TAG, "Cannot find app view");
+
             return;
         }
         appView.getWindowVisibleDisplayFrame(mTmpDisplayFrame);

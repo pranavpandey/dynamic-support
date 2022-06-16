@@ -65,7 +65,7 @@ public class ItemBinder extends DynamicDataBinder<DynamicItem, ItemBinder.ViewHo
         Dynamic.setContrastWithColorTypeOrColor(holder.getDynamicItemView(),
                 getData().getContrastWithColorType(), getData().getContrastWithColor());
         Dynamic.setBackgroundAwareSafe(holder.getDynamicItemView(),
-                getData().getBackgroundAware());
+                getData().getBackgroundAware(), getData().getContrast(false));
         holder.getDynamicItemView().setIcon(getData().getIcon());
         holder.getDynamicItemView().setTitle(getData().getTitle());
         holder.getDynamicItemView().setSubtitle(getData().getSubtitle());

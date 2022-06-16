@@ -25,9 +25,9 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSplashListener;
 import com.pranavpandey.android.dynamic.support.model.DynamicTaskViewModel;
@@ -70,9 +70,9 @@ public class DynamicSplashFragment extends DynamicFragment {
      *
      * @param layoutRes The layout resource for this fragment.
      *
-     * @return A instance of {@link DynamicSplashFragment}.
+     * @return An instance of {@link DynamicSplashFragment}.
      */
-    public static @NonNull Fragment newInstance(@LayoutRes int layoutRes) {
+    public static @NonNull DynamicSplashFragment newInstance(@LayoutRes int layoutRes) {
         DynamicSplashFragment fragment = new DynamicSplashFragment();
         Bundle args = new Bundle();
         args.putInt(ADS_ARGS_SPLASH_LAYOUT_RES, layoutRes);
@@ -100,8 +100,12 @@ public class DynamicSplashFragment extends DynamicFragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        if (getActivity() == null) {
+            return;
+        }
 
         if (mDynamicSplashListener != null) {
             mDynamicSplashListener.onViewCreated(mView);
@@ -128,7 +132,11 @@ public class DynamicSplashFragment extends DynamicFragment {
             return ((DynamicSplashActivity) requireActivity()).getBackgroundColor();
         }
 
-        return DynamicTheme.getInstance().get().getPrimaryColor();
+        return Dynamic.resolveColor(
+                DynamicTheme.getInstance().get().getBackgroundColor(),
+                DynamicTheme.getInstance().get().getPrimaryColor(),
+                DynamicTheme.getInstance().get().getTintPrimaryColor(),
+                DynamicTheme.getInstance().get().isBackgroundAware());
     }
 
     /**

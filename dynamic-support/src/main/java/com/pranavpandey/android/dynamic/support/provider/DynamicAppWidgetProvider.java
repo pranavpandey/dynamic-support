@@ -40,8 +40,8 @@ import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.util.DynamicAppWidgetUtils;
-import com.pranavpandey.android.dynamic.support.util.DynamicShapeUtils;
 import com.pranavpandey.android.dynamic.theme.AppTheme;
+import com.pranavpandey.android.dynamic.theme.util.DynamicCodeUtils;
 import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
@@ -49,7 +49,7 @@ import java.util.Locale;
 
 /**
  * A customisable {@link AppWidgetProvider} to provide basic configuration functionality.
- * <p>Extend it and modify according to the need.
+ * <p>Extend it and modify according to the requirements.
  */
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public abstract class DynamicAppWidgetProvider<T extends AppTheme<?>>
@@ -161,11 +161,9 @@ public abstract class DynamicAppWidgetProvider<T extends AppTheme<?>>
 
         mAdjustPosition = true;
 
-        if (intent != null
-                && AppWidgetManager.ACTION_APPWIDGET_UPDATE.equals(intent.getAction())) {
+        if (AppWidgetManager.ACTION_APPWIDGET_UPDATE.equals(intent.getAction())) {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
-                    NO_ID);
+            int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, NO_ID);
 
             int[] appWidgetIds;
             if (appWidgetId != NO_ID) {
@@ -433,9 +431,8 @@ public abstract class DynamicAppWidgetProvider<T extends AppTheme<?>>
      */
     public static @Nullable Bitmap getWidgetFrameBitmap(int width,
             int height, float cornerRadius) {
-        return DynamicBitmapUtils.getBitmap(DynamicShapeUtils
-                .getCornerDrawableLegacyWithStroke(width, height, cornerRadius,
-                        Color.WHITE, false));
+        return DynamicBitmapUtils.getBitmap(DynamicCodeUtils.getCornerDrawableWithStroke(
+                width, height, cornerRadius, Color.WHITE, false));
     }
 
     /**
@@ -451,7 +448,7 @@ public abstract class DynamicAppWidgetProvider<T extends AppTheme<?>>
      */
     public static @Nullable Bitmap getWidgetFrameBitmapWithStroke(int width, int height,
             float cornerRadius, @ColorInt int color, @ColorInt int strokeColor) {
-        return DynamicBitmapUtils.getBitmap(DynamicShapeUtils.getCornerDrawableLegacyWithStroke(
+        return DynamicBitmapUtils.getBitmap(DynamicCodeUtils.getCornerDrawableWithStroke(
                 width, height, cornerRadius, color, false, strokeColor));
     }
 
@@ -467,7 +464,7 @@ public abstract class DynamicAppWidgetProvider<T extends AppTheme<?>>
      */
     public static @Nullable Bitmap getWidgetFrameBitmapWithStroke(int width,
             int height, float cornerRadius, @ColorInt int color) {
-        return DynamicBitmapUtils.getBitmap(DynamicShapeUtils.getCornerDrawableLegacyWithStroke(
+        return DynamicBitmapUtils.getBitmap(DynamicCodeUtils.getCornerDrawableWithStroke(
                 width, height, cornerRadius, color, false));
     }
 
@@ -483,7 +480,7 @@ public abstract class DynamicAppWidgetProvider<T extends AppTheme<?>>
      */
     public static @Nullable Bitmap getWidgetHeaderBitmap(int width,
             int height, float cornerRadius, @ColorInt int color) {
-        return DynamicBitmapUtils.getBitmap(DynamicShapeUtils
-                .getCornerDrawableLegacy(width, height, cornerRadius, color, true));
+        return DynamicBitmapUtils.getBitmap(DynamicCodeUtils
+                .getCornerDrawable(width, height, cornerRadius, color, true));
     }
 }

@@ -17,7 +17,10 @@
 package com.pranavpandey.android.dynamic.support.setting.base;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -28,16 +31,18 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.theme.Theme;
+import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
 
 /**
- * A {@link DynamicSimplePreference} with a secondary image view to represent data according
+ * A {@link DynamicSpinnerPreference} with a secondary image view to represent data according
  * to the need.
  */
-public class DynamicImagePreference extends DynamicSimplePreference {
+public class DynamicImagePreference extends DynamicSpinnerPreference {
 
     /**
      * Secondary image view to show the drawable.
@@ -92,10 +97,21 @@ public class DynamicImagePreference extends DynamicSimplePreference {
     }
 
     @Override
+    public @Nullable String getPreferenceKey() {
+        return super.getAltPreferenceKey();
+    }
+
+    @Override
+    public @Nullable String getAltPreferenceKey() {
+        return super.getPreferenceKey();
+    }
+
+    @Override
     protected void onUpdate() {
         super.onUpdate();
 
-        setImageView(getImageView(), getImageDrawable());
+        Dynamic.set(getImageView(), getImageDrawable());
+        Dynamic.setClickable(getPreferenceView(), getOnPreferenceClickListener() != null);
     }
 
     @Override
@@ -111,7 +127,8 @@ public class DynamicImagePreference extends DynamicSimplePreference {
 
         Dynamic.setContrastWithColorTypeOrColor(getImageView(),
                 getContrastWithColorType(), getContrastWithColor());
-        Dynamic.setBackgroundAwareSafe(getImageView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getImageView(),
+                getBackgroundAware(), getContrast(false));
     }
 
     /**
@@ -145,7 +162,7 @@ public class DynamicImagePreference extends DynamicSimplePreference {
         if (update) {
             update();
         } else {
-            setImageView(getImageView(), getImageDrawable());
+            Dynamic.set(getImageView(), getImageDrawable());
         }
     }
 
@@ -162,8 +179,59 @@ public class DynamicImagePreference extends DynamicSimplePreference {
      * Set the drawable for the image view.
      *
      * @param drawableRes The drawable resource to be set.
+     * @param update {@code true} to call {@link #update()} method after setting the
+     *               image resource.
+     */
+    public void setImageResource(@DrawableRes int drawableRes, boolean update) {
+        setImageDrawable(DynamicResourceUtils.getDrawable(getContext(), drawableRes), update);
+    }
+
+    /**
+     * Set the drawable for the image view.
+     *
+     * @param drawableRes The drawable resource to be set.
      */
     public void setImageResource(@DrawableRes int drawableRes) {
-        setImageDrawable(DynamicResourceUtils.getDrawable(getContext(), drawableRes));
+        setImageResource(drawableRes, true);
+    }
+
+    /**
+     * Set the bitmap for the image view.
+     *
+     * @param imageBitmap The image bitmap to be set.
+     * @param update {@code true} to call {@link #update()} method after setting the
+     *               image bitmap.
+     */
+    public void setImageBitmap(@Nullable Bitmap imageBitmap, boolean update) {
+        try {
+            setImageDrawable(new BitmapDrawable(DynamicBitmapUtils.resizeBitmap(
+                    imageBitmap, Theme.Size.SMALL, Theme.Size.SMALL)), update);
+        } catch (Exception e) {
+            e.getStackTrace();
+
+            setImageDrawable(null);
+        }
+    }
+
+    /**
+     * Set the bitmap for the image view.
+     *
+     * @param imageBitmap The image bitmap to be set.
+     */
+    public void setImageBitmap(@Nullable Bitmap imageBitmap) {
+        setImageBitmap(imageBitmap, true);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        super.onSharedPreferenceChanged(sharedPreferences, key);
+
+        if (DynamicPreferences.isNullKey(key)) {
+            return;
+        }
+
+        if (key.equals(getAltPreferenceKey())) {
+            update();
+        }
     }
 }

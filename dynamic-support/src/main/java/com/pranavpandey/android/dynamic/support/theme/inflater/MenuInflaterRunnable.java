@@ -18,8 +18,7 @@ package com.pranavpandey.android.dynamic.support.theme.inflater;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.LayerDrawable;
+import android.graphics.Color;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
@@ -35,8 +34,7 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicPopupBackground;
-import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
@@ -69,7 +67,7 @@ public class MenuInflaterRunnable implements Runnable {
 
         try {
             DynamicCardView cardView = new DynamicPopupBackground(mMenu.getContext(), mAttrs);
-            @ColorInt int backgroundColor = DynamicColorUtils.removeAlpha(cardView.getColor());
+            @ColorInt int backgroundColor = cardView.getColor();
             @ColorInt int tintColor = DynamicTheme.getInstance().get().getTintSurfaceColor();
 
             Dynamic.setColor(mMenu.findViewById(android.R.id.icon), tintColor);
@@ -98,49 +96,34 @@ public class MenuInflaterRunnable implements Runnable {
             Dynamic.setContrastWithColor(mMenu.findViewById(
                     androidx.appcompat.R.id.group_divider), backgroundColor);
 
-            if (mMenu.getParent() != null) {
-                ViewGroup menu = (ViewGroup) this.mMenu.getParent();
-                ViewGroup group = (ViewGroup) menu.getParent();
+            ViewGroup menu = (ViewGroup) this.mMenu.getParent();
+            ViewGroup parent = (ViewGroup) menu.getParent();
 
-                Dynamic.tintScrollable(menu, backgroundColor);
+            Dynamic.tintScrollable(menu, backgroundColor);
 
-                if (group == null) {
-                    return;
-                }
+            if (parent != null) {
+                if (!(parent instanceof CardView)) {
+                    ViewCompat.setBackground(menu, null);
+                    ViewCompat.setBackground(parent, cardView.getBackground());
 
-                if (DynamicSdkUtils.is21()) {
-                    if (!(group instanceof CardView)) {
-                        if (group.getBackground() != null) {
-                            if (group.getBackground() instanceof GradientDrawable) {
-                                GradientDrawable background =
-                                        (GradientDrawable) group.getBackground();
-                                background.setCornerRadius(DynamicTheme
-                                        .getInstance().get().getCornerRadius());
-                            } else if (group.getBackground() instanceof LayerDrawable) {
-                                GradientDrawable background = (GradientDrawable)
-                                        ((LayerDrawable) group.getBackground()).getDrawable(0);
-                                background.setCornerRadius(DynamicTheme
-                                        .getInstance().get().getCornerRadius());
-                                ViewCompat.setBackground(group, background);
-                            }
+                    final CardView menuParent = new DynamicPopupBackground(
+                            mMenu.getContext(), mAttrs);
+                    menuParent.setCardElevation(Theme.Elevation.DISABLE);
 
-                            DynamicDrawableUtils.colorizeDrawable(
-                                    group.getBackground(), backgroundColor);
-                        }
-
-                        group.removeAllViews();
-                        group.addView(cardView);
-                        cardView.addView(menu);
+                    if (DynamicSdkUtils.is21()) {
+                        menuParent.setCardBackgroundColor(Color.TRANSPARENT);
                     } else {
-                        group.setElevation(0);
-                        group.removeAllViews();
-                        group.addView(menu);
+                        menuParent.setRadius(Theme.Corner.MIN);
+                        ViewCompat.setBackground(menuParent, null);
                     }
-                } else {
-                    ViewCompat.setBackground(group, cardView.getBackground());
-                }
-            }
 
+                    parent.removeAllViews();
+                    parent.addView(menuParent);
+                    menuParent.addView(menu);
+                }
+            } else {
+                ViewCompat.setBackground(menu, cardView.getBackground());
+            }
         } catch (Exception ignored) {
         }
     }

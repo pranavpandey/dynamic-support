@@ -29,6 +29,9 @@
 
         <LinearLayout
             style="@style/Widget.DynamicApp.Content.Row.Vertical"
+            android:paddingTop="@dimen/ads_padding_popup"
+            android:paddingBottom="@dimen/ads_padding_popup"
+            android:orientation="vertical"
             android:baselineAligned="false">
 
             <FrameLayout

@@ -121,6 +121,36 @@ public interface DynamicWidget extends BaseWidget {
     void setBackgroundAware(@Theme.BackgroundAware int backgroundAware);
 
     /**
+     * Get the contrast value used by this widget.
+     *
+     * @param resolve {@code true} to resolve auto contrast.
+     *
+     * @return The contrast value used by this widget.
+     */
+    int getContrast(boolean resolve);
+
+    /**
+     * Get the contrast value used by this widget.
+     *
+     * @return The contrast value used by this widget.
+     */
+    int getContrast();
+
+    /**
+     * Returns the contrast ratio for by this widget.
+     *
+     * @return The contrast ratio for by this widget.
+     */
+    float getContrastRatio();
+
+    /**
+     * Set the contrast value used for this widget.
+     *
+     * @param contrast The contrast value to be set.
+     */
+    void setContrast(int contrast);
+
+    /**
      * Override this method to handle state changes for this widget.
      * <p>For example, change alpha according to the enabled or disabled state of this widget.
      *
@@ -129,7 +159,7 @@ public interface DynamicWidget extends BaseWidget {
     void setEnabled(boolean enabled);
 
     /**
-     * Set color of this widget according to the supplied values.
+     * Set color for this widget according to the supplied values.
      */
     void setColor();
 }

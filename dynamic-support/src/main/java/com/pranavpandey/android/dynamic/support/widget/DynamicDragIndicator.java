@@ -23,9 +23,9 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A {@link DynamicImageView} to show the drag indicator according to the {@link DynamicTheme}.
@@ -49,14 +49,12 @@ public class DynamicDragIndicator extends DynamicImageView {
     public void initialize() {
         super.initialize();
 
-        if (DynamicTheme.getInstance().get().getCornerSizeDp()
-                < Defaults.ADS_CORNER_MIN_THEME) {
-            setImageResource(R.drawable.ads_theme_overlay);
-        } else if (DynamicTheme.getInstance().get().getCornerSizeDp()
-                < Defaults.ADS_CORNER_MIN_THEME_ROUND) {
-            setImageResource(R.drawable.ads_theme_overlay_rect);
+        if (DynamicTheme.getInstance().get().getCornerSize() < Theme.Corner.MIN_ROUND) {
+            setImageResource(R.drawable.ads_overlay_dim);
+        } else if (DynamicTheme.getInstance().get().getCornerSize() < Theme.Corner.MIN_OVAL) {
+            setImageResource(R.drawable.ads_overlay_dim_rect);
         } else {
-            setImageResource(R.drawable.ads_theme_overlay_round);
+            setImageResource(R.drawable.ads_overlay_dim_round);
         }
     }
 }

@@ -18,17 +18,19 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ads_header_appbar_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/ads_tab_inset_start"
     android:paddingStart="@dimen/ads_tab_inset_start"
+    android:paddingTop="@dimen/ads_margin_medium"
     android:paddingRight="@dimen/ads_page_horizontal_margin"
     android:paddingEnd="@dimen/ads_page_horizontal_margin"
-    android:paddingTop="@dimen/ads_margin_medium"
     android:paddingBottom="@dimen/ads_margin_medium"
     android:orientation="horizontal">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+        style="@style/TextAppearance.DynamicApp.Headline5.Secondary"
         android:id="@+id/ads_header_appbar_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

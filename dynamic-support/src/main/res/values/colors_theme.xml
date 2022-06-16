@@ -17,6 +17,8 @@
 
 <resources>
 
+    <color name="ads_color_translucent">#66000000</color>
+
     <!-- Black theme -->
     <color name="ads_color_black">#191919</color>
     <color name="ads_color_black_dark">#161616</color>

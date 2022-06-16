@@ -19,7 +19,6 @@ package com.pranavpandey.android.dynamic.support.picker.color;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
@@ -46,12 +45,14 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicSliderChangeList
 import com.pranavpandey.android.dynamic.support.picker.DynamicPickerType;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.task.WallpaperColorsTask;
 import com.pranavpandey.android.dynamic.support.util.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicView;
 import com.pranavpandey.android.dynamic.theme.DynamicPalette;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicInputUtils;
 import com.pranavpandey.android.dynamic.util.DynamicTaskUtils;
 import com.pranavpandey.android.dynamic.util.concurrent.DynamicResult;
 
@@ -584,12 +585,16 @@ public class DynamicColorPicker extends DynamicView {
 
                 Dynamic.setVisibility(mProgressBar, GONE);
 
-                if (mDynamicGridView == null || result == null
-                        || result.getData() == null || result.getData().isEmpty()) {
+                if (mDynamicGridView == null) {
                     return;
                 }
 
-                mDynamics = result.getData().values().toArray(new Integer[0]);
+                mDynamics = DynamicTheme.getInstance().getColors()
+                        .getAll().toArray(new Integer[0]);
+                if (mDynamics.length == 0 && result != null && result.getData() != null) {
+                    mDynamics = result.getData().values().toArray(new Integer[0]);
+                }
+
                 setDynamics(mSelectedColor);
             }
         };
@@ -608,19 +613,15 @@ public class DynamicColorPicker extends DynamicView {
             mColors = DynamicPalette.MATERIAL_COLORS;
         }
 
-        final InputFilter[] editFilters = mEditText.getFilters();
-        final InputFilter[] newFilters = new InputFilter[editFilters.length + 1];
-        System.arraycopy(editFilters, 0, newFilters, 0, editFilters.length);
         if (mAlpha) {
             mEditText.setHint("FF123456");
-            newFilters[editFilters.length] = new InputFilter.LengthFilter(8);
+            DynamicInputUtils.setMaxLength(mEditText, 8);
             Dynamic.setVisibility(mSliderAlpha, VISIBLE);
         } else {
             mEditText.setHint("123456");
-            newFilters[editFilters.length] = new InputFilter.LengthFilter(6);
+            DynamicInputUtils.setMaxLength(mEditText, 6);
             Dynamic.setVisibility(mSliderAlpha, GONE);
         }
-        mEditText.setFilters(newFilters);
 
         mColorsGridView.setAdapter(new DynamicColorsAdapter(mColors, mSelectedColor,
                 mColorShape, mAlpha, Dynamic.getContrastWithColor(
@@ -788,7 +789,7 @@ public class DynamicColorPicker extends DynamicView {
      * @param color The color to be selected.
      */
     private void setSelectedColor(@NonNull GridView gridView, @ColorInt int color) {
-        if (gridView.getAdapter() != null) {
+        if (gridView.getAdapter() instanceof DynamicColorsAdapter) {
             ((DynamicColorsAdapter) gridView.getAdapter()).setSelectedColor(color);
         }
     }
@@ -916,25 +917,41 @@ public class DynamicColorPicker extends DynamicView {
     private void updateCustomControls() {
         if (mViewHSV.getVisibility() == VISIBLE && mViewRGB.getVisibility() == VISIBLE
                 && mViewCMYK.getVisibility() == VISIBLE) {
-            mControlAll.setAlpha(Defaults.ADS_ALPHA_ENABLED);
-            mControlHSV.setAlpha(Defaults.ADS_ALPHA_UNCHECKED);
-            mControlRGB.setAlpha(Defaults.ADS_ALPHA_UNCHECKED);
-            mControlCMYK.setAlpha(Defaults.ADS_ALPHA_UNCHECKED);
+            Dynamic.setColorType(mControlAll, Theme.ColorType.ACCENT);
+            Dynamic.setColorType(mControlHSV, Theme.ColorType.PRIMARY);
+            Dynamic.setColorType(mControlRGB, Theme.ColorType.PRIMARY);
+            Dynamic.setColorType(mControlCMYK, Theme.ColorType.PRIMARY);
+            Dynamic.setAlpha(mControlAll, Defaults.ADS_ALPHA_ENABLED);
+            Dynamic.setAlpha(mControlHSV, Defaults.ADS_ALPHA_UNSELECTED);
+            Dynamic.setAlpha(mControlRGB, Defaults.ADS_ALPHA_UNSELECTED);
+            Dynamic.setAlpha(mControlCMYK, Defaults.ADS_ALPHA_UNSELECTED);
         } else if (mViewHSV.getVisibility() == VISIBLE) {
-            mControlAll.setAlpha(Defaults.ADS_ALPHA_UNCHECKED);
-            mControlHSV.setAlpha(Defaults.ADS_ALPHA_ENABLED);
-            mControlRGB.setAlpha(Defaults.ADS_ALPHA_UNCHECKED);
-            mControlCMYK.setAlpha(Defaults.ADS_ALPHA_UNCHECKED);
+            Dynamic.setColorType(mControlAll, Theme.ColorType.PRIMARY);
+            Dynamic.setColorType(mControlHSV, Theme.ColorType.ACCENT);
+            Dynamic.setColorType(mControlRGB, Theme.ColorType.PRIMARY);
+            Dynamic.setColorType(mControlCMYK, Theme.ColorType.PRIMARY);
+            Dynamic.setAlpha(mControlAll, Defaults.ADS_ALPHA_UNSELECTED);
+            Dynamic.setAlpha(mControlHSV, Defaults.ADS_ALPHA_ENABLED);
+            Dynamic.setAlpha(mControlRGB, Defaults.ADS_ALPHA_UNSELECTED);
+            Dynamic.setAlpha(mControlCMYK, Defaults.ADS_ALPHA_UNSELECTED);
         } else if (mViewRGB.getVisibility() == VISIBLE) {
-            mControlAll.setAlpha(Defaults.ADS_ALPHA_UNCHECKED);
-            mControlHSV.setAlpha(Defaults.ADS_ALPHA_UNCHECKED);
-            mControlRGB.setAlpha(Defaults.ADS_ALPHA_ENABLED);
-            mControlCMYK.setAlpha(Defaults.ADS_ALPHA_UNCHECKED);
+            Dynamic.setColorType(mControlAll, Theme.ColorType.PRIMARY);
+            Dynamic.setColorType(mControlHSV, Theme.ColorType.PRIMARY);
+            Dynamic.setColorType(mControlRGB, Theme.ColorType.ACCENT);
+            Dynamic.setColorType(mControlCMYK, Theme.ColorType.PRIMARY);
+            Dynamic.setAlpha(mControlAll, Defaults.ADS_ALPHA_UNSELECTED);
+            Dynamic.setAlpha(mControlHSV, Defaults.ADS_ALPHA_UNSELECTED);
+            Dynamic.setAlpha(mControlRGB, Defaults.ADS_ALPHA_ENABLED);
+            Dynamic.setAlpha(mControlCMYK, Defaults.ADS_ALPHA_UNSELECTED);
         } else if (mViewCMYK.getVisibility() == VISIBLE) {
-            mControlAll.setAlpha(Defaults.ADS_ALPHA_UNCHECKED);
-            mControlHSV.setAlpha(Defaults.ADS_ALPHA_UNCHECKED);
-            mControlRGB.setAlpha(Defaults.ADS_ALPHA_UNCHECKED);
-            mControlCMYK.setAlpha(Defaults.ADS_ALPHA_ENABLED);
+            Dynamic.setColorType(mControlAll, Theme.ColorType.PRIMARY);
+            Dynamic.setColorType(mControlHSV, Theme.ColorType.PRIMARY);
+            Dynamic.setColorType(mControlRGB, Theme.ColorType.PRIMARY);
+            Dynamic.setColorType(mControlCMYK, Theme.ColorType.ACCENT);
+            Dynamic.setAlpha(mControlAll, Defaults.ADS_ALPHA_UNSELECTED);
+            Dynamic.setAlpha(mControlHSV, Defaults.ADS_ALPHA_UNSELECTED);
+            Dynamic.setAlpha(mControlRGB, Defaults.ADS_ALPHA_UNSELECTED);
+            Dynamic.setAlpha(mControlCMYK, Defaults.ADS_ALPHA_ENABLED);
         }
     }
 
@@ -1101,7 +1118,7 @@ public class DynamicColorPicker extends DynamicView {
     }
 
     /**
-     * Ge the shape of the color swatches.
+     * Get the shape of the color swatches.
      *
      * @return The shape of the color swatches.
      */

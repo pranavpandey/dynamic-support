@@ -17,7 +17,6 @@
 package com.pranavpandey.android.dynamic.support.setting.base;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -161,7 +160,8 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
 
         Dynamic.setContrastWithColorTypeOrColor(getCompoundButton(),
                 getContrastWithColorType(), getContrastWithColor());
-        Dynamic.setBackgroundAwareSafe(getCompoundButton(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getCompoundButton(),
+                getBackgroundAware(), getContrast(false));
     }
 
     /**
@@ -230,18 +230,5 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
     public void setOnCheckedChangeListener(
             @Nullable CompoundButton.OnCheckedChangeListener onCheckedChangeListener) {
         this.mOnCheckedChangeListener = onCheckedChangeListener;
-    }
-
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        super.onSharedPreferenceChanged(sharedPreferences, key);
-
-        if (DynamicPreferences.isNullKey(key)) {
-            return;
-        }
-
-        if (key.equals(super.getPreferenceKey())) {
-            update();
-        }
     }
 }

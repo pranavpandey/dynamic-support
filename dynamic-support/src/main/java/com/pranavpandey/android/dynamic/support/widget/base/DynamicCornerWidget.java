@@ -16,6 +16,8 @@
 
 package com.pranavpandey.android.dynamic.support.widget.base;
 
+import androidx.annotation.NonNull;
+
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 
 /**
@@ -25,16 +27,16 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 public interface DynamicCornerWidget<T> {
 
     /**
-     * Set the corner radius for this widget.
-     *
-     * @param cornerRadius The corner radius to be set.
-     */
-    void setCorner(T cornerRadius);
-
-    /**
      * Returns the corner radius used by this widget.
      *
      * @return The corner radius used by this widget.
      */
-    T getCorner();
+    @NonNull T getCorner();
+
+    /**
+     * Set the corner radius for this widget.
+     *
+     * @param cornerSize The corner radius to be set.
+     */
+    void setCorner(@NonNull T cornerSize);
 }

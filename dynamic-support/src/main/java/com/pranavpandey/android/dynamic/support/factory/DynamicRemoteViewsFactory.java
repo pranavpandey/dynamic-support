@@ -24,7 +24,7 @@ import androidx.annotation.NonNull;
 
 /**
  * A customisable {@link RemoteViewsService.RemoteViewsFactory} to provide basic functionality.
- * <p>Extend it and implement necessary methods according to the need.
+ * <p>Extend it and implement necessary methods according to the requirements.
  */
 public abstract class DynamicRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 

@@ -18,22 +18,23 @@ package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.view.View;
 
 import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicRtlWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
+import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 /**
  * A {@link CollapsingToolbarLayout} to provide support for RTL (right-to-left) layouts.
@@ -94,16 +95,18 @@ public class DynamicCollapsingToolbarLayout extends CollapsingToolbarLayout
 
     @Override
     public void applyWindowInsets() {
-        ViewCompat.setOnApplyWindowInsetsListener(this,
-                new androidx.core.view.OnApplyWindowInsetsListener() {
-            @Override
-            public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat insets) {
-                v.setPadding(v.getPaddingLeft(), v.getPaddingTop(),
-                        v.getPaddingRight(), v.getPaddingBottom());
+        DynamicViewUtils.applyWindowInsetsHorizontal(this, false);
+    }
 
-                return insets;
-            }
-        });
+    @Override
+    public void setStatusBarScrimColor(@ColorInt int color) {
+        super.setStatusBarScrimColor(Dynamic.withThemeOpacity(color));
+    }
+
+    @Override
+    public void setContentScrimColor(@ColorInt int color) {
+        super.setContentScrimColor(DynamicTheme.getInstance().get().isTranslucent()
+                ? Color.TRANSPARENT : Dynamic.withThemeOpacity(color));
     }
 
     @Override
@@ -115,7 +118,7 @@ public class DynamicCollapsingToolbarLayout extends CollapsingToolbarLayout
     public void setRtlSupport(boolean rtlSupport) {
         this.mRtlSupport = rtlSupport;
 
-        if (mRtlSupport && DynamicLocaleUtils.isLayoutRtl()) {
+        if (mRtlSupport && DynamicViewUtils.isLayoutRtl(this)) {
             setExpandedTitleGravity(Gravity.END | Gravity.BOTTOM);
             setCollapsedTitleGravity(Gravity.END);
         } else {

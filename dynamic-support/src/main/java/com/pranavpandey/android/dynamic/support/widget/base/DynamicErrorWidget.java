@@ -69,7 +69,7 @@ public interface DynamicErrorWidget extends DynamicWidget {
     void setErrorColor(@ColorInt int errorColor);
 
     /**
-     * Set error color of this widget according to the supplied values.
+     * Set error color for this widget according to the supplied values.
      * <p>Generally, it should be a tint color so that link will be visible on this
      * widget background.
      */

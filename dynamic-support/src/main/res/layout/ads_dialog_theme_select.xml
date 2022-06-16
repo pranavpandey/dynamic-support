@@ -24,11 +24,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ads_margin_extra_tiny"
-        android:paddingLeft="@dimen/ads_margin_regular"
-        android:paddingStart="@dimen/ads_margin_regular"
-        android:paddingRight="@dimen/ads_margin_regular"
-        android:paddingEnd="@dimen/ads_margin_regular"
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
@@ -36,14 +31,15 @@
             android:id="@+id/ads_dialog_theme_select_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/ads_margin_small"
-            android:paddingLeft="@dimen/ads_margin_regular"
-            android:paddingStart="@dimen/ads_margin_regular"
-            android:paddingRight="@dimen/ads_margin_regular"
-            android:paddingEnd="@dimen/ads_margin_regular"
+            android:layout_marginTop="@dimen/ads_dialog_margin_top"
+            android:layout_marginBottom="@dimen/ads_dialog_margin"
+            android:paddingLeft="@dimen/ads_dialog_margin_horizontal"
+            android:paddingStart="@dimen/ads_dialog_margin_horizontal"
+            android:paddingRight="@dimen/ads_dialog_margin_horizontal"
+            android:paddingEnd="@dimen/ads_dialog_margin_horizontal"
             app:adt_colorType="primary" />
 
-        <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
+        <com.pranavpandey.android.dynamic.support.view.DynamicItemViewDialog
             android:id="@+id/ads_dialog_theme_select_app"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,7 +48,7 @@
             app:ads_subtitle="@string/ads_theme_app_summary"
             app:adt_colorType="accent" />
 
-        <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
+        <com.pranavpandey.android.dynamic.support.view.DynamicItemViewDialog
             android:id="@+id/ads_dialog_theme_select_day"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,7 +57,7 @@
             app:ads_subtitle="@string/ads_theme_app_day_summary"
             app:adt_colorType="accent" />
 
-        <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
+        <com.pranavpandey.android.dynamic.support.view.DynamicItemViewDialog
             android:id="@+id/ads_dialog_theme_select_night"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,7 +66,7 @@
             app:ads_subtitle="@string/ads_theme_app_night_summary"
             app:adt_colorType="accent" />
 
-        <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
+        <com.pranavpandey.android.dynamic.support.view.DynamicItemViewDialog
             android:id="@+id/ads_dialog_theme_select_remote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

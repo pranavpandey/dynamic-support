@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
@@ -24,7 +25,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.support.Dynamic;
+import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.util.DynamicShapeUtils;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
 
@@ -49,6 +53,18 @@ public class DynamicDivider extends DynamicBackgroundView {
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
         super.loadFromAttributes(attrs);
+
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DynamicDivider);
+
+        try {
+            if (a.getBoolean(R.styleable.DynamicDivider_adt_dynamicCornerSize,
+                    Defaults.ADS_DYNAMIC_CORNER_SIZE)) {
+                Dynamic.setBackground(this, DynamicShapeUtils.getOverlayDimRes(
+                        DynamicTheme.getInstance().get().getCornerSize()));
+            }
+        } finally {
+            a.recycle();
+        }
 
         if (getColorType() == Theme.ColorType.NONE
                 && getColor(false) == Theme.Color.UNKNOWN) {

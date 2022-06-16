@@ -296,19 +296,19 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
     @Override
 	public View getView(final int position,
             @Nullable View convertView, final @NonNull ViewGroup parent) {
-		ViewHolder viewHolder;
+		ViewHolder holder;
 
         if (convertView == null) {
         	convertView = LayoutInflater.from(parent.getContext()).inflate(
         	        R.layout.ads_layout_array_item_popup, parent, false);
-        	viewHolder = new ViewHolder(convertView);
-        	convertView.setTag(viewHolder);
+        	holder = new ViewHolder(convertView);
+        	convertView.setTag(holder);
         } else {
-        	viewHolder = (ViewHolder) convertView.getTag();
+        	holder = (ViewHolder) convertView.getTag();
         }
 
         if (mOnItemClickListener != null) {
-            Dynamic.setOnClickListener(viewHolder.getRoot(), new View.OnClickListener() {
+            Dynamic.setOnClickListener(holder.getRoot(), new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mOnItemClickListener.onItemClick((AdapterView<?>) parent,
@@ -319,25 +319,23 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
                 }
             });
         } else {
-            Dynamic.setClickable(viewHolder.getRoot(), false);
+            Dynamic.setClickable(holder.getRoot(), false);
         }
 
-        Dynamic.set(viewHolder.getIcon(), getIcon(parent.getContext(), position));
-        Dynamic.set(viewHolder.getTitle(), getTitles() != null
-                ? getTitles()[position] : null);
-        Dynamic.set(viewHolder.getSubtitle(), getSubtitles() != null
-                ? getSubtitles()[position] : null);
+        Dynamic.set(holder.getIcon(), getIcon(parent.getContext(), position));
+        Dynamic.set(holder.getTitle(), getTitles() != null ? getTitles()[position] : null);
+        Dynamic.set(holder.getSubtitle(), getSubtitles() != null ? getSubtitles()[position] : null);
 
         if (getHasSubmenus() != null) {
-            Dynamic.setColorType(viewHolder.getSelector(),
+            Dynamic.setColorType(holder.getSelector(),
                     Defaults.ADS_COLOR_TYPE_SYSTEM_SECONDARY);
-            Dynamic.set(viewHolder.getSelector(), getHasSubmenus()[position]
+            Dynamic.set(holder.getSelector(), getHasSubmenus()[position]
                     ? DynamicResourceUtils.getDrawable(parent.getContext(),
                     R.drawable.ads_ic_arrow_right) : null);
         } else {
-            Dynamic.setColorType(viewHolder.getSelector(), Theme.ColorType.ACCENT);
-            Dynamic.setResource(viewHolder.getSelector(), R.drawable.ads_ic_check);
-            Dynamic.setVisibility(viewHolder.getSelector(),
+            Dynamic.setColorType(holder.getSelector(), Theme.ColorType.ACCENT);
+            Dynamic.setResource(holder.getSelector(), R.drawable.ads_ic_check);
+            Dynamic.setVisibility(holder.getSelector(),
                     mSelectedPosition == position ? View.VISIBLE : View.INVISIBLE);
         }
 

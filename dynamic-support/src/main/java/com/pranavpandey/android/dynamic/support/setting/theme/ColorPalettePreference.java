@@ -23,8 +23,12 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.material.color.DynamicColors;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.theme.Theme;
+
+import java.util.Arrays;
 
 /**
  * A {@link DynamicSpinnerPreference} to display and edit the settings for the dynamic
@@ -46,9 +50,19 @@ public class ColorPalettePreference extends DynamicSpinnerPreference {
     }
 
     @Override
+    protected void onInflate() {
+        super.onInflate();
+
+        if (getValues() != null && DynamicColors.isDynamicColorAvailable()) {
+            setDefaultValue(Arrays.asList(getValues()).indexOf(Theme.Color.ToString.SYSTEM));
+            updateValueString(false);
+        }
+    }
+
+    @Override
     protected void onUpdate() {
         super.onUpdate();
 
-        setVisibility(DynamicTheme.getInstance().getListener().isDynamicColor() ? VISIBLE : GONE);
+        setVisibility(DynamicTheme.getInstance().getListener().isDynamicColors() ? VISIBLE : GONE);
     }
 }

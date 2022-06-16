@@ -24,8 +24,8 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.tutorial.fragment.DynamicTutorialFragment;
-import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 
 /**
  * A {@link Tutorial} item to display a title, subtitle and description along with an image
@@ -164,6 +164,23 @@ public class DynamicTutorial implements Parcelable,
     }
 
     /**
+     * Read an object of this class from the parcel.
+     *
+     * @param in The parcel to read the values.
+     */
+    public DynamicTutorial(@NonNull Parcel in) {
+        this.id = in.readInt();
+        this.color = in.readInt();
+        this.tintColor = in.readInt();
+        this.title = in.readString();
+        this.subtitle = in.readString();
+        this.description = in.readString();
+        this.imageRes = in.readInt();
+        this.tintImage = in.readByte() != 0;
+        this.sharedElement = in.readByte() != 0;
+    }
+
+    /**
      * Parcelable creator to create from parcel.
      */
     public static final Parcelable.Creator<DynamicTutorial> CREATOR =
@@ -179,26 +196,9 @@ public class DynamicTutorial implements Parcelable,
         }
     };
 
-    /**
-     * Read {@link DynamicTutorial} object from the parcel.
-     *
-     * @param in The parcel to read the values.
-     */
-    public DynamicTutorial(Parcel in) {
-        this.id = in.readInt();
-        this.color = in.readInt();
-        this.tintColor = in.readInt();
-        this.title = in.readString();
-        this.subtitle = in.readString();
-        this.description = in.readString();
-        this.imageRes = in.readInt();
-        this.tintImage = in.readByte() != 0;
-        this.sharedElement = in.readByte() != 0;
-    }
-
     @Override
     public int describeContents() {
-        return 0;
+        return hashCode();
     }
 
     @Override
@@ -321,7 +321,7 @@ public class DynamicTutorial implements Parcelable,
      *         set methods.
      */
     public @NonNull DynamicTutorial setColor(@ColorInt int color) {
-        setColor(color, DynamicColorUtils.getTintColor(getTintColor()));
+        setColor(color, Dynamic.getTintColor(getTintColor()));
         return this;
     }
 

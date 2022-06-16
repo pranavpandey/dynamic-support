@@ -198,8 +198,12 @@ public abstract class DynamicPreference extends DynamicView
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicPreference_adt_backgroundAware,
                     Theme.BackgroundAware.UNKNOWN);
+            mContrast = a.getInteger(
+                    R.styleable.DynamicPreference_adt_contrast,
+                    Theme.Contrast.UNKNOWN);
             mIcon = DynamicResourceUtils.getDrawable(getContext(),
-                    a.getResourceId(R.styleable.DynamicPreference_ads_icon,
+                    a.getResourceId(
+                            R.styleable.DynamicPreference_ads_icon,
                             DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
             mTitle = a.getString(R.styleable.DynamicPreference_ads_title);
             mSummary = a.getString(R.styleable.DynamicPreference_ads_summary);
@@ -275,7 +279,8 @@ public abstract class DynamicPreference extends DynamicView
 
         Dynamic.setContrastWithColorTypeOrColor(getPreferenceView(),
                 getContrastWithColorType(), getContrastWithColor());
-        Dynamic.setBackgroundAwareSafe(getPreferenceView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getPreferenceView(),
+                getBackgroundAware(), getContrast(false));
     }
 
     /**

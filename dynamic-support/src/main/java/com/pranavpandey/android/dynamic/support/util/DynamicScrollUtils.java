@@ -18,6 +18,7 @@ package com.pranavpandey.android.dynamic.support.util;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
@@ -42,6 +43,8 @@ import com.google.android.material.internal.NavigationMenuPresenter;
 import com.google.android.material.internal.NavigationMenuView;
 import com.google.android.material.navigation.NavigationView;
 import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.support.Dynamic;
+import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
@@ -55,6 +58,7 @@ import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  * Helper class to set {@link EdgeEffect} or glow color and scroll bar color for the supported 
  * views dynamically by using reflection. It will be used to match the color with the app's theme.
  */
+@SuppressLint("PrivateApi")
 @RestrictTo(LIBRARY_GROUP)
 public final class DynamicScrollUtils {
 
@@ -191,7 +195,7 @@ public final class DynamicScrollUtils {
             try {
                 F_EDGE_EFFECT_EDGE = EdgeEffect.class.getDeclaredField("mEdge");
                 F_EDGE_EFFECT_EDGE.setAccessible(true);
-                F_EDGE_EFFECT_GLOW = EdgeEffect.class.getDeclaredField("mGlow");;
+                F_EDGE_EFFECT_GLOW = EdgeEffect.class.getDeclaredField("mGlow");
                 F_EDGE_EFFECT_GLOW.setAccessible(true);
             } catch (Exception ignored) {
             }
@@ -202,7 +206,7 @@ public final class DynamicScrollUtils {
      * Set the edge effect or glow color for the navigation view.
      *
      * @param view The navigation view to be used.
-     * @param color The edge effect color to be set.
+     * @param color The color to be set.
      */
     public static void setEdgeEffectColor(@Nullable NavigationView view, @ColorInt int color) {
         if (view == null) {
@@ -297,7 +301,7 @@ public final class DynamicScrollUtils {
                 F_SCROLL_VIEW_EDGE_GLOW_LEFT = HorizontalScrollView.class
                         .getDeclaredField("mEdgeGlowLeft");
                 F_SCROLL_VIEW_EDGE_GLOW_LEFT.setAccessible(true);
-                F_SCROLL_VIEW_EDGE_GLOW_RIGHT = ScrollView.class
+                F_SCROLL_VIEW_EDGE_GLOW_RIGHT = HorizontalScrollView.class
                         .getDeclaredField("mEdgeGlowRight");
                 F_SCROLL_VIEW_EDGE_GLOW_RIGHT.setAccessible(true);
             } catch (Exception ignored) {
@@ -387,7 +391,7 @@ public final class DynamicScrollUtils {
      * Set the edge effect or glow color for the list view.
      *
      * @param view The list view to be used.
-     * @param color The edge effect color to be set.
+     * @param color The color to be set.
      */
     @TargetApi(Build.VERSION_CODES.Q)
     public static void setEdgeEffectColor(@Nullable AbsListView view, @ColorInt int color) {
@@ -397,6 +401,7 @@ public final class DynamicScrollUtils {
 
         if (DynamicSdkUtils.is29()) {
             view.setEdgeEffectColor(color);
+
             return;
         }
 
@@ -413,7 +418,7 @@ public final class DynamicScrollUtils {
      * Set the edge effect or glow color for the recycler view.
      *
      * @param view The recycler view to be used.
-     * @param color The edge effect color to be set.
+     * @param color The color to be set.
      */
     public static void setEdgeEffectColor(@Nullable RecyclerView view, @ColorInt int color) {
         if (view == null) {
@@ -435,7 +440,7 @@ public final class DynamicScrollUtils {
      * Set the edge effect or glow color for the recycler view.
      *
      * @param view The recycler view to be used.
-     * @param color The edge effect color to be set.
+     * @param color The color to be set.
      * @param scrollListener The scroll listener to set the color on over scroll.
      */
     public static void setEdgeEffectColor(@Nullable RecyclerView view, final @ColorInt int color,
@@ -467,7 +472,7 @@ public final class DynamicScrollUtils {
      * Set the edge effect or glow color for the scroll view.
      *
      * @param view The scroll view to be used.
-     * @param color The edge effect color to be set.
+     * @param color The color to be set.
      */
     public static void setEdgeEffectColor(@Nullable ScrollView view, @ColorInt int color) {
         if (view == null) {
@@ -487,7 +492,7 @@ public final class DynamicScrollUtils {
      * Set the edge effect or glow color for the horizontal scroll view.
      *
      * @param view The horizontal scroll view to be used.
-     * @param color The edge effect color to be set.
+     * @param color The color to be set.
      */
     public static void setEdgeEffectColor(@Nullable HorizontalScrollView view,
             @ColorInt int color) {
@@ -508,7 +513,7 @@ public final class DynamicScrollUtils {
      * Set the edge effect or glow color for the nested scroll view.
      *
      * @param view The nested scroll view to be used.
-     * @param color The edge effect color to be set.
+     * @param color The color to be set.
      */
     public static void setEdgeEffectColor(@Nullable NestedScrollView view, @ColorInt int color) {
         if (view == null) {
@@ -528,7 +533,7 @@ public final class DynamicScrollUtils {
      * Set the edge effect or glow color for the view pager.
      *
      * @param view The view pager to be used.
-     * @param color The edge effect color to be set.
+     * @param color The color to be set.
      */
     public static void setEdgeEffectColor(@Nullable ViewPager view, @ColorInt int color) {
         if (view == null) {
@@ -548,7 +553,7 @@ public final class DynamicScrollUtils {
      * Set color of the supplied edge effect object.
      *
      * @param edgeEffect The edge effect object to be used.
-     * @param color The edge effect color to be set.
+     * @param color The color to be set.
      */
     @SuppressWarnings("deprecation")
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -592,15 +597,31 @@ public final class DynamicScrollUtils {
      * Set the scroll bar color for the view.
      *
      * @param view The view to be used.
-     * @param color The scroll bar color to be set.
+     * @param color The color to be set.
+     * @param drawable {@code true} to set the thumb drawable.
+     * @param cornerSize The corner size to be considered in dips.
      */
     @TargetApi(Build.VERSION_CODES.Q)
-    public static void setScrollBarColor(@Nullable View view, @ColorInt int color) {
+    public static void setScrollBarColor(@Nullable View view,
+            @ColorInt int color, boolean drawable, float cornerSize) {
         if (view == null) {
             return;
         }
 
+        Drawable thumbDrawable = DynamicResourceUtils.getDrawable(view.getContext(),
+                DynamicShapeUtils.getOverlayDimRes(cornerSize));
+
+        if (drawable && DynamicSdkUtils.is16()) {
+            view.setScrollBarSize(view.getContext().getResources()
+                    .getDimensionPixelSize(R.dimen.ads_scrollbar_size));
+        }
+
         if (DynamicSdkUtils.is29()) {
+            if (drawable) {
+                view.setVerticalScrollbarThumbDrawable(thumbDrawable);
+                view.setHorizontalScrollbarThumbDrawable(thumbDrawable);
+            }
+
             DynamicDrawableUtils.colorizeDrawable(
                     view.getVerticalScrollbarThumbDrawable(), color);
             DynamicDrawableUtils.colorizeDrawable(
@@ -626,19 +647,50 @@ public final class DynamicScrollUtils {
                     F_VIEW_SCROLL_BAR_VERTICAL_THUMB.setAccessible(true);
 
                     if (F_VIEW_SCROLL_BAR_VERTICAL_THUMB != null) {
+                        if (drawable) {
+                            F_VIEW_SCROLL_BAR_VERTICAL_THUMB.set(scrollBar, thumbDrawable);
+                        }
+
                         DynamicDrawableUtils.colorizeDrawable((Drawable)
                                 F_VIEW_SCROLL_BAR_VERTICAL_THUMB.get(scrollBar), color);
                     }
-                }
-            }
 
-            // Fix for Android 9 developer preview. For more info, please
-            // visit g.co/dev/appcompat.
-            if (!DynamicSdkUtils.is28()) {
+                    F_VIEW_SCROLL_BAR_HORIZONTAL_THUMB =
+                            scrollBar.getClass().getDeclaredField("mHorizontalThumb");
+                    F_VIEW_SCROLL_BAR_HORIZONTAL_THUMB.setAccessible(true);
+
+                    if (F_VIEW_SCROLL_BAR_HORIZONTAL_THUMB != null) {
+                        if (drawable) {
+                            F_VIEW_SCROLL_BAR_HORIZONTAL_THUMB.set(scrollBar, thumbDrawable);
+                        }
+
+                        DynamicDrawableUtils.colorizeDrawable((Drawable)
+                                F_VIEW_SCROLL_BAR_HORIZONTAL_THUMB.get(scrollBar), color);
+                    }
+                }
+            } else {
+                F_VIEW_SCROLL_BAR_VERTICAL_THUMB =
+                        view.getClass().getDeclaredField("mVerticalThumb");
+                F_VIEW_SCROLL_BAR_VERTICAL_THUMB.setAccessible(true);
+
+                if (F_VIEW_SCROLL_BAR_VERTICAL_THUMB != null) {
+                    if (drawable) {
+                        F_VIEW_SCROLL_BAR_VERTICAL_THUMB.set(view, thumbDrawable);
+                    }
+
+                    DynamicDrawableUtils.colorizeDrawable((Drawable)
+                            F_VIEW_SCROLL_BAR_VERTICAL_THUMB.get(view), color);
+                }
+
                 F_VIEW_SCROLL_BAR_HORIZONTAL_THUMB =
                         view.getClass().getDeclaredField("mHorizontalThumb");
                 F_VIEW_SCROLL_BAR_HORIZONTAL_THUMB.setAccessible(true);
+
                 if (F_VIEW_SCROLL_BAR_HORIZONTAL_THUMB != null) {
+                    if (drawable) {
+                        F_VIEW_SCROLL_BAR_HORIZONTAL_THUMB.set(view, thumbDrawable);
+                    }
+
                     DynamicDrawableUtils.colorizeDrawable((Drawable)
                             F_VIEW_SCROLL_BAR_HORIZONTAL_THUMB.get(view), color);
                 }
@@ -648,10 +700,23 @@ public final class DynamicScrollUtils {
     }
 
     /**
+     * Set the scroll bar color for the view.
+     *
+     * @param view The view to be used.
+     * @param color The color to be set.
+     *
+     * @see #setScrollBarColor(View, int, boolean, float)
+     */
+    public static void setScrollBarColor(@Nullable View view, @ColorInt int color) {
+        setScrollBarColor(view, color, true,
+                DynamicTheme.getInstance().get().getCornerSize());
+    }
+
+    /**
      * Set the scroll bar color for the navigation view.
      *
      * @param view The navigation view to be used.
-     * @param color The edge effect color to be set.
+     * @param color The color to be set.
      */
     public static void setScrollBarColor(@Nullable NavigationView view, @ColorInt int color) {
         if (view == null) {
@@ -707,6 +772,32 @@ public final class DynamicScrollUtils {
     }
 
     /**
+     * Set the sub header color for the view.
+     *
+     * @param view The navigation view to be used.
+     * @param color The color to be set.
+     */
+    @SuppressLint("RestrictedApi")
+    public static void setSubHeaderColor(@Nullable NavigationView view, @ColorInt int color) {
+        if (view == null) {
+            return;
+        }
+
+        initializeNavigationViewFields(view);
+
+        try {
+            NavigationMenuPresenter presenter = (NavigationMenuPresenter)
+                    F_NAVIGATION_VIEW_PRESENTER.get(view);
+            initializeNavigationViewFields(presenter);
+
+            if (presenter != null) {
+                presenter.setSubheaderColor(ColorStateList.valueOf(color));
+            }
+        } catch (Exception ignored) {
+        }
+    }
+
+    /**
      * Tint view according to the supplied contrast with color.
      *
      * @param view The scrollable to be tinted.
@@ -737,16 +828,19 @@ public final class DynamicScrollUtils {
                 Defaults.ADS_COLOR_TYPE_SCROLLABLE);
         @ColorInt int selectorColor = DynamicTheme.getInstance().resolveColorType(
                 Defaults.ADS_COLOR_TYPE_SYSTEM_SECONDARY);
+        @ColorInt int subHeaderColor = DynamicTheme.getInstance().resolveColorType(
+                Defaults.ADS_COLOR_TYPE_SUB_HEADER);
 
         if (DynamicTheme.getInstance().get().isBackgroundAware()) {
-            edgeEffectColor = DynamicColorUtils.getContrastColor(
-                    edgeEffectColor, contrastWithColor);
-            scrollBarColor = DynamicColorUtils.getContrastColor(scrollBarColor, contrastWithColor);
-            selectorColor = DynamicColorUtils.getContrastColor(selectorColor, contrastWithColor);
+            edgeEffectColor = Dynamic.withContrastRatio(edgeEffectColor, contrastWithColor, view);
+            scrollBarColor = Dynamic.withContrastRatio(scrollBarColor, contrastWithColor, view);
+            selectorColor = Dynamic.withContrastRatio(selectorColor, contrastWithColor, view);
+            subHeaderColor = Dynamic.withContrastRatio(subHeaderColor, contrastWithColor, view);
         }
 
         if (view instanceof AbsListView) {
             setEdgeEffectColor((AbsListView) view, edgeEffectColor);
+            setSelectorColor((AbsListView) view, selectorColor, contrastWithColor);
         } else if (view instanceof RecyclerView) {
             setEdgeEffectColor((RecyclerView) view, edgeEffectColor);
         } else if (view instanceof ScrollView) {
@@ -759,16 +853,12 @@ public final class DynamicScrollUtils {
             setEdgeEffectColor((ViewPager) view, edgeEffectColor);
         } else if (view instanceof NavigationView) {
             setEdgeEffectColor((NavigationView) view, edgeEffectColor);
+            setScrollBarColor((NavigationView) view, edgeEffectColor);
+            setSubHeaderColor((NavigationView) view, subHeaderColor);
         }
 
-        if (view instanceof NavigationView) {
-            setScrollBarColor((NavigationView) view, scrollBarColor);
-        } else if (view instanceof View) {
+        if (view instanceof View) {
             setScrollBarColor((View) view, scrollBarColor);
-        }
-
-        if (view instanceof AbsListView) {
-            setSelectorColor((AbsListView) view, selectorColor, contrastWithColor);
         }
     }
 }

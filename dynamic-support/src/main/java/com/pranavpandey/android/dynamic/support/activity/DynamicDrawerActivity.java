@@ -21,6 +21,7 @@ import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
@@ -39,7 +40,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
-import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
@@ -47,11 +48,12 @@ import com.pranavpandey.android.dynamic.support.util.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTextWidget;
 import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.util.DynamicUnitUtils;
+import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 /**
  * Base drawer activity to handle everything related to the {@link DrawerLayout} and
  * {@link com.google.android.material.internal.NavigationMenu}.
- * <p>It also has many other useful functions to customise according to the need.
+ * <p>It also has many other useful functions to customise according to the requirements.
  */
 public abstract class DynamicDrawerActivity extends DynamicActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -88,8 +90,7 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
 
     @Override
     protected @LayoutRes int getLayoutRes() {
-        return setCollapsingToolbarLayout()
-                ? R.layout.ads_activity_drawer_collapsing
+        return setCollapsingToolbarLayout() ? R.layout.ads_activity_drawer_collapsing
                 : R.layout.ads_activity_drawer;
     }
 
@@ -149,14 +150,13 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
         if (isDrawerActivity()) {
             if (mDrawer != null) {
                 mDrawer.setStatusBarBackgroundColor(getStatusBarColor());
-                mDrawer.setDrawerShadow(R.drawable.ads_drawer_shadow_start, GravityCompat.START);
             }
         }
     }
 
     @Override
     public @Nullable View getEdgeToEdgeView() {
-        return mDrawer;
+        return getDrawer();
     }
 
     /**
@@ -217,7 +217,13 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
      * Configure navigation drawer for the persistent mode.
      */
     private void configureDrawer() {
+        if (mDrawer == null) {
+            return;
+        }
+
         if (isPersistentDrawer()) {
+            setNavigationShadowVisible(true);
+
             setNavigationClickListener(getDefaultNavigationIcon(), new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -233,7 +239,7 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
             if (frame != null && frame.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
                 ViewGroup.MarginLayoutParams params =
                         (ViewGroup.MarginLayoutParams) frame.getLayoutParams();
-                if (DynamicLocaleUtils.isLayoutRtl()) {
+                if (DynamicViewUtils.isLayoutRtl(frame)) {
                     params.rightMargin = getResources().getDimensionPixelOffset(
                             R.dimen.ads_margin_content_start);
                 } else {
@@ -244,10 +250,31 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
                 frame.setLayoutParams(params);
             }
         } else {
-            if (isDrawerLocked()) {
+            setNavigationShadowVisible(false);
+
+            if (getContentView() != null && isDrawerLocked()) {
                 mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                 getContentView().post(mDrawerRunnable);
             }
+
+            mDrawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+                @Override
+                public void onDrawerSlide(@NonNull View drawerView, float slideOffset) { }
+
+                @Override
+                public void onDrawerOpened(@NonNull View drawerView) { }
+
+                @Override
+                public void onDrawerClosed(@NonNull View drawerView) {
+                    if (mNavigationItemSelected) {
+                        mNavigationItemSelected = false;
+                        onNavigationItemSelected(mNavigationItemId, true);
+                    }
+                }
+
+                @Override
+                public void onDrawerStateChanged(int newState) { }
+            });
         }
     }
 
@@ -270,6 +297,20 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
      */
     public boolean isPersistentDrawer() {
         return getResources().getBoolean(R.bool.ads_persistent_drawer);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        mNavigationItemId = item.getItemId();
+
+        if (isPersistentDrawer()) {
+            onNavigationItemSelected(mNavigationItemId, false);
+        } else {
+            mNavigationItemSelected = true;
+        }
+
+        closeDrawers();
+        return true;
     }
 
     /**
@@ -442,7 +483,7 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
      * @param drawable The drawable for the header image view.
      */
     public void setNavHeaderIcon(@Nullable Drawable drawable) {
-        mNavHeaderIcon.setImageDrawable(drawable);
+        Dynamic.set(mNavHeaderIcon, drawable);
     }
 
     /**

@@ -20,6 +20,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.ColorInt
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder
 import com.pranavpandey.android.dynamic.support.sample.R
@@ -56,7 +57,8 @@ class AuthorInfoBinder(binderAdapter: AppInfoAdapter)
         init {
             author.linksView!!.layoutManager =
                     DynamicLayoutUtils.getGridLayoutManager(author.context,
-                            DynamicLayoutUtils.getGridCount(author.context))
+                            DynamicLayoutUtils.getGridCount(author.context),
+                        GridLayoutManager.VERTICAL)
 
             if (author.linksColors != null) {
                 @ColorInt val colors = author.linksColors

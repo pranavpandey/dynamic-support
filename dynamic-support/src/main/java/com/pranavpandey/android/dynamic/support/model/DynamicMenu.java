@@ -16,15 +16,23 @@
 
 package com.pranavpandey.android.dynamic.support.model;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
+
 /**
  * A model class to store {@link android.view.Menu} menu information with an icon and a text.
  */
-public class DynamicMenu {
+public class DynamicMenu implements Parcelable {
 
     /**
      * Icon used by this menu.
@@ -82,6 +90,48 @@ public class DynamicMenu {
         this.title = title;
         this.subtitle = subtitle;
         this.hasSubmenu = hasSubmenu;
+    }
+
+    /**
+     * Read an object of this class from the parcel.
+     *
+     * @param in The parcel to read the values.
+     */
+    public DynamicMenu(@NonNull Parcel in) {
+        this.icon = new BitmapDrawable(Resources.getSystem(),
+                (Bitmap) in.readParcelable(getClass().getClassLoader()));
+        this.title = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
+        this.subtitle = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
+        this.hasSubmenu = in.readByte() != 0;
+    }
+
+    /**
+     * Parcelable creator to create from parcel.
+     */
+    public static final Parcelable.Creator<DynamicMenu> CREATOR =
+            new Parcelable.Creator<DynamicMenu>() {
+        @Override
+        public DynamicMenu createFromParcel(Parcel in) {
+            return new DynamicMenu(in);
+        }
+
+        @Override
+        public DynamicMenu[] newArray(int size) {
+            return new DynamicMenu[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return hashCode();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(DynamicBitmapUtils.getBitmap(icon), flags);
+        TextUtils.writeToParcel(title, dest, flags);
+        TextUtils.writeToParcel(subtitle, dest, flags);
+        dest.writeByte((byte) (hasSubmenu ? 1 : 0));
     }
 
     /**

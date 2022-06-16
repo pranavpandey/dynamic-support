@@ -20,9 +20,11 @@
 
 	<item>
 
-		<shape android:shape="oval">
+		<shape
+			android:shape="oval">
 
-			<solid android:color="@color/ads_color_control_remote" />
+			<solid
+				android:color="@color/ads_color_control_remote" />
 
 		</shape>
 

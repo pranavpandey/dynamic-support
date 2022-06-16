@@ -23,7 +23,8 @@
     android:viewportWidth="24"
     android:viewportHeight="24"
     android:autoMirrored="true"
-    tools:targetApi="kitkat">
+    tools:targetApi="kitkat"
+    tools:ignore="VectorRaster">
 
   <path
       android:fillColor="@android:color/white"

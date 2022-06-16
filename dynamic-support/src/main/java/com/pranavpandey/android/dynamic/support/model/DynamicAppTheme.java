@@ -25,28 +25,36 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.StyleRes;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.SerializedName;
-import com.pranavpandey.android.dynamic.support.model.adapter.DynamicThemeTypeAdapter;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.theme.AppTheme;
+import com.pranavpandey.android.dynamic.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.theme.Theme;
+import com.pranavpandey.android.dynamic.theme.adapter.DynamicThemeTypeAdapter;
 import com.pranavpandey.android.dynamic.theme.annotation.Exclude;
 import com.pranavpandey.android.dynamic.theme.strategy.ExcludeStrategy;
-import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
 import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.util.DynamicUnitUtils;
 
 /**
  * An app theme to store various colors and attributes which can be modified at runtime.
  */
-public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
-    
+public class DynamicAppTheme extends AppTheme<DynamicAppTheme> implements Parcelable {
+
     /**
-     * DynamicAppTheme resource used by this theme.
+     * {@code true} if this theme is host.
+     */
+    @Exclude
+    @SerializedName(Theme.Key.HOST)
+    private boolean host;
+
+    /**
+     * Style resource used by this theme.
      */
     @Exclude
     @SerializedName(Theme.Key.RES)
@@ -179,10 +187,34 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
     private @Theme.BackgroundAware int backgroundAware;
 
     /**
+     * Contrast value used by this theme.
+     */
+    @SerializedName(Theme.Key.CONTRAST)
+    private int contrast;
+
+    /**
+     * Opacity value used by this theme.
+     */
+    @SerializedName(Theme.Key.OPACITY)
+    private int opacity;
+
+    /**
+     * Elevation functionality used by this theme.
+     */
+    @SerializedName(Theme.Key.ELEVATION)
+    private @Theme.Elevation int elevation;
+
+    /**
      * Style value used by this theme.
      */
     @SerializedName(Theme.Key.STYLE)
-    private int style;
+    private @Theme.Style int style;
+
+    /**
+     * Type value used by this theme.
+     */
+    @SerializedName(Theme.Key.TYPE)
+    private @Theme int type;
 
     /**
      * Constructor to initialize an object of this class.
@@ -191,7 +223,8 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
         this(Theme.AUTO, Theme.AUTO, Theme.AUTO, Theme.AUTO, Theme.AUTO, Theme.AUTO,
                 Theme.AUTO, Theme.AUTO, Theme.AUTO, Theme.AUTO, Theme.AUTO, Theme.AUTO,
                 Theme.AUTO, Theme.AUTO, Theme.AUTO, Theme.AUTO, Theme.AUTO, Theme.AUTO,
-                Theme.AUTO, Theme.AUTO, Theme.BackgroundAware.AUTO, Theme.Style.AUTO);
+                Theme.AUTO, Theme.Corner.AUTO, Theme.BackgroundAware.AUTO, Theme.Contrast.AUTO,
+                Theme.Opacity.AUTO, Theme.Elevation.AUTO, Theme.Style.AUTO, Theme.APP);
     }
 
     /**
@@ -200,40 +233,44 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
      * @param theme The theme string to initialize the instance.
      */
     public DynamicAppTheme(@NonNull String theme) throws JsonSyntaxException {
-        this(new GsonBuilder().setExclusionStrategies(new ExcludeStrategy())
-                .registerTypeAdapter(DynamicAppTheme.class, new DynamicThemeTypeAdapter<>())
-                .create().fromJson(DynamicThemeUtils.formatTheme(theme), DynamicAppTheme.class));
+        this(new GsonBuilder().setExclusionStrategies(new ExcludeStrategy()).registerTypeAdapter(
+                DynamicAppTheme.class, new DynamicThemeTypeAdapter<>(new DynamicAppTheme()))
+                .create().fromJson(DynamicThemeUtils.format(theme), DynamicAppTheme.class));
     }
 
     /**
      * Constructor to initialize an object of this class.
      *
-     * @param dynamicTheme The dynamic theme to copy the theme.
+     * @param theme The dynamic theme to copy the theme.
      */
-    public DynamicAppTheme(@NonNull AppTheme<?> dynamicTheme) {
-        this.themeRes = dynamicTheme.getThemeRes();
-        this.backgroundColor = dynamicTheme.getBackgroundColor(false);
-        this.surfaceColor = dynamicTheme.getSurfaceColor(false);
-        this.primaryColor = dynamicTheme.getPrimaryColor(false);
-        this.primaryColorDark = dynamicTheme.getPrimaryColorDark(false);
-        this.accentColor = dynamicTheme.getAccentColor(false);
-        this.accentColorDark = dynamicTheme.getAccentColorDark(false);
-        this.errorColor = dynamicTheme.getErrorColor(false);
-        this.tintBackgroundColor = dynamicTheme.getTintBackgroundColor(false);
-        this.tintSurfaceColor = dynamicTheme.getTintSurfaceColor(false);
-        this.tintPrimaryColor = dynamicTheme.getTintPrimaryColor(false);
-        this.tintPrimaryColorDark = dynamicTheme.getTintPrimaryColorDark(false);
-        this.tintAccentColor = dynamicTheme.getTintAccentColor(false);
-        this.tintAccentColorDark = dynamicTheme.getTintAccentColorDark(false);
-        this.tintErrorColor = dynamicTheme.getTintErrorColor(false);
-        this.textPrimaryColor = dynamicTheme.getTextPrimaryColor(false, false);
-        this.textSecondaryColor = dynamicTheme.getTextSecondaryColor(false, false);
-        this.textPrimaryColorInverse = dynamicTheme.getTextPrimaryColorInverse(false, false);
-        this.textSecondaryColorInverse = dynamicTheme.getTextSecondaryColorInverse(false, false);
-        this.fontScale = dynamicTheme.getFontScale(false);
-        this.cornerRadius = dynamicTheme.getCornerRadius(false);
-        this.backgroundAware = dynamicTheme.getBackgroundAware(false);
-        this.style = dynamicTheme.getStyle();
+    public DynamicAppTheme(@NonNull AppTheme<?> theme) {
+        this.themeRes = theme.getThemeRes();
+        this.backgroundColor = theme.getBackgroundColor(false, false);
+        this.surfaceColor = theme.getSurfaceColor(false, false);
+        this.primaryColor = theme.getPrimaryColor(false, false);
+        this.primaryColorDark = theme.getPrimaryColorDark(false, false);
+        this.accentColor = theme.getAccentColor(false, false);
+        this.accentColorDark = theme.getAccentColorDark(false, false);
+        this.errorColor = theme.getErrorColor(false, false);
+        this.tintBackgroundColor = theme.getTintBackgroundColor(false, false);
+        this.tintSurfaceColor = theme.getTintSurfaceColor(false, false);
+        this.tintPrimaryColor = theme.getTintPrimaryColor(false, false);
+        this.tintPrimaryColorDark = theme.getTintPrimaryColorDark(false, false);
+        this.tintAccentColor = theme.getTintAccentColor(false, false);
+        this.tintAccentColorDark = theme.getTintAccentColorDark(false, false);
+        this.tintErrorColor = theme.getTintErrorColor(false, false);
+        this.textPrimaryColor = theme.getTextPrimaryColor(false, false);
+        this.textSecondaryColor = theme.getTextSecondaryColor(false, false);
+        this.textPrimaryColorInverse = theme.getTextPrimaryColorInverse(false, false);
+        this.textSecondaryColorInverse = theme.getTextSecondaryColorInverse(false, false);
+        this.fontScale = theme.getFontScale(false);
+        this.cornerRadius = theme.getCornerRadius(false);
+        this.backgroundAware = theme.getBackgroundAware(false);
+        this.contrast = theme.getContrast(false);
+        this.opacity = theme.getOpacity(false);
+        this.elevation = theme.getElevation(false);
+        this.style = theme.getStyle();
+        this.type = theme.getType(false);
     }
 
     /**
@@ -270,7 +307,8 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
         this(Theme.AUTO, Theme.AUTO, primaryColor, primaryColorDark, accentColor,
                 accentColor, errorColor, Theme.AUTO, Theme.AUTO, Theme.AUTO, Theme.AUTO,
                 Theme.AUTO, Theme.AUTO, Theme.AUTO, Theme.AUTO, Theme.AUTO, Theme.AUTO,
-                Theme.AUTO, fontScale, cornerRadius, backgroundAware, Theme.Style.AUTO);
+                Theme.AUTO, fontScale, cornerRadius, backgroundAware, Theme.Contrast.AUTO,
+                Theme.Opacity.AUTO, Theme.Elevation.AUTO, Theme.Style.AUTO, Theme.APP);
     }
 
     /**
@@ -298,7 +336,8 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
                 accentColor, Theme.AUTO, tintBackgroundColor, Theme.AUTO, tintPrimaryColor,
                 tintPrimaryColor, tintAccentColor, tintAccentColor, Theme.AUTO, textPrimaryColor,
                 textSecondaryColor, textPrimaryColorInverse, textSecondaryColorInverse,
-                Theme.AUTO, Theme.AUTO, backgroundAware, Theme.Style.AUTO);
+                Theme.AUTO, Theme.Corner.AUTO, backgroundAware, Theme.Contrast.AUTO,
+                Theme.Opacity.AUTO, Theme.Elevation.AUTO, Theme.Style.AUTO, Theme.APP);
     }
 
     /**
@@ -325,7 +364,11 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
      * @param fontScale The text scaling factor for this theme.
      * @param cornerRadius The corner size for this theme.
      * @param backgroundAware The background aware functionality for this theme.
+     * @param contrast The contrast value for this theme.
+     * @param opacity The opacity value for this theme.
+     * @param elevation The elevation functionality for this theme.
      * @param style The style value for this theme.
+     * @param type The type value for this theme.
      */
     public DynamicAppTheme(@ColorInt int backgroundColor, @ColorInt int surfaceColor,
             @ColorInt int primaryColor, @ColorInt int primaryColorDark,
@@ -336,7 +379,8 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
             @ColorInt int tintErrorColor, @ColorInt int textPrimaryColor,
             @ColorInt int textSecondaryColor, @ColorInt int textPrimaryColorInverse,
             @ColorInt int textSecondaryColorInverse, int fontScale, int cornerRadius,
-            @Theme.BackgroundAware int backgroundAware, @Theme.Style int style) {
+            @Theme.BackgroundAware int backgroundAware, int contrast, int opacity,
+            @Theme.Elevation int elevation, @Theme.Style int style, @Theme int type) {
         this.themeRes = DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
         this.backgroundColor = backgroundColor;
         this.surfaceColor = surfaceColor;
@@ -359,31 +403,19 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
         this.fontScale = fontScale;
         this.cornerRadius = cornerRadius;
         this.backgroundAware = backgroundAware;
+        this.contrast = contrast;
+        this.opacity = opacity;
+        this.elevation = elevation;
         this.style = style;
+        this.type = type;
     }
-
-    /**
-     * Parcelable creator to create from parcel.
-     */
-    public static final Parcelable.Creator<DynamicAppTheme> CREATOR =
-            new Parcelable.Creator<DynamicAppTheme>() {
-        @Override
-        public DynamicAppTheme createFromParcel(Parcel in) {
-            return new DynamicAppTheme(in);
-        }
-
-        @Override
-        public DynamicAppTheme[] newArray(int size) {
-            return new DynamicAppTheme[size];
-        }
-    };
 
     /**
      * Read an object of this class from the parcel.
      *
      * @param in The parcel to read the values.
      */
-    public DynamicAppTheme(Parcel in) {
+    public DynamicAppTheme(@NonNull Parcel in) {
         this.themeRes = in.readInt();
         this.backgroundColor = in.readInt();
         this.surfaceColor = in.readInt();
@@ -406,12 +438,32 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
         this.fontScale = in.readInt();
         this.cornerRadius = in.readInt();
         this.backgroundAware = in.readInt();
+        this.contrast = in.readInt();
+        this.opacity = in.readInt();
+        this.elevation = in.readInt();
         this.style = in.readInt();
+        this.type = in.readInt();
     }
+
+    /**
+     * Parcelable creator to create from parcel.
+     */
+    public static final Parcelable.Creator<DynamicAppTheme> CREATOR =
+            new Parcelable.Creator<DynamicAppTheme>() {
+        @Override
+        public DynamicAppTheme createFromParcel(Parcel in) {
+            return new DynamicAppTheme(in);
+        }
+
+        @Override
+        public DynamicAppTheme[] newArray(int size) {
+            return new DynamicAppTheme[size];
+        }
+    };
 
     @Override
     public int describeContents() {
-        return 0;
+        return hashCode();
     }
 
     @Override
@@ -438,16 +490,32 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
         dest.writeInt(fontScale);
         dest.writeInt(cornerRadius);
         dest.writeInt(backgroundAware);
+        dest.writeInt(contrast);
+        dest.writeInt(opacity);
+        dest.writeInt(elevation);
         dest.writeInt(style);
+        dest.writeInt(type);
     }
 
     @Override
     public @NonNull DynamicAppTheme getThemeFallback(boolean resolve) {
         if (resolve) {
-            return DynamicTheme.getInstance().get();
+            return DynamicTheme.getInstance().get(!isHost());
         }
 
-        return DynamicTheme.getInstance().getDefault();
+        return DynamicTheme.getInstance().getDefault(!isHost());
+    }
+
+    @Override
+    public boolean isHost() {
+        return host;
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme setHost(boolean host) {
+        this.host = host;
+
+        return this;
     }
 
     @Override
@@ -465,11 +533,15 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
     @Override
     public @ColorInt int getBackgroundColor(boolean resolve, boolean inverse) {
         if (resolve && backgroundColor == Theme.AUTO) {
-            if (getThemeFallback(false).getBackgroundColor(
-                    false, false) == Theme.AUTO) {
+            if (getThemeFallback(false).getBackgroundColor(false, false) == Theme.AUTO) {
                 Log.w(getClass().getSimpleName(), "Background color cannot " +
                         "be auto for the default theme, trying to use the default color.");
                 return DynamicTheme.getInstance().getDefaultColor(Theme.ColorType.BACKGROUND);
+            }
+
+            if (inverse && DynamicTheme.getInstance().isDynamicColors()) {
+                return getDynamicColors().getMutated(Theme.ColorType.BACKGROUND,
+                        getBackgroundColor(true, false), this);
             }
 
             return getThemeFallback(false).getBackgroundColor(true, inverse);
@@ -480,7 +552,7 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
 
     @Override
     public @ColorInt int getBackgroundColor(boolean resolve) {
-        return getBackgroundColor(resolve, false);
+        return getBackgroundColor(resolve, true);
     }
 
     @Override
@@ -493,7 +565,7 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
             @ColorInt int backgroundColor, boolean generateTint) {
         this.backgroundColor = backgroundColor;
         if (generateTint) {
-            setTintBackgroundColor(DynamicColorUtils.getTintColor(getBackgroundColor()));
+            setTintBackgroundColor(Dynamic.getTintColor(getBackgroundColor(), this));
         }
 
         return this;
@@ -505,204 +577,14 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
     }
 
     @Override
-    public @ColorInt int getStrokeColor() {
-        return getTintBackgroundColor();
-    }
-
-    @Override
-    public @ColorInt int getSurfaceColor(boolean resolve) {
-        if (resolve && getSurfaceColor(false) == Theme.AUTO) {
-            return DynamicTheme.getInstance().generateSurfaceColor(getBackgroundColor());
-        }
-
-        return surfaceColor;
-    }
-
-    @Override
-    public @ColorInt int getSurfaceColor() {
-        return getSurfaceColor(true);
-    }
-
-    @Override
-    public @NonNull DynamicAppTheme setSurfaceColor(
-            @ColorInt int surfaceColor, boolean generateTint) {
-        this.surfaceColor = surfaceColor;
-        if (generateTint) {
-            setTintSurfaceColor(DynamicColorUtils.getTintColor(getSurfaceColor()));
-        }
-
-        return this;
-    }
-
-    @Override
-    public @NonNull DynamicAppTheme setSurfaceColor(@ColorInt int surfaceColor) {
-        return setSurfaceColor(surfaceColor, true);
-    }
-
-    @Override
-    public @ColorInt int getPrimaryColor(boolean resolve) {
-        if (resolve && getPrimaryColor(false) == Theme.AUTO) {
-            if (getThemeFallback(false).getPrimaryColor(false) == Theme.AUTO) {
-                Log.w(getClass().getSimpleName(), "Primary color cannot " +
-                        "be auto for the default theme, trying to use the default color.");
-                return DynamicTheme.getInstance().getDefaultColor(Theme.ColorType.PRIMARY);
-            }
-            return getThemeFallback(false).getPrimaryColor();
-        }
-
-        return primaryColor;
-    }
-
-    @Override
-    public @ColorInt int getPrimaryColor() {
-        return getPrimaryColor(true);
-    }
-
-    @Override
-    public @NonNull DynamicAppTheme setPrimaryColor(
-            @ColorInt int primaryColor, boolean generateTint) {
-        this.primaryColor = primaryColor;
-        if (generateTint) {
-            setTintPrimaryColor(DynamicColorUtils.getTintColor(getPrimaryColor()));
-        }
-
-        return this;
-    }
-
-    @Override
-    public @NonNull DynamicAppTheme setPrimaryColor(@ColorInt int primaryColor) {
-        return setPrimaryColor(primaryColor, true);
-    }
-
-    @Override
-    public @ColorInt int getPrimaryColorDark(boolean resolve) {
-        if (resolve && getPrimaryColorDark(false) == Theme.AUTO) {
-            return DynamicTheme.getInstance().generateSystemColor(getPrimaryColor());
-        }
-
-        return primaryColorDark;
-    }
-
-    @Override
-    public @ColorInt int getPrimaryColorDark() {
-        return getPrimaryColorDark(true);
-    }
-
-    @Override
-    public @NonNull DynamicAppTheme setPrimaryColorDark(
-            @ColorInt int primaryColorDark, boolean generateTint) {
-        this.primaryColorDark = primaryColorDark;
-        if (generateTint) {
-            setTintPrimaryColorDark(DynamicColorUtils.getTintColor(getPrimaryColorDark()));
-        }
-
-        return this;
-    }
-
-    @Override
-    public @NonNull DynamicAppTheme setPrimaryColorDark(@ColorInt int primaryColorDark) {
-        return setPrimaryColorDark(primaryColorDark, true);
-    }
-
-    @Override
-    public @ColorInt int getAccentColor(boolean resolve) {
-        if (resolve && getAccentColor(false) == Theme.AUTO) {
-            if (getThemeFallback(false).getAccentColor(false) == Theme.AUTO) {
-                Log.w(getClass().getSimpleName(), "Accent color cannot " +
-                        "be auto for the default theme, trying to use the default color.");
-                return DynamicTheme.getInstance().getDefaultColor(Theme.ColorType.ACCENT);
-            }
-            return getThemeFallback(false).getAccentColor();
-        }
-
-        return accentColor;
-    }
-
-    @Override
-    public @ColorInt int getAccentColor() {
-        return getAccentColor(true);
-    }
-
-    @Override
-    public @NonNull DynamicAppTheme setAccentColor(
-            @ColorInt int accentColor, boolean generateTint) {
-        this.accentColor = accentColor;
-        if (generateTint) {
-            setTintAccentColor(DynamicColorUtils.getTintColor(getAccentColor()));
-        }
-
-        return this;
-    }
-
-    @Override
-    public @NonNull DynamicAppTheme setAccentColor(@ColorInt int accentColor) {
-        return setAccentColor(accentColor, true);
-    }
-
-    @Override
-    public @ColorInt int getAccentColorDark(boolean resolve) {
-        if (resolve && getAccentColorDark(false) == Theme.AUTO) {
-            return DynamicTheme.getInstance().generateSystemSecondaryColor(getBackgroundColor());
-        }
-
-        return accentColorDark;
-    }
-
-    @Override
-    public @ColorInt int getAccentColorDark() {
-        return getAccentColorDark(true);
-    }
-
-    @Override
-    public @NonNull DynamicAppTheme setAccentColorDark(
-            @ColorInt int accentColorDark, boolean generateTint) {
-        this.accentColorDark = accentColorDark;
-        if (generateTint) {
-            setTintAccentColorDark(DynamicColorUtils.getTintColor(getAccentColorDark()));
-        }
-
-        return this;
-    }
-
-    @Override
-    public @NonNull DynamicAppTheme setAccentColorDark(@ColorInt int accentColorDark) {
-        return setAccentColorDark(accentColorDark, true);
-    }
-
-    @Override
-    public int getErrorColor(boolean resolve) {
-        if (resolve && getErrorColor(false) == Theme.AUTO) {
-            return DynamicTheme.getInstance().generateErrorColor(
-                    getPrimaryColor(), getAccentColor());
-        }
-
-        return errorColor;
-    }
-
-    @Override
-    public int getErrorColor() {
-        return getErrorColor(true);
-    }
-
-    @Override
-    public @NonNull DynamicAppTheme setErrorColor(int errorColor, boolean generateTint) {
-        this.errorColor = errorColor;
-        if (generateTint) {
-            setTintErrorColor(DynamicColorUtils.getTintColor(getErrorColor()));
-        }
-
-        return this;
-    }
-
-    @Override
-    public @NonNull DynamicAppTheme setErrorColor(int errorColor) {
-        return setErrorColor(errorColor, true);
-    }
-
-    @Override
     public @ColorInt int getTintBackgroundColor(boolean resolve, boolean inverse) {
         if (resolve && getTintBackgroundColor(false, false) == Theme.AUTO) {
-            return DynamicColorUtils.getTintColor(getBackgroundColor(true, inverse));
+            if (inverse && DynamicTheme.getInstance().isDynamicColors()) {
+                return getDynamicColors().getMutated(Theme.ColorType.TINT_BACKGROUND,
+                        getTintBackgroundColor(true, false), this);
+            }
+
+            return Dynamic.getTintColor(getBackgroundColor(true, inverse), this);
         }
 
         return tintBackgroundColor;
@@ -710,7 +592,7 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
 
     @Override
     public @ColorInt int getTintBackgroundColor(boolean resolve) {
-        return getTintBackgroundColor(resolve, false);
+        return getTintBackgroundColor(resolve, true);
     }
 
     @Override
@@ -726,12 +608,118 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
     }
 
     @Override
-    public @ColorInt int getTintSurfaceColor(boolean resolve) {
-        if (resolve && getTintSurfaceColor(false) == Theme.AUTO) {
-            return DynamicColorUtils.getTintColor(getSurfaceColor());
+    public boolean isDarkTheme() {
+        if (DynamicTheme.getInstance().isDynamicColors()) {
+            return getType() == Theme.NIGHT || (getType() != Theme.DAY
+                    && ((getBackgroundColor(false, false) == Theme.AUTO
+                    && DynamicColorUtils.isColorDark(getDynamicColors().getOriginal(
+                    Theme.ColorType.BACKGROUND, getBackgroundColor(true, false))))
+                    || (getBackgroundColor(false, false) != Theme.AUTO
+                    && DynamicColorUtils.isColorDark(getBackgroundColor(true, false)))));
+        }
+
+        return DynamicColorUtils.isColorDark(getBackgroundColor(true, false));
+    }
+
+    @Override
+    public boolean isInverseTheme() {
+        if (DynamicTheme.getInstance().isDynamicColors()
+                && (DynamicTheme.getInstance().isSystemColor()
+                || DynamicTheme.getInstance().isWallpaperColor())) {
+            return false;
+        }
+
+        return isDarkTheme() != getThemeFallback(true).isDarkTheme();
+    }
+
+    @Override
+    public boolean isShowDividers() {
+        return getAccentColorDark() != getPrimaryColor();
+    }
+
+    @Override
+    public @Theme.Elevation int getElevation(boolean resolve) {
+        if (resolve && getElevation(false) == Theme.Elevation.AUTO) {
+            return getThemeFallback(false).getElevation();
+        }
+
+        return elevation;
+    }
+
+    @Override
+    public @Theme.Elevation int getElevation() {
+        return getElevation(true);
+    }
+
+    @Override
+    public boolean isElevation() {
+        return getElevation(true) != Theme.Elevation.DISABLE;
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme setElevation(@Theme.Elevation int elevation) {
+        this.elevation = elevation;
+
+        return this;
+    }
+
+    @Override
+    public @ColorInt int getSurfaceColor(boolean resolve, boolean inverse) {
+        if (resolve && getSurfaceColor(false, false) == Theme.AUTO) {
+            if (inverse && DynamicTheme.getInstance().isDynamicColors()) {
+                return getDynamicColors().getMutated(Theme.ColorType.SURFACE,
+                        getSurfaceColor(true, false), this);
+            }
+
+            return DynamicTheme.getInstance().generateSurfaceColor(getBackgroundColor());
+        }
+
+        return surfaceColor;
+    }
+
+    @Override
+    public @ColorInt int getSurfaceColor(boolean resolve) {
+        return getSurfaceColor(resolve, true);
+    }
+
+    @Override
+    public @ColorInt int getSurfaceColor() {
+        return getSurfaceColor(true);
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme setSurfaceColor(
+            @ColorInt int surfaceColor, boolean generateTint) {
+        this.surfaceColor = surfaceColor;
+        if (generateTint) {
+            setTintSurfaceColor(Dynamic.getTintColor(getSurfaceColor(), this));
+        }
+
+        return this;
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme setSurfaceColor(@ColorInt int surfaceColor) {
+        return setSurfaceColor(surfaceColor, true);
+    }
+
+    @Override
+    public @ColorInt int getTintSurfaceColor(boolean resolve, boolean inverse) {
+        if (resolve && getTintSurfaceColor(false, false) == Theme.AUTO) {
+            if (inverse && DynamicTheme.getInstance().isDynamicColors()) {
+                return getDynamicColors().getMutated(Theme.ColorType.TINT_SURFACE,
+                        getTintSurfaceColor(true, false), this);
+            }
+
+            return Dynamic.getTintColor(getSurfaceColor(), this);
         }
 
         return tintSurfaceColor;
+    }
+
+    @Override
+    public @ColorInt int getTintSurfaceColor(boolean resolve) {
+        return getTintSurfaceColor(resolve, true);
     }
 
     @Override
@@ -747,12 +735,114 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
     }
 
     @Override
-    public @ColorInt int getTintPrimaryColor(boolean resolve) {
-        if (resolve && getTintPrimaryColor(false) == Theme.AUTO) {
-            return DynamicColorUtils.getTintColor(getPrimaryColor());
+    public boolean isBackgroundSurface() {
+        return !isElevation() || DynamicColorUtils.removeAlpha(getBackgroundColor())
+                == DynamicColorUtils.removeAlpha(getSurfaceColor());
+    }
+
+    @Override
+    public @ColorInt int getPrimaryColor(boolean resolve, boolean inverse) {
+        if (resolve && getPrimaryColor(false, false) == Theme.AUTO) {
+            if (getThemeFallback(false).getPrimaryColor(false, false) == Theme.AUTO) {
+                Log.w(getClass().getSimpleName(), "Primary color cannot " +
+                        "be auto for the default theme, trying to use the default color.");
+                return DynamicTheme.getInstance().getDefaultColor(Theme.ColorType.PRIMARY);
+            }
+
+            if (inverse && DynamicTheme.getInstance().isDynamicColors()) {
+                return getDynamicColors().getMutated(Theme.ColorType.PRIMARY,
+                        getPrimaryColor(true, false), this);
+            }
+
+            return getThemeFallback(false).getPrimaryColor();
+        }
+
+        return primaryColor;
+    }
+
+    @Override
+    public @ColorInt int getPrimaryColor(boolean resolve) {
+        return getPrimaryColor(resolve, true);
+    }
+
+    @Override
+    public @ColorInt int getPrimaryColor() {
+        return getPrimaryColor(true);
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme setPrimaryColor(
+            @ColorInt int primaryColor, boolean generateTint) {
+        this.primaryColor = primaryColor;
+        if (generateTint) {
+            setTintPrimaryColor(Dynamic.getTintColor(getPrimaryColor(), this));
+        }
+
+        return this;
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme setPrimaryColor(@ColorInt int primaryColor) {
+        return setPrimaryColor(primaryColor, true);
+    }
+
+    @Override
+    public @ColorInt int getPrimaryColorDark(boolean resolve, boolean inverse) {
+        if (resolve && getPrimaryColorDark(false, false) == Theme.AUTO) {
+            if (inverse && DynamicTheme.getInstance().isDynamicColors()) {
+                return getDynamicColors().getMutated(Theme.ColorType.PRIMARY_DARK,
+                        getPrimaryColorDark(true, false), this);
+            }
+
+            return DynamicTheme.getInstance().generateSystemColor(getPrimaryColor());
+        }
+
+        return primaryColorDark;
+    }
+
+    @Override
+    public @ColorInt int getPrimaryColorDark(boolean resolve) {
+        return getPrimaryColorDark(resolve, true);
+    }
+
+    @Override
+    public @ColorInt int getPrimaryColorDark() {
+        return getPrimaryColorDark(true);
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme setPrimaryColorDark(
+            @ColorInt int primaryColorDark, boolean generateTint) {
+        this.primaryColorDark = primaryColorDark;
+        if (generateTint) {
+            setTintPrimaryColorDark(Dynamic.getTintColor(getPrimaryColorDark(), this));
+        }
+
+        return this;
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme setPrimaryColorDark(@ColorInt int primaryColorDark) {
+        return setPrimaryColorDark(primaryColorDark, true);
+    }
+
+    @Override
+    public @ColorInt int getTintPrimaryColor(boolean resolve, boolean inverse) {
+        if (resolve && getTintPrimaryColor(false, false) == Theme.AUTO) {
+            if (inverse && DynamicTheme.getInstance().isDynamicColors()) {
+                return getDynamicColors().getMutated(Theme.ColorType.TINT_PRIMARY,
+                        getTintPrimaryColor(true, false), this);
+            }
+
+            return Dynamic.getTintColor(getPrimaryColor(), this);
         }
 
         return tintPrimaryColor;
+    }
+
+    @Override
+    public @ColorInt int getTintPrimaryColor(boolean resolve) {
+        return getTintPrimaryColor(resolve, true);
     }
 
     @Override
@@ -768,12 +858,22 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
     }
 
     @Override
-    public @ColorInt int getTintPrimaryColorDark(boolean resolve) {
-        if (resolve && getTintPrimaryColorDark(false) == Theme.AUTO) {
-            return DynamicColorUtils.getTintColor(getPrimaryColorDark());
+    public @ColorInt int getTintPrimaryColorDark(boolean resolve, boolean inverse) {
+        if (resolve && getTintPrimaryColorDark(false, false) == Theme.AUTO) {
+            if (inverse && DynamicTheme.getInstance().isDynamicColors()) {
+                return getDynamicColors().getMutated(Theme.ColorType.TINT_PRIMARY_DARK,
+                        getTintPrimaryColorDark(true, false), this);
+            }
+
+            return Dynamic.getTintColor(getPrimaryColorDark(), this);
         }
 
         return tintPrimaryColorDark;
+    }
+
+    @Override
+    public @ColorInt int getTintPrimaryColorDark(boolean resolve) {
+        return getTintPrimaryColorDark(resolve, true);
     }
 
     @Override
@@ -789,12 +889,108 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
     }
 
     @Override
-    public @ColorInt int getTintAccentColor(boolean resolve) {
-        if (resolve && getTintAccentColor(false) == Theme.AUTO) {
-            return DynamicColorUtils.getTintColor(getAccentColor());
+    public @ColorInt int getAccentColor(boolean resolve, boolean inverse) {
+        if (resolve && getAccentColor(false, false) == Theme.AUTO) {
+            if (getThemeFallback(false).getAccentColor(false, false) == Theme.AUTO) {
+                Log.w(getClass().getSimpleName(), "Accent color cannot " +
+                        "be auto for the default theme, trying to use the default color.");
+                return DynamicTheme.getInstance().getDefaultColor(Theme.ColorType.ACCENT);
+            }
+
+            if (inverse && DynamicTheme.getInstance().isDynamicColors()) {
+                return getDynamicColors().getMutated(Theme.ColorType.ACCENT,
+                        getAccentColor(true, false), this);
+            }
+
+            return getThemeFallback(false).getAccentColor();
+        }
+
+        return accentColor;
+    }
+
+    @Override
+    public @ColorInt int getAccentColor(boolean resolve) {
+        return getAccentColor(resolve, true);
+    }
+
+    @Override
+    public @ColorInt int getAccentColor() {
+        return getAccentColor(true);
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme setAccentColor(
+            @ColorInt int accentColor, boolean generateTint) {
+        this.accentColor = accentColor;
+        if (generateTint) {
+            setTintAccentColor(Dynamic.getTintColor(getAccentColor(), this));
+        }
+
+        return this;
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme setAccentColor(@ColorInt int accentColor) {
+        return setAccentColor(accentColor, true);
+    }
+
+    @Override
+    public @ColorInt int getAccentColorDark(boolean resolve, boolean inverse) {
+        if (resolve && getAccentColorDark(false, false) == Theme.AUTO) {
+            if (inverse && DynamicTheme.getInstance().isDynamicColors()) {
+                return getDynamicColors().getMutated(Theme.ColorType.ACCENT_DARK,
+                        getAccentColorDark(true, false), this);
+            }
+
+            return DynamicTheme.getInstance().generateSystemSecondaryColor(getBackgroundColor());
+        }
+
+        return accentColorDark;
+    }
+
+    @Override
+    public @ColorInt int getAccentColorDark(boolean resolve) {
+        return getAccentColorDark(resolve, true);
+    }
+
+    @Override
+    public @ColorInt int getAccentColorDark() {
+        return getAccentColorDark(true);
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme setAccentColorDark(
+            @ColorInt int accentColorDark, boolean generateTint) {
+        this.accentColorDark = accentColorDark;
+        if (generateTint) {
+            setTintAccentColorDark(Dynamic.getTintColor(getAccentColorDark(), this));
+        }
+
+        return this;
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme setAccentColorDark(@ColorInt int accentColorDark) {
+        return setAccentColorDark(accentColorDark, true);
+    }
+
+    @Override
+    public @ColorInt int getTintAccentColor(boolean resolve, boolean inverse) {
+        if (resolve && getTintAccentColor(false, false) == Theme.AUTO) {
+            if (inverse && DynamicTheme.getInstance().isDynamicColors()) {
+                return getDynamicColors().getMutated(Theme.ColorType.TINT_ACCENT,
+                        getTintAccentColor(true, false), this);
+            }
+
+            return Dynamic.getTintColor(getAccentColor(), this);
         }
 
         return tintAccentColor;
+    }
+
+    @Override
+    public @ColorInt int getTintAccentColor(boolean resolve) {
+        return getTintAccentColor(resolve, true);
     }
 
     @Override
@@ -810,12 +1006,22 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
     }
 
     @Override
-    public @ColorInt int getTintAccentColorDark(boolean resolve) {
-        if (resolve && getTintAccentColorDark(false) == Theme.AUTO) {
-            return DynamicColorUtils.getTintColor(getAccentColorDark());
+    public @ColorInt int getTintAccentColorDark(boolean resolve, boolean inverse) {
+        if (resolve && getTintAccentColorDark(false, false) == Theme.AUTO) {
+            if (inverse && DynamicTheme.getInstance().isDynamicColors()) {
+                return getDynamicColors().getMutated(Theme.ColorType.TINT_ACCENT_DARK,
+                        getTintAccentColorDark(true, false), this);
+            }
+
+            return Dynamic.getTintColor(getAccentColorDark(), this);
         }
 
         return tintAccentColorDark;
+    }
+
+    @Override
+    public @ColorInt int getTintAccentColorDark(boolean resolve) {
+        return getTintAccentColorDark(resolve, true);
     }
 
     @Override
@@ -831,12 +1037,62 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
     }
 
     @Override
-    public @ColorInt int getTintErrorColor(boolean resolve) {
-        if (resolve && getTintErrorColor(false) == Theme.AUTO) {
-            return DynamicColorUtils.getTintColor(getErrorColor());
+    public int getErrorColor(boolean resolve, boolean inverse) {
+        if (resolve && getErrorColor(false, false) == Theme.AUTO) {
+            if (inverse && DynamicTheme.getInstance().isDynamicColors()) {
+                return getDynamicColors().getMutated(Theme.ColorType.ERROR,
+                        getErrorColor(true, false), this);
+            }
+
+            return DynamicTheme.getInstance().generateErrorColor(
+                    getPrimaryColor(), getAccentColor());
+        }
+
+        return errorColor;
+    }
+
+    @Override
+    public @ColorInt int getErrorColor(boolean resolve) {
+        return getErrorColor(resolve, true);
+    }
+
+    @Override
+    public int getErrorColor() {
+        return getErrorColor(true);
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme setErrorColor(int errorColor, boolean generateTint) {
+        this.errorColor = errorColor;
+        if (generateTint) {
+            setTintErrorColor(Dynamic.getTintColor(getErrorColor(), this));
+        }
+
+        return this;
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme setErrorColor(int errorColor) {
+        return setErrorColor(errorColor, true);
+    }
+
+    @Override
+    public @ColorInt int getTintErrorColor(boolean resolve, boolean inverse) {
+        if (resolve && getTintErrorColor(false, false) == Theme.AUTO) {
+            if (inverse && DynamicTheme.getInstance().isDynamicColors()) {
+                return getDynamicColors().getMutated(Theme.ColorType.TINT_ERROR,
+                        getTintErrorColor(true, false), this);
+            }
+
+            return Dynamic.getTintColor(getErrorColor(), this);
         }
 
         return tintErrorColor;
+    }
+
+    @Override
+    public @ColorInt int getTintErrorColor(boolean resolve) {
+        return getTintErrorColor(resolve, true);
     }
 
     @Override
@@ -890,7 +1146,7 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
             @ColorInt int textPrimaryColor, boolean generateInverse) {
         this.textPrimaryColor = textPrimaryColor;
         if (generateInverse) {
-            setTextPrimaryColorInverse(DynamicColorUtils.getTintColor(getTextPrimaryColor()));
+            setTextPrimaryColorInverse(Dynamic.getTintColor(getTextPrimaryColor(), this));
         }
 
         return this;
@@ -940,7 +1196,7 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
             @ColorInt int textSecondaryColor, boolean generateInverse) {
         this.textSecondaryColor = textSecondaryColor;
         if (generateInverse) {
-            setTextSecondaryColorInverse(DynamicColorUtils.getTintColor(getTextSecondaryColor()));
+            setTextSecondaryColorInverse(Dynamic.getTintColor(getTextSecondaryColor(), this));
         }
 
         return this;
@@ -1036,8 +1292,50 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
     }
 
     @Override
+    public @ColorInt int getHighlightColor(@ColorInt int contrastWithColor) {
+        if (isBackgroundAware() && contrastWithColor != Theme.Color.UNKNOWN) {
+            return Dynamic.withContrastRatio(getPrimaryColor(),
+                    contrastWithColor, this);
+        }
+
+        return getPrimaryColor();
+    }
+
+    @Override
+    public @ColorInt int getHighlightColor() {
+        return getHighlightColor(getBackgroundColor());
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme autoGenerateColors(boolean tint, boolean inverse) {
+        if (tint) {
+            setTintBackgroundColor(Dynamic.getTintColor(getBackgroundColor(), this));
+            setTintSurfaceColor(Dynamic.getTintColor(getSurfaceColor(), this));
+            setTintPrimaryColor(Dynamic.getTintColor(getPrimaryColor(), this));
+            setTintPrimaryColorDark(Dynamic.getTintColor(getAccentColorDark(), this));
+            setTintAccentColor(Dynamic.getTintColor(getAccentColor(), this));
+            setTintAccentColorDark(Dynamic.getTintColor(getAccentColorDark(), this));
+            setTintErrorColor(Dynamic.getTintColor(getErrorColor(), this));
+        }
+
+        if (inverse) {
+            setTextPrimaryColorInverse(Dynamic.getTintColor(
+                    getTextPrimaryColor(true, false), this));
+            setTextSecondaryColorInverse(Dynamic.getTintColor(
+                    getTextSecondaryColor(true, false), this));
+        }
+
+        return this;
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme autoGenerateColors() {
+        return autoGenerateColors(true, true);
+    }
+
+    @Override
     public int getFontScale(boolean resolve) {
-        if (resolve && getFontScale(false) == Theme.AUTO) {
+        if (resolve && getFontScale(false) == Theme.Font.AUTO) {
             return getThemeFallback(false).getFontScale();
         }
 
@@ -1053,8 +1351,9 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
     public float getFontScaleRelative() {
         // Rounding off to one decimal place to avoid inconsistency on configuration changes,
         // especially on multi-window mode.
-        return Math.round(((getFontScale() / 100f)
-                * Resources.getSystem().getConfiguration().fontScale) * 10f) / 10.0f;
+        return Math.round(((getFontScale() / (float) Theme.Font.DEFAULT)
+                * Resources.getSystem().getConfiguration().fontScale)
+                * Theme.Font.FACTOR) / Theme.Font.FACTOR;
     }
 
     @Override
@@ -1071,7 +1370,7 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
 
     @Override
     public int getCornerRadius(boolean resolve) {
-        if (resolve && getCornerRadius(false) == Theme.AUTO) {
+        if (resolve && getCornerRadius(false) == Theme.Corner.AUTO) {
             return getThemeFallback(false).getCornerRadius();
         }
 
@@ -1084,20 +1383,6 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
     }
 
     @Override
-    public int getCornerSizeDp(boolean resolve) {
-        if (!resolve && getCornerRadius(false) == Theme.AUTO) {
-            return Theme.AUTO;
-        }
-
-        return DynamicUnitUtils.convertPixelsToDp(getCornerRadius());
-    }
-
-    @Override
-    public int getCornerSizeDp() {
-        return getCornerSizeDp(true);
-    }
-
-    @Override
     public @NonNull DynamicAppTheme setCornerRadius(int cornerRadius) {
         this.cornerRadius = cornerRadius;
 
@@ -1105,8 +1390,22 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
     }
 
     @Override
-    public @NonNull DynamicAppTheme setCornerRadiusDp(float cornerSize) {
-        return setCornerRadius(cornerSize == Theme.AUTO ? (int) cornerSize
+    public int getCornerSize(boolean resolve) {
+        if (!resolve && getCornerRadius(false) == Theme.Corner.AUTO) {
+            return Theme.Corner.AUTO;
+        }
+
+        return DynamicUnitUtils.convertPixelsToDp(getCornerRadius());
+    }
+
+    @Override
+    public int getCornerSize() {
+        return getCornerSize(true);
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme setCornerSize(float cornerSize) {
+        return setCornerRadius(cornerSize == Theme.Corner.AUTO ? (int) cornerSize
                 : DynamicUnitUtils.convertDpToPixels(cornerSize));
     }
 
@@ -1138,6 +1437,68 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
     }
 
     @Override
+    public int getContrast(boolean resolve) {
+        if (resolve && getContrast(false) == Theme.Contrast.AUTO) {
+            return getThemeFallback(false).getContrast();
+        }
+
+        return Math.min(Theme.Contrast.MAX, contrast);
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme setContrast(int contrast) {
+        this.contrast = contrast;
+
+        return this;
+    }
+
+    @Override
+    public @ColorInt int getStrokeColor() {
+        return getTintBackgroundColor();
+    }
+
+    @Override
+    public int getOpacity(boolean resolve) {
+        if (resolve && getOpacity(false) == Theme.Opacity.AUTO) {
+            return getThemeFallback(false).getOpacity();
+        }
+
+        return Math.min(Theme.Opacity.MAX, opacity);
+    }
+
+    @Override
+    public int getOpacity() {
+        return getOpacity(true);
+    }
+
+    @Override
+    public @NonNull DynamicAppTheme setOpacity(int opacity) {
+        this.opacity = opacity;
+
+        return this;
+    }
+
+    @Override
+    public float getAlpha() {
+        return getOpacity() / (float) Theme.Opacity.MAX;
+    }
+
+    @Override
+    public boolean isTranslucent() {
+        return getOpacity() < Theme.Opacity.MAX;
+    }
+
+    @Override
     public @Theme.Style int getStyle() {
         return style;
     }
@@ -1150,105 +1511,66 @@ public class DynamicAppTheme implements AppTheme<DynamicAppTheme>, Parcelable {
     }
 
     @Override
-    public @ColorInt int getHighlightColor(@ColorInt int contrastWithColor) {
-        if (isBackgroundAware() && contrastWithColor != Theme.Color.UNKNOWN) {
-            return DynamicColorUtils.getContrastColor(getPrimaryColor(), contrastWithColor);
-        }
-
-        return getPrimaryColor();
+    public int getType(boolean resolve) {
+        return type;
     }
 
     @Override
-    public @ColorInt int getHighlightColor() {
-        return getHighlightColor(getBackgroundColor());
+    public @Theme int getType() {
+        return getType(true);
     }
 
     @Override
-    public boolean isDarkTheme() {
-        return DynamicColorUtils.isColorDark(getBackgroundColor());
-    }
-
-    @Override
-    public boolean isInverseTheme() {
-        return (isDarkTheme() && !getThemeFallback(true).isDarkTheme())
-                || (!isDarkTheme() && getThemeFallback(true).isDarkTheme());
-    }
-
-    @Override
-    public boolean isBackgroundSurface() {
-        return DynamicColorUtils.removeAlpha(getBackgroundColor())
-                == DynamicColorUtils.removeAlpha(getSurfaceColor());
-    }
-
-    @Override
-    public boolean isShowDividers() {
-        return getAccentColorDark() != getPrimaryColor();
-    }
-
-    @Override
-    public @NonNull DynamicAppTheme autoGenerateColors(boolean tint, boolean inverse) {
-        if (tint) {
-            setTintBackgroundColor(DynamicColorUtils.getTintColor(getBackgroundColor()));
-            setTintSurfaceColor(DynamicColorUtils.getTintColor(getSurfaceColor()));
-            setTintPrimaryColor(DynamicColorUtils.getTintColor(getPrimaryColor()));
-            setTintPrimaryColorDark(DynamicColorUtils.getTintColor(getAccentColorDark()));
-            setTintAccentColor(DynamicColorUtils.getTintColor(getAccentColor()));
-            setTintAccentColorDark(DynamicColorUtils.getTintColor(getAccentColorDark()));
-            setTintErrorColor(DynamicColorUtils.getTintColor(getErrorColor()));
-        }
-
-        if (inverse) {
-            setTextPrimaryColorInverse(DynamicColorUtils.getTintColor(
-                    getTextPrimaryColor(true, false)));
-            setTextSecondaryColorInverse(DynamicColorUtils.getTintColor(
-                    getTextSecondaryColor(true, false)));
-        }
+    public @NonNull DynamicAppTheme setType(@Theme int type) {
+        this.type = type;
 
         return this;
     }
 
     @Override
-    public @NonNull DynamicAppTheme autoGenerateColors() {
-        return autoGenerateColors(true, true);
+    public @NonNull DynamicColors getDynamicColors() {
+        return DynamicTheme.getInstance().getColors();
     }
 
     @Override
-    public @NonNull String toJsonString() {
-        return new Gson().toJson(new DynamicAppTheme(this));
+    public @NonNull String toJsonString(boolean resolve, boolean inverse) {
+        return new GsonBuilder().registerTypeAdapter(DynamicAppTheme.class,
+                new DynamicThemeTypeAdapter<>(new DynamicAppTheme(), resolve, inverse))
+                .create().toJson(new DynamicAppTheme(this));
     }
 
     @Override
     public @NonNull String toDynamicString() {
-        return new GsonBuilder().setExclusionStrategies(new ExcludeStrategy())
-                .registerTypeAdapter(DynamicAppTheme.class, new DynamicThemeTypeAdapter<>())
+        return new GsonBuilder().setExclusionStrategies(new ExcludeStrategy()).registerTypeAdapter(
+                DynamicAppTheme.class, new DynamicThemeTypeAdapter<>(new DynamicAppTheme()))
                 .setPrettyPrinting().create().toJson(new DynamicAppTheme(this));
     }
 
     @Override
     public @NonNull String toString() {
         return getClass().getSimpleName()
-                + "{" + getThemeRes()
-                + getBackgroundColor(false)
-                + getSurfaceColor(false)
-                + getPrimaryColor(false)
-                + getPrimaryColorDark(false)
-                + getAccentColor(false)
-                + getAccentColorDark(false)
-                + getErrorColor(false)
-                + getTintBackgroundColor(false)
-                + getTintSurfaceColor(false)
-                + getTintPrimaryColor(false)
-                + getTintPrimaryColorDark(false)
-                + getTintAccentColor(false)
-                + getTintAccentColorDark(false)
-                + getTintErrorColor(false)
+                + "{" + isHost() + getThemeRes()
+                + getBackgroundColor(false, false)
+                + getSurfaceColor(false, false)
+                + getPrimaryColor(false, false)
+                + getPrimaryColorDark(false, false)
+                + getAccentColor(false, false)
+                + getAccentColorDark(false, false)
+                + getErrorColor(false, false)
+                + getTintBackgroundColor(false, false)
+                + getTintSurfaceColor(false, false)
+                + getTintPrimaryColor(false, false)
+                + getTintPrimaryColorDark(false, false)
+                + getTintAccentColor(false, false)
+                + getTintAccentColorDark(false, false)
+                + getTintErrorColor(false, false)
                 + getTextPrimaryColor(false, false)
                 + getTextSecondaryColor(false, false)
                 + getTextPrimaryColorInverse(false, false)
                 + getTextSecondaryColorInverse(false, false)
-                + getFontScale(false)
-                + getCornerRadius(false)
-                + getBackgroundAware(false)
-                + getStyle() + '}';
+                + getFontScale(false) + getCornerRadius(false)
+                + getBackgroundAware(false) + getContrast(false)
+                + getOpacity(false) + getElevation(false)
+                + getStyle() + getType() + '}';
     }
 }

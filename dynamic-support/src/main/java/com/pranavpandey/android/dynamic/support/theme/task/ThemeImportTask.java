@@ -22,9 +22,11 @@ import android.net.Uri;
 
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.listener.ThemeListener;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
 import com.pranavpandey.android.dynamic.util.concurrent.DynamicResult;
 import com.pranavpandey.android.dynamic.util.concurrent.DynamicTask;
 import com.pranavpandey.android.dynamic.util.concurrent.task.ContextTask;
@@ -74,8 +76,16 @@ public abstract class ThemeImportTask<T> extends ContextTask<Void, Void, String>
             return DynamicThemeUtils.getThemeData(getContext(),
                     (Intent) getThemeListener().getThemeSource());
         } else if (getThemeListener().getThemeSource() instanceof Uri) {
-            return DynamicThemeUtils.getThemeData(getContext(),
-                    (Uri) getThemeListener().getThemeSource());
+            String data;
+            if ((data = DynamicThemeUtils.getThemeData(getContext(),
+                    (Uri) getThemeListener().getThemeSource())) != null) {
+                return data;
+            } else {
+                return DynamicThemeUtils.getThemeUrl(DynamicThemeUtils.mapTheme(
+                        new DynamicAppTheme(), DynamicThemeUtils.getBitmapColors(
+                                DynamicBitmapUtils.getBitmap(getContext(),
+                                        (Uri) getThemeListener().getThemeSource()))));
+            }
         }
 
         return null;

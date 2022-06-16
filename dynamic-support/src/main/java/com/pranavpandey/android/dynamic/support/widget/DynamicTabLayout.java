@@ -19,7 +19,6 @@ package com.pranavpandey.android.dynamic.support.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
@@ -34,6 +33,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.util.DynamicMenuUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicShapeUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicBackgroundWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTextWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -42,15 +42,8 @@ import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 /**
  * A {@link TabLayout} to apply {@link DynamicTheme} according to the supplied parameters.
  */
-public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidget,
-        DynamicTextWidget {
-
-    /**
-     * Color type applied to this view.
-     *
-     * @see Theme.ColorType
-     */
-    protected @Theme.ColorType int mColorType;
+public class DynamicTabLayout extends TabLayout implements
+        DynamicBackgroundWidget, DynamicTextWidget {
 
     /**
      * Color type applied to the background of this view.
@@ -58,6 +51,13 @@ public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidg
      * @see Theme.ColorType
      */
     protected @Theme.ColorType int mBackgroundColorType;
+
+    /**
+     * Color type applied to this view.
+     *
+     * @see Theme.ColorType
+     */
+    protected @Theme.ColorType int mColorType;
 
     /**
      * Text color type applied to this view.
@@ -73,6 +73,11 @@ public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidg
     protected @Theme.ColorType int mContrastWithColorType;
 
     /**
+     * Background color applied to this view.
+     */
+    protected @ColorInt int mBackgroundColor;
+
+    /**
      * Color applied to this view.
      */
     protected @ColorInt int mColor;
@@ -81,11 +86,6 @@ public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidg
      * Color applied to this view after considering the background aware properties.
      */
     protected @ColorInt int mAppliedColor;
-
-    /**
-     * Background color applied to this view.
-     */
-    protected @ColorInt int mBackgroundColor;
 
     /**
      * Text color applied to this view.
@@ -117,6 +117,11 @@ public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidg
      */
     protected @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
+
     public DynamicTabLayout(@NonNull Context context) {
         this(context, null);
     }
@@ -142,7 +147,7 @@ public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidg
         try {
             mBackgroundColorType = a.getInt(
                     R.styleable.DynamicTabLayout_adt_backgroundColorType,
-                    Theme.ColorType.PRIMARY);
+                    Theme.ColorType.NONE);
             mColorType = a.getInt(
                     R.styleable.DynamicTabLayout_adt_colorType,
                     Theme.ColorType.ACCENT);
@@ -167,6 +172,16 @@ public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidg
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicTabLayout_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicTabLayout_adt_contrast,
+                    Theme.Contrast.AUTO);
+
+
+            if (a.getBoolean(R.styleable.DynamicTabLayout_adt_dynamicCornerSize,
+                    Defaults.ADS_DYNAMIC_CORNER_SIZE)) {
+                setSelectedTabIndicator(DynamicShapeUtils.getTabIndicatorRes(
+                        DynamicTheme.getInstance().get().getCornerSize()));
+            }
         } finally {
             a.recycle();
         }
@@ -199,8 +214,6 @@ public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidg
         }
 
         setBackgroundColor(mBackgroundColor);
-        setColor();
-        setTextColor();
     }
 
     @Override
@@ -271,8 +284,7 @@ public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidg
         this.mColorType = Theme.ColorType.CUSTOM;
         this.mColor = color;
 
-        setColor();
-        setTextColor();
+        setTextWidgetColor(true);
     }
 
     @Override
@@ -287,11 +299,10 @@ public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidg
 
     @Override
     public void setTextColor(@ColorInt int textColor) {
-        this.mTextColorType  = Theme.ColorType.CUSTOM;
+        this.mTextColorType = Theme.ColorType.CUSTOM;
         this.mTextColor = textColor;
 
-        setColor();
-        setTextColor();
+        setTextWidgetColor(true);
     }
 
     @Override
@@ -304,8 +315,7 @@ public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidg
         this.mContrastWithColorType = Theme.ColorType.CUSTOM;
         this.mContrastWithColor = contrastWithColor;
 
-        setColor();
-        setTextColor();
+        setBackgroundColor(getBackgroundColor());
     }
 
     @Override
@@ -322,7 +332,33 @@ public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidg
     public void setBackgroundAware(@Theme.BackgroundAware int backgroundAware) {
         this.mBackgroundAware = backgroundAware;
 
-        setColor();
+        setBackgroundColor(getBackgroundColor());
+    }
+
+    @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
     }
 
     @Override
@@ -336,18 +372,16 @@ public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidg
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
-        setColor();
-        setTextColor();
+        setBackgroundColor(getBackgroundColor());
     }
 
     @Override
-    public void setBackgroundColor(@ColorInt int backgroundColor) {
-        super.setBackgroundColor(backgroundColor);
-
+    public void setBackgroundColor(@ColorInt int color) {
+        this.mBackgroundColor = color;
         this.mBackgroundColorType = Theme.ColorType.CUSTOM;
+        super.setBackgroundColor(Dynamic.withThemeOpacity(mBackgroundColor));
 
-        setColor();
-        setTextColor();
+        setTextWidgetColor(true);
     }
 
     @Override
@@ -355,19 +389,9 @@ public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidg
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
             }
 
-            Drawable indicator = DynamicResourceUtils.getDrawable(getContext(),
-                    DynamicTheme.getInstance().get().getCornerSizeDp()
-                            >= Defaults.ADS_CORNER_MIN_TABS
-                            ? R.drawable.ads_tabs_indicator_corner
-                            : R.drawable.ads_tabs_indicator);
-            if (indicator != null) {
-                indicator.setBounds(getTabSelectedIndicator().getBounds());
-            }
-
-            setSelectedTabIndicator(indicator);
             setSelectedTabIndicatorColor(mAppliedColor);
         }
     }
@@ -377,8 +401,8 @@ public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidg
         if (mTextColor != Theme.Color.UNKNOWN) {
             mAppliedTextColor = mTextColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedTextColor = DynamicColorUtils.getContrastColor(
-                        mTextColor, mContrastWithColor);
+                mAppliedTextColor = Dynamic.withContrastRatio(
+                        mTextColor, mContrastWithColor, this);
             }
 
             setTabTextColors(DynamicColorUtils.adjustAlpha(mAppliedTextColor,
@@ -388,6 +412,15 @@ public class DynamicTabLayout extends TabLayout implements DynamicBackgroundWidg
                             mAppliedTextColor, Defaults.ADS_ALPHA_PRESSED), false));
             DynamicMenuUtils.setViewItemsTint(this,
                     mAppliedTextColor, mContrastWithColor, false);
+        }
+    }
+
+    @Override
+    public void setTextWidgetColor(boolean setTextColor) {
+        setColor();
+
+        if (setTextColor) {
+            setTextColor();
         }
     }
 }

@@ -53,10 +53,17 @@
                 android:orderInCategory="4" />
 
             <item
+                android:id="@+id/ads_menu_theme_capture"
+                android:title="@string/ads_theme_code_capture"
+                android:icon="@drawable/ads_ic_capture"
+                android:orderInCategory="5"
+                android:visible="false" />
+
+            <item
                 android:id="@+id/ads_menu_theme_file"
                 android:title="@string/ads_file"
                 android:icon="@drawable/ads_ic_file"
-                android:orderInCategory="5">
+                android:orderInCategory="6">
 
                 <menu>
 
@@ -81,7 +88,7 @@
                     <item
                         android:id="@+id/ads_menu_theme_file_import"
                         android:title="@string/ads_backup_import"
-                        android:icon="@drawable/ads_ic_download"
+                        android:icon="@drawable/ads_ic_import"
                         android:orderInCategory="4" />
 
                 </menu>

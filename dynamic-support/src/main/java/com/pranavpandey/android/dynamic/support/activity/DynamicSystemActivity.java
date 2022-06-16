@@ -20,6 +20,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.app.SharedElementCallback;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,6 +33,7 @@ import android.os.Bundle;
 import android.transition.Fade;
 import android.transition.Transition;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -48,6 +50,7 @@ import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.app.DynamicLocaleDelegate;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.OnApplyWindowInsetsListener;
@@ -60,20 +63,21 @@ import androidx.preference.PreferenceManager;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.pranavpandey.android.dynamic.locale.DynamicLocale;
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicTransitionListener;
-import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
-import com.pranavpandey.android.dynamic.support.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog;
 import com.pranavpandey.android.dynamic.support.theme.inflater.DynamicLayoutInflater;
 import com.pranavpandey.android.dynamic.support.theme.listener.ThemeListener;
+import com.pranavpandey.android.dynamic.support.util.DynamicMenuUtils;
 import com.pranavpandey.android.dynamic.theme.AppTheme;
+import com.pranavpandey.android.dynamic.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
 import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
 import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.util.DynamicPackageUtils;
@@ -92,7 +96,7 @@ import java.util.Map;
  * navigation bar colors, theme, etc. It heavily depends on the {@link DynamicTheme} that can be
  * customised by implementing the corresponding methods.
  *
- * <p>Extend this activity and implement the various methods according to the need.
+ * <p>Extend this activity and implement the various methods according to the requirements.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public abstract class DynamicSystemActivity extends AppCompatActivity
@@ -182,7 +186,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     /**
      * Dynamic app theme received from the intent.
      */
-    private DynamicAppTheme mDynamicIntentTheme;
+    private AppTheme<?> mDynamicIntentTheme;
 
     /**
      * Background color used by the activity window.
@@ -273,6 +277,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        onRegisterOnBackInvokedDispatcher();
         updateThemeFromIntent(getIntent());
         setDynamicTheme();
         onSetSharedElementTransition();
@@ -280,19 +285,17 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
 
         mSavedInstanceState = savedInstanceState;
 
-        mBackgroundColor = DynamicTheme.getInstance().get().getBackgroundColor();
+        mBackgroundColor = getBackgroundColor();
         mStatusBarColor = DynamicTheme.getInstance().get().getPrimaryColorDark();
         mNavigationBarColor = DynamicTheme.getInstance().get().getPrimaryColorDark();
 
-        if (savedInstanceState != null) {
-            mBackgroundColor = savedInstanceState.getInt(
+        if (getSavedInstanceState() != null) {
+            mBackgroundColor = getSavedInstanceState().getInt(
                     ADS_STATE_BACKGROUND_COLOR, mBackgroundColor);
-            mPaused = savedInstanceState.getBoolean(ADS_STATE_PAUSED);
+            mPaused = getSavedInstanceState().getBoolean(ADS_STATE_PAUSED);
         }
 
-        updateTaskDescription(DynamicTheme.getInstance().get().getPrimaryColor());
         setNavigationBarColor(mNavigationBarColor);
-
         onManageSharedElementTransition();
     }
 
@@ -301,6 +304,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
         super.onPostCreate(savedInstanceState);
 
         onNewIntent(getIntent(), mSavedInstanceState == null);
+        updateTaskDescription(DynamicTheme.getInstance().get().getPrimaryColor());
     }
 
     @Override
@@ -309,6 +313,12 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
 
         onNewIntent(intent, true);
     }
+
+    /**
+     * This method will be called to register on back invoked dispatcher on API 33 and above.
+     */
+    @TargetApi(Build.VERSION_CODES.TIRAMISU)
+    protected void onRegisterOnBackInvokedDispatcher() { }
 
     /**
      * Setup content according to the intent.
@@ -356,8 +366,26 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
             return;
         }
 
-        mDynamicIntentTheme = DynamicTheme.getInstance().getTheme(getIntent()
-                .getStringExtra(DynamicIntent.EXTRA_THEME));
+        switch (getIntent().getIntExtra(DynamicIntent.EXTRA_THEME_TYPE, Theme.APP)) {
+            case Theme.REMOTE:
+                mDynamicIntentTheme = DynamicTheme.getInstance().getRemoteTheme(
+                        getIntent().getStringExtra(DynamicIntent.EXTRA_THEME));
+                break;
+            case Theme.WIDGET:
+                mDynamicIntentTheme = DynamicTheme.getInstance().getWidgetTheme(
+                        getIntent().getStringExtra(DynamicIntent.EXTRA_THEME));
+                break;
+            default:
+                mDynamicIntentTheme = DynamicTheme.getInstance().getTheme(
+                        getIntent().getStringExtra(DynamicIntent.EXTRA_THEME));
+                break;
+        }
+
+        if (mDynamicIntentTheme != null) {
+            Dynamic.setThemeType(mDynamicIntentTheme, DynamicTheme.getInstance().get().getType());
+        } else {
+            mDynamicIntentTheme = DynamicTheme.getInstance().get();
+        }
     }
 
     /**
@@ -534,21 +562,18 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
                                 public void onTransitionEnd(Transition transition) {
                                     transition.removeListener(this);
                                     resetSharedElementTransition();
-                                    setWindowBackground(Color.TRANSPARENT);
                                 }
 
                                 @Override
                                 public void onTransitionCancel(Transition transition) {
                                     transition.removeListener(this);
                                     resetSharedElementTransition();
-                                    setWindowBackground(Color.TRANSPARENT);
                                 }
 
                                 @Override
                                 public void onTransitionPause(Transition transition) {
                                     transition.removeListener(this);
                                     resetSharedElementTransition();
-                                    setWindowBackground(Color.TRANSPARENT);
                                 }
 
                                 @Override
@@ -567,8 +592,8 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
             }
         }
 
-        getWindow().setAllowEnterTransitionOverlap(false);
-        getWindow().setAllowReturnTransitionOverlap(false);
+        getWindow().setAllowEnterTransitionOverlap(true);
+        getWindow().setAllowReturnTransitionOverlap(true);
 
         final View transitionView = getPostponeTransitionView();
         if (transitionView != null) {
@@ -667,7 +692,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      * Resets the shared element transition.
      */
     protected void resetSharedElementTransition() {
-        mBackgroundColor = DynamicTheme.getInstance().get().getBackgroundColor();
+        mBackgroundColor = getBackgroundColor();
         mSharedElementMap = null;
         mDynamicTransitionListener = null;
         mFinishAfterTransition = false;
@@ -734,9 +759,9 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
             return getDynamicTheme().getFontScaleRelative();
         } else if (DynamicTheme.getInstance().getListener() instanceof DynamicLocale) {
             return ((DynamicLocale) DynamicTheme.getInstance().getListener()).getFontScale();
+        } else {
+            return DynamicTheme.getInstance().get(false).getFontScaleRelative();
         }
-
-        return DynamicTheme.getInstance().get(false).getFontScaleRelative();
     }
 
     /**
@@ -744,7 +769,21 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      * the theme.
      * <p>Override this method to customise the theme further.
      */
-    protected void onCustomiseTheme() { }
+    @TargetApi(Build.VERSION_CODES.R)
+    protected void onCustomiseTheme() {
+        DynamicWindowUtils.setShowWallpaper(getWindow(),
+                DynamicTheme.getInstance().get().isTranslucent());
+
+        if (DynamicSdkUtils.is30()) {
+            setTranslucent(DynamicTheme.getInstance().get().isTranslucent());
+        }
+    }
+
+    /**
+     * This method will be called to adjust elevation of the components like app bar,
+     * bottom app bar, etc.
+     */
+    protected void onAdjustElevation() { }
 
     /**
      * Returns a layout inflater factory for this activity.
@@ -764,7 +803,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      *
      * @return The parent content view used by this activity.
      */
-    public abstract  @NonNull View getContentView();
+    public abstract @Nullable View getContentView();
 
     /**
      * Get the current locale used by this activity.
@@ -789,7 +828,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      *
      * @return The dynamic app theme received from the intent.
      */
-    public @Nullable DynamicAppTheme getDynamicIntentTheme() {
+    public @Nullable AppTheme<?> getDynamicIntentTheme() {
         return mDynamicIntentTheme;
     }
 
@@ -930,16 +969,6 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     }
 
     /**
-     * Sets whether register a shared preferences listener for this activity.
-     *
-     * @return {@code true} to register a {@link SharedPreferences.OnSharedPreferenceChangeListener}
-     *         to receive preference change callback.
-     */
-    protected boolean setOnSharedPreferenceChangeListener() {
-        return true;
-    }
-
-    /**
      * This method will be called after the theme has been changed.
      * <p>Override this method to perform operations after the theme has been changed like
      * re-initialize the {@link DynamicTheme} with new colors, etc.
@@ -974,7 +1003,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      */
     public void setWindowBackground(@ColorInt int color) {
         this.mBackgroundColor = color;
-        getWindow().setBackgroundDrawable(new ColorDrawable(mBackgroundColor));
+        getWindow().setBackgroundDrawable(new ColorDrawable(Dynamic.withThemeOpacity(color)));
     }
 
     /**
@@ -984,8 +1013,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      * @param color Color to be applied on the status bar.
      */
     protected void setWindowStatusBarColor(@ColorInt int color) {
-        if (DynamicSdkUtils.is21()) {
-            getWindow().setStatusBarColor(color);
+        if (getCoordinatorLayout() != null && DynamicSdkUtils.is16()
+                && getCoordinatorLayout().getFitsSystemWindows()) {
+            getCoordinatorLayout().setStatusBarBackgroundColor(Dynamic.withThemeOpacity(color));
+        } else if (DynamicSdkUtils.is21()) {
+            getWindow().setStatusBarColor(Dynamic.withThemeOpacity(color));
         }
     }
 
@@ -997,7 +1029,8 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      */
     public void setStatusBarColor(@ColorInt int color) {
         if (DynamicSdkUtils.is21()) {
-            this.mStatusBarColor = color;
+            this.mStatusBarColor = Dynamic.withThemeOpacity(color);
+
             updateStatusBar();
         }
     }
@@ -1034,12 +1067,12 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
         boolean isLightColor = !DynamicColorUtils.isColorDark(mStatusBarColor);
         if (DynamicTheme.getInstance().get().isBackgroundAware() && isLightColor) {
             if (!DynamicSdkUtils.is23()) {
-                mStatusBarColor = DynamicColorUtils.getContrastColor(
-                        mStatusBarColor, ADS_DEFAULT_SYSTEM_UI_COLOR);
+                mStatusBarColor = Dynamic.withContrastRatio(mStatusBarColor,
+                        ADS_DEFAULT_SYSTEM_UI_COLOR);
             }
         }
 
-        DynamicViewUtils.setLightStatusBar(getWindow().getDecorView(), isLightColor);
+        DynamicViewUtils.setLightStatusBar(getWindow(), getWindow().getDecorView(), isLightColor);
     }
 
     /**
@@ -1049,7 +1082,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      * @return {@code true} to enable edge-to-edge content.
      */
     public boolean isEdgeToEdgeContent() {
-        return !mNavigationBarTheme && DynamicWindowUtils.isGestureNavigation(this);
+        return DynamicSdkUtils.is21() && !mNavigationBarTheme;
     }
 
     /**
@@ -1086,15 +1119,32 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     }
 
     /**
+     * Returns the coordinator layout used by this activity.
+     *
+     * @return The coordinator layout used by this activity.
+     */
+    public @Nullable CoordinatorLayout getCoordinatorLayout() {
+        return null;
+    }
+
+    /**
+     * Returns whether to apply footer window insets.
+     *
+     * @return {@code true} to apply footer window insets.
+     */
+    public boolean isApplyFooterInsets() {
+        return true;
+    }
+
+    /**
      * Set the navigation bar color.
      * <p>It will be applied only on the API 21 and above.
      *
      * @param color The color to be applied.
      */
     public void setNavigationBarColor(@ColorInt int color) {
-        if (DynamicTheme.getInstance().get().isBackgroundAware()
-                && !DynamicSdkUtils.is26()) {
-            color = DynamicColorUtils.getContrastColor(color, ADS_DEFAULT_SYSTEM_UI_COLOR);
+        if (!DynamicSdkUtils.is26() && DynamicTheme.getInstance().get().isBackgroundAware()) {
+            color = Dynamic.withContrastRatio(color, ADS_DEFAULT_SYSTEM_UI_COLOR);
         }
 
         int orientation = DynamicWindowUtils.getScreenOrientation(this);
@@ -1117,8 +1167,8 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
                     ViewCompat.setOnApplyWindowInsetsListener(getEdgeToEdgeView(),
                             new OnApplyWindowInsetsListener() {
                                 @Override
-                                public WindowInsetsCompat onApplyWindowInsets(
-                                        View v, WindowInsetsCompat insets) {
+                                public @NonNull WindowInsetsCompat onApplyWindowInsets(
+                                        @NonNull View v, @NonNull WindowInsetsCompat insets) {
                                     if (!(v.getLayoutParams()
                                             instanceof  ViewGroup.MarginLayoutParams)) {
                                         return insets;
@@ -1137,13 +1187,21 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
                             });
                 }
 
-                mAppliedNavigationBarColor = Color.TRANSPARENT;
+                if (DynamicWindowUtils.isGestureNavigation(this)) {
+                    mAppliedNavigationBarColor = Color.TRANSPARENT;
+                } else {
+                    mAppliedNavigationBarColor = isNavigationBarTheme()
+                            ? mNavigationBarColor : ADS_DEFAULT_SYSTEM_BG_COLOR;
+                }
             } else {
-                mAppliedNavigationBarColor = mNavigationBarTheme
-                        ? color : ADS_DEFAULT_SYSTEM_BG_COLOR;
+                mAppliedNavigationBarColor = isNavigationBarTheme()
+                        ? mNavigationBarColor : ADS_DEFAULT_SYSTEM_BG_COLOR;
             }
 
-            getWindow().setNavigationBarColor(mAppliedNavigationBarColor);
+            if (DynamicSdkUtils.is21()) {
+                getWindow().setNavigationBarColor(
+                        Dynamic.withThemeOpacity(mAppliedNavigationBarColor));
+            }
         } else {
             mAppliedNavigationBarColor = mNavigationBarColor;
         }
@@ -1169,8 +1227,8 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     @SuppressWarnings("deprecation")
     public void setTranslucentNavigationBar() {
         if (DynamicSdkUtils.is30()) {
-            setNavigationBarColor(ContextCompat.getColor(
-                    getContext(), R.color.ads_immersive_bars));
+            getWindow().setNavigationBarColor(DynamicColorUtils.setAlpha(
+                    ADS_DEFAULT_SYSTEM_BG_COLOR, Theme.Opacity.TRANSLUCENT));
         } else if (DynamicSdkUtils.is21()) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
@@ -1183,8 +1241,13 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      * always be visible.
      */
     protected void updateNavigationBar() {
-        DynamicViewUtils.setLightNavigationBar(getWindow().getDecorView(),
+        DynamicViewUtils.setLightNavigationBar(getWindow(), getWindow().getDecorView(),
                 !DynamicColorUtils.isColorDark(mAppliedNavigationBarColor));
+
+        if (!isNavigationBarTheme() && DynamicColorUtils
+                .isTranslucent(mAppliedNavigationBarColor)) {
+            setTranslucentNavigationBar();
+        }
     }
 
     /**
@@ -1192,7 +1255,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      *
      * @return The current status bar color.
      */
-    public int getStatusBarColor() {
+    public @ColorInt int getStatusBarColor() {
         return mStatusBarColor;
     }
 
@@ -1205,7 +1268,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      *
      * @see #getAppliedNavigationBarColor()
      */
-    public int getNavigationBarColor() {
+    public @ColorInt int getNavigationBarColor() {
         return mNavigationBarColor;
     }
 
@@ -1214,8 +1277,37 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      *
      * @return The applied navigation bar color.
      */
-    public int getAppliedNavigationBarColor() {
+    public @ColorInt int getAppliedNavigationBarColor() {
         return mAppliedNavigationBarColor;
+    }
+
+    @Override
+    public void startActivity(@SuppressLint("UnknownNullness") Intent intent) {
+        try {
+            super.startActivity(intent);
+        } catch (Exception e) {
+            onStartActivityException(e);
+        }
+    }
+
+    @Override
+    public void startActivity(@SuppressLint("UnknownNullness") Intent intent,
+            @Nullable Bundle options) {
+        try {
+            super.startActivity(intent, options);
+        } catch (Exception e) {
+            onStartActivityException(e);
+        }
+    }
+
+    @Override
+    public void startActivityForResult(@SuppressLint("UnknownNullness") Intent intent,
+            int requestCode) {
+        try {
+            super.startActivityForResult(intent, requestCode);
+        } catch (Exception e) {
+            onStartActivityException(e);
+        }
     }
 
     @Override
@@ -1223,7 +1315,12 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
             int requestCode, @Nullable Bundle options) {
         mTransitionResultCode = requestCode;
         onApplyTransitions(true);
-        super.startActivityForResult(intent, requestCode, options);
+
+        try {
+            super.startActivityForResult(intent, requestCode, options);
+        } catch (Exception e) {
+            onStartActivityException(e);
+        }
     }
 
     @Override
@@ -1232,7 +1329,12 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
             int requestCode, @Nullable Bundle options) {
         mTransitionResultCode = requestCode;
         onApplyTransitions(true);
-        super.startActivityFromFragment(fragment, intent, requestCode, options);
+
+        try {
+            super.startActivityFromFragment(fragment, intent, requestCode, options);
+        } catch (Exception e) {
+            onStartActivityException(e);
+        }
     }
 
     /**
@@ -1248,8 +1350,8 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      */
     public void startMotionActivity(@SuppressLint("UnknownNullness") Intent intent,
             @Nullable Bundle options, boolean motion, boolean finish, boolean afterTransition) {
-        if (motion) {
-            ActivityCompat.startActivity(this, intent, options);
+        if (motion && DynamicSdkUtils.is16()) {
+            startActivity(intent, options);
         } else {
             startActivity(intent);
         }
@@ -1290,8 +1392,8 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     public void startMotionActivityForResult(@SuppressLint("UnknownNullness") Intent intent,
             int requestCode, @Nullable Bundle options, boolean motion,
             boolean finish, boolean afterTransition) {
-        if (motion) {
-            ActivityCompat.startActivityForResult(this, intent, requestCode, options);
+        if (motion && DynamicSdkUtils.is16()) {
+            startActivityForResult(intent, requestCode, options);
         } else {
             startActivityForResult(intent, requestCode);
         }
@@ -1361,7 +1463,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     public void startMotionActivityFromFragment(@NonNull Fragment fragment,
             @SuppressLint("UnknownNullness") Intent intent, int requestCode,
             @Nullable Bundle options, boolean motion, boolean finish, boolean afterTransition) {
-        if (motion) {
+        if (motion && DynamicSdkUtils.is16()) {
             startActivityFromFragment(fragment, intent, requestCode, options);
         } else {
             startActivityFromFragment(fragment, intent, requestCode);
@@ -1409,6 +1511,29 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     }
 
     /**
+     * This method will be called when there is an exception on starting the activity
+     * from this activity.
+     *
+     * @param exception The exception occurred.
+     *
+     * @see #startActivity(Intent)
+     * @see #startActivity(Intent, Bundle)
+     * @see #startActivityForResult(Intent, int)
+     * @see #startActivityForResult(Intent, int, Bundle)
+     */
+    protected void onStartActivityException(@Nullable Exception exception) {
+        if (exception instanceof ActivityNotFoundException) {
+            throw new ActivityNotFoundException();
+        } else {
+            Dynamic.showSnackbar(this, R.string.ads_error);
+
+            if (exception != null) {
+                exception.printStackTrace();
+            }
+        }
+    }
+
+    /**
      * Finish the motion activity after playing the exit transition.
      *
      * @param finish {@code true} to finish the activity.
@@ -1451,25 +1576,43 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Returns whether to force menu icons for this activity.
+     *
+     * @return {@code true} if force menu icons for this activity.
+     *
+     * @see #onPrepareOptionsMenu(Menu)
+     * @see DynamicMenuUtils#forceMenuIcons(Menu)
+     */
+    public boolean isForceMenuIcons() {
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if (isForceMenuIcons()) {
+            DynamicMenuUtils.forceMenuIcons(menu);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
 
         onApplyTransitions(false);
 
-        if (setOnSharedPreferenceChangeListener()) {
+        if (isOnSharedPreferenceChangeListener()) {
             PreferenceManager.getDefaultSharedPreferences(this)
                     .registerOnSharedPreferenceChangeListener(this);
         }
 
         if (!DynamicTheme.getInstance().isDynamicListener(this)) {
             setDynamicTheme();
-            setNavigationBarColor(mNavigationBarColor);
 
-             /*
-              * Hint: Do not delay on main handler as it was introducing the lag in the app.
-              * Hint: Update task description color on UI thread to get the proper theme values.
-              */
+            /*
+             * Hint: Do not delay on main handler as it was introducing the lag in the app.
+             */
             String theme = DynamicTheme.getInstance()
                     .getLocalTheme(DynamicSystemActivity.this);
             if (theme != null && !theme.equals(DynamicTheme.getInstance().toString())) {
@@ -1481,10 +1624,15 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
                 onDynamicChanged(true, true);
             }
 
+            /*
+             * Hint: Update task description color on UI thread to get the proper theme values.
+             */
             if (DynamicSdkUtils.is21()) {
                 runOnUiThread(mDynamicRunnable);
             }
         }
+
+        setNavigationBarColor(mNavigationBarColor);
     }
 
     /**
@@ -1501,7 +1649,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     public void onPause() {
         mPaused = true;
 
-        if (setOnSharedPreferenceChangeListener()) {
+        if (isOnSharedPreferenceChangeListener()) {
             PreferenceManager.getDefaultSharedPreferences(this)
                     .unregisterOnSharedPreferenceChangeListener(this);
         }
@@ -1541,13 +1689,33 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     }
 
     @Override
+    public boolean isDynamicColors() {
+        return DynamicTheme.getInstance().getListener().isDynamicColors();
+    }
+
+    @Override
     public boolean isDynamicColor() {
         return DynamicTheme.getInstance().getListener().isDynamicColor();
     }
 
     @Override
+    public boolean isSystemColor() {
+        return DynamicTheme.getInstance().getListener().isSystemColor();
+    }
+
+    @Override
+    public boolean isWallpaperColor() {
+        return DynamicTheme.getInstance().getListener().isWallpaperColor();
+    }
+
+    @Override
     public @ColorInt int getDefaultColor(@Theme.ColorType int colorType) {
         return DynamicTheme.getInstance().getListener().getDefaultColor(colorType);
+    }
+
+    @Override
+    public boolean isOnSharedPreferenceChangeListener() {
+        return DynamicTheme.getInstance().getListener().isOnSharedPreferenceChangeListener();
     }
 
     @Override
@@ -1570,12 +1738,14 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     }
 
     @Override
-    public void onDynamicColorsChanged(@Nullable DynamicColors colors) {
-        onDynamicChanged(false, true);
+    public void onDynamicColorsChanged(@Nullable DynamicColors colors, boolean context) {
+        if (isDynamicColors()) {
+            onDynamicChanged(false, true);
+        }
     }
 
     @Override
-    public void onAutoThemeChanged() { }
+    public void onAutoThemeChanged(boolean context) { }
 
     @Override
     public void onPowerSaveModeChanged(boolean powerSaveMode) { }

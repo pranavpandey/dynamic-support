@@ -19,6 +19,7 @@ package com.pranavpandey.android.dynamic.support.sample.binder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder
 import com.pranavpandey.android.dynamic.support.sample.R
@@ -56,7 +57,8 @@ class AppInfoBinder(binderAdapter: AppInfoAdapter)
         init {
             app.linksView!!.layoutManager =
                     DynamicLayoutUtils.getGridLayoutManager(app.context,
-                            DynamicLayoutUtils.getGridCount(app.context))
+                            DynamicLayoutUtils.getGridCount(app.context),
+                        GridLayoutManager.VERTICAL)
             DynamicLayoutUtils.setFullSpanForPosition(app.linksView);
 
             if (app.linksSubtitles != null) {

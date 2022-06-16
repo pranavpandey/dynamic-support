@@ -41,8 +41,12 @@ public class DynamicThemeWork extends Worker {
 
     @Override
     public @NonNull Result doWork() {
-        DynamicTheme.getInstance().setDynamicThemeWork(true);
-        DynamicTheme.getInstance().onAutoThemeChanged();
+        try {
+            DynamicTheme.getInstance().setDynamicThemeWork(true);
+            DynamicTheme.getInstance().onAutoThemeChanged(false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return Result.success();
     }

@@ -31,16 +31,18 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical|start"
         android:paddingLeft="?attr/dialogPreferredPadding"
-        android:paddingRight="?attr/dialogPreferredPadding"
+        android:paddingStart="?attr/dialogPreferredPadding"
         android:paddingTop="@dimen/ads_dialog_margin_title_top"
+        android:paddingRight="?attr/dialogPreferredPadding"
+        android:paddingEnd="?attr/dialogPreferredPadding"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@android:id/icon"
-            android:layout_width="32dip"
-            android:layout_height="32dip"
-            android:layout_marginEnd="8dip"
-            android:layout_marginRight="8dip"
+            android:layout_width="@dimen/add_dialog_icon_size"
+            android:layout_height="@dimen/add_dialog_icon_size"
+            android:layout_marginRight="@dimen/ads_dialog_margin_small"
+            android:layout_marginEnd="@dimen/ads_dialog_margin_small"
             android:contentDescription="@null"
             android:scaleType="fitCenter"
             android:src="@null" />

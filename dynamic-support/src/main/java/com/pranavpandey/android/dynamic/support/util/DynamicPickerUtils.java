@@ -17,6 +17,9 @@
 package com.pranavpandey.android.dynamic.support.util;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -26,23 +29,60 @@ import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.widget.SeekBar;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 
+import com.google.android.material.color.DynamicColors;
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.support.graphic.DynamicPaint;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPicker;
 import com.pranavpandey.android.dynamic.theme.Theme;
+import com.pranavpandey.android.dynamic.util.DynamicFileUtils;
+import com.pranavpandey.android.dynamic.util.DynamicIntentUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
+
+import java.io.File;
 
 /**
  * Helper class to perform various {@link SeekBar} operations.
  */
 public class DynamicPickerUtils {
+
+    /**
+     * Returns the default value for the night theme according to the available functionality.
+     *
+     * @return The default value for the night theme according to the available functionality.
+     *
+     * @see DynamicSdkUtils#is28()
+     * @see Theme.Night.ToString#SYSTEM
+     * @see Theme.Night.ToString#AUTO
+     */
+    public static @Theme.ToString String getDefaultNightThemeAlt() {
+        return DynamicSdkUtils.is28() ? Theme.Night.ToString.SYSTEM : Theme.Night.ToString.AUTO;
+    }
+
+    /**
+     * Returns the default value for the color palette according to the available functionality.
+     *
+     * @return The default value for the color palette according to the available functionality.
+     *
+     * @see DynamicColors#isDynamicColorAvailable()
+     * @see Theme.Color.ToString#SYSTEM
+     * @see Theme.Color.ToString#AUTO
+     */
+    public static @Theme.Color.ToString String getDefaultColorPalette() {
+        return DynamicColors.isDynamicColorAvailable()
+                ? Theme.Color.ToString.SYSTEM : Theme.Color.ToString.APP;
+    }
 
     /**
      * Returns the hue colors.
@@ -77,7 +117,7 @@ public class DynamicPickerUtils {
     public static @NonNull Paint getAlphaPatternPaint(int pixelSize) {
         Bitmap bitmap = Bitmap.createBitmap(pixelSize * 2,
                 pixelSize * 2, Bitmap.Config.ARGB_8888);
-        Paint fill = new Paint(Paint.ANTI_ALIAS_FLAG);
+        Paint fill = new DynamicPaint();
         fill.setStyle(Paint.Style.FILL);
 
         Canvas canvas = new Canvas(bitmap);
@@ -92,7 +132,7 @@ public class DynamicPickerUtils {
         rect.offset(pixelSize, -pixelSize);
         canvas.drawRect(rect, fill);
 
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        Paint paint = new DynamicPaint();
         paint.setShader(new BitmapShader(bitmap, BitmapShader.TileMode.REPEAT,
                 BitmapShader.TileMode.REPEAT));
 
@@ -144,5 +184,166 @@ public class DynamicPickerUtils {
         return DynamicPreferences.getInstance().load(
                 DynamicColorPicker.ADS_PREF_COLOR_PICKER_RECENT,
                 Theme.Color.UNKNOWN);
+    }
+
+    /**
+     * Try to request a storage location for the supplied file.
+     *
+     * @param context The context to get the file URI.
+     * @param owner The requesting owner for the intent.
+     * @param file The file URI to request the storage location.
+     * @param mimeType The mime type of the file.
+     * @param requestCode The request code for the intent.
+     * @param downloads {@code true} to return the download location on unsupported API levels.
+     * @param fileName The default file name.
+     *
+     * @return {@code null} if the request for storage location for the supplied file was
+     *         successful. Otherwise, the {@code downloads} location URI based on the
+     *         supplied parameter.
+     *
+     * @see DynamicFileUtils#getSaveToFileIntent(Context, Uri, String)
+     * @see Activity#startActivityForResult(Intent, int)
+     */
+    public static @Nullable Uri saveToFile(@Nullable Context context,
+            @Nullable LifecycleOwner owner, @Nullable Uri file, @NonNull String mimeType,
+            int requestCode, boolean downloads, @Nullable String fileName) {
+        if (context == null) {
+            return null;
+        }
+
+        if (owner != null && DynamicIntentUtils.isFilePicker(context, mimeType)) {
+            if (owner instanceof Activity) {
+                ((Activity) owner).startActivityForResult(DynamicFileUtils
+                        .getSaveToFileIntent((Activity) owner, file, mimeType), requestCode);
+
+                return null;
+            } else if (owner instanceof Fragment) {
+                ((Fragment) owner).startActivityForResult(DynamicFileUtils
+                        .getSaveToFileIntent(((Fragment) owner).requireContext(),
+                                file, mimeType), requestCode);
+
+                return null;
+            }
+        }
+
+        return downloads ? DynamicFileUtils.getUriFromFile(context,
+                DynamicFileUtils.getPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName)) : null;
+    }
+
+    /**
+     * Try to request a storage location for the supplied file.
+     *
+     * @param context The context to get the file URI.
+     * @param owner The requesting owner for the intent.
+     * @param file The file URI to request the storage location.
+     * @param mimeType The mime type of the file.
+     * @param requestCode The request code for the intent.
+     *
+     * @return {@code null} if the request for storage location for the supplied file was
+     *         successful. Otherwise, the {@code downloads} location URI.
+     *
+     * @see #saveToFile(Context, LifecycleOwner, Uri, String, int, boolean, String)
+     */
+    public static @Nullable Uri saveToFile(@Nullable Context context,
+            @Nullable LifecycleOwner owner, @Nullable Uri file,
+            @NonNull String mimeType, int requestCode) {
+        return saveToFile(context, owner, file, mimeType, requestCode, true, null);
+    }
+
+    /**
+     * Try to request a storage location for the supplied file.
+     *
+     * @param context The context to get the file URI.
+     * @param owner The requesting owner for the intent.
+     * @param file The file to request the storage location.
+     * @param mimeType The mime type of the file.
+     * @param requestCode The request code for the intent.
+     * @param downloads {@code true} to return the download location on unsupported API levels.
+     * @param fileName The default file name.
+     *
+     * @return {@code null} if the request for storage location for the supplied file was
+     *         successful. Otherwise, the {@code downloads} location URI based on the
+     *         supplied parameter.
+     *
+     * @see DynamicFileUtils#getSaveToFileIntent(Context, File, String)
+     * @see Activity#startActivityForResult(Intent, int)
+     */
+    public static @Nullable File saveToFile(@Nullable Context context,
+            @Nullable LifecycleOwner owner, @Nullable File file, @NonNull String mimeType,
+            int requestCode, boolean downloads, @Nullable String fileName) {
+        if (context == null) {
+            return null;
+        }
+
+        if (owner != null && DynamicIntentUtils.isFilePicker(context, mimeType)) {
+            if (owner instanceof Activity) {
+                ((Activity) owner).startActivityForResult(DynamicFileUtils
+                        .getSaveToFileIntent((Activity) owner, file, mimeType), requestCode);
+
+                return null;
+            } else if (owner instanceof Fragment) {
+                ((Fragment) owner).startActivityForResult(DynamicFileUtils
+                        .getSaveToFileIntent(((Fragment) owner).requireContext(),
+                                file, mimeType), requestCode);
+
+                return null;
+            }
+        }
+
+        return downloads ? DynamicFileUtils.getPublicDir(
+                Environment.DIRECTORY_DOWNLOADS, fileName) : null;
+    }
+
+    /**
+     * Try to request a storage location for the supplied file.
+     *
+     * @param context The context to get the file URI.
+     * @param owner The requesting owner for the intent.
+     * @param file The file to request the storage location.
+     * @param mimeType The mime type of the file.
+     * @param requestCode The request code for the intent.
+     *
+     * @return {@code null} if the request for storage location for the supplied file was
+     *         successful. Otherwise, the {@code downloads} location URI.
+     *
+     * @see #saveToFile(Context, LifecycleOwner, File, String, int, boolean, String)
+     */
+    public static @Nullable File saveToFile(@Nullable Context context,
+            @Nullable LifecycleOwner owner, @Nullable File file,
+            @NonNull String mimeType, int requestCode) {
+        return saveToFile(context, owner, file, mimeType, requestCode, true, null);
+    }
+
+    /**
+     * Try to request an intent to select a file according to the supplied mime type.
+     *
+     * @param context The context to get the file URI.
+     * @param owner The requesting owner for the intent.
+     * @param mimeType The mime type of the file.
+     * @param requestCode The request code for the intent.
+     *
+     * @return {@code null} if the request for storage location for the supplied file was
+     *         successful. Otherwise, the {@code downloads} location URI.
+     *
+     * @see DynamicFileUtils#getFileSelectIntent(String)
+     * @see Activity#startActivityForResult(Intent, int)
+     */
+    public static boolean selectFile(@Nullable Context context,
+            @Nullable LifecycleOwner owner, @NonNull String mimeType, int requestCode) {
+        if (owner != null && DynamicIntentUtils.isFilePicker(context, mimeType)) {
+            if (owner instanceof Activity) {
+                ((Activity) owner).startActivityForResult(DynamicFileUtils
+                        .getFileSelectIntent(mimeType), requestCode);
+
+                return true;
+            } else if (owner instanceof Fragment) {
+                ((Fragment) owner).startActivityForResult(DynamicFileUtils
+                        .getFileSelectIntent(mimeType), requestCode);
+
+                return true;
+            }
+        }
+
+        return false;
     }
 }

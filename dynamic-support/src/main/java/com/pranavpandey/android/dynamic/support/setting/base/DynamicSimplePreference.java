@@ -39,7 +39,7 @@ import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 /**
  * A {@link DynamicPreference} to implement the basic functionality
  *
- * <p>It can be extended to modify according to the need.
+ * <p>It can be extended to modify according to the requirements.
  */
 public class DynamicSimplePreference extends DynamicPreference {
 
@@ -243,13 +243,20 @@ public class DynamicSimplePreference extends DynamicPreference {
         Dynamic.setContrastWithColorTypeOrColor(getIconFooterView(),
                 getContrastWithColorType(), getContrastWithColor());
 
-        Dynamic.setBackgroundAwareSafe(getIconView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getTitleView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getSummaryView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getDescriptionView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getValueView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getActionView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getIconFooterView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getIconView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getTitleView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getSummaryView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getDescriptionView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getValueView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getActionView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getIconFooterView(),
+                getBackgroundAware(), getContrast(false));
     }
 
     @Override

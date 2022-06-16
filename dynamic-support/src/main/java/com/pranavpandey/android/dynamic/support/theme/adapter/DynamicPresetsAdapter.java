@@ -22,7 +22,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.IntDef;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,28 +30,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicRecyclerViewAdapter;
 import com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView;
 import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
-import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import static com.pranavpandey.android.dynamic.support.theme.adapter.DynamicPresetsAdapter.Type.HORIZONTAL;
 import static com.pranavpandey.android.dynamic.support.theme.adapter.DynamicPresetsAdapter.Type.VERTICAL;
 
 /**
  * A recycler view adapter to show the theme presets.
  */
 public class DynamicPresetsAdapter<T extends DynamicAppTheme>
-        extends RecyclerView.Adapter<DynamicPresetsAdapter.ViewHolder<T>> {
+        extends DynamicRecyclerViewAdapter<DynamicPresetsAdapter.ViewHolder<T>> {
 
     /**
      * Interface to hold the presets layout according to the recycler view orientation.
      */
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef(value = { VERTICAL, HORIZONTAL })
     public @interface Type {
 
         /**
@@ -129,6 +127,7 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
     public void onBindViewHolder(@NonNull ViewHolder<T> holder, int position) {
         if (mPresets == null) {
             Dynamic.setVisibility(holder.getRoot(), View.GONE);
+
             return;
         }
 

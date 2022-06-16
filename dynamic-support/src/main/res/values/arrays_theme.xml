@@ -45,12 +45,22 @@
 
     <!-- Entries for the dynamic color. -->
     <string-array name="ads_dynamic_color_entries">
+        <item>@string/ads_theme_entry_app</item>
+        <item>@string/ads_theme_entry_system</item>
+        <item>@string/ads_theme_entry_wallpaper</item>
+    </string-array>
+
+    <!-- Entries for the dynamic color suitable for game. -->
+    <string-array name="ads_dynamic_color_entries_alt">
+        <item>@string/ads_theme_entry_game</item>
         <item>@string/ads_theme_entry_system</item>
         <item>@string/ads_theme_entry_wallpaper</item>
     </string-array>
 
     <!-- Values for the dynamic color. -->
     <string-array name="ads_dynamic_color_values">
+        <!-- App -->
+        <item>-4</item>
         <!-- Auto (System) -->
         <item>-3</item>
         <!-- Custom (Wallpaper) -->
@@ -202,6 +212,23 @@
         <item>1</item>
     </string-array>
 
+    <!-- Theme elevation entries. -->
+    <string-array name="ads_elevation_entries">
+        <item>@string/ads_theme_entry_auto</item>
+        <item>@string/ads_disable</item>
+        <item>@string/ads_enable</item>
+    </string-array>
+
+    <!-- Theme elevation values. -->
+    <string-array name="ads_elevation_values">
+        <!-- Auto -->
+        <item>-3</item>
+        <!-- Disable -->
+        <item>0</item>
+        <!-- Enable -->
+        <item>1</item>
+    </string-array>
+
     <!-- Theme style entries. -->
     <string-array name="ads_style_entries">
         <item>@string/ads_theme_entry_auto</item>
@@ -329,6 +356,8 @@
 
     <!-- App theme day colors. -->
     <integer-array name="ads_app_theme_day_colors">
+        <!-- Auto -->
+        <item>-3</item>
         <item>@color/ads_window_background_red_light</item>
         <item>@color/ads_window_background_pink_light</item>
         <item>@color/ads_window_background_purple_light</item>
@@ -354,6 +383,8 @@
 
     <!-- App theme night colors. -->
     <integer-array name="ads_app_theme_night_colors">
+        <!-- Auto -->
+        <item>-3</item>
         <item>@color/ads_window_background_red</item>
         <item>@color/ads_window_background_pink</item>
         <item>@color/ads_window_background_purple</item>

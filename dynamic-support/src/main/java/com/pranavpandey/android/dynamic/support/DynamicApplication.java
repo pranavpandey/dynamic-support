@@ -38,9 +38,9 @@ import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicResolver;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
-import com.pranavpandey.android.dynamic.support.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.AppTheme;
+import com.pranavpandey.android.dynamic.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.util.loader.DynamicLoader;
@@ -76,8 +76,6 @@ public abstract class DynamicApplication extends Application
 
         DynamicPreferences.initializeInstance(base);
         DynamicTheme.initializeInstance(this, getDynamicResolver());
-        PreferenceManager.getDefaultSharedPreferences(base)
-                .registerOnSharedPreferenceChangeListener(this);
         super.attachBaseContext(setLocale(base));
     }
 
@@ -93,7 +91,7 @@ public abstract class DynamicApplication extends Application
         setDynamicTheme();
 
         if (isDynamicColor()) {
-            DynamicTheme.getInstance().setDynamicColors(true);
+            DynamicTheme.getInstance().setWallpaperColors(true, false);
         }
     }
 
@@ -159,8 +157,13 @@ public abstract class DynamicApplication extends Application
      */
     protected void setDynamicTheme() {
         DynamicTheme.getInstance().setTheme(getThemeRes(),
-                getDynamicTheme(), true);
+                getDynamicTheme(), false);
         onCustomiseTheme();
+
+        if (isOnSharedPreferenceChangeListener()) {
+            PreferenceManager.getDefaultSharedPreferences(getContext())
+                    .registerOnSharedPreferenceChangeListener(this);
+        }
     }
 
     @Override
@@ -219,8 +222,29 @@ public abstract class DynamicApplication extends Application
     }
 
     @Override
+    public boolean isDynamicColors() {
+        return true;
+    }
+
+    @Override
     public boolean isDynamicColor() {
+        return (com.google.android.material.color.DynamicColors.isDynamicColorAvailable()
+                && isSystemColor()) || isWallpaperColor();
+    }
+
+    @Override
+    public boolean isSystemColor() {
         return false;
+    }
+
+    @Override
+    public boolean isWallpaperColor() {
+        return false;
+    }
+
+    @Override
+    public boolean isOnSharedPreferenceChangeListener() {
+        return true;
     }
 
     @Override
@@ -242,6 +266,11 @@ public abstract class DynamicApplication extends Application
 
     @Override
     public void onDynamicChanged(boolean context, boolean recreate) {
+        if (isOnSharedPreferenceChangeListener()) {
+            PreferenceManager.getDefaultSharedPreferences(getContext())
+                    .unregisterOnSharedPreferenceChangeListener(this);
+        }
+
         if (context) {
             setLocale(mBaseContext);
             setLocale(getContext());
@@ -258,18 +287,24 @@ public abstract class DynamicApplication extends Application
     }
 
     @Override
-    public void onDynamicColorsChanged(@Nullable DynamicColors colors) {
-        onDynamicChanged(false, true);
+    public void onDynamicColorsChanged(@Nullable DynamicColors colors, boolean context) {
+        if (isDynamicColors()) {
+            onDynamicChanged(context, true);
+        }
     }
 
     @Override
-    public void onAutoThemeChanged() {
-        DynamicTheme.getInstance().setDynamicColors(isDynamicColor());
+    public void onAutoThemeChanged(boolean context) {
+        if (isDynamicColors()) {
+            DynamicTheme.getInstance().setWallpaperColors(isDynamicColor(), context);
+        } else {
+            DynamicTheme.getInstance().onDynamicChanged(context, true);
+        }
     }
 
     @Override
     public void onPowerSaveModeChanged(boolean powerSaveMode) {
-        onAutoThemeChanged();
+        onAutoThemeChanged(false);
     }
 
     @Override

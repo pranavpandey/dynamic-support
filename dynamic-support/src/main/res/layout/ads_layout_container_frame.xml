@@ -15,17 +15,24 @@
 	limitations under the License.
 -->
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<com.pranavpandey.android.dynamic.support.widget.DynamicRootLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ads_coordinator_layout"
+    android:id="@+id/ads_activity_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/ads_container"
+    <com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout
+        android:id="@+id/ads_coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </FrameLayout>
+        <FrameLayout
+            android:id="@+id/ads_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </FrameLayout>
+
+    </com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout>
+
+</com.pranavpandey.android.dynamic.support.widget.DynamicRootLayout>

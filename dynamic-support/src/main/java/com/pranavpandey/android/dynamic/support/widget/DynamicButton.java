@@ -16,32 +16,39 @@
 
 package com.pranavpandey.android.dynamic.support.widget;
 
+import android.animation.StateListAnimator;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.shape.MaterialShapeDrawable;
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicCornerWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicSurfaceWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
  * An {@link MaterialButton} to apply {@link DynamicTheme} according to the supplied parameters.
  */
 public class DynamicButton extends MaterialButton implements DynamicWidget,
-        DynamicCornerWidget<Integer>, DynamicTintWidget {
+        DynamicCornerWidget<Integer>, DynamicTintWidget, DynamicSurfaceWidget {
 
     /**
      * Color type applied to this view.
@@ -87,6 +94,11 @@ public class DynamicButton extends MaterialButton implements DynamicWidget,
     protected @Theme.BackgroundAware int mBackgroundAware;
 
     /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
+
+    /**
      * {@code true} to tint background according to the widget color.
      */
     protected boolean mTintBackground;
@@ -95,6 +107,22 @@ public class DynamicButton extends MaterialButton implements DynamicWidget,
      * {@code true} if the style applied to this view is borderless.
      */
     protected boolean mStyleBorderless;
+
+    /**
+     * {@code true} to force elevation for this widget.
+     * <p>When disabled, widget will follow the dynamic theme elevation.
+     */
+    protected boolean mForceElevation;
+
+    /**
+     * Intended elevation for this view without considering the background.
+     */
+    protected float mElevation;
+
+    /**
+     * State list animator used by this button.
+     */
+    protected StateListAnimator mStateListAnimator;
 
     public DynamicButton(@NonNull Context context) {
         this(context, null);
@@ -113,6 +141,7 @@ public class DynamicButton extends MaterialButton implements DynamicWidget,
         loadFromAttributes(attrs);
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(attrs,
@@ -134,12 +163,23 @@ public class DynamicButton extends MaterialButton implements DynamicWidget,
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicButton_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicButton_adt_contrast,
+                    Theme.Contrast.AUTO);
             mTintBackground = a.getBoolean(
                     R.styleable.DynamicButton_adt_tintBackground,
                     Defaults.ADS_TINT_BACKGROUND);
             mStyleBorderless = a.getBoolean(
                     R.styleable.DynamicButton_adt_styleBorderless,
                     Defaults.ADS_STYLE_BORDERLESS);
+            mForceElevation = a.getBoolean(
+                    R.styleable.DynamicButton_adt_forceElevation,
+                    Defaults.ADS_FORCE_ELEVATION);
+            mElevation = Dynamic.getElevation(this, Theme.Elevation.DISABLE);
+
+            if (DynamicSdkUtils.is21()) {
+                mStateListAnimator = getStateListAnimator();
+            }
         } finally {
             a.recycle();
         }
@@ -237,6 +277,32 @@ public class DynamicButton extends MaterialButton implements DynamicWidget,
     }
 
     @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
+    }
+
+    @Override
     public boolean isTintBackground() {
         return mTintBackground;
     }
@@ -261,32 +327,73 @@ public class DynamicButton extends MaterialButton implements DynamicWidget,
     }
 
     @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        Dynamic.setCornerMin(this, Math.min(
+                getWidth() / Theme.Corner.FACTOR_MAX,
+                getHeight() / Theme.Corner.FACTOR_MAX));
+
+        setSurface();
+    }
+
+    @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
         setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void setCorner(Integer cornerRadius) {
-        setCornerRadius(cornerRadius);
+    public void setElevation(float elevation) {
+        super.setElevation(elevation);
+
+        if (elevation > 0) {
+            mElevation = elevation;
+        }
     }
 
     @Override
-    public Integer getCorner() {
+    public void setBackground(@NonNull Drawable background) {
+        super.setBackground(background);
+
+        if (getBackground() instanceof MaterialShapeDrawable
+                && ((MaterialShapeDrawable) getBackground()).getElevation() > 0) {
+            mElevation = ((MaterialShapeDrawable) getBackground()).getElevation();
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void setStateListAnimator(StateListAnimator stateListAnimator) {
+        super.setStateListAnimator(stateListAnimator);
+
+        if (stateListAnimator != null) {
+            mStateListAnimator = stateListAnimator;
+        }
+    }
+
+    @Override
+    public @NonNull Integer getCorner() {
         return getCornerRadius();
+    }
+
+    @Override
+    public void setCorner(@NonNull Integer cornerSize) {
+        setCornerRadius(cornerSize);
     }
 
     @Override
     public void setColor() {
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
-            @ColorInt int mTextColor = DynamicColorUtils.getTintColor(mColor);
+            @ColorInt int textColor = Dynamic.getTintColor(mColor, this);
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
-                mTextColor = DynamicColorUtils.getContrastColor(
-                        isStyleBorderless() ? mAppliedColor : mContrastWithColor,
-                        isStyleBorderless() ? mContrastWithColor : mAppliedColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
+                textColor = Dynamic.withContrastRatio(isStyleBorderless()
+                                ? mAppliedColor : mContrastWithColor, isStyleBorderless()
+                        ? mContrastWithColor : mAppliedColor, this);
             }
 
             if (getBackground() != null) {
@@ -299,12 +406,54 @@ public class DynamicButton extends MaterialButton implements DynamicWidget,
             }
 
             if (isStyleBorderless()) {
-                setTextColor(DynamicResourceUtils.getColorStateList(mTextColor,
+                setTextColor(DynamicResourceUtils.getColorStateList(textColor,
                         mAppliedColor, mAppliedColor, false));
             } else {
                 setTextColor(DynamicResourceUtils.getColorStateList(
-                        mTextColor, mTextColor, false));
+                        textColor, textColor, false));
             }
         }
+
+        setSurface();
+    }
+
+    @Override
+    public boolean isForceElevation() {
+        return mForceElevation;
+    }
+
+    @Override
+    public void setForceElevation(boolean forceElevation) {
+        this.mForceElevation = forceElevation;
+
+        setColor();
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void setSurface() {
+        if (!mForceElevation && isBackgroundSurface()) {
+            Dynamic.setElevation(this, Theme.Elevation.DISABLE);
+
+            if (DynamicSdkUtils.is21()) {
+                setStateListAnimator(null);
+            }
+        } else {
+            Dynamic.setElevation(this, mElevation);
+
+            if (DynamicSdkUtils.is21()) {
+                setStateListAnimator(mStateListAnimator);
+            }
+        }
+    }
+
+    @Override
+    public boolean isBackgroundSurface() {
+        return !DynamicTheme.getInstance().get().isElevation();
+    }
+
+    @Override
+    public boolean isStrokeRequired() {
+        return false;
     }
 }

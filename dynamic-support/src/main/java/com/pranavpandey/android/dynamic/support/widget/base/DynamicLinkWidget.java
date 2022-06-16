@@ -69,7 +69,7 @@ public interface DynamicLinkWidget extends DynamicWidget {
     void setLinkColor(@ColorInt int linkColor);
 
     /**
-     * Set link color of this widget according to the supplied values.
+     * Set link color for this widget according to the supplied values.
      * <p>Generally, it should be a tint color so that link will be visible on this
      * widget background.
      */

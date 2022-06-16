@@ -49,30 +49,23 @@
                     android:layout_height="wrap_content" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Subtitle1.Secondary"
+                    style="@style/TextAppearance.DynamicApp.Headline5.Card.Secondary"
                     android:id="@+id/ads_preference_value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:adt_colorType="accent" />
 
-                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Body1"
-                    android:id="@+id/ads_preference_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/ads_margin_tiny" />
-
             </LinearLayout>
 
         </LinearLayout>
+
+        <include layout="@layout/ads_preference_footer" />
 
         <include
             layout="@layout/ads_layout_theme_preview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ads_margin_small" />
-
-        <include layout="@layout/ads_preference_footer" />
 
     </LinearLayout>
 

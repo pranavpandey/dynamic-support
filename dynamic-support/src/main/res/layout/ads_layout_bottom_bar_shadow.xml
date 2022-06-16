@@ -19,6 +19,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ads_bottom_bar_shadow"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/ads_bottom_bar_shadow_size"
+    android:layout_height="@dimen/ads_navigation_bar_shadow_size"
     android:src="@drawable/ads_bottom_bar_shadow"
     android:alpha="@integer/ads_alpha_shadow" />

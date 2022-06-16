@@ -168,9 +168,13 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicItemView_adt_backgroundAware,
                     Theme.BackgroundAware.UNKNOWN);
+            mContrast = a.getInteger(
+                    R.styleable.DynamicItemView_adt_contrast,
+                    Theme.Contrast.UNKNOWN);
             mIcon = DynamicResourceUtils.getDrawable(getContext(),
-                    a.getResourceId(R.styleable.DynamicItemView_ads_icon,
-                            Theme.Color.UNKNOWN));
+                    a.getResourceId(
+                            R.styleable.DynamicItemView_ads_icon,
+                            DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
             mTitle = a.getString(
                     R.styleable.DynamicItemView_ads_title);
             mSubtitle = a.getString(
@@ -228,12 +232,18 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
         Dynamic.setContrastWithColorTypeOrColor(getDivider(),
                 getContrastWithColorType(), getContrastWithColor());
 
-        Dynamic.setBackgroundAwareSafe(getItemView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getIconView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getIconFooterView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getTitleView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getSubtitleView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getDivider(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getItemView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getIconView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getIconFooterView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getTitleView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getSubtitleView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getDivider(),
+                getBackgroundAware(), getContrast(false));
 
         if (getColorType() != Theme.ColorType.CUSTOM) {
             Dynamic.setColorType(getIconView(), getColorType());

@@ -31,7 +31,7 @@ import com.pranavpandey.android.dynamic.theme.Theme;
  * {@link android.preference.PreferenceScreen} with an icon, title, summary, description,
  * value and an action button.
  *
- * <p>It can be extended to modify according to the need.
+ * <p>It can be extended to modify according to the requirements.
  */
 public class DynamicScreenPreference extends DynamicSimplePreference {
 

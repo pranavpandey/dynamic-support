@@ -19,8 +19,8 @@ package com.pranavpandey.android.dynamic.support.listener;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
-import com.pranavpandey.android.dynamic.support.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 import java.util.Date;

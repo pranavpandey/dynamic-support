@@ -40,7 +40,7 @@ import java.util.List;
  * it in the manifest to provide additional functionality.
  *
  * <p>Then, register that activity to request the permissions via
- * {@link DynamicPermissions#setPermissionActivity(Class)}. Rest of the things will be handled
+ * {@link DynamicPermissions#setPermissionsActivity(Class)}. Rest of the things will be handled
  * by the {@link DynamicPermissionsFragment}.
  *
  * <p>To request permissions, just call
@@ -74,7 +74,7 @@ public class DynamicPermissionsActivity extends DynamicActivity
 
         addHeader(R.layout.ads_header_appbar, true);
 
-        if (getContentFragment() == null || newIntent) {
+        if (newIntent || getContentFragment() == null) {
             switchFragment(DynamicPermissionsFragment.newInstance(getIntent()), false);
         }
     }

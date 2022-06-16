@@ -32,29 +32,29 @@
         <!-- Drawable that will be applied to this view. -->
         <attr name="ads_icon" format="reference" />
         <!-- Title that will be applied to this view. -->
-        <attr name="ads_title" format="string" />
+        <attr name="ads_title" format="string|reference" />
         <!-- Subtitle that will be applied to this view. -->
-        <attr name="ads_subtitle" format="string" />
+        <attr name="ads_subtitle" format="string|reference" />
         <!-- Optional description that will be applied to this view. -->
-        <attr name="ads_description" format="string" />
+        <attr name="ads_description" format="string|reference" />
         <!-- Optional status that will be applied to this view. -->
-        <attr name="ads_status" format="string" />
+        <attr name="ads_status" format="string|reference" />
         <!-- Optional big drawable that will be applied to this view. -->
         <attr name="ads_iconBig" format="reference" />
         <!-- true to show the divider below this view. -->
-        <attr name="ads_showDivider" format="boolean" />
+        <attr name="ads_showDivider" format="boolean|reference" />
         <!-- Links array that will be applied to this view. -->
         <attr name="ads_links" format="reference" />
         <!-- Optional links subtitle array that will be applied to this view. -->
         <attr name="ads_subtitles" format="reference" />
         <!-- Optional links icon array that will be applied to this view. -->
         <attr name="ads_icons" format="reference" />
-        <!-- Links url array that will be applied to this view. -->
+        <!-- Links URL array that will be applied to this view. -->
         <attr name="ads_urls" format="reference" />
         <!-- Optional links color array that will be applied to this view. -->
         <attr name="ads_colors" format="reference" />
         <!-- true to fill the empty icon space if applicable. -->
-        <attr name="ads_fillSpace" format="boolean" />
+        <attr name="ads_fillSpace" format="boolean|reference" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicHeader. -->
@@ -63,7 +63,7 @@
         <attr name="ads_title" />
         <attr name="ads_subtitle" />
         <!-- true to display the icon. -->
-        <attr name="ads_showIcon" format="boolean" />
+        <attr name="ads_showIcon" format="boolean|reference" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicInfoView. -->
@@ -74,6 +74,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_tintBackground" />
         <attr name="adt_styleBorderless" />
         <!-- Inherited attributes from the info. -->
@@ -98,6 +99,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_tintBackground" />
         <!-- Inherited attributes from the info. -->
         <attr name="ads_icon" />
@@ -110,7 +112,7 @@
     <!-- Attributes for the DynamicPopup. -->
     <declare-styleable name="DynamicPopup">
         <!-- true to enable quick popup for the supported views. -->
-        <attr name="ads_popup" format="boolean" />
+        <attr name="ads_popup" format="boolean|reference" />
         <!-- View types supported by the popup. -->
         <attr name="ads_popupType" format="enum">
             <!-- Constant for default view type. -->
@@ -134,6 +136,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_tintBackground" />
         <attr name="adt_styleBorderless" />
         <!-- Shape options for the dynamic color view. -->
@@ -146,7 +149,7 @@
             <enum name="rectangle" value="2" />
         </attr>
         <!-- true to enable alpha for the color. -->
-        <attr name="ads_alphaEnabled" format="boolean" />
+        <attr name="ads_alphaEnabled" format="boolean|reference" />
         <!-- Corner radius in case of square or rectangle shape. -->
         <attr name="adt_cornerRadius" />
     </declare-styleable>
@@ -171,6 +174,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_tintBackground" />
         <attr name="adt_styleBorderless" />
         <!-- Drawable that will be applied to this preference. -->
@@ -178,29 +182,29 @@
         <!-- Title that will be applied to this preference. -->
         <attr name="ads_title" />
         <!-- Optional summary that will be applied to this preference. -->
-        <attr name="ads_summary" format="string" />
+        <attr name="ads_summary" format="string|reference" />
         <!-- Optional description that will be applied to this preference. -->
         <attr name="ads_description" />
         <!-- Default preference value that will be applied to this preference. -->
-        <attr name="ads_value" format="string" />
+        <attr name="ads_value" format="string|reference" />
         <!-- Shared preference key that will be applied to this preference. -->
-        <attr name="ads_key" format="string" />
+        <attr name="ads_key" format="string|reference" />
         <!-- Shared preference key that will be applied to the alternate preference. -->
-        <attr name="ads_altKey" format="string" />
+        <attr name="ads_altKey" format="string|reference" />
         <!-- true to disable this preference by default. -->
-        <attr name="ads_enabled" format="boolean" />
+        <attr name="ads_enabled" format="boolean|reference" />
         <!-- Shared preference key of other preference to make it dependent on that preference. -->
-        <attr name="ads_dependency" format="string" />
+        <attr name="ads_dependency" format="string|reference" />
         <!-- Text for the optional action button. -->
-        <attr name="ads_action" format="string" />
+        <attr name="ads_action" format="string|reference" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicCheckPreference. -->
     <declare-styleable name="DynamicCheckPreference">
         <!-- true to make this preference checked by default. -->
-        <attr name="ads_checked" format="boolean" />
+        <attr name="ads_checked" format="boolean|reference" />
         <!-- Optional summary to show if the preference is in the unchecked state. -->
-        <attr name="ads_unchecked" format="string" />
+        <attr name="ads_unchecked" format="string|reference" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicColorPreference. -->
@@ -223,29 +227,29 @@
 
     <!-- Attributes for the DynamicSeekBarPreference. -->
     <declare-styleable name="DynamicSeekBarPreference">
-        <!-- Maximum value that will be applied to the seek bar. -->
-        <attr name="ads_max" format="integer" />
         <!-- Minimum value that will be applied to the seek bar. -->
-        <attr name="ads_min" format="integer" />
+        <attr name="ads_min" format="integer|reference" />
+        <!-- Maximum value that will be applied to the seek bar. -->
+        <attr name="ads_max" format="integer|reference" />
         <!-- Progress value that will be applied to the seek bar. -->
-        <attr name="ads_progress" format="integer" />
+        <attr name="ads_progress" format="integer|reference" />
         <!-- Progress interval that will be applied to the seek bar. -->
-        <attr name="ads_interval" format="integer" />
+        <attr name="ads_interval" format="integer|reference" />
         <!-- Optional text which will be shown after the progress value. -->
-        <attr name="ads_unit" format="string" />
+        <attr name="ads_unit" format="string|reference" />
         <!-- true to show the optional seek bar controls to increment or decrement the seek bar
              value by one. -->
-        <attr name="ads_controls" format="boolean" />
+        <attr name="ads_controls" format="boolean|reference" />
         <!-- false to disable the seek bar. -->
-        <attr name="ads_seek_enabled" format="boolean" />
+        <attr name="ads_seek_enabled" format="boolean|reference" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicSliderPreference. -->
     <declare-styleable name="DynamicSliderPreference">
-        <!-- Maximum value that will be applied to the slider. -->
-        <attr name="ads_max" />
         <!-- Minimum value that will be applied to the slider. -->
         <attr name="ads_min" />
+        <!-- Maximum value that will be applied to the slider. -->
+        <attr name="ads_max" />
         <!-- Progress value that will be applied to the slider. -->
         <attr name="ads_progress" />
         <!-- Progress interval that will be applied to the slider. -->
@@ -258,7 +262,7 @@
         <!-- false to disable the slider. -->
         <attr name="ads_seek_enabled" />
         <!-- true to enable the slider tick marks. -->
-        <attr name="ads_tick_visible" format="boolean" />
+        <attr name="ads_tick_visible" format="boolean|reference" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicSpinnerPreference. -->

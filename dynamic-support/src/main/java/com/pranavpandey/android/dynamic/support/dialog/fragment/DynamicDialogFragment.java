@@ -16,30 +16,43 @@
 
 package com.pranavpandey.android.dynamic.support.dialog.fragment;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.KeyEvent;
+import android.view.View;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.preference.PreferenceManager;
 
 import com.pranavpandey.android.dynamic.support.Dynamic;
+import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
 import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
  * Base dialog fragment to provide all the functionality of {@link DynamicDialog} inside a
  * fragment. It can be extended to customise it further by overriding the supported methods.
  *
  * @see #onCustomiseBuilder(DynamicDialog.Builder, Bundle)
- * @see #onCustomiseBuilder(DynamicDialog.Builder, Bundle)
+ * @see #onCustomiseDialog(DynamicDialog, View, Bundle)
  */
-public class DynamicDialogFragment extends AppCompatDialogFragment {
+public class DynamicDialogFragment extends AppCompatDialogFragment
+        implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     /**
      * Default button color. it will be used internally if there is no button color is applied.
@@ -50,6 +63,21 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
      * Button color used by the dialog.
      */
     private @ColorInt int mButtonColor = ADS_DEFAULT_BUTTON_COLOR;
+
+    /**
+     * Positive button text used by the dialog.
+     */
+    private CharSequence mPositiveButtonText;
+
+    /**
+     * Negative button text used by the dialog.
+     */
+    private CharSequence mNegativeButtonText;
+
+    /**
+     * Neutral button text used by the dialog.
+     */
+    private CharSequence mNeutralButtonText;
 
     /**
      * {@code true} to make the dialog cancelable.
@@ -64,7 +92,7 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
     private boolean mAutoDismiss = false;
 
     /**
-     * Dialog builder to customise this fragment according to the need.
+     * Dialog builder to customise this fragment according to the requirements.
      */
     private DynamicDialog.Builder mDynamicDialogBuilder;
 
@@ -91,7 +119,7 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
     /**
      * Initialize the new instance of this fragment.
      *
-     * @return A instance of {@link DynamicDialogFragment}.
+     * @return An instance of {@link DynamicDialogFragment}.
      */
     public static @NonNull DynamicDialogFragment newInstance() {
         return new DynamicDialogFragment();
@@ -114,20 +142,39 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
-                if (mButtonColor != ADS_DEFAULT_BUTTON_COLOR) {
-                    if (alertDialog.getButton(AlertDialog.BUTTON_POSITIVE) != null) {
+                if (alertDialog.getButton(AlertDialog.BUTTON_POSITIVE) != null) {
+                    if (mButtonColor != ADS_DEFAULT_BUTTON_COLOR) {
                         Dynamic.setColor(alertDialog.getButton(
                                 AlertDialog.BUTTON_POSITIVE), mButtonColor);
                     }
 
-                    if (alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE) != null) {
+                    if (mPositiveButtonText != null) {
+                        Dynamic.set(alertDialog.getButton(
+                                AlertDialog.BUTTON_POSITIVE), mPositiveButtonText);
+                    }
+                }
+
+                if (alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE) != null) {
+                    if (mButtonColor != ADS_DEFAULT_BUTTON_COLOR) {
                         Dynamic.setColor(alertDialog.getButton(
                                 AlertDialog.BUTTON_NEGATIVE), mButtonColor);
                     }
 
-                    if (alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL) != null) {
+                    if (mNegativeButtonText != null) {
+                        Dynamic.set(alertDialog.getButton(
+                                AlertDialog.BUTTON_NEGATIVE), mNegativeButtonText);
+                    }
+                }
+
+                if (alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL) != null) {
+                    if (mButtonColor != ADS_DEFAULT_BUTTON_COLOR) {
                         Dynamic.setColor(alertDialog.getButton(
                                 AlertDialog.BUTTON_NEUTRAL), mButtonColor);
+                    }
+
+                    if (mNeutralButtonText != null) {
+                        Dynamic.set(alertDialog.getButton(
+                                AlertDialog.BUTTON_NEUTRAL), mNeutralButtonText);
                     }
                 }
 
@@ -149,11 +196,71 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
             }
         });
 
-        return onCustomiseDialog(alertDialog, savedInstanceState);
+        onCustomiseDialog(alertDialog, alertDialog.getView(), savedInstanceState);
+        return alertDialog;
+    }
+
+    /**
+     * Returns the layout resource for this dialog.
+     *
+     * @return The layout resource for this dialog.
+     */
+    public @LayoutRes int getLayoutRes() {
+        return DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
+    }
+
+    /**
+     * Override this method to customise the dynamic dialog builder before creating the dialog.
+     *
+     * @param dialogBuilder The current builder to be customised.
+     * @param savedInstanceState The saved state of the fragment to restore it later.
+     *
+     * @return The customised dynamic dialog builder.
+     */
+    protected @NonNull DynamicDialog.Builder onCustomiseBuilder(
+            @NonNull DynamicDialog.Builder dialogBuilder, @Nullable Bundle savedInstanceState) {
+        return dialogBuilder;
+    }
+
+    /**
+     * Override this method to customise the dynamic dialog before attaching it with
+     * this fragment.
+     *
+     * @param alertDialog The current dialog to be customised.
+     * @param view The view used by the dialog.
+     * @param savedInstanceState The saved state of the fragment to restore it later.
+     */
+    protected void onCustomiseDialog(@NonNull DynamicDialog alertDialog,
+            @Nullable View view, @Nullable Bundle savedInstanceState) {
+    }
+
+    /**
+     * Returns whether to register a shared preferences listener for this fragment.
+     *
+     * @return {@code true} to register a {@link SharedPreferences.OnSharedPreferenceChangeListener}
+     *         to receive preference change callback.
+     */
+    public boolean isOnSharedPreferenceChangeListener() {
+        return false;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (isOnSharedPreferenceChangeListener() && getContext() != null) {
+            PreferenceManager.getDefaultSharedPreferences(requireContext())
+                    .registerOnSharedPreferenceChangeListener(this);
+        }
     }
 
     @Override
     public void onPause() {
+        if (isOnSharedPreferenceChangeListener() && getContext() != null) {
+            PreferenceManager.getDefaultSharedPreferences(requireContext())
+                    .unregisterOnSharedPreferenceChangeListener(this);
+        }
+
         if (mAutoDismiss) {
             dismiss();
         }
@@ -191,45 +298,9 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
     }
 
     /**
-     * Override this method to customise the dynamic dialog builder before creating the dialog.
+     * Get the button color set for the dialog.
      *
-     * @param dialogBuilder The current builder to be customised.
-     * @param savedInstanceState The saved state of the fragment to restore it later.
-     *
-     * @return The customised dynamic dialog builder.
-     */
-    protected @NonNull DynamicDialog.Builder onCustomiseBuilder(
-            @NonNull DynamicDialog.Builder dialogBuilder, @Nullable Bundle savedInstanceState) {
-        return dialogBuilder;
-    }
-
-    /**
-     * Override this method to customise the dynamic dialog before attaching it with
-     * this fragment.
-     *
-     * @param alertDialog The current dialog to be customised.
-     * @param savedInstanceState The saved state of the fragment to restore it later.
-     *
-     * @return The customised dynamic dialog.
-     */
-    protected @NonNull DynamicDialog onCustomiseDialog(@NonNull DynamicDialog alertDialog,
-            @Nullable Bundle savedInstanceState) {
-        return alertDialog;
-    }
-
-    /**
-     * Finish the parent activity by calling {@link Activity#finish()}.
-     */
-    protected void finishActivity() {
-        if (getActivity() != null && !requireActivity().isFinishing()) {
-            requireActivity().finish();
-        }
-    }
-
-    /**
-     * Get the button color for the dialog.
-     *
-     * @return The button color used by this dialog fragment.
+     * @return The button color set for the dialog.
      */
     public @ColorInt int getButtonColor() {
         return mButtonColor;
@@ -243,8 +314,77 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
      * @return The {@link DynamicDialogFragment} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicDialogFragment setButtonColor(@ColorInt int buttonColor) {
+    public @NonNull DynamicDialogFragment setButtonColor(@ColorInt int buttonColor) {
         this.mButtonColor = buttonColor;
+
+        return this;
+    }
+
+    /**
+     * Get the positive button text set for the dialog.
+     *
+     * @return The positive button text set for the dialog.
+     */
+    public @Nullable CharSequence getPositiveButtonText() {
+        return mPositiveButtonText;
+    }
+
+    /**
+     * Set the positive button text set for the dialog.
+     *
+     * @param text The positive button text to be set.
+     *
+     * @return The {@link DynamicDialogFragment} object to allow for chaining of calls to
+     *         set methods.
+     */
+    public @NonNull DynamicDialogFragment setPositiveButtonText(@Nullable CharSequence text) {
+        this.mPositiveButtonText = text;
+
+        return this;
+    }
+
+    /**
+     * Get the negative button text set for the dialog.
+     *
+     * @return The negative button text set for the dialog.
+     */
+    public @Nullable CharSequence getNegativeButtonText() {
+        return mNegativeButtonText;
+    }
+
+    /**
+     * Set the negative button text set for the dialog.
+     *
+     * @param text The negative button text to be set.
+     *
+     * @return The {@link DynamicDialogFragment} object to allow for chaining of calls to
+     *         set methods.
+     */
+    public @NonNull DynamicDialogFragment setNegativeButtonText(@Nullable CharSequence text) {
+        this.mNegativeButtonText = text;
+
+        return this;
+    }
+
+    /**
+     * Get the neutral button text set for the dialog.
+     *
+     * @return The neutral button text set for the dialog.
+     */
+    public @Nullable CharSequence getNeutralButtonText() {
+        return mNeutralButtonText;
+    }
+
+    /**
+     * Set the neutral button text set for the dialog.
+     *
+     * @param text The neutral button text to be set.
+     *
+     * @return The {@link DynamicDialogFragment} object to allow for chaining of calls to
+     *         set methods.
+     */
+    public @NonNull DynamicDialogFragment setNeutralButtonText(@Nullable CharSequence text) {
+        this.mNeutralButtonText = text;
 
         return this;
     }
@@ -267,7 +407,7 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
      * @return The {@link DynamicDialogFragment} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicDialogFragment setIsCancelable(boolean cancelable) {
+    public @NonNull DynamicDialogFragment setIsCancelable(boolean cancelable) {
         this.mIsCancelable = cancelable;
         setCancelable(cancelable);
 
@@ -292,7 +432,7 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
      * @return The {@link DynamicDialogFragment} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicDialogFragment setAutoDismiss(boolean autoDismiss) {
+    public @NonNull DynamicDialogFragment setAutoDismiss(boolean autoDismiss) {
         this.mAutoDismiss = autoDismiss;
 
         return this;
@@ -301,7 +441,7 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
     /**
      * The dynamic dialog builder set for this fragment.
      *
-     * @return The dialog builder to customise this fragment according to the need.
+     * @return The dialog builder to customise this fragment according to the requirements.
      */
     protected @Nullable DynamicDialog.Builder getBuilder() {
         return mDynamicDialogBuilder;
@@ -315,7 +455,7 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
      * @return The {@link DynamicDialogFragment} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicDialogFragment setBuilder(
+    public @NonNull DynamicDialogFragment setBuilder(
             @NonNull DynamicDialog.Builder dynamicAlertDialogBuilder) {
         this.mDynamicDialogBuilder = dynamicAlertDialogBuilder;
 
@@ -339,7 +479,7 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
      * @return The {@link DynamicDialogFragment} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicDialogFragment setOnShowListener(
+    public @NonNull DynamicDialogFragment setOnShowListener(
             @Nullable DynamicDialog.OnShowListener onShowListener) {
         this.mOnShowListener = onShowListener;
 
@@ -363,7 +503,7 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
      * @return The {@link DynamicDialogFragment} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicDialogFragment setOnDismissListener(
+    public @NonNull DynamicDialogFragment setOnDismissListener(
             @Nullable DynamicDialog.OnDismissListener onDismissListener) {
         this.mOnDismissListener = onDismissListener;
 
@@ -387,7 +527,7 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
      * @return The {@link DynamicDialogFragment} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicDialogFragment setOnCancelListener(
+    public @NonNull DynamicDialogFragment setOnCancelListener(
             @Nullable DynamicDialog.OnCancelListener onCancelListener) {
         this.mOnCancelListener = onCancelListener;
 
@@ -411,7 +551,7 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
      * @return The {@link DynamicDialogFragment} object to allow for chaining of calls to
      *         set methods.
      */
-    public DynamicDialogFragment setOnKeyListener(
+    public @NonNull DynamicDialogFragment setOnKeyListener(
             @Nullable DynamicDialog.OnKeyListener onKeyListener) {
         this.mOnKeyListener = onKeyListener;
 
@@ -425,11 +565,18 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
      * @param tag The tag for this fragment.
      */
     public void showDialog(@NonNull FragmentActivity fragmentActivity, @Nullable String tag) {
+        if (fragmentActivity.getSupportFragmentManager().isDestroyed()) {
+            return;
+        }
+
         if (fragmentActivity.getSupportFragmentManager().findFragmentByTag(tag)
                 instanceof AppCompatDialogFragment) {
             try {
-                ((AppCompatDialogFragment) fragmentActivity
-                        .getSupportFragmentManager().findFragmentByTag(tag)).dismiss();
+                final AppCompatDialogFragment fragment;
+                if ((fragment = (AppCompatDialogFragment) fragmentActivity
+                        .getSupportFragmentManager().findFragmentByTag(tag)) != null) {
+                    fragment.dismiss();
+                }
             } catch (Exception ignored) {
             }
         }
@@ -454,4 +601,138 @@ public class DynamicDialogFragment extends AppCompatDialogFragment {
     public @Nullable DynamicDialog getDynamicDialog() {
         return (DynamicDialog) getDialog();
     }
+
+    /**
+     * Retrieves a parcelable from the fragment arguments associated with the supplied key.
+     *
+     * @param key The key to be retrieved.
+     * @param <T> The type of the parcelable.
+     *
+     * @return The parcelable from the fragment arguments.
+     *
+     * @see Fragment#getArguments()
+     */
+    public @Nullable <T extends Parcelable> T getParcelableFromArguments(@Nullable String key) {
+        if (getArguments() == null) {
+            return null;
+        }
+
+        try {
+            return requireArguments().getParcelable(key);
+        } catch (Exception ignored) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves a string from the fragment arguments associated with the supplied key.
+     *
+     * @param key The key to be retrieved.
+     *
+     * @return The string from the fragment arguments.
+     *
+     * @see Fragment#getArguments()
+     */
+    public @Nullable String getStringFromArguments(@Nullable String key) {
+        if (getArguments() == null) {
+            return null;
+        }
+
+        try {
+            return requireArguments().getString(key);
+        } catch (Exception ignored) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves a boolean from the fragment arguments associated with the supplied key.
+     *
+     * @param key The key to be retrieved.
+     * @param defaultValue The default value.
+     *
+     * @return The boolean from the fragment arguments.
+     *
+     * @see Fragment#getArguments()
+     */
+    public boolean getBooleanFromArguments(@Nullable String key, boolean defaultValue) {
+        if (getArguments() == null) {
+            return defaultValue;
+        }
+
+        return requireArguments().getBoolean(key, defaultValue);
+    }
+
+    /**
+     * Set result for the parent activity to notify the requester about the action.
+     *
+     * @param resultCode The result code for the activity.
+     * @param intent The result intent to provide any data as an extra.
+     * @param finish {@code true} to finish the activity.
+     */
+    protected void setResult(int resultCode, @Nullable Intent intent, boolean finish) {
+        if (getActivity() != null) {
+            if (intent != null) {
+                requireActivity().setResult(resultCode, intent);
+            } else {
+                requireActivity().setResult(resultCode);
+            }
+
+            if (finish) {
+                finishActivity();
+            }
+        }
+    }
+
+    /**
+     * Set result for the parent activity to notify the requester about the action.
+     *
+     * @param resultCode The result code for the activity.
+     * @param intent The result intent to provide any data as an extra.
+     */
+    protected void setResult(int resultCode, @Nullable Intent intent) {
+        setResult(resultCode, intent, true);
+    }
+
+    /**
+     * Set result for the parent activity to notify the requester about the action.
+     *
+     * @param resultCode The result code for the activity.
+     * @param finish {@code true} to finish the activity.
+     */
+    protected void setResult(int resultCode, boolean finish) {
+        setResult(resultCode, null, finish);
+    }
+
+    /**
+     * Set result for the parent activity to notify the requester about the action.
+     *
+     * @param resultCode The result code for the activity.
+     */
+    protected void setResult(int resultCode) {
+        setResult(resultCode, null, true);
+    }
+
+    /**
+     * Finish the parent activity by calling {@link Activity#finish()}.
+     *
+     * @see FragmentActivity#supportFinishAfterTransition()
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    protected void finishActivity() {
+        if (getActivity() instanceof DynamicSystemActivity) {
+            ((DynamicSystemActivity) requireActivity()).finishActivity();
+        } else if (getActivity() != null && !requireActivity().isFinishing()) {
+            if (DynamicSdkUtils.is21()
+                    && (requireActivity().getWindow().getSharedElementEnterTransition() != null
+                    || requireActivity().getWindow().getSharedElementReturnTransition() != null)) {
+                requireActivity().supportFinishAfterTransition();
+            } else {
+                requireActivity().finish();
+            }
+        }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { }
 }

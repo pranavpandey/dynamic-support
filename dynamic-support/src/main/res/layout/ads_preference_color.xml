@@ -16,8 +16,6 @@
 -->
 
 <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView
+    style="@style/Widget.DynamicApp.ColorView.Preference"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ads_preference_color_view"
-    android:layout_width="@dimen/ads_icon_preference_big"
-    android:layout_height="@dimen/ads_icon_preference_big"
-    android:layout_gravity="center_vertical" />
+    android:id="@+id/ads_preference_color_view" />

@@ -126,10 +126,8 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
     protected void onUpdate() {
         super.onUpdate();
 
-        if (getPreferenceView() != null) {
-            getPreferenceView().setClickable(
-                    getOnPreferenceClickListener() != null && getEntries() != null);
-        }
+        Dynamic.setClickable(getPreferenceView(),
+                getOnPreferenceClickListener() != null && getEntries() != null);
     }
 
     /**
@@ -145,8 +143,7 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
         DynamicMenuPopup popup = new DynamicMenuPopup(anchor, getEntries(),
                 new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (!getValues()[position].toString().equals(getPreferenceValue())) {
                     setPreferenceValue(getValues()[position].toString());
                 }
@@ -213,9 +210,15 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
      *               value string.
      */
     public void updateValueString(boolean update) {
-        if (getEntries() != null && getValues() != null) {
-            setValueString(getEntries()[Arrays.asList(
-                    getValues()).indexOf(getPreferenceValue())], update);
+        if (getEntries() == null || getValues() == null) {
+            return;
+        }
+
+        try {
+            setValueString(getEntries()[Arrays.asList(getValues())
+                    .indexOf(getPreferenceValue())], update);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

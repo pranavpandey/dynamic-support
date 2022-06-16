@@ -23,8 +23,8 @@ import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.listener.DynamicResolver;
 import com.pranavpandey.android.dynamic.support.model.DynamicRemoteTheme;
+import com.pranavpandey.android.dynamic.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 import java.util.Calendar;
@@ -54,7 +54,7 @@ public class DynamicThemeResolver implements DynamicResolver {
      * Constructor to initialize an object of this class.
      *
      * @param theme The dynamic theme instance for this resolver.
-     *              <p>If {@code null}, then it will try to use the the default instance.
+     *              <p>If {@code null}, then it will try to use the default instance.
      */
     public DynamicThemeResolver(@Nullable DynamicTheme theme) {
         this(theme, null, null);
@@ -64,7 +64,7 @@ public class DynamicThemeResolver implements DynamicResolver {
      * Constructor to initialize an object of this class.
      *
      * @param theme The dynamic theme instance for this resolver.
-     *              <p>If {@code null}, then it will try to use the the default instance.
+     *              <p>If {@code null}, then it will try to use the default instance.
      * @param colors The dynamic colors for this resolver.
      *               <p>Pass {@code null}, to use the default implementation.
      * @param colorsLocal The local dynamic colors for this resolver.
@@ -85,7 +85,7 @@ public class DynamicThemeResolver implements DynamicResolver {
     @Override
     public @NonNull DynamicColors getColors(boolean resolve) {
         if (resolve) {
-            return mColorsLocal.getMutated().isEmpty() ? mColors : mColorsLocal;
+            return mColorsLocal.getOriginal().isEmpty() ? mColors : mColorsLocal;
         }
 
         return mColors;
@@ -170,18 +170,8 @@ public class DynamicThemeResolver implements DynamicResolver {
                 default:
                     return false;
             }
-        } else if (theme == Theme.CUSTOM) {
-            if (data) {
-                if (getTheme().isDynamicColor() && getTheme().get()
-                        .getBackgroundColor(false) == Theme.AUTO) {
-                    return DynamicColorUtils.isColorDark(getColors().getOriginal(
-                            Theme.ColorType.BACKGROUND, getTheme().get().getBackgroundColor()));
-                } else {
-                    return DynamicColorUtils.isColorDark(getTheme().get().getBackgroundColor());
-                }
-            } else {
-                return false;
-            }
+        } else if (data && (theme == Theme.APP || theme == Theme.CUSTOM)) {
+            return getTheme().get().isDarkTheme();
         }
 
         return theme == Theme.NIGHT;
@@ -196,21 +186,13 @@ public class DynamicThemeResolver implements DynamicResolver {
     public @Theme int resolveAppTheme(@Theme int theme, @Theme.Night int night, boolean data) {
         switch (theme) {
             case Theme.AUTO:
-                if (resolveNightTheme(theme, night, data)) {
-                    return Theme.NIGHT;
-                } else {
-                    return Theme.DAY;
-                }
-            case Theme.DAY:
-                return Theme.DAY;
-            case Theme.NIGHT:
-                return Theme.NIGHT;
-            case Theme.CUSTOM:
-                return Theme.CUSTOM;
-            case Theme.APP:
-            case Theme.DISABLE:
+                return resolveNightTheme(theme, night, data) ? Theme.NIGHT : Theme.DAY;
+            case Theme.WIDGET:
             case Theme.REMOTE:
-            case Theme.SYSTEM:
+            case Theme.APP:
+            case Theme.DAY:
+            case Theme.NIGHT:
+            case Theme.CUSTOM:
             default:
                 return theme;
         }

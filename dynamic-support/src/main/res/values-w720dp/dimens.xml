@@ -27,6 +27,6 @@
     <dimen name="ads_bottom_sheet_max_width">540dp</dimen>
 
     <!-- Theme -->
-    <dimen name="ads_theme_preview_width">320dp</dimen>
+    <dimen name="ads_preview_width">320dp</dimen>
 
 </resources>

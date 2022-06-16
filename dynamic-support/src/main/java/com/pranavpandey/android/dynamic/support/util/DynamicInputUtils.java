@@ -27,7 +27,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
@@ -60,7 +60,11 @@ public final class DynamicInputUtils {
      */
     @SuppressLint("PrivateApi")
     @TargetApi(Build.VERSION_CODES.Q)
-    public static void setCursorColor(@NonNull TextView textView, @ColorInt int color) {
+    public static void setCursorColor(@Nullable TextView textView, @ColorInt int color) {
+        if (textView == null) {
+            return;
+        }
+
         if (DynamicSdkUtils.is29()) {
             DynamicDrawableUtils.colorizeDrawable(textView.getTextCursorDrawable(), color);
             DynamicDrawableUtils.colorizeDrawable(textView.getTextSelectHandle(), color);
@@ -164,8 +168,12 @@ public final class DynamicInputUtils {
      * @param background The background color to be used.
      * @param color The color to be used.
      */
-    public static void setColor(@NonNull EditText editText,
+    public static void setColor(@Nullable EditText editText,
             @ColorInt int background, @ColorInt int color) {
+        if (editText == null) {
+            return;
+        }
+
         if (editText.getBackground() != null) {
             ViewCompat.setBackground(editText, DynamicDrawableUtils.colorizeDrawable(
                     editText.getBackground(), background));
@@ -181,7 +189,11 @@ public final class DynamicInputUtils {
      * @param textInputLayout The text input layout to be colorized.
      * @param color The color to be used.
      */
-    public static void setColor(@NonNull TextInputLayout textInputLayout, @ColorInt int color) {
+    public static void setColor(@Nullable TextInputLayout textInputLayout, @ColorInt int color) {
+        if (textInputLayout == null) {
+            return;
+        }
+
         try {
             Field fFocusedTextColor = TextInputLayout.class.getDeclaredField("focusedTextColor");
             fFocusedTextColor.setAccessible(true);
@@ -209,7 +221,11 @@ public final class DynamicInputUtils {
      * @param color The color to be used.
      */
     @SuppressLint("PrivateApi")
-    public static void setColor(@NonNull AbsSeekBar seekBar, @ColorInt int color) {
+    public static void setColor(@Nullable AbsSeekBar seekBar, @ColorInt int color) {
+        if (seekBar == null) {
+            return;
+        }
+
         try {
             Field fThumb = AbsSeekBar.class.getDeclaredField("mThumb");
             fThumb.setAccessible(true);
@@ -225,20 +241,23 @@ public final class DynamicInputUtils {
      *
      * @param editText The edit text to show the soft input.
      */
-    public static void showSoftInput(final @NonNull EditText editText) {
+    public static void showSoftInput(final @Nullable EditText editText) {
+        if (editText == null) {
+            return;
+        }
+
         editText.requestFocus();
+
         editText.post(new Runnable() {
             @Override
             public void run() {
-                InputMethodManager inputMethodManager = ContextCompat.getSystemService(
-                        editText.getContext(), InputMethodManager.class);
-                if (inputMethodManager == null) {
-                    return;
+                InputMethodManager inputMethodManager;
+                if ((inputMethodManager = ContextCompat.getSystemService(
+                        editText.getContext(), InputMethodManager.class)) != null) {
+                    inputMethodManager.showSoftInput(editText, 0);
+                    editText.clearFocus();
+                    editText.requestFocus();
                 }
-
-                inputMethodManager.showSoftInput(editText, 0);
-                editText.clearFocus();
-                editText.requestFocus();
             }
         });
     }
@@ -248,15 +267,17 @@ public final class DynamicInputUtils {
      *
      * @param editText The edit text to clear the focus.
      */
-    public static void hideSoftInput(final @NonNull EditText editText) {
-        editText.clearFocus();
-
-        InputMethodManager inputMethodManager = ContextCompat.getSystemService(
-                editText.getContext(), InputMethodManager.class);
-        if (inputMethodManager == null) {
+    public static void hideSoftInput(final @Nullable EditText editText) {
+        if (editText == null) {
             return;
         }
 
-        inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+        editText.clearFocus();
+
+        InputMethodManager inputMethodManager;
+        if ((inputMethodManager = ContextCompat.getSystemService(
+                editText.getContext(), InputMethodManager.class)) != null) {
+            inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+        }
     }
 }

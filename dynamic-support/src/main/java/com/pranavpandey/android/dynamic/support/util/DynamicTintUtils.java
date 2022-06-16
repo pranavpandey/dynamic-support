@@ -36,12 +36,12 @@ import androidx.core.view.ViewCompat;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.internal.ScrimInsetsFrameLayout;
+import com.google.android.material.navigation.NavigationView;
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCheckedTextView;
 import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 import java.lang.reflect.Field;
@@ -69,15 +69,15 @@ public class DynamicTintUtils {
         }
 
         if (Dynamic.isBackgroundAware(view)) {
-            color = DynamicColorUtils.getContrastColor(color, background);
+            color = Dynamic.withContrastRatio(color, background, view);
         }
 
         @ColorInt int pressedColor;
         if (borderless) {
             pressedColor = DynamicColorUtils.adjustAlpha(color, Defaults.ADS_STATE_PRESSED);
         } else if (view instanceof MaterialButton) {
-            pressedColor = DynamicColorUtils.adjustAlpha(
-                    DynamicColorUtils.getTintColor(color), Defaults.ADS_STATE_PRESSED);
+            pressedColor = DynamicColorUtils.adjustAlpha(Dynamic.getTintColor(
+                    color, view), Defaults.ADS_STATE_PRESSED);
         } else {
             pressedColor = color;
         }
@@ -87,10 +87,8 @@ public class DynamicTintUtils {
 
         try {
             if (checkable && !(view instanceof DynamicCheckedTextView)) {
-                background = DynamicColorUtils.getStateColor(
-                        DynamicColorUtils.adjustAlpha(
-                                DynamicColorUtils.getTintColor(background),
-                                Defaults.ADS_STATE_PRESSED),
+                background = DynamicColorUtils.getStateColor(DynamicColorUtils.adjustAlpha(
+                        Dynamic.getTintColor(background, view), Defaults.ADS_STATE_PRESSED),
                         Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
 
                 ((RippleDrawable) drawable.mutate()).setColor(
@@ -121,7 +119,7 @@ public class DynamicTintUtils {
         }
 
         if (Dynamic.isBackgroundAware(view)) {
-            color = DynamicColorUtils.getContrastColor(color, background);
+            color = Dynamic.withContrastRatio(color, background, view);
         }
 
         @ColorInt int pressedColor = DynamicColorUtils.shiftColor(color,
@@ -144,10 +142,8 @@ public class DynamicTintUtils {
                                     Color.TRANSPARENT, pressedColor, checkable));
                 }
             } else {
-                ViewCompat.setBackgroundTintList(view,
-                        DynamicResourceUtils.getColorStateList(
-                                DynamicColorUtils.getTintColor(background),
-                                color, pressedColor, checkable));
+                ViewCompat.setBackgroundTintList(view, DynamicResourceUtils.getColorStateList(
+                        Dynamic.getTintColor(background, view), color, pressedColor, checkable));
             }
         } else if (view instanceof TintableBackgroundView) {
             if (borderless) {
@@ -155,25 +151,22 @@ public class DynamicTintUtils {
                         DynamicResourceUtils.getColorStateList(
                                 Color.TRANSPARENT, pressedColor, checkable));
             } else {
-                ViewCompat.setBackgroundTintList(view,
-                        DynamicResourceUtils.getColorStateList(
-                                DynamicColorUtils.getTintColor(background),
-                                color, pressedColor, checkable));
+                ViewCompat.setBackgroundTintList(view, DynamicResourceUtils.getColorStateList(
+                        Dynamic.getTintColor(background, view), color, pressedColor, checkable));
             }
         } else if (!DynamicSdkUtils.is21()) {
             background = DynamicColorUtils.getStateColor(DynamicColorUtils.adjustAlpha(
-                    DynamicColorUtils.getTintColor(background), Defaults.ADS_STATE_PRESSED),
+                    Dynamic.getTintColor(background, view), Defaults.ADS_STATE_PRESSED),
                     Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
             pressedColor = DynamicColorUtils.getStateColor(
                     DynamicColorUtils.adjustAlpha(color, Defaults.ADS_STATE_PRESSED),
                     Defaults.ADS_STATE_LIGHT, Defaults.ADS_STATE_DARK);
 
             if (borderless) {
-                DynamicDrawableUtils.setBackground(view,
-                        DynamicResourceUtils.getStateListDrawable(Color.TRANSPARENT,
-                                background, pressedColor, checkable));
+                Dynamic.setBackground(view, DynamicResourceUtils.getStateListDrawable(
+                        Color.TRANSPARENT, background, pressedColor, checkable));
             } else {
-                DynamicDrawableUtils.setBackground(view, DynamicResourceUtils.colorizeDrawable(
+                Dynamic.setBackground(view, DynamicResourceUtils.colorizeDrawable(
                         view.getBackground(), pressedColor, PorterDuff.Mode.SRC_ATOP));
             }
         }
@@ -253,6 +246,14 @@ public class DynamicTintUtils {
             return;
         }
 
+        if (view instanceof NavigationView) {
+            ((NavigationView) view).setTopInsetScrimEnabled(true);
+            ((NavigationView) view).setBottomInsetScrimEnabled(drawBottomInset);
+        } else {
+            view.setDrawTopInsetForeground(true);
+            view.setDrawBottomInsetForeground(drawBottomInset);
+        }
+
         try {
             final Field insetForeground =
                     ScrimInsetsFrameLayout.class.getDeclaredField("insetForeground");
@@ -260,7 +261,6 @@ public class DynamicTintUtils {
             insetForeground.set(view, new ColorDrawable(DynamicColorUtils
                     .adjustAlpha(color, Defaults.ADS_ALPHA_SCRIM)));
 
-            view.setDrawBottomInsetForeground(drawBottomInset);
             view.invalidate();
         } catch (Exception ignored) {
         }

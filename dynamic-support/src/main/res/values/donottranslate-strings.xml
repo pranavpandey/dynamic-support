@@ -25,11 +25,13 @@
     <string name="ads_format_braces">%1$s (%2$s)</string>
     <string name="ads_format_next_line">%1$s\n%2$s</string>
     <string name="ads_format_line_break_two">%1$s\n\n%2$s</string>
+    <string name="ads_format_float_two">%.02f</string>
 
     <!-- Labels -->
     <string name="ads_yes">@android:string/yes</string>
     <string name="ads_cancel">@android:string/cancel</string>
     <string name="ads_unit_percent">%</string>
+    <string name="ads_unit_pixel">px</string>
 
     <!-- Locales -->
     <string name="ads_locale_system">@string/ads_language_system</string>
@@ -40,6 +42,8 @@
     <string name="ads_locale_de_value">de</string>
     <string name="ads_locale_es">Español</string>
     <string name="ads_locale_es_value">es</string>
+    <string name="ads_locale_fr">Français</string>
+    <string name="ads_locale_fr_value">fr</string>
     <string name="ads_locale_hi">हिंदी</string>
     <string name="ads_locale_hi_value">hi</string>
     <string name="ads_locale_in">Indonesia</string>
@@ -65,6 +69,7 @@
     <string name="ads_theme_entry_system">@string/ads_locale_system</string>
     <string name="ads_theme_entry_wallpaper">@string/ads_wallpaper</string>
     <string name="ads_theme_entry_app">@string/ads_app</string>
+    <string name="ads_theme_entry_game">@string/ads_game</string>
     <string name="ads_theme_entry_value">@string/ads_app</string>
     <string name="ads_theme_entry_data">@string/ads_data</string>
     <string name="ads_theme_entry_disable">@string/ads_disable</string>
@@ -73,6 +78,9 @@
     <string name="ads_picker_hsv">HSV</string>
     <string name="ads_picker_rgb">RGB</string>
     <string name="ads_picker_cmyk">CMYK</string>
+    <string name="ads_picker_size_50">50%</string>
+    <string name="ads_picker_size_200">200%</string>
+    <string name="ads_picker_size_300">300%</string>
 
     <!-- Backup and Restore -->
     <string name="ads_backup_save">@string/ads_save</string>
@@ -105,6 +113,10 @@
         \nAndroid Jetpack Components
         \nAndroidX Extension Libraries
         \nMaterial Components for Android</string>
+    <string name="ads_license_google">Gson
+        \nPlaid
+        \nZXing</string>
+    <string name="ads_license_icons">Material Icons</string>
     <string name="ads_license_sas">Small App Support</string>
     <string name="ads_license_ads">Dynamic Support
         \nDynamic Theme
@@ -114,16 +126,14 @@
     <string name="ads_license_ads_modules">Dynamic Utils
         \nDynamic Toasts
         \nDynamic Engine</string>
-    <string name="ads_license_google">Gson
-        \nPlaid
-        \nZXing</string>
     <string name="ads_license_copy_android_google">&#169; 2005&#8211;2018 The Android Open Source Project</string>
-    <string name="ads_license_copy_google">&#169; 2008 Google, Inc.
-        \n&#169; 2015 Google, Inc.
+    <string name="ads_license_copy_google">&#169; 2008 Google Inc.
+        \n&#169; 2015 Google LLC.
         \n&#169; 2007&#8211;2020 ZXing authors</string>
+    <string name="ads_license_copy_icons">&#169; Google Inc.</string>
     <string name="ads_license_copy_me_16">&#169; 2016 Pranav Pandey</string>
-    <string name="ads_license_copy_me_17">&#169; 2017&#8211;2021 Pranav Pandey</string>
-    <string name="ads_license_copy_me_18">&#169; 2018&#8211;2021 Pranav Pandey</string>
+    <string name="ads_license_copy_me_17">&#169; 2017&#8211;2022 Pranav Pandey</string>
+    <string name="ads_license_copy_me_18">&#169; 2018&#8211;2022 Pranav Pandey</string>
     <string name="ads_license_apache">Apache 2.0</string>
 
 </resources>

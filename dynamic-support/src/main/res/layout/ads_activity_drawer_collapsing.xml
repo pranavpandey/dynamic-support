@@ -25,8 +25,7 @@
     <com.pranavpandey.android.dynamic.support.widget.DynamicDrawerLayout
         android:id="@+id/ads_drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent">
 
         <include layout="@layout/ads_activity_collapsing" />
 
@@ -35,7 +34,6 @@
             android:id="@+id/ads_navigation_view"
             android:layout_width="@dimen/ads_drawer_size"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
             android:layout_gravity="start"
             android:theme="@style/Widget.DynamicApp.NavigationView.ThemeOverlay"
             app:headerLayout="@layout/ads_header_drawer" />

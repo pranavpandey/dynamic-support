@@ -46,13 +46,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Body1"
-                    android:id="@+id/ads_info_view_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/ads_margin_tiny" />
-
             </LinearLayout>
 
         </LinearLayout>

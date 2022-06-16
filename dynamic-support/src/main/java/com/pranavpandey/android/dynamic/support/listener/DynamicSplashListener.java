@@ -22,7 +22,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
 /**
- * Interface to implement the splash screen and to get various callbacks while showing the splash.
+ * An interface to implement the splash screen and to get various callbacks while showing the splash.
  */
 public interface DynamicSplashListener {
 

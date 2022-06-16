@@ -83,6 +83,11 @@ public class DynamicSlider extends Slider implements DynamicProgressWidget {
      */
     protected @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
+
     public DynamicSlider(@NonNull Context context) {
         this(context, null);
     }
@@ -121,6 +126,9 @@ public class DynamicSlider extends Slider implements DynamicProgressWidget {
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicSlider_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicSlider_adt_contrast,
+                    Theme.Contrast.AUTO);
         } finally {
             a.recycle();
         }
@@ -217,6 +225,32 @@ public class DynamicSlider extends Slider implements DynamicProgressWidget {
     }
 
     @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
+    }
+
+    @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
@@ -228,7 +262,7 @@ public class DynamicSlider extends Slider implements DynamicProgressWidget {
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
             }
 
             setProgressBarColor();
@@ -240,10 +274,10 @@ public class DynamicSlider extends Slider implements DynamicProgressWidget {
     public void setProgressBarColor() {
         setTrackActiveTintList(DynamicResourceUtils.getColorStateList(mAppliedColor));
         setTrackInactiveTintList(DynamicResourceUtils.getColorStateList(
-                DynamicColorUtils.adjustAlpha(DynamicColorUtils.getTintColor(mContrastWithColor),
-                        Defaults.ADS_ALPHA_DISABLED)));
+                DynamicColorUtils.adjustAlpha(Dynamic.getTintColor(mContrastWithColor,
+                        this), Defaults.ADS_ALPHA_DISABLED)));
         setTickActiveTintList(DynamicResourceUtils.getColorStateList(
-                DynamicColorUtils.getTintColor(mAppliedColor)));
+                Dynamic.getTintColor(mAppliedColor, this)));
         setTickInactiveTintList(DynamicResourceUtils.getColorStateList(mContrastWithColor));
     }
 

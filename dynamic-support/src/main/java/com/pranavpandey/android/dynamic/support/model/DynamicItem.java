@@ -16,7 +16,13 @@
 
 package com.pranavpandey.android.dynamic.support.model;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.text.TextUtils;
 import android.view.View;
 
 import androidx.annotation.ColorInt;
@@ -26,12 +32,13 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
 import com.pranavpandey.android.dynamic.theme.Theme;
+import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
 
 /**
  * A model class to hold the dynamic item information which can be used by the
  * {@link DynamicItemView}.
  */
-public class DynamicItem {
+public class DynamicItem implements Parcelable {
 
     /**
      * Icon tint color type used by this item.
@@ -68,6 +75,11 @@ public class DynamicItem {
      * @see #contrastWithColor
      */
     private @Theme.BackgroundAware int backgroundAware;
+
+    /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int contrast;
     
     /**
      * Icon used by this item.
@@ -126,6 +138,61 @@ public class DynamicItem {
         this.contrastWithColorType = Theme.ColorType.NONE;
         this.contrastWithColor = Theme.Color.UNKNOWN;
         this.backgroundAware = Theme.BackgroundAware.UNKNOWN;
+        this.contrast = Theme.Contrast.UNKNOWN;
+    }
+
+    /**
+     * Read an object of this class from the parcel.
+     *
+     * @param in The parcel to read the values.
+     */
+    public DynamicItem(@NonNull Parcel in) {
+        this.colorType = in.readInt();
+        this.contrastWithColorType = in.readInt();
+        this.color = in.readInt();
+        this.contrastWithColor = in.readInt();
+        this.backgroundAware = in.readInt();
+        this.contrast = in.readInt();
+        this.icon = new BitmapDrawable(Resources.getSystem(),
+                (Bitmap) in.readParcelable(getClass().getClassLoader()));
+        this.title = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
+        this.subtitle = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
+        this.showDivider = in.readByte() != 0;
+    }
+
+    /**
+     * Parcelable creator to create from parcel.
+     */
+    public static final Parcelable.Creator<DynamicItem> CREATOR =
+            new Parcelable.Creator<DynamicItem>() {
+        @Override
+        public DynamicItem createFromParcel(Parcel in) {
+            return new DynamicItem(in);
+        }
+
+        @Override
+        public DynamicItem[] newArray(int size) {
+            return new DynamicItem[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return hashCode();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(colorType);
+        dest.writeInt(contrastWithColorType);
+        dest.writeInt(color);
+        dest.writeInt(contrastWithColor);
+        dest.writeInt(backgroundAware);
+        dest.writeInt(contrast);
+        dest.writeParcelable(DynamicBitmapUtils.getBitmap(icon), flags);
+        TextUtils.writeToParcel(title, dest, flags);
+        TextUtils.writeToParcel(subtitle, dest, flags);
+        dest.writeByte((byte) (showDivider ? 1 : 0));
     }
 
     /**
@@ -246,7 +313,7 @@ public class DynamicItem {
     }
 
     /**
-     * Set the value to make this widget background aware or not.
+     * Set the value to make this item background aware or not.
      *
      * @param backgroundAware The background aware functionality to be set.
      *
@@ -254,6 +321,52 @@ public class DynamicItem {
      */
     public @NonNull DynamicItem setBackgroundAware(@Theme.BackgroundAware int backgroundAware) {
         this.backgroundAware = backgroundAware;
+
+        return this;
+    }
+
+    /**
+     * Get the contrast value used by this item.
+     *
+     * @param resolve {@code true} to resolve auto contrast.
+     *
+     * @return The contrast value used by this item.
+     */
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return contrast;
+    }
+
+    /**
+     * Get the contrast value used by this item.
+     *
+     * @return The contrast value used by this item.
+     */
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    /**
+     * Returns the contrast ratio for by this item.
+     *
+     * @return The contrast ratio for by this item.
+     */
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    /**
+     * Set the contrast value used for this item.
+     *
+     * @param contrast The contrast value to be set.
+     *
+     * @return The {@link DynamicItem} object to allow for chaining of calls to set methods.
+     */
+    public @NonNull DynamicItem setContrast(int contrast) {
+        this.contrast = contrast;
 
         return this;
     }

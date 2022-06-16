@@ -36,6 +36,10 @@ import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicRecyclerViewAdapter;
+import com.pranavpandey.android.dynamic.support.recyclerview.widget.DynamicFlexboxLayoutManager;
+import com.pranavpandey.android.dynamic.support.recyclerview.widget.DynamicGridLayoutManager;
+import com.pranavpandey.android.dynamic.support.recyclerview.widget.DynamicLinearLayoutManager;
+import com.pranavpandey.android.dynamic.support.recyclerview.widget.DynamicStaggeredGridLayoutManager;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 import java.util.Arrays;
@@ -44,6 +48,11 @@ import java.util.Arrays;
  * Helper class to perform layout operations like detecting the column count at runtime.
  */
 public class DynamicLayoutUtils {
+
+    /**
+     * Default column count for the collection views.
+     */
+    public static final int SPAN_DEFAULT = 1;
 
     /**
      * Get the column count according to the current configuration.
@@ -176,14 +185,14 @@ public class DynamicLayoutUtils {
      *
      * @param context The context to instantiate the layout manager.
      * @param orientation The orientation of the layout manager.
-     *                    {@link StaggeredGridLayoutManager#VERTICAL} or
-     *                    {@link StaggeredGridLayoutManager#HORIZONTAL}
+     *                    {@link LinearLayoutManager#VERTICAL} or
+     *                    {@link LinearLayoutManager#HORIZONTAL}
      *
      * @return The {@link LinearLayoutManager} object for the given context.
      */
     public static @NonNull LinearLayoutManager getLinearLayoutManager(
             @NonNull Context context, int orientation) {
-        return new LinearLayoutManager(context, orientation, false);
+        return new DynamicLinearLayoutManager(context, orientation, false);
     }
 
     /**
@@ -191,12 +200,15 @@ public class DynamicLayoutUtils {
      * 
      * @param context The context to instantiate the layout manager.
      * @param count The column count for the grid layout.
+     * @param orientation The orientation of the layout manager.
+     *                    {@link GridLayoutManager#VERTICAL} or
+     *                    {@link GridLayoutManager#HORIZONTAL}
      *
      * @return The {@link GridLayoutManager} object for the given context.
      */
     public static @NonNull GridLayoutManager getGridLayoutManager(
-            @NonNull Context context, int count) {
-        return new GridLayoutManager(context, count);
+            @NonNull Context context, int count, int orientation) {
+        return new DynamicGridLayoutManager(context, count, orientation, false);
     }
 
     /**
@@ -211,7 +223,7 @@ public class DynamicLayoutUtils {
      */
     public static @NonNull StaggeredGridLayoutManager getStaggeredGridLayoutManager(
             int count, int orientation) {
-        return new StaggeredGridLayoutManager(count, orientation);
+        return new DynamicStaggeredGridLayoutManager(count, orientation);
     }
 
     /**
@@ -227,7 +239,7 @@ public class DynamicLayoutUtils {
     public static @NonNull FlexboxLayoutManager getFlexboxLayoutManager(
             @NonNull Context context, @FlexDirection int flexDirection,
             @JustifyContent  int justifyContent, @AlignItems int alignItems) {
-        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(context);
+        FlexboxLayoutManager layoutManager = new DynamicFlexboxLayoutManager(context);
         layoutManager.setFlexDirection(flexDirection);
         layoutManager.setJustifyContent(justifyContent);
         layoutManager.setAlignItems(alignItems);

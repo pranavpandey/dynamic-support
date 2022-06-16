@@ -42,6 +42,15 @@ public class DynamicBottomSheetBehavior<V extends View> extends BottomSheetBehav
     }
 
     @Override
+    public boolean onLayoutChild(@NonNull CoordinatorLayout parent,
+            @NonNull V child, int layoutDirection) {
+        // Fix incorrect bottom inset when using top inset for coordinator layout.
+        final boolean result = super.onLayoutChild(parent, child, layoutDirection);
+        ViewCompat.offsetTopAndBottom(child, -parent.getPaddingTop());
+        return result;
+    }
+
+    @Override
     public boolean layoutDependsOn(@NonNull CoordinatorLayout parent,
             @NonNull V child, @NonNull View dependency) {
         return super.layoutDependsOn(parent, child, dependency)
@@ -53,7 +62,7 @@ public class DynamicBottomSheetBehavior<V extends View> extends BottomSheetBehav
     public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout,
             @NonNull V child, @NonNull View directTargetChild,
             @NonNull View target, int nestedScrollAxes, final int type) {
-        // Ensure we react to vertical scrolling
+        // Ensure we react to vertical scrolling.
         return nestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL
                 || super.onStartNestedScroll(coordinatorLayout, child,
                 directTargetChild, target, nestedScrollAxes, type);
@@ -65,10 +74,9 @@ public class DynamicBottomSheetBehavior<V extends View> extends BottomSheetBehav
             int dxUnconsumed, int dyUnconsumed, int type, @NonNull int[] consumed) {
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed,
                 dyConsumed, dxUnconsumed, dyUnconsumed, type, consumed);
-        if (dyConsumed > 0) {
-            if (getState() != STATE_COLLAPSED && getState() != STATE_SETTLING) {
-                setState(STATE_COLLAPSED);
-            }
+
+        if (dyConsumed > 0 && getState() != STATE_COLLAPSED && getState() != STATE_SETTLING) {
+            setState(STATE_COLLAPSED);
         }
     }
 }

@@ -28,9 +28,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.util.DynamicScrollUtils;
-import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 
 /**
  * A {@link FragmentStateAdapter} to be used with the {@link androidx.viewpager2.widget.ViewPager2}.
@@ -81,31 +81,33 @@ public abstract class DynamicFragmentStateAdapter extends FragmentStateAdapter {
      * This method will be called to setup the recycler view.
      */
     protected void onSetupRecyclerView() {
-        if (getRecyclerView() == null || mOnScrollListener != null) {
-            return;
-        }
+        if (mOnScrollListener == null) {
+            mOnScrollListener = new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(
+                        @NonNull RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
 
-        mOnScrollListener = new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
+                    if (newState != RecyclerView.SCROLL_STATE_IDLE) {
+                        return;
+                    }
 
-                if (newState != RecyclerView.SCROLL_STATE_IDLE) {
-                    return;
+                    tintRecyclerView();
                 }
 
-                tintRecyclerView();
-            }
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
 
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
+                    tintRecyclerView();
+                }
+            };
+        }
 
-                tintRecyclerView();
-            }
-        };
-
-        getRecyclerView().addOnScrollListener(mOnScrollListener);
+        if (getRecyclerView() != null) {
+            getRecyclerView().removeOnScrollListener(mOnScrollListener);
+            getRecyclerView().addOnScrollListener(mOnScrollListener);
+        }
     }
 
     /**
@@ -114,19 +116,15 @@ public abstract class DynamicFragmentStateAdapter extends FragmentStateAdapter {
     public void tintRecyclerView() {
         DynamicScrollUtils.setEdgeEffectColor(getRecyclerView(),
                 DynamicTheme.getInstance().get().isBackgroundAware()
-                        ? DynamicColorUtils.getContrastColor(
-                                DynamicTheme.getInstance().resolveColorType(
-                                        Defaults.ADS_COLOR_TYPE_EDGE_EFFECT),
-                        getContrastWithColor())
+                        ? Dynamic.withContrastRatio(DynamicTheme.getInstance().resolveColorType(
+                                Defaults.ADS_COLOR_TYPE_EDGE_EFFECT), getContrastWithColor())
                         : DynamicTheme.getInstance().resolveColorType(
                                 Defaults.ADS_COLOR_TYPE_EDGE_EFFECT));
 
         DynamicScrollUtils.setScrollBarColor(getRecyclerView(),
                 DynamicTheme.getInstance().get().isBackgroundAware()
-                        ? DynamicColorUtils.getContrastColor(
-                                DynamicTheme.getInstance().resolveColorType(
-                                        Defaults.ADS_COLOR_TYPE_SCROLLABLE),
-                        getContrastWithColor())
+                        ? Dynamic.withContrastRatio(DynamicTheme.getInstance().resolveColorType(
+                                Defaults.ADS_COLOR_TYPE_SCROLLABLE), getContrastWithColor())
                         : DynamicTheme.getInstance().resolveColorType(
                                 Defaults.ADS_COLOR_TYPE_SCROLLABLE));
     }

@@ -32,13 +32,23 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.behavior.DynamicBottomSheetBehavior;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicBottomSheetWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
+import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
+import com.pranavpandey.android.dynamic.util.DynamicWindowUtils;
 
 /**
  * A {@link FrameLayout} to use as bottom sheet by applying the window insets and adjusting
  * the peek height.
  */
-public class DynamicBottomSheet extends FrameLayout implements WindowInsetsWidget {
+public class DynamicBottomSheet extends FrameLayout implements
+        DynamicBottomSheetWidget, WindowInsetsWidget {
+
+    /**
+     * Bottom sheet behaviour used by this bottom sheet.
+     */
+    private BottomSheetBehavior<DynamicBottomSheet> mBottomSheetBehavior;
 
     public DynamicBottomSheet(@NonNull Context context) {
         this(context, null);
@@ -80,30 +90,70 @@ public class DynamicBottomSheet extends FrameLayout implements WindowInsetsWidge
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                BottomSheetBehavior.from(v).setState(BottomSheetBehavior.STATE_EXPANDED);
+                if (getBottomSheetBehavior() != null) {
+                    getBottomSheetBehavior().setState(BottomSheetBehavior.STATE_EXPANDED);
+                }
             }
         });
     }
 
     @Override
     public void applyWindowInsets() {
-        if (getParent() == null || !(getParent() instanceof CoordinatorLayout)) {
+        if (getBottomSheetBehavior() == null) {
             return;
         }
 
+        final int left = getPaddingLeft();
+        final int top = getPaddingTop();
+        final int right = getPaddingRight();
         final int bottom = getPaddingBottom();
-        final int peek = BottomSheetBehavior.from(this).getPeekHeight();
+        final int peek = getBottomSheetBehavior().getPeekHeight();
+
         ViewCompat.setOnApplyWindowInsetsListener(this,
                 new androidx.core.view.OnApplyWindowInsetsListener() {
             @Override
-            public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat insets) {
-                v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(),
+            public @NonNull WindowInsetsCompat onApplyWindowInsets(
+                    @NonNull View v, @NonNull WindowInsetsCompat insets) {
+                final boolean isRtl = DynamicViewUtils.isLayoutRtl(v);
+                v.setPadding(isRtl ? right : left
+                                + insets.getInsets(WindowInsetsCompat.Type.systemBars()).left,
+                        top - insets.getInsets(WindowInsetsCompat.Type.systemBars()).top,
+                        isRtl ? left : right
+                                + insets.getInsets(WindowInsetsCompat.Type.systemBars()).right,
                         bottom + insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
-                BottomSheetBehavior.from(v).setPeekHeight(peek
-                        + insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
+                /*
+                 * Fix extra peek height when using top inset for coordinator layout and
+                 * dynamic bottom sheet behavior.
+                 */
+                getBottomSheetBehavior().setPeekHeight(peek + (
+                        !DynamicWindowUtils.isNavigationBarPresent(getContext())
+                                && getBottomSheetBehavior() instanceof DynamicBottomSheetBehavior
+                                ? -insets.getInsets(WindowInsetsCompat.Type.systemBars()).top
+                                : insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom));
 
                 return insets;
             }
         });
+
+        DynamicViewUtils.requestApplyWindowInsets(this);
+    }
+
+    @Override
+    public @Nullable BottomSheetBehavior<?> getBottomSheetBehavior() {
+        if (!(getParent() instanceof CoordinatorLayout)) {
+            return null;
+        } else if (mBottomSheetBehavior == null) {
+            mBottomSheetBehavior = BottomSheetBehavior.from(this);
+            applyWindowInsets();
+        }
+
+        return mBottomSheetBehavior;
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+
+        mBottomSheetBehavior = null;
     }
 }
