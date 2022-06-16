@@ -68,11 +68,6 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment
         super.onViewCreated(view, savedInstanceState);
 
         mViewPager = view.findViewById(R.id.ads_view_pager);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
 
         if (getActivity() == null) {
             return;
@@ -86,7 +81,7 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment
         Dynamic.addHeader(getActivity(), R.layout.ads_tabs,
                 true, getSavedInstanceState() == null);
 
-        if (savedInstanceState == null && getArguments() != null
+        if (getSavedInstanceState() == null && getArguments() != null
                 && requireArguments().containsKey(ADS_ARGS_VIEW_PAGER_PAGE)) {
             setPage(requireArguments().getInt(ADS_ARGS_VIEW_PAGER_PAGE));
         }
@@ -96,10 +91,12 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment
     public void onAddActivityHeader(@Nullable View view) {
         super.onAddActivityHeader(view);
 
-        if (view != null) {
-            mTabLayout = view.findViewById(R.id.ads_tab_layout);
-            mTabLayout.setupWithViewPager(mViewPager);
+        if (view == null) {
+            return;
         }
+
+        mTabLayout = view.findViewById(R.id.ads_tab_layout);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     /**

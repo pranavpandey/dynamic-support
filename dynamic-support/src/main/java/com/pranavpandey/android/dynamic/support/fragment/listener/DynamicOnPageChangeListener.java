@@ -52,7 +52,7 @@ public class DynamicOnPageChangeListener implements ViewPager.OnPageChangeListen
         if (getFragmentManager().getFragments().size() > position) {
             Fragment paused = getFragmentManager().getFragments().get(position);
             if (paused instanceof DynamicLifecycle) {
-                ((DynamicLifecycle) paused).onDynamicPause();
+                ((DynamicLifecycle) paused).onDynamicPause(true);
             }
         }
     }
@@ -66,7 +66,7 @@ public class DynamicOnPageChangeListener implements ViewPager.OnPageChangeListen
         if (getFragmentManager().getFragments().size() > position) {
             Fragment resumed = getFragmentManager().getFragments().get(position);
             if (resumed instanceof DynamicLifecycle) {
-                ((DynamicLifecycle) resumed).onDynamicResume();
+                ((DynamicLifecycle) resumed).onDynamicResume(true);
             }
         }
     }

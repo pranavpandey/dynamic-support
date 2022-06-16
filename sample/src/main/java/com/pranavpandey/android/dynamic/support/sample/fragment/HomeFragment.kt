@@ -57,7 +57,7 @@ class HomeFragment : DynamicFragment() {
         return getString(R.string.ads_nav_home)
     }
 
-    override fun getBottomNavigationViewId(): Int {
+    override fun getNavigationViewId(): Int {
         // Return the bottom navigation view id.
         return R.id.bottom_navigation
     }

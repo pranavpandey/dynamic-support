@@ -27,10 +27,10 @@ import android.graphics.drawable.LayerDrawable
 import android.os.Build
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
-import androidx.annotation.Nullable
 import androidx.annotation.StyleRes
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
+import androidx.multidex.MultiDex
 import com.pranavpandey.android.dynamic.support.DynamicApplication
 import com.pranavpandey.android.dynamic.support.sample.activity.ActionActivity
 import com.pranavpandey.android.dynamic.support.sample.controller.AppController
@@ -53,6 +53,11 @@ import java.util.*
  */
 class SampleApplication : DynamicApplication() {
 
+    override fun attachBaseContext(base: Context) {
+        MultiDex.install(base)
+        super.attachBaseContext(base)
+    }
+
     override fun onInitialize() {
         // Do any startup work here like initializing the other libraries, analytics, etc.
         AppController.initializeInstance(this)
@@ -69,7 +74,7 @@ class SampleApplication : DynamicApplication() {
     }
 
     @StyleRes
-    override fun getThemeRes(@Nullable theme: AppTheme<*>?): Int {
+    override fun getThemeRes(theme: AppTheme<*>?): Int {
         return if (theme != null) {
             ThemeController.getAppStyle(theme.backgroundColor)
         } else ThemeController.appStyle

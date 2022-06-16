@@ -686,7 +686,7 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
     }
 
     @Override
-    protected boolean setSharedPreferenceChangeListener() {
+    public boolean isOnSharedPreferenceChangeListener() {
         return true;
     }
 

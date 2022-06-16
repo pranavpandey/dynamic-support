@@ -19,12 +19,16 @@ package com.pranavpandey.android.dynamic.support.fragment;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
@@ -33,12 +37,16 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 import androidx.preference.PreferenceManager;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.transition.MaterialFadeThrough;
 import com.google.android.material.transition.MaterialSharedAxis;
 import com.pranavpandey.android.dynamic.support.Dynamic;
+import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.activity.DynamicActivity;
 import com.pranavpandey.android.dynamic.support.activity.DynamicDrawerActivity;
 import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
@@ -46,16 +54,17 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicLifecycle;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicTransitionListener;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
+import com.pranavpandey.android.dynamic.support.util.DynamicMenuUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
  * Base fragment class to provide basic functionality and to work with the {@link DynamicActivity}.
- * <p>Extend this fragment to add more functionality according to the need
+ * <p>Extend this fragment to add more functionality according to the requirements.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class DynamicFragment extends Fragment implements DynamicLifecycle,
-        DynamicTransitionListener, DynamicSearchListener,
+        DynamicTransitionListener, DynamicSearchListener, MenuProvider,
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     /**
@@ -72,23 +81,21 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
         mSavedInstanceState = savedInstanceState;
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         onApplyTransitions(false);
-    }
-
-    @SuppressWarnings("ConstantConditions")
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
 
         mSavedInstanceState = savedInstanceState;
 
         if (getActivity() == null) {
             return;
         }
+
+        requireActivity().addMenuProvider(this,
+                getViewLifecycleOwner(), Lifecycle.State.RESUMED);
 
         if (isSupportActionBar()) {
             requireActivity().setTitle(getTitle());
@@ -102,14 +109,77 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
         }
 
         if (getCheckedMenuItemId() != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
-            if (requireActivity().findViewById(getBottomNavigationViewId()) != null) {
-                ((BottomNavigationView) requireActivity().findViewById(
-                        getBottomNavigationViewId())).setSelectedItemId(getCheckedMenuItemId());
+            if (requireActivity().findViewById(getNavigationViewId())
+                    instanceof NavigationBarView) {
+                ((NavigationBarView) requireActivity().findViewById(
+                        getNavigationViewId())).setSelectedItemId(getCheckedMenuItemId());
             }
 
             if (requireActivity() instanceof DynamicDrawerActivity) {
                 ((DynamicDrawerActivity) requireActivity()).getNavigationView()
                         .setCheckedItem(getCheckedMenuItemId());
+            }
+        }
+    }
+
+    @Override
+    public void startActivity(@SuppressLint("UnknownNullness") Intent intent) {
+        try {
+            super.startActivity(intent);
+        } catch (Exception e) {
+            onStartActivityException(e);
+        }
+    }
+
+    @Override
+    public void startActivity(@SuppressLint("UnknownNullness") Intent intent,
+            @Nullable Bundle options) {
+        try {
+            super.startActivity(intent, options);
+        } catch (Exception e) {
+            onStartActivityException(e);
+        }
+    }
+
+    @Override
+    public void startActivityForResult(@SuppressLint("UnknownNullness") Intent intent,
+            int requestCode) {
+        try {
+            super.startActivityForResult(intent, requestCode);
+        } catch (Exception e) {
+            onStartActivityException(e);
+        }
+    }
+
+    @Override
+    public void startActivityForResult(@SuppressLint("UnknownNullness") Intent intent,
+            int requestCode, @Nullable Bundle options) {
+        try {
+            super.startActivityForResult(intent, requestCode, options);
+        } catch (Exception e) {
+            onStartActivityException(e);
+        }
+    }
+
+    /**
+     * This method will be called when there is an exception on starting the activity
+     * from this fragment.
+     *
+     * @param exception The exception occurred.
+     *
+     * @see #startActivity(Intent)
+     * @see #startActivity(Intent, Bundle)
+     * @see #startActivityForResult(Intent, int)
+     * @see #startActivityForResult(Intent, int, Bundle)
+     */
+    protected void onStartActivityException(@Nullable Exception exception) {
+        if (exception instanceof ActivityNotFoundException) {
+            throw new ActivityNotFoundException();
+        } else {
+            Dynamic.showSnackbar(getActivity(), R.string.ads_error);
+
+            if (exception != null) {
+                exception.printStackTrace();
             }
         }
     }
@@ -135,6 +205,9 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
     @Override
     public void onApplyTransitions(boolean exit) {
         if (getActivity() != null) {
+            setAllowEnterTransitionOverlap(true);
+            setAllowReturnTransitionOverlap(true);
+
             setEnterTransition(onAdjustEnterReturnTransition(
                     getDynamicEnterTransition(), true));
             setReturnTransition(onAdjustEnterReturnTransition(
@@ -143,8 +216,6 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
                     getDynamicExitTransition(), true));
             setReenterTransition(onAdjustExitReenterTransition(
                     getDynamicReenterTransition(), false));
-            setAllowEnterTransitionOverlap(false);
-            setAllowReturnTransitionOverlap(false);
         }
 
         if (!DynamicSdkUtils.is21() || getActivity() == null) {
@@ -174,9 +245,13 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
 
     @Override
     public @Nullable Object getDynamicEnterTransition() {
-        // Using Y-axis transition to make it in sync with the activity header transition.
-        return DynamicMotion.getInstance().withDuration(
-                new MaterialSharedAxis(MaterialSharedAxis.Y, true));
+        if (getView() != null) {
+            return DynamicMotion.getInstance().withDuration(new MaterialSharedAxis(
+                    MaterialSharedAxis.Y, true).addTarget(getView()));
+        } else {
+            return DynamicMotion.getInstance().withDuration(
+                    new MaterialSharedAxis(MaterialSharedAxis.Y, true));
+        }
     }
 
     @Override
@@ -186,7 +261,12 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
 
     @Override
     public @Nullable Object getDynamicExitTransition() {
-        return getExitTransition();
+        if (getView() != null) {
+            return DynamicMotion.getInstance().withDuration(
+                    new MaterialFadeThrough().addTarget(getView()));
+        } else {
+            return DynamicMotion.getInstance().withDuration(new MaterialFadeThrough());
+        }
     }
 
     @Override
@@ -221,14 +301,15 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
     public void onSearchViewExpanded() {
         setMenuVisibility(false);
 
-        if (getTextWatcher() != null) {
-            Dynamic.addSearchViewTextChangedListener(getActivity(), getTextWatcher());
-        }
+        Dynamic.removeSearchViewTextChangedListener(getActivity(), getTextWatcher());
+        Dynamic.addSearchViewTextChangedListener(getActivity(), getTextWatcher());
     }
 
     @Override
     public void onSearchViewCollapsed() {
         setMenuVisibility(true);
+
+        Dynamic.removeSearchViewTextChangedListener(getActivity(), getTextWatcher());
     }
 
     @Override
@@ -281,53 +362,134 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
     public void onAddActivityHeader(@Nullable View view) { }
 
     /**
-     * Get boolean to control the shared preferences listener.
+     * Returns whether to register a listener to listen the search view expand and collapse
+     * callbacks for the {@link DynamicActivity}.
      *
-     * @return {@code true} to set a shared preferences listener.
-     *          <p>The default values is {@code false}.
+     * @return {@code true} to register a {@link DynamicSearchListener} to listen the search view
+     * expand and collapse callbacks for the {@link DynamicActivity}.
      */
-    protected boolean setSharedPreferenceChangeListener() {
+    public boolean isSearchViewListenerListener() {
         return false;
+    }
+
+    /**
+     * Returns whether to set the options menu for this fragment.
+     *
+     * @return {@code true} if set the options menu for this fragment.
+     *
+     * @see #setHasOptionsMenu(boolean)
+     * @see #onDynamicResume(boolean)
+     */
+    public boolean setHasOptionsMenu() {
+        return false;
+    }
+
+    /**
+     * Returns whether to force menu icons for this fragment.
+     *
+     * @return {@code true} if force menu icons for this fragment.
+     *
+     * @see #onPrepareMenu(Menu)
+     * @see DynamicMenuUtils#forceMenuIcons(Menu)
+     */
+    public boolean isForceMenuIcons() {
+        return true;
+    }
+
+    /**
+     * Returns whether to register a shared preferences listener for this fragment.
+     *
+     * @return {@code true} to register a {@link SharedPreferences.OnSharedPreferenceChangeListener}
+     *         to receive preference change callback.
+     */
+    public boolean isOnSharedPreferenceChangeListener() {
+        return false;
+    }
+
+    /**
+     * Returns whether to use a menu provider for this fragment.
+     *
+     * @return {@code true} if a menu provider is required for this fragment.
+     *
+     * @see androidx.fragment.app.FragmentActivity#addMenuProvider(MenuProvider)
+     */
+    protected boolean isHasMenuProvider() {
+        return false;
+    }
+
+    @Override
+    public void onPrepareMenu(@NonNull Menu menu) {
+        if (isForceMenuIcons()) {
+            DynamicMenuUtils.forceMenuIcons(menu);
+        }
+    }
+
+    @Override
+    public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) { }
+
+    @Override
+    public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+        return false;
+    }
+
+    @Override
+    public void onMenuClosed(@NonNull Menu menu) { }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        onDynamicResume(true);
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        onApplyTransitions(true);
-
-        if (setSharedPreferenceChangeListener() && getContext() != null) {
-            PreferenceManager.getDefaultSharedPreferences(requireContext())
-                    .registerOnSharedPreferenceChangeListener(this);
-        }
+        onDynamicResume(false);
     }
 
     @Override
     public void onPause() {
-        setHasOptionsMenu(false);
-
-        if (setSharedPreferenceChangeListener() && getContext() != null) {
-            PreferenceManager.getDefaultSharedPreferences(requireContext())
-                    .unregisterOnSharedPreferenceChangeListener(this);
-        }
+        onDynamicPause(false);
         super.onPause();
     }
 
     @Override
     public void onStop() {
-        onDynamicPause();
+        onDynamicPause(true);
         super.onStop();
     }
 
     @CallSuper
     @Override
-    public void onDynamicResume() { }
+    public void onDynamicResume(boolean forced) {
+        if (isOnSharedPreferenceChangeListener() && getContext() != null) {
+            PreferenceManager.getDefaultSharedPreferences(requireContext())
+                    .registerOnSharedPreferenceChangeListener(this);
+        }
+
+        if (forced) {
+            onApplyTransitions(true);
+        }
+
+        if (isSearchViewListenerListener()) {
+            Dynamic.setSearchViewListener(getActivity(), this);
+        }
+    }
 
     @CallSuper
     @Override
-    public void onDynamicPause() {
-        Dynamic.collapseSearchView(getActivity());
-        Dynamic.setSearchViewListener(getActivity(), null);
+    public void onDynamicPause(boolean forced) {
+        if (forced) {
+            Dynamic.collapseSearchView(getActivity());
+            Dynamic.setSearchViewListener(getActivity(), null);
+
+            if (isOnSharedPreferenceChangeListener() && getContext() != null) {
+                PreferenceManager.getDefaultSharedPreferences(requireContext())
+                        .unregisterOnSharedPreferenceChangeListener(this);
+            }
+        }
     }
 
     /**
@@ -373,7 +535,7 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
      *
      * @see #getCheckedMenuItemId()
      */
-    protected @IdRes int getBottomNavigationViewId() {
+    protected @IdRes int getNavigationViewId() {
         return DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID;
     }
 

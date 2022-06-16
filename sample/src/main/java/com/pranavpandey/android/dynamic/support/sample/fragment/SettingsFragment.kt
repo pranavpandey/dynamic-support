@@ -53,7 +53,7 @@ class SettingsFragment : DynamicViewPager2Fragment() {
         return getString(R.string.ads_nav_settings)
     }
 
-    override fun getBottomNavigationViewId(): Int {
+    override fun getNavigationViewId(): Int {
         // Return the bottom navigation view id.
         return R.id.bottom_navigation
     }

@@ -667,7 +667,7 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
     }
 
     @Override
-    protected boolean setSharedPreferenceChangeListener() {
+    public boolean isOnSharedPreferenceChangeListener() {
         return true;
     }
 
