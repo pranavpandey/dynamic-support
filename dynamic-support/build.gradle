@@ -47,7 +47,6 @@ dependencies {
     api "com.pranavpandey.android:dynamic-locale:${versions.locale}"
     api "com.pranavpandey.android:dynamic-preferences:${versions.preferences}"
     api "com.pranavpandey.android:dynamic-toasts:${versions.dynamic}"
-    api "androidx.drawerlayout:drawerlayout:${versions.drawerlayout}"
     api "androidx.fragment:fragment:${versions.fragment}"
     api "androidx.swiperefreshlayout:swiperefreshlayout:${versions.swiperefresh}"
     api "androidx.work:work-runtime:${versions.work}"
