@@ -18,7 +18,7 @@
 <animated-vector
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:drawable="@drawable/ic_sample_splash"
+    android:drawable="@drawable/ic_launcher_monochrome"
     tools:targetApi="lollipop">
 
     <target

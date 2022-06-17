@@ -27,7 +27,7 @@ import com.pranavpandey.android.dynamic.support.sample.R
 /**
  * Licenses fragment to show license and by using [DynamicFragment].
  */
-class LicensesFragment : DynamicFragment() {
+class NoticeFragment : DynamicFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -39,10 +39,10 @@ class LicensesFragment : DynamicFragment() {
         /**
          * Returns the new instance of this fragment.
          *
-         * @return The new instance of [LicensesFragment].
+         * @return The new instance of [NoticeFragment].
          */
-        fun newInstance(): LicensesFragment {
-            return LicensesFragment()
+        fun newInstance(): NoticeFragment {
+            return NoticeFragment()
         }
     }
 }

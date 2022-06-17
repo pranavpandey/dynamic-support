@@ -111,7 +111,7 @@ class TutorialActivity :
                 getString(R.string.tutorial_welcome),
                 getString(R.string.tutorial_welcome_subtitle),
                 getString(R.string.tutorial_welcome_desc),
-                R.drawable.ic_sample_splash, true))
+                R.drawable.ic_launcher_monochrome, true))
 
         // TODO: Add another simple dynamic tutorial.
         tutorials.add(DynamicTutorial(TUTORIAL_FINISH,

@@ -104,7 +104,7 @@ class AboutFragment : DynamicViewPager2Fragment() {
     override fun createFragment(position: Int): Fragment {
         // TODO: Return view pager fragments.
         return when (position) {
-            1 -> LicensesFragment.newInstance()
+            1 -> NoticeFragment.newInstance()
             else -> AppInfoFragment.newInstance()
         }
     }
