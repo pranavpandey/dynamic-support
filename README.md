@@ -40,7 +40,7 @@ It can be installed by adding the following dependency to your `build.gradle` fi
 ```groovy
 dependencies {
     // For AndroidX enabled projects.
-    implementation 'com.pranavpandey.android:dynamic-support:5.0.0'
+    implementation 'com.pranavpandey.android:dynamic-support:6.0.0'
 
     // For legacy projects.
     implementation 'com.pranavpandey.android:dynamic-support:1.3.0'

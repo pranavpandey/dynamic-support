@@ -23,6 +23,7 @@ android {
     defaultConfig {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
+        namespace 'com.pranavpandey.android.dynamic.support'
 
         vectorDrawables.useSupportLibrary = true
         consumerProguardFiles 'proguard-rules.pro'

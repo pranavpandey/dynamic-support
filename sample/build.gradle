@@ -20,6 +20,7 @@ apply plugin: 'kotlin-android'
 android {
     compileSdkVersion versions.compileSdk
     buildToolsVersion versions.buildTools
+    namespace 'com.pranavpandey.android.dynamic.support.sample'
 
     defaultConfig {
         applicationId "com.pranavpandey.android.dynamic.support.sample"
