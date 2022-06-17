@@ -44,11 +44,11 @@
     <string name="bottom_navigation">Bottom navigation</string>
     <string name="bottom_navigation_subtitle">A bottom navigation view by using dynamic activity.</string>
     <string name="rotation">Rotation | Orientation Manager</string>
-    <string name="rotation_subtitle">An app completely built by using this library. It covers some more advanced use cases like multiple locales, runtime permissions, etc. and can motivate to implement similar kind of functionality by exploring the sources of Dynamic Support.</string>
+    <string name="rotation_subtitle">A tool to manage the device orientation. It offers all the modes that Android supports and can be configured according to the apps or various events like call, lock, headset, charging and dock.</string>
     <string name="everyday">Everyday | Calendar Widget</string>
-    <string name="everyday_subtitle">An app to show the widget customisations by extending the app theme. It also features some more advanced use cases like multiple locales, runtime permissions, remote views factory, etc. and can motivate to implement similar kind of functionality by exploring the sources of Dynamic Support.</string>
+    <string name="everyday_subtitle">A widget to check the calendar information from the home screen. It is highly customizable with a dynamic theme engine to match your style.</string>
     <string name="palettes">Palettes | Theme manager</string>
-    <string name="palettes_subtitle">A universal manager for apps supporting the dynamic theme on Android. It provides some default configurations which can be extended to create custom ones. Let\'s give it a try to explore its other useful features.</string>
+    <string name="palettes_subtitle">A universal manager for apps supporting the dynamic theme on Android. It provides some default configurations which can be extended to create custom ones.</string>
     <string name="barquode">Barquode | Matrix Manager</string>
     <string name="barquode_subtitle">A tool to create, capture and manage a wide variety of matrix codes including Barcodes and QR codes. It is highly customizable with a dynamic theme engine to match your style.</string>
     <string name="zerocros">Zerocros | Tic-tac-toe Game</string>
