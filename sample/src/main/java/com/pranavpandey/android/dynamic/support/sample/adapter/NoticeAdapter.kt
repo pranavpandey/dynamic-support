@@ -21,13 +21,13 @@ import com.pranavpandey.android.dynamic.support.model.DynamicInfo
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicSimpleBinderAdapter
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.factory.InfoBigBinder
-import com.pranavpandey.android.dynamic.support.sample.binder.LicenseBinder
+import com.pranavpandey.android.dynamic.support.sample.binder.NoticeBinder
 import java.util.*
 
 /**
  * A binder adapter to display a list of [DynamicInfo] by using [DynamicSimpleBinderAdapter].
  */
-class LicensesAdapter(
+class NoticeAdapter(
 
     /**
      * Data set used by this adapter.
@@ -37,7 +37,7 @@ class LicensesAdapter(
 
     init {
         // Add license binder for this adapter.
-        addDataBinder(LicenseBinder(this))
+        addDataBinder(NoticeBinder(this))
     }
 
     override fun getItemViewType(position: Int): Int {

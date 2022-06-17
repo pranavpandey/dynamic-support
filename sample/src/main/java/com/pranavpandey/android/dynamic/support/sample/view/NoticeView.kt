@@ -23,15 +23,15 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.pranavpandey.android.dynamic.support.model.DynamicInfo
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewFrame
 import com.pranavpandey.android.dynamic.support.sample.R
-import com.pranavpandey.android.dynamic.support.sample.adapter.LicensesAdapter
+import com.pranavpandey.android.dynamic.support.sample.adapter.NoticeAdapter
 import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils
 
 /**
- * License view to display a list of licences by using [LicensesAdapter]
+ * License view to display a list of licences by using [NoticeAdapter]
  * and [DynamicRecyclerViewFrame].
  */
-class LicenseView : DynamicRecyclerViewFrame {
+class NoticeView : DynamicRecyclerViewFrame {
 
     @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null)
             : super(context, attrs) {
@@ -53,10 +53,10 @@ class LicenseView : DynamicRecyclerViewFrame {
                 StaggeredGridLayoutManager.VERTICAL)
     }
 
-    private fun setAdapter(): LicenseView {
+    private fun setAdapter(): NoticeView {
         // Add licenses in the array.
-        val licenses = ArrayList<DynamicInfo>()
-        licenses.add(DynamicInfo()
+        val notices = ArrayList<DynamicInfo>()
+        notices.add(DynamicInfo()
                 .setTitle(context.getString(R.string.ads_license_android))
                 .setDescription(context.getString(R.string.ads_license_copy_android_google))
                 .setLinks(resources.getStringArray(R.array.ads_license_links_apache_only))
@@ -66,7 +66,7 @@ class LicenseView : DynamicRecyclerViewFrame {
                 .setLinksIconsResId(R.array.ads_license_links_icons_license)
                 .setLinksColorsResId(R.array.ads_license_links_colors_license)
                 .setIconBig(DynamicResourceUtils.getDrawable(context, R.drawable.ads_ic_android)))
-        licenses.add(DynamicInfo()
+        notices.add(DynamicInfo()
                 .setTitle(context.getString(R.string.ads_license_google))
                 .setDescription(context.getString(R.string.ads_license_copy_google))
                 .setLinks(resources.getStringArray(R.array.ads_license_links_apache))
@@ -75,7 +75,18 @@ class LicenseView : DynamicRecyclerViewFrame {
                 .setLinksIconsResId(R.array.ads_license_links_icons)
                 .setLinksColorsResId(R.array.ads_license_links_colors)
                 .setIconBig(DynamicResourceUtils.getDrawable(context, R.drawable.ads_ic_android)))
-        licenses.add(DynamicInfo()
+        notices.add(DynamicInfo()
+            .setTitle(context.getString(R.string.ads_license_icons))
+            .setDescription(context.getString(R.string.ads_license_copy_icons))
+            .setLinks(resources.getStringArray(R.array.ads_license_links_apache))
+            .setLinksSubtitles(resources.getStringArray(
+                R.array.ads_license_links_subtitles))
+            .setLinksUrls(resources.getStringArray(R.array.ads_license_links_urls_icons))
+            .setLinksIconsResId(R.array.ads_license_links_icons)
+            .setLinksColorsResId(R.array.ads_license_links_colors)
+            .setIconBig(DynamicResourceUtils.getDrawable(
+                context, R.drawable.ads_ic_icon)))
+        notices.add(DynamicInfo()
                 .setTitle(context.getString(R.string.ads_license_ads_dynamic))
                 .setDescription(context.getString(R.string.ads_license_copy_me_17))
                 .setLinks(resources.getStringArray(R.array.ads_license_links_ads_dynamic))
@@ -88,7 +99,7 @@ class LicenseView : DynamicRecyclerViewFrame {
                         context, R.drawable.ads_ic_extension)))
 
         // Set adapter for the recycler view.
-        setAdapter(LicensesAdapter(licenses))
+        setAdapter(NoticeAdapter(notices))
 
         return this
     }

@@ -21,15 +21,15 @@ import android.view.ViewGroup
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.factory.InfoBigBinder
 import com.pranavpandey.android.dynamic.support.sample.R
-import com.pranavpandey.android.dynamic.support.sample.adapter.LicensesAdapter
+import com.pranavpandey.android.dynamic.support.sample.adapter.NoticeAdapter
 
 /**
  * A recycler view binder to display licenses by using [DynamicRecyclerViewBinder].
  */
-class LicenseBinder(binderAdapter: LicensesAdapter) : InfoBigBinder(binderAdapter) {
+class NoticeBinder(binderAdapter: NoticeAdapter) : InfoBigBinder(binderAdapter) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(
-                R.layout.layout_license_card, parent, false))
+                R.layout.layout_notice_card, parent, false))
     }
 }

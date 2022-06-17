@@ -33,9 +33,7 @@ class AppInfoAdapter : DynamicSimpleBinderAdapter<DynamicRecyclerViewBinder<*>>(
         set(onClickListener) {
             field = onClickListener
 
-            if (!isComputingLayout) {
-                notifyDataSetChanged()
-            }
+            notifyBinderDataSetChanged()
         }
 
     init {

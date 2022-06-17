@@ -31,7 +31,7 @@ class LicensesFragment : DynamicFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_licenses, container, false)
+        return inflater.inflate(R.layout.fragment_notice, container, false)
     }
 
     companion object {
