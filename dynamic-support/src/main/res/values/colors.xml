@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -42,6 +42,7 @@
     <color name="ads_primary_dark">#303F9F</color>
     <color name="ads_accent">#E91E63</color>
     <color name="ads_error">#FF0000</color>
+    <color name="ads_author_background">@color/ads_primary</color>
 
     <!-- Widget -->
     <color name="ads_color_control">#4D898989</color>

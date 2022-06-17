@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,10 +41,10 @@ import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPopup;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.theme.DynamicPalette;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 
 /**
  * A {@link DynamicSimplePreference} to implement the functionality of a color picker by using the
@@ -369,15 +369,17 @@ public class DynamicColorPreference extends DynamicSimplePreference {
         color = color == Theme.AUTO
                 ? DynamicTheme.getInstance().get().getBackgroundColor() : color;
 
-        DynamicColorDialog.newInstance().setColors(getColors(), getShades())
-                .setDynamics(dynamics)
-                .setColorShape(getColorShape())
-                .setAlpha(isAlpha())
-                .setPreviousColor(color)
-                .setSelectedColor(color)
-                .setDynamicColorListener(dynamicColorListener)
-                .setBuilder(new DynamicDialog.Builder(getContext()).setTitle(title))
-                .showDialog((FragmentActivity) getContext());
+        if (getContext() instanceof FragmentActivity) {
+            DynamicColorDialog.newInstance().setColors(getColors(), getShades())
+                    .setDynamics(dynamics)
+                    .setColorShape(getColorShape())
+                    .setAlpha(isAlpha())
+                    .setPreviousColor(color)
+                    .setSelectedColor(color)
+                    .setDynamicColorListener(dynamicColorListener)
+                    .setBuilder(new DynamicDialog.Builder(getContext()).setTitle(title))
+                    .showDialog((FragmentActivity) getContext());
+        }
     }
 
     /**

@@ -28,7 +28,7 @@
             android:shape="rectangle">
 
             <solid
-                android:color="@color/adt_icon_fill_dark" />
+                android:color="@android:color/white" />
 
             <corners
                 android:radius="@dimen/ads_list_selector_rect_radius" />

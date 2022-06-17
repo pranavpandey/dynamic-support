@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,24 +52,24 @@ public class InfoBigBinder extends DynamicDataBinder<DynamicInfo, InfoBigBinder.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (getData() == null) {
             return;
         }
 
-        viewHolder.getDynamicInfo().setIcon(getData().getIcon());
-        viewHolder.getDynamicInfo().setIconBig(getData().getIconBig());
-        viewHolder.getDynamicInfo().setTitle(getData().getTitle());
-        viewHolder.getDynamicInfo().setSubtitle(getData().getSubtitle());
-        viewHolder.getDynamicInfo().setDescription(getData().getDescription());
-        viewHolder.getDynamicInfo().setLinks(getData().getLinks());
-        viewHolder.getDynamicInfo().setLinksSubtitles(getData().getLinksSubtitles());
-        viewHolder.getDynamicInfo().setLinksUrls(getData().getLinksUrls());
-        viewHolder.getDynamicInfo().setLinksIconsId(getData().getLinksIconsResId());
-        viewHolder.getDynamicInfo().setLinksDrawables(getData().getLinksDrawables());
-        viewHolder.getDynamicInfo().setLinksColorsId(getData().getLinksColorsResId());
-        viewHolder.getDynamicInfo().setLinksColors(getData().getLinksColors());
-        viewHolder.getDynamicInfo().onUpdate();
+        holder.getDynamicInfo().setIcon(getData().getIcon());
+        holder.getDynamicInfo().setIconBig(getData().getIconBig());
+        holder.getDynamicInfo().setTitle(getData().getTitle());
+        holder.getDynamicInfo().setSubtitle(getData().getSubtitle());
+        holder.getDynamicInfo().setDescription(getData().getDescription());
+        holder.getDynamicInfo().setLinks(getData().getLinks());
+        holder.getDynamicInfo().setLinksSubtitles(getData().getLinksSubtitles());
+        holder.getDynamicInfo().setLinksUrls(getData().getLinksUrls());
+        holder.getDynamicInfo().setLinksIconsId(getData().getLinksIconsResId());
+        holder.getDynamicInfo().setLinksDrawables(getData().getLinksDrawables());
+        holder.getDynamicInfo().setLinksColorsId(getData().getLinksColorsResId());
+        holder.getDynamicInfo().setLinksColors(getData().getLinksColors());
+        holder.getDynamicInfo().onUpdate();
     }
 
     /**

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@
                     <com.pranavpandey.android.dynamic.support.view.DynamicHeader
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:ads_title="@string/ads_theme" />
+                        app:ads_title="@string/ads_general" />
 
                     <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
                         android:id="@+id/ads_pref_theme_color_background"
@@ -76,6 +76,23 @@
                         app:ads_alphaEnabled="true"
                         app:ads_popup="true"
                         app:ads_popupColors="@array/ads_app_theme_surface_colors" />
+
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference
+                        android:id="@+id/ads_pref_theme_opacity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ads_key="ads_pref_settings_theme_opacity"
+                        app:ads_altKey="ads_pref_settings_theme_opacity_alt"
+                        app:ads_icon="@drawable/ads_ic_opacity"
+                        app:ads_title="@string/ads_theme_opacity"
+                        app:ads_summary="@string/ads_theme_opacity_summary"
+                        app:ads_description="@string/ads_theme_settings_default_desc"
+                        app:ads_entries="@array/ads_theme_entries_auto"
+                        app:ads_values="@array/ads_theme_values_auto"
+                        app:ads_min="@integer/adt_opacity_min"
+                        app:ads_max="@integer/adt_opacity_max"
+                        app:ads_interval="@integer/adt_opacity_interval"
+                        app:ads_progress="@integer/adt_opacity" />
 
                     <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
                         android:id="@+id/ads_pref_theme_color_primary_dark"
@@ -237,10 +254,10 @@
                         app:ads_description="@string/ads_theme_settings_default_desc"
                         app:ads_entries="@array/ads_theme_entries_auto"
                         app:ads_values="@array/ads_theme_values_auto"
-                        app:ads_min="@integer/ads_font_scale_min"
-                        app:ads_max="@integer/ads_font_scale_max"
-                        app:ads_interval="@integer/ads_font_scale_interval"
-                        app:ads_progress="@integer/ads_font_scale"
+                        app:ads_min="@integer/adt_font_scale_min"
+                        app:ads_max="@integer/adt_font_scale_max"
+                        app:ads_interval="@integer/adt_font_scale_interval"
+                        app:ads_progress="@integer/adt_font_scale"
                         app:ads_unit="@string/ads_unit_percent" />
 
                     <com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference
@@ -255,10 +272,10 @@
                         app:ads_description="@string/ads_theme_settings_default_desc"
                         app:ads_entries="@array/ads_theme_entries_auto"
                         app:ads_values="@array/ads_theme_values_auto"
-                        app:ads_min="@integer/ads_corner_radius_min"
-                        app:ads_max="@integer/ads_corner_radius_max"
-                        app:ads_interval="@integer/ads_corner_radius_interval"
-                        app:ads_progress="@integer/ads_corner_radius" />
+                        app:ads_min="@integer/adt_corner_size_min"
+                        app:ads_max="@integer/adt_corner_size_max"
+                        app:ads_interval="@integer/adt_corner_size_interval"
+                        app:ads_progress="@integer/adt_corner_size" />
 
                     <com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference
                         android:id="@+id/ads_pref_theme_background_aware"
@@ -271,6 +288,35 @@
                         app:ads_description="@string/ads_theme_settings_default_desc"
                         app:ads_entries="@array/ads_background_aware_entries"
                         app:ads_values="@array/ads_background_aware_values" />
+
+                    <com.pranavpandey.android.dynamic.support.setting.DynamicSliderFloat
+                        android:id="@+id/ads_pref_theme_contrast"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ads_key="ads_pref_settings_theme_contrast"
+                        app:ads_altKey="ads_pref_settings_theme_contrast_alt"
+                        app:ads_icon="@drawable/ads_ic_contrast"
+                        app:ads_title="@string/ads_theme_contrast"
+                        app:ads_summary="@string/ads_theme_contrast_summary"
+                        app:ads_description="@string/ads_theme_settings_default_desc"
+                        app:ads_entries="@array/ads_theme_entries_auto"
+                        app:ads_values="@array/ads_theme_values_auto"
+                        app:ads_min="@integer/adt_contrast_min"
+                        app:ads_max="@integer/adt_contrast_max"
+                        app:ads_interval="@integer/adt_contrast_interval"
+                        app:ads_progress="@integer/adt_contrast" />
+
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference
+                        android:id="@+id/ads_pref_theme_elevation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ads_key="ads_pref_settings_theme_elevation"
+                        app:ads_icon="@drawable/ads_ic_elevation"
+                        app:ads_title="@string/ads_theme_elevation"
+                        app:ads_summary="@string/ads_theme_elevation_summary"
+                        app:ads_description="@string/ads_theme_settings_default_desc"
+                        app:ads_entries="@array/ads_elevation_entries"
+                        app:ads_values="@array/ads_elevation_values" />
 
                 </LinearLayout>
 

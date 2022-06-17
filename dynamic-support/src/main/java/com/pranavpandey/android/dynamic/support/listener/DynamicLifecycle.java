@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,13 +25,17 @@ public interface DynamicLifecycle {
      * This method will be called when the dynamic resume event occurs like resuming a
      * {@link androidx.fragment.app.Fragment} when it is visible to the user inside a
      * {@link androidx.viewpager.widget.ViewPager}.
+     *
+     * @param forced {@code true} if called explicitly.
      */
-    void onDynamicResume();
+    void onDynamicResume(boolean forced);
 
     /**
      * This method will be called when the dynamic pause event occurs like pausing a
      * {@link androidx.fragment.app.Fragment} when it goes off screen inside a
      * {@link androidx.viewpager.widget.ViewPager}.
+     *
+     * @param forced {@code true} if called explicitly.
      */
-    void onDynamicPause();
+    void onDynamicPause(boolean forced);
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -26,15 +26,14 @@
         android:id="@+id/ads_coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/ads_footer_frame">
+        android:layout_above="@id/ads_footer_frame"
+        android:fitsSystemWindows="true">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicAppBarLayout
             android:id="@+id/ads_app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            app:elevation="0dp"
-            app:adt_backgroundAware="disable">
+            app:elevation="0dp">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicCollapsingToolbarLayout
                 android:id="@+id/ads_collapsing_toolbar_layout"
@@ -82,22 +81,28 @@
 
         <include layout="@layout/ads_content" />
 
-        <include layout="@layout/ads_layout_bottom_sheet" />
+        <include layout="@layout/ads_layout_bottom_bar_shadow_bottom" />
 
         <include layout="@layout/ads_layout_fab_bottom" />
 
         <include layout="@layout/ads_layout_fab_extended_bottom" />
 
-        <include layout="@layout/ads_layout_bottom_bar_shadow_bottom" />
+        <include layout="@layout/ads_layout_bottom_sheet" />
 
     </com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout>
 
-    <FrameLayout
+    <com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout
         android:id="@+id/ads_footer_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        app:adt_colorType="primary">
 
-    </FrameLayout>
+    </com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout>
+
+    <include
+        layout="@layout/ads_layout_navigation_shadow"
+        android:layout_width="@dimen/ads_navigation_bar_shadow_size"
+        android:layout_height="match_parent" />
 
 </com.pranavpandey.android.dynamic.support.widget.DynamicRootLayout>

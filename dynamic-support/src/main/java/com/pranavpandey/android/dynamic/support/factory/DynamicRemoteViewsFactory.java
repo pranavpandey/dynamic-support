@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import androidx.annotation.NonNull;
 
 /**
  * A customisable {@link RemoteViewsService.RemoteViewsFactory} to provide basic functionality.
- * <p>Extend it and implement necessary methods according to the need.
+ * <p>Extend it and implement necessary methods according to the requirements.
  */
 public abstract class DynamicRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,21 +27,22 @@ import android.graphics.drawable.LayerDrawable
 import android.os.Build
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
-import androidx.annotation.Nullable
 import androidx.annotation.StyleRes
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
+import androidx.multidex.MultiDex
+import com.google.android.material.color.DynamicColors
 import com.pranavpandey.android.dynamic.support.DynamicApplication
 import com.pranavpandey.android.dynamic.support.sample.activity.ActionActivity
 import com.pranavpandey.android.dynamic.support.sample.controller.AppController
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
 import com.pranavpandey.android.dynamic.support.sample.controller.ThemeController
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils
 import com.pranavpandey.android.dynamic.theme.AppTheme
 import com.pranavpandey.android.dynamic.theme.Theme
-import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils
+import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils
 import java.util.*
 
 
@@ -52,6 +53,11 @@ import java.util.*
  * This must be registered in the manifest using `name` attribute of the `application` tag.
  */
 class SampleApplication : DynamicApplication() {
+
+    override fun attachBaseContext(base: Context) {
+        MultiDex.install(base)
+        super.attachBaseContext(base)
+    }
 
     override fun onInitialize() {
         // Do any startup work here like initializing the other libraries, analytics, etc.
@@ -69,30 +75,23 @@ class SampleApplication : DynamicApplication() {
     }
 
     @StyleRes
-    override fun getThemeRes(@Nullable theme: AppTheme<*>?): Int {
+    override fun getThemeRes(theme: AppTheme<*>?): Int {
         return if (theme != null) {
             ThemeController.getAppStyle(theme.backgroundColor)
         } else ThemeController.appStyle
     }
 
-    override fun getDynamicTheme(): AppTheme<*>? {
+    override fun getDynamicTheme(): AppTheme<*> {
         return ThemeController.dynamicAppTheme
+    }
+
+    override fun isSystemColor(): Boolean {
+        return DynamicColors.isDynamicColorAvailable()
     }
 
     @ColorInt
     override fun getDefaultColor(@Theme.ColorType colorType: Int): Int {
-        return when (colorType) {
-            Theme.ColorType.BACKGROUND -> {
-                return ThemeController.backgroundColor
-            }
-            Theme.ColorType.PRIMARY -> {
-                return ThemeController.colorPrimaryApp
-            }
-            Theme.ColorType.ACCENT -> {
-                ThemeController.colorAccentApp
-            }
-            else -> super.getDefaultColor(colorType)
-        }
+        return ThemeController.getDefaultColor(colorType)
     }
 
     override fun onCustomiseTheme() {
@@ -127,17 +126,17 @@ class SampleApplication : DynamicApplication() {
         when (key) {
             Constants.PREF_SETTINGS_APP_THEME_DAY_COLOR ->
                 if (ThemeController.getCurrentTheme() == Theme.DAY) {
-                    onAutoThemeChanged()
+                    onAutoThemeChanged(false)
                 }
             Constants.PREF_SETTINGS_APP_THEME_NIGHT_COLOR ->
                 if (ThemeController.getCurrentTheme() == Theme.NIGHT) {
-                    onAutoThemeChanged()
+                    onAutoThemeChanged(false)
                 }
             Constants.PREF_SETTINGS_APP_THEME_COLOR,
             Constants.PREF_SETTINGS_APP_THEME_COLOR_SURFACE,
             Constants.PREF_SETTINGS_APP_THEME_COLOR_PRIMARY,
             Constants.PREF_SETTINGS_APP_THEME_COLOR_ACCENT ->
-                onAutoThemeChanged()
+                onAutoThemeChanged(false)
             Constants.PREF_SETTINGS_NAVIGATION_BAR_THEME ->
                 DynamicTheme.getInstance().onNavigationBarThemeChanged()
             Constants.PREF_SETTINGS_APP_SHORTCUTS_THEME ->

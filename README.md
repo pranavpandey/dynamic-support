@@ -6,14 +6,13 @@
 [![Build Status](https://travis-ci.org/pranavpandey/dynamic-support.svg?branch=master)](https://travis-ci.org/pranavpandey/dynamic-support)
 [![Release](https://img.shields.io/maven-central/v/com.pranavpandey.android/dynamic-support)](https://search.maven.org/artifact/com.pranavpandey.android/dynamic-support)
 
-A complete library to build apps for Android 4.0 (API 14) and above with a built-in theme 
-engine. It is built on top of the latest [app compat library](https://developer.android.com/topic/libraries/support-library/features.html) 
-to provide best compatibility. 
+A complete library to build apps for Android 4.0 (API 14) and above with a built-in theme engine. 
+It is built on top of the latest [app compat library][android-support] to provide best 
+compatibility. 
 
->Since v2.0.0, it uses [AndroidX](https://developer.android.com/jetpack/androidx/) so, first
-[migrate](https://developer.android.com/jetpack/androidx/migrate) your project to AndroidX.
-<br/>Since v3.0.0, it is dependent on Java 8 due to the dependency on 
-[DrawerLayout](https://developer.android.com/jetpack/androidx/releases/drawerlayout).
+>Since v2.0.0, it uses [AndroidX][androidx] so, first [migrate][android-migrate] your project to 
+AndroidX.
+<br/>Since v3.0.0, it is dependent on Java 8 due to the dependency on [DrawerLayout][drawer-layout].
  
 <img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-1.png" width="280" height="486">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-3.png" width="280" height="486">
 
@@ -41,7 +40,7 @@ It can be installed by adding the following dependency to your `build.gradle` fi
 ```groovy
 dependencies {
     // For AndroidX enabled projects.
-    implementation 'com.pranavpandey.android:dynamic-support:5.0.0'
+    implementation 'com.pranavpandey.android:dynamic-support:6.0.0'
 
     // For legacy projects.
     implementation 'com.pranavpandey.android:dynamic-support:1.3.0'
@@ -53,16 +52,16 @@ dependencies {
 ## Usage
 It is a collection of activities, fragments, widgets, views and some utility functions required 
 to build a standard Android app. It also provides some in-built use cases like an intro screen, 
-drawer activity, about screen, collapsing app bar, bottom navigation, color picker, multiple 
+drawer activity, about screen, collapsing app bar, navigation bar view, color picker, multiple 
 locales, runtime permissions, etc. which can be used and customised according to the need.
 
-> For complete reference, please read the [documentation](https://pranavpandey.github.io/dynamic-support).
+> For complete reference, please read the [documentation][documentation].
 
 ### Theme engine
 Each activity and widget can be themed by using the in-built theme engine with background aware 
 functionality to avoid any visibility issues. Colors can be selected by using the provided 
-[material design colors](https://material.io/guidelines/style/color.html) or by selecting a custom 
-color from the in-built picker which supports HEX, HSV and ARGB values.
+[material design colors][material-design-colors] or by selecting a custom color from the in-built 
+picker which supports HEX, HSV and ARGB values.
 
 ### Background aware
 Below are the same colors applied on the light and dark backgrounds respectively. But the final 
@@ -78,11 +77,9 @@ Checkout the `sample` to know more about the basic implementation.
 
 ### Dependency
 
-It depends on the [dynamic-theme](https://github.com/pranavpandey/dynamic-theme), 
-[dynamic-locale](https://github.com/pranavpandey/dynamic-locale) and 
-[dynamic-preferences](https://github.com/pranavpandey/dynamic-preferences) to perform 
-various internal operations. So, their functions can also be used to perform other 
-useful operations.
+It depends on the [dynamic-theme][dynamic-theme], [dynamic-locale][dynamic-locale] and 
+[dynamic-preferences][dynamic-preferences] to perform various internal operations. 
+So, their functions can also be used to perform other useful operations.
 
 ### Proguard
 This library uses reflection at some places to theme widgets at runtime. So, their original name
@@ -150,19 +147,20 @@ checkout the `Rotation` and `Everyday` apps to experience the full potential of 
 &nbsp;<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/apps/pranavpandey-palettes.png" width="200">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/apps/pranavpandey-barquode.png" width="200">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/apps/pranavpandey-zerocros.png" width="200">
 
 ### Supported
-- [EZ Notes](https://play.google.com/store/apps/details?id=com.pristineusa.android.speechtotext)
+- [EZ Notes][ez-notes]
 
 ### Developed
-- [Rotation](https://play.google.com/store/apps/details?id=com.pranavpandey.rotation)
-- [Everyday](https://play.google.com/store/apps/details?id=com.pranavpandey.calendar)
-- [Palettes](https://play.google.com/store/apps/details?id=com.pranavpandey.theme)
-- [Barquode](https://play.google.com/store/apps/details?id=com.pranavpandey.matrix)
-- [Zerocros](https://play.google.com/store/apps/details?id=com.pranavpandey.tictactoe)
+- [Rotation][rotation]
+- [Everyday][everyday]
+- [Palettes][palettes]
+- [Barquode][barquode]
+- [Zerocros][zerocros]
 
 ---
 
 ## Translations
 - German (de) - Flubberlutsch
+- French (fr) - Nitesh Jha | Others
 - Hindi (hi) - Siddh Narhari
 - Indonesian (in) - Gamal Kevin A
 - Italian (it) - Nicola
@@ -187,7 +185,7 @@ Pranav Pandey
 
 ## License
 
-    Copyright 2018-2021 Pranav Pandey
+    Copyright 2018-2022 Pranav Pandey
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -200,3 +198,20 @@ Pranav Pandey
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+
+[android-support]: https://developer.android.com/topic/libraries/support-library/features.html
+[androidx]: https://developer.android.com/jetpack/androidx
+[androidx-migrate]: https://developer.android.com/jetpack/androidx/migrate
+[drawer-layout]: https://developer.android.com/jetpack/androidx/releases/drawerlayout
+[documentation]: https://pranavpandey.github.io/dynamic-support
+[material-design-colors]: https://material.io/guidelines/style/color.html
+[dynamic-theme]: https://github.com/pranavpandey/dynamic-theme
+[dynamic-locale]: https://github.com/pranavpandey/dynamic-locale
+[dynamic-preferences]: https://github.com/pranavpandey/dynamic-preferences
+[ez-notes]: https://play.google.com/store/apps/details?id=com.pristineusa.android.speechtotext
+[rotation]: https://play.google.com/store/apps/details?id=com.pranavpandey.rotation
+[everyday]: https://play.google.com/store/apps/details?id=com.pranavpandey.calendar
+[palettes]: https://play.google.com/store/apps/details?id=com.pranavpandey.theme
+[barquode]: https://play.google.com/store/apps/details?id=com.pranavpandey.matrix
+[zerocros]: https://play.google.com/store/apps/details?id=com.pranavpandey.tictactoe

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,14 +44,14 @@ import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewNested;
 import com.pranavpandey.android.dynamic.support.theme.adapter.DynamicPresetsAdapter;
-import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
-import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils;
+import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.util.DynamicLinkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicPackageUtils;
 
 /**
  * A recycler view frame layout to show the theme presets.
@@ -260,7 +260,7 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
      * @return The presets adapter used by the recycler view.
      */
     @SuppressWarnings("unchecked")
-    public DynamicPresetsAdapter<T> getPresetsAdapter() {
+    public @Nullable DynamicPresetsAdapter<T> getPresetsAdapter() {
         return (DynamicPresetsAdapter<T>) getAdapter();
     }
 
@@ -325,47 +325,47 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
     /**
      * Loader manager callbacks to query presets from the theme provider.
      */
-    private LoaderManager.LoaderCallbacks<Cursor> mLoaderCallbacks =
+    private final LoaderManager.LoaderCallbacks<Cursor> mLoaderCallbacks =
             new LoaderManager.LoaderCallbacks<Cursor>() {
-                @Override
-                public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-                    if (id == ADS_LOADER_PRESETS) {
-                        if (isPermissionGranted()) {
-                            try {
-                                showProgress();
-                                return new CursorLoader(getContext().getApplicationContext(),
-                                        ThemeContract.Preset.CONTENT_URI,
-                                        new String[] { ThemeContract.Preset.Column.THEME },
-                                        null, null, null);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        return new Loader<>(getContext().getApplicationContext());
-                    }
-
-                    throw new IllegalArgumentException();
-                }
-
-                @Override
-                public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-                    if (loader.getId() == ADS_LOADER_PRESETS) {
-                        if (data != null) {
-                            hideProgress();
-                            mPresetsAdapter.setPresets(data);
-                        }
-
-                        setPresetsVisible(data != null && data.getCount() > 0);
+        @Override
+        public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+            if (id == ADS_LOADER_PRESETS) {
+                if (isPermissionGranted()) {
+                    try {
+                        showProgress();
+                        return new CursorLoader(getContext().getApplicationContext(),
+                                ThemeContract.Preset.CONTENT_URI,
+                                new String[] { ThemeContract.Preset.Column.THEME },
+                                null, null, null);
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
 
-                @Override
-                public void onLoaderReset(@NonNull Loader<Cursor> loader) {
-                    if (loader.getId() == ADS_LOADER_PRESETS) {
-                        mPresetsAdapter.setPresets(null);
-                        setPresetsVisible(false);
-                    }
+                return new Loader<>(getContext().getApplicationContext());
+            }
+
+            throw new IllegalArgumentException();
+        }
+
+        @Override
+        public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+            if (loader.getId() == ADS_LOADER_PRESETS) {
+                if (data != null) {
+                    hideProgress();
+                    mPresetsAdapter.setPresets(data);
                 }
-            };
+
+                setPresetsVisible(data != null && data.getCount() > 0);
+            }
+        }
+
+        @Override
+        public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+            if (loader.getId() == ADS_LOADER_PRESETS) {
+                mPresetsAdapter.setPresets(null);
+                setPresetsVisible(false);
+            }
+        }
+    };
 }

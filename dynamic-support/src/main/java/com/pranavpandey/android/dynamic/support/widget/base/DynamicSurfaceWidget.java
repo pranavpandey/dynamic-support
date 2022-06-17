@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,18 +26,18 @@ import com.pranavpandey.android.dynamic.theme.Theme;
 public interface DynamicSurfaceWidget {
 
     /**
-     * Returns whether to enable elevation on the same background.
+     * Returns whether to force elevation for this widget.
      *
-     * @return {@code true} to enable elevation on the same background.
+     * @return {@code true} to force elevation for this widget.
      */
-    boolean isElevationOnSameBackground();
+    boolean isForceElevation();
 
     /**
-     * Set the elevation on same background option for this widget.
+     * Sets whether to force elevation for this widget.
      *
-     * @param elevationOnSameBackground {@code true} to enable elevation on the same background.
+     * @param forceElevation {@code true} to force elevation.
      */
-    void setElevationOnSameBackground(boolean elevationOnSameBackground);
+    void setForceElevation(boolean forceElevation);
 
     /**
      * Set surface for this widget according to the supplied values.

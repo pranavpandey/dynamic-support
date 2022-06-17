@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,6 +44,11 @@ object Constants {
      * Palettes package name.
      */
     const val PACKAGE_PALETTES = "com.pranavpandey.theme"
+
+    /**
+     * Barquode package name.
+     */
+    const val PACKAGE_BARQUODE = "com.pranavpandey.matrix"
 
     /**
      * Zerocros package name.

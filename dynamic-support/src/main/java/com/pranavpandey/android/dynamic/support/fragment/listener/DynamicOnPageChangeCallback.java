@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,14 +47,18 @@ public class DynamicOnPageChangeCallback extends ViewPager2.OnPageChangeCallback
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
         super.onPageScrolled(position, positionOffset, positionOffsetPixels);
 
-        if (positionOffset == 0 || getFragmentManager() == null) {
+        if (position < 0 || getFragmentManager() == null) {
             return;
         }
 
         if (position < getFragmentManager().getFragments().size()) {
-            Fragment paused = getFragmentManager().getFragments().get(position);
-            if (paused instanceof DynamicLifecycle) {
-                ((DynamicLifecycle) paused).onDynamicPause();
+            Fragment fragment = getFragmentManager().getFragments().get(position);
+            if (fragment instanceof DynamicLifecycle) {
+                if (positionOffset != 0) {
+                    ((DynamicLifecycle) fragment).onDynamicPause(true);
+                } else {
+                    ((DynamicLifecycle) fragment).onDynamicResume(true);
+                }
             }
         }
     }
@@ -68,9 +72,9 @@ public class DynamicOnPageChangeCallback extends ViewPager2.OnPageChangeCallback
         }
 
         if (position < getFragmentManager().getFragments().size()) {
-            Fragment resumed = getFragmentManager().getFragments().get(position);
-            if (resumed instanceof DynamicLifecycle) {
-                ((DynamicLifecycle) resumed).onDynamicResume();
+            Fragment fragment = getFragmentManager().getFragments().get(position);
+            if (fragment instanceof DynamicLifecycle) {
+                ((DynamicLifecycle) fragment).onDynamicResume(true);
             }
         }
     }

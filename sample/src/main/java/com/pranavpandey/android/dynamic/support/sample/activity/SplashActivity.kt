@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,16 +16,20 @@
 
 package com.pranavpandey.android.dynamic.support.sample.activity
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.Animatable
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
+import com.pranavpandey.android.dynamic.support.Dynamic
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.splash.activity.DynamicSplashActivity
-import com.pranavpandey.android.dynamic.utils.DynamicIntentUtils
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget
+import com.pranavpandey.android.dynamic.util.DynamicIntentUtils
 
 /**
  * Implementing a splash screen by using [DynamicSplashActivity].
  */
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : DynamicSplashActivity() {
 
     /**
@@ -49,6 +53,17 @@ class SplashActivity : DynamicSplashActivity() {
     override fun onViewCreated(view: View) {
         // TODO: Get any view reference here.
         mSplash = view.findViewById(R.id.splash_image)
+
+        if (mSplash is DynamicWidget) {
+            // TODO: Tint views according to the background.
+            Dynamic.setContrastWithColor(mSplash, backgroundColor)
+            Dynamic.setContrastWithColor(
+                view.findViewById(R.id.splash_title) as DynamicWidget,
+                backgroundColor)
+            Dynamic.setContrastWithColor(
+                view.findViewById(R.id.splash_subtitle) as DynamicWidget,
+                backgroundColor)
+        }
     }
 
     override fun onPreSplash() {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,11 +41,11 @@ import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.model.DynamicTaskViewModel;
 import com.pranavpandey.android.dynamic.support.theme.listener.ThemeListener;
 import com.pranavpandey.android.dynamic.support.theme.task.ThemeImportTask;
-import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicInputUtils;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicBitmapUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
+import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
+import com.pranavpandey.android.dynamic.util.DynamicLinkUtils;
 
 import static com.pranavpandey.android.dynamic.theme.Theme.Action.IMPORT_FILE;
 import static com.pranavpandey.android.dynamic.theme.Theme.Action.INVALID;
@@ -273,6 +273,8 @@ public class DynamicThemeDialog<T extends DynamicAppTheme, V> extends DynamicDia
                 dialogBuilder.setViewRoot(view.findViewById(R.id.ads_dialog_progress_root));
                 mMessageView = view.findViewById(R.id.ads_dialog_progress_message);
 
+                Dynamic.setAppBarProgressVisible(getActivity(), true);
+
                 setCancelable(false);
                 dialogBuilder.setNegativeButton(null, null);
 
@@ -436,6 +438,13 @@ public class DynamicThemeDialog<T extends DynamicAppTheme, V> extends DynamicDia
         showDialog(fragmentActivity, TAG);
     }
 
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
+
+        Dynamic.setAppBarProgressVisible(getActivity(), false);
+    }
+
     private void updatePositiveButton(@Nullable CharSequence charSequence) {
         if (getDynamicDialog() != null) {
             getDynamicDialog().getButton(DynamicDialog.BUTTON_POSITIVE)
@@ -502,14 +511,14 @@ public class DynamicThemeDialog<T extends DynamicAppTheme, V> extends DynamicDia
     /**
      * Set the dynamic theme listener for this dialog.
      *
-     * @param dynamicThemeListener The dynamic theme listener to be set.
+     * @param themeListener The dynamic theme listener to be set.
      *
      * @return The {@link DynamicThemeDialog} object to allow for chaining of calls to
      *         set methods.
      */
     public @NonNull DynamicThemeDialog<T, V> setThemeListener(
-            @Nullable ThemeListener<T> dynamicThemeListener) {
-        this.mThemeListener = dynamicThemeListener;
+            @Nullable ThemeListener<T> themeListener) {
+        this.mThemeListener = themeListener;
 
         return this;
     }

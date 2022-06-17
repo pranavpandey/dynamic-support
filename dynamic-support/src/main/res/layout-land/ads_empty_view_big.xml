@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
     android:id="@+id/ads_item_view"
     android:gravity="center"
     android:orientation="horizontal"
-    android:alpha="@integer/ads_alpha_empty_view">
+    android:alpha="@integer/ads_alpha_placeholder">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
         style="@style/Widget.DynamicApp.Image.Empty"

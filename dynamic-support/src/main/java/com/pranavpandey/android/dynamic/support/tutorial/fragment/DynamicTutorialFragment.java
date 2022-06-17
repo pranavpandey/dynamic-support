@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,9 +38,9 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.tutorial.DynamicTutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.Tutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutorialActivity;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 
 /**
  * A {@link DynamicTutorialFragment} with an image, title, subtitle and description that
@@ -126,8 +126,8 @@ public class DynamicTutorialFragment extends DynamicFragment
             }
         }
 
-        if (savedInstanceState != null) {
-            mDynamicTutorial = savedInstanceState.getParcelable(ADS_STATE_TUTORIAL);
+        if (getSavedInstanceState() != null) {
+            mDynamicTutorial = getSavedInstanceState().getParcelable(ADS_STATE_TUTORIAL);
         }
     }
 
@@ -206,9 +206,9 @@ public class DynamicTutorialFragment extends DynamicFragment
         }
 
         Dynamic.setContrastWithColor(mCardView, color);
-        Dynamic.setElevationOnSameBackground(mCardView,
+        Dynamic.setForceElevation(mCardView,
                 !DynamicTheme.getInstance().get().isBackgroundSurface());
-        if (Dynamic.isStrokeRequired()) {
+        if (Dynamic.isStroke()) {
             Dynamic.setColor(mCardView, DynamicColorUtils.setAlpha(color,
                     Color.alpha(DynamicTheme.getInstance().get().getSurfaceColor())));
         } else {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@
 
     <!-- Headings -->
     <string name="ads_app">Приложение</string>
+    <string name="ads_game">Игра</string>
     <string name="ads_version">Версия</string>
     <string name="ads_actions">действия</string>
     <string name="ads_text">Текст</string>
@@ -53,6 +54,7 @@
     <string name="ads_not_now">Не сейчас</string>
     <string name="ads_later">Позже</string>
     <string name="ads_yes_in">Да, я в игре</string>
+    <string name="ads_accept">Принимать</string>
     <string name="ads_more">Еще</string>
     <string name="ads_more_info">Больше информации</string>
     <string name="ads_select">Выбрать</string>
@@ -61,6 +63,7 @@
     <string name="ads_load">Загрузить</string>
     <string name="ads_file">Файл</string>
     <string name="ads_create">Создать</string>
+    <string name="ads_configure">Настроить</string>
     <string name="ads_open">Открыть</string>
     <string name="ads_previous">Предыдущий</string>
     <string name="ads_next">Следующий</string>
@@ -117,6 +120,7 @@
     <string name="ads_permissions_subtitle_single">Пожалуйста, предоставьте необходимое разрешение.</string>
     <string name="ads_perm_info_required">Требуется разрешение</string>
     <string name="ads_perm_info_grant_all">Пожалуйста, предоставьте все разрешения для корректной работы приложения.</string>
+    <string name="ads_perm_info_accept">Эта функция не является обязательной. Примите, чтобы продолжить.</string>
     <string name="ads_perm_request">Запросить</string>
     <string name="ads_perm_request_desc">Это разрешение не предоставлено. Нажмите, чтобы запросить.</string>
     <string name="ads_perm_granted">Предоставлено</string>
@@ -137,9 +141,12 @@
     <string name="ads_perm_usage_access">Доступ к использованию</string>
     <string name="ads_perm_usage_access_desc">Предоставить доступ к использованию.</string>
     <string name="ads_perm_accessibility">Спец. возможности</string>
+    <string name="ads_perm_accessibility_desc">Это должно управляться через системные настройки.</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">Данные</string>
+    <string name="ads_data_invalid">Неверные данные</string>
+    <string name="ads_data_invalid_desc">Пожалуйста, попробуйте еще раз с подходящими данными.</string>
     <string name="ads_data_operations">Операции с данными</string>
     <string name="ads_backup_and_restore">Резервное копирование и восстановление</string>
     <string name="ads_backup">Резервное копирование</string>
@@ -203,9 +210,11 @@
     <string name="ads_dynamic_theme">Динамическая тема</string>
     <string name="ads_dynamic_theme_summary">Тема применена получателем.</string>
     <string name="ads_dynamic_color_summary">Реализация автоматической окраски.</string>
+    <string name="ads_dynamic">Динамический</string>
     <string name="ads_theme">Тема</string>
     <string name="ads_theme_code">Код</string>
     <string name="ads_theme_code_desc">Отсканируйте или поделитесь темой.</string>
+    <string name="ads_theme_code_capture">Захватывать</string>
     <string name="ads_theme_customise_desc">Настройте тему ниже.</string>
     <string name="ads_theme_adjust_desc">Тема будет установлена автоматически в соответствии с текущей версией Android.</string>
     <string name="ads_theme_invalid">Неверная тема</string>
@@ -231,9 +240,16 @@
     <string name="ads_theme_font_scale">Масштаб шрифта</string>
     <string name="ads_theme_font_scale_summary">Коэффициент масштабирования, чтобы сделать текст меньше или больше.</string>
     <string name="ads_theme_corner_size">Размер угла</string>
-    <string name="ads_theme_corner_size_summary">Радиус угла приложения</string>
+    <string name="ads_theme_corner_size_summary">Радиус угла для опорных элементов.</string>
     <string name="ads_theme_background_aware">Адаптирование к фону</string>
     <string name="ads_theme_background_aware_desc">Подрегулировать цвета в соответствии с фоном, чтобы обеспечить лучшую видимость.</string>
+    <string name="ads_theme_contrast">Контрастность</string>
+    <string name="ads_theme_contrast_summary">Минимальный коэффициент видимого контраста.</string>
+    <string name="ads_theme_opacity">Затененность фона</string>
+    <string name="ads_theme_opacity_summary">Затенение фона приложения.</string>
+    <string name="ads_theme_opacity_summary_widget">Затененность фона виджета.</string>
+    <string name="ads_theme_elevation">Высота</string>
+    <string name="ads_theme_elevation_summary">Управляйте тенью для элементов поверхности.</string>
     <string name="ads_theme_style">Стиль</string>
     <string name="ads_theme_style_summary">Стиль темы</string>
     <string name="ads_theme_app">Тема приложения</string>
@@ -324,11 +340,19 @@
     <string name="ads_picker_pick">Выбрать</string>
     <string name="ads_picker_more_colors">Еще цвета</string>
     <string name="ads_picker_presets">Пресеты</string>
+    <string name="ads_picker_size_small">Небольшой</string>
+    <string name="ads_picker_size_normal">Нормальный</string>
+    <string name="ads_picker_size_large">Большой</string>
+    <string name="ads_picker_size_info">Значение ширины и высоты.</string>
 
     <!-- Miscellaneous -->
     <string name="ads_language">Язык</string>
     <string name="ads_language_summary">Язык, используемый приложением.</string>
     <string name="ads_language_system">Система</string>
+    <string name="ads_dynamic_vibration">Вибрация</string>
+    <string name="ads_dynamic_vibration_intensity">Интенсивность вибрации</string>
+    <string name="ads_dynamic_vibration_intensity_summary">Продолжительность вибрации в миллисекундах.</string>
+    <string name="ads_dynamic_vibration_intensity_unit">ms</string>
     <string name="ads_dynamic_motion">Движение</string>
     <string name="ads_dynamic_motion_summary">Динамическое движение с воспроизведением всех анимаций.</string>
     <string name="ads_dynamic_motion_summary_unchecked">Уменьшите движение, пропустив некоторые анимации.</string>
@@ -358,8 +382,6 @@
     <string name="ads_widget_header_desc">Выберите авто, чтобы показывать заголовок, если доступно достаточно места.</string>
     <string name="ads_widget_corner_size_bg_summary">Радиус угла фона виджета.</string>
     <string name="ads_widget_corner_size_bg_desc">Выберите авто, чтобы использовать размер угла, заданный приложением.</string>
-    <string name="ads_widget_opacity_bg">Затененность фона</string>
-    <string name="ads_widget_opacity_bg_summary">Затененность фона виджета.</string>
     <string name="ads_widget_reset_desc">Виджет сброшен до значений по умолчанию.</string>
     <string name="ads_widget_not_added">Виджетов не добавлено.</string>
 
@@ -387,8 +409,9 @@
     <string name="ads_support_restart_app_desc">Используйте, если служба не запускается или приложение не работает должным образом. Все настройки останутся неизменными после выполнения этой операции.</string>
 
     <!-- Developer and App info -->
-    <string name="ads_info_made_by">Написано и разработано</string>
     <string name="ads_info_made_in">Сделано в Индии</string>
+    <string name="ads_info_made_by">Написано и разработано</string>
+    <string name="ads_info_made_by_alt">Разработано</string>
     <string name="ads_info_quote">Ничто не идеально, но может быть лучше. Разрабатываю те самые лучшие вещи!</string>
     <string name="ads_info_privacy_policy">Политика конфиденциальности</string>
     <string name="ads_info_privacy_policy_desc">Ознакомиться с полной версией политики конфиденциальности этого продукта.</string>
@@ -420,9 +443,10 @@
     <string name="ads_translators_contact">Свяжитесь по электронной почте, если вы хотите перевести.</string>
 
     <!-- Licenses -->
+    <string name="ads_notice">Извещение</string>
     <string name="ads_notices">Извещения</string>
-    <string name="ads_licenses">Лицензии</string>
     <string name="ads_license">Лицензия</string>
+    <string name="ads_licenses">Лицензии</string>
     <string name="ads_license_desc">Посмотреть полную лицензию.</string>
     <string name="ads_license_sources">Исходники</string>
     <string name="ads_license_sources_desc">Посмотреть исходники на GitHub.</string>

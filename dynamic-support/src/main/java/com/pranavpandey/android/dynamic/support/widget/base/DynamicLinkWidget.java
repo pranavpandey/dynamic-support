@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ public interface DynamicLinkWidget extends DynamicWidget {
     void setLinkColor(@ColorInt int linkColor);
 
     /**
-     * Set link color of this widget according to the supplied values.
+     * Set link color for this widget according to the supplied values.
      * <p>Generally, it should be a tint color so that link will be visible on this
      * widget background.
      */

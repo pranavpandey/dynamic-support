@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ads_bottom_bar_shadow"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/ads_bottom_bar_shadow_size"
+    android:layout_height="@dimen/ads_navigation_bar_shadow_size"
     android:layout_gravity="bottom"
     android:src="@drawable/ads_bottom_bar_shadow"
     android:alpha="@integer/ads_alpha_shadow" />

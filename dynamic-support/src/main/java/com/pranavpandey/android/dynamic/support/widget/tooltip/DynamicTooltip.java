@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  * Copyright 2017 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -154,8 +154,12 @@ public class DynamicTooltip implements View.OnLongClickListener, View.OnHoverLis
      * @param icon The icon drawable for the tooltip.
      * @param text The text for the tooltip.
      */
-    public static void set(@NonNull View view, @ColorInt int backgroundColor,
+    public static void set(@Nullable View view, @ColorInt int backgroundColor,
             @ColorInt int tintColor, @Nullable Drawable icon, @Nullable CharSequence text) {
+        if (view == null) {
+            return;
+        }
+
         // The code below is not attempting to update the tooltip text
         // for a pending or currently active tooltip, because it may lead
         // to updating the wrong tooltip in in some rare cases (e.g. when
@@ -185,7 +189,7 @@ public class DynamicTooltip implements View.OnLongClickListener, View.OnHoverLis
      * @param tintColor The tint color for the tooltip.
      * @param text The text for the tooltip.
      */
-    public static void set(@NonNull View view, @ColorInt int backgroundColor,
+    public static void set(@Nullable View view, @ColorInt int backgroundColor,
             @ColorInt int tintColor, @Nullable CharSequence text) {
         set(view, backgroundColor, tintColor, null, text);
     }

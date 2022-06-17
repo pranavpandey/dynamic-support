@@ -1,5 +1,5 @@
 /*
- * Copyright 2017-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  * Copyright 2015 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -186,6 +186,13 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
     }
 
     /**
+     * Get the view displayed in the dialog.
+     */
+    public @Nullable View getView() {
+        return mAlert.getView();
+    }
+
+    /**
      * Set the view to display in the dialog. This method has no effect if called
      * after {@link #show()}.
      *
@@ -216,7 +223,7 @@ public class DynamicDialog extends AppCompatDialog implements DialogInterface {
      *
      * @param viewRoot The view root to be set.
      */
-    public void setViewRoot(@NonNull View viewRoot) {
+    public void setViewRoot(@Nullable View viewRoot) {
         mAlert.setViewRoot(viewRoot);
     }
 

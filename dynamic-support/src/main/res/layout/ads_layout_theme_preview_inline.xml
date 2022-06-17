@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -30,15 +30,15 @@
 
     <LinearLayout
         style="@style/Widget.DynamicApp.Content.Row.Vertical"
-        android:layout_width="@dimen/ads_theme_preview_width">
+        android:layout_width="@dimen/ads_preview_width">
 
         <com.pranavpandey.android.dynamic.support.theme.view.DynamicThemePreview
             android:id="@+id/ads_theme_preview"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ads_theme_preview_height" />
+            android:layout_height="@dimen/ads_preview_height" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            style="@style/TextAppearance.DynamicApp.Subtitle1.Secondary"
+            style="@style/TextAppearance.DynamicApp.Body1"
             android:id="@+id/ads_theme_preview_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

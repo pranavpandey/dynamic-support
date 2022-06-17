@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -20,6 +20,6 @@
     android:id="@+id/ads_fab_extended"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="bottom|end"
     android:layout_margin="@dimen/ads_fab_margin"
+    android:layout_gravity="bottom|end"
     android:visibility="invisible" />

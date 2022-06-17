@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -62,15 +63,14 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSnackbar;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicFABUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicHintUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicFABUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicHintUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicInputUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicBottomSheet;
 import com.pranavpandey.android.dynamic.support.widget.DynamicExtendedFloatingActionButton;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
+import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
+import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 /**
  * Base activity to handle everything related to design support and the app compat library.
@@ -84,7 +84,7 @@ public abstract class DynamicActivity extends DynamicStateActivity
         implements DynamicSearchListener, DynamicSnackbar {
 
     /**
-     * Constant to use the default layout resource..
+     * Constant to use the default layout resource.
      */
     protected static final int ADS_DEFAULT_LAYOUT_RES = -1;
 
@@ -141,6 +141,11 @@ public abstract class DynamicActivity extends DynamicStateActivity
      * App bar layout used by this activity.
      */
     protected AppBarLayout mAppBarLayout;
+
+    /**
+     * Navigation shadow layout used by this activity.
+     */
+    protected View mNavigationShadow;
 
     /**
      * Bottom bar shadow layout used by this activity.
@@ -214,10 +219,8 @@ public abstract class DynamicActivity extends DynamicStateActivity
 
         mCoordinatorLayout = findViewById(R.id.ads_coordinator_layout);
         mAppBarLayout = findViewById(R.id.ads_app_bar_layout);
+        mNavigationShadow = findViewById(R.id.ads_navigation_bar_shadow);
         mBottomBarShadow = findViewById(R.id.ads_bottom_bar_shadow);
-
-        Dynamic.setBackgroundColor(mFrameContent,
-                DynamicTheme.getInstance().get().getBackgroundColor());
 
         if (mAppBarLayout != null) {
             mAppBarLayout.addOnOffsetChangedListener(mAppBarStateListener);
@@ -236,34 +239,35 @@ public abstract class DynamicActivity extends DynamicStateActivity
         setStatusBarColor(getStatusBarColor());
         setNavigationBarColor(getNavigationBarColor());
         setSearchView();
+        setNavigationShadowVisible(false);
 
-        if (savedInstanceState != null) {
+        if (getSavedInstanceState() != null) {
             if (mAppBarLayout != null) {
-                mAppBarLayout.setExpanded(savedInstanceState
-                        .getBoolean(ADS_STATE_APP_BAR_COLLAPSED));
+                mAppBarLayout.setExpanded(getSavedInstanceState().getBoolean(
+                        ADS_STATE_APP_BAR_COLLAPSED));
             }
 
-            if (mFAB != null && savedInstanceState.getInt(
+            if (mFAB != null && getSavedInstanceState().getInt(
                     ADS_STATE_FAB_VISIBLE) != View.INVISIBLE) {
                 DynamicFABUtils.show(mFAB);
             }
 
-            if (mExtendedFAB != null && savedInstanceState.getInt(
+            if (mExtendedFAB != null && getSavedInstanceState().getInt(
                     ADS_STATE_EXTENDED_FAB_VISIBLE) != View.INVISIBLE) {
                 DynamicFABUtils.show(mExtendedFAB, false);
             }
 
-            if (savedInstanceState.getBoolean(ADS_STATE_SEARCH_VIEW_VISIBLE)) {
+            if (getSavedInstanceState().getBoolean(ADS_STATE_SEARCH_VIEW_VISIBLE)) {
                 restoreSearchViewState();
             }
         }
 
         DynamicViewUtils.applyWindowInsetsMarginHorizontalBottom(mFAB);
         DynamicViewUtils.applyWindowInsetsMarginHorizontalBottom(mExtendedFAB);
-        DynamicViewUtils.applyWindowInsetsBottom(mFrameFooter, true);
+        getBottomSheetBehavior();
 
-        if (mBottomSheet != null) {
-            mBottomSheet.applyWindowInsets();
+        if (isApplyFooterInsets()) {
+            DynamicViewUtils.applyWindowInsetsBottom(mFrameFooter, true);
         }
 
         setFrameVisibility(mBottomSheet);
@@ -280,6 +284,27 @@ public abstract class DynamicActivity extends DynamicStateActivity
     }
 
     @Override
+    protected void onAdjustElevation() {
+        super.onAdjustElevation();
+
+        if (!DynamicTheme.getInstance().get().isElevation()) {
+            setAppBarShadowVisible(false);
+            setBottomBarShadowVisible(false);
+        } else {
+            setAppBarShadowVisible(true);
+        }
+    }
+
+    @Override
+    public void setWindowBackground(@ColorInt int color) {
+        super.setWindowBackground(color);
+
+        Dynamic.setBackgroundColor(getFrameContent(),
+                DynamicTheme.getInstance().get().isTranslucent()
+                        ? Color.TRANSPARENT : getBackgroundColor());
+    }
+
+    @Override
     public void onApplyTransitions(boolean exit) {
         super.onApplyTransitions(exit);
 
@@ -292,24 +317,18 @@ public abstract class DynamicActivity extends DynamicStateActivity
     public void setStatusBarColor(@ColorInt int color) {
         super.setStatusBarColor(color);
 
-        if (!isDrawerActivity()) {
-            setWindowStatusBarColor(getStatusBarColor());
-        }
+        setWindowStatusBarColor(getStatusBarColor());
 
-        if (mCoordinatorLayout != null) {
-            mCoordinatorLayout.setStatusBarBackgroundColor(getStatusBarColor());
-        }
-
-        if (mCollapsingToolbarLayout != null) {
-            mCollapsingToolbarLayout.setStatusBarScrimColor(getStatusBarColor());
-            mCollapsingToolbarLayout.setContentScrimColor(
+        if (getCollapsingToolbarLayout() != null) {
+            getCollapsingToolbarLayout().setStatusBarScrimColor(getStatusBarColor());
+            getCollapsingToolbarLayout().setContentScrimColor(
                     DynamicTheme.getInstance().get().getPrimaryColor());
         }
     }
 
     @Override
     public @Nullable View getEdgeToEdgeView() {
-        return mCoordinatorLayout;
+        return getCoordinatorLayout();
     }
 
     @Override
@@ -326,6 +345,11 @@ public abstract class DynamicActivity extends DynamicStateActivity
         return DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_back);
     }
 
+    @Override
+    public @Nullable CoordinatorLayout getCoordinatorLayout() {
+        return mCoordinatorLayout;
+    }
+
     /**
      * Checks whether the navigation drawer is added.
      *
@@ -340,6 +364,7 @@ public abstract class DynamicActivity extends DynamicStateActivity
         super.onSaveInstanceState(outState);
 
         outState.putBoolean(ADS_STATE_APP_BAR_COLLAPSED, isAppBarCollapsed());
+        outState.putBoolean(ADS_STATE_SEARCH_VIEW_VISIBLE, isSearchViewExpanded());
 
         if (mFAB != null) {
             outState.putInt(ADS_STATE_FAB_VISIBLE, mFAB.getVisibility());
@@ -352,15 +377,10 @@ public abstract class DynamicActivity extends DynamicStateActivity
                         ((DynamicExtendedFloatingActionButton) mExtendedFAB).isFABExtended());
             }
         }
-
-        if (mSearchViewRoot != null) {
-            outState.putBoolean(ADS_STATE_SEARCH_VIEW_VISIBLE,
-                    mSearchViewRoot.getVisibility() == View.VISIBLE);
-        }
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
         mMenu = menu;
         return super.onCreateOptionsMenu(menu);
     }
@@ -370,7 +390,7 @@ public abstract class DynamicActivity extends DynamicStateActivity
         super.onActionModeStarted(mode);
 
         if (mode.getCustomView() != null) {
-            DynamicDrawableUtils.setBackground(mode.getCustomView(),
+            Dynamic.setBackground(mode.getCustomView(),
                     DynamicDrawableUtils.colorizeDrawable(mode.getCustomView().getBackground(),
                             DynamicTheme.getInstance().get().getBackgroundColor()));
         }
@@ -395,7 +415,20 @@ public abstract class DynamicActivity extends DynamicStateActivity
     }
 
     /**
-     * Set subtitle for the support action bar.
+     * Get the subtitle used by the support action bar.
+     *
+     * @return The subtitle used by the support action bar.
+     */
+    public @Nullable CharSequence getSubtitle() {
+        if (getToolbar() != null) {
+            return getToolbar().getSubtitle();
+        }
+
+        return null;
+    }
+
+    /**
+     * Set the subtitle for the support action bar.
      *
      * @param subtitle The subtitle to be set.
      */
@@ -406,7 +439,7 @@ public abstract class DynamicActivity extends DynamicStateActivity
     }
 
     /**
-     * Set subtitle resource for the support action bar.
+     * Set the subtitle resource for the support action bar.
      *
      * @param subtitleRes The subtitle resource to be set.
      */
@@ -432,8 +465,8 @@ public abstract class DynamicActivity extends DynamicStateActivity
      * @return The layout resource for this activity.
      */
     protected @LayoutRes int getLayoutRes() {
-        return setCollapsingToolbarLayout()
-                ? R.layout.ads_activity_collapsing : R.layout.ads_activity;
+        return setCollapsingToolbarLayout() ? R.layout.ads_activity_collapsing
+                : R.layout.ads_activity;
     }
 
     /**
@@ -447,8 +480,9 @@ public abstract class DynamicActivity extends DynamicStateActivity
     }
 
     @Override
-    public @NonNull View getContentView() {
-        return mFrameContent != null ? mFrameContent.getRootView() : getWindow().getDecorView();
+    public @Nullable View getContentView() {
+        return getFrameContent() != null ? getFrameContent().getRootView()
+                : getWindow().getDecorView();
     }
 
     /**
@@ -460,6 +494,9 @@ public abstract class DynamicActivity extends DynamicStateActivity
         if (mToolbar != null) {
             mToolbar.setNavigationIcon(icon);
             mToolbar.invalidate();
+
+            // Fix icon tint on resume.
+            Dynamic.setTextColor(mToolbar);
         }
     }
 
@@ -535,15 +572,6 @@ public abstract class DynamicActivity extends DynamicStateActivity
     }
 
     /**
-     * Returns the coordinator layout used by this activity.
-     *
-     * @return The coordinator layout used by this activity.
-     */
-    public @Nullable CoordinatorLayout getCoordinatorLayout() {
-        return mCoordinatorLayout;
-    }
-
-    /**
      * Returns the collapsing toolbar layout used by this activity.
      *
      * @return The collapsing toolbar layout used by this activity.
@@ -615,8 +643,8 @@ public abstract class DynamicActivity extends DynamicStateActivity
      */
     public void setAppBarBackDrop(@Nullable View view, @ColorInt int expandedTitleColor) {
         if (DynamicTheme.getInstance().get().isBackgroundAware()) {
-            expandedTitleColor = DynamicColorUtils.getContrastColor(
-                    expandedTitleColor, DynamicTheme.getInstance().get().getPrimaryColor());
+            expandedTitleColor = Dynamic.withContrastRatio(expandedTitleColor,
+                    DynamicTheme.getInstance().get().getPrimaryColor());
         }
 
         if (mCollapsingToolbarLayout != null) {
@@ -656,8 +684,7 @@ public abstract class DynamicActivity extends DynamicStateActivity
     public void setAppBarBackDrop(@Nullable Drawable drawable) {
         View view = getLayoutInflater().inflate(R.layout.ads_appbar_backdrop_image,
                 new LinearLayout(this), false);
-        ((ImageView) view.findViewById(R.id.ads_image_backdrop))
-                .setImageDrawable(drawable);
+        Dynamic.set(view.findViewById(R.id.ads_image_backdrop), drawable);
 
         setAppBarBackDrop(view, DynamicTheme.getInstance().get().getTintPrimaryColor());
     }
@@ -753,6 +780,7 @@ public abstract class DynamicActivity extends DynamicStateActivity
 
         if (view == null && removePrevious) {
             Dynamic.setVisibility(mFrameHeader, View.GONE);
+
             return;
         } else {
             Dynamic.setVisibility(mFrameHeader, View.VISIBLE);
@@ -874,6 +902,25 @@ public abstract class DynamicActivity extends DynamicStateActivity
     }
 
     /**
+     * Set the visibility of app bar progress.
+     *
+     * @param visible {@code true} to show the progress bar below the app bar.
+     */
+    public void setAppBarProgressVisible(boolean visible) {
+        Dynamic.setVisibility(findViewById(R.id.ads_app_bar_progress),
+                visible ? View.VISIBLE : View.GONE);
+    }
+
+    /**
+     * Set the visibility of navigation bar shadow.
+     *
+     * @param visible {@code true} to show the content shadow adjacent to the navigation.
+     */
+    public void setNavigationShadowVisible(boolean visible) {
+        Dynamic.setVisibility(mNavigationShadow, visible ? View.VISIBLE : View.GONE);
+    }
+
+    /**
      * Set the visibility of bottom bar shadow.
      *
      * @param visible {@code true} to show the content shadow above the bottom bar.
@@ -924,7 +971,21 @@ public abstract class DynamicActivity extends DynamicStateActivity
             return null;
         }
 
-        return BottomSheetBehavior.from(mBottomSheet);
+        return mBottomSheet.getBottomSheetBehavior();
+    }
+
+    /**
+     * Returns the bottom sheet state if present.
+     *
+     * @return The bottom sheet state if present.
+     *         Otherwise, {@link BottomSheetBehavior#STATE_HIDDEN}.
+     */
+    public @BottomSheetBehavior.State int getBottomSheetState() {
+        if (getBottomSheetBehavior() == null) {
+            return BottomSheetBehavior.STATE_HIDDEN;
+        }
+
+        return getBottomSheetBehavior().getState();
     }
 
     /**
@@ -936,6 +997,15 @@ public abstract class DynamicActivity extends DynamicStateActivity
         if (getBottomSheetBehavior() != null) {
             getBottomSheetBehavior().setState(bottomSheetState);
         }
+    }
+
+    /**
+     * Returns whether to expand bottom sheet on exit.
+     *
+     * @return {@code true} to expand bottom sheet on exit.
+     */
+    protected boolean isExpandBottomSheetOnExit() {
+        return false;
     }
 
     /**
@@ -977,12 +1047,93 @@ public abstract class DynamicActivity extends DynamicStateActivity
     }
 
     /**
-     * Set the visibility of app bar menu item by supplying its id.
+     * Set the title for the app bar menu item by supplying its id.
      *
-     * @param id Menu item id to set its visibility.
+     * @param id The id to find the menu item.
+     * @param title The title to be set.
+     */
+    public void setMenuItemTitle(final @IdRes int id, final @Nullable CharSequence title) {
+        if (getContentView() == null) {
+            return;
+        }
+
+        getContentView().post(new Runnable() {
+            @Override
+            public void run() {
+                if (mMenu != null && mMenu.findItem(id) != null) {
+                    mMenu.findItem(id).setTitle(title);
+                }
+            }
+        });
+    }
+
+    /**
+     * Set the title for the app bar menu item by supplying its id.
+     *
+     * @param id The id to find the menu item.
+     * @param titleRes The title resource to be set.
+     *
+     * @see #setMenuItemTitle(int, CharSequence)
+     */
+    public void setMenuItemTitle(@IdRes int id, @StringRes int titleRes) {
+        setMenuItemTitle(id, getString(titleRes));
+    }
+
+    /**
+     * Set the icon for the app bar menu item by supplying its id.
+     *
+     * @param id The id to find the menu item.
+     * @param drawable The icon drawable to be set.
+     */
+    public void setMenuItemIcon(final @IdRes int id, final @Nullable Drawable drawable) {
+        if (getContentView() == null) {
+            return;
+        }
+
+        getContentView().post(new Runnable() {
+            @Override
+            public void run() {
+                if (mMenu != null && mMenu.findItem(id) != null) {
+                    mMenu.findItem(id).setIcon(drawable);
+                }
+            }
+        });
+    }
+
+    /**
+     * Set the icon for the app bar menu item by supplying its id.
+     *
+     * @param id The id to find the menu item.
+     * @param drawableRes The icon resource to be set.
+     *
+     * @see #setMenuItemIcon(int, Drawable)
+     */
+    public void setMenuItemIcon(@IdRes int id, @DrawableRes int drawableRes) {
+        if (getContentView() == null) {
+            return;
+        }
+
+        getContentView().post(new Runnable() {
+            @Override
+            public void run() {
+                if (mMenu != null && mMenu.findItem(id) != null) {
+                    mMenu.findItem(id).setIcon(drawableRes);
+                }
+            }
+        });
+    }
+
+    /**
+     * Set the visibility of the app bar menu item by supplying its id.
+     *
+     * @param id The id to find the menu item.
      * @param visible {@code true} to make the menu item visible.
      */
     public void setMenuItemVisible(final int id, final boolean visible) {
+        if (getContentView() == null) {
+            return;
+        }
+
         getContentView().post(new Runnable() {
             @Override
             public void run() {
@@ -1008,23 +1159,27 @@ public abstract class DynamicActivity extends DynamicStateActivity
         if (viewGroup.getId() == R.id.ads_footer_frame && mBottomBarShadow != null) {
             Dynamic.setVisibility(mBottomBarShadow, viewGroup.getVisibility());
         }
+
+        onAdjustElevation();
     }
 
     /**
      * Setup search view edit text and clear button listeners.
      */
     protected void setSearchView() {
-        if (mSearchViewClear != null) {
-            mSearchViewClear.setOnClickListener(new View.OnClickListener() {
+        if (getSearchViewClear() != null) {
+            getSearchViewClear().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mSearchViewEditText.setText("");
+                    if (getSearchViewEditText() != null) {
+                        getSearchViewEditText().getText().clear();
+                    }
                 }
             });
         }
 
-        if (mSearchViewEditText != null) {
-            mSearchViewEditText.addTextChangedListener(new TextWatcher() {
+        if (getSearchViewEditText() != null) {
+            getSearchViewEditText().addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
@@ -1045,21 +1200,19 @@ public abstract class DynamicActivity extends DynamicStateActivity
      * Set search view clear button state.
      */
     private void setSearchViewClearButton() {
-        if (mSearchViewEditText != null) {
-            if (mSearchViewEditText.getText() != null
-                    && mSearchViewEditText.getText().length() != 0) {
-                Dynamic.setVisibility(mSearchViewClear, View.VISIBLE);
-            } else {
-                Dynamic.setVisibility(mSearchViewClear, View.GONE);
-            }
+        if (getSearchViewEditText() == null) {
+            return;
         }
+
+        Dynamic.setVisibility(getSearchViewClear(), !TextUtils.isEmpty(
+                getSearchViewEditText().getText()) ? View.VISIBLE : View.GONE);
     }
 
     /**
      * Restore the search view state after the configuration change.
      */
     public void restoreSearchViewState() {
-        if (mSearchViewEditText == null) {
+        if (getContentView() == null || getSearchViewEditText() == null) {
             return;
         }
 
@@ -1072,13 +1225,15 @@ public abstract class DynamicActivity extends DynamicStateActivity
     private final Runnable mSearchRunnable = new Runnable() {
         @Override
         public void run() {
-            if (mSearchViewEditText != null) {
-                expandSearchView(false);
-                mSearchViewEditText.setText(mSearchViewEditText.getText());
+            if (getSearchViewEditText() == null) {
+                return;
+            }
 
-                if (mSearchViewEditText.getText() != null) {
-                    mSearchViewEditText.setSelection(mSearchViewEditText.getText().length());
-                }
+            expandSearchView(false);
+            getSearchViewEditText().setText(getSearchViewEditText().getText());
+
+            if (getSearchViewEditText().getText() != null) {
+                getSearchViewEditText().setSelection(getSearchViewEditText().getText().length());
             }
         }
     };
@@ -1089,12 +1244,12 @@ public abstract class DynamicActivity extends DynamicStateActivity
      * @param requestSoftInput {@code true} to request the soft input keyboard.
      */
     public void expandSearchView(boolean requestSoftInput) {
-        if (mSearchViewRoot != null && mSearchViewRoot.getVisibility() == View.GONE) {
-            Dynamic.setVisibility(mSearchViewRoot, View.VISIBLE);
+        if (!isSearchViewExpanded()) {
+            Dynamic.setVisibility(getSearchViewRoot(), View.VISIBLE);
             onSearchViewExpanded();
 
             if (requestSoftInput) {
-                DynamicInputUtils.showSoftInput(mSearchViewEditText);
+                DynamicInputUtils.showSoftInput(getSearchViewEditText());
             }
         }
     }
@@ -1103,20 +1258,42 @@ public abstract class DynamicActivity extends DynamicStateActivity
      * Collapse search view to stop searching.
      */
     public void collapseSearchView() {
-        if (mSearchViewRoot != null && mSearchViewRoot.getVisibility() == View.VISIBLE) {
-            mSearchViewEditText.setText("");
-            Dynamic.setVisibility(mSearchViewRoot, View.GONE);
-            onSearchViewCollapsed();
+        if (isSearchViewExpanded()) {
+            if (getSearchViewEditText() != null) {
+                getSearchViewEditText().getText().clear();
+            }
 
-            DynamicInputUtils.hideSoftInput(mSearchViewEditText);
+            onSearchViewCollapsed();
+            DynamicInputUtils.hideSoftInput(getSearchViewEditText());
+            Dynamic.setVisibility(getSearchViewRoot(), View.GONE);
         }
     }
 
     /**
+     * Returns the root view for the toolbar edit text used by this activity.
+     *
+     * @return The the root view for the toolbar edit text used by this activity.
+     */
+    public @Nullable ViewGroup getSearchViewRoot() {
+        return mSearchViewRoot;
+    }
+
+    /**
+     * Returns the toolbar edit text used by this activity.
+     *
      * @return The toolbar edit text used by this activity.
      */
     public @Nullable EditText getSearchViewEditText() {
         return mSearchViewEditText;
+    }
+
+    /**
+     * Returns the clear button for the toolbar edit text used by this activity.
+     *
+     * @return The clear button for the toolbar edit text used by this activity.
+     */
+    public @Nullable ImageView getSearchViewClear() {
+        return mSearchViewClear;
     }
 
     /**
@@ -1125,7 +1302,7 @@ public abstract class DynamicActivity extends DynamicStateActivity
      * @return {@code true} if search view is expanded.
      */
     public boolean isSearchViewExpanded() {
-        return mSearchViewRoot != null && mSearchViewRoot.getVisibility() == View.VISIBLE;
+        return getSearchViewRoot() != null && getSearchViewRoot().getVisibility() == View.VISIBLE;
     }
 
     /**
@@ -1178,6 +1355,10 @@ public abstract class DynamicActivity extends DynamicStateActivity
         if (!isFinishing()) {
             if (isSearchViewExpanded()) {
                 collapseSearchView();
+            } else if (isExpandBottomSheetOnExit()
+                    && getBottomSheetState() != BottomSheetBehavior.STATE_HIDDEN
+                    && getBottomSheetState() != BottomSheetBehavior.STATE_EXPANDED) {
+                setBottomSheetState(BottomSheetBehavior.STATE_EXPANDED);
             } else {
                 super.onBackPressed();
             }
@@ -1485,26 +1666,39 @@ public abstract class DynamicActivity extends DynamicStateActivity
     }
 
     @Override
-    public @NonNull Snackbar getSnackbar(@NonNull CharSequence text,
+    public @Nullable Snackbar getSnackbar(@NonNull CharSequence text,
             @Snackbar.Duration int duration) {
+        if (getCoordinatorLayout() == null) {
+            return null;
+        }
+
         return DynamicHintUtils.getSnackbar(getCoordinatorLayout(), text,
                 DynamicTheme.getInstance().get().getTintBackgroundColor(),
                 DynamicTheme.getInstance().get().getBackgroundColor(), duration);
     }
 
     @Override
-    public @NonNull Snackbar getSnackbar(@StringRes int stringRes,
+    public @Nullable Snackbar getSnackbar(@StringRes int stringRes,
             @Snackbar.Duration int duration) {
         return getSnackbar(getString(stringRes), duration);
     }
 
     @Override
-    public @NonNull Snackbar getSnackbar(@NonNull CharSequence text) {
+    public @Nullable Snackbar getSnackbar(@NonNull CharSequence text) {
         return getSnackbar(text, Snackbar.LENGTH_SHORT);
     }
 
     @Override
-    public @NonNull Snackbar getSnackbar(@StringRes int stringRes) {
+    public @Nullable Snackbar getSnackbar(@StringRes int stringRes) {
         return getSnackbar(getString(stringRes));
+    }
+
+    @Override
+    public void onSnackbarShow(@Nullable Snackbar snackbar) {
+        if (snackbar == null) {
+            return;
+        }
+
+        snackbar.show();
     }
 }

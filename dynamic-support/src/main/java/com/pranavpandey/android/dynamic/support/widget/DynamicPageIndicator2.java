@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  * Copyright 2015 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -39,7 +39,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 import java.util.Arrays;
 

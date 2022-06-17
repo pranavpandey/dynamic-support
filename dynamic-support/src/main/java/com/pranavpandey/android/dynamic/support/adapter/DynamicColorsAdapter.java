@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -123,42 +123,42 @@ public class DynamicColorsAdapter extends BaseAdapter {
     @Override
 	public View getView(final int position,
             @Nullable View convertView, @NonNull ViewGroup parent) {
-		final ViewHolder viewHolder;
+		final ViewHolder holder;
         final int color = (int) getItem(position);
 
         if (convertView == null) {
         	convertView = LayoutInflater.from(parent.getContext()).inflate(
         	        R.layout.ads_layout_color_view, parent, false);
-        	viewHolder = new ViewHolder(convertView);
-        	convertView.setTag(viewHolder);
+        	holder = new ViewHolder(convertView);
+        	convertView.setTag(holder);
         } else {
-        	viewHolder = (ViewHolder) convertView.getTag();
+        	holder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.getDynamicColorView().setColor(color);
-        viewHolder.getDynamicColorView().setColorShape(mColorShape);
-        viewHolder.getDynamicColorView().setAlpha(mAlpha);
+        holder.getDynamicColorView().setColor(color);
+        holder.getDynamicColorView().setColorShape(mColorShape);
+        holder.getDynamicColorView().setAlpha(mAlpha);
         if (mSelectedColor != Theme.Color.UNKNOWN) {
-            viewHolder.getDynamicColorView().setSelected(mSelectedColor == color);
+            holder.getDynamicColorView().setSelected(mSelectedColor == color);
         }
         if (mContrastWithColor != Theme.Color.UNKNOWN) {
-            Dynamic.setContrastWithColor(viewHolder.getDynamicColorView(), mContrastWithColor);
+            Dynamic.setContrastWithColor(holder.getDynamicColorView(), mContrastWithColor);
         }
 
-        Dynamic.setOnClickListener(viewHolder.getDynamicColorView(), new View.OnClickListener() {
+        Dynamic.setOnClickListener(holder.getDynamicColorView(), new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mDynamicColorListener != null) {
                     mDynamicColorListener.onColorSelected(null, position,
-                            viewHolder.getDynamicColorView().getColor());
-                    mSelectedColor = viewHolder.getDynamicColorView().getColor();
+                            holder.getDynamicColorView().getColor());
+                    mSelectedColor = holder.getDynamicColorView().getColor();
 
                     notifyDataSetChanged();
                 }
             }
         });
 
-        viewHolder.getDynamicColorView().setTooltip();
+        holder.getDynamicColorView().setTooltip();
         return convertView;
     }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +22,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.AndroidViewModel;
 
-import com.pranavpandey.android.dynamic.utils.DynamicTaskUtils;
-import com.pranavpandey.android.dynamic.utils.concurrent.DynamicConcurrent;
-import com.pranavpandey.android.dynamic.utils.concurrent.DynamicExecutor;
-import com.pranavpandey.android.dynamic.utils.concurrent.DynamicStatus;
-import com.pranavpandey.android.dynamic.utils.concurrent.DynamicTask;
+import com.pranavpandey.android.dynamic.util.DynamicTaskUtils;
+import com.pranavpandey.android.dynamic.util.concurrent.DynamicConcurrent;
+import com.pranavpandey.android.dynamic.util.concurrent.DynamicExecutor;
+import com.pranavpandey.android.dynamic.util.concurrent.DynamicStatus;
+import com.pranavpandey.android.dynamic.util.concurrent.DynamicTask;
 
 import java.util.concurrent.ExecutorService;
 

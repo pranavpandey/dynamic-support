@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
  * A model class to hold the permission details that will be used by the app.
@@ -92,11 +93,20 @@ public class DynamicPermission implements Parcelable {
      * Constructor to initialize an object of this class.
      *
      * @param permission The permission string.
+     */
+    public DynamicPermission(@NonNull String permission) {
+        this(permission, null, null);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param permission The permission string.
      * @param icon The icon used for this permission.
      * @param title The title for this permission.
      */
     public DynamicPermission(@NonNull String permission,
-            @Nullable Drawable icon, @NonNull String title) {
+            @Nullable Drawable icon, @Nullable String title) {
         this(permission, icon, title, null);
     }
 
@@ -109,7 +119,7 @@ public class DynamicPermission implements Parcelable {
      * @param subtitle The subtitle for this permission.
      */
     public DynamicPermission(@NonNull String permission, @Nullable Drawable icon,
-            @NonNull String title, @Nullable String subtitle) {
+            @Nullable String title, @Nullable String subtitle) {
         this(permission, icon, title, subtitle, null);
     }
 
@@ -123,12 +133,30 @@ public class DynamicPermission implements Parcelable {
      * @param description The description for this permission.
      */
     public DynamicPermission(@NonNull String permission, @Nullable Drawable icon,
-            @NonNull String title, @Nullable String subtitle, @Nullable String description) {
+            @Nullable String title, @Nullable String subtitle, @Nullable String description) {
         this.permission = permission;
         this.icon = icon;
         this.title = title;
         this.subtitle = subtitle;
         this.description = description;
+    }
+
+    /**
+     * Read an object of this class from the parcel.
+     *
+     * @param in The parcel to read the values.
+     */
+    public DynamicPermission(@NonNull Parcel in) {
+        this.permission = in.readString();
+        this.title = in.readString();
+        this.subtitle = in.readString();
+        this.description = in.readString();
+        this.dangerous = in.readByte() != 0;
+        this.allowed = in.readByte() != 0;
+        this.askAgain = in.readByte() != 0;
+        this.unknown = in.readByte() != 0;
+        this.icon = new BitmapDrawable(Resources.getSystem(),
+                (Bitmap) in.readParcelable(getClass().getClassLoader()));
     }
 
     /**
@@ -147,27 +175,9 @@ public class DynamicPermission implements Parcelable {
         }
     };
 
-    /**
-     * Read an object of this class from the parcel.
-     *
-     * @param in The parcel to read the values.
-     */
-    public DynamicPermission(Parcel in) {
-        this.permission = in.readString();
-        this.title = in.readString();
-        this.subtitle = in.readString();
-        this.description = in.readString();
-        this.dangerous = in.readByte() != 0;
-        this.allowed = in.readByte() != 0;
-        this.askAgain = in.readByte() != 0;
-        this.unknown = in.readByte() != 0;
-        Bitmap bitmap = in.readParcelable(getClass().getClassLoader());
-        this.icon = new BitmapDrawable(Resources.getSystem(), bitmap);
-    }
-
     @Override
     public int describeContents() {
-        return 0;
+        return hashCode();
     }
 
     @Override
@@ -180,8 +190,7 @@ public class DynamicPermission implements Parcelable {
         dest.writeByte((byte) (allowed ? 1 : 0));
         dest.writeByte((byte) (askAgain ? 1 : 0));
         dest.writeByte((byte) (unknown ? 1 : 0));
-        Bitmap bitmap = ((BitmapDrawable) icon).getBitmap();
-        dest.writeParcelable(bitmap, flags);
+        dest.writeParcelable(DynamicBitmapUtils.getBitmap(icon), flags);
     }
 
     /**
@@ -257,7 +266,7 @@ public class DynamicPermission implements Parcelable {
     }
 
     /**
-     * Ge the description used by this permission.
+     * Get the description used by this permission.
      *
      * @return The description used by this permission.
      */

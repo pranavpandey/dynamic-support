@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,20 +16,14 @@
 
 package com.pranavpandey.android.dynamic.support.picker;
 
-import androidx.annotation.IntDef;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
-import static com.pranavpandey.android.dynamic.support.picker.DynamicPickerType.CUSTOM;
-import static com.pranavpandey.android.dynamic.support.picker.DynamicPickerType.PRESETS;
 
 /**
  * Interface to hold the color type constant values to provide show presets or custom view
  * accordingly.
  */
 @Retention(RetentionPolicy.SOURCE)
-@IntDef(value = { PRESETS, CUSTOM })
 public @interface DynamicPickerType {
 
     /**

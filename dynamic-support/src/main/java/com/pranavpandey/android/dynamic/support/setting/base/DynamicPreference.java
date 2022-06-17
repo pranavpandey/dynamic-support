@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicView;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -198,8 +198,12 @@ public abstract class DynamicPreference extends DynamicView
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicPreference_adt_backgroundAware,
                     Theme.BackgroundAware.UNKNOWN);
+            mContrast = a.getInteger(
+                    R.styleable.DynamicPreference_adt_contrast,
+                    Theme.Contrast.UNKNOWN);
             mIcon = DynamicResourceUtils.getDrawable(getContext(),
-                    a.getResourceId(R.styleable.DynamicPreference_ads_icon,
+                    a.getResourceId(
+                            R.styleable.DynamicPreference_ads_icon,
                             DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
             mTitle = a.getString(R.styleable.DynamicPreference_ads_title);
             mSummary = a.getString(R.styleable.DynamicPreference_ads_summary);
@@ -275,7 +279,8 @@ public abstract class DynamicPreference extends DynamicView
 
         Dynamic.setContrastWithColorTypeOrColor(getPreferenceView(),
                 getContrastWithColorType(), getContrastWithColor());
-        Dynamic.setBackgroundAwareSafe(getPreferenceView(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getPreferenceView(),
+                getBackgroundAware(), getContrast(false));
     }
 
     /**

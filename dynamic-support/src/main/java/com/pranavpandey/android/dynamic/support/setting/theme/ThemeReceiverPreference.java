@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,8 +29,8 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
-import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils;
+import com.pranavpandey.android.dynamic.util.DynamicLinkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicPackageUtils;
 
 /**
  * A {@link DynamicSpinnerPreference} to display and edit the settings for the

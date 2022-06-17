@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pranavpandey.android.dynamic.support.model.DynamicPermission;
 import com.pranavpandey.android.dynamic.support.permission.adapter.DynamicPermissionsAdapter;
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewFrame;
-import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
 
 import java.util.ArrayList;
 import java.util.List;

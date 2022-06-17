@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -24,7 +24,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ads_margin_extra_tiny"
+        android:layout_marginTop="@dimen/ads_dialog_margin_top"
+        android:layout_marginBottom="@dimen/ads_dialog_margin"
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
@@ -32,8 +33,11 @@
             android:id="@+id/ads_dialog_rename_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/ads_margin_normal"
-            android:paddingRight="@dimen/ads_margin_normal"
+            android:layout_marginBottom="@dimen/ads_dialog_margin"
+            android:paddingLeft="@dimen/ads_dialog_margin_horizontal"
+            android:paddingStart="@dimen/ads_dialog_margin_horizontal"
+            android:paddingRight="@dimen/ads_dialog_margin_horizontal"
+            android:paddingEnd="@dimen/ads_dialog_margin_horizontal"
             app:adt_colorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout
@@ -41,19 +45,20 @@
             android:id="@+id/ads_dialog_rename_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ads_margin_regular"
             android:layout_marginLeft="@dimen/ads_dialog_margin_horizontal_edit_text"
+            android:layout_marginStart="@dimen/ads_dialog_margin_horizontal_edit_text"
             android:layout_marginRight="@dimen/ads_dialog_margin_horizontal_edit_text"
-            android:hint="@string/ads_backup_name"
+            android:layout_marginEnd="@dimen/ads_dialog_margin_horizontal_edit_text"
+            android:hint="@string/ads_backup_option_rename"
+            app:startIconDrawable="@drawable/ads_ic_edit"
             app:helperText="@string/ads_backup_replace">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
-                style="@style/Widget.DynamicApp.TextInputEditText.Outlined"
+                style="@style/Widget.DynamicApp.TextInputEditText.Outlined.SingleLine"
                 android:id="@+id/ads_dialog_rename_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textNoSuggestions"
-                android:singleLine="true" />
+                android:inputType="text|textNoSuggestions" />
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout>
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
@@ -37,24 +36,19 @@ import androidx.core.view.ViewCompat;
 import androidx.core.widget.PopupWindowCompat;
 import androidx.transition.TransitionManager;
 
-import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicUnitUtils;
+import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import static com.pranavpandey.android.dynamic.support.popup.DynamicPopup.Type.GRID;
-import static com.pranavpandey.android.dynamic.support.popup.DynamicPopup.Type.LIST;
-import static com.pranavpandey.android.dynamic.support.popup.DynamicPopup.Type.NONE;
-
 /**
  * Base {@link PopupWindow} to provide the basic functionality to its descendants.
- * <p>Extend this class to create popup windows according to the need.
+ * <p>Extend this class to create popup windows according to the requirements.
  */
 public abstract class DynamicPopup {
 
@@ -62,7 +56,6 @@ public abstract class DynamicPopup {
      * Interface to hold the view types supported by the popup.
      */
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef(value = { NONE, LIST, GRID })
     public @interface Type {
 
         /**
@@ -349,7 +342,7 @@ public abstract class DynamicPopup {
         final int OFFSET_Y = DynamicUnitUtils.convertDpToPixels(20);
 
         // Check for RTL language.
-        if (DynamicLocaleUtils.isLayoutRtl()) {
+        if (DynamicViewUtils.isLayoutRtl(getAnchor())) {
             viewCenterX = viewCenterX + getAnchor().getWidth() - getMaxWidth();
             OFFSET_X = -OFFSET_X;
         }

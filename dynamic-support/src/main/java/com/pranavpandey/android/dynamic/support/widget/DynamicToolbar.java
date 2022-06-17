@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
@@ -26,21 +25,28 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicMenuUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicMenuUtils;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicBackgroundWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTextWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * A {@link MaterialToolbar} to apply {@link DynamicTheme} according to the supplied parameters.
  */
-public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget {
+public class DynamicToolbar extends MaterialToolbar implements
+        DynamicBackgroundWidget, DynamicTextWidget {
+
+    /**
+     * Color type applied to the background of this view.
+     *
+     * @see Theme.ColorType
+     */
+    protected @Theme.ColorType int mBackgroundColorType;
 
     /**
      * Color type applied to this view.
@@ -61,6 +67,11 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
      * color type.
      */
     protected @Theme.ColorType int mContrastWithColorType;
+
+    /**
+     * Background color applied to this view.
+     */
+    protected @ColorInt int mBackgroundColor;
 
     /**
      * Color applied to this view.
@@ -102,6 +113,11 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
      */
     protected @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
+
     public DynamicToolbar(@NonNull Context context) {
         this(context, null);
     }
@@ -125,15 +141,21 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
                 R.styleable.DynamicToolbar);
 
         try {
+            mBackgroundColorType = a.getInt(
+                    R.styleable.DynamicToolbar_adt_backgroundColorType,
+                    Theme.ColorType.NONE);
             mColorType = a.getInt(
                     R.styleable.DynamicToolbar_adt_colorType,
                     Theme.ColorType.PRIMARY);
             mTextColorType = a.getInt(
                     R.styleable.DynamicToolbar_adt_textColorType,
                     Theme.ColorType.TINT_PRIMARY);
-            mContrastWithColor = a.getColor(
-                    R.styleable.DynamicToolbar_adt_contrastWithColor,
-                    Defaults.getContrastWithColor(getContext()));
+            mContrastWithColorType = a.getInt(
+                    R.styleable.DynamicToolbar_adt_contrastWithColorType,
+                    Theme.ColorType.PRIMARY);
+            mBackgroundColor = a.getColor(
+                    R.styleable.DynamicToolbar_adt_backgroundColor,
+                    Theme.Color.UNKNOWN);
             mColor = a.getColor(R.styleable.DynamicToolbar_adt_color,
                     Theme.Color.UNKNOWN);
             mTextColor = a.getColor(
@@ -145,6 +167,9 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicToolbar_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicToolbar_adt_contrast,
+                    Theme.Contrast.AUTO);
         } finally {
             a.recycle();
         }
@@ -154,6 +179,12 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
 
     @Override
     public void initialize() {
+        if (mBackgroundColorType != Theme.ColorType.NONE
+                && mBackgroundColorType != Theme.ColorType.CUSTOM) {
+            mBackgroundColor = DynamicTheme.getInstance()
+                    .resolveColorType(mBackgroundColorType);
+        }
+
         if (mColorType != Theme.ColorType.NONE
                 && mColorType != Theme.ColorType.CUSTOM) {
             mColor = DynamicTheme.getInstance().resolveColorType(mColorType);
@@ -170,8 +201,19 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
                     .resolveColorType(mContrastWithColorType);
         }
 
-        setColor();
-        setTextColor();
+        setBackgroundColor(mBackgroundColor);
+    }
+
+    @Override
+    public @Theme.ColorType int getBackgroundColorType() {
+        return mBackgroundColorType;
+    }
+
+    @Override
+    public void setBackgroundColorType(@Theme.ColorType int backgroundColorType) {
+        this.mBackgroundColorType = backgroundColorType;
+
+        initialize();
     }
 
     @Override
@@ -211,6 +253,11 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
     }
 
     @Override
+    public @ColorInt int getBackgroundColor() {
+        return mBackgroundColor ;
+    }
+
+    @Override
     public @ColorInt int getColor(boolean resolve) {
         return resolve ? mAppliedColor : mColor;
     }
@@ -225,8 +272,7 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
         this.mColorType = Theme.ColorType.CUSTOM;
         this.mColor = color;
 
-        setColor();
-        setTextColor();
+        setTextWidgetColor(true);
     }
 
     @Override
@@ -241,11 +287,10 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
 
     @Override
     public void setTextColor(@ColorInt int textColor) {
-        this.mTextColorType  = Theme.ColorType.CUSTOM;
+        this.mTextColorType = Theme.ColorType.CUSTOM;
         this.mTextColor = textColor;
 
-        setColor();
-        setTextColor();
+        setTextWidgetColor(true);
     }
 
     @Override
@@ -258,8 +303,7 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
         this.mContrastWithColorType = Theme.ColorType.CUSTOM;
         this.mContrastWithColor = contrastWithColor;
 
-        setColor();
-        setTextColor();
+        setBackgroundColor(getBackgroundColor());
     }
 
     @Override
@@ -276,31 +320,55 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
     public void setBackgroundAware(@Theme.BackgroundAware int backgroundAware) {
         this.mBackgroundAware = backgroundAware;
 
-        setColor();
-        setTextColor();
+        setBackgroundColor(getBackgroundColor());
+    }
+
+    @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
 
-        setColor();
-        setTextColor();
+        setBackgroundColor(getBackgroundColor());
+    }
+
+    @Override
+    public void setBackgroundColor(@ColorInt int color) {
+        this.mBackgroundColor = color;
+        this.mBackgroundColorType = Theme.ColorType.CUSTOM;
+        super.setBackgroundColor(Dynamic.withThemeOpacity(mBackgroundColor));
+
+        setTextWidgetColor(true);
     }
 
     @Override
     public void setColor() {
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
-            if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
-            }
-
-            if (getParent() != null && getParent() instanceof CollapsingToolbarLayout) {
-                setBackgroundColor(Color.TRANSPARENT);
-            } else {
-                setBackgroundColor(mAppliedColor);
-            }
         }
     }
 
@@ -309,7 +377,7 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
         if (mTextColor != Theme.Color.UNKNOWN) {
             mAppliedTextColor = mTextColor;
             if (isBackgroundAware() && mColor != Theme.Color.UNKNOWN) {
-                mAppliedTextColor = DynamicColorUtils.getContrastColor(mTextColor, mAppliedColor);
+                mAppliedTextColor = Dynamic.withContrastRatio(mTextColor, mAppliedColor, this);
             }
 
             setTitleTextColor(mAppliedTextColor);
@@ -319,6 +387,15 @@ public class DynamicToolbar extends MaterialToolbar implements DynamicTextWidget
 
         if (getLogo() != null) {
             getLogo().clearColorFilter();
+        }
+    }
+
+    @Override
+    public void setTextWidgetColor(boolean setTextColor) {
+        setColor();
+
+        if (setTextColor) {
+            setTextColor();
         }
     }
 }

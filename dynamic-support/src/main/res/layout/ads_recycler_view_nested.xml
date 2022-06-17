@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -15,7 +15,49 @@
 	limitations under the License.
 -->
 
-<com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
+<merge
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.DynamicApp.Scroller.Nested"
-    android:id="@+id/ads_recycler_view" />
+    android:id="@+id/ads_recycler_view_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
+            style="@style/Widget.DynamicApp.Scroller.Nested"
+            android:id="@+id/ads_recycler_view" />
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
+            style="@style/Widget.DynamicApp.Scroller.Nested"
+            android:id="@+id/ads_empty_view_scroll"
+            android:layout_gravity="center"
+            android:visibility="gone">
+
+            <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+                style="@style/Widget.DynamicApp.Card.Empty"
+                android:id="@+id/ads_empty_view_card">
+
+                <com.pranavpandey.android.dynamic.support.view.DynamicEmptyViewBig
+                    android:id="@+id/ads_empty_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
+        </com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView>
+
+    </FrameLayout>
+
+    <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
+        style="?android:attr/progressBarStyle"
+        android:id="@+id/ads_progress"
+        android:layout_width="@dimen/ads_circular_progress_size"
+        android:layout_height="@dimen/ads_circular_progress_size"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
+</merge>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.popup.DynamicMenuPopup;
 import com.pranavpandey.android.dynamic.support.popup.DynamicPopup;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 import java.util.Arrays;
@@ -126,10 +126,8 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
     protected void onUpdate() {
         super.onUpdate();
 
-        if (getPreferenceView() != null) {
-            getPreferenceView().setClickable(
-                    getOnPreferenceClickListener() != null && getEntries() != null);
-        }
+        Dynamic.setClickable(getPreferenceView(),
+                getOnPreferenceClickListener() != null && getEntries() != null);
     }
 
     /**
@@ -145,8 +143,7 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
         DynamicMenuPopup popup = new DynamicMenuPopup(anchor, getEntries(),
                 new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (!getValues()[position].toString().equals(getPreferenceValue())) {
                     setPreferenceValue(getValues()[position].toString());
                 }
@@ -213,9 +210,15 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
      *               value string.
      */
     public void updateValueString(boolean update) {
-        if (getEntries() != null && getValues() != null) {
-            setValueString(getEntries()[Arrays.asList(
-                    getValues()).indexOf(getPreferenceValue())], update);
+        if (getEntries() == null || getValues() == null) {
+            return;
+        }
+
+        try {
+            setValueString(getEntries()[Arrays.asList(getValues())
+                    .indexOf(getPreferenceValue())], update);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

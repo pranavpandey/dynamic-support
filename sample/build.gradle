@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ apply plugin: 'kotlin-android'
 android {
     compileSdkVersion versions.compileSdk
     buildToolsVersion versions.buildTools
+    namespace 'com.pranavpandey.android.dynamic.support.sample'
 
     defaultConfig {
         applicationId "com.pranavpandey.android.dynamic.support.sample"
@@ -29,6 +30,7 @@ android {
         versionName mavenVersion
 
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -57,4 +59,5 @@ android {
 dependencies {
     implementation project(':dynamic-support')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
+    implementation "androidx.multidex:multidex:${versions.multidex}"
 }

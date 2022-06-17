@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 	Copyright 2007 The Android Open Source Project
 
 	Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,11 +25,13 @@
         android:fromXScale="0.9" android:toXScale="1.0"
         android:fromYScale="0.9" android:toYScale="1.0"
         android:pivotX="50%" android:pivotY="50%"
+        android:startOffset="@integer/ads_config_anim_short_duration"
         android:duration="@integer/ads_config_anim_short_duration" />
 
     <alpha
         android:interpolator="@android:anim/decelerate_interpolator"
         android:fromAlpha="0.0" android:toAlpha="1.0"
+        android:startOffset="@integer/ads_config_anim_short_duration"
         android:duration="@integer/ads_config_anim_short_duration" />
 
 </set>

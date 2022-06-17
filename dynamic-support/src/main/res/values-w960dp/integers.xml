@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -18,8 +18,6 @@
 <resources>
 
     <!-- Span -->
-    <integer name="ads_span_normal">2</integer>
-    <integer name="ads_span_no_drawer">3</integer>
-    <integer name="ads_span_compact">3</integer>
+    <integer name="ads_span_compact_dialog">3</integer>
 
 </resources>

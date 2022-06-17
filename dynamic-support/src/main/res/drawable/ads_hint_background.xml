@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -41,9 +41,11 @@
 
         <shape>
 
-            <solid android:color="#FFFFFF" />
+            <solid
+                android:color="#FFFFFF" />
 
-            <corners android:radius="2dp" />
+            <corners
+                android:radius="2dp" />
 
         </shape>
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,9 +34,9 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicSurfaceWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
  * A {@link AppCompatSpinner} to apply {@link DynamicTheme} according to the supplied parameters.
@@ -88,13 +88,15 @@ public class DynamicSpinner extends AppCompatSpinner
     protected @Theme.BackgroundAware int mBackgroundAware;
 
     /**
-     * {@code true} to enable elevation on the same background.
-     * <p>It will be useful to provide the true dark theme by disabling the card view elevation.
-     *
-     * <p>When disabled, widget elevation will be disabled (or 0) if the color of this widget
-     * (surface color) is exactly same as dynamic theme background color.
+     * Minimum contrast value to generate contrast color for the background aware functionality.
      */
-    protected boolean mElevationOnSameBackground;
+    protected int mContrast;
+
+    /**
+     * {@code true} to force elevation for this widget.
+     * <p>When disabled, widget will follow the dynamic theme elevation.
+     */
+    protected boolean mForceElevation;
 
     /**
      * Popup background used by this view.
@@ -141,10 +143,13 @@ public class DynamicSpinner extends AppCompatSpinner
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicSpinner_adt_backgroundAware,
                     Defaults.getBackgroundAware());
-            mElevationOnSameBackground = a.getBoolean(
-                    R.styleable.DynamicSpinner_adt_elevationOnSameBackground,
-                    Defaults.ADS_ELEVATION_ON_SAME_BACKGROUND);
-            mPopupBackground.setCorner(0f);
+            mContrast = a.getInteger(
+                    R.styleable.DynamicSpinner_adt_contrast,
+                    Theme.Contrast.AUTO);
+            mForceElevation = a.getBoolean(
+                    R.styleable.DynamicSpinner_adt_forceElevation,
+                    Defaults.ADS_FORCE_ELEVATION);
+            mPopupBackground.setCorner((float) Theme.Corner.MIN);
         } finally {
             a.recycle();
         }
@@ -241,6 +246,32 @@ public class DynamicSpinner extends AppCompatSpinner
     }
 
     @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
+    }
+
+    @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
@@ -252,7 +283,7 @@ public class DynamicSpinner extends AppCompatSpinner
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
             }
 
             DynamicDrawableUtils.colorizeDrawable(getBackground(), mAppliedColor);
@@ -262,13 +293,13 @@ public class DynamicSpinner extends AppCompatSpinner
     }
 
     @Override
-    public boolean isElevationOnSameBackground() {
-        return mElevationOnSameBackground;
+    public boolean isForceElevation() {
+        return mForceElevation;
     }
 
     @Override
-    public void setElevationOnSameBackground(boolean elevationOnSameBackground) {
-        this.mElevationOnSameBackground = elevationOnSameBackground;
+    public void setForceElevation(boolean forceElevation) {
+        this.mForceElevation = forceElevation;
 
         setSurface();
     }
@@ -281,16 +312,17 @@ public class DynamicSpinner extends AppCompatSpinner
 
     @Override
     public boolean isBackgroundSurface() {
-        return mColorType != Theme.ColorType.BACKGROUND
+        return !DynamicTheme.getInstance().get().isElevation()
+                || (mColorType != Theme.ColorType.BACKGROUND
                 && mColor != Theme.Color.UNKNOWN
                 && DynamicColorUtils.removeAlpha(mContrastWithColor)
                 == DynamicColorUtils.removeAlpha(
-                        DynamicTheme.getInstance().get().getSurfaceColor());
+                        DynamicTheme.getInstance().get().getSurfaceColor()));
     }
 
     @Override
     public boolean isStrokeRequired() {
-        return DynamicSdkUtils.is16() && !mElevationOnSameBackground && isBackgroundSurface()
-                && Color.alpha(mColor) < Defaults.ADS_ALPHA_SURFACE_STROKE;
+        return DynamicSdkUtils.is16() && !mForceElevation && isBackgroundSurface()
+                && Color.alpha(mColor) < Theme.Opacity.STROKE;
     }
 }

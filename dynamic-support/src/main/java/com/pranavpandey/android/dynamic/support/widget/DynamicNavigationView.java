@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,20 +31,24 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.internal.ScrimInsetsFrameLayout;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.shape.MaterialShapeDrawable;
+import com.google.android.material.shape.ShapeAppearanceModel;
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicScrollUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicShapeUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicBackgroundWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicScrollableWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicStateSelectedWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
+import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 import java.lang.reflect.Field;
 
@@ -161,6 +165,11 @@ public class DynamicNavigationView extends NavigationView
      */
     protected @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
+
     public DynamicNavigationView(@NonNull Context context) {
         this(context, null);
     }
@@ -223,6 +232,14 @@ public class DynamicNavigationView extends NavigationView
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicNavigationView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicNavigationView_adt_contrast,
+                    Theme.Contrast.AUTO);
+
+            if (a.getBoolean(R.styleable.DynamicNavigationView_adt_dynamicCornerSize,
+                    Defaults.ADS_DYNAMIC_CORNER_SIZE)) {
+                updateBackground();
+            }
 
             if (a.getBoolean(
                     R.styleable.DynamicNavigationView_adt_windowInsets,
@@ -234,6 +251,36 @@ public class DynamicNavigationView extends NavigationView
         }
 
         initialize();
+    }
+
+    /**
+     * [WIP] Update background according to the corner size.
+     */
+    private void updateBackground() {
+        if (getBackground() instanceof MaterialShapeDrawable) {
+            MaterialShapeDrawable drawable = (MaterialShapeDrawable) getBackground();
+            ShapeAppearanceModel.Builder builder =
+                    drawable.getShapeAppearanceModel().toBuilder();
+            float cornerSize = DynamicTheme.getInstance().get().getCornerRadius();
+
+            if (drawable.getTopLeftCornerResolvedSize() > 0) {
+                builder.setTopLeftCornerSize(cornerSize);
+            }
+
+            if (drawable.getTopRightCornerResolvedSize() > 0) {
+                builder.setTopRightCornerSize(cornerSize);
+            }
+
+            if (drawable.getBottomLeftCornerResolvedSize() > 0) {
+                builder.setBottomLeftCornerSize(cornerSize);
+            }
+
+            if (drawable.getBottomRightCornerResolvedSize() > 0) {
+                builder.setBottomRightCornerSize(cornerSize);
+            }
+
+            drawable.setShapeAppearanceModel(builder.build());
+        }
     }
 
     @Override
@@ -274,57 +321,66 @@ public class DynamicNavigationView extends NavigationView
         }
 
         setBackgroundColor(mBackgroundColor);
-        setColor(true);
-        setStatesColor();
     }
 
     @Override
     public void applyWindowInsets() {
         final View header;
         final int left = getPaddingLeft();
+        final int top = getPaddingTop();
+        final int right = getPaddingRight();
         final int bottom = getPaddingBottom();
+        final int headerLeft;
         final int headerTop;
+        final int headerRight;
+        final int headerBottom;
 
         if (getHeaderCount() != 0) {
             header = getHeaderView(0);
+            headerLeft = header.getPaddingLeft();
             headerTop = header.getPaddingTop();
+            headerRight = header.getPaddingRight();
+            headerBottom = header.getPaddingBottom();
         } else {
             header = null;
+            headerLeft = 0;
             headerTop = 0;
+            headerRight = 0;
+            headerBottom = 0;
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(this,
                 new androidx.core.view.OnApplyWindowInsetsListener() {
             @Override
-            public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat insets) {
-                v.setPadding(left + insets.getInsets(
-                        WindowInsetsCompat.Type.systemBars()).left, v.getPaddingTop(),
-                        v.getPaddingRight(), bottom + insets.getInsets(
-                                WindowInsetsCompat.Type.systemBars()).bottom);
+            public @NonNull WindowInsetsCompat onApplyWindowInsets(
+                    @NonNull View v, @NonNull WindowInsetsCompat insets) {
+                final Rect rect = new Rect();
+                rect.set(insets.getInsets(WindowInsetsCompat.Type.systemBars()).left,
+                        insets.getInsets(WindowInsetsCompat.Type.systemBars()).top, 0,
+                        insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
+
+                final boolean isRtl = DynamicViewUtils.isLayoutRtl(v);
+                v.setPadding(isRtl ? right : left + rect.left, top,
+                        isRtl ? left : right, bottom + rect.bottom);
 
                 try {
-                    final Rect rect = new Rect();
-                    rect.set(insets.getInsets(WindowInsetsCompat.Type.systemBars()).left,
-                            insets.getInsets(WindowInsetsCompat.Type.systemBars()).top, 0,
-                            insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
                     final Field fieldInsets =
                             ScrimInsetsFrameLayout.class.getDeclaredField("insets");
                     fieldInsets.setAccessible(true);
                     fieldInsets.set(DynamicNavigationView.this, rect);
 
                     if (header != null) {
-                        header.setPadding(header.getPaddingLeft(),
-                                headerTop + insets.getInsets(
-                                        WindowInsetsCompat.Type.systemBars()).top,
-                                header.getPaddingRight(), header.getPaddingBottom());
+                        header.setPadding(headerLeft, headerTop + rect.top,
+                                headerRight, headerBottom);
                     }
                 } catch (Exception ignored) {
                 }
 
-                return WindowInsetsCompat.CONSUMED.inset(
-                        insets.getInsets(WindowInsetsCompat.Type.systemBars()));
+                return insets;
             }
         });
+
+        DynamicViewUtils.requestApplyWindowInsets(this);
     }
 
     @Override
@@ -419,7 +475,7 @@ public class DynamicNavigationView extends NavigationView
         this.mColorType = Theme.ColorType.CUSTOM;
         this.mColor = color;
 
-        setColor(false);
+        setScrollableWidgetColor(false);
     }
 
     @Override
@@ -486,8 +542,7 @@ public class DynamicNavigationView extends NavigationView
         this.mContrastWithColorType = Theme.ColorType.CUSTOM;
         this.mContrastWithColor = contrastWithColor;
 
-        setColor(true);
-        setStatesColor();
+        setBackgroundColor(getBackgroundColor());
     }
 
     @Override
@@ -504,17 +559,56 @@ public class DynamicNavigationView extends NavigationView
     public void setBackgroundAware(@Theme.BackgroundAware int backgroundAware) {
         this.mBackgroundAware = backgroundAware;
 
-        setColor();
+        setBackgroundColor(getBackgroundColor());
+    }
+
+    @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        updateBackground();
     }
 
     @Override
     public void setBackgroundColor(@ColorInt int backgroundColor) {
-        super.setBackgroundColor(backgroundColor);
+        if (getBackground() instanceof MaterialShapeDrawable) {
+            DynamicDrawableUtils.colorizeDrawable(getBackground(),
+                    Dynamic.withThemeOpacity(backgroundColor, Theme.Opacity.WIDGET));
+        } else {
+            super.setBackgroundColor(Dynamic.withThemeOpacity(
+                    backgroundColor, Theme.Opacity.WIDGET));
+        }
 
         this.mBackgroundColor = backgroundColor;
         this.mBackgroundColorType = Theme.ColorType.CUSTOM;
 
-        setColor(true);
+        setScrollableWidgetColor(true);
         setStatesColor();
     }
 
@@ -523,10 +617,11 @@ public class DynamicNavigationView extends NavigationView
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
             }
 
             DynamicScrollUtils.setEdgeEffectColor(this, mAppliedColor);
+            DynamicScrollUtils.setSubHeaderColor(this, mAppliedColor);
         }
     }
 
@@ -535,8 +630,8 @@ public class DynamicNavigationView extends NavigationView
         if (mScrollBarColor != Theme.Color.UNKNOWN) {
             mAppliedScrollBarColor = mScrollBarColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedScrollBarColor = DynamicColorUtils.getContrastColor(
-                        mScrollBarColor, mContrastWithColor);
+                mAppliedScrollBarColor = Dynamic.withContrastRatio(
+                        mScrollBarColor, mContrastWithColor, this);
             }
 
             DynamicScrollUtils.setScrollBarColor(this, mAppliedScrollBarColor);
@@ -544,7 +639,7 @@ public class DynamicNavigationView extends NavigationView
     }
 
     @Override
-    public void setColor(boolean setScrollBarColor) {
+    public void setScrollableWidgetColor(boolean setScrollBarColor) {
         setColor();
 
         if (setScrollBarColor) {
@@ -560,21 +655,14 @@ public class DynamicNavigationView extends NavigationView
             mAppliedStateNormalColor = mStateNormalColor;
             mAppliedStateSelectedColor = mStateSelectedColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedStateNormalColor = DynamicColorUtils.getContrastColor(
-                        mStateNormalColor, mContrastWithColor);
-                mAppliedStateSelectedColor = DynamicColorUtils.getContrastColor(
-                        mStateSelectedColor, mContrastWithColor);
+                mAppliedStateNormalColor = Dynamic.withContrastRatio(
+                        mStateNormalColor, mContrastWithColor, this);
+                mAppliedStateSelectedColor = Dynamic.withContrastRatio(
+                        mStateSelectedColor, mContrastWithColor, this);
             }
 
-            if (DynamicTheme.getInstance().get().getCornerSizeDp()
-                    >= Defaults.ADS_CORNER_SELECTOR_ROUND) {
-                setItemBackgroundResource(R.drawable.ads_list_selector_round);
-            } else if (DynamicTheme.getInstance().get().getCornerSizeDp()
-                    >= Defaults.ADS_CORNER_SELECTOR_RECT) {
-                setItemBackgroundResource(R.drawable.ads_list_selector_rect);
-            } else {
-                setItemBackgroundResource(R.drawable.ads_list_selector);
-            }
+            setItemBackgroundResource(DynamicShapeUtils.getListSelectorRes(
+                    DynamicTheme.getInstance().get().getCornerSize()));
 
             DynamicDrawableUtils.colorizeDrawable(getItemBackground(),
                     DynamicColorUtils.getStateColor(mAppliedStateSelectedColor,

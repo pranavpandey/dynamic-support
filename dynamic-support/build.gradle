@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ android {
     defaultConfig {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
+        namespace 'com.pranavpandey.android.dynamic.support'
 
         vectorDrawables.useSupportLibrary = true
         consumerProguardFiles 'proguard-rules.pro'
@@ -47,7 +48,6 @@ dependencies {
     api "com.pranavpandey.android:dynamic-locale:${versions.locale}"
     api "com.pranavpandey.android:dynamic-preferences:${versions.preferences}"
     api "com.pranavpandey.android:dynamic-toasts:${versions.dynamic}"
-    api "androidx.drawerlayout:drawerlayout:${versions.drawerlayout}"
     api "androidx.fragment:fragment:${versions.fragment}"
     api "androidx.swiperefreshlayout:swiperefreshlayout:${versions.swiperefresh}"
     api "androidx.work:work-runtime:${versions.work}"

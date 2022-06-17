@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,8 @@
 
 package com.pranavpandey.android.dynamic.support.recyclerview.adapter;
 
-import androidx.annotation.IntDef;
+import android.content.Context;
+
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,8 +31,8 @@ import java.lang.annotation.RetentionPolicy;
  * <p>Extend this adapter and implement {@link DynamicRecyclerViewItem} interface
  * in the object class.
  */
-public abstract class DynamicRecyclerViewAdapter extends
-        RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public abstract class DynamicRecyclerViewAdapter<VH extends RecyclerView.ViewHolder>
+        extends RecyclerView.Adapter<VH> {
 
     /**
      * Constant for the type unknown.
@@ -73,8 +74,6 @@ public abstract class DynamicRecyclerViewAdapter extends
      * <br>3. {@link #TYPE_SECTION_DIVIDER}
      */
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef(value = { TYPE_UNKNOWN, TYPE_EMPTY_VIEW, TYPE_SECTION_HEADER,
-            TYPE_ITEM, TYPE_SETTING, TYPE_SECTION_DIVIDER })
     public @interface ItemType { }
 
     /**
@@ -98,5 +97,63 @@ public abstract class DynamicRecyclerViewAdapter extends
          * @return The section title for the item type {@link #TYPE_SECTION_HEADER}.
          */
         @Nullable String getSectionTitle();
+    }
+
+    /**
+     * Recycler view displaying this adapter.
+     */
+    private RecyclerView mRecyclerView;
+
+    @Override
+    public void onAttachedToRecyclerView(@Nullable RecyclerView recyclerView) {
+        this.mRecyclerView = recyclerView;
+    }
+
+    /**
+     * Checks whether the recycler view associated with this adapter is computing layout.
+     *
+     * @return {@code true} if the recycler view is computing layout.
+     */
+    public boolean isComputingLayout() {
+        if (getRecyclerView() == null) {
+            return false;
+        }
+
+        return getRecyclerView().isComputingLayout();
+    }
+
+    /**
+     * Get the recycler view displaying this adapter.
+     *
+     * @return The recycler view displaying this adapter.
+     */
+    public @Nullable RecyclerView getRecyclerView() {
+        return mRecyclerView;
+    }
+
+    /**
+     * Returns the context associated with the recycler view.
+     *
+     * @return The context associated with the recycler view.
+     */
+    public @Nullable Context getContext() {
+        if (getRecyclerView() == null) {
+            return null;
+        }
+
+        return getRecyclerView().getContext();
+    }
+
+    /**
+     * Returns the layout associated with the recycler view.
+     *
+     * @return The layout associated with the recycler view.
+     */
+    public @Nullable RecyclerView.LayoutManager getLayoutManager() {
+        if (getRecyclerView() == null) {
+            return null;
+        }
+
+        return getRecyclerView().getLayoutManager();
     }
 }

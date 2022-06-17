@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,9 +69,16 @@ public interface DynamicTextWidget extends DynamicWidget {
     void setTextColor(@ColorInt int textColor);
 
     /**
-     * Set text color of this widget according to the supplied values.
+     * Set text color for this widget according to the supplied values.
      * <p>Generally, it should be a tint color so that text will be visible on this
      * widget background.
      */
     void setTextColor();
+
+    /**
+     * Set color and text color for this widget at once.
+     *
+     * @param setTextColor {@code true} to set the text color also.
+     */
+    void setTextWidgetColor(boolean setTextColor);
 }

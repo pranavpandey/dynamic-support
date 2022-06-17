@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
@@ -49,13 +48,14 @@ import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.tutorial.Tutorial;
 import com.pranavpandey.android.dynamic.support.tutorial.adapter.DynamicTutorialsAdapter;
-import com.pranavpandey.android.dynamic.support.utils.DynamicHintUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicHintUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator2;
 import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -138,7 +138,7 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
 
         mArgbEvaluator = new ArgbEvaluator();
 
-        if (DynamicLocaleUtils.isLayoutRtl()) {
+        if (DynamicViewUtils.isLayoutRtl(getContentView())) {
             ViewCompat.setLayoutDirection(mViewPager, ViewCompat.LAYOUT_DIRECTION_RTL);
         }
 
@@ -222,25 +222,17 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
             public void onPageScrollStateChanged(int state) {
                 super.onPageScrollStateChanged(state);
 
-                mViewPager.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (state == ViewPager2.SCROLL_STATE_IDLE) {
-                            onSetColor(getCurrentPosition(),
-                                    Dynamic.getColor(getTutorial(getCurrentPosition()),
-                                            getBackgroundColor()),
-                                    Dynamic.getTintColor(getTutorial(getCurrentPosition()),
-                                            getTintColor()));
-                            Dynamic.onColorChanged(getTutorial(getCurrentPosition()),
-                                    Dynamic.getColor(getTutorial(getCurrentPosition()),
-                                            getBackgroundColor()),
-                                    Dynamic.getTintColor(getTutorial(getCurrentPosition()),
-                                            getTintColor()));
-                        }
+                if (state == ViewPager2.SCROLL_STATE_IDLE) {
+                    onSetColor(getCurrentPosition(), Dynamic.getColor(getTutorial(
+                            getCurrentPosition()), getBackgroundColor()), Dynamic.getTintColor(
+                                    getTutorial(getCurrentPosition()), getTintColor()));
+                    Dynamic.onColorChanged(getTutorial(getCurrentPosition()),
+                            Dynamic.getColor(getTutorial(getCurrentPosition()),
+                                    getBackgroundColor()), Dynamic.getTintColor(getTutorial(
+                                            getCurrentPosition()), getTintColor()));
+                }
 
-                        Dynamic.onPageScrollStateChanged(getTutorial(getCurrentPosition()), state);
-                    }
-                });
+                Dynamic.onPageScrollStateChanged(getTutorial(getCurrentPosition()), state);
             }
         });
 
@@ -261,11 +253,19 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
         setTutorials(getDefaultPosition(), false);
 
         // A hack to retain the status bar color.
-        if (savedInstanceState == null) {
+        if (getSavedInstanceState() == null) {
             setStatusBarColor(getStatusBarColor());
         } else {
-            setStatusBarColor(savedInstanceState.getInt(ADS_STATE_STATUS_BAR_COLOR));
+            setStatusBarColor(getSavedInstanceState().getInt(ADS_STATE_STATUS_BAR_COLOR));
         }
+    }
+
+    @Override
+    protected void onAdjustElevation() {
+        super.onAdjustElevation();
+
+        Dynamic.setVisibility(findViewById(R.id.ads_bottom_bar_shadow),
+                !DynamicTheme.getInstance().get().isElevation() ? View.GONE : View.VISIBLE);
     }
 
     /**
@@ -278,9 +278,9 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
     }
 
     @Override
-    public @NonNull View getContentView() {
-        return mCoordinatorLayout != null
-                ? mCoordinatorLayout.getRootView() : getWindow().getDecorView();
+    public @Nullable View getContentView() {
+        return getCoordinatorLayout() != null ? getCoordinatorLayout().getRootView()
+                : getWindow().getDecorView();
     }
 
     @Override
@@ -290,6 +290,14 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
 
     @Override
     public @ColorInt int getBackgroundColor() {
+        if (DynamicTheme.getInstance().get().isBackgroundAware()
+                && DynamicColorUtils.isColorDark(
+                        DynamicTheme.getInstance().get().getBackgroundColor())
+                != DynamicColorUtils.isColorDark(
+                        DynamicTheme.getInstance().get().getPrimaryColor())) {
+            return DynamicTheme.getInstance().get().getTintPrimaryColor();
+        }
+
         return DynamicTheme.getInstance().get().getPrimaryColor();
     }
 
@@ -299,6 +307,14 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
      * @return The tint color used by this activity.
      */
     public @ColorInt int getTintColor() {
+        if (DynamicTheme.getInstance().get().isBackgroundAware()
+                && DynamicColorUtils.isColorDark(
+                        DynamicTheme.getInstance().get().getBackgroundColor())
+                == DynamicColorUtils.isColorDark(
+                        DynamicTheme.getInstance().get().getTintPrimaryColor())) {
+            return DynamicTheme.getInstance().get().getPrimaryColor();
+        }
+
         return DynamicTheme.getInstance().get().getTintPrimaryColor();
     }
 
@@ -312,7 +328,7 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
 
     @Override
     public @Nullable View getEdgeToEdgeView() {
-        return getContentView();
+        return getCoordinatorLayout();
     }
 
     @Override
@@ -320,11 +336,7 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
         return false;
     }
 
-    /**
-     * Returns the coordinator layout used by this activity.
-     *
-     * @return The coordinator layout used by this activity.
-     */
+    @Override
     public @Nullable CoordinatorLayout getCoordinatorLayout() {
         return mCoordinatorLayout;
     }
@@ -537,22 +549,22 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
             }
         }
 
-        updateTaskDescription(color);
+        setWindowBackground(color);
         setStatusBarColor(systemUIColor);
         setNavigationBarColor(systemUIColor);
-        mCoordinatorLayout.setStatusBarBackgroundColor(getStatusBarColor());
-        mCoordinatorLayout.setBackgroundColor(color);
         updateTaskDescription(color);
 
+        onAdjustElevation();
+
         Dynamic.setContrastWithColor(findViewById(R.id.ads_bottom_bar_shadow), color);
+        Dynamic.setContrastWithColor(findViewById(R.id.ads_tutorial_backdrop), color);
         Dynamic.tint(mActionPrevious, tintColor, color);
         Dynamic.tint(mActionNext, tintColor, color);
         Dynamic.tint(mActionCustom, tintColor, color);
 
         mAdapter.setContrastWithColor(color);
-        mActionCustom.setTextColor(color);
         mPageIndicator.setSelectedColour(DynamicTheme.getInstance().get().isBackgroundAware()
-                ? DynamicColorUtils.getContrastColor(tintColor, color) : tintColor);
+                ? Dynamic.withContrastRatio(tintColor, color) : tintColor);
         mPageIndicator.setUnselectedColour(DynamicColorUtils.adjustAlpha(
                 mPageIndicator.getSelectedColour(), Defaults.ADS_ALPHA_UNCHECKED));
 
@@ -748,31 +760,39 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
     }
 
     @Override
-    public @NonNull Snackbar getSnackbar(@NonNull CharSequence text,
+    public @Nullable Snackbar getSnackbar(@NonNull CharSequence text,
             @Snackbar.Duration int duration) {
         final Tutorial<T, V> tutorial = getTutorial(getCurrentPosition());
-        if (tutorial != null && getCoordinatorLayout() != null) {
-            return DynamicHintUtils.getSnackbar(getCoordinatorLayout(), text,
-                    DynamicColorUtils.getTintColor(tutorial.getColor()),
-                    tutorial.getColor(), duration, false);
-        } else {
-            return DynamicHintUtils.getSnackbar(getContentView(), text, duration);
+        if (tutorial == null || getCoordinatorLayout() == null) {
+            return null;
         }
+
+        return DynamicHintUtils.getSnackbar(getCoordinatorLayout(), text, Dynamic.getTintColor(
+                tutorial.getColor()), tutorial.getColor(), duration, false);
     }
 
     @Override
-    public @NonNull Snackbar getSnackbar(@StringRes int stringRes,
+    public @Nullable Snackbar getSnackbar(@StringRes int stringRes,
             @Snackbar.Duration int duration) {
         return getSnackbar(getString(stringRes), duration);
     }
 
     @Override
-    public @NonNull Snackbar getSnackbar(@NonNull CharSequence text) {
+    public @Nullable Snackbar getSnackbar(@NonNull CharSequence text) {
         return getSnackbar(text, Snackbar.LENGTH_SHORT);
     }
 
     @Override
-    public @NonNull Snackbar getSnackbar(@StringRes int stringRes) {
+    public @Nullable Snackbar getSnackbar(@StringRes int stringRes) {
         return getSnackbar(getString(stringRes));
+    }
+
+    @Override
+    public void onSnackbarShow(@Nullable Snackbar snackbar) {
+        if (snackbar == null) {
+            return;
+        }
+
+        snackbar.show();
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
@@ -47,11 +47,11 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView;
 import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
 
 /**
  * Base theme fragment to provide theme editing functionality.
- * <p>Extend this fragment to implement theme attributes according to the need.
+ * <p>Extend this fragment to implement theme attributes according to the requirements.
  */
 public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme> {
     
@@ -121,30 +121,24 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
     private DynamicSpinnerPreference mBackgroundAwarePreference;
 
     /**
+     * Dynamic slider preference to control the contrast.
+     */
+    private DynamicSliderPreference mContrastPreference;
+
+    /**
+     * Dynamic slider preference to control the opacity.
+     */
+    private DynamicSliderPreference mOpacityPreference;
+
+    /**
+     * Dynamic spinner preference to control the elevation functionality.
+     */
+    private DynamicSpinnerPreference mElevationPreference;
+
+    /**
      * Dynamic spinner preference to control the style functionality.
      */
     private DynamicSpinnerPreference mStylePreference;
-
-    /**
-     * Initialize the new instance of this fragment.
-     *
-     * @param DynamicRemoteTheme The dynamic app theme.
-     * @param DynamicRemoteThemeDefault The default dynamic app theme.
-     * @param showPresets {@code true} to show the presets.
-     *
-     * @return An instance of {@link DynamicRemoteThemeFragment}.
-     */
-    public static @NonNull Fragment newInstance(@Nullable String DynamicRemoteTheme,
-            @Nullable String DynamicRemoteThemeDefault, boolean showPresets) {
-        DynamicRemoteThemeFragment fragment = new DynamicRemoteThemeFragment();
-        Bundle args = new Bundle();
-        args.putString(DynamicIntent.EXTRA_THEME, DynamicRemoteTheme);
-        args.putString(DynamicIntent.EXTRA_THEME_DEFAULT, DynamicRemoteThemeDefault);
-        args.putBoolean(DynamicIntent.EXTRA_THEME_SHOW_PRESETS, showPresets);
-        fragment.setArguments(args);
-
-        return fragment;
-    }
 
     /**
      * Initialize the new instance of this fragment.
@@ -156,9 +150,32 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
      *
      * @see #newInstance(String, String, boolean)
      */
-    public static @NonNull Fragment newInstance(@Nullable String DynamicRemoteTheme,
-            @Nullable String DynamicRemoteThemeDefault) {
-        return newInstance(DynamicRemoteTheme, DynamicRemoteThemeDefault, true);
+    public static @NonNull DynamicRemoteThemeFragment newInstance(
+            @Nullable String DynamicRemoteTheme, @Nullable String DynamicRemoteThemeDefault) {
+        return newInstance(DynamicRemoteTheme, DynamicRemoteThemeDefault,
+                DynamicIntent.EXTRA_THEME_SHOW_PRESETS_DEFAULT);
+    }
+
+    /**
+     * Initialize the new instance of this fragment.
+     *
+     * @param DynamicRemoteTheme The dynamic app theme.
+     * @param DynamicRemoteThemeDefault The default dynamic app theme.
+     * @param showPresets {@code true} to show the presets.
+     *
+     * @return An instance of {@link DynamicRemoteThemeFragment}.
+     */
+    public static @NonNull DynamicRemoteThemeFragment newInstance(
+            @Nullable String DynamicRemoteTheme, @Nullable String DynamicRemoteThemeDefault,
+            boolean showPresets) {
+        DynamicRemoteThemeFragment fragment = new DynamicRemoteThemeFragment();
+        Bundle args = new Bundle();
+        args.putString(DynamicIntent.EXTRA_THEME, DynamicRemoteTheme);
+        args.putString(DynamicIntent.EXTRA_THEME_DEFAULT, DynamicRemoteThemeDefault);
+        args.putBoolean(DynamicIntent.EXTRA_THEME_SHOW_PRESETS, showPresets);
+        fragment.setArguments(args);
+
+        return fragment;
     }
 
     @Override
@@ -167,7 +184,7 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
 
         setResult(Activity.RESULT_CANCELED, null, false);
 
-        if (savedInstanceState == null) {
+        if (getSavedInstanceState() == null) {
             mSettingsChanged = false;
         }
 
@@ -179,8 +196,10 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         }
 
         if (mDynamicThemeDefault == null) {
-            mDynamicThemeDefault = mDynamicTheme;
+            mDynamicThemeDefault = new DynamicRemoteTheme(mDynamicTheme);
         }
+
+        mDynamicTheme.setType(mDynamicThemeDefault.getType());
     }
 
     @Override
@@ -207,36 +226,43 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         mFontScalePreference = view.findViewById(R.id.ads_pref_theme_font_scale);
         mCornerSizePreference = view.findViewById(R.id.ads_pref_theme_corner_size);
         mBackgroundAwarePreference = view.findViewById(R.id.ads_pref_theme_background_aware);
+        mContrastPreference = view.findViewById(R.id.ads_pref_theme_contrast);
+        mOpacityPreference = view.findViewById(R.id.ads_pref_theme_opacity);
+        mElevationPreference = view.findViewById(R.id.ads_pref_theme_elevation);
         mStylePreference = view.findViewById(R.id.ads_pref_theme_style);
 
-        if (getBooleanFromArguments(DynamicIntent.EXTRA_THEME_SHOW_PRESETS, true)) {
+        if (getBooleanFromArguments(DynamicIntent.EXTRA_THEME_SHOW_PRESETS,
+                DynamicIntent.EXTRA_THEME_SHOW_PRESETS_DEFAULT)) {
             Dynamic.setVisibility(mPresetsView, View.VISIBLE);
+
             mPresetsView.setPresetsAdapter(this,
                     R.layout.ads_layout_item_preset_horizontal_remote,
                     new DynamicPresetsView.DynamicPresetsListener<DynamicRemoteTheme>() {
-                        @Override
-                        public void onRequestPermissions(@NonNull String[] permissions) {
-                            DynamicPermissions.getInstance().isGranted(permissions, true);
-                        }
+                @Override
+                public void onRequestPermissions(@NonNull String[] permissions) {
+                    DynamicPermissions.getInstance().isGranted(permissions, true);
+                }
 
-                        @Override
-                        public @Nullable DynamicRemoteTheme getDynamicTheme(@NonNull String theme) {
-                            try {
-                                return new DynamicRemoteTheme(new DynamicWidgetTheme(theme)
-                                        .setBackgroundColor(Theme.AUTO, false)
-                                        .setTintBackgroundColor(Theme.AUTO));
-                            } catch (Exception ignored) {
-                                return null;
-                            }
-                        }
+                @Override
+                public @Nullable DynamicRemoteTheme getDynamicTheme(@NonNull String theme) {
+                    try {
+                        return new DynamicRemoteTheme(new DynamicWidgetTheme(theme)
+                                .setBackgroundColor(Theme.AUTO, false)
+                                .setTintBackgroundColor(Theme.AUTO)
+                                .setStyle(mDynamicTheme.getStyle())
+                                .setType(mDynamicTheme.getType(false)));
+                    } catch (Exception ignored) {
+                        return null;
+                    }
+                }
 
-                        @Override
-                        public void onPresetClick(@NonNull View anchor, @NonNull String theme,
-                                @NonNull ThemePreview<DynamicRemoteTheme> themePreview) {
-                            importTheme(themePreview.getDynamicTheme().toDynamicString(),
-                                    Theme.Action.IMPORT);
-                        }
-                    });
+                @Override
+                public void onPresetClick(@NonNull View anchor, @NonNull String theme,
+                        @NonNull ThemePreview<DynamicRemoteTheme> themePreview) {
+                    importTheme(themePreview.getDynamicTheme().toDynamicString(),
+                            Theme.Action.IMPORT);
+                }
+            });
         } else {
             Dynamic.setVisibility(mPresetsView, View.GONE);
         }
@@ -248,9 +274,8 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
-                return mThemePreview.getDynamicTheme()
-                        .getBackgroundColor(true, false);
+            public @ColorInt int getAutoColor(@Nullable String tag) {
+                return mThemePreview.getDynamicTheme().getBackgroundColor();
             }
         });
         mColorBackgroundPreference.setAltDynamicColorResolver(new DynamicColorResolver() {
@@ -260,31 +285,30 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
-                return mThemePreview.getDynamicTheme()
-                        .getTintBackgroundColor(true, false);
+            public @ColorInt int getAutoColor(@Nullable String tag) {
+                return mThemePreview.getDynamicTheme().getTintBackgroundColor();
             }
         });
 
         mColorSurfacePreference.setDynamicColorResolver(new DynamicColorResolver() {
             @Override
             public int getDefaultColor(@Nullable String tag) {
-                return mDynamicThemeDefault.getSurfaceColor(false);
+                return mDynamicThemeDefault.getSurfaceColor(false, false);
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
+            public @ColorInt int getAutoColor(@Nullable String tag) {
                 return mThemePreview.getDynamicTheme().getSurfaceColor();
             }
         });
         mColorSurfacePreference.setAltDynamicColorResolver(new DynamicColorResolver() {
             @Override
             public int getDefaultColor(@Nullable String tag) {
-                return mDynamicThemeDefault.getTintSurfaceColor(false);
+                return mDynamicThemeDefault.getTintSurfaceColor(false, false);
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
+            public @ColorInt int getAutoColor(@Nullable String tag) {
                 return mThemePreview.getDynamicTheme().getTintSurfaceColor();
             }
         });
@@ -292,22 +316,22 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         mColorPrimaryPreference.setDynamicColorResolver(new DynamicColorResolver() {
             @Override
             public int getDefaultColor(@Nullable String tag) {
-                return mDynamicThemeDefault.getPrimaryColor(false);
+                return mDynamicThemeDefault.getPrimaryColor(false, false);
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
+            public @ColorInt int getAutoColor(@Nullable String tag) {
                 return mThemePreview.getDynamicTheme().getPrimaryColor();
             }
         });
         mColorPrimaryPreference.setAltDynamicColorResolver(new DynamicColorResolver() {
             @Override
             public int getDefaultColor(@Nullable String tag) {
-                return mDynamicThemeDefault.getTintPrimaryColor(false);
+                return mDynamicThemeDefault.getTintPrimaryColor(false, false);
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
+            public @ColorInt int getAutoColor(@Nullable String tag) {
                 return mThemePreview.getDynamicTheme().getTintPrimaryColor();
             }
         });
@@ -315,22 +339,22 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         mColorAccentPreference.setDynamicColorResolver(new DynamicColorResolver() {
             @Override
             public int getDefaultColor(@Nullable String tag) {
-                return mDynamicThemeDefault.getAccentColor(false);
+                return mDynamicThemeDefault.getAccentColor(false, false);
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
+            public @ColorInt int getAutoColor(@Nullable String tag) {
                 return mThemePreview.getDynamicTheme().getAccentColor();
             }
         });
         mColorAccentPreference.setAltDynamicColorResolver(new DynamicColorResolver() {
             @Override
             public int getDefaultColor(@Nullable String tag) {
-                return mDynamicThemeDefault.getTintPrimaryColor(false);
+                return mDynamicThemeDefault.getTintPrimaryColor(false, false);
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
+            public @ColorInt int getAutoColor(@Nullable String tag) {
                 return mThemePreview.getDynamicTheme().getTintAccentColor();
             }
         });
@@ -338,22 +362,22 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         mColorPrimaryDarkPreference.setDynamicColorResolver(new DynamicColorResolver() {
             @Override
             public int getDefaultColor(@Nullable String tag) {
-                return mDynamicThemeDefault.getPrimaryColorDark(false);
+                return mDynamicThemeDefault.getPrimaryColorDark(false, false);
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
+            public @ColorInt int getAutoColor(@Nullable String tag) {
                 return mThemePreview.getDynamicTheme().getPrimaryColorDark();
             }
         });
         mColorPrimaryDarkPreference.setAltDynamicColorResolver(new DynamicColorResolver() {
             @Override
             public int getDefaultColor(@Nullable String tag) {
-                return mDynamicThemeDefault.getTintPrimaryColorDark(false);
+                return mDynamicThemeDefault.getTintPrimaryColorDark(false, false);
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
+            public @ColorInt int getAutoColor(@Nullable String tag) {
                 return mThemePreview.getDynamicTheme().getTintPrimaryColorDark();
             }
         });
@@ -361,22 +385,22 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         mColorAccentDarkPreference.setDynamicColorResolver(new DynamicColorResolver() {
             @Override
             public int getDefaultColor(@Nullable String tag) {
-                return mDynamicThemeDefault.getAccentColorDark(false);
+                return mDynamicThemeDefault.getAccentColorDark(false, false);
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
+            public @ColorInt int getAutoColor(@Nullable String tag) {
                 return mThemePreview.getDynamicTheme().getAccentColorDark();
             }
         });
         mColorAccentDarkPreference.setAltDynamicColorResolver(new DynamicColorResolver() {
             @Override
             public int getDefaultColor(@Nullable String tag) {
-                return mDynamicThemeDefault.getTintAccentColorDark(false);
+                return mDynamicThemeDefault.getTintAccentColorDark(false, false);
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
+            public @ColorInt int getAutoColor(@Nullable String tag) {
                 return mThemePreview.getDynamicTheme().getTintAccentColorDark();
             }
         });
@@ -384,22 +408,22 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         mColorErrorPreference.setDynamicColorResolver(new DynamicColorResolver() {
             @Override
             public int getDefaultColor(@Nullable String tag) {
-                return mDynamicThemeDefault.getErrorColor(false);
+                return mDynamicThemeDefault.getErrorColor(false, false);
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
+            public @ColorInt int getAutoColor(@Nullable String tag) {
                 return mThemePreview.getDynamicTheme().getErrorColor();
             }
         });
         mColorErrorPreference.setAltDynamicColorResolver(new DynamicColorResolver() {
             @Override
             public int getDefaultColor(@Nullable String tag) {
-                return mDynamicThemeDefault.getTintErrorColor(false);
+                return mDynamicThemeDefault.getTintErrorColor(false, false);
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
+            public @ColorInt int getAutoColor(@Nullable String tag) {
                 return mThemePreview.getDynamicTheme().getTintErrorColor();
             }
         });
@@ -411,7 +435,7 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
+            public @ColorInt int getAutoColor(@Nullable String tag) {
                 return mThemePreview.getDynamicTheme().getTextPrimaryColor();
             }
         });
@@ -422,7 +446,7 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
+            public @ColorInt int getAutoColor(@Nullable String tag) {
                 return mThemePreview.getDynamicTheme().getTextPrimaryColorInverse();
             }
         });
@@ -434,7 +458,7 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
+            public @ColorInt int getAutoColor(@Nullable String tag) {
                 return mThemePreview.getDynamicTheme().getTextSecondaryColor();
             }
         });
@@ -445,7 +469,7 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
             }
 
             @Override
-            public int getAutoColor(@Nullable String tag) {
+            public @ColorInt int getAutoColor(@Nullable String tag) {
                 return mThemePreview.getDynamicTheme().getTextSecondaryColorInverse();
             }
         });
@@ -453,16 +477,20 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         onLoadTheme(mDynamicTheme);
         onSetAction(Theme.Action.APPLY, mThemePreview, true);
 
-        if (savedInstanceState == null) {
+        if (getSavedInstanceState() == null) {
             Dynamic.setBottomSheetState(getActivity(), BottomSheetBehavior.STATE_EXPANDED);
         }
+    }
+
+    @Override
+    public boolean setHasOptionsMenu() {
+        return true;
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        setHasOptionsMenu(true);
         updatePreferences();
     }
 
@@ -525,18 +553,18 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
 
         mColorBackgroundPreference.setColor(theme.getBackgroundColor(false, false));
         mColorBackgroundPreference.setAltColor(theme.getTintBackgroundColor(false, false));
-        mColorSurfacePreference.setColor(theme.getSurfaceColor(false));
-        mColorSurfacePreference.setAltColor(theme.getTintSurfaceColor(false));
-        mColorPrimaryPreference.setColor(theme.getPrimaryColor(false));
-        mColorPrimaryPreference.setAltColor(theme.getTintPrimaryColor(false));
-        mColorAccentPreference.setColor(theme.getAccentColor(false));
-        mColorAccentPreference.setAltColor(theme.getTintAccentColor(false));
-        mColorPrimaryDarkPreference.setColor(theme.getPrimaryColorDark(false));
-        mColorPrimaryDarkPreference.setAltColor(theme.getTintPrimaryColorDark(false));
-        mColorAccentDarkPreference.setColor(theme.getAccentColorDark(false));
-        mColorAccentDarkPreference.setAltColor(theme.getTintAccentColorDark(false));
-        mColorErrorPreference.setColor(theme.getErrorColor(false));
-        mColorErrorPreference.setAltColor(theme.getTintErrorColor(false));
+        mColorSurfacePreference.setColor(theme.getSurfaceColor(false, false));
+        mColorSurfacePreference.setAltColor(theme.getTintSurfaceColor(false, false));
+        mColorPrimaryPreference.setColor(theme.getPrimaryColor(false, false));
+        mColorPrimaryPreference.setAltColor(theme.getTintPrimaryColor(false, false));
+        mColorAccentPreference.setColor(theme.getAccentColor(false, false));
+        mColorAccentPreference.setAltColor(theme.getTintAccentColor(false, false));
+        mColorPrimaryDarkPreference.setColor(theme.getPrimaryColorDark(false, false));
+        mColorPrimaryDarkPreference.setAltColor(theme.getTintPrimaryColorDark(false, false));
+        mColorAccentDarkPreference.setColor(theme.getAccentColorDark(false, false));
+        mColorAccentDarkPreference.setAltColor(theme.getTintAccentColorDark(false, false));
+        mColorErrorPreference.setColor(theme.getErrorColor(false, false));
+        mColorErrorPreference.setAltColor(theme.getTintErrorColor(false, false));
         mTextPrimaryPreference.setColor(theme.getTextPrimaryColor(false, false));
         mTextPrimaryPreference.setAltColor(theme.getTextPrimaryColorInverse(false, false));
         mTextSecondaryPreference.setColor(theme.getTextSecondaryColor(false, false));
@@ -552,15 +580,32 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
 
         if (theme.getCornerRadius(false) != Theme.AUTO) {
             mCornerSizePreference.setPreferenceValue(Theme.ToString.CUSTOM);
-            mCornerSizePreference.setValue(theme.getCornerSizeDp());
+            mCornerSizePreference.setValue(theme.getCornerSize());
         } else {
             mCornerSizePreference.setPreferenceValue(Theme.ToString.AUTO);
-            mCornerSizePreference.setValue(mDynamicThemeDefault.getCornerSizeDp());
+            mCornerSizePreference.setValue(mDynamicThemeDefault.getCornerSize());
         }
 
         mBackgroundAwarePreference.setPreferenceValue(
                 String.valueOf(theme.getBackgroundAware(false)));
+        mElevationPreference.setPreferenceValue(String.valueOf(theme.getElevation(false)));
         mStylePreference.setPreferenceValue(String.valueOf(theme.getStyle()));
+
+        if (theme.getContrast(false) != Theme.AUTO) {
+            mContrastPreference.setPreferenceValue(Theme.ToString.CUSTOM);
+            mContrastPreference.setValue(theme.getContrast());
+        } else {
+            mContrastPreference.setPreferenceValue(Theme.ToString.AUTO);
+            mContrastPreference.setValue(mDynamicThemeDefault.getContrast());
+        }
+
+        if (theme.getOpacity(false) != Theme.AUTO) {
+            mOpacityPreference.setPreferenceValue(Theme.ToString.CUSTOM);
+            mOpacityPreference.setValue(theme.getOpacity());
+        } else {
+            mOpacityPreference.setPreferenceValue(Theme.ToString.AUTO);
+            mOpacityPreference.setValue(mDynamicThemeDefault.getOpacity());
+        }
 
         updatePreferences();
     }
@@ -573,7 +618,8 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         }
 
         Dynamic.setResource(themePreview.getActionView(), enable
-                ? R.drawable.ads_ic_save : R.drawable.ads_ic_customise);
+                ? R.drawable.ads_ic_save : themePreview.getDynamicTheme().isDynamicColor()
+                ? R.drawable.adt_ic_app : R.drawable.ads_ic_customise);
     }
 
     @Override
@@ -592,8 +638,8 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
      * @return The resolved font scale from the preference.
      */
     private int getFontScale() {
-        return Theme.ToString.AUTO.equals(mFontScalePreference.getPreferenceValue())
-                ? Theme.AUTO : mFontScalePreference.getValueFromProgress();
+        return Theme.Font.ToString.AUTO.equals(mFontScalePreference.getPreferenceValue())
+                ? Theme.Font.AUTO : mFontScalePreference.getValueFromProgress();
     }
 
     /**
@@ -602,8 +648,8 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
      * @return The resolved corner size from the preference.
      */
     private int getCornerSize() {
-        return Theme.ToString.AUTO.equals(mCornerSizePreference.getPreferenceValue())
-                ? Theme.AUTO : mCornerSizePreference.getValueFromProgress();
+        return Theme.Corner.ToString.AUTO.equals(mCornerSizePreference.getPreferenceValue())
+                ? Theme.Corner.AUTO : mCornerSizePreference.getValueFromProgress();
     }
 
     /**
@@ -620,6 +666,39 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
     }
 
     /**
+     * Returns the resolved contrast from the preference.
+     *
+     * @return The resolved contrast from the preference.
+     */
+    private int getContrast() {
+        return Theme.Contrast.ToString.AUTO.equals(mContrastPreference.getPreferenceValue())
+                ? Theme.Contrast.AUTO : mContrastPreference.getValueFromProgress();
+    }
+
+    /**
+     * Returns the resolved opacity from the preference.
+     *
+     * @return The resolved opacity from the preference.
+     */
+    private int getOpacity() {
+        return Theme.Opacity.ToString.AUTO.equals(mOpacityPreference.getPreferenceValue())
+                ? Theme.Opacity.AUTO : mOpacityPreference.getValueFromProgress();
+    }
+
+    /**
+     * Returns the resolved elevation from the preference.
+     *
+     * @return The resolved elevation from the preference.
+     */
+    private @Theme.Elevation int getElevation() {
+        if (mElevationPreference.getPreferenceValue() != null) {
+            return Integer.parseInt(mElevationPreference.getPreferenceValue());
+        }
+
+        return mDynamicTheme.getElevation(false);
+    }
+
+    /**
      * Returns the resolved style from the preference.
      *
      * @return The resolved style from the preference.
@@ -630,6 +709,40 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         }
 
         return mDynamicTheme.getStyle();
+    }
+
+    /**
+     * Update the theme preview.
+     */
+    private void updateThemePreview() {
+        mThemePreview.setDynamicTheme(new DynamicRemoteTheme(new DynamicWidgetTheme(mDynamicTheme)
+                .setBackgroundColor(mColorBackgroundPreference.getColor(false), false)
+                .setTintBackgroundColor(mColorBackgroundPreference.getAltColor(false))
+                .setSurfaceColor(mColorSurfacePreference.getColor(false), false)
+                .setTintSurfaceColor(mColorSurfacePreference.getAltColor(false))
+                .setPrimaryColor(mColorPrimaryPreference.getColor(false), false)
+                .setTintPrimaryColor(mColorPrimaryPreference.getAltColor(false))
+                .setPrimaryColorDark(mColorPrimaryDarkPreference.getColor(false), false)
+                .setTintPrimaryColorDark(mColorPrimaryDarkPreference.getAltColor(false))
+                .setAccentColor(mColorAccentPreference.getColor(false), false)
+                .setTintAccentColor(mColorAccentPreference.getAltColor(false))
+                .setAccentColorDark(mColorAccentDarkPreference.getColor(false), false)
+                .setTintAccentColorDark(mColorAccentDarkPreference.getAltColor(false))
+                .setErrorColor(mColorErrorPreference.getColor(false), false)
+                .setTintErrorColor(mColorErrorPreference.getAltColor(false))
+                .setTextPrimaryColor(mTextPrimaryPreference.getColor(false), false)
+                .setTextPrimaryColorInverse(mTextPrimaryPreference.getAltColor(false))
+                .setTextSecondaryColor(mTextSecondaryPreference.getColor(false), false)
+                .setTextSecondaryColorInverse(mTextSecondaryPreference.getAltColor(false))
+                .setFontScale(getFontScale())
+                .setCornerSize(getCornerSize())
+                .setBackgroundAware(getBackgroundAware())
+                .setContrast(getContrast())
+                .setOpacity(getOpacity())
+                .setElevation(getElevation())
+                .setStyle(getStyle())));
+
+        mSettingsChanged = true;
     }
 
     /**
@@ -647,46 +760,23 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         mColorErrorPreference.update();
         mTextPrimaryPreference.update();
         mTextSecondaryPreference.update();
+        mFontScalePreference.update();
+        mCornerSizePreference.update();
+        mBackgroundAwarePreference.update();
+        mContrastPreference.update();
+        mOpacityPreference.update();
+        mElevationPreference.update();
+        mStylePreference.update();
+
+        mContrastPreference.setEnabled(mThemePreview.getDynamicTheme().isBackgroundAware());
         mFontScalePreference.setSeekEnabled(getFontScale() != Theme.AUTO);
         mCornerSizePreference.setSeekEnabled(getCornerSize() != Theme.AUTO);
-        mBackgroundAwarePreference.update();
-        mStylePreference.update();
-    }
-
-    /**
-     * Update the theme preview.
-     */
-    private void updateThemePreview() {
-        mThemePreview.setDynamicTheme(
-                new DynamicRemoteTheme(new DynamicWidgetTheme(mDynamicTheme)
-                        .setBackgroundColor(mColorBackgroundPreference.getColor(false))
-                        .setTintBackgroundColor(mColorBackgroundPreference.getAltColor(false))
-                        .setSurfaceColor(mColorSurfacePreference.getColor(false))
-                        .setTintSurfaceColor(mColorSurfacePreference.getAltColor(false))
-                        .setPrimaryColor(mColorPrimaryPreference.getColor(false))
-                        .setTintPrimaryColor(mColorPrimaryPreference.getAltColor(false))
-                        .setPrimaryColorDark(mColorPrimaryDarkPreference.getColor(false))
-                        .setTintPrimaryColorDark(mColorPrimaryDarkPreference.getAltColor(false))
-                        .setAccentColor(mColorAccentPreference.getColor(false))
-                        .setTintAccentColor(mColorAccentPreference.getAltColor(false))
-                        .setAccentColorDark(mColorAccentDarkPreference.getColor(false))
-                        .setTintAccentColorDark(mColorAccentDarkPreference.getAltColor(false))
-                        .setErrorColor(mColorErrorPreference.getColor(false))
-                        .setTintErrorColor(mColorErrorPreference.getAltColor(false))
-                        .setTextPrimaryColor(mTextPrimaryPreference.getColor(false))
-                        .setTextPrimaryColorInverse(mTextPrimaryPreference.getAltColor(false))
-                        .setTextSecondaryColor(mTextSecondaryPreference.getColor(false))
-                        .setTextSecondaryColorInverse(mTextSecondaryPreference.getAltColor(false))
-                        .setFontScale(getFontScale())
-                        .setCornerRadiusDp(getCornerSize())
-                        .setBackgroundAware(getBackgroundAware())
-                        .setStyle(getStyle())));
-
-        mSettingsChanged = true;
+        mContrastPreference.setSeekEnabled(getContrast() != Theme.AUTO);
+        mOpacityPreference.setSeekEnabled(getOpacity() != Theme.AUTO);
     }
 
     @Override
-    protected boolean setSharedPreferenceChangeListener() {
+    public boolean isOnSharedPreferenceChangeListener() {
         return true;
     }
 
@@ -722,6 +812,11 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
             case ADS_PREF_THEME_CORNER_SIZE:
             case ADS_PREF_THEME_CORNER_SIZE_ALT:
             case ADS_PREF_THEME_BACKGROUND_AWARE:
+            case ADS_PREF_THEME_CONTRAST:
+            case ADS_PREF_THEME_CONTRAST_ALT:
+            case ADS_PREF_THEME_OPACITY:
+            case ADS_PREF_THEME_OPACITY_ALT:
+            case ADS_PREF_THEME_ELEVATION:
             case ADS_PREF_THEME_STYLE:
                 updatePreferences();
                 break;

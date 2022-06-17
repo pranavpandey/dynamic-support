@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@
 
     <!-- Headings -->
     <string name="ads_app">Uygulama</string>
+    <string name="ads_game">Oyun</string>
     <string name="ads_version">Sürüm</string>
     <string name="ads_actions">Eylem</string>
     <string name="ads_text">Metin</string>
@@ -53,6 +54,7 @@
     <string name="ads_not_now">Şimdi değil</string>
     <string name="ads_later">Sonra</string>
     <string name="ads_yes_in">Evet, İlgiliyim</string>
+    <string name="ads_accept">Kabul etmek</string>
     <string name="ads_more">Daha</string>
     <string name="ads_more_info">Daha fazla bilgi</string>
     <string name="ads_select">Seç</string>
@@ -61,6 +63,7 @@
     <string name="ads_load">Yükle</string>
     <string name="ads_file">Dosya</string>
     <string name="ads_create">Oluştur</string>
+    <string name="ads_configure">Yapılandır</string>
     <string name="ads_open">Açık</string>
     <string name="ads_previous">Önceki</string>
     <string name="ads_next">Sonraki</string>
@@ -117,6 +120,7 @@
     <string name="ads_permissions_subtitle_single">Lütfen gerekli izni verin.</string>
     <string name="ads_perm_info_required">İzin gerekli</string>
     <string name="ads_perm_info_grant_all">Uygulamanın düzgün çalışmasını sağlamak için lütfen tüm izinleri verin.</string>
+    <string name="ads_perm_info_accept">Bu özellik isteğe bağlıdır, devam etmek için lütfen kabul edin.</string>
     <string name="ads_perm_request">İste</string>
     <string name="ads_perm_request_desc">Bu izin verilmedi. İstemek için dokunun.</string>
     <string name="ads_perm_granted">İzin verildi</string>
@@ -137,9 +141,12 @@
     <string name="ads_perm_usage_access">Kullanım erişimi</string>
     <string name="ads_perm_usage_access_desc">kullanım erişimi izni.</string>
     <string name="ads_perm_accessibility">Erişebilirlik</string>
+    <string name="ads_perm_accessibility_desc">Sistem ayarları üzerinden yönetilmelidir.</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">Veri</string>
+    <string name="ads_data_invalid">Geçersiz veri</string>
+    <string name="ads_data_invalid_desc">Lütfen uygun verilerle tekrar deneyin.</string>
     <string name="ads_data_operations">Veri işlemleri</string>
     <string name="ads_backup_and_restore">Yedekle &amp; Geri Yükle</string>
     <string name="ads_backup">Yedekle</string>
@@ -203,9 +210,11 @@
     <string name="ads_dynamic_theme">Dinamik tema</string>
     <string name="ads_dynamic_theme_summary">Alıcı tarafından uygulanan tema.</string>
     <string name="ads_dynamic_color_summary">Otomatik renk için uygulama.</string>
+    <string name="ads_dynamic">Dinamik</string>
     <string name="ads_theme">Tema</string>
     <string name="ads_theme_code">Kod</string>
     <string name="ads_theme_code_desc">Temayı tarayın veya paylaşın.</string>
+    <string name="ads_theme_code_capture">Ele geçirmek</string>
     <string name="ads_theme_customise_desc">Aşağıdan temayı yapılandırın.</string>
     <string name="ads_theme_adjust_desc">Tema mevcut Android sürümüne göre otomatik olarak ayarlanacaktır.</string>
     <string name="ads_theme_invalid">Geçersiz tema</string>
@@ -234,6 +243,13 @@
     <string name="ads_theme_corner_size_summary">Uygulamanın köşe yarıçapı.</string>
     <string name="ads_theme_background_aware">Arka plana ayarla</string>
     <string name="ads_theme_background_aware_desc">En iyi görünürlüğü sağlamak için renkleri arka plana göre ayarlayın.</string>
+    <string name="ads_theme_contrast">Kontrast Oranı</string>
+    <string name="ads_theme_contrast_summary">Görünür kontrast için minimum oran.</string>
+    <string name="ads_theme_opacity">Arka plan opaklığı</string>
+    <string name="ads_theme_opacity_summary">Uygulama arka planının opaklığı.</string>
+    <string name="ads_theme_opacity_summary_widget">Widget arka planının opaklığı.</string>
+    <string name="ads_theme_elevation">Yükseklik</string>
+    <string name="ads_theme_elevation_summary">Yüzey elemanları için kontrol gölgesi.</string>
     <string name="ads_theme_style">Stil</string>
     <string name="ads_theme_style_summary">Tema stili.</string>
     <string name="ads_theme_app">Uygulama teması</string>
@@ -324,11 +340,19 @@
     <string name="ads_picker_pick">Seç</string>
     <string name="ads_picker_more_colors">Daha fazla renk</string>
     <string name="ads_picker_presets">Hazır ayarlar</string>
+    <string name="ads_picker_size_small">Küçük</string>
+    <string name="ads_picker_size_normal">Normal</string>
+    <string name="ads_picker_size_large">Büyük</string>
+    <string name="ads_picker_size_info">Genişlik ve yükseklik için değer.</string>
 
     <!-- Miscellaneous -->
     <string name="ads_language">Dil</string>
     <string name="ads_language_summary">Uygulama tarafından kullanılan dil.</string>
     <string name="ads_language_system">Sistem</string>
+    <string name="ads_dynamic_vibration">Titreşim</string>
+    <string name="ads_dynamic_vibration_intensity">Titreşim yoğunluğu</string>
+    <string name="ads_dynamic_vibration_intensity_summary">Milisaniye cinsinden titreşim süresi.</string>
+    <string name="ads_dynamic_vibration_intensity_unit">ms</string>
     <string name="ads_dynamic_motion">Hareket</string>
     <string name="ads_dynamic_motion_summary">Tüm animasyonları oynayarak dinamik hareket.</string>
     <string name="ads_dynamic_motion_summary_unchecked">Bazı animasyonları atlayarak hareketi azaltın.</string>
@@ -358,8 +382,6 @@
     <string name="ads_widget_header_desc">Yeterli alan varsa başlığı göstermek için otomatiği seçin.</string>
     <string name="ads_widget_corner_size_bg_summary">Widget arka planının köşe yarıçapı.</string>
     <string name="ads_widget_corner_size_bg_desc">Uygulama köşe ölçüsü kullanmak için otomatiği seçin.</string>
-    <string name="ads_widget_opacity_bg">Arka plan opaklığı</string>
-    <string name="ads_widget_opacity_bg_summary">Widget arka planının opaklığı.</string>
     <string name="ads_widget_reset_desc">Widget varsayılana sıfırlandı.</string>
     <string name="ads_widget_not_added">Hiçbir widget eklenmedi.</string>
 
@@ -387,8 +409,9 @@
     <string name="ads_support_restart_app_desc">Hizmet başlamadığında veya uygulama düzgün çalışmıyorsa kullanın. Bu işlem gerçekleştirildikten sonra tüm ayarlar değişmeden kalacaktır.</string>
 
     <!-- Developer and App info -->
-    <string name="ads_info_made_by">Yazan ve tasarlayan:</string>
     <string name="ads_info_made_in">Hindistan Malı</string>
+    <string name="ads_info_made_by">Yazan ve tasarlayan:</string>
+    <string name="ads_info_made_by_alt">Tarafından geliştirilmiş</string>
     <string name="ads_info_quote">Hiçbir şey mükemmel değildir ama daha iyi olabilir. Böyle daha iyi şeyler geliştirmek!</string>
     <string name="ads_info_privacy_policy">Gizlilik Politikası</string>
     <string name="ads_info_privacy_policy_desc">Bu ürünün tüm gizlilik politikasını görüntüleyin.</string>
@@ -420,9 +443,10 @@
     <string name="ads_translators_contact">Çevirmek isterseniz e-posta ile ulaşın.</string>
 
     <!-- Licenses -->
+    <string name="ads_notice">Uyarı</string>
     <string name="ads_notices">Uyarılar</string>
-    <string name="ads_licenses">Lisanslar</string>
     <string name="ads_license">Lisans</string>
+    <string name="ads_licenses">Lisanslar</string>
     <string name="ads_license_desc">Lisansın tamamını görüntüleyin.</string>
     <string name="ads_license_sources">Kaynaklar</string>
     <string name="ads_license_sources_desc">GitHub\'daki kaynakları görüntüleyin.</string>

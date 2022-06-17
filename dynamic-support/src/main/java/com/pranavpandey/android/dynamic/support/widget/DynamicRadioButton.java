@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,11 +34,10 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicStateWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * A {@link MaterialRadioButton} to apply {@link DynamicTheme} according to the supplied
@@ -104,6 +103,11 @@ public class DynamicRadioButton extends MaterialRadioButton implements DynamicSt
      */
     protected @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
+
     public DynamicRadioButton(@NonNull Context context) {
         this(context, null);
     }
@@ -148,6 +152,9 @@ public class DynamicRadioButton extends MaterialRadioButton implements DynamicSt
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicRadioButton_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicRadioButton_adt_contrast,
+                    Theme.Contrast.AUTO);
         } finally {
             a.recycle();
         }
@@ -280,6 +287,32 @@ public class DynamicRadioButton extends MaterialRadioButton implements DynamicSt
     }
 
     @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
+    }
+
+    @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
@@ -293,15 +326,15 @@ public class DynamicRadioButton extends MaterialRadioButton implements DynamicSt
         if (mColor != Theme.Color.UNKNOWN) {
             if (mContrastWithColor != Theme.Color.UNKNOWN) {
                 if (mStateNormalColor == Theme.Color.UNKNOWN) {
-                    mStateNormalColor = DynamicColorUtils.getTintColor(mContrastWithColor);
+                    mStateNormalColor = Dynamic.getTintColor(mContrastWithColor, this);
                 }
 
                 mAppliedColor = mColor;
                 mAppliedStateNormalColor = mStateNormalColor;
                 if (isBackgroundAware()) {
-                    mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
-                    mAppliedStateNormalColor = DynamicColorUtils.getContrastColor(
-                            mStateNormalColor, mContrastWithColor);
+                    mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor);
+                    mAppliedStateNormalColor = Dynamic.withContrastRatio(
+                            mStateNormalColor, mContrastWithColor, this);
                 }
             }
 

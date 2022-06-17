@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -16,6 +16,8 @@
 -->
 
 <resources>
+
+    <color name="ads_color_translucent">#66000000</color>
 
     <!-- Black theme -->
     <color name="ads_color_black">#191919</color>

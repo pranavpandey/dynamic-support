@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -19,12 +19,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:top="@dimen/ads_tab_indicator_margin_vertical">
+        android:left="@dimen/ads_tab_indicator_margin_horizontal"
+        android:top="@dimen/ads_tab_indicator_margin_vertical"
+        android:right="@dimen/ads_tab_indicator_margin_horizontal">
 
         <shape
             android:shape="rectangle">
 
-            <solid android:color="#FFFFFF" />
+            <size
+                android:height="@dimen/ads_tab_indicator_height" />
+
+            <solid
+                android:color="@color/adt_icon_fill_light" />
 
         </shape>
 

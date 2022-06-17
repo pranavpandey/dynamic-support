@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -15,10 +15,14 @@
 	limitations under the License.
 -->
 
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:targetApi="s">
 
     <!-- Dark theme -->
     <style name="Sample" parent="Theme.DynamicApp">
+        <item name="android:windowBackground">@color/app_default</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ads_ic_author_splash</item>
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">@color/color_accent</item>
@@ -27,6 +31,8 @@
 
     <!-- Light theme -->
     <style name="Sample.Light" parent="Theme.DynamicApp.Light">
+        <item name="android:windowBackground">@color/app_default</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ads_ic_author_splash</item>
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">@color/color_accent</item>

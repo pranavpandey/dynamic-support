@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -15,93 +15,103 @@
 	limitations under the License.
 -->
 
-<com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout
+<com.pranavpandey.android.dynamic.support.widget.DynamicRootLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ads_coordinator_layout"
+    android:id="@+id/ads_activity_root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    app:adt_windowInsets="false">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/ads_tutorial"
+    <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+        style="@style/Widget.DynamicApp.Image.Card.Big.Tutorial"
+        android:id="@+id/ads_tutorial_backdrop"
+        app:srcCompat="@drawable/ads_ic_tutorial" />
+
+    <com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout
+        android:id="@+id/ads_coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/ads_tutorial_view_pager"
+        <RelativeLayout
+            android:id="@+id/ads_tutorial"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/ads_tutorial_footer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true">
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/ads_tutorial_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-            <LinearLayout
+            <FrameLayout
+                android:id="@+id/ads_tutorial_footer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/ads_margin_small"
-                android:paddingLeft="@dimen/ads_margin_medium"
-                android:paddingStart="@dimen/ads_margin_medium"
-                android:paddingRight="@dimen/ads_margin_medium"
-                android:paddingEnd="@dimen/ads_margin_medium"
-                android:paddingBottom="@dimen/ads_margin_medium"
-                android:orientation="horizontal">
-
-                <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
-                    style="@style/Widget.DynamicApp.Button.ImageButton"
-                    android:id="@+id/ads_tutorial_action_previous"
-                    android:layout_width="@dimen/ads_icon_normal"
-                    android:layout_height="@dimen/ads_icon_normal"
-                    android:layout_marginRight="@dimen/ads_icon_small"
-                    android:layout_marginEnd="@dimen/ads_icon_small"
-                    android:layout_gravity="start|center_vertical"
-                    app:srcCompat="@drawable/ads_ic_chevron_left" />
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.0"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:paddingLeft="@dimen/ads_margin_medium"
+                    android:paddingStart="@dimen/ads_margin_medium"
+                    android:paddingTop="@dimen/ads_margin_small"
+                    android:paddingRight="@dimen/ads_margin_medium"
+                    android:paddingEnd="@dimen/ads_margin_medium"
+                    android:paddingBottom="@dimen/ads_margin_medium"
+                    android:orientation="horizontal">
 
-                    <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-                        style="@style/Widget.DynamicApp.Button"
-                        android:id="@+id/ads_tutorial_action_custom"
-                        android:layout_width="wrap_content"
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
+                        style="@style/Widget.DynamicApp.Button.ImageButton"
+                        android:id="@+id/ads_tutorial_action_previous"
+                        android:layout_width="@dimen/ads_icon_normal"
+                        android:layout_height="@dimen/ads_icon_normal"
+                        android:layout_marginRight="@dimen/ads_icon_small"
+                        android:layout_marginEnd="@dimen/ads_icon_small"
+                        android:layout_gravity="start|center_vertical"
+                        app:srcCompat="@drawable/ads_ic_chevron_left" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/ads_margin_medium"
-                        android:visibility="gone"
-                        app:adt_colorType="primary" />
+                        android:layout_weight="1.0"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                    <com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator2
-                        android:id="@+id/ads_tutorial_page_indicator"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                            style="@style/Widget.DynamicApp.Button.SingleLine"
+                            android:id="@+id/ads_tutorial_action_custom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/ads_margin_medium"
+                            android:visibility="gone"
+                            app:adt_colorType="primary" />
+
+                        <com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator2
+                            android:id="@+id/ads_tutorial_page_indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
+                        style="@style/Widget.DynamicApp.Button.ImageButton"
+                        android:id="@+id/ads_tutorial_action_next_done"
+                        android:layout_width="@dimen/ads_icon_normal"
+                        android:layout_height="@dimen/ads_icon_normal"
+                        android:layout_marginLeft="@dimen/ads_icon_small"
+                        android:layout_marginStart="@dimen/ads_icon_small"
+                        android:layout_gravity="start|center_vertical"
+                        app:srcCompat="@drawable/ads_ic_chevron_right" />
 
                 </LinearLayout>
 
-                <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
-                    style="@style/Widget.DynamicApp.Button.ImageButton"
-                    android:id="@+id/ads_tutorial_action_next_done"
-                    android:layout_width="@dimen/ads_icon_normal"
-                    android:layout_height="@dimen/ads_icon_normal"
-                    android:layout_marginLeft="@dimen/ads_icon_small"
-                    android:layout_marginStart="@dimen/ads_icon_small"
-                    android:layout_gravity="start|center_vertical"
-                    app:srcCompat="@drawable/ads_ic_chevron_right" />
+                <include layout="@layout/ads_layout_bottom_bar_shadow" />
 
-            </LinearLayout>
+            </FrameLayout>
 
-            <include layout="@layout/ads_layout_bottom_bar_shadow" />
+        </RelativeLayout>
 
-        </FrameLayout>
+    </com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout>
 
-    </RelativeLayout>
-
-</com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout>
+</com.pranavpandey.android.dynamic.support.widget.DynamicRootLayout>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,13 +37,13 @@ import com.pranavpandey.android.dynamic.support.popup.DynamicPopup;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.task.WallpaperColorsTask;
-import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
 import com.pranavpandey.android.dynamic.theme.DynamicPalette;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicTaskUtils;
-import com.pranavpandey.android.dynamic.utils.concurrent.DynamicResult;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicTaskUtils;
+import com.pranavpandey.android.dynamic.util.concurrent.DynamicResult;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -172,20 +172,20 @@ public class DynamicColorPopup extends DynamicPopup {
         final GridView gridView = mView.findViewById(R.id.ads_color_picker_presets);
         final ProgressBar progressBar = mView.findViewById(R.id.ads_color_picker_progress_bar);
         final View divider = mView.findViewById(R.id.ads_color_picker_divider);
-        final GridView gridViewDynamic = mView.findViewById(R.id.ads_color_picker_dynamics);
+        final GridView dynamicGridView = mView.findViewById(R.id.ads_color_picker_dynamics);
 
         if (mSelectedColor == Theme.Color.UNKNOWN
                 || Arrays.asList(mEntries).contains(mSelectedColor)) {
             Dynamic.setVisibility(mFooterView.findViewById(
                     R.id.ads_color_picker_popup_footer_image), View.VISIBLE);
         } else {
-            setColorView((DynamicColorView) mFooterView.findViewById(
+            setColorView(mFooterView.findViewById(
                     R.id.ads_color_picker_popup_footer_view), mSelectedColor);
         }
 
         if (mDefaultColor != Theme.Color.UNKNOWN
                 && mDefaultColor != mSelectedColor) {
-            setColorView((DynamicColorView) mFooterView.findViewById(
+            setColorView(mFooterView.findViewById(
                     R.id.ads_color_picker_popup_footer_view_default), mDefaultColor);
         }
 
@@ -261,7 +261,7 @@ public class DynamicColorPopup extends DynamicPopup {
                 super.onPreExecute();
 
                 Dynamic.setVisibility(divider, View.GONE);
-                Dynamic.setVisibility(gridViewDynamic, View.GONE);
+                Dynamic.setVisibility(dynamicGridView, View.GONE);
                 Dynamic.setVisibility(progressBar, View.VISIBLE);
             }
 
@@ -271,13 +271,17 @@ public class DynamicColorPopup extends DynamicPopup {
 
                 Dynamic.setVisibility(progressBar, View.GONE);
 
-                if (gridViewDynamic == null || result == null
-                        || result.getData() == null || result.getData().isEmpty()) {
+                if (dynamicGridView == null) {
                     return;
                 }
 
-                mDynamics = result.getData().values().toArray(new Integer[0]);
-                setDynamics(gridViewDynamic, divider);
+                mDynamics = DynamicTheme.getInstance().getColors()
+                        .getAll().toArray(new Integer[0]);
+                if (mDynamics.length == 0 && result != null && result.getData() != null) {
+                    mDynamics = result.getData().values().toArray(new Integer[0]);
+                }
+
+                setDynamics(dynamicGridView, divider);
             }
         };
 

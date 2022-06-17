@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -17,12 +17,10 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/Widget.DynamicApp.Card"
     android:id="@+id/ads_preset_root"
-    android:layout_width="@dimen/ads_theme_preview_width"
-    android:layout_height="wrap_content"
-    app:adt_elevationOnSameBackground="true">
+    android:layout_width="@dimen/ads_preview_width"
+    android:layout_height="wrap_content">
 
     <com.pranavpandey.android.dynamic.support.theme.view.DynamicThemePreview
         style="@style/Widget.DynamicApp.Content"

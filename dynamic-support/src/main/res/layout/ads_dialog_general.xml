@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -24,9 +24,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ads_margin_extra_tiny"
+        android:layout_marginTop="@dimen/ads_dialog_margin_top"
+        android:layout_marginBottom="@dimen/ads_dialog_margin"
         android:paddingLeft="@dimen/ads_margin_normal"
+        android:paddingStart="@dimen/ads_margin_normal"
         android:paddingRight="@dimen/ads_margin_normal"
+        android:paddingEnd="@dimen/ads_margin_normal"
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
@@ -34,14 +37,14 @@
             android:id="@+id/ads_dialog_general_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/ads_margin_small"
             app:adt_colorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
             style="@style/TextAppearance.DynamicApp.Dialog"
             android:id="@+id/ads_dialog_general_desc"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ads_dialog_margin" />
 
     </LinearLayout>
 

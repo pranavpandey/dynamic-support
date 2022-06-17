@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@
 
     <!-- Headings -->
     <string name="ads_app">App</string>
+    <string name="ads_game">Spiel</string>
     <string name="ads_version">Version</string>
     <string name="ads_actions">Aktionen</string>
     <string name="ads_text">Text</string>
@@ -53,6 +54,7 @@
     <string name="ads_not_now">Nicht jetzt</string>
     <string name="ads_later">Später</string>
     <string name="ads_yes_in">Ja, bin dabei</string>
+    <string name="ads_accept">Annehmen</string>
     <string name="ads_more">Mehr</string>
     <string name="ads_more_info">Mehr Info</string>
     <string name="ads_select">Auswählen</string>
@@ -61,6 +63,7 @@
     <string name="ads_load">Laden</string>
     <string name="ads_file">Datei</string>
     <string name="ads_create">Erstellen</string>
+    <string name="ads_configure">Konfigurieren</string>
     <string name="ads_open">Öffnen</string>
     <string name="ads_previous">Zurück</string>
     <string name="ads_next">Weiter</string>
@@ -117,6 +120,7 @@
     <string name="ads_permissions_subtitle_single">Bitte gewähre die notwendige Berechtigung.</string>
     <string name="ads_perm_info_required">Berechtigung notwendig</string>
     <string name="ads_perm_info_grant_all">Bitte gewähre alle Berechtigungen, damit die App richtig funktioniert.</string>
+    <string name="ads_perm_info_accept">Diese Funktion ist optional. Bitte akzeptieren Sie, um fortzufahren.</string>
     <string name="ads_perm_request">Anfordern</string>
     <string name="ads_perm_request_desc">Diese Berechtigung wurde nicht gewährt. Tippe hier, um sie anzufordern.</string>
     <string name="ads_perm_granted">Gewährt</string>
@@ -137,9 +141,12 @@
     <string name="ads_perm_usage_access">Nutzungsdatenzugriff</string>
     <string name="ads_perm_usage_access_desc">Nutzungsdatenzugriff gewähren.</string>
     <string name="ads_perm_accessibility">Bedienungshilfen</string>
+    <string name="ads_perm_accessibility_desc">Es muss über die Systemeinstellungen verwaltet werden.</string>
 
     <!-- Backup and Restore -->
     <string name="ads_data">Daten</string>
+    <string name="ads_data_invalid">Ungültige Daten</string>
+    <string name="ads_data_invalid_desc">Bitte versuchen Sie es erneut mit den entsprechenden Daten.</string>
     <string name="ads_data_operations">Datenoperationen</string>
     <string name="ads_backup_and_restore">Sicherung &amp; Wiederherstellung</string>
     <string name="ads_backup">Sicherung</string>
@@ -203,9 +210,11 @@
     <string name="ads_dynamic_theme">Dynamisches Thema</string>
     <string name="ads_dynamic_theme_summary">Thema vom Empfänger angewendet.</string>
     <string name="ads_dynamic_color_summary">Implementierung für die automatische Farbe.</string>
+    <string name="ads_dynamic">Dynamisch</string>
     <string name="ads_theme">Thema</string>
     <string name="ads_theme_code">Code</string>
     <string name="ads_theme_code_desc">Scannen oder teilen Sie das Thema.</string>
+    <string name="ads_theme_code_capture">Ergreifen</string>
     <string name="ads_theme_customise_desc">Konfiguriere das Thema unten.</string>
     <string name="ads_theme_adjust_desc">Thema wird automatisch entsprechend der aktuellen Android-Version angepasst.</string>
     <string name="ads_theme_invalid">Ungültiges Thema</string>
@@ -231,9 +240,16 @@
     <string name="ads_theme_font_scale">Schriftgröße</string>
     <string name="ads_theme_font_scale_summary">Skalierungsfaktor, um den Text zu verkleinern oder zu vergrößern.</string>
     <string name="ads_theme_corner_size">Eckgröße</string>
-    <string name="ads_theme_corner_size_summary">Eckenradius des App.</string>
+    <string name="ads_theme_corner_size_summary">Eckenradius für die unterstützten Elemente.</string>
     <string name="ads_theme_background_aware">Hintergrundberechnung</string>
     <string name="ads_theme_background_aware_desc">Passen Sie die Farben entsprechend dem Hintergrund an, um gute Sichtbarkeit zu garantieren.</string>
+    <string name="ads_theme_contrast">Kontrastverhältnis</string>
+    <string name="ads_theme_contrast_summary">Mindestverhältnis für den sichtbaren Kontrast.</string>
+    <string name="ads_theme_opacity">Deckkraft des Hintergrunds</string>
+    <string name="ads_theme_opacity_summary">Deckkraft des App-Hingergrunds.</string>
+    <string name="ads_theme_opacity_summary_widget">Deckkraft des Widget-Hingergrunds.</string>
+    <string name="ads_theme_elevation">Elevation</string>
+    <string name="ads_theme_elevation_summary">Kontrollieren Sie den Schatten für die Oberflächenelemente.</string>
     <string name="ads_theme_style">Stil</string>
     <string name="ads_theme_style_summary">Stil des Themas.</string>
     <string name="ads_theme_app">App-Thema</string>
@@ -324,11 +340,19 @@
     <string name="ads_picker_pick">Auswählen</string>
     <string name="ads_picker_more_colors">Mehr Farben</string>
     <string name="ads_picker_presets">Voreinstellungen</string>
+    <string name="ads_picker_size_small">Klein</string>
+    <string name="ads_picker_size_normal">Normal</string>
+    <string name="ads_picker_size_large">Groß</string>
+    <string name="ads_picker_size_info">Wert für Breite und Höhe.</string>
 
     <!-- Miscellaneous -->
     <string name="ads_language">Sprache</string>
     <string name="ads_language_summary">In dieser App genutzte Sprache.</string>
     <string name="ads_language_system">System</string>
+    <string name="ads_dynamic_vibration">Vibration</string>
+    <string name="ads_dynamic_vibration_intensity">Schwingungsintensität</string>
+    <string name="ads_dynamic_vibration_intensity_summary">Dauer der Vibration in Millisekunden.</string>
+    <string name="ads_dynamic_vibration_intensity_unit">ms</string>
     <string name="ads_dynamic_motion">Bewegung</string>
     <string name="ads_dynamic_motion_summary">Dynamische Bewegung durch Abspielen aller Animationen.</string>
     <string name="ads_dynamic_motion_summary_unchecked">Reduzieren Sie die Bewegung, indem Sie einige Animationen überspringen.</string>
@@ -358,8 +382,6 @@
     <string name="ads_widget_header_desc">Wähle auto, um die Kopfzeile anzuzeigen, wenn genügend Speicherplatz verfügbar ist.</string>
     <string name="ads_widget_corner_size_bg_summary">Eckenradius des Widget-Hingergrunds.</string>
     <string name="ads_widget_corner_size_bg_desc">Wähle auto, um die Eckgröße der App zu benutzen.</string>
-    <string name="ads_widget_opacity_bg">Deckkraft des Hintergrunds</string>
-    <string name="ads_widget_opacity_bg_summary">Deckkraft des Widget-Hingergrunds.</string>
     <string name="ads_widget_reset_desc">Widget wurde zum Standard zurückgesetzt.</string>
     <string name="ads_widget_not_added">Es wurden keine Widgets hinzugefügt.</string>
 
@@ -387,8 +409,9 @@
     <string name="ads_support_restart_app_desc">Nutze dies, falls der Service nicht starten oder die App sich falsch verhalten sollte. Es werden keine Einstellungen durch diese Operation geändert.</string>
 
     <!-- Developer and App info -->
-    <string name="ads_info_made_by">Programmiert und entworfen von</string>
     <string name="ads_info_made_in">Hergestellt in Indien</string>
+    <string name="ads_info_made_by">Programmiert und entworfen von</string>
+    <string name="ads_info_made_by_alt">Entwickelt von</string>
     <string name="ads_info_quote">Nichts ist perfekt, aber es kann besser sein. Ich entwickle solche bessere Dinge!</string>
     <string name="ads_info_privacy_policy">Datenschutz-Bestimmungen</string>
     <string name="ads_info_privacy_policy_desc">Gesamte Datenschutz-Bestimmungen dieses Produkts ansehen.</string>
@@ -420,9 +443,10 @@
     <string name="ads_translators_contact">Kontaktiere mich per Email, wenn du übersetzen möchtest.</string>
 
     <!-- Licenses -->
+    <string name="ads_notice">Notiz</string>
     <string name="ads_notices">Hinweise</string>
-    <string name="ads_licenses">Lizenzen</string>
     <string name="ads_license">Lizenz</string>
+    <string name="ads_licenses">Lizenzen</string>
     <string name="ads_license_desc">Gesamte Lizenz ansehen.</string>
     <string name="ads_license_sources">Quellcode</string>
     <string name="ads_license_sources_desc">Quellcode auf GitHub ansehen.</string>

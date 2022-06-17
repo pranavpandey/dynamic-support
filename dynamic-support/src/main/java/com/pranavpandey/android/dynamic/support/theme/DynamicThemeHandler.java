@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import androidx.annotation.StyleRes;
 
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
 import com.pranavpandey.android.dynamic.theme.AppTheme;
+import com.pranavpandey.android.dynamic.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 import java.util.List;
@@ -57,14 +58,14 @@ public class DynamicThemeHandler extends Handler implements DynamicListener {
     /**
      * Message constant to post the dynamic color changes.
      *
-     * @see DynamicListener#onDynamicColorsChanged(DynamicColors)
+     * @see DynamicListener#onDynamicColorsChanged(DynamicColors, boolean)
      */
     public static final int MESSAGE_POST_DYNAMIC_COLOR = 0x3;
 
     /**
      * Message constant to post the auto theme changes.
      *
-     * @see DynamicListener#onAutoThemeChanged()
+     * @see DynamicListener#onAutoThemeChanged(boolean)
      */
     public static final int MESSAGE_POST_AUTO_THEME = 0x4;
 
@@ -166,10 +167,11 @@ public class DynamicThemeHandler extends Handler implements DynamicListener {
                 }
                 break;
             case MESSAGE_POST_DYNAMIC_COLOR:
-                onDynamicColorsChanged(msg.getData().getParcelable(DATA_PARCELABLE_COLORS));
+                onDynamicColorsChanged(msg.getData().getParcelable(DATA_PARCELABLE_COLORS),
+                        msg.getData().getBoolean(DATA_BOOLEAN_CONTEXT));
                 break;
             case MESSAGE_POST_AUTO_THEME:
-                onAutoThemeChanged();
+                onAutoThemeChanged(msg.getData().getBoolean(DATA_BOOLEAN_CONTEXT));
                 break;
             case MESSAGE_POST_POWER_SAVE_MODE:
                 if (msg.getData() != null) {
@@ -199,8 +201,8 @@ public class DynamicThemeHandler extends Handler implements DynamicListener {
      * @see DynamicListener
      */
     public void addListener(@Nullable DynamicListener listener) {
-        if (getListeners() != null && !getListeners().contains(listener)) {
-            getListeners().add((DynamicListener) listener);
+        if (listener != null && getListeners() != null && !getListeners().contains(listener)) {
+            getListeners().add(listener);
         }
     }
 
@@ -307,6 +309,16 @@ public class DynamicThemeHandler extends Handler implements DynamicListener {
     }
 
     @Override
+    public boolean isDynamicColors() {
+        DynamicListener listener;
+        if ((listener = resolveListener(true)) == null) {
+            return DynamicTheme.getInstance().getListener().isDynamicColors();
+        }
+
+        return listener.isDynamicColors();
+    }
+
+    @Override
     public boolean isDynamicColor() {
         DynamicListener listener;
         if ((listener = resolveListener(true)) == null) {
@@ -314,6 +326,36 @@ public class DynamicThemeHandler extends Handler implements DynamicListener {
         }
 
         return listener.isDynamicColor();
+    }
+
+    @Override
+    public boolean isSystemColor() {
+        DynamicListener listener;
+        if ((listener = resolveListener(true)) == null) {
+            return DynamicTheme.getInstance().getListener().isSystemColor();
+        }
+
+        return listener.isSystemColor();
+    }
+
+    @Override
+    public boolean isWallpaperColor() {
+        DynamicListener listener;
+        if ((listener = resolveListener(true)) == null) {
+            return DynamicTheme.getInstance().getListener().isWallpaperColor();
+        }
+
+        return listener.isWallpaperColor();
+    }
+
+    @Override
+    public boolean isOnSharedPreferenceChangeListener() {
+        DynamicListener listener;
+        if ((listener = resolveListener(true)) == null) {
+            return DynamicTheme.getInstance().getListener().isOnSharedPreferenceChangeListener();
+        }
+
+        return listener.isOnSharedPreferenceChangeListener();
     }
 
     @Override
@@ -351,24 +393,24 @@ public class DynamicThemeHandler extends Handler implements DynamicListener {
     }
 
     @Override
-    public void onDynamicColorsChanged(@Nullable DynamicColors colors) {
+    public void onDynamicColorsChanged(@Nullable DynamicColors colors, boolean context) {
         if (getListeners() == null) {
             return;
         }
 
         for (DynamicListener listener : getListeners()) {
-            listener.onDynamicColorsChanged(colors);
+            listener.onDynamicColorsChanged(colors, context);
         }
     }
 
     @Override
-    public void onAutoThemeChanged() {
+    public void onAutoThemeChanged(boolean context) {
         if (getListeners() == null) {
             return;
-        }
+    }
 
         for (DynamicListener listener : getListeners()) {
-            listener.onAutoThemeChanged();
+            listener.onAutoThemeChanged(context);
         }
     }
 

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018-2022 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.DynamicApp.Scroller.Nested"
+    android:id="@+id/ads_dialog_slider_root">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference
+            android:id="@+id/ads_dialog_slider_preference"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/ads_dialog_margin"
+            android:paddingStart="@dimen/ads_dialog_margin"
+            android:paddingRight="@dimen/ads_dialog_margin"
+            android:paddingEnd="@dimen/ads_dialog_margin" />
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
+            style="@style/Widget.DynamicApp.Divider.Large"
+            android:layout_marginLeft="@dimen/ads_dialog_margin_horizontal"
+            android:layout_marginStart="@dimen/ads_dialog_margin_horizontal"
+            android:layout_marginRight="@dimen/ads_dialog_margin_horizontal"
+            android:layout_marginEnd="@dimen/ads_dialog_margin_horizontal" />
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicHorizontalScrollView
+            style="@style/Widget.DynamicApp.Scroller.Nested.Horizontal"
+            android:layout_marginBottom="@dimen/ads_dialog_margin"
+            android:paddingLeft="@dimen/ads_dialog_margin_horizontal"
+            android:paddingStart="@dimen/ads_dialog_margin_horizontal"
+            android:paddingRight="@dimen/ads_dialog_margin_horizontal"
+            android:paddingEnd="@dimen/ads_dialog_margin_horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                    style="@style/Widget.DynamicApp.Button.UnelevatedButton.Small"
+                    android:id="@+id/ads_dialog_slider_size_50"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ads_picker_size_50"
+                    app:adt_colorType="primary" />
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                    style="@style/Widget.DynamicApp.Button.UnelevatedButton.Small"
+                    android:id="@+id/ads_dialog_slider_size_200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ads_picker_size_200"
+                    app:adt_colorType="primary" />
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                    style="@style/Widget.DynamicApp.Button.UnelevatedButton.Small"
+                    android:id="@+id/ads_dialog_slider_size_300"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ads_picker_size_300"
+                    app:adt_colorType="primary" />
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                    style="@style/Widget.DynamicApp.Button.UnelevatedButton.Small"
+                    android:id="@+id/ads_dialog_slider_size_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ads_picker_size_small"
+                    app:adt_colorType="primary" />
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                    style="@style/Widget.DynamicApp.Button.UnelevatedButton.Small"
+                    android:id="@+id/ads_dialog_slider_size_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ads_picker_size_normal"
+                    app:adt_colorType="primary" />
+
+                <com.pranavpandey.android.dynamic.support.widget.DynamicButton
+                    style="@style/Widget.DynamicApp.Button.UnelevatedButton.Small"
+                    android:id="@+id/ads_dialog_slider_size_large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ads_picker_size_large"
+                    app:adt_colorType="primary" />
+
+            </LinearLayout>
+
+        </com.pranavpandey.android.dynamic.support.widget.DynamicHorizontalScrollView>
+
+    </LinearLayout>
+
+</com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView>

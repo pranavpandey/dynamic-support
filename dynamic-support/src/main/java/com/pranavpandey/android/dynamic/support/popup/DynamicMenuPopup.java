@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.adapter.DynamicSpinnerChoiceAdapter;
 import com.pranavpandey.android.dynamic.support.model.DynamicMenu;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
-import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
@@ -611,7 +611,7 @@ public class DynamicMenuPopup extends DynamicPopup {
     /**
      * Get the selected position.
      *
-     * @return The the selected position.
+     * @return The selected position.
      */
     public int getSelectedPosition() {
         return mSelectedPosition;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,21 +19,13 @@ package com.pranavpandey.android.dynamic.support.model;
 import android.content.Context;
 import android.content.Intent;
 
-import androidx.annotation.IntDef;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
-import static com.pranavpandey.android.dynamic.support.model.DynamicAction.NONE;
-import static com.pranavpandey.android.dynamic.support.model.DynamicAction.START_ACTIVITY;
-import static com.pranavpandey.android.dynamic.support.model.DynamicAction.START_FOREGROUND_SERVICE;
-import static com.pranavpandey.android.dynamic.support.model.DynamicAction.START_SERVICE;
 
 /**
  * Interface to hold the various dynamic actions.
  */
 @Retention(RetentionPolicy.SOURCE)
-@IntDef(value = { NONE, START_SERVICE, START_FOREGROUND_SERVICE, START_ACTIVITY })
 public @interface DynamicAction {
 
     /**

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,12 +24,13 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.listener.ThemeListener;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.theme.utils.DynamicThemeUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicFileUtils;
-import com.pranavpandey.android.dynamic.utils.concurrent.DynamicResult;
-import com.pranavpandey.android.dynamic.utils.concurrent.DynamicTask;
+import com.pranavpandey.android.dynamic.theme.util.DynamicCodeUtils;
+import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.util.DynamicFileUtils;
+import com.pranavpandey.android.dynamic.util.concurrent.DynamicResult;
+import com.pranavpandey.android.dynamic.util.concurrent.DynamicTask;
 
 /**
  * A {@link DynamicTask} to perform the theme related operations.
@@ -92,14 +93,12 @@ public abstract class ThemeExportTask<V extends DynamicAppTheme>
 
         if (getThemeAction() == Theme.Action.SHARE_CODE
                 || getThemeAction() == Theme.Action.SAVE_CODE) {
-            mThemeBitmap = DynamicThemeUtils.generateThemeCode(
+            mThemeBitmap = DynamicCodeUtils.generateThemeCode(
                     getThemeListener().getThemePreview().getDynamicTheme(),
                     DynamicResourceUtils.getDrawable(
                             getThemeListener().getThemePreview().getContext(),
-                            R.drawable.ads_ic_circle),
-                    DynamicResourceUtils.getDrawable(
-                            getThemeListener().getThemePreview().getContext(),
-                            R.drawable.ads_ic_style));
+                            getThemeListener().getThemePreview().getDynamicTheme().isDynamicColor()
+                                    ? R.drawable.adt_ic_app : R.drawable.ads_ic_style));
         }
 
         if (getThemeAction() == Theme.Action.SHARE_FILE
@@ -126,7 +125,7 @@ public abstract class ThemeExportTask<V extends DynamicAppTheme>
         }
 
         if (getThemeAction() == Theme.Action.SHARE) {
-            getThemeListener().onSetAction(mThemeAction,
+            getThemeListener().onSetAction(getThemeAction(),
                     getThemeListener().getThemePreview(), true);
         }
 

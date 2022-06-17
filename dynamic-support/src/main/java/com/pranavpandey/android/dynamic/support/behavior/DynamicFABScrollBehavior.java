@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import androidx.core.view.ViewCompat;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.pranavpandey.android.dynamic.support.utils.DynamicFABUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicFABUtils;
 
 import java.util.List;
 
@@ -71,32 +71,36 @@ public class DynamicFABScrollBehavior extends AppBarLayout.ScrollingViewBehavior
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed,
                 dyConsumed, dxUnconsumed, dyUnconsumed, type, consumed);
 
-        if (dyConsumed > 0) {
-            // User scrolled up -> hide the FAB.
-            List<View> dependencies = coordinatorLayout.getDependencies(child);
-            for (View view : dependencies) {
-                if (view instanceof FloatingActionButton
-                        && ((FloatingActionButton) view).getDrawable() != null) {
-                    DynamicFABUtils.hide((FloatingActionButton) view);
-                } else if (view instanceof ExtendedFloatingActionButton
-                        && (((ExtendedFloatingActionButton) view).getIcon() != null
-                        || !TextUtils.isEmpty(((ExtendedFloatingActionButton) view).getText()))) {
-                    DynamicFABUtils.hide((ExtendedFloatingActionButton) view, true);
+        // Fix concurrent modification exception.
+        try {
+            if (dyConsumed > 0) {
+                // User scrolled up -> hide the FAB.
+                final List<View> dependencies = coordinatorLayout.getDependencies(child);
+                for (View view : dependencies) {
+                    if (view instanceof FloatingActionButton
+                            && ((FloatingActionButton) view).getDrawable() != null) {
+                        DynamicFABUtils.hide((FloatingActionButton) view);
+                    } else if (view instanceof ExtendedFloatingActionButton
+                            && (((ExtendedFloatingActionButton) view).getIcon() != null
+                            || !TextUtils.isEmpty(((ExtendedFloatingActionButton) view).getText()))) {
+                        DynamicFABUtils.hide((ExtendedFloatingActionButton) view, true);
+                    }
+                }
+            } else if (dyConsumed < 0) {
+                // User scrolled down -> show the FAB.
+                final List<View> dependencies = coordinatorLayout.getDependencies(child);
+                for (View view : dependencies) {
+                    if (view instanceof FloatingActionButton
+                            && ((FloatingActionButton) view).getDrawable() != null) {
+                        DynamicFABUtils.show((FloatingActionButton) view);
+                    } else if (view instanceof ExtendedFloatingActionButton
+                            && (((ExtendedFloatingActionButton) view).getIcon() != null
+                            || !TextUtils.isEmpty(((ExtendedFloatingActionButton) view).getText()))) {
+                        DynamicFABUtils.show((ExtendedFloatingActionButton) view, true);
+                    }
                 }
             }
-        } else if (dyConsumed < 0) {
-            // User scrolled down -> show the FAB.
-            List<View> dependencies = coordinatorLayout.getDependencies(child);
-            for (View view : dependencies) {
-                if (view instanceof FloatingActionButton
-                        && ((FloatingActionButton) view).getDrawable() != null) {
-                    DynamicFABUtils.show((FloatingActionButton) view);
-                } else if (view instanceof ExtendedFloatingActionButton
-                        && (((ExtendedFloatingActionButton) view).getIcon() != null
-                        || !TextUtils.isEmpty(((ExtendedFloatingActionButton) view).getText()))) {
-                    DynamicFABUtils.show((ExtendedFloatingActionButton) view, true);
-                }
-            }
+        } catch (Exception ignored) {
         }
     }
 }

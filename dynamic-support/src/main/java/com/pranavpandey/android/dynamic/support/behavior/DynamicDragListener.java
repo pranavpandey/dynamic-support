@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,14 @@ public interface DynamicDragListener {
     /**
      * This method will be called when a view is requesting a start of a drag.
      *
-     * @param viewHolder The holder of the view to drag.
+     * @param holder The holder of the view to drag.
      */
-    void onStartDrag(@NonNull RecyclerView.ViewHolder viewHolder);
+    void onStartDrag(@NonNull RecyclerView.ViewHolder holder);
+
+    /**
+     * This method will be called when a drag is stopped.
+     *
+     * @param holder The holder of the view to stop the drag.
+     */
+    void onStopDrag(@NonNull RecyclerView.ViewHolder holder);
 }

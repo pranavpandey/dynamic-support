@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,8 +29,7 @@ import com.pranavpandey.android.dynamic.support.sample.controller.Constants
 import com.pranavpandey.android.dynamic.support.sample.fragment.AboutFragment
 import com.pranavpandey.android.dynamic.support.sample.fragment.HomeFragment
 import com.pranavpandey.android.dynamic.support.sample.fragment.SettingsFragment
-import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils
-import java.util.*
+import com.pranavpandey.android.dynamic.util.DynamicLinkUtils
 
 /**
  * Implementing a navigation drawer by using [DynamicDrawerActivity].

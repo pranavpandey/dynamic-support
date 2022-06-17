@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.pranavpandey.android.dynamic.support.listener;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 
@@ -27,8 +28,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
-import com.pranavpandey.android.dynamic.support.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.theme.AppTheme;
+import com.pranavpandey.android.dynamic.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
@@ -87,7 +88,30 @@ public interface DynamicListener {
      *
      * @return {@code true} if the dynamic colors are enabled for this listener.
      */
+    boolean isDynamicColors();
+
+    /**
+     * Returns whether to apply the dynamic colors for this listener.
+     *
+     * @return {@code true} if the dynamic colors should be applied for this listener.
+     */
     boolean isDynamicColor();
+
+    /**
+     * Returns whether the dynamic colors should be extracted from the system for this listener.
+     *
+     * @return {@code true} if the dynamic colors should be extracted from the system
+     *         for this listener
+     */
+    boolean isSystemColor();
+
+    /**
+     * Returns whether the dynamic colors should be extracted from the wallpaper for this listener.
+     *
+     * @return {@code true} if the dynamic colors should be extracted from the wallpaper
+     *         for this listener
+     */
+    boolean isWallpaperColor();
 
     /**
      * This method will be called to resolve the default color according to it's type.
@@ -102,11 +126,18 @@ public interface DynamicListener {
     @ColorInt int getDefaultColor(@Theme.ColorType int colorType);
 
     /**
+     * Returns whether to register a shared preferences listener for this listener.
+     *
+     * @return {@code true} to register a {@link SharedPreferences.OnSharedPreferenceChangeListener}
+     *         to receive preference change callback.
+     */
+    boolean isOnSharedPreferenceChangeListener();
+
+    /**
      * This method will be called when the dynamic change event occurs (like theme, locale, etc.).
      * <p>Recreate the activity or application here to adapt changes.
      *
      * @param context {@code true} if there is a context change and it must be reinitialized.
-     *
      * @param recreate {@code true} if listener must be recreated to adapt the changes.
      */
     void onDynamicChanged(boolean context, boolean recreate);
@@ -137,14 +168,17 @@ public interface DynamicListener {
      * <p>Recreate the activity or application here to adapt changes.
      *
      * @param colors The new dynamic colors.
+     * @param context {@code true} if there is a context change and it must be reinitialized.
      */
-    void onDynamicColorsChanged(@Nullable DynamicColors colors);
+    void onDynamicColorsChanged(@Nullable DynamicColors colors, boolean context);
 
     /**
      * This method will be called when the auto theme change event occurs according to the time.
      * <p>Recreate the activity or application here to adapt changes.
+     *
+     * @param context {@code true} if there is a context change and it must be reinitialized.
      */
-    void onAutoThemeChanged();
+    void onAutoThemeChanged(boolean context);
 
     /**
      * This method will be called when the power save mode has been changed.

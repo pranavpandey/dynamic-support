@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -125,6 +125,17 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     private boolean mAppBarCollapsed;
 
     /**
+     * The selected navigation item id.
+     */
+    protected @IdRes int mNavigationItemId;
+
+    /**
+     * {@code true} if the navigation item is selected.
+     * <p>It will be useful in restoring state on configuration changes.
+     */
+    protected boolean mNavigationItemSelected;
+
+    /**
      * App bar off set change listener to identify whether it is in the collapsed state.
      */
     protected AppBarLayout.OnOffsetChangedListener mAppBarStateListener =
@@ -160,12 +171,12 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
             }
         });
 
-        if (savedInstanceState != null) {
-            mCurrentLocale = (Locale) savedInstanceState.getSerializable(ADS_STATE_LOCALE);
+        if (getSavedInstanceState() != null) {
+            mCurrentLocale = (Locale) getSavedInstanceState().getSerializable(ADS_STATE_LOCALE);
             mFABVisibility = ADS_VISIBILITY_FAB_NO_CHANGE;
             mExtendedFABVisibility = ADS_VISIBILITY_EXTENDED_FAB_NO_CHANGE;
             mExtendedFABState = ADS_STATE_EXTENDED_FAB_NO_CHANGE;
-            mContentFragmentTag = savedInstanceState.getString(ADS_STATE_CONTENT_FRAGMENT_TAG);
+            mContentFragmentTag = getSavedInstanceState().getString(ADS_STATE_CONTENT_FRAGMENT_TAG);
             mContentFragment = getSupportFragmentManager().findFragmentByTag(mContentFragmentTag);
         }
     }
@@ -214,7 +225,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
 
         fragmentTransaction.setReorderingAllowed(true)
                 .replace(getFragmentContainerId(), fragment, tag);
-        if (addToBackStack && mContentFragment != null) {
+        if (addToBackStack && getContentFragment() != null) {
             fragmentTransaction.addToBackStack(tag);
         } else {
             getSupportFragmentManager().popBackStack(null,
@@ -223,7 +234,6 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
 
         commitFragmentTransaction(fragmentTransaction);
         setContentFragment(fragment, tag);
-        onManageSharedElementTransition();
     }
 
     /**
@@ -263,7 +273,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
      * @see #switchFragment(Fragment, boolean, boolean)
      */
     public void switchFragment(@NonNull Fragment fragment, boolean addToBackStack) {
-        switchFragment(fragment, addToBackStack, true);
+        switchFragment(fragment, addToBackStack, false);
     }
 
     /**
@@ -360,4 +370,12 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     public boolean isAppBarCollapsed() {
         return mAppBarCollapsed;
     }
+
+    /**
+     * This method will be called on selecting the navigation item.
+     *
+     * @param itemId The item id to be selected.
+     * @param restore {@code true} if restoring the state of item.
+     */
+    public void onNavigationItemSelected(@IdRes int itemId, boolean restore) { }
 }

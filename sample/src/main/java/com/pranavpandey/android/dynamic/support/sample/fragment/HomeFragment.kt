@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,14 +25,14 @@ import com.google.android.material.appbar.AppBarLayout
 import com.pranavpandey.android.dynamic.support.activity.DynamicDrawerActivity
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment
 import com.pranavpandey.android.dynamic.support.sample.R
-import com.pranavpandey.android.dynamic.support.sample.activity.BottomNavigationActivity
 import com.pranavpandey.android.dynamic.support.sample.activity.CollapsingAppBarActivity
+import com.pranavpandey.android.dynamic.support.sample.activity.NavigationBarActivity
 import com.pranavpandey.android.dynamic.support.sample.activity.TutorialActivity
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicScreenPreference
 import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
-import com.pranavpandey.android.dynamic.utils.DynamicLinkUtils
-import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils
+import com.pranavpandey.android.dynamic.util.DynamicLinkUtils
+import com.pranavpandey.android.dynamic.util.DynamicPackageUtils
 
 /**
  * Home fragment to show some of the features of dynamic-support library by
@@ -57,9 +57,9 @@ class HomeFragment : DynamicFragment() {
         return getString(R.string.ads_nav_home)
     }
 
-    override fun getBottomNavigationViewId(): Int {
-        // Return the bottom navigation view id.
-        return R.id.bottom_navigation
+    override fun getNavigationViewId(): Int {
+        // Return the navigation bar view id.
+        return R.id.ads_navigation_bar_view
     }
 
     override fun getCheckedMenuItemId(): Int {
@@ -88,31 +88,38 @@ class HomeFragment : DynamicFragment() {
 
         // Set on click listener for the dynamic item view.
         (view.findViewById<View>(R.id.item_rotation) as DynamicItemView)
-                .setOnClickListener {
-                    // View an app in Google Play by supplying the package name.
-                    DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_ROTATION)
-                }
+            .setOnClickListener {
+                // View an app in Google Play by supplying the package name.
+                DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_ROTATION)
+            }
 
         // Set on click listener for the dynamic item view.
         (view.findViewById<View>(R.id.item_everyday) as DynamicItemView)
-                .setOnClickListener {
-                    // View an app in Google Play by supplying the package name.
-                    DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_EVERYDAY)
-                }
+            .setOnClickListener {
+                // View an app in Google Play by supplying the package name.
+                DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_EVERYDAY)
+            }
 
         // Set on click listener for the dynamic item view.
         (view.findViewById<View>(R.id.item_palettes) as DynamicItemView)
-                .setOnClickListener {
-                    // View an app in Google Play by supplying the package name.
-                    DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_PALETTES)
-                }
+            .setOnClickListener {
+                // View an app in Google Play by supplying the package name.
+                DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_PALETTES)
+            }
+
+        // Set on click listener for the dynamic item view.
+        (view.findViewById<View>(R.id.item_barquode) as DynamicItemView)
+            .setOnClickListener {
+                // View an app in Google Play by supplying the package name.
+                DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_BARQUODE)
+            }
 
         // Set on click listener for the dynamic item view.
         (view.findViewById<View>(R.id.item_zerocors) as DynamicItemView)
-                .setOnClickListener {
-                    // View an app in Google Play by supplying the package name.
-                    DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_ZEROCROS)
-                }
+            .setOnClickListener {
+                // View an app in Google Play by supplying the package name.
+                DynamicLinkUtils.viewInGooglePlay(requireContext(), Constants.PACKAGE_ZEROCROS)
+            }
 
         // Set on preference click listeners.
         // Start tutorial activity.
@@ -130,15 +137,15 @@ class HomeFragment : DynamicFragment() {
                 }
 
         if (activity is DynamicDrawerActivity ) {
-            // Start bottom navigation activity.
-            (view.findViewById<View>(R.id.pref_bottom_navigation)
+            // Start navigation bar activity.
+            (view.findViewById<View>(R.id.pref_navigation_bar)
                     as DynamicScreenPreference).onPreferenceClickListener =
                     View.OnClickListener {
-                        startActivity(Intent(activity, BottomNavigationActivity::class.java))
+                        startActivity(Intent(activity, NavigationBarActivity::class.java))
                     }
         } else {
-            // Hide bottom navigation activity.
-            view.findViewById<View>(R.id.pref_bottom_navigation).visibility = View.GONE
+            // Hide navigation bar activity.
+            view.findViewById<View>(R.id.pref_navigation_bar).visibility = View.GONE
         }
 
     }

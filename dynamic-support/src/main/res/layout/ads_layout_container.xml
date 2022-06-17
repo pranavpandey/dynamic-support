@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -15,17 +15,24 @@
 	limitations under the License.
 -->
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<com.pranavpandey.android.dynamic.support.widget.DynamicRootLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ads_coordinator_layout"
+    android:id="@+id/ads_activity_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/ads_container"
+    <com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout
+        android:id="@+id/ads_coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </androidx.fragment.app.FragmentContainerView>
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/ads_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </androidx.fragment.app.FragmentContainerView>
+
+    </com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout>
+
+</com.pranavpandey.android.dynamic.support.widget.DynamicRootLayout>

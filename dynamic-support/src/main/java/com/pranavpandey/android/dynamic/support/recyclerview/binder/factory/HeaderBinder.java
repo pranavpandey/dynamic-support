@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import androidx.annotation.NonNull;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBinderAdapter;
-import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
 
 /**
  * An {@link ItemBinder} to bind the
@@ -48,11 +48,11 @@ public class HeaderBinder extends ItemBinder {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        super.onBindViewHolder(viewHolder, position);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        super.onBindViewHolder(holder, position);
 
         if (isFullSpanForStaggeredGrid()) {
-            DynamicLayoutUtils.setFullSpanForView(viewHolder.itemView);
+            DynamicLayoutUtils.setFullSpanForView(holder.itemView);
         }
     }
 

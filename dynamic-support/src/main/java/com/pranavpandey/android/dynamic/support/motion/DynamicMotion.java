@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import android.os.Build;
 import android.transition.Transition;
 import android.util.Property;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.Interpolator;
@@ -32,9 +33,11 @@ import android.view.animation.Interpolator;
 import androidx.annotation.FloatRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.transition.AutoTransition;
+import androidx.transition.TransitionManager;
 
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -418,5 +421,38 @@ public class DynamicMotion {
         }
 
         return transition;
+    }
+
+    /**
+     * Use {@link TransitionManager} to begin delayed transition according to the motion duration.
+     *
+     * @param sceneRoot The scene root to be used.
+     * @param transition The transition to be used.
+     *
+     * @see TransitionManager#beginDelayedTransition(ViewGroup, androidx.transition.Transition)
+     */
+    public void beginDelayedTransition(@Nullable ViewGroup sceneRoot,
+            @Nullable androidx.transition.Transition transition) {
+        if (sceneRoot == null) {
+            return;
+        }
+
+        if (transition == null) {
+            transition = new AutoTransition();
+        }
+
+        TransitionManager.beginDelayedTransition(sceneRoot, withDuration(transition));
+    }
+
+    /**
+     * Use {@link TransitionManager} to begin delayed transition according to the motion duration.
+     *
+     * @param sceneRoot The scene root to be used.
+     *
+     * @see AutoTransition
+     * @see #beginDelayedTransition(ViewGroup, androidx.transition.Transition)
+     */
+    public void beginDelayedTransition(@Nullable ViewGroup sceneRoot) {
+        beginDelayedTransition(sceneRoot, null);
     }
 }

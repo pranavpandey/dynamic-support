@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -17,26 +17,32 @@
 
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.pranavpandey.android.dynamic.support">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-sdk tools:overrideLibrary="com.pranavpandey.android.dynamic.locale" />
+
     <uses-permission android:name="com.pranavpandey.theme.permission.READ_THEME" />
 
     <application
         android:supportsRtl="true"
         tools:ignore="RtlEnabled">
 
-        <!-- Remove startup initializer for on-demand initialization. -->
+        <!-- Startup initializer to initialize components. -->
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
             android:exported="false"
-            tools:node="remove" />
+            tools:node="merge">
+            <!-- Remove initialization for work manager. -->
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup"
+                tools:node="remove" />
+        </provider>
 
         <!-- Theme activity to handle share intent. -->
         <activity
-            android:name=".theme.activity.DynamicThemeActivity"
+            android:name=".preview.activity.DynamicPreviewActivity"
             android:label="@string/ads_theme"
             android:launchMode="singleTop" />
 

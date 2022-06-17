@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@
     android:id="@+id/ads_header_drawer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fitsSystemWindows="true"
     app:adt_colorType="primary"
     app:adt_backgroundAware="disable">
 
@@ -29,10 +28,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:paddingBottom="@dimen/ads_nav_header_spacing"
         android:paddingLeft="@dimen/ads_nav_header_spacing"
-        android:paddingRight="@dimen/ads_nav_header_spacing"
+        android:paddingStart="@dimen/ads_nav_header_spacing"
         android:paddingTop="@dimen/ads_nav_header_spacing_top"
+        android:paddingRight="@dimen/ads_nav_header_spacing"
+        android:paddingEnd="@dimen/ads_nav_header_spacing"
+        android:paddingBottom="@dimen/ads_nav_header_spacing"
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicImageView

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.view.base;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -28,10 +29,10 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
- * A {@link DynamicFrameLayout} with basic functionality to create views according to the need.
+ * A {@link DynamicFrameLayout} with basic functionality to create views according
+ * to the requirements.
  */
 public abstract class DynamicView extends DynamicFrameLayout {
 
@@ -167,14 +168,14 @@ public abstract class DynamicView extends DynamicFrameLayout {
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
             }
         }
 
         if (getBackground() != null) {
             getBackground().clearColorFilter();
 
-            if (isTintBackground()) {
+            if (isTintBackground() && !(getBackground() instanceof ColorDrawable)) {
                 Dynamic.tintBackground(this, getContrastWithColor(), isStyleBorderless());
             }
         }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -41,7 +41,8 @@
             <LinearLayout
                 style="@style/Widget.DynamicApp.Theme.Preview.Header.StatusBar"
                 android:id="@+id/ads_theme_header"
-                android:baselineAligned="false">
+                android:baselineAligned="false"
+                android:tag=":ads_ignore">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -66,7 +67,7 @@
                         android:layout_height="@dimen/ads_icon_small"
                         android:layout_gravity="center"
                         android:contentDescription="@null"
-                        app:srcCompat="@drawable/ads_theme_overlay" />
+                        app:srcCompat="@drawable/ads_overlay" />
 
                 </LinearLayout>
 
@@ -109,12 +110,12 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@integer/ads_theme_preview_content_weight_start"
-                android:paddingTop="@dimen/ads_margin_regular"
-                android:paddingBottom="@dimen/ads_margin_regular"
                 android:paddingLeft="@dimen/ads_margin_regular"
                 android:paddingStart="@dimen/ads_margin_regular"
+                android:paddingTop="@dimen/ads_margin_regular"
                 android:paddingRight="0dp"
                 android:paddingEnd="0dp"
+                android:paddingBottom="@dimen/ads_margin_regular"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -137,7 +138,7 @@
                         android:layout_height="@dimen/ads_margin_tiny"
                         android:layout_marginTop="@dimen/ads_margin_tiny"
                         android:contentDescription="@null"
-                        app:srcCompat="@drawable/ads_theme_overlay" />
+                        app:srcCompat="@drawable/ads_overlay" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                         android:id="@+id/ads_theme_subtitle"
@@ -145,7 +146,7 @@
                         android:layout_height="@dimen/ads_margin_tiny"
                         android:layout_marginTop="@dimen/ads_margin_tiny"
                         android:contentDescription="@null"
-                        app:srcCompat="@drawable/ads_theme_overlay" />
+                        app:srcCompat="@drawable/ads_overlay" />
 
                 </LinearLayout>
 
@@ -156,7 +157,7 @@
                     android:layout_marginEnd="@dimen/ads_margin_small"
                     android:layout_marginRight="@dimen/ads_margin_small"
                     android:contentDescription="@null"
-                    app:srcCompat="@drawable/ads_theme_overlay" />
+                    app:srcCompat="@drawable/ads_overlay" />
 
                 <LinearLayout
                     style="@style/Widget.DynamicApp.Content.Row.Vertical">
@@ -166,7 +167,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/ads_margin_regular"
                         android:contentDescription="@null"
-                        app:srcCompat="@drawable/ads_theme_overlay" />
+                        app:srcCompat="@drawable/ads_overlay" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                         android:id="@+id/ads_theme_text_secondary_start"
@@ -174,7 +175,7 @@
                         android:layout_height="@dimen/ads_margin_small"
                         android:layout_marginTop="@dimen/ads_margin_tiny"
                         android:contentDescription="@null"
-                        app:srcCompat="@drawable/ads_theme_overlay" />
+                        app:srcCompat="@drawable/ads_overlay" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                         android:id="@+id/ads_theme_text_description_start"
@@ -182,7 +183,7 @@
                         android:layout_height="@dimen/ads_margin_medium"
                         android:layout_marginTop="@dimen/ads_margin_small"
                         android:contentDescription="@null"
-                        app:srcCompat="@drawable/ads_theme_overlay" />
+                        app:srcCompat="@drawable/ads_overlay" />
 
                 </LinearLayout>
 
@@ -193,12 +194,12 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="@integer/ads_theme_preview_content_weight_end"
-                android:paddingTop="@dimen/ads_margin_regular"
-                android:paddingBottom="@dimen/ads_margin_regular"
                 android:paddingLeft="0dp"
                 android:paddingStart="0dp"
+                android:paddingTop="@dimen/ads_margin_regular"
                 android:paddingRight="@dimen/ads_margin_medium"
                 android:paddingEnd="@dimen/ads_margin_medium"
+                android:paddingBottom="@dimen/ads_margin_regular"
                 android:orientation="vertical">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
@@ -208,7 +209,7 @@
                     android:layout_marginEnd="@dimen/ads_margin_extra_large"
                     android:layout_marginRight="@dimen/ads_margin_extra_large"
                     android:contentDescription="@null"
-                    app:srcCompat="@drawable/ads_theme_overlay" />
+                    app:srcCompat="@drawable/ads_overlay" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                     android:id="@+id/ads_theme_text_secondary_end"
@@ -218,7 +219,7 @@
                     android:layout_marginEnd="@dimen/ads_margin_normal"
                     android:layout_marginRight="@dimen/ads_margin_normal"
                     android:contentDescription="@null"
-                    app:srcCompat="@drawable/ads_theme_overlay" />
+                    app:srcCompat="@drawable/ads_overlay" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                     android:id="@+id/ads_theme_text_description_end"
@@ -226,7 +227,7 @@
                     android:layout_height="@dimen/ads_margin_medium"
                     android:layout_marginTop="@dimen/ads_margin_small"
                     android:contentDescription="@null"
-                    app:srcCompat="@drawable/ads_theme_overlay" />
+                    app:srcCompat="@drawable/ads_overlay" />
 
             </LinearLayout>
 
@@ -238,14 +239,14 @@
         android:id="@+id/ads_theme_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ads_margin_fab_compat_mini"
-        android:layout_marginBottom="@dimen/ads_margin_fab_compat_mini_bottom"
         android:layout_marginLeft="@dimen/ads_margin_fab_compat_mini"
         android:layout_marginRight="@dimen/ads_margin_fab_compat_mini"
+        android:layout_marginTop="@dimen/ads_margin_fab_compat_mini"
+        android:layout_marginBottom="@dimen/ads_margin_fab_compat_mini_bottom"
         android:layout_gravity="bottom|end"
-        app:elevation="@dimen/ads_theme_preview_fab_elevation"
-        app:pressedTranslationZ="@dimen/ads_theme_preview_fab_elevation"
-        app:hoveredFocusedTranslationZ="@dimen/ads_theme_preview_fab_elevation"
+        app:elevation="@dimen/ads_preview_fab_elevation"
+        app:pressedTranslationZ="@dimen/ads_preview_fab_elevation"
+        app:hoveredFocusedTranslationZ="@dimen/ads_preview_fab_elevation"
         app:srcCompat="@drawable/ads_ic_brush"
         app:fabSize="mini" />
 

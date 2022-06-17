@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -29,42 +29,43 @@
         <LinearLayout
             style="@style/Widget.DynamicApp.Content.Row.Horizontal">
 
-            <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-                style="@style/Widget.DynamicApp.Image.Preference"
-                android:id="@+id/ads_preference_icon" />
-
             <LinearLayout
                 style="@style/Widget.DynamicApp.Content.Row.Vertical.Weight">
 
-                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Headline5.Card"
-                    android:id="@+id/ads_preference_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    style="@style/Widget.DynamicApp.Content.Row.Horizontal">
 
-                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Subtitle1"
-                    android:id="@+id/ads_preference_summary"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+                        style="@style/Widget.DynamicApp.Image.Preference"
+                        android:id="@+id/ads_preference_icon" />
 
-                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Subtitle1.Secondary"
-                    android:id="@+id/ads_preference_value"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:adt_colorType="accent" />
+                    <LinearLayout
+                        style="@style/Widget.DynamicApp.Content.Row.Vertical">
 
-                <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Body1"
-                    android:id="@+id/ads_preference_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/ads_margin_tiny" />
+                        <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                            style="@style/TextAppearance.DynamicApp.Headline5.Card"
+                            android:id="@+id/ads_preference_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
-                <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-                    style="@style/Widget.DynamicApp.Button.Preference"
-                    android:id="@+id/ads_preference_action_button" />
+                        <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                            style="@style/TextAppearance.DynamicApp.Subtitle1"
+                            android:id="@+id/ads_preference_summary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                            style="@style/TextAppearance.DynamicApp.Headline5.Card.Secondary"
+                            android:id="@+id/ads_preference_value"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:adt_colorType="accent" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <include layout="@layout/ads_preference_footer" />
 
             </LinearLayout>
 

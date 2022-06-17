@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,17 +44,19 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.graphics.DynamicPaint;
-import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.graphic.DynamicPaint;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.util.DynamicPickerUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout;
 import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicBitmapUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
+import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicUnitUtils;
 
 /**
  * A {@link DynamicFrameLayout} to display a color in different {@link DynamicColorShape}.
@@ -128,7 +130,7 @@ public class DynamicColorView extends DynamicFrameLayout {
     /**
      * Corner radius for the square or rectangle shape.
      */
-    private int mCornerRadius;
+    private float mCornerRadius;
 
     public DynamicColorView(@NonNull Context context) {
         this(context, null);
@@ -165,28 +167,25 @@ public class DynamicColorView extends DynamicFrameLayout {
                     false);
             mCornerRadius = a.getDimensionPixelOffset(
                     R.styleable.DynamicColorView_adt_cornerRadius,
-                    getResources().getDimensionPixelOffset(R.dimen.ads_corner_radius));
+                    DynamicTheme.getInstance().get().getCornerRadius());
         } finally {
             a.recycle();
         }
 
         mAlphaPaint = DynamicPickerUtils.getAlphaPatternPaint(
                 DynamicUnitUtils.convertDpToPixels(4));
-        mColorPaint = new DynamicPaint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
-        mColorStrokePaint = new DynamicPaint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
-        mSelectorPaint = new DynamicPaint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
+        mColorPaint = new DynamicPaint();
+        mColorStrokePaint = new DynamicPaint();
+        mSelectorPaint = new DynamicPaint();
         mRectF = new RectF(getPaddingLeft(), getPaddingTop(),
                 getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
 
         mColorPaint.setStyle(Paint.Style.FILL);
         mColorStrokePaint.setStyle(Paint.Style.STROKE);
         mSelectorPaint.setStyle(Paint.Style.FILL);
-        mColorStrokePaint.setStrokeWidth(Defaults.ADS_STROKE_WIDTH_PIXEL);
+        mColorStrokePaint.setStrokeWidth(Theme.Size.STROKE_PIXEL);
         mColorStrokePaint.setStrokeCap(Paint.Cap.ROUND);
         mSelectorPaint.setFilterBitmap(true);
-
-        setColor(getColor());
-        setWillNotDraw(false);
 
         getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -201,6 +200,7 @@ public class DynamicColorView extends DynamicFrameLayout {
                         }
 
                         setColor(getColor());
+                        setWillNotDraw(false);
                     }
         });
 
@@ -215,7 +215,7 @@ public class DynamicColorView extends DynamicFrameLayout {
 
         if (color == Theme.AUTO) {
             color = getContrastWithColor();
-            @ColorInt int tintColor = DynamicColorUtils.getTintColor(getContrastWithColor());
+            @ColorInt int tintColor = Dynamic.getTintColor(getContrastWithColor());
             mSelectorBitmap = DynamicBitmapUtils.getBitmap(
                     DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_play));
             mColorPaint.setColor(getContrastWithColor());
@@ -232,14 +232,13 @@ public class DynamicColorView extends DynamicFrameLayout {
             mSelectorBitmap = DynamicBitmapUtils.getBitmap(
                     DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_check));
             mColorPaint.setColor(color);
-            mColorStrokePaint.setColor(DynamicColorUtils.removeAlpha(
-                    DynamicColorUtils.getTintColor(color)));
+            mColorStrokePaint.setColor(DynamicColorUtils.removeAlpha(Dynamic.getTintColor(color)));
 
             mColorPaint.setShader(null);
         }
 
         if (Color.alpha(color) < ALPHA_SELECTOR) {
-            mSelectorPaint.setColor(DynamicColorUtils.getContrastColor(
+            mSelectorPaint.setColor(Dynamic.withContrastRatio(
                     mColorStrokePaint.getColor(), Color.LTGRAY));
         } else {
             mSelectorPaint.setColor(mColorStrokePaint.getColor());
@@ -265,10 +264,20 @@ public class DynamicColorView extends DynamicFrameLayout {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
+        if (mColorShape == DynamicColorShape.RECTANGLE) {
+            Dynamic.setCornerMin(this, Math.min(
+                    getWidth() / Theme.Corner.FACTOR_MAX,
+                    getHeight() / Theme.Corner.FACTOR_MAX));
+        } else {
+            Dynamic.setCornerMin(this, Math.min(
+                    getWidth() / Theme.Corner.FACTOR_MAX_LARGE,
+                    getHeight() / Theme.Corner.FACTOR_MAX_LARGE));
+        }
+
         mRectF.set(getPaddingLeft(), getPaddingTop(), getWidth(), getHeight());
-        mRectF.set(Defaults.ADS_STROKE_WIDTH_PIXEL, Defaults.ADS_STROKE_WIDTH_PIXEL,
-                mRectF.width() - Defaults.ADS_STROKE_WIDTH_PIXEL,
-                mRectF.height() - Defaults.ADS_STROKE_WIDTH_PIXEL);
+        mRectF.set(Theme.Size.STROKE_PIXEL, Theme.Size.STROKE_PIXEL,
+                mRectF.width() - Theme.Size.STROKE_PIXEL,
+                mRectF.height() - Theme.Size.STROKE_PIXEL);
 
         if (mSelected) {
             int selectorSize = (int) (Math.min(getWidth(), getHeight())
@@ -329,11 +338,8 @@ public class DynamicColorView extends DynamicFrameLayout {
      *         for this color view.
      */
     private StateListDrawable getForegroundDrawable() {
-        Bitmap bitmap = Bitmap.createBitmap(
-                (int) mRectF.width() + Defaults.ADS_STROKE_WIDTH_PIXEL,
-                (int) mRectF.height() + Defaults.ADS_STROKE_WIDTH_PIXEL,
-                Bitmap.Config.ARGB_8888
-        );
+        Bitmap bitmap = Bitmap.createBitmap((int) mRectF.width() + Theme.Size.STROKE_PIXEL,
+                (int) mRectF.height() + Theme.Size.STROKE_PIXEL, Bitmap.Config.ARGB_8888);
 
         Canvas canvas = new Canvas(bitmap);
         if (mColorShape == DynamicColorShape.CIRCLE) {
@@ -360,17 +366,14 @@ public class DynamicColorView extends DynamicFrameLayout {
 
         if (color == Theme.AUTO) {
             color = mSelectorPaint.getColor();
-            tintColor = DynamicColorUtils.getTintColor(color);
+            tintColor = Dynamic.getTintColor(color);
         } else {
             tintColor = mSelectorPaint.getColor();
         }
 
-        color = DynamicColorUtils.removeAlpha(color);
-        tintColor = DynamicColorUtils.removeAlpha(tintColor);
-
         if (mSelected) {
-            icon = DynamicResourceUtils.getDrawable(getContext(), getColor() == Theme.AUTO
-                            ? R.drawable.ads_ic_play : R.drawable.ads_ic_check);
+            icon = DynamicResourceUtils.getDrawable(getContext(),getColor() == Theme.AUTO
+                    ? R.drawable.ads_ic_play : R.drawable.ads_ic_check);
         }
 
         DynamicTooltip.set(this, color, tintColor, icon, getColorString());
@@ -384,8 +387,9 @@ public class DynamicColorView extends DynamicFrameLayout {
     @Override
     public void setColor() {
         onUpdate();
-        requestLayout();
+
         invalidate();
+        requestLayout();
     }
 
     /**
@@ -403,8 +407,8 @@ public class DynamicColorView extends DynamicFrameLayout {
     public void setColorShape(@DynamicColorShape int colorShape) {
         this.mColorShape = colorShape;
 
-        requestLayout();
         invalidate();
+        requestLayout();
     }
 
     /**
@@ -424,8 +428,8 @@ public class DynamicColorView extends DynamicFrameLayout {
     public void setSelected(boolean selected) {
         this.mSelected = selected;
 
-        requestLayout();
         invalidate();
+        requestLayout();
     }
 
     /**
@@ -445,8 +449,8 @@ public class DynamicColorView extends DynamicFrameLayout {
     public void setAlpha(boolean alpha) {
         this.mAlpha = alpha;
 
-        requestLayout();
         invalidate();
+        requestLayout();
     }
 
     /**
@@ -454,7 +458,7 @@ public class DynamicColorView extends DynamicFrameLayout {
      *
      * @return The corner radius for the square or rectangle shape.
      */
-    public int getCornerRadius() {
+    public float getCornerRadius() {
         return mCornerRadius;
     }
 
@@ -463,11 +467,11 @@ public class DynamicColorView extends DynamicFrameLayout {
      *
      * @param cornerRadius The corner radius to be set in pixels.
      */
-    public void setCornerRadius(int cornerRadius) {
+    public void setCornerRadius(float cornerRadius) {
         this.mCornerRadius = cornerRadius;
 
-        requestLayout();
         invalidate();
+        requestLayout();
     }
 
     /**
@@ -484,7 +488,7 @@ public class DynamicColorView extends DynamicFrameLayout {
     /**
      * Returns the hexadecimal color string according to the supplied color.
      *
-     * @param context The context to retrieve the resources.
+     * @param context The context to be used.
      * @param color The color to be converted into string.
      * @param alpha {@code true} to enable alpha string.
      *

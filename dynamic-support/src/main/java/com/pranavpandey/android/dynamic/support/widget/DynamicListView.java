@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,12 +30,11 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicScrollUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicScrollableWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicViewUtils;
+import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 /**
  * A {@link ListView} to apply {@link DynamicTheme} according to the supplied parameters.
@@ -103,6 +102,11 @@ public class DynamicListView extends ListView
      */
     protected @Theme.BackgroundAware int mBackgroundAware;
 
+    /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
+
     public DynamicListView(@NonNull Context context) {
         this(context, null);
     }
@@ -147,6 +151,9 @@ public class DynamicListView extends ListView
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicListView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicListView_adt_contrast,
+                    Theme.Contrast.AUTO);
 
             if (a.getBoolean(
                     R.styleable.DynamicListView_adt_windowInsets,
@@ -179,7 +186,7 @@ public class DynamicListView extends ListView
                     .resolveColorType(mContrastWithColorType);
         }
 
-        setColor(true);
+        setScrollableWidgetColor(true);
     }
 
     @Override
@@ -238,7 +245,7 @@ public class DynamicListView extends ListView
         this.mColorType = Theme.ColorType.CUSTOM;
         this.mColor = color;
 
-        setColor(true);
+        setScrollableWidgetColor(true);
     }
 
     @Override
@@ -269,7 +276,7 @@ public class DynamicListView extends ListView
         this.mContrastWithColorType = Theme.ColorType.CUSTOM;
         this.mContrastWithColor = contrastWithColor;
 
-        setColor(true);
+        setScrollableWidgetColor(true);
     }
 
     @Override
@@ -290,11 +297,37 @@ public class DynamicListView extends ListView
     }
 
     @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
+    }
+
+    @Override
     public void setColor() {
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
             }
 
             DynamicScrollUtils.setEdgeEffectColor(this, mAppliedColor);
@@ -306,8 +339,8 @@ public class DynamicListView extends ListView
         if (mScrollBarColor != Theme.Color.UNKNOWN) {
             mAppliedScrollBarColor = mScrollBarColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedScrollBarColor = DynamicColorUtils.getContrastColor(
-                        mScrollBarColor, mContrastWithColor);
+                mAppliedScrollBarColor = Dynamic.withContrastRatio(
+                        mScrollBarColor, mContrastWithColor, this);
             }
 
             DynamicScrollUtils.setScrollBarColor(this, mAppliedScrollBarColor);
@@ -315,7 +348,7 @@ public class DynamicListView extends ListView
     }
 
     @Override
-    public void setColor(boolean setScrollBarColor) {
+    public void setScrollableWidgetColor(boolean setScrollBarColor) {
         setColor();
 
         if (setScrollBarColor) {

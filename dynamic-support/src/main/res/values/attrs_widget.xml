@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_windowInsets" />
     </declare-styleable>
 
@@ -34,30 +35,57 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_tintBackground" />
         <attr name="adt_styleBorderless" />
     </declare-styleable>
 
+    <!-- Attributes for the DynamicDivider. -->
+    <declare-styleable name="DynamicDivider">
+        <attr name="adt_dynamicCornerSize" />
+    </declare-styleable>
+
     <!-- Attributes for the DynamicBottomAppBar. -->
     <declare-styleable name="DynamicBottomAppBar">
+        <attr name="adt_backgroundColorType" />
         <attr name="adt_colorType" />
         <attr name="adt_textColorType" />
         <attr name="adt_contrastWithColorType" />
+        <attr name="adt_backgroundColor" />
         <attr name="adt_color" />
         <attr name="adt_textColor" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicBottomNavigationView. -->
     <declare-styleable name="DynamicBottomNavigationView">
+        <attr name="adt_backgroundColorType" />
         <attr name="adt_colorType" />
         <attr name="adt_textColorType" />
         <attr name="adt_contrastWithColorType" />
+        <attr name="adt_backgroundColor" />
         <attr name="adt_color" />
         <attr name="adt_textColor" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
+        <attr name="adt_windowInsets" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicNavigationRailView. -->
+    <declare-styleable name="DynamicNavigationRailView">
+        <attr name="adt_backgroundColorType" />
+        <attr name="adt_colorType" />
+        <attr name="adt_textColorType" />
+        <attr name="adt_contrastWithColorType" />
+        <attr name="adt_backgroundColor" />
+        <attr name="adt_color" />
+        <attr name="adt_textColor" />
+        <attr name="adt_contrastWithColor" />
+        <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_windowInsets" />
     </declare-styleable>
 
@@ -73,8 +101,10 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_tintBackground" />
         <attr name="adt_styleBorderless" />
+        <attr name="adt_forceElevation" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicCardView. -->
@@ -84,8 +114,9 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
-        <attr name="adt_dynamicCornerRadius" />
-        <attr name="adt_elevationOnSameBackground" />
+        <attr name="adt_contrast" />
+        <attr name="adt_dynamicCornerSize" />
+        <attr name="adt_forceElevation" />
         <attr name="adt_floatingView" />
     </declare-styleable>
 
@@ -98,6 +129,7 @@
         <attr name="adt_contrastWithColor" />
         <attr name="adt_stateNormalColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicCheckedTextView. -->
@@ -109,6 +141,7 @@
         <attr name="adt_contrastWithColor" />
         <attr name="adt_stateNormalColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicCollapsingToolbarLayout. -->
@@ -125,6 +158,12 @@
     <!-- Attributes for the DynamicDrawerLayout. -->
     <declare-styleable name="DynamicDrawerLayout">
         <attr name="adt_windowInsets" />
+        <attr name="adt_colorType" />
+        <attr name="adt_contrastWithColorType" />
+        <attr name="adt_color" />
+        <attr name="adt_contrastWithColor" />
+        <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicEditText. -->
@@ -134,6 +173,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicExtendedFloatingActionButton. -->
@@ -143,6 +183,8 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
+        <attr name="adt_dynamicCornerSize" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicFloatingActionButton. -->
@@ -152,6 +194,8 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
+        <attr name="adt_dynamicCornerSize" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicFrameLayout. -->
@@ -161,6 +205,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_tintBackground" />
         <attr name="adt_styleBorderless" />
     </declare-styleable>
@@ -174,6 +219,7 @@
         <attr name="adt_scrollBarColor" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_windowInsets" />
     </declare-styleable>
 
@@ -184,6 +230,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_tintBackground" />
         <attr name="adt_styleBorderless" />
     </declare-styleable>
@@ -195,6 +242,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_tintBackground" />
         <attr name="adt_styleBorderless" />
     </declare-styleable>
@@ -206,6 +254,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_tintBackground" />
         <attr name="adt_styleBorderless" />
     </declare-styleable>
@@ -217,6 +266,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_tintBackground" />
         <attr name="adt_styleBorderless" />
     </declare-styleable>
@@ -228,6 +278,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_tintBackground" />
         <attr name="adt_styleBorderless" />
     </declare-styleable>
@@ -241,6 +292,7 @@
         <attr name="adt_scrollBarColor" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_windowInsets" />
     </declare-styleable>
 
@@ -251,8 +303,9 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
-        <attr name="adt_dynamicCornerRadius" />
-        <attr name="adt_elevationOnSameBackground" />
+        <attr name="adt_contrast" />
+        <attr name="adt_dynamicCornerSize" />
+        <attr name="adt_forceElevation" />
         <attr name="adt_floatingView" />
     </declare-styleable>
 
@@ -271,6 +324,8 @@
         <attr name="adt_stateSelectedColor" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
+        <attr name="adt_dynamicCornerSize" />
         <attr name="adt_windowInsets" />
     </declare-styleable>
 
@@ -281,6 +336,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_tintBackground" />
         <attr name="adt_styleBorderless" />
     </declare-styleable>
@@ -294,21 +350,22 @@
         <attr name="adt_scrollBarColor" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_windowInsets" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicPageIndicator. -->
     <declare-styleable name="DynamicPageIndicator">
         <!-- Diameter of the indicator dots. -->
-        <attr name="ads_dotDiameter" format="dimension" />
+        <attr name="ads_dotDiameter" format="dimension|reference" />
         <!-- Gap between the indicator dots. -->
-        <attr name="ads_dotGap" format="dimension" />
+        <attr name="ads_dotGap" format="dimension|reference" />
         <!-- Animation duration for the dot indicators. -->
-        <attr name="ads_animationDuration" format="integer" />
+        <attr name="ads_animationDuration" format="integer|reference" />
         <!-- Color for the page indicators. -->
-        <attr name="ads_pageIndicatorColor" format="color" />
+        <attr name="ads_pageIndicatorColor" format="color|reference" />
         <!-- Color for the current page indicator. -->
-        <attr name="ads_currentPageIndicatorColor" format="color" />
+        <attr name="ads_currentPageIndicatorColor" format="color|reference" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicPageIndicator2. -->
@@ -327,6 +384,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicRadioButton. -->
@@ -338,6 +396,7 @@
         <attr name="adt_contrastWithColor" />
         <attr name="adt_stateNormalColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicRecyclerView. -->
@@ -349,6 +408,7 @@
         <attr name="adt_scrollBarColor" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_windowInsets" />
     </declare-styleable>
 
@@ -359,6 +419,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_tintBackground" />
         <attr name="adt_styleBorderless" />
     </declare-styleable>
@@ -377,6 +438,7 @@
         <attr name="adt_scrollBarColor" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_windowInsets" />
     </declare-styleable>
 
@@ -387,6 +449,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicRatingBar. -->
@@ -396,6 +459,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicSlider. -->
@@ -405,6 +469,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicRangeSlider. -->
@@ -414,6 +479,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicSpinner. -->
@@ -423,7 +489,8 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
-        <attr name="adt_elevationOnSameBackground" />
+        <attr name="adt_contrast" />
+        <attr name="adt_forceElevation" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicSwipeRefreshLayout. -->
@@ -433,6 +500,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicSwitchCompat. -->
@@ -444,6 +512,19 @@
         <attr name="adt_contrastWithColor" />
         <attr name="adt_stateNormalColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicMaterialSwitch. -->
+    <declare-styleable name="DynamicMaterialSwitch">
+        <attr name="adt_colorType" />
+        <attr name="adt_contrastWithColorType" />
+        <attr name="adt_stateNormalColorType" />
+        <attr name="adt_color" />
+        <attr name="adt_contrastWithColor" />
+        <attr name="adt_stateNormalColor" />
+        <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicTabLayout. -->
@@ -457,6 +538,8 @@
         <attr name="adt_textColor" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
+        <attr name="adt_dynamicCornerSize" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicTextInputEditText. -->
@@ -466,6 +549,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicTextInputLayout. -->
@@ -477,7 +561,8 @@
         <attr name="adt_errorColor" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
-        <attr name="adt_dynamicCornerRadius" />
+        <attr name="adt_contrast" />
+        <attr name="adt_dynamicCornerSize" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicTextView. -->
@@ -489,18 +574,22 @@
         <attr name="adt_linkColor" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
         <attr name="adt_rtlSupport" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicToolbar. -->
     <declare-styleable name="DynamicToolbar">
+        <attr name="adt_backgroundColorType" />
         <attr name="adt_colorType" />
         <attr name="adt_textColorType" />
         <attr name="adt_contrastWithColorType" />
+        <attr name="adt_backgroundColor" />
         <attr name="adt_color" />
         <attr name="adt_textColor" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
     </declare-styleable>
 
     <!-- Attributes for the DynamicViewPager. -->
@@ -510,6 +599,7 @@
         <attr name="adt_color" />
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
     </declare-styleable>
 
 </resources>

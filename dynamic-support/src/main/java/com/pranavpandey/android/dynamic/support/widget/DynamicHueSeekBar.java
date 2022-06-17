@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.utils.DynamicPickerUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicPickerUtils;
 
 /**
  * A {@link DynamicSeekBar} to provide a hue bar for the color picker.

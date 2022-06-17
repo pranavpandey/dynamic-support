@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,14 +23,17 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A {@link DynamicThemePreference} to display the day theme setting.
+ * <p>It will automatically set the theme type to day.
  *
  * @see Theme#DAY
+ * @see com.pranavpandey.android.dynamic.theme.AppTheme#setType(int)
  */
 public class DynamicDayThemePreference extends DynamicThemePreference {
 
@@ -49,6 +52,6 @@ public class DynamicDayThemePreference extends DynamicThemePreference {
 
     @Override
     public @Nullable DynamicAppTheme getDynamicTheme(@Nullable String theme) {
-        return DynamicTheme.getInstance().getTheme(theme);
+        return Dynamic.setThemeType(DynamicTheme.getInstance().getTheme(theme), Theme.DAY);
     }
 }

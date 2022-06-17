@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,10 +30,9 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicInputUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * An {@link AppCompatEditText} to apply {@link DynamicTheme} according to the supplied parameters.
@@ -84,6 +83,11 @@ public class DynamicEditText extends AppCompatEditText implements DynamicWidget 
     protected @Theme.BackgroundAware int mBackgroundAware;
 
     /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
+
+    /**
      * Internal text view used by this view.
      */
     private final DynamicTextView mTextView;
@@ -128,6 +132,9 @@ public class DynamicEditText extends AppCompatEditText implements DynamicWidget 
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicEditText_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicEditText_adt_contrast,
+                    Theme.Contrast.AUTO);
         } finally {
             a.recycle();
         }
@@ -224,6 +231,32 @@ public class DynamicEditText extends AppCompatEditText implements DynamicWidget 
     }
 
     @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
+    }
+
+    @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
@@ -235,7 +268,7 @@ public class DynamicEditText extends AppCompatEditText implements DynamicWidget 
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
             }
 
             DynamicInputUtils.setColor(this, mAppliedColor, mAppliedColor);
@@ -244,11 +277,12 @@ public class DynamicEditText extends AppCompatEditText implements DynamicWidget 
         Dynamic.setColorType(mTextView, Theme.ColorType.NONE);
         Dynamic.setContrastWithColorTypeOrColor(mTextView,
                 mContrastWithColorType, mContrastWithColor);
-        Dynamic.setBackgroundAware(mTextView, mBackgroundAware);
+        Dynamic.setBackgroundAware(mTextView, mBackgroundAware, getContrast(false));
+
         setTextColor(mTextView.getTextColors());
         setHintTextColor(mTextView.getHintTextColors());
         setLinkTextColor(mTextView.getLinkTextColors());
-        setHighlightColor(DynamicColorUtils.getContrastColor(
-                getCurrentTextColor(), getCurrentTextColor()));
+        setHighlightColor(Dynamic.withContrastRatio(
+                getCurrentTextColor(), getCurrentTextColor(), this));
     }
 }

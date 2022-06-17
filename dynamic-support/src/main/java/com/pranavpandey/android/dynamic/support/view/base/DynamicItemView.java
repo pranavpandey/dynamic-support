@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
@@ -168,9 +168,13 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicItemView_adt_backgroundAware,
                     Theme.BackgroundAware.UNKNOWN);
+            mContrast = a.getInteger(
+                    R.styleable.DynamicItemView_adt_contrast,
+                    Theme.Contrast.UNKNOWN);
             mIcon = DynamicResourceUtils.getDrawable(getContext(),
-                    a.getResourceId(R.styleable.DynamicItemView_ads_icon,
-                            Theme.Color.UNKNOWN));
+                    a.getResourceId(
+                            R.styleable.DynamicItemView_ads_icon,
+                            DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
             mTitle = a.getString(
                     R.styleable.DynamicItemView_ads_title);
             mSubtitle = a.getString(
@@ -228,12 +232,18 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
         Dynamic.setContrastWithColorTypeOrColor(getDivider(),
                 getContrastWithColorType(), getContrastWithColor());
 
-        Dynamic.setBackgroundAwareSafe(getItemView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getIconView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getIconFooterView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getTitleView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getSubtitleView(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getDivider(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getItemView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getIconView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getIconFooterView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getTitleView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getSubtitleView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getDivider(),
+                getBackgroundAware(), getContrast(false));
 
         if (getColorType() != Theme.ColorType.CUSTOM) {
             Dynamic.setColorType(getIconView(), getColorType());

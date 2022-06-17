@@ -1,0 +1,102 @@
+/*
+ * Copyright 2018-2022 Pranav Pandey
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.pranavpandey.android.dynamic.support.util;
+
+import androidx.annotation.Nullable;
+
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.pranavpandey.android.dynamic.support.widget.DynamicExtendedFloatingActionButton;
+
+/**
+ * Helper class to perform various {@link FloatingActionButton} operations.
+ */
+public class DynamicFABUtils {
+
+    /**
+     * Same animation that FloatingActionButton.Behavior uses to hide the FAB when the
+     * AppBarLayout exits.
+     *
+     * @param fab The FAB to set hide animation.
+     */
+    public static void hide(@Nullable FloatingActionButton fab) {
+        if (fab == null) {
+            return;
+        }
+
+        fab.hide();
+    }
+
+    /**
+     * Same animation that FloatingActionButton.Behavior uses to hide the extended FAB when the
+     * AppBarLayout exits.
+     *
+     * @param extendedFab The extended FAB to set hide animation.
+     * @param shrinkBefore {@code true} to shrink the FAB before hiding it.
+     */
+    public static void hide(@Nullable ExtendedFloatingActionButton extendedFab,
+            boolean shrinkBefore) {
+        if (extendedFab == null) {
+            return;
+        }
+
+        if (shrinkBefore && (extendedFab instanceof DynamicExtendedFloatingActionButton
+                && ((DynamicExtendedFloatingActionButton) extendedFab).isFABExtended())) {
+            extendedFab.shrink();
+
+            return;
+        }
+
+        extendedFab.hide();
+    }
+
+    /**
+     * Same animation that FloatingActionButton.Behavior uses to show the FAB when the
+     * AppBarLayout enters.
+     *
+     * @param fab The FAB to set show animation.
+     */
+    public static void show(@Nullable FloatingActionButton fab) {
+        if (fab == null) {
+            return;
+        }
+
+        fab.show();
+    }
+
+    /**
+     * Same animation that FloatingActionButton.Behavior uses to show the extended FAB when the
+     * AppBarLayout enters.
+     *
+     * @param extendedFab The FAB to set show animation.
+     * @param extendAfter {@code true} to extend the FAB after showing it.
+     */
+    public static void show(@Nullable ExtendedFloatingActionButton extendedFab,
+            boolean extendAfter) {
+        if (extendedFab == null) {
+            return;
+        }
+
+        extendedFab.show();
+
+        if (extendAfter && (extendedFab instanceof DynamicExtendedFloatingActionButton
+                && ((DynamicExtendedFloatingActionButton) extendedFab).isAllowExtended()
+                && !((DynamicExtendedFloatingActionButton) extendedFab).isFABExtended())) {
+            extendedFab.extend();
+        }
+    }
+}

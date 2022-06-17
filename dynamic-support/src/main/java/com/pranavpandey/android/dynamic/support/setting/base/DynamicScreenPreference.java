@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import com.pranavpandey.android.dynamic.theme.Theme;
  * {@link android.preference.PreferenceScreen} with an icon, title, summary, description,
  * value and an action button.
  *
- * <p>It can be extended to modify according to the need.
+ * <p>It can be extended to modify according to the requirements.
  */
 public class DynamicScreenPreference extends DynamicSimplePreference {
 

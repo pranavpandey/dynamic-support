@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,9 +53,9 @@ class SettingsFragment : DynamicViewPager2Fragment() {
         return getString(R.string.ads_nav_settings)
     }
 
-    override fun getBottomNavigationViewId(): Int {
-        // Return the bottom navigation view id.
-        return R.id.bottom_navigation
+    override fun getNavigationViewId(): Int {
+        // Return the navigation bar view id.
+        return R.id.ads_navigation_bar_view
     }
 
     override fun getCheckedMenuItemId(): Int {

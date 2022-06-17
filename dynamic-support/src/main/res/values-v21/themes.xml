@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -15,25 +15,31 @@
 	limitations under the License.
 -->
 
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:targetApi="s">
 
-    <!-- Application theme -->
+    <!-- Application themes -->
     <style name="Theme.DynamicApp" parent="Base.DynamicApp.NoActionBar">
+        <item name="android:windowSplashScreenBackground">?android:attr/windowBackground</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/ads_status_color</item>
     </style>
 
     <style name="Theme.DynamicApp.Dark" parent="Base.DynamicApp.Dark.NoActionBar">
+        <item name="android:windowSplashScreenBackground">?android:attr/windowBackground</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/ads_status_color</item>
     </style>
 
     <style name="Theme.DynamicApp.Light" parent="Base.DynamicApp.Light.NoActionBar">
+        <item name="android:windowSplashScreenBackground">?android:attr/windowBackground</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/ads_status_color</item>
     </style>
 
     <style name="Theme.DynamicApp.DayNight" parent="Base.DynamicApp.DayNight.NoActionBar">
+        <item name="android:windowSplashScreenBackground">?android:attr/windowBackground</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/ads_status_color</item>
     </style>

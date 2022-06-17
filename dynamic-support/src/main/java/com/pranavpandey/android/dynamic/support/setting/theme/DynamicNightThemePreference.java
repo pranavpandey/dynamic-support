@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,18 +23,21 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 import java.util.Arrays;
 
 /**
  * A {@link DynamicThemePreference} to display the night theme settings.
+ * <p>It will automatically set the theme type to night.
  *
  * @see Theme#NIGHT
+ * @see com.pranavpandey.android.dynamic.theme.AppTheme#setType(int)
  *
  * <p>It will automatically adjust the values according to the available API.
  * <p>{@link Theme.Night#BATTERY} will be available for API 21 and above.
@@ -62,16 +65,15 @@ public class DynamicNightThemePreference extends DynamicThemePreference {
         setEntries(getResources().getStringArray(R.array.ads_theme_entries_night));
         setValues(getResources().getStringArray(R.array.ads_theme_values_night));
 
-        if (getValues() != null && getPreferenceValue() != null) {
+        if (getValues() != null) {
             setDefaultValue(Arrays.asList(getValues()).indexOf(DynamicSdkUtils.is28()
                     ? Theme.Night.ToString.SYSTEM : Theme.Night.ToString.AUTO));
-
             updateValueString(false);
         }
     }
 
     @Override
     public @Nullable DynamicAppTheme getDynamicTheme(@Nullable String theme) {
-        return DynamicTheme.getInstance().getTheme(theme);
+        return Dynamic.setThemeType(DynamicTheme.getInstance().getTheme(theme), Theme.NIGHT);
     }
 }

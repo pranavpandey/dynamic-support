@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,13 +34,13 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicLinkWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicRtlWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
  * A {@link MaterialTextView} to apply {@link DynamicTheme} according to the supplied parameters.
@@ -110,6 +110,11 @@ public class DynamicTextView extends MaterialTextView implements DynamicWidget,
     protected @Theme.BackgroundAware int mBackgroundAware;
 
     /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
+
+    /**
      * Original text appearance attribute resource.
      */
     protected @AttrRes int mAppearanceAttrRes;
@@ -168,6 +173,9 @@ public class DynamicTextView extends MaterialTextView implements DynamicWidget,
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicTextView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicTextView_adt_contrast,
+                    Theme.Contrast.AUTO);
             mRtlSupport = a.getBoolean(
                     R.styleable.DynamicTextView_adt_rtlSupport,
                     Defaults.ADS_RTL_SUPPORT);
@@ -355,6 +363,32 @@ public class DynamicTextView extends MaterialTextView implements DynamicWidget,
     }
 
     @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
+    }
+
+    @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
@@ -366,7 +400,7 @@ public class DynamicTextView extends MaterialTextView implements DynamicWidget,
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
             }
 
             setTextColor(mAppliedColor);
@@ -374,8 +408,8 @@ public class DynamicTextView extends MaterialTextView implements DynamicWidget,
                     mAppliedColor, Defaults.ADS_ALPHA_HINT));
         }
 
-        setHighlightColor(DynamicColorUtils.getContrastColor(
-                getCurrentTextColor(), getCurrentTextColor()));
+        setHighlightColor(Dynamic.withContrastRatio(
+                getCurrentTextColor(), getCurrentTextColor(), this));
     }
 
     @Override
@@ -383,8 +417,8 @@ public class DynamicTextView extends MaterialTextView implements DynamicWidget,
         if (mLinkColor != Theme.Color.UNKNOWN) {
             mAppliedLinkColor = mLinkColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedLinkColor = DynamicColorUtils.getContrastColor(
-                        mLinkColor, mContrastWithColor);
+                mAppliedLinkColor = Dynamic.withContrastRatio(
+                        mLinkColor, mContrastWithColor, this);
             }
 
             setLinkTextColor(mAppliedLinkColor);

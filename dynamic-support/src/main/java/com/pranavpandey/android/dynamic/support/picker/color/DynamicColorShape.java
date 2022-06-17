@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,20 +16,13 @@
 
 package com.pranavpandey.android.dynamic.support.picker.color;
 
-import androidx.annotation.IntDef;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
-import static com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape.CIRCLE;
-import static com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape.RECTANGLE;
-import static com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape.SQUARE;
 
 /**
  * Interface to hold the color shape constant values to generate color swatches accordingly.
  */
 @Retention(RetentionPolicy.SOURCE)
-@IntDef(value = { CIRCLE, SQUARE, RECTANGLE })
 public @interface DynamicColorShape {
 
     /**

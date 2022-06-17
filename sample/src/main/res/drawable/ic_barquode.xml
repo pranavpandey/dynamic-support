@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2021-2022 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <path
+        android:fillColor="#81D4FA"
+        android:pathData="m12.02 4.43h83.95c4.19 0 7.59 3.4 7.59 7.59v83.95c0 4.19 -3.4 7.59 -7.59 7.59h-83.95c-4.19 0 -7.59 -3.4 -7.59 -7.59v-83.95c0 -4.19 3.4 -7.59 7.59 -7.59z" />
+
+    <path
+        android:name="path_scan"
+        android:fillColor="#000000"
+        android:pathData="m68.14 68.35v6.14h3.03v-3.11h3.11v-3.03zm6.06 6.06v0.08h0.08v-0.08zm11.42 0v0.08h0.08v-0.08zm0 -6.06v3.03h3.11v3.11h3.03v-6.14zm-11.42 17.48v0.08h0.08v-0.08zm11.42 0v0.08h0.08v-0.08zm-17.48 0v6.14h6.14v-3.03h-3.11v-3.11zm20.59 0v3.11h-3.11v3.03h6.14v-6.14z"
+        android:fillAlpha="@dimen/adt_fill_alpha_medium" />
+
+    <path
+        android:fillColor="#000000"
+        android:pathData="m26.93 40.18v16.94h3.95v-16.94zm7.91 0v16.94h2.37v-16.94zm7.91 0v16.94h3.95v-16.94zm18.58 0v16.94h3.95v-16.94zm9.49 0v16.94h2.37v-16.94zm6.33 0v16.94h3.95v-16.94zm-58.11 0v19.77h2.37v-19.77zm31.63 0v19.77h1.58v-19.77zm5.14 0v19.77h1.58v-19.77zm30.83 0v19.77h2.37v-19.77z"
+        android:fillAlpha="@dimen/adt_fill_alpha_secondary" />
+
+    <group
+        android:name="group_finder">
+
+        <path
+            android:fillColor="#AB47BC"
+            android:pathData="m20.17 20.17v7.87h7.87v-7.87zm59.78 0v7.87h7.87v-7.87zm-49.84 -2.07v12.01h-12.01v-12.01zm59.78 0v12.01h-12.01v-12.01zm-73.87 -2.07v16.16h16.16v-16.16zm59.78 0v16.16h16.16v-16.16zm-55.64 63.92v7.87h7.87v-7.87zm9.94 -2.07v12.01h-12.01v-12.01zm-14.09 -2.07v16.16h16.16v-16.16z" />
+
+    </group>
+
+</vector>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,14 +31,13 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicInputUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicInputUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicCornerWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicErrorWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 
 /**
  * A {@link TextInputLayout} to apply {@link DynamicTheme} according to the supplied parameters.
@@ -107,6 +106,16 @@ public class DynamicTextInputLayout extends TextInputLayout implements DynamicWi
     protected @Theme.BackgroundAware int mBackgroundAware;
 
     /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
+
+    /**
+     * Corner radius used by this view.
+     */
+    protected @Nullable Float mCornerRadius;
+
+    /**
      * Internal text view used by this view.
      */
     private final DynamicTextView mTextView;
@@ -157,9 +166,12 @@ public class DynamicTextInputLayout extends TextInputLayout implements DynamicWi
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicTextInputLayout_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicTextInputLayout_adt_contrast,
+                    Theme.Contrast.AUTO);
 
-            if (a.getBoolean(R.styleable.DynamicTextInputLayout_adt_dynamicCornerRadius,
-                    Defaults.ADS_DYNAMIC_CORNER_RADIUS)) {
+            if (a.getBoolean(R.styleable.DynamicTextInputLayout_adt_dynamicCornerSize,
+                    Defaults.ADS_DYNAMIC_CORNER_SIZE)) {
                 setCorner((float) DynamicTheme.getInstance().get().getCornerRadius());
             }
         } finally {
@@ -295,6 +307,41 @@ public class DynamicTextInputLayout extends TextInputLayout implements DynamicWi
     }
 
     @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        Dynamic.setCornerMin(this, Math.min(
+                getWidth() / Theme.Corner.FACTOR_MAX_BOX,
+                getHeight() / Theme.Corner.FACTOR_MAX_BOX));
+    }
+
+    @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
@@ -302,9 +349,13 @@ public class DynamicTextInputLayout extends TextInputLayout implements DynamicWi
     }
 
     @Override
-    public void setCorner(Float cornerRadius) {
-        final float resolvedCornerRadius = Math.min(cornerRadius,
-                DynamicUnitUtils.convertDpToPixels(Defaults.ADS_CORNER_MIN_BOX));
+    public @NonNull Float getCorner() {
+        return mCornerRadius != null ? mCornerRadius : getBoxCornerRadiusTopStart();
+    }
+
+    @Override
+    public void setCorner(@NonNull Float cornerSize) {
+        this.mCornerRadius = cornerSize;
 
         // Fix null pointer exception while setting the corner radii
         // in MDC-Android 1.1.0-beta01.
@@ -312,10 +363,10 @@ public class DynamicTextInputLayout extends TextInputLayout implements DynamicWi
             post(new Runnable() {
                 @Override
                 public void run() {
-                    setBoxCornerRadii(getBoxCornerRadiusTopStart() > 0 ? resolvedCornerRadius : 0,
-                            getBoxCornerRadiusTopEnd() > 0 ? resolvedCornerRadius : 0,
-                            getBoxCornerRadiusBottomStart() > 0 ? resolvedCornerRadius : 0,
-                            getBoxCornerRadiusBottomEnd() > 0 ? resolvedCornerRadius : 0);
+                    setBoxCornerRadii(getBoxCornerRadiusTopStart() > 0 ? cornerSize : 0,
+                            getBoxCornerRadiusTopEnd() > 0 ? cornerSize : 0,
+                            getBoxCornerRadiusBottomStart() > 0 ? cornerSize : 0,
+                            getBoxCornerRadiusBottomEnd() > 0 ? cornerSize : 0);
                 }
             });
         } catch (Exception ignored) {
@@ -323,16 +374,11 @@ public class DynamicTextInputLayout extends TextInputLayout implements DynamicWi
     }
 
     @Override
-    public Float getCorner() {
-        return getBoxCornerRadiusTopStart();
-    }
-
-    @Override
     public void setColor() {
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
             }
 
             // Remove alpha as box background color does not supports alpha component.
@@ -358,7 +404,10 @@ public class DynamicTextInputLayout extends TextInputLayout implements DynamicWi
         Dynamic.setColorType(mTextView, Theme.ColorType.NONE);
         Dynamic.setContrastWithColorTypeOrColor(mTextView,
                 mContrastWithColorType, mContrastWithColor);
-        Dynamic.setBackgroundAware(mTextView, mBackgroundAware);
+        Dynamic.setBackgroundAware(mTextView, mBackgroundAware, getContrast(false));
+
+        setStartIconTintList(mTextView.getHintTextColors());
+        setEndIconTintList(mTextView.getHintTextColors());
         setHelperTextColor(mTextView.getHintTextColors());
         setDefaultHintTextColor(mTextView.getHintTextColors());
         setHintTextColor(mTextView.getHintTextColors());
@@ -369,8 +418,8 @@ public class DynamicTextInputLayout extends TextInputLayout implements DynamicWi
         if (mErrorColor != Theme.Color.UNKNOWN) {
             mAppliedErrorColor = mErrorColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedErrorColor = DynamicColorUtils.getContrastColor(
-                        mErrorColor, mContrastWithColor);
+                mAppliedErrorColor = Dynamic.withContrastRatio(
+                        mErrorColor, mContrastWithColor, this);
             }
 
             ColorStateList errorStateList = ColorStateList.valueOf(mAppliedErrorColor);

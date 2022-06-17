@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.recyclerview;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -31,12 +32,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.transition.TransitionManager;
 
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
-import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.view.DynamicEmptyView;
 
 import static androidx.recyclerview.widget.StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS;
 
@@ -75,6 +77,14 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     private RecyclerView.LayoutManager mRecyclerViewLayoutManager;
 
     /**
+     * Empty view that can be shown when the data is empty.
+     *
+     * @see #showEmptyView()
+     * @see #hideEmptyView()
+     */
+    private DynamicEmptyView mEmptyView;
+
+    /**
      * Progress bar that can be shown while the data is loading in the background.
      *
      * @see #showProgress()
@@ -89,12 +99,41 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     public DynamicRecyclerViewFrame(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-        initialize();
+        onLoadAttributes(attrs);
     }
 
     public DynamicRecyclerViewFrame(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
+        onLoadAttributes(attrs);
+    }
+
+    protected void onLoadAttributes(@Nullable AttributeSet attrs) {
+        inflate(getContext(), getLayoutRes(), this);
+
+        mSwipeRefreshLayout = findViewById(R.id.ads_swipe_refresh_layout);
+        mRecyclerView = findViewById(R.id.ads_recycler_view);
+        mEmptyView = findViewById(R.id.ads_empty_view);
+        mProgressBar = findViewById(R.id.ads_progress);
+
+        TypedArray a = getContext().obtainStyledAttributes(attrs,
+                R.styleable.DynamicRecyclerViewFrame);
+
+        try {
+            if (mEmptyView != null) {
+                mEmptyView.setIcon(DynamicResourceUtils.getDrawable(getContext(),
+                        a.getResourceId(
+                                R.styleable.DynamicRecyclerViewFrame_ads_empty_view_icon,
+                                DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE)));
+                mEmptyView.setTitle(a.getString(
+                        R.styleable.DynamicRecyclerViewFrame_ads_empty_view_title));
+                mEmptyView.setSubtitle(a.getString(
+                        R.styleable.DynamicRecyclerViewFrame_ads_empty_view_subtitle));
+            }
+        } finally {
+            a.recycle();
+        }
 
         initialize();
     }
@@ -113,15 +152,9 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      * Initialize this view with default settings.
      */
     protected void initialize() {
-        inflate(getContext(), getLayoutRes(), this);
-
-        mSwipeRefreshLayout = findViewById(R.id.ads_swipe_refresh_layout);
-        mRecyclerView = findViewById(R.id.ads_recycler_view);
-        mProgressBar = findViewById(R.id.ads_progress);
-
         setRecyclerViewLayoutManager(getRecyclerViewLayoutManager());
         onCreateRecyclerView(mRecyclerView);
-        setOnRefreshListener(setOnRefreshListener());
+        setSwipeRefreshLayout(mSwipeRefreshLayout);
     }
 
     /**
@@ -136,9 +169,10 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      * Set supplied LayoutManager to the RecyclerView.
      *
      * @param layoutManager Layout manager for the recycler view;
+     * @param notify {@code true} to notify data set changed.
      */
     public void setRecyclerViewLayoutManager(
-            final @Nullable RecyclerView.LayoutManager layoutManager) {
+            final @Nullable RecyclerView.LayoutManager layoutManager, boolean notify) {
         this.mRecyclerViewLayoutManager = layoutManager;
         if (mRecyclerViewLayoutManager == null) {
             mRecyclerViewLayoutManager = DynamicLayoutUtils.getLinearLayoutManager(
@@ -148,9 +182,21 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
         mRecyclerView.setLayoutManager(mRecyclerViewLayoutManager);
         checkForStaggeredGridLayoutManager();
 
-        if (mRecyclerView.getAdapter() != null) {
-            mRecyclerView.getAdapter().notifyDataSetChanged();
+        if (notify) {
+            notifyDataSetChanged();
         }
+    }
+
+    /**
+     * Set supplied LayoutManager to the RecyclerView.
+     *
+     * @param layoutManager Layout manager for the recycler view;
+     *
+     * @see #setRecyclerViewLayoutManager(RecyclerView.LayoutManager, boolean)
+     */
+    public void setRecyclerViewLayoutManager(
+            final @Nullable RecyclerView.LayoutManager layoutManager) {
+        setRecyclerViewLayoutManager(layoutManager, true);
     }
 
     /**
@@ -200,8 +246,29 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      *
      * @return The adapter used by the recycler view.
      */
-    public RecyclerView.Adapter<?> getAdapter() {
+    public @Nullable RecyclerView.Adapter<?> getAdapter() {
         return mRecyclerView.getAdapter();
+    }
+
+    /**
+     * Notify data set changed for the recycler view adapter.
+     */
+    public void notifyDataSetChanged() {
+        if (getAdapter() != null && !getRecyclerView().isComputingLayout()) {
+            getAdapter().notifyDataSetChanged();
+            checkForStaggeredGridLayoutManager();
+        }
+    }
+
+    /**
+     * Notify item changed for the recycler view adapter.
+     *
+     * @param position The changed position.
+     */
+    public void notifyItemChanged(int position) {
+        if (getAdapter() != null && !getRecyclerView().isComputingLayout()) {
+            getAdapter().notifyItemChanged(position);
+        }
     }
 
     /**
@@ -220,7 +287,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      *
      * @see #setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener)
      */
-    protected SwipeRefreshLayout.OnRefreshListener setOnRefreshListener() {
+    protected @Nullable SwipeRefreshLayout.OnRefreshListener setOnRefreshListener() {
         return null;
     }
 
@@ -247,8 +314,19 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      *
      * @return The swipe refresh layout used by this view.
      */
-    public SwipeRefreshLayout getSwipeRefreshLayout() {
+    public @Nullable SwipeRefreshLayout getSwipeRefreshLayout() {
         return mSwipeRefreshLayout;
+    }
+
+    /**
+     * Set the swipe refresh layout for this view.
+     *
+     * @param swipeRefreshLayout The swipe refresh layout to be set.
+     */
+    public void setSwipeRefreshLayout(@Nullable SwipeRefreshLayout swipeRefreshLayout) {
+        this.mSwipeRefreshLayout = swipeRefreshLayout;
+
+        setOnRefreshListener(setOnRefreshListener());
     }
 
     /**
@@ -256,7 +334,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      *
      * @return The swipe refresh layout listener used by this view.
      */
-    public SwipeRefreshLayout.OnRefreshListener getOnRefreshListener() {
+    public @Nullable SwipeRefreshLayout.OnRefreshListener getOnRefreshListener() {
         return mOnRefreshListener;
     }
 
@@ -280,6 +358,81 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     /**
+     * Get the empty view that can be shown when the data is empty.
+     *
+     * @return The empty view that can be shown when the data is empty.
+     */
+    public @Nullable DynamicEmptyView getEmptyView() {
+        return mEmptyView;
+    }
+
+    /**
+     * Show empty view on top of the recycler view.
+     *
+     * @param animate {@code true} to animate the changes.
+     */
+    public void showEmptyView(final boolean animate) {
+        if (mEmptyView == null) {
+            return;
+        }
+
+        post(new Runnable() {
+            @Override
+            public void run() {
+                if (animate && DynamicMotion.getInstance().isMotion()) {
+                    DynamicMotion.getInstance().beginDelayedTransition(
+                            DynamicRecyclerViewFrame.this);
+                }
+
+                Dynamic.setVisibility(mRecyclerView, GONE);
+                Dynamic.setVisibility(findViewById(R.id.ads_empty_view_scroll), VISIBLE);
+            }
+        });
+    }
+
+    /**
+     * Show empty view on top of the recycler view.
+     *
+     * @see #showEmptyView(boolean)
+     */
+    public void showEmptyView() {
+        showEmptyView(true);
+    }
+
+    /**
+     * Hide empty view from the top of the recycler view.
+     *
+     * @param animate {@code true} to animate the changes.
+     */
+    public void hideEmptyView(final boolean animate) {
+        if (mEmptyView == null) {
+            return;
+        }
+
+        post(new Runnable() {
+            @Override
+            public void run() {
+                if (animate && DynamicMotion.getInstance().isMotion()) {
+                    DynamicMotion.getInstance().beginDelayedTransition(
+                            DynamicRecyclerViewFrame.this);
+                }
+
+                Dynamic.setVisibility(mRecyclerView, VISIBLE);
+                Dynamic.setVisibility(findViewById(R.id.ads_empty_view_scroll), GONE);
+            }
+        });
+    }
+
+    /**
+     * Hide empty view from the top of the recycler view.
+     *
+     * @see #hideEmptyView(boolean)
+     */
+    public void hideEmptyView() {
+        hideEmptyView(true);
+    }
+
+    /**
      * Get the progress bar that can be shown while the data is loading in the background.
      *
      * @return The progress bar that can be shown while the data is loading in the background.
@@ -289,11 +442,22 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     /**
+     * Set the refreshing state for the swipe refresh layout.
+     *
+     * @param refreshing {@code true} if the the data is refreshing.
+     */
+    public void setRefreshing(boolean refreshing) {
+        if (getSwipeRefreshLayout() != null) {
+            getSwipeRefreshLayout().setRefreshing(refreshing);
+        }
+    }
+
+    /**
      * Show progress bar and hide the recycler view.
      *
      * @param animate {@code true} to animate the changes.
      */
-    public void showProgress(boolean animate) {
+    public void showProgress(final boolean animate) {
         if (mProgressBar == null) {
             return;
         }
@@ -302,7 +466,8 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
             @Override
             public void run() {
                 if (animate && DynamicMotion.getInstance().isMotion()) {
-                    TransitionManager.beginDelayedTransition(DynamicRecyclerViewFrame.this);
+                    DynamicMotion.getInstance().beginDelayedTransition(
+                            DynamicRecyclerViewFrame.this);
                 }
 
                 Dynamic.setVisibility(mProgressBar, VISIBLE);
@@ -314,7 +479,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     /**
      * Show progress bar and hide the recycler view.
      *
-     * @see #showProgress()
+     * @see #showProgress(boolean)
      */
     public void showProgress() {
         showProgress(true);
@@ -325,7 +490,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      *
      * @param animate {@code true} to animate the changes.
      */
-    public void hideProgress(boolean animate) {
+    public void hideProgress(final boolean animate) {
         if (mProgressBar == null) {
             return;
         }
@@ -334,7 +499,8 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
             @Override
             public void run() {
                 if (animate && DynamicMotion.getInstance().isMotion()) {
-                    TransitionManager.beginDelayedTransition(DynamicRecyclerViewFrame.this);
+                    DynamicMotion.getInstance().beginDelayedTransition(
+                            DynamicRecyclerViewFrame.this);
                 }
 
                 Dynamic.setVisibility(mProgressBar, GONE);
@@ -346,7 +512,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     /**
      * Hide progress bar and show the recycler view.
      *
-     * @see #hideProgress()
+     * @see #hideProgress(boolean)
      */
     public void hideProgress() {
         hideProgress(true);
@@ -376,6 +542,24 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
             @Override
             public void run() {
                 getViewRoot().scrollTo(x, y);
+            }
+        });
+    }
+
+    /**
+     * Scroll the recycler view view layout manager to the supplied position.
+     *
+     * @param position The position to scroll to.
+     */
+    public void scrollToPosition(final int position) {
+        if (getLayoutManager() == null) {
+            return;
+        }
+
+        post(new Runnable() {
+            @Override
+            public void run() {
+                getLayoutManager().scrollToPosition(position);
             }
         });
     }

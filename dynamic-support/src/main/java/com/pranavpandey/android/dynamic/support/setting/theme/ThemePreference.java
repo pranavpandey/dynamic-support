@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -125,15 +125,19 @@ public abstract class ThemePreference<T extends DynamicAppTheme>
 
     @Override
     public @Nullable String getPreferenceKey() {
-        return getAltPreferenceKey();
+        return super.getAltPreferenceKey();
+    }
+
+    @Override
+    public @Nullable String getAltPreferenceKey() {
+        return super.getPreferenceKey();
     }
 
     @Override
     protected void onUpdate() {
         super.onUpdate();
 
-        mTheme = DynamicPreferences.getInstance().load(
-                super.getPreferenceKey(), getDefaultTheme());
+        mTheme = DynamicPreferences.getInstance().load(getAltPreferenceKey(), getDefaultTheme());
         mDynamicTheme = getDynamicTheme(getTheme());
 
         if (getDynamicTheme() != null) {
@@ -162,8 +166,10 @@ public abstract class ThemePreference<T extends DynamicAppTheme>
         Dynamic.setContrastWithColorTypeOrColor(getThemePreviewDescription(),
                 getContrastWithColorType(), getContrastWithColor());
 
-        Dynamic.setBackgroundAwareSafe(getThemePreviewIcon(), getBackgroundAware());
-        Dynamic.setBackgroundAwareSafe(getThemePreviewDescription(), getBackgroundAware());
+        Dynamic.setBackgroundAwareSafe(getThemePreviewIcon(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getThemePreviewDescription(),
+                getBackgroundAware(), getContrast(false));
     }
 
     /**
@@ -178,10 +184,10 @@ public abstract class ThemePreference<T extends DynamicAppTheme>
     /**
      * Set the current dynamic theme value for this preference.
      *
-     * @param dynamicTheme The current dynamic theme value to be set.
+     * @param theme The current dynamic theme value to be set.
      */
-    public void setDynamicTheme(@Nullable T dynamicTheme) {
-        this.mDynamicTheme = dynamicTheme;
+    public void setDynamicTheme(@Nullable T theme) {
+        this.mDynamicTheme = theme;
 
         update();
     }
@@ -324,7 +330,7 @@ public abstract class ThemePreference<T extends DynamicAppTheme>
             return;
         }
 
-        if (key.equals(super.getPreferenceKey())) {
+        if (key.equals(getAltPreferenceKey())) {
             update();
         }
     }

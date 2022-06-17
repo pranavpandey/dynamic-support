@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,19 +16,25 @@
 
 package com.pranavpandey.android.dynamic.support.model;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.text.TextUtils;
 
 import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView;
+import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
 
 /**
- * A model class to hold the dynamic information which can be used by the
- * {@link DynamicInfoView}.
+ * A model class to hold the dynamic information which can be used by the {@link DynamicInfoView}.
  */
-public class DynamicInfo {
+public class DynamicInfo implements Parcelable {
 
     /**
      * Icon used by this info.
@@ -91,7 +97,60 @@ public class DynamicInfo {
     private Integer[] linksColors;
 
     /**
-     * Ge the icon used by this info.
+     * Default constructor to initialize the dynamic permission.
+     */
+    public DynamicInfo() { }
+
+    /**
+     * Read an object of this class from the parcel.
+     *
+     * @param in The parcel to read the values.
+     */
+    public DynamicInfo(@NonNull Parcel in) {
+        this.icon = new BitmapDrawable(Resources.getSystem(),
+                (Bitmap) in.readParcelable(getClass().getClassLoader()));
+        this.iconBig = new BitmapDrawable(Resources.getSystem(),
+                (Bitmap) in.readParcelable(getClass().getClassLoader()));
+        this.title = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
+        this.subtitle = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
+        this.description = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
+        this.linksIconsResId = in.readInt();
+        this.linksColorsResId = in.readInt();
+    }
+
+    /**
+     * Parcelable creator to create from parcel.
+     */
+    public static final Parcelable.Creator<DynamicInfo> CREATOR =
+            new Parcelable.Creator<DynamicInfo>() {
+        @Override
+        public DynamicInfo createFromParcel(Parcel in) {
+            return new DynamicInfo(in);
+        }
+
+        @Override
+        public DynamicInfo[] newArray(int size) {
+            return new DynamicInfo[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return hashCode();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(DynamicBitmapUtils.getBitmap(icon), flags);
+        TextUtils.writeToParcel(title, dest, flags);
+        TextUtils.writeToParcel(subtitle, dest, flags);
+        TextUtils.writeToParcel(description, dest, flags);
+        dest.writeInt(linksIconsResId);
+        dest.writeInt(linksColorsResId);
+    }
+
+    /**
+     * Get the icon used by this info.
      *
      * @return The icon used by this info.
      */
@@ -179,7 +238,7 @@ public class DynamicInfo {
     }
 
     /**
-     * Ge the description used by this info.
+     * Get the description used by this info.
      *
      * @return The description used by this info.
      */
@@ -245,16 +304,16 @@ public class DynamicInfo {
     }
 
     /**
-     * Get the url for the links used by this info.
+     * Get the URL for the links used by this info.
      *
-     * @return The url for the links used by this info.
+     * @return The URL for the links used by this info.
      */
     public @Nullable CharSequence[] getLinksUrls() {
         return linksUrls;
     }
 
     /**
-     * Set the url for the links used by this info.
+     * Set the URL for the links used by this info.
      *
      * @param linksUrls The urls for the links to be set.
      *

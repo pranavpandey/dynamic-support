@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,15 @@
 package com.pranavpandey.android.dynamic.support;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
+import android.graphics.drawable.LayerDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -29,24 +33,29 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.FloatRange;
+import androidx.annotation.IdRes;
+import androidx.annotation.IntRange;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.StringRes;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
+import androidx.core.graphics.drawable.IconCompat;
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.snackbar.Snackbar;
 import com.pranavpandey.android.dynamic.support.activity.DynamicActivity;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener;
@@ -58,13 +67,16 @@ import com.pranavpandey.android.dynamic.support.setting.base.DynamicPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.inflater.DynamicLayoutInflater;
 import com.pranavpandey.android.dynamic.support.tutorial.Tutorial;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicScrollUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicScrollUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
+import com.pranavpandey.android.dynamic.support.widget.DynamicButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
+import com.pranavpandey.android.dynamic.support.widget.DynamicFloatingActionButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicMaterialCardView;
+import com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicBackgroundWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicLinkWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicScrollableWidget;
@@ -74,8 +86,14 @@ import com.pranavpandey.android.dynamic.support.widget.base.DynamicSurfaceWidget
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTextWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.theme.base.BackgroundAware;
+import com.pranavpandey.android.dynamic.theme.base.DynamicColor;
+import com.pranavpandey.android.dynamic.theme.base.StrokeTheme;
+import com.pranavpandey.android.dynamic.theme.base.TranslucentTheme;
+import com.pranavpandey.android.dynamic.theme.base.TypeTheme;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
  * Helper class to manipulate {@link DynamicActivity} and inflated views at runtime according
@@ -98,6 +116,46 @@ import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
  * @see DynamicItem
  */
 public class Dynamic {
+
+    /**
+     * Resolves a color based on the supplied parameters.
+     *
+     * @param background The background color to be considered.
+     * @param color The color to be resolved.
+     * @param tint The tint color to be resolved.
+     * @param backgroundAware {@code true} if the background aware is enabled.
+     *
+     * @return The resolved color based on the supplied parameters.
+     */
+    public static @ColorInt int resolveColor(@ColorInt int background,
+            @ColorInt int color, @ColorInt int tint, boolean backgroundAware) {
+        final boolean dark = DynamicColorUtils.isColorDark(background);
+        if (backgroundAware && dark != DynamicColorUtils.isColorDark(color)) {
+            return dark == DynamicColorUtils.isColorDark(tint) ? tint : getTintColor(color);
+        }
+
+        return color;
+    }
+
+    /**
+     * Resolves a color based on the supplied parameters.
+     *
+     * @param background The background color to be considered.
+     * @param color The color to be resolved.
+     * @param tint The tint color to be resolved.
+     * @param backgroundAware {@code true} if the background aware is enabled.
+     *
+     * @return The resolved color based on the supplied parameters.
+     */
+    public static @ColorInt int resolveTintColor(@ColorInt int background,
+            @ColorInt int color, @ColorInt int tint, boolean backgroundAware) {
+        final boolean dark = DynamicColorUtils.isColorDark(background);
+        if (backgroundAware && dark == DynamicColorUtils.isColorDark(tint)) {
+            return dark != DynamicColorUtils.isColorDark(color) ? color : getTintColor(tint);
+        }
+
+        return tint;
+    }
 
     /**
      * Sets the color type for the supplied dynamic object.
@@ -274,6 +332,23 @@ public class Dynamic {
     }
 
     /**
+     * Refresh the color for the supplied dynamic object.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see DynamicWidget#setColor()
+     * @see DynamicColorView#setColor()
+     */
+    public static <T> void setColor(@Nullable T dynamic) {
+        if (dynamic instanceof DynamicColorView) {
+            ((DynamicColorView) dynamic).setColor();
+        } else if (dynamic instanceof DynamicWidget) {
+            ((DynamicWidget) dynamic).setColor();
+        }
+    }
+
+    /**
      * Sets the background color for the supplied dynamic object.
      *
      * @param dynamic The dynamic object to be used.
@@ -357,6 +432,20 @@ public class Dynamic {
     }
 
     /**
+     * Refresh the text color for the supplied dynamic object.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see DynamicTextWidget#setTextColor()
+     */
+    public static <T> void setTextColor(@Nullable T dynamic) {
+        if (dynamic instanceof DynamicTextWidget) {
+            ((DynamicTextWidget) dynamic).setTextColor();
+        }
+    }
+
+    /**
      * Sets the link color for the supplied dynamic object.
      *
      * @param dynamic The dynamic object to be used.
@@ -368,6 +457,20 @@ public class Dynamic {
     public static <T> void setLinkColor(@Nullable T dynamic, @ColorInt int color) {
         if (dynamic instanceof DynamicLinkWidget) {
             ((DynamicLinkWidget) dynamic).setLinkColor(color);
+        }
+    }
+
+    /**
+     * Refresh the link color for the supplied dynamic object.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see DynamicLinkWidget#setLinkColor()
+     */
+    public static <T> void setLinkColor(@Nullable T dynamic) {
+        if (dynamic instanceof DynamicLinkWidget) {
+            ((DynamicLinkWidget) dynamic).setLinkColor();
         }
     }
 
@@ -417,6 +520,45 @@ public class Dynamic {
     }
 
     /**
+     * Refresh the scroll bar color for the supplied dynamic object.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see DynamicScrollableWidget#setScrollBarColor()
+     */
+    public static <T> void setScrollBarColor(@Nullable T dynamic) {
+        if (dynamic instanceof DynamicScrollableWidget) {
+            ((DynamicScrollableWidget) dynamic).setScrollBarColor();
+        }
+    }
+
+    /**
+     * Checks whether the stroke is required for the supplied theme.
+     *
+     * @param theme The theme object to be used.
+     * @param <T> The type of the dynamic theme.
+     *
+     * @return {@code true} if the stroke is required for the supplied theme.
+     */
+    public static <T extends StrokeTheme<?>> boolean isStroke(@Nullable T theme) {
+        if (theme == null) {
+            return false;
+        }
+
+        return DynamicSdkUtils.is16() && theme.isStroke();
+    }
+
+    /**
+     * Checks whether the stroke is required for the current theme.
+     *
+     * @return {@code true} if the stroke is required for the current theme.
+     */
+    public static boolean isStroke() {
+        return isStroke(DynamicTheme.getInstance().get());
+    }
+
+    /**
      * Checks whether the background aware functionality is enabled for the supplied value.
      *
      * @param backgroundAware The value to be checked.
@@ -454,10 +596,63 @@ public class Dynamic {
     }
 
     /**
-     * Sets the background aware for the supplied dynamic object.
+     * Sets the background aware and contrast for the supplied dynamic object.
      *
      * @param dynamic The dynamic object to be used.
      * @param backgroundAware The background aware option to be set.
+     * @param contrast The contrast to be set.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see DynamicWidget#setBackgroundAware(int)
+     * @see DynamicWidget#setContrast(int)
+     * @see DynamicItem#setBackgroundAware(int)
+     * @see DynamicItem#setContrast(int)
+     */
+    public static <T> void setBackgroundAware(@Nullable T dynamic,
+            @Theme.BackgroundAware int backgroundAware, int contrast) {
+        if (dynamic instanceof DynamicWidget) {
+            ((DynamicWidget) dynamic).setBackgroundAware(backgroundAware);
+            ((DynamicWidget) dynamic).setContrast(contrast);
+        } else if (dynamic instanceof DynamicItem) {
+            ((DynamicItem) dynamic).setBackgroundAware(backgroundAware);
+            ((DynamicItem) dynamic).setContrast(contrast);
+        }
+    }
+
+    /**
+     * Sets the background aware and contrast for the dynamic object according
+     * to the supplied theme.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param theme The theme object to be used.
+     * @param <V> The type of the dynamic object.
+     * @param <T> The type of the dynamic theme.
+     *
+     * @see DynamicWidget#setBackgroundAware(int)
+     * @see DynamicWidget#setContrast(int)
+     * @see DynamicItem#setBackgroundAware(int)
+     * @see DynamicItem#setContrast(int)
+     */
+    public static <V, T extends BackgroundAware<?>> void setBackgroundAware(
+            @Nullable V dynamic, @Nullable T theme) {
+        if (theme == null) {
+            return;
+        }
+
+        if (dynamic instanceof DynamicWidget) {
+            ((DynamicWidget) dynamic).setBackgroundAware(theme.getBackgroundAware());
+            ((DynamicWidget) dynamic).setContrast(theme.getContrast());
+        } else if (dynamic instanceof DynamicItem) {
+            ((DynamicItem) dynamic).setBackgroundAware(theme.getBackgroundAware());
+            ((DynamicItem) dynamic).setContrast(theme.getContrast());
+        }
+    }
+
+    /**
+     * Sets the background aware for the supplied dynamic object.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param backgroundAware The background aware option to be set
      * @param <T> The type of the dynamic object.
      *
      * @see DynamicWidget#setBackgroundAware(int)
@@ -470,6 +665,385 @@ public class Dynamic {
         } else if (dynamic instanceof DynamicItem) {
             ((DynamicItem) dynamic).setBackgroundAware(backgroundAware);
         }
+    }
+
+    /**
+     * Returns the resolved contrast for the supplied value.
+     *
+     * @param contrast The contrast to be resolved.
+     *
+     * @return The resolved contrast for the supplied value.
+     *
+     * @see Theme.Contrast#AUTO
+     * @see Theme.Contrast#UNKNOWN
+     */
+    public static int getContrast(int contrast) {
+        if (contrast == Theme.Contrast.AUTO || contrast == Theme.Contrast.UNKNOWN) {
+            return DynamicTheme.getInstance().get().getContrast();
+        }
+
+        return contrast;
+    }
+
+    /**
+     * Returns the contrast for the supplied dynamic object.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param <T> The type of the dynamic object.
+     *
+     * @return The contrast for the supplied dynamic object.
+     *
+     * @see #getContrast(int)
+     */
+    public static <T> int getContrast(@Nullable T dynamic) {
+        if (dynamic instanceof DynamicWidget) {
+            return getContrast(((DynamicWidget) dynamic).getContrast(false));
+        } else if (dynamic instanceof DynamicItem) {
+            return getContrast(((DynamicItem) dynamic).getContrast(false));
+        }
+
+        return DynamicTheme.getInstance().get().getContrast();
+    }
+
+    /**
+     * Returns the contrast color according to the supplied visible contrast.
+     *
+     * @param color The color to be used.
+     * @param contrastWith The contrast with color to be used.
+     * @param visibleContrast The minimum ratio for the visible contrast.
+     *
+     * @return The contrast color according to the supplied visible contrast.
+     *
+     * @see DynamicColorUtils#getContrastColor(int, int, float)
+     */
+    public static @ColorInt int withContrastRatio(@ColorInt int color,
+            @ColorInt int contrastWith, float visibleContrast) {
+        return DynamicColorUtils.getContrastColor(color, contrastWith, visibleContrast);
+    }
+
+    /**
+     * Returns the contrast color according to the supplied theme.
+     *
+     * @param color The color to be used.
+     * @param contrastWith The contrast with color to be used.
+     * @param theme The theme object to be used.
+     * @param <T> The type of the theme.
+     *
+     * @return The contrast color according to the supplied theme.
+     *
+     * @see BackgroundAware#getContrastRatio()
+     * @see #withContrastRatio(int, int, float)
+     * @see DynamicColorUtils#getContrastColor(int, int)
+     */
+    public static @ColorInt <T extends BackgroundAware<?>> int withContrastRatio(
+            @ColorInt int color, @ColorInt int contrastWith, @Nullable T theme) {
+        if (theme != null) {
+            return withContrastRatio(color, contrastWith, theme.getContrastRatio());
+        }
+
+        return DynamicColorUtils.getContrastColor(color, contrastWith);
+    }
+
+    /**
+     * Returns the contrast color according to the applied theme.
+     *
+     * @param color The color to be used.
+     * @param contrastWith The contrast with color to be used.
+     *
+     * @return The contrast color according to the applied theme.
+     *
+     * @see DynamicTheme#get()
+     * @see #withContrastRatio(int, int, BackgroundAware)
+     */
+    public static @ColorInt int withContrastRatio(@ColorInt int color,
+            @ColorInt int contrastWith) {
+        return withContrastRatio(color, contrastWith, DynamicTheme.getInstance().get());
+    }
+
+    /**
+     * Returns the contrast color according to the supplied dynamic widget.
+     *
+     * @param color The color to be used.
+     * @param contrastWith The contrast with color to be used.
+     * @param view The view object to be used.
+     * @param <T> The type of the dynamic widget.
+     *
+     * @return The contrast color according to the supplied dynamic widget.
+     *
+     * @see DynamicWidget#getContrastRatio()
+     * @see DynamicItem#getContrastRatio()
+     * @see #withContrastRatio(int, int, float)
+     * @see #withContrastRatio(int, int)
+     */
+    public static @ColorInt <T> int withContrastRatio(
+            @ColorInt int color, @ColorInt int contrastWith, @Nullable T view) {
+        if (view instanceof DynamicWidget) {
+            return withContrastRatio(color, contrastWith,
+                    ((DynamicWidget) view).getContrastRatio());
+        } else if (view instanceof DynamicItem) {
+            return withContrastRatio(color, contrastWith,
+                    ((DynamicItem) view).getContrastRatio());
+        }
+
+        return withContrastRatio(color, contrastWith);
+    }
+
+    /**
+     * Returns the tint color according to the supplied visible contrast.
+     *
+     * @param color The color to be used.
+     * @param visibleContrast The minimum ratio for the visible contrast.
+     *
+     * @return The tint color according to the supplied visible contrast.
+     *
+     * @see DynamicColorUtils#getTintColor(int, float)
+     */
+    public static @ColorInt int getTintColor(@ColorInt int color, float visibleContrast) {
+        return DynamicColorUtils.getTintColor(color, visibleContrast);
+    }
+
+    /**
+     * Returns the tint color according to the supplied theme.
+     *
+     * @param color The color to be used.
+     * @param theme The theme object to be used.
+     * @param <T> The type of the theme.
+     *
+     * @return The tint color according to the supplied theme.
+     *
+     * @see BackgroundAware#getContrastRatio()
+     * @see DynamicColorUtils#getTintColor(int)
+     * @see #getTintColor(int, float)
+     * @see DynamicColorUtils#getTintColor(int)
+     */
+    public static @ColorInt <T extends BackgroundAware<?>> int getTintColor(
+            @ColorInt int color, @Nullable T theme) {
+        if (theme != null) {
+            return getTintColor(color, theme.getContrastRatio());
+        }
+
+        return DynamicColorUtils.getTintColor(color);
+    }
+
+    /**
+     * Returns the tint color according to the applied theme.
+     *
+     * @param color The color to be used.
+     *
+     * @return The tint color according to the applied theme.
+     *
+     * @see DynamicTheme#get()
+     * @see #getTintColor(int, BackgroundAware)
+     */
+    public static @ColorInt int getTintColor(@ColorInt int color) {
+        return getTintColor(color, DynamicTheme.getInstance().get());
+    }
+
+    /**
+     * Returns the tint color according to the supplied dynamic widget.
+     *
+     * @param color The color to be used.
+     * @param view The view object to be used.
+     * @param <T> The type of the dynamic widget.
+     *
+     * @return The tint color according to the supplied dynamic widget.
+     *
+     * @see DynamicWidget#getContrastRatio()
+     * @see DynamicItem#getContrastRatio()
+     * @see #getTintColor(int, float)
+     * @see #getTintColor(int)
+     */
+    public static @ColorInt <T> int getTintColor(@ColorInt int color, @Nullable T view) {
+        if (view instanceof DynamicWidget) {
+            return getTintColor(color, ((DynamicWidget) view).getContrastRatio());
+        } else if (view instanceof DynamicItem) {
+            return getTintColor(color, ((DynamicItem) view).getContrastRatio());
+        }
+
+        return getTintColor(color);
+    }
+
+    /**
+     * Sets the translucent theme opacity for the supplied color.
+     *
+     * @param color The color to be used.
+     * @param theme The theme object to be used.
+     * @param min The minimum opacity to be used.
+     * @param <T> The type of the dynamic theme.
+     *
+     * @return The color after applying the theme opacity.
+     *
+     * @see TranslucentTheme#isTranslucent()
+     * @see TranslucentTheme#getOpacity()
+     * @see DynamicColorUtils#setAlpha(int, int)
+     */
+    public static @ColorInt <T extends TranslucentTheme<?>> int withThemeOpacity(
+            @ColorInt int color, @Nullable T theme,
+            @IntRange(from = Theme.Opacity.MIN, to = Theme.Opacity.MAX) int min) {
+        if (color == Theme.Color.UNKNOWN) {
+            return Color.TRANSPARENT;
+        } else if (color != Color.TRANSPARENT && theme != null && theme.isTranslucent()) {
+            return DynamicColorUtils.setAlpha(color, Math.max(theme.getOpacity(), min));
+        }
+
+        return color;
+    }
+
+    /**
+     * Sets the translucent theme opacity for the supplied color.
+     *
+     * @param color The color to be used.
+     * @param theme The theme object to be used.
+     * @param <T> The type of the dynamic theme.
+     *
+     * @return The color after applying the theme opacity.
+     *
+     * @see TranslucentTheme#getOpacity()
+     * @see #withThemeOpacity(int, TranslucentTheme, int)
+     */
+    public static @ColorInt <T extends TranslucentTheme<?>> int withThemeOpacity(
+            @ColorInt int color, @Nullable T theme) {
+        if (theme != null) {
+            return withThemeOpacity(color, theme, theme.getOpacity());
+        }
+
+        return color;
+    }
+
+    /**
+     * Sets the translucent theme opacity for the supplied color.
+     *
+     * @param color The color to be used.
+     * @param min The minimum opacity to be used.
+     *
+     * @return The color after applying the theme opacity.
+     *
+     * @see #withThemeOpacity(int, TranslucentTheme, int)
+     */
+    public static @ColorInt int withThemeOpacity(@ColorInt int color,
+            @IntRange(from = Theme.Opacity.MIN, to = Theme.Opacity.MAX) int min) {
+        return withThemeOpacity(color, DynamicTheme.getInstance().get(), min);
+    }
+
+    /**
+     * Sets the translucent theme opacity for the supplied color.
+     *
+     * @param color The color to be used.
+     *
+     * @return The color after applying the theme opacity.
+     *
+     * @see #withThemeOpacity(int, TranslucentTheme)
+     */
+    public static @ColorInt int withThemeOpacity(@ColorInt int color) {
+        return withThemeOpacity(color, DynamicTheme.getInstance().get());
+    }
+
+    /**
+     * Sets the translucent theme opacity for the supplied drawable.
+     *
+     * @param drawable The drawable to be used.
+     * @param theme The theme object to be used.
+     * @param min The minimum opacity to be used.
+     * @param <T> The type of the dynamic theme.
+     *
+     * @return The drawable after applying the theme opacity.
+     *
+     * @see TranslucentTheme#isTranslucent()
+     * @see TranslucentTheme#getOpacity()
+     * @see Drawable#setAlpha(int)
+     */
+    public static @Nullable <T extends TranslucentTheme<?>> Drawable withThemeOpacity(
+            @Nullable Drawable drawable, @Nullable T theme,
+            @IntRange(from = Theme.Opacity.MIN, to = Theme.Opacity.MAX) int min) {
+        if (drawable != null && theme != null && theme.isTranslucent()) {
+            drawable.setAlpha(Math.max(theme.getOpacity(), min));
+        }
+
+        return drawable;
+    }
+
+    /**
+     * Sets the translucent theme opacity for the supplied drawable.
+     *
+     * @param drawable The drawable to be used.
+     * @param theme The theme object to be used.
+     * @param <T> The type of the dynamic theme.
+     *
+     * @return The drawable after applying the theme opacity.
+     *
+     * @see TranslucentTheme#getOpacity()
+     * @see #withThemeOpacity(Drawable, TranslucentTheme, int)
+     */
+    public static @Nullable <T extends TranslucentTheme<?>> Drawable withThemeOpacity(
+            @Nullable Drawable drawable, @Nullable T theme) {
+        if (theme != null) {
+            return withThemeOpacity(drawable, theme, theme.getOpacity());
+        }
+
+        return drawable;
+    }
+
+    /**
+     * Sets the translucent theme opacity for the supplied drawable.
+     *
+     * @param drawable The drawable to be used.
+     * @param min The minimum opacity to be used.
+     *
+     * @return The drawable after applying the theme opacity.
+     *
+     * @see #withThemeOpacity(Drawable, TranslucentTheme, int)
+     */
+    public static @Nullable Drawable withThemeOpacity(@Nullable Drawable drawable,
+            @IntRange(from = Theme.Opacity.MIN, to = Theme.Opacity.MAX) int min) {
+        return withThemeOpacity(drawable, DynamicTheme.getInstance().get(), min);
+    }
+
+    /**
+     * Sets the translucent theme opacity for the supplied drawable.
+     *
+     * @param drawable The drawable to be used.
+     *
+     * @return The drawable after applying the theme opacity.
+     *
+     * @see #withThemeOpacity(Drawable, TranslucentTheme)
+     */
+    public static @Nullable Drawable withThemeOpacity(@Nullable Drawable drawable) {
+        return withThemeOpacity(drawable, DynamicTheme.getInstance().get());
+    }
+
+    /**
+     * Sets the type for the supplied dynamic theme object.
+     *
+     * @param theme The theme object to be used.
+     * @param type The theme type to be set.
+     * @param <T> The type of the theme object.
+     *
+     * @return The theme object after setting the type.
+     *
+     * @see TypeTheme#setType(int)
+     */
+    public static <T extends TypeTheme<?>> T setThemeType(@Nullable T theme, @Theme int type) {
+        if (theme != null) {
+            theme.setType(type);
+        }
+
+        return theme;
+    }
+
+    /**
+     * Sets the type for the supplied dynamic theme object.
+     *
+     * @param theme The theme object to be used.
+     * @param parent The parent theme to be used.
+     * @param <T> The type of the theme object.
+     *
+     * @return The theme object after setting the type.
+     *
+     * @see #setThemeType(TypeTheme, int)
+     */
+    public static <T extends TypeTheme<?>> T setThemeType(@Nullable T theme, @Nullable T parent) {
+        return setThemeType(theme, parent != null ? parent.getType()
+                : DynamicTheme.getInstance().get().getType());
     }
 
     /**
@@ -515,19 +1089,60 @@ public class Dynamic {
     }
 
     /**
+     * Sets the background aware and contrast for the supplied dynamic object after
+     * doing appropriate checks.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param backgroundAware The background aware option to be set.
+     * @param contrast The contrast to be set.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see #setBackgroundAware(Object, int, int)
+     * @see #setBackgroundAware(Object, int)
+     */
+    public static <T> void setBackgroundAwareSafe(@Nullable T dynamic,
+            @Theme.BackgroundAware int backgroundAware, int contrast) {
+        if (backgroundAware != Theme.BackgroundAware.UNKNOWN) {
+            if (contrast != Theme.Contrast.UNKNOWN) {
+                setBackgroundAware(dynamic, backgroundAware, contrast);
+            } else {
+                setBackgroundAware(dynamic, backgroundAware);
+            }
+        }
+    }
+
+    /**
      * Sets the background aware for the supplied dynamic object after doing appropriate checks.
      *
      * @param dynamic The dynamic object to be used.
      * @param backgroundAware The background aware option to be set.
      * @param <T> The type of the dynamic object.
-     * 
-     * @see #setBackgroundAware(Object, int) 
+     *
+     * @see #setBackgroundAware(Object, int)
      */
     public static <T> void setBackgroundAwareSafe(@Nullable T dynamic,
             @Theme.BackgroundAware int backgroundAware) {
         if (backgroundAware != Theme.BackgroundAware.UNKNOWN) {
             setBackgroundAware(dynamic, backgroundAware);
         }
+    }
+
+    /**
+     * Checks whether the dynamic theme object has dynamic colors enabled.
+     *
+     * @param theme The theme object to be used.
+     * @param <T> The type of the theme object.
+     *
+     * @return {@code true} if the dynamic theme object has dynamic colors enabled.
+     *
+     * @see DynamicColor#isDynamicColor()
+     */
+    public static <T extends DynamicColor<T>> boolean isDynamicColor(@Nullable T theme) {
+        if (theme != null) {
+            return theme.isDynamicColor();
+        }
+
+        return false;
     }
 
     /**
@@ -545,8 +1160,8 @@ public class Dynamic {
     public static <T> void tint(@Nullable T dynamic,
             @ColorInt int color, @ColorInt int contrastWithColor) {
         if (dynamic != null) {
-            setContrastWithColor(dynamic, contrastWithColor);
             setColor(dynamic, color);
+            setContrastWithColor(dynamic, contrastWithColor);
 
             if (dynamic instanceof DynamicScrollableWidget) {
                 setScrollBarColor(dynamic, color);
@@ -843,14 +1458,26 @@ public class Dynamic {
      * @param view The view to be used.
      * @param corner The corner to be set.
      *
+     * @see DynamicButton#setCorner(Integer)
+     * @see DynamicFloatingActionButton#setCorner(Integer)
      * @see DynamicCardView#setCorner(Float)
      * @see DynamicMaterialCardView#setCorner(Float)
+     * @see DynamicTextInputLayout#setCorner(Float)
+     * @see DynamicColorView#setCornerRadius(float)
      */
     public static void setCorner(@Nullable View view, float corner) {
-        if (view instanceof DynamicCardView) {
+        if (view instanceof DynamicButton) {
+            ((DynamicButton) view).setCorner((int) corner);
+        } else if (view instanceof DynamicFloatingActionButton) {
+            ((DynamicFloatingActionButton) view).setCorner((int) corner);
+        } else if (view instanceof DynamicCardView) {
             ((DynamicCardView) view).setCorner(corner);
         } else if (view instanceof DynamicMaterialCardView) {
             ((DynamicMaterialCardView) view).setCorner(corner);
+        } else if (view instanceof DynamicTextInputLayout) {
+            ((DynamicTextInputLayout) view).setCorner(corner);
+        } else if (view instanceof DynamicColorView) {
+            ((DynamicColorView) view).setCornerRadius(corner);
         }
     }
 
@@ -863,23 +1490,99 @@ public class Dynamic {
      * @see #setCorner(View, float)
      */
     public static void setCornerMin(@Nullable View view, float cornerMax) {
-        if (view instanceof DynamicCardView) {
+        if (view instanceof DynamicButton) {
+            setCorner(view, Math.min(((DynamicButton) view).getCorner(), cornerMax));
+        } else if (view instanceof DynamicFloatingActionButton) {
+            setCorner(view, Math.min(((DynamicFloatingActionButton) view).getCorner(), cornerMax));
+        } else if (view instanceof DynamicCardView) {
             setCorner(view, Math.min(((DynamicCardView) view).getCorner(), cornerMax));
         } else if (view instanceof DynamicMaterialCardView) {
             setCorner(view, Math.min(((DynamicMaterialCardView) view).getCorner(), cornerMax));
+        } else if (view instanceof DynamicTextInputLayout) {
+            setCorner(view, Math.min(((DynamicTextInputLayout) view).getCorner(), cornerMax));
+        } else if (view instanceof DynamicColorView) {
+            setCorner(view, Math.min(((DynamicColorView) view).getCornerRadius(), cornerMax));
         }
     }
 
     /**
-     * Set the elevation on same background option for the supplied view.
+     * Sets whether to force elevation for the supplied view.
      *
      * @param view The view to be used.
-     * @param elevationOnSameBackground {@code true} to enable elevation on the same background.
+     * @param forceElevation {@code true} to force elevation.
      */
-    public static void setElevationOnSameBackground(@Nullable View view,
-            boolean elevationOnSameBackground ) {
+    public static void setForceElevation(@Nullable View view, boolean forceElevation) {
         if (view instanceof DynamicSurfaceWidget) {
-            ((DynamicSurfaceWidget) view).setElevationOnSameBackground(elevationOnSameBackground );
+            ((DynamicSurfaceWidget) view).setForceElevation(forceElevation);
+        }
+    }
+
+    /**
+     * Returns the elevation for the supplied view.
+     *
+     * @param view The view to be used.
+     * @param defaultElevation The default elevation to be used.
+     *
+     * @return The elevation for the supplied view.
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static float getElevation(@Nullable View view, float defaultElevation) {
+        if (view == null) {
+            return defaultElevation;
+        }
+
+        if (view.getBackground() instanceof MaterialShapeDrawable) {
+            return ((MaterialShapeDrawable) view.getBackground()).getElevation();
+        } else if (DynamicSdkUtils.is21()) {
+            return view.getElevation();
+        } else {
+            return defaultElevation;
+        }
+    }
+
+    /**
+     * Sets elevation for the supplied view.
+     *
+     * @param view The view to be used.
+     * @param elevation The elevation to be set.
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static void setElevation(@Nullable View view, float elevation) {
+        if (view == null) {
+            return;
+        }
+
+        if (view.getBackground() instanceof MaterialShapeDrawable) {
+            ((MaterialShapeDrawable) view.getBackground()).setElevation(elevation);
+        } else if (DynamicSdkUtils.is21()) {
+            view.setElevation(elevation);
+        }
+    }
+
+    /**
+     * Set background drawable for the view.
+     *
+     * @param view The view to set the background.
+     * @param drawable The drawable to be set.
+     *
+     * @see DynamicDrawableUtils#setBackground(View, Drawable)
+     */
+    public static void setBackground(@Nullable View view, @Nullable Drawable drawable) {
+        DynamicDrawableUtils.setBackground(view, drawable);
+    }
+
+    /**
+     * Set background drawable resource for the view.
+     *
+     * @param view The view to set the background.
+     * @param drawableRes The drawable resource to be set.
+     *
+     * @see #setBackground(View, Drawable)
+     * @see DynamicResourceUtils#getDrawable(Context, int)
+     */
+    public static void setBackground(@Nullable View view, @DrawableRes int drawableRes) {
+        if (view != null) {
+            setBackground(view, DynamicResourceUtils.getDrawable(view.getContext(), drawableRes));
         }
     }
 
@@ -975,13 +1678,45 @@ public class Dynamic {
     }
 
     /**
+     * Set rating value for the rating bar.
+     *
+     * @param ratingBar The rating bar to set the rating.
+     * @param rating The rating value to be set.
+     */
+    public static void set(@Nullable RatingBar ratingBar, float rating) {
+        if (ratingBar != null) {
+            ratingBar.setRating(rating);
+        }
+    }
+
+    /**
+     * Set {@code HTML} text for the text view and manage its visibility according to the data.
+     *
+     * @param textView The text view to set the text.
+     * @param text The text to be set.
+     */
+    public static void setHtml(@Nullable TextView textView, @Nullable CharSequence text) {
+        if (textView == null) {
+            return;
+        }
+
+        if (text != null && !TextUtils.isEmpty(text)) {
+            textView.setText(HtmlCompat.fromHtml(text.toString(),
+                    HtmlCompat.FROM_HTML_MODE_COMPACT));
+            textView.setVisibility(View.VISIBLE);
+        } else {
+            textView.setVisibility(View.GONE);
+        }
+    }
+
+    /**
      * Set drawable for the image view and manage its visibility according to the data.
      *
      * @param view The view to set the drawable.
      * @param drawableRes The drawable resource id to be set.
      */
     public static void setResource(@Nullable View view, @DrawableRes int drawableRes) {
-        if (view instanceof AppCompatImageView || view instanceof FloatingActionButton) {
+        if (view instanceof FloatingActionButton) {
             ((ImageView) view).setImageResource(drawableRes);
         } else if (view instanceof ImageView) {
             set((ImageView) view, DynamicResourceUtils.getDrawable(
@@ -1014,9 +1749,9 @@ public class Dynamic {
             return;
         }
 
-        if (clickListener != null) {
-            view.setOnClickListener(clickListener);
+        view.setOnClickListener(clickListener);
 
+        if (clickListener != null) {
             if (visibility) {
                 view.setVisibility(View.VISIBLE);
             }
@@ -1089,6 +1824,18 @@ public class Dynamic {
     }
 
     /**
+     * Set the visibility of app bar progress for the {@link DynamicActivity}.
+     *
+     * @param activity The activity to be used.
+     * @param visible {@code true} to show the progress bar below the app bar.
+     */
+    public static void setAppBarProgressVisible(@Nullable Context activity, boolean visible) {
+        if (activity instanceof DynamicActivity) {
+            ((DynamicActivity) activity).setAppBarProgressVisible(visible);
+        }
+    }
+
+    /**
      * Show the snackbar for the {@link DynamicSnackbar}.
      *
      * @param activity The activity context to be used.
@@ -1099,8 +1846,10 @@ public class Dynamic {
      */
     public static void showSnackbar(@Nullable Context activity,
             @Nullable CharSequence text, @Snackbar.Duration int duration) {
-        if (activity instanceof DynamicSnackbar && text != null) {
-            ((DynamicSnackbar) activity).getSnackbar(text, duration).show();
+        final Snackbar snackbar;
+        if (activity instanceof DynamicSnackbar && text != null && (snackbar
+                = ((DynamicSnackbar) activity).getSnackbar(text, duration)) != null) {
+            ((DynamicSnackbar) activity).onSnackbarShow(snackbar);
         }
     }
 
@@ -1111,8 +1860,10 @@ public class Dynamic {
      * @param text The text for the snackbar.D
      */
     public static void showSnackbar(@Nullable Context activity, @Nullable CharSequence text) {
-        if (activity instanceof DynamicSnackbar && text != null) {
-            ((DynamicSnackbar) activity).getSnackbar(text).show();
+        final Snackbar snackbar;
+        if (activity instanceof DynamicSnackbar && text != null && (snackbar
+                = ((DynamicSnackbar) activity).getSnackbar(text)) != null) {
+            ((DynamicSnackbar) activity).onSnackbarShow(snackbar);
         }
     }
 
@@ -1127,8 +1878,10 @@ public class Dynamic {
      */
     public static void showSnackbar(@Nullable Context activity,
             @StringRes int stringRes, @Snackbar.Duration int duration) {
-        if (activity instanceof DynamicSnackbar) {
-            ((DynamicSnackbar) activity).getSnackbar(stringRes, duration).show();
+        final Snackbar snackbar;
+        if (activity instanceof DynamicSnackbar && (snackbar
+                = ((DynamicSnackbar) activity).getSnackbar(stringRes, duration)) != null) {
+            ((DynamicSnackbar) activity).onSnackbarShow(snackbar);
         }
     }
 
@@ -1139,8 +1892,10 @@ public class Dynamic {
      * @param stringRes The string resource for the snackbar.
      */
     public static void showSnackbar(@Nullable Context activity, @StringRes int stringRes) {
-        if (activity instanceof DynamicSnackbar) {
-            ((DynamicSnackbar) activity).getSnackbar(stringRes).show();
+        final Snackbar snackbar;
+        if (activity instanceof DynamicSnackbar && (snackbar
+                = ((DynamicSnackbar) activity).getSnackbar(stringRes)) != null) {
+            ((DynamicSnackbar) activity).onSnackbarShow(snackbar);
         }
     }
 
@@ -1547,29 +2302,39 @@ public class Dynamic {
     }
 
     /**
-     * Checks whether the stroke is required for the supplied background and surface colors.
+     * Returns the app shortcut icon according to the dynamic theme.
      *
-     * @param background The background color to be used.
-     * @param surface The surface color to be used.
+     * @param context The context to be used.
+     * @param drawableRes The drawable resource to be used.
+     * @param backgroundId The background id to be used.
+     * @param foregroundId The foreground id to be used.
+     * @param theme {@code true} to use {@link Theme.ColorType#PRIMARY} as background.
      *
-     * @return {@code true} if the stroke is required for the supplied background
-     *         and surface colors.
+     * @return The app shortcut icon according to the dynamic theme.
      */
-    public static boolean isStrokeRequired(@ColorInt int background, @ColorInt int surface) {
-        return DynamicSdkUtils.is16()
-                && DynamicColorUtils.removeAlpha(background)
-                == DynamicColorUtils.removeAlpha(surface)
-                && Color.alpha(surface) < Defaults.ADS_ALPHA_SURFACE_STROKE;
-    }
+    @TargetApi(Build.VERSION_CODES.M)
+    public static @Nullable Icon getAppShortcutIcon(@NonNull Context context,
+            @DrawableRes int drawableRes, @IdRes int backgroundId,
+            @IdRes int foregroundId, boolean theme) {
+        @ColorInt int background = DynamicTheme.getInstance().get(false).getPrimaryColor();
+        @ColorInt int tint = DynamicTheme.getInstance().get(false).getTintPrimaryColor();
+        Drawable drawable = DynamicResourceUtils.getDrawable(context, drawableRes);
 
-    /**
-     * Checks whether the stroke is required for the current background and surface colors.
-     *
-     * @return {@code true} if the stroke is required for the current background
-     *         and surface colors.
-     */
-    public static boolean isStrokeRequired() {
-        return isStrokeRequired(DynamicTheme.getInstance().get().getBackgroundColor(),
-                DynamicTheme.getInstance().get().getSurfaceColor());
+        if (!theme) {
+            background = DynamicTheme.getInstance().get(false).getBackgroundColor();
+            tint = DynamicTheme.getInstance().get(false).getTintBackgroundColor();
+        }
+
+        if (drawable != null) {
+            DynamicDrawableUtils.colorizeDrawable(((LayerDrawable) drawable)
+                    .findDrawableByLayerId(backgroundId), background);
+            DynamicDrawableUtils.colorizeDrawable(((LayerDrawable) drawable)
+                    .findDrawableByLayerId(foregroundId), tint);
+
+            return IconCompat.createWithAdaptiveBitmap(DynamicResourceUtils
+                    .getBitmapFromVectorDrawable(drawable)).toIcon(context);
+        }
+
+        return null;
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -17,25 +17,28 @@
 
 <resources>
 
+    <!-- The dynamic dialog style. -->
+    <attr name="add_alertDialogStyle" format="reference" />
+
     <!-- The set of attributes that describe a DynamicDialog's theme. -->
     <declare-styleable name="DynamicDialog">
         <attr name="android:layout" />
         <attr name="add_buttonPanelSideLayout" format="reference" />
-        <attr name="add_alertDialogCenterButtons" format="boolean" />
+        <attr name="add_alertDialogCenterButtons" format="boolean|reference" />
         <attr name="add_listLayout" format="reference" />
         <attr name="add_multiChoiceItemLayout" format="reference" />
         <attr name="add_singleChoiceItemLayout" format="reference" />
         <attr name="add_listItemLayout" format="reference" />
-        <attr name="add_showTitle" format="boolean" />
-        <attr name="add_buttonIconDimen" format="dimension" />
+        <attr name="add_showTitle" format="boolean|reference" />
+        <attr name="add_buttonIconDimen" format="dimension|reference" />
     </declare-styleable>
 
     <!-- The set of attributes for the dialog list view. -->
     <declare-styleable name="RecycleListView">
         <!-- Bottom padding to use when no buttons are present. -->
-        <attr name="add_paddingBottomNoButtons" format="dimension" />
+        <attr name="add_paddingBottomNoButtons" format="dimension|reference" />
         <!-- Top padding to use when no title is present. -->
-        <attr name="add_paddingTopNoTitle" format="dimension" />
+        <attr name="add_paddingTopNoTitle" format="dimension|reference" />
     </declare-styleable>
 
 </resources>

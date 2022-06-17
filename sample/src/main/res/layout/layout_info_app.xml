@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -24,8 +24,8 @@
         android:id="@+id/info_app"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:ads_icon="@drawable/ic_sample"
-        app:ads_iconBig="@drawable/ic_sample_splash"
+        app:ads_icon="@drawable/ic_launcher"
+        app:ads_iconBig="@drawable/ic_launcher_monochrome"
         app:ads_title="@string/app_name"
         app:ads_subtitle="@string/app_subtitle"
         app:ads_description="@string/ads_info_made_in"

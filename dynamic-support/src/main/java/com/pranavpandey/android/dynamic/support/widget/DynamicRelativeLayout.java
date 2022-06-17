@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,8 +34,6 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
 
 /**
  * A {@link RelativeLayout} to apply background color according to the supplied parameters.
@@ -87,6 +85,11 @@ public class DynamicRelativeLayout extends RelativeLayout
     protected @Theme.BackgroundAware int mBackgroundAware;
 
     /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
+
+    /**
      * {@code true} to tint background according to the widget color.
      */
     protected boolean mTintBackground;
@@ -133,7 +136,10 @@ public class DynamicRelativeLayout extends RelativeLayout
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicRelativeLayout_adt_backgroundAware,
-                    Defaults.getBackgroundAware());
+                    Theme.BackgroundAware.DISABLE);
+            mContrast = a.getInteger(
+                    R.styleable.DynamicRelativeLayout_adt_contrast,
+                    Theme.Contrast.AUTO);
             mTintBackground = a.getBoolean(
                     R.styleable.DynamicRelativeLayout_adt_tintBackground,
                     Defaults.ADS_TINT_BACKGROUND);
@@ -236,14 +242,29 @@ public class DynamicRelativeLayout extends RelativeLayout
     }
 
     @Override
-    public void setEnabled(boolean enabled) {
-        super.setEnabled(enabled);
-
-        if (mColorType != Theme.ColorType.NONE) {
-            setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
-        } else {
-            setAlpha(Defaults.ADS_ALPHA_ENABLED);
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
         }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
     }
 
     @Override
@@ -299,20 +320,27 @@ public class DynamicRelativeLayout extends RelativeLayout
     }
 
     @Override
+    public void setBackgroundColor(@ColorInt int color) {
+        super.setBackgroundColor(isBackgroundAware()
+                ? Dynamic.withThemeOpacity(color, Theme.Opacity.WIDGET)
+                : Dynamic.withThemeOpacity(color));
+    }
+
+    @Override
     public void setColor() {
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
             }
 
-            DynamicDrawableUtils.setBackground(this, new ColorDrawable(mAppliedColor));
+            setBackgroundColor(mAppliedColor);
         }
 
         if (getBackground() != null) {
             getBackground().clearColorFilter();
 
-            if (isTintBackground()) {
+            if (isTintBackground() && !(getBackground() instanceof ColorDrawable)) {
                 Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
             }
         }

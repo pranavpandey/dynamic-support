@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -24,10 +24,9 @@
         android:id="@+id/info_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:ads_icon="@drawable/ic_author_logo"
+        app:ads_icon="@drawable/ads_ic_author_logo"
         app:ads_iconBig="@drawable/ads_ic_person"
-        app:ads_title="@string/ads_info_made_by"
-        app:ads_subtitle="@string/ads_info_me"
+        app:ads_title="@string/ads_info_me"
         app:ads_description="@string/ads_info_quote"
         app:ads_links="@array/ads_about_author_links"
         app:ads_subtitles="@array/ads_about_author_links_subtitles"

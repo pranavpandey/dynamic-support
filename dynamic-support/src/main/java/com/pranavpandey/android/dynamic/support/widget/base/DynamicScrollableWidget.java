@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,14 +68,14 @@ public interface DynamicScrollableWidget extends DynamicWidget {
     void setScrollBarColor(@ColorInt int scrollBarColor);
 
     /**
-     * Set scroll bar color of this widget according to the supplied values.
+     * Set scroll bar color for this widget according to the supplied values.
      */
     void setScrollBarColor();
 
     /**
-     * Set color and scroll bar color of this widget at once.
+     * Set color and scroll bar color for this widget at once.
      *
      * @param setScrollBarColor {@code true} to set the scroll bar color also.
      */
-    void setColor(boolean setScrollBarColor);
+    void setScrollableWidgetColor(boolean setScrollBarColor);
 }

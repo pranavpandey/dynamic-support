@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -126,7 +126,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     /**
      * Initialize the new instance of this fragment.
      *
-     * @return A instance of {@link DynamicColorDialog}.
+     * @return An instance of {@link DynamicColorDialog}.
      */
     public static @NonNull DynamicColorDialog newInstance() {
         return new DynamicColorDialog();
@@ -275,7 +275,7 @@ public class DynamicColorDialog extends DynamicDialogFragment {
     }
 
     /**
-     * Ge the color entries used by the picker.
+     * Get the color entries used by the picker.
      *
      * @return The color entries used by the picker.
      */

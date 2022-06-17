@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,8 +34,7 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
  * A {@link NavigationMenuItemView} to apply {@link DynamicTheme} according to the
@@ -89,6 +88,11 @@ public class DynamicNavigationMenuItemView extends NavigationMenuItemView
     protected @Theme.BackgroundAware int mBackgroundAware;
 
     /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
+
+    /**
      * {@code true} to tint background according to the widget color.
      */
     protected boolean mTintBackground;
@@ -136,6 +140,9 @@ public class DynamicNavigationMenuItemView extends NavigationMenuItemView
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicNavigationMenuItemView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicNavigationMenuItemView_adt_contrast,
+                    Theme.Contrast.AUTO);
             mTintBackground = a.getBoolean(
                     R.styleable.DynamicNavigationMenuItemView_adt_tintBackground,
                     Defaults.ADS_TINT_BACKGROUND);
@@ -238,13 +245,29 @@ public class DynamicNavigationMenuItemView extends NavigationMenuItemView
     }
 
     @Override
-    public void setEnabled(boolean enabled) {
-        super.setEnabled(enabled);
-
-        if (mColorType != Theme.ColorType.NONE) {
-        } else {
-            setAlpha(Defaults.ADS_ALPHA_ENABLED);
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
         }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
     }
 
     @Override
@@ -304,7 +327,7 @@ public class DynamicNavigationMenuItemView extends NavigationMenuItemView
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
             }
         }
 

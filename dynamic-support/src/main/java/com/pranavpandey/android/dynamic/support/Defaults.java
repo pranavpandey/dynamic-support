@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicUnitUtils;
 
 /**
  * Default configurations used by the dynamic widgets.
@@ -37,73 +36,6 @@ public class Defaults {
     public static final int ADS_NO_POSITION = RecyclerView.NO_POSITION;
 
     /**
-     * Constant for the stroke width, 1 dip.
-     */
-    public static final int ADS_STROKE_WIDTH = 1;
-
-    /**
-     * Constant for the stroke width int pixels, equivalent to 1 dip.
-     */
-    public static final int ADS_STROKE_WIDTH_PIXEL =
-            DynamicUnitUtils.convertDpToPixels(ADS_STROKE_WIDTH);
-
-    /**
-     * Constant for the stroke alpha.
-     */
-    public static final int ADS_STROKE_ALPHA = 100;
-
-    /**
-     * Constant to adjust the corner size for the header.
-     */
-    public static final float ADS_STROKE_CORNER_ADJUST = 1f;
-
-    /**
-     * Constant for the selected tab height.
-     */
-    public static final float ADS_HEIGHT_TAB_SELECTED = 3f;
-
-    /**
-     * Constant for the selected tab height int pixels, equivalent to 3 dip.
-     */
-    public static final int ADS_HEIGHT_TAB_SELECTED_PIXEL =
-            DynamicUnitUtils.convertDpToPixels(ADS_HEIGHT_TAB_SELECTED);
-
-    /**
-     * Minimum corner size in dips to provide the rectangle theme overlay.
-     */
-    public static final float ADS_CORNER_MIN_THEME = 4f;
-
-    /**
-     * Minimum corner size in dips to provide the rounded theme overlay.
-     */
-    public static final float ADS_CORNER_MIN_THEME_ROUND = 8f;
-
-    /**
-     * Minimum corner size in dips to provide the rounded tab indicator.
-     */
-    public static final float ADS_CORNER_MIN_TABS = 6f;
-
-    /**
-     * Minimum corner size in dips for the box background.
-     */
-    public static final float ADS_CORNER_MIN_BOX = 8f;
-
-    /**
-     * Minimum corner size in dips to provide the rounded rectangle list selector.
-     */
-    public static final float ADS_CORNER_SELECTOR_RECT = 4f;
-
-    /**
-     * Minimum corner size in dips to provide the rounded list selector.
-     */
-    public static final float ADS_CORNER_SELECTOR_ROUND = 8f;
-
-    /**
-     * Default alpha for the surface color to do not show stroke on the same background.
-     */
-    public static final int ADS_ALPHA_SURFACE_STROKE = 255;
-
-    /**
      * Default alpha for the toast.
      */
     public static final float ADS_ALPHA_DIVIDER = 0.5f;
@@ -114,12 +46,12 @@ public class Defaults {
     public static final float ADS_ALPHA_TOAST = 0.94f;
 
     /**
-     * Default alpha when the widget is enabled.
+     * Default alpha for the enabled state.
      */
     public static final float ADS_ALPHA_ENABLED = 1f;
 
     /**
-     * Default alpha when the widget is enabled integer.
+     * Default alpha for the enabled state in integer.
      */
     public static final int ADS_ALPHA_ENABLED_INTEGER = 255;
 
@@ -149,7 +81,7 @@ public class Defaults {
     public static final float ADS_ALPHA_SELECTED = 0.6f;
 
     /**
-     * Default alpha when the widget is pressed.
+     * Default alpha for the pressed state.
      */
     public static final float ADS_ALPHA_PRESSED = 0.2f;
 
@@ -169,12 +101,17 @@ public class Defaults {
     public static final float ADS_ALPHA_BACKDROP = 0.4f;
 
     /**
-     * Default alpha when the widget is disabled.
+     * Default alpha for the disabled state.
      */
     public static final float ADS_ALPHA_DISABLED = 0.5f;
 
     /**
-     * Default dim alpha when the widget is disabled.
+     * Default alpha for the disabled state in integer.
+     */
+    public static final int ADS_ALPHA_DISABLED_INTEGER = 150;
+
+    /**
+     * Default dim alpha for the disabled state.
      */
     public static final float ADS_ALPHA_DISABLED_DIM = 0.4f;
 
@@ -254,9 +191,19 @@ public class Defaults {
     public static final int ADS_COLOR_TYPE_SCROLLABLE = Theme.ColorType.TINT_BACKGROUND;
 
     /**
+     * Default subheader color type used by the menu widgets.
+     */
+    public static final int ADS_COLOR_TYPE_SUB_HEADER = Theme.ColorType.PRIMARY;
+
+    /**
      * Default icon color type used by the image widgets.
      */
-    public static final int ADS_COLOR_TYPE_ICON = ADS_COLOR_TYPE_SCROLLABLE;
+    public static final int ADS_COLOR_TYPE_ICON = Theme.ColorType.TINT_BACKGROUND;
+
+    /**
+     * Default color type used by the chip widgets.
+     */
+    public static final int ADS_COLOR_TYPE_CHIP = Theme.ColorType.TEXT_PRIMARY;
 
     /**
      * Default color type for the divider.
@@ -265,7 +212,7 @@ public class Defaults {
 
     /**
      * Default value to make widgets background aware so that they can change color according
-     * to the theme background to provide best visibility.
+     * to the theme background to provide the best visibility.
      * <p>{@code true} to make widgets background aware.
      *
      * @deprecated
@@ -276,13 +223,13 @@ public class Defaults {
      * Default value to provide widget corner radius according to the dynamic theme.
      * <p>{@code true} to provide widget corner radius according to the dynamic theme.
      */
-    public static final boolean ADS_DYNAMIC_CORNER_RADIUS = true;
+    public static final boolean ADS_DYNAMIC_CORNER_SIZE = true;
 
     /**
-     * Default value to provide widget elevation on the same background.
-     * <p>{@code true} to enable elevation on the same background.
+     * Default value to force widget elevation.
+     * <p>{@code true} to force elevation for the widget.
      */
-    public static final boolean ADS_ELEVATION_ON_SAME_BACKGROUND = false;
+    public static final boolean ADS_FORCE_ELEVATION = false;
 
     /**
      * Default value to for the floating view.

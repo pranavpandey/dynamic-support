@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,8 +29,8 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBinderAdapter;
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicDataBinder;
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicQueryBinder;
-import com.pranavpandey.android.dynamic.support.utils.DynamicLayoutUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.view.DynamicEmptyView;
 
 /**
@@ -60,19 +60,19 @@ public class EmptyBinder extends DynamicQueryBinder<String, String, EmptyBinder.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (getData() == null) {
             return;
         }
 
-        viewHolder.getEmptyView().setIcon(getDrawable());
-        viewHolder.getEmptyView().setTitle(getData());
+        holder.getEmptyView().setIcon(getDrawable());
+        holder.getEmptyView().setTitle(getData());
 
         DynamicResourceUtils.highlightQueryTextColor(getQuery(),
-                viewHolder.getEmptyView().getTitleView(), getHighlightColor());
+                holder.getEmptyView().getTitleView(), getHighlightColor());
 
         if (isFullSpanForStaggeredGrid()) {
-            DynamicLayoutUtils.setFullSpanForView(viewHolder.itemView);
+            DynamicLayoutUtils.setFullSpanForView(holder.itemView);
         }
     }
 

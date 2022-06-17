@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,18 +32,18 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.utils.DynamicTintUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicTintUtils;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicCornerWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
 
 /**
  * An {@link ExtendedFloatingActionButton} to apply {@link DynamicTheme} according to the
  * supplied parameters.
  */
-public class DynamicExtendedFloatingActionButton extends
-        ExtendedFloatingActionButton implements DynamicWidget {
+public class DynamicExtendedFloatingActionButton extends ExtendedFloatingActionButton
+        implements DynamicWidget, DynamicCornerWidget<Integer> {
 
     /**
      * Color type applied to this view.
@@ -87,6 +87,11 @@ public class DynamicExtendedFloatingActionButton extends
      * @see #mContrastWithColor
      */
     protected @Theme.BackgroundAware int mBackgroundAware;
+
+    /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
 
     /**
      * {@code true} if this view is in the extended state.
@@ -136,6 +141,15 @@ public class DynamicExtendedFloatingActionButton extends
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicExtendedFloatingActionButton_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicExtendedFloatingActionButton_adt_contrast,
+                    Theme.Contrast.AUTO);
+
+            if (a.getBoolean(
+                    R.styleable.DynamicExtendedFloatingActionButton_adt_dynamicCornerSize,
+                    Defaults.ADS_DYNAMIC_CORNER_SIZE)) {
+                setCorner(DynamicTheme.getInstance().get().getCornerRadius());
+            }
         } finally {
             a.recycle();
         }
@@ -267,10 +281,55 @@ public class DynamicExtendedFloatingActionButton extends
     }
 
     @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        Dynamic.setCornerMin(this, Math.min(
+                getWidth() / Theme.Corner.FACTOR_MAX,
+                getHeight() / Theme.Corner.FACTOR_MAX));
+    }
+
+    @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
         setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
+    }
+
+    @Override
+    public @NonNull Integer getCorner() {
+        return getCornerRadius();
+    }
+
+    @Override
+    public void setCorner(@NonNull Integer cornerSize) {
+        setCornerRadius(cornerSize);
     }
 
     @Override
@@ -320,14 +379,16 @@ public class DynamicExtendedFloatingActionButton extends
     public void setColor() {
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
+            @ColorInt int iconColor = Dynamic.getTintColor(mColor, this);
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
+                iconColor = Dynamic.withContrastRatio(mContrastWithColor, mAppliedColor, this);
             }
 
             DynamicTintUtils.setViewBackgroundTint(this,
                     mContrastWithColor, mAppliedColor, false, false);
             setIconTint(DynamicResourceUtils.getColorStateList(
-                    mContrastWithColor, mContrastWithColor, false));
+                    iconColor, iconColor, false));
             setTextColor(getIconTint());
         }
     }

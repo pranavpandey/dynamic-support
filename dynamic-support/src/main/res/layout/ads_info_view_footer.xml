@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -31,11 +31,18 @@
             style="@style/Widget.DynamicApp.Content.Row.Vertical.Weight">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                style="@style/TextAppearance.DynamicApp.Body1"
+                android:id="@+id/ads_info_view_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ads_margin_tiny" />
+
+            <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                 style="@style/TextAppearance.DynamicApp.Subtitle1.Caps"
                 android:id="@+id/ads_info_view_status"
-                android:layout_marginTop="@dimen/ads_margin_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ads_margin_regular"
                 android:textSize="@dimen/ads_font_size_medium"
                 app:adt_colorType="accent" />
 

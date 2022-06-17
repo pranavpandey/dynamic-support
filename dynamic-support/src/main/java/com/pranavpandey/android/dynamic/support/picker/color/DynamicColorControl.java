@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,21 +16,13 @@
 
 package com.pranavpandey.android.dynamic.support.picker.color;
 
-import androidx.annotation.IntDef;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
-import static com.pranavpandey.android.dynamic.support.picker.color.DynamicColorControl.ALL;
-import static com.pranavpandey.android.dynamic.support.picker.color.DynamicColorControl.CMYK;
-import static com.pranavpandey.android.dynamic.support.picker.color.DynamicColorControl.HSV;
-import static com.pranavpandey.android.dynamic.support.picker.color.DynamicColorControl.RGB;
 
 /**
  * Interface to hold the color control constant values to provide color sliders accordingly.
  */
 @Retention(RetentionPolicy.SOURCE)
-@IntDef(value = { ALL, HSV, RGB, CMYK })
 public @interface DynamicColorControl {
 
     /**

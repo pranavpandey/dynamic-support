@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ public class DynamicProgressDialog extends DynamicDialogFragment {
     /**
      * Tag for this dialog fragment.
      */
-    public static final String TAG = "ProgressDialog";
+    public static final String TAG = "DynamicProgressDialog";
 
     /**
      * The current name used by this dialog.
@@ -63,14 +63,9 @@ public class DynamicProgressDialog extends DynamicDialogFragment {
     protected @NonNull DynamicDialog.Builder onCustomiseBuilder(
             @NonNull DynamicDialog.Builder dialogBuilder,
             final @Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater.from(requireContext()).inflate(
-                R.layout.ads_dialog_progress, new LinearLayout(requireContext()), false);
-
+        View view = LayoutInflater.from(requireContext()).inflate(R.layout.ads_dialog_progress,
+                new LinearLayout(requireContext()), false);
         mMessage = view.findViewById(R.id.ads_dialog_progress_message);
-
-        dialogBuilder.setCancelable(false)
-                .setView(view)
-                .setViewRoot(view.findViewById(R.id.ads_dialog_progress_root));
 
         setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
@@ -79,7 +74,8 @@ public class DynamicProgressDialog extends DynamicDialogFragment {
             }
         });
 
-        return dialogBuilder;
+        return dialogBuilder.setCancelable(false).setView(view)
+                .setViewRoot(view.findViewById(R.id.ads_dialog_progress_root));
     }
 
     @Override

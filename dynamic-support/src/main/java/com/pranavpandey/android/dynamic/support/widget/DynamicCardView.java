@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,11 @@
 
 package com.pranavpandey.android.dynamic.support.widget;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.os.Build;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
@@ -36,8 +38,8 @@ import com.pranavpandey.android.dynamic.support.widget.base.DynamicFloatingWidge
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicSurfaceWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
  * A {@link CardView} to apply {@link DynamicTheme} according to the supplied parameters.
@@ -89,13 +91,15 @@ public class DynamicCardView extends CardView implements DynamicWidget,
     protected @Theme.BackgroundAware int mBackgroundAware;
 
     /**
-     * {@code true} to enable elevation on the same background.
-     * <p>It will be useful to provide the true dark theme by disabling the card view elevation.
-     *
-     * <p>When disabled, widget elevation will be disabled (or 0) if the color of this widget
-     * (surface color) is exactly same as dynamic theme background color.
+     * Minimum contrast value to generate contrast color for the background aware functionality.
      */
-    protected boolean mElevationOnSameBackground;
+    protected int mContrast;
+
+    /**
+     * {@code true} to force elevation for this widget.
+     * <p>When disabled, widget will follow the dynamic theme elevation.
+     */
+    protected boolean mForceElevation;
 
     /**
      * {@code true} if this view is floating.
@@ -146,16 +150,19 @@ public class DynamicCardView extends CardView implements DynamicWidget,
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicCardView_adt_backgroundAware,
                     Theme.BackgroundAware.DISABLE);
-            mElevationOnSameBackground = a.getBoolean(
-                    R.styleable.DynamicCardView_adt_elevationOnSameBackground,
-                    Defaults.ADS_ELEVATION_ON_SAME_BACKGROUND);
+            mContrast = a.getInteger(
+                    R.styleable.DynamicCardView_adt_contrast,
+                    Theme.Contrast.AUTO);
+            mForceElevation = a.getBoolean(
+                    R.styleable.DynamicCardView_adt_forceElevation,
+                    Defaults.ADS_FORCE_ELEVATION);
             mFloatingView = a.getBoolean(
                     R.styleable.DynamicCardView_adt_floatingView,
                     Defaults.ADS_FLOATING_VIEW);
             mElevation = getCardElevation();
 
-            if (a.getBoolean(R.styleable.DynamicCardView_adt_dynamicCornerRadius,
-                    Defaults.ADS_DYNAMIC_CORNER_RADIUS)) {
+            if (a.getBoolean(R.styleable.DynamicCardView_adt_dynamicCornerSize,
+                    Defaults.ADS_DYNAMIC_CORNER_SIZE)) {
                 setCorner((float) DynamicTheme.getInstance().get().getCornerRadius());
             }
         } finally {
@@ -254,6 +261,32 @@ public class DynamicCardView extends CardView implements DynamicWidget,
     }
 
     @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
+    }
+
+    @Override
     public void setBackgroundColor(@ColorInt int color) {
         super.setCardBackgroundColor(color);
 
@@ -261,13 +294,41 @@ public class DynamicCardView extends CardView implements DynamicWidget,
     }
 
     @Override
-    public void setCorner(Float cornerRadius) {
-        setRadius(cornerRadius);
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        Dynamic.setCornerMin(this, Math.min(
+                getWidth() / Theme.Corner.FACTOR_MAX,
+                getHeight() / Theme.Corner.FACTOR_MAX));
     }
 
     @Override
-    public Float getCorner() {
+    public @NonNull Float getCorner() {
         return getRadius();
+    }
+
+    @Override
+    public void setCorner(@NonNull Float cornerSize) {
+        setRadius(cornerSize);
+    }
+
+    @TargetApi(Build.VERSION_CODES.P)
+    @Override
+    public void setCardBackgroundColor(@ColorInt int color) {
+        super.setCardBackgroundColor(isFloatingView()
+                ? Dynamic.withThemeOpacity(color, Theme.Opacity.FLOATING)
+                : isBackgroundAware() ? Dynamic.withThemeOpacity(color, Theme.Opacity.WIDGET)
+                : Dynamic.withThemeOpacity(color));
+
+        if (DynamicSdkUtils.is28()
+                && DynamicTheme.getInstance().get().getElevation(false) == Theme.Elevation.AUTO
+                && DynamicTheme.getInstance().get().getOpacity() < Theme.Opacity.FLOATING) {
+            setOutlineAmbientShadowColor(getCardBackgroundColor().getDefaultColor());
+
+            if (!isFloatingView() && !isForceElevation()) {
+                setOutlineSpotShadowColor(getCardBackgroundColor().getDefaultColor());
+            }
+        }
     }
 
     @Override
@@ -275,14 +336,15 @@ public class DynamicCardView extends CardView implements DynamicWidget,
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
             }
 
-            if (mElevationOnSameBackground && isBackgroundSurface()) {
+            if (mForceElevation && isBackgroundSurface()) {
                 mAppliedColor = DynamicTheme.getInstance().generateSurfaceColor(mAppliedColor);
             }
 
             mAppliedColor = DynamicColorUtils.removeAlpha(mAppliedColor);
+
             setCardBackgroundColor(mAppliedColor);
             setSurface();
         }
@@ -298,13 +360,13 @@ public class DynamicCardView extends CardView implements DynamicWidget,
     }
 
     @Override
-    public boolean isElevationOnSameBackground() {
-        return mElevationOnSameBackground;
+    public boolean isForceElevation() {
+        return mForceElevation;
     }
 
     @Override
-    public void setElevationOnSameBackground(boolean elevationOnSameBackground) {
-        this.mElevationOnSameBackground = elevationOnSameBackground;
+    public void setForceElevation(boolean forceElevation) {
+        this.mForceElevation = forceElevation;
 
         setColor();
     }
@@ -323,24 +385,22 @@ public class DynamicCardView extends CardView implements DynamicWidget,
 
     @Override
     public void setSurface() {
-        if (!mElevationOnSameBackground && isBackgroundSurface()) {
-            setCardElevation(0);
-        } else {
-            setCardElevation(mElevation);
-        }
+        setCardElevation(!mForceElevation && isBackgroundSurface()
+                ? Theme.Elevation.DISABLE : mElevation);
     }
 
     @Override
     public boolean isBackgroundSurface() {
-        return mColorType != Theme.ColorType.BACKGROUND
+        return !DynamicTheme.getInstance().get().isElevation()
+                || (mColorType != Theme.ColorType.BACKGROUND
                 && mColor != Theme.Color.UNKNOWN
                 && DynamicColorUtils.removeAlpha(mColor)
-                == DynamicColorUtils.removeAlpha(mContrastWithColor);
+                == DynamicColorUtils.removeAlpha(mContrastWithColor));
     }
 
     @Override
     public boolean isStrokeRequired() {
-        return DynamicSdkUtils.is16() && !mElevationOnSameBackground && isBackgroundSurface()
-                && Color.alpha(mColor) < Defaults.ADS_ALPHA_SURFACE_STROKE;
+        return DynamicSdkUtils.is16() && !mForceElevation && isBackgroundSurface()
+                && Color.alpha(mColor) < Theme.Opacity.STROKE;
     }
 }

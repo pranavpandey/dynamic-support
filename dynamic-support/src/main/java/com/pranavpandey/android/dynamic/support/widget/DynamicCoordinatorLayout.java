@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -31,8 +32,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.pranavpandey.android.dynamic.support.Defaults;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
+import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 /**
  * A {@link CoordinatorLayout} to draw the status bar background.
@@ -78,35 +81,52 @@ public class DynamicCoordinatorLayout extends CoordinatorLayout implements Windo
     @Override
     public void applyWindowInsets() {
         setWillNotDraw(true);
+
+        final int left = getPaddingLeft();
+        final int top = getPaddingTop();
+        final int right = getPaddingRight();
+        final int bottom = getPaddingBottom();
+
         ViewCompat.setOnApplyWindowInsetsListener(this,
                 new androidx.core.view.OnApplyWindowInsetsListener() {
             @Override
-            public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat insets) {
-                if (null == mInsets) {
-                    mInsets = new Rect();
-                }
-
+            public @NonNull WindowInsetsCompat onApplyWindowInsets(
+                    @NonNull View v, @NonNull WindowInsetsCompat insets) {
+                mInsets = new Rect();
                 mInsets.set(insets.getInsets(WindowInsetsCompat.Type.systemBars()).left,
                         insets.getInsets(WindowInsetsCompat.Type.systemBars()).top,
                         insets.getInsets(WindowInsetsCompat.Type.systemBars()).right,
                         insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
 
+                final boolean isRtl = DynamicViewUtils.isLayoutRtl(v);
+                if (DynamicViewUtils.isRootLayout(v) || ViewCompat.getFitsSystemWindows(v)) {
+                    v.setPadding(isRtl ? right : left + mInsets.left, top + mInsets.top,
+                            isRtl ? left : right + mInsets.right, bottom);
+                } else {
+                    v.setPadding(isRtl ? right : left + mInsets.left, top + mInsets.top,
+                            isRtl ? left : right + mInsets.right, bottom + mInsets.bottom);
+                }
+
                 setWillNotDraw(insets.getInsets(
                         WindowInsetsCompat.Type.systemBars()).equals(Insets.NONE)
                         || getStatusBarBackground() == null);
-                return insets;
+
+                /*
+                 * Returning top insets for some rare cases like drawer layout.
+                 * We should disable dynamic theme insets for other layouts like app
+                 * bar layout.
+                 */
+                return DynamicViewUtils.isRootLayout(v) || ViewCompat.getFitsSystemWindows(v)
+                        ? new WindowInsetsCompat.Builder(insets).setInsets(
+                                WindowInsetsCompat.Type.systemBars(), Insets.of(
+                                        0, mInsets.top, 0, mInsets.bottom)).build()
+                        : new WindowInsetsCompat.Builder(insets).setInsets(
+                                WindowInsetsCompat.Type.systemBars(), Insets.of(
+                                        0, 0, 0, 0)).build();
             }
         });
-    }
 
-    @Override
-    public void draw(@NonNull Canvas canvas) {
-        super.draw(canvas);
-
-        if (mInsets != null && getStatusBarBackground() != null) {
-            getStatusBarBackground().setBounds(0, 0, getWidth(), mInsets.top);
-            getStatusBarBackground().draw(canvas);
-        }
+        DynamicViewUtils.requestApplyWindowInsets(this);
     }
 
     @Override
@@ -124,6 +144,21 @@ public class DynamicCoordinatorLayout extends CoordinatorLayout implements Windo
 
         if (getStatusBarBackground() != null) {
             getStatusBarBackground().setCallback(null);
+        }
+    }
+
+    @Override
+    public void setStatusBarBackgroundColor(@ColorInt int color) {
+        super.setStatusBarBackgroundColor(Dynamic.withThemeOpacity(color));
+    }
+
+    @Override
+    public void draw(@NonNull Canvas canvas) {
+        super.draw(canvas);
+
+        if (mInsets != null && getStatusBarBackground() != null) {
+            getStatusBarBackground().setBounds(0, 0, getWidth(), mInsets.top);
+            getStatusBarBackground().draw(canvas);
         }
     }
 }

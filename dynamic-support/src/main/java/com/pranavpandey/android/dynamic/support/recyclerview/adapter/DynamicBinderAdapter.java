@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ package com.pranavpandey.android.dynamic.support.recyclerview.adapter;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder;
@@ -33,12 +32,7 @@ import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyc
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public abstract class DynamicBinderAdapter<VB extends DynamicRecyclerViewBinder>
-        extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-    /**
-     * Recycler view displaying this adapter.
-     */
-    private RecyclerView mRecyclerView;
+        extends DynamicRecyclerViewAdapter<RecyclerView.ViewHolder> {
 
     @Override
     public @NonNull RecyclerView.ViewHolder onCreateViewHolder(
@@ -47,34 +41,11 @@ public abstract class DynamicBinderAdapter<VB extends DynamicRecyclerViewBinder>
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        if (getDataBinder(viewHolder.getItemViewType()).getRecyclerViewAdapter() != null) {
-            getDataBinder(viewHolder.getItemViewType()).onBindViewHolder(
-                    viewHolder, getBinderPosition(position));
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        if (getDataBinder(holder.getItemViewType()).getRecyclerViewAdapter() != null) {
+            getDataBinder(holder.getItemViewType()).onBindViewHolder(
+                    holder, getBinderPosition(position));
         }
-    }
-
-    @Override
-    public void onAttachedToRecyclerView(@Nullable RecyclerView recyclerView) {
-        this.mRecyclerView = recyclerView;
-    }
-
-    /**
-     * Checks whether the recycler view associated with this adapter is computing layout.
-     *
-     * @return {@code true} if the recycler view is computing layout.
-     */
-    public boolean isComputingLayout() {
-        return mRecyclerView != null && mRecyclerView.isComputingLayout();
-    }
-
-    /**
-     * Get the recycler view displaying this adapter.
-     *
-     * @return The recycler view displaying this adapter.
-     */
-    public RecyclerView getRecyclerView() {
-        return mRecyclerView;
     }
 
     @Override

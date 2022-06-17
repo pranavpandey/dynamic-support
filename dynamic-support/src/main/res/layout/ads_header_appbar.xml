@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -18,11 +18,14 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ads_header_appbar_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/ads_page_horizontal_margin"
-    android:paddingRight="@dimen/ads_page_horizontal_margin"
+    android:paddingStart="@dimen/ads_page_horizontal_margin"
     android:paddingTop="@dimen/ads_margin_small"
+    android:paddingRight="@dimen/ads_page_horizontal_margin"
+    android:paddingEnd="@dimen/ads_page_horizontal_margin"
     android:paddingBottom="@dimen/ads_margin_small"
     android:orientation="horizontal">
 
@@ -35,18 +38,18 @@
         style="@style/Widget.DynamicApp.Content.Row.Vertical.Center">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+            style="@style/TextAppearance.DynamicApp.Headline6.Caps"
             android:id="@+id/ads_header_appbar_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.DynamicApp.Headline6"
             app:adt_colorType="tint_primary"
             app:adt_contrastWithColorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+            style="@style/TextAppearance.DynamicApp.Subtitle1.Secondary"
             android:id="@+id/ads_header_appbar_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle1"
             app:adt_colorType="tint_primary"
             app:adt_contrastWithColorType="primary" />
 

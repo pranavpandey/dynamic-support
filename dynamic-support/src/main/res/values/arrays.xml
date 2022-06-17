@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -261,6 +261,12 @@
         <item>https://github.com/google/gson</item>
         <item>https://github.com/android/plaid</item>
         <item>https://github.com/zxing/zxing</item>
+    </string-array>
+
+    <!-- String array with Apache 2.0 license and material icons links. -->
+    <string-array name="ads_license_links_urls_icons">
+        <item>http://www.apache.org/licenses/LICENSE-2.0</item>
+        <item>https://github.com/google/material-design-icons</item>
     </string-array>
 
     <!-- String array with Apache 2.0 license and small app support links. -->

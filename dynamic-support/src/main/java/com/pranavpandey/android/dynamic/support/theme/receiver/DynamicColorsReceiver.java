@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ public class DynamicColorsReceiver extends BroadcastReceiver {
     public void onReceive(@NonNull Context context, @Nullable Intent intent) {
         if (intent != null && Intent.ACTION_WALLPAPER_CHANGED.equals(intent.getAction())) {
             try {
-                DynamicTheme.getInstance().onAutoThemeChanged();
+                DynamicTheme.getInstance().onAutoThemeChanged(false);
             } catch (Exception ignored) {
             }
         }

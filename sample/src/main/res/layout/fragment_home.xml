@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -70,12 +70,12 @@
                     app:ads_summary="@string/collapsing_app_bar_subtitle" />
 
                 <com.pranavpandey.android.dynamic.support.setting.base.DynamicScreenPreference
-                    android:id="@+id/pref_bottom_navigation"
+                    android:id="@+id/pref_navigation_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:ads_icon="@drawable/ic_bottom_navigation"
-                    app:ads_title="@string/bottom_navigation"
-                    app:ads_summary="@string/bottom_navigation_subtitle" />
+                    app:ads_icon="@drawable/ic_navigation_bar"
+                    app:ads_title="@string/navigation_bar"
+                    app:ads_summary="@string/navigation_bar_subtitle" />
 
             </LinearLayout>
 
@@ -119,6 +119,20 @@
                 app:ads_icon="@drawable/adt_ic_presets"
                 app:ads_title="@string/palettes"
                 app:ads_subtitle="@string/palettes_subtitle"
+                app:adt_colorType="none" />
+
+        </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+            style="@style/Widget.DynamicApp.Card">
+
+            <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
+                android:id="@+id/item_barquode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ads_icon="@drawable/ic_barquode"
+                app:ads_title="@string/barquode"
+                app:ads_subtitle="@string/barquode_subtitle"
                 app:adt_colorType="none" />
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>

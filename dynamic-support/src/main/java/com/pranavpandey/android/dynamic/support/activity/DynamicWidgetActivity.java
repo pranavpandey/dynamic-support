@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.activity;
 
+import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +27,7 @@ import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
 
 /**
  * An activity to configure widgets having basic configuration methods.
- * <p>Extend this activity and add your own settings fragments according to the need.
+ * <p>Extend this activity and add your own settings fragments according to the requirements.
  */
 public abstract class DynamicWidgetActivity extends DynamicActivity {
 
@@ -74,7 +75,8 @@ public abstract class DynamicWidgetActivity extends DynamicActivity {
             // Make sure we pass back the original appWidgetId.
             Intent resultValue = new Intent();
             resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
-            setResult(RESULT_OK, resultValue);
+
+            setResult(Activity.RESULT_OK, resultValue);
         }
 
         if (finishActivity) {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,8 @@ package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -30,12 +32,11 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.utils.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.utils.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.utils.DynamicDrawableUtils;
+import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
 
 /**
  * A {@link View} to apply {@link DynamicTheme} according to the supplied parameters.
@@ -84,6 +85,11 @@ public class DynamicBackgroundView extends View implements DynamicWidget, Dynami
      * @see #mContrastWithColor
      */
     protected @Theme.BackgroundAware int mBackgroundAware;
+
+    /**
+     * Minimum contrast value to generate contrast color for the background aware functionality.
+     */
+    protected int mContrast;
 
     /**
      * {@code true} to tint background according to the widget color.
@@ -138,6 +144,9 @@ public class DynamicBackgroundView extends View implements DynamicWidget, Dynami
             mBackgroundAware = a.getInteger(
                     R.styleable.DynamicBackgroundView_adt_backgroundAware,
                     Defaults.getBackgroundAware());
+            mContrast = a.getInteger(
+                    R.styleable.DynamicBackgroundView_adt_contrast,
+                    Theme.Contrast.AUTO);
             mTintBackground = a.getBoolean(
                     R.styleable.DynamicBackgroundView_adt_tintBackground,
                     Defaults.ADS_TINT_BACKGROUND);
@@ -268,6 +277,32 @@ public class DynamicBackgroundView extends View implements DynamicWidget, Dynami
     }
 
     @Override
+    public int getContrast(boolean resolve) {
+        if (resolve) {
+            return Dynamic.getContrast(this);
+        }
+
+        return mContrast;
+    }
+
+    @Override
+    public int getContrast() {
+        return getContrast(true);
+    }
+
+    @Override
+    public float getContrastRatio() {
+        return getContrast() / (float) Theme.Contrast.MAX;
+    }
+
+    @Override
+    public void setContrast(int contrast) {
+        this.mContrast = contrast;
+
+        setBackgroundAware(getBackgroundAware());
+    }
+
+    @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
@@ -276,6 +311,20 @@ public class DynamicBackgroundView extends View implements DynamicWidget, Dynami
         } else {
             setAlpha(Defaults.ADS_ALPHA_ENABLED);
         }
+    }
+
+    @Override
+    public void setBackground(Drawable background) {
+        super.setBackground(background);
+
+        setColor();
+    }
+
+    @Override
+    public void setBackgroundDrawable(Drawable background) {
+        super.setBackgroundDrawable(background);
+
+        setColor();
     }
 
     @Override
@@ -335,14 +384,15 @@ public class DynamicBackgroundView extends View implements DynamicWidget, Dynami
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
-                mAppliedColor = DynamicColorUtils.getContrastColor(mColor, mContrastWithColor);
+                mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
             }
         }
 
         if (getBackground() != null) {
             getBackground().clearColorFilter();
 
-            if (isTintBackground() && mAppliedColor != Theme.Color.UNKNOWN) {
+            if (isTintBackground() && mColor != Theme.Color.UNKNOWN
+                    && !(getBackground() instanceof ColorDrawable)) {
                 DynamicDrawableUtils.colorizeDrawable(getBackground(), mAppliedColor);
             }
         }

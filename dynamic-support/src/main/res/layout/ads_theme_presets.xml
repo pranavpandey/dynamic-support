@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -52,9 +52,8 @@
     </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
-        style="@style/Widget.DynamicApp.Scroller.Nested.Padding"
+        style="@style/Widget.DynamicApp.Scroller.Nested.Padding.Horizontal"
         android:id="@+id/ads_recycler_view"
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp" />
+        android:paddingTop="0dp" />
 
 </LinearLayout>

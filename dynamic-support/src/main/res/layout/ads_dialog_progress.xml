@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ads_margin_extra_tiny"
+        android:layout_marginTop="@dimen/ads_dialog_margin_top"
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
@@ -32,8 +32,11 @@
             android:id="@+id/ads_dialog_progress_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/ads_margin_normal"
-            android:paddingRight="@dimen/ads_margin_normal"
+            android:layout_marginBottom="@dimen/ads_dialog_margin"
+            android:paddingLeft="@dimen/ads_dialog_margin_horizontal"
+            android:paddingStart="@dimen/ads_dialog_margin_horizontal"
+            android:paddingRight="@dimen/ads_dialog_margin_horizontal"
+            android:paddingEnd="@dimen/ads_dialog_margin_horizontal"
             app:adt_colorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
@@ -41,7 +44,6 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ads_margin_extra_tiny"
             android:indeterminate="true" />
 
     </LinearLayout>

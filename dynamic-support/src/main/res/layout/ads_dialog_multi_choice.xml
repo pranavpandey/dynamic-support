@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Copyright 2018-2021 Pranav Pandey
+    Copyright 2018-2022 Pranav Pandey
     Copyright 2015 The Android Open Source Project
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,14 +22,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?attr/listPreferredItemHeightSmall"
-    android:textAppearance="?android:attr/textAppearanceMedium"
-    android:textColor="?attr/textColorAlertDialogListItem"
     android:gravity="center_vertical"
     android:paddingLeft="@dimen/ads_dialog_margin_select_start"
-    android:paddingRight="?attr/dialogPreferredPadding"
     android:paddingStart="@dimen/ads_dialog_margin_select_start"
+    android:paddingRight="?attr/dialogPreferredPadding"
     android:paddingEnd="?attr/dialogPreferredPadding"
     android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
     android:drawableStart="?android:attr/listChoiceIndicatorMultiple"
     android:drawablePadding="@dimen/ads_dialog_margin_select_start"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:textColor="?attr/textColorAlertDialogListItem"
     android:ellipsize="marquee" />

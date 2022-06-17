@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2021 Pranav Pandey
+ * Copyright 2018-2022 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import com.pranavpandey.android.dynamic.support.model.DynamicPermission;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.permission.fragment.DynamicPermissionsFragment;
 import com.pranavpandey.android.dynamic.support.permission.listener.DynamicPermissionsListener;
-import com.pranavpandey.android.dynamic.utils.DynamicPackageUtils;
+import com.pranavpandey.android.dynamic.util.DynamicPackageUtils;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ import java.util.List;
  * it in the manifest to provide additional functionality.
  *
  * <p>Then, register that activity to request the permissions via
- * {@link DynamicPermissions#setPermissionActivity(Class)}. Rest of the things will be handled
+ * {@link DynamicPermissions#setPermissionsActivity(Class)}. Rest of the things will be handled
  * by the {@link DynamicPermissionsFragment}.
  *
  * <p>To request permissions, just call
@@ -74,7 +74,7 @@ public class DynamicPermissionsActivity extends DynamicActivity
 
         addHeader(R.layout.ads_header_appbar, true);
 
-        if (getContentFragment() == null || newIntent) {
+        if (newIntent || getContentFragment() == null) {
             switchFragment(DynamicPermissionsFragment.newInstance(getIntent()), false);
         }
     }

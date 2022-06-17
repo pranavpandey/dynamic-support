@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2021 Pranav Pandey
+	Copyright 2018-2022 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -34,8 +34,9 @@
         android:layout_gravity="center_vertical"
         android:background="@null"
         android:hint="@string/ads_search"
-        android:singleLine="true"
+        android:inputType="text"
         android:imeOptions="actionSearch|flagNoExtractUi"
+        android:maxLines="@integer/ads_text_single_line"
         app:adt_colorType="tint_primary"
         app:adt_textColorType="tint_primary"
         app:adt_contrastWithColorType="primary" />
@@ -44,10 +45,10 @@
         android:id="@+id/ads_search_view_clear"
         android:layout_width="@dimen/ads_icon_small"
         android:layout_height="@dimen/ads_icon_small"
-        android:padding="@dimen/ads_margin_extra_tiny"
         android:layout_marginLeft="@dimen/ads_page_horizontal_margin"
         android:layout_marginStart="@dimen/ads_page_horizontal_margin"
         android:layout_gravity="center_vertical"
+        android:padding="@dimen/ads_margin_extra_tiny"
         android:background="?attr/selectableItemBackgroundBorderless"
         app:srcCompat="@drawable/ads_ic_close"
         app:adt_colorType="tint_primary"
