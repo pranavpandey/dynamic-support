@@ -184,6 +184,9 @@ public class DynamicSliderDialog extends DynamicDialogFragment {
      * Set the icon used by the slider preference.
      *
      * @param icon The icon to be set.
+     *
+     * @return The {@link DynamicSliderDialog} object to allow for chaining of calls to
+     *         set methods.
      */
     public @NonNull DynamicSliderDialog setIcon(@Nullable Drawable icon) {
         this.mIcon = icon;
@@ -204,6 +207,9 @@ public class DynamicSliderDialog extends DynamicDialogFragment {
      * Set the title used by the slider preference.
      *
      * @param title The title to be set.
+     *
+     * @return The {@link DynamicSliderDialog} object to allow for chaining of calls to
+     *         set methods.
      */
     public @NonNull DynamicSliderDialog setTitle(@Nullable String title) {
         this.mTitle = title;
@@ -224,6 +230,9 @@ public class DynamicSliderDialog extends DynamicDialogFragment {
      * Set the summary used by the slider preference.
      *
      * @param summary The summary to be set.
+     *
+     * @return The {@link DynamicSliderDialog} object to allow for chaining of calls to
+     *         set methods.
      */
     public @NonNull DynamicSliderDialog setSummary(@Nullable String summary) {
         this.mSummary = summary;
@@ -244,6 +253,9 @@ public class DynamicSliderDialog extends DynamicDialogFragment {
      * Set the minimum value used by the slider preference.
      *
      * @param min The minimum value to be set.
+     *
+     * @return The {@link DynamicSliderDialog} object to allow for chaining of calls to
+     *         set methods.
      */
     public @NonNull DynamicSliderDialog setMin(int min) {
         this.mMin = min;
@@ -264,6 +276,9 @@ public class DynamicSliderDialog extends DynamicDialogFragment {
      * Set the maximum value used by the slider preference.
      *
      * @param max The maximum value to be set.
+     *
+     * @return The {@link DynamicSliderDialog} object to allow for chaining of calls to
+     *         set methods.
      */
     public @NonNull DynamicSliderDialog setMax(int max) {
         this.mMax = max;
@@ -284,6 +299,9 @@ public class DynamicSliderDialog extends DynamicDialogFragment {
      * Set the interval used by the slider preference.
      *
      * @param interval The interval to be set.
+     *
+     * @return The {@link DynamicSliderDialog} object to allow for chaining of calls to
+     *         set methods.
      */
     public @NonNull DynamicSliderDialog setInterval(int interval) {
         this.mInterval = interval;
@@ -303,7 +321,10 @@ public class DynamicSliderDialog extends DynamicDialogFragment {
     /**
      * Set the unit used by the slider preference.
      *
-     * @param unit  The unit to be set.
+     * @param unit The unit to be set.
+     *
+     * @return The {@link DynamicSliderDialog} object to allow for chaining of calls to
+     *         set methods.
      */
     public @NonNull DynamicSliderDialog setUnit(@Nullable String unit) {
         this.mUnit = unit;
@@ -324,6 +345,9 @@ public class DynamicSliderDialog extends DynamicDialogFragment {
      * Set the slider change listener used by this dialog.
      *
      * @param onSliderChangeListener The slider change listener to be set.
+     *
+     * @return The {@link DynamicSliderDialog} object to allow for chaining of calls to
+     *         set methods.
      */
     public @NonNull DynamicSliderDialog setOnSliderChangeListener(
             @Nullable DynamicSliderChangeListener<Slider> onSliderChangeListener) {
@@ -345,6 +369,9 @@ public class DynamicSliderDialog extends DynamicDialogFragment {
      * Set the value listener used by this dialog.
      *
      * @param valueListener The slider change listener to be set.
+     *
+     * @return The {@link DynamicSliderDialog} object to allow for chaining of calls to
+     *         set methods.
      */
     public @NonNull DynamicSliderDialog setValueListener(
             @Nullable DynamicValueListener<Integer> valueListener) {
@@ -366,6 +393,9 @@ public class DynamicSliderDialog extends DynamicDialogFragment {
      * Set the current value of the slider preference.
      *
      * @param value The current value to be set.
+     *
+     * @return The {@link DynamicSliderDialog} object to allow for chaining of calls to
+     *         set methods.
      */
     public @NonNull DynamicSliderDialog setValue(int value) {
         this.mValue = value;
@@ -377,6 +407,9 @@ public class DynamicSliderDialog extends DynamicDialogFragment {
      * Set the current value of the slider preference.
      *
      * @param value The current value to be set.
+     *
+     * @return The {@link DynamicSliderDialog} object to allow for chaining of calls to
+     *         set methods.
      */
     public @NonNull DynamicSliderDialog setValue(@NonNull Point value) {
         return setValue(Math.max(value.x, value.y));

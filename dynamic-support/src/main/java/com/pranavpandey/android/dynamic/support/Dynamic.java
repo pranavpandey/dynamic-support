@@ -536,6 +536,9 @@ public class Dynamic {
     /**
      * Checks whether the stroke is required for the supplied theme.
      *
+     * @param theme The theme object to be used.
+     * @param <T> The type of the dynamic theme.
+     *
      * @return {@code true} if the stroke is required for the supplied theme.
      */
     public static <T extends StrokeTheme<?>> boolean isStroke(@Nullable T theme) {
@@ -621,6 +624,7 @@ public class Dynamic {
      * to the supplied theme.
      *
      * @param dynamic The dynamic object to be used.
+     * @param theme The theme object to be used.
      * @param <V> The type of the dynamic object.
      * @param <T> The type of the dynamic theme.
      *
@@ -722,6 +726,7 @@ public class Dynamic {
      *
      * @param color The color to be used.
      * @param contrastWith The contrast with color to be used.
+     * @param theme The theme object to be used.
      * @param <T> The type of the theme.
      *
      * @return The contrast color according to the supplied theme.
@@ -760,6 +765,7 @@ public class Dynamic {
      *
      * @param color The color to be used.
      * @param contrastWith The contrast with color to be used.
+     * @param view The view object to be used.
      * @param <T> The type of the dynamic widget.
      *
      * @return The contrast color according to the supplied dynamic widget.
@@ -800,6 +806,7 @@ public class Dynamic {
      * Returns the tint color according to the supplied theme.
      *
      * @param color The color to be used.
+     * @param theme The theme object to be used.
      * @param <T> The type of the theme.
      *
      * @return The tint color according to the supplied theme.
@@ -836,6 +843,7 @@ public class Dynamic {
      * Returns the tint color according to the supplied dynamic widget.
      *
      * @param color The color to be used.
+     * @param view The view object to be used.
      * @param <T> The type of the dynamic widget.
      *
      * @return The tint color according to the supplied dynamic widget.
@@ -859,9 +867,9 @@ public class Dynamic {
      * Sets the translucent theme opacity for the supplied color.
      *
      * @param color The color to be used.
-     * @param theme The dynamic theme toto be used.
+     * @param theme The theme object to be used.
      * @param min The minimum opacity to be used.
-     * @param <T> The type of the theme.
+     * @param <T> The type of the dynamic theme.
      *
      * @return The color after applying the theme opacity.
      *
@@ -885,8 +893,8 @@ public class Dynamic {
      * Sets the translucent theme opacity for the supplied color.
      *
      * @param color The color to be used.
-     * @param theme The dynamic theme toto be used.
-     * @param <T> The type of the theme.
+     * @param theme The theme object to be used.
+     * @param <T> The type of the dynamic theme.
      *
      * @return The color after applying the theme opacity.
      *
@@ -934,9 +942,9 @@ public class Dynamic {
      * Sets the translucent theme opacity for the supplied drawable.
      *
      * @param drawable The drawable to be used.
-     * @param theme The dynamic theme to be used.
+     * @param theme The theme object to be used.
      * @param min The minimum opacity to be used.
-     * @param <T> The type of the theme.
+     * @param <T> The type of the dynamic theme.
      *
      * @return The drawable after applying the theme opacity.
      *
@@ -958,8 +966,8 @@ public class Dynamic {
      * Sets the translucent theme opacity for the supplied drawable.
      *
      * @param drawable The drawable to be used.
-     * @param theme The dynamic theme to be used.
-     * @param <T> The type of the theme.
+     * @param theme The theme object to be used.
+     * @param <T> The type of the dynamic theme.
      *
      * @return The drawable after applying the theme opacity.
      *
@@ -1006,9 +1014,11 @@ public class Dynamic {
     /**
      * Sets the type for the supplied dynamic theme object.
      *
-     * @param theme The dynamic theme object to be used.
+     * @param theme The theme object to be used.
      * @param type The theme type to be set.
-     * @param <T> The type of the dynamic theme object.
+     * @param <T> The type of the theme object.
+     *
+     * @return The theme object after setting the type.
      *
      * @see TypeTheme#setType(int)
      */
@@ -1023,9 +1033,11 @@ public class Dynamic {
     /**
      * Sets the type for the supplied dynamic theme object.
      *
-     * @param theme The dynamic theme object to be used.
+     * @param theme The theme object to be used.
      * @param parent The parent theme to be used.
-     * @param <T> The type of the dynamic theme object.
+     * @param <T> The type of the theme object.
+     *
+     * @return The theme object after setting the type.
      *
      * @see #setThemeType(TypeTheme, int)
      */
@@ -1118,8 +1130,8 @@ public class Dynamic {
     /**
      * Checks whether the dynamic theme object has dynamic colors enabled.
      *
-     * @param theme The dynamic theme object to be used.
-     * @param <T> The type of the dynamic theme object.
+     * @param theme The theme object to be used.
+     * @param <T> The type of the theme object.
      *
      * @return {@code true} if the dynamic theme object has dynamic colors enabled.
      *
@@ -1510,6 +1522,8 @@ public class Dynamic {
      *
      * @param view The view to be used.
      * @param defaultElevation The default elevation to be used.
+     *
+     * @return The elevation for the supplied view.
      */
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static float getElevation(@Nullable View view, float defaultElevation) {
@@ -1812,6 +1826,7 @@ public class Dynamic {
     /**
      * Set the visibility of app bar progress for the {@link DynamicActivity}.
      *
+     * @param activity The activity to be used.
      * @param visible {@code true} to show the progress bar below the app bar.
      */
     public static void setAppBarProgressVisible(@Nullable Context activity, boolean visible) {

@@ -310,6 +310,7 @@ public class DynamicIntent {
      * @param clazz The theme activity class to create the intent.
      * @param action The action for the intent.
      * @param theme The dynamic app theme extra for the intent.
+     * @param themeType The app theme type extra for the intent.
      * @param themeUrl The optional dynamic app theme URL extra for the intent.
      * @param bitmapUri The optional bitmap URI extra for the intent.
      * @param text The optional text extra for the intent.
@@ -345,6 +346,7 @@ public class DynamicIntent {
      * @param clazz The theme activity class to create the intent.
      * @param action The action for the intent.
      * @param theme The dynamic app theme extra for the intent.
+     * @param themeType The app theme type extra for the intent.
      * @param themeUrl The optional dynamic app theme URL extra for the intent.
      * @param bitmapUri The optional bitmap URI extra for the intent.
      *
