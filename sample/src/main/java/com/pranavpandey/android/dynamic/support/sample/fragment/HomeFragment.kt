@@ -25,8 +25,8 @@ import com.google.android.material.appbar.AppBarLayout
 import com.pranavpandey.android.dynamic.support.activity.DynamicDrawerActivity
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment
 import com.pranavpandey.android.dynamic.support.sample.R
-import com.pranavpandey.android.dynamic.support.sample.activity.BottomNavigationActivity
 import com.pranavpandey.android.dynamic.support.sample.activity.CollapsingAppBarActivity
+import com.pranavpandey.android.dynamic.support.sample.activity.NavigationBarActivity
 import com.pranavpandey.android.dynamic.support.sample.activity.TutorialActivity
 import com.pranavpandey.android.dynamic.support.sample.controller.Constants
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicScreenPreference
@@ -58,8 +58,8 @@ class HomeFragment : DynamicFragment() {
     }
 
     override fun getNavigationViewId(): Int {
-        // Return the bottom navigation view id.
-        return R.id.bottom_navigation
+        // Return the navigation bar view id.
+        return R.id.ads_navigation_bar_view
     }
 
     override fun getCheckedMenuItemId(): Int {
@@ -137,15 +137,15 @@ class HomeFragment : DynamicFragment() {
                 }
 
         if (activity is DynamicDrawerActivity ) {
-            // Start bottom navigation activity.
-            (view.findViewById<View>(R.id.pref_bottom_navigation)
+            // Start navigation bar activity.
+            (view.findViewById<View>(R.id.pref_navigation_bar)
                     as DynamicScreenPreference).onPreferenceClickListener =
                     View.OnClickListener {
-                        startActivity(Intent(activity, BottomNavigationActivity::class.java))
+                        startActivity(Intent(activity, NavigationBarActivity::class.java))
                     }
         } else {
-            // Hide bottom navigation activity.
-            view.findViewById<View>(R.id.pref_bottom_navigation).visibility = View.GONE
+            // Hide navigation bar activity.
+            view.findViewById<View>(R.id.pref_navigation_bar).visibility = View.GONE
         }
 
     }

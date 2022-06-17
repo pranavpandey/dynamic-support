@@ -54,8 +54,8 @@ class SettingsFragment : DynamicViewPager2Fragment() {
     }
 
     override fun getNavigationViewId(): Int {
-        // Return the bottom navigation view id.
-        return R.id.bottom_navigation
+        // Return the navigation bar view id.
+        return R.id.ads_navigation_bar_view
     }
 
     override fun getCheckedMenuItemId(): Int {

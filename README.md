@@ -52,7 +52,7 @@ dependencies {
 ## Usage
 It is a collection of activities, fragments, widgets, views and some utility functions required 
 to build a standard Android app. It also provides some in-built use cases like an intro screen, 
-drawer activity, about screen, collapsing app bar, bottom navigation, color picker, multiple 
+drawer activity, about screen, collapsing app bar, navigation bar view, color picker, multiple 
 locales, runtime permissions, etc. which can be used and customised according to the need.
 
 > For complete reference, please read the [documentation][documentation].

@@ -65,7 +65,7 @@
             android:launchMode="singleTop" />
 
         <activity
-            android:name=".activity.BottomNavigationActivity"
+            android:name=".activity.NavigationBarActivity"
             android:label="@string/collapsing_app_bar"
             android:launchMode="singleTop" />
 

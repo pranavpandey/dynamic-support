@@ -70,12 +70,12 @@
                     app:ads_summary="@string/collapsing_app_bar_subtitle" />
 
                 <com.pranavpandey.android.dynamic.support.setting.base.DynamicScreenPreference
-                    android:id="@+id/pref_bottom_navigation"
+                    android:id="@+id/pref_navigation_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:ads_icon="@drawable/ic_bottom_navigation"
-                    app:ads_title="@string/bottom_navigation"
-                    app:ads_summary="@string/bottom_navigation_subtitle" />
+                    app:ads_icon="@drawable/ic_navigation_bar"
+                    app:ads_title="@string/navigation_bar"
+                    app:ads_summary="@string/navigation_bar_subtitle" />
 
             </LinearLayout>
 
