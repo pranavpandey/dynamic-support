@@ -30,7 +30,6 @@ import com.pranavpandey.android.dynamic.support.sample.fragment.AboutFragment
 import com.pranavpandey.android.dynamic.support.sample.fragment.HomeFragment
 import com.pranavpandey.android.dynamic.support.sample.fragment.SettingsFragment
 import com.pranavpandey.android.dynamic.util.DynamicLinkUtils
-import java.util.*
 
 /**
  * Implementing a navigation drawer by using [DynamicDrawerActivity].

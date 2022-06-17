@@ -31,6 +31,7 @@ import androidx.annotation.StyleRes
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.IconCompat
 import androidx.multidex.MultiDex
+import com.google.android.material.color.DynamicColors
 import com.pranavpandey.android.dynamic.support.DynamicApplication
 import com.pranavpandey.android.dynamic.support.sample.activity.ActionActivity
 import com.pranavpandey.android.dynamic.support.sample.controller.AppController
@@ -80,24 +81,17 @@ class SampleApplication : DynamicApplication() {
         } else ThemeController.appStyle
     }
 
-    override fun getDynamicTheme(): AppTheme<*>? {
+    override fun getDynamicTheme(): AppTheme<*> {
         return ThemeController.dynamicAppTheme
+    }
+
+    override fun isSystemColor(): Boolean {
+        return DynamicColors.isDynamicColorAvailable()
     }
 
     @ColorInt
     override fun getDefaultColor(@Theme.ColorType colorType: Int): Int {
-        return when (colorType) {
-            Theme.ColorType.BACKGROUND -> {
-                return ThemeController.backgroundColor
-            }
-            Theme.ColorType.PRIMARY -> {
-                return ThemeController.colorPrimaryApp
-            }
-            Theme.ColorType.ACCENT -> {
-                ThemeController.colorAccentApp
-            }
-            else -> super.getDefaultColor(colorType)
-        }
+        return ThemeController.getDefaultColor(colorType)
     }
 
     override fun onCustomiseTheme() {

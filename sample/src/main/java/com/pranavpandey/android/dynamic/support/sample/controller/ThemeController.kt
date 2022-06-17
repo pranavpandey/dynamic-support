@@ -81,9 +81,9 @@ object ThemeController {
     /**
      * The background color according to the current settings.
      */
-    val backgroundColor: Int
+    private val backgroundColor: Int
         @ColorInt get() = if (appThemeColor == Theme.AUTO) {
-            if (DynamicTheme.getInstance().isNight)
+            if (DynamicTheme.getInstance().isNightMode(true))
                 appThemeNightColor
             else
                 appThemeDayColor
@@ -94,7 +94,7 @@ object ThemeController {
     /**
      * The app theme surface color.
      */
-    val colorSurfaceApp: Int
+    private val colorSurfaceApp: Int
         @ColorInt get() = DynamicPreferences.getInstance().load(
             Constants.PREF_SETTINGS_APP_THEME_COLOR_SURFACE,
             Constants.PREF_SETTINGS_APP_THEME_COLOR_SURFACE_DEFAULT)
@@ -102,7 +102,7 @@ object ThemeController {
     /**
      * The app theme primary color.
      */
-    val colorPrimaryApp: Int
+    private val colorPrimaryApp: Int
         @ColorInt get() = DynamicPreferences.getInstance().load(
             Constants.PREF_SETTINGS_APP_THEME_COLOR_PRIMARY,
             Constants.PREF_SETTINGS_APP_THEME_COLOR_PRIMARY_DEFAULT)
@@ -110,16 +110,41 @@ object ThemeController {
     /**
      * The app theme accent color.
      */
-    val colorAccentApp: Int
+    private val colorAccentApp: Int
         @ColorInt get() = DynamicPreferences.getInstance().load(
             Constants.PREF_SETTINGS_APP_THEME_COLOR_ACCENT,
             Constants.PREF_SETTINGS_APP_THEME_COLOR_ACCENT_DEFAULT)
+
+    /**
+     * Returns the default color according to the color type.
+     *
+     * @param colorType The color type to be used.
+     *
+     * @return The default color according to the color type.
+     */
+    fun getDefaultColor(@Theme.ColorType colorType: Int): Int {
+        return when (colorType) {
+            Theme.ColorType.BACKGROUND -> {
+                return backgroundColor
+            }
+            Theme.ColorType.PRIMARY -> {
+                return colorPrimaryApp
+            }
+            Theme.ColorType.ACCENT -> {
+                colorAccentApp
+            }
+            else -> Constants.APP_THEME_COLOR
+        }
+    }
 
     /**
      * The background color according to the current settings.
      */
     val dynamicAppTheme: DynamicAppTheme
         get() = DynamicAppTheme()
+            .setType(if (backgroundColor == Theme.AUTO
+                && !DynamicTheme.getInstance().isNightMode(true)) Theme.DAY
+            else Theme.NIGHT)
             .setBackgroundColor(backgroundColor).setSurfaceColor(colorSurfaceApp)
             .setPrimaryColor(colorPrimaryApp).setAccentColor(colorAccentApp)
 

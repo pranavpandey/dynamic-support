@@ -26,7 +26,6 @@ import com.pranavpandey.android.dynamic.support.tutorial.Tutorial
 import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutorialActivity
 import com.pranavpandey.android.dynamic.support.tutorial.fragment.DynamicTutorialFragment
 import com.pranavpandey.android.dynamic.util.DynamicLinkUtils
-import java.util.*
 
 /**
  * Implementing a into screen by using [DynamicTutorialActivity].
