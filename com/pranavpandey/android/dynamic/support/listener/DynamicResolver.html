@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -150,64 +150,105 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>com.pranavpandey.android.dynamic.theme.DynamicColors</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getColors()">getColors</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the dynamic colors used by this resolver.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>com.pranavpandey.android.dynamic.theme.DynamicColors</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getColors(boolean)">getColors</a></span>&#8203;(boolean&nbsp;resolve)</code></th>
+<td class="colLast">
+<div class="block">Get the dynamic colors used by this resolver.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>java.util.Date</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNightTimeEnd()">getNightTimeEnd</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns end time for the night theme.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>java.util.Date</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNightTimeStart()">getNightTimeStart</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns start time for the night theme.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i4" class="altColor">
+<td class="colFirst"><code><a href="../theme/DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTheme()">getTheme</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the dynamic theme instance used by this resolver.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isNight()">isNight</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Checks for the night time.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isNight(int)">isNight</a></span>&#8203;(int&nbsp;theme)</code></th>
 <td class="colLast">
 <div class="block">Checks for the night time according to the supplied value.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isNight(java.lang.String)">isNight</a></span>&#8203;(java.lang.String&nbsp;theme)</code></th>
 <td class="colLast">
 <div class="block">Checks for the night time according to the supplied value.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isSystemNightMode()">isSystemNightMode</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Checks whether the system night mode is enabled.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resolveAppTheme(int,int,boolean)">resolveAppTheme</a></span>&#8203;(int&nbsp;theme,
+               int&nbsp;night,
+               boolean&nbsp;data)</code></th>
+<td class="colLast">
+<div class="block">Resolves current theme according to the supplied implementation.</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resolveAppTheme(java.lang.String,java.lang.String,boolean)">resolveAppTheme</a></span>&#8203;(java.lang.String&nbsp;theme,
+               java.lang.String&nbsp;night,
+               boolean&nbsp;data)</code></th>
+<td class="colLast">
+<div class="block">Resolves current theme according to the supplied implementation.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resolveNightTheme(int,int)">resolveNightTheme</a></span>&#8203;(int&nbsp;appTheme,
-                 int&nbsp;implementation)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resolveNightTheme(int,int,boolean)">resolveNightTheme</a></span>&#8203;(int&nbsp;theme,
+                 int&nbsp;implementation,
+                 boolean&nbsp;data)</code></th>
 <td class="colLast">
 <div class="block">Resolves night theme according to the selected implementation.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resolveNightTheme(java.lang.String,java.lang.String)">resolveNightTheme</a></span>&#8203;(java.lang.String&nbsp;appTheme,
-                 java.lang.String&nbsp;implementation)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resolveNightTheme(java.lang.String,java.lang.String,boolean)">resolveNightTheme</a></span>&#8203;(java.lang.String&nbsp;theme,
+                 java.lang.String&nbsp;implementation,
+                 boolean&nbsp;data)</code></th>
 <td class="colLast">
 <div class="block">Resolves night theme according to the selected implementation.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resolveSystemColor(boolean)">resolveSystemColor</a></span>&#8203;(boolean&nbsp;isNight)</code></th>
 <td class="colLast">
@@ -231,6 +272,53 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="getTheme()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getTheme</h4>
+<pre class="methodSignature">@NonNull
+<a href="../theme/DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a>&nbsp;getTheme()</pre>
+<div class="block">Get the dynamic theme instance used by this resolver.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The dynamic theme instance used by this resolver.</dd>
+</dl>
+</li>
+</ul>
+<a id="getColors(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getColors</h4>
+<pre class="methodSignature">@NonNull
+com.pranavpandey.android.dynamic.theme.DynamicColors&nbsp;getColors&#8203;(boolean&nbsp;resolve)</pre>
+<div class="block">Get the dynamic colors used by this resolver.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>resolve</code> - <code>true</code> to resolve the dynamic colors.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The dynamic colors used by this resolver.</dd>
+</dl>
+</li>
+</ul>
+<a id="getColors()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getColors</h4>
+<pre class="methodSignature">@NonNull
+com.pranavpandey.android.dynamic.theme.DynamicColors&nbsp;getColors()</pre>
+<div class="block">Get the dynamic colors used by this resolver.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The dynamic colors used by this resolver.</dd>
+</dl>
+</li>
+</ul>
 <a id="isSystemNightMode()">
 <!--   -->
 </a>
@@ -341,41 +429,93 @@ java.util.Date&nbsp;getNightTimeEnd()</pre>
 </dl>
 </li>
 </ul>
-<a id="resolveNightTheme(int,int)">
+<a id="resolveNightTheme(int,int,boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>resolveNightTheme</h4>
-<pre class="methodSignature">boolean&nbsp;resolveNightTheme&#8203;(int&nbsp;appTheme,
-                          int&nbsp;implementation)</pre>
+<pre class="methodSignature">boolean&nbsp;resolveNightTheme&#8203;(int&nbsp;theme,
+                          int&nbsp;implementation,
+                          boolean&nbsp;data)</pre>
 <div class="block">Resolves night theme according to the selected implementation.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>appTheme</code> - The app theme to resolve the auto night theme.</dd>
+<dd><code>theme</code> - The app theme to resolve the auto night theme.</dd>
 <dd><code>implementation</code> - The implementation for the night theme.</dd>
+<dd><code>data</code> - <code>true</code> to resolve based on the theme data.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd><code>true</code> if the night theme is enabled according to the selected
          implementation.</dd>
 </dl>
 </li>
 </ul>
-<a id="resolveNightTheme(java.lang.String,java.lang.String)">
+<a id="resolveNightTheme(java.lang.String,java.lang.String,boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>resolveNightTheme</h4>
+<pre class="methodSignature">boolean&nbsp;resolveNightTheme&#8203;(java.lang.String&nbsp;theme,
+                          java.lang.String&nbsp;implementation,
+                          boolean&nbsp;data)</pre>
+<div class="block">Resolves night theme according to the selected implementation.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>theme</code> - The app theme to resolve the auto night theme.</dd>
+<dd><code>implementation</code> - The implementation for the night theme.</dd>
+<dd><code>data</code> - <code>true</code> to resolve based on the theme data.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the night theme is enabled according to the selected
+         implementation.</dd>
+</dl>
+</li>
+</ul>
+<a id="resolveAppTheme(int,int,boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>resolveAppTheme</h4>
+<pre class="methodSignature">int&nbsp;resolveAppTheme&#8203;(int&nbsp;theme,
+                    int&nbsp;night,
+                    boolean&nbsp;data)</pre>
+<div class="block">Resolves current theme according to the supplied implementation.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>theme</code> - The theme to be resolved.</dd>
+<dd><code>night</code> - The implementation for the night theme.</dd>
+<dd><code>data</code> - <code>true</code> to resolve based on the theme data.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The resolved theme constant according to the supplied implementation.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>Theme.DAY</code>, 
+<code>Theme.NIGHT</code>, 
+<code>Theme.CUSTOM</code></dd>
+</dl>
+</li>
+</ul>
+<a id="resolveAppTheme(java.lang.String,java.lang.String,boolean)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>resolveNightTheme</h4>
-<pre class="methodSignature">boolean&nbsp;resolveNightTheme&#8203;(java.lang.String&nbsp;appTheme,
-                          java.lang.String&nbsp;implementation)</pre>
-<div class="block">Resolves night theme according to the selected implementation.</div>
+<h4>resolveAppTheme</h4>
+<pre class="methodSignature">int&nbsp;resolveAppTheme&#8203;(java.lang.String&nbsp;theme,
+                    java.lang.String&nbsp;night,
+                    boolean&nbsp;data)</pre>
+<div class="block">Resolves current theme according to the supplied implementation.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>appTheme</code> - The app theme to resolve the auto night theme.</dd>
-<dd><code>implementation</code> - The implementation for the night theme.</dd>
+<dd><code>theme</code> - The theme to be resolved.</dd>
+<dd><code>night</code> - The implementation for the night theme.</dd>
+<dd><code>data</code> - <code>true</code> to resolve based on the theme data.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if the night theme is enabled according to the selected
-         implementation.</dd>
+<dd>The resolved theme constant according to the supplied implementation.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>Theme.DAY</code>, 
+<code>Theme.NIGHT</code>, 
+<code>Theme.CUSTOM</code></dd>
 </dl>
 </li>
 </ul>
@@ -407,7 +547,7 @@ java.util.Date&nbsp;getNightTimeEnd()</pre>
 <li><a href="../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>5.0.0</h5></div>
+<div class="aboutLanguage"><h5>6.0.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">

@@ -151,7 +151,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDynamicPause()">onDynamicPause</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDynamicPause(boolean)">onDynamicPause</a></span>&#8203;(boolean&nbsp;forced)</code></th>
 <td class="colLast">
 <div class="block">This method will be called when the dynamic pause event occurs like pausing a
  <code>Fragment</code> when it goes off screen inside a
@@ -160,7 +160,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDynamicResume()">onDynamicResume</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDynamicResume(boolean)">onDynamicResume</a></span>&#8203;(boolean&nbsp;forced)</code></th>
 <td class="colLast">
 <div class="block">This method will be called when the dynamic resume event occurs like resuming a
  <code>Fragment</code> when it is visible to the user inside a
@@ -184,28 +184,36 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="onDynamicResume()">
+<a id="onDynamicResume(boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>onDynamicResume</h4>
-<pre class="methodSignature">void&nbsp;onDynamicResume()</pre>
+<pre class="methodSignature">void&nbsp;onDynamicResume&#8203;(boolean&nbsp;forced)</pre>
 <div class="block">This method will be called when the dynamic resume event occurs like resuming a
  <code>Fragment</code> when it is visible to the user inside a
  <code>ViewPager</code>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>forced</code> - <code>true</code> if called explicitly.</dd>
+</dl>
 </li>
 </ul>
-<a id="onDynamicPause()">
+<a id="onDynamicPause(boolean)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>onDynamicPause</h4>
-<pre class="methodSignature">void&nbsp;onDynamicPause()</pre>
+<pre class="methodSignature">void&nbsp;onDynamicPause&#8203;(boolean&nbsp;forced)</pre>
 <div class="block">This method will be called when the dynamic pause event occurs like pausing a
  <code>Fragment</code> when it goes off screen inside a
  <code>ViewPager</code>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>forced</code> - <code>true</code> if called explicitly.</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -236,7 +244,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li><a href="../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>5.0.0</h5></div>
+<div class="aboutLanguage"><h5>6.0.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">

@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -124,7 +124,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="../activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicActivity</a></code>, <code><a href="../activity/DynamicDrawerActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicDrawerActivity</a></code>, <code><a href="../permission/activity/DynamicPermissionsActivity.html" title="class in com.pranavpandey.android.dynamic.support.permission.activity">DynamicPermissionsActivity</a></code>, <code><a href="../theme/activity/DynamicThemeActivity.html" title="class in com.pranavpandey.android.dynamic.support.theme.activity">DynamicThemeActivity</a></code>, <code><a href="../tutorial/activity/DynamicTutorialActivity.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.activity">DynamicTutorialActivity</a></code>, <code><a href="../activity/DynamicWidgetActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicWidgetActivity</a></code></dd>
+<dd><code><a href="../activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicActivity</a></code>, <code><a href="../activity/DynamicDrawerActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicDrawerActivity</a></code>, <code><a href="../activity/DynamicNavigationActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicNavigationActivity</a></code>, <code><a href="../permission/activity/DynamicPermissionsActivity.html" title="class in com.pranavpandey.android.dynamic.support.permission.activity">DynamicPermissionsActivity</a></code>, <code><a href="../preview/activity/DynamicPreviewActivity.html" title="class in com.pranavpandey.android.dynamic.support.preview.activity">DynamicPreviewActivity</a></code>, <code><a href="../tutorial/activity/DynamicTutorialActivity.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.activity">DynamicTutorialActivity</a></code>, <code><a href="../activity/DynamicWidgetActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicWidgetActivity</a></code></dd>
 </dl>
 <hr>
 <pre>public interface <span class="typeNameLabel">DynamicSnackbar</span></pre>
@@ -179,6 +179,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Make a themed snackbar with text and action.</div>
 </td>
 </tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onSnackbarShow(com.google.android.material.snackbar.Snackbar)">onSnackbarShow</a></span>&#8203;(com.google.android.material.snackbar.Snackbar&nbsp;snackbar)</code></th>
+<td class="colLast">
+<div class="block">This method will be called to show the snackbar.</div>
+</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -202,7 +209,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <h4>getSnackbar</h4>
-<pre class="methodSignature">@NonNull
+<pre class="methodSignature">@Nullable
 com.google.android.material.snackbar.Snackbar&nbsp;getSnackbar&#8203;(@NonNull
                                                           java.lang.CharSequence&nbsp;text,
                                                           int&nbsp;duration)</pre>
@@ -228,7 +235,7 @@ com.google.android.material.snackbar.Snackbar&nbsp;getSnackbar&#8203;(@NonNull
 <ul class="blockList">
 <li class="blockList">
 <h4>getSnackbar</h4>
-<pre class="methodSignature">@NonNull
+<pre class="methodSignature">@Nullable
 com.google.android.material.snackbar.Snackbar&nbsp;getSnackbar&#8203;(@StringRes
                                                           int&nbsp;stringRes,
                                                           int&nbsp;duration)</pre>
@@ -254,7 +261,7 @@ com.google.android.material.snackbar.Snackbar&nbsp;getSnackbar&#8203;(@StringRes
 <ul class="blockList">
 <li class="blockList">
 <h4>getSnackbar</h4>
-<pre class="methodSignature">@NonNull
+<pre class="methodSignature">@Nullable
 com.google.android.material.snackbar.Snackbar&nbsp;getSnackbar&#8203;(@NonNull
                                                           java.lang.CharSequence&nbsp;text)</pre>
 <div class="block">Make a themed snackbar with text and action.
@@ -273,10 +280,10 @@ com.google.android.material.snackbar.Snackbar&nbsp;getSnackbar&#8203;(@NonNull
 <a id="getSnackbar(int)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getSnackbar</h4>
-<pre class="methodSignature">@NonNull
+<pre class="methodSignature">@Nullable
 com.google.android.material.snackbar.Snackbar&nbsp;getSnackbar&#8203;(@StringRes
                                                           int&nbsp;stringRes)</pre>
 <div class="block">Make a themed snackbar with text and action.
@@ -289,6 +296,21 @@ com.google.android.material.snackbar.Snackbar&nbsp;getSnackbar&#8203;(@StringRes
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The snackbar with the supplied parameters.
          <p>Use <code>Snackbar.show()</code> to display the snackbar.</dd>
+</dl>
+</li>
+</ul>
+<a id="onSnackbarShow(com.google.android.material.snackbar.Snackbar)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>onSnackbarShow</h4>
+<pre class="methodSignature">void&nbsp;onSnackbarShow&#8203;(@Nullable
+                    com.google.android.material.snackbar.Snackbar&nbsp;snackbar)</pre>
+<div class="block">This method will be called to show the snackbar.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>snackbar</code> - The snackbar to be shown.</dd>
 </dl>
 </li>
 </ul>
@@ -320,7 +342,7 @@ com.google.android.material.snackbar.Snackbar&nbsp;getSnackbar&#8203;(@StringRes
 <li><a href="../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>5.0.0</h5></div>
+<div class="aboutLanguage"><h5>6.0.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">

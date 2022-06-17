@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6,"i14":6,"i15":6,"i16":6,"i17":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -124,7 +124,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="../activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicActivity</a></code>, <code><a href="../DynamicApplication.html" title="class in com.pranavpandey.android.dynamic.support">DynamicApplication</a></code>, <code><a href="../activity/DynamicDrawerActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicDrawerActivity</a></code>, <code><a href="../permission/activity/DynamicPermissionsActivity.html" title="class in com.pranavpandey.android.dynamic.support.permission.activity">DynamicPermissionsActivity</a></code>, <code><a href="../splash/activity/DynamicSplashActivity.html" title="class in com.pranavpandey.android.dynamic.support.splash.activity">DynamicSplashActivity</a></code>, <code><a href="../activity/DynamicStateActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicStateActivity</a></code>, <code><a href="../activity/DynamicSystemActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicSystemActivity</a></code>, <code><a href="../theme/DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code>, <code><a href="../theme/activity/DynamicThemeActivity.html" title="class in com.pranavpandey.android.dynamic.support.theme.activity">DynamicThemeActivity</a></code>, <code><a href="../theme/DynamicThemeHandler.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicThemeHandler</a></code>, <code><a href="../tutorial/activity/DynamicTutorialActivity.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.activity">DynamicTutorialActivity</a></code>, <code><a href="../activity/DynamicWidgetActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicWidgetActivity</a></code></dd>
+<dd><code><a href="../activity/DynamicActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicActivity</a></code>, <code><a href="../DynamicApplication.html" title="class in com.pranavpandey.android.dynamic.support">DynamicApplication</a></code>, <code><a href="../activity/DynamicDrawerActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicDrawerActivity</a></code>, <code><a href="../activity/DynamicNavigationActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicNavigationActivity</a></code>, <code><a href="../permission/activity/DynamicPermissionsActivity.html" title="class in com.pranavpandey.android.dynamic.support.permission.activity">DynamicPermissionsActivity</a></code>, <code><a href="../preview/activity/DynamicPreviewActivity.html" title="class in com.pranavpandey.android.dynamic.support.preview.activity">DynamicPreviewActivity</a></code>, <code><a href="../splash/activity/DynamicSplashActivity.html" title="class in com.pranavpandey.android.dynamic.support.splash.activity">DynamicSplashActivity</a></code>, <code><a href="../activity/DynamicStateActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicStateActivity</a></code>, <code><a href="../activity/DynamicSystemActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicSystemActivity</a></code>, <code><a href="../theme/DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code>, <code><a href="../theme/DynamicThemeHandler.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicThemeHandler</a></code>, <code><a href="../tutorial/activity/DynamicTutorialActivity.html" title="class in com.pranavpandey.android.dynamic.support.tutorial.activity">DynamicTutorialActivity</a></code>, <code><a href="../activity/DynamicWidgetActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicWidgetActivity</a></code></dd>
 </dl>
 <hr>
 <pre>public interface <span class="typeNameLabel">DynamicListener</span></pre>
@@ -185,13 +185,55 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </td>
 </tr>
 <tr id="i5" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isDynamicColor()">isDynamicColor</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns whether to apply the dynamic colors for this listener.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isDynamicColors()">isDynamicColors</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns whether the dynamic colors are enabled for this listener.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isNightMode(boolean)">isNightMode</a></span>&#8203;(boolean&nbsp;resolve)</code></th>
+<td class="colLast">
+<div class="block">Checks whether the night mode is enabled for this listener.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isOnSharedPreferenceChangeListener()">isOnSharedPreferenceChangeListener</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns whether to register a shared preferences listener for this listener.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isSystemColor()">isSystemColor</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns whether the dynamic colors should be extracted from the system for this listener.</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isWallpaperColor()">isWallpaperColor</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns whether the dynamic colors should be extracted from the wallpaper for this listener.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onAutoThemeChanged()">onAutoThemeChanged</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onAutoThemeChanged(boolean)">onAutoThemeChanged</a></span>&#8203;(boolean&nbsp;context)</code></th>
 <td class="colLast">
 <div class="block">This method will be called when the auto theme change event occurs according to the time.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDynamicChanged(boolean,boolean)">onDynamicChanged</a></span>&#8203;(boolean&nbsp;context,
                 boolean&nbsp;recreate)</code></th>
@@ -199,7 +241,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">This method will be called when the dynamic change event occurs (like theme, locale, etc.).</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDynamicColorsChanged(com.pranavpandey.android.dynamic.theme.DynamicColors,boolean)">onDynamicColorsChanged</a></span>&#8203;(com.pranavpandey.android.dynamic.theme.DynamicColors&nbsp;colors,
+                      boolean&nbsp;context)</code></th>
+<td class="colLast">
+<div class="block">This method will be called when the dynamic color change event occurs according
+ to the wallpaper.</div>
+</td>
+</tr>
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDynamicConfigurationChanged(boolean,boolean,boolean,boolean,boolean)">onDynamicConfigurationChanged</a></span>&#8203;(boolean&nbsp;locale,
                              boolean&nbsp;fontScale,
@@ -211,21 +262,21 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  (like locale, font scale, orientation, ui mode, etc.).</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onNavigationBarThemeChanged()">onNavigationBarThemeChanged</a></span>()</code></th>
 <td class="colLast">
 <div class="block">This method will be called when the navigation bar theme has been changed.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onPowerSaveModeChanged(boolean)">onPowerSaveModeChanged</a></span>&#8203;(boolean&nbsp;powerSaveMode)</code></th>
 <td class="colLast">
 <div class="block">This method will be called when the power save mode has been changed.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setNavigationBarTheme()">setNavigationBarTheme</a></span>()</code></th>
 <td class="colLast">
@@ -264,6 +315,22 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dl>
 </li>
 </ul>
+<a id="isNightMode(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isNightMode</h4>
+<pre class="methodSignature">boolean&nbsp;isNightMode&#8203;(boolean&nbsp;resolve)</pre>
+<div class="block">Checks whether the night mode is enabled for this listener.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>resolve</code> - <code>true</code> to resolve based on the theme data.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the night mode is enabled for this listener.</dd>
+</dl>
+</li>
+</ul>
 <a id="getThemeRes(com.pranavpandey.android.dynamic.theme.AppTheme)">
 <!--   -->
 </a>
@@ -281,7 +348,7 @@ int&nbsp;getThemeRes&#8203;(@Nullable
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The theme style resource for this listener.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><code>AppTheme.isDarkTheme()</code></dd>
+<dd><code>BackgroundTheme.isDarkTheme()</code></dd>
 </dl>
 </li>
 </ul>
@@ -319,6 +386,64 @@ com.pranavpandey.android.dynamic.theme.AppTheme&lt;?&gt;&nbsp;getDynamicTheme()<
 </dl>
 </li>
 </ul>
+<a id="isDynamicColors()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isDynamicColors</h4>
+<pre class="methodSignature">boolean&nbsp;isDynamicColors()</pre>
+<div class="block">Returns whether the dynamic colors are enabled for this listener.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the dynamic colors are enabled for this listener.</dd>
+</dl>
+</li>
+</ul>
+<a id="isDynamicColor()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isDynamicColor</h4>
+<pre class="methodSignature">boolean&nbsp;isDynamicColor()</pre>
+<div class="block">Returns whether to apply the dynamic colors for this listener.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the dynamic colors should be applied for this listener.</dd>
+</dl>
+</li>
+</ul>
+<a id="isSystemColor()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isSystemColor</h4>
+<pre class="methodSignature">boolean&nbsp;isSystemColor()</pre>
+<div class="block">Returns whether the dynamic colors should be extracted from the system for this listener.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the dynamic colors should be extracted from the system
+         for this listener</dd>
+</dl>
+</li>
+</ul>
+<a id="isWallpaperColor()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isWallpaperColor</h4>
+<pre class="methodSignature">boolean&nbsp;isWallpaperColor()</pre>
+<div class="block">Returns whether the dynamic colors should be extracted from the wallpaper for this listener.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the dynamic colors should be extracted from the wallpaper
+         for this listener</dd>
+</dl>
+</li>
+</ul>
 <a id="getDefaultColor(int)">
 <!--   -->
 </a>
@@ -336,6 +461,21 @@ int&nbsp;getDefaultColor&#8203;(int&nbsp;colorType)</pre>
 <dd>The resolved default color according to the color type.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><code>Theme.AUTO</code></dd>
+</dl>
+</li>
+</ul>
+<a id="isOnSharedPreferenceChangeListener()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isOnSharedPreferenceChangeListener</h4>
+<pre class="methodSignature">boolean&nbsp;isOnSharedPreferenceChangeListener()</pre>
+<div class="block">Returns whether to register a shared preferences listener for this listener.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> to register a <a href="https://developer.android.com/reference/android/content/SharedPreferences.OnSharedPreferenceChangeListener.html?is-external=true" title="class or interface in android.content" class="externalLink"><code>SharedPreferences.OnSharedPreferenceChangeListener</code></a>
+         to receive preference change callback.</dd>
 </dl>
 </li>
 </ul>
@@ -386,15 +526,38 @@ int&nbsp;getDefaultColor&#8203;(int&nbsp;colorType)</pre>
 </dl>
 </li>
 </ul>
-<a id="onAutoThemeChanged()">
+<a id="onDynamicColorsChanged(com.pranavpandey.android.dynamic.theme.DynamicColors,boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onDynamicColorsChanged</h4>
+<pre class="methodSignature">void&nbsp;onDynamicColorsChanged&#8203;(@Nullable
+                            com.pranavpandey.android.dynamic.theme.DynamicColors&nbsp;colors,
+                            boolean&nbsp;context)</pre>
+<div class="block">This method will be called when the dynamic color change event occurs according
+ to the wallpaper.
+ <p>Recreate the activity or application here to adapt changes.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>colors</code> - The new dynamic colors.</dd>
+<dd><code>context</code> - <code>true</code> if there is a context change and it must be reinitialized.</dd>
+</dl>
+</li>
+</ul>
+<a id="onAutoThemeChanged(boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>onAutoThemeChanged</h4>
-<pre class="methodSignature">void&nbsp;onAutoThemeChanged()</pre>
+<pre class="methodSignature">void&nbsp;onAutoThemeChanged&#8203;(boolean&nbsp;context)</pre>
 <div class="block">This method will be called when the auto theme change event occurs according to the time.
  <p>Recreate the activity or application here to adapt changes.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>context</code> - <code>true</code> if there is a context change and it must be reinitialized.</dd>
+</dl>
 </li>
 </ul>
 <a id="onPowerSaveModeChanged(boolean)">
@@ -466,7 +629,7 @@ int&nbsp;getDefaultColor&#8203;(int&nbsp;colorType)</pre>
 <li><a href="../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>5.0.0</h5></div>
+<div class="aboutLanguage"><h5>6.0.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">

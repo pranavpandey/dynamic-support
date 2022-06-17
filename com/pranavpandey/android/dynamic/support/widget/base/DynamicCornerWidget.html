@@ -124,7 +124,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="../DynamicButton.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicButton</a></code>, <code><a href="../DynamicCardView.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicCardView</a></code>, <code><a href="../DynamicMaterialCardView.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicMaterialCardView</a></code>, <code><a href="../DynamicPopupBackground.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicPopupBackground</a></code>, <code><a href="../DynamicTextInputLayout.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicTextInputLayout</a></code></dd>
+<dd><code><a href="../DynamicButton.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicButton</a></code>, <code><a href="../DynamicCardView.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicCardView</a></code>, <code><a href="../DynamicExtendedFloatingActionButton.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicExtendedFloatingActionButton</a></code>, <code><a href="../DynamicFloatingActionButton.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicFloatingActionButton</a></code>, <code><a href="../DynamicMaterialCardView.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicMaterialCardView</a></code>, <code><a href="../DynamicPopupBackground.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicPopupBackground</a></code>, <code><a href="../DynamicTextInputLayout.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicTextInputLayout</a></code></dd>
 </dl>
 <hr>
 <pre>public interface <span class="typeNameLabel">DynamicCornerWidget&lt;T&gt;</span></pre>
@@ -159,7 +159,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCorner(T)">setCorner</a></span>&#8203;(<a href="DynamicCornerWidget.html" title="type parameter in DynamicCornerWidget">T</a>&nbsp;cornerRadius)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCorner(T)">setCorner</a></span>&#8203;(<a href="DynamicCornerWidget.html" title="type parameter in DynamicCornerWidget">T</a>&nbsp;cornerSize)</code></th>
 <td class="colLast">
 <div class="block">Set the corner radius for this widget.</div>
 </td>
@@ -181,33 +181,35 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="getCorner()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getCorner</h4>
+<pre class="methodSignature">@NonNull
+<a href="DynamicCornerWidget.html" title="type parameter in DynamicCornerWidget">T</a>&nbsp;getCorner()</pre>
+<div class="block">Returns the corner radius used by this widget.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The corner radius used by this widget.</dd>
+</dl>
+</li>
+</ul>
 <a id="setCorner(java.lang.Object)">
 <!--   -->
 </a><a id="setCorner(T)">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>setCorner</h4>
-<pre class="methodSignature">void&nbsp;setCorner&#8203;(<a href="DynamicCornerWidget.html" title="type parameter in DynamicCornerWidget">T</a>&nbsp;cornerRadius)</pre>
+<pre class="methodSignature">void&nbsp;setCorner&#8203;(@NonNull
+               <a href="DynamicCornerWidget.html" title="type parameter in DynamicCornerWidget">T</a>&nbsp;cornerSize)</pre>
 <div class="block">Set the corner radius for this widget.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>cornerRadius</code> - The corner radius to be set.</dd>
-</dl>
-</li>
-</ul>
-<a id="getCorner()">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>getCorner</h4>
-<pre class="methodSignature"><a href="DynamicCornerWidget.html" title="type parameter in DynamicCornerWidget">T</a>&nbsp;getCorner()</pre>
-<div class="block">Returns the corner radius used by this widget.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The corner radius used by this widget.</dd>
+<dd><code>cornerSize</code> - The corner radius to be set.</dd>
 </dl>
 </li>
 </ul>
@@ -239,7 +241,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li><a href="../../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>5.0.0</h5></div>
+<div class="aboutLanguage"><h5>6.0.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">

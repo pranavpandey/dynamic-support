@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6};
+var data = {"i0":6,"i1":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -147,9 +147,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onStartDrag(androidx.recyclerview.widget.RecyclerView.ViewHolder)">onStartDrag</a></span>&#8203;(androidx.recyclerview.widget.RecyclerView.ViewHolder&nbsp;viewHolder)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onStartDrag(androidx.recyclerview.widget.RecyclerView.ViewHolder)">onStartDrag</a></span>&#8203;(androidx.recyclerview.widget.RecyclerView.ViewHolder&nbsp;holder)</code></th>
 <td class="colLast">
 <div class="block">This method will be called when a view is requesting a start of a drag.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onStopDrag(androidx.recyclerview.widget.RecyclerView.ViewHolder)">onStopDrag</a></span>&#8203;(androidx.recyclerview.widget.RecyclerView.ViewHolder&nbsp;holder)</code></th>
+<td class="colLast">
+<div class="block">This method will be called when a drag is stopped.</div>
 </td>
 </tr>
 </table>
@@ -172,15 +179,30 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <a id="onStartDrag(androidx.recyclerview.widget.RecyclerView.ViewHolder)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>onStartDrag</h4>
 <pre class="methodSignature">void&nbsp;onStartDrag&#8203;(@NonNull
-                 androidx.recyclerview.widget.RecyclerView.ViewHolder&nbsp;viewHolder)</pre>
+                 androidx.recyclerview.widget.RecyclerView.ViewHolder&nbsp;holder)</pre>
 <div class="block">This method will be called when a view is requesting a start of a drag.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>viewHolder</code> - The holder of the view to drag.</dd>
+<dd><code>holder</code> - The holder of the view to drag.</dd>
+</dl>
+</li>
+</ul>
+<a id="onStopDrag(androidx.recyclerview.widget.RecyclerView.ViewHolder)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>onStopDrag</h4>
+<pre class="methodSignature">void&nbsp;onStopDrag&#8203;(@NonNull
+                androidx.recyclerview.widget.RecyclerView.ViewHolder&nbsp;holder)</pre>
+<div class="block">This method will be called when a drag is stopped.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>holder</code> - The holder of the view to stop the drag.</dd>
 </dl>
 </li>
 </ul>
@@ -212,7 +234,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li><a href="../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>5.0.0</h5></div>
+<div class="aboutLanguage"><h5>6.0.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">

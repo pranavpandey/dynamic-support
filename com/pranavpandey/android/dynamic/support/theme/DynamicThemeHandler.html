@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -242,17 +242,31 @@ implements <a href="../listener/DynamicListener.html" title="interface in com.pr
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#DATA_PARCELABLE_COLORS">DATA_PARCELABLE_COLORS</a></span></code></th>
+<td class="colLast">
+<div class="block">Bundle key to store the dynamic color changes.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#MESSAGE_POST_AUTO_THEME">MESSAGE_POST_AUTO_THEME</a></span></code></th>
 <td class="colLast">
 <div class="block">Message constant to post the auto theme changes.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#MESSAGE_POST_DYNAMIC">MESSAGE_POST_DYNAMIC</a></span></code></th>
 <td class="colLast">
 <div class="block">Message constant to post the dynamic theme changes.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#MESSAGE_POST_DYNAMIC_COLOR">MESSAGE_POST_DYNAMIC_COLOR</a></span></code></th>
+<td class="colLast">
+<div class="block">Message constant to post the dynamic color changes.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -381,19 +395,61 @@ implements <a href="../listener/DynamicListener.html" title="interface in com.pr
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isDynamicColor()">isDynamicColor</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns whether to apply the dynamic colors for this listener.</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isDynamicColors()">isDynamicColors</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns whether the dynamic colors are enabled for this listener.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isListener(com.pranavpandey.android.dynamic.support.listener.DynamicListener)">isListener</a></span>&#8203;(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener)</code></th>
 <td class="colLast">
 <div class="block">Checks whether a dynamic listener is already registered.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i12" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isNightMode(boolean)">isNightMode</a></span>&#8203;(boolean&nbsp;resolve)</code></th>
+<td class="colLast">
+<div class="block">Checks whether the night mode is enabled for this listener.</div>
+</td>
+</tr>
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isOnSharedPreferenceChangeListener()">isOnSharedPreferenceChangeListener</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns whether to register a shared preferences listener for this listener.</div>
+</td>
+</tr>
+<tr id="i14" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isSystemColor()">isSystemColor</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns whether the dynamic colors should be extracted from the system for this listener.</div>
+</td>
+</tr>
+<tr id="i15" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isWallpaperColor()">isWallpaperColor</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns whether the dynamic colors should be extracted from the wallpaper for this listener.</div>
+</td>
+</tr>
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onAutoThemeChanged()">onAutoThemeChanged</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onAutoThemeChanged(boolean)">onAutoThemeChanged</a></span>&#8203;(boolean&nbsp;context)</code></th>
 <td class="colLast">
 <div class="block">This method will be called when the auto theme change event occurs according to the time.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDynamicChanged(boolean,boolean)">onDynamicChanged</a></span>&#8203;(boolean&nbsp;context,
                 boolean&nbsp;recreate)</code></th>
@@ -401,7 +457,16 @@ implements <a href="../listener/DynamicListener.html" title="interface in com.pr
 <div class="block">This method will be called when the dynamic change event occurs (like theme, locale, etc.).</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i18" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDynamicColorsChanged(com.pranavpandey.android.dynamic.theme.DynamicColors,boolean)">onDynamicColorsChanged</a></span>&#8203;(com.pranavpandey.android.dynamic.theme.DynamicColors&nbsp;colors,
+                      boolean&nbsp;context)</code></th>
+<td class="colLast">
+<div class="block">This method will be called when the dynamic color change event occurs according
+ to the wallpaper.</div>
+</td>
+</tr>
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDynamicConfigurationChanged(boolean,boolean,boolean,boolean,boolean)">onDynamicConfigurationChanged</a></span>&#8203;(boolean&nbsp;locale,
                              boolean&nbsp;fontScale,
@@ -413,35 +478,35 @@ implements <a href="../listener/DynamicListener.html" title="interface in com.pr
  (like locale, font scale, orientation, ui mode, etc.).</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onNavigationBarThemeChanged()">onNavigationBarThemeChanged</a></span>()</code></th>
 <td class="colLast">
 <div class="block">This method will be called when the navigation bar theme has been changed.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onPowerSaveModeChanged(boolean)">onPowerSaveModeChanged</a></span>&#8203;(boolean&nbsp;powerSaveMode)</code></th>
 <td class="colLast">
 <div class="block">This method will be called when the power save mode has been changed.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeListener(com.pranavpandey.android.dynamic.support.listener.DynamicListener)">removeListener</a></span>&#8203;(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener)</code></th>
 <td class="colLast">
 <div class="block">Remove a dynamic listener.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resolveListener(boolean)">resolveListener</a></span>&#8203;(boolean&nbsp;latest)</code></th>
 <td class="colLast">
 <div class="block">Returns the latest listener added to the theme.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setNavigationBarTheme()">setNavigationBarTheme</a></span>()</code></th>
 <td class="colLast">
@@ -505,8 +570,23 @@ implements <a href="../listener/DynamicListener.html" title="interface in com.pr
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../listener/DynamicListener.html#onDynamicConfigurationChanged(boolean,boolean,boolean,boolean,boolean)"><code>DynamicListener.onDynamicConfigurationChanged(
-boolean, boolean, boolean, boolean, boolean)</code></a>, 
+ boolean, boolean, boolean, boolean, boolean)</code></a>, 
 <a href="../../../../../../constant-values.html#com.pranavpandey.android.dynamic.support.theme.DynamicThemeHandler.MESSAGE_POST_DYNAMIC_CONFIGURATION">Constant Field Values</a></dd>
+</dl>
+</li>
+</ul>
+<a id="MESSAGE_POST_DYNAMIC_COLOR">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>MESSAGE_POST_DYNAMIC_COLOR</h4>
+<pre>public static final&nbsp;int MESSAGE_POST_DYNAMIC_COLOR</pre>
+<div class="block">Message constant to post the dynamic color changes.</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../listener/DynamicListener.html#onDynamicColorsChanged(com.pranavpandey.android.dynamic.theme.DynamicColors,boolean)"><code>DynamicListener.onDynamicColorsChanged(DynamicColors, boolean)</code></a>, 
+<a href="../../../../../../constant-values.html#com.pranavpandey.android.dynamic.support.theme.DynamicThemeHandler.MESSAGE_POST_DYNAMIC_COLOR">Constant Field Values</a></dd>
 </dl>
 </li>
 </ul>
@@ -520,7 +600,7 @@ boolean, boolean, boolean, boolean, boolean)</code></a>,
 <div class="block">Message constant to post the auto theme changes.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../listener/DynamicListener.html#onAutoThemeChanged()"><code>DynamicListener.onAutoThemeChanged()</code></a>, 
+<dd><a href="../listener/DynamicListener.html#onAutoThemeChanged(boolean)"><code>DynamicListener.onAutoThemeChanged(boolean)</code></a>, 
 <a href="../../../../../../constant-values.html#com.pranavpandey.android.dynamic.support.theme.DynamicThemeHandler.MESSAGE_POST_AUTO_THEME">Constant Field Values</a></dd>
 </dl>
 </li>
@@ -656,7 +736,7 @@ boolean, boolean, boolean, boolean, boolean)</code></a>,
 <a id="DATA_BOOLEAN_POWER_SAVE_MODE">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>DATA_BOOLEAN_POWER_SAVE_MODE</h4>
 <pre>public static final&nbsp;java.lang.String DATA_BOOLEAN_POWER_SAVE_MODE</pre>
@@ -664,6 +744,20 @@ boolean, boolean, boolean, boolean, boolean)</code></a>,
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../../../constant-values.html#com.pranavpandey.android.dynamic.support.theme.DynamicThemeHandler.DATA_BOOLEAN_POWER_SAVE_MODE">Constant Field Values</a></dd>
+</dl>
+</li>
+</ul>
+<a id="DATA_PARCELABLE_COLORS">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>DATA_PARCELABLE_COLORS</h4>
+<pre>public static final&nbsp;java.lang.String DATA_PARCELABLE_COLORS</pre>
+<div class="block">Bundle key to store the dynamic color changes.</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../../../constant-values.html#com.pranavpandey.android.dynamic.support.theme.DynamicThemeHandler.DATA_PARCELABLE_COLORS">Constant Field Values</a></dd>
 </dl>
 </li>
 </ul>
@@ -836,6 +930,25 @@ public&nbsp;<a href="https://developer.android.com/reference/android/content/Con
 </dl>
 </li>
 </ul>
+<a id="isNightMode(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isNightMode</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isNightMode&#8203;(boolean&nbsp;resolve)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../listener/DynamicListener.html#isNightMode(boolean)">DynamicListener</a></code></span></div>
+<div class="block">Checks whether the night mode is enabled for this listener.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../listener/DynamicListener.html#isNightMode(boolean)">isNightMode</a></code>&nbsp;in interface&nbsp;<code><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>resolve</code> - <code>true</code> to resolve based on the theme data.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the night mode is enabled for this listener.</dd>
+</dl>
+</li>
+</ul>
 <a id="getThemeRes(com.pranavpandey.android.dynamic.theme.AppTheme)">
 <!--   -->
 </a>
@@ -856,7 +969,7 @@ public&nbsp;int&nbsp;getThemeRes&#8203;(@Nullable
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The theme style resource for this listener.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><code>AppTheme.isDarkTheme()</code></dd>
+<dd><code>BackgroundTheme.isDarkTheme()</code></dd>
 </dl>
 </li>
 </ul>
@@ -897,6 +1010,94 @@ public&nbsp;com.pranavpandey.android.dynamic.theme.AppTheme&lt;?&gt;&nbsp;getDyn
 <dd><code><a href="../listener/DynamicListener.html#getDynamicTheme()">getDynamicTheme</a></code>&nbsp;in interface&nbsp;<code><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The dynamic app theme for this listener.</dd>
+</dl>
+</li>
+</ul>
+<a id="isDynamicColors()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isDynamicColors</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isDynamicColors()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../listener/DynamicListener.html#isDynamicColors()">DynamicListener</a></code></span></div>
+<div class="block">Returns whether the dynamic colors are enabled for this listener.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../listener/DynamicListener.html#isDynamicColors()">isDynamicColors</a></code>&nbsp;in interface&nbsp;<code><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the dynamic colors are enabled for this listener.</dd>
+</dl>
+</li>
+</ul>
+<a id="isDynamicColor()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isDynamicColor</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isDynamicColor()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../listener/DynamicListener.html#isDynamicColor()">DynamicListener</a></code></span></div>
+<div class="block">Returns whether to apply the dynamic colors for this listener.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../listener/DynamicListener.html#isDynamicColor()">isDynamicColor</a></code>&nbsp;in interface&nbsp;<code><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the dynamic colors should be applied for this listener.</dd>
+</dl>
+</li>
+</ul>
+<a id="isSystemColor()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isSystemColor</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isSystemColor()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../listener/DynamicListener.html#isSystemColor()">DynamicListener</a></code></span></div>
+<div class="block">Returns whether the dynamic colors should be extracted from the system for this listener.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../listener/DynamicListener.html#isSystemColor()">isSystemColor</a></code>&nbsp;in interface&nbsp;<code><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the dynamic colors should be extracted from the system
+         for this listener</dd>
+</dl>
+</li>
+</ul>
+<a id="isWallpaperColor()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isWallpaperColor</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isWallpaperColor()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../listener/DynamicListener.html#isWallpaperColor()">DynamicListener</a></code></span></div>
+<div class="block">Returns whether the dynamic colors should be extracted from the wallpaper for this listener.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../listener/DynamicListener.html#isWallpaperColor()">isWallpaperColor</a></code>&nbsp;in interface&nbsp;<code><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the dynamic colors should be extracted from the wallpaper
+         for this listener</dd>
+</dl>
+</li>
+</ul>
+<a id="isOnSharedPreferenceChangeListener()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isOnSharedPreferenceChangeListener</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isOnSharedPreferenceChangeListener()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../listener/DynamicListener.html#isOnSharedPreferenceChangeListener()">DynamicListener</a></code></span></div>
+<div class="block">Returns whether to register a shared preferences listener for this listener.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../listener/DynamicListener.html#isOnSharedPreferenceChangeListener()">isOnSharedPreferenceChangeListener</a></code>&nbsp;in interface&nbsp;<code><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> to register a <a href="https://developer.android.com/reference/android/content/SharedPreferences.OnSharedPreferenceChangeListener.html?is-external=true" title="class or interface in android.content" class="externalLink"><code>SharedPreferences.OnSharedPreferenceChangeListener</code></a>
+         to receive preference change callback.</dd>
 </dl>
 </li>
 </ul>
@@ -976,19 +1177,43 @@ public&nbsp;int&nbsp;getDefaultColor&#8203;(int&nbsp;colorType)</pre>
 </dl>
 </li>
 </ul>
-<a id="onAutoThemeChanged()">
+<a id="onDynamicColorsChanged(com.pranavpandey.android.dynamic.theme.DynamicColors,boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onDynamicColorsChanged</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;onDynamicColorsChanged&#8203;(@Nullable
+                                   com.pranavpandey.android.dynamic.theme.DynamicColors&nbsp;colors,
+                                   boolean&nbsp;context)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../listener/DynamicListener.html#onDynamicColorsChanged(com.pranavpandey.android.dynamic.theme.DynamicColors,boolean)">DynamicListener</a></code></span></div>
+<div class="block">This method will be called when the dynamic color change event occurs according
+ to the wallpaper.
+ <p>Recreate the activity or application here to adapt changes.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../listener/DynamicListener.html#onDynamicColorsChanged(com.pranavpandey.android.dynamic.theme.DynamicColors,boolean)">onDynamicColorsChanged</a></code>&nbsp;in interface&nbsp;<code><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>colors</code> - The new dynamic colors.</dd>
+<dd><code>context</code> - <code>true</code> if there is a context change and it must be reinitialized.</dd>
+</dl>
+</li>
+</ul>
+<a id="onAutoThemeChanged(boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>onAutoThemeChanged</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;onAutoThemeChanged()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../listener/DynamicListener.html#onAutoThemeChanged()">DynamicListener</a></code></span></div>
+<pre class="methodSignature">public&nbsp;void&nbsp;onAutoThemeChanged&#8203;(boolean&nbsp;context)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../listener/DynamicListener.html#onAutoThemeChanged(boolean)">DynamicListener</a></code></span></div>
 <div class="block">This method will be called when the auto theme change event occurs according to the time.
  <p>Recreate the activity or application here to adapt changes.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../listener/DynamicListener.html#onAutoThemeChanged()">onAutoThemeChanged</a></code>&nbsp;in interface&nbsp;<code><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code></dd>
+<dd><code><a href="../listener/DynamicListener.html#onAutoThemeChanged(boolean)">onAutoThemeChanged</a></code>&nbsp;in interface&nbsp;<code><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>context</code> - <code>true</code> if there is a context change and it must be reinitialized.</dd>
 </dl>
 </li>
 </ul>
@@ -1072,7 +1297,7 @@ public&nbsp;int&nbsp;getDefaultColor&#8203;(int&nbsp;colorType)</pre>
 <li><a href="../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>5.0.0</h5></div>
+<div class="aboutLanguage"><h5>6.0.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">

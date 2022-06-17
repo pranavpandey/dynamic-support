@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":6,"i12":6,"i13":6,"i14":10,"i15":10,"i16":10,"i17":10};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":10,"i6":10,"i7":10,"i8":10,"i9":6,"i10":6,"i11":6,"i12":10,"i13":10,"i14":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -88,8 +88,8 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
@@ -123,10 +123,15 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>androidx.recyclerview.widget.RecyclerView.Adapter&lt;androidx.recyclerview.widget.RecyclerView.ViewHolder&gt;</li>
+<li>androidx.recyclerview.widget.RecyclerView.Adapter&lt;VH&gt;</li>
+<li>
+<ul class="inheritance">
+<li><a href="DynamicRecyclerViewAdapter.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.adapter">com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicRecyclerViewAdapter</a>&lt;androidx.recyclerview.widget.RecyclerView.ViewHolder&gt;</li>
 <li>
 <ul class="inheritance">
 <li>com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBinderAdapter&lt;VB&gt;</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -141,7 +146,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dl>
 <hr>
 <pre>public abstract class <span class="typeNameLabel">DynamicBinderAdapter&lt;VB extends <a href="../binder/DynamicRecyclerViewBinder.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.binder">DynamicRecyclerViewBinder</a>&gt;</span>
-extends androidx.recyclerview.widget.RecyclerView.Adapter&lt;androidx.recyclerview.widget.RecyclerView.ViewHolder&gt;</pre>
+extends <a href="DynamicRecyclerViewAdapter.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.adapter">DynamicRecyclerViewAdapter</a>&lt;androidx.recyclerview.widget.RecyclerView.ViewHolder&gt;</pre>
 <div class="block">A <code>RecyclerView.Adapter</code> to display different types of items or views in a recycler view.
  <p>Each section can have a header or a completely different item.
 
@@ -153,6 +158,40 @@ extends androidx.recyclerview.widget.RecyclerView.Adapter&lt;androidx.recyclervi
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a id="nested.classes.inherited.from.class.com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicRecyclerViewAdapter">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from class&nbsp;com.pranavpandey.android.dynamic.support.recyclerview.adapter.<a href="DynamicRecyclerViewAdapter.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.adapter">DynamicRecyclerViewAdapter</a></h3>
+<code><a href="DynamicRecyclerViewAdapter.DynamicRecyclerViewItem.html" title="interface in com.pranavpandey.android.dynamic.support.recyclerview.adapter">DynamicRecyclerViewAdapter.DynamicRecyclerViewItem</a>, <a href="DynamicRecyclerViewAdapter.ItemType.html" title="annotation in com.pranavpandey.android.dynamic.support.recyclerview.adapter">DynamicRecyclerViewAdapter.ItemType</a></code></li>
+</ul>
+</li>
+</ul>
+</section>
+<!-- =========== FIELD SUMMARY =========== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a id="fields.inherited.from.class.com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicRecyclerViewAdapter">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;com.pranavpandey.android.dynamic.support.recyclerview.adapter.<a href="DynamicRecyclerViewAdapter.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.adapter">DynamicRecyclerViewAdapter</a></h3>
+<code><a href="DynamicRecyclerViewAdapter.html#TYPE_EMPTY_VIEW">TYPE_EMPTY_VIEW</a>, <a href="DynamicRecyclerViewAdapter.html#TYPE_ITEM">TYPE_ITEM</a>, <a href="DynamicRecyclerViewAdapter.html#TYPE_SECTION_DIVIDER">TYPE_SECTION_DIVIDER</a>, <a href="DynamicRecyclerViewAdapter.html#TYPE_SECTION_HEADER">TYPE_SECTION_HEADER</a>, <a href="DynamicRecyclerViewAdapter.html#TYPE_SETTING">TYPE_SETTING</a>, <a href="DynamicRecyclerViewAdapter.html#TYPE_UNKNOWN">TYPE_UNKNOWN</a></code></li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <section role="region">
 <ul class="blockList">
@@ -221,27 +260,13 @@ extends androidx.recyclerview.widget.RecyclerView.Adapter&lt;androidx.recyclervi
 </td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code>androidx.recyclerview.widget.RecyclerView</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRecyclerView()">getRecyclerView</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Get the recycler view displaying this adapter.</div>
-</td>
-</tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isComputingLayout()">isComputingLayout</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Checks whether the recycler view associated with this adapter is computing layout.</div>
-</td>
-</tr>
-<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#notifyBinderDataSetChanged()">notifyBinderDataSetChanged</a></span>()</code></th>
 <td class="colLast">
 <div class="block">This method will be called when the data has been changed.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#notifyBinderItemChanged(VB,int)">notifyBinderItemChanged</a></span>&#8203;(<a href="DynamicBinderAdapter.html" title="type parameter in DynamicBinderAdapter">VB</a>&nbsp;binder,
                        int&nbsp;position)</code></th>
@@ -249,7 +274,7 @@ extends androidx.recyclerview.widget.RecyclerView.Adapter&lt;androidx.recyclervi
 <div class="block">This method will be called when an item has been changed in the data binder.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#notifyBinderItemInserted(VB,int)">notifyBinderItemInserted</a></span>&#8203;(<a href="DynamicBinderAdapter.html" title="type parameter in DynamicBinderAdapter">VB</a>&nbsp;binder,
                         int&nbsp;position)</code></th>
@@ -257,7 +282,7 @@ extends androidx.recyclerview.widget.RecyclerView.Adapter&lt;androidx.recyclervi
 <div class="block">This method will be called when an item has been inserted in the data binder.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#notifyBinderItemMoved(VB,int,int)">notifyBinderItemMoved</a></span>&#8203;(<a href="DynamicBinderAdapter.html" title="type parameter in DynamicBinderAdapter">VB</a>&nbsp;binder,
                      int&nbsp;fromPosition,
@@ -266,7 +291,7 @@ extends androidx.recyclerview.widget.RecyclerView.Adapter&lt;androidx.recyclervi
 <div class="block">This method will be called when an item has been moved in the data binder.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#notifyBinderItemRangeChanged(VB,int,int)">notifyBinderItemRangeChanged</a></span>&#8203;(<a href="DynamicBinderAdapter.html" title="type parameter in DynamicBinderAdapter">VB</a>&nbsp;binder,
                             int&nbsp;position,
@@ -275,7 +300,7 @@ extends androidx.recyclerview.widget.RecyclerView.Adapter&lt;androidx.recyclervi
 <div class="block">This method will be called when the item range of a data binder has been changed.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#notifyBinderItemRangeInserted(VB,int,int)">notifyBinderItemRangeInserted</a></span>&#8203;(<a href="DynamicBinderAdapter.html" title="type parameter in DynamicBinderAdapter">VB</a>&nbsp;binder,
                              int&nbsp;position,
@@ -284,7 +309,7 @@ extends androidx.recyclerview.widget.RecyclerView.Adapter&lt;androidx.recyclervi
 <div class="block">This method will be called when a set of items have been inserted in a data binder.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#notifyBinderItemRangeRemoved(VB,int,int)">notifyBinderItemRangeRemoved</a></span>&#8203;(<a href="DynamicBinderAdapter.html" title="type parameter in DynamicBinderAdapter">VB</a>&nbsp;binder,
                             int&nbsp;position,
@@ -293,7 +318,7 @@ extends androidx.recyclerview.widget.RecyclerView.Adapter&lt;androidx.recyclervi
 <div class="block">This method will be called when a set of items have been removed in a data binder.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#notifyBinderItemRemoved(VB,int)">notifyBinderItemRemoved</a></span>&#8203;(<a href="DynamicBinderAdapter.html" title="type parameter in DynamicBinderAdapter">VB</a>&nbsp;binder,
                        int&nbsp;position)</code></th>
@@ -301,24 +326,26 @@ extends androidx.recyclerview.widget.RecyclerView.Adapter&lt;androidx.recyclervi
 <div class="block">This method will be called when an item has been removed in the data binder.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onAttachedToRecyclerView(androidx.recyclerview.widget.RecyclerView)">onAttachedToRecyclerView</a></span>&#8203;(androidx.recyclerview.widget.RecyclerView&nbsp;recyclerView)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i16" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder,int)">onBindViewHolder</a></span>&#8203;(androidx.recyclerview.widget.RecyclerView.ViewHolder&nbsp;viewHolder,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder,int)">onBindViewHolder</a></span>&#8203;(androidx.recyclerview.widget.RecyclerView.ViewHolder&nbsp;holder,
                 int&nbsp;position)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>androidx.recyclerview.widget.RecyclerView.ViewHolder</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onCreateViewHolder(android.view.ViewGroup,int)">onCreateViewHolder</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/ViewGroup.html?is-external=true" title="class or interface in android.view" class="externalLink">ViewGroup</a>&nbsp;parent,
                   int&nbsp;viewType)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicRecyclerViewAdapter">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;com.pranavpandey.android.dynamic.support.recyclerview.adapter.<a href="DynamicRecyclerViewAdapter.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.adapter">DynamicRecyclerViewAdapter</a></h3>
+<code><a href="DynamicRecyclerViewAdapter.html#getContext()">getContext</a>, <a href="DynamicRecyclerViewAdapter.html#getLayoutManager()">getLayoutManager</a>, <a href="DynamicRecyclerViewAdapter.html#getRecyclerView()">getRecyclerView</a>, <a href="DynamicRecyclerViewAdapter.html#isComputingLayout()">isComputingLayout</a>, <a href="DynamicRecyclerViewAdapter.html#onAttachedToRecyclerView(androidx.recyclerview.widget.RecyclerView)">onAttachedToRecyclerView</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.androidx.recyclerview.widget.RecyclerView.Adapter">
 <!--   -->
@@ -391,53 +418,11 @@ public&nbsp;androidx.recyclerview.widget.RecyclerView.ViewHolder&nbsp;onCreateVi
 <li class="blockList">
 <h4>onBindViewHolder</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;onBindViewHolder&#8203;(@NonNull
-                             androidx.recyclerview.widget.RecyclerView.ViewHolder&nbsp;viewHolder,
+                             androidx.recyclerview.widget.RecyclerView.ViewHolder&nbsp;holder,
                              int&nbsp;position)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>onBindViewHolder</code>&nbsp;in class&nbsp;<code>androidx.recyclerview.widget.RecyclerView.Adapter&lt;androidx.recyclerview.widget.RecyclerView.ViewHolder&gt;</code></dd>
-</dl>
-</li>
-</ul>
-<a id="onAttachedToRecyclerView(androidx.recyclerview.widget.RecyclerView)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>onAttachedToRecyclerView</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;onAttachedToRecyclerView&#8203;(@Nullable
-                                     androidx.recyclerview.widget.RecyclerView&nbsp;recyclerView)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code>onAttachedToRecyclerView</code>&nbsp;in class&nbsp;<code>androidx.recyclerview.widget.RecyclerView.Adapter&lt;androidx.recyclerview.widget.RecyclerView.ViewHolder&gt;</code></dd>
-</dl>
-</li>
-</ul>
-<a id="isComputingLayout()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>isComputingLayout</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;isComputingLayout()</pre>
-<div class="block">Checks whether the recycler view associated with this adapter is computing layout.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if the recycler view is computing layout.</dd>
-</dl>
-</li>
-</ul>
-<a id="getRecyclerView()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getRecyclerView</h4>
-<pre class="methodSignature">public&nbsp;androidx.recyclerview.widget.RecyclerView&nbsp;getRecyclerView()</pre>
-<div class="block">Get the recycler view displaying this adapter.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The recycler view displaying this adapter.</dd>
 </dl>
 </li>
 </ul>
@@ -701,7 +686,7 @@ public&nbsp;androidx.recyclerview.widget.RecyclerView.ViewHolder&nbsp;onCreateVi
 <li><a href="../../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>5.0.0</h5></div>
+<div class="aboutLanguage"><h5>6.0.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">
@@ -725,8 +710,8 @@ public&nbsp;androidx.recyclerview.widget.RecyclerView.ViewHolder&nbsp;onCreateVi
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>

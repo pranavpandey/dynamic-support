@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -88,14 +88,14 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -130,17 +130,70 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable</a></code></dd>
+</dl>
 <hr>
 <pre>public class <span class="typeNameLabel">DynamicInfo</span>
-extends java.lang.Object</pre>
-<div class="block">A model class to hold the dynamic information which can be used by the
- <a href="../view/base/DynamicInfoView.html" title="class in com.pranavpandey.android.dynamic.support.view.base"><code>DynamicInfoView</code></a>.</div>
+extends java.lang.Object
+implements <a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable</a></pre>
+<div class="block">A model class to hold the dynamic information which can be used by the <a href="../view/base/DynamicInfoView.html" title="class in com.pranavpandey.android.dynamic.support.view.base"><code>DynamicInfoView</code></a>.</div>
 </li>
 </ul>
 </div>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a id="nested.classes.inherited.from.class.android.os.Parcelable">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from interface&nbsp;android.os.<a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable</a></h3>
+<code><a href="https://developer.android.com/reference/android/os/Parcelable.ClassLoaderCreator.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable.ClassLoaderCreator</a>&lt;<a href="https://developer.android.com/reference/android/os/Parcelable.ClassLoaderCreator.html?is-external=true" title="class or interface in android.os" class="externalLink">T</a> extends java.lang.Object&gt;, <a href="https://developer.android.com/reference/android/os/Parcelable.Creator.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable.Creator</a>&lt;<a href="https://developer.android.com/reference/android/os/Parcelable.Creator.html?is-external=true" title="class or interface in android.os" class="externalLink">T</a> extends java.lang.Object&gt;</code></li>
+</ul>
+</li>
+</ul>
+</section>
+<!-- =========== FIELD SUMMARY =========== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="memberSummary">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Field</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="https://developer.android.com/reference/android/os/Parcelable.Creator.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable.Creator</a>&lt;<a href="DynamicInfo.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicInfo</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#CREATOR">CREATOR</a></span></code></th>
+<td class="colLast">
+<div class="block">Parcelable creator to create from parcel.</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a id="fields.inherited.from.class.android.os.Parcelable">
+<!--   -->
+</a>
+<h3>Fields inherited from interface&nbsp;android.os.<a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable</a></h3>
+<code><a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true#CONTENTS_FILE_DESCRIPTOR" title="class or interface in android.os" class="externalLink">CONTENTS_FILE_DESCRIPTOR</a>, <a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true#PARCELABLE_WRITE_RETURN_VALUE" title="class or interface in android.os" class="externalLink">PARCELABLE_WRITE_RETURN_VALUE</a></code></li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <section role="region">
 <ul class="blockList">
@@ -156,7 +209,15 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">DynamicInfo</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Default constructor to initialize the dynamic permission.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(android.os.Parcel)">DynamicInfo</a></span>&#8203;(<a href="https://developer.android.com/reference/android/os/Parcel.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcel</a>&nbsp;in)</code></th>
+<td class="colLast">
+<div class="block">Read an object of this class from the parcel.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -177,172 +238,183 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#describeContents()">describeContents</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>java.lang.CharSequence</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDescription()">getDescription</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Ge the description used by this info.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIcon()">getIcon</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Ge the icon used by this info.</div>
+<div class="block">Get the description used by this info.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIcon()">getIcon</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the icon used by this info.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIconBig()">getIconBig</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the big fallback icon used by this info.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>java.lang.CharSequence[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLinks()">getLinks</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the title for the links used by this info.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.lang.Integer[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLinksColors()">getLinksColors</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the icon tint color for the links used by this info.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLinksColorsResId()">getLinksColorsResId</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the icon tint colors array resource for the links used by this info.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLinksDrawables()">getLinksDrawables</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the icon for the links used by this info.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLinksIconsResId()">getLinksIconsResId</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the icons array resource for the links used by this info.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>java.lang.CharSequence[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLinksSubtitles()">getLinksSubtitles</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the subtitle for the links used by this info.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>java.lang.CharSequence[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLinksUrls()">getLinksUrls</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Get the url for the links used by this info.</div>
+<div class="block">Get the URL for the links used by this info.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>java.lang.CharSequence</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSubtitle()">getSubtitle</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the subtitle used by this info.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>java.lang.CharSequence</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTitle()">getTitle</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the title used by this info.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="DynamicInfo.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicInfo</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDescription(java.lang.CharSequence)">setDescription</a></span>&#8203;(java.lang.CharSequence&nbsp;description)</code></th>
 <td class="colLast">
 <div class="block">Set the description for this info.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="DynamicInfo.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicInfo</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setIcon(android.graphics.drawable.Drawable)">setIcon</a></span>&#8203;(<a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>&nbsp;icon)</code></th>
 <td class="colLast">
 <div class="block">Set the icon for this info.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="DynamicInfo.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicInfo</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setIconBig(android.graphics.drawable.Drawable)">setIconBig</a></span>&#8203;(<a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>&nbsp;iconBig)</code></th>
 <td class="colLast">
 <div class="block">Set the big fallback icon for this info.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code><a href="DynamicInfo.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicInfo</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinks(java.lang.CharSequence%5B%5D)">setLinks</a></span>&#8203;(java.lang.CharSequence[]&nbsp;links)</code></th>
 <td class="colLast">
 <div class="block">Set the title for the links used by this info.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code><a href="DynamicInfo.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicInfo</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinksColors(java.lang.Integer%5B%5D)">setLinksColors</a></span>&#8203;(java.lang.Integer[]&nbsp;linksColors)</code></th>
 <td class="colLast">
 <div class="block">Set the icon tint color for the links used by this info.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code><a href="DynamicInfo.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicInfo</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinksColorsResId(int)">setLinksColorsResId</a></span>&#8203;(int&nbsp;linksColorsResId)</code></th>
 <td class="colLast">
 <div class="block">Set the icon tint colors array resource for the links used by this info.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code><a href="DynamicInfo.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicInfo</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinksDrawables(android.graphics.drawable.Drawable%5B%5D)">setLinksDrawables</a></span>&#8203;(<a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>[]&nbsp;linksDrawables)</code></th>
 <td class="colLast">
 <div class="block">Set the icon for the links used by this info.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code><a href="DynamicInfo.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicInfo</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinksIconsResId(int)">setLinksIconsResId</a></span>&#8203;(int&nbsp;linksIconsResId)</code></th>
 <td class="colLast">
 <div class="block">Set the icons array resource for the links used by this info.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code><a href="DynamicInfo.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicInfo</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinksSubtitles(java.lang.CharSequence%5B%5D)">setLinksSubtitles</a></span>&#8203;(java.lang.CharSequence[]&nbsp;linksSubtitles)</code></th>
 <td class="colLast">
 <div class="block">Set the subtitle for the links used by this info.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code><a href="DynamicInfo.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicInfo</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLinksUrls(java.lang.CharSequence%5B%5D)">setLinksUrls</a></span>&#8203;(java.lang.CharSequence[]&nbsp;linksUrls)</code></th>
 <td class="colLast">
-<div class="block">Set the url for the links used by this info.</div>
+<div class="block">Set the URL for the links used by this info.</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code><a href="DynamicInfo.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicInfo</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSubtitle(java.lang.CharSequence)">setSubtitle</a></span>&#8203;(java.lang.CharSequence&nbsp;subtitle)</code></th>
 <td class="colLast">
 <div class="block">Set the subtitle for this info.</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code><a href="DynamicInfo.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicInfo</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTitle(java.lang.CharSequence)">setTitle</a></span>&#8203;(java.lang.CharSequence&nbsp;title)</code></th>
 <td class="colLast">
 <div class="block">Set the title for this info.</div>
 </td>
+</tr>
+<tr id="i25" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#writeToParcel(android.os.Parcel,int)">writeToParcel</a></span>&#8203;(<a href="https://developer.android.com/reference/android/os/Parcel.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcel</a>&nbsp;dest,
+             int&nbsp;flags)</code></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -361,6 +433,26 @@ extends java.lang.Object</pre>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a id="CREATOR">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>CREATOR</h4>
+<pre>public static final&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.Creator.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable.Creator</a>&lt;<a href="DynamicInfo.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicInfo</a>&gt; CREATOR</pre>
+<div class="block">Parcelable creator to create from parcel.</div>
+</li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <section role="region">
 <ul class="blockList">
@@ -371,10 +463,26 @@ extends java.lang.Object</pre>
 <a id="&lt;init&gt;()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>DynamicInfo</h4>
 <pre>public&nbsp;DynamicInfo()</pre>
+<div class="block">Default constructor to initialize the dynamic permission.</div>
+</li>
+</ul>
+<a id="&lt;init&gt;(android.os.Parcel)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>DynamicInfo</h4>
+<pre>public&nbsp;DynamicInfo&#8203;(@NonNull
+                   <a href="https://developer.android.com/reference/android/os/Parcel.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcel</a>&nbsp;in)</pre>
+<div class="block">Read an object of this class from the parcel.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>in</code> - The parcel to read the values.</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -387,6 +495,33 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="describeContents()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>describeContents</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;describeContents()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true#describeContents()" title="class or interface in android.os" class="externalLink">describeContents</a></code>&nbsp;in interface&nbsp;<code><a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="writeToParcel(android.os.Parcel,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>writeToParcel</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;writeToParcel&#8203;(<a href="https://developer.android.com/reference/android/os/Parcel.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcel</a>&nbsp;dest,
+                          int&nbsp;flags)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true#writeToParcel(android.os.Parcel,int)" title="class or interface in android.os" class="externalLink">writeToParcel</a></code>&nbsp;in interface&nbsp;<code><a href="https://developer.android.com/reference/android/os/Parcelable.html?is-external=true" title="class or interface in android.os" class="externalLink">Parcelable</a></code></dd>
+</dl>
+</li>
+</ul>
 <a id="getIcon()">
 <!--   -->
 </a>
@@ -395,7 +530,7 @@ extends java.lang.Object</pre>
 <h4>getIcon</h4>
 <pre class="methodSignature">@Nullable
 public&nbsp;<a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>&nbsp;getIcon()</pre>
-<div class="block">Ge the icon used by this info.</div>
+<div class="block">Get the icon used by this info.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The icon used by this info.</dd>
@@ -527,7 +662,7 @@ public&nbsp;<a href="DynamicInfo.html" title="class in com.pranavpandey.android.
 <h4>getDescription</h4>
 <pre class="methodSignature">@Nullable
 public&nbsp;java.lang.CharSequence&nbsp;getDescription()</pre>
-<div class="block">Ge the description used by this info.</div>
+<div class="block">Get the description used by this info.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The description used by this info.</dd>
@@ -626,10 +761,10 @@ public&nbsp;<a href="DynamicInfo.html" title="class in com.pranavpandey.android.
 <h4>getLinksUrls</h4>
 <pre class="methodSignature">@Nullable
 public&nbsp;java.lang.CharSequence[]&nbsp;getLinksUrls()</pre>
-<div class="block">Get the url for the links used by this info.</div>
+<div class="block">Get the URL for the links used by this info.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The url for the links used by this info.</dd>
+<dd>The URL for the links used by this info.</dd>
 </dl>
 </li>
 </ul>
@@ -642,7 +777,7 @@ public&nbsp;java.lang.CharSequence[]&nbsp;getLinksUrls()</pre>
 <pre class="methodSignature">@NonNull
 public&nbsp;<a href="DynamicInfo.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicInfo</a>&nbsp;setLinksUrls&#8203;(@Nullable
                                 java.lang.CharSequence[]&nbsp;linksUrls)</pre>
-<div class="block">Set the url for the links used by this info.</div>
+<div class="block">Set the URL for the links used by this info.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>linksUrls</code> - The urls for the links to be set.</dd>
@@ -811,7 +946,7 @@ public&nbsp;<a href="DynamicInfo.html" title="class in com.pranavpandey.android.
 <li><a href="../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>5.0.0</h5></div>
+<div class="aboutLanguage"><h5>6.0.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">
@@ -835,14 +970,14 @@ public&nbsp;<a href="DynamicInfo.html" title="class in com.pranavpandey.android.
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>

@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -128,7 +128,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dl>
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="../DynamicBottomAppBar.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicBottomAppBar</a></code>, <code><a href="../DynamicBottomNavigationView.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicBottomNavigationView</a></code>, <code><a href="../DynamicTabLayout.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicTabLayout</a></code>, <code><a href="../DynamicToolbar.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicToolbar</a></code></dd>
+<dd><code><a href="../DynamicBottomAppBar.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicBottomAppBar</a></code>, <code><a href="../DynamicBottomNavigationView.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicBottomNavigationView</a></code>, <code><a href="../DynamicNavigationRailView.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicNavigationRailView</a></code>, <code><a href="../DynamicTabLayout.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicTabLayout</a></code>, <code><a href="../DynamicToolbar.html" title="class in com.pranavpandey.android.dynamic.support.widget">DynamicToolbar</a></code></dd>
 </dl>
 <hr>
 <pre>public interface <span class="typeNameLabel">DynamicTextWidget</span>
@@ -180,7 +180,7 @@ extends <a href="DynamicWidget.html" title="interface in com.pranavpandey.androi
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTextColor()">setTextColor</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Set text color of this widget according to the supplied values.</div>
+<div class="block">Set text color for this widget according to the supplied values.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
@@ -197,6 +197,13 @@ extends <a href="DynamicWidget.html" title="interface in com.pranavpandey.androi
 <div class="block">Set the text color type to this widget.</div>
 </td>
 </tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTextWidgetColor(boolean)">setTextWidgetColor</a></span>&#8203;(boolean&nbsp;setTextColor)</code></th>
+<td class="colLast">
+<div class="block">Set color and text color for this widget at once.</div>
+</td>
+</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.com.pranavpandey.android.dynamic.support.widget.base.BaseWidget">
@@ -210,7 +217,7 @@ extends <a href="DynamicWidget.html" title="interface in com.pranavpandey.androi
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;com.pranavpandey.android.dynamic.support.widget.base.<a href="DynamicWidget.html" title="interface in com.pranavpandey.android.dynamic.support.widget.base">DynamicWidget</a></h3>
-<code><a href="DynamicWidget.html#getBackgroundAware()">getBackgroundAware</a>, <a href="DynamicWidget.html#getColor()">getColor</a>, <a href="DynamicWidget.html#getColor(boolean)">getColor</a>, <a href="DynamicWidget.html#getColorType()">getColorType</a>, <a href="DynamicWidget.html#getContrastWithColor()">getContrastWithColor</a>, <a href="DynamicWidget.html#getContrastWithColorType()">getContrastWithColorType</a>, <a href="DynamicWidget.html#isBackgroundAware()">isBackgroundAware</a>, <a href="DynamicWidget.html#setBackgroundAware(int)">setBackgroundAware</a>, <a href="DynamicWidget.html#setColor()">setColor</a>, <a href="DynamicWidget.html#setColor(int)">setColor</a>, <a href="DynamicWidget.html#setColorType(int)">setColorType</a>, <a href="DynamicWidget.html#setContrastWithColor(int)">setContrastWithColor</a>, <a href="DynamicWidget.html#setContrastWithColorType(int)">setContrastWithColorType</a>, <a href="DynamicWidget.html#setEnabled(boolean)">setEnabled</a></code></li>
+<code><a href="DynamicWidget.html#getBackgroundAware()">getBackgroundAware</a>, <a href="DynamicWidget.html#getColor()">getColor</a>, <a href="DynamicWidget.html#getColor(boolean)">getColor</a>, <a href="DynamicWidget.html#getColorType()">getColorType</a>, <a href="DynamicWidget.html#getContrast()">getContrast</a>, <a href="DynamicWidget.html#getContrast(boolean)">getContrast</a>, <a href="DynamicWidget.html#getContrastRatio()">getContrastRatio</a>, <a href="DynamicWidget.html#getContrastWithColor()">getContrastWithColor</a>, <a href="DynamicWidget.html#getContrastWithColorType()">getContrastWithColorType</a>, <a href="DynamicWidget.html#isBackgroundAware()">isBackgroundAware</a>, <a href="DynamicWidget.html#setBackgroundAware(int)">setBackgroundAware</a>, <a href="DynamicWidget.html#setColor()">setColor</a>, <a href="DynamicWidget.html#setColor(int)">setColor</a>, <a href="DynamicWidget.html#setColorType(int)">setColorType</a>, <a href="DynamicWidget.html#setContrast(int)">setContrast</a>, <a href="DynamicWidget.html#setContrastWithColor(int)">setContrastWithColor</a>, <a href="DynamicWidget.html#setContrastWithColorType(int)">setContrastWithColorType</a>, <a href="DynamicWidget.html#setEnabled(boolean)">setEnabled</a></code></li>
 </ul>
 </li>
 </ul>
@@ -310,13 +317,27 @@ int&nbsp;getTextColor()</pre>
 <a id="setTextColor()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>setTextColor</h4>
 <pre class="methodSignature">void&nbsp;setTextColor()</pre>
-<div class="block">Set text color of this widget according to the supplied values.
+<div class="block">Set text color for this widget according to the supplied values.
  <p>Generally, it should be a tint color so that text will be visible on this
  widget background.</div>
+</li>
+</ul>
+<a id="setTextWidgetColor(boolean)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>setTextWidgetColor</h4>
+<pre class="methodSignature">void&nbsp;setTextWidgetColor&#8203;(boolean&nbsp;setTextColor)</pre>
+<div class="block">Set color and text color for this widget at once.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>setTextColor</code> - <code>true</code> to set the text color also.</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -347,7 +368,7 @@ int&nbsp;getTextColor()</pre>
 <li><a href="../../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>5.0.0</h5></div>
+<div class="aboutLanguage"><h5>6.0.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">

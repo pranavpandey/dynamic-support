@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":9,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":9,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -187,6 +187,21 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#beginDelayedTransition(android.view.ViewGroup)">beginDelayedTransition</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/ViewGroup.html?is-external=true" title="class or interface in android.view" class="externalLink">ViewGroup</a>&nbsp;sceneRoot)</code></th>
+<td class="colLast">
+<div class="block">Use <code>TransitionManager</code> to begin delayed transition according to the motion duration.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#beginDelayedTransition(android.view.ViewGroup,androidx.transition.Transition)">beginDelayedTransition</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/ViewGroup.html?is-external=true" title="class or interface in android.view" class="externalLink">ViewGroup</a>&nbsp;sceneRoot,
+                      androidx.transition.Transition&nbsp;transition)</code></th>
+<td class="colLast">
+<div class="block">Use <code>TransitionManager</code> to begin delayed transition according to the motion duration.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/android/animation/AnimatorSet.html?is-external=true" title="class or interface in android.animation" class="externalLink">AnimatorSet</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#floatWithAlpha(android.view.View,long,android.util.Property,float,float,float,float)">floatWithAlpha</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;target,
               long&nbsp;startDelay,
@@ -199,7 +214,7 @@ extends java.lang.Object</pre>
 <div class="block">Returns an animator set with view property and alpha animators.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/android/animation/AnimatorSet.html?is-external=true" title="class or interface in android.animation" class="externalLink">AnimatorSet</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#floatWithAlpha(android.view.View,android.util.Property,float,float,float,float)">floatWithAlpha</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;target,
               <a href="https://developer.android.com/reference/android/util/Property.html?is-external=true" title="class or interface in android.util" class="externalLink">Property</a>&lt;<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>,&#8203;java.lang.Float&gt;&nbsp;property,
@@ -211,56 +226,56 @@ extends java.lang.Object</pre>
 <div class="block">Returns an animator set with view property and alpha animators.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDuration()">getDuration</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the current motion duration.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>static <a href="DynamicMotion.html" title="class in com.pranavpandey.android.dynamic.support.motion">DynamicMotion</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getInstance()">getInstance</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Retrieves the singleton instance of <a href="DynamicMotion.html" title="class in com.pranavpandey.android.dynamic.support.motion"><code>DynamicMotion</code></a>.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isMotion()">isMotion</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Checks whether the motion is enabled.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="DynamicMotion.html" title="class in com.pranavpandey.android.dynamic.support.motion">DynamicMotion</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDuration()">setDuration</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Sets the default motion duration.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="DynamicMotion.html" title="class in com.pranavpandey.android.dynamic.support.motion">DynamicMotion</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDuration(long)">setDuration</a></span>&#8203;(long&nbsp;duration)</code></th>
 <td class="colLast">
 <div class="block">Sets the motion duration.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="DynamicMotion.html" title="class in com.pranavpandey.android.dynamic.support.motion">DynamicMotion</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMotion(boolean)">setMotion</a></span>&#8203;(boolean&nbsp;motion)</code></th>
 <td class="colLast">
 <div class="block">Sets the motion, either enable or disable.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#withDuration(T)">withDuration</a></span>&#8203;(T&nbsp;transition)</code></th>
 <td class="colLast">
 <div class="block">Returns the transition with the default duration.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#withDuration(T,long)">withDuration</a></span>&#8203;(T&nbsp;transition,
             long&nbsp;duration)</code></th>
@@ -268,7 +283,7 @@ extends java.lang.Object</pre>
 <div class="block">Returns the transition with the specified duration.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#withInterpolator(T,android.view.animation.Interpolator)">withInterpolator</a></span>&#8203;(T&nbsp;transition,
                 <a href="https://developer.android.com/reference/android/view/animation/Interpolator.html?is-external=true" title="class or interface in android.view.animation" class="externalLink">Interpolator</a>&nbsp;interpolator)</code></th>
@@ -276,14 +291,14 @@ extends java.lang.Object</pre>
 <div class="block">Returns the transition with the specified interpolator.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#withStartDelay(T)">withStartDelay</a></span>&#8203;(T&nbsp;transition)</code></th>
 <td class="colLast">
 <div class="block">Returns the transition with the default start delay.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#withStartDelay(T,long)">withStartDelay</a></span>&#8203;(T&nbsp;transition,
               long&nbsp;startDelay)</code></th>
@@ -610,7 +625,7 @@ public&nbsp;&lt;T&gt;&nbsp;T&nbsp;withStartDelay&#8203;(@Nullable
 </a><a id="withInterpolator(T,android.view.animation.Interpolator)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>withInterpolator</h4>
 <pre class="methodSignature">@Nullable
@@ -627,6 +642,44 @@ public&nbsp;&lt;T&gt;&nbsp;T&nbsp;withInterpolator&#8203;(@Nullable
 <dd><code>interpolator</code> - The interpolator to be set.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The transition with the specified interpolator.</dd>
+</dl>
+</li>
+</ul>
+<a id="beginDelayedTransition(android.view.ViewGroup,androidx.transition.Transition)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>beginDelayedTransition</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;beginDelayedTransition&#8203;(@Nullable
+                                   <a href="https://developer.android.com/reference/android/view/ViewGroup.html?is-external=true" title="class or interface in android.view" class="externalLink">ViewGroup</a>&nbsp;sceneRoot,
+                                   @Nullable
+                                   androidx.transition.Transition&nbsp;transition)</pre>
+<div class="block">Use <code>TransitionManager</code> to begin delayed transition according to the motion duration.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>sceneRoot</code> - The scene root to be used.</dd>
+<dd><code>transition</code> - The transition to be used.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>TransitionManager.beginDelayedTransition(ViewGroup, androidx.transition.Transition)</code></dd>
+</dl>
+</li>
+</ul>
+<a id="beginDelayedTransition(android.view.ViewGroup)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>beginDelayedTransition</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;beginDelayedTransition&#8203;(@Nullable
+                                   <a href="https://developer.android.com/reference/android/view/ViewGroup.html?is-external=true" title="class or interface in android.view" class="externalLink">ViewGroup</a>&nbsp;sceneRoot)</pre>
+<div class="block">Use <code>TransitionManager</code> to begin delayed transition according to the motion duration.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>sceneRoot</code> - The scene root to be used.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>AutoTransition</code>, 
+<a href="#beginDelayedTransition(android.view.ViewGroup,androidx.transition.Transition)"><code>beginDelayedTransition(ViewGroup, androidx.transition.Transition)</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -658,7 +711,7 @@ public&nbsp;&lt;T&gt;&nbsp;T&nbsp;withInterpolator&#8203;(@Nullable
 <li><a href="../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>5.0.0</h5></div>
+<div class="aboutLanguage"><h5>6.0.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">
