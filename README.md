@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/dynamic-support.png" width="160" height="160" align="right" hspace="20">
+<img src="./graphics/icon.png" width="160" height="160" align="right" hspace="20">
 
 # Dynamic Support
 
@@ -14,9 +14,9 @@ compatibility.
 AndroidX.
 <br/>Since v3.0.0, it is dependent on Java 8 due to the dependency on [DrawerLayout][drawer-layout].
  
-<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-1.png" width="280" height="486">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-3.png" width="280" height="486">
+<img src="./graphics/play/screenshots/phone-1.png" width="280" height="486">&nbsp;&nbsp;<img src="./graphics/play/screenshots/phone-3.png" width="280" height="486">
 
-<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-6.png" width="280" height="486">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/play/ads-screen-7.png" width="280" height="486">
+<img src="./graphics/play/screenshots/phone-6.png" width="280" height="486">&nbsp;&nbsp;<img src="./graphics/play/screenshots/phone-7.png" width="280" height="486">
 
 ---
 
@@ -67,7 +67,7 @@ picker which supports HEX, HSV and ARGB values.
 Below are the same colors applied on the light and dark backgrounds respectively. But the final 
 color is adjusted according to the colored view background to provide best visibility.
 
-<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-bg-aware-2.png" width="280" height="486">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/ads-bg-aware-3.png" width="280" height="486">
+<img src="./graphics/background-aware-2.png" width="280" height="486">&nbsp;&nbsp;<img src="./graphics/background-aware-3.png" width="280" height="486">
 
 ### Sample
 This library is fully commented so, please check the individual classes or files for the 
@@ -143,8 +143,8 @@ All of my apps are using some or all part of this library. You can download them
 Please email me if you are using this library and want to feature your app here. Also, please 
 checkout the `Rotation` and `Everyday` apps to experience the full potential of this library.
 
-<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/apps/alexandermadani-eznotes.png" width="200">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/apps/pranavpandey-rotation.png" width="200">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/apps/pranavpandey-everyday.png" width="200">
-&nbsp;<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/apps/pranavpandey-palettes.png" width="200">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/apps/pranavpandey-barquode.png" width="200">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/pranavpandey/dynamic-support/master/graphics/apps/pranavpandey-zerocros.png" width="200">
+<img src="./graphics/apps/alexandermadani-eznotes.png" width="200">&nbsp;&nbsp;<img src="./graphics/apps/pranavpandey-rotation.png" width="200">&nbsp;&nbsp;<img src="./graphics/apps/pranavpandey-everyday.png" width="200">
+&nbsp;<img src="./graphics/apps/pranavpandey-palettes.png" width="200">&nbsp;&nbsp;<img src="./graphics/apps/pranavpandey-barquode.png" width="200">&nbsp;&nbsp;<img src="./graphics/apps/pranavpandey-zerocros.png" width="200">
 
 ### Supported
 - [EZ Notes][ez-notes]
