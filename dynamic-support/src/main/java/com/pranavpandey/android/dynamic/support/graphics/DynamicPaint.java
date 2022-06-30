@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.graphic;
+package com.pranavpandey.android.dynamic.support.graphics;
 
 import android.graphics.Paint;
 

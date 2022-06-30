@@ -43,7 +43,7 @@ import androidx.lifecycle.LifecycleOwner;
 import com.google.android.material.color.DynamicColors;
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.Defaults;
-import com.pranavpandey.android.dynamic.support.graphic.DynamicPaint;
+import com.pranavpandey.android.dynamic.support.graphics.DynamicPaint;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPicker;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicFileUtils;
