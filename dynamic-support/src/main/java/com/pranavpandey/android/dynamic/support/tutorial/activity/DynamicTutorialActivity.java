@@ -189,6 +189,8 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
                 }
 
                 onSetColor(position, color, tintColor);
+                onSetTooltip(position, color, tintColor);
+
                 Dynamic.onPageScrolled(getTutorial(position), position,
                         positionOffset, positionOffsetPixels);
                 Dynamic.onSetPadding(getTutorial(position), 0, 0, 0, mFooterHeight);
@@ -208,6 +210,10 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
                 onSetColor(position, Dynamic.getColor(
                         getTutorial(position), getBackgroundColor()),
                         Dynamic.getTintColor(getTutorial(position), getTintColor()));
+                onSetTooltip(position, Dynamic.getColor(
+                        getTutorial(position), getBackgroundColor()),
+                        Dynamic.getTintColor(getTutorial(position), getTintColor()));
+
                 Dynamic.onPageSelected(getTutorial(position), position);
                 Dynamic.onSetPadding(getTutorial(position),
                         0, 0, 0, mFooterHeight);
@@ -226,6 +232,10 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
                     onSetColor(getCurrentPosition(), Dynamic.getColor(getTutorial(
                             getCurrentPosition()), getBackgroundColor()), Dynamic.getTintColor(
                                     getTutorial(getCurrentPosition()), getTintColor()));
+                    onSetTooltip(getCurrentPosition(), Dynamic.getColor(getTutorial(
+                            getCurrentPosition()), getBackgroundColor()), Dynamic.getTintColor(
+                            getTutorial(getCurrentPosition()), getTintColor()));
+
                     Dynamic.onColorChanged(getTutorial(getCurrentPosition()),
                             Dynamic.getColor(getTutorial(getCurrentPosition()),
                                     getBackgroundColor()), Dynamic.getTintColor(getTutorial(
@@ -585,13 +595,29 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
                     this, R.drawable.ads_ic_check));
             Dynamic.setContentDescription(mActionNext, getString(R.string.ads_finish));
         }
+    }
 
-        DynamicTooltip.set(mActionPrevious, Dynamic.getColor(mActionPrevious, tintColor),
-                Dynamic.getContrastWithColor(mActionPrevious, color),
-                mActionPrevious.getContentDescription());
-        DynamicTooltip.set(mActionNext, Dynamic.getColor(mActionNext, tintColor),
-                Dynamic.getContrastWithColor(mActionNext, color),
-                mActionNext.getContentDescription());
+    /**
+     * This method will be called to set the tooltip for the tutorial actions.
+     *
+     * @param position The current position of the tutorial.
+     * @param color The background color to be applied.
+     * @param tintColor The tint color to be applied.
+     */
+    protected void onSetTooltip(int position, @ColorInt int color, @ColorInt int tintColor) {
+        if (getActionPrevious() != null) {
+            DynamicTooltip.set(getActionPrevious(),
+                    Dynamic.getColor(getActionPrevious(), tintColor),
+                    Dynamic.getContrastWithColor(getActionPrevious(), color),
+                    getActionPrevious().getContentDescription());
+        }
+
+        if (getActionNext() != null) {
+            DynamicTooltip.set(getActionNext(),
+                    Dynamic.getColor(getActionNext(), tintColor),
+                    Dynamic.getContrastWithColor(getActionNext(), color),
+                    getActionNext().getContentDescription());
+        }
     }
 
     /**
