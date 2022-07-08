@@ -22,14 +22,14 @@ AndroidX.
 
 ## Contents
 
-- [Installation](https://github.com/pranavpandey/dynamic-support#installation)
-- [Usage](https://github.com/pranavpandey/dynamic-support#usage)
-    - [Theme engine](https://github.com/pranavpandey/dynamic-support#theme-engine)
-    - [Background aware](https://github.com/pranavpandey/dynamic-support#background-aware)
-    - [Sample](https://github.com/pranavpandey/dynamic-support#sample)
-    - [Dependency](https://github.com/pranavpandey/dynamic-support#dependency)
-    - [Proguard](https://github.com/pranavpandey/dynamic-support#proguard)
-- [License](https://github.com/pranavpandey/dynamic-support#license)
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Theme engine](#theme-engine)
+    - [Background aware](#background-aware)
+    - [Sample](#sample)
+    - [Dependency](#dependency)
+    - [Proguard](#proguard)
+- [License](#license)
 
 ---
 
