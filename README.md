@@ -13,10 +13,16 @@ compatibility.
 >Since v2.0.0, it uses [AndroidX][androidx] so, first [migrate][android-migrate] your project to 
 AndroidX.
 <br/>Since v3.0.0, it is dependent on Java 8 due to the dependency on [DrawerLayout][drawer-layout].
- 
-<img src="./graphics/play/screenshots/phone-1.png" width="280" height="486">&nbsp;&nbsp;<img src="./graphics/play/screenshots/phone-3.png" width="280" height="486">
 
-<img src="./graphics/play/screenshots/phone-6.png" width="280" height="486">&nbsp;&nbsp;<img src="./graphics/play/screenshots/phone-7.png" width="280" height="486">
+<p align="left">
+  <img src="./graphics/play/screenshots/phone-1.png" width="280" height="486" hspace="2">
+  <img src="./graphics/play/screenshots/phone-3.png" width="280" height="486" hspace="2">
+</p>
+
+<p align="left">
+  <img src="./graphics/play/screenshots/phone-6.png" width="280" height="486" hspace="2">
+  <img src="./graphics/play/screenshots/phone-7.png" width="280" height="486" hspace="2">
+</p>
 
 ---
 
@@ -67,7 +73,10 @@ picker which supports HEX, HSV and ARGB values.
 Below are the same colors applied on the light and dark backgrounds respectively. But the final 
 color is adjusted according to the colored view background to provide best visibility.
 
-<img src="./graphics/background-aware-2.png" width="280" height="486">&nbsp;&nbsp;<img src="./graphics/background-aware-3.png" width="280" height="486">
+<p align="left">
+  <img src="./graphics/background-aware-2.png" width="280" height="486" hspace="2">
+  <img src="./graphics/background-aware-3.png" width="280" height="486" hspace="2">
+</p>
 
 ### Sample
 This library is fully commented so, please check the individual classes or files for the 
@@ -143,8 +152,14 @@ All of my apps are using some or all part of this library. You can download them
 Please email me if you are using this library and want to feature your app here. Also, please 
 checkout the `Rotation` and `Everyday` apps to experience the full potential of this library.
 
-<img src="./graphics/apps/alexandermadani-eznotes.png" width="200">&nbsp;&nbsp;<img src="./graphics/apps/pranavpandey-rotation.png" width="200">&nbsp;&nbsp;<img src="./graphics/apps/pranavpandey-everyday.png" width="200">
-&nbsp;<img src="./graphics/apps/pranavpandey-palettes.png" width="200">&nbsp;&nbsp;<img src="./graphics/apps/pranavpandey-barquode.png" width="200">&nbsp;&nbsp;<img src="./graphics/apps/pranavpandey-zerocros.png" width="200">
+<p align="left">
+  <img src="./graphics/apps/alexandermadani-eznotes.png" width="140" hspace="2">
+  <img src="./graphics/apps/pranavpandey-rotation.png" width="140" hspace="2">
+  <img src="./graphics/apps/pranavpandey-everyday.png" width="140" hspace="2">
+  <img src="./graphics/apps/pranavpandey-palettes.png" width="140" hspace="2">
+  <img src="./graphics/apps/pranavpandey-barquode.png" width="140" hspace="2">
+  <img src="./graphics/apps/pranavpandey-zerocros.png" width="140" hspace="2">
+</p>
 
 ### Supported
 - [EZ Notes][ez-notes]
