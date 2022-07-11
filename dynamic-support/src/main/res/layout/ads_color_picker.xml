@@ -145,7 +145,7 @@
                     android:paddingEnd="@dimen/ads_dialog_margin_horizontal"
                     android:orientation="horizontal">
 
-                    <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView
+                    <com.pranavpandey.android.dynamic.support.picker.color.view.DynamicColorView
                         style="@style/Widget.DynamicApp.ColorView"
                         android:id="@+id/ads_color_picker_color_previous"
                         android:layout_width="0dp"
@@ -156,7 +156,7 @@
                         app:ads_shape="rectangle"
                         app:adt_color= "#123456" />
 
-                    <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView
+                    <com.pranavpandey.android.dynamic.support.picker.color.view.DynamicColorView
                         style="@style/Widget.DynamicApp.ColorView"
                         android:id="@+id/ads_color_picker_color"
                         android:layout_width="0dp"

@@ -21,7 +21,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView
+    <com.pranavpandey.android.dynamic.support.picker.color.view.DynamicColorView
         style="@style/Widget.DynamicApp.ColorView"
         android:id="@+id/ads_color_view"
         android:layout_width="match_parent"

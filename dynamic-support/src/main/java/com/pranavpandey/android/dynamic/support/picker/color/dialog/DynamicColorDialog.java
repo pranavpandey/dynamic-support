@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.picker.color;
+package com.pranavpandey.android.dynamic.support.picker.color.dialog;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -30,6 +30,9 @@ import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
 import com.pranavpandey.android.dynamic.support.dialog.fragment.DynamicDialogFragment;
 import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
 import com.pranavpandey.android.dynamic.support.picker.DynamicPickerType;
+import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorControl;
+import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPicker;
+import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference;
 
 /**

@@ -15,7 +15,7 @@
 	limitations under the License.
 -->
 
-<com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView
+<com.pranavpandey.android.dynamic.support.picker.color.view.DynamicColorView
     style="@style/Widget.DynamicApp.ColorView.Preference"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ads_preference_color_view" />

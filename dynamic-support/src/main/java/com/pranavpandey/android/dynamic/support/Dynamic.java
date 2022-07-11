@@ -62,7 +62,7 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSnackbar;
 import com.pranavpandey.android.dynamic.support.model.DynamicItem;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
-import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
+import com.pranavpandey.android.dynamic.support.picker.color.view.DynamicColorView;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.inflater.DynamicLayoutInflater;

@@ -43,6 +43,7 @@ import com.pranavpandey.android.dynamic.support.adapter.DynamicColorsAdapter;
 import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSliderChangeListener;
 import com.pranavpandey.android.dynamic.support.picker.DynamicPickerType;
+import com.pranavpandey.android.dynamic.support.picker.color.view.DynamicColorView;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
@@ -693,7 +694,7 @@ public class DynamicColorPicker extends DynamicView {
      * @param position The position of the parent color.
      * @param color The selected color.
      */
-    protected void selectColor(int position, @ColorInt int color) {
+    public void selectColor(int position, @ColorInt int color) {
         if (mDynamicColorListener != null) {
             mSelectedColor = color;
             DynamicPickerUtils.setRecentColor(color);
@@ -711,7 +712,7 @@ public class DynamicColorPicker extends DynamicView {
      * @param setRGB {@code true} to set RGB values.
      * @param setCMYK {@code true} to set CMYK values.
      */
-    protected void setCustom(@ColorInt int color, boolean setHSV,
+    public void setCustom(@ColorInt int color, boolean setHSV,
             boolean setRGB, boolean setCMYK) {
         mUpdatingCustomColor = true;
         mSelectedColor = color;

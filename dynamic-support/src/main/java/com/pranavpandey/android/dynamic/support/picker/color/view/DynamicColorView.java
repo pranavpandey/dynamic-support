@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.picker.color;
+package com.pranavpandey.android.dynamic.support.picker.color.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -47,6 +47,8 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.graphics.DynamicPaint;
+import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorPicker;
+import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.util.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;

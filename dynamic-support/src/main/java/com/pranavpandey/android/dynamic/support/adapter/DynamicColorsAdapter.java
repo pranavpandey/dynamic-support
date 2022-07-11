@@ -29,7 +29,7 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape;
-import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorView;
+import com.pranavpandey.android.dynamic.support.picker.color.view.DynamicColorView;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
