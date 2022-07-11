@@ -10,9 +10,10 @@ A complete library to build apps for Android 4.0 (API 14) and above with a built
 It is built on top of the latest [app compat library][android-support] to provide best 
 compatibility. 
 
->Since v2.0.0, it uses [AndroidX][androidx] so, first [migrate][android-migrate] your project to 
-AndroidX.
-<br/>Since v3.0.0, it is dependent on Java 8 due to the dependency on [DrawerLayout][drawer-layout].
+>Since v2.0.0, it uses [AndroidX][androidx] so, first [migrate][androidx-migrate] your project 
+to AndroidX.
+<br/>Since v3.0.0, it is dependent on Java 8 due to the dependency on 
+[DrawerLayout][drawer-layout].
 
 <p align="left">
   <img src="./graphics/play/screenshots/phone-1.png" width="280" height="486" hspace="2">
@@ -57,17 +58,17 @@ dependencies {
 
 ## Usage
 It is a collection of activities, fragments, widgets, views and some utility functions required 
-to build a standard Android app. It also provides some in-built use cases like an intro screen, 
+to build a standard Android app. It also provides some built-in use cases like an intro screen, 
 drawer activity, about screen, collapsing app bar, navigation bar view, color picker, multiple 
 locales, runtime permissions, etc. which can be used and customised according to the need.
 
-> For complete reference, please read the [documentation][documentation].
+> For a complete reference, please read the [documentation][documentation].
 
 ### Theme engine
-Each activity and widget can be themed by using the in-built theme engine with background aware 
+Each activity and widget can be themed by using the built-in theme engine with background aware 
 functionality to avoid any visibility issues. Colors can be selected by using the provided 
-[material design colors][material-design-colors] or by selecting a custom color from the in-built 
-picker which supports HEX, HSV and ARGB values.
+[material design colors][material-design-colors] or by selecting a custom color from the built-in 
+picker which supports HEX, HSV, ARGB and CMYK values.
 
 ### Background aware
 Below are the same colors applied on the light and dark backgrounds respectively. But the final 
@@ -148,7 +149,7 @@ The following rules will be applied by this library:
 
 ## Apps using Dynamic Support
 
-All of my apps are using some or all part of this library. You can download them from Google Play. 
+All of my apps are using some or all part of this library. You can download them via Google Play. 
 Please email me if you are using this library and want to feature your app here. Also, please 
 checkout the `Rotation` and `Everyday` apps to experience the full potential of this library.
 
