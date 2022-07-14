@@ -73,9 +73,9 @@ import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 /**
- * Base activity to handle everything related to design support and the app compat library.
- * It has a fragment container to add fragments dynamically with many other useful methods to
- * provide a good looking Material Design UI.
+ * A {@link DynamicStateActivity} to handle everything related to design support and the
+ * app compat libraries. It has a fragment container to add fragments dynamically with many
+ * other useful methods to provide a good looking Material Design UI.
  *
  * <p>If {@link com.google.android.material.internal.NavigationMenu} is required then,
  * please check {@link DynamicDrawerActivity}.

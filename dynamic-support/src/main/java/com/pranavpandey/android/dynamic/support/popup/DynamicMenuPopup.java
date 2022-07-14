@@ -39,9 +39,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A {@link DynamicPopup} to display a list of items. It will be used internally by the
- * {@link DynamicSpinnerPreference} but it can
- * be used by the other views also.
+ * A {@link DynamicPopup} to display a list of items.
+ * <p>It will be used internally by the {@link DynamicSpinnerPreference} but can be used by
+ * the other views also.
  */
 public class DynamicMenuPopup extends DynamicPopup {
 

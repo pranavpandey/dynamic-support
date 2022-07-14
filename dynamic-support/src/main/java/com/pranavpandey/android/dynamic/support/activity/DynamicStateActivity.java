@@ -31,9 +31,9 @@ import com.pranavpandey.android.dynamic.support.R;
 import java.util.Locale;
 
 /**
- * An activity extending {@link DynamicSystemActivity} to maintain state of the widgets
- * and fragments. It will be very useful while handling orientation changes. It saves the
- * current fragment state and reuses it while a configuration change takes place.
+ * A {@link DynamicSystemActivity} to maintain state of the widgets and fragments.
+ * <p>It will be useful while handling orientation changes. It saves the current fragment state
+ * and reuses it while a configuration change takes place.
  */
 public abstract class DynamicStateActivity extends DynamicSystemActivity {
 

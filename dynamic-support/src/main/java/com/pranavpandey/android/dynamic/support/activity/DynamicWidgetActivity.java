@@ -26,7 +26,7 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
 
 /**
- * An activity to configure widgets having basic configuration methods.
+ * A {@link DynamicActivity} to configure widgets having basic configuration methods.
  * <p>Extend this activity and add your own settings fragments according to the requirements.
  */
 public abstract class DynamicWidgetActivity extends DynamicActivity {

@@ -63,10 +63,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A color picker inside a DynamicView to display multiple grids of colors and their shades.
- * <p>It will be used internally by the
- * {@link DynamicColorPreference}
- * but can be used by the other views also.
+ * A color picker to display multiple grids of colors and their shades.
+ * <p>It will be used internally by the {@link DynamicColorPreference} but can be used by
+ * the other views also.
  */
 public class DynamicColorPicker extends DynamicView {
 

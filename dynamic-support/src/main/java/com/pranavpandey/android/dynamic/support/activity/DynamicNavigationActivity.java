@@ -35,7 +35,7 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
- * Base navigation activity to handle everything related to the {@link BottomNavigationView}
+ * A {@link DynamicActivity} to handle everything related to the {@link BottomNavigationView}
  * and {@link NavigationRailView}.
  * <p>It also has many other useful functions to customise according to the requirements.
  */

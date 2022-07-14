@@ -48,8 +48,8 @@ import com.pranavpandey.android.dynamic.util.loader.DynamicLoader;
 import java.util.Locale;
 
 /**
- * Base application class which can be extended to initialize the {@link DynamicTheme} and to
- * perform theme change operations.
+ * Base {@link Application} class which can be extended to initialize the {@link DynamicTheme}
+ * and to perform theme change operations.
  */
 public abstract class DynamicApplication extends Application
         implements androidx.work.Configuration.Provider, DynamicLocale,

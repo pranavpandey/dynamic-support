@@ -27,8 +27,8 @@ import androidx.annotation.RestrictTo;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 
 /**
- * Broadcast receiver to listen color events. It has been already added in the manifest and
- * should be registered dynamically at the runtime.
+ * A {@link BroadcastReceiver} to listen color events.
+ * <p>It has been already added in the manifest and should be registered dynamically at runtime.
  */
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 public class DynamicColorsReceiver extends BroadcastReceiver {

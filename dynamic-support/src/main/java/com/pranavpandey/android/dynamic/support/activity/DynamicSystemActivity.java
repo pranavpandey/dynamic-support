@@ -92,9 +92,9 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Base activity to perform all the system UI related tasks like setting the status and
- * navigation bar colors, theme, etc. It heavily depends on the {@link DynamicTheme} that can be
- * customised by implementing the corresponding methods.
+ * An {@link AppCompatActivity} to perform all the system UI related tasks like setting the
+ * status and navigation bar colors, theme, etc. It heavily depends on the {@link DynamicTheme}
+ * that can be customised by implementing the corresponding methods.
  *
  * <p>Extend this activity and implement the various methods according to the requirements.
  */

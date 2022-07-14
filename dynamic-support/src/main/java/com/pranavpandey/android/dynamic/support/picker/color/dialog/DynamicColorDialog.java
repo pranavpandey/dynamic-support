@@ -36,10 +36,9 @@ import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference;
 
 /**
- * A color picker dialog fragment to display multiple grids of colors and their shades.
- * <p>It will be used internally by the
- * {@link DynamicColorPreference}
- * but can be used by the other views also.
+ * A {@link DynamicColorPicker} dialog to display multiple grids of colors and their shades.
+ * <p>It will be used internally by the {@link DynamicColorPreference} but can be used by
+ * the other views also.
  */
 public class DynamicColorDialog extends DynamicDialogFragment {
 

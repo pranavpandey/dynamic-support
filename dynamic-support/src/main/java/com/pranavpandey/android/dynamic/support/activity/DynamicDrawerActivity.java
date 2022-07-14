@@ -51,7 +51,7 @@ import com.pranavpandey.android.dynamic.util.DynamicUnitUtils;
 import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 /**
- * Base drawer activity to handle everything related to the {@link DrawerLayout} and
+ * A {@link DynamicActivity} to handle everything related to the {@link DrawerLayout} and
  * {@link com.google.android.material.internal.NavigationMenu}.
  * <p>It also has many other useful functions to customise according to the requirements.
  */
