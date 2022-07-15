@@ -208,8 +208,8 @@ public abstract class DynamicPopup {
     }
 
     /**
-     * Build this popup and make it ready to show. Please call {@link #show()} method
-     * to show the popup.
+     * Build this popup and make it ready to show.
+     * <p>Please call {@link #show()} method to show the popup.
      *
      * @return The popup after building it according to the supplied parameters.
      */

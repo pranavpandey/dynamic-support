@@ -32,33 +32,21 @@ import com.pranavpandey.android.dynamic.support.adapter.DynamicSpinnerChoiceAdap
 import com.pranavpandey.android.dynamic.support.model.DynamicMenu;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
 import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
-import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
-import com.pranavpandey.android.dynamic.theme.Theme;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A {@link DynamicPopup} to display a list of items.
+ * A {@link DynamicSimplePopup} to display a list of items.
  * <p>It will be used internally by the {@link DynamicSpinnerPreference} but can be used by
  * the other views also.
  */
-public class DynamicMenuPopup extends DynamicPopup {
-
-    /**
-     * Header view for this popup.
-     */
-    private View mHeaderView;
+public class DynamicMenuPopup extends DynamicSimplePopup {
 
     /**
      * Content view for this popup.
      */
     private View mView;
-
-    /**
-     * Title used by this popup.
-     */
-    private CharSequence mTitle;
 
     /**
      * Menu icons used by this popup.
@@ -105,6 +93,8 @@ public class DynamicMenuPopup extends DynamicPopup {
      */
     public DynamicMenuPopup(@NonNull View anchor, @NonNull List<DynamicMenu> menus,
             int selectedPosition, @NonNull AdapterView.OnItemClickListener onItemClickListener) {
+        super(anchor);
+
         List<Drawable> drawables = new ArrayList<>();
         List<CharSequence> titles = new ArrayList<>();
         List<CharSequence> subtitles = new ArrayList<>();
@@ -437,7 +427,8 @@ public class DynamicMenuPopup extends DynamicPopup {
             @Nullable CharSequence[] subtitles, @Nullable boolean[] hasSubmenus,
             int selectedPosition, @Nullable AdapterView.OnItemClickListener onItemClickListener,
             @Type int viewType) {
-        this.mAnchor = anchor;
+        super(anchor);
+
         this.mIconsRes = iconsRes;
         this.mIcons = icons;
         this.mTitles = titles;
@@ -462,14 +453,6 @@ public class DynamicMenuPopup extends DynamicPopup {
                     DynamicLayoutUtils.getGridCount(mView.getContext()));
         }
 
-        if (mTitle != null) {
-            mHeaderView = new DynamicHeader(getAnchor().getContext());
-            ((DynamicHeader) mHeaderView).setColorType(Theme.ColorType.PRIMARY);
-            ((DynamicHeader) mHeaderView).setContrastWithColorType(Theme.ColorType.SURFACE);
-            ((DynamicHeader) mHeaderView).setTitle(mTitle);
-            ((DynamicHeader) mHeaderView).setFillSpace(true);
-        }
-
         if (mOnItemClickListener != null) {
             listView.setAdapter(new DynamicSpinnerChoiceAdapter(mIconsRes, mIcons,
                     mTitles, mSubtitles, mHasSubmenus, mSelectedPosition,
@@ -489,31 +472,8 @@ public class DynamicMenuPopup extends DynamicPopup {
     }
 
     @Override
-    protected @Nullable View getHeaderView() {
-        return mHeaderView;
-    }
-
-    @Override
     protected @Nullable View getView() {
         return mView;
-    }
-
-    /**
-     * Get the title used by this popup.
-     *
-     * @return The title used by this popup.
-     */
-    public @Nullable CharSequence getTitle() {
-        return mTitle;
-    }
-
-    /**
-     * Set the title used by this popup.
-     *
-     * @param title The title to be set.
-     */
-    public void setTitle(@Nullable CharSequence title) {
-        this.mTitle = title;
     }
 
     /**

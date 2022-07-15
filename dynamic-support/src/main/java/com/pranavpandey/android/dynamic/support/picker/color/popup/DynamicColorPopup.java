@@ -34,14 +34,13 @@ import com.pranavpandey.android.dynamic.support.adapter.DynamicColorsAdapter;
 import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
 import com.pranavpandey.android.dynamic.support.listener.DynamicColorListener;
 import com.pranavpandey.android.dynamic.support.picker.color.DynamicColorShape;
-import com.pranavpandey.android.dynamic.support.picker.color.view.DynamicColorView;
 import com.pranavpandey.android.dynamic.support.picker.color.dialog.DynamicColorDialog;
-import com.pranavpandey.android.dynamic.support.popup.DynamicPopup;
+import com.pranavpandey.android.dynamic.support.picker.color.view.DynamicColorView;
+import com.pranavpandey.android.dynamic.support.popup.DynamicSimplePopup;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.task.WallpaperColorsTask;
 import com.pranavpandey.android.dynamic.support.util.DynamicPickerUtils;
-import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
 import com.pranavpandey.android.dynamic.theme.DynamicPalette;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
@@ -52,17 +51,11 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * A {@link PopupWindow} to display a grid of colors.
- * <p>It will be used internally by the
- * {@link DynamicColorPreference}
- * but can be used by the other views also.
+ * A {@link DynamicSimplePopup} to display a grid of colors.
+ * <p>It will be used internally by the {@link DynamicColorPreference} but can be used by
+ * the other views also.
  */
-public class DynamicColorPopup extends DynamicPopup {
-
-    /**
-     * Title used by this popup.
-     */
-    private CharSequence mTitle;
+public class DynamicColorPopup extends DynamicSimplePopup {
 
     /**
      * Color entries used by this popup.
@@ -122,11 +115,6 @@ public class DynamicColorPopup extends DynamicPopup {
     private WallpaperColorsTask mWallpaperColorsTask;
 
     /**
-     * Header view for this popup.
-     */
-    private View mHeaderView;
-
-    /**
      * Content view for this popup.
      */
     private View mView;
@@ -145,7 +133,8 @@ public class DynamicColorPopup extends DynamicPopup {
      */
     public DynamicColorPopup(@NonNull View anchor, @NonNull Integer[] entries,
             @NonNull DynamicColorListener dynamicColorListener) {
-        this.mAnchor = anchor;
+        super(anchor);
+
         this.mEntries = entries;
         this.mDynamicColorListener = dynamicColorListener;
         this.mDefaultColor = Theme.Color.UNKNOWN;
@@ -163,14 +152,6 @@ public class DynamicColorPopup extends DynamicPopup {
                 (ViewGroup) getAnchor().getRootView(), false);
 
         this.mRecentColor = DynamicPickerUtils.getRecentColor();
-
-        if (getTitle() != null) {
-            mHeaderView = new DynamicHeader(getAnchor().getContext());
-            ((DynamicHeader) mHeaderView).setColorType(Theme.ColorType.PRIMARY);
-            ((DynamicHeader) mHeaderView).setContrastWithColorType(Theme.ColorType.SURFACE);
-            ((DynamicHeader) mHeaderView).setTitle(mTitle);
-            ((DynamicHeader) mHeaderView).setFillSpace(true);
-        }
 
         final GridView gridView = mView.findViewById(R.id.ads_color_picker_presets);
         final ProgressBar progressBar = mView.findViewById(R.id.ads_color_picker_progress_bar);
@@ -388,11 +369,6 @@ public class DynamicColorPopup extends DynamicPopup {
     }
 
     @Override
-    protected @Nullable View getHeaderView() {
-        return mHeaderView;
-    }
-
-    @Override
     protected @Nullable View getView() {
         return mView;
     }
@@ -400,24 +376,6 @@ public class DynamicColorPopup extends DynamicPopup {
     @Override
     protected @Nullable View getFooterView() {
         return mFooterView;
-    }
-
-    /**
-     * Get the title used by this popup.
-     *
-     * @return The title used by this popup.
-     */
-    public @Nullable CharSequence getTitle() {
-        return mTitle;
-    }
-
-    /**
-     * Set the title used by this popup.
-     *
-     * @param title The title to be set.
-     */
-    public void setTitle(@Nullable CharSequence title) {
-        this.mTitle = title;
     }
 
     /**
