@@ -35,6 +35,7 @@
             android:paddingStart="@dimen/ads_card_view_content_margin_horizontal_small"
             android:paddingRight="@dimen/ads_card_view_content_margin_horizontal_small"
             android:paddingEnd="@dimen/ads_card_view_content_margin_horizontal_small"
+            android:layout_marginBottom="@dimen/ads_margin_tiny"
             app:adt_contrastWithColorType="surface" />
 
     </LinearLayout>
