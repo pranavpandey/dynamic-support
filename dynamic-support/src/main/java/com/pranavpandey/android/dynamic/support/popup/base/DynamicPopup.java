@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.popup;
+package com.pranavpandey.android.dynamic.support.popup.base;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;

@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.popup.base.DynamicPopup;
 import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
 import com.pranavpandey.android.dynamic.theme.Theme;
 

@@ -31,7 +31,7 @@ import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.popup.DynamicMenuPopup;
-import com.pranavpandey.android.dynamic.support.popup.DynamicPopup;
+import com.pranavpandey.android.dynamic.support.popup.base.DynamicPopup;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
