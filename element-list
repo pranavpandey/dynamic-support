@@ -7,7 +7,7 @@ com.pranavpandey.android.dynamic.support.dialog.fragment
 com.pranavpandey.android.dynamic.support.factory
 com.pranavpandey.android.dynamic.support.fragment
 com.pranavpandey.android.dynamic.support.fragment.listener
-com.pranavpandey.android.dynamic.support.graphic
+com.pranavpandey.android.dynamic.support.graphics
 com.pranavpandey.android.dynamic.support.intent
 com.pranavpandey.android.dynamic.support.listener
 com.pranavpandey.android.dynamic.support.model
@@ -20,7 +20,11 @@ com.pranavpandey.android.dynamic.support.permission.listener
 com.pranavpandey.android.dynamic.support.permission.view
 com.pranavpandey.android.dynamic.support.picker
 com.pranavpandey.android.dynamic.support.picker.color
+com.pranavpandey.android.dynamic.support.picker.color.dialog
+com.pranavpandey.android.dynamic.support.picker.color.popup
+com.pranavpandey.android.dynamic.support.picker.color.view
 com.pranavpandey.android.dynamic.support.popup
+com.pranavpandey.android.dynamic.support.popup.base
 com.pranavpandey.android.dynamic.support.preview
 com.pranavpandey.android.dynamic.support.preview.activity
 com.pranavpandey.android.dynamic.support.preview.factory

@@ -162,10 +162,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">DynamicColorPicker</span>
 extends <a href="../../view/base/DynamicView.html" title="class in com.pranavpandey.android.dynamic.support.view.base">DynamicView</a></pre>
-<div class="block">A color picker inside a DynamicView to display multiple grids of colors and their shades.
- <p>It will be used internally by the
- <a href="../../setting/base/DynamicColorPreference.html" title="class in com.pranavpandey.android.dynamic.support.setting.base"><code>DynamicColorPreference</code></a>
- but can be used by the other views also.</div>
+<div class="block">A color picker to display multiple grids of colors and their shades.
+ <p>It will be used internally by the <a href="../../setting/base/DynamicColorPreference.html" title="class in com.pranavpandey.android.dynamic.support.setting.base"><code>DynamicColorPreference</code></a> but can be used by
+ the other views also.</div>
 </li>
 </ul>
 </div>
@@ -432,7 +431,7 @@ extends <a href="../../view/base/DynamicView.html" title="class in com.pranavpan
 </td>
 </tr>
 <tr id="i19" class="rowColor">
-<td class="colFirst"><code>protected void</code></td>
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#selectColor(int,int)">selectColor</a></span>&#8203;(int&nbsp;position,
            int&nbsp;color)</code></th>
 <td class="colLast">
@@ -469,7 +468,7 @@ extends <a href="../../view/base/DynamicView.html" title="class in com.pranavpan
 </td>
 </tr>
 <tr id="i24" class="altColor">
-<td class="colFirst"><code>protected void</code></td>
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCustom(int,boolean,boolean,boolean)">setCustom</a></span>&#8203;(int&nbsp;color,
          boolean&nbsp;setHSV,
          boolean&nbsp;setRGB,
@@ -796,9 +795,9 @@ public&nbsp;<a href="https://developer.android.com/reference/android/view/View.h
 <ul class="blockList">
 <li class="blockList">
 <h4>selectColor</h4>
-<pre class="methodSignature">protected&nbsp;void&nbsp;selectColor&#8203;(int&nbsp;position,
-                           @ColorInt
-                           int&nbsp;color)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;selectColor&#8203;(int&nbsp;position,
+                        @ColorInt
+                        int&nbsp;color)</pre>
 <div class="block">Sets the selected color.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -813,11 +812,11 @@ public&nbsp;<a href="https://developer.android.com/reference/android/view/View.h
 <ul class="blockList">
 <li class="blockList">
 <h4>setCustom</h4>
-<pre class="methodSignature">protected&nbsp;void&nbsp;setCustom&#8203;(@ColorInt
-                         int&nbsp;color,
-                         boolean&nbsp;setHSV,
-                         boolean&nbsp;setRGB,
-                         boolean&nbsp;setCMYK)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;setCustom&#8203;(@ColorInt
+                      int&nbsp;color,
+                      boolean&nbsp;setHSV,
+                      boolean&nbsp;setRGB,
+                      boolean&nbsp;setCMYK)</pre>
 <div class="block">Set the color string according to the selected color.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1276,7 +1275,7 @@ protected&nbsp;java.lang.Integer[]&nbsp;loadRecents()</pre>
 <li><a href="../../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>6.0.0</h5></div>
+<div class="aboutLanguage"><h5>6.0.1</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">
