@@ -47,7 +47,7 @@ It can be installed by adding the following dependency to your `build.gradle` fi
 ```groovy
 dependencies {
     // For AndroidX enabled projects.
-    implementation 'com.pranavpandey.android:dynamic-support:6.0.0'
+    implementation 'com.pranavpandey.android:dynamic-support:6.0.1'
 
     // For legacy projects.
     implementation 'com.pranavpandey.android:dynamic-support:1.3.0'
@@ -60,7 +60,7 @@ dependencies {
 It is a collection of activities, fragments, widgets, views and some utility functions required 
 to build a standard Android app. It also provides some built-in use cases like an intro screen, 
 drawer activity, about screen, collapsing app bar, navigation bar view, color picker, multiple 
-locales, runtime permissions, etc. which can be used and customised according to the need.
+locales, runtime permissions, etc. which can be used and customised according to the requirements.
 
 > For a complete reference, please read the [documentation][documentation].
 
