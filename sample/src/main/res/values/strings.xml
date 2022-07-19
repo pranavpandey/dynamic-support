@@ -43,15 +43,15 @@
     <string name="collapsing_app_bar_subtitle">A collapsing app bar layout by using the dynamic activity.</string>
     <string name="navigation_bar">Navigation Bar</string>
     <string name="navigation_bar_subtitle">A responsive navigation bar view by using the dynamic navigation activity.</string>
-    <string name="rotation">Rotation | Orientation Manager</string>
+    <string name="rotation">Rotation</string>
     <string name="rotation_subtitle">A tool to manage the device orientation. It offers all the modes that Android supports and can be configured according to the apps or various events like call, lock, headset, charging and dock.</string>
-    <string name="everyday">Everyday | Calendar Widget</string>
+    <string name="everyday">Everyday</string>
     <string name="everyday_subtitle">A widget to check the calendar information from the home screen. It is highly customizable with a dynamic theme engine to match your style.</string>
-    <string name="palettes">Palettes | Theme manager</string>
+    <string name="palettes">Palettes</string>
     <string name="palettes_subtitle">A universal manager for apps supporting the dynamic theme on Android. It provides some default configurations which can be extended to create custom ones.</string>
-    <string name="barquode">Barquode | Matrix Manager</string>
+    <string name="barquode">Barquode</string>
     <string name="barquode_subtitle">A tool to create, capture and manage a wide variety of matrix codes including Barcodes and QR codes. It is highly customizable with a dynamic theme engine to match your style.</string>
-    <string name="zerocros">Zerocros | Tic-tac-toe Game</string>
+    <string name="zerocros">Zerocros</string>
     <string name="zerocros_subtitle">A tic-tac-toe game set in the dynamic theme world with various customizations.</string>
 
     <!-- Widgets -->
