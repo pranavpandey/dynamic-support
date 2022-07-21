@@ -18,6 +18,7 @@
 <resources>
 
     <!-- Toolbar -->
+    <dimen name="ads_toolbar_margin_start_collapsing">@dimen/ads_toolbar_inset_start</dimen>
     <dimen name="ads_tab_inset_start">@dimen/ads_toolbar_inset_start</dimen>
 
 </resources>

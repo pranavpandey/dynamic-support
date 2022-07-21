@@ -20,9 +20,6 @@
     <!-- Activity -->
     <dimen name="ads_drawer_size">300dp</dimen>
 
-    <!-- Toolbar -->
-    <dimen name="ads_tab_inset_start">@dimen/ads_toolbar_inset_start</dimen>
-
     <!-- Icon -->
     <dimen name="ads_icon_tutorial">200dp</dimen>
 

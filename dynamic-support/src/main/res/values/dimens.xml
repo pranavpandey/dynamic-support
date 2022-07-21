@@ -118,10 +118,12 @@
 
     <!-- Toolbar -->
     <dimen name="ads_toolbar_inset_start">72dp</dimen>
+    <dimen name="ads_toolbar_inset_start_small">20dp</dimen>
     <dimen name="ads_toolbar_inset_start_card">64dp</dimen>
     <dimen name="ads_toolbar_inset_start_collapsing">68dp</dimen>
-    <dimen name="ads_toolbar_margin_start_collapsing">@dimen/ads_toolbar_inset_start</dimen>
+    <dimen name="ads_toolbar_margin_start_collapsing">@dimen/ads_toolbar_inset_start_small</dimen>
     <dimen name="ads_toolbar_margin_end_collapsing">@dimen/ads_page_horizontal_margin</dimen>
+    <dimen name="ads_tab_inset_start">@dimen/ads_toolbar_inset_start_small</dimen>
     <dimen name="ads_tab_height">44dp</dimen>
     <dimen name="ads_tab_min_width">48dp</dimen>
     <dimen name="ads_tab_indicator_margin_vertical">0dp</dimen>
@@ -129,7 +131,6 @@
     <dimen name="ads_tab_indicator_height">3dp</dimen>
     <dimen name="ads_tab_indicator_corner_size">@dimen/ads_margin_extra_tiny</dimen>
     <dimen name="ads_tab_indicator_corner_size_round">@dimen/ads_margin_tiny</dimen>
-    <dimen name="ads_tab_inset_start">20dp</dimen>
 
     <!-- Card -->
     <dimen name="ads_card_view_margin">1dp</dimen>
