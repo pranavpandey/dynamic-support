@@ -239,6 +239,7 @@
     <!-- Popup -->
     <dimen name="ads_popup_max_width">300dp</dimen>
     <dimen name="ads_popup_max_width_large">340dp</dimen>
+    <dimen name="ads_popup_offset">@dimen/ads_margin_large</dimen>
     <dimen name="ads_popup_selector_icon_size">24dp</dimen>
 
     <!-- Bottom Sheet -->

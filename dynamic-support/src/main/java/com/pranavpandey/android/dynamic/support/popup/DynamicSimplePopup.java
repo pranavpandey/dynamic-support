@@ -163,7 +163,7 @@ public class DynamicSimplePopup extends DynamicPopup {
     @Override
     protected int getMaxWidth() {
         return (int) getAnchor().getContext().getResources()
-                .getDimension(R.dimen.ads_popup_max_width_large);
+                .getDimension(R.dimen.ads_popup_max_width);
     }
 
     @Override

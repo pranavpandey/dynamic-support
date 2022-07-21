@@ -42,6 +42,7 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.util.DynamicUnitUtils;
 import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
+import com.pranavpandey.android.dynamic.util.DynamicWindowUtils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -226,6 +227,16 @@ public abstract class DynamicPopup {
     }
 
     /**
+     * The offset to adjust the size of the window if enough space is not available.
+     *
+     * @return The offset to adjust the size of the window if enough space is not available.
+     */
+    protected int getSizeOffset() {
+        return (int) getAnchor().getContext().getResources()
+                .getDimension(R.dimen.ads_popup_offset);
+    }
+
+    /**
      * This method will be called just before showing this popup.
      *
      * @param popupWindow The popup window to be displayed by this popup.
@@ -318,7 +329,7 @@ public abstract class DynamicPopup {
             Dynamic.setVisibility(content, View.GONE);
         }
 
-        mPopupWindow = new PopupWindow(view, getMaxWidth(),
+        mPopupWindow = new PopupWindow(view, LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT, true);
         PopupWindowCompat.setWindowLayoutType(mPopupWindow,
                 WindowManager.LayoutParams.TYPE_APPLICATION_SUB_PANEL);
@@ -326,6 +337,11 @@ public abstract class DynamicPopup {
         mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         mPopupWindow.setAnimationStyle(R.style.Animation_AppCompat_DropDownUp);
+
+        if (getMaxWidth() + getSizeOffset()
+                < DynamicWindowUtils.getAppUsableScreenSize(getAnchor().getContext()).x) {
+            mPopupWindow.setWidth(getMaxWidth());
+        }
 
         if (getAnchor().getRootView() != null) {
             try {
@@ -343,7 +359,7 @@ public abstract class DynamicPopup {
 
         // Check for RTL language.
         if (DynamicViewUtils.isLayoutRtl(getAnchor())) {
-            viewCenterX = viewCenterX + getAnchor().getWidth() - getMaxWidth();
+            viewCenterX = viewCenterX + getAnchor().getWidth() - mPopupWindow.getWidth();
             OFFSET_X = -OFFSET_X;
         }
 
