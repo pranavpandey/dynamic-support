@@ -188,7 +188,7 @@ public class DynamicResourceUtils {
      *
      * @return The value of the supplied attribute.
      */
-    public static int resolveDimensionPixelOffSet(@NonNull Context context,
+    public static int resolveDimensionPixelOffset(@NonNull Context context,
             @StyleRes int theme, @AttrRes int attr, int defaultValue) {
         TypedArray a = context.getTheme().obtainStyledAttributes(theme, new int[] { attr });
 

@@ -719,7 +719,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                 .setFontScale(DynamicResourceUtils.resolveInteger(
                         getContext(), themeRes, R.attr.adt_fontScale,
                         getDefaultApplication().getFontScale()))
-                .setCornerRadius(DynamicResourceUtils.resolveDimensionPixelOffSet(
+                .setCornerRadius(DynamicResourceUtils.resolveDimensionPixelOffset(
                         getContext(), themeRes, R.attr.adt_cornerRadius,
                         getDefaultApplication().getCornerRadius()))
                 .setBackgroundAware(DynamicResourceUtils.resolveInteger(
@@ -847,7 +847,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                 .setFontScale(DynamicResourceUtils.resolveInteger(
                         getLocalContext(), themeRes, R.attr.adt_fontScale,
                         getDefaultLocal().getFontScale()))
-                .setCornerRadius(DynamicResourceUtils.resolveDimensionPixelOffSet(
+                .setCornerRadius(DynamicResourceUtils.resolveDimensionPixelOffset(
                         getLocalContext(), themeRes, R.attr.adt_cornerRadius,
                         getDefaultLocal().getCornerRadius()))
                 .setBackgroundAware(DynamicResourceUtils.resolveInteger(

@@ -413,16 +413,16 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
     /**
      * Animate the drawer toggle icon from one offset to another.
      *
-     * @param startOffSet The start offset.
-     * @param endOffSet The end offset.
+     * @param startOffset The start offset.
+     * @param endOffset The end offset.
      */
-    public void animateDrawerToggle(final float startOffSet, final float endOffSet) {
-        if (endOffSet == 0f && !isPersistentDrawer()) {
+    public void animateDrawerToggle(final float startOffset, final float endOffset) {
+        if (endOffset == 0f && !isPersistentDrawer()) {
             showDrawerToggle(true);
         }
 
         if (!isPersistentDrawer()) {
-            ValueAnimator valueAnimator = ValueAnimator.ofFloat(startOffSet, endOffSet);
+            ValueAnimator valueAnimator = ValueAnimator.ofFloat(startOffset, endOffset);
 
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -438,7 +438,7 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
 
                 @Override
                 public void onAnimationEnd(Animator animator) {
-                    if (endOffSet == 1f) {
+                    if (endOffset == 1f) {
                         showDrawerToggle(false);
                     }
                 }
