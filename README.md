@@ -3,7 +3,6 @@
 # Dynamic Support
 
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?)](https://www.apache.org/licenses/LICENSE-2.0.html)
-[![Build Status](https://travis-ci.org/pranavpandey/dynamic-support.svg?branch=master)](https://travis-ci.org/pranavpandey/dynamic-support)
 [![Release](https://img.shields.io/maven-central/v/com.pranavpandey.android/dynamic-support)](https://search.maven.org/artifact/com.pranavpandey.android/dynamic-support)
 
 A complete library to build apps for Android 4.0 (API 14) and above with a built-in theme engine. 
@@ -57,6 +56,7 @@ dependencies {
 ---
 
 ## Usage
+
 It is a collection of activities, fragments, widgets, views and some utility functions required 
 to build a standard Android app. It also provides some built-in use cases like an intro screen, 
 drawer activity, about screen, collapsing app bar, navigation bar view, color picker, multiple 
@@ -65,12 +65,14 @@ locales, runtime permissions, etc. which can be used and customised according to
 > For a complete reference, please read the [documentation][documentation].
 
 ### Theme engine
+
 Each activity and widget can be themed by using the built-in theme engine with background aware 
 functionality to avoid any visibility issues. Colors can be selected by using the provided 
 [material design colors][material-design-colors] or by selecting a custom color from the built-in 
 picker which supports HEX, HSV, ARGB and CMYK values.
 
 ### Background aware
+
 Below are the same colors applied on the light and dark backgrounds respectively. But the final 
 color is adjusted according to the colored view background to provide best visibility.
 
@@ -80,6 +82,7 @@ color is adjusted according to the colored view background to provide best visib
 </p>
 
 ### Sample
+
 This library is fully commented so, please check the individual classes or files for the 
 documentation. Basic documentation will be available soon.
 
@@ -92,6 +95,7 @@ It depends on the [dynamic-theme][dynamic-theme], [dynamic-locale][dynamic-local
 So, their functions can also be used to perform other useful operations.
 
 ### Proguard
+
 This library uses reflection at some places to theme widgets at runtime. So, their original name
 must be preserved to theme them properly. It will automatically apply the appropriate rules if 
 proguard is enabled in the project.
@@ -163,9 +167,11 @@ checkout the `Rotation` and `Everyday` apps to experience the full potential of 
 </p>
 
 ### Supported
+
 - [EZ Notes][ez-notes]
 
 ### Developed
+
 - [Rotation][rotation]
 - [Everyday][everyday]
 - [Palettes][palettes]
@@ -175,6 +181,7 @@ checkout the `Rotation` and `Everyday` apps to experience the full potential of 
 ---
 
 ## Translations
+
 - German (de) - Flubberlutsch
 - French (fr) - Nitesh Jha | Others
 - Hindi (hi) - Siddh Narhari

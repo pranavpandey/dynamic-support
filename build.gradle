@@ -21,15 +21,16 @@ buildscript {
             'targetSdk'   : 33,
             'buildTools'  : '33.0.0',
             'multidex'    : '2.0.1',
-            'dynamic'     : '4.1.2',
+            'dynamic'     : '4.4.4',
             'fragment'    : '1.5.0',
             'flexbox'     : '3.0.0',
             'kotlin'      : '1.6.21',
-            'locale'      : '2.1.0',
+            'locale'      : '2.2.0',
             'material'    : '1.7.0-alpha02',
-            'preferences' : '2.2.0',
+            'preferences' : '2.2.2',
             'swiperefresh': '1.1.0',
             'theme'       : '4.3.1',
+            'toasts'      : '4.1.2',
             'work'        : '2.8.0-alpha02'
     ]
 

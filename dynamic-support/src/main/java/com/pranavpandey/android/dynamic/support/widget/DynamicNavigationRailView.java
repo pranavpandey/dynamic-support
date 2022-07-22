@@ -221,7 +221,7 @@ public class DynamicNavigationRailView extends NavigationRailView
 
     @Override
     public void applyWindowInsets() {
-        DynamicViewUtils.applyWindowInsetsVertical(this, false);
+        DynamicViewUtils.applyWindowInsetsVertical(this);
     }
 
     @Override

@@ -95,7 +95,7 @@ public class DynamicCollapsingToolbarLayout extends CollapsingToolbarLayout
 
     @Override
     public void applyWindowInsets() {
-        DynamicViewUtils.applyWindowInsetsHorizontal(this, false);
+        DynamicViewUtils.applyWindowInsetsHorizontal(this);
     }
 
     @Override

@@ -153,7 +153,7 @@ public class DynamicAppBarLayout extends AppBarLayout
 
     @Override
     public void applyWindowInsets() {
-        DynamicViewUtils.applyWindowInsetsHorizontal(this, false);
+        DynamicViewUtils.applyWindowInsetsHorizontal(this);
     }
 
     @Override
