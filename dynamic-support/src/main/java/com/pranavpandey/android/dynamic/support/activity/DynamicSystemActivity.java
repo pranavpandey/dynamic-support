@@ -1166,25 +1166,23 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
                 if (isApplyEdgeToEdgeInsets() && getEdgeToEdgeView() != null) {
                     ViewCompat.setOnApplyWindowInsetsListener(getEdgeToEdgeView(),
                             new OnApplyWindowInsetsListener() {
-                                @Override
-                                public @NonNull WindowInsetsCompat onApplyWindowInsets(
-                                        @NonNull View v, @NonNull WindowInsetsCompat insets) {
-                                    if (!(v.getLayoutParams()
-                                            instanceof  ViewGroup.MarginLayoutParams)) {
-                                        return insets;
-                                    }
+                        @Override
+                        public @NonNull WindowInsetsCompat onApplyWindowInsets(
+                                @NonNull View v, @NonNull WindowInsetsCompat insets) {
+                            if (v.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+                                final ViewGroup.MarginLayoutParams lp =
+                                        (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+                                lp.topMargin = insets.getInsets(
+                                        WindowInsetsCompat.Type.systemBars()).top;
+                                v.setLayoutParams(lp);
 
-                                    final ViewGroup.MarginLayoutParams lp =
-                                            (ViewGroup.MarginLayoutParams) v.getLayoutParams();
-                                    lp.topMargin = insets.getInsets(
-                                            WindowInsetsCompat.Type.systemBars()).top;
-                                    v.setLayoutParams(lp);
+                                DynamicViewUtils.applyWindowInsetsBottom(
+                                        getEdgeToEdgeViewBottom(), true);
+                            }
 
-                                    DynamicViewUtils.applyWindowInsetsBottom(
-                                            getEdgeToEdgeViewBottom(), true);
-                                    return insets;
-                                }
-                            });
+                            return insets;
+                        }
+                    });
                 }
 
                 if (DynamicWindowUtils.isGestureNavigation(this)) {

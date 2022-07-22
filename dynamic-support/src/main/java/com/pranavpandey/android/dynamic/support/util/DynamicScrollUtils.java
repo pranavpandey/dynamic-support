@@ -203,6 +203,33 @@ public final class DynamicScrollUtils {
     }
 
     /**
+     * Returns the navigation menu view associated with the supplied navigation view.
+     *
+     * @param view The navigation view to be used.
+     *
+     * @return The navigation menu view associated with the supplied navigation view.
+     */
+    public static @Nullable NavigationMenuView getNavigationMenuView(
+            @Nullable NavigationView view) {
+        if (view == null) {
+            return null;
+        }
+
+        initializeNavigationViewFields(view);
+
+        try {
+            NavigationMenuPresenter presenter = (NavigationMenuPresenter)
+                    F_NAVIGATION_VIEW_PRESENTER.get(view);
+            initializeNavigationViewFields(presenter);
+
+            return (NavigationMenuView) F_NAVIGATION_VIEW_RECYCLER_VIEW.get(presenter);
+        } catch (Exception ignored) {
+        }
+
+        return null;
+    }
+
+    /**
      * Set the edge effect or glow color for the navigation view.
      *
      * @param view The navigation view to be used.
@@ -213,16 +240,8 @@ public final class DynamicScrollUtils {
             return;
         }
 
-        initializeNavigationViewFields(view);
-
         try {
-            NavigationMenuPresenter presenter = (NavigationMenuPresenter)
-                    F_NAVIGATION_VIEW_PRESENTER.get(view);
-            initializeNavigationViewFields(presenter);
-
-            NavigationMenuView navigationMenuView = (NavigationMenuView)
-                    F_NAVIGATION_VIEW_RECYCLER_VIEW.get(presenter);
-            setEdgeEffectColor(navigationMenuView, color, null);
+            setEdgeEffectColor(getNavigationMenuView(view), color, null);
         } catch (Exception ignored) {
         }
     }

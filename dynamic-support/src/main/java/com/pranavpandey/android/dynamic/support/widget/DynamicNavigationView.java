@@ -29,6 +29,7 @@ import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.internal.NavigationMenuView;
 import com.google.android.material.internal.ScrimInsetsFrameLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.shape.MaterialShapeDrawable;
@@ -325,15 +326,32 @@ public class DynamicNavigationView extends NavigationView
 
     @Override
     public void applyWindowInsets() {
+        final NavigationMenuView menuView = DynamicScrollUtils.getNavigationMenuView(this);
         final View header;
         final int left = getPaddingLeft();
         final int top = getPaddingTop();
         final int right = getPaddingRight();
         final int bottom = getPaddingBottom();
+        final int menuLeft;
+        final int menuTop;
+        final int menuRight;
+        final int menuBottom;
         final int headerLeft;
         final int headerTop;
         final int headerRight;
         final int headerBottom;
+
+        if (menuView != null) {
+            menuLeft = menuView.getPaddingLeft();
+            menuTop = menuView.getPaddingTop();
+            menuRight = menuView.getPaddingRight();
+            menuBottom = menuView.getPaddingBottom();
+        } else {
+            menuLeft = 0;
+            menuTop = 0;
+            menuRight = 0;
+            menuBottom = 0;
+        }
 
         if (getHeaderCount() != 0) {
             header = getHeaderView(0);
@@ -356,24 +374,29 @@ public class DynamicNavigationView extends NavigationView
                     @NonNull View v, @NonNull WindowInsetsCompat insets) {
                 final Rect rect = new Rect();
                 rect.set(insets.getInsets(WindowInsetsCompat.Type.systemBars()).left,
-                        insets.getInsets(WindowInsetsCompat.Type.systemBars()).top, 0,
+                        insets.getInsets(WindowInsetsCompat.Type.systemBars()).top,
+                        insets.getInsets(WindowInsetsCompat.Type.systemBars()).right,
                         insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
-
-                final boolean isRtl = DynamicViewUtils.isLayoutRtl(v);
-                v.setPadding(isRtl ? right : left + rect.left, top,
-                        isRtl ? left : right, bottom + rect.bottom);
 
                 try {
                     final Field fieldInsets =
                             ScrimInsetsFrameLayout.class.getDeclaredField("insets");
                     fieldInsets.setAccessible(true);
                     fieldInsets.set(DynamicNavigationView.this, rect);
-
-                    if (header != null) {
-                        header.setPadding(headerLeft, headerTop + rect.top,
-                                headerRight, headerBottom);
-                    }
                 } catch (Exception ignored) {
+                }
+
+                v.setPadding(left + rect.left, top,
+                        right + rect.right, bottom + rect.bottom);
+
+                if (menuView != null) {
+                    menuView.setPadding(menuLeft, header != null ? menuTop
+                            : menuTop + rect.top, menuRight, menuBottom);
+                }
+
+                if (header != null) {
+                    header.setPadding(headerLeft, headerTop + rect.top,
+                            headerRight, headerBottom);
                 }
 
                 return insets;

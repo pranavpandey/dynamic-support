@@ -98,13 +98,12 @@ public class DynamicCoordinatorLayout extends CoordinatorLayout implements Windo
                         insets.getInsets(WindowInsetsCompat.Type.systemBars()).right,
                         insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
 
-                final boolean isRtl = DynamicViewUtils.isLayoutRtl(v);
                 if (DynamicViewUtils.isRootLayout(v) || ViewCompat.getFitsSystemWindows(v)) {
-                    v.setPadding(isRtl ? right : left + mInsets.left, top + mInsets.top,
-                            isRtl ? left : right + mInsets.right, bottom);
+                    v.setPadding(left + mInsets.left, top + mInsets.top,
+                            right + mInsets.right, bottom);
                 } else {
-                    v.setPadding(isRtl ? right : left + mInsets.left, top + mInsets.top,
-                            isRtl ? left : right + mInsets.right, bottom + mInsets.bottom);
+                    v.setPadding(left + mInsets.left, top + mInsets.top,
+                            right + mInsets.right, bottom + mInsets.bottom);
                 }
 
                 setWillNotDraw(insets.getInsets(

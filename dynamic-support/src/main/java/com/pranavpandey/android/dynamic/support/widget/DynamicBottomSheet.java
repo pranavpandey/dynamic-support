@@ -114,12 +114,9 @@ public class DynamicBottomSheet extends FrameLayout implements
             @Override
             public @NonNull WindowInsetsCompat onApplyWindowInsets(
                     @NonNull View v, @NonNull WindowInsetsCompat insets) {
-                final boolean isRtl = DynamicViewUtils.isLayoutRtl(v);
-                v.setPadding(isRtl ? right : left
-                                + insets.getInsets(WindowInsetsCompat.Type.systemBars()).left,
+                v.setPadding(left + insets.getInsets(WindowInsetsCompat.Type.systemBars()).left,
                         top - insets.getInsets(WindowInsetsCompat.Type.systemBars()).top,
-                        isRtl ? left : right
-                                + insets.getInsets(WindowInsetsCompat.Type.systemBars()).right,
+                        right + insets.getInsets(WindowInsetsCompat.Type.systemBars()).right,
                         bottom + insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
                 /*
                  * Fix extra peek height when using top inset for coordinator layout and
