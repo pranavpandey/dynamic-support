@@ -792,6 +792,11 @@ public final class DynamicScrollUtils {
 
             if (presenter != null) {
                 presenter.setSubheaderColor(ColorStateList.valueOf(color));
+
+                // Fix margin for RTL layout.
+                if (presenter.getSubheaderInsetEnd() <= 0) {
+                    presenter.setSubheaderInsetEnd(presenter.getSubheaderInsetStart());
+                }
             }
         } catch (Exception ignored) {
         }
