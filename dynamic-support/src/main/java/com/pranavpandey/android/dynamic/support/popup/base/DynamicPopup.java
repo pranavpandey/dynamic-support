@@ -375,4 +375,16 @@ public abstract class DynamicPopup {
                     viewCenterX  + OFFSET_X, screenPos[1] - OFFSET_Y);
         }
     }
+
+    /**
+     * Try to dismiss the popup window.
+     *
+     * @see #getPopupWindow()
+     * @see PopupWindow#dismiss()
+     */
+    public void dismiss() {
+        if (getPopupWindow() != null) {
+            getPopupWindow().dismiss();
+        }
+    }
 }

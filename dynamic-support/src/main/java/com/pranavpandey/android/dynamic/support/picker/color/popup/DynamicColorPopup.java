@@ -191,8 +191,6 @@ public class DynamicColorPopup extends DynamicSimplePopup {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        getPopupWindow().dismiss();
-
                         if (mOnMoreColorsListener == null) {
                             DynamicColorDialog.newInstance().setColors(
                                     DynamicPalette.MATERIAL_COLORS,
@@ -222,6 +220,8 @@ public class DynamicColorPopup extends DynamicSimplePopup {
                         } else {
                             mOnMoreColorsListener.onClick(view);
                         }
+
+                        dismiss();
                     }
                 });
 
@@ -230,12 +230,13 @@ public class DynamicColorPopup extends DynamicSimplePopup {
                 new DynamicColorListener() {
             @Override
             public void onColorSelected(@Nullable String tag, int position, int color) {
-                getPopupWindow().dismiss();
                 DynamicPickerUtils.setRecentColor(color);
 
                 if (mDynamicColorListener != null) {
                     mDynamicColorListener.onColorSelected(tag, position, color);
                 }
+
+                dismiss();
             }
         }));
 
@@ -291,12 +292,13 @@ public class DynamicColorPopup extends DynamicSimplePopup {
                     new DynamicColorListener() {
                 @Override
                 public void onColorSelected(@Nullable String tag, int position, int color) {
-                    getPopupWindow().dismiss();
                     DynamicPickerUtils.setRecentColor(color);
 
                     if (mDynamicColorListener != null) {
                         mDynamicColorListener.onColorSelected(tag, position, color);
                     }
+
+                    dismiss();
                 }
             }));
         } else {
@@ -357,13 +359,14 @@ public class DynamicColorPopup extends DynamicSimplePopup {
             @Override
             public void onClick(View view) {
                 colorView.setSelected(true);
-                getPopupWindow().dismiss();
                 DynamicPickerUtils.setRecentColor(colorView.getColor());
 
                 if (mDynamicColorListener != null) {
                     mDynamicColorListener.onColorSelected(
                             null, 0, colorView.getColor());
                 }
+
+                dismiss();
             }
         });
     }

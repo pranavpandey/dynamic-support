@@ -463,7 +463,7 @@ public class DynamicMenuPopup extends DynamicSimplePopup {
                         View view, int position, long id) {
                     mOnItemClickListener.onItemClick(adapterView, view, position, id);
 
-                    getPopupWindow().dismiss();
+                    dismiss();
                 }
             }));
         }
