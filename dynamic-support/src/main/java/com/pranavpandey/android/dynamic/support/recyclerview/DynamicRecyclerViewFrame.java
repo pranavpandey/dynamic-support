@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.recyclerview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -253,6 +254,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     /**
      * Notify data set changed for the recycler view adapter.
      */
+    @SuppressLint("NotifyDataSetChanged")
     public void notifyDataSetChanged() {
         if (getAdapter() != null && !getRecyclerView().isComputingLayout()) {
             getAdapter().notifyDataSetChanged();

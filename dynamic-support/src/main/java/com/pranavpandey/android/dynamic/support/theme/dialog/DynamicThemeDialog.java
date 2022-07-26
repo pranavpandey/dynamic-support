@@ -223,11 +223,11 @@ public class DynamicThemeDialog<T extends DynamicAppTheme, V> extends DynamicDia
 
                 dialogBuilder.setPositiveButton(R.string.ads_copy,
                         new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                onThemeCopy();
-                            }
-                        });
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        onThemeCopy();
+                    }
+                });
                 break;
             case INVALID:
                 view = LayoutInflater.from(requireContext()).inflate(R.layout.ads_dialog_general,
@@ -362,18 +362,18 @@ public class DynamicThemeDialog<T extends DynamicAppTheme, V> extends DynamicDia
                     }
                 });
 
-                dialogBuilder.setPositiveButton(
-                        R.string.ads_backup_import, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (mThemeListener instanceof ThemeListener.Import
-                                        && mEditText.getText() != null) {
-                                    mEditText.getText().clearSpans();
-                                    ((ThemeListener.Import<?>) mThemeListener)
-                                            .importTheme(mEditText.getText().toString());
-                                }
-                            }
-                        });
+                dialogBuilder.setPositiveButton(R.string.ads_backup_import,
+                        new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (mThemeListener instanceof ThemeListener.Import
+                                && mEditText.getText() != null) {
+                            mEditText.getText().clearSpans();
+                            ((ThemeListener.Import<?>) mThemeListener)
+                                    .importTheme(mEditText.getText().toString());
+                        }
+                    }
+                });
 
                 setOnShowListener(new DialogInterface.OnShowListener() {
                     @Override
