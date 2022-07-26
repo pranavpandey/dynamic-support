@@ -17,9 +17,11 @@
 package com.pranavpandey.android.dynamic.support.tutorial.activity;
 
 import android.animation.ArgbEvaluator;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
+import android.transition.Transition;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -380,6 +382,7 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
      * Runnable to update the tutorials adapter.
      */
     private final Runnable mAdapterRunnable = new Runnable() {
+        @SuppressLint("NotifyDataSetChanged")
         @Override
         public void run() {
             if (mAdapter != null) {
@@ -632,19 +635,51 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
      *
      * @param animate {@code true} to animate the footer.
      */
-    private void setFooter(boolean animate) {
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public void setFooter(boolean animate) {
         if (mFooter == null) {
             return;
         }
 
         if (animate && mFooter.getVisibility() != View.VISIBLE) {
-            // Animation fix for lower API levels.
-            DynamicTheme.getInstance().getHandler().post(mFooterRunnable);
+            if (DynamicSdkUtils.is21() && isSharedElement(getDefaultPosition())
+                    && getWindow().getSharedElementEnterTransition() != null) {
+                getWindow().getSharedElementEnterTransition().addListener(
+                        new Transition.TransitionListener() {
+                            @Override
+                            public void onTransitionStart(Transition transition) { }
+
+                            @Override
+                            public void onTransitionEnd(Transition transition) {
+                                transition.removeListener(this);
+                                DynamicTheme.getInstance().getHandler().post(mFooterRunnable);
+                            }
+
+                            @Override
+                            public void onTransitionCancel(Transition transition) {
+                                transition.removeListener(this);
+                                DynamicTheme.getInstance().getHandler().post(mFooterRunnable);
+                            }
+
+                            @Override
+                            public void onTransitionPause(Transition transition) {
+                                transition.removeListener(this);
+                            }
+
+                            @Override
+                            public void onTransitionResume(Transition transition) { }
+                        });
+            } else {
+                DynamicTheme.getInstance().getHandler().post(mFooterRunnable);
+            }
+        } else {
+            Dynamic.setVisibility(mFooter, View.VISIBLE);
         }
     }
 
     /**
      * Runnable to animate the footer.
+     * <p>Animation fix for lower API levels.
      */
     private final Runnable mFooterRunnable = new Runnable() {
         @Override
@@ -767,6 +802,20 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
         return mActionNext;
     }
 
+    /**
+     * Returns whether the shared element is enabled for the supplied tutorial position.
+     *
+     * @param position The position to be used.
+     *
+     * @return The shared element is enabled for the supplied tutorial position.
+     */
+    public boolean isSharedElement(int position) {
+        final Tutorial<T, V> tutorial = getTutorial(position);
+
+        return tutorial instanceof Tutorial.SharedElement
+                && ((Tutorial.SharedElement<T, V>) tutorial).isSharedElement();
+    }
+
     @Override
     public void onDynamicChanged(boolean context, boolean recreate) {
         super.onDynamicChanged(context, recreate);
@@ -776,9 +825,7 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
 
     @Override
     public void finishActivity() {
-        final Tutorial<T, V> tutorial = getTutorial(getCurrentPosition());
-        if (tutorial instanceof Tutorial.SharedElement
-                && ((Tutorial.SharedElement<T, V>) tutorial).isSharedElement()) {
+        if (isSharedElement(getCurrentPosition())) {
             super.finishActivity();
         } else if (!isFinishing()) {
             finish();
