@@ -17,9 +17,7 @@
 -->
 
 <layer-list
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:targetApi="lollipop">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@android:id/background"
@@ -27,15 +25,10 @@
 
     <item
         android:id="@android:id/secondaryProgress"
-        android:drawable="@drawable/ads_ic_star_half_indicator" />
+        android:drawable="@drawable/ads_ic_star_border_indicator" />
 
     <item
-        android:id="@android:id/progress">
-
-        <bitmap
-            android:src="@drawable/ads_ic_star_indicator"
-            android:tileModeX="repeat" />
-
-    </item>
+        android:id="@android:id/progress"
+        android:drawable="@drawable/ads_ic_star_indicator" />
 
 </layer-list>

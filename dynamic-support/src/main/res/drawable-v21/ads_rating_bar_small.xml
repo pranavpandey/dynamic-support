@@ -25,7 +25,7 @@
 
     <item
         android:id="@android:id/secondaryProgress"
-        android:drawable="@drawable/ads_ic_star_half_small_selector" />
+        android:drawable="@drawable/ads_ic_star_border_small_selector" />
 
     <item
         android:id="@android:id/progress"
