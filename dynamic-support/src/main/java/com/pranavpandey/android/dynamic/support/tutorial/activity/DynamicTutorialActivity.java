@@ -21,7 +21,6 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
-import android.transition.Transition;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -34,6 +33,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.SharedElementCallback;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
@@ -158,10 +158,6 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
 
                         mFooterHeight = mFooter.getHeight();
 
-                        if (DynamicMotion.getInstance().isMotion()
-                                && getSavedInstanceState() == null) {
-                            Dynamic.setVisibility(mFooter, View.INVISIBLE);
-                        }
                         setTutorials(false);
                     }
                 });
@@ -270,6 +266,39 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
         } else {
             setStatusBarColor(getSavedInstanceState().getInt(ADS_STATE_STATUS_BAR_COLOR));
         }
+    }
+
+    @Override
+    protected void onManageSharedElementTransition() {
+        super.onManageSharedElementTransition();
+
+        setEnterSharedElementCallback(new SharedElementCallback() {
+            @Override
+            public void onSharedElementStart(List<String> sharedElementNames,
+                    List<View> sharedElements, List<View> sharedElementSnapshots) {
+                super.onSharedElementStart(sharedElementNames,
+                        sharedElements, sharedElementSnapshots);
+
+                if (sharedElementNames == null || sharedElementNames.isEmpty()) {
+                    return;
+                }
+
+                if (DynamicMotion.getInstance().isMotion()
+                        && isTutorialSharedElementTransition()
+                        && getSavedInstanceState() == null) {
+                    Dynamic.setVisibility(mFooter, View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onSharedElementEnd(List<String> sharedElementNames,
+                    List<View> sharedElements, List<View> sharedElementSnapshots) {
+                super.onSharedElementEnd(sharedElementNames,
+                        sharedElements, sharedElementSnapshots);
+
+                setFooter(true);
+            }
+        });
     }
 
     @Override
@@ -642,39 +671,20 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
         }
 
         if (animate && mFooter.getVisibility() != View.VISIBLE) {
-            if (DynamicSdkUtils.is21() && isSharedElement(getDefaultPosition())
-                    && getWindow().getSharedElementEnterTransition() != null) {
-                getWindow().getSharedElementEnterTransition().addListener(
-                        new Transition.TransitionListener() {
-                            @Override
-                            public void onTransitionStart(Transition transition) { }
-
-                            @Override
-                            public void onTransitionEnd(Transition transition) {
-                                transition.removeListener(this);
-                                DynamicTheme.getInstance().getHandler().post(mFooterRunnable);
-                            }
-
-                            @Override
-                            public void onTransitionCancel(Transition transition) {
-                                transition.removeListener(this);
-                                DynamicTheme.getInstance().getHandler().post(mFooterRunnable);
-                            }
-
-                            @Override
-                            public void onTransitionPause(Transition transition) {
-                                transition.removeListener(this);
-                            }
-
-                            @Override
-                            public void onTransitionResume(Transition transition) { }
-                        });
-            } else {
-                DynamicTheme.getInstance().getHandler().post(mFooterRunnable);
-            }
+            postFooter();
         } else {
             Dynamic.setVisibility(mFooter, View.VISIBLE);
         }
+    }
+
+    /**
+     * Checks whether the shared element transition is enable for the current tutorial.
+     *
+     * @return {@code true} if the shared element transition is enable for the current tutorial.
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public boolean isTutorialSharedElementTransition() {
+        return DynamicSdkUtils.is21() && isSharedElement(getDefaultPosition());
     }
 
     /**
@@ -704,6 +714,13 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
             }
         }
     };
+
+    /**
+     * Post footer animation on main thread.
+     */
+    public void postFooter() {
+        DynamicTheme.getInstance().getHandler().post(mFooterRunnable);
+    }
 
     /**
      * Returns the current position of the view pager.
