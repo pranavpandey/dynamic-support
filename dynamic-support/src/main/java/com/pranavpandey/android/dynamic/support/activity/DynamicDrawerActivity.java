@@ -47,7 +47,6 @@ import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTextWidget;
 import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
-import com.pranavpandey.android.dynamic.util.DynamicUnitUtils;
 import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 /**
@@ -111,7 +110,8 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
         }
 
         if (mDrawer != null) {
-            mDrawer.setDrawerElevation(DynamicUnitUtils.convertDpToPixels(8));
+            mDrawer.setDrawerElevation(getResources()
+                    .getDimensionPixelOffset(R.dimen.ads_drawer_elevation));
         }
 
         setupDrawer();

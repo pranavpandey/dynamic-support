@@ -72,6 +72,7 @@
     <dimen name="ads_app_bar_shadow_size">@dimen/ads_card_view_elevation</dimen>
     <dimen name="ads_navigation_bar_shadow_size">@dimen/ads_app_bar_shadow_size</dimen>
     <dimen name="ads_drawer_size">280dp</dimen>
+    <dimen name="ads_drawer_elevation">8dp</dimen>
     <dimen name="ads_margin_content_start">0dp</dimen>
     <dimen name="ads_nav_header_spacing">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_nav_header_spacing_top">@dimen/ads_margin_medium</dimen>
