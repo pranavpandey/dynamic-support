@@ -390,8 +390,9 @@ public class DynamicNavigationView extends NavigationView
                         right + rect.right, bottom + rect.bottom);
 
                 if (menuView != null) {
-                    menuView.setPadding(menuLeft, header != null ? menuTop
-                            : menuTop + rect.top, menuRight, menuBottom);
+                    menuView.setPadding(menuLeft, header != null ? menuTop : menuTop + rect.top,
+                            menuRight, menuBottom + insets.getInsetsIgnoringVisibility(
+                                    WindowInsetsCompat.Type.navigationBars()).bottom);
                 }
 
                 if (header != null) {

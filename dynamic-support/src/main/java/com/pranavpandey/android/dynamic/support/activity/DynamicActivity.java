@@ -267,7 +267,7 @@ public abstract class DynamicActivity extends DynamicStateActivity
         getBottomSheetBehavior();
 
         if (isApplyFooterInsets()) {
-            DynamicViewUtils.applyWindowInsetsBottom(mFrameFooter);
+            DynamicViewUtils.applyWindowInsetsBottom(mFrameFooter, true);
         }
 
         setFrameVisibility(mBottomSheet);
