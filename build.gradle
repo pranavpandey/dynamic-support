@@ -21,7 +21,7 @@ buildscript {
             'targetSdk'   : 33,
             'buildTools'  : '33.0.0',
             'multidex'    : '2.0.1',
-            'dynamic'     : '4.4.4',
+            'dynamic'     : '4.4.5',
             'fragment'    : '1.5.1',
             'flexbox'     : '3.0.0',
             'kotlin'      : '1.6.21',
@@ -77,9 +77,9 @@ ext {
     mavenDir = 'com/pranavpandey/android'
     mavenArtifactId = 'dynamic-support'
     mavenInceptionYear = 2018
-    mavenVersion = '6.0.2'
-    mavenVersionCode = 30
-    sampleVersionCode = 30
+    mavenVersion = '6.0.3'
+    mavenVersionCode = 31
+    sampleVersionCode = 31
 
     developerId = 'pranavpandey'
     developerName = 'Pranav Pandey'
