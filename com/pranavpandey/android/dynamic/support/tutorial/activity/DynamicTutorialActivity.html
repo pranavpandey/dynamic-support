@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":10,"i47":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -466,6 +466,20 @@ implements <a href="../../listener/DynamicTransitionListener.html" title="interf
 </td>
 </tr>
 <tr id="i25" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isSharedElement(int)">isSharedElement</a></span>&#8203;(int&nbsp;position)</code></th>
+<td class="colLast">
+<div class="block">Returns whether the shared element is enabled for the supplied tutorial position.</div>
+</td>
+</tr>
+<tr id="i26" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isTutorialSharedElementTransition()">isTutorialSharedElementTransition</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Checks whether the shared element transition is enable for the current tutorial.</div>
+</td>
+</tr>
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onAdjustElevation()">onAdjustElevation</a></span>()</code></th>
 <td class="colLast">
@@ -473,12 +487,12 @@ implements <a href="../../listener/DynamicTransitionListener.html" title="interf
  bottom app bar, etc.</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i28" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onCreate(android.os.Bundle)">onCreate</a></span>&#8203;(<a href="https://developer.android.com/reference/android/os/Bundle.html?is-external=true" title="class or interface in android.os" class="externalLink">Bundle</a>&nbsp;savedInstanceState)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i29" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDynamicChanged(boolean,boolean)">onDynamicChanged</a></span>&#8203;(boolean&nbsp;context,
                 boolean&nbsp;recreate)</code></th>
@@ -486,12 +500,20 @@ implements <a href="../../listener/DynamicTransitionListener.html" title="interf
 <div class="block">This method will be called when the dynamic change event occurs (like theme, locale, etc.).</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i30" class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onManageSharedElementTransition()">onManageSharedElementTransition</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Setup the shared element transition callbacks to manage it's position on
+ configuration change.</div>
+</td>
+</tr>
+<tr id="i31" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onResume()">onResume</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i32" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onSetColor(int,int,int)">onSetColor</a></span>&#8203;(int&nbsp;position,
           int&nbsp;color,
@@ -500,7 +522,7 @@ implements <a href="../../listener/DynamicTransitionListener.html" title="interf
 <div class="block">Update activity background and system UI according to the supplied color.</div>
 </td>
 </tr>
-<tr id="i30" class="altColor">
+<tr id="i33" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onSetTooltip(int,int,int)">onSetTooltip</a></span>&#8203;(int&nbsp;position,
             int&nbsp;color,
@@ -509,35 +531,42 @@ implements <a href="../../listener/DynamicTransitionListener.html" title="interf
 <div class="block">This method will be called to set the tooltip for the tutorial actions.</div>
 </td>
 </tr>
-<tr id="i31" class="rowColor">
+<tr id="i34" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onSnackbarShow(com.google.android.material.snackbar.Snackbar)">onSnackbarShow</a></span>&#8203;(com.google.android.material.snackbar.Snackbar&nbsp;snackbar)</code></th>
 <td class="colLast">
 <div class="block">This method will be called to show the snackbar.</div>
 </td>
 </tr>
-<tr id="i32" class="altColor">
+<tr id="i35" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onTutorialNext(android.view.View)">onTutorialNext</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view)</code></th>
 <td class="colLast">
 <div class="block">This method will be called to go to the next tutorial.</div>
 </td>
 </tr>
-<tr id="i33" class="rowColor">
+<tr id="i36" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onTutorialPrevious(android.view.View)">onTutorialPrevious</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view)</code></th>
 <td class="colLast">
 <div class="block">This method will be called to go to the previous tutorial.</div>
 </td>
 </tr>
-<tr id="i34" class="altColor">
+<tr id="i37" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onUpdate(int)">onUpdate</a></span>&#8203;(int&nbsp;position)</code></th>
 <td class="colLast">
 <div class="block">This method will be called to update the activity according to the tutorial position.</div>
 </td>
 </tr>
-<tr id="i35" class="rowColor">
+<tr id="i38" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#postFooter()">postFooter</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Post footer animation on main thread.</div>
+</td>
+</tr>
+<tr id="i39" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAction(java.lang.CharSequence,android.view.View.OnClickListener)">setAction</a></span>&#8203;(java.lang.CharSequence&nbsp;text,
          <a href="https://developer.android.com/reference/android/view/View.OnClickListener.html?is-external=true" title="class or interface in android.view" class="externalLink">View.OnClickListener</a>&nbsp;onClickListener)</code></th>
@@ -545,28 +574,35 @@ implements <a href="../../listener/DynamicTransitionListener.html" title="interf
 <div class="block">Set an action for the custom action button.</div>
 </td>
 </tr>
-<tr id="i36" class="altColor">
+<tr id="i40" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDynamicWindowResolver(com.pranavpandey.android.dynamic.support.listener.DynamicWindowResolver)">setDynamicWindowResolver</a></span>&#8203;(<a href="../../listener/DynamicWindowResolver.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicWindowResolver</a>&nbsp;dynamicWindowResolver)</code></th>
 <td class="colLast">
 <div class="block">Set resolver to resolve the status and navigation bar.</div>
 </td>
 </tr>
-<tr id="i37" class="rowColor">
+<tr id="i41" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setFooter(boolean)">setFooter</a></span>&#8203;(boolean&nbsp;animate)</code></th>
+<td class="colLast">
+<div class="block">Set the tutorial footer and make it visible.</div>
+</td>
+</tr>
+<tr id="i42" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setStatusBarColor(int)">setStatusBarColor</a></span>&#8203;(int&nbsp;color)</code></th>
 <td class="colLast">
 <div class="block">Set the status bar color.</div>
 </td>
 </tr>
-<tr id="i38" class="altColor">
+<tr id="i43" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTutorial(int)">setTutorial</a></span>&#8203;(int&nbsp;page)</code></th>
 <td class="colLast">
 <div class="block">Set the current position for the tutorial list.</div>
 </td>
 </tr>
-<tr id="i39" class="rowColor">
+<tr id="i44" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTutorial(int,boolean)">setTutorial</a></span>&#8203;(int&nbsp;page,
            boolean&nbsp;smoothScroll)</code></th>
@@ -574,14 +610,14 @@ implements <a href="../../listener/DynamicTransitionListener.html" title="interf
 <div class="block">Set the current position for the tutorial list.</div>
 </td>
 </tr>
-<tr id="i40" class="altColor">
+<tr id="i45" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTutorials(boolean)">setTutorials</a></span>&#8203;(boolean&nbsp;smoothScroll)</code></th>
 <td class="colLast">
 <div class="block">Set view pager adapter according to the tutorials list.</div>
 </td>
 </tr>
-<tr id="i41" class="rowColor">
+<tr id="i46" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTutorials(int,boolean)">setTutorials</a></span>&#8203;(int&nbsp;page,
             boolean&nbsp;smoothScroll)</code></th>
@@ -589,7 +625,7 @@ implements <a href="../../listener/DynamicTransitionListener.html" title="interf
 <div class="block">Set view pager adapter according to the tutorials list.</div>
 </td>
 </tr>
-<tr id="i42" class="altColor">
+<tr id="i47" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTutorials(int,boolean,boolean)">setTutorials</a></span>&#8203;(int&nbsp;page,
             boolean&nbsp;smoothScroll,
@@ -604,7 +640,7 @@ implements <a href="../../listener/DynamicTransitionListener.html" title="interf
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.pranavpandey.android.dynamic.support.activity.<a href="../../activity/DynamicSystemActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicSystemActivity</a></h3>
-<code><a href="../../activity/DynamicSystemActivity.html#checkForThemeIntent(android.content.Intent)">checkForThemeIntent</a>, <a href="../../activity/DynamicSystemActivity.html#commitFragmentTransaction(androidx.fragment.app.FragmentTransaction)">commitFragmentTransaction</a>, <a href="../../activity/DynamicSystemActivity.html#createConfigurationContext(android.content.res.Configuration)">createConfigurationContext</a>, <a href="../../activity/DynamicSystemActivity.html#finish()">finish</a>, <a href="../../activity/DynamicSystemActivity.html#getAppliedNavigationBarColor()">getAppliedNavigationBarColor</a>, <a href="../../activity/DynamicSystemActivity.html#getContext()">getContext</a>, <a href="../../activity/DynamicSystemActivity.html#getCurrentLocale()">getCurrentLocale</a>, <a href="../../activity/DynamicSystemActivity.html#getDefaultColor(int)">getDefaultColor</a>, <a href="../../activity/DynamicSystemActivity.html#getDefaultLocale(android.content.Context)">getDefaultLocale</a>, <a href="../../activity/DynamicSystemActivity.html#getDelegate()">getDelegate</a>, <a href="../../activity/DynamicSystemActivity.html#getDynamicEnterTransition()">getDynamicEnterTransition</a>, <a href="../../activity/DynamicSystemActivity.html#getDynamicExitTransition()">getDynamicExitTransition</a>, <a href="../../activity/DynamicSystemActivity.html#getDynamicIntentTheme()">getDynamicIntentTheme</a>, <a href="../../activity/DynamicSystemActivity.html#getDynamicLayoutInflater()">getDynamicLayoutInflater</a>, <a href="../../activity/DynamicSystemActivity.html#getDynamicReenterTransition()">getDynamicReenterTransition</a>, <a href="../../activity/DynamicSystemActivity.html#getDynamicReturnTransition()">getDynamicReturnTransition</a>, <a href="../../activity/DynamicSystemActivity.html#getDynamicTheme()">getDynamicTheme</a>, <a href="../../activity/DynamicSystemActivity.html#getDynamicTransitionListener()">getDynamicTransitionListener</a>, <a href="../../activity/DynamicSystemActivity.html#getEdgeToEdgeViewBottom()">getEdgeToEdgeViewBottom</a>, <a href="../../activity/DynamicSystemActivity.html#getFontScale()">getFontScale</a>, <a href="../../activity/DynamicSystemActivity.html#getLocale()">getLocale</a>, <a href="../../activity/DynamicSystemActivity.html#getNavigationBarColor()">getNavigationBarColor</a>, <a href="../../activity/DynamicSystemActivity.html#getSavedInstanceState()">getSavedInstanceState</a>, <a href="../../activity/DynamicSystemActivity.html#getSharedElementCallback()">getSharedElementCallback</a>, <a href="../../activity/DynamicSystemActivity.html#getSharedElementTransition()">getSharedElementTransition</a>, <a href="../../activity/DynamicSystemActivity.html#getStatusBarColor()">getStatusBarColor</a>, <a href="../../activity/DynamicSystemActivity.html#getSupportedLocales()">getSupportedLocales</a>, <a href="../../activity/DynamicSystemActivity.html#getThemeRes()">getThemeRes</a>, <a href="../../activity/DynamicSystemActivity.html#getThemeRes(com.pranavpandey.android.dynamic.theme.AppTheme)">getThemeRes</a>, <a href="../../activity/DynamicSystemActivity.html#getTransitionPosition()">getTransitionPosition</a>, <a href="../../activity/DynamicSystemActivity.html#getTransitionResultCode()">getTransitionResultCode</a>, <a href="../../activity/DynamicSystemActivity.html#isApplyFooterInsets()">isApplyFooterInsets</a>, <a href="../../activity/DynamicSystemActivity.html#isDynamicColor()">isDynamicColor</a>, <a href="../../activity/DynamicSystemActivity.html#isDynamicColors()">isDynamicColors</a>, <a href="../../activity/DynamicSystemActivity.html#isEdgeToEdgeContent()">isEdgeToEdgeContent</a>, <a href="../../activity/DynamicSystemActivity.html#isForceMenuIcons()">isForceMenuIcons</a>, <a href="../../activity/DynamicSystemActivity.html#isLaunchedFromHistory()">isLaunchedFromHistory</a>, <a href="../../activity/DynamicSystemActivity.html#isNavigationBarTheme()">isNavigationBarTheme</a>, <a href="../../activity/DynamicSystemActivity.html#isNightMode(boolean)">isNightMode</a>, <a href="../../activity/DynamicSystemActivity.html#isOnSharedPreferenceChangeListener()">isOnSharedPreferenceChangeListener</a>, <a href="../../activity/DynamicSystemActivity.html#isPaused()">isPaused</a>, <a href="../../activity/DynamicSystemActivity.html#isSupportFinishAfterTransition()">isSupportFinishAfterTransition</a>, <a href="../../activity/DynamicSystemActivity.html#isSystemColor()">isSystemColor</a>, <a href="../../activity/DynamicSystemActivity.html#isThemeActivity()">isThemeActivity</a>, <a href="../../activity/DynamicSystemActivity.html#isWallpaperColor()">isWallpaperColor</a>, <a href="../../activity/DynamicSystemActivity.html#navigationBarThemeChange()">navigationBarThemeChange</a>, <a href="../../activity/DynamicSystemActivity.html#onAdjustEnterReturnTransition(java.lang.Object,boolean)">onAdjustEnterReturnTransition</a>, <a href="../../activity/DynamicSystemActivity.html#onAdjustExitReenterTransition(java.lang.Object,boolean)">onAdjustExitReenterTransition</a>, <a href="../../activity/DynamicSystemActivity.html#onApplyTransitions(boolean)">onApplyTransitions</a>, <a href="../../activity/DynamicSystemActivity.html#onAppThemeChange()">onAppThemeChange</a>, <a href="../../activity/DynamicSystemActivity.html#onAutoThemeChanged(boolean)">onAutoThemeChanged</a>, <a href="../../activity/DynamicSystemActivity.html#onBackPressed()">onBackPressed</a>, <a href="../../activity/DynamicSystemActivity.html#onCustomiseTheme()">onCustomiseTheme</a>, <a href="../../activity/DynamicSystemActivity.html#onDestroy()">onDestroy</a>, <a href="../../activity/DynamicSystemActivity.html#onDynamicColorsChanged(com.pranavpandey.android.dynamic.theme.DynamicColors,boolean)">onDynamicColorsChanged</a>, <a href="../../activity/DynamicSystemActivity.html#onDynamicConfigurationChanged(boolean,boolean,boolean,boolean,boolean)">onDynamicConfigurationChanged</a>, <a href="../../activity/DynamicSystemActivity.html#onFindView(int,int,java.lang.String,int)">onFindView</a>, <a href="../../activity/DynamicSystemActivity.html#onManageSharedElementTransition()">onManageSharedElementTransition</a>, <a href="../../activity/DynamicSystemActivity.html#onNavigationBarThemeChanged()">onNavigationBarThemeChanged</a>, <a href="../../activity/DynamicSystemActivity.html#onNewIntent(android.content.Intent)">onNewIntent</a>, <a href="../../activity/DynamicSystemActivity.html#onNewIntent(android.content.Intent,boolean)">onNewIntent</a>, <a href="../../activity/DynamicSystemActivity.html#onPause()">onPause</a>, <a href="../../activity/DynamicSystemActivity.html#onPostCreate(android.os.Bundle)">onPostCreate</a>, <a href="../../activity/DynamicSystemActivity.html#onPowerSaveModeChanged(boolean)">onPowerSaveModeChanged</a>, <a href="../../activity/DynamicSystemActivity.html#onPrepareOptionsMenu(android.view.Menu)">onPrepareOptionsMenu</a>, <a href="../../activity/DynamicSystemActivity.html#onRegisterOnBackInvokedDispatcher()">onRegisterOnBackInvokedDispatcher</a>, <a href="../../activity/DynamicSystemActivity.html#onSaveInstanceState(android.os.Bundle)">onSaveInstanceState</a>, <a href="../../activity/DynamicSystemActivity.html#onSetFallbackActivityOptions()">onSetFallbackActivityOptions</a>, <a href="../../activity/DynamicSystemActivity.html#onSetSharedElementTransition()">onSetSharedElementTransition</a>, <a href="../../activity/DynamicSystemActivity.html#onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String)">onSharedPreferenceChanged</a>, <a href="../../activity/DynamicSystemActivity.html#onStartActivityException(java.lang.Exception)">onStartActivityException</a>, <a href="../../activity/DynamicSystemActivity.html#onThemeIntent(java.lang.String,java.lang.String)">onThemeIntent</a>, <a href="../../activity/DynamicSystemActivity.html#onUpdateIntent(android.content.Intent,boolean)">onUpdateIntent</a>, <a href="../../activity/DynamicSystemActivity.html#resetSharedElementTransition()">resetSharedElementTransition</a>, <a href="../../activity/DynamicSystemActivity.html#setDynamicTransitionListener(com.pranavpandey.android.dynamic.support.listener.DynamicTransitionListener)">setDynamicTransitionListener</a>, <a href="../../activity/DynamicSystemActivity.html#setLocale(android.content.Context)">setLocale</a>, <a href="../../activity/DynamicSystemActivity.html#setNavigationBarColor(int)">setNavigationBarColor</a>, <a href="../../activity/DynamicSystemActivity.html#setNavigationBarColorRes(int)">setNavigationBarColorRes</a>, <a href="../../activity/DynamicSystemActivity.html#setNavigationBarTheme()">setNavigationBarTheme</a>, <a href="../../activity/DynamicSystemActivity.html#setNavigationBarThemeInLandscape()">setNavigationBarThemeInLandscape</a>, <a href="../../activity/DynamicSystemActivity.html#setSharedElementCallback(android.app.SharedElementCallback)">setSharedElementCallback</a>, <a href="../../activity/DynamicSystemActivity.html#setSharedElementTransition(android.transition.Transition)">setSharedElementTransition</a>, <a href="../../activity/DynamicSystemActivity.html#setStatusBarColorRes(int)">setStatusBarColorRes</a>, <a href="../../activity/DynamicSystemActivity.html#setTransitionPosition(int)">setTransitionPosition</a>, <a href="../../activity/DynamicSystemActivity.html#setTransitionResultCode(int)">setTransitionResultCode</a>, <a href="../../activity/DynamicSystemActivity.html#setTranslucentNavigationBar()">setTranslucentNavigationBar</a>, <a href="../../activity/DynamicSystemActivity.html#setTranslucentStatusBar()">setTranslucentStatusBar</a>, <a href="../../activity/DynamicSystemActivity.html#setWindowBackground(int)">setWindowBackground</a>, <a href="../../activity/DynamicSystemActivity.html#setWindowStatusBarColor(int)">setWindowStatusBarColor</a>, <a href="../../activity/DynamicSystemActivity.html#startActivity(android.content.Intent)">startActivity</a>, <a href="../../activity/DynamicSystemActivity.html#startActivity(android.content.Intent,android.os.Bundle)">startActivity</a>, <a href="../../activity/DynamicSystemActivity.html#startActivityForResult(android.content.Intent,int)">startActivityForResult</a>, <a href="../../activity/DynamicSystemActivity.html#startActivityForResult(android.content.Intent,int,android.os.Bundle)">startActivityForResult</a>, <a href="../../activity/DynamicSystemActivity.html#startActivityFromFragment(androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle)">startActivityFromFragment</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivity(android.content.Intent,android.os.Bundle)">startMotionActivity</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivity(android.content.Intent,android.os.Bundle,boolean,boolean)">startMotionActivity</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivity(android.content.Intent,android.os.Bundle,boolean,boolean,boolean)">startMotionActivity</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivityForResult(android.content.Intent,int,android.os.Bundle)">startMotionActivityForResult</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivityForResult(android.content.Intent,int,android.os.Bundle,boolean,boolean)">startMotionActivityForResult</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivityForResult(android.content.Intent,int,android.os.Bundle,boolean,boolean,boolean)">startMotionActivityForResult</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivityFromFragment(androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle)">startMotionActivityFromFragment</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivityFromFragment(androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle,boolean,boolean)">startMotionActivityFromFragment</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivityFromFragment(androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle,boolean,boolean,boolean)">startMotionActivityFromFragment</a>, <a href="../../activity/DynamicSystemActivity.html#supportFinishAfterTransition()">supportFinishAfterTransition</a>, <a href="../../activity/DynamicSystemActivity.html#supportStartPostponedEnterTransition()">supportStartPostponedEnterTransition</a>, <a href="../../activity/DynamicSystemActivity.html#updateNavigationBar()">updateNavigationBar</a>, <a href="../../activity/DynamicSystemActivity.html#updateStatusBar()">updateStatusBar</a>, <a href="../../activity/DynamicSystemActivity.html#updateTaskDescription(int)">updateTaskDescription</a></code></li>
+<code><a href="../../activity/DynamicSystemActivity.html#checkForThemeIntent(android.content.Intent)">checkForThemeIntent</a>, <a href="../../activity/DynamicSystemActivity.html#commitFragmentTransaction(androidx.fragment.app.FragmentTransaction)">commitFragmentTransaction</a>, <a href="../../activity/DynamicSystemActivity.html#createConfigurationContext(android.content.res.Configuration)">createConfigurationContext</a>, <a href="../../activity/DynamicSystemActivity.html#finish()">finish</a>, <a href="../../activity/DynamicSystemActivity.html#getAppliedNavigationBarColor()">getAppliedNavigationBarColor</a>, <a href="../../activity/DynamicSystemActivity.html#getContext()">getContext</a>, <a href="../../activity/DynamicSystemActivity.html#getCurrentLocale()">getCurrentLocale</a>, <a href="../../activity/DynamicSystemActivity.html#getDefaultColor(int)">getDefaultColor</a>, <a href="../../activity/DynamicSystemActivity.html#getDefaultLocale(android.content.Context)">getDefaultLocale</a>, <a href="../../activity/DynamicSystemActivity.html#getDelegate()">getDelegate</a>, <a href="../../activity/DynamicSystemActivity.html#getDynamicEnterTransition()">getDynamicEnterTransition</a>, <a href="../../activity/DynamicSystemActivity.html#getDynamicExitTransition()">getDynamicExitTransition</a>, <a href="../../activity/DynamicSystemActivity.html#getDynamicIntentTheme()">getDynamicIntentTheme</a>, <a href="../../activity/DynamicSystemActivity.html#getDynamicLayoutInflater()">getDynamicLayoutInflater</a>, <a href="../../activity/DynamicSystemActivity.html#getDynamicReenterTransition()">getDynamicReenterTransition</a>, <a href="../../activity/DynamicSystemActivity.html#getDynamicReturnTransition()">getDynamicReturnTransition</a>, <a href="../../activity/DynamicSystemActivity.html#getDynamicTheme()">getDynamicTheme</a>, <a href="../../activity/DynamicSystemActivity.html#getDynamicTransitionListener()">getDynamicTransitionListener</a>, <a href="../../activity/DynamicSystemActivity.html#getEdgeToEdgeViewBottom()">getEdgeToEdgeViewBottom</a>, <a href="../../activity/DynamicSystemActivity.html#getFontScale()">getFontScale</a>, <a href="../../activity/DynamicSystemActivity.html#getLocale()">getLocale</a>, <a href="../../activity/DynamicSystemActivity.html#getNavigationBarColor()">getNavigationBarColor</a>, <a href="../../activity/DynamicSystemActivity.html#getSavedInstanceState()">getSavedInstanceState</a>, <a href="../../activity/DynamicSystemActivity.html#getSharedElementCallback()">getSharedElementCallback</a>, <a href="../../activity/DynamicSystemActivity.html#getSharedElementTransition()">getSharedElementTransition</a>, <a href="../../activity/DynamicSystemActivity.html#getStatusBarColor()">getStatusBarColor</a>, <a href="../../activity/DynamicSystemActivity.html#getSupportedLocales()">getSupportedLocales</a>, <a href="../../activity/DynamicSystemActivity.html#getThemeRes()">getThemeRes</a>, <a href="../../activity/DynamicSystemActivity.html#getThemeRes(com.pranavpandey.android.dynamic.theme.AppTheme)">getThemeRes</a>, <a href="../../activity/DynamicSystemActivity.html#getTransitionPosition()">getTransitionPosition</a>, <a href="../../activity/DynamicSystemActivity.html#getTransitionResultCode()">getTransitionResultCode</a>, <a href="../../activity/DynamicSystemActivity.html#isApplyFooterInsets()">isApplyFooterInsets</a>, <a href="../../activity/DynamicSystemActivity.html#isDynamicColor()">isDynamicColor</a>, <a href="../../activity/DynamicSystemActivity.html#isDynamicColors()">isDynamicColors</a>, <a href="../../activity/DynamicSystemActivity.html#isEdgeToEdgeContent()">isEdgeToEdgeContent</a>, <a href="../../activity/DynamicSystemActivity.html#isForceMenuIcons()">isForceMenuIcons</a>, <a href="../../activity/DynamicSystemActivity.html#isLaunchedFromHistory()">isLaunchedFromHistory</a>, <a href="../../activity/DynamicSystemActivity.html#isNavigationBarTheme()">isNavigationBarTheme</a>, <a href="../../activity/DynamicSystemActivity.html#isNightMode(boolean)">isNightMode</a>, <a href="../../activity/DynamicSystemActivity.html#isOnSharedPreferenceChangeListener()">isOnSharedPreferenceChangeListener</a>, <a href="../../activity/DynamicSystemActivity.html#isPaused()">isPaused</a>, <a href="../../activity/DynamicSystemActivity.html#isSupportFinishAfterTransition()">isSupportFinishAfterTransition</a>, <a href="../../activity/DynamicSystemActivity.html#isSystemColor()">isSystemColor</a>, <a href="../../activity/DynamicSystemActivity.html#isThemeActivity()">isThemeActivity</a>, <a href="../../activity/DynamicSystemActivity.html#isWallpaperColor()">isWallpaperColor</a>, <a href="../../activity/DynamicSystemActivity.html#navigationBarThemeChange()">navigationBarThemeChange</a>, <a href="../../activity/DynamicSystemActivity.html#onAdjustEnterReturnTransition(java.lang.Object,boolean)">onAdjustEnterReturnTransition</a>, <a href="../../activity/DynamicSystemActivity.html#onAdjustExitReenterTransition(java.lang.Object,boolean)">onAdjustExitReenterTransition</a>, <a href="../../activity/DynamicSystemActivity.html#onApplyTransitions(boolean)">onApplyTransitions</a>, <a href="../../activity/DynamicSystemActivity.html#onAppThemeChange()">onAppThemeChange</a>, <a href="../../activity/DynamicSystemActivity.html#onAutoThemeChanged(boolean)">onAutoThemeChanged</a>, <a href="../../activity/DynamicSystemActivity.html#onBackPressed()">onBackPressed</a>, <a href="../../activity/DynamicSystemActivity.html#onCustomiseTheme()">onCustomiseTheme</a>, <a href="../../activity/DynamicSystemActivity.html#onDestroy()">onDestroy</a>, <a href="../../activity/DynamicSystemActivity.html#onDynamicColorsChanged(com.pranavpandey.android.dynamic.theme.DynamicColors,boolean)">onDynamicColorsChanged</a>, <a href="../../activity/DynamicSystemActivity.html#onDynamicConfigurationChanged(boolean,boolean,boolean,boolean,boolean)">onDynamicConfigurationChanged</a>, <a href="../../activity/DynamicSystemActivity.html#onFindView(int,int,java.lang.String,int)">onFindView</a>, <a href="../../activity/DynamicSystemActivity.html#onNavigationBarThemeChanged()">onNavigationBarThemeChanged</a>, <a href="../../activity/DynamicSystemActivity.html#onNewIntent(android.content.Intent)">onNewIntent</a>, <a href="../../activity/DynamicSystemActivity.html#onNewIntent(android.content.Intent,boolean)">onNewIntent</a>, <a href="../../activity/DynamicSystemActivity.html#onPause()">onPause</a>, <a href="../../activity/DynamicSystemActivity.html#onPostCreate(android.os.Bundle)">onPostCreate</a>, <a href="../../activity/DynamicSystemActivity.html#onPowerSaveModeChanged(boolean)">onPowerSaveModeChanged</a>, <a href="../../activity/DynamicSystemActivity.html#onPrepareOptionsMenu(android.view.Menu)">onPrepareOptionsMenu</a>, <a href="../../activity/DynamicSystemActivity.html#onRegisterOnBackInvokedDispatcher()">onRegisterOnBackInvokedDispatcher</a>, <a href="../../activity/DynamicSystemActivity.html#onSaveInstanceState(android.os.Bundle)">onSaveInstanceState</a>, <a href="../../activity/DynamicSystemActivity.html#onSetFallbackActivityOptions()">onSetFallbackActivityOptions</a>, <a href="../../activity/DynamicSystemActivity.html#onSetSharedElementTransition()">onSetSharedElementTransition</a>, <a href="../../activity/DynamicSystemActivity.html#onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String)">onSharedPreferenceChanged</a>, <a href="../../activity/DynamicSystemActivity.html#onStartActivityException(java.lang.Exception)">onStartActivityException</a>, <a href="../../activity/DynamicSystemActivity.html#onThemeIntent(java.lang.String,java.lang.String)">onThemeIntent</a>, <a href="../../activity/DynamicSystemActivity.html#onUpdateIntent(android.content.Intent,boolean)">onUpdateIntent</a>, <a href="../../activity/DynamicSystemActivity.html#resetSharedElementTransition()">resetSharedElementTransition</a>, <a href="../../activity/DynamicSystemActivity.html#setDynamicTransitionListener(com.pranavpandey.android.dynamic.support.listener.DynamicTransitionListener)">setDynamicTransitionListener</a>, <a href="../../activity/DynamicSystemActivity.html#setLocale(android.content.Context)">setLocale</a>, <a href="../../activity/DynamicSystemActivity.html#setNavigationBarColor(int)">setNavigationBarColor</a>, <a href="../../activity/DynamicSystemActivity.html#setNavigationBarColorRes(int)">setNavigationBarColorRes</a>, <a href="../../activity/DynamicSystemActivity.html#setNavigationBarTheme()">setNavigationBarTheme</a>, <a href="../../activity/DynamicSystemActivity.html#setNavigationBarThemeInLandscape()">setNavigationBarThemeInLandscape</a>, <a href="../../activity/DynamicSystemActivity.html#setSharedElementCallback(android.app.SharedElementCallback)">setSharedElementCallback</a>, <a href="../../activity/DynamicSystemActivity.html#setSharedElementTransition(android.transition.Transition)">setSharedElementTransition</a>, <a href="../../activity/DynamicSystemActivity.html#setStatusBarColorRes(int)">setStatusBarColorRes</a>, <a href="../../activity/DynamicSystemActivity.html#setTransitionPosition(int)">setTransitionPosition</a>, <a href="../../activity/DynamicSystemActivity.html#setTransitionResultCode(int)">setTransitionResultCode</a>, <a href="../../activity/DynamicSystemActivity.html#setTranslucentNavigationBar()">setTranslucentNavigationBar</a>, <a href="../../activity/DynamicSystemActivity.html#setTranslucentStatusBar()">setTranslucentStatusBar</a>, <a href="../../activity/DynamicSystemActivity.html#setWindowBackground(int)">setWindowBackground</a>, <a href="../../activity/DynamicSystemActivity.html#setWindowStatusBarColor(int)">setWindowStatusBarColor</a>, <a href="../../activity/DynamicSystemActivity.html#startActivity(android.content.Intent)">startActivity</a>, <a href="../../activity/DynamicSystemActivity.html#startActivity(android.content.Intent,android.os.Bundle)">startActivity</a>, <a href="../../activity/DynamicSystemActivity.html#startActivityForResult(android.content.Intent,int)">startActivityForResult</a>, <a href="../../activity/DynamicSystemActivity.html#startActivityForResult(android.content.Intent,int,android.os.Bundle)">startActivityForResult</a>, <a href="../../activity/DynamicSystemActivity.html#startActivityFromFragment(androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle)">startActivityFromFragment</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivity(android.content.Intent,android.os.Bundle)">startMotionActivity</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivity(android.content.Intent,android.os.Bundle,boolean,boolean)">startMotionActivity</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivity(android.content.Intent,android.os.Bundle,boolean,boolean,boolean)">startMotionActivity</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivityForResult(android.content.Intent,int,android.os.Bundle)">startMotionActivityForResult</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivityForResult(android.content.Intent,int,android.os.Bundle,boolean,boolean)">startMotionActivityForResult</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivityForResult(android.content.Intent,int,android.os.Bundle,boolean,boolean,boolean)">startMotionActivityForResult</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivityFromFragment(androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle)">startMotionActivityFromFragment</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivityFromFragment(androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle,boolean,boolean)">startMotionActivityFromFragment</a>, <a href="../../activity/DynamicSystemActivity.html#startMotionActivityFromFragment(androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle,boolean,boolean,boolean)">startMotionActivityFromFragment</a>, <a href="../../activity/DynamicSystemActivity.html#supportFinishAfterTransition()">supportFinishAfterTransition</a>, <a href="../../activity/DynamicSystemActivity.html#supportStartPostponedEnterTransition()">supportStartPostponedEnterTransition</a>, <a href="../../activity/DynamicSystemActivity.html#updateNavigationBar()">updateNavigationBar</a>, <a href="../../activity/DynamicSystemActivity.html#updateStatusBar()">updateStatusBar</a>, <a href="../../activity/DynamicSystemActivity.html#updateTaskDescription(int)">updateTaskDescription</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.androidx.appcompat.app.AppCompatActivity">
@@ -729,6 +765,22 @@ implements <a href="../../listener/DynamicTransitionListener.html" title="interf
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../activity/DynamicSystemActivity.html#onCreate(android.os.Bundle)">onCreate</a></code>&nbsp;in class&nbsp;<code><a href="../../activity/DynamicSystemActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicSystemActivity</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="onManageSharedElementTransition()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onManageSharedElementTransition</h4>
+<pre class="methodSignature">protected&nbsp;void&nbsp;onManageSharedElementTransition()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../activity/DynamicSystemActivity.html#onManageSharedElementTransition()">DynamicSystemActivity</a></code></span></div>
+<div class="block">Setup the shared element transition callbacks to manage it's position on
+ configuration change.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../activity/DynamicSystemActivity.html#onManageSharedElementTransition()">onManageSharedElementTransition</a></code>&nbsp;in class&nbsp;<code><a href="../../activity/DynamicSystemActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicSystemActivity</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -1164,6 +1216,44 @@ public&nbsp;<a href="../../listener/DynamicWindowResolver.html" title="interface
 </dl>
 </li>
 </ul>
+<a id="setFooter(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setFooter</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setFooter&#8203;(boolean&nbsp;animate)</pre>
+<div class="block">Set the tutorial footer and make it visible.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>animate</code> - <code>true</code> to animate the footer.</dd>
+</dl>
+</li>
+</ul>
+<a id="isTutorialSharedElementTransition()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isTutorialSharedElementTransition</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isTutorialSharedElementTransition()</pre>
+<div class="block">Checks whether the shared element transition is enable for the current tutorial.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the shared element transition is enable for the current tutorial.</dd>
+</dl>
+</li>
+</ul>
+<a id="postFooter()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>postFooter</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;postFooter()</pre>
+<div class="block">Post footer animation on main thread.</div>
+</li>
+</ul>
 <a id="getCurrentPosition()">
 <!--   -->
 </a>
@@ -1296,6 +1386,22 @@ public&nbsp;<a href="https://developer.android.com/reference/android/widget/Imag
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The next action button used by this activity.</dd>
+</dl>
+</li>
+</ul>
+<a id="isSharedElement(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isSharedElement</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isSharedElement&#8203;(int&nbsp;position)</pre>
+<div class="block">Returns whether the shared element is enabled for the supplied tutorial position.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>position</code> - The position to be used.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The shared element is enabled for the supplied tutorial position.</dd>
 </dl>
 </li>
 </ul>
@@ -1490,7 +1596,7 @@ public&nbsp;com.google.android.material.snackbar.Snackbar&nbsp;getSnackbar&#8203
 <li><a href="../../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>6.0.2</h5></div>
+<div class="aboutLanguage"><h5>6.0.3</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">
