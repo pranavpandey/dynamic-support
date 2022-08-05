@@ -79,7 +79,7 @@ ext {
     mavenInceptionYear = 2018
     mavenVersion = '6.0.3'
     mavenVersionCode = 31
-    sampleVersionCode = 31
+    sampleVersionCode = 32
 
     developerId = 'pranavpandey'
     developerName = 'Pranav Pandey'
