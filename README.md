@@ -20,8 +20,8 @@ to AndroidX.
 </p>
 
 <p align="left">
+  <img src="./graphics/play/screenshots/phone-5.png" width="280" height="486" hspace="2">
   <img src="./graphics/play/screenshots/phone-6.png" width="280" height="486" hspace="2">
-  <img src="./graphics/play/screenshots/phone-7.png" width="280" height="486" hspace="2">
 </p>
 
 ---
