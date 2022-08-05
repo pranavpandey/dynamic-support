@@ -145,7 +145,7 @@
         <item>Maxim Anisimov</item>
         <item>Fatih Fırıncı</item>
         <item>残念</item>
-        <item>會呼吸的風</item>
+        <item>會呼吸的風 | 人工知能</item>
         <item>@string/ads_translators_translate_summary</item>
     </string-array>
 
@@ -161,7 +161,7 @@
         <item>@drawable/ads_ic_flag_ru</item>
         <item>@drawable/ads_ic_flag_tr</item>
         <item>@drawable/ads_ic_flag_cn</item>
-        <item>@drawable/ads_ic_flag_cn</item>
+        <item>@drawable/ads_ic_flag_tw</item>
         <item>@drawable/ads_ic_translate</item>
     </string-array>
 
