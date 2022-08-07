@@ -61,6 +61,7 @@
     <string name="ads_copy">複製</string>
     <string name="ads_save">儲存</string>
     <string name="ads_load">載入</string>
+    <string name="ads_clear">清除</string>
     <string name="ads_file">檔案</string>
     <string name="ads_create">建立</string>
     <string name="ads_configure">設定</string>

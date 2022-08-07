@@ -61,6 +61,7 @@
     <string name="ads_copy">Копировать</string>
     <string name="ads_save">Сохранить</string>
     <string name="ads_load">Загрузить</string>
+    <string name="ads_clear">чистый</string>
     <string name="ads_file">Файл</string>
     <string name="ads_create">Создать</string>
     <string name="ads_configure">Настроить</string>

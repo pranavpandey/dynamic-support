@@ -61,6 +61,7 @@
     <string name="ads_copy">कौपी करें</string>
     <string name="ads_save">सेव करें</string>
     <string name="ads_load">लोड करें</string>
+    <string name="ads_clear">साफ़ करें</string>
     <string name="ads_file">फ़ाइल</string>
     <string name="ads_create">बनाएं</string>
     <string name="ads_configure">बदलें</string>

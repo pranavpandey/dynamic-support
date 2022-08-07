@@ -61,6 +61,7 @@
     <string name="ads_copy">Dupdo</string>
     <string name="ads_save">Guardar</string>
     <string name="ads_load">Cargar</string>
+    <string name="ads_clear">Clara</string>
     <string name="ads_file">Archivar</string>
     <string name="ads_create">Crear</string>
     <string name="ads_configure">Configurar</string>

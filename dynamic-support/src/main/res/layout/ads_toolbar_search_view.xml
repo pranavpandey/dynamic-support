@@ -50,6 +50,7 @@
         android:layout_gravity="center_vertical"
         android:padding="@dimen/ads_margin_extra_tiny"
         android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/ads_clear"
         app:srcCompat="@drawable/ads_ic_close"
         app:adt_colorType="tint_primary"
         app:adt_contrastWithColorType="primary" />

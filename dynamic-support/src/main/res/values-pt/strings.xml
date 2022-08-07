@@ -61,6 +61,7 @@
     <string name="ads_copy">Copiar</string>
     <string name="ads_save">Salvar</string>
     <string name="ads_load">Carregar</string>
+    <string name="ads_clear">Clara</string>
     <string name="ads_file">Arquivo</string>
     <string name="ads_create">Criar</string>
     <string name="ads_configure">Configurar</string>

@@ -53,7 +53,6 @@ import com.pranavpandey.android.dynamic.support.tutorial.adapter.DynamicTutorial
 import com.pranavpandey.android.dynamic.support.util.DynamicHintUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator2;
-import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
@@ -637,19 +636,8 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
      * @param tintColor The tint color to be applied.
      */
     protected void onSetTooltip(int position, @ColorInt int color, @ColorInt int tintColor) {
-        if (getActionPrevious() != null) {
-            DynamicTooltip.set(getActionPrevious(),
-                    Dynamic.getColor(getActionPrevious(), tintColor),
-                    Dynamic.getContrastWithColor(getActionPrevious(), color),
-                    getActionPrevious().getContentDescription());
-        }
-
-        if (getActionNext() != null) {
-            DynamicTooltip.set(getActionNext(),
-                    Dynamic.getColor(getActionNext(), tintColor),
-                    Dynamic.getContrastWithColor(getActionNext(), color),
-                    getActionNext().getContentDescription());
-        }
+        Dynamic.setTooltip(getActionPrevious(), color, tintColor);
+        Dynamic.setTooltip(getActionNext(), color, tintColor);
     }
 
     /**

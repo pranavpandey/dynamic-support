@@ -1168,6 +1168,8 @@ public abstract class DynamicActivity extends DynamicStateActivity
      */
     protected void setSearchView() {
         if (getSearchViewClear() != null) {
+            Dynamic.setTooltip(getSearchViewClear());
+
             getSearchViewClear().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

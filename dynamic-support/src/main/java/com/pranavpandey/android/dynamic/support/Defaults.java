@@ -201,6 +201,16 @@ public class Defaults {
     public static final int ADS_COLOR_TYPE_ICON = Theme.ColorType.TINT_BACKGROUND;
 
     /**
+     * Default color type used by the tooltip background.
+     */
+    public static final int ADS_COLOR_TYPE_TOOLTIP_BACKGROUND = Theme.ColorType.ACCENT;
+
+    /**
+     * Default color type used by the tooltip tint.
+     */
+    public static final int ADS_COLOR_TYPE_TOOLTIP_TINT = Theme.ColorType.TINT_ACCENT;
+
+    /**
      * Default color type used by the chip widgets.
      */
     public static final int ADS_COLOR_TYPE_CHIP = Theme.ColorType.TEXT_PRIMARY;

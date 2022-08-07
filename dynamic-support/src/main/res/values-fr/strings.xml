@@ -61,6 +61,7 @@
     <string name="ads_copy">Copier</string>
     <string name="ads_save">Sauvegarder</string>
     <string name="ads_load">Charger</string>
+    <string name="ads_clear">Dégager</string>
     <string name="ads_file">Fichier</string>
     <string name="ads_create">Créer</string>
     <string name="ads_configure">Configurer</string>

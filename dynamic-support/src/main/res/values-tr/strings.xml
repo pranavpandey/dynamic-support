@@ -61,6 +61,7 @@
     <string name="ads_copy">Kopyala</string>
     <string name="ads_save">Kaydet</string>
     <string name="ads_load">Yükle</string>
+    <string name="ads_clear">Temizlemek</string>
     <string name="ads_file">Dosya</string>
     <string name="ads_create">Oluştur</string>
     <string name="ads_configure">Yapılandır</string>

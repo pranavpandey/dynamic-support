@@ -49,6 +49,7 @@ import androidx.annotation.StringRes;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.drawable.IconCompat;
 import androidx.core.text.HtmlCompat;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -85,6 +86,7 @@ import com.pranavpandey.android.dynamic.support.widget.base.DynamicStateWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicSurfaceWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTextWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
+import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.base.BackgroundAware;
 import com.pranavpandey.android.dynamic.theme.base.DynamicColor;
@@ -1047,7 +1049,7 @@ public class Dynamic {
     }
 
     /**
-     * Sets the color type or color for the supplied dynamic object after doing 
+     * Sets the color type or color for the supplied dynamic object after doing
      * the appropriate checks.
      *
      * @param dynamic The dynamic object to be used.
@@ -1737,6 +1739,70 @@ public class Dynamic {
     }
 
     /**
+     * Set tooltip for the supplied view.
+     *
+     * @param view The view to be used.
+     * @param backgroundColor The background color to be set.
+     * @param tintColor The tint color to be set.
+     * @param text The tooltip text to be set.
+     *
+     * @see DynamicTooltip#set(View, int, int, CharSequence)
+     */
+    public static void setTooltip(@Nullable View view, @ColorInt int backgroundColor,
+            @ColorInt int tintColor, @Nullable CharSequence text) {
+        if (view instanceof DynamicWidget) {
+            backgroundColor = getColor(view, backgroundColor);
+            tintColor = getContrastWithColor(view, tintColor);
+        }
+
+        DynamicTooltip.set(view, backgroundColor, tintColor, text);
+    }
+
+    /**
+     * Set tooltip for the supplied view.
+     *
+     * @param view The view to be used.
+     * @param backgroundColor The background color to be set.
+     * @param tintColor The tint color to be set.
+     *
+     * @see #setTooltip(View, int, int, CharSequence)
+     */
+    public static void setTooltip(@Nullable View view,
+            @ColorInt int backgroundColor, @ColorInt int tintColor) {
+        if (view != null) {
+            setTooltip(view, backgroundColor, tintColor, view.getContentDescription());
+        }
+    }
+
+    /**
+     * Set tooltip for the supplied view.
+     *
+     * @param view The view to be used.
+     * @param text The tooltip text to be set.
+     *
+     * @see #setTooltip(View, int, int, CharSequence)
+     */
+    public static void setTooltip(@Nullable View view, @Nullable CharSequence text) {
+        setTooltip(view, DynamicTheme.getInstance().resolveColorType(
+                Defaults.ADS_COLOR_TYPE_TOOLTIP_BACKGROUND),
+                DynamicTheme.getInstance().resolveColorType(
+                        Defaults.ADS_COLOR_TYPE_TOOLTIP_TINT), text);
+    }
+
+    /**
+     * Set tooltip for the supplied view.
+     *
+     * @param view The view to be used.
+     *
+     * @see #setTooltip(View, CharSequence)
+     */
+    public static void setTooltip(@Nullable View view) {
+        if (view != null) {
+            setTooltip(view, view.getContentDescription());
+        }
+    }
+
+    /**
      * Set click listener for the view and manage its visibility according to the data.
      *
      * @param view The view to set the click listener.
@@ -1909,6 +1975,32 @@ public class Dynamic {
             @BottomSheetBehavior.State int bottomSheetState) {
         if (activity instanceof DynamicActivity) {
             ((DynamicActivity) activity).setBottomSheetState(bottomSheetState);
+        }
+    }
+
+    /**
+     * Try to find view for the supplied view id.
+     *
+     * @param view The view to be used.
+     * @param viewId The view id to be found.
+     */
+    public static @Nullable View findViewById(@Nullable View view, @IdRes int viewId) {
+        if (view == null || viewId == DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
+            return null;
+        }
+
+        return view.findViewById(viewId);
+    }
+
+    /**
+     * Sets the transition name for the supplied view.
+     *
+     * @param view The view to be used.
+     * @param name The transition name to be set.
+     */
+    public static void setTransitionName(@Nullable View view, @Nullable String name) {
+        if (view != null) {
+            ViewCompat.setTransitionName(view, name);
         }
     }
 
