@@ -62,6 +62,7 @@ import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
  * Base fragment class to provide basic functionality and to work with the {@link DynamicActivity}.
  * <p>Extend this fragment to add more functionality according to the requirements.
  */
+@SuppressWarnings("deprecation")
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class DynamicFragment extends Fragment implements DynamicLifecycle,
         DynamicTransitionListener, DynamicSearchListener, MenuProvider,
@@ -94,9 +95,6 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
             return;
         }
 
-        requireActivity().addMenuProvider(this,
-                getViewLifecycleOwner(), Lifecycle.State.RESUMED);
-
         if (isSupportActionBar()) {
             requireActivity().setTitle(getTitle());
 
@@ -106,6 +104,10 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
                 ((AppCompatActivity) requireActivity())
                         .getSupportActionBar().setSubtitle(getSubtitle());
             }
+        }
+
+        if (isHasMenuProvider() && setHasOptionsMenu()) {
+            onAddMenuProvider(this);
         }
 
         if (getCheckedMenuItemId() != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
@@ -414,7 +416,30 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
      * @see androidx.fragment.app.FragmentActivity#addMenuProvider(MenuProvider)
      */
     protected boolean isHasMenuProvider() {
-        return false;
+        return true;
+    }
+
+    /**
+     * This method will be called to add a menu provider for the parent activity.
+     *
+     * @param menuProvider The menu provider to be added.
+     */
+    protected void onAddMenuProvider(@Nullable MenuProvider menuProvider) {
+        if (getActivity() != null && menuProvider != null) {
+            requireActivity().addMenuProvider(menuProvider,
+                    getViewLifecycleOwner(), Lifecycle.State.RESUMED);
+        }
+    }
+
+    /**
+     * This method will be called to remove a menu provider from the parent activity.
+     *
+     * @param menuProvider The menu provider to be removed.
+     */
+    protected void onRemoveProvider(@Nullable MenuProvider menuProvider) {
+        if (getActivity() != null && menuProvider != null) {
+            requireActivity().removeMenuProvider(menuProvider);
+        }
     }
 
     @Override
@@ -434,6 +459,21 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
 
     @Override
     public void onMenuClosed(@NonNull Menu menu) { }
+
+    @Override
+    public void setMenuVisibility(boolean menuVisible) {
+        super.setMenuVisibility(menuVisible);
+
+        if (!isHasMenuProvider() || !setHasOptionsMenu()) {
+            return;
+        }
+
+        onRemoveProvider(this);
+
+        if (menuVisible) {
+            onAddMenuProvider(this);
+        }
+    }
 
     @Override
     public void onStart() {

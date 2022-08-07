@@ -21,7 +21,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import android.widget.Spinner
-import com.pranavpandey.android.dynamic.support.activity.DynamicDrawerActivity
 import com.pranavpandey.android.dynamic.support.adapter.DynamicSpinnerImageAdapter
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment
 import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener
@@ -140,40 +139,9 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
         return super.onMenuItemSelected(item)
     }
 
-    override fun onSearchViewExpanded() {
-        // Animate drawer toggle icon hamburger to back.
-        if (dynamicActivity is DynamicDrawerActivity) {
-            if ((dynamicActivity as DynamicDrawerActivity).isPersistentDrawer) {
-                dynamicActivity.setNavigationClickListener(
-                    R.drawable.ads_ic_back, null)
-            }
-
-            (dynamicActivity as DynamicDrawerActivity).animateDrawerToggle(0f, 1f)
-        }
-
-        // Show menu on search view expanded.
-        setMenuVisibility(false)
-
-        // Add on text changed listener for the search view.
-        dynamicActivity.searchViewEditText!!.addTextChangedListener(this)
-    }
-
-    override fun onSearchViewCollapsed() {
-        // Show menu on search view collapsed.
-        setMenuVisibility(true)
-
-        // Remove on text changed listener for the search view.
-        dynamicActivity.searchViewEditText!!.removeTextChangedListener(this)
-
-        // Animate drawer toggle icon back to hamburger.
-        if (dynamicActivity is DynamicDrawerActivity) {
-            (dynamicActivity as DynamicDrawerActivity).animateDrawerToggle(1f, 0f)
-
-            if ((dynamicActivity as DynamicDrawerActivity).isPersistentDrawer) {
-                dynamicActivity.setNavigationClickListener(
-                    R.drawable.ads_ic_extension, null)
-            }
-        }
+    override fun getTextWatcher(): TextWatcher? {
+        // Return text watcher for app bar search view.
+        return this;
     }
 
     override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
