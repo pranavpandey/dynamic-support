@@ -1755,6 +1755,10 @@ public class Dynamic {
             tintColor = getContrastWithColor(view, tintColor);
         }
 
+        if (isBackgroundAware(view)) {
+            tintColor = withContrastRatio(tintColor, backgroundColor, view);
+        }
+
         DynamicTooltip.set(view, backgroundColor, tintColor, text);
     }
 
@@ -2106,7 +2110,7 @@ public class Dynamic {
      */
     public static boolean isSearchViewExpanded(@Nullable Context activity) {
         if (activity instanceof DynamicActivity) {
-            ((DynamicActivity) activity).isSearchViewExpanded();
+            return ((DynamicActivity) activity).isSearchViewExpanded();
         }
 
         return false;
@@ -2120,7 +2124,7 @@ public class Dynamic {
      */
     public static void restoreSearchViewState(@Nullable Context activity) {
         if (activity instanceof DynamicActivity) {
-            ((DynamicActivity) activity).isSearchViewExpanded();
+            ((DynamicActivity) activity).restoreSearchViewState();
         }
     }
 
