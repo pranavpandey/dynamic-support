@@ -1047,6 +1047,15 @@ public abstract class DynamicActivity extends DynamicStateActivity
     }
 
     /**
+     * Returns the menu used by this activity.
+     *
+     * @return The menu used by this activity.
+     */
+    public @Nullable Menu getMenu() {
+        return mMenu;
+    }
+
+    /**
      * Set the title for the app bar menu item by supplying its id.
      *
      * @param id The id to find the menu item.
@@ -1108,7 +1117,7 @@ public abstract class DynamicActivity extends DynamicStateActivity
      *
      * @see #setMenuItemIcon(int, Drawable)
      */
-    public void setMenuItemIcon(@IdRes int id, @DrawableRes int drawableRes) {
+    public void setMenuItemIcon(final @IdRes int id, final @DrawableRes int drawableRes) {
         if (getContentView() == null) {
             return;
         }
@@ -1129,7 +1138,7 @@ public abstract class DynamicActivity extends DynamicStateActivity
      * @param id The id to find the menu item.
      * @param visible {@code true} to make the menu item visible.
      */
-    public void setMenuItemVisible(final int id, final boolean visible) {
+    public void setMenuItemVisible(final @IdRes int id, final boolean visible) {
         if (getContentView() == null) {
             return;
         }

@@ -139,9 +139,13 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
         return super.onMenuItemSelected(item)
     }
 
+    override fun isSearchViewListenerListener(): Boolean {
+        return true
+    }
+
     override fun getTextWatcher(): TextWatcher? {
         // Return text watcher for app bar search view.
-        return this;
+        return this
     }
 
     override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {

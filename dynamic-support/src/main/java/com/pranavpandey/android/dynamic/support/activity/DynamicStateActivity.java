@@ -40,59 +40,57 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     /**
      * Minimum delay to restore the activity state.
      */
-    protected static final int STATE_DELAY = 400;
+    public static final int STATE_DELAY = 400;
 
     /**
      * Locale key to maintain its state during configuration changes.
      */
-    protected static final String ADS_STATE_LOCALE = "ads_state_locale";
+    public static final String ADS_STATE_LOCALE = "ads_state_locale";
 
     /**
      * Content fragment TAG key which will be used to find it during the configuration changes.
      */
-    protected static final String ADS_STATE_CONTENT_FRAGMENT_TAG =
-            "ads_state_content_fragment_tag";
+    public static final String ADS_STATE_CONTENT_FRAGMENT_TAG = "ads_state_content_fragment_tag";
 
     /**
      * Status bar key to maintain its state.
      */
-    protected static final String ADS_STATE_APP_BAR_COLLAPSED = "ads_state_app_bar_collapsed";
+    public static final String ADS_STATE_APP_BAR_COLLAPSED = "ads_state_app_bar_collapsed";
 
     /**
      * FAB key to maintain its state.
      */
-    protected static final String ADS_STATE_FAB_VISIBLE = "ads_state_fab_visible";
+    public static final String ADS_STATE_FAB_VISIBLE = "ads_state_fab_visible";
 
     /**
      * Extended FAB key to maintain its state.
      */
-    protected static final String ADS_STATE_EXTENDED_FAB_VISIBLE =
-            "ads_state_extended_fab_visible";
+    public static final String ADS_STATE_EXTENDED_FAB_VISIBLE = "ads_state_extended_fab_visible";
 
     /**
      * Extended FAB state key to maintain its state.
      */
-    protected static final String ADS_STATE_EXTENDED_FAB_STATE = "ads_state_extended_fab_state";
+    public static final String ADS_STATE_EXTENDED_FAB_STATE = "ads_state_extended_fab_state";
 
     /**
      * Search key to maintain its state.
      */
-    protected static final String ADS_STATE_SEARCH_VIEW_VISIBLE = "ads_state_search_view_visible";
+    public static final String ADS_STATE_SEARCH_VIEW_VISIBLE = "ads_state_search_view_visible";
 
     /**
      * FAB visibility constant for no change.
      */
-    protected static final int ADS_VISIBILITY_FAB_NO_CHANGE = -1;
+    public static final int ADS_VISIBILITY_FAB_NO_CHANGE = -1;
 
     /**
      * Extended FAB visibility constant for no change.
      */
-    protected static final int ADS_VISIBILITY_EXTENDED_FAB_NO_CHANGE = -1;
+    public static final int ADS_VISIBILITY_EXTENDED_FAB_NO_CHANGE = -1;
 
     /**
      * Extended FAB state constant for extended.
      */
-    protected static final boolean ADS_STATE_EXTENDED_FAB_NO_CHANGE = true;
+    public static final boolean ADS_STATE_EXTENDED_FAB_NO_CHANGE = true;
 
     /**
      * Content fragment used by this activity.

@@ -37,6 +37,7 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuHost;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
@@ -49,6 +50,7 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.activity.DynamicActivity;
 import com.pranavpandey.android.dynamic.support.activity.DynamicDrawerActivity;
+import com.pranavpandey.android.dynamic.support.activity.DynamicStateActivity;
 import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
 import com.pranavpandey.android.dynamic.support.listener.DynamicLifecycle;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener;
@@ -73,6 +75,11 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
      */
     private Bundle mSavedInstanceState;
 
+    /**
+     * {@code true} if the search view is expanded.
+     */
+    private boolean mSearchViewExpanded;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +87,11 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
         setRetainInstance(true);
 
         mSavedInstanceState = savedInstanceState;
+
+        if (getSavedInstanceState() != null) {
+            mSearchViewExpanded = getSavedInstanceState().getBoolean(
+                    DynamicStateActivity.ADS_STATE_SEARCH_VIEW_VISIBLE);
+        }
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -301,17 +313,20 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
 
     @Override
     public void onSearchViewExpanded() {
-        setMenuVisibility(false);
+        this.mSearchViewExpanded = true;
 
+        setMenuVisibility(false);
         Dynamic.removeSearchViewTextChangedListener(getActivity(), getTextWatcher());
         Dynamic.addSearchViewTextChangedListener(getActivity(), getTextWatcher());
     }
 
     @Override
     public void onSearchViewCollapsed() {
-        setMenuVisibility(true);
+        this.mSearchViewExpanded = false;
 
+        setMenuVisibility(true);
         Dynamic.removeSearchViewTextChangedListener(getActivity(), getTextWatcher());
+        invalidateHostMenu();
     }
 
     @Override
@@ -375,6 +390,24 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
     }
 
     /**
+     * Returns whether to enable the menu for this fragment.
+     *
+     * @return {@code true} to enable the menu for this fragment.
+     */
+    public boolean isEnableMenu() {
+        return !isSearchViewExpanded();
+    }
+
+    /**
+     * Returns whether the search view is expanded for the parent activity.
+     *
+     * @return The search view is expanded for the parent activity.
+     */
+    public boolean isSearchViewExpanded() {
+        return mSearchViewExpanded;
+    }
+
+    /**
      * Returns whether to set the options menu for this fragment.
      *
      * @return {@code true} if set the options menu for this fragment.
@@ -425,7 +458,7 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
      * @param menuProvider The menu provider to be added.
      */
     protected void onAddMenuProvider(@Nullable MenuProvider menuProvider) {
-        if (getView() != null && getActivity() != null && menuProvider != null) {
+        if (getView() != null && getActivity() != null && menuProvider != null && isEnableMenu()) {
             requireActivity().addMenuProvider(menuProvider,
                     getViewLifecycleOwner(), Lifecycle.State.RESUMED);
         }
@@ -439,6 +472,17 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
     protected void onRemoveProvider(@Nullable MenuProvider menuProvider) {
         if (getActivity() != null && menuProvider != null) {
             requireActivity().removeMenuProvider(menuProvider);
+        }
+    }
+
+    /**
+     * Try to invalidate options menu attached to the parent activity.
+     *
+     * @see MenuHost#invalidateMenu()
+     */
+    public void invalidateHostMenu() {
+        if (getActivity() != null) {
+            requireActivity().invalidateMenu();
         }
     }
 
@@ -532,6 +576,14 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
         }
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putBoolean(DynamicStateActivity.ADS_STATE_SEARCH_VIEW_VISIBLE,
+                mSearchViewExpanded);
+    }
+
     /**
      * Get the current saved instance state for this fragment.
      *
@@ -616,6 +668,8 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
      * @return The parcelable from the fragment arguments.
      *
      * @see Fragment#getArguments()
+     * @see Fragment#requireArguments()
+     * @see Bundle#getParcelable(String)
      */
     public @Nullable <T extends Parcelable> T getParcelableFromArguments(@Nullable String key) {
         if (getArguments() == null) {
@@ -633,21 +687,58 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
      * Retrieves a string from the fragment arguments associated with the supplied key.
      *
      * @param key The key to be retrieved.
+     * @param defaultValue The default value.
      *
      * @return The string from the fragment arguments.
      *
      * @see Fragment#getArguments()
+     * @see Fragment#requireArguments()
+     * @see Bundle#getString(String, String)
      */
-    public @Nullable String getStringFromArguments(@Nullable String key) {
+    public @Nullable String getStringFromArguments(
+            @Nullable String key, @Nullable String defaultValue) {
         if (getArguments() == null) {
             return null;
         }
 
         try {
-            return requireArguments().getString(key);
+            return requireArguments().getString(key, defaultValue);
         } catch (Exception ignored) {
             return null;
         }
+    }
+
+    /**
+     * Retrieves a string from the fragment arguments associated with the supplied key.
+     *
+     * @param key The key to be retrieved.
+     *
+     * @return The string from the fragment arguments.
+     *
+     * @see #getStringFromArguments(String, String)
+     */
+    public @Nullable String getStringFromArguments(@Nullable String key) {
+        return getStringFromArguments(key, null);
+    }
+
+    /**
+     * Retrieves an integer from the fragment arguments associated with the supplied key.
+     *
+     * @param key The key to be retrieved.
+     * @param defaultValue The default value.
+     *
+     * @return The integer from the fragment arguments.
+     *
+     * @see Fragment#getArguments()
+     * @see Fragment#requireArguments()
+     * @see Bundle#getInt(String, int)
+     */
+    public int getIntFromArguments(@Nullable String key, int defaultValue) {
+        if (getArguments() == null) {
+            return defaultValue;
+        }
+
+        return requireArguments().getInt(key, defaultValue);
     }
 
     /**
@@ -659,6 +750,8 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
      * @return The boolean from the fragment arguments.
      *
      * @see Fragment#getArguments()
+     * @see Fragment#requireArguments()
+     * @see Bundle#getBoolean(String, boolean)
      */
     public boolean getBooleanFromArguments(@Nullable String key, boolean defaultValue) {
         if (getArguments() == null) {
@@ -752,6 +845,31 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
      */
     public @NonNull DynamicActivity getDynamicActivity() {
         return (DynamicActivity) requireActivity();
+    }
+
+    /**
+     * Returns the menu used by the host.
+     *
+     * @return The menu used by the host.
+     */
+    public @Nullable Menu getHostMenu() {
+        if (getActivity() instanceof DynamicActivity) {
+            return getDynamicActivity().getMenu();
+        }
+
+        return null;
+    }
+
+    /**
+     * Set the visibility of the app bar menu item for the host by supplying its id.
+     *
+     * @param id The id to find the menu item.
+     * @param visible {@code true} to make the menu item visible.
+     */
+    public void setHostMenuItemVisible(@IdRes int id, boolean visible) {
+        if (getHostMenu() != null) {
+            getDynamicActivity().setMenuItemVisible(id, visible);
+        }
     }
 
     @Override

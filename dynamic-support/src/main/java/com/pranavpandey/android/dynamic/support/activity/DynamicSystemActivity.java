@@ -1840,7 +1840,12 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      * @see #supportFinishAfterTransition()
      */
     public boolean isSupportFinishAfterTransition() {
-        return DynamicMotion.getInstance().isMotion() && DynamicSdkUtils.is21()
+        if (isPaused() && (DynamicSdkUtils.is21(true)
+                || DynamicSdkUtils.is22(true))) {
+            return false;
+        }
+
+        return DynamicSdkUtils.is21() && DynamicMotion.getInstance().isMotion()
                 && (getWindow().getSharedElementEnterTransition() != null
                 || getWindow().getSharedElementExitTransition() != null);
     }
