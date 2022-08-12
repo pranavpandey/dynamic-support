@@ -425,7 +425,7 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
      * @param menuProvider The menu provider to be added.
      */
     protected void onAddMenuProvider(@Nullable MenuProvider menuProvider) {
-        if (getActivity() != null && menuProvider != null) {
+        if (getView() != null && getActivity() != null && menuProvider != null) {
             requireActivity().addMenuProvider(menuProvider,
                     getViewLifecycleOwner(), Lifecycle.State.RESUMED);
         }
