@@ -58,8 +58,10 @@
     <dimen name="ads_margin_divider_large">@dimen/ads_margin_extra_tiny</dimen>
     <dimen name="ads_margin_swipe_refresh_layout">@dimen/ads_margin_huge</dimen>
     <dimen name="ads_margin_preference_value">@dimen/ads_margin_normal</dimen>
+    <dimen name="ads_margin_preference_value_compact">@dimen/ads_margin_extra_tiny</dimen>
     <dimen name="ads_margin_preference_value_adjust">@dimen/ads_margin_extra_tiny</dimen>
     <dimen name="ads_margin_preference_icon_end">@dimen/ads_margin_normal</dimen>
+    <dimen name="ads_margin_preference_icon_end_compact">@dimen/ads_margin_extra_tiny</dimen>
     <dimen name="ads_margin_preference_icon_end_big">@dimen/ads_margin_large_big</dimen>
     <dimen name="ads_margin_info_icon_end">@dimen/ads_margin_preference_icon_end</dimen>
     <dimen name="ads_margin_info_icon_end_big">@dimen/ads_margin_info_icon_end</dimen>
@@ -183,6 +185,7 @@
     <dimen name="ads_icon_header_drawer">64dp</dimen>
     <dimen name="ads_icon_empty">@dimen/ads_icon_big</dimen>
     <dimen name="ads_icon_preference">@dimen/ads_icon_small</dimen>
+    <dimen name="ads_icon_preference_compact">@dimen/ads_icon_tiny</dimen>
     <dimen name="ads_icon_preference_big">@dimen/ads_icon_medium</dimen>
     <dimen name="ads_icon_info">@dimen/ads_icon_preference</dimen>
     <dimen name="ads_icon_info_big">@dimen/ads_icon_large</dimen>
