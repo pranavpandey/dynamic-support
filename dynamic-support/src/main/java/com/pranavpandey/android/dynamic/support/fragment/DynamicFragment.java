@@ -496,9 +496,9 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
     }
 
     @Override
-    public void onStop() {
+    public void onDestroy() {
         onDynamicPause(true);
-        super.onStop();
+        super.onDestroy();
     }
 
     @CallSuper
