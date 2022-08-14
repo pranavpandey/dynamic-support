@@ -336,13 +336,15 @@ public class DynamicMaterialSwitch extends MaterialSwitch implements DynamicStat
 
             DynamicTintUtils.setViewBackgroundTint(this,
                     mContrastWithColor, mAppliedColor, true, true);
-            setThumbTintList(DynamicResourceUtils.getColorStateList(
-                    mAppliedStateNormalColor, mAppliedColor, true));
             setTrackTintList(DynamicResourceUtils.getColorStateList(
                     DynamicColorUtils.getLighterColor(mAppliedStateNormalColor,
-                            Defaults.ADS_STATE_LIGHT),
-                    DynamicColorUtils.getLighterColor(mAppliedColor,
-                            Defaults.ADS_STATE_LIGHT), true));
+                            Defaults.ADS_STATE_LIGHT), mAppliedColor, true));
+            setTrackDecorationTintList(DynamicResourceUtils.getColorStateList(
+                    mAppliedStateNormalColor, mAppliedColor, true));
+            setThumbTintList(DynamicResourceUtils.getColorStateList(
+                    Dynamic.getTintColor(DynamicColorUtils.getLighterColor(
+                            mAppliedStateNormalColor, Defaults.ADS_STATE_LIGHT), this),
+                    Dynamic.getTintColor(mAppliedColor, this), true));
         }
 
         setTextColor(getTrackTintList());

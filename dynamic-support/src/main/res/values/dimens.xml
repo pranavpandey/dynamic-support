@@ -80,6 +80,8 @@
     <dimen name="ads_nav_header_spacing_top">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_nav_header_height">160dp</dimen>
     <dimen name="ads_collapsing_toolbar_height">120dp</dimen>
+    <dimen name="ads_fab_size">56dp</dimen>
+    <dimen name="ads_fab_size_mini">40dp</dimen>
     <dimen name="ads_fab_margin">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_fab_margin_small">@dimen/ads_margin_small</dimen>
     <dimen name="ads_margin_splash">@dimen/ads_margin_normal</dimen>

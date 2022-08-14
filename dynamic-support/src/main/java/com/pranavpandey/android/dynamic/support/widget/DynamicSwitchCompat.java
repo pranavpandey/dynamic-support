@@ -335,13 +335,13 @@ public class DynamicSwitchCompat extends SwitchMaterial implements DynamicStateW
 
             DynamicTintUtils.setViewBackgroundTint(this,
                     mContrastWithColor, mAppliedColor, true, true);
-            setThumbTintList(DynamicResourceUtils.getColorStateList(
-                    mAppliedStateNormalColor, mAppliedColor, true));
             setTrackTintList(DynamicResourceUtils.getColorStateList(
                     DynamicColorUtils.getLighterColor(mAppliedStateNormalColor,
                             Defaults.ADS_STATE_LIGHT),
                     DynamicColorUtils.getLighterColor(mAppliedColor,
                             Defaults.ADS_STATE_LIGHT), true));
+            setThumbTintList(DynamicResourceUtils.getColorStateList(
+                    mAppliedStateNormalColor, mAppliedColor, true));
         }
 
         setTextColor(getTrackTintList());
