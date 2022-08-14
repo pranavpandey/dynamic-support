@@ -71,6 +71,7 @@
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
         <attr name="adt_contrast" />
+        <attr name="adt_dynamicCornerSize" />
         <attr name="adt_windowInsets" />
     </declare-styleable>
 
@@ -86,6 +87,7 @@
         <attr name="adt_contrastWithColor" />
         <attr name="adt_backgroundAware" />
         <attr name="adt_contrast" />
+        <attr name="adt_dynamicCornerSize" />
         <attr name="adt_windowInsets" />
     </declare-styleable>
 

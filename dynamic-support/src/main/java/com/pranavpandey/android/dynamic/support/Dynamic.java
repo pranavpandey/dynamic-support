@@ -73,10 +73,12 @@ import com.pranavpandey.android.dynamic.support.util.DynamicScrollUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
+import com.pranavpandey.android.dynamic.support.widget.DynamicBottomNavigationView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicFloatingActionButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicMaterialCardView;
+import com.pranavpandey.android.dynamic.support.widget.DynamicNavigationRailView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicBackgroundWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicLinkWidget;
@@ -1461,7 +1463,9 @@ public class Dynamic {
      * @param corner The corner to be set.
      *
      * @see DynamicButton#setCorner(Integer)
-     * @see DynamicFloatingActionButton#setCorner(Integer)
+     * @see DynamicBottomNavigationView#setCorner(Float)
+     * @see DynamicNavigationRailView#setCorner(Float)
+     * @see DynamicFloatingActionButton#setCorner(Float)
      * @see DynamicCardView#setCorner(Float)
      * @see DynamicMaterialCardView#setCorner(Float)
      * @see DynamicTextInputLayout#setCorner(Float)
@@ -1470,8 +1474,12 @@ public class Dynamic {
     public static void setCorner(@Nullable View view, float corner) {
         if (view instanceof DynamicButton) {
             ((DynamicButton) view).setCorner((int) corner);
+        } else if (view instanceof DynamicBottomNavigationView) {
+            ((DynamicBottomNavigationView) view).setCorner((float) corner);
+        } else if (view instanceof DynamicNavigationRailView) {
+            ((DynamicNavigationRailView) view).setCorner((float) corner);
         } else if (view instanceof DynamicFloatingActionButton) {
-            ((DynamicFloatingActionButton) view).setCorner((int) corner);
+            ((DynamicFloatingActionButton) view).setCorner((float) corner);
         } else if (view instanceof DynamicCardView) {
             ((DynamicCardView) view).setCorner(corner);
         } else if (view instanceof DynamicMaterialCardView) {

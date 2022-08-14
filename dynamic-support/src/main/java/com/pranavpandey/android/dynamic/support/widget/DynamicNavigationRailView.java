@@ -35,6 +35,7 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.util.DynamicMenuUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicBackgroundWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicCornerWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTextWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -47,7 +48,8 @@ import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
  * supplied parameters.
  */
 public class DynamicNavigationRailView extends NavigationRailView
-        implements WindowInsetsWidget, DynamicBackgroundWidget, DynamicTextWidget {
+        implements WindowInsetsWidget, DynamicBackgroundWidget, DynamicTextWidget,
+        DynamicCornerWidget<Float> {
 
     /**
      * Color type applied to the background of this view.
@@ -126,6 +128,11 @@ public class DynamicNavigationRailView extends NavigationRailView
      */
     protected int mContrast;
 
+    /**
+     * Corner size used by this view.
+     */
+    protected float mCornerSize;
+
     public DynamicNavigationRailView(@NonNull Context context) {
         this(context, null);
     }
@@ -179,6 +186,12 @@ public class DynamicNavigationRailView extends NavigationRailView
             mContrast = a.getInteger(
                     R.styleable.DynamicNavigationRailView_adt_contrast,
                     Theme.Contrast.AUTO);
+
+            if (a.getBoolean(
+                    R.styleable.DynamicNavigationRailView_adt_dynamicCornerSize,
+                    Defaults.ADS_DYNAMIC_CORNER_SIZE)) {
+                setCorner((float) DynamicTheme.getInstance().get().getCornerRadius());
+            }
 
             if (a.getBoolean(
                     R.styleable.DynamicNavigationRailView_adt_windowInsets,
@@ -374,6 +387,30 @@ public class DynamicNavigationRailView extends NavigationRailView
         super.onLayout(changed, l, t, r, b);
 
         setBackgroundColor(getBackgroundColor());
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        Dynamic.setCornerMin(this, Math.min(
+                getWidth() / Theme.Corner.FACTOR_MAX,
+                getHeight() / Theme.Corner.FACTOR_MAX));
+    }
+
+    @Override
+    public @NonNull Float getCorner() {
+        return mCornerSize;
+    }
+
+    @Override
+    public void setCorner(@NonNull Float cornerSize) {
+        this.mCornerSize = cornerSize;
+
+        if (getItemActiveIndicatorShapeAppearance() != null) {
+            setItemActiveIndicatorShapeAppearance(
+                    getItemActiveIndicatorShapeAppearance().withCornerSize(cornerSize));
+        }
     }
 
     @Override

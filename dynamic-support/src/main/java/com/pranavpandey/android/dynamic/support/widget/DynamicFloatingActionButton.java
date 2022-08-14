@@ -43,7 +43,7 @@ import com.pranavpandey.android.dynamic.theme.Theme;
  * parameters.
  */
 public class DynamicFloatingActionButton extends FloatingActionButton
-        implements DynamicWidget, DynamicCornerWidget<Integer> {
+        implements DynamicWidget, DynamicCornerWidget<Float> {
 
     /**
      * Color type applied to this view.
@@ -96,7 +96,7 @@ public class DynamicFloatingActionButton extends FloatingActionButton
     /**
      * Corner size used by this view.
      */
-    protected int mCornerSize;
+    protected float mCornerSize;
 
     public DynamicFloatingActionButton(@NonNull Context context) {
         this(context, null);
@@ -143,7 +143,7 @@ public class DynamicFloatingActionButton extends FloatingActionButton
             if (a.getBoolean(
                     R.styleable.DynamicFloatingActionButton_adt_dynamicCornerSize,
                     Defaults.ADS_DYNAMIC_CORNER_SIZE)) {
-                setCorner(DynamicTheme.getInstance().get().getCornerRadius());
+                setCorner((float) DynamicTheme.getInstance().get().getCornerRadius());
             }
         } finally {
             a.recycle();
@@ -283,12 +283,12 @@ public class DynamicFloatingActionButton extends FloatingActionButton
     }
 
     @Override
-    public @NonNull Integer getCorner() {
+    public @NonNull Float getCorner() {
         return mCornerSize;
     }
 
     @Override
-    public void setCorner(@NonNull Integer cornerSize) {
+    public void setCorner(@NonNull Float cornerSize) {
         this.mCornerSize = cornerSize;
 
         setShapeAppearanceModel(getShapeAppearanceModel().withCornerSize(cornerSize));
