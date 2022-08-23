@@ -243,8 +243,7 @@ public abstract class DynamicActivity extends DynamicStateActivity
 
         if (getSavedInstanceState() != null) {
             if (mAppBarLayout != null) {
-                mAppBarLayout.setExpanded(getSavedInstanceState().getBoolean(
-                        ADS_STATE_APP_BAR_COLLAPSED));
+                mAppBarLayout.setExpanded(!isAppBarCollapsed());
             }
 
             if (mFAB != null && getSavedInstanceState().getInt(
@@ -1228,17 +1227,17 @@ public abstract class DynamicActivity extends DynamicStateActivity
      * Restore the search view state after the configuration change.
      */
     public void restoreSearchViewState() {
-        if (getContentView() == null || getSearchViewEditText() == null) {
+        if (getSearchViewEditText() == null) {
             return;
         }
 
-        getContentView().post(mSearchRunnable);
+        getSearchViewEditText().post(mSearchRunnable);
     }
 
     /**
      * Runnable to update the search view.
      */
-    private final Runnable mSearchRunnable = new Runnable() {
+    protected final Runnable mSearchRunnable = new Runnable() {
         @Override
         public void run() {
             if (getSearchViewEditText() == null) {

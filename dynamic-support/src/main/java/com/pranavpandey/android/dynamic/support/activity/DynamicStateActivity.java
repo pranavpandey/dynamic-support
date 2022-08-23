@@ -140,7 +140,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
             new AppBarLayout.OnOffsetChangedListener() {
         @Override
         public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-            mAppBarCollapsed = verticalOffset == 0;
+            setAppBarCollapsed(Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange());
         }
     };
 
@@ -171,6 +171,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
 
         if (getSavedInstanceState() != null) {
             mCurrentLocale = (Locale) getSavedInstanceState().getSerializable(ADS_STATE_LOCALE);
+            mAppBarCollapsed = getSavedInstanceState().getBoolean(ADS_STATE_APP_BAR_COLLAPSED);
             mFABVisibility = ADS_VISIBILITY_FAB_NO_CHANGE;
             mExtendedFABVisibility = ADS_VISIBILITY_EXTENDED_FAB_NO_CHANGE;
             mExtendedFABState = ADS_STATE_EXTENDED_FAB_NO_CHANGE;
@@ -194,6 +195,7 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
 
         outState.putSerializable(ADS_STATE_LOCALE, mCurrentLocale);
         outState.putString(ADS_STATE_CONTENT_FRAGMENT_TAG, mContentFragmentTag);
+        outState.putBoolean(ADS_STATE_APP_BAR_COLLAPSED, mAppBarCollapsed);
     }
 
     /**
@@ -367,6 +369,15 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
      */
     public boolean isAppBarCollapsed() {
         return mAppBarCollapsed;
+    }
+
+    /**
+     * Sets whether the app bar is collapsed.
+     *
+     * @param collapsed {@code true} if the app bar is collapsed.
+     */
+    public void setAppBarCollapsed(boolean collapsed) {
+        this.mAppBarCollapsed = collapsed;
     }
 
     /**

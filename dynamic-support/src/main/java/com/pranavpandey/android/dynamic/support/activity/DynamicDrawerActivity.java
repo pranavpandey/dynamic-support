@@ -193,9 +193,7 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
 
         mDrawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
-            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
-                collapseSearchView();
-            }
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) { }
 
             @Override
             public void onDrawerOpened(@NonNull View drawerView) { }
@@ -204,7 +202,9 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
             public void onDrawerClosed(@NonNull View drawerView) { }
 
             @Override
-            public void onDrawerStateChanged(int newState) { }
+            public void onDrawerStateChanged(int newState) {
+                collapseSearchView();
+            }
         });
 
         DynamicTintUtils.setInsetForegroundColor(mNavigationView,
@@ -252,9 +252,9 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
         } else {
             setNavigationShadowVisible(false);
 
-            if (getContentView() != null && isDrawerLocked()) {
+            if (isDrawerLocked()) {
                 mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-                getContentView().post(mDrawerRunnable);
+                mDrawer.post(mDrawerRunnable);
             }
 
             mDrawer.addDrawerListener(new DrawerLayout.DrawerListener() {
