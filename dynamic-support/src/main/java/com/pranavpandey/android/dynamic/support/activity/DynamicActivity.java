@@ -778,7 +778,12 @@ public abstract class DynamicActivity extends DynamicStateActivity
             return;
         }
 
+        if (mHeaderRunnable != null) {
+            mFrameHeader.removeCallbacks(mHeaderRunnable);
+        }
+
         if (view == null && removePrevious) {
+            mFrameHeader.invalidate();
             Dynamic.setVisibility(mFrameHeader, View.GONE);
 
             return;
@@ -786,21 +791,17 @@ public abstract class DynamicActivity extends DynamicStateActivity
             Dynamic.setVisibility(mFrameHeader, View.VISIBLE);
         }
 
-        if (mFrameHeader.getInAnimation() != null
-                && !mFrameHeader.getInAnimation().hasEnded()) {
-            mFrameHeader.getInAnimation().reset();
-        } else {
-            mFrameHeader.setInAnimation(DynamicMotion.getInstance().withDuration(
-                    AnimationUtils.loadAnimation(getContext(), R.anim.ads_slide_in_bottom)));
+        final boolean hasEnded;
+        if (!(hasEnded = mFrameHeader.getInAnimation() == null)) {
+            mFrameHeader.getInAnimation().setAnimationListener(null);
+            mFrameHeader.clearAnimation();
+            mFrameHeader.showNext();
         }
 
-        if (mFrameHeader.getOutAnimation() != null
-                && !mFrameHeader.getOutAnimation().hasEnded()) {
-            mFrameHeader.getOutAnimation().reset();
-        } else {
-            mFrameHeader.setOutAnimation(DynamicMotion.getInstance().withDuration(
-                    AnimationUtils.loadAnimation(getContext(), R.anim.ads_fade_out)));
-        }
+        mFrameHeader.setInAnimation(DynamicMotion.getInstance().withDuration(
+                AnimationUtils.loadAnimation(getContext(), R.anim.ads_slide_in_bottom)));
+        mFrameHeader.setOutAnimation(DynamicMotion.getInstance().withDuration(
+                AnimationUtils.loadAnimation(getContext(), R.anim.ads_fade_out)));
 
         mHeaderRunnable = new Runnable() {
             @Override
@@ -814,31 +815,35 @@ public abstract class DynamicActivity extends DynamicStateActivity
                     mFrameHeader.getInAnimation().setAnimationListener(
                             new Animation.AnimationListener() {
                                 @Override
-                                public void onAnimationStart(Animation animation) {
-
-                                }
+                                public void onAnimationStart(Animation animation) { }
 
                                 @Override
                                 public void onAnimationEnd(Animation animation) {
                                     mFrameHeader.removeCallbacks(mHeaderRunnable);
+                                    mFrameHeader.setInAnimation(null);
+                                    mFrameHeader.setOutAnimation(null);
+                                    mFrameHeader.invalidate();
                                 }
 
                                 @Override
-                                public void onAnimationRepeat(Animation animation) {
-
-                                }
+                                public void onAnimationRepeat(Animation animation) { }
                             });
                 }
 
-                if (((ViewGroup) mFrameHeader.getCurrentView()).getChildCount() > 0
+                if (hasEnded
+                        && ((ViewGroup) mFrameHeader.getCurrentView()).getChildCount() > 0
                         && DynamicMotion.getInstance().isMotion()
                         && view != null && removePrevious && animate) {
                     addView((ViewGroup) mFrameHeader.getNextView(), view, true);
                     onAddHeader(view);
                     mFrameHeader.showNext();
                 } else {
+                    mFrameHeader.setInAnimation(null);
+                    mFrameHeader.setOutAnimation(null);
+
                     addView((ViewGroup) mFrameHeader.getCurrentView(), view, removePrevious);
                     onAddHeader(view);
+                    mFrameHeader.invalidate();
                 }
             }
         };
