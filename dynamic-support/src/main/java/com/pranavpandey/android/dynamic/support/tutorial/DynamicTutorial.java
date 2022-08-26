@@ -32,7 +32,7 @@ import com.pranavpandey.android.dynamic.support.tutorial.fragment.DynamicTutoria
  * which can be tinted according to the tutorial colors.
  */
 public class DynamicTutorial implements Parcelable,
-        Tutorial.SharedElement<DynamicTutorial, DynamicTutorialFragment> {
+        Tutorial.Motion<DynamicTutorial, DynamicTutorialFragment> {
 
     /**
      * Id to uniquely identify this tutorial.
@@ -73,6 +73,11 @@ public class DynamicTutorial implements Parcelable,
      * {@code true} to tint the image according to the tint color.
      */
     private boolean tintImage;
+
+    /**
+     * {@code true} to animate the background color.
+     */
+    private boolean backgroundAnimation;
 
     /**
      * {@code true} to set the shared element name and make it available for the transition.
@@ -152,6 +157,28 @@ public class DynamicTutorial implements Parcelable,
     public DynamicTutorial(int id, @ColorInt int color, @ColorInt int tintColor,
             @Nullable String title, @Nullable String subtitle, @Nullable String description,
             @DrawableRes int imageRes, boolean tintImage, boolean sharedElement) {
+        this(id, color, tintColor, title, subtitle, description, imageRes,
+                tintImage, id == ADS_TUTORIAL_WELCOME, sharedElement);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param id The id to uniquely identify this tutorial.
+     * @param color The color for this tutorial.
+     * @param tintColor The tint color for this tutorial.
+     * @param title The title for this tutorial.
+     * @param subtitle The subtitle for this tutorial.
+     * @param description The description for this tutorial.
+     * @param imageRes The image resource for this tutorial.
+     * @param tintImage {@code true} to tint the image according to the tint color.
+     * @param backgroundAnimation {@code true} to enable background animation.
+     * @param sharedElement {@code true} to set the shared element.
+     */
+    public DynamicTutorial(int id, @ColorInt int color, @ColorInt int tintColor,
+            @Nullable String title, @Nullable String subtitle, @Nullable String description,
+            @DrawableRes int imageRes, boolean tintImage, boolean backgroundAnimation,
+            boolean sharedElement) {
         this.id = id;
         this.color = color;
         this.tintColor = tintColor;
@@ -160,6 +187,7 @@ public class DynamicTutorial implements Parcelable,
         this.description = description;
         this.imageRes = imageRes;
         this.tintImage = tintImage;
+        this.backgroundAnimation = backgroundAnimation;
         this.sharedElement = sharedElement;
     }
 
@@ -177,6 +205,7 @@ public class DynamicTutorial implements Parcelable,
         this.description = in.readString();
         this.imageRes = in.readInt();
         this.tintImage = in.readByte() != 0;
+        this.backgroundAnimation = in.readByte() != 0;
         this.sharedElement = in.readByte() != 0;
     }
 
@@ -211,6 +240,7 @@ public class DynamicTutorial implements Parcelable,
         dest.writeString(description);
         dest.writeInt(imageRes);
         dest.writeByte((byte) (tintImage ? 1 : 0));
+        dest.writeByte((byte) (backgroundAnimation ? 1 : 0));
         dest.writeByte((byte) (sharedElement ? 1 : 0));
     }
 
@@ -274,6 +304,11 @@ public class DynamicTutorial implements Parcelable,
         if (mFragment != null) {
             mFragment.onSetPadding(left, top, right, bottom);
         }
+    }
+
+    @Override
+    public boolean isBackgroundAnimation() {
+        return backgroundAnimation;
     }
 
     @Override
@@ -441,6 +476,20 @@ public class DynamicTutorial implements Parcelable,
     }
 
     /**
+     * Set whether to animate the background color.
+     *
+     * @param backgroundAnimation {@code true} to animate the background color.
+     *
+     * @return The {@link DynamicTutorial} object to allow for chaining of calls to
+     *         set methods.
+     */
+    public @NonNull DynamicTutorial setBackgroundAnimation(boolean backgroundAnimation) {
+        this.backgroundAnimation = backgroundAnimation;
+
+        return this;
+    }
+
+    /**
      * Set whether to set the shared element.
      *
      * @param sharedElement {@code true} to set the shared element.
@@ -454,10 +503,20 @@ public class DynamicTutorial implements Parcelable,
         return this;
     }
 
+    /**
+     * Returns the fragment associated with this tutorial.
+     *
+     * @return The fragment associated with this tutorial.
+     */
     public @Nullable DynamicTutorialFragment getTutorialFragment() {
         return mFragment;
     }
 
+    /**
+     * Set the fragment for this tutorial.
+     *
+     * @param fragment The fragment to be set.
+     */
     public void setTutorialFragment(@Nullable DynamicTutorialFragment fragment) {
         this.mFragment = fragment;
     }

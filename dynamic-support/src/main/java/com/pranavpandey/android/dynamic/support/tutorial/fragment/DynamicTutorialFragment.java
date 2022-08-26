@@ -28,7 +28,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
 
 import com.pranavpandey.android.dynamic.support.Dynamic;
@@ -150,15 +149,15 @@ public class DynamicTutorialFragment extends DynamicFragment
         mDescriptionView = view.findViewById(R.id.ads_tutorial_simple_description);
 
         if (mDynamicTutorial.isSharedElement()) {
-            ViewCompat.setTransitionName(mRootView, Tutorial.ADS_NAME_TUTORIAL);
-            ViewCompat.setTransitionName(mImageView, Tutorial.ADS_NAME_TUTORIAL_IMAGE);
-            ViewCompat.setTransitionName(mTitleView, Tutorial.ADS_NAME_TUTORIAL_TITLE);
-            ViewCompat.setTransitionName(mSubtitleView, Tutorial.ADS_NAME_TUTORIAL_SUBTITLE);
+            Dynamic.setTransitionName(mRootView, Tutorial.ADS_NAME_TUTORIAL);
+            Dynamic.setTransitionName(mImageView, Tutorial.ADS_NAME_TUTORIAL_IMAGE);
+            Dynamic.setTransitionName(mTitleView, Tutorial.ADS_NAME_TUTORIAL_TITLE);
+            Dynamic.setTransitionName(mSubtitleView, Tutorial.ADS_NAME_TUTORIAL_SUBTITLE);
         } else {
-            ViewCompat.setTransitionName(mRootView, null);
-            ViewCompat.setTransitionName(mImageView, null);
-            ViewCompat.setTransitionName(mTitleView, null);
-            ViewCompat.setTransitionName(mSubtitleView, null);
+            Dynamic.setTransitionName(mRootView, null);
+            Dynamic.setTransitionName(mImageView, null);
+            Dynamic.setTransitionName(mTitleView, null);
+            Dynamic.setTransitionName(mSubtitleView, null);
         }
 
         if (mDynamicTutorial != null) {

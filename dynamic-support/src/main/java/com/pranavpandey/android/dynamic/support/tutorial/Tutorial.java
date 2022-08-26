@@ -32,9 +32,16 @@ import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutoria
 public interface Tutorial<T, V> extends ViewPager.OnPageChangeListener {
 
     /**
-     * A {@link Tutorial} to support shared element(s) transition.
+     * A {@link Tutorial} to support animation(s) and shared element(s) transition.
      */
-    interface SharedElement<T, V> extends Tutorial<T, V> {
+    interface Motion<T, V> extends Tutorial<T, V> {
+
+        /**
+         * Returns whether this tutorial supports the background animation.
+         *
+         * @return {@code true} if this tutorial supports the background animation.
+         */
+        boolean isBackgroundAnimation();
 
         /**
          * Returns whether this tutorial supports shared element(s) transition.
@@ -43,6 +50,11 @@ public interface Tutorial<T, V> extends ViewPager.OnPageChangeListener {
          */
         boolean isSharedElement();
     }
+
+    /**
+     * Constant for the first tutorial page.
+     */
+    int ADS_TUTORIAL_WELCOME = 0;
 
     /**
      *  Activity scene transition name for the tutorial.

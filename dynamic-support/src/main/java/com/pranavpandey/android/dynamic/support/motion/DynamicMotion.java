@@ -104,6 +104,11 @@ public class DynamicMotion {
         long SPLASH = 1000L;
 
         /**
+         * Constant for the color animation duration.
+         */
+        long COLOR = 8000L;
+
+        /**
          * Constant for the default duration.
          */
         long DEFAULT = MEDIUM;
