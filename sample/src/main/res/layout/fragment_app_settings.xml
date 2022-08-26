@@ -39,6 +39,14 @@
                     android:layout_height="wrap_content"
                     app:ads_title="@string/ads_theme" />
 
+                <com.pranavpandey.android.dynamic.support.setting.theme.DynamicThemeVersionPreference
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ads_icon="@drawable/ads_ic_layout"
+                    app:ads_title="@string/ads_theme_style"
+                    app:ads_summary="@string/ads_theme_style_summary"
+                    app:ads_description="@string/ads_theme_entry_auto_default_desc" />
+
                 <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

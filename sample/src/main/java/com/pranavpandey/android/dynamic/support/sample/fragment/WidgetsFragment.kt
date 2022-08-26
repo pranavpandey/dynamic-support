@@ -62,7 +62,9 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_widgets, container, false)
+        // Inflate layout resource according to the activity theme style version.
+        return inflater.inflate(DynamicResourceUtils.getResourceId(
+            dynamicActivity, R.attr.layout_widgets), container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

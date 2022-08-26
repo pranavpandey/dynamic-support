@@ -20,25 +20,25 @@
     tools:targetApi="s">
 
     <!-- Dark theme -->
-    <style name="Sample" parent="Theme.Dynamic">
+    <style name="Sample2" parent="Theme.Dynamic2">
         <item name="android:windowBackground">@color/app_default</item>
         <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ads_ic_author_splash</item>
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">@color/color_accent</item>
         <item name="colorSecondary">?attr/colorAccent</item>
-        <item name="layout_widgets">@layout/fragment_widgets</item>
+        <item name="layout_widgets">@layout/fragment_widgets_v2</item>
     </style>
 
     <!-- Light theme -->
-    <style name="Sample.Light" parent="Theme.Dynamic.Light">
+    <style name="Sample2.Light" parent="Theme.Dynamic2.Light">
         <item name="android:windowBackground">@color/app_default</item>
         <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ads_ic_author_splash</item>
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">@color/color_accent</item>
         <item name="colorSecondary">?attr/colorAccent</item>
-        <item name="layout_widgets">@layout/fragment_widgets</item>
+        <item name="layout_widgets">@layout/fragment_widgets_v2</item>
     </style>
 
 </resources>

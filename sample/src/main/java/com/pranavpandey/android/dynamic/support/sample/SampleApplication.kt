@@ -77,7 +77,7 @@ class SampleApplication : DynamicApplication() {
     @StyleRes
     override fun getThemeRes(theme: AppTheme<*>?): Int {
         return if (theme != null) {
-            ThemeController.getAppStyle(theme.backgroundColor)
+            ThemeController.getAppStyle(theme.getBackgroundColor(false, false))
         } else ThemeController.appStyle
     }
 
