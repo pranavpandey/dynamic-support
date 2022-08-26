@@ -17,7 +17,7 @@
 
 <resources>
 
-    <style name="Widget.DynamicApp.Image.Card.Big.Tutorial">
+    <style name="Widget.Dynamic.Image.Card.Big.Tutorial">
         <item name="android:layout_marginRight">@dimen/ads_tutorial_margin_backdrop</item>
         <item name="android:layout_marginEnd">@dimen/ads_tutorial_margin_backdrop</item>
         <item name="android:layout_marginBottom">@dimen/ads_tutorial_margin_backdrop</item>

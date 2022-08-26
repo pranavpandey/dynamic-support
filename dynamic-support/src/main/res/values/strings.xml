@@ -21,7 +21,7 @@
     <string name="ads_navigation_drawer_open">Open navigation drawer</string>
     <string name="ads_navigation_drawer_close">Close navigation drawer</string>
 
-    <!-- String formats -->
+    <!-- Formats -->
     <string name="ads_format_version">Version %1$s</string>
     <string name="ads_search_empty">No matches found for \"%1$s\".</string>
 
@@ -99,7 +99,7 @@
     <string name="ads_shortcut_created">Shortcut created</string>
     <string name="ads_shortcuts_desc">Pick a shortcut to add it on the home screen.</string>
 
-    <!-- Navigation drawer and Menu -->
+    <!-- Navigation and Menu -->
     <string name="ads_nav_category_features">Menu</string>
     <string name="ads_nav_category_support">Support development</string>
     <string name="ads_nav_category_contribute">Contribute</string>
@@ -115,7 +115,7 @@
     <string name="ads_menu_info">Info</string>
     <string name="ads_menu_app_info">App info</string>
 
-    <!-- Runtime permissions -->
+    <!-- Permissions -->
     <string name="ads_permissions">Permissions</string>
     <string name="ads_permissions_subtitle">Please allow the required permissions.</string>
     <string name="ads_permissions_subtitle_single">Please allow the required permission.</string>
@@ -200,7 +200,7 @@
     <string name="ads_backup_format_deleted">Backup deleted: %1$s</string>
     <string name="ads_backup_format_restored">Backup restored: %1$s</string>
 
-    <!-- Backup options -->
+    <!-- Backup Options -->
     <string name="ads_backup_storage_app">App storage</string>
     <string name="ads_backup_storage_device">Device storage</string>
     <string name="ads_backup_option_rename">Rename</string>
@@ -212,6 +212,7 @@
     <string name="ads_dynamic_theme_summary">Theme applied by the receiver.</string>
     <string name="ads_dynamic_color_summary">Implementation for the auto color.</string>
     <string name="ads_dynamic">Dynamic</string>
+    <string name="ads_color">Color</string>
     <string name="ads_theme">Theme</string>
     <string name="ads_theme_code">Code</string>
     <string name="ads_theme_code_desc">Scan or share the theme.</string>
@@ -296,14 +297,16 @@
     <string name="ads_theme_presets_empty">No presets</string>
 
     <!-- Theme -->
+    <string name="ads_theme_version_original">Original</string>
+    <string name="ads_theme_version_latest">Latest</string>
     <string name="ads_theme_toast_default">Default toast message</string>
     <string name="ads_theme_toast_themed">Themed toast message</string>
     <string name="ads_theme_entry_auto">Auto</string>
-    <string name="ads_theme_settings_auto_desc">Select auto to use the app settings.</string>
-    <string name="ads_theme_settings_default_desc">Select auto to use the default settings.</string>
+    <string name="ads_theme_entry_auto_desc">Select auto to use the app settings.</string>
+    <string name="ads_theme_entry_auto_default_desc">Select auto to use the default settings.</string>
+    <string name="ads_theme_entry_auto_background_aware_desc">Select auto to use the app color palette. Adjust colors according to the background to provide the best visibility.</string>
     <string name="ads_theme_color_auto_desc">Select auto to use the app color palette.</string>
     <string name="ads_theme_color_default_desc">Select auto to use the default color palette.</string>
-    <string name="ads_theme_entry_auto_background_aware_desc">Select auto to use the app color palette. Adjust colors according to the background to provide the best visibility.</string>
     <string name="ads_theme_entry_day">Day</string>
     <string name="ads_theme_entry_night">Night</string>
     <string name="ads_theme_entry_light">Light</string>
@@ -373,7 +376,7 @@
     <string name="ads_notification_close_drawer_summary">Close notification drawer after performing the action.</string>
     <string name="ads_notification_close_drawer_summary_unchecked">Do not change notification drawer state after performing the action.</string>
 
-    <!-- App widget -->
+    <!-- App Widget -->
     <string name="ads_widget_customise">Customize</string>
     <string name="ads_widget_customise_desc">Configure the widget below.</string>
     <string name="ads_widget_preview">Preview</string>
@@ -409,7 +412,7 @@
     <string name="ads_support_restart_app_summary">Restart application and service to refresh the app state.</string>
     <string name="ads_support_restart_app_desc">Use if service is not starting or app is not behaving properly. All settings will remain unchanged after performing this operation.</string>
 
-    <!-- Developer and App info -->
+    <!-- Developer and Info -->
     <string name="ads_info_made_in">Made in India</string>
     <string name="ads_info_made_by">Written and designed by</string>
     <string name="ads_info_made_by_alt">Developed by</string>

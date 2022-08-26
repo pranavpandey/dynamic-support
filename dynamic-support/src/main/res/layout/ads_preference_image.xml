@@ -17,5 +17,5 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.DynamicApp.Image.Preference.Value.Center"
+    style="?attr/ads_widgetImagePreferenceValueCenter"
     android:id="@+id/ads_preference_image_value" />

@@ -20,12 +20,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        style="@style/Widget.DynamicApp.Theme.Background.Image"
+        style="?attr/ads_widgetThemeBackgroundImage"
         android:id="@+id/ads_theme_background"
         android:contentDescription="@null" />
 
     <LinearLayout
-        style="@style/Widget.DynamicApp.Theme.Preview.Layout">
+        style="?attr/ads_widgetThemePreviewLayout">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -39,7 +39,7 @@
                 app:adt_backgroundAware="disable" />
 
             <LinearLayout
-                style="@style/Widget.DynamicApp.Theme.Preview.Header.StatusBar"
+                style="?attr/ads_widgetThemePreviewHeaderStatusBar"
                 android:id="@+id/ads_theme_header"
                 android:baselineAligned="false"
                 android:tag=":ads_ignore">
@@ -80,7 +80,7 @@
                     android:orientation="horizontal">
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-                        style="@style/Widget.DynamicApp.Theme.Action.Preview"
+                        style="?attr/ads_widgetThemeActionPreview"
                         android:id="@+id/ads_theme_header_menu"
                         android:contentDescription="@string/ads_widget_customise" />
 
@@ -160,7 +160,7 @@
                     app:srcCompat="@drawable/ads_overlay" />
 
                 <LinearLayout
-                    style="@style/Widget.DynamicApp.Content.Row.Vertical">
+                    style="?attr/ads_widgetContentRowVertical">
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                         android:id="@+id/ads_theme_text_primary_start"
@@ -236,6 +236,7 @@
     </LinearLayout>
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicFloatingActionButton
+        style="?attr/ads_widgetFloatingActionButtonMini"
         android:id="@+id/ads_theme_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -247,7 +248,6 @@
         app:elevation="@dimen/ads_preview_fab_elevation"
         app:pressedTranslationZ="@dimen/ads_preview_fab_elevation"
         app:hoveredFocusedTranslationZ="@dimen/ads_preview_fab_elevation"
-        app:srcCompat="@drawable/ads_ic_brush"
-        app:fabSize="mini" />
+        app:srcCompat="@drawable/ads_ic_brush" />
 
 </merge>

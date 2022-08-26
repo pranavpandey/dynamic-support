@@ -18,18 +18,18 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Content.Card.Small.Clickable.Background"
+    style="?attr/ads_widgetContentCardSmallClickableBackground"
     android:id="@+id/ads_popup_footer_root"
     app:adt_contrastWithColorType="surface">
 
     <LinearLayout
-        style="@style/Widget.DynamicApp.Content.Row.Horizontal">
+        style="?attr/ads_widgetContentRowHorizontal">
 
         <LinearLayout
-            style="@style/Widget.DynamicApp.Content.Row.Vertical.Weight">
+            style="?attr/ads_widgetContentRowVerticalWeight">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                style="@style/TextAppearance.DynamicApp.Subtitle1.Caps"
+                style="?attr/ads_textAppearanceSubtitle1Caps"
                 android:id="@+id/ads_popup_footer_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

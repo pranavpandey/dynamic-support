@@ -21,7 +21,7 @@
     <string name="ads_navigation_drawer_open">Abrir gaveta de navegação</string>
     <string name="ads_navigation_drawer_close">Fechar gaveta de notificação</string>
 
-    <!-- String formats -->
+    <!-- Formats -->
     <string name="ads_format_version">Versão %1$s</string>
     <string name="ads_search_empty">Sem resultados para \"%1$s\".</string>
 
@@ -99,7 +99,7 @@
     <string name="ads_shortcut_created">Atalho criado</string>
     <string name="ads_shortcuts_desc">Escolha um atalho para adicionar à tela inicial</string>
 
-    <!-- Navigation drawer and Menu -->
+    <!-- Navigation and Menu -->
     <string name="ads_nav_category_features">Menu</string>
     <string name="ads_nav_category_support">Apoiar o desenvolvimento</string>
     <string name="ads_nav_category_contribute">Contribuir</string>
@@ -115,7 +115,7 @@
     <string name="ads_menu_info">Informações</string>
     <string name="ads_menu_app_info">Informações do app</string>
 
-    <!-- Runtime permissions -->
+    <!-- Permissions -->
     <string name="ads_permissions">Permissões</string>
     <string name="ads_permissions_subtitle">Por favor permita as permissões requeridas.</string>
     <string name="ads_permissions_subtitle_single">Por favor permita a permissão requerida.</string>
@@ -200,7 +200,7 @@
     <string name="ads_backup_format_deleted">Backup apagado: %1$s</string>
     <string name="ads_backup_format_restored">Backup restaurado: %1$s</string>
 
-    <!-- Backup options -->
+    <!-- Backup Options -->
     <string name="ads_backup_storage_app">Armazenamento do app</string>
     <string name="ads_backup_storage_device">Armazenamento do dispositivo</string>
     <string name="ads_backup_option_rename">Renomear</string>
@@ -212,6 +212,7 @@
     <string name="ads_dynamic_theme_summary">Tema aplicado pelo receptor.</string>
     <string name="ads_dynamic_color_summary">Implementação para a cor automática.</string>
     <string name="ads_dynamic">Dinâmico</string>
+    <string name="ads_color">Cor</string>
     <string name="ads_theme">Tema</string>
     <string name="ads_theme_code">Código</string>
     <string name="ads_theme_code_desc">Digitalize ou compartilhe o tema.</string>
@@ -296,14 +297,16 @@
     <string name="ads_theme_presets_empty">Sem predefiniçōes</string>
 
     <!-- Theme -->
+    <string name="ads_theme_version_original">Original</string>
+    <string name="ads_theme_version_latest">Mais recentes</string>
     <string name="ads_theme_toast_default">Mensagem padrão toast</string>
     <string name="ads_theme_toast_themed">Mensagem temática toast</string>
     <string name="ads_theme_entry_auto">Automático</string>
-    <string name="ads_theme_settings_auto_desc">Selecione automático para usar as configurações do app.</string>
-    <string name="ads_theme_settings_default_desc">Selecione automático para usar as configurações padrões.</string>
+    <string name="ads_theme_entry_auto_desc">Selecione automático para usar as configurações do app.</string>
+    <string name="ads_theme_entry_auto_default_desc">Selecione automático para usar as configurações padrões.</string>
+    <string name="ads_theme_entry_auto_background_aware_desc">Selecione automático para usar a paleta de cores do app. Ajuste as cores de acordo com o plano de fundo para providenciar melhor visibilidade.</string>
     <string name="ads_theme_color_auto_desc">Selecione automático para usar a paleta de cores do app.</string>
     <string name="ads_theme_color_default_desc">Selecione automático para usar a paleta de cores padrão.</string>
-    <string name="ads_theme_entry_auto_background_aware_desc">Selecione automático para usar a paleta de cores do app. Ajuste as cores de acordo com o plano de fundo para providenciar melhor visibilidade.</string>
     <string name="ads_theme_entry_day">Dia</string>
     <string name="ads_theme_entry_night">Noite</string>
     <string name="ads_theme_entry_light">Claro</string>
@@ -373,7 +376,7 @@
     <string name="ads_notification_close_drawer_summary">Fechar a gaveta de notificação após executar uma ação.</string>
     <string name="ads_notification_close_drawer_summary_unchecked">Não fechar o estado da gaveta de notificação após executar uma ação.</string>
 
-    <!-- App widget -->
+    <!-- App Widget -->
     <string name="ads_widget_customise">Personalizar</string>
     <string name="ads_widget_customise_desc">Configurar o widget abaixo.</string>
     <string name="ads_widget_preview">Pré-visualizar</string>
@@ -409,7 +412,7 @@
     <string name="ads_support_restart_app_summary">Reiniciar aplicação e serviço para atualizar o estado do app.</string>
     <string name="ads_support_restart_app_desc">Use se o serviço não está iniciando ou o app não está se comportando apropriadamente. Todas as configurações permanecerão inalteradas após realizar essa operação.</string>
 
-    <!-- Developer and App info -->
+    <!-- Developer and Info -->
     <string name="ads_info_made_in">Feito na India</string>
     <string name="ads_info_made_by">Escrito e projetado por</string>
     <string name="ads_info_made_by_alt">Desenvolvido por</string>

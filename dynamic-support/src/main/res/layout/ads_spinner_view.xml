@@ -25,25 +25,25 @@
         android:orientation="vertical">
 
         <LinearLayout
-            style="@style/Widget.DynamicApp.Content.Card.Clickable.Background"
+            style="?attr/ads_widgetContentCardClickableBackground"
             android:id="@+id/ads_item_view"
             android:orientation="horizontal">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-                style="@style/Widget.DynamicApp.Image.Preference"
+                style="?attr/ads_widgetImagePreference"
                 android:id="@+id/ads_item_view_icon" />
 
             <LinearLayout
-                style="@style/Widget.DynamicApp.Content.Row.Vertical.Weight">
+                style="?attr/ads_widgetContentRowVerticalWeight">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
                     android:id="@+id/ads_item_view_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle1" />
+                    android:textAppearance="?attr/ads_textAppearanceSubtitle1" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Body1"
+                    style="?attr/ads_textAppearanceBody1"
                     android:id="@+id/ads_item_view_subtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

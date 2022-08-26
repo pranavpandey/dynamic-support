@@ -73,6 +73,8 @@ import com.pranavpandey.android.dynamic.util.DynamicTaskUtils;
 import com.pranavpandey.android.dynamic.util.DynamicUnitUtils;
 import com.pranavpandey.android.dynamic.util.concurrent.DynamicResult;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -88,6 +90,76 @@ import java.util.concurrent.TimeUnit;
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class DynamicTheme implements DynamicListener, DynamicResolver {
+
+    /**
+     * Constant values for the theme styles version.
+     */
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface Version {
+
+        /**
+         * Key constant for the theme version.
+         */
+        String KEY = "ads_theme_version";
+
+        /**
+         * Constant for the auto version.
+         */
+        int AUTO = -3;
+
+        /**
+         * Constant for the version 1.
+         */
+        int INT_1 = 1;
+
+        /**
+         * Constant for the version 2.
+         */
+        int INT_2 = 2;
+
+        /**
+         * Constant for the default version.
+         */
+        int DEFAULT = AUTO;
+
+        /**
+         * Constant for the default auto version.
+         */
+        int DEFAULT_AUTO = com.google.android.material.color.DynamicColors.isDynamicColorAvailable()
+                ? DynamicTheme.Version.INT_2 : DynamicTheme.Version.INT_1;
+
+        /**
+         * String constant values for the theme styles version.
+         */
+        @Retention(RetentionPolicy.SOURCE)
+        @interface ToString {
+
+            /**
+             * String constant for the unknown version.
+             */
+            String AUTO = "-3";
+
+            /**
+             * String constant for the version 1.
+             */
+            String INT_1 = "1";
+
+            /**
+             * String constant for the version 2.
+             */
+            String INT_2 = "2";
+
+            /**
+             * String constant for the default version.
+             */
+            String DEFAULT = AUTO;
+
+            /**
+             * String constant for the default auto version.
+             */
+            String DEFAULT_AUTO = Integer.toString(Version.DEFAULT_AUTO);
+        }
+    }
 
     /**
      * Tag for the dynamic theme.
@@ -164,6 +236,16 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      */
     @SuppressLint("StaticFieldLeak")
     private static DynamicTheme sInstance;
+
+    /**
+     * Application theme styles version.
+     */
+    private @Version int mVersion;
+
+    /**
+     * Locale theme styles version.
+     */
+    private @Version int mLocalVersion;
 
     /**
      * Main thread handler to publish results.
@@ -251,6 +333,8 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      */
     @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
     private DynamicTheme() {
+        this.mVersion = Version.DEFAULT_AUTO;
+        this.mLocalVersion = Version.DEFAULT_AUTO;
         this.mHandler = new DynamicThemeHandler(Looper.getMainLooper(), new ArrayList<>());
         this.mDynamicThemes = new HashMap<>();
     }
@@ -665,6 +749,9 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
             themeRes = getThemeRes(theme);
         }
 
+        setVersion(DynamicResourceUtils.resolveInteger(getContext(), themeRes,
+                R.attr.ads_theme_version, Version.DEFAULT_AUTO));
+
         if (theme != null) {
             theme.setThemeRes(themeRes);
             getDefaultApplication().setType(theme.getType());
@@ -792,6 +879,9 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
                     "local theme. Trying to use the default style.");
             themeRes = getThemeRes(theme);
         }
+
+        setLocalVersion(DynamicResourceUtils.resolveInteger(getLocalContext(), themeRes,
+                R.attr.ads_theme_version, Version.DEFAULT_AUTO));
 
         if (theme != null) {
             theme.setThemeRes(themeRes);
@@ -999,6 +1089,58 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
             default:
                 return Theme.Color.UNKNOWN;
         }
+    }
+
+    /**
+     * Get the application theme styles version.
+     *
+     * @return The application theme styles version.
+     */
+    public @Version int getVersion() {
+        return mVersion;
+    }
+
+    /**
+     * Set the application theme styles version.
+     *
+     * @param version The version to be set.
+     */
+    public void setVersion(@Version int version) {
+        this.mVersion = version;
+    }
+
+    /**
+     * Get the local theme styles version.
+     *
+     * @return The local theme styles version.
+     */
+    public @Version int getLocalVersion() {
+        return mLocalVersion;
+    }
+
+    /**
+     * Set the local theme styles version.
+     *
+     * @param version The version to be set.
+     */
+    public void setLocalVersion(@Version int version) {
+        this.mLocalVersion = version;
+    }
+
+    /**
+     * Resolves the theme version according to the attached local.
+     *
+     * @return The theme version according to the attached local.
+     *
+     * @see #getVersion()
+     * @see #getLocalVersion()
+     */
+    public @Version int resolveVersion() {
+        if (getLocalListener() != null) {
+            return getLocalVersion();
+        }
+
+        return getVersion();
     }
 
     /**
@@ -1440,6 +1582,11 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     @Override
     public @NonNull Context getContext() {
         return getHandler().getContext();
+    }
+
+    @Override
+    public @Version int getRequiredThemeVersion() {
+        return getHandler().getRequiredThemeVersion();
     }
 
     @Override

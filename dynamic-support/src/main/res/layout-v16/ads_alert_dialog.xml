@@ -18,7 +18,7 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicMaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.DynamicApp.Card.Floating.Dialog"
+    style="?attr/ads_widgetCardFloatingDialog"
     android:id="@+id/dialogRoot">
 
     <androidx.appcompat.widget.AlertDialogLayout
@@ -48,7 +48,7 @@
                     android:visibility="gone" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
-                    style="@style/Widget.DynamicApp.Divider"
+                    style="?attr/ads_widgetDivider"
                     android:id="@+id/scrollIndicatorUp"
                     android:layout_gravity="top"
                     android:visibility="gone" />
@@ -60,7 +60,7 @@
                     android:clipToPadding="false">
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                        style="@style/TextAppearance.DynamicApp.Dialog"
+                        style="?attr/ads_textAppearanceDialog"
                         android:id="@android:id/message"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
             </LinearLayout>
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
-                style="@style/Widget.DynamicApp.Divider"
+                style="?attr/ads_widgetDivider"
                 android:id="@+id/scrollIndicatorDown"
                 android:layout_gravity="bottom"
                 android:visibility="gone" />

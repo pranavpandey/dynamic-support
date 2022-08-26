@@ -24,11 +24,11 @@
     android:layout_height="wrap_content">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-        style="@style/Widget.DynamicApp.Card.Floating"
+        style="?attr/ads_widgetCardFloating"
         android:id="@+id/ads_popup_card">
 
         <LinearLayout
-            style="@style/Widget.DynamicApp.Content.Row.Vertical"
+            style="?attr/ads_widgetContentRowVertical"
             android:paddingTop="@dimen/ads_padding_popup"
             android:paddingBottom="@dimen/ads_padding_popup"
             android:orientation="vertical"
@@ -49,7 +49,7 @@
                 android:orientation="vertical">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
-                    style="@style/Widget.DynamicApp.Divider"
+                    style="?attr/ads_widgetDivider"
                     android:id="@+id/ads_popup_scroll_indicator_up"
                     android:gravity="top"
                     android:visibility="gone"
@@ -65,7 +65,7 @@
                 </FrameLayout>
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
-                    style="@style/Widget.DynamicApp.Divider"
+                    style="?attr/ads_widgetDivider"
                     android:id="@+id/ads_popup_scroll_indicator_down"
                     android:gravity="bottom"
                     android:visibility="gone"

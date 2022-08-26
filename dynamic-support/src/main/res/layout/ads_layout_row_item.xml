@@ -18,7 +18,7 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Content.Card.Clickable.Background"
+    style="?attr/ads_widgetContentCardClickableBackground"
     android:id="@+id/ads_item_root">
 
     <LinearLayout
@@ -27,21 +27,21 @@
         android:orientation="horizontal">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-            style="@style/Widget.DynamicApp.Image.Preference"
+            style="?attr/ads_widgetImagePreference"
             android:id="@+id/ads_item_icon"
             app:srcCompat="@drawable/ads_ic_folder" />
 
         <LinearLayout
-            style="@style/Widget.DynamicApp.Content.Row.Vertical.Weight">
+            style="?attr/ads_widgetContentRowVerticalWeight">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                style="@style/TextAppearance.DynamicApp.Headline5.Card"
+                style="?attr/ads_textAppearanceHeadline5"
                 android:id="@+id/ads_item_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                style="@style/TextAppearance.DynamicApp.Subtitle1.Secondary"
+                style="?attr/ads_textAppearanceSecondarySubtitle1"
                 android:id="@+id/ads_item_subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

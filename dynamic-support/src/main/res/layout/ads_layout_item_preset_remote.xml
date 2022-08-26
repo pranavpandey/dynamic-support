@@ -17,19 +17,19 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.DynamicApp.Card"
+    style="?attr/ads_widgetCard"
     android:id="@+id/ads_preset_root"
     android:layout_width="match_parent"
     android:layout_height="@dimen/ads_preview_height_small">
 
     <com.pranavpandey.android.dynamic.support.theme.view.DynamicRemoteThemePreview
-        style="@style/Widget.DynamicApp.Content"
+        style="?attr/ads_widgetContent"
         android:id="@+id/ads_preset_theme_preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout
-        style="@style/Widget.DynamicApp.Content.Clickable.Background"
+        style="?attr/ads_widgetContentClickableBackground"
         android:id="@+id/ads_preset_theme_preview_foreground"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

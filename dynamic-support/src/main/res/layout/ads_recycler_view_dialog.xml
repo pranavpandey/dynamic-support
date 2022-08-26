@@ -17,5 +17,5 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.DynamicApp.Scroller.Vertical"
+    style="?attr/ads_widgetScrollerVertical"
     android:id="@+id/ads_recycler_view" />

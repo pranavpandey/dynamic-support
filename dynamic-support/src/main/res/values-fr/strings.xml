@@ -21,7 +21,7 @@
     <string name="ads_navigation_drawer_open">Ouvrir le tiroir de navigation</string>
     <string name="ads_navigation_drawer_close">Ferme le tiroir d\'applications</string>
 
-    <!-- String formats -->
+    <!-- Formats -->
     <string name="ads_format_version">Version %1$s</string>
     <string name="ads_search_empty">Aucun résultat trouvé pour \"%1$s\".</string>
 
@@ -99,7 +99,7 @@
     <string name="ads_shortcut_created">Raccourci crée</string>
     <string name="ads_shortcuts_desc">Sélectionner un raccourci pour l\'ajouter sur l\'écran d\'accueil</string>
 
-    <!-- Navigation drawer and Menu -->
+    <!-- Navigation and Menu -->
     <string name="ads_nav_category_features">Menu</string>
     <string name="ads_nav_category_support">Soutenir le développement</string>
     <string name="ads_nav_category_contribute">Soutenir</string>
@@ -115,7 +115,7 @@
     <string name="ads_menu_info">Infos</string>
     <string name="ads_menu_app_info">Infos appli</string>
 
-    <!-- Runtime permissions -->
+    <!-- Permissions -->
     <string name="ads_permissions">Permissions</string>
     <string name="ads_permissions_subtitle">Merci d\'activer les permissions requises</string>
     <string name="ads_permissions_subtitle_single">Merci d\'activer les permissions requises</string>
@@ -200,7 +200,7 @@
     <string name="ads_backup_format_deleted">Sauvegarde supprimée : %1$s</string>
     <string name="ads_backup_format_restored">Sauvegarde restaurée : %1$s</string>
 
-    <!-- Backup options -->
+    <!-- Backup Options -->
     <string name="ads_backup_storage_app">Stockage d\'applications</string>
     <string name="ads_backup_storage_device">Stockage de l\'appareil</string>
     <string name="ads_backup_option_rename">Renommer</string>
@@ -212,6 +212,7 @@
     <string name="ads_dynamic_theme_summary">Thème appliqué par le récepteur.</string>
     <string name="ads_dynamic_color_summary">Implémentation pour la couleur automatique.</string>
     <string name="ads_dynamic">Dynamique</string>
+    <string name="ads_color">Couleur</string>
     <string name="ads_theme">Thème</string>
     <string name="ads_theme_code">Code</string>
     <string name="ads_theme_code_desc">Scannez ou partagez le thème.</string>
@@ -296,14 +297,16 @@
     <string name="ads_theme_presets_empty">Aucun préréglage</string>
 
     <!-- Theme -->
+    <string name="ads_theme_version_original">Original</string>
+    <string name="ads_theme_version_latest">Dernier</string>
     <string name="ads_theme_toast_default">Message toast par défaut</string>
     <string name="ads_theme_toast_themed">Message de toast à thème</string>
     <string name="ads_theme_entry_auto">Auto</string>
-    <string name="ads_theme_settings_auto_desc">Sélectionnez auto pour utiliser les paramètres de l\'application.</string>
-    <string name="ads_theme_settings_default_desc">Sélectionnez auto pour utiliser les paramètres par défaut.</string>
+    <string name="ads_theme_entry_auto_desc">Sélectionnez auto pour utiliser les paramètres de l\'application.</string>
+    <string name="ads_theme_entry_auto_default_desc">Sélectionnez auto pour utiliser les paramètres par défaut.</string>
+    <string name="ads_theme_entry_auto_background_aware_desc">Sélectionner auto pour utiliser la palette de couleurs de l\'application. Ajuste les couleurs en fonction de l\'arrière plan pour une meilleure visibilité.</string>
     <string name="ads_theme_color_auto_desc">Sélectionnez auto pour utiliser la palette de couleurs de l\'application.</string>
     <string name="ads_theme_color_default_desc">Sélectionnez auto pour utiliser la palette de couleurs par défaut.</string>
-    <string name="ads_theme_entry_auto_background_aware_desc">Sélectionner auto pour utiliser la palette de couleurs de l\'application. Ajuste les couleurs en fonction de l\'arrière plan pour une meilleure visibilité.</string>
     <string name="ads_theme_entry_day">Jour</string>
     <string name="ads_theme_entry_night">Nuit</string>
     <string name="ads_theme_entry_light">Clair</string>
@@ -373,7 +376,7 @@
     <string name="ads_notification_close_drawer_summary">Fermez le tiroir de notification après avoir effectué l\'action.</string>
     <string name="ads_notification_close_drawer_summary_unchecked">Ne modifiez pas l\'état du tiroir de notification après avoir effectué l\'action.</string>
 
-    <!-- App widget -->
+    <!-- App Widget -->
     <string name="ads_widget_customise">Personnaliser</string>
     <string name="ads_widget_customise_desc">Configurer le widget ci-dessous</string>
     <string name="ads_widget_preview">Aperçu</string>
@@ -409,7 +412,7 @@
     <string name="ads_support_restart_app_summary">Redémarrer l\'application et le service afin actualiser l\'état de l\'application.</string>
     <string name="ads_support_restart_app_desc">A utiliser si le service ne démarre pas ou si l\'application ne se comporte pas correctement. Tous les paramètres resteront inchangés après cette opération.</string>
 
-    <!-- Developer and App info -->
+    <!-- Developer and Info -->
     <string name="ads_info_made_in">Made in India</string>
     <string name="ads_info_made_by">Développé et designé par</string>
     <string name="ads_info_made_by_alt">Développé par</string>

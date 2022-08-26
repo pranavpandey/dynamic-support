@@ -17,12 +17,12 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.DynamicApp.Content.Card.Small.Clickable.Background"
+    style="?attr/ads_widgetContentCardSmallClickableBackground"
     android:id="@+id/ads_spinner_item_root"
     android:orientation="horizontal">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-        style="@style/Widget.DynamicApp.Image.Preference"
+        style="?attr/ads_widgetImagePreference"
         android:id="@+id/ads_spinner_item_icon"
         android:layout_width="@dimen/ads_popup_selector_icon_size"
         android:layout_height="@dimen/ads_popup_selector_icon_size" />
@@ -33,6 +33,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1.0"
         android:layout_gravity="center_vertical"
-        android:textAppearance="@style/TextAppearance.DynamicApp.Subtitle1" />
+        android:textAppearance="?attr/ads_textAppearanceSubtitle1" />
 
 </com.pranavpandey.android.dynamic.support.widget.DynamicLinearLayout>

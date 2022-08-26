@@ -262,6 +262,10 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
 
         if (getIconView() != null) {
             Dynamic.setVisibility(getIconView(), isFillSpace() ? GONE : getVisibilityIconView());
+
+            if (getIcon() == null && getIconView().getVisibility() == VISIBLE) {
+                Dynamic.setVisibility(getIconView(), INVISIBLE);
+            }
         }
 
         if (getDivider() != null) {

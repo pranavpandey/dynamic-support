@@ -20,12 +20,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        style="@style/Widget.DynamicApp.Theme.Background.Image"
+        style="?attr/ads_widgetThemeBackgroundImage"
         android:id="@+id/ads_theme_background"
         android:contentDescription="@null" />
 
     <LinearLayout
-        style="@style/Widget.DynamicApp.Theme.Preview.Layout">
+        style="?attr/ads_widgetThemePreviewLayout">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -39,7 +39,7 @@
                 app:adt_backgroundAware="disable" />
 
             <LinearLayout
-                style="@style/Widget.DynamicApp.Theme.Preview.Header.Remote"
+                style="?attr/ads_widgetThemePreviewHeaderRemote"
                 android:id="@+id/ads_theme_header"
                 android:baselineAligned="false">
 
@@ -79,7 +79,7 @@
                     android:orientation="horizontal">
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-                        style="@style/Widget.DynamicApp.Theme.Action.Preview"
+                        style="?attr/ads_widgetThemeActionPreview"
                         android:id="@+id/ads_theme_header_menu"
                         android:contentDescription="@string/ads_widget_customise" />
 
@@ -90,7 +90,7 @@
         </FrameLayout>
 
         <LinearLayout
-            style="@style/Widget.DynamicApp.Theme.Content.Remote"
+            style="?attr/ads_widgetThemeContentRemote"
             android:id="@+id/ads_theme_footer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

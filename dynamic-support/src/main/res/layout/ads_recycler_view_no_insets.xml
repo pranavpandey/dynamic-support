@@ -25,7 +25,7 @@
         android:layout_height="match_parent">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
-            style="@style/Widget.DynamicApp.Scroller.Padding.Vertical"
+            style="?attr/ads_widgetScrollerPaddingVertical"
             android:id="@+id/ads_recycler_view"
             app:adt_windowInsets="false" />
 

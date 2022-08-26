@@ -17,6 +17,10 @@
 
 <resources>
 
+    <!-- Versions -->
+    <integer name="ads_version_1">1</integer>
+    <integer name="ads_version_2">2</integer>
+
     <!-- The duration (in milliseconds) of the activity open/close and fragment
          open/close animations. -->
     <integer name="ads_config_activity_short_duration">150</integer>
@@ -24,6 +28,10 @@
     <integer name="ads_config_anim_short_duration">@android:integer/config_shortAnimTime</integer>
     <integer name="ads_config_anim_medium_duration">@android:integer/config_mediumAnimTime</integer>
     <integer name="ads_config_anim_long_duration">@android:integer/config_longAnimTime</integer>
+
+    <!-- Dialog -->
+    <item name="ads_dialog_min_width_major" type="dimen">65%</item>
+    <item name="ads_dialog_min_width_minor" type="dimen">95%</item>
 
     <!-- Alpha -->
     <item name="ads_alpha_shadow" type="integer" format="float">1.0</item>
@@ -50,10 +58,6 @@
     <integer name="ads_visibility_preference_icon">2</integer>
     <integer name="ads_visibility_preference_theme_icon">2</integer>
 
-    <!-- Dialog -->
-    <item name="ads_dialog_min_width_major" type="dimen">65%</item>
-    <item name="ads_dialog_min_width_minor" type="dimen">95%</item>
-
     <!-- Theme -->
     <item name="ads_theme_preview_weight_start" type="integer" format="float">0.7</item>
     <item name="ads_theme_preview_weight_end" type="integer" format="float">0.3</item>
@@ -63,7 +67,7 @@
     <!-- Toast -->
     <item name="ads_toast_alpha" type="integer" format="float">0.95</item>
 
-    <!-- App widget -->
+    <!-- App Widget -->
     <integer name="ads_widget_update_millis_none">0</integer>
     <integer name="ads_widget_update_millis_hour">3600000</integer>
     <integer name="ads_widget_update_millis_quarter">21600000</integer>

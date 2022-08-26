@@ -17,7 +17,7 @@
 
 <resources>
 
-    <style name="Widget.DynamicApp.BottomSheet">
+    <style name="Widget.Dynamic.BottomSheet">
         <item name="android:layout_width">@dimen/ads_bottom_sheet_max_width</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>

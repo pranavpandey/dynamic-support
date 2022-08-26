@@ -18,7 +18,7 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Scroller.Padding.Vertical"
+    style="?attr/ads_widgetScrollerPaddingVertical"
     android:id="@+id/app_settings">
 
     <LinearLayout
@@ -27,7 +27,7 @@
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-            style="@style/Widget.DynamicApp.Card">
+            style=style="?attr/ads_widgetCard">
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -17,7 +17,11 @@
 
 <resources>
 
-    <!-- String formats -->
+    <!-- Versions -->
+    <string name="ads_version_1">1</string>
+    <string name="ads_version_2">2</string>
+
+    <!-- Formats -->
     <string name="ads_format_join">%1$s%2$s</string>
     <string name="ads_format_blank_space">%1$s %2$s</string>
     <string name="ads_format_separator">%1$s | %2$s</string>
@@ -87,11 +91,11 @@
     <string name="ads_backup_create">@string/ads_create</string>
     <string name="ads_backup_load">@string/ads_load</string>
 
-    <!-- Backup options -->
+    <!-- Backup Options -->
     <string name="ads_backup_storage_share">@string/ads_nav_share</string>
     <string name="ads_backup_option_share">@string/ads_backup_storage_share</string>
 
-    <!-- Developer and App info -->
+    <!-- Developer and Info -->
     <string name="ads_info_me">&#169; Pranav Pandey</string>
     <string name="ads_info_google_play">Google Play</string>
     <string name="ads_info_gplus">Google+</string>

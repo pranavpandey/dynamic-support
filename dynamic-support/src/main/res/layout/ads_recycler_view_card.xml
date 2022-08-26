@@ -18,10 +18,10 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
     android:id="@+id/ads_recycler_view_nested_root"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.DynamicApp.Card">
+    style="?attr/ads_widgetCard">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
-        style="@style/Widget.DynamicApp.Scroller.Nested"
+        style="?attr/ads_widgetScrollerNested"
         android:id="@+id/ads_recycler_view" />
 
 </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>

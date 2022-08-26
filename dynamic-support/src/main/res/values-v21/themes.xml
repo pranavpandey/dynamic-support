@@ -19,76 +19,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:targetApi="s">
 
-    <!-- Application themes -->
-    <style name="Theme.DynamicApp" parent="Base.DynamicApp.NoActionBar">
+    <!-- Application -->
+    <style name="Theme.Dynamic" parent="Base.Dynamic.NoActionBar">
         <item name="android:windowSplashScreenBackground">?android:attr/windowBackground</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/ads_status_color</item>
     </style>
 
-    <style name="Theme.DynamicApp.Dark" parent="Base.DynamicApp.Dark.NoActionBar">
+    <style name="Theme.Dynamic.Dark" parent="Base.Dynamic.Dark.NoActionBar">
         <item name="android:windowSplashScreenBackground">?android:attr/windowBackground</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/ads_status_color</item>
     </style>
 
-    <style name="Theme.DynamicApp.Light" parent="Base.DynamicApp.Light.NoActionBar">
+    <style name="Theme.Dynamic.Light" parent="Base.Dynamic.Light.NoActionBar">
         <item name="android:windowSplashScreenBackground">?android:attr/windowBackground</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/ads_status_color</item>
     </style>
 
-    <style name="Theme.DynamicApp.DayNight" parent="Base.DynamicApp.DayNight.NoActionBar">
+    <style name="Theme.Dynamic.DayNight" parent="Base.Dynamic.DayNight.NoActionBar">
         <item name="android:windowSplashScreenBackground">?android:attr/windowBackground</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/ads_status_color</item>
     </style>
 
-    <style name="Theme.DynamicApp.Translucent">
+    <style name="Theme.Dynamic.Translucent">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
-    <style name="Theme.DynamicApp.Dark.Translucent">
+    <style name="Theme.Dynamic.Dark.Translucent">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
-    <style name="Theme.DynamicApp.Light.Translucent">
+    <style name="Theme.Dynamic.Light.Translucent">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
-    <style name="Theme.DynamicApp.DayNight.Translucent">
+    <style name="Theme.Dynamic.DayNight.Translucent">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
-    </style>
-
-    <!-- Widget -->
-    <style name="Widget.DynamicApp.Image.Borderless">
-        <item name="android:padding">@dimen/ads_margin_medium</item>
-        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-        <item name="android:scaleType">fitCenter</item>
-        <item name="adt_styleBorderless">true</item>
-    </style>
-
-    <style name="Widget.DynamicApp.Button.ImageButton">
-        <item name="android:padding">0dp</item>
-        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-        <item name="adt_styleBorderless">true</item>
-    </style>
-
-    <style name="Widget.DynamicApp.Button.Remote">
-        <item name="android:background">@drawable/ads_button_remote</item>
-    </style>
-
-    <style name="Widget.DynamicApp.Button.Remote.Borderless">
-        <item name="android:padding">2dp</item>
-        <item name="android:background">@drawable/ads_button_remote_borderless</item>
     </style>
 
 </resources>

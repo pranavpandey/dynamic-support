@@ -18,7 +18,7 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Widget.DynamicApp.Scroller.Vertical"
+    style="?attr/ads_widgetScrollerVertical"
     android:id="@+id/ads_dialog_theme_root">
 
     <LinearLayout
@@ -29,7 +29,7 @@
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            style="?attr/ads_widgetTextInputLayoutFilledBox"
             android:id="@+id/ads_dialog_theme_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             tools:targetApi="jelly_bean_mr1">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
-                style="@style/Widget.DynamicApp.TextInputEditText"
+                style="?attr/ads_widgetTextInputEditText"
                 android:id="@+id/ads_dialog_theme_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

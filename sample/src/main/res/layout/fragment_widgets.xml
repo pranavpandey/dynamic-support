@@ -18,7 +18,7 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Scroller.Padding.Vertical"
+    style="?attr/ads_widgetScrollerPaddingVertical"
     android:id="@+id/scroll_home">
 
     <LinearLayout
@@ -28,7 +28,7 @@
         android:descendantFocusability="beforeDescendants">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-            style="@style/Widget.DynamicApp.Card">
+            style="?attr/ads_widgetCard">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,7 +47,7 @@
                     android:orientation="horizontal">
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-                        style="@style/Widget.DynamicApp.Button"
+                        style="?attr/ads_widgetButton"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
@@ -55,7 +55,7 @@
                         app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-                        style="@style/Widget.DynamicApp.Button"
+                        style="?attr/ads_widgetButton"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
@@ -64,7 +64,7 @@
                         app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-                        style="@style/Widget.DynamicApp.Button"
+                        style="?attr/ads_widgetButton"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
@@ -81,7 +81,7 @@
                     android:orientation="horizontal">
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-                        style="@style/Widget.DynamicApp.Button.TextButton"
+                        style="?attr/ads_widgetButtonText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
@@ -89,7 +89,7 @@
                         app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-                        style="@style/Widget.DynamicApp.Button.TextButton"
+                        style="?attr/ads_widgetButtonText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
@@ -98,7 +98,7 @@
                         app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-                        style="@style/Widget.DynamicApp.Button.TextButton"
+                        style="?attr/ads_widgetButtonText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
@@ -113,7 +113,7 @@
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-            style="@style/Widget.DynamicApp.Card">
+            style="?attr/ads_widgetCard">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -232,7 +232,7 @@
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-            style="@style/Widget.DynamicApp.Card">
+            style="?attr/ads_widgetCard">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -257,14 +257,14 @@
                         app:adt_contrastWithColorType="surface" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                        style="?attr/ads_widgetTextInputLayoutFilledBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/ads_margin_small"
                         app:adt_contrastWithColorType="surface" >
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
-                            style="@style/Widget.DynamicApp.TextInputEditText"
+                            style="?attr/ads_widgetTextInputEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/widget_text_input_layout"
@@ -273,14 +273,14 @@
                     </com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout>
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        style="?attr/ads_widgetTextInputLayoutOutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/ads_margin_small"
                         app:adt_contrastWithColorType="surface" >
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
-                            style="@style/Widget.DynamicApp.TextInputEditText.Outlined"
+                            style="?attr/ads_widgetTextInputEditTextOutlined"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/widget_text_input_layout_outlined"
@@ -295,7 +295,7 @@
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-            style="@style/Widget.DynamicApp.Card">
+            style="?attr/ads_widgetCard">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -407,7 +407,7 @@
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-            style="@style/Widget.DynamicApp.Card">
+            style="?attr/ads_widgetCard">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -452,7 +452,7 @@
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-            style="@style/Widget.DynamicApp.Card">
+            style="?attr/ads_widgetCard">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -519,7 +519,7 @@
         </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-            style="@style/Widget.DynamicApp.Card">
+            style="?attr/ads_widgetCard">
 
             <LinearLayout
                 android:layout_width="match_parent"

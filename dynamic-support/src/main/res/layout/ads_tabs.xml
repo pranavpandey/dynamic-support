@@ -17,13 +17,7 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicTabLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="?attr/ads_widgetTabLayout"
     android:id="@+id/ads_tab_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:minHeight="@dimen/ads_tab_height"
-    app:tabMinWidth="@dimen/ads_tab_min_width"
-    app:tabContentStart="@dimen/ads_tab_inset_start"
-    app:tabGravity="start"
-    app:tabIndicatorGravity="bottom"
-    app:tabMode="scrollable" />
+    android:layout_height="wrap_content" />

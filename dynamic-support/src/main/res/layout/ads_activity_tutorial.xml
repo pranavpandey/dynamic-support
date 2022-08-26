@@ -23,7 +23,7 @@
     android:layout_height="match_parent">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-        style="@style/Widget.DynamicApp.Image.Card.Big.Tutorial"
+        style="?attr/ads_widgetImageCardBigTutorial"
         android:id="@+id/ads_tutorial_backdrop"
         app:srcCompat="@drawable/ads_ic_tutorial" />
 
@@ -61,7 +61,7 @@
                     android:orientation="horizontal">
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
-                        style="@style/Widget.DynamicApp.Button.ImageButton"
+                        style="?attr/ads_widgetButtonImage"
                         android:id="@+id/ads_tutorial_action_previous"
                         android:layout_width="@dimen/ads_icon_normal"
                         android:layout_height="@dimen/ads_icon_normal"
@@ -79,7 +79,7 @@
                         android:orientation="vertical">
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-                            style="@style/Widget.DynamicApp.Button.SingleLine"
+                            style="?attr/ads_widgetButtonSingleLine"
                             android:id="@+id/ads_tutorial_action_custom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
                     </LinearLayout>
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
-                        style="@style/Widget.DynamicApp.Button.ImageButton"
+                        style="?attr/ads_widgetButtonImage"
                         android:id="@+id/ads_tutorial_action_next_done"
                         android:layout_width="@dimen/ads_icon_normal"
                         android:layout_height="@dimen/ads_icon_normal"

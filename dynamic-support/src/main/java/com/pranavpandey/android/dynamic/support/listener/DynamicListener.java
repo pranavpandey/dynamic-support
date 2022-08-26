@@ -28,6 +28,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.AppTheme;
 import com.pranavpandey.android.dynamic.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -43,6 +44,13 @@ public interface DynamicListener {
      * @return The context used by this listener.
      */
     @NonNull Context getContext();
+
+    /**
+     * This method will be called to get the intended theme styles version for this listener.
+     *
+     * @return The intended theme styles version for this listener.
+     */
+    @DynamicTheme.Version int getRequiredThemeVersion();
 
     /**
      * Checks whether the night mode is enabled for this listener.

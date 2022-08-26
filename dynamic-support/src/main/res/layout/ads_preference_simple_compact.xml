@@ -20,36 +20,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        style="@style/Widget.DynamicApp.Content.Card.Clickable.Background"
+        style="?attr/ads_widgetContentCardClickableBackground"
         android:id="@+id/ads_preference"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
-            style="@style/Widget.DynamicApp.Content.Row.Horizontal">
+            style="?attr/ads_widgetContentRowHorizontal">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-                style="@style/Widget.DynamicApp.Image.Preference.Compact"
+                style="?attr/ads_widgetImagePreferenceCompact"
                 android:id="@+id/ads_preference_icon" />
 
             <LinearLayout
-                style="@style/Widget.DynamicApp.Content.Row.Vertical.Weight">
+                style="?attr/ads_widgetContentRowVerticalWeight">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Headline5.Card"
+                    style="?attr/ads_textAppearanceHeadline5"
                     android:id="@+id/ads_preference_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Subtitle1"
+                    style="?attr/ads_textAppearanceSubtitle1"
                     android:id="@+id/ads_preference_summary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Headline5.Card.Secondary"
+                    style="?attr/ads_textAppearanceSecondaryHeadline5"
                     android:id="@+id/ads_preference_value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

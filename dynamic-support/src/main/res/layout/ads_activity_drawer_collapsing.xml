@@ -30,12 +30,12 @@
         <include layout="@layout/ads_activity_collapsing" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicNavigationView
-            style="@style/Widget.DynamicApp.NavigationView"
+            style="?attr/ads_widgetNavigationView"
             android:id="@+id/ads_navigation_view"
             android:layout_width="@dimen/ads_drawer_size"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:theme="@style/Widget.DynamicApp.NavigationView.ThemeOverlay"
+            android:theme="?attr/ads_widgetNavigationViewOverlay"
             app:headerLayout="@layout/ads_header_drawer" />
 
     </com.pranavpandey.android.dynamic.support.widget.DynamicDrawerLayout>

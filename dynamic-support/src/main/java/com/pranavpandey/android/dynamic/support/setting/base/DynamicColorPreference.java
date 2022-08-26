@@ -233,7 +233,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
         };
 
         mColorView = LayoutInflater.from(getContext()).inflate(
-                R.layout.ads_preference_color, this, false)
+                R.layout.ads_preference_color, getViewFrame(), true)
                 .findViewById(R.id.ads_preference_color_view);
         setViewFrame(mColorView, true);
 

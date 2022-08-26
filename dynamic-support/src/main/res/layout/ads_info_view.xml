@@ -19,29 +19,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
-        style="@style/Widget.DynamicApp.Content.Row.Vertical"
+        style="?attr/ads_widgetContentRowVertical"
         android:id="@+id/ads_info_view"
         android:background="?attr/selectableItemBackground">
 
         <LinearLayout
-            style="@style/Widget.DynamicApp.Content.Card.Header"
+            style="?attr/ads_widgetContentCardHeader"
             android:orientation="horizontal">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-                style="@style/Widget.DynamicApp.Image.Info"
+                style="?attr/ads_widgetImageInfo"
                 android:id="@+id/ads_info_view_icon" />
 
             <LinearLayout
-                style="@style/Widget.DynamicApp.Content.Row.Vertical.Center">
+                style="?attr/ads_widgetContentRowVerticalCenter">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Headline5.Card.Info"
+                    style="?attr/ads_textAppearanceHeadline5"
                     android:id="@+id/ads_info_view_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Subtitle1"
+                    style="?attr/ads_textAppearanceSubtitle1Caps"
                     android:id="@+id/ads_info_view_subtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -63,7 +63,7 @@
         android:layout_gravity="end|bottom">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-            style="@style/Widget.DynamicApp.Image.Card.Big"
+            style="?attr/ads_widgetImageCardBig"
             android:id="@+id/ads_info_view_icon_big"
             android:layout_width="@dimen/ads_icon_card_permission"
             android:layout_height="@dimen/ads_icon_card_permission" />

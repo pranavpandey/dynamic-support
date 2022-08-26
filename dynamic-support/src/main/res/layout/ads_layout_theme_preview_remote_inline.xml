@@ -18,18 +18,18 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Content.Row.Horizontal"
+    style="?attr/ads_widgetContentRowHorizontal"
     android:id="@+id/ads_theme_preview_root">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-        style="@style/Widget.DynamicApp.Image.Preference.Theme"
+        style="?attr/ads_widgetImagePreferenceTheme"
         android:id="@+id/ads_theme_preview_icon"
         android:visibility="gone"
         app:srcCompat="@drawable/ads_ic_palette"
         app:adt_contrastWithColorType="surface" />
 
     <LinearLayout
-        style="@style/Widget.DynamicApp.Content.Row.Vertical"
+        style="?attr/ads_widgetContentRowVertical"
         android:layout_width="@dimen/ads_preview_width">
 
         <com.pranavpandey.android.dynamic.support.theme.view.DynamicRemoteThemePreview
@@ -38,7 +38,7 @@
             android:layout_height="@dimen/ads_preview_height_small" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            style="@style/TextAppearance.DynamicApp.Body1"
+            style="?attr/ads_textAppearanceBody1"
             android:id="@+id/ads_theme_preview_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

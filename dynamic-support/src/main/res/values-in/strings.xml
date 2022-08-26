@@ -21,7 +21,7 @@
     <string name="ads_navigation_drawer_open">Buka drawer navigasi</string>
     <string name="ads_navigation_drawer_close">Tutup drawer navigasi</string>
 
-    <!-- String formats -->
+    <!-- Formats -->
     <string name="ads_format_version">Versi %1$s</string>
     <string name="ads_search_empty">Tidak ada yang cocok dengan \"%1$s\".</string>
 
@@ -99,7 +99,7 @@
     <string name="ads_shortcut_created">Pintasan dibuat</string>
     <string name="ads_shortcuts_desc">Pilih pintasan untuk ditambahkan ke layar utama</string>
 
-    <!-- Navigation drawer and Menu -->
+    <!-- Navigation and Menu -->
     <string name="ads_nav_category_features">Menu</string>
     <string name="ads_nav_category_support">Dukungan pengembangan</string>
     <string name="ads_nav_category_contribute">Berkontribusi</string>
@@ -115,7 +115,7 @@
     <string name="ads_menu_info">Info</string>
     <string name="ads_menu_app_info">Info aplikasi</string>
 
-    <!-- Runtime permissions -->
+    <!-- Permissions -->
     <string name="ads_permissions">Perijinan</string>
     <string name="ads_permissions_subtitle">Mohon berikan perijinan berikut.</string>
     <string name="ads_permissions_subtitle_single">Mohon berikan perijinan berikut.</string>
@@ -200,7 +200,7 @@
     <string name="ads_backup_format_deleted">Cadangan dihapus: %1$s</string>
     <string name="ads_backup_format_restored">Cadangan dipulihkan: %1$s</string>
 
-    <!-- Backup options -->
+    <!-- Backup Options -->
     <string name="ads_backup_storage_app">Penyimpanan aplikasi</string>
     <string name="ads_backup_storage_device">Penyimpanan device</string>
     <string name="ads_backup_option_rename">Rubah nama</string>
@@ -212,6 +212,7 @@
     <string name="ads_dynamic_theme_summary">Tema diterapkan oleh penerima.</string>
     <string name="ads_dynamic_color_summary">Implementasi untuk warna otomatis.</string>
     <string name="ads_dynamic">Dinamis</string>
+    <string name="ads_color">Warna</string>
     <string name="ads_theme">Tema</string>
     <string name="ads_theme_code">Kode</string>
     <string name="ads_theme_code_desc">Pindai atau bagikan tema.</string>
@@ -296,14 +297,16 @@
     <string name="ads_theme_presets_empty">Tanpa preset</string>
 
     <!-- Theme -->
+    <string name="ads_theme_version_original">Asli</string>
+    <string name="ads_theme_version_latest">Terbaru</string>
     <string name="ads_theme_toast_default">Pesan toast default</string>
     <string name="ads_theme_toast_themed">Pesan toast bertema</string>
     <string name="ads_theme_entry_auto">Otomatis</string>
-    <string name="ads_theme_settings_auto_desc">Pilih auto untuk menggunakan pengaturan aplikasi.</string>
-    <string name="ads_theme_settings_default_desc">Pilih auto untuk menggunakan pengaturan default.</string>
+    <string name="ads_theme_entry_auto_desc">Pilih auto untuk menggunakan pengaturan aplikasi.</string>
+    <string name="ads_theme_entry_auto_default_desc">Pilih auto untuk menggunakan pengaturan default.</string>
+    <string name="ads_theme_entry_auto_background_aware_desc">Pilih auto untuk menggunakan palet warna aplikasi. Sesuaikan waran berdasarkan latar belakang untuk menyediakan visibilitas terbaik.</string>
     <string name="ads_theme_color_auto_desc">Pilih auto untuk menggunakan palet warna aplikasi.</string>
     <string name="ads_theme_color_default_desc">Pilih auto untuk menggunakan palet warna default.</string>
-    <string name="ads_theme_entry_auto_background_aware_desc">Pilih auto untuk menggunakan palet warna aplikasi. Sesuaikan waran berdasarkan latar belakang untuk menyediakan visibilitas terbaik.</string>
     <string name="ads_theme_entry_day">Siang</string>
     <string name="ads_theme_entry_night">Malam</string>
     <string name="ads_theme_entry_light">Terang</string>
@@ -373,7 +376,7 @@
     <string name="ads_notification_close_drawer_summary">Tutup drawer notifikasi setelah melakukan aksi.</string>
     <string name="ads_notification_close_drawer_summary_unchecked">Jangan ubah keadaan drawer notifikasi setelah melakukan aksi.</string>
 
-    <!-- App widget -->
+    <!-- App Widget -->
     <string name="ads_widget_customise">Kustomisasi</string>
     <string name="ads_widget_customise_desc">Kustomisasi widget di bawahnya.</string>
     <string name="ads_widget_preview">Pratinjau</string>
@@ -409,7 +412,7 @@
     <string name="ads_support_restart_app_summary">Mulai ulang aplikasi dan service untuk menyegarkan keadaan aplikasi.</string>
     <string name="ads_support_restart_app_desc">Gunakan bila service tidak kunjung mulai atau aplikasi tidak berjalan sebagaimana mestinya. Seluruh pengaturan tidak akan berubah setelah melakukan tindakan ini.</string>
 
-    <!-- Developer and App info -->
+    <!-- Developer and Info -->
     <string name="ads_info_made_in">Dibuat di India</string>
     <string name="ads_info_made_by">Ditulis dan didesain oleh</string>
     <string name="ads_info_made_by_alt">Dikembangkan oleh</string>

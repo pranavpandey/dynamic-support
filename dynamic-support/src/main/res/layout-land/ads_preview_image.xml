@@ -23,7 +23,7 @@
     android:layout_height="match_parent">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
-        style="@style/Widget.DynamicApp.Scroller.Padding.Vertical"
+        style="?attr/ads_widgetScrollerPaddingVertical"
         android:id="@+id/ads_preview_image_root">
 
         <LinearLayout
@@ -46,28 +46,28 @@
                 android:orientation="horizontal">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-                    style="@style/Widget.DynamicApp.Image.Preview"
+                    style="?attr/ads_widgetImagePreview"
                     android:id="@+id/ads_preview_image"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.45" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-                    style="@style/Widget.DynamicApp.Card"
+                    style="?attr/ads_widgetCard"
                     android:id="@+id/ads_preview_text_card"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.55">
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout
-                        style="@style/Widget.DynamicApp.Content.Clickable.Background"
+                        style="?attr/ads_widgetContentClickableBackground"
                         android:id="@+id/ads_preview_text_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:adt_contrastWithColorType="surface">
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                            style="@style/TextAppearance.DynamicApp.Headline5.Card.Info"
+                            style="?attr/ads_textAppearanceHeadline5"
                             android:id="@+id/ads_preview_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
         android:layout_gravity="end|bottom">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-            style="@style/Widget.DynamicApp.Image.Card.Big"
+            style="?attr/ads_widgetImageCardBig"
             android:id="@+id/ads_preview_fallback_image"
             android:layout_width="@dimen/ads_preview_code_size_small"
             android:layout_height="@dimen/ads_preview_code_size_small"

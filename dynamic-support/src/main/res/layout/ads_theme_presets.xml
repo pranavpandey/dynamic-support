@@ -18,12 +18,12 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Content.Row.Vertical"
+    style="?attr/ads_widgetContentRowVertical"
     android:id="@+id/ads_theme_presets_root">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
         android:id="@+id/ads_theme_presets_header_card"
-        style="@style/Widget.DynamicApp.Card.Margin">
+        style="?attr/ads_widgetCardMargin">
 
         <com.pranavpandey.android.dynamic.support.view.DynamicHeader
             android:id="@+id/ads_theme_presets_header"
@@ -36,7 +36,7 @@
     </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-        style="@style/Widget.DynamicApp.Card.Margin"
+        style="?attr/ads_widgetCardMargin"
         android:id="@+id/ads_theme_presets_info_card"
         android:layout_marginBottom="@dimen/ads_scroller_margin">
 
@@ -52,7 +52,7 @@
     </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
-        style="@style/Widget.DynamicApp.Scroller.Nested.Padding.Horizontal"
+        style="?attr/ads_widgetScrollerNestedPaddingHorizontal"
         android:id="@+id/ads_recycler_view"
         android:paddingTop="0dp" />
 
