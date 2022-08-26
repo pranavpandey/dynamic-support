@@ -1,0 +1,1166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018-2022 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<resources>
+
+    <!-- Animation -->
+    <style name="Animation.Dynamic2" />
+    <style name="Animation.Dynamic2.Window" />
+
+    <style name="Animation.Dynamic2.Window.FadeInOut">
+        <item name="android:windowEnterAnimation">@anim/ads_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/ads_fade_out</item>
+    </style>
+
+    <style name="Animation.Dynamic2.Dialog">
+        <item name="android:windowEnterAnimation">@anim/ads_dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/ads_dialog_exit</item>
+    </style>
+
+    <style name="Animation.Dynamic2.Popup">
+        <item name="android:windowEnterAnimation">@anim/ads_popup_enter</item>
+        <item name="android:windowExitAnimation">@anim/ads_fade_out</item>
+    </style>
+
+    <!-- Text Appearance -->
+    <style name="TextAppearance.Dynamic2">
+        <item name="android:textSize">@dimen/ads_font_size_default</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Caps" />
+    <style name="TextAppearance.Secondary.Dynamic2">
+        <item name="android:textSize">@dimen/ads_font_size_default</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Secondary.Dynamic2.Caps" />
+
+    <style name="TextAppearance.Dynamic2.Headline1"
+        parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:textSize">@dimen/ads_font_size_headline1</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Headline1.Caps" />
+    <style name="TextAppearance.Secondary.Dynamic2.Headline1"
+        parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:textSize">@dimen/ads_font_size_headline1</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Secondary.Dynamic2.Headline1.Caps" />
+
+    <style name="TextAppearance.Dynamic2.Headline2"
+        parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="android:textSize">@dimen/ads_font_size_headline2</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Headline2.Caps" />
+    <style name="TextAppearance.Secondary.Dynamic2.Headline2"
+        parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="android:textSize">@dimen/ads_font_size_headline2</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Secondary.Dynamic2.Headline2.Caps" />
+
+    <style name="TextAppearance.Dynamic2.Headline3"
+        parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:textSize">@dimen/ads_font_size_headline3</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Headline3.Caps" />
+    <style name="TextAppearance.Secondary.Dynamic2.Headline3"
+        parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:textSize">@dimen/ads_font_size_headline3</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Secondary.Dynamic2.Headline3.Caps" />
+
+    <style name="TextAppearance.Dynamic2.Headline4"
+        parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textSize">@dimen/ads_font_size_headline4</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Headline4.Caps" />
+    <style name="TextAppearance.Secondary.Dynamic2.Headline4"
+        parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textSize">@dimen/ads_font_size_headline4</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Secondary.Dynamic2.Headline4.Caps" />
+
+    <style name="TextAppearance.Dynamic2.Headline5"
+        parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textSize">@dimen/ads_font_size_headline5</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Headline5.Caps" />
+    <style name="TextAppearance.Secondary.Dynamic2.Headline5"
+        parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textSize">@dimen/ads_font_size_headline5</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Secondary.Dynamic2.Headline5.Caps" />
+
+    <style name="TextAppearance.Dynamic2.Headline6"
+        parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textSize">@dimen/ads_font_size_headline6</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Headline6.Caps" />
+    <style name="TextAppearance.Secondary.Dynamic2.Headline6"
+        parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textSize">@dimen/ads_font_size_headline6</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Secondary.Dynamic2.Headline6.Caps" />
+
+    <style name="TextAppearance.Dynamic2.Subtitle1"
+        parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textSize">@dimen/ads_font_size_subtitle1</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Subtitle1.Caps" />
+    <style name="TextAppearance.Secondary.Dynamic2.Subtitle1"
+        parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textSize">@dimen/ads_font_size_subtitle1</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Secondary.Dynamic2.Subtitle1.Caps" />
+
+    <style name="TextAppearance.Dynamic2.Subtitle2"
+        parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textSize">@dimen/ads_font_size_subtitle2</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Subtitle2.Caps" />
+    <style name="TextAppearance.Secondary.Dynamic2.Subtitle2"
+        parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textSize">@dimen/ads_font_size_subtitle2</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Secondary.Dynamic2.Subtitle2.Caps" />
+
+    <style name="TextAppearance.Dynamic2.Body1"
+        parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">@dimen/ads_font_size_body1</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Body1.Caps" />
+    <style name="TextAppearance.Secondary.Dynamic2.Body1"
+        parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">@dimen/ads_font_size_body1</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Secondary.Dynamic2.Body1.Caps" />
+
+    <style name="TextAppearance.Dynamic2.Body2"
+        parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textSize">@dimen/ads_font_size_body2</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Body2.Caps" />
+    <style name="TextAppearance.Secondary.Dynamic2.Body2"
+        parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textSize">@dimen/ads_font_size_body2</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    <style name="TextAppearance.Secondary.Dynamic2.Body2.Caps" />
+
+    <style name="TextAppearance.Dynamic2.Caption"
+        parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">@dimen/ads_font_size_caption</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Caption.Caps" />
+    <style name="TextAppearance.Secondary.Dynamic2.Caption"
+        parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">@dimen/ads_font_size_caption</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Secondary.Dynamic2.Caption.Caps" />
+
+    <style name="TextAppearance.Dynamic2.Button"
+        parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/ads_font_size_button</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Button.Caps" />
+    <style name="TextAppearance.Secondary.Dynamic2.Button"
+        parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/ads_font_size_button</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Secondary.Dynamic2.Button.Caps" />
+
+    <style name="TextAppearance.Dynamic2.Overline"
+        parent="TextAppearance.MaterialComponents.Overline">
+        <item name="android:textSize">@dimen/ads_font_size_caption</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Overline.Caps" />
+    <style name="TextAppearance.Secondary.Dynamic2.Overline"
+        parent="TextAppearance.MaterialComponents.Overline">
+        <item name="android:textSize">@dimen/ads_font_size_caption</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Secondary.Dynamic2.Overline.Caps" />
+
+    <style name="TextAppearance.Dynamic2.Subtitle1.Popup">
+        <item name="android:textSize">@dimen/ads_font_size_subtitle1_toolbar</item>
+    </style>
+
+    <style name="TextAppearance.Dynamic2.Dialog"
+        parent="TextAppearance.Dynamic2.Body1">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="android:textSize">@dimen/ads_dialog_font_size</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Dialog.Primary"
+        parent="TextAppearance.Dynamic2.Body1">
+        <item name="adt_colorType">primary</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Dialog.Accent"
+        parent="TextAppearance.Dynamic2.Body1">
+        <item name="adt_colorType">accent</item>
+    </style>
+
+    <style name="TextAppearance.Dynamic2.Headline6.Splash">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:alpha">@integer/ads_alpha_placeholder</item>
+        <item name="android:textAppearance">?attr/ads_textAppearanceHeadline6</item>
+        <item name="android:textSize">@dimen/ads_font_size_headline6_splash</item>
+        <item name="adt_rtlSupport">false</item>
+        <item name="adt_colorType">tint_primary</item>
+        <item name="adt_contrastWithColorType">primary</item>
+    </style>
+    <style name="TextAppearance.Secondary.Dynamic2.Subtitle1.Splash">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:alpha">@integer/ads_alpha_placeholder</item>
+        <item name="android:textAppearance">?attr/ads_textAppearanceSecondarySubtitle1</item>
+        <item name="android:textSize">@dimen/ads_font_size_subtitle1_splash</item>
+        <item name="adt_rtlSupport">false</item>
+        <item name="adt_colorType">tint_primary</item>
+        <item name="adt_contrastWithColorType">primary</item>
+    </style>
+
+    <style name="TextAppearance.Dynamic2.Headline5.Tutorial">
+        <item name="android:textSize">@dimen/ads_font_size_headline5_tutorial</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Subtitle1.Tutorial">
+        <item name="android:textSize">@dimen/ads_font_size_subtitle1_tutorial</item>
+    </style>
+    <style name="TextAppearance.Secondary.Dynamic2.Body1.Tutorial">
+        <item name="android:textSize">@dimen/ads_font_size_body1_tutorial</item>
+    </style>
+
+    <style name="TextAppearance.Dynamic2.Caption.Caps.Drawer">
+        <item name="android:textSize">@dimen/ads_font_size_regular</item>
+    </style>
+
+    <style name="TextAppearance.Dynamic2.Toolbar"
+        parent="TextAppearance.Dynamic2.Headline6">
+        <item name="android:textSize">@dimen/ads_font_size_headline6_toolbar</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Toolbar.Expanded"
+        parent="TextAppearance.Dynamic2.Headline5">
+        <item name="android:textSize">@dimen/ads_font_size_headline6_toolbar_expanded</item>
+    </style>
+    <style name="TextAppearance.Dynamic2.Toolbar.Subtitle"
+        parent="TextAppearance.Secondary.Dynamic2.Subtitle1">
+        <item name="android:textSize">@dimen/ads_font_size_subtitle1_toolbar</item>
+    </style>
+
+    <style name="TextAppearance.Dynamic2.Value">
+        <item name="android:textSize">@dimen/ads_font_size_preference_value</item>
+        <item name="adt_rtlSupport">false</item>
+        <item name="adt_colorType">accent</item>
+        <item name="adt_contrastWithColor">?attr/adt_contrastWithDefault</item>
+    </style>
+
+    <!-- Widget -->
+    <style name="Widget.Dynamic2" />
+    <style name="Widget.Dynamic2.Margin">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:layout_marginStart">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/ads_scroller_margin_vertical</item>
+        <item name="android:layout_marginRight">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:layout_marginEnd">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:layout_marginBottom">@dimen/ads_scroller_margin_vertical</item>
+    </style>
+    <style name="Widget.Dynamic2.Margin.Large">
+        <item name="android:layout_marginLeft">@dimen/ads_scroller_margin_layout</item>
+        <item name="android:layout_marginStart">@dimen/ads_scroller_margin_layout</item>
+        <item name="android:layout_marginTop">@dimen/ads_scroller_margin_layout</item>
+        <item name="android:layout_marginRight">@dimen/ads_scroller_margin_layout</item>
+        <item name="android:layout_marginEnd">@dimen/ads_scroller_margin_layout</item>
+        <item name="android:layout_marginBottom">@dimen/ads_scroller_margin_layout</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/ads_margin_divider</item>
+        <item name="android:background">?attr/dividerHorizontal</item>
+        <item name="adt_dynamicCornerSize">false</item>
+    </style>
+    <style name="Widget.Dynamic2.Divider.Large" parent="Widget.Dynamic2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/ads_margin_divider_large</item>
+        <item name="android:layout_marginTop">@dimen/ads_margin_small</item>
+        <item name="android:layout_marginBottom">@dimen/ads_margin_small</item>
+    </style>
+    <style name="Widget.Dynamic2.Divider.Vertical">
+        <item name="android:layout_width">@dimen/ads_margin_divider</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">?attr/dividerVertical</item>
+        <item name="adt_dynamicCornerSize">false</item>
+    </style>
+    <style name="Widget.Dynamic2.Divider.Vertical.Large" parent="Widget.Dynamic2">
+        <item name="android:layout_width">@dimen/ads_margin_divider_large</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/ads_margin_small</item>
+        <item name="android:layout_marginStart">@dimen/ads_margin_small</item>
+        <item name="android:layout_marginRight">@dimen/ads_margin_small</item>
+        <item name="android:layout_marginEnd">@dimen/ads_margin_small</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextAppearance">?attr/ads_textAppearanceToolbarTitle</item>
+        <item name="subtitleTextAppearance">?attr/ads_textAppearanceToolbarSubtitle</item>
+    </style>
+
+    <style name="Widget.Dynamic2.TabLayout" parent="Widget.Material3.TabLayout">
+        <item name="android:minHeight">@dimen/ads_tab_height</item>
+        <item name="tabMinWidth">@dimen/ads_tab_min_width</item>
+        <item name="tabContentStart">@dimen/ads_tab_inset_start</item>
+        <item name="tabGravity">start</item>
+        <item name="tabIndicatorGravity">bottom</item>
+        <item name="tabIndicatorFullWidth">true</item>
+        <item name="tabMode">scrollable</item>
+    </style>
+
+    <style name="Widget.Dynamic2.NavigationView" parent="">
+        <item name="android:textSize">@dimen/ads_font_size_navigation_view</item>
+        <item name="itemBackground">@null</item>
+        <item name="itemRippleColor">@null</item>
+    </style>
+    <style name="Widget.Dynamic2.NavigationView.ThemeOverlay"
+        parent="ThemeOverlay.Material3.NavigationView">
+        <item name="selectableItemBackground">@null</item>
+        <item name="itemBackground">@null</item>
+        <item name="itemRippleColor">@null</item>
+    </style>
+
+    <style name="Widget.Dynamic2.NavigationRailView" parent="Widget.Material3.NavigationRailView">
+        <item name="elevation">0dp</item>
+        <item name="menuGravity">center</item>
+        <item name="labelVisibilityMode">unlabeled</item>
+    </style>
+
+    <style name="Widget.Dynamic2.BottomNavigationView"
+        parent="Widget.Material3.BottomNavigationView">
+        <item name="elevation">0dp</item>
+        <item name="labelVisibilityMode">selected</item>
+    </style>
+
+    <style name="Widget.Dynamic2.FloatingActionButton"
+        parent="Widget.Material3.FloatingActionButton.Large.Secondary">
+        <item name="fabCustomSize">@dimen/ads_fab_size</item>
+    </style>
+    <style name="Widget.Dynamic2.FloatingActionButton.Mini"
+        parent="Widget.Material3.FloatingActionButton.Secondary">
+        <item name="fabSize">mini</item>
+        <item name="fabCustomSize">@dimen/ads_fab_size_mini</item>
+    </style>
+    <style name="Widget.Dynamic2.ExtendedFloatingActionButton"
+        parent="Widget.Material3.ExtendedFloatingActionButton.Secondary" />
+
+    <style name="Widget.Dynamic2.BottomSheet">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:padding">@dimen/ads_bottom_sheet_margin</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:clickable">true</item>
+        <item name="layout_behavior">com.pranavpandey.android.dynamic.support.behavior.DynamicBottomSheetBehavior</item>
+        <item name="behavior_peekHeight">@dimen/ads_bottom_sheet_peek_height</item>
+        <item name="behavior_hideable">false</item>
+        <item name="gestureInsetBottomIgnored">true</item>
+    </style>
+
+    <style name="Widget.Dynamic2.ViewPager">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:clipChildren">false</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Scroller">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fillViewport">true</item>
+        <item name="android:clipChildren">false</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:overScrollMode">ifContentScrolls</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+        <item name="android:scrollbarSize">@dimen/ads_scrollbar_size</item>
+    </style>
+    <style name="Widget.Dynamic2.Scroller.Clip">
+        <item name="android:clipToPadding">true</item>
+    </style>
+    <style name="Widget.Dynamic2.Scroller.Vertical">
+        <item name="android:orientation">vertical</item>
+        <item name="android:scrollbars">vertical</item>
+    </style>
+    <style name="Widget.Dynamic2.Scroller.Vertical.Clip">
+        <item name="android:clipToPadding">true</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Scroller.Padding">
+        <item name="android:paddingLeft">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:paddingStart">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:paddingTop">@dimen/ads_scroller_margin_vertical</item>
+        <item name="android:paddingRight">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:paddingEnd">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:paddingBottom">@dimen/ads_scroller_margin_vertical</item>
+    </style>
+    <style name="Widget.Dynamic2.Scroller.Padding.Clip">
+        <item name="android:clipToPadding">true</item>
+    </style>
+    <style name="Widget.Dynamic2.Scroller.Padding.Vertical">
+        <item name="android:orientation">vertical</item>
+        <item name="android:scrollbars">vertical</item>
+    </style>
+    <style name="Widget.Dynamic2.Scroller.Padding.Vertical.Clip">
+        <item name="android:clipToPadding">true</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Scroller.Nested">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fillViewport">false</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:scrollbars">none</item>
+        <item name="adt_windowInsets">false</item>
+    </style>
+    <style name="Widget.Dynamic2.Scroller.Nested.Horizontal">
+        <item name="android:overScrollMode">ifContentScrolls</item>
+        <item name="android:scrollbars">horizontal</item>
+        <item name="android:scrollbarSize">@dimen/ads_scrollbar_size_horizontal</item>
+    </style>
+    <style name="Widget.Dynamic2.Scroller.Nested.GridView">
+        <item name="android:numColumns">auto_fit</item>
+        <item name="android:stretchMode">spacingWidth</item>
+        <item name="android:stretchColumns">spacingWidth</item>
+        <item name="android:listSelector">@android:color/transparent</item>
+        <item name="android:cacheColorHint">@null</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Scroller.Nested.Padding">
+        <item name="android:paddingLeft">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:paddingStart">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:paddingTop">@dimen/ads_scroller_margin_vertical</item>
+        <item name="android:paddingRight">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:paddingEnd">@dimen/ads_scroller_margin_horizontal</item>
+        <item name="android:paddingBottom">@dimen/ads_scroller_margin_vertical</item>
+        <item name="android:overScrollMode">ifContentScrolls</item>
+    </style>
+    <style name="Widget.Dynamic2.Scroller.Nested.Padding.Horizontal">
+        <item name="android:overScrollMode">ifContentScrolls</item>
+        <item name="android:scrollbars">horizontal</item>
+        <item name="android:scrollbarSize">@dimen/ads_scrollbar_size_horizontal</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/ads_card_view_margin_horizontal</item>
+        <item name="android:layout_marginStart">@dimen/ads_card_view_margin_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/ads_card_view_margin_vertical</item>
+        <item name="android:layout_marginRight">@dimen/ads_card_view_margin_horizontal</item>
+        <item name="android:layout_marginEnd">@dimen/ads_card_view_margin_horizontal</item>
+        <item name="android:layout_marginBottom">@dimen/ads_card_view_margin_vertical</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="cardBackgroundColor">?attr/adt_cardBackgroundColor</item>
+        <item name="cardCornerRadius">?attr/adt_cardCornerRadius</item>
+        <item name="cardElevation">?attr/adt_cardElevation</item>
+        <item name="strokeWidth">?attr/adt_strokeWidth</item>
+    </style>
+    <style name="Widget.Dynamic2.Card.Clickable">
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+    <style name="Widget.Dynamic2.Card.Empty">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="Widget.Dynamic2.Card.Empty.Clickable">
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Card.Margin">
+        <item name="android:layout_marginLeft">@dimen/ads_card_view_margin_layout</item>
+        <item name="android:layout_marginStart">@dimen/ads_card_view_margin_layout</item>
+        <item name="android:layout_marginTop">@dimen/ads_card_view_margin_layout</item>
+        <item name="android:layout_marginRight">@dimen/ads_card_view_margin_layout</item>
+        <item name="android:layout_marginEnd">@dimen/ads_card_view_margin_layout</item>
+        <item name="android:layout_marginBottom">@dimen/ads_card_view_margin_layout</item>
+    </style>
+    <style name="Widget.Dynamic2.Card.Margin.Clickable">
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+    <style name="Widget.Dynamic2.Card.Margin.Empty">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="Widget.Dynamic2.Card.Margin.Empty.Clickable">
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Card.Floating">
+        <item name="android:layout_margin">@dimen/ads_card_view_margin_floating</item>
+        <item name="cardElevation">@dimen/ads_card_view_elevation_floating</item>
+        <item name="adt_contrastWithColorType">surface</item>
+        <item name="adt_forceElevation">true</item>
+        <item name="adt_floatingView">true</item>
+    </style>
+    <style name="Widget.Dynamic2.Card.Floating.Dialog">
+        <item name="android:layout_margin">@dimen/ads_card_view_margin_dialog</item>
+        <item name="cardElevation">@dimen/ads_card_view_elevation_dialog</item>
+        <item name="adt_colorType">background</item>
+    </style>
+    <style name="Widget.Dynamic2.Card.Floating.BottomSheet">
+        <item name="android:layout_margin">@dimen/ads_card_view_margin_bottom_sheet</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="cardElevation">@dimen/ads_card_view_elevation_bottom_sheet</item>
+    </style>
+    <style name="Widget.Dynamic2.Card.Floating.Toast">
+        <item name="android:layout_margin">@dimen/ads_margin_small</item>
+        <item name="android:padding">0dp</item>
+        <item name="cardElevation">@dimen/ads_card_view_elevation_toast</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Button" parent="Widget.Material3.Button.ElevatedButton">
+        <item name="android:insetLeft">@dimen/ads_margin_tiny</item>
+        <item name="android:insetRight">@dimen/ads_margin_tiny</item>
+        <item name="android:textAppearance">?attr/textAppearanceButton</item>
+        <item name="rippleColor">@android:color/transparent</item>
+        <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
+        <item name="adt_colorType">accent</item>
+    </style>
+    <style name="Widget.Dynamic2.Button.SingleLine">
+        <item name="android:singleLine">true</item>
+        <item name="android:lines">@integer/ads_text_single_line</item>
+        <item name="android:maxLines">@integer/ads_text_single_line</item>
+    </style>
+    <style name="Widget.Dynamic2.Button.Small">
+        <item name="android:minWidth">@dimen/ads_button_min_width</item>
+        <item name="android:minHeight">@dimen/ads_button_min_height</item>
+    </style>
+    <style name="Widget.Dynamic2.Button.Small.SingleLine">
+        <item name="android:singleLine">true</item>
+        <item name="android:lines">@integer/ads_text_single_line</item>
+        <item name="android:maxLines">@integer/ads_text_single_line</item>
+    </style>
+    <style name="Widget.Dynamic2.Button.Icon" parent="Widget.Material3.Button.Icon">
+        <item name="android:insetLeft">@dimen/ads_margin_tiny</item>
+        <item name="android:insetRight">@dimen/ads_margin_tiny</item>
+        <item name="android:textAppearance">?attr/textAppearanceButton</item>
+        <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
+        <item name="adt_colorType">accent</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Button.UnelevatedButton"
+        parent="Widget.Material3.Button.UnelevatedButton">
+        <item name="android:insetLeft">@dimen/ads_margin_tiny</item>
+        <item name="android:insetRight">@dimen/ads_margin_tiny</item>
+        <item name="android:textAppearance">?attr/textAppearanceButton</item>
+        <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
+        <item name="adt_colorType">accent</item>
+    </style>
+    <style name="Widget.Dynamic2.Button.UnelevatedButton.SingleLine">
+        <item name="android:singleLine">true</item>
+        <item name="android:lines">@integer/ads_text_single_line</item>
+        <item name="android:maxLines">@integer/ads_text_single_line</item>
+    </style>
+    <style name="Widget.Dynamic2.Button.UnelevatedButton.Small">
+        <item name="android:minWidth">@dimen/ads_button_min_width</item>
+        <item name="android:minHeight">@dimen/ads_button_min_height</item>
+    </style>
+    <style name="Widget.Dynamic2.Button.UnelevatedButton.Small.SingleLine">
+        <item name="android:singleLine">true</item>
+        <item name="android:lines">@integer/ads_text_single_line</item>
+        <item name="android:maxLines">@integer/ads_text_single_line</item>
+    </style>
+    <style name="Widget.Dynamic2.Button.UnelevatedButton.Icon"
+        parent="Widget.Material3.Button.Icon">
+        <item name="android:insetLeft">@dimen/ads_margin_tiny</item>
+        <item name="android:insetRight">@dimen/ads_margin_tiny</item>
+        <item name="android:textAppearance">?attr/textAppearanceButton</item>
+        <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
+        <item name="adt_colorType">accent</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Button.TextButton"
+        parent="Widget.Material3.Button.TextButton">
+        <item name="android:insetLeft">@dimen/ads_margin_tiny</item>
+        <item name="android:insetRight">@dimen/ads_margin_tiny</item>
+        <item name="android:textAppearance">?attr/textAppearanceButton</item>
+        <item name="rippleColor">@android:color/transparent</item>
+        <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
+        <item name="adt_colorType">accent</item>
+        <item name="adt_styleBorderless">true</item>
+    </style>
+    <style name="Widget.Dynamic2.Button.TextButton.SingleLine">
+        <item name="android:singleLine">true</item>
+        <item name="android:lines">@integer/ads_text_single_line</item>
+        <item name="android:maxLines">@integer/ads_text_single_line</item>
+    </style>
+    <style name="Widget.Dynamic2.Button.TextButton.Small">
+        <item name="android:minWidth">@dimen/ads_button_min_width</item>
+        <item name="android:minHeight">@dimen/ads_button_min_height</item>
+    </style>
+    <style name="Widget.Dynamic2.Button.TextButton.Small.SingleLine">
+        <item name="android:singleLine">true</item>
+        <item name="android:lines">@integer/ads_text_single_line</item>
+        <item name="android:maxLines">@integer/ads_text_single_line</item>
+    </style>
+    <style name="Widget.Dynamic2.Button.TextButton.Icon"
+        parent="Widget.Material3.Button.TextButton.Icon">
+        <item name="android:insetLeft">@dimen/ads_margin_tiny</item>
+        <item name="android:insetRight">@dimen/ads_margin_tiny</item>
+        <item name="android:textAppearance">?attr/textAppearanceButton</item>
+        <item name="cornerRadius">@dimen/ads_button_corner_radius</item>
+        <item name="adt_colorType">accent</item>
+        <item name="adt_styleBorderless">true</item>
+    </style>
+    <style name="Widget.Dynamic2.Button.TextButton.Dialog" />
+
+    <style name="Widget.Dynamic2.Button.ImageButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:padding">0dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="adt_styleBorderless">true</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Button.Preference">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/ads_margin_small</item>
+        <item name="android:layout_marginLeft">@dimen/ads_button_preference_card_margin_start</item>
+        <item name="android:layout_marginStart">@dimen/ads_button_preference_card_margin_start</item>
+        <item name="android:layout_gravity">start|left</item>
+        <item name="adt_colorType">primary</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Button.Remote">
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:padding">@dimen/ads_button_padding_remote</item>
+        <item name="android:background">@drawable/ads_button_remote</item>
+        <item name="android:textAppearance">@style/TextAppearance.Dynamic2.Button</item>
+    </style>
+    <style name="Widget.Dynamic2.Button.Remote.Borderless">
+        <item name="android:padding">@dimen/ads_button_padding_remote_borderless</item>
+        <item name="android:background">@drawable/ads_button_remote_borderless</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Image">
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+    <style name="Widget.Dynamic2.Image.Borderless">
+        <item name="android:padding">@dimen/ads_margin_medium</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="adt_styleBorderless">true</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Image.Splash">
+        <item name="android:layout_width">@dimen/ads_icon_splash</item>
+        <item name="android:layout_height">@dimen/ads_icon_splash</item>
+        <item name="android:layout_margin">@dimen/ads_margin_splash</item>
+        <item name="adt_colorType">accent</item>
+        <item name="adt_contrastWithColorType">primary</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Image.Backdrop">
+        <item name="android:layout_width">@dimen/ads_icon_appbar_backdrop</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center_vertical|end</item>
+        <item name="android:alpha">@integer/ads_alpha_backdrop</item>
+        <item name="adt_colorType">accent</item>
+        <item name="adt_contrastWithColorType">primary</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Image.Header">
+        <item name="android:layout_width">@dimen/ads_icon_header</item>
+        <item name="android:layout_height">@dimen/ads_icon_header</item>
+        <item name="android:layout_marginRight">@dimen/ads_margin_header_icon_end</item>
+        <item name="android:layout_marginEnd">@dimen/ads_margin_header_icon_end</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:visibility">@integer/ads_visibility_preference_icon</item>
+        <item name="adt_colorType">accent</item>
+    </style>
+    <style name="Widget.Dynamic2.Image.Header.AppBar">
+        <item name="android:layout_width">@dimen/ads_icon_header_appbar</item>
+        <item name="android:layout_height">@dimen/ads_icon_header_appbar</item>
+        <item name="android:layout_marginRight">@dimen/ads_margin_normal</item>
+        <item name="android:layout_marginEnd">@dimen/ads_margin_normal</item>
+        <item name="android:visibility">visible</item>
+        <item name="adt_colorType">none</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Image.Preview">
+        <item name="android:layout_marginLeft">@dimen/ads_card_view_margin_horizontal</item>
+        <item name="android:layout_marginStart">@dimen/ads_card_view_margin_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/ads_card_view_margin_vertical</item>
+        <item name="android:layout_marginRight">@dimen/ads_card_view_margin_horizontal</item>
+        <item name="android:layout_marginEnd">@dimen/ads_card_view_margin_horizontal</item>
+        <item name="android:layout_marginBottom">@dimen/ads_card_view_margin_vertical</item>
+        <item name="adt_colorType">primary</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Image.DragIndicator">
+        <item name="android:layout_width">@dimen/ads_bottom_sheet_indicator_width</item>
+        <item name="android:layout_height">@dimen/ads_bottom_sheet_indicator_height</item>
+        <item name="android:layout_margin">@dimen/ads_margin_regular</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="adt_colorType">accent</item>
+        <item name="adt_contrastWithColorType">surface</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Image.Empty">
+        <item name="android:layout_width">@dimen/ads_icon_empty</item>
+        <item name="android:layout_height">@dimen/ads_icon_empty</item>
+        <item name="adt_colorType">tint_background</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Image.Card">
+        <item name="android:layout_width">@dimen/ads_icon_large</item>
+        <item name="android:layout_height">@dimen/ads_icon_large</item>
+    </style>
+    <style name="Widget.Dynamic2.Image.Card.Big">
+        <item name="android:layout_width">@dimen/ads_icon_card_big</item>
+        <item name="android:layout_height">@dimen/ads_icon_card_big</item>
+        <item name="android:alpha">@integer/ads_alpha_backdrop_card</item>
+        <item name="adt_colorType">tint_primary</item>
+        <item name="adt_contrastWithColor">?attr/adt_contrastWithDefault</item>
+    </style>
+    <style name="Widget.Dynamic2.Image.Card.Big.Tutorial">
+        <item name="android:layout_marginBottom">@dimen/ads_tutorial_margin_backdrop</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="adt_colorType">background</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Image.Info">
+        <item name="android:layout_width">@dimen/ads_icon_info</item>
+        <item name="android:layout_height">@dimen/ads_icon_info</item>
+        <item name="android:layout_marginTop">@dimen/ads_margin_icon_top</item>
+        <item name="android:layout_marginRight">@dimen/ads_margin_info_icon_end</item>
+        <item name="android:layout_marginEnd">@dimen/ads_margin_info_icon_end</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:visibility">@integer/ads_visibility_preference_icon</item>
+    </style>
+    <style name="Widget.Dynamic2.Image.Info.Placeholder">
+        <item name="android:layout_height">0dp</item>
+    </style>
+    <style name="Widget.Dynamic2.Image.Info.Big">
+        <item name="android:layout_width">@dimen/ads_icon_info_big</item>
+        <item name="android:layout_height">@dimen/ads_icon_info_big</item>
+        <item name="android:layout_marginRight">@dimen/ads_margin_info_icon_end_big</item>
+        <item name="android:layout_marginEnd">@dimen/ads_margin_info_icon_end_big</item>
+    </style>
+    <style name="Widget.Dynamic2.Image.Info.Big.Placeholder">
+        <item name="android:layout_height">0dp</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Image.Preference">
+        <item name="android:layout_width">@dimen/ads_icon_preference</item>
+        <item name="android:layout_height">@dimen/ads_icon_preference</item>
+        <item name="android:layout_marginTop">@dimen/ads_margin_icon_top</item>
+        <item name="android:layout_marginRight">@dimen/ads_margin_preference_icon_end</item>
+        <item name="android:layout_marginEnd">@dimen/ads_margin_preference_icon_end</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:visibility">@integer/ads_visibility_preference_icon</item>
+        <item name="adt_colorType">tint_background</item>
+    </style>
+    <style name="Widget.Dynamic2.Image.Preference.Center">
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+    <style name="Widget.Dynamic2.Image.Preference.Compact">
+        <item name="android:layout_width">@dimen/ads_icon_preference_compact</item>
+        <item name="android:layout_height">@dimen/ads_icon_preference_compact</item>
+        <item name="android:layout_marginRight">@dimen/ads_margin_preference_icon_end_compact</item>
+        <item name="android:layout_marginEnd">@dimen/ads_margin_preference_icon_end_compact</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Image.Preference.Value">
+        <item name="android:layout_width">@dimen/ads_icon_preference_big</item>
+        <item name="android:layout_height">@dimen/ads_icon_preference_big</item>
+        <item name="android:layout_marginRight">0dp</item>
+        <item name="android:layout_marginEnd">0dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:visibility">visible</item>
+        <item name="adt_colorType">accent</item>
+    </style>
+    <style name="Widget.Dynamic2.Image.Preference.Value.Center">
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Image.Preference.Placeholder">
+        <item name="android:layout_height">0dp</item>
+    </style>
+    <style name="Widget.Dynamic2.Image.Preference.Placeholder.Compact">
+        <item name="android:layout_width">@dimen/ads_icon_preference_compact</item>
+        <item name="android:layout_height">@dimen/ads_icon_preference_compact</item>
+        <item name="android:layout_marginRight">@dimen/ads_margin_preference_icon_end_compact</item>
+        <item name="android:layout_marginEnd">@dimen/ads_margin_preference_icon_end_compact</item>
+    </style>
+    <style name="Widget.Dynamic2.Image.Preference.Placeholder.Big">
+        <item name="android:layout_marginRight">@dimen/ads_margin_preference_icon_end_big</item>
+        <item name="android:layout_marginEnd">@dimen/ads_margin_preference_icon_end_big</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Image.Preference.Theme"
+        parent="Widget.Dynamic2.Image.Preference.Center">
+        <item name="android:visibility">@integer/ads_visibility_preference_theme_icon</item>
+    </style>
+
+    <style name="Widget.Dynamic2.TextInputLayout.FilledBox"
+        parent="Widget.Material3.TextInputLayout.FilledBox" />
+    <style name="Widget.Dynamic2.TextInputLayout.OutlinedBox"
+        parent="Widget.Material3.TextInputLayout.OutlinedBox" />
+
+    <style name="Widget.Dynamic2.TextInputEditText">
+        <item name="android:background">@null</item>
+        <item name="android:paddingLeft">@dimen/ads_widget_text_input_edit_text_padding</item>
+        <item name="android:paddingStart">@dimen/ads_widget_text_input_edit_text_padding</item>
+        <item name="android:paddingTop">@dimen/ads_widget_text_input_edit_text_padding_vertical</item>
+        <item name="android:paddingRight">@dimen/ads_widget_text_input_edit_text_padding</item>
+        <item name="android:paddingEnd">@dimen/ads_widget_text_input_edit_text_padding</item>
+        <item name="android:paddingBottom">@dimen/ads_widget_text_input_edit_text_padding</item>
+    </style>
+    <style name="Widget.Dynamic2.TextInputEditText.SingleLine">
+        <item name="android:maxLines">@integer/ads_text_single_line</item>
+    </style>
+
+    <style name="Widget.Dynamic2.TextInputEditText.Outlined">
+        <item name="android:paddingLeft">@dimen/ads_widget_text_input_edit_text_padding_outlined</item>
+        <item name="android:paddingStart">@dimen/ads_widget_text_input_edit_text_padding_outlined</item>
+        <item name="android:paddingTop">@dimen/ads_widget_text_input_edit_text_padding_vertical_outlined</item>
+        <item name="android:paddingRight">@dimen/ads_widget_text_input_edit_text_padding_outlined</item>
+        <item name="android:paddingEnd">@dimen/ads_widget_text_input_edit_text_padding_outlined</item>
+        <item name="android:paddingBottom">@dimen/ads_widget_text_input_edit_text_padding_vertical_outlined</item>
+    </style>
+    <style name="Widget.Dynamic2.TextInputEditText.Outlined.SingleLine">
+        <item name="android:maxLines">@integer/ads_text_single_line</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Slider">
+        <item name="labelBehavior">gone</item>
+    </style>
+    <style name="Widget.Dynamic2.Slider.Compact">
+        <item name="thumbRadius">@dimen/ads_margin_small</item>
+        <item name="thumbElevation">0dp</item>
+    </style>
+
+    <style name="Widget.Dynamic2.RatingBar" parent="Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/ads_rating_bar</item>
+        <item name="android:indeterminateDrawable">@drawable/ads_rating_bar</item>
+    </style>
+    <style name="Widget.Dynamic2.RatingBar.Indicator"
+        parent="Widget.AppCompat.RatingBar.Indicator">
+        <item name="android:progressDrawable">@drawable/ads_rating_bar_indicator</item>
+        <item name="android:indeterminateDrawable">@drawable/ads_rating_bar_indicator</item>
+    </style>
+    <style name="Widget.Dynamic2.RatingBar.Small" parent="Widget.AppCompat.RatingBar.Small">
+        <item name="android:progressDrawable">@drawable/ads_rating_bar_small</item>
+        <item name="android:indeterminateDrawable">@drawable/ads_rating_bar_small</item>
+    </style>
+
+    <style name="Widget.Dynamic2.ColorView">
+        <item name="adt_cornerRadius">@null</item>
+    </style>
+    <style name="Widget.Dynamic2.ColorView.Preference">
+        <item name="android:layout_width">@dimen/ads_icon_preference_big</item>
+        <item name="android:layout_height">@dimen/ads_icon_preference_big</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Content">
+        <item name="android:clipChildren">false</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+    <style name="Widget.Dynamic2.Content.Clickable">
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+    <style name="Widget.Dynamic2.Content.Clickable.Background"
+        parent="Widget.Dynamic2.Content">
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Content.Card">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/ads_card_view_content_margin</item>
+        <item name="android:paddingStart">@dimen/ads_card_view_content_margin</item>
+        <item name="android:paddingTop">@dimen/ads_card_view_content_margin</item>
+        <item name="android:paddingRight">@dimen/ads_card_view_content_margin</item>
+        <item name="android:paddingEnd">@dimen/ads_card_view_content_margin</item>
+        <item name="android:paddingBottom">@dimen/ads_card_view_content_margin</item>
+    </style>
+    <style name="Widget.Dynamic2.Content.Card.Clickable">
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+    <style name="Widget.Dynamic2.Content.Card.Clickable.Background"
+        parent="Widget.Dynamic2.Content.Card">
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Content.Card.Small">
+        <item name="android:paddingLeft">@dimen/ads_card_view_content_margin_horizontal_small</item>
+        <item name="android:paddingStart">@dimen/ads_card_view_content_margin_horizontal_small</item>
+        <item name="android:paddingTop">@dimen/ads_card_view_content_margin_vertical_small</item>
+        <item name="android:paddingRight">@dimen/ads_card_view_content_margin_horizontal_small</item>
+        <item name="android:paddingEnd">@dimen/ads_card_view_content_margin_horizontal_small</item>
+        <item name="android:paddingBottom">@dimen/ads_card_view_content_margin_vertical_small</item>
+    </style>
+    <style name="Widget.Dynamic2.Content.Card.Small.Clickable">
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+    <style name="Widget.Dynamic2.Content.Card.Small.Clickable.Background"
+        parent="Widget.Dynamic2.Content.Card.Small">
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Content.Card.Header">
+        <item name="android:paddingBottom">0dp</item>
+    </style>
+    <style name="Widget.Dynamic2.Content.Card.Header.Clickable">
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+    <style name="Widget.Dynamic2.Content.Card.Header.Clickable.Background"
+        parent="Widget.Dynamic2.Content.Card.Header">
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+    <style name="Widget.Dynamic2.Content.Card.Footer">
+        <item name="android:paddingTop">0dp</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Content.Row">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Content.Row.Vertical">
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="Widget.Dynamic2.Content.Row.Vertical.Center">
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+    <style name="Widget.Dynamic2.Content.Row.Vertical.Weight"
+        parent="Widget.Dynamic2.Content.Row.Vertical.Center">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Content.Row.Horizontal">
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="Widget.Dynamic2.Content.Row.Horizontal.Center">
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+    <style name="Widget.Dynamic2.Content.Row.Horizontal.Weight"
+        parent="Widget.Dynamic2.Content.Row.Horizontal.Center">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Content.Splash">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:padding">@dimen/ads_margin_splash</item>
+        <item name="adt_backgroundAware">disable</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Theme" />
+    <style name="Widget.Dynamic2.Theme.Background" />
+    <style name="Widget.Dynamic2.Theme.Background.Image">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:src">@drawable/ads_widget_frame</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Theme.Content" />
+    <style name="Widget.Dynamic2.Theme.Content.Remote">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/ads_remote_margin_horizontal</item>
+        <item name="android:paddingStart">@dimen/ads_remote_margin_horizontal</item>
+        <item name="android:paddingTop">@dimen/ads_remote_margin_vertical</item>
+        <item name="android:paddingRight">@dimen/ads_remote_margin_horizontal</item>
+        <item name="android:paddingEnd">@dimen/ads_remote_margin_horizontal</item>
+        <item name="android:paddingBottom">@dimen/ads_remote_margin_vertical</item>
+    </style>
+    <style name="Widget.Dynamic2.Theme.Content.Remote.Small">
+        <item name="android:paddingLeft">@dimen/ads_remote_margin_horizontal_small</item>
+        <item name="android:paddingStart">@dimen/ads_remote_margin_horizontal_small</item>
+        <item name="android:paddingTop">@dimen/ads_remote_margin_vertical_small</item>
+        <item name="android:paddingRight">@dimen/ads_remote_margin_horizontal_small</item>
+        <item name="android:paddingEnd">@dimen/ads_remote_margin_horizontal_small</item>
+        <item name="android:paddingBottom">@dimen/ads_remote_margin_vertical_small</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Theme.Action" parent="Widget.Dynamic2.Button.Remote.Borderless">
+        <item name="android:layout_width">@dimen/ads_widget_icon_size</item>
+        <item name="android:layout_height">@dimen/ads_widget_icon_size</item>
+        <item name="android:layout_marginLeft">@dimen/ads_margin_tiny</item>
+        <item name="android:layout_marginStart">@dimen/ads_margin_tiny</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">@dimen/ads_button_padding_remote_small</item>
+    </style>
+    <style name="Widget.Dynamic2.Theme.Action.Preview">
+        <item name="android:background">@null</item>
+        <item name="android:clickable">false</item>
+        <item name="srcCompat">@drawable/ads_ic_customise</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Theme.Preview" />
+    <style name="Widget.Dynamic2.Theme.Preview.Layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">@dimen/ads_preview_stroke_size</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+    <style name="Widget.Dynamic2.Theme.Preview.Header">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/ads_margin_regular</item>
+        <item name="android:paddingStart">@dimen/ads_margin_regular</item>
+        <item name="android:paddingTop">@dimen/ads_margin_tiny</item>
+        <item name="android:paddingRight">@dimen/ads_margin_regular</item>
+        <item name="android:paddingEnd">@dimen/ads_margin_regular</item>
+        <item name="android:paddingBottom">@dimen/ads_margin_tiny</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+    <style name="Widget.Dynamic2.Theme.Preview.Header.StatusBar">
+        <item name="android:layout_marginTop">@dimen/ads_preview_header_margin_top</item>
+        <item name="android:paddingTop">@dimen/ads_margin_regular</item>
+        <item name="android:paddingBottom">@dimen/ads_preview_header_margin_bottom</item>
+    </style>
+    <style name="Widget.Dynamic2.Theme.Preview.Header.Remote">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:paddingLeft">@dimen/ads_remote_margin_horizontal</item>
+        <item name="android:paddingStart">@dimen/ads_remote_margin_horizontal</item>
+        <item name="android:paddingTop">@dimen/ads_remote_margin_vertical</item>
+        <item name="android:paddingRight">@dimen/ads_remote_margin_horizontal</item>
+        <item name="android:paddingEnd">@dimen/ads_remote_margin_horizontal</item>
+        <item name="android:paddingBottom">@dimen/ads_remote_margin_vertical</item>
+    </style>
+
+    <!-- App Widget -->
+    <style name="AppWidget.Dynamic2" />
+
+    <style name="AppWidget.Dynamic2.TextAppearance">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:maxLines">@integer/ads_text_single_line</item>
+        <item name="android:ellipsize">none</item>
+    </style>
+    <style name="AppWidget.Dynamic2.TextAppearance.Title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/ads_widget_font_size_extra_small</item>
+    </style>
+    <style name="AppWidget.Dynamic2.TextAppearance.Subtitle">
+        <item name="android:textSize">@dimen/ads_widget_font_size_extra_small</item>
+    </style>
+    <style name="AppWidget.Dynamic2.TextAppearance.Hint" parent="AppWidget.Dynamic2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">@dimen/ads_margin_regular</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">@dimen/ads_widget_font_size_small</item>
+        <item name="android:maxLines">@integer/ads_text_single_line</item>
+        <item name="android:ellipsize">none</item>
+    </style>
+
+    <style name="AppWidget.Dynamic2.Background" />
+    <style name="AppWidget.Dynamic2.Layout" parent="Widget.Dynamic2.Theme.Preview.Layout">
+        <item name="android:layout_margin">@dimen/ads_widget_stroke_size</item>
+    </style>
+    <style name="AppWidget.Dynamic2.Content">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/ads_margin_regular</item>
+        <item name="android:layout_marginStart">@dimen/ads_margin_regular</item>
+        <item name="android:layout_marginTop">@dimen/ads_margin_tiny</item>
+        <item name="android:layout_marginRight">@dimen/ads_margin_regular</item>
+        <item name="android:layout_marginEnd">@dimen/ads_margin_regular</item>
+        <item name="android:layout_marginBottom">@dimen/ads_margin_tiny</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="AppWidget.Dynamic2.Header" parent="Widget.Dynamic2.Theme.Preview.Header" />
+    <style name="AppWidget.Dynamic2.Header.Preview">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:paddingTop">@dimen/ads_margin_regular</item>
+        <item name="android:paddingBottom">@dimen/ads_margin_regular</item>
+    </style>
+
+    <style name="AppWidget.Dynamic2.Button" />
+    <style name="AppWidget.Dynamic2.Button.Borderless"
+        parent="Widget.Dynamic2.Button.Remote.Borderless">
+        <item name="android:padding">@dimen/ads_widget_button_padding_borderless</item>
+    </style>
+
+    <style name="AppWidget.Dynamic2.Image" />
+    <style name="AppWidget.Dynamic2.Image.Background"
+        parent="Widget.Dynamic2.Theme.Background.Image" />
+    <style name="AppWidget.Dynamic2.Image.Header">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
+    <style name="AppWidget.Dynamic2.Image.Logo">
+        <item name="android:layout_width">@dimen/ads_widget_icon_size</item>
+        <item name="android:layout_height">@dimen/ads_widget_icon_size</item>
+        <item name="android:layout_marginRight">@dimen/ads_margin_normal</item>
+        <item name="android:layout_marginEnd">@dimen/ads_margin_normal</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+    <style name="AppWidget.Dynamic2.Image.Action" parent="Widget.Dynamic2.Theme.Action">
+        <item name="android:layout_margin">@dimen/ads_button_padding_remote_small</item>
+    </style>
+    <style name="AppWidget.Dynamic2.Image.Action.Preview"
+        parent="Widget.Dynamic2.Theme.Action.Preview">
+        <item name="android:src">@drawable/ads_ic_customise_remote</item>
+    </style>
+
+</resources>

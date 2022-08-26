@@ -210,11 +210,19 @@ public abstract class DynamicApplication extends Application
 
     @Override
     public @StyleRes int getThemeRes(@Nullable AppTheme<?> theme) {
-        if (theme == null) {
-            return R.style.Theme_Dynamic;
-        }
+        if (Dynamic.isLegacyVersion(getRequiredThemeVersion())) {
+            if (theme == null) {
+                return R.style.Theme_Dynamic;
+            }
 
-        return theme.isDarkTheme() ? R.style.Theme_Dynamic : R.style.Theme_Dynamic_Light;
+            return theme.isDarkTheme() ? R.style.Theme_Dynamic : R.style.Theme_Dynamic_Light;
+        } else {
+            if (theme == null) {
+                return R.style.Theme_Dynamic2;
+            }
+
+            return theme.isDarkTheme() ? R.style.Theme_Dynamic2 : R.style.Theme_Dynamic2_Light;
+        }
     }
 
     @Override

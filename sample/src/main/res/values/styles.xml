@@ -20,7 +20,7 @@
     tools:targetApi="s">
 
     <!-- Dark theme -->
-    <style name="Sample" parent="Theme.DynamicApp">
+    <style name="Sample" parent="Theme.Dynamic">
         <item name="android:windowBackground">@color/app_default</item>
         <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ads_ic_author_splash</item>
         <item name="colorPrimary">@color/color_primary</item>
@@ -30,7 +30,7 @@
     </style>
 
     <!-- Light theme -->
-    <style name="Sample.Light" parent="Theme.DynamicApp.Light">
+    <style name="Sample.Light" parent="Theme.Dynamic">
         <item name="android:windowBackground">@color/app_default</item>
         <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ads_ic_author_splash</item>
         <item name="colorPrimary">@color/color_primary</item>

@@ -27,7 +27,7 @@
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-            style=style="?attr/ads_widgetCard">
+            style="?attr/ads_widgetCard">
 
             <LinearLayout
                 android:layout_width="match_parent"
