@@ -55,11 +55,9 @@ import com.pranavpandey.android.dynamic.util.concurrent.DynamicCallback;
 import com.pranavpandey.android.dynamic.util.loader.DynamicLoader;
 
 /**
- * Helper class to perform resource operations. Context and App compat is used to provide
- * backward compatibility.
- *
- * @see ContextCompat
- * @see AppCompatResources
+ * Helper class to perform resource operations.
+ * <p>{@link ContextCompat} and {@link AppCompatResources} are used to provide backward
+ * compatibility.
  */
 public class DynamicResourceUtils {
 
@@ -349,10 +347,10 @@ public class DynamicResourceUtils {
      *
      * @see Spannable
      */
-    public static void highlightQueryTextColor(@Nullable String query,
-            @Nullable TextView textView, @ColorInt int color) {
-        if (query == null || TextUtils.isEmpty(query) || textView == null
-                || textView.getText() == null || TextUtils.isEmpty(textView.getText())) {
+    public static void highlightQueryTextColor(final @Nullable String query,
+            @Nullable TextView textView, final @ColorInt int color) {
+        if (TextUtils.isEmpty(query) || textView == null
+                || TextUtils.isEmpty(textView.getText())) {
             return;
         }
 

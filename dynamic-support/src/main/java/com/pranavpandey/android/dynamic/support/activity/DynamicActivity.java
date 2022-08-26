@@ -362,7 +362,6 @@ public abstract class DynamicActivity extends DynamicStateActivity
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putBoolean(ADS_STATE_APP_BAR_COLLAPSED, isAppBarCollapsed());
         outState.putBoolean(ADS_STATE_SEARCH_VIEW_VISIBLE, isSearchViewExpanded());
 
         if (mFAB != null) {
@@ -772,7 +771,8 @@ public abstract class DynamicActivity extends DynamicStateActivity
      * @param removePrevious {@code true} to remove the previously added views.
      * @param animate {@code true} to animate the changes.
      */
-    public void addHeader(@Nullable View view, boolean removePrevious, boolean animate) {
+    public void addHeader(final @Nullable View view,
+            final boolean removePrevious, final boolean animate) {
         if (mFrameHeader == null) {
             return;
         }

@@ -231,8 +231,7 @@ public class DynamicDialogFragment extends AppCompatDialogFragment
      * @param savedInstanceState The saved state of the fragment to restore it later.
      */
     protected void onCustomiseDialog(@NonNull DynamicDialog alertDialog,
-            @Nullable View view, @Nullable Bundle savedInstanceState) {
-    }
+            @Nullable View view, @Nullable Bundle savedInstanceState) { }
 
     /**
      * Returns whether to register a shared preferences listener for this fragment.

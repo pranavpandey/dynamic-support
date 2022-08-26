@@ -363,21 +363,21 @@ public abstract class DynamicStateActivity extends DynamicSystemActivity {
     }
 
     /**
-     * Returns whether the app bar is in collapsed state.
-     *
-     * @return {@code true} if the app bar is in collapsed state.
-     */
-    public boolean isAppBarCollapsed() {
-        return mAppBarCollapsed;
-    }
-
-    /**
      * Sets whether the app bar is collapsed.
      *
      * @param collapsed {@code true} if the app bar is collapsed.
      */
     public void setAppBarCollapsed(boolean collapsed) {
         this.mAppBarCollapsed = collapsed;
+    }
+
+    /**
+     * Returns whether the app bar is in collapsed state.
+     *
+     * @return {@code true} if the app bar is in collapsed state.
+     */
+    public boolean isAppBarCollapsed() {
+        return mAppBarCollapsed;
     }
 
     /**
