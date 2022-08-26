@@ -74,6 +74,7 @@ import com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog;
 import com.pranavpandey.android.dynamic.support.theme.inflater.DynamicLayoutInflater;
 import com.pranavpandey.android.dynamic.support.theme.listener.ThemeListener;
 import com.pranavpandey.android.dynamic.support.util.DynamicMenuUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.theme.AppTheme;
 import com.pranavpandey.android.dynamic.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -974,7 +975,8 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      * re-initialize the {@link DynamicTheme} with new colors, etc.
      */
     protected void onAppThemeChange() {
-        getWindow().setWindowAnimations(R.style.Animation_DynamicApp_Window_FadeInOut);
+        getWindow().setWindowAnimations(DynamicResourceUtils.getResourceId(
+                this, R.attr.ads_animationFadeInOut));
         ActivityCompat.recreate(this);
     }
 
@@ -1664,6 +1666,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     @Override
     public @NonNull Context getContext() {
         return mContext != null ? mContext : getBaseContext();
+    }
+
+    @Override
+    public @DynamicTheme.Version int getRequiredThemeVersion() {
+        return DynamicTheme.getInstance().getListener().getRequiredThemeVersion();
     }
 
     @Override

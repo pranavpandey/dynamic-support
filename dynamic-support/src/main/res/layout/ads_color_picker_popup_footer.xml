@@ -18,19 +18,19 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Content.Card.Small.Clickable.Background"
+    style="?attr/ads_widgetContentCardSmallClickableBackground"
     android:id="@+id/ads_color_picker_popup_footer"
     app:adt_contrastWithColorType="surface">
 
     <LinearLayout
-        style="@style/Widget.DynamicApp.Content.Row.Horizontal"
+        style="?attr/ads_widgetContentRowHorizontal"
         android:baselineAligned="false">
 
         <LinearLayout
-            style="@style/Widget.DynamicApp.Content.Row.Vertical.Weight">
+            style="?attr/ads_widgetContentRowVerticalWeight">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                style="@style/TextAppearance.DynamicApp.Subtitle1.Caps"
+                style="?attr/ads_textAppearanceSubtitle1Caps"
                 android:id="@+id/ads_color_picker_popup_footer_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
                 app:adt_contrastWithColorType="surface" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                style="@style/TextAppearance.DynamicApp.Body1"
+                style="?attr/ads_textAppearanceBody1"
                 android:id="@+id/ads_color_picker_popup_footer_subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
             android:orientation="horizontal">
 
             <com.pranavpandey.android.dynamic.support.picker.color.view.DynamicColorView
-                style="@style/Widget.DynamicApp.ColorView"
+                style="?attr/ads_widgetColorView"
                 android:id="@+id/ads_color_picker_popup_footer_view_default"
                 android:layout_width="@dimen/ads_icon_popup_footer"
                 android:layout_height="@dimen/ads_icon_popup_footer"
@@ -77,7 +77,7 @@
                 app:adt_contrastWithColorType="surface" />
 
             <com.pranavpandey.android.dynamic.support.picker.color.view.DynamicColorView
-                style="@style/Widget.DynamicApp.ColorView"
+                style="?attr/ads_widgetColorView"
                 android:id="@+id/ads_color_picker_popup_footer_view"
                 android:layout_width="@dimen/ads_icon_popup_footer"
                 android:layout_height="@dimen/ads_icon_popup_footer"
@@ -94,12 +94,12 @@
                 android:visibility="gone">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
-                    style="@style/Widget.DynamicApp.Divider.Vertical.Large"
+                    style="?attr/ads_widgetDividerVerticalLarge"
                     android:id="@+id/ads_color_picker_popup_footer_divider"
                     app:adt_contrastWithColorType="surface" />
 
                 <com.pranavpandey.android.dynamic.support.picker.color.view.DynamicColorView
-                    style="@style/Widget.DynamicApp.ColorView"
+                    style="?attr/ads_widgetColorView"
                     android:id="@+id/ads_color_picker_popup_footer_view_recent"
                     android:layout_width="@dimen/ads_icon_popup_footer"
                     android:layout_height="@dimen/ads_icon_popup_footer"

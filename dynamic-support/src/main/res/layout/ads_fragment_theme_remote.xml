@@ -18,7 +18,7 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Scroller.Vertical"
+    style="?attr/ads_widgetScrollerVertical"
     android:id="@+id/ads_theme_root">
 
     <LinearLayout
@@ -33,16 +33,16 @@
             android:layout_height="wrap_content" />
 
         <LinearLayout
-            style="@style/Widget.DynamicApp.Scroller.Padding"
+            style="?attr/ads_widgetScrollerPadding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-                style="@style/Widget.DynamicApp.Card">
+                style="?attr/ads_widgetCard">
 
                 <LinearLayout
-                    style="@style/Widget.DynamicApp.Content.Row.Vertical">
+                    style="?attr/ads_widgetContentRowVertical">
 
                     <com.pranavpandey.android.dynamic.support.view.DynamicHeader
                         android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                         app:ads_icon="@drawable/ads_ic_opacity"
                         app:ads_title="@string/ads_theme_opacity"
                         app:ads_summary="@string/ads_theme_opacity_summary"
-                        app:ads_description="@string/ads_theme_settings_default_desc"
+                        app:ads_description="@string/ads_theme_entry_auto_default_desc"
                         app:ads_entries="@array/ads_theme_entries_auto"
                         app:ads_values="@array/ads_theme_values_auto"
                         app:ads_min="@integer/adt_opacity_min"
@@ -179,11 +179,11 @@
             </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-                style="@style/Widget.DynamicApp.Card"
+                style="?attr/ads_widgetCard"
                 android:visibility="gone">
 
                 <LinearLayout
-                    style="@style/Widget.DynamicApp.Content.Row.Vertical">
+                    style="?attr/ads_widgetContentRowVertical">
 
                     <com.pranavpandey.android.dynamic.support.view.DynamicHeader
                         android:layout_width="match_parent"
@@ -225,10 +225,10 @@
             </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-                style="@style/Widget.DynamicApp.Card">
+                style="?attr/ads_widgetCard">
 
                 <LinearLayout
-                    style="@style/Widget.DynamicApp.Content.Row.Vertical">
+                    style="?attr/ads_widgetContentRowVertical">
 
                     <com.pranavpandey.android.dynamic.support.view.DynamicHeader
                         android:layout_width="match_parent"
@@ -243,7 +243,7 @@
                         app:ads_icon="@drawable/ads_ic_layout"
                         app:ads_title="@string/ads_theme_style"
                         app:ads_summary="@string/ads_theme_style_summary"
-                        app:ads_description="@string/ads_theme_settings_auto_desc"
+                        app:ads_description="@string/ads_theme_entry_auto_desc"
                         app:ads_entries="@array/ads_style_entries"
                         app:ads_values="@array/ads_style_values" />
 
@@ -257,7 +257,7 @@
                         app:ads_icon="@drawable/ads_ic_font_scale"
                         app:ads_title="@string/ads_theme_font_scale"
                         app:ads_summary="@string/ads_theme_font_scale_summary"
-                        app:ads_description="@string/ads_theme_settings_auto_desc"
+                        app:ads_description="@string/ads_theme_entry_auto_desc"
                         app:ads_entries="@array/ads_theme_entries_auto"
                         app:ads_values="@array/ads_theme_values_auto"
                         app:ads_min="@integer/adt_font_scale_min"
@@ -276,7 +276,7 @@
                         app:ads_icon="@drawable/ads_ic_corner"
                         app:ads_title="@string/ads_theme_corner_size"
                         app:ads_summary="@string/ads_theme_corner_size_summary"
-                        app:ads_description="@string/ads_theme_settings_auto_desc"
+                        app:ads_description="@string/ads_theme_entry_auto_desc"
                         app:ads_entries="@array/ads_theme_entries_auto"
                         app:ads_values="@array/ads_theme_values_auto"
                         app:ads_min="@integer/adt_corner_size_min"
@@ -292,7 +292,7 @@
                         app:ads_icon="@drawable/ads_ic_background_aware"
                         app:ads_title="@string/ads_theme_background_aware"
                         app:ads_summary="@string/ads_theme_background_aware_desc"
-                        app:ads_description="@string/ads_theme_settings_auto_desc"
+                        app:ads_description="@string/ads_theme_entry_auto_desc"
                         app:ads_entries="@array/ads_background_aware_entries"
                         app:ads_values="@array/ads_background_aware_values" />
 
@@ -305,7 +305,7 @@
                         app:ads_icon="@drawable/ads_ic_contrast"
                         app:ads_title="@string/ads_theme_contrast"
                         app:ads_summary="@string/ads_theme_contrast_summary"
-                        app:ads_description="@string/ads_theme_settings_default_desc"
+                        app:ads_description="@string/ads_theme_entry_auto_default_desc"
                         app:ads_entries="@array/ads_theme_entries_auto"
                         app:ads_values="@array/ads_theme_values_auto"
                         app:ads_min="@integer/adt_contrast_min"
@@ -322,7 +322,7 @@
                         app:ads_icon="@drawable/ads_ic_elevation"
                         app:ads_title="@string/ads_theme_elevation"
                         app:ads_summary="@string/ads_theme_elevation_summary"
-                        app:ads_description="@string/ads_theme_settings_default_desc"
+                        app:ads_description="@string/ads_theme_entry_auto_default_desc"
                         app:ads_entries="@array/ads_elevation_entries"
                         app:ads_values="@array/ads_elevation_values" />
 

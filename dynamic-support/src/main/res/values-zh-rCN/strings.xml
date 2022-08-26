@@ -21,7 +21,7 @@
     <string name="ads_navigation_drawer_open">打开导航抽屉</string>
     <string name="ads_navigation_drawer_close">关闭导航抽屉</string>
 
-    <!-- String formats -->
+    <!-- Formats -->
     <string name="ads_format_version">版本%1$s</string>
     <string name="ads_search_empty">没有找到\"%1$s\"匹配项</string>
 
@@ -99,7 +99,7 @@
     <string name="ads_shortcut_created">快捷方式已创建</string>
     <string name="ads_shortcuts_desc">选择一个快捷方式将其添加到主屏幕上。</string>
 
-    <!-- Navigation drawer and Menu -->
+    <!-- Navigation and Menu -->
     <string name="ads_nav_category_features">菜单</string>
     <string name="ads_nav_category_support">支持开发</string>
     <string name="ads_nav_category_contribute">贡献</string>
@@ -115,7 +115,7 @@
     <string name="ads_menu_info">信息</string>
     <string name="ads_menu_app_info">应用程序信息</string>
 
-    <!-- Runtime permissions -->
+    <!-- Permissions -->
     <string name="ads_permissions">权限</string>
     <string name="ads_permissions_subtitle">请允许所需的权限。</string>
     <string name="ads_permissions_subtitle_single">请允许所需的权限。</string>
@@ -200,7 +200,7 @@
     <string name="ads_backup_format_deleted">备份已删除：%1$s</string>
     <string name="ads_backup_format_restored">备份已恢复：%1$s</string>
 
-    <!-- Backup options -->
+    <!-- Backup Options -->
     <string name="ads_backup_storage_app">应用程序存储</string>
     <string name="ads_backup_storage_device">设备存储</string>
     <string name="ads_backup_option_rename">重命名</string>
@@ -212,6 +212,7 @@
     <string name="ads_dynamic_theme_summary">接收者应用的主题。</string>
     <string name="ads_dynamic_color_summary">自动颜色的实现。</string>
     <string name="ads_dynamic">动态</string>
+    <string name="ads_color">颜色</string>
     <string name="ads_theme">主题</string>
     <string name="ads_theme_code">码</string>
     <string name="ads_theme_code_desc">扫描或共享主题。</string>
@@ -226,7 +227,6 @@
     <string name="ads_theme_color_background_summary">主题背景色。</string>
     <string name="ads_theme_color_background_summary_system">系统的背景色。</string>
     <string name="ads_theme_color_stroke">笔触颜色</string>
-    <string name="ads_theme_color_surface">表面</string>
     <string name="ads_theme_color_primary">主题色</string>
     <string name="ads_theme_color_primary_summary">主要元素使用的颜色。</string>
     <string name="ads_theme_color_primary_dark">系统颜色</string>
@@ -236,6 +236,7 @@
     <string name="ads_theme_color_accent_summary">辅助元素使用的颜色。</string>
     <string name="ads_theme_color_error">错误颜色</string>
     <string name="ads_theme_color_error_summary">用于显示错误的颜色。</string>
+    <string name="ads_theme_color_surface">表面</string>
     <string name="ads_theme_color_tint">色彩</string>
     <string name="ads_theme_color_inverse">反色</string>
     <string name="ads_theme_font_scale">字体比例</string>
@@ -296,14 +297,16 @@
     <string name="ads_theme_presets_empty">没有预设</string>
 
     <!-- Theme -->
+    <string name="ads_theme_version_original">原来的</string>
+    <string name="ads_theme_version_latest">最新的</string>
     <string name="ads_theme_toast_default">默认的Toast消息</string>
     <string name="ads_theme_toast_themed">主题Toast消息</string>
     <string name="ads_theme_entry_auto">自动</string>
-    <string name="ads_theme_settings_auto_desc">选择自动以使用应用程序设置。</string>
-    <string name="ads_theme_settings_default_desc">选择“自动”以使用默认设置。</string>
+    <string name="ads_theme_entry_auto_desc">选择自动以使用应用程序设置。</string>
+    <string name="ads_theme_entry_auto_default_desc">选择“自动”以使用默认设置。</string>
+    <string name="ads_theme_entry_auto_background_aware_desc">选择自动使用应用程序调色板。根据背景调整颜色以提供最佳可见性。</string>
     <string name="ads_theme_color_auto_desc">选择自动使用应用程序调色板。</string>
     <string name="ads_theme_color_default_desc">选择自动使用默认的程序调色板。</string>
-    <string name="ads_theme_entry_auto_background_aware_desc">选择自动使用应用程序调色板。根据背景调整颜色以提供最佳可见性。</string>
     <string name="ads_theme_entry_day">日间</string>
     <string name="ads_theme_entry_night">夜间</string>
     <string name="ads_theme_entry_light">亮色</string>
@@ -373,7 +376,7 @@
     <string name="ads_notification_close_drawer_summary">执行操作后关闭通知抽屉</string>
     <string name="ads_notification_close_drawer_summary_unchecked">执行操作后不要更改通知抽屉状态</string>
 
-    <!-- App widget -->
+    <!-- App Widget -->
     <string name="ads_widget_customise">定制</string>
     <string name="ads_widget_customise_desc">配置下面的小部件。</string>
     <string name="ads_widget_preview">预览</string>
@@ -409,7 +412,7 @@
     <string name="ads_support_restart_app_summary">重新启动应用程序和服务以刷新应用程序状态。</string>
     <string name="ads_support_restart_app_desc">如果服务未启动或应用程序运行不正常，请使用此选项。执行此操作后，所有设置将保持不变。</string>
 
-    <!-- Developer and App info -->
+    <!-- Developer and Info -->
     <string name="ads_info_made_in">印度制造</string>
     <string name="ads_info_made_by">书面和设计</string>
     <string name="ads_info_made_by_alt">由开发</string>

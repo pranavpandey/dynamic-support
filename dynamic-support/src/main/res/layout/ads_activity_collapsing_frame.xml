@@ -42,8 +42,8 @@
                 android:clipChildren="false"
                 app:expandedTitleMarginStart="@dimen/ads_toolbar_margin_start_collapsing"
                 app:expandedTitleMarginEnd="@dimen/ads_toolbar_margin_end_collapsing"
-                app:collapsedTitleTextAppearance="@style/TextAppearance.DynamicApp.Toolbar"
-                app:expandedTitleTextAppearance="@style/TextAppearance.DynamicApp.Toolbar.Expanded"
+                app:collapsedTitleTextAppearance="?attr/ads_textAppearanceToolbarTitle"
+                app:expandedTitleTextAppearance="?attr/ads_textAppearanceToolbarTitleExpanded"
                 app:layout_scrollFlags="scroll|enterAlways|snap">
 
                 <FrameLayout

@@ -28,25 +28,25 @@
         android:orientation="vertical">
 
         <LinearLayout
-            style="@style/Widget.DynamicApp.Content.Row.Horizontal">
+            style="?attr/ads_widgetContentRowHorizontal">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-                style="@style/Widget.DynamicApp.Image.Preference"
+                style="?attr/ads_widgetImagePreference"
                 android:id="@+id/ads_preference_icon"
                 android:visibility="gone" />
 
             <LinearLayout
-                style="@style/Widget.DynamicApp.Content.Row.Vertical.Weight"
+                style="?attr/ads_widgetContentRowVerticalWeight"
                 android:visibility="gone">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Subtitle1"
+                    style="?attr/ads_textAppearanceSubtitle1"
                     android:id="@+id/ads_preference_summary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Body1"
+                    style="?attr/ads_textAppearanceBody1"
                     android:id="@+id/ads_preference_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
             android:orientation="horizontal">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                style="@style/TextAppearance.DynamicApp.Button"
+                style="?attr/textAppearanceButton"
                 android:id="@+id/ads_preference_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
                 android:textSize="@dimen/ads_picker_font_size_normal" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
-                style="@style/Widget.DynamicApp.Button.ImageButton"
+                style="?attr/ads_widgetButtonImage"
                 android:id="@+id/ads_preference_slider_left"
                 android:layout_width="@dimen/ads_icon_preference"
                 android:layout_height="@dimen/ads_icon_preference"
@@ -83,14 +83,14 @@
                 app:adt_colorType="accent_dark" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicHueSlider
-                style="@style/Widget.DynamicApp.Slider.Compact"
+                style="?attr/ads_widgetSliderCompact"
                 android:id="@+id/ads_preference_slider_seek"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageButton
-                style="@style/Widget.DynamicApp.Button.ImageButton"
+                style="?attr/ads_widgetButtonImage"
                 android:id="@+id/ads_preference_slider_right"
                 android:layout_width="@dimen/ads_icon_preference"
                 android:layout_height="@dimen/ads_icon_preference"
@@ -98,7 +98,7 @@
                 app:adt_colorType="accent_dark" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                style="@style/TextAppearance.DynamicApp.PreferenceValue"
+                style="?attr/ads_textAppearanceValue"
                 android:id="@+id/ads_preference_slider_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
         </LinearLayout>
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-            style="@style/Widget.DynamicApp.Button.Preference"
+            style="?attr/ads_widgetButtonPreference"
             android:id="@+id/ads_preference_action_button" />
 
     </LinearLayout>

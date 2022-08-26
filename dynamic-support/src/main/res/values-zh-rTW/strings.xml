@@ -21,7 +21,7 @@
     <string name="ads_navigation_drawer_open">開啟導覽匣</string>
     <string name="ads_navigation_drawer_close">關閉導覽匣</string>
 
-    <!-- String formats -->
+    <!-- Formats -->
     <string name="ads_format_version">版本 %1$s</string>
     <string name="ads_search_empty">找不到與「%1$s」相符的內容</string>
 
@@ -99,7 +99,7 @@
     <string name="ads_shortcut_created">捷徑已建立</string>
     <string name="ads_shortcuts_desc">選擇一個捷徑以將其新增至主畫面。</string>
 
-    <!-- Navigation drawer and Menu -->
+    <!-- Navigation and Menu -->
     <string name="ads_nav_category_features">選單</string>
     <string name="ads_nav_category_support">支援開發</string>
     <string name="ads_nav_category_contribute">貢獻</string>
@@ -115,7 +115,7 @@
     <string name="ads_menu_info">資訊</string>
     <string name="ads_menu_app_info">應用程式資訊</string>
 
-    <!-- Runtime permissions -->
+    <!-- Permissions -->
     <string name="ads_permissions">權限</string>
     <string name="ads_permissions_subtitle">請允許所需的權限</string>
     <string name="ads_permissions_subtitle_single">請允許所需的權限</string>
@@ -200,7 +200,7 @@
     <string name="ads_backup_format_deleted">備份已刪除：%1$s</string>
     <string name="ads_backup_format_restored">備份已還原：%1$s</string>
 
-    <!-- Backup options -->
+    <!-- Backup Options -->
     <string name="ads_backup_storage_app">應用程式儲存空間</string>
     <string name="ads_backup_storage_device">裝置儲存空間</string>
     <string name="ads_backup_option_rename">重新命名</string>
@@ -212,6 +212,7 @@
     <string name="ads_dynamic_theme_summary">接收者套用的主題</string>
     <string name="ads_dynamic_color_summary">自動色彩的實現</string>
     <string name="ads_dynamic">動態</string>
+    <string name="ads_color">色彩</string>
     <string name="ads_theme">主題</string>
     <string name="ads_theme_code">程式碼</string>
     <string name="ads_theme_code_desc">掃描或分享主題。</string>
@@ -296,14 +297,16 @@
     <string name="ads_theme_presets_empty">沒有預設</string>
 
     <!-- Theme -->
+    <string name="ads_theme_version_original">原始</string>
+    <string name="ads_theme_version_latest">最新</string>
     <string name="ads_theme_toast_default">預設快顯訊息</string>
     <string name="ads_theme_toast_themed">主題快顯訊息</string>
     <string name="ads_theme_entry_auto">自動</string>
-    <string name="ads_theme_settings_auto_desc">選取以自動使用應用程式設定。</string>
-    <string name="ads_theme_settings_default_desc">選取以自動使用預設設定。</string>
+    <string name="ads_theme_entry_auto_desc">選取自動以使用應用程式設定。</string>
+    <string name="ads_theme_entry_auto_default_desc">選取自動以使用預設設定。</string>
+    <string name="ads_theme_entry_auto_background_aware_desc">選擇以自動使用應用程式調色盤。依據背景調整色彩以提供最佳可見性。</string>
     <string name="ads_theme_color_auto_desc">選取以自動使用應用程式調色盤。</string>
     <string name="ads_theme_color_default_desc">選取以自動使用預設調色盤。</string>
-    <string name="ads_theme_entry_auto_background_aware_desc">選擇以自動使用應用程式調色盤。依據背景調整色彩以提供最佳可見性。</string>
     <string name="ads_theme_entry_day">日間</string>
     <string name="ads_theme_entry_night">夜間</string>
     <string name="ads_theme_entry_light">淺色</string>
@@ -373,7 +376,7 @@
     <string name="ads_notification_close_drawer_summary">執行此動作後，關閉通知導覽匣</string>
     <string name="ads_notification_close_drawer_summary_unchecked">執行此動作後，請勿變更通知導覽匣狀態</string>
 
-    <!-- App widget -->
+    <!-- App Widget -->
     <string name="ads_widget_customise">自訂</string>
     <string name="ads_widget_customise_desc">在下面設定小工具。</string>
     <string name="ads_widget_preview">預覽</string>
@@ -409,7 +412,7 @@
     <string name="ads_support_restart_app_summary">重新啟動應用程式和服務以重新整理應用程式狀態</string>
     <string name="ads_support_restart_app_desc">如果服務未啟動或應用無法正常運作，請使用此選項。執行此動作後，所有設定將保持不變。</string>
 
-    <!-- Developer and App info -->
+    <!-- Developer and Info -->
     <string name="ads_info_made_in">印度製造</string>
     <string name="ads_info_made_by">由設計和編寫</string>
     <string name="ads_info_made_by_alt">由開發</string>

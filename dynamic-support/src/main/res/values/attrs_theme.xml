@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018-2022 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<resources>
+
+    <!-- The theme version integer. -->
+    <attr name="ads_theme_version" format="integer" />
+
+    <!-- The base animation style. -->
+    <attr name="ads_animation" format="reference" />
+    <!-- The app animation style. -->
+    <attr name="ads_animationApp" format="reference" />
+    <!-- The app window animation style. -->
+    <attr name="ads_animationAppWindow" format="reference" />
+    <!-- The fade in and out animation style. -->
+    <attr name="ads_animationFadeInOut" format="reference" />
+    <!-- The dialog animation style. -->
+    <attr name="ads_animationDialog" format="reference" />
+    <!-- The popup animation style. -->
+    <attr name="ads_animationPopup" format="reference" />
+
+    <!-- The base text appearance. -->
+    <attr name="ads_textAppearance" format="reference" />
+    <!-- The capitalize base text appearance. -->
+    <attr name="ads_textAppearanceCaps" format="reference" />
+    <!-- The secondary text appearance. -->
+    <attr name="ads_textAppearanceSecondary" format="reference" />
+    <!-- The capitalize secondary text appearance. -->
+    <attr name="ads_textAppearanceSecondaryCaps" format="reference" />
+    <!-- The headline 1 text appearance. -->
+    <attr name="ads_textAppearanceHeadline1" format="reference" />
+    <!-- The capitalize headline 1 text appearance. -->
+    <attr name="ads_textAppearanceHeadline1Caps" format="reference" />
+    <!-- The secondary headline 1 text appearance. -->
+    <attr name="ads_textAppearanceSecondaryHeadline1" format="reference" />
+    <!-- The capitalize secondary headline 1 text appearance. -->
+    <attr name="ads_textAppearanceSecondaryHeadline1Caps" format="reference" />
+    <!-- The headline 2 text appearance. -->
+    <attr name="ads_textAppearanceHeadline2" format="reference" />
+    <!-- The capitalize headline 2 text appearance. -->
+    <attr name="ads_textAppearanceHeadline2Caps" format="reference" />
+    <!-- The secondary headline 2 text appearance. -->
+    <attr name="ads_textAppearanceSecondaryHeadline2" format="reference" />
+    <!-- The capitalize secondary headline 2 text appearance. -->
+    <attr name="ads_textAppearanceSecondaryHeadline2Caps" format="reference" />
+    <!-- The headline 3 text appearance. -->
+    <attr name="ads_textAppearanceHeadline3" format="reference" />
+    <!-- The capitalize headline 3 text appearance. -->
+    <attr name="ads_textAppearanceHeadline3Caps" format="reference" />
+    <!-- The secondary headline 3 text appearance. -->
+    <attr name="ads_textAppearanceSecondaryHeadline3" format="reference" />
+    <!-- The capitalize secondary headline 3 text appearance. -->
+    <attr name="ads_textAppearanceSecondaryHeadline3Caps" format="reference" />
+    <!-- The headline 4 text appearance. -->
+    <attr name="ads_textAppearanceHeadline4" format="reference" />
+    <!-- The capitalize headline 4 text appearance. -->
+    <attr name="ads_textAppearanceHeadline4Caps" format="reference" />
+    <!-- The secondary headline 4 text appearance. -->
+    <attr name="ads_textAppearanceSecondaryHeadline4" format="reference" />
+    <!-- The capitalize secondary headline 4 text appearance. -->
+    <attr name="ads_textAppearanceSecondaryHeadline4Caps" format="reference" />
+    <!-- The headline 5 text appearance. -->
+    <attr name="ads_textAppearanceHeadline5" format="reference" />
+    <!-- The capitalize headline 5 text appearance. -->
+    <attr name="ads_textAppearanceHeadline5Caps" format="reference" />
+    <!-- The secondary headline 5 text appearance. -->
+    <attr name="ads_textAppearanceSecondaryHeadline5" format="reference" />
+    <!-- The capitalize secondary headline 5 text appearance. -->
+    <attr name="ads_textAppearanceSecondaryHeadline5Caps" format="reference" />
+    <!-- The headline 6 text appearance. -->
+    <attr name="ads_textAppearanceHeadline6" format="reference" />
+    <!-- The capitalize headline 6 text appearance. -->
+    <attr name="ads_textAppearanceHeadline6Caps" format="reference" />
+    <!-- The secondary headline 6 text appearance. -->
+    <attr name="ads_textAppearanceSecondaryHeadline6" format="reference" />
+    <!-- The capitalize secondary headline 6 text appearance. -->
+    <attr name="ads_textAppearanceSecondaryHeadline6Caps" format="reference" />
+    <!-- The subtitle 1 text appearance. -->
+    <attr name="ads_textAppearanceSubtitle1" format="reference" />
+    <!-- The capitalize subtitle 1 text appearance. -->
+    <attr name="ads_textAppearanceSubtitle1Caps" format="reference" />
+    <!-- The secondary subtitle 1 text appearance. -->
+    <attr name="ads_textAppearanceSecondarySubtitle1" format="reference" />
+    <!-- The capitalize secondary subtitle 1 text appearance. -->
+    <attr name="ads_textAppearanceSecondarySubtitle1Caps" format="reference" />
+    <!-- The subtitle 2 text appearance. -->
+    <attr name="ads_textAppearanceSubtitle2" format="reference" />
+    <!-- The capitalize subtitle 2 text appearance. -->
+    <attr name="ads_textAppearanceSubtitle2Caps" format="reference" />
+    <!-- The secondary subtitle 2 text appearance. -->
+    <attr name="ads_textAppearanceSecondarySubtitle2" format="reference" />
+    <!-- The capitalize secondary subtitle 2 text appearance. -->
+    <attr name="ads_textAppearanceSecondarySubtitle2Caps" format="reference" />
+    <!-- The body 1 text appearance. -->
+    <attr name="ads_textAppearanceBody1" format="reference" />
+    <!-- The capitalize body 1 text appearance. -->
+    <attr name="ads_textAppearanceBody1Caps" format="reference" />
+    <!-- The secondary body 1 text appearance. -->
+    <attr name="ads_textAppearanceSecondaryBody1" format="reference" />
+    <!-- The capitalize secondary body 1 text appearance. -->
+    <attr name="ads_textAppearanceSecondaryBody1Caps" format="reference" />
+    <!-- The body 2 text appearance. -->
+    <attr name="ads_textAppearanceBody2" format="reference" />
+    <!-- The capitalize body 2 text appearance. -->
+    <attr name="ads_textAppearanceBody2Caps" format="reference" />
+    <!-- The secondary body 2 text appearance. -->
+    <attr name="ads_textAppearanceSecondaryBody2" format="reference" />
+    <!-- The capitalize secondary body 2 text appearance. -->
+    <attr name="ads_textAppearanceSecondaryBody2Caps" format="reference" />
+    <!-- The caption text appearance. -->
+    <attr name="ads_textAppearanceCaption" format="reference" />
+    <!-- The capitalize caption text appearance. -->
+    <attr name="ads_textAppearanceCaptionCaps" format="reference" />
+    <!-- The secondary caption text appearance. -->
+    <attr name="ads_textAppearanceSecondaryCaption" format="reference" />
+    <!-- The capitalize secondary caption text appearance. -->
+    <attr name="ads_textAppearanceSecondaryCaptionCaps" format="reference" />
+    <!-- The button text appearance. -->
+    <attr name="ads_textAppearanceButton" format="reference" />
+    <!-- The capitalize button text appearance. -->
+    <attr name="ads_textAppearanceButtonCaps" format="reference" />
+    <!-- The secondary button text appearance. -->
+    <attr name="ads_textAppearanceSecondaryButton" format="reference" />
+    <!-- The capitalize secondary button text appearance. -->
+    <attr name="ads_textAppearanceSecondaryButtonCaps" format="reference" />
+    <!-- The overline text appearance. -->
+    <attr name="ads_textAppearanceOverline" format="reference" />
+    <!-- The capitalize overline text appearance. -->
+    <attr name="ads_textAppearanceOverlineCaps" format="reference" />
+    <!-- The secondary overline text appearance. -->
+    <attr name="ads_textAppearanceSecondaryOverline" format="reference" />
+    <!-- The capitalize secondary overline text appearance. -->
+    <attr name="ads_textAppearanceSecondaryOverlineCaps" format="reference" />
+
+    <!-- The small popup menu text appearance. -->
+    <attr name="ads_textAppearanceSmallPopupMenu" format="reference" />
+    <!-- The large popup menu text appearance. -->
+    <attr name="ads_textAppearanceLargePopupMenu" format="reference" />
+
+    <!-- The dialog text appearance. -->
+    <attr name="ads_textAppearanceDialog" format="reference" />
+    <!-- The dialog primary text appearance. -->
+    <attr name="ads_textAppearanceDialogPrimary" format="reference" />
+    <!-- The dialog accent text appearance. -->
+    <attr name="ads_textAppearanceDialogAccent" format="reference" />
+
+    <!-- The splash tile text appearance. -->
+    <attr name="ads_textAppearanceSplashTitle" format="reference" />
+    <!-- The splash subtitle text appearance. -->
+    <attr name="ads_textAppearanceSplashSubtitle" format="reference" />
+
+    <!-- The tutorial tile text appearance. -->
+    <attr name="ads_textAppearanceTutorialTitle" format="reference" />
+    <!-- The tutorial subtitle text appearance. -->
+    <attr name="ads_textAppearanceTutorialSubtitle" format="reference" />
+    <!-- The tutorial body text appearance. -->
+    <attr name="ads_textAppearanceTutorialBody" format="reference" />
+
+    <!-- The drawer tile text appearance. -->
+    <attr name="ads_textAppearanceDrawerTitle" format="reference" />
+    <!-- The drawer subtitle text appearance. -->
+    <attr name="ads_textAppearanceDrawerSubtitle" format="reference" />
+
+    <!-- The toolbar tile text appearance. -->
+    <attr name="ads_textAppearanceToolbarTitle" format="reference" />
+    <!-- The toolbar tile expanded text appearance. -->
+    <attr name="ads_textAppearanceToolbarTitleExpanded" format="reference" />
+    <!-- The toolbar subtitle text appearance. -->
+    <attr name="ads_textAppearanceToolbarSubtitle" format="reference" />
+
+    <!-- The value text appearance. -->
+    <attr name="ads_textAppearanceValue" format="reference" />
+
+    <!-- The base widget style. -->
+    <attr name="ads_widget" format="reference" />
+    <!-- The app widget style. -->
+    <attr name="ads_widgetApp" format="reference" />
+    <!-- The app widget margin style. -->
+    <attr name="ads_widgetAppMargin" format="reference" />
+    <!-- The app widget large margin style. -->
+    <attr name="ads_widgetAppMarginLarge" format="reference" />
+
+    <!-- The divider widget style. -->
+    <attr name="ads_widgetDivider" format="reference" />
+    <!-- The large divider widget style. -->
+    <attr name="ads_widgetDividerLarge" format="reference" />
+    <!-- The vertical divider widget style. -->
+    <attr name="ads_widgetDividerVertical" format="reference" />
+    <!-- The large vertical divider widget style. -->
+    <attr name="ads_widgetDividerVerticalLarge" format="reference" />
+
+    <!-- The toolbar widget style. -->
+    <attr name="ads_widgetToolbar" format="reference" />
+    <!-- The tab layout widget style. -->
+    <attr name="ads_widgetTabLayout" format="reference" />
+    <!-- The navigation view style. -->
+    <attr name="ads_widgetNavigationView" format="reference" />
+    <!-- The navigation view theme overlay. -->
+    <attr name="ads_widgetNavigationViewOverlay" format="reference" />
+    <!-- The navigation rail view style. -->
+    <attr name="ads_widgetNavigationRailView" format="reference" />
+    <!-- The bottom navigation view style. -->
+    <attr name="ads_widgetBottomNavigationView" format="reference" />
+    <!-- The floating action button style style. -->
+    <attr name="ads_widgetFloatingActionButton" format="reference" />
+    <!-- The mini floating action button style style. -->
+    <attr name="ads_widgetFloatingActionButtonMini" format="reference" />
+    <!-- The extended floating action button style style. -->
+    <attr name="ads_widgetExtendedFloatingActionButton" format="reference" />
+    <!-- The bottom sheet style. -->
+    <attr name="ads_widgetBottomSheet" format="reference" />
+    <!-- The view pager style. -->
+    <attr name="ads_widgetViewPager" format="reference" />
+
+    <!-- The scrollable widget style. -->
+    <attr name="ads_widgetScroller" format="reference" />
+    <!-- The scrollable clipped widget style. -->
+    <attr name="ads_widgetScrollerClip" format="reference" />
+    <!-- The vertical scrollable widget style. -->
+    <attr name="ads_widgetScrollerVertical" format="reference" />
+    <!-- The vertical scrollable clipped widget style. -->
+    <attr name="ads_widgetScrollerVerticalClip" format="reference" />
+    <!-- The scrollable widget padding style. -->
+    <attr name="ads_widgetScrollerPadding" format="reference" />
+    <!-- The scrollable clipped widget padding style. -->
+    <attr name="ads_widgetScrollerPaddingClip" format="reference" />
+    <!-- The vertical scrollable widget padding style. -->
+    <attr name="ads_widgetScrollerPaddingVertical" format="reference" />
+    <!-- The vertical scrollable clipped widget padding style. -->
+    <attr name="ads_widgetScrollerPaddingVerticalClip" format="reference" />
+    <!-- The nested scrollable widget style. -->
+    <attr name="ads_widgetScrollerNested" format="reference" />
+    <!-- The nested horizontal scrollable widget style. -->
+    <attr name="ads_widgetScrollerNestedHorizontal" format="reference" />
+    <!-- The nested grid view widget style. -->
+    <attr name="ads_widgetScrollerNestedGridView" format="reference" />
+    <!-- The nested scrollable widget padding style. -->
+    <attr name="ads_widgetScrollerNestedPadding" format="reference" />
+    <!-- The nested horizontal scrollable widget padding style. -->
+    <attr name="ads_widgetScrollerNestedPaddingHorizontal" format="reference" />
+
+    <!-- The card style. -->
+    <attr name="ads_widgetCard" format="reference" />
+    <!-- The clickable card style. -->
+    <attr name="ads_widgetCardClickable" format="reference" />
+    <!-- The empty card style. -->
+    <attr name="ads_widgetCardEmpty" format="reference" />
+    <!-- The empty clickable card style. -->
+    <attr name="ads_widgetCardEmptyClickable" format="reference" />
+    <!-- The card margin style. -->
+    <attr name="ads_widgetCardMargin" format="reference" />
+    <!-- The clickable card margin style. -->
+    <attr name="ads_widgetCardMarginClickable" format="reference" />
+    <!-- The empty card margin style. -->
+    <attr name="ads_widgetCardMarginEmpty" format="reference" />
+    <!-- The empty clickable card margin style. -->
+    <attr name="ads_widgetCardMarginEmptyClickable" format="reference" />
+    <!-- The floating card style. -->
+    <attr name="ads_widgetCardFloating" format="reference" />
+    <!-- The dialog card style. -->
+    <attr name="ads_widgetCardFloatingDialog" format="reference" />
+    <!-- The bottom sheet card style. -->
+    <attr name="ads_widgetCardFloatingBottomSheet" format="reference" />
+    <!-- The toast card style. -->
+    <attr name="ads_widgetCardFloatingToast" format="reference" />
+
+    <!-- The button style. -->
+    <attr name="ads_widgetButton" format="reference" />
+    <!-- The single line button style. -->
+    <attr name="ads_widgetButtonSingleLine" format="reference" />
+    <!-- The small button style. -->
+    <attr name="ads_widgetButtonSmall" format="reference" />
+    <!-- The small single line button style. -->
+    <attr name="ads_widgetButtonSmallSingleLine" format="reference" />
+    <!-- The icon button style. -->
+    <attr name="ads_widgetButtonIcon" format="reference" />
+    <!-- The unelevated button style. -->
+    <attr name="ads_widgetButtonUnelevated" format="reference" />
+    <!-- The single line unelevated button style. -->
+    <attr name="ads_widgetButtonUnelevatedSingleLine" format="reference" />
+    <!-- The small unelevated button style. -->
+    <attr name="ads_widgetButtonUnelevatedSmall" format="reference" />
+    <!-- The small single line unelevated button style. -->
+    <attr name="ads_widgetButtonUnelevatedSmallSingleLine" format="reference" />
+    <!-- The icon unelevated button style. -->
+    <attr name="ads_widgetButtonUnelevatedIcon" format="reference" />
+    <!-- The text button style. -->
+    <attr name="ads_widgetButtonText" format="reference" />
+    <!-- The single line text button style. -->
+    <attr name="ads_widgetButtonTextSingleLine" format="reference" />
+    <!-- The small text button style. -->
+    <attr name="ads_widgetButtonTextSmall" format="reference" />
+    <!-- The small single line text button style. -->
+    <attr name="ads_widgetButtonTextSmallSingleLine" format="reference" />
+    <!-- The icon text button style. -->
+    <attr name="ads_widgetButtonTextIcon" format="reference" />
+    <!-- The dialog text button style. -->
+    <attr name="ads_widgetButtonTextDialog" format="reference" />
+    <!-- The image button style. -->
+    <attr name="ads_widgetButtonImage" format="reference" />
+    <!-- The preference button style. -->
+    <attr name="ads_widgetButtonPreference" format="reference" />
+
+    <!-- The image widget style. -->
+    <attr name="ads_widgetImage" format="reference" />
+    <!-- The borderless image style. -->
+    <attr name="ads_widgetImageBorderless" format="reference" />
+    <!-- The splash image style. -->
+    <attr name="ads_widgetImageSplash" format="reference" />
+    <!-- The backdrop image style. -->
+    <attr name="ads_widgetImageBackdrop" format="reference" />
+    <!-- The header image style. -->
+    <attr name="ads_widgetImageHeader" format="reference" />
+    <!-- The app bar header image style. -->
+    <attr name="ads_widgetImageHeaderAppBar" format="reference" />
+    <!-- The preview image style. -->
+    <attr name="ads_widgetImagePreview" format="reference" />
+    <!-- The drag indicator image style. -->
+    <attr name="ads_widgetImageDragIndicator" format="reference" />
+    <!-- The empty image style. -->
+    <attr name="ads_widgetImageEmpty" format="reference" />
+    <!-- The card image style. -->
+    <attr name="ads_widgetImageCard" format="reference" />
+    <!-- The card big image style. -->
+    <attr name="ads_widgetImageCardBig" format="reference" />
+    <!-- The card tutorial image style. -->
+    <attr name="ads_widgetImageCardBigTutorial" format="reference" />
+    <!-- The info image style. -->
+    <attr name="ads_widgetImageInfo" format="reference" />
+    <!-- The info placeholder image style. -->
+    <attr name="ads_widgetImageInfoPlaceholder" format="reference" />
+    <!-- The big info image style. -->
+    <attr name="ads_widgetImageInfoBig" format="reference" />
+    <!-- The big info placeholder image style. -->
+    <attr name="ads_widgetImageInfoBigPlaceholder" format="reference" />
+    <!-- The preference image style. -->
+    <attr name="ads_widgetImagePreference" format="reference" />
+    <!-- The preference centered image style. -->
+    <attr name="ads_widgetImagePreferenceCenter" format="reference" />
+    <!-- The preference compact image style. -->
+    <attr name="ads_widgetImagePreferenceCompact" format="reference" />
+    <!-- The preference value image style. -->
+    <attr name="ads_widgetImagePreferenceValue" format="reference" />
+    <!-- The preference centered value image style. -->
+    <attr name="ads_widgetImagePreferenceValueCenter" format="reference" />
+    <!-- The preference placeholder image style. -->
+    <attr name="ads_widgetImagePreferencePlaceholder" format="reference" />
+    <!-- The preference placeholder compact image style. -->
+    <attr name="ads_widgetImagePreferencePlaceholderCompact" format="reference" />
+    <!-- The preference placeholder big image style. -->
+    <attr name="ads_widgetImagePreferencePlaceholderBig" format="reference" />
+    <!-- The preference theme image style. -->
+    <attr name="ads_widgetImagePreferenceTheme" format="reference" />
+
+    <!-- The filled box text input layout style. -->
+    <attr name="ads_widgetTextInputLayoutFilledBox" format="reference" />
+    <!-- The outlined box text input layout style. -->
+    <attr name="ads_widgetTextInputLayoutOutlinedBox" format="reference" />
+    <!-- The text input edit text style. -->
+    <attr name="ads_widgetTextInputEditText" format="reference" />
+    <!-- The single line text input edit text style. -->
+    <attr name="ads_widgetTextInputEditTextSingleLine" format="reference" />
+    <!-- The outlined text input edit text style. -->
+    <attr name="ads_widgetTextInputEditTextOutlined" format="reference" />
+    <!-- The single line outlined text input edit text style. -->
+    <attr name="ads_widgetTextInputEditTextOutlinedSingleLine" format="reference" />
+
+    <!-- The slider widget style. -->
+    <attr name="ads_widgetSlider" format="reference" />
+    <!-- The compact slider widget style. -->
+    <attr name="ads_widgetSliderCompact" format="reference" />
+
+    <!-- The rating bar style. -->
+    <attr name="ads_widgetRatingBar" format="reference" />
+    <!-- The rating bar indicator style. -->
+    <attr name="ads_widgetRatingBarIndicator" format="reference" />
+    <!-- The small rating bar style. -->
+    <attr name="ads_widgetRatingBarSmall" format="reference" />
+
+    <!-- The color view style. -->
+    <attr name="ads_widgetColorView" format="reference" />
+    <!-- The preference color view style. -->
+    <attr name="ads_widgetColorViewPreference" format="reference" />
+
+    <!-- The content widget style. -->
+    <attr name="ads_widgetContent" format="reference" />
+    <!-- The clickable content style. -->
+    <attr name="ads_widgetContentClickable" format="reference" />
+    <!-- The background clickable content style. -->
+    <attr name="ads_widgetContentClickableBackground" format="reference" />
+    <!-- The card content style. -->
+    <attr name="ads_widgetContentCard" format="reference" />
+    <!-- The clickable card content style. -->
+    <attr name="ads_widgetContentCardClickable" format="reference" />
+    <!-- The background clickable card content style. -->
+    <attr name="ads_widgetContentCardClickableBackground" format="reference" />
+    <!-- The small card content style. -->
+    <attr name="ads_widgetContentCardSmall" format="reference" />
+    <!-- The small clickable card content style. -->
+    <attr name="ads_widgetContentCardSmallClickable" format="reference" />
+    <!-- The small background clickable card content style. -->
+    <attr name="ads_widgetContentCardSmallClickableBackground" format="reference" />
+    <!-- The card header style. -->
+    <attr name="ads_widgetContentCardHeader" format="reference" />
+    <!-- The clickable card header style. -->
+    <attr name="ads_widgetContentCardHeaderClickable" format="reference" />
+    <!-- The background clickable card header style. -->
+    <attr name="ads_widgetContentCardHeaderClickableBackground" format="reference" />
+    <!-- The card footer style. -->
+    <attr name="ads_widgetContentCardFooter" format="reference" />
+    <!-- The content row style. -->
+    <attr name="ads_widgetContentRow" format="reference" />
+    <!-- The vertical row style. -->
+    <attr name="ads_widgetContentRowVertical" format="reference" />
+    <!-- The centered vertical row style. -->
+    <attr name="ads_widgetContentRowVerticalCenter" format="reference" />
+    <!-- The weighted vertical row style. -->
+    <attr name="ads_widgetContentRowVerticalWeight" format="reference" />
+    <!-- The horizontal row style. -->
+    <attr name="ads_widgetContentRowHorizontal" format="reference" />
+    <!-- The centered horizontal row style. -->
+    <attr name="ads_widgetContentRowHorizontalCenter" format="reference" />
+    <!-- The weighted horizontal row style. -->
+    <attr name="ads_widgetContentRowHorizontalWeight" format="reference" />
+    <!-- The splash content style. -->
+    <attr name="ads_widgetContentSplash" format="reference" />
+
+    <!-- The theme widget style. -->
+    <attr name="ads_widgetTheme" format="reference" />
+    <!-- The theme background widget style. -->
+    <attr name="ads_widgetThemeBackground" format="reference" />
+    <!-- The theme background image style. -->
+    <attr name="ads_widgetThemeBackgroundImage" format="reference" />
+    <!-- The theme content style. -->
+    <attr name="ads_widgetThemeContent" format="reference" />
+    <!-- The theme content remote style. -->
+    <attr name="ads_widgetThemeContentRemote" format="reference" />
+    <!-- The theme content small remote style. -->
+    <attr name="ads_widgetThemeContentRemoteSmall" format="reference" />
+    <!-- The theme action style. -->
+    <attr name="ads_widgetThemeAction" format="reference" />
+    <!-- The theme preview action style. -->
+    <attr name="ads_widgetThemeActionPreview" format="reference" />
+    <!-- The theme preview style. -->
+    <attr name="ads_widgetThemePreview" format="reference" />
+    <!-- The theme preview layout style. -->
+    <attr name="ads_widgetThemePreviewLayout" format="reference" />
+    <!-- The theme preview header style. -->
+    <attr name="ads_widgetThemePreviewHeader" format="reference" />
+    <!-- The theme preview header remote style. -->
+    <attr name="ads_widgetThemePreviewHeaderRemote" format="reference" />
+    <!-- The theme preview header status bar style. -->
+    <attr name="ads_widgetThemePreviewHeaderStatusBar" format="reference" />
+
+    <!-- The switch layout resource for check preference. -->
+    <attr name="ads_layoutPreferenceCheck" format="reference" />
+
+    <!-- The app widget style. -->
+    <attr name="ads_appWidget" format="reference" />
+    <!-- The app widget text appearance. -->
+    <attr name="ads_appWidgetTextAppearance" format="reference" />
+    <!-- The app widget title text appearance. -->
+    <attr name="ads_appWidgetTextAppearanceTitle" format="reference" />
+    <!-- The app widget subtitle text appearance. -->
+    <attr name="ads_appWidgetTextAppearanceSubtitle" format="reference" />
+    <!-- The app widget hint text appearance. -->
+    <attr name="ads_appWidgetTextAppearanceHint" format="reference" />
+    <!-- The app widget background style. -->
+    <attr name="ads_appWidgetBackground" format="reference" />
+    <!-- The app widget layout style. -->
+    <attr name="ads_appWidgetLayout" format="reference" />
+    <!-- The app widget content style. -->
+    <attr name="ads_appWidgetContent" format="reference" />
+    <!-- The app widget header style. -->
+    <attr name="ads_appWidgetHeader" format="reference" />
+    <!-- The app widget preview header style. -->
+    <attr name="ads_appWidgetHeaderPreview" format="reference" />
+    <!-- The app widget button style. -->
+    <attr name="ads_appWidgetButton" format="reference" />
+    <!-- The app widget borderless button style. -->
+    <attr name="ads_appWidgetButtonBorderless" format="reference" />
+    <!-- The app widget image style. -->
+    <attr name="ads_appWidgetImage" format="reference" />
+    <!-- The app widget background image style. -->
+    <attr name="ads_appWidgetImageBackground" format="reference" />
+    <!-- The app widget header image style. -->
+    <attr name="ads_appWidgetImageHeader" format="reference" />
+    <!-- The app widget logo image style. -->
+    <attr name="ads_appWidgetImageLogo" format="reference" />
+    <!-- The app widget action image style. -->
+    <attr name="ads_appWidgetImageAction" format="reference" />
+    <!-- The app widget preview action image style. -->
+    <attr name="ads_appWidgetImageActionPreview" format="reference" />
+
+</resources>

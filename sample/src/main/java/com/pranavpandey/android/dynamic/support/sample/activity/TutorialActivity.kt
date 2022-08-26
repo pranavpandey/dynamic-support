@@ -38,7 +38,7 @@ class TutorialActivity :
         /**
          * Constant for welcome intro screen.
          */
-        const val TUTORIAL_WELCOME = 0
+        const val TUTORIAL_WELCOME = Tutorial.ADS_TUTORIAL_WELCOME
 
         /**
          * Constant for finish intro screen.

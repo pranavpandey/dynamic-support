@@ -19,11 +19,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Widget.DynamicApp.Scroller.Vertical"
+    style="?attr/ads_widgetScrollerVertical"
     android:id="@+id/ads_color_picker">
 
     <LinearLayout
-        style="@style/Widget.DynamicApp.Content.Row.Vertical"
+        style="?attr/ads_widgetContentRowVertical"
         android:descendantFocusability="beforeDescendants"
         android:focusableInTouchMode="true">
 
@@ -45,7 +45,7 @@
                 android:orientation="vertical">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
-                    style="@style/Widget.DynamicApp.Scroller.Nested.GridView"
+                    style="?attr/ads_widgetScrollerNestedGridView"
                     android:id="@+id/ads_color_picker_colors"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -54,16 +54,16 @@
                     android:verticalSpacing="@dimen/ads_picker_colors_spacing" />
 
                 <LinearLayout
-                    style="@style/Widget.DynamicApp.Content.Row.Vertical"
+                    style="?attr/ads_widgetContentRowVertical"
                     android:id="@+id/ads_color_picker_shades_root"
                     android:layout_marginTop="@dimen/ads_margin_tiny"
                     android:visibility="gone">
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
-                        style="@style/Widget.DynamicApp.Divider.Large" />
+                        style="?attr/ads_widgetDividerLarge" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
-                        style="@style/Widget.DynamicApp.Scroller.Nested.GridView"
+                        style="?attr/ads_widgetScrollerNestedGridView"
                         android:id="@+id/ads_color_picker_shades"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    style="@style/Widget.DynamicApp.Content.Row.Vertical"
+                    style="?attr/ads_widgetContentRowVertical"
                     android:id="@+id/ads_color_picker_dynamics_root">
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
@@ -89,7 +89,7 @@
                         app:adt_colorType="primary" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
-                        style="@style/Widget.DynamicApp.Scroller.Nested.GridView"
+                        style="?attr/ads_widgetScrollerNestedGridView"
                         android:id="@+id/ads_color_picker_dynamics"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    style="@style/Widget.DynamicApp.Content.Row.Vertical"
+                    style="?attr/ads_widgetContentRowVertical"
                     android:id="@+id/ads_color_picker_recents_root">
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
@@ -114,7 +114,7 @@
                         app:adt_colorType="primary" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
-                        style="@style/Widget.DynamicApp.Scroller.Nested.GridView"
+                        style="?attr/ads_widgetScrollerNestedGridView"
                         android:id="@+id/ads_color_picker_recents"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -146,7 +146,7 @@
                     android:orientation="horizontal">
 
                     <com.pranavpandey.android.dynamic.support.picker.color.view.DynamicColorView
-                        style="@style/Widget.DynamicApp.ColorView"
+                        style="?attr/ads_widgetColorView"
                         android:id="@+id/ads_color_picker_color_previous"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -157,7 +157,7 @@
                         app:adt_color= "#123456" />
 
                     <com.pranavpandey.android.dynamic.support.picker.color.view.DynamicColorView
-                        style="@style/Widget.DynamicApp.ColorView"
+                        style="?attr/ads_widgetColorView"
                         android:id="@+id/ads_color_picker_color"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -175,10 +175,10 @@
                         tools:targetApi="jelly_bean_mr1">
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                            style="?attr/ads_textAppearanceSubtitle2Caps"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/ads_picker_font_size_medium"
-                            android:textAllCaps="true"
                             android:text="#"
                             tools:ignore="HardcodedText,TextViewEdits" />
 
@@ -199,7 +199,7 @@
                 </LinearLayout>
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicHorizontalScrollView
-                    style="@style/Widget.DynamicApp.Scroller.Nested.Horizontal"
+                    style="?attr/ads_widgetScrollerNestedHorizontal"
                     android:paddingLeft="@dimen/ads_dialog_margin_horizontal"
                     android:paddingStart="@dimen/ads_dialog_margin_horizontal"
                     android:paddingRight="@dimen/ads_dialog_margin_horizontal"
@@ -211,7 +211,7 @@
                         android:orientation="horizontal">
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-                            style="@style/Widget.DynamicApp.Button.TextButton.Small"
+                            style="?attr/ads_widgetButtonTextSmall"
                             android:id="@+id/ads_color_picker_button_all"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -219,7 +219,7 @@
                             app:adt_colorType="primary" />
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-                            style="@style/Widget.DynamicApp.Button.TextButton.Small"
+                            style="?attr/ads_widgetButtonTextSmall"
                             android:id="@+id/ads_color_picker_button_hsv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -227,7 +227,7 @@
                             app:adt_colorType="primary" />
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-                            style="@style/Widget.DynamicApp.Button.TextButton.Small"
+                            style="?attr/ads_widgetButtonTextSmall"
                             android:id="@+id/ads_color_picker_button_rgb"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -235,7 +235,7 @@
                             app:adt_colorType="primary" />
 
                         <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-                            style="@style/Widget.DynamicApp.Button.TextButton.Small"
+                            style="?attr/ads_widgetButtonTextSmall"
                             android:id="@+id/ads_color_picker_button_cmyk"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -247,14 +247,14 @@
                 </com.pranavpandey.android.dynamic.support.widget.DynamicHorizontalScrollView>
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
-                    style="@style/Widget.DynamicApp.Divider.Large"
+                    style="?attr/ads_widgetDividerLarge"
                     android:layout_marginLeft="@dimen/ads_dialog_margin_horizontal"
                     android:layout_marginStart="@dimen/ads_dialog_margin_horizontal"
                     android:layout_marginRight="@dimen/ads_dialog_margin_horizontal"
                     android:layout_marginEnd="@dimen/ads_dialog_margin_horizontal" />
 
                 <LinearLayout
-                    style="@style/Widget.DynamicApp.Content.Row.Vertical"
+                    style="?attr/ads_widgetContentRowVertical"
                     android:id="@+id/ads_color_picker_view_hsv"
                     android:paddingLeft="@dimen/ads_dialog_margin_horizontal"
                     android:paddingStart="@dimen/ads_dialog_margin_horizontal"
@@ -304,7 +304,7 @@
                     app:ads_interval="1" />
 
                 <LinearLayout
-                    style="@style/Widget.DynamicApp.Content.Row.Vertical"
+                    style="?attr/ads_widgetContentRowVertical"
                     android:id="@+id/ads_color_picker_view_rgb"
                     android:paddingLeft="@dimen/ads_dialog_margin_horizontal"
                     android:paddingStart="@dimen/ads_dialog_margin_horizontal"
@@ -341,7 +341,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    style="@style/Widget.DynamicApp.Content.Row.Vertical"
+                    style="?attr/ads_widgetContentRowVertical"
                     android:id="@+id/ads_color_picker_view_cmyk"
                     android:paddingLeft="@dimen/ads_dialog_margin_horizontal"
                     android:paddingStart="@dimen/ads_dialog_margin_horizontal"

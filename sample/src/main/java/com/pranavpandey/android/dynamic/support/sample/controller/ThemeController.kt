@@ -19,6 +19,7 @@ package com.pranavpandey.android.dynamic.support.sample.controller
 import androidx.annotation.ColorInt
 import androidx.annotation.StyleRes
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences
+import com.pranavpandey.android.dynamic.support.Dynamic
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme
 import com.pranavpandey.android.dynamic.support.sample.R
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme
@@ -156,9 +157,16 @@ object ThemeController {
      * @return The app theme style according to the supplied color.
      */
     @StyleRes fun getAppStyle(@ColorInt color: Int): Int {
-        return if (DynamicColorUtils.isColorDark(color))
-            R.style.Sample
-        else
-            R.style.Sample_Light
+        return if (Dynamic.isLegacyVersion(Dynamic.loadThemeVersion())) {
+            if (DynamicColorUtils.isColorDark(color))
+                R.style.Sample
+            else
+                R.style.Sample_Light
+        } else {
+            if (DynamicColorUtils.isColorDark(color))
+                R.style.Sample2
+            else
+                R.style.Sample2_Light
+        }
     }
 }

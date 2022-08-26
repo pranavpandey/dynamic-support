@@ -31,17 +31,17 @@
             android:layout_height="match_parent">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
-                style="@style/Widget.DynamicApp.Scroller.Padding.Vertical"
+                style="?attr/ads_widgetScrollerPaddingVertical"
                 android:id="@+id/ads_recycler_view" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
-                style="@style/Widget.DynamicApp.Scroller.Nested.Padding"
+                style="?attr/ads_widgetScrollerNestedPadding"
                 android:id="@+id/ads_empty_view_scroll"
                 android:layout_gravity="center"
                 android:visibility="gone">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-                    style="@style/Widget.DynamicApp.Card.Empty"
+                    style="?attr/ads_widgetCardEmpty"
                     android:id="@+id/ads_empty_view_card">
 
                     <com.pranavpandey.android.dynamic.support.view.DynamicEmptyViewBig

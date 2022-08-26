@@ -52,9 +52,15 @@ public class MenuInflaterRunnable implements Runnable {
      */
     private final AttributeSet mAttrs;
 
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param menu The menu item view for this runnable.
+     * @param attrs The attribute set to be used.
+     */
     public MenuInflaterRunnable(@Nullable View menu, @Nullable AttributeSet attrs) {
-        this.mAttrs = attrs;
         this.mMenu = menu;
+        this.mAttrs = attrs;
     }
 
     @SuppressLint("RestrictedApi")

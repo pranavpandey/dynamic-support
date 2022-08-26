@@ -89,9 +89,8 @@ public class DynamicImagePreference extends DynamicSpinnerPreference {
         super.onInflate();
 
         mImageView = LayoutInflater.from(getContext()).inflate(
-                R.layout.ads_preference_image, this, false)
+                R.layout.ads_preference_image, getViewFrame(), true)
                 .findViewById(R.id.ads_preference_image_value);
-
         setViewFrame(mImageView, true);
         Dynamic.setColorType(getValueView(), Theme.ColorType.NONE);
     }

@@ -22,7 +22,7 @@
     android:layout_height="wrap_content">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-        style="@style/Widget.DynamicApp.Card.Toast"
+        style="?attr/ads_widgetCardFloatingToast"
         android:id="@+id/ads_hint_card">
 
         <LinearLayout

@@ -17,10 +17,7 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicNavigationRailView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="?attr/ads_widgetNavigationRailView"
     android:id="@+id/ads_navigation_bar_view"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    app:menuGravity="center"
-    app:elevation="0dp"
-    app:labelVisibilityMode="unlabeled" />
+    android:layout_height="match_parent" />

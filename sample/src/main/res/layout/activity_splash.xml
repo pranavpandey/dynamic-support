@@ -18,7 +18,7 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Content.Splash">
+    style="?attr/ads_widgetContentSplash">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
         android:id="@+id/splash_image"
@@ -40,7 +40,7 @@
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            style="@style/TextAppearance.DynamicApp.Headline6.Splash"
+            style="?attr/ads_textAppearanceSplashTitle"
             android:id="@+id/splash_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
             app:adt_contrastWithColorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            style="@style/TextAppearance.DynamicApp.Subtitle1.Splash"
+            style="?attr/ads_textAppearanceSplashSubtitle"
             android:id="@+id/splash_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

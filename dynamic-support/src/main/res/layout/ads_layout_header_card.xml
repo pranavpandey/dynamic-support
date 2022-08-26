@@ -17,7 +17,7 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.DynamicApp.Card"
+    style="?attr/ads_widgetCard"
     android:id="@+id/ads_header_card">
 
     <com.pranavpandey.android.dynamic.support.view.DynamicHeader

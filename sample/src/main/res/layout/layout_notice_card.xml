@@ -16,7 +16,7 @@
 -->
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-    style="@style/Widget.DynamicApp.Card">
+    style="?attr/ads_widgetCard">
 
     <include layout="@layout/ads_layout_info_big" />
 

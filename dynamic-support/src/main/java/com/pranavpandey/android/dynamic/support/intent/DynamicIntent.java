@@ -33,7 +33,9 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 
-import com.pranavpandey.android.dynamic.support.Dynamic;
+import com.pranavpandey.android.dynamic.support.activity.DynamicActivity;
+import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
+import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.preview.factory.ImagePreview;
 import com.pranavpandey.android.dynamic.support.theme.listener.ThemeListener;
@@ -381,6 +383,7 @@ public class DynamicIntent {
      * @see Fragment#startActivityForResult(Intent, int, Bundle)
      * @see Context#startActivity(Intent)
      */
+    @SuppressWarnings("deprecation")
     public static boolean editTheme(@Nullable Context context,
             @Nullable LifecycleOwner owner, @Nullable Class<?> clazz, @NonNull String action,
             int requestCode, @Nullable String theme, @Nullable String defaultTheme,
@@ -397,7 +400,13 @@ public class DynamicIntent {
         }
 
         try {
-            if (owner instanceof Activity) {
+            if (owner instanceof DynamicSystemActivity) {
+                ((DynamicActivity) owner).startMotionActivityForResult(getThemeIntent(context,
+                        clazz, action, theme, defaultTheme, text), requestCode, bundle);
+            } else if (owner instanceof DynamicFragment) {
+                ((DynamicFragment) owner).startMotionActivityForResult(getThemeIntent(context,
+                        clazz, action, theme, defaultTheme, text), requestCode, bundle);
+            } else if (owner instanceof Activity) {
                 ((Activity) owner).startActivityForResult(getThemeIntent(context,
                         clazz, action, theme, defaultTheme, text), requestCode, bundle);
             } else if (owner instanceof Fragment) {
@@ -415,8 +424,6 @@ public class DynamicIntent {
 
             return false;
         }
-
-        Dynamic.setTransitionResultCode(context, requestCode);
 
         return true;
     }

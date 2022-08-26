@@ -17,25 +17,25 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.DynamicApp.Content.Card.Clickable.Background"
+    style="?attr/ads_widgetContentCardClickableBackground"
     android:id="@+id/ads_item_view"
     android:orientation="horizontal">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-        style="@style/Widget.DynamicApp.Image.Header"
+        style="?attr/ads_widgetImageHeader"
         android:id="@+id/ads_item_view_icon" />
 
     <LinearLayout
-        style="@style/Widget.DynamicApp.Content.Row.Vertical.Center">
+        style="?attr/ads_widgetContentRowVerticalCenter">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            style="@style/TextAppearance.DynamicApp.Subtitle2"
+            style="?attr/ads_textAppearanceSubtitle2"
             android:id="@+id/ads_item_view_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            style="@style/TextAppearance.DynamicApp.Body1"
+            style="?attr/ads_textAppearanceBody1"
             android:id="@+id/ads_item_view_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

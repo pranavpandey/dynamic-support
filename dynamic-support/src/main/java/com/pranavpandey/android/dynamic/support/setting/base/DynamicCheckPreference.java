@@ -30,6 +30,7 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 
 /**
  * A {@link DynamicSimplePreference} to provide the functionality of a
@@ -98,9 +99,9 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
         super.onInflate();
 
         mCompoundButton = LayoutInflater.from(getContext()).inflate(
-                R.layout.ads_preference_check, this, false)
+                DynamicResourceUtils.getResourceId(getContext(),
+                        R.attr.ads_layoutPreferenceCheck), getViewFrame(), true)
                 .findViewById(R.id.ads_preference_check_switch);
-
         setViewFrame(mCompoundButton, true);
 
         setOnPreferenceClickListener(new OnClickListener() {

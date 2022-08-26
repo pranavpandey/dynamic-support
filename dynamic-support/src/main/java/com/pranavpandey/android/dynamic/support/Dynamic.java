@@ -58,6 +58,7 @@ import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.snackbar.Snackbar;
+import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.activity.DynamicActivity;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSnackbar;
@@ -98,6 +99,7 @@ import com.pranavpandey.android.dynamic.theme.base.TypeTheme;
 import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 /**
  * Helper class to manipulate {@link DynamicActivity} and inflated views at runtime according
@@ -120,6 +122,100 @@ import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
  * @see DynamicItem
  */
 public class Dynamic {
+
+    /**
+     * Load the theme styles version from the shared preferences.
+     *
+     * @param resolve {@code true} to resolve the auto theme version.
+     *
+     * @return The theme styles version from the shared preferences.
+     */
+    public static @DynamicTheme.Version.ToString String loadThemeVersion(boolean resolve) {
+        @DynamicTheme.Version.ToString String version = DynamicPreferences.getInstance().load(
+                DynamicTheme.Version.KEY, DynamicTheme.Version.ToString.DEFAULT);
+
+        return resolve && DynamicTheme.Version.ToString.AUTO.equals(version)
+                ? DynamicTheme.Version.ToString.DEFAULT_AUTO : version;
+
+    }
+
+    /**
+     * Load the theme styles version from the shared preferences.
+     *
+     * @return The theme styles version from the shared preferences.
+     *
+     * @see #loadThemeVersion(boolean)
+     */
+    public static @DynamicTheme.Version.ToString String loadThemeVersion() {
+        return loadThemeVersion(true);
+    }
+
+    /**
+     * Save the theme styles version into the shared preferences.
+     *
+     * @param version The version to be saved.
+     */
+    public static void saveThemeVersion(@DynamicTheme.Version.ToString String version) {
+        DynamicPreferences.getInstance().save(DynamicTheme.Version.KEY, version);
+    }
+
+    /**
+     * Checks whether the supplied theme styles version is legacy.
+     *
+     * @param version The version to be checked.
+     *
+     * @return {@code true} if the supplied theme styles version is legacy.
+     */
+    public static boolean isLegacyVersion(@DynamicTheme.Version int version) {
+        return version < DynamicTheme.Version.INT_2;
+    }
+
+    /**
+     * Checks whether the supplied theme styles version is legacy.
+     *
+     * @param version The version to be checked.
+     *
+     * @return {@code true} if the supplied theme styles version is legacy.
+     */
+    public static boolean isLegacyVersion(@DynamicTheme.Version.ToString String version) {
+        return isLegacyVersion(Integer.parseInt(version));
+    }
+
+    /**
+     * Checks whether the theme styles version is legacy.
+     *
+     * @return {@code true} if the theme styles version is legacy.
+     *
+     * @see #isLegacyVersion(int)
+     * @see DynamicTheme#resolveVersion()
+     */
+    public static boolean isLegacyVersion() {
+        return isLegacyVersion(DynamicTheme.getInstance().resolveVersion());
+    }
+
+    /**
+     * Checks whether the application theme styles version is legacy.
+     *
+     * @return {@code true} if the application theme styles version is legacy.
+     *
+     * @see #isLegacyVersion(int)
+     * @see DynamicTheme#getVersion()
+     */
+    public static boolean isLegacyVersionRemote() {
+        return isLegacyVersion(DynamicTheme.getInstance().getVersion());
+    }
+
+    /**
+     * Set the text view all caps according to the theme styles version.
+     *
+     * @param textView The text view to be used.
+     * @param allCaps {@code true} to set the all caps.
+     *
+     * @see #isLegacyVersion()
+     */
+    public static void setAllCapsIfRequired(@Nullable TextView textView, boolean allCaps) {
+        DynamicViewUtils.setTextViewAllCaps(textView, allCaps && isLegacyVersion());
+    }
 
     /**
      * Resolves a color based on the supplied parameters.
@@ -1895,7 +1991,8 @@ public class Dynamic {
      * @param view The view to set the alpha.
      * @param alpha The alpha to be set.
      */
-    public static void setAlpha(@Nullable View view, @FloatRange(from = 0f, to = 1f) float alpha) {
+    public static void setAlpha(@Nullable View view,
+            @FloatRange(from = 0f, to = 1f) float alpha) {
         if (view != null) {
             view.setAlpha(alpha);
         }

@@ -18,7 +18,7 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Scroller.Nested"
+    style="?attr/ads_widgetScrollerNested"
     android:id="@+id/ads_dialog_rename_root">
 
     <LinearLayout
@@ -29,7 +29,7 @@
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            style="@style/TextAppearance.DynamicApp.Headline5.Card"
+            style="?attr/ads_textAppearanceHeadline5"
             android:id="@+id/ads_dialog_rename_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             app:adt_colorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="?attr/ads_widgetTextInputLayoutOutlinedBox"
             android:id="@+id/ads_dialog_rename_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             app:helperText="@string/ads_backup_replace">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
-                style="@style/Widget.DynamicApp.TextInputEditText.Outlined.SingleLine"
+                style="?attr/ads_widgetTextInputEditTextOutlinedSingleLine"
                 android:id="@+id/ads_dialog_rename_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

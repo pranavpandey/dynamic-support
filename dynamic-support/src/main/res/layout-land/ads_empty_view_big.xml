@@ -18,14 +18,14 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Content.Card.Clickable.Background"
+    style="?attr/ads_widgetContentCardClickableBackground"
     android:id="@+id/ads_item_view"
     android:gravity="center"
     android:orientation="horizontal"
     android:alpha="@integer/ads_alpha_placeholder">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-        style="@style/Widget.DynamicApp.Image.Empty"
+        style="?attr/ads_widgetImageEmpty"
         android:id="@+id/ads_item_view_icon"
         android:layout_marginRight="@dimen/ads_margin_normal"
         android:layout_marginEnd="@dimen/ads_margin_normal"
@@ -39,16 +39,15 @@
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            style="@style/TextAppearance.DynamicApp.Headline6"
+            style="?attr/ads_textAppearanceHeadline6Caps"
             android:id="@+id/ads_item_view_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:textAllCaps="true"
             app:adt_rtlSupport="false" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            style="@style/TextAppearance.DynamicApp.Subtitle1.Secondary"
+            style="?attr/ads_textAppearanceSecondarySubtitle1"
             android:id="@+id/ads_item_view_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

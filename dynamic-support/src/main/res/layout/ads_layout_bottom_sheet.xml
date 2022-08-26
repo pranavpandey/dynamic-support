@@ -17,7 +17,7 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicBottomSheet
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.DynamicApp.BottomSheet"
+    style="?attr/ads_widgetBottomSheet"
     android:id="@+id/ads_bottom_sheet">
 
 </com.pranavpandey.android.dynamic.support.widget.DynamicBottomSheet>

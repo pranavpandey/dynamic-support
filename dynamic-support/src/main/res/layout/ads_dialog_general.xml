@@ -18,7 +18,7 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Scroller.Vertical"
+    style="?attr/ads_widgetScrollerVertical"
     android:id="@+id/ads_dialog_general_root">
 
     <LinearLayout
@@ -33,14 +33,14 @@
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            style="@style/TextAppearance.DynamicApp.Headline5.Card"
+            style="?attr/ads_textAppearanceHeadline5"
             android:id="@+id/ads_dialog_general_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:adt_colorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            style="@style/TextAppearance.DynamicApp.Dialog"
+            style="?attr/ads_textAppearanceDialog"
             android:id="@+id/ads_dialog_general_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

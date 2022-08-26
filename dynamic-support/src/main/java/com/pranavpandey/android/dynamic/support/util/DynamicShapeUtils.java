@@ -129,12 +129,22 @@ public class DynamicShapeUtils {
      * @return The list selector resource according to the supplied corner size.
      */
     public static @DrawableRes int getListSelectorRes(float cornerSize) {
-        if (cornerSize < Theme.Corner.MIN_ROUND) {
-            return R.drawable.ads_list_selector;
-        } else if (cornerSize < Theme.Corner.MIN_OVAL) {
-            return R.drawable.ads_list_selector_rect;
+        if (Dynamic.isLegacyVersion()) {
+            if (cornerSize < Theme.Corner.MIN_ROUND) {
+                return R.drawable.ads_list_selector;
+            } else if (cornerSize < Theme.Corner.MIN_OVAL) {
+                return R.drawable.ads_list_selector_rect;
+            } else {
+                return R.drawable.ads_list_selector_round;
+            }
         } else {
-            return R.drawable.ads_list_selector_round;
+            if (cornerSize < Theme.Corner.MIN_ROUND) {
+                return R.drawable.ads_list_selector_v2;
+            } else if (cornerSize < Theme.Corner.MIN_OVAL) {
+                return R.drawable.ads_list_selector_rect_v2;
+            } else {
+                return R.drawable.ads_list_selector_round_v2;
+            }
         }
     }
 

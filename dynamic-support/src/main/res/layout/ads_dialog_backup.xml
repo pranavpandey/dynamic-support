@@ -18,7 +18,7 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Scroller.Vertical"
+    style="?attr/ads_widgetScrollerVertical"
     android:id="@+id/ads_dialog_backup_root">
 
     <LinearLayout
@@ -27,7 +27,7 @@
         android:orientation="vertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            style="@style/TextAppearance.DynamicApp.Headline5.Card"
+            style="?attr/ads_textAppearanceHeadline5"
             android:id="@+id/ads_dialog_backup_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
             android:orientation="vertical">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="?attr/ads_widgetTextInputLayoutOutlinedBox"
                 android:id="@+id/ads_dialog_backup_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                 app:startIconDrawable="@drawable/ads_ic_file">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
-                    style="@style/Widget.DynamicApp.TextInputEditText.Outlined.SingleLine"
+                    style="?attr/ads_widgetTextInputEditTextOutlinedSingleLine"
                     android:id="@+id/ads_backup_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
         </LinearLayout>
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicNestedListView
-            style="@style/Widget.DynamicApp.Scroller.Nested"
+            style="?attr/ads_widgetScrollerNested"
             android:id="@+id/ads_dialog_backup_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

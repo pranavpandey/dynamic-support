@@ -16,6 +16,8 @@
 
 package com.pranavpandey.android.dynamic.support.tutorial.adapter;
 
+import android.annotation.SuppressLint;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -30,9 +32,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * View pager adapter to display the supplied dynamic tutorials.
- *
- * @see Tutorial
+ * A {@link DynamicFragmentStateAdapter} to display the supplied {@link Tutorial}.
  */
 public class DynamicTutorialsAdapter<V extends Fragment, T extends Tutorial<T, V>>
         extends DynamicFragmentStateAdapter {
@@ -80,6 +80,7 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends Tutorial<T, V
      *
      * @param tutorials The collection of tutorials to be set.
      */
+    @SuppressLint("NotifyDataSetChanged")
     public void setTutorials(@NonNull Collection<? extends Tutorial<T, V>> tutorials) {
         mData.clear();
         mData.addAll(tutorials);
@@ -95,6 +96,7 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends Tutorial<T, V
      *
      * @return {@code true} if the tutorial added successfully.
      */
+    @SuppressLint("NotifyDataSetChanged")
     public boolean addTutorial(int location, @NonNull Tutorial<T, V> tutorial) {
         if (mData.contains(tutorial)) {
             return false;
@@ -128,6 +130,7 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends Tutorial<T, V
      *
      * @return {@code true} if the tutorials added successfully.
      */
+    @SuppressLint("NotifyDataSetChanged")
     public boolean addTutorials(int location, 
             @NonNull Collection<? extends Tutorial<T, V>> tutorials) {
         boolean modified = false;
@@ -164,6 +167,7 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends Tutorial<T, V
      *
      * @return {@code true} if the tutorials removed successfully.
      */
+    @SuppressLint("NotifyDataSetChanged")
     public boolean clearTutorials() {
         if (!mData.isEmpty()) {
             mData.clear();
@@ -206,6 +210,7 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends Tutorial<T, V
      *
      * @return {@code true} if the tutorial removed successfully.
      */
+    @SuppressLint("NotifyDataSetChanged")
     public boolean removeTutorial(@NonNull Tutorial<T, V> tutorial) {
         int locationToRemove = mData.indexOf(tutorial);
 
@@ -248,6 +253,7 @@ public class DynamicTutorialsAdapter<V extends Fragment, T extends Tutorial<T, V
      *
      * @return {@code true} if the tutorials retained successfully.
      */
+    @SuppressLint("NotifyDataSetChanged")
     public boolean retainTutorials(@NonNull Collection<? extends Tutorial<T, V>> tutorials) {
         boolean modified = false;
 

@@ -30,15 +30,15 @@
     android:orientation="horizontal">
 
     <ImageView
-        style="@style/Widget.DynamicApp.Image.Header.Appbar"
+        style="?attr/ads_widgetImageHeaderAppBar"
         android:id="@+id/ads_header_appbar_icon"
         android:contentDescription="@null" />
 
     <LinearLayout
-        style="@style/Widget.DynamicApp.Content.Row.Vertical.Center">
+        style="?attr/ads_widgetContentRowVerticalCenter">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            style="@style/TextAppearance.DynamicApp.Headline6.Caps"
+            style="?attr/ads_textAppearanceButtonCaps"
             android:id="@+id/ads_header_appbar_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
             app:adt_contrastWithColorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            style="@style/TextAppearance.DynamicApp.Subtitle1.Secondary"
+            style="?attr/ads_textAppearanceSecondarySubtitle1"
             android:id="@+id/ads_header_appbar_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

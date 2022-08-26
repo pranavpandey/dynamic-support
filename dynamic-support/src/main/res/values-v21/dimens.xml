@@ -17,6 +17,9 @@
 
 <resources>
 
+    <!-- Bottom Sheet -->
+    <dimen name="ads_bottom_sheet_margin">@dimen/ads_margin_medium</dimen>
+
     <!-- Card -->
     <dimen name="ads_card_view_margin">@dimen/ads_margin_tiny</dimen>
     <dimen name="ads_card_view_margin_layout">@dimen/ads_margin_small</dimen>
@@ -24,7 +27,7 @@
     <dimen name="ads_card_view_elevation">2.6dp</dimen>
     <dimen name="ads_card_view_elevation_dialog">5dp</dimen>
 
-    <!-- Bottom Sheet -->
-    <dimen name="ads_bottom_sheet_margin">@dimen/ads_margin_medium</dimen>
+    <!-- Button -->
+    <dimen name="ads_button_padding_remote_borderless">@dimen/ads_margin_tiny</dimen>
 
 </resources>

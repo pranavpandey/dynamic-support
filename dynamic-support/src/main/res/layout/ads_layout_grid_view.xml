@@ -17,7 +17,7 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicGridView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.DynamicApp.Scroller.Vertical"
+    style="?attr/ads_widgetScrollerVertical"
     android:id="@+id/ads_dynamic_grid_view"
     android:stretchMode="columnWidth"
     android:numColumns="auto_fit"

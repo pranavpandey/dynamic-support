@@ -20,18 +20,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        style="@style/Widget.DynamicApp.Content.Card.Footer"
+        style="?attr/ads_widgetContentCardFooter"
         android:orientation="horizontal">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-            style="@style/Widget.DynamicApp.Image.Info.Big.Placeholder"
+            style="?attr/ads_widgetImageInfoBigPlaceholder"
             android:id="@+id/ads_info_view_icon_footer" />
 
         <LinearLayout
-            style="@style/Widget.DynamicApp.Content.Row.Vertical.Weight">
+            style="?attr/ads_widgetContentRowVerticalWeight">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                style="@style/TextAppearance.DynamicApp.Subtitle1.Caps"
+                style="?attr/ads_textAppearanceSubtitle1Caps"
                 android:id="@+id/ads_info_view_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

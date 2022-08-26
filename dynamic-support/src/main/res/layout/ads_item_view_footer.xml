@@ -19,14 +19,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
-        style="@style/Widget.DynamicApp.Content.Row.Horizontal">
+        style="?attr/ads_widgetContentRowHorizontal">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-            style="@style/Widget.DynamicApp.Image.Preference.Placeholder.Big"
+            style="?attr/ads_widgetImagePreferencePlaceholderBig"
             android:id="@+id/ads_item_view_icon_footer" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
-            style="@style/Widget.DynamicApp.Divider"
+            style="?attr/ads_widgetDivider"
             android:id="@+id/ads_item_view_divider" />
 
     </LinearLayout>

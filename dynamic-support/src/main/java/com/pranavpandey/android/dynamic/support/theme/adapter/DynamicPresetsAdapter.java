@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.theme.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
@@ -193,6 +194,7 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
      *
      * @param presets The theme presets to be set.
      */
+    @SuppressLint("NotifyDataSetChanged")
     public void setPresets(@Nullable Cursor presets) {
         mPresets = presets;
 
@@ -222,6 +224,7 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
      *
      * @param dynamicPresetsListener The listener to be set.
      */
+    @SuppressLint("NotifyDataSetChanged")
     public void setDynamicPresetsListener(
             @Nullable DynamicPresetsView.DynamicPresetsListener<T> dynamicPresetsListener) {
         this.mDynamicPresetsListener = dynamicPresetsListener;

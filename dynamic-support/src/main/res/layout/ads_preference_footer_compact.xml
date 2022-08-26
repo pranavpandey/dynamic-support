@@ -19,24 +19,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
-        style="@style/Widget.DynamicApp.Content.Row.Horizontal">
+        style="?attr/ads_widgetContentRowHorizontal">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-            style="@style/Widget.DynamicApp.Image.Preference.Placeholder.Compact"
+            style="?attr/ads_widgetImagePreferencePlaceholderCompact"
             android:id="@+id/ads_preference_icon_footer" />
 
         <LinearLayout
-            style="@style/Widget.DynamicApp.Content.Row.Vertical.Weight">
+            style="?attr/ads_widgetContentRowVerticalWeight">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                style="@style/TextAppearance.DynamicApp.Body1"
+                style="?attr/ads_textAppearanceBody1"
                 android:id="@+id/ads_preference_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ads_margin_tiny" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicButton
-                style="@style/Widget.DynamicApp.Button.Preference"
+                style="?attr/ads_widgetButtonPreference"
                 android:id="@+id/ads_preference_action_button" />
 
         </LinearLayout>

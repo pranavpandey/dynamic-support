@@ -255,7 +255,7 @@ public class DynamicNavigationView extends NavigationView
     }
 
     /**
-     * [WIP] Update background according to the corner size.
+     * Update background according to the corner size.
      */
     private void updateBackground() {
         if (getBackground() instanceof MaterialShapeDrawable) {
@@ -264,13 +264,8 @@ public class DynamicNavigationView extends NavigationView
                     drawable.getShapeAppearanceModel().toBuilder();
             float cornerSize = DynamicTheme.getInstance().get().getCornerRadius();
 
-            if (drawable.getTopLeftCornerResolvedSize() > 0) {
-                builder.setTopLeftCornerSize(cornerSize);
-            }
-
-            if (drawable.getTopRightCornerResolvedSize() > 0) {
-                builder.setTopRightCornerSize(cornerSize);
-            }
+            builder.setTopLeftCornerSize(Theme.Corner.MIN);
+            builder.setTopRightCornerSize(Theme.Corner.MIN);
 
             if (drawable.getBottomLeftCornerResolvedSize() > 0) {
                 builder.setBottomLeftCornerSize(cornerSize);

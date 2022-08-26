@@ -17,6 +17,7 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicFloatingActionButton
     xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?attr/ads_widgetFloatingActionButton"
     android:id="@+id/ads_fab"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

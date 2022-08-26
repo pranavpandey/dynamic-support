@@ -30,7 +30,7 @@
     android:orientation="horizontal">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-        style="@style/TextAppearance.DynamicApp.Headline5.Secondary"
+        style="?attr/ads_textAppearanceSecondaryHeadline5"
         android:id="@+id/ads_header_appbar_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

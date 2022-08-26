@@ -21,7 +21,7 @@
     <string name="ads_navigation_drawer_open">Mostra elenco</string>
     <string name="ads_navigation_drawer_close">Nascondi elenco</string>
 
-    <!-- String formats -->
+    <!-- Formats -->
     <string name="ads_format_version">Versione %1$s</string>
     <string name="ads_search_empty">Nessuna corrispondenza trovata per \"%1$s\".</string>
 
@@ -99,7 +99,7 @@
     <string name="ads_shortcut_created">Scorciatoia creata</string>
     <string name="ads_shortcuts_desc">Crea una scorciatoia e aggiungila alla schermata home.</string>
 
-    <!-- Navigation drawer and Menu -->
+    <!-- Navigation and Menu -->
     <string name="ads_nav_category_features">Menu</string>
     <string name="ads_nav_category_support">Supporta lo sviluppo</string>
     <string name="ads_nav_category_contribute">Contribuisci</string>
@@ -115,7 +115,7 @@
     <string name="ads_menu_info">Informazioni</string>
     <string name="ads_menu_app_info">Informazioni app</string>
 
-    <!-- Runtime permissions -->
+    <!-- Permissions -->
     <string name="ads_permissions">Permessi</string>
     <string name="ads_permissions_subtitle">Per favore concedi il permesso richiesto.</string>
     <string name="ads_permissions_subtitle_single">Per favore concedi il permesso richiesto.</string>
@@ -200,7 +200,7 @@
     <string name="ads_backup_format_deleted">Backup cancellato: %1$s</string>
     <string name="ads_backup_format_restored">Backup ripristinato: %1$s</string>
 
-    <!-- Backup options -->
+    <!-- Backup Options -->
     <string name="ads_backup_storage_app">Memoria app</string>
     <string name="ads_backup_storage_device">Memoria dispositivo</string>
     <string name="ads_backup_option_rename">Rinomina</string>
@@ -212,6 +212,7 @@
     <string name="ads_dynamic_theme_summary">Motivo applicato dal destinatario.</string>
     <string name="ads_dynamic_color_summary">Implementazione per il colore automatico.</string>
     <string name="ads_dynamic">Dinamico</string>
+    <string name="ads_color">Colore</string>
     <string name="ads_theme">Motivo</string>
     <string name="ads_theme_code">Codice</string>
     <string name="ads_theme_code_desc">Scansiona o condividi il motivo.</string>
@@ -296,14 +297,16 @@
     <string name="ads_theme_presets_empty">Nessun preset</string>
 
     <!-- Theme -->
+    <string name="ads_theme_version_original">Originale</string>
+    <string name="ads_theme_version_latest">Ultimo</string>
     <string name="ads_theme_toast_default">Messaggio toast predefinito</string>
     <string name="ads_theme_toast_themed">Motivo per i messaggi toast</string>
     <string name="ads_theme_entry_auto">Automatico</string>
-    <string name="ads_theme_settings_auto_desc">Seleziona auto per utilizzare le impostazioni dell\'app.</string>
-    <string name="ads_theme_settings_default_desc">Seleziona auto per utilizzare le impostazioni predefinite.</string>
+    <string name="ads_theme_entry_auto_desc">Seleziona auto per utilizzare le impostazioni dell\'app.</string>
+    <string name="ads_theme_entry_auto_default_desc">Seleziona auto per utilizzare le impostazioni predefinite.</string>
+    <string name="ads_theme_entry_auto_background_aware_desc">Seleziona auto per usare la tavolozza colori dell\'app. Alcuni colori cambieranno automaticamente rispetto allo sfondo per ottenere migliore visibilità.</string>
     <string name="ads_theme_color_auto_desc">Seleziona auto per usare la tavolozza colori dell\'app.</string>
     <string name="ads_theme_color_default_desc">Seleziona auto per usare la tavolozza colori predefinita.</string>
-    <string name="ads_theme_entry_auto_background_aware_desc">Seleziona auto per usare la tavolozza colori dell\'app. Alcuni colori cambieranno automaticamente rispetto allo sfondo per ottenere migliore visibilità.</string>
     <string name="ads_theme_entry_day">Giorno</string>
     <string name="ads_theme_entry_night">Notturno</string>
     <string name="ads_theme_entry_light">Chiaro</string>
@@ -373,7 +376,7 @@
     <string name="ads_notification_close_drawer_summary">Chiudere la cartella delle notifiche dopo aver eseguito l\'azione.</string>
     <string name="ads_notification_close_drawer_summary_unchecked">Chiudere la cartella delle notifiche dopo aver eseguito l\'azione.</string>
 
-    <!-- App widget -->
+    <!-- App Widget -->
     <string name="ads_widget_customise">Personalizza</string>
     <string name="ads_widget_customise_desc">Configura il widget in basso.</string>
     <string name="ads_widget_preview">Anteprima</string>
@@ -409,7 +412,7 @@
     <string name="ads_support_restart_app_summary">Riavvia l\'applicazione ed il servizio per ripristinare lo stato dell\'app.</string>
     <string name="ads_support_restart_app_desc">Utilizza se il servizio non si avvia o l\'app non si comporta correttamente. Tutte le impostazioni rimarranno inalterate dopo l\'esecuzione di questa operazione.</string>
 
-    <!-- Developer and App info -->
+    <!-- Developer and Info -->
     <string name="ads_info_made_in">Fabbricato in India</string>
     <string name="ads_info_made_by">Scritto e progettato da</string>
     <string name="ads_info_made_by_alt">Sviluppato da</string>

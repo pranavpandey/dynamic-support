@@ -17,19 +17,19 @@
 
 <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.DynamicApp.Card.Floating.BottomSheet"
+    style="?attr/ads_widgetCardFloatingBottomSheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout
-        style="@style/Widget.DynamicApp.Content.Row.Vertical">
+        style="?attr/ads_widgetContentRowVertical">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicDragIndicator
-            style="@style/Widget.DynamicApp.Image.DragIndicator" />
+            style="?attr/ads_widgetImageDragIndicator" />
 
         <FrameLayout
             android:id="@+id/ads_theme_preview_bottom_sheet"
-            style="@style/Widget.DynamicApp.Content.Card.Clickable.Background">
+            style="?attr/ads_widgetContentCardClickableBackground">
 
             <include layout="@layout/ads_layout_theme_preview_remote" />
 

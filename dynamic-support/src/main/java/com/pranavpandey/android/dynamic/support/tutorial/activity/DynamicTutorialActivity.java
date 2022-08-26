@@ -43,6 +43,7 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
+import com.pranavpandey.android.dynamic.support.animator.DynamicColorAnimator;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSnackbar;
 import com.pranavpandey.android.dynamic.support.listener.DynamicTransitionListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicWindowResolver;
@@ -56,7 +57,9 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicPageIndicator2;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicTaskUtils;
 import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
+import com.pranavpandey.android.dynamic.util.concurrent.DynamicResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -123,6 +126,11 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
      */
     private int mFooterHeight;
 
+    /**
+     * Task to animate the tutorial colors.
+     */
+    private DynamicColorAnimator mDynamicColorAnimator;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -166,6 +174,8 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
             public void onPageScrolled(int position,
                     float positionOffset, int positionOffsetPixels) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+
+                onAnimate(position, false);
 
                 final @ColorInt int color;
                 final @ColorInt int tintColor;
@@ -226,6 +236,8 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
                 super.onPageScrollStateChanged(state);
 
                 if (state == ViewPager2.SCROLL_STATE_IDLE) {
+                    setFooter(true);
+
                     onSetColor(getCurrentPosition(), Dynamic.getColor(getTutorial(
                             getCurrentPosition()), getBackgroundColor()), Dynamic.getTintColor(
                                     getTutorial(getCurrentPosition()), getTintColor()));
@@ -240,6 +252,12 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
                 }
 
                 Dynamic.onPageScrollStateChanged(getTutorial(getCurrentPosition()), state);
+                Dynamic.onSetPadding(getTutorial(getCurrentPosition()),
+                        0, 0, 0, mFooterHeight);
+
+                if (state == ViewPager2.SCROLL_STATE_IDLE) {
+                    onUpdate(getCurrentPosition());
+                }
             }
         });
 
@@ -257,12 +275,12 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
             }
         });
 
-        setTutorials(getDefaultPosition(), false);
-
         // A hack to retain the status bar color.
         if (getSavedInstanceState() == null) {
+            setTutorials(getDefaultPosition(), false);
             setStatusBarColor(getStatusBarColor());
         } else {
+            setTutorials(getCurrentPosition(), false);
             setStatusBarColor(getSavedInstanceState().getInt(ADS_STATE_STATUS_BAR_COLOR));
         }
     }
@@ -394,6 +412,13 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
         }
 
         onUpdate(getCurrentPosition());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        onAnimate(getCurrentPosition(), true);
     }
 
     /**
@@ -645,7 +670,58 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
      *
      * @param position The current tutorial position.
      */
-    protected void onUpdate(int position) { }
+    protected void onUpdate(int position) {
+        onAnimate(position, false);
+    }
+
+    /**
+     * This method will be called to animate the tutorial background.
+     *
+     * @param position The current tutorial position.
+     * @param cancel {@code true} to cancel the animation.
+     */
+    protected void onAnimate(final int position, boolean cancel) {
+        if (mViewPager == null) {
+            return;
+        }
+
+        if (cancel || !isBackgroundAnimation(position)) {
+            DynamicTaskUtils.cancelTask(mDynamicColorAnimator, true);
+            mDynamicColorAnimator = null;
+
+            return;
+        }
+
+        if (mDynamicColorAnimator == null || mDynamicColorAnimator.isCancelled()) {
+            mDynamicColorAnimator = new DynamicColorAnimator(
+                    Dynamic.getColor(getTutorial(position), getBackgroundColor()),
+                    Dynamic.getTintColor(getTutorial(position), getTintColor()),
+                    DynamicMotion.Duration.COLOR, DynamicMotion.getInstance().getDuration()) {
+                @Override
+                protected void onProgressUpdate(@Nullable DynamicResult<int[]> progress) {
+                    super.onProgressUpdate(progress);
+
+                    if (progress != null && progress.getData() != null) {
+                        onSetColor(position,
+                                progress.getData()[0], progress.getData()[1]);
+                        onSetTooltip(position,
+                                progress.getData()[0], progress.getData()[1]);
+                        Dynamic.onColorChanged(getTutorial(position),
+                                progress.getData()[0], progress.getData()[1]);
+
+                        onSetColor(getCurrentPosition(),
+                                progress.getData()[0], progress.getData()[1]);
+                        onSetTooltip(getCurrentPosition(),
+                                progress.getData()[0], progress.getData()[1]);
+                        Dynamic.onColorChanged(getTutorial(getCurrentPosition()),
+                                progress.getData()[0], progress.getData()[1]);
+                    }
+                }
+            };
+
+            DynamicTaskUtils.executeTask(mDynamicColorAnimator);
+        }
+    }
 
     /**
      * Set the tutorial footer and make it visible.
@@ -808,17 +884,33 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
     }
 
     /**
+     * Returns whether the background animation is enabled for the supplied tutorial position.
+     *
+     * @param position The tutorial position to be used.
+     *
+     * @return {@code true} if the background animation is enabled for the supplied
+     *         tutorial position.
+     */
+    public boolean isBackgroundAnimation(int position) {
+        final Tutorial<T, V> tutorial = getTutorial(position);
+
+        return tutorial instanceof Tutorial.Motion
+                && ((Tutorial.Motion<T, V>) tutorial).isBackgroundAnimation()
+                && DynamicMotion.getInstance().isMotion();
+    }
+
+    /**
      * Returns whether the shared element is enabled for the supplied tutorial position.
      *
-     * @param position The position to be used.
+     * @param position The tutorial position to be used.
      *
-     * @return The shared element is enabled for the supplied tutorial position.
+     * @return {@code true} if the shared element is enabled for the supplied tutorial position.
      */
     public boolean isSharedElement(int position) {
         final Tutorial<T, V> tutorial = getTutorial(position);
 
-        return tutorial instanceof Tutorial.SharedElement
-                && ((Tutorial.SharedElement<T, V>) tutorial).isSharedElement();
+        return tutorial instanceof Tutorial.Motion
+                && ((Tutorial.Motion<T, V>) tutorial).isSharedElement();
     }
 
     @Override

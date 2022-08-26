@@ -29,7 +29,6 @@ import android.view.ViewGroup;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
@@ -506,7 +505,7 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         Dynamic.addBottomSheet(getActivity(),
                 R.layout.ads_theme_preview_remote_bottom_sheet, true);
         mThemePreview = requireActivity().findViewById(R.id.ads_theme_preview);
-        ViewCompat.setTransitionName(mThemePreview.getActionView(), ADS_NAME_THEME_PREVIEW_ACTION);
+        Dynamic.setTransitionName(mThemePreview.getActionView(), ADS_NAME_THEME_PREVIEW_ACTION);
 
         mThemePreview.setOnActionClickListener(new View.OnClickListener() {
             @Override

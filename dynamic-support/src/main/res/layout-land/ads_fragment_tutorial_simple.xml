@@ -32,7 +32,7 @@
         android:padding="@dimen/ads_tutorial_margin" />
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
-        style="@style/Widget.DynamicApp.Scroller.Vertical.Clip"
+        style="?attr/ads_widgetScrollerVerticalClip"
         android:id="@+id/ads_tutorial_simple_scroller"
         android:layout_width="0dp"
         android:layout_weight="@integer/ads_weight_tutorial_text"
@@ -41,27 +41,27 @@
         app:adt_windowInsets="false">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-            style="@style/Widget.DynamicApp.Card.Margin"
+            style="?attr/ads_widgetCardMargin"
             android:id="@+id/ads_tutorial_simple_card">
 
             <LinearLayout
-                style="@style/Widget.DynamicApp.Content.Card"
+                style="?attr/ads_widgetContentCard"
                 android:orientation="vertical">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Headline5.Tutorial"
+                    style="?attr/ads_textAppearanceTutorialTitle"
                     android:id="@+id/ads_tutorial_simple_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Subtitle1.Tutorial"
+                    style="?attr/ads_textAppearanceTutorialSubtitle"
                     android:id="@+id/ads_tutorial_simple_subtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-                    style="@style/TextAppearance.DynamicApp.Body1.Tutorial"
+                    style="?attr/ads_textAppearanceTutorialBody"
                     android:id="@+id/ads_tutorial_simple_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

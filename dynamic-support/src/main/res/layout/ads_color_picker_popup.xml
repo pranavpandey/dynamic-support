@@ -18,18 +18,18 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Scroller.Vertical"
+    style="?attr/ads_widgetScrollerVertical"
     android:id="@+id/ads_color_picker"
     app:adt_contrastWithColorType="surface">
 
     <LinearLayout
-        style="@style/Widget.DynamicApp.Content.Row.Vertical">
+        style="?attr/ads_widgetContentRowVertical">
 
         <LinearLayout
-            style="@style/Widget.DynamicApp.Content.Row.Vertical">
+            style="?attr/ads_widgetContentRowVertical">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
-                style="@style/Widget.DynamicApp.Scroller.Nested.GridView"
+                style="?attr/ads_widgetScrollerNestedGridView"
                 android:id="@+id/ads_color_picker_presets"
                 android:paddingLeft="@dimen/ads_margin_regular"
                 android:paddingRight="@dimen/ads_margin_regular"
@@ -41,14 +41,14 @@
                 app:adt_contrastWithColorType="surface" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
-                style="@style/Widget.DynamicApp.Divider.Large"
+                style="?attr/ads_widgetDividerLarge"
                 android:id="@+id/ads_color_picker_divider"
                 android:layout_marginLeft="@dimen/ads_margin_regular"
                 android:layout_marginRight="@dimen/ads_margin_regular"
                 app:adt_contrastWithColorType="surface" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
-                style="@style/Widget.DynamicApp.Scroller.Nested.GridView"
+                style="?attr/ads_widgetScrollerNestedGridView"
                 android:id="@+id/ads_color_picker_dynamics"
                 android:paddingLeft="@dimen/ads_margin_regular"
                 android:paddingRight="@dimen/ads_margin_regular"

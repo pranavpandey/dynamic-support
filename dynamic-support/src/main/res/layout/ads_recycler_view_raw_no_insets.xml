@@ -18,6 +18,6 @@
 <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.DynamicApp.Scroller.Padding.Vertical"
+    style="?attr/ads_widgetScrollerPaddingVertical"
     android:id="@+id/ads_recycler_view"
     app:adt_windowInsets="false" />
