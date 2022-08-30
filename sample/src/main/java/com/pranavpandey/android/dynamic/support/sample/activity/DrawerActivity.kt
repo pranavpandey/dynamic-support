@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.sample.activity
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -29,6 +30,7 @@ import com.pranavpandey.android.dynamic.support.sample.controller.Constants
 import com.pranavpandey.android.dynamic.support.sample.fragment.AboutFragment
 import com.pranavpandey.android.dynamic.support.sample.fragment.HomeFragment
 import com.pranavpandey.android.dynamic.support.sample.fragment.SettingsFragment
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils
 import com.pranavpandey.android.dynamic.util.DynamicLinkUtils
 
 /**
@@ -106,17 +108,22 @@ class DrawerActivity : DynamicDrawerActivity() {
         }
     }
 
+    override fun getDefaultNavigationIcon(): Drawable? {
+        // Navigation icon for the persistent drawer.
+        return DynamicResourceUtils.getDrawable(context, R.drawable.ads_ic_extension)
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        mDrawerItemId = item.itemId;
+        mDrawerItemId = item.itemId
 
         if (isPersistentDrawer) {
-            selectMenu(mDrawerItemId);
+            selectMenu(mDrawerItemId)
         } else {
-            mDrawerItemSelected = true;
+            mDrawerItemSelected = true
         }
 
-        closeDrawers();
-        return true;
+        closeDrawers()
+        return true
     }
 
     /**
