@@ -106,7 +106,7 @@ public class DynamicMotion {
         /**
          * Constant for the color animation duration.
          */
-        long COLOR = 8000L;
+        long COLOR = 16000L;
 
         /**
          * Constant for the default duration.
