@@ -298,9 +298,7 @@ public abstract class DynamicActivity extends DynamicStateActivity
     public void setWindowBackground(@ColorInt int color) {
         super.setWindowBackground(color);
 
-        Dynamic.setBackgroundColor(getFrameContent(),
-                DynamicTheme.getInstance().get().isTranslucent()
-                        ? Color.TRANSPARENT : getBackgroundColor());
+        Dynamic.setRootBackground(getFrameContent(), getBackgroundColor());
     }
 
     @Override
