@@ -174,10 +174,10 @@ public abstract class DynamicRemoteViewsFactory implements RemoteViewsService.Re
     /**
      * Sets the adjust position of the scrollable view for this factory.
      *
-     * @param scrollToPosition {@code true} to adjust position of the scrollable view.
+     * @param adjustPosition {@code true} to adjust position of the scrollable view.
      */
-    public void setScrollToPosition(boolean scrollToPosition) {
-        this.mAdjustPosition = scrollToPosition;
+    public void setAdjustPosition(boolean adjustPosition) {
+        this.mAdjustPosition = adjustPosition;
     }
 
     @CallSuper
