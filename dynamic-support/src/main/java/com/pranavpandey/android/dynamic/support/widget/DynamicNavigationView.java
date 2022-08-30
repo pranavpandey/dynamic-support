@@ -43,6 +43,7 @@ import com.pranavpandey.android.dynamic.support.util.DynamicScrollUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicShapeUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicTintUtils;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicBackgroundWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicCornerWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicScrollableWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicStateSelectedWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.WindowInsetsWidget;
@@ -57,8 +58,8 @@ import java.lang.reflect.Field;
  * A {@link NavigationView} to apply {@link DynamicTheme} according to the supplied parameters.
  */
 public class DynamicNavigationView extends NavigationView
-        implements WindowInsetsWidget, DynamicBackgroundWidget,
-        DynamicScrollableWidget, DynamicStateSelectedWidget {
+        implements WindowInsetsWidget, DynamicBackgroundWidget, DynamicScrollableWidget,
+        DynamicStateSelectedWidget, DynamicCornerWidget<Float> {
 
     /**
      * Color type applied to this view.
@@ -171,6 +172,11 @@ public class DynamicNavigationView extends NavigationView
      */
     protected int mContrast;
 
+    /**
+     * Corner size used by this view.
+     */
+    protected float mCornerSize;
+
     public DynamicNavigationView(@NonNull Context context) {
         this(context, null);
     }
@@ -239,7 +245,7 @@ public class DynamicNavigationView extends NavigationView
 
             if (a.getBoolean(R.styleable.DynamicNavigationView_adt_dynamicCornerSize,
                     Defaults.ADS_DYNAMIC_CORNER_SIZE)) {
-                updateBackground();
+                setCorner((float) DynamicTheme.getInstance().get().getCornerRadius());
             }
 
             if (a.getBoolean(
@@ -252,31 +258,6 @@ public class DynamicNavigationView extends NavigationView
         }
 
         initialize();
-    }
-
-    /**
-     * Update background according to the corner size.
-     */
-    private void updateBackground() {
-        if (getBackground() instanceof MaterialShapeDrawable) {
-            MaterialShapeDrawable drawable = (MaterialShapeDrawable) getBackground();
-            ShapeAppearanceModel.Builder builder =
-                    drawable.getShapeAppearanceModel().toBuilder();
-            float cornerSize = DynamicTheme.getInstance().get().getCornerRadius();
-
-            builder.setTopLeftCornerSize(Theme.Corner.MIN);
-            builder.setTopRightCornerSize(Theme.Corner.MIN);
-
-            if (drawable.getBottomLeftCornerResolvedSize() > 0) {
-                builder.setBottomLeftCornerSize(cornerSize);
-            }
-
-            if (drawable.getBottomRightCornerResolvedSize() > 0) {
-                builder.setBottomRightCornerSize(cornerSize);
-            }
-
-            drawable.setShapeAppearanceModel(builder.build());
-        }
     }
 
     @Override
@@ -611,7 +592,37 @@ public class DynamicNavigationView extends NavigationView
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
-        updateBackground();
+        Dynamic.setCornerMin(this, Math.min(
+                getWidth() / Theme.Corner.FACTOR_MAX,
+                getHeight() / Theme.Corner.FACTOR_MAX));
+    }
+
+    @Override
+    public @NonNull Float getCorner() {
+        return mCornerSize;
+    }
+
+    @Override
+    public void setCorner(@NonNull Float cornerSize) {
+        this.mCornerSize = cornerSize;
+
+        if (getBackground() instanceof MaterialShapeDrawable) {
+            MaterialShapeDrawable drawable = (MaterialShapeDrawable) getBackground();
+            ShapeAppearanceModel.Builder builder = drawable.getShapeAppearanceModel().toBuilder();
+
+            builder.setTopLeftCornerSize(Theme.Corner.MIN);
+            builder.setTopRightCornerSize(Theme.Corner.MIN);
+
+            if (drawable.getBottomLeftCornerResolvedSize() > 0) {
+                builder.setBottomLeftCornerSize(cornerSize);
+            }
+
+            if (drawable.getBottomRightCornerResolvedSize() > 0) {
+                builder.setBottomRightCornerSize(cornerSize);
+            }
+
+            drawable.setShapeAppearanceModel(builder.build());
+        }
     }
 
     @Override

@@ -361,6 +361,7 @@
         <item name="android:textSize">@dimen/ads_font_size_navigation_view</item>
         <item name="itemBackground">@null</item>
         <item name="itemRippleColor">@null</item>
+        <item name="drawerLayoutCornerSize">@dimen/ads_nav_corner_size</item>
     </style>
     <style name="Widget.Dynamic2.NavigationView.ThemeOverlay"
         parent="ThemeOverlay.Material3.NavigationView">

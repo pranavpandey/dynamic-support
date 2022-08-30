@@ -82,6 +82,7 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicFloatingActionButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicMaterialCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicNavigationRailView;
+import com.pranavpandey.android.dynamic.support.widget.DynamicNavigationView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicTextInputLayout;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicBackgroundWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicLinkWidget;
@@ -1561,6 +1562,7 @@ public class Dynamic {
      * @param corner The corner to be set.
      *
      * @see DynamicButton#setCorner(Integer)
+     * @see DynamicNavigationView#setCorner(Float)
      * @see DynamicBottomNavigationView#setCorner(Float)
      * @see DynamicNavigationRailView#setCorner(Float)
      * @see DynamicFloatingActionButton#setCorner(Float)
@@ -1572,6 +1574,8 @@ public class Dynamic {
     public static void setCorner(@Nullable View view, float corner) {
         if (view instanceof DynamicButton) {
             ((DynamicButton) view).setCorner((int) corner);
+        } else if (view instanceof DynamicNavigationView) {
+            ((DynamicNavigationView) view).setCorner((float) corner);
         } else if (view instanceof DynamicBottomNavigationView) {
             ((DynamicBottomNavigationView) view).setCorner((float) corner);
         } else if (view instanceof DynamicNavigationRailView) {
@@ -1600,6 +1604,12 @@ public class Dynamic {
     public static void setCornerMin(@Nullable View view, float cornerMax) {
         if (view instanceof DynamicButton) {
             setCorner(view, Math.min(((DynamicButton) view).getCorner(), cornerMax));
+        } else if (view instanceof DynamicNavigationView) {
+            setCorner(view, Math.min(((DynamicNavigationView) view).getCorner(), cornerMax));
+        } else if (view instanceof DynamicNavigationRailView) {
+            setCorner(view, Math.min(((DynamicNavigationRailView) view).getCorner(), cornerMax));
+        } else if (view instanceof DynamicBottomNavigationView) {
+            setCorner(view, Math.min(((DynamicBottomNavigationView) view).getCorner(), cornerMax));
         } else if (view instanceof DynamicFloatingActionButton) {
             setCorner(view, Math.min(((DynamicFloatingActionButton) view).getCorner(), cornerMax));
         } else if (view instanceof DynamicCardView) {
