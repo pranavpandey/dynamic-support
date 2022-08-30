@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.graphics.drawable.LayerDrawable;
@@ -30,6 +31,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -1662,6 +1664,25 @@ public class Dynamic {
             ((MaterialShapeDrawable) view.getBackground()).setElevation(elevation);
         } else if (DynamicSdkUtils.is21()) {
             view.setElevation(elevation);
+        }
+    }
+
+    /**
+     * Sets the background for the window or root view.
+     *
+     * @param dynamic The dynamic object to be used.
+     * @param color The color to be set.
+     * @param <T> The type of the dynamic object.
+     *
+     * @see Window#setBackgroundDrawable(Drawable)
+     * @see View#setBackgroundDrawable(Drawable)
+     * @see #withThemeOpacity(Drawable)
+     */
+    public static <T> void setRootBackground(@Nullable T dynamic, @ColorInt int color) {
+        if (dynamic instanceof Window) {
+            ((Window) dynamic).setBackgroundDrawable(withThemeOpacity(new ColorDrawable(color)));
+        } else if (dynamic instanceof View) {
+            ((View) dynamic).setBackgroundDrawable(withThemeOpacity(new ColorDrawable(color)));
         }
     }
 

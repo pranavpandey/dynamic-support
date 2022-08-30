@@ -615,7 +615,7 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
             }
         }
 
-        setWindowBackground(color);
+        setRootBackground(color);
         setStatusBarColor(systemUIColor);
         setNavigationBarColor(systemUIColor);
         updateTaskDescription(color);

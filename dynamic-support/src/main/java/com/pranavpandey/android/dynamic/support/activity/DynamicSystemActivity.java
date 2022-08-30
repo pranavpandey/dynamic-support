@@ -27,7 +27,6 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.Fade;
@@ -1002,10 +1001,26 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
      * Sets the window background color.
      *
      * @param color The window background color to be set.
+     *
+     * @see #getWindow()
+     * @see Dynamic#setRootBackground(Object, int)
      */
     public void setWindowBackground(@ColorInt int color) {
         this.mBackgroundColor = color;
-        getWindow().setBackgroundDrawable(new ColorDrawable(Dynamic.withThemeOpacity(color)));
+
+        Dynamic.setRootBackground(getWindow(), color);
+    }
+
+    /**
+     * Sets the root background color.
+     *
+     * @param color The root background color to be set.
+     *
+     * @see R.id#ads_activity_root
+     * @see Dynamic#setRootBackground(Object, int)
+     */
+    public void setRootBackground(@ColorInt int color) {
+        Dynamic.setRootBackground(findViewById(R.id.ads_activity_root), color);
     }
 
     /**
