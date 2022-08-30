@@ -95,7 +95,7 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
 
         if (mContentFragment instanceof DynamicSplashFragment) {
             ((DynamicSplashFragment) mContentFragment).setOnSplashListener(this);
-            setWindowBackground(((DynamicSplashFragment) mContentFragment).getBackgroundColor());
+            setRootBackground(((DynamicSplashFragment) mContentFragment).getBackgroundColor());
         }
 
         commitFragmentTransaction(getSupportFragmentManager().beginTransaction()
