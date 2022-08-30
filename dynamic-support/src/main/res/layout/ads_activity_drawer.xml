@@ -34,7 +34,7 @@
             android:id="@+id/ads_navigation_view"
             android:layout_width="@dimen/ads_drawer_size"
             android:layout_height="match_parent"
-            android:layout_gravity="start"
+            android:layout_gravity="left|start"
             android:theme="?attr/ads_widgetNavigationViewOverlay"
             app:headerLayout="@layout/ads_header_drawer" />
 

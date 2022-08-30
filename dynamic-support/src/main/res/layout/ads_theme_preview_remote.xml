@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="@integer/ads_theme_preview_weight_end"
                     android:layout_gravity="center"
-                    android:gravity="end"
+                    android:gravity="right|end"
                     android:orientation="horizontal">
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView

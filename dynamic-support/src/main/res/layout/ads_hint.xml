@@ -51,7 +51,7 @@
                 android:id="@+id/ads_hint_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="start"
+                android:gravity="left|start"
                 android:textAlignment="viewStart"
                 android:textSize="@dimen/ads_font_hint" />
 

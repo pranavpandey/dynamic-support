@@ -67,7 +67,7 @@
         android:id="@+id/ads_info_view_icon_frame"
         android:layout_width="@dimen/ads_icon_card_big_frame"
         android:layout_height="@dimen/ads_icon_card_big_frame"
-        android:layout_gravity="end|bottom">
+        android:layout_gravity="right|end|bottom">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
             style="?attr/ads_widgetImageCardBig"

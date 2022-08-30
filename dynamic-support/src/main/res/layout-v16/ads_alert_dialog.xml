@@ -25,7 +25,7 @@
         android:id="@+id/parentPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start|top"
+        android:gravity="left|start|top"
         android:orientation="vertical">
 
         <include layout="@layout/ads_alert_dialog_title" />

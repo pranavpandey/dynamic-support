@@ -40,7 +40,7 @@
             android:id="@+id/ads_header_drawer_icon"
             android:layout_width="@dimen/ads_icon_header_drawer"
             android:layout_height="@dimen/ads_icon_header_drawer"
-            android:layout_gravity="start"
+            android:layout_gravity="left|start"
             app:adt_colorType="tint_primary"
             app:adt_contrastWithColorType="primary" />
 

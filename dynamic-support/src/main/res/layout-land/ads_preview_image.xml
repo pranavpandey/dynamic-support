@@ -91,7 +91,7 @@
         android:id="@+id/ads_preview_fallback"
         android:layout_width="@dimen/ads_preview_code_image_size"
         android:layout_height="@dimen/ads_preview_code_image_size"
-        android:layout_gravity="end|bottom">
+        android:layout_gravity="right|end|bottom">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
             style="?attr/ads_widgetImageCardBig"

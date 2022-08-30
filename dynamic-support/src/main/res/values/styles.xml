@@ -767,7 +767,7 @@
         <item name="android:layout_marginTop">@dimen/ads_margin_small</item>
         <item name="android:layout_marginLeft">@dimen/ads_button_preference_card_margin_start</item>
         <item name="android:layout_marginStart">@dimen/ads_button_preference_card_margin_start</item>
-        <item name="android:layout_gravity">start|left</item>
+        <item name="android:layout_gravity">left|start</item>
         <item name="adt_colorType">primary</item>
     </style>
 
@@ -803,7 +803,7 @@
     <style name="Widget.Dynamic.Image.Backdrop">
         <item name="android:layout_width">@dimen/ads_icon_appbar_backdrop</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_gravity">center_vertical|end</item>
+        <item name="android:layout_gravity">right|end|center_vertical</item>
         <item name="android:alpha">@integer/ads_alpha_backdrop</item>
         <item name="adt_colorType">accent</item>
         <item name="adt_contrastWithColorType">primary</item>

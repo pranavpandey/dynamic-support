@@ -29,7 +29,7 @@
     android:id="@+id/select_dialog_listview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="start"
+    android:gravity="left|start"
     android:textAlignment="viewStart"
     android:cacheColorHint="@null"
     android:clipToPadding="false"
