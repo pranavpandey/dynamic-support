@@ -17,6 +17,9 @@
 
 <resources>
 
+    <!-- Default -->
+    <color name="ads_color_default">#123456</color>
+
     <!-- Window -->
     <color name="ads_window_background">#252525</color>
     <color name="ads_window_background_dark">#000000</color>
