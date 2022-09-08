@@ -932,13 +932,13 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
     @Override
     public @Nullable Snackbar getSnackbar(@NonNull CharSequence text,
             @Snackbar.Duration int duration) {
-        final Tutorial<T, V> tutorial = getTutorial(getCurrentPosition());
-        if (tutorial == null || getCoordinatorLayout() == null) {
+        if (getCoordinatorLayout() == null || getViewPagerAdapter() == null) {
             return null;
         }
 
-        return DynamicHintUtils.getSnackbar(getCoordinatorLayout(), text, Dynamic.getTintColor(
-                tutorial.getColor()), tutorial.getColor(), duration, false);
+        return DynamicHintUtils.getSnackbar(getCoordinatorLayout(), text,
+                Dynamic.getTintColor(getViewPagerAdapter().getContrastWithColor()),
+                getViewPagerAdapter().getContrastWithColor(), duration);
     }
 
     @Override
