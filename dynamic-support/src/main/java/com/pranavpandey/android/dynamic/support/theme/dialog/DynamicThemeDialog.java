@@ -288,7 +288,7 @@ public class DynamicThemeDialog<T extends DynamicAppTheme, V> extends DynamicDia
 
                         mMessageView.setText(getString(mThemeAction == SHARE_CODE
                                 || mThemeAction == SAVE_CODE ? R.string.ads_theme_code
-                                : R.string.ads_backup_option_share));
+                                : R.string.ads_nav_share));
 
                         if (mThemeListener instanceof ThemeListener.Export) {
                             if (mThemeAction == SAVE_FILE) {
@@ -309,7 +309,7 @@ public class DynamicThemeDialog<T extends DynamicAppTheme, V> extends DynamicDia
                         new LinearLayout(requireContext()), false);
                 dialogBuilder.setViewRoot(view.findViewById(R.id.ads_dialog_progress_root));
                 mMessageView = view.findViewById(R.id.ads_dialog_progress_message);
-                mMessage = getString(R.string.ads_backup_import);
+                mMessage = getString(R.string.ads_import);
 
                 setCancelable(false);
                 dialogBuilder.setNegativeButton(null, null);
@@ -362,7 +362,7 @@ public class DynamicThemeDialog<T extends DynamicAppTheme, V> extends DynamicDia
                     }
                 });
 
-                dialogBuilder.setPositiveButton(R.string.ads_backup_import,
+                dialogBuilder.setPositiveButton(R.string.ads_import,
                         new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

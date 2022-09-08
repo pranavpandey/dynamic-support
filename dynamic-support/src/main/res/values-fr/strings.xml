@@ -61,8 +61,14 @@
     <string name="ads_copy">Copier</string>
     <string name="ads_save">Sauvegarder</string>
     <string name="ads_load">Charger</string>
+    <string name="ads_import">Importer</string>
+    <string name="ads_rename">Renommer</string>
+    <string name="ads_delete">Supprimer</string>
     <string name="ads_clear">Dégager</string>
     <string name="ads_file">Fichier</string>
+    <string name="ads_data">Données</string>
+    <string name="ads_data_invalid">Données invalides</string>
+    <string name="ads_data_invalid_desc">Veuillez réessayer avec les données appropriées.</string>
     <string name="ads_create">Créer</string>
     <string name="ads_configure">Configurer</string>
     <string name="ads_open">Ouverte</string>
@@ -143,69 +149,6 @@
     <string name="ads_perm_usage_access_desc">Autoriser l\'accès à l\'utilisation.</string>
     <string name="ads_perm_accessibility">Accessibilité</string>
     <string name="ads_perm_accessibility_desc">Il doit être géré via les paramètres système.</string>
-
-    <!-- Backup and Restore -->
-    <string name="ads_data">Données</string>
-    <string name="ads_data_invalid">Données invalides</string>
-    <string name="ads_data_invalid_desc">Veuillez réessayer avec les données appropriées.</string>
-    <string name="ads_data_operations">Opérations de données</string>
-    <string name="ads_backup_and_restore">Sauvegarde &amp; Restauration</string>
-    <string name="ads_backup">Sauvegarde</string>
-    <string name="ads_backup_desc">Les paramètres du widget ne seront pas sauvegardés. Veuillez les configurer manuellement après une restauration.</string>
-    <string name="ads_backup_title">Créer une sauvegarde</string>
-    <string name="ads_backup_select">Sélectionner</string>
-    <string name="ads_backup_summary">Sauvegarder ou partager les réglages actuels d\'application</string>
-    <string name="ads_backup_new">Nouveau</string>
-    <string name="ads_backup_create_new_info">Veuillez effectuer une nouvelle sauvegarde</string>
-    <string name="ads_backup_import_info">S\'il vous plaît essayez d\'importer une sauvegarde à partir du stockage de l\'appareil.</string>
-    <string name="ads_backup_name">Nom de la sauvegarde</string>
-    <string name="ads_backup_location">Emplacement de sauvegarde</string>
-    <string name="ads_backup_rename">Renommer une sauvegarde</string>
-    <string name="ads_backup_complete">La sauvegarde a été créée avec succès</string>
-    <string name="ads_backup_error">Impossible d\'effectuer une sauvegarde</string>
-    <string name="ads_backup_exists">La sauvegarde existe déjà</string>
-    <string name="ads_backup_replace">Remplacer si existe déjà</string>
-    <string name="ads_backup_invalid">Sauvegarde invalide</string>
-    <string name="ads_backup_restore">Restaurer</string>
-    <string name="ads_backup_restore_title">Restaurer une sauvegarde</string>
-    <string name="ads_backup_error_save">Impossible d\'effectuer la sauvegarde</string>
-    <string name="ads_backup_error_rename">Impossible de renommer la sauvegarde</string>
-    <string name="ads_backup_restore_summary">Charger ou gérer les sauvegardes précédemment enregistrées.</string>
-    <string name="ads_backup_restore_desc">Sélectionner une sauvegarde a restaurer.</string>
-    <string name="ads_backup_restore_backup">Restaurer une sauvegarde</string>
-    <string name="ads_backup_restore_backup_desc">Cela supprimera tous les paramètres actuels (à l\'exception des widgets) et les restaurera à partir de la sauvegarde sélectionnée. Voulez-vous continuer?</string>
-    <string name="ads_backup_restore_backup_verify_error">Impossible de vérifier cette sauvegarde. Sélectionnez un autre type de sauvegarde.</string>
-    <string name="ads_backup_modify">Modifier</string>
-    <string name="ads_backup_modify_desc">Sélectionner une sauvegarde à modifier.</string>
-    <string name="ads_backup_restore_done">La sauvegarde a été restaurée avec succès</string>
-    <string name="ads_backup_restore_error">Impossible de restaurer la sauvegarde.</string>
-    <string name="ads_backup_not_found">Aucune sauvegarde trouvée.</string>
-    <string name="ads_backup_modify_complete">La sauvegarde a été modifiée avec succès</string>
-    <string name="ads_backup_delete_all">Tout supprimer</string>
-    <string name="ads_backup_delete_all_title">Supprimer toutes les sauvegardes</string>
-    <string name="ads_backup_delete_all_desc">Toutes les sauvegardes enregistrées vont être supprimées. Voulez-vous continuer ?</string>
-    <string name="ads_backup_delete_all_done">Toutes les sauvegardes ont été supprimées avec succès.</string>
-    <string name="ads_backup_import">Importer</string>
-    <string name="ads_backup_import_title">Importer une sauvegarde</string>
-    <string name="ads_backup_import_summary">Commencer à partir d\'un état d\'application précédent</string>
-    <string name="ads_backup_import_desc">Importer une sauvegarde depuis le périphérique ou un autre stockage.</string>
-    <string name="ads_backup_format_location">Emplacement de sauvegarde : %1$s</string>
-    <string name="ads_backup_format_created">Sauvegarde créée : %1$s</string>
-    <string name="ads_backup_format_saved">Sauvegarde effectuée : %1$s</string>
-    <string name="ads_backup_format_last">Dernière sauvegarde : %1$s</string>
-    <string name="ads_backup_format_last_storage">Stockage de l\'application: %1$s</string>
-    <string name="ads_backup_format_modified">Sauvegarde modifiée : %1$s</string>
-    <string name="ads_backup_format_last_modified">Dernière sauvegarde modifiée : %1$s</string>
-    <string name="ads_backup_format_renamed">Sauvegarde renommée : %1$s</string>
-    <string name="ads_backup_format_deleted">Sauvegarde supprimée : %1$s</string>
-    <string name="ads_backup_format_restored">Sauvegarde restaurée : %1$s</string>
-
-    <!-- Backup Options -->
-    <string name="ads_backup_storage_app">Stockage d\'applications</string>
-    <string name="ads_backup_storage_device">Stockage de l\'appareil</string>
-    <string name="ads_backup_option_rename">Renommer</string>
-    <string name="ads_backup_option_delete">Supprimer</string>
-    <string name="ads_backup_send">Envoyer la sauvegarde</string>
 
     <!-- Theme -->
     <string name="ads_dynamic_theme">Thème dynamique</string>

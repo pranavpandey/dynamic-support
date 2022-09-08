@@ -61,8 +61,14 @@
     <string name="ads_copy">Kopyala</string>
     <string name="ads_save">Kaydet</string>
     <string name="ads_load">Yükle</string>
+    <string name="ads_import">İçe aktar</string>
+    <string name="ads_rename">Yeniden adlandır</string>
+    <string name="ads_delete">Sil</string>
     <string name="ads_clear">Temizlemek</string>
     <string name="ads_file">Dosya</string>
+    <string name="ads_data">Veri</string>
+    <string name="ads_data_invalid">Geçersiz veri</string>
+    <string name="ads_data_invalid_desc">Lütfen uygun verilerle tekrar deneyin.</string>
     <string name="ads_create">Oluştur</string>
     <string name="ads_configure">Yapılandır</string>
     <string name="ads_open">Açık</string>
@@ -143,69 +149,6 @@
     <string name="ads_perm_usage_access_desc">kullanım erişimi izni.</string>
     <string name="ads_perm_accessibility">Erişebilirlik</string>
     <string name="ads_perm_accessibility_desc">Sistem ayarları üzerinden yönetilmelidir.</string>
-
-    <!-- Backup and Restore -->
-    <string name="ads_data">Veri</string>
-    <string name="ads_data_invalid">Geçersiz veri</string>
-    <string name="ads_data_invalid_desc">Lütfen uygun verilerle tekrar deneyin.</string>
-    <string name="ads_data_operations">Veri işlemleri</string>
-    <string name="ads_backup_and_restore">Yedekle &amp; Geri Yükle</string>
-    <string name="ads_backup">Yedekle</string>
-    <string name="ads_backup_desc">Widget ayarları yedeklenmeyecek, lütfen geri yükleme işlemini gerçekleştirdikten sonra elle yapılandırın.</string>
-    <string name="ads_backup_title">Yedek oluştur</string>
-    <string name="ads_backup_select">Seç</string>
-    <string name="ads_backup_summary">Geçerli uygulama ayarlarını kaydedin veya paylaşın.</string>
-    <string name="ads_backup_new">Yeni</string>
-    <string name="ads_backup_create_new_info">Lütfen yeni bir yedek oluşturun.</string>
-    <string name="ads_backup_import_info">Lütfen cihaz belleğinden yedek almayı deneyin.</string>
-    <string name="ads_backup_name">Yedek adı</string>
-    <string name="ads_backup_location">Yedek konumu</string>
-    <string name="ads_backup_rename">Yedeği yeniden adlandır</string>
-    <string name="ads_backup_complete">Yedek başarıyla oluşturuldu</string>
-    <string name="ads_backup_error">Yedek oluşturulamadı</string>
-    <string name="ads_backup_exists">Yedek zaten var</string>
-    <string name="ads_backup_replace">Zaten varsa değiştirin</string>
-    <string name="ads_backup_invalid">Geçersiz yedek</string>
-    <string name="ads_backup_restore">Geri yükle</string>
-    <string name="ads_backup_restore_title">Yedeği geri yükle</string>
-    <string name="ads_backup_error_save">Yedek kaydedilemedi</string>
-    <string name="ads_backup_error_rename">Yedek yeniden adlandırılamadı</string>
-    <string name="ads_backup_restore_summary">Önceden kaydedilmiş yedekleri yükleyin veya yönetin.</string>
-    <string name="ads_backup_restore_desc">Geri yüklenecek yedeği seçin.</string>
-    <string name="ads_backup_restore_backup">Yedeği geri yükle</string>
-    <string name="ads_backup_restore_backup_desc">Bu, tüm geçerli ayarları (widget\'lar hariç) siler ve seçilen yedekten geri yükler. Devam etmek istiyor musunuz?</string>
-    <string name="ads_backup_restore_backup_verify_error">Bu yedek doğrulanamadı. Lütfen başka bir yedek seçin.</string>
-    <string name="ads_backup_modify">Değiştir</string>
-    <string name="ads_backup_modify_desc">Değiştirilecek yedeği seçin.</string>
-    <string name="ads_backup_restore_done">Yedek başarıyla geri yüklendi</string>
-    <string name="ads_backup_restore_error">Yedek geri yüklenemedi.</string>
-    <string name="ads_backup_not_found">Yedek bulunamadı.</string>
-    <string name="ads_backup_modify_complete">Yedek başarıyla değiştirildi</string>
-    <string name="ads_backup_delete_all">Tümünü sil</string>
-    <string name="ads_backup_delete_all_title">Tüm yedekleri sil</string>
-    <string name="ads_backup_delete_all_desc">Bu, uygulama belleğinde kayıtlı tüm yedekleri siler. Devam etmek istiyor musunuz?</string>
-    <string name="ads_backup_delete_all_done">Tüm yedekler başarıyla silindi.</string>
-    <string name="ads_backup_import">İçe aktar</string>
-    <string name="ads_backup_import_title">Yedeği içe aktar</string>
-    <string name="ads_backup_import_summary">Önceki uygulama durumundan başlayın</string>
-    <string name="ads_backup_import_desc">Bir yedeği cihazdan veya başka bir depolama biriminden içe aktarın.</string>
-    <string name="ads_backup_format_location">Yedek konumu: %1$s</string>
-    <string name="ads_backup_format_created">Yedek oluşturuldu: %1$s</string>
-    <string name="ads_backup_format_saved">Yedek kaydedildi: %1$s</string>
-    <string name="ads_backup_format_last">Son yedek: %1$s</string>
-    <string name="ads_backup_format_last_storage">Uygulama depolama alanı: %1$s</string>
-    <string name="ads_backup_format_modified">Yedeği değiştirme: %1$s</string>
-    <string name="ads_backup_format_last_modified">Son değiştirme: %1$s</string>
-    <string name="ads_backup_format_renamed">Yedeği yeniden adlandırma: %1$s</string>
-    <string name="ads_backup_format_deleted">Yedeği silme: %1$s</string>
-    <string name="ads_backup_format_restored">Yedeği geri yükleme: %1$s</string>
-
-    <!-- Backup Options -->
-    <string name="ads_backup_storage_app">Uygulama depolama alanı</string>
-    <string name="ads_backup_storage_device">Cihaz depolama alanı</string>
-    <string name="ads_backup_option_rename">Yeniden adlandır</string>
-    <string name="ads_backup_option_delete">Sil</string>
-    <string name="ads_backup_send">Yedeği gönder</string>
 
     <!-- Theme -->
     <string name="ads_dynamic_theme">Dinamik tema</string>

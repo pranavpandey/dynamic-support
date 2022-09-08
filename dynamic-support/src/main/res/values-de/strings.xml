@@ -61,8 +61,14 @@
     <string name="ads_copy">Kopieren</string>
     <string name="ads_save">Speichern</string>
     <string name="ads_load">Laden</string>
+    <string name="ads_import">Importieren</string>
+    <string name="ads_rename">Umbenennen</string>
+    <string name="ads_delete">Löschen</string>
     <string name="ads_clear">Klar</string>
     <string name="ads_file">Datei</string>
+    <string name="ads_data">Daten</string>
+    <string name="ads_data_invalid">Ungültige Daten</string>
+    <string name="ads_data_invalid_desc">Bitte versuchen Sie es erneut mit den entsprechenden Daten.</string>
     <string name="ads_create">Erstellen</string>
     <string name="ads_configure">Konfigurieren</string>
     <string name="ads_open">Öffnen</string>
@@ -143,69 +149,6 @@
     <string name="ads_perm_usage_access_desc">Nutzungsdatenzugriff gewähren.</string>
     <string name="ads_perm_accessibility">Bedienungshilfen</string>
     <string name="ads_perm_accessibility_desc">Es muss über die Systemeinstellungen verwaltet werden.</string>
-
-    <!-- Backup and Restore -->
-    <string name="ads_data">Daten</string>
-    <string name="ads_data_invalid">Ungültige Daten</string>
-    <string name="ads_data_invalid_desc">Bitte versuchen Sie es erneut mit den entsprechenden Daten.</string>
-    <string name="ads_data_operations">Datenoperationen</string>
-    <string name="ads_backup_and_restore">Sicherung &amp; Wiederherstellung</string>
-    <string name="ads_backup">Sicherung</string>
-    <string name="ads_backup_desc">Widget-Einstellungen werden nicht gesichert, bitte konfiguriere diese nach dem Wiederherstellen manuell.</string>
-    <string name="ads_backup_title">Sicherung erstellen</string>
-    <string name="ads_backup_select">Auswählen</string>
-    <string name="ads_backup_summary">Speichere oder Teile die aktuellen App-Einstellungen</string>
-    <string name="ads_backup_new">Neu</string>
-    <string name="ads_backup_create_new_info">Bitte erstelle eine neue Sicherung.</string>
-    <string name="ads_backup_import_info">Bitte versuche, eine Sicherung aus dem Gerätespeicher zu importieren.</string>
-    <string name="ads_backup_name">Name der Sicherung</string>
-    <string name="ads_backup_location">Pfad der Sicherung</string>
-    <string name="ads_backup_rename">Sicherung umbenennen</string>
-    <string name="ads_backup_complete">Sicherung wurde erfolgreich erstellt</string>
-    <string name="ads_backup_error">Sicherung kann nicht erstellt werden</string>
-    <string name="ads_backup_exists">Sicherung existiert bereits</string>
-    <string name="ads_backup_replace">Ersetzen, falls bereits vorhanden</string>
-    <string name="ads_backup_invalid">Ungültige Sicherung</string>
-    <string name="ads_backup_restore">Wiederherstellen</string>
-    <string name="ads_backup_restore_title">Sicherung wiederherstellen</string>
-    <string name="ads_backup_error_save">Sicherung kann nicht gespeichert werden</string>
-    <string name="ads_backup_error_rename">Sicherung kann nicht umbenannt werden</string>
-    <string name="ads_backup_restore_summary">Früher gespeicherte Sicherungen laden oder verwalten.</string>
-    <string name="ads_backup_restore_desc">Wähle eine Sicherung zum Wiederherstellen aus.</string>
-    <string name="ads_backup_restore_backup">Sicherung wiederherstellen</string>
-    <string name="ads_backup_restore_backup_desc">Dies wird alle aktuellen Einstellungen (mit Ausnahme von Widgets) löschen und aus der ausgewählten Sicherung wiederherstellen. Möchtest du fortfahren?</string>
-    <string name="ads_backup_restore_backup_verify_error">Sicherung kann nicht verifiziert werden. Bitte wähle eine andere Sicherung.</string>
-    <string name="ads_backup_modify">Bearbeiten</string>
-    <string name="ads_backup_modify_desc">Wähle eine Sicherung zum Bearbeiten.</string>
-    <string name="ads_backup_restore_done">Sicherung wurde erfolgreich wiederhergestellt</string>
-    <string name="ads_backup_restore_error">Sicherung kann nicht wiederhergestellt werden.</string>
-    <string name="ads_backup_not_found">Es wurde keine Sicherung gefunden.</string>
-    <string name="ads_backup_modify_complete">Sicherung wurde erfolgreich bearbeitet</string>
-    <string name="ads_backup_delete_all">Alle löschen</string>
-    <string name="ads_backup_delete_all_title">Alle Sicherungen löschen</string>
-    <string name="ads_backup_delete_all_desc">Dies wird alle Sicherungen, welche im App-Speicher gespeichert wurden, löschen. Möchtest du fortfahren?</string>
-    <string name="ads_backup_delete_all_done">Alle Sicherungen wurden erfolgreich gelöscht.</string>
-    <string name="ads_backup_import">Importieren</string>
-    <string name="ads_backup_import_title">Sicherung importieren</string>
-    <string name="ads_backup_import_summary">Von einem früheren App-Status starten.</string>
-    <string name="ads_backup_import_desc">Sicherung aus dem Gerätespeicher oder einem anderen Speicher laden</string>
-    <string name="ads_backup_format_location">Pfad der Sicherung: %1$s</string>
-    <string name="ads_backup_format_created">Sicherung erstellt: %1$s</string>
-    <string name="ads_backup_format_saved">Sicherung gespeichert: %1$s</string>
-    <string name="ads_backup_format_last">Letzte Sicherung: %1$s</string>
-    <string name="ads_backup_format_last_storage">App-Speicher: %1$s</string>
-    <string name="ads_backup_format_modified">Sicherung bearbeitet: %1$s</string>
-    <string name="ads_backup_format_last_modified">Zuletzt bearbeitet: %1$s</string>
-    <string name="ads_backup_format_renamed">Sicherung umbenannt: %1$s</string>
-    <string name="ads_backup_format_deleted">Sicherung gelöscht: %1$s</string>
-    <string name="ads_backup_format_restored">Sicherung wiederhergestellt: %1$s</string>
-
-    <!-- Backup Options -->
-    <string name="ads_backup_storage_app">App-Speicher</string>
-    <string name="ads_backup_storage_device">Gerätespeicher</string>
-    <string name="ads_backup_option_rename">Umbenennen</string>
-    <string name="ads_backup_option_delete">Löschen</string>
-    <string name="ads_backup_send">Sicherung senden</string>
 
     <!-- Theme -->
     <string name="ads_dynamic_theme">Dynamisches Thema</string>

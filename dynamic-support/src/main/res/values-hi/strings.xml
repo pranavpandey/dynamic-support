@@ -61,8 +61,14 @@
     <string name="ads_copy">कौपी करें</string>
     <string name="ads_save">सेव करें</string>
     <string name="ads_load">लोड करें</string>
+    <string name="ads_import">आयात करें</string>
+    <string name="ads_rename">नाम बदलें</string>
+    <string name="ads_delete">उड़ाएं</string>
     <string name="ads_clear">साफ़ करें</string>
     <string name="ads_file">फ़ाइल</string>
+    <string name="ads_data">डेटा</string>
+    <string name="ads_data_invalid">अमान्य डेटा</string>
+    <string name="ads_data_invalid_desc">दोबारा प्रयास करें।</string>
     <string name="ads_create">बनाएं</string>
     <string name="ads_configure">बदलें</string>
     <string name="ads_open">खोलें</string>
@@ -143,69 +149,6 @@
     <string name="ads_perm_usage_access_desc">यूसेज एक्सेस की अनुमति दें।</string>
     <string name="ads_perm_accessibility">सुलभता</string>
     <string name="ads_perm_accessibility_desc">इसे सिस्टम सेटिंग्स के माध्यम से प्रबंधित किया जाना चाहिए।</string>
-
-    <!-- Backup and Restore -->
-    <string name="ads_data">डेटा</string>
-    <string name="ads_data_invalid">अमान्य डेटा</string>
-    <string name="ads_data_invalid_desc">दोबारा प्रयास करें।</string>
-    <string name="ads_data_operations">डेटा ऑपरेशन</string>
-    <string name="ads_backup_and_restore">बैकअप व रीस्टोर</string>
-    <string name="ads_backup">बैकअप</string>
-    <string name="ads_backup_desc">विडजेट की सेटिंग्स खुद बैकअप नहीं होंगी। उन्हें स्वयं बदलें रीस्टोर करने के बाद।</string>
-    <string name="ads_backup_title">बैकअप लें</string>
-    <string name="ads_backup_select">चुनें</string>
-    <string name="ads_backup_summary">वर्तमान की ऐप सेटिंग्स को सेव करें या औरों को बताएं।</string>
-    <string name="ads_backup_new">नया</string>
-    <string name="ads_backup_create_new_info">नया बैकअप बनाएं।</string>
-    <string name="ads_backup_import_info">बैकअप सेटिंग्स को अपने फोन में से लाने का प्रयास करें।</string>
-    <string name="ads_backup_name">बैकअप का नाम</string>
-    <string name="ads_backup_location">बैकअप की जगह</string>
-    <string name="ads_backup_rename">बैकअप का नया नाम रखें</string>
-    <string name="ads_backup_complete">बैकअप हो गया है</string>
-    <string name="ads_backup_error">बैकअप नहीं हो पाया</string>
-    <string name="ads_backup_exists">बैकअप पहले से मौजूद है</string>
-    <string name="ads_backup_replace">यदि पहले से मौजूद है तो बदलें</string>
-    <string name="ads_backup_invalid">अमान्य बैकअप</string>
-    <string name="ads_backup_restore">रिस्टोर करें</string>
-    <string name="ads_backup_restore_title">बैकअप रीस्टोर करें</string>
-    <string name="ads_backup_error_save">बैकअप सेव नहीं हो पाया</string>
-    <string name="ads_backup_error_rename">बैकअप का नाम नहीं बदल पाया</string>
-    <string name="ads_backup_restore_summary">पुराने बैकअप को देखें व बदलें।</string>
-    <string name="ads_backup_restore_desc">रिस्टोर करने के लिए बैकअप चुनें।</string>
-    <string name="ads_backup_restore_backup">बैकअप रीस्टोर करें</string>
-    <string name="ads_backup_restore_backup_desc">वर्तमान की सारी सेटिंग्स हटाकर आपके चुनें हुए बैकअप की ला दी जाएंगी। क्या आप आगे बढ़ना चाहते हैं?</string>
-    <string name="ads_backup_restore_backup_verify_error">यह बैकअप वेरिफाई नहीं हो पाया। दूसरा बैकअप चुनें।</string>
-    <string name="ads_backup_modify">बदलें</string>
-    <string name="ads_backup_modify_desc">बदलने के लिए एक बैकअप चुनें।</string>
-    <string name="ads_backup_restore_done">बैकअप रीस्टोर ही गया है</string>
-    <string name="ads_backup_restore_error">बैकअप रीस्टोर नहीं हो पाया।</string>
-    <string name="ads_backup_not_found">कोई बैकअप नहीं मिला।</string>
-    <string name="ads_backup_modify_complete">बैकअप बदल चुका है</string>
-    <string name="ads_backup_delete_all">सब उड़ा दें</string>
-    <string name="ads_backup_delete_all_title">सभी बैकअप उड़ा दें</string>
-    <string name="ads_backup_delete_all_desc">क्या आप सारी बैकअप उड़ाना चाहते हैं?</string>
-    <string name="ads_backup_delete_all_done">सारे बैकअप उड़ा दिए गए हैं।</string>
-    <string name="ads_backup_import">आयात करें</string>
-    <string name="ads_backup_import_title">बैकअप आयात करें</string>
-    <string name="ads_backup_import_summary">ऐप को एक पुरानी स्थिति से शुरुआत करें</string>
-    <string name="ads_backup_import_desc">किसी दूसरे स्टोरेज से बैकअप आयात करें।</string>
-    <string name="ads_backup_format_location">बैकअप की जगह: %1$s</string>
-    <string name="ads_backup_format_created">बैकअप बन चुका है: %1$s</string>
-    <string name="ads_backup_format_saved">बैकअप सेव हो गया है: %1$s</string>
-    <string name="ads_backup_format_last">आखरी बैकअप: %1$s</string>
-    <string name="ads_backup_format_last_storage">ऐप स्टोरेज: %1$s</string>
-    <string name="ads_backup_format_modified">बैकअप बदल गया है: %1$s</string>
-    <string name="ads_backup_format_last_modified">आखरी बदलाव: %1$s</string>
-    <string name="ads_backup_format_renamed">आखरी बदलाव: %1$s</string>
-    <string name="ads_backup_format_deleted">बैकअप उड़ा दिया गया: %1$s</string>
-    <string name="ads_backup_format_restored">बैकअप रीस्टोर किया गया: %1$s</string>
-
-    <!-- Backup Options -->
-    <string name="ads_backup_storage_app">ऐप स्टोरेज</string>
-    <string name="ads_backup_storage_device">फ़ोन की स्टोरेज</string>
-    <string name="ads_backup_option_rename">नाम बदलें</string>
-    <string name="ads_backup_option_delete">उड़ाएं</string>
-    <string name="ads_backup_send">बैकअप भेजें</string>
 
     <!-- Theme -->
     <string name="ads_dynamic_theme">गतिशील रंग-रूप</string>

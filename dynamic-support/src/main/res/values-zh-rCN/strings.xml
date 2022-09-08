@@ -61,8 +61,14 @@
     <string name="ads_copy">复制</string>
     <string name="ads_save">保存</string>
     <string name="ads_load">加载</string>
+    <string name="ads_import">入口</string>
+    <string name="ads_rename">重命名</string>
+    <string name="ads_delete">删除</string>
     <string name="ads_clear">清除</string>
     <string name="ads_file">文件</string>
+    <string name="ads_data">数据</string>
+    <string name="ads_data_invalid">无效数据</string>
+    <string name="ads_data_invalid_desc">请使用适当的数据再试一次。</string>
     <string name="ads_create">创建</string>
     <string name="ads_configure">配置</string>
     <string name="ads_open">打开</string>
@@ -143,69 +149,6 @@
     <string name="ads_perm_usage_access_desc">使用情况访问权限。</string>
     <string name="ads_perm_accessibility">无障碍</string>
     <string name="ads_perm_accessibility_desc">它必须通过系统设置进行管理。</string>
-
-    <!-- Backup and Restore -->
-    <string name="ads_data">数据</string>
-    <string name="ads_data_invalid">无效数据</string>
-    <string name="ads_data_invalid_desc">请使用适当的数据再试一次。</string>
-    <string name="ads_data_operations">数据操作</string>
-    <string name="ads_backup_and_restore">备份和恢复</string>
-    <string name="ads_backup">备份</string>
-    <string name="ads_backup_desc">小部件设置将不会被备份，请在执行还原操作后手动配置它们。</string>
-    <string name="ads_backup_title">创建备份</string>
-    <string name="ads_backup_select">选择</string>
-    <string name="ads_backup_summary">保存或分享当前的应用程序设置。</string>
-    <string name="ads_backup_new">新</string>
-    <string name="ads_backup_create_new_info">请创建一个新的备份。</string>
-    <string name="ads_backup_import_info">请尝试从设备存储导入备份。</string>
-    <string name="ads_backup_name">备份名称</string>
-    <string name="ads_backup_location">备份位置</string>
-    <string name="ads_backup_rename">重命名备份</string>
-    <string name="ads_backup_complete">备份已成功创建</string>
-    <string name="ads_backup_error">无法创建备份</string>
-    <string name="ads_backup_exists">备份已存在</string>
-    <string name="ads_backup_replace">Replace if already exists</string>
-    <string name="ads_backup_invalid">备份无效</string>
-    <string name="ads_backup_restore">恢复</string>
-    <string name="ads_backup_restore_title">恢复备份</string>
-    <string name="ads_backup_error_save">无法保存备份</string>
-    <string name="ads_backup_error_rename">无法重命名备份</string>
-    <string name="ads_backup_restore_summary">加载或管理以前保存的备份。</string>
-    <string name="ads_backup_restore_desc">选择要还原的备份。</string>
-    <string name="ads_backup_restore_backup">恢复备份</string>
-    <string name="ads_backup_restore_backup_desc">这将删除所有当前的设置（小部件除外），并从选定的备份中恢复它们。你想继续吗？</string>
-    <string name="ads_backup_restore_backup_verify_error">无法验证此备份。请选择其他备份。</string>
-    <string name="ads_backup_modify">修改</string>
-    <string name="ads_backup_modify_desc">选择要修改的备份。</string>
-    <string name="ads_backup_restore_done">备份已成功恢复</string>
-    <string name="ads_backup_restore_error">无法恢复备份。</string>
-    <string name="ads_backup_not_found">备份未找到。</string>
-    <string name="ads_backup_modify_complete">备份已成功修改</string>
-    <string name="ads_backup_delete_all">删除全部</string>
-    <string name="ads_backup_delete_all_title">删除全部备份</string>
-    <string name="ads_backup_delete_all_desc">这将删除保存在应用程序存储中的所有备份。你想继续吗？</string>
-    <string name="ads_backup_delete_all_done">所有备份已成功删除。</string>
-    <string name="ads_backup_import">入口</string>
-    <string name="ads_backup_import_title">导入备份</string>
-    <string name="ads_backup_import_summary">从以前的应用程序状态开始</string>
-    <string name="ads_backup_import_desc">从设备或其他存储中导入备份。</string>
-    <string name="ads_backup_format_location">备份位置：%1$s</string>
-    <string name="ads_backup_format_created">已创建备份：%1$s</string>
-    <string name="ads_backup_format_saved">备份保存：%1$s</string>
-    <string name="ads_backup_format_last">上次备份：%1$s</string>
-    <string name="ads_backup_format_last_storage">应用程序存储: %1$s</string>
-    <string name="ads_backup_format_modified">备份修改：%1$s</string>
-    <string name="ads_backup_format_last_modified">上次修改时间：%1$s</string>
-    <string name="ads_backup_format_renamed">备份重命名为：%1$s</string>
-    <string name="ads_backup_format_deleted">备份已删除：%1$s</string>
-    <string name="ads_backup_format_restored">备份已恢复：%1$s</string>
-
-    <!-- Backup Options -->
-    <string name="ads_backup_storage_app">应用程序存储</string>
-    <string name="ads_backup_storage_device">设备存储</string>
-    <string name="ads_backup_option_rename">重命名</string>
-    <string name="ads_backup_option_delete">删除</string>
-    <string name="ads_backup_send">发送备份</string>
 
     <!-- Theme -->
     <string name="ads_dynamic_theme">动态主题</string>

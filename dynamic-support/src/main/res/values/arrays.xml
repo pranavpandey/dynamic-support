@@ -34,24 +34,10 @@
         <item>2</item>
     </string-array>
 
-    <!-- Backup options to modify a saved backup. -->
-    <string-array name="ads_backup_options">
-        <item>@string/ads_backup_option_rename</item>
-        <item>@string/ads_backup_option_share</item>
-        <item>@string/ads_backup_option_delete</item>
-    </string-array>
-
-    <!-- Icons for the Backup options to modify a saved backup. -->
-    <integer-array name="ads_backup_options_icons">
-        <item>@drawable/ads_ic_edit</item>
-        <item>@drawable/ads_ic_share</item>
-        <item>@drawable/ads_ic_delete</item>
-    </integer-array>
-
     <!-- Delete options for the popup. -->
     <string-array name="ads_popup_delete">
         <item>@string/ads_cancel</item>>
-        <item>@string/ads_backup_option_delete</item>
+        <item>@string/ads_delete</item>
     </string-array>
 
     <!-- Reset options for the popup. -->

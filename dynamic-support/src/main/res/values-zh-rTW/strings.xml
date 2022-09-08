@@ -61,8 +61,14 @@
     <string name="ads_copy">複製</string>
     <string name="ads_save">儲存</string>
     <string name="ads_load">載入</string>
+    <string name="ads_import">匯入</string>
+    <string name="ads_rename">重新命名</string>
+    <string name="ads_delete">刪除</string>
     <string name="ads_clear">清除</string>
     <string name="ads_file">檔案</string>
+    <string name="ads_data">資料</string>
+    <string name="ads_data_invalid">無效資料</string>
+    <string name="ads_data_invalid_desc">請用適當的資料再試一次。</string>
     <string name="ads_create">建立</string>
     <string name="ads_configure">設定</string>
     <string name="ads_open">開啟</string>
@@ -143,69 +149,6 @@
     <string name="ads_perm_usage_access_desc">允許使用記錄存取權</string>
     <string name="ads_perm_accessibility">無障礙</string>
     <string name="ads_perm_accessibility_desc">它必須透過系統設定進行管理。</string>
-
-    <!-- Backup and Restore -->
-    <string name="ads_data">資料</string>
-    <string name="ads_data_invalid">無效資料</string>
-    <string name="ads_data_invalid_desc">請用適當的資料再試一次。</string>
-    <string name="ads_data_operations">資料作業</string>
-    <string name="ads_backup_and_restore">備份與還原</string>
-    <string name="ads_backup">備份</string>
-    <string name="ads_backup_desc">小工具設定將不會備份，請在執行還原作業後手動設定他們。</string>
-    <string name="ads_backup_title">建立備份</string>
-    <string name="ads_backup_select">選取</string>
-    <string name="ads_backup_summary">儲存或分享目前的應用程式設定</string>
-    <string name="ads_backup_new">新的</string>
-    <string name="ads_backup_create_new_info">請建立一個新的備份。</string>
-    <string name="ads_backup_import_info">請嘗試從裝置儲存空間中匯入備份。</string>
-    <string name="ads_backup_name">備份名稱</string>
-    <string name="ads_backup_location">備份位置</string>
-    <string name="ads_backup_rename">重新命名備份</string>
-    <string name="ads_backup_complete">備份已成功建立</string>
-    <string name="ads_backup_error">無法建立備份</string>
-    <string name="ads_backup_exists">備份已存在</string>
-    <string name="ads_backup_replace">如果已經存在則取代</string>
-    <string name="ads_backup_invalid">無效備份</string>
-    <string name="ads_backup_restore">還原</string>
-    <string name="ads_backup_restore_title">還原備份</string>
-    <string name="ads_backup_error_save">無法儲存備份</string>
-    <string name="ads_backup_error_rename">無法重新命名備份</string>
-    <string name="ads_backup_restore_summary">載入或管理先前儲存的備份</string>
-    <string name="ads_backup_restore_desc">選取要還原的備份。</string>
-    <string name="ads_backup_restore_backup">還原備份</string>
-    <string name="ads_backup_restore_backup_desc">這將刪除所有目前設定 (小工具除外) 並從所選備份中還原他們。你想繼續嗎?</string>
-    <string name="ads_backup_restore_backup_verify_error">無法驗證此備份。請選取其他備份。</string>
-    <string name="ads_backup_modify">修改</string>
-    <string name="ads_backup_modify_desc">選取要修改的備份。</string>
-    <string name="ads_backup_restore_done">備份已成功還原</string>
-    <string name="ads_backup_restore_error">無法還原備份</string>
-    <string name="ads_backup_not_found">找不到備份。</string>
-    <string name="ads_backup_modify_complete">備份已成功修改</string>
-    <string name="ads_backup_delete_all">刪除全部</string>
-    <string name="ads_backup_delete_all_title">刪除全部備份</string>
-    <string name="ads_backup_delete_all_desc">這將刪除所有儲存在應用程式儲存空間中的備份。你想繼續嗎?</string>
-    <string name="ads_backup_delete_all_done">所有備份已成功刪除</string>
-    <string name="ads_backup_import">匯入</string>
-    <string name="ads_backup_import_title">匯入備份</string>
-    <string name="ads_backup_import_summary">從先前的應用程式狀態開始</string>
-    <string name="ads_backup_import_desc">從裝置或其他儲存裝置匯入備份。</string>
-    <string name="ads_backup_format_location">備份位置：%1$s</string>
-    <string name="ads_backup_format_created">備份已建立：%1$s</string>
-    <string name="ads_backup_format_saved">備份已儲存：%1$s</string>
-    <string name="ads_backup_format_last">上次備份：%1$s</string>
-    <string name="ads_backup_format_last_storage">應用程式儲存空間：%1$s</string>
-    <string name="ads_backup_format_modified">備份已修改：%1$s</string>
-    <string name="ads_backup_format_last_modified">上次修改時間：%1$s</string>
-    <string name="ads_backup_format_renamed">備份已重新命名：%1$s</string>
-    <string name="ads_backup_format_deleted">備份已刪除：%1$s</string>
-    <string name="ads_backup_format_restored">備份已還原：%1$s</string>
-
-    <!-- Backup Options -->
-    <string name="ads_backup_storage_app">應用程式儲存空間</string>
-    <string name="ads_backup_storage_device">裝置儲存空間</string>
-    <string name="ads_backup_option_rename">重新命名</string>
-    <string name="ads_backup_option_delete">刪除</string>
-    <string name="ads_backup_send">傳送備份</string>
 
     <!-- Theme -->
     <string name="ads_dynamic_theme">動態主題</string>

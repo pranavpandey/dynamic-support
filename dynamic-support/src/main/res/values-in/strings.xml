@@ -61,8 +61,14 @@
     <string name="ads_copy">Salin</string>
     <string name="ads_save">Simpan</string>
     <string name="ads_load">Muat</string>
+    <string name="ads_import">Impor</string>
+    <string name="ads_rename">Rubah nama</string>
+    <string name="ads_delete">Hapus</string>
     <string name="ads_clear">Jernih</string>
     <string name="ads_file">File</string>
+    <string name="ads_data">Data</string>
+    <string name="ads_data_invalid">Data tidak valid</string>
+    <string name="ads_data_invalid_desc">Mohon coba lagi dengan data yang sesuai.</string>
     <string name="ads_create">Buat</string>
     <string name="ads_configure">Atur</string>
     <string name="ads_open">Buka</string>
@@ -143,69 +149,6 @@
     <string name="ads_perm_usage_access_desc">ijinkan akses penggunaan.</string>
     <string name="ads_perm_accessibility">Aksesibilitas</string>
     <string name="ads_perm_accessibility_desc">Itu harus dikelola melalui pengaturan sistem.</string>
-
-    <!-- Backup and Restore -->
-    <string name="ads_data">Data</string>
-    <string name="ads_data_invalid">Data tidak valid</string>
-    <string name="ads_data_invalid_desc">Mohon coba lagi dengan data yang sesuai.</string>
-    <string name="ads_data_operations">Operasi data</string>
-    <string name="ads_backup_and_restore">Cadangkan &amp; Pulihkan</string>
-    <string name="ads_backup">Cadangkan</string>
-    <string name="ads_backup_desc">Pengaturan widget tidak akan dicadangkan, mohon atur secara manual setelah melakukan operasi pemulihan.</string>
-    <string name="ads_backup_title">Buat cadangan</string>
-    <string name="ads_backup_select">Pilih</string>
-    <string name="ads_backup_summary">Simpan atau bagikan pengaturan aplikasi saat ini.</string>
-    <string name="ads_backup_new">Baru</string>
-    <string name="ads_backup_create_new_info">Mohon buat cadangan baru.</string>
-    <string name="ads_backup_import_info">Mohon coba untuk mengimpor cadangan dari penyimpanan device.</string>
-    <string name="ads_backup_name">Nama cadangan</string>
-    <string name="ads_backup_location">Lokasi cadangan</string>
-    <string name="ads_backup_rename">Ubah nama cadangan</string>
-    <string name="ads_backup_complete">Cadangan telah sukses dibuat</string>
-    <string name="ads_backup_error">Tidak dapat membuat cadangan</string>
-    <string name="ads_backup_exists">Cadangan sudah ada</string>
-    <string name="ads_backup_replace">Ganti jika sudah ada</string>
-    <string name="ads_backup_invalid">Cadangan tidak sah</string>
-    <string name="ads_backup_restore">Pulihkan</string>
-    <string name="ads_backup_restore_title">Pulihkan cadangan</string>
-    <string name="ads_backup_error_save">Tidak dapat menyimpan cadangan</string>
-    <string name="ads_backup_error_rename">Tidak dapat merubah nama cadangan</string>
-    <string name="ads_backup_restore_summary">Muat atau kelola cadangan yang tersimpan.</string>
-    <string name="ads_backup_restore_desc">Pilih cadangan untuk dipulihkan.</string>
-    <string name="ads_backup_restore_backup">Pulihkan cadangan</string>
-    <string name="ads_backup_restore_backup_desc">Ini akan menghapus seluruh pengaturan saat ini (kecuali widget) dan memulihkannya dari cadangan yang dipilih. Lanjutkan?</string>
-    <string name="ads_backup_restore_backup_verify_error">Tidak dapat memverifikasi cadangan ini. Mohon pilih cadangan lainnya.</string>
-    <string name="ads_backup_modify">Rubah</string>
-    <string name="ads_backup_modify_desc">Pilih cadangan untuk dirubah.</string>
-    <string name="ads_backup_restore_done">Cadangan telah sukses dirubah</string>
-    <string name="ads_backup_restore_error">Tidak dapat memulihkan cadangan.</string>
-    <string name="ads_backup_not_found">Tidak ada cadangan yang ditemukan.</string>
-    <string name="ads_backup_modify_complete">Cadangan telah sukses dirubah</string>
-    <string name="ads_backup_delete_all">Hapus semua</string>
-    <string name="ads_backup_delete_all_title">Hapus semua cadangan</string>
-    <string name="ads_backup_delete_all_desc">Ini akan menghapus seluruh cadangan yang tersimpan di penyimpanan aplikasi. Lanjutkan?</string>
-    <string name="ads_backup_delete_all_done">Seluruh cadangan telah sukses dihapus.</string>
-    <string name="ads_backup_import">Impor</string>
-    <string name="ads_backup_import_title">Impor cadangan</string>
-    <string name="ads_backup_import_summary">Mulai dengan keadaan aplikasi sebelumnya</string>
-    <string name="ads_backup_import_desc">Impor cadangan dari device atau penyimpanan lainnya.</string>
-    <string name="ads_backup_format_location">Lokasi cadangan: %1$s</string>
-    <string name="ads_backup_format_created">Cadangan dibuat: %1$s</string>
-    <string name="ads_backup_format_saved">Cadangan disimpan: %1$s</string>
-    <string name="ads_backup_format_last">Cadangan terakhir: %1$s</string>
-    <string name="ads_backup_format_last_storage">Penyimpanan aplikasi: %1$s</string>
-    <string name="ads_backup_format_modified">Cadangan dimodifikasi: %1$s</string>
-    <string name="ads_backup_format_last_modified">Terakhir dimodifikasi: %1$s</string>
-    <string name="ads_backup_format_renamed">Nama cadangan dirubah: %1$s</string>
-    <string name="ads_backup_format_deleted">Cadangan dihapus: %1$s</string>
-    <string name="ads_backup_format_restored">Cadangan dipulihkan: %1$s</string>
-
-    <!-- Backup Options -->
-    <string name="ads_backup_storage_app">Penyimpanan aplikasi</string>
-    <string name="ads_backup_storage_device">Penyimpanan device</string>
-    <string name="ads_backup_option_rename">Rubah nama</string>
-    <string name="ads_backup_option_delete">Hapus</string>
-    <string name="ads_backup_send">Kirim cadangan</string>
 
     <!-- Theme -->
     <string name="ads_dynamic_theme">Tema dinamis</string>

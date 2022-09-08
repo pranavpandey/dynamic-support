@@ -61,8 +61,14 @@
     <string name="ads_copy">Dupdo</string>
     <string name="ads_save">Guardar</string>
     <string name="ads_load">Cargar</string>
+    <string name="ads_import">Importar</string>
+    <string name="ads_rename">Renombrar</string>
+    <string name="ads_delete">Eliminar</string>
     <string name="ads_clear">Clara</string>
     <string name="ads_file">Archivar</string>
+    <string name="ads_data">Datos</string>
+    <string name="ads_data_invalid">Datos inválidos</string>
+    <string name="ads_data_invalid_desc">Por favor, intente de nuevo con los datos apropiados.</string>
     <string name="ads_create">Crear</string>
     <string name="ads_configure">Configurar</string>
     <string name="ads_open">Abierta</string>
@@ -143,69 +149,6 @@
     <string name="ads_perm_usage_access_desc">Permitir acceso.</string>
     <string name="ads_perm_accessibility">Accesibilidad</string>
     <string name="ads_perm_accessibility_desc">Debe administrarse a través de la configuración del sistema.</string>
-
-    <!-- Backup and Restore -->
-    <string name="ads_data">Datos</string>
-    <string name="ads_data_invalid">Datos inválidos</string>
-    <string name="ads_data_invalid_desc">Por favor, intente de nuevo con los datos apropiados.</string>
-    <string name="ads_data_operations">Operaciones de datos</string>
-    <string name="ads_backup_and_restore">Respaldar y restaurar</string>
-    <string name="ads_backup">Respaldar</string>
-    <string name="ads_backup_desc">La configuración de los widgets no se respaldará, por favor configúralos manualmente después de restaurar.</string>
-    <string name="ads_backup_title">Crear respaldo</string>
-    <string name="ads_backup_select">Seleccionar</string>
-    <string name="ads_backup_summary">Guardar o compartir la configuración actual de la aplicación.</string>
-    <string name="ads_backup_new">Nuevo</string>
-    <string name="ads_backup_create_new_info">Por favor crear un nuevo respaldo.</string>
-    <string name="ads_backup_import_info">Por favor intentar la importación de un respaldo desde el almacenamiento del dispositivo.</string>
-    <string name="ads_backup_name">Nombre del respaldo</string>
-    <string name="ads_backup_location">Ruta del respaldo</string>
-    <string name="ads_backup_rename">Renombrar respaldo</string>
-    <string name="ads_backup_complete">El respaldo se creó exitosamente</string>
-    <string name="ads_backup_error">No se pudo crear el respaldo</string>
-    <string name="ads_backup_exists">La copia de respaldo ya existe</string>
-    <string name="ads_backup_replace">Reemplazar si ya existe</string>
-    <string name="ads_backup_invalid">Copia de respaldo inválida</string>
-    <string name="ads_backup_restore">Restaurar</string>
-    <string name="ads_backup_restore_title">Restaurar respaldo</string>
-    <string name="ads_backup_error_save">No se pudo guardar el respaldo</string>
-    <string name="ads_backup_error_rename">No se pudo renombrar el respaldo</string>
-    <string name="ads_backup_restore_summary">Cargar o administrar los respaldos previamente guardados.</string>
-    <string name="ads_backup_restore_desc">Seleccionar un respaldo para restaurar.</string>
-    <string name="ads_backup_restore_backup">Restaurar respaldo</string>
-    <string name="ads_backup_restore_backup_desc">Esto eliminará la configuración actual (excepto los widgets) y la restaurará desde el respaldo seleccionado. ¿Continuar?</string>
-    <string name="ads_backup_restore_backup_verify_error">No se pudo verificar este respaldo. Por favor escoger otro.</string>
-    <string name="ads_backup_modify">Modificar</string>
-    <string name="ads_backup_modify_desc">Elegir un respaldo para modificar.</string>
-    <string name="ads_backup_restore_done">El respaldo se creó exitosamente</string>
-    <string name="ads_backup_restore_error">No se pudo restaurar el respaldo.</string>
-    <string name="ads_backup_not_found">No se encontró ningún respaldo.</string>
-    <string name="ads_backup_modify_complete">El respaldo se modificó exitosamente</string>
-    <string name="ads_backup_delete_all">Eliminar todo</string>
-    <string name="ads_backup_delete_all_title">Eliminar todos los respaldos</string>
-    <string name="ads_backup_delete_all_desc">Esto eliminará todos los respaldos guardados en el almacenamiento de la aplicación. ¿Continuar?</string>
-    <string name="ads_backup_delete_all_done">Todos los respaldos se eliminaron exitosamente.</string>
-    <string name="ads_backup_import">Importar</string>
-    <string name="ads_backup_import_title">Importar respaldo</string>
-    <string name="ads_backup_import_summary">Iniciar desde un estado previo de la aplicación</string>
-    <string name="ads_backup_import_desc">Importar un respaldo desde el dispositivo u otro almacenamiento.</string>
-    <string name="ads_backup_format_location">Ruta del respaldo: %1$s</string>
-    <string name="ads_backup_format_created">Respaldo creado: %1$s</string>
-    <string name="ads_backup_format_saved">Respaldo guardado: %1$s</string>
-    <string name="ads_backup_format_last">Último respaldo: %1$s</string>
-    <string name="ads_backup_format_last_storage">Almacenamiento de la aplicación: %1$s</string>
-    <string name="ads_backup_format_modified">Respaldo modificado: %1$s</string>
-    <string name="ads_backup_format_last_modified">Modificado por última vez: %1$s</string>
-    <string name="ads_backup_format_renamed">Respaldo renombrado: %1$s</string>
-    <string name="ads_backup_format_deleted">Respaldo eliminado: %1$s</string>
-    <string name="ads_backup_format_restored">Respaldo restaurado: %1$s</string>
-
-    <!-- Backup Options -->
-    <string name="ads_backup_storage_app">Almacenamiento de la aplicación</string>
-    <string name="ads_backup_storage_device">Almacenamiento del dispositivo</string>
-    <string name="ads_backup_option_rename">Renombrar</string>
-    <string name="ads_backup_option_delete">Eliminar</string>
-    <string name="ads_backup_send">Enviar respaldo</string>
 
     <!-- Theme -->
     <string name="ads_dynamic_theme">Tema dinámico</string>

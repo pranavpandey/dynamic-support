@@ -61,8 +61,14 @@
     <string name="ads_copy">Копировать</string>
     <string name="ads_save">Сохранить</string>
     <string name="ads_load">Загрузить</string>
+    <string name="ads_import">Импортировать</string>
+    <string name="ads_rename">Переименовать</string>
+    <string name="ads_delete">Удалить</string>
     <string name="ads_clear">чистый</string>
     <string name="ads_file">Файл</string>
+    <string name="ads_data">Данные</string>
+    <string name="ads_data_invalid">Неверные данные</string>
+    <string name="ads_data_invalid_desc">Пожалуйста, попробуйте еще раз с подходящими данными.</string>
     <string name="ads_create">Создать</string>
     <string name="ads_configure">Настроить</string>
     <string name="ads_open">Открыть</string>
@@ -143,69 +149,6 @@
     <string name="ads_perm_usage_access_desc">Предоставить доступ к использованию.</string>
     <string name="ads_perm_accessibility">Спец. возможности</string>
     <string name="ads_perm_accessibility_desc">Это должно управляться через системные настройки.</string>
-
-    <!-- Backup and Restore -->
-    <string name="ads_data">Данные</string>
-    <string name="ads_data_invalid">Неверные данные</string>
-    <string name="ads_data_invalid_desc">Пожалуйста, попробуйте еще раз с подходящими данными.</string>
-    <string name="ads_data_operations">Операции с данными</string>
-    <string name="ads_backup_and_restore">Резервное копирование и восстановление</string>
-    <string name="ads_backup">Резервное копирование</string>
-    <string name="ads_backup_desc">Настройки виджета не будут включены в резервную копию, пожалуйста, установите их вручную после выполнения операции восстановления.</string>
-    <string name="ads_backup_title">Создать резервную копию</string>
-    <string name="ads_backup_select">Выбрать</string>
-    <string name="ads_backup_summary">Сохранить или поделиться текущими настройками приложения.</string>
-    <string name="ads_backup_new">Новый</string>
-    <string name="ads_backup_create_new_info">Пожалуйста, создайте резервную копию.</string>
-    <string name="ads_backup_import_info">Пожалуйста, попробуйте импортировать резервную копию из памяти устройства.</string>
-    <string name="ads_backup_name">Имя резервной копии</string>
-    <string name="ads_backup_location">Расположение резервной копии</string>
-    <string name="ads_backup_rename">Переименовать резервную копию</string>
-    <string name="ads_backup_complete">Резервная копия успешно создана</string>
-    <string name="ads_backup_error">Невозможно создать резервную копию</string>
-    <string name="ads_backup_exists">Резервная копия уже существует</string>
-    <string name="ads_backup_replace">Заменить, если уже существует</string>
-    <string name="ads_backup_invalid">Неверная резервная копия</string>
-    <string name="ads_backup_restore">Восстановить</string>
-    <string name="ads_backup_restore_title">Восстановить из резервной копии</string>
-    <string name="ads_backup_error_save">Невозможно сохранить резервную копию</string>
-    <string name="ads_backup_error_rename">Невозможно переименовать резервную копию</string>
-    <string name="ads_backup_restore_summary">Загрузить или управлять ранее сохраненными резервными копиями.</string>
-    <string name="ads_backup_restore_desc">Выберите резервную копию для восстановления.</string>
-    <string name="ads_backup_restore_backup">Восстановить из резервной копии</string>
-    <string name="ads_backup_restore_backup_desc">Это удалит все текущие настройки (кроме виджетов) и восстановит их из выбранной резервной копии. Вы хотите продолжить?</string>
-    <string name="ads_backup_restore_backup_verify_error">Невозможно верифицировать эту резервную копию. Пожалуйста, выберите другую резервную копию.</string>
-    <string name="ads_backup_modify">Изменить</string>
-    <string name="ads_backup_modify_desc">Выберите резервную копию для изменения.</string>
-    <string name="ads_backup_restore_done">Резервная копия была успешно восстановлена</string>
-    <string name="ads_backup_restore_error">Невозможно восстановить резервную копию.</string>
-    <string name="ads_backup_not_found">Резервных копий не найдено.</string>
-    <string name="ads_backup_modify_complete">Резервная копия успешно изменена</string>
-    <string name="ads_backup_delete_all">Удалить все</string>
-    <string name="ads_backup_delete_all_title">Удалить все резервные копии</string>
-    <string name="ads_backup_delete_all_desc">Это удалит все резервные копии, сохраненные в памяти приложения. Вы хотите продолжить?</string>
-    <string name="ads_backup_delete_all_done">Все резервные копии успешно удалены.</string>
-    <string name="ads_backup_import">Импортировать</string>
-    <string name="ads_backup_import_title">Импортировать резервную копию</string>
-    <string name="ads_backup_import_summary">Начать с предыдущего состояния приложения</string>
-    <string name="ads_backup_import_desc">Импортировать резервную копию с устройства или из другого хранилища.</string>
-    <string name="ads_backup_format_location">Расположение резервной копии: %1$s</string>
-    <string name="ads_backup_format_created">Резервная копия создана: %1$s</string>
-    <string name="ads_backup_format_saved">Резервная копия сохранена: %1$s</string>
-    <string name="ads_backup_format_last">Последняя резервная копия: %1$s</string>
-    <string name="ads_backup_format_last_storage">Память приложения: %1$s</string>
-    <string name="ads_backup_format_modified">Резервная копия изменена: %1$s</string>
-    <string name="ads_backup_format_last_modified">Последнее изменение: %1$s</string>
-    <string name="ads_backup_format_renamed">Резервная копия переименована: %1$s</string>
-    <string name="ads_backup_format_deleted">Резервная копия удалена: %1$s</string>
-    <string name="ads_backup_format_restored">Резервная копия восстановлена: %1$s</string>
-
-    <!-- Backup Options -->
-    <string name="ads_backup_storage_app">Память приложения</string>
-    <string name="ads_backup_storage_device">Память устройства</string>
-    <string name="ads_backup_option_rename">Переименовать</string>
-    <string name="ads_backup_option_delete">Удалить</string>
-    <string name="ads_backup_send">Отправить резервную копию</string>
 
     <!-- Theme -->
     <string name="ads_dynamic_theme">Динамическая тема</string>

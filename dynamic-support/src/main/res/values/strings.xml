@@ -61,8 +61,14 @@
     <string name="ads_copy">Copy</string>
     <string name="ads_save">Save</string>
     <string name="ads_load">Load</string>
+    <string name="ads_import">Import</string>
+    <string name="ads_rename">Rename</string>
+    <string name="ads_delete">Delete</string>
     <string name="ads_clear">Clear</string>
     <string name="ads_file">File</string>
+    <string name="ads_data">Data</string>
+    <string name="ads_data_invalid">Invalid data</string>
+    <string name="ads_data_invalid_desc">Please try again with the appropriate data.</string>
     <string name="ads_create">Create</string>
     <string name="ads_configure">Configure</string>
     <string name="ads_open">Open</string>
@@ -143,69 +149,6 @@
     <string name="ads_perm_usage_access_desc">Permit usage access.</string>
     <string name="ads_perm_accessibility">Accessibility</string>
     <string name="ads_perm_accessibility_desc">It must be managed via system settings.</string>
-
-    <!-- Backup and Restore -->
-    <string name="ads_data">Data</string>
-    <string name="ads_data_invalid">Invalid data</string>
-    <string name="ads_data_invalid_desc">Please try again with the appropriate data.</string>
-    <string name="ads_data_operations">Data operations</string>
-    <string name="ads_backup_and_restore">Backup &amp; Restore</string>
-    <string name="ads_backup">Backup</string>
-    <string name="ads_backup_desc">Widget settings will not be backed up, please configure them manually after performing the restore operation.</string>
-    <string name="ads_backup_title">Create backup</string>
-    <string name="ads_backup_select">Select</string>
-    <string name="ads_backup_summary">Save or share the current app settings.</string>
-    <string name="ads_backup_new">New</string>
-    <string name="ads_backup_create_new_info">Please create a new backup.</string>
-    <string name="ads_backup_import_info">Please try to import backup from the device storage.</string>
-    <string name="ads_backup_name">Backup name</string>
-    <string name="ads_backup_location">Backup location</string>
-    <string name="ads_backup_rename">Rename backup</string>
-    <string name="ads_backup_complete">Backup has been created successfully</string>
-    <string name="ads_backup_error">Unable to create backup</string>
-    <string name="ads_backup_exists">Backup already exists</string>
-    <string name="ads_backup_replace">Replace if already exists</string>
-    <string name="ads_backup_invalid">Invalid backup</string>
-    <string name="ads_backup_restore">Restore</string>
-    <string name="ads_backup_restore_title">Restore backup</string>
-    <string name="ads_backup_error_save">Unable to save backup</string>
-    <string name="ads_backup_error_rename">Unable to rename backup</string>
-    <string name="ads_backup_restore_summary">Load or manage the previously saved backups.</string>
-    <string name="ads_backup_restore_desc">Select a backup to restore.</string>
-    <string name="ads_backup_restore_backup">Restore backup</string>
-    <string name="ads_backup_restore_backup_desc">This will delete all the current settings (except for widgets) and restore them from the selected backup. Do you want to continue?</string>
-    <string name="ads_backup_restore_backup_verify_error">Unable to verify this backup. Please select some other backup.</string>
-    <string name="ads_backup_modify">Modify</string>
-    <string name="ads_backup_modify_desc">Select a backup to modify.</string>
-    <string name="ads_backup_restore_done">Backup has been restored successfully</string>
-    <string name="ads_backup_restore_error">Unable to restore backup.</string>
-    <string name="ads_backup_not_found">No backups found.</string>
-    <string name="ads_backup_modify_complete">Backup has been modified successfully</string>
-    <string name="ads_backup_delete_all">Delete all</string>
-    <string name="ads_backup_delete_all_title">Delete all backups</string>
-    <string name="ads_backup_delete_all_desc">This will delete all the backups saved in the app storage. Do you want to continue?</string>
-    <string name="ads_backup_delete_all_done">All backups have been deleted successfully.</string>
-    <string name="ads_backup_import">Import</string>
-    <string name="ads_backup_import_title">Import backup</string>
-    <string name="ads_backup_import_summary">Start from a previous app state</string>
-    <string name="ads_backup_import_desc">Import a backup from the device or other storage.</string>
-    <string name="ads_backup_format_location">Backup location: %1$s</string>
-    <string name="ads_backup_format_created">Backup created: %1$s</string>
-    <string name="ads_backup_format_saved">Backup saved: %1$s</string>
-    <string name="ads_backup_format_last">Last backup: %1$s</string>
-    <string name="ads_backup_format_last_storage">App storage: %1$s</string>
-    <string name="ads_backup_format_modified">Backup modified: %1$s</string>
-    <string name="ads_backup_format_last_modified">Last modified: %1$s</string>
-    <string name="ads_backup_format_renamed">Backup renamed: %1$s</string>
-    <string name="ads_backup_format_deleted">Backup deleted: %1$s</string>
-    <string name="ads_backup_format_restored">Backup restored: %1$s</string>
-
-    <!-- Backup Options -->
-    <string name="ads_backup_storage_app">App storage</string>
-    <string name="ads_backup_storage_device">Device storage</string>
-    <string name="ads_backup_option_rename">Rename</string>
-    <string name="ads_backup_option_delete">Delete</string>
-    <string name="ads_backup_send">Send backup</string>
 
     <!-- Theme -->
     <string name="ads_dynamic_theme">Dynamic theme</string>

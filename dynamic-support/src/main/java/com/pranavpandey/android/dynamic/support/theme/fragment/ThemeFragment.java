@@ -302,7 +302,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
                         .setBuilder(new DynamicDialog.Builder(requireContext())
                                 .setPositiveButton(themeAction == Theme.Action.CAPTURE
                                                 ? R.string.ads_theme_code_capture
-                                                : R.string.ads_backup_import,
+                                                : R.string.ads_import,
                                         new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {

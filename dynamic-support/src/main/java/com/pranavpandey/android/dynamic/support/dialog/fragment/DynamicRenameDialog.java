@@ -32,6 +32,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
@@ -87,6 +88,11 @@ public class DynamicRenameDialog extends DynamicDialogFragment {
     private String mName;
 
     /**
+     * The name helper text used by this dialog.
+     */
+    private String mHelperText;
+
+    /**
      * Text view to show the optional message.
      */
     private TextView mMessage;
@@ -120,6 +126,11 @@ public class DynamicRenameDialog extends DynamicDialogFragment {
         mMessage = view.findViewById(R.id.ads_dialog_rename_message);
         mEditText = view.findViewById(R.id.ads_dialog_rename_edit_text);
 
+        if (!TextUtils.isEmpty(getHelperText())) {
+            ((TextInputLayout) view.findViewById(
+                    R.id.ads_dialog_rename_input_layout)).setHelperText(getHelperText());
+        }
+
         mEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
@@ -139,7 +150,7 @@ public class DynamicRenameDialog extends DynamicDialogFragment {
             }
         });
 
-        dialogBuilder.setPositiveButton(R.string.ads_backup_option_rename,
+        dialogBuilder.setPositiveButton(R.string.ads_rename,
                 new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -198,6 +209,43 @@ public class DynamicRenameDialog extends DynamicDialogFragment {
     }
 
     /**
+     * Set the current name for this dialog.
+     *
+     * @param name The current name to be set.
+     *
+     * @return The {@link DynamicRenameDialog} object to allow for chaining of calls to set
+     *         methods.
+     */
+    public @NonNull DynamicRenameDialog setName(@Nullable String name) {
+        this.mName = name;
+
+        return this;
+    }
+
+    /**
+     * Get the name helper text used by this dialog.
+     *
+     * @return The name helper text used by this dialog.
+     */
+    public @Nullable String getHelperText() {
+        return mHelperText;
+    }
+
+    /**
+     * Set the name helper text for this dialog.
+     *
+     * @param helperText The name helper text to be set.
+     *
+     * @return The {@link DynamicRenameDialog} object to allow for chaining of calls to set
+     *         methods.
+     */
+    public @NonNull DynamicRenameDialog setHelperText(@Nullable String helperText) {
+        this.mHelperText = helperText;
+
+        return this;
+    }
+
+    /**
      * Returns whether the empty string is allowed.
      *
      * @return {@code true} if the empty string is allowed.
@@ -216,20 +264,6 @@ public class DynamicRenameDialog extends DynamicDialogFragment {
      */
     public @NonNull DynamicRenameDialog setAllowEmpty(boolean allowEmpty) {
         this.mAllowEmpty = allowEmpty;
-
-        return this;
-    }
-
-    /**
-     * Set the current name for this dialog.
-     *
-     * @param name The current name to be set.
-     *
-     * @return The {@link DynamicRenameDialog} object to allow for chaining of calls to set
-     *         methods.
-     */
-    public @NonNull DynamicRenameDialog setName(@Nullable String name) {
-        this.mName = name;
 
         return this;
     }

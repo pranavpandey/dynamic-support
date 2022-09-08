@@ -49,9 +49,8 @@
             android:layout_marginStart="@dimen/ads_dialog_margin_horizontal_edit_text"
             android:layout_marginRight="@dimen/ads_dialog_margin_horizontal_edit_text"
             android:layout_marginEnd="@dimen/ads_dialog_margin_horizontal_edit_text"
-            android:hint="@string/ads_backup_option_rename"
-            app:startIconDrawable="@drawable/ads_ic_edit"
-            app:helperText="@string/ads_backup_replace">
+            android:hint="@string/ads_rename"
+            app:startIconDrawable="@drawable/ads_ic_edit">
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicTextInputEditText
                 style="?attr/ads_widgetTextInputEditTextOutlinedSingleLine"
