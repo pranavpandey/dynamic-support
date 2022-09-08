@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.recyclerview.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -87,6 +88,7 @@ public abstract class DynamicBinderAdapter<VB extends DynamicRecyclerViewBinder>
     /**
      * This method will be called when the data has been changed.
      */
+    @SuppressLint("NotifyDataSetChanged")
     public void notifyBinderDataSetChanged() {
         if (!isComputingLayout()) {
             notifyDataSetChanged();
