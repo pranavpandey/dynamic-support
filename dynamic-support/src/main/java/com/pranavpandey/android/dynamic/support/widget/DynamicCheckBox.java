@@ -16,7 +16,6 @@
 
 package com.pranavpandey.android.dynamic.support.widget;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -27,7 +26,6 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.widget.CompoundButtonCompat;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.pranavpandey.android.dynamic.support.Defaults;
@@ -318,8 +316,7 @@ public class DynamicCheckBox extends MaterialCheckBox implements DynamicStateWid
         setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
     }
 
-    @SuppressLint({"RestrictedApi"})
-    @TargetApi(Build.VERSION_CODES.M)
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void setColor() {
         if (mColor != Theme.Color.UNKNOWN) {
@@ -340,11 +337,12 @@ public class DynamicCheckBox extends MaterialCheckBox implements DynamicStateWid
 
             DynamicTintUtils.setViewBackgroundTint(this,
                     mContrastWithColor, mAppliedColor, true, true);
-            CompoundButtonCompat.setButtonTintList(this,
-                    DynamicResourceUtils.getColorStateList(mAppliedStateNormalColor,
-                            mAppliedColor, true));
+            setButtonTintList(DynamicResourceUtils.getColorStateList(
+                    mAppliedStateNormalColor, mAppliedColor, true));
+            setButtonIconTintList(DynamicResourceUtils.getColorStateList(
+                    mAppliedStateNormalColor, mContrastWithColor, true));
         }
 
-        setTextColor(CompoundButtonCompat.getButtonTintList(this));
+        setTextColor(getButtonTintList());
     }
 }
