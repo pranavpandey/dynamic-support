@@ -1233,25 +1233,6 @@ public abstract class DynamicActivity extends DynamicStateActivity
     }
 
     /**
-     * Runnable to update the search view.
-     */
-    protected final Runnable mSearchRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (getSearchViewEditText() == null) {
-                return;
-            }
-
-            expandSearchView(false);
-            getSearchViewEditText().setText(getSearchViewEditText().getText());
-
-            if (getSearchViewEditText().getText() != null) {
-                getSearchViewEditText().setSelection(getSearchViewEditText().getText().length());
-            }
-        }
-    };
-
-    /**
      * Expand search view to start searching.
      *
      * @param requestSoftInput {@code true} to request the soft input keyboard.
@@ -1714,4 +1695,23 @@ public abstract class DynamicActivity extends DynamicStateActivity
 
         snackbar.show();
     }
+
+    /**
+     * Runnable to update the search view.
+     */
+    protected final Runnable mSearchRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (getSearchViewEditText() == null) {
+                return;
+            }
+
+            expandSearchView(false);
+            getSearchViewEditText().setText(getSearchViewEditText().getText());
+
+            if (getSearchViewEditText().getText() != null) {
+                getSearchViewEditText().setSelection(getSearchViewEditText().getText().length());
+            }
+        }
+    };
 }

@@ -213,29 +213,6 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     }
 
     /**
-     * Handler to update the {@link StaggeredGridLayoutManager} o avoid the jumping of items.
-     */
-    private final Runnable mStaggeredGridRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (mRecyclerView != null && mRecyclerViewLayoutManager != null
-                    && mRecyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
-                ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager).setGapStrategy(
-                        ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager)
-                                .getGapStrategy() | GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
-                ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager)
-                        .invalidateSpanAssignments();
-
-                if (((StaggeredGridLayoutManager)
-                        mRecyclerViewLayoutManager).getSpanCount() > 1) {
-                    ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager)
-                            .scrollToPositionWithOffset(0, 0);
-                }
-            }
-        }
-    };
-
-    /**
      * Checks for the {@link StaggeredGridLayoutManager} to avoid the jumping of items.
      */
     protected void checkForStaggeredGridLayoutManager() {
@@ -565,4 +542,27 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
             }
         });
     }
+
+    /**
+     * Handler to update the {@link StaggeredGridLayoutManager} o avoid the jumping of items.
+     */
+    protected final Runnable mStaggeredGridRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (mRecyclerView != null && mRecyclerViewLayoutManager != null
+                    && mRecyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
+                ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager).setGapStrategy(
+                        ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager)
+                                .getGapStrategy() | GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
+                ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager)
+                        .invalidateSpanAssignments();
+
+                if (((StaggeredGridLayoutManager)
+                        mRecyclerViewLayoutManager).getSpanCount() > 1) {
+                    ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager)
+                            .scrollToPositionWithOffset(0, 0);
+                }
+            }
+        }
+    };
 }

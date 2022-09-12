@@ -293,19 +293,6 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
         }
     }
 
-    /**
-     * Runnable to post the update.
-     */
-    private final Runnable mUpdateRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (getSeekBar() != null) {
-                getSeekBar().setProgress(getProgress());
-                updateSeekFunctions();
-            }
-        }
-    };
-
     @Override
     protected void onEnabled(boolean enabled) {
         super.onEnabled(enabled);
@@ -739,4 +726,17 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
             update();
         }
     }
+
+    /**
+     * Runnable to post the update.
+     */
+    private final Runnable mUpdateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (getSeekBar() != null) {
+                getSeekBar().setProgress(getProgress());
+                updateSeekFunctions();
+            }
+        }
+    };
 }

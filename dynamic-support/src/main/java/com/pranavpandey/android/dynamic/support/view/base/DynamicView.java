@@ -86,16 +86,6 @@ public abstract class DynamicView extends DynamicFrameLayout {
     protected abstract void onUpdate();
 
     /**
-     * Runnable to post the update.
-     */
-    private final Runnable mUpdateRunnable = new Runnable() {
-        @Override
-        public void run() {
-            onUpdate();
-        }
-    };
-
-    /**
      * Manually update this view by calling {@link #onUpdate()} method.
      * <p>Useful in some situations to restore the view state.
      */
@@ -180,4 +170,14 @@ public abstract class DynamicView extends DynamicFrameLayout {
             }
         }
     }
+
+    /**
+     * Runnable to post the update.
+     */
+    protected final Runnable mUpdateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            onUpdate();
+        }
+    };
 }

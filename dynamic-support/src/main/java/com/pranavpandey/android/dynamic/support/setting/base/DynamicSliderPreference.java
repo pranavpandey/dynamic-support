@@ -306,22 +306,6 @@ public class DynamicSliderPreference extends DynamicSpinnerPreference {
         }
     }
 
-    /**
-     * Runnable to post the update.
-     */
-    private final Runnable mUpdateRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (getSlider() != null) {
-                getSlider().setValue(getProgress());
-                getSlider().setValueTo(getMax());
-                getSlider().setStepSize(DEFAULT_SEEK_INTERVAL);
-                getSlider().setTickVisible(isTickVisible());
-                updateSeekFunctions();
-            }
-        }
-    };
-
     @Override
     protected void onEnabled(boolean enabled) {
         super.onEnabled(enabled);
@@ -781,4 +765,20 @@ public class DynamicSliderPreference extends DynamicSpinnerPreference {
             update();
         }
     }
+
+    /**
+     * Runnable to post the update.
+     */
+    private final Runnable mUpdateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (getSlider() != null) {
+                getSlider().setValue(getProgress());
+                getSlider().setValueTo(getMax());
+                getSlider().setStepSize(DEFAULT_SEEK_INTERVAL);
+                getSlider().setTickVisible(isTickVisible());
+                updateSeekFunctions();
+            }
+        }
+    };
 }

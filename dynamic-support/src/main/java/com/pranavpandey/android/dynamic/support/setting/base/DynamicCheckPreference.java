@@ -136,18 +136,6 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
         }
     }
 
-    /**
-     * Runnable to post the update.
-     */
-    private final Runnable mUpdateRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (getCompoundButton() != null) {
-                getCompoundButton().setChecked(isChecked());
-            }
-        }
-    };
-
     @Override
     protected void onEnabled(boolean enabled) {
         super.onEnabled(enabled);
@@ -232,4 +220,16 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
             @Nullable CompoundButton.OnCheckedChangeListener onCheckedChangeListener) {
         this.mOnCheckedChangeListener = onCheckedChangeListener;
     }
+
+    /**
+     * Runnable to post the update.
+     */
+    private final Runnable mUpdateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (getCompoundButton() != null) {
+                getCompoundButton().setChecked(isChecked());
+            }
+        }
+    };
 }

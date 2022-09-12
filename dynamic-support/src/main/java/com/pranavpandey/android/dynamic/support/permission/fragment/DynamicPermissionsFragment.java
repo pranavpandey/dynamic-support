@@ -202,23 +202,6 @@ public class DynamicPermissionsFragment extends DynamicFragment {
     }
 
     /**
-     * Runnable to request the permissions.
-     */
-    private final Runnable mPermissionsRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (mDynamicPermissionsView != null && !mRequestingDangerousPermissions) {
-                if (mRequestDangerousPermissions) {
-                    requestDangerousPermissions(mDynamicPermissionsView.getDangerousPermissions());
-                    mRequestDangerousPermissions = false;
-                }
-
-                requestAllPermissions();
-            }
-        }
-    };
-
-    /**
      * Reset the request counter.
      *
      * @param request {@code true} to request all the permission again.
@@ -425,4 +408,21 @@ public class DynamicPermissionsFragment extends DynamicFragment {
         mRequestingDangerousPermissions = false;
         resumePermissionsRequest();
     }
+
+    /**
+     * Runnable to request the permissions.
+     */
+    protected final Runnable mPermissionsRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (mDynamicPermissionsView != null && !mRequestingDangerousPermissions) {
+                if (mRequestDangerousPermissions) {
+                    requestDangerousPermissions(mDynamicPermissionsView.getDangerousPermissions());
+                    mRequestDangerousPermissions = false;
+                }
+
+                requestAllPermissions();
+            }
+        }
+    };
 }

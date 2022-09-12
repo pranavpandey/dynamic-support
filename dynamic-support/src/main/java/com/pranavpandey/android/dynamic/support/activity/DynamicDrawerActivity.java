@@ -279,16 +279,6 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
     }
 
     /**
-     * Runnable to close the drawer.
-     */
-    private final Runnable mDrawerRunnable = new Runnable() {
-        @Override
-        public void run() {
-            closeDrawers();
-        }
-    };
-
-    /**
      * Makes the drawer persistent according to the returned value.
      *
      * @return {@code true} to make the drawer persistent by locking it in the open mode.
@@ -552,4 +542,14 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
 
         animateDrawerToggle(1, 0);
     }
+
+    /**
+     * Runnable to close the drawer.
+     */
+    protected final Runnable mDrawerRunnable = new Runnable() {
+        @Override
+        public void run() {
+            closeDrawers();
+        }
+    };
 }

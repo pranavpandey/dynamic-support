@@ -232,7 +232,7 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
+            public void onPageScrollStateChanged(@ViewPager2.ScrollState int state) {
                 super.onPageScrollStateChanged(state);
 
                 if (state == ViewPager2.SCROLL_STATE_IDLE) {
@@ -420,29 +420,6 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
 
         onAnimate(getCurrentPosition(), true);
     }
-
-    /**
-     * Runnable to set the tutorials.
-     */
-    private final Runnable mTutorialsRunnable = new Runnable() {
-        @Override
-        public void run() {
-            setTutorials(false);
-        }
-    };
-
-    /**
-     * Runnable to update the tutorials adapter.
-     */
-    private final Runnable mAdapterRunnable = new Runnable() {
-        @SuppressLint("NotifyDataSetChanged")
-        @Override
-        public void run() {
-            if (mAdapter != null) {
-                mAdapter.notifyDataSetChanged();
-            }
-        }
-    };
 
     /**
      * Returns the list of {@link Tutorial} to be shown by this activity.
@@ -755,34 +732,6 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
     }
 
     /**
-     * Runnable to animate the footer.
-     * <p>Animation fix for lower API levels.
-     */
-    private final Runnable mFooterRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (mFooter == null) {
-                return;
-            }
-
-            if (mFooter.getVisibility() == View.VISIBLE) {
-                // Fix random invisible footer on emulators.
-                Dynamic.setAlpha(mFooter, DynamicMotion.Value.FLOAT_MAX);
-                return;
-            }
-
-            Dynamic.setVisibility(mFooter, View.VISIBLE);
-
-            if (mFooterHeight > 0) {
-                Dynamic.setAlpha(mFooter, DynamicMotion.Value.FLOAT_MIN);
-                DynamicMotion.getInstance().floatWithAlpha(mFooter, DynamicMotion.Duration.TINIER,
-                        View.TRANSLATION_Y, mFooterHeight, DynamicMotion.Value.FLOAT_MIN,
-                        DynamicMotion.Value.FLOAT_MIN, DynamicMotion.Value.FLOAT_MAX).start();
-            }
-        }
-    };
-
-    /**
      * Post footer animation on main thread.
      */
     public void postFooter() {
@@ -979,4 +928,55 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
 
         snackbar.show();
     }
+
+    /**
+     * Runnable to set the tutorials.
+     */
+    protected final Runnable mTutorialsRunnable = new Runnable() {
+        @Override
+        public void run() {
+            setTutorials(false);
+        }
+    };
+
+    /**
+     * Runnable to update the tutorials adapter.
+     */
+    protected final Runnable mAdapterRunnable = new Runnable() {
+        @SuppressLint("NotifyDataSetChanged")
+        @Override
+        public void run() {
+            if (mAdapter != null) {
+                mAdapter.notifyDataSetChanged();
+            }
+        }
+    };
+
+    /**
+     * Runnable to animate the footer.
+     * <p>Animation fix for lower API levels.
+     */
+    protected final Runnable mFooterRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (mFooter == null) {
+                return;
+            }
+
+            if (mFooter.getVisibility() == View.VISIBLE) {
+                // Fix random invisible footer on emulators.
+                Dynamic.setAlpha(mFooter, DynamicMotion.Value.FLOAT_MAX);
+                return;
+            }
+
+            Dynamic.setVisibility(mFooter, View.VISIBLE);
+
+            if (mFooterHeight > 0) {
+                Dynamic.setAlpha(mFooter, DynamicMotion.Value.FLOAT_MIN);
+                DynamicMotion.getInstance().floatWithAlpha(mFooter, DynamicMotion.Duration.TINIER,
+                        View.TRANSLATION_Y, mFooterHeight, DynamicMotion.Value.FLOAT_MIN,
+                        DynamicMotion.Value.FLOAT_MIN, DynamicMotion.Value.FLOAT_MAX).start();
+            }
+        }
+    };
 }

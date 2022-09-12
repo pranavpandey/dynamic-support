@@ -95,26 +95,6 @@ public class DynamicTooltip implements View.OnLongClickListener, View.OnHoverLis
     private final int mHoverSlop;
 
     /**
-     * Runnable to show the tooltip popup.
-     */
-    private final Runnable mShowRunnable = new Runnable() {
-        @Override
-        public void run() {
-            show(false /* not from touch*/);
-        }
-    };
-
-    /**
-     * Runnable to hide the tooltip popup.
-     */
-    private final Runnable mHideRunnable = new Runnable() {
-        @Override
-        public void run() {
-            hide();
-        }
-    };
-
-    /**
      * Horizontal offset for the tooltip popup.
      */
     private int mAnchorX;
@@ -370,4 +350,24 @@ public class DynamicTooltip implements View.OnLongClickListener, View.OnHoverLis
         mAnchorX = Integer.MAX_VALUE;
         mAnchorY = Integer.MAX_VALUE;
     }
+
+    /**
+     * Runnable to show the tooltip popup.
+     */
+    private final Runnable mShowRunnable = new Runnable() {
+        @Override
+        public void run() {
+            show(false /* not from touch*/);
+        }
+    };
+
+    /**
+     * Runnable to hide the tooltip popup.
+     */
+    private final Runnable mHideRunnable = new Runnable() {
+        @Override
+        public void run() {
+            hide();
+        }
+    };
 }
