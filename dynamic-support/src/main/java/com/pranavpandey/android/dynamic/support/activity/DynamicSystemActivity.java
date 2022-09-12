@@ -1561,33 +1561,9 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
 
         if (!DynamicSdkUtils.is21() || !finishAfterTransition) {
             finishActivity();
-        } else if (getWindow().getSharedElementExitTransition() != null) {
-            getWindow().getSharedElementExitTransition().addListener(
-                    new Transition.TransitionListener() {
-                        @Override
-                        public void onTransitionStart(Transition transition) { }
-
-                        @Override
-                        public void onTransitionEnd(Transition transition) {
-                            transition.removeListener(this);
-                            finish();
-                        }
-
-                        @Override
-                        public void onTransitionCancel(Transition transition) {
-                            transition.removeListener(this);
-                            finish();
-                        }
-
-                        @Override
-                        public void onTransitionPause(Transition transition) {
-                            transition.removeListener(this);
-                            finish();
-                        }
-
-                        @Override
-                        public void onTransitionResume(Transition transition) { }
-                    });
+        } else if (getContentView() != null) {
+            getContentView().postDelayed(mFinishRunnable,
+                    DynamicMotion.getInstance().getDuration());
         }
     }
 
@@ -1649,16 +1625,6 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
 
         setNavigationBarColor(mNavigationBarColor);
     }
-
-    /**
-     * Runnable to change the dynamic theme on resume.
-     */
-    private final Runnable mDynamicRunnable = new Runnable() {
-        @Override
-        public void run() {
-            updateTaskDescription(DynamicTheme.getInstance().get().getPrimaryColor());
-        }
-    };
 
     @Override
     public void onPause() {
@@ -1893,4 +1859,24 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
             }
         }
     }
+
+    /**
+     * Runnable to change the dynamic theme on resume.
+     */
+    protected final Runnable mDynamicRunnable = new Runnable() {
+        @Override
+        public void run() {
+            updateTaskDescription(DynamicTheme.getInstance().get().getPrimaryColor());
+        }
+    };
+
+    /**
+     * Runnable to finish the activity.
+     */
+    protected final Runnable mFinishRunnable = new Runnable() {
+        @Override
+        public void run() {
+            finishActivity();
+        }
+    };
 }
