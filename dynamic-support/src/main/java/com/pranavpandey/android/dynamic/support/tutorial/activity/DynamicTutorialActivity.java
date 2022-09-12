@@ -686,10 +686,13 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
         }
 
         if (cancel || !isBackgroundAnimation(position)) {
+            setKeepScreenOn(false);
             DynamicTaskUtils.cancelTask(mDynamicColorAnimator, true);
             mDynamicColorAnimator = null;
 
             return;
+        } else {
+            setKeepScreenOn(true);
         }
 
         if (mDynamicColorAnimator == null || mDynamicColorAnimator.isCancelled()) {
@@ -911,6 +914,17 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
 
         return tutorial instanceof Tutorial.Motion
                 && ((Tutorial.Motion<T, V>) tutorial).isSharedElement();
+    }
+
+    /**
+     * Sets whether ot keep the screen on.
+     *
+     * @param keepScreenOn {@code true} to keep the screen on.
+     *
+     * @see View#setKeepScreenOn(boolean)
+     */
+    public void setKeepScreenOn(boolean keepScreenOn) {
+        getViewPager().setKeepScreenOn(keepScreenOn);
     }
 
     @Override

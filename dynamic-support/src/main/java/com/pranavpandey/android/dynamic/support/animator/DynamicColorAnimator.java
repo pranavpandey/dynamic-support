@@ -146,6 +146,8 @@ public class DynamicColorAnimator extends DynamicTask<Void, int[], Void> {
      */
     public void start() {
         if (mValueAnimator != null) {
+            mValueAnimator.addUpdateListener(mAnimationUpdateListener);
+            mValueAnimator.addListener(mAnimationListener);
             mValueAnimator.start();
         }
     }
@@ -155,8 +157,12 @@ public class DynamicColorAnimator extends DynamicTask<Void, int[], Void> {
      */
     public void stop() {
         if (mValueAnimator != null) {
+            mValueAnimator.removeUpdateListener(mAnimationUpdateListener);
+            mValueAnimator.removeListener(mAnimationListener);
             mValueAnimator.cancel();
         }
+
+        publishProgress(new DynamicResult.Progress<>(new int[] { mColorRaw, mTintRaw }));
     }
 
     @Override
@@ -169,45 +175,7 @@ public class DynamicColorAnimator extends DynamicTask<Void, int[], Void> {
                 DynamicMotion.Value.FLOAT_MAX);
         mValueAnimator.setDuration(mDuration);
         mValueAnimator.setStartDelay(mInterval);
-
-        mValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
-                if (!isCancelled()) {
-                    publishProgress(new DynamicResult.Progress<>(new int[] {
-                            (Integer) mArgbEvaluator.evaluate(
-                                    (float) valueAnimator.getAnimatedValue(), mColorTemp, mColor),
-                            (Integer) mArgbEvaluator.evaluate(
-                                    (float) valueAnimator.getAnimatedValue(), mTintTemp, mTint)
-                    }));
-                }
-            }
-        });
-
-        mValueAnimator.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(@NonNull Animator animator) {
-                initialize();
-            }
-
-            @Override
-            public void onAnimationEnd(@NonNull Animator animator) {
-                if (isCancelled()) {
-                    mValueAnimator.removeListener(this);
-                } else {
-                    mValueAnimator.setStartDelay(mInterval);
-                    start();
-                }
-            }
-
-            @Override
-            public void onAnimationCancel(@NonNull Animator animator) {
-                publishProgress(new DynamicResult.Progress<>(new int[] { mColorRaw, mTintRaw }));
-            }
-
-            @Override
-            public void onAnimationRepeat(@NonNull Animator animator) { }
-        });
+        mValueAnimator.setRepeatCount(ValueAnimator.INFINITE);
 
         start();
     }
@@ -223,4 +191,47 @@ public class DynamicColorAnimator extends DynamicTask<Void, int[], Void> {
 
         stop();
     }
+
+    /**
+     * The animation update listener to evaluate colors at particular intervals.
+     */
+    private final ValueAnimator.AnimatorUpdateListener mAnimationUpdateListener =
+            new ValueAnimator.AnimatorUpdateListener() {
+        @Override
+        public void onAnimationUpdate(@NonNull ValueAnimator valueAnimator) {
+            if (!isCancelled()) {
+                publishProgress(new DynamicResult.Progress<>(new int[] {
+                        (Integer) mArgbEvaluator.evaluate(
+                                (float) valueAnimator.getAnimatedValue(), mColorTemp, mColor),
+                        (Integer) mArgbEvaluator.evaluate(
+                                (float) valueAnimator.getAnimatedValue(), mTintTemp, mTint)
+                }));
+            }
+        }
+    };
+
+    /**
+     * The animation listener to update colors at particular intervals.
+     */
+    private final Animator.AnimatorListener mAnimationListener = new Animator.AnimatorListener() {
+        @Override
+        public void onAnimationStart(@NonNull Animator animator) {
+            initialize();
+        }
+
+        @Override
+        public void onAnimationEnd(@NonNull Animator animator) {
+            stop();
+        }
+
+        @Override
+        public void onAnimationCancel(@NonNull Animator animator) {
+            stop();
+        }
+
+        @Override
+        public void onAnimationRepeat(@NonNull Animator animator) {
+            initialize();
+        }
+    };
 }
