@@ -126,8 +126,8 @@ public class DynamicColorAnimator extends DynamicTask<Void, int[], Void> {
      * @see #set(int, int)
      */
     protected void onComputeColors(@ColorInt int color, @ColorInt int tint) {
-        set(DynamicColorUtils.getAccentColor(color),
-                DynamicColorUtils.getAccentColor(tint));
+        set(DynamicColorUtils.replaceColor(color, DynamicColorUtils.getRandomColor(color)),
+                DynamicColorUtils.replaceColor(tint, DynamicColorUtils.getRandomColor(tint)));
     }
 
     /**

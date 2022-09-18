@@ -33,7 +33,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
-import androidx.appcompat.graphics.drawable.DrawableWrapper;
+import androidx.appcompat.graphics.drawable.DrawableWrapperCompat;
 import androidx.core.widget.EdgeEffectCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -771,16 +771,15 @@ public final class DynamicScrollUtils {
             return;
         }
 
-        if (view.getSelector() instanceof DrawableWrapper) {
-            DrawableWrapper drawable = (DrawableWrapper) view.getSelector();
+        if (view.getSelector() instanceof DrawableWrapperCompat) {
+            DrawableWrapperCompat drawable = (DrawableWrapperCompat) view.getSelector();
             drawable.mutate();
 
-            if (DynamicSdkUtils.is21()
-                    && drawable.getWrappedDrawable() instanceof RippleDrawable) {
+            if (DynamicSdkUtils.is21() && drawable.getDrawable() instanceof RippleDrawable) {
                 color = DynamicColorUtils.getLighterColor(DynamicColorUtils.adjustAlpha(color,
                         Defaults.ADS_ALPHA_PRESSED_SELECTOR), Defaults.ADS_STATE_LIGHT);
 
-                DynamicTintUtils.colorizeRippleDrawable(view, drawable.getWrappedDrawable(),
+                DynamicTintUtils.colorizeRippleDrawable(view, drawable.getDrawable(),
                         background, color, false, false);
             } else {
                 DynamicDrawableUtils.colorizeDrawable(drawable, color);
