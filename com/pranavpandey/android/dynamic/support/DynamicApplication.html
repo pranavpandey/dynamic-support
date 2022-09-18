@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":6,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":6,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -304,89 +304,96 @@ implements androidx.work.Configuration.Provider, com.pranavpandey.android.dynami
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i7" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRequiredThemeVersion()">getRequiredThemeVersion</a></span>()</code></th>
+<td class="colLast">
+<div class="block">This method will be called to get the intended theme styles version for this listener.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>java.lang.String[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSupportedLocales()">getSupportedLocales</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getThemeRes()">getThemeRes</a></span>()</code></th>
 <td class="colLast">
 <div class="block">This method will be called to return the theme style resource for this listener.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getThemeRes(com.pranavpandey.android.dynamic.theme.AppTheme)">getThemeRes</a></span>&#8203;(com.pranavpandey.android.dynamic.theme.AppTheme&lt;?&gt;&nbsp;theme)</code></th>
 <td class="colLast">
 <div class="block">This method will be called to return the theme style resource for this listener.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>androidx.work.Configuration</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getWorkManagerConfiguration()">getWorkManagerConfiguration</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isDynamicColor()">isDynamicColor</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns whether to apply the dynamic colors for this listener.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isDynamicColors()">isDynamicColors</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns whether the dynamic colors are enabled for this listener.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isOnSharedPreferenceChangeListener()">isOnSharedPreferenceChangeListener</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns whether to register a shared preferences listener for this listener.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isSystemColor()">isSystemColor</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns whether the dynamic colors should be extracted from the system for this listener.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isWallpaperColor()">isWallpaperColor</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns whether the dynamic colors should be extracted from the wallpaper for this listener.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onAutoThemeChanged(boolean)">onAutoThemeChanged</a></span>&#8203;(boolean&nbsp;context)</code></th>
 <td class="colLast">
 <div class="block">This method will be called when the auto theme change event occurs according to the time.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onConfigurationChanged(android.content.res.Configuration)">onConfigurationChanged</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/res/Configuration.html?is-external=true" title="class or interface in android.content.res" class="externalLink">Configuration</a>&nbsp;newConfig)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onCreate()">onCreate</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onCustomiseTheme()">onCustomiseTheme</a></span>()</code></th>
 <td class="colLast">
 <div class="block">This method will be called inside the <a href="#onCreate()"><code>onCreate()</code></a> method after applying the theme.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDynamicChanged(boolean,boolean)">onDynamicChanged</a></span>&#8203;(boolean&nbsp;context,
                 boolean&nbsp;recreate)</code></th>
@@ -394,7 +401,7 @@ implements androidx.work.Configuration.Provider, com.pranavpandey.android.dynami
 <div class="block">This method will be called when the dynamic change event occurs (like theme, locale, etc.).</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDynamicColorsChanged(com.pranavpandey.android.dynamic.theme.DynamicColors,boolean)">onDynamicColorsChanged</a></span>&#8203;(com.pranavpandey.android.dynamic.theme.DynamicColors&nbsp;colors,
                       boolean&nbsp;context)</code></th>
@@ -403,7 +410,7 @@ implements androidx.work.Configuration.Provider, com.pranavpandey.android.dynami
  to the wallpaper.</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDynamicConfigurationChanged(boolean,boolean,boolean,boolean,boolean)">onDynamicConfigurationChanged</a></span>&#8203;(boolean&nbsp;locale,
                              boolean&nbsp;fontScale,
@@ -415,33 +422,33 @@ implements androidx.work.Configuration.Provider, com.pranavpandey.android.dynami
  (like locale, font scale, orientation, ui mode, etc.).</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code>protected abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onInitialize()">onInitialize</a></span>()</code></th>
 <td class="colLast">
 <div class="block">This method will be called inside the <a href="#onCreate()"><code>onCreate()</code></a> method before applying the theme.</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onLowMemory()">onLowMemory</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onNavigationBarThemeChanged()">onNavigationBarThemeChanged</a></span>()</code></th>
 <td class="colLast">
 <div class="block">This method will be called when the navigation bar theme has been changed.</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onPowerSaveModeChanged(boolean)">onPowerSaveModeChanged</a></span>&#8203;(boolean&nbsp;powerSaveMode)</code></th>
 <td class="colLast">
 <div class="block">This method will be called when the power save mode has been changed.</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i28" class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onSetupDynamicWork()">onSetupDynamicWork</a></span>()</code></th>
 <td class="colLast">
@@ -449,25 +456,25 @@ implements androidx.work.Configuration.Provider, com.pranavpandey.android.dynami
  time.</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i29" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String)">onSharedPreferenceChanged</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/SharedPreferences.html?is-external=true" title="class or interface in android.content" class="externalLink">SharedPreferences</a>&nbsp;sharedPreferences,
                          java.lang.String&nbsp;key)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i30" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDynamicTheme()">setDynamicTheme</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Set the dynamic app theme and style resource for this application.</div>
 </td>
 </tr>
-<tr id="i30" class="altColor">
+<tr id="i31" class="rowColor">
 <td class="colFirst"><code><a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLocale(android.content.Context)">setLocale</a></span>&#8203;(<a href="https://developer.android.com/reference/android/content/Context.html?is-external=true" title="class or interface in android.content" class="externalLink">Context</a>&nbsp;context)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i31" class="rowColor">
+<tr id="i32" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setNavigationBarTheme()">setNavigationBarTheme</a></span>()</code></th>
 <td class="colLast">
@@ -781,6 +788,23 @@ public&nbsp;<a href="https://developer.android.com/reference/android/content/Con
 <dd><code><a href="listener/DynamicListener.html#getContext()">getContext</a></code>&nbsp;in interface&nbsp;<code><a href="listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The context used by this listener.</dd>
+</dl>
+</li>
+</ul>
+<a id="getRequiredThemeVersion()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getRequiredThemeVersion</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getRequiredThemeVersion()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="listener/DynamicListener.html#getRequiredThemeVersion()">DynamicListener</a></code></span></div>
+<div class="block">This method will be called to get the intended theme styles version for this listener.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="listener/DynamicListener.html#getRequiredThemeVersion()">getRequiredThemeVersion</a></code>&nbsp;in interface&nbsp;<code><a href="listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The intended theme styles version for this listener.</dd>
 </dl>
 </li>
 </ul>
@@ -1146,7 +1170,7 @@ public&nbsp;int&nbsp;getDefaultColor&#8203;(int&nbsp;colorType)</pre>
 <li><a href="../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>6.0.3</h5></div>
+<div class="aboutLanguage"><h5>6.1.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">

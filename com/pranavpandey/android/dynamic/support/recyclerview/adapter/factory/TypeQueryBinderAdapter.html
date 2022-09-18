@@ -27,8 +27,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":6,"i5":10,"i6":6,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -155,9 +155,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="https://developer.android.com/reference/android/widget/Filterable.html?is-external=true" title="class or interface in android.widget" class="externalLink">Filterable</a></code></dd>
+</dl>
 <hr>
 <pre>public abstract class <span class="typeNameLabel">TypeQueryBinderAdapter&lt;T,&#8203;Q,&#8203;E extends java.lang.Enum&lt;E&gt;,&#8203;VB extends <a href="../../binder/DynamicRecyclerViewBinder.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.binder">DynamicRecyclerViewBinder</a>&lt;?&gt;&gt;</span>
-extends <a href="TypeDataBinderAdapter.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.adapter.factory">TypeDataBinderAdapter</a>&lt;T,&#8203;E,&#8203;VB&gt;</pre>
+extends <a href="TypeDataBinderAdapter.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.adapter.factory">TypeDataBinderAdapter</a>&lt;T,&#8203;E,&#8203;VB&gt;
+implements <a href="https://developer.android.com/reference/android/widget/Filterable.html?is-external=true" title="class or interface in android.widget" class="externalLink">Filterable</a></pre>
 <div class="block">A <a href="TypeDataBinderAdapter.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.adapter.factory"><code>TypeDataBinderAdapter</code></a> to handle the generic data with query that can be used
  with the <a href="../../binder/DynamicQueryBinder.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.binder"><code>DynamicQueryBinder</code></a>.</div>
 </li>
@@ -236,20 +241,77 @@ extends <a href="TypeDataBinderAdapter.html" title="class in com.pranavpandey.an
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Method</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code><a href="https://developer.android.com/reference/android/widget/Filter.html?is-external=true" title="class or interface in android.widget" class="externalLink">Filter</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getFilter()">getFilter</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">Q</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getQuery()">getQuery</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the query used by this binder adapter.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">T</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRawData()">getRawData</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the raw data used by this binder adapter.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isRawData()">isRawData</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Checks whether this adapter has raw data.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>protected abstract <a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">T</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onFilter(T,Q)">onFilter</a></span>&#8203;(<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">T</a>&nbsp;data,
+        <a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">Q</a>&nbsp;query)</code></th>
+<td class="colLast">
+<div class="block">Ths method will be called on filtering the data.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onPublishResults(T,Q)">onPublishResults</a></span>&#8203;(<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">T</a>&nbsp;data,
+                <a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">Q</a>&nbsp;query)</code></th>
+<td class="colLast">
+<div class="block">Ths method will be called on publishing the results.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>protected abstract <a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">Q</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onQuery(java.lang.CharSequence)">onQuery</a></span>&#8203;(java.lang.CharSequence&nbsp;constraint)</code></th>
+<td class="colLast">
+<div class="block">Ths method will be called on building the query for the filter.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setData(T)">setData</a></span>&#8203;(<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">T</a>&nbsp;data)</code></th>
+<td class="colLast">
+<div class="block">Set the data for this binder adapter.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setData(T,int)">setData</a></span>&#8203;(<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">T</a>&nbsp;data,
+       int&nbsp;position)</code></th>
+<td class="colLast">
+<div class="block">Set the data for this binder adapter.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setData(T,Q)">setData</a></span>&#8203;(<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">T</a>&nbsp;data,
        <a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">Q</a>&nbsp;query)</code></th>
@@ -257,7 +319,16 @@ extends <a href="TypeDataBinderAdapter.html" title="class in com.pranavpandey.an
 <div class="block">Set the data and query for this binder adapter.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setData(T,Q,boolean)">setData</a></span>&#8203;(<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">T</a>&nbsp;data,
+       <a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">Q</a>&nbsp;query,
+       boolean&nbsp;filtered)</code></th>
+<td class="colLast">
+<div class="block">Set the data and query for this binder adapter.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setQuery(Q)">setQuery</a></span>&#8203;(<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">Q</a>&nbsp;query)</code></th>
 <td class="colLast">
@@ -270,7 +341,7 @@ extends <a href="TypeDataBinderAdapter.html" title="class in com.pranavpandey.an
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.pranavpandey.android.dynamic.support.recyclerview.adapter.factory.<a href="TypeDataBinderAdapter.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.adapter.factory">TypeDataBinderAdapter</a></h3>
-<code><a href="TypeDataBinderAdapter.html#getData()">getData</a>, <a href="TypeDataBinderAdapter.html#getItemCount()">getItemCount</a>, <a href="TypeDataBinderAdapter.html#setData(T)">setData</a>, <a href="TypeDataBinderAdapter.html#setData(T,int)">setData</a></code></li>
+<code><a href="TypeDataBinderAdapter.html#getData()">getData</a>, <a href="TypeDataBinderAdapter.html#getItemCount()">getItemCount</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicTypeBinderAdapter">
@@ -342,6 +413,57 @@ extends <a href="TypeDataBinderAdapter.html" title="class in com.pranavpandey.an
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="getRawData()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getRawData</h4>
+<pre class="methodSignature">@Nullable
+public&nbsp;<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">T</a>&nbsp;getRawData()</pre>
+<div class="block">Get the raw data used by this binder adapter.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The raw data used by this binder adapter.</dd>
+</dl>
+</li>
+</ul>
+<a id="isRawData()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isRawData</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isRawData()</pre>
+<div class="block">Checks whether this adapter has raw data.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if this adapter has raw data.</dd>
+</dl>
+</li>
+</ul>
+<a id="setData(java.lang.Object,java.lang.Object,boolean)">
+<!--   -->
+</a><a id="setData(T,Q,boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setData</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setData&#8203;(@Nullable
+                    <a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">T</a>&nbsp;data,
+                    @Nullable
+                    <a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">Q</a>&nbsp;query,
+                    boolean&nbsp;filtered)</pre>
+<div class="block">Set the data and query for this binder adapter.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>data</code> - The data to be set.</dd>
+<dd><code>query</code> - The query to be set.</dd>
+<dd><code>filtered</code> - <code>true</code> if the filtered data.</dd>
+</dl>
+</li>
+</ul>
 <a id="setData(java.lang.Object,java.lang.Object)">
 <!--   -->
 </a><a id="setData(T,Q)">
@@ -359,6 +481,50 @@ extends <a href="TypeDataBinderAdapter.html" title="class in com.pranavpandey.an
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>data</code> - The data to be set.</dd>
 <dd><code>query</code> - The query to be set.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="#setData(T,Q,boolean)"><code>setData(Object, Object, boolean)</code></a></dd>
+</dl>
+</li>
+</ul>
+<a id="setData(java.lang.Object)">
+<!--   -->
+</a><a id="setData(T)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setData</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setData&#8203;(@Nullable
+                    <a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">T</a>&nbsp;data)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="TypeDataBinderAdapter.html#setData(T)">TypeDataBinderAdapter</a></code></span></div>
+<div class="block">Set the data for this binder adapter.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="TypeDataBinderAdapter.html#setData(T)">setData</a></code>&nbsp;in class&nbsp;<code><a href="TypeDataBinderAdapter.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.adapter.factory">TypeDataBinderAdapter</a>&lt;<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">T</a>,&#8203;<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">E</a> extends java.lang.Enum&lt;<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">E</a>&gt;,&#8203;<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">VB</a> extends <a href="../../binder/DynamicRecyclerViewBinder.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.binder">DynamicRecyclerViewBinder</a>&lt;?&gt;&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>data</code> - The data to be set.</dd>
+</dl>
+</li>
+</ul>
+<a id="setData(java.lang.Object,int)">
+<!--   -->
+</a><a id="setData(T,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setData</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setData&#8203;(@Nullable
+                    <a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">T</a>&nbsp;data,
+                    int&nbsp;position)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="TypeDataBinderAdapter.html#setData(T,int)">TypeDataBinderAdapter</a></code></span></div>
+<div class="block">Set the data for this binder adapter.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="TypeDataBinderAdapter.html#setData(T,int)">setData</a></code>&nbsp;in class&nbsp;<code><a href="TypeDataBinderAdapter.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.adapter.factory">TypeDataBinderAdapter</a>&lt;<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">T</a>,&#8203;<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">E</a> extends java.lang.Enum&lt;<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">E</a>&gt;,&#8203;<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">VB</a> extends <a href="../../binder/DynamicRecyclerViewBinder.html" title="class in com.pranavpandey.android.dynamic.support.recyclerview.binder">DynamicRecyclerViewBinder</a>&lt;?&gt;&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>data</code> - The data to be set.</dd>
+<dd><code>position</code> - The binder position to be notified.</dd>
 </dl>
 </li>
 </ul>
@@ -382,7 +548,7 @@ public&nbsp;<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQ
 </a><a id="setQuery(Q)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>setQuery</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setQuery&#8203;(@Nullable
@@ -391,6 +557,80 @@ public&nbsp;<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQ
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>query</code> - The query to be set.</dd>
+</dl>
+</li>
+</ul>
+<a id="onQuery(java.lang.CharSequence)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onQuery</h4>
+<pre class="methodSignature">@NonNull
+protected abstract&nbsp;<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">Q</a>&nbsp;onQuery&#8203;(@NonNull
+                             java.lang.CharSequence&nbsp;constraint)</pre>
+<div class="block">Ths method will be called on building the query for the filter.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>constraint</code> - The constraint returned by the filter.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The query according to the constraint returned by the filter.</dd>
+</dl>
+</li>
+</ul>
+<a id="onFilter(java.lang.Object,java.lang.Object)">
+<!--   -->
+</a><a id="onFilter(T,Q)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onFilter</h4>
+<pre class="methodSignature">@Nullable
+protected abstract&nbsp;<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">T</a>&nbsp;onFilter&#8203;(@Nullable
+                              <a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">T</a>&nbsp;data,
+                              @NonNull
+                              <a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">Q</a>&nbsp;query)</pre>
+<div class="block">Ths method will be called on filtering the data.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>data</code> - The data to be filtered.</dd>
+<dd><code>query</code> - The query returned by the filter.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The filtered data according to the supplied query,</dd>
+</dl>
+</li>
+</ul>
+<a id="onPublishResults(java.lang.Object,java.lang.Object)">
+<!--   -->
+</a><a id="onPublishResults(T,Q)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onPublishResults</h4>
+<pre class="methodSignature">protected&nbsp;void&nbsp;onPublishResults&#8203;(@Nullable
+                                <a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">T</a>&nbsp;data,
+                                @NonNull
+                                <a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQueryBinderAdapter">Q</a>&nbsp;query)</pre>
+<div class="block">Ths method will be called on publishing the results.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>data</code> - The data returned by the filter.</dd>
+<dd><code>query</code> - The query returned by the filter.</dd>
+</dl>
+</li>
+</ul>
+<a id="getFilter()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getFilter</h4>
+<pre class="methodSignature">public&nbsp;<a href="https://developer.android.com/reference/android/widget/Filter.html?is-external=true" title="class or interface in android.widget" class="externalLink">Filter</a>&nbsp;getFilter()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="https://developer.android.com/reference/android/widget/Filterable.html?is-external=true#getFilter()" title="class or interface in android.widget" class="externalLink">getFilter</a></code>&nbsp;in interface&nbsp;<code><a href="https://developer.android.com/reference/android/widget/Filterable.html?is-external=true" title="class or interface in android.widget" class="externalLink">Filterable</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -422,7 +662,7 @@ public&nbsp;<a href="TypeQueryBinderAdapter.html" title="type parameter in TypeQ
 <li><a href="../../../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>6.0.3</h5></div>
+<div class="aboutLanguage"><h5>6.1.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">

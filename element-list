@@ -1,6 +1,7 @@
 com.pranavpandey.android.dynamic.support
 com.pranavpandey.android.dynamic.support.activity
 com.pranavpandey.android.dynamic.support.adapter
+com.pranavpandey.android.dynamic.support.animator
 com.pranavpandey.android.dynamic.support.behavior
 com.pranavpandey.android.dynamic.support.dialog
 com.pranavpandey.android.dynamic.support.dialog.fragment

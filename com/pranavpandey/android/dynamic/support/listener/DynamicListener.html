@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6,"i14":6,"i15":6,"i16":6,"i17":6};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6,"i14":6,"i15":6,"i16":6,"i17":6,"i18":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -172,68 +172,75 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRequiredThemeVersion()">getRequiredThemeVersion</a></span>()</code></th>
+<td class="colLast">
+<div class="block">This method will be called to get the intended theme styles version for this listener.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getThemeRes()">getThemeRes</a></span>()</code></th>
 <td class="colLast">
 <div class="block">This method will be called to return the theme style resource for this listener.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getThemeRes(com.pranavpandey.android.dynamic.theme.AppTheme)">getThemeRes</a></span>&#8203;(com.pranavpandey.android.dynamic.theme.AppTheme&lt;?&gt;&nbsp;theme)</code></th>
 <td class="colLast">
 <div class="block">This method will be called to return the theme style resource for this listener.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isDynamicColor()">isDynamicColor</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns whether to apply the dynamic colors for this listener.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isDynamicColors()">isDynamicColors</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns whether the dynamic colors are enabled for this listener.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isNightMode(boolean)">isNightMode</a></span>&#8203;(boolean&nbsp;resolve)</code></th>
 <td class="colLast">
 <div class="block">Checks whether the night mode is enabled for this listener.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isOnSharedPreferenceChangeListener()">isOnSharedPreferenceChangeListener</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns whether to register a shared preferences listener for this listener.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isSystemColor()">isSystemColor</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns whether the dynamic colors should be extracted from the system for this listener.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isWallpaperColor()">isWallpaperColor</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns whether the dynamic colors should be extracted from the wallpaper for this listener.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onAutoThemeChanged(boolean)">onAutoThemeChanged</a></span>&#8203;(boolean&nbsp;context)</code></th>
 <td class="colLast">
 <div class="block">This method will be called when the auto theme change event occurs according to the time.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDynamicChanged(boolean,boolean)">onDynamicChanged</a></span>&#8203;(boolean&nbsp;context,
                 boolean&nbsp;recreate)</code></th>
@@ -241,7 +248,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">This method will be called when the dynamic change event occurs (like theme, locale, etc.).</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDynamicColorsChanged(com.pranavpandey.android.dynamic.theme.DynamicColors,boolean)">onDynamicColorsChanged</a></span>&#8203;(com.pranavpandey.android.dynamic.theme.DynamicColors&nbsp;colors,
                       boolean&nbsp;context)</code></th>
@@ -250,7 +257,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  to the wallpaper.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onDynamicConfigurationChanged(boolean,boolean,boolean,boolean,boolean)">onDynamicConfigurationChanged</a></span>&#8203;(boolean&nbsp;locale,
                              boolean&nbsp;fontScale,
@@ -262,21 +269,21 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  (like locale, font scale, orientation, ui mode, etc.).</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onNavigationBarThemeChanged()">onNavigationBarThemeChanged</a></span>()</code></th>
 <td class="colLast">
 <div class="block">This method will be called when the navigation bar theme has been changed.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onPowerSaveModeChanged(boolean)">onPowerSaveModeChanged</a></span>&#8203;(boolean&nbsp;powerSaveMode)</code></th>
 <td class="colLast">
 <div class="block">This method will be called when the power save mode has been changed.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setNavigationBarTheme()">setNavigationBarTheme</a></span>()</code></th>
 <td class="colLast">
@@ -312,6 +319,20 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The context used by this listener.</dd>
+</dl>
+</li>
+</ul>
+<a id="getRequiredThemeVersion()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getRequiredThemeVersion</h4>
+<pre class="methodSignature">int&nbsp;getRequiredThemeVersion()</pre>
+<div class="block">This method will be called to get the intended theme styles version for this listener.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The intended theme styles version for this listener.</dd>
 </dl>
 </li>
 </ul>
@@ -629,7 +650,7 @@ int&nbsp;getDefaultColor&#8203;(int&nbsp;colorType)</pre>
 <li><a href="../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>6.0.3</h5></div>
+<div class="aboutLanguage"><h5>6.1.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">
