@@ -35,6 +35,7 @@ to AndroidX.
     - [Sample](#sample)
     - [Dependency](#dependency)
     - [Proguard](#proguard)
+- [Projects](#built-with-dynamic)
 - [License](#license)
 
 ---
@@ -151,7 +152,7 @@ The following rules will be applied by this library:
 
 ---
 
-## Apps using Dynamic Support
+## Built with Dynamic
 
 All of my apps are using some or all part of this library. You can download them via Google Play. 
 Please email me if you are using this library and want to feature your app here. Also, please 
