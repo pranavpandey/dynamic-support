@@ -17,16 +17,13 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="?attr/ads_widgetContentCard"
     android:id="@+id/ads_item_view"
     android:orientation="horizontal">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
         style="?attr/ads_widgetImagePreference"
-        android:id="@+id/ads_item_view_icon"
-        android:visibility="visible"
-        app:srcCompat="@drawable/ads_ic_search" />
+        android:id="@+id/ads_item_view_icon" />
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
         style="?attr/ads_textAppearanceHeadline5"

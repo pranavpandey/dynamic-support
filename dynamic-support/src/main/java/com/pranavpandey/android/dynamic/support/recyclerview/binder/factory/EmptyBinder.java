@@ -65,7 +65,7 @@ public class EmptyBinder extends DynamicQueryBinder<String, String, EmptyBinder.
             return;
         }
 
-        holder.getEmptyView().setIcon(getDrawable());
+        holder.getEmptyView().setIcon(getDrawable() != null ? getDrawable() : holder.getIcon());
         holder.getEmptyView().setTitle(getData());
 
         DynamicResourceUtils.highlightQueryTextColor(getQuery(),
@@ -134,6 +134,15 @@ public class EmptyBinder extends DynamicQueryBinder<String, String, EmptyBinder.
          */
         public @NonNull DynamicEmptyView getEmptyView() {
             return emptyView;
+        }
+
+        /**
+         * Get the icon drawable used by the empty view.
+         *
+         * @return The icon drawable used by the empty view.
+         */
+        public @Nullable Drawable getIcon() {
+            return emptyView != null ? emptyView.getIcon() : null;
         }
     }
 }

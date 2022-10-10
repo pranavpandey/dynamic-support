@@ -17,6 +17,8 @@
 
 <com.pranavpandey.android.dynamic.support.view.DynamicEmptyView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ads_empty_view"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"
+    app:ads_icon="@drawable/ads_ic_search" />
