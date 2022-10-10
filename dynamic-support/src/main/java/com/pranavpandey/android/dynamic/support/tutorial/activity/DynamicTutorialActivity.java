@@ -170,47 +170,57 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
                 });
 
         mViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            int oldPosition = getCurrentPosition();
+
             @Override
             public void onPageScrolled(int position,
                     float positionOffset, int positionOffsetPixels) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
 
-                onAnimate(position, false);
-
-                final @ColorInt int color;
-                final @ColorInt int tintColor;
-                if (position < (getTutorialsCount() - 1)) {
-                    color = (Integer) mArgbEvaluator.evaluate(positionOffset,
-                            Dynamic.getColor(getTutorial(position), getBackgroundColor()),
-                            Dynamic.getColor(getTutorial(position + 1),
-                                    getBackgroundColor()));
-                    tintColor = (Integer) mArgbEvaluator.evaluate(positionOffset,
-                            Dynamic.getTintColor(getTutorial(position), getTintColor()),
-                            Dynamic.getTintColor(getTutorial(position + 1),
-                                    getTintColor()));
+                final int currentPosition;
+                final int finalPosition;
+                final float offset;
+                if (positionOffset != 0) {
+                    if (position < oldPosition) {
+                        currentPosition = position + 1;
+                        finalPosition = position;
+                        offset = 1f - positionOffset;
+                    } else {
+                        currentPosition = position;
+                        finalPosition = position + 1;
+                        offset = positionOffset;
+                    }
                 } else {
-                    color = Dynamic.getColor(getTutorial(
-                            getTutorialsCount() - 1), getBackgroundColor());
-                    tintColor = Dynamic.getTintColor(getTutorial(
-                            getTutorialsCount() - 1), getTintColor());
+                    currentPosition = position;
+                    finalPosition = position;
+                    offset = positionOffset;
                 }
+
+                final @ColorInt int color = (Integer) mArgbEvaluator.evaluate(offset,
+                        Dynamic.getColor(getTutorial(currentPosition), getBackgroundColor()),
+                        Dynamic.getColor(getTutorial(finalPosition), getBackgroundColor()));
+                final @ColorInt int tintColor = (Integer) mArgbEvaluator.evaluate(offset,
+                        Dynamic.getTintColor(getTutorial(currentPosition), getTintColor()),
+                        Dynamic.getTintColor(getTutorial(finalPosition), getTintColor()));
 
                 onSetColor(position, color, tintColor);
                 onSetTooltip(position, color, tintColor);
 
                 Dynamic.onPageScrolled(getTutorial(position), position,
                         positionOffset, positionOffsetPixels);
-                Dynamic.onSetPadding(getTutorial(position), 0, 0, 0, mFooterHeight);
-                Dynamic.onSetPadding(getTutorial(Math.min(getTutorialsCount() - 1, position + 1)),
+                Dynamic.onSetPadding(getTutorial(currentPosition),
                         0, 0, 0, mFooterHeight);
-                Dynamic.onColorChanged(getTutorial(position), color, tintColor);
-                Dynamic.onColorChanged(getTutorial(Math.min(
-                        getTutorialsCount() - 1, position + 1)), color, tintColor);
+                Dynamic.onSetPadding(getTutorial(finalPosition),
+                        0, 0, 0, mFooterHeight);
+                Dynamic.onColorChanged(getTutorial(currentPosition), color, tintColor);
+                Dynamic.onColorChanged(getTutorial(finalPosition), color, tintColor);
             }
 
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+
+                this.oldPosition = position;
 
                 setFooter(true);
 
@@ -235,29 +245,13 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
             public void onPageScrollStateChanged(@ViewPager2.ScrollState int state) {
                 super.onPageScrollStateChanged(state);
 
-                if (state == ViewPager2.SCROLL_STATE_IDLE) {
-                    setFooter(true);
-
-                    onSetColor(getCurrentPosition(), Dynamic.getColor(getTutorial(
-                            getCurrentPosition()), getBackgroundColor()), Dynamic.getTintColor(
-                                    getTutorial(getCurrentPosition()), getTintColor()));
-                    onSetTooltip(getCurrentPosition(), Dynamic.getColor(getTutorial(
-                            getCurrentPosition()), getBackgroundColor()), Dynamic.getTintColor(
-                            getTutorial(getCurrentPosition()), getTintColor()));
-
-                    Dynamic.onColorChanged(getTutorial(getCurrentPosition()),
-                            Dynamic.getColor(getTutorial(getCurrentPosition()),
-                                    getBackgroundColor()), Dynamic.getTintColor(getTutorial(
-                                            getCurrentPosition()), getTintColor()));
+                if (state == ViewPager2.SCROLL_STATE_DRAGGING) {
+                    onAnimate(getCurrentPosition(), true);
+                } else if (state == ViewPager2.SCROLL_STATE_IDLE) {
+                    onUpdate(getCurrentPosition());
                 }
 
                 Dynamic.onPageScrollStateChanged(getTutorial(getCurrentPosition()), state);
-                Dynamic.onSetPadding(getTutorial(getCurrentPosition()),
-                        0, 0, 0, mFooterHeight);
-
-                if (state == ViewPager2.SCROLL_STATE_IDLE) {
-                    onUpdate(getCurrentPosition());
-                }
             }
         });
 
