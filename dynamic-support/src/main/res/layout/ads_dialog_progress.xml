@@ -40,8 +40,8 @@
             app:adt_colorType="primary" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
-            android:id="@+id/ads_dialog_progress_bar"
             style="?android:attr/progressBarStyleHorizontal"
+            android:id="@+id/ads_dialog_progress_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:indeterminate="true" />

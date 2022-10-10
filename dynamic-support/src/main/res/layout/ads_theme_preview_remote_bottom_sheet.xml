@@ -28,8 +28,8 @@
             style="?attr/ads_widgetImageDragIndicator" />
 
         <FrameLayout
-            android:id="@+id/ads_theme_preview_bottom_sheet"
-            style="?attr/ads_widgetContentCardClickableBackground">
+            style="?attr/ads_widgetContentCardClickableBackground"
+            android:id="@+id/ads_theme_preview_bottom_sheet">
 
             <include layout="@layout/ads_layout_theme_preview_remote" />
 
