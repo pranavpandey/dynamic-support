@@ -2123,6 +2123,8 @@ public class Dynamic {
      *
      * @param view The view to be used.
      * @param viewId The view id to be found.
+     *
+     * @return The view for the supplied view id.
      */
     public static @Nullable View findViewById(@Nullable View view, @IdRes int viewId) {
         if (view == null || viewId == DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
