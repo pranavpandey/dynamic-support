@@ -157,6 +157,8 @@
     <string name="ads_dynamic">动态</string>
     <string name="ads_color">颜色</string>
     <string name="ads_theme">主题</string>
+    <string name="ads_theme_preview_summary">显示主题预览。</string>
+    <string name="ads_theme_preview_summary_unchecked">不显示主题预览。</string>
     <string name="ads_theme_code">码</string>
     <string name="ads_theme_code_desc">扫描或共享主题。</string>
     <string name="ads_theme_code_capture">捕获</string>

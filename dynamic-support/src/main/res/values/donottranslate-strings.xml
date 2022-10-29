@@ -70,6 +70,7 @@
 
     <!-- Theme -->
     <string name="ads_dynamic_color">@string/ads_theme_color_palette</string>
+    <string name="ads_theme_preview">@string/ads_widget_preview</string>
     <string name="ads_theme_entry_system">@string/ads_locale_system</string>
     <string name="ads_theme_entry_wallpaper">@string/ads_wallpaper</string>
     <string name="ads_theme_entry_app">@string/ads_app</string>

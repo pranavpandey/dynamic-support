@@ -157,6 +157,8 @@
     <string name="ads_dynamic">Динамический</string>
     <string name="ads_color">Цвет</string>
     <string name="ads_theme">Тема</string>
+    <string name="ads_theme_preview_summary">Показать предварительный просмотр темы.</string>
+    <string name="ads_theme_preview_summary_unchecked">Не показывать предварительный просмотр темы.</string>
     <string name="ads_theme_code">Код</string>
     <string name="ads_theme_code_desc">Отсканируйте или поделитесь темой.</string>
     <string name="ads_theme_code_capture">Захватывать</string>

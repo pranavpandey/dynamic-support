@@ -157,6 +157,8 @@
     <string name="ads_dynamic">Dynamisch</string>
     <string name="ads_color">Farbe</string>
     <string name="ads_theme">Thema</string>
+    <string name="ads_theme_preview_summary">Zeigen Sie die Designvorschau an.</string>
+    <string name="ads_theme_preview_summary_unchecked">Themenvorschau nicht anzeigen.</string>
     <string name="ads_theme_code">Code</string>
     <string name="ads_theme_code_desc">Scannen oder teilen Sie das Thema.</string>
     <string name="ads_theme_code_capture">Ergreifen</string>

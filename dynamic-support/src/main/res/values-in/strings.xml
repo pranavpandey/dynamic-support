@@ -157,6 +157,8 @@
     <string name="ads_dynamic">Dinamis</string>
     <string name="ads_color">Warna</string>
     <string name="ads_theme">Tema</string>
+    <string name="ads_theme_preview_summary">Tampilkan pratinjau tema.</string>
+    <string name="ads_theme_preview_summary_unchecked">Jangan tampilkan pratinjau tema.</string>
     <string name="ads_theme_code">Kode</string>
     <string name="ads_theme_code_desc">Pindai atau bagikan tema.</string>
     <string name="ads_theme_code_capture">Menangkap</string>

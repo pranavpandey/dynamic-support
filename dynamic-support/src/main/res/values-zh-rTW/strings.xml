@@ -157,6 +157,8 @@
     <string name="ads_dynamic">動態</string>
     <string name="ads_color">色彩</string>
     <string name="ads_theme">主題</string>
+    <string name="ads_theme_preview_summary">顯示主題預覽。</string>
+    <string name="ads_theme_preview_summary_unchecked">不顯示主題預覽。</string>
     <string name="ads_theme_code">程式碼</string>
     <string name="ads_theme_code_desc">掃描或分享主題。</string>
     <string name="ads_theme_code_capture">擷取</string>
