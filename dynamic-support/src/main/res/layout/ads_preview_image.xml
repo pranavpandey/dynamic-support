@@ -28,7 +28,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -41,16 +41,11 @@
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                 style="?attr/ads_widgetImagePreview"
-                android:id="@+id/ads_preview_image"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.6"
-                android:minHeight="@dimen/ads_preview_code_size_small" />
+                android:id="@+id/ads_preview_image" />
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.4">
+                android:layout_height="wrap_content">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
                     style="?attr/ads_widgetCard"

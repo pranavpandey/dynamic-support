@@ -64,6 +64,9 @@
     <item name="ads_theme_preview_content_weight_start" type="integer" format="float">0.5</item>
     <item name="ads_theme_preview_content_weight_end" type="integer" format="float">0.3</item>
 
+    <!-- Preview -->
+    <item name="ads_preview_weight_image_land" type="integer" format="float">0.45</item>
+
     <!-- Toast -->
     <item name="ads_toast_alpha" type="integer" format="float">0.95</item>
 

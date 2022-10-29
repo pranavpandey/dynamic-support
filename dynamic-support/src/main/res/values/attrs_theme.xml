@@ -329,6 +329,8 @@
     <attr name="ads_widgetImageHeaderAppBar" format="reference" />
     <!-- The preview image style. -->
     <attr name="ads_widgetImagePreview" format="reference" />
+    <!-- The preview image style for landscape mode. -->
+    <attr name="ads_widgetImagePreviewLand" format="reference" />
     <!-- The drag indicator image style. -->
     <attr name="ads_widgetImageDragIndicator" format="reference" />
     <!-- The empty image style. -->

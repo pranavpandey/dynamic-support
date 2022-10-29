@@ -828,6 +828,9 @@
     </style>
 
     <style name="Widget.Dynamic.Image.Preview">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/ads_preview_code_size_small</item>
         <item name="android:layout_marginLeft">@dimen/ads_card_view_margin_horizontal</item>
         <item name="android:layout_marginStart">@dimen/ads_card_view_margin_horizontal</item>
         <item name="android:layout_marginTop">@dimen/ads_card_view_margin_vertical</item>
@@ -835,6 +838,11 @@
         <item name="android:layout_marginEnd">@dimen/ads_card_view_margin_horizontal</item>
         <item name="android:layout_marginBottom">@dimen/ads_card_view_margin_vertical</item>
         <item name="adt_colorType">primary</item>
+    </style>
+    <style name="Widget.Dynamic.Image.Preview.Land">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">@integer/ads_preview_weight_image_land</item>
     </style>
 
     <style name="Widget.Dynamic.Image.DragIndicator">

@@ -221,6 +221,7 @@
         <item name="ads_widgetImageHeader">@style/Widget.Dynamic2.Image.Header</item>
         <item name="ads_widgetImageHeaderAppBar">@style/Widget.Dynamic2.Image.Header.AppBar</item>
         <item name="ads_widgetImagePreview">@style/Widget.Dynamic2.Image.Preview</item>
+        <item name="ads_widgetImagePreviewLand">@style/Widget.Dynamic2.Image.Preview.Land</item>
         <item name="ads_widgetImageDragIndicator">@style/Widget.Dynamic2.Image.DragIndicator</item>
         <item name="ads_widgetImageEmpty">@style/Widget.Dynamic2.Image.Empty</item>
         <item name="ads_widgetImageCard">@style/Widget.Dynamic2.Image.Card</item>
@@ -516,6 +517,7 @@
         <item name="ads_widgetImageHeader">@style/Widget.Dynamic2.Image.Header</item>
         <item name="ads_widgetImageHeaderAppBar">@style/Widget.Dynamic2.Image.Header.AppBar</item>
         <item name="ads_widgetImagePreview">@style/Widget.Dynamic2.Image.Preview</item>
+        <item name="ads_widgetImagePreviewLand">@style/Widget.Dynamic2.Image.Preview.Land</item>
         <item name="ads_widgetImageDragIndicator">@style/Widget.Dynamic2.Image.DragIndicator</item>
         <item name="ads_widgetImageEmpty">@style/Widget.Dynamic2.Image.Empty</item>
         <item name="ads_widgetImageCard">@style/Widget.Dynamic2.Image.Card</item>
@@ -805,6 +807,7 @@
         <item name="ads_widgetImageHeader">@style/Widget.Dynamic2.Image.Header</item>
         <item name="ads_widgetImageHeaderAppBar">@style/Widget.Dynamic2.Image.Header.AppBar</item>
         <item name="ads_widgetImagePreview">@style/Widget.Dynamic2.Image.Preview</item>
+        <item name="ads_widgetImagePreviewLand">@style/Widget.Dynamic2.Image.Preview.Land</item>
         <item name="ads_widgetImageDragIndicator">@style/Widget.Dynamic2.Image.DragIndicator</item>
         <item name="ads_widgetImageEmpty">@style/Widget.Dynamic2.Image.Empty</item>
         <item name="ads_widgetImageCard">@style/Widget.Dynamic2.Image.Card</item>
