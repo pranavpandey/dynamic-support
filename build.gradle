@@ -24,7 +24,7 @@ buildscript {
             'dynamic'     : '4.4.6',
             'fragment'    : '1.5.4',
             'flexbox'     : '3.0.0',
-            'kotlin'      : '1.6.21',
+            'kotlin'      : '1.7.10',
             'locale'      : '2.3.0',
             'material'    : '1.8.0-alpha02',
             'preferences' : '2.2.2',
@@ -40,7 +40,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.0-alpha10'
+        classpath 'com.android.tools.build:gradle:8.0.0-alpha06'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
     }
 }
