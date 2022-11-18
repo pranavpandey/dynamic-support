@@ -342,6 +342,22 @@ public class DynamicTextInputLayout extends TextInputLayout implements DynamicWi
     }
 
     @Override
+    public void refreshStartIconDrawableState() {
+        super.refreshStartIconDrawableState();
+
+        DynamicInputUtils.setCursorColor(getEditText(), isErrorEnabled()
+                ? getErrorColor(true) : getColor(true));
+    }
+
+    @Override
+    public void setErrorEnabled(boolean enabled) {
+        super.setErrorEnabled(enabled);
+
+        DynamicInputUtils.setCursorColor(getEditText(), isErrorEnabled()
+                ? getErrorColor(true) : getColor(true));
+    }
+
+    @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
