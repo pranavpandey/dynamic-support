@@ -507,7 +507,8 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
         mViewPager.setOffscreenPageLimit(getTutorialsCount());
         mViewPager.setAdapter(mAdapter);
         mPageIndicator.setViewPager(mViewPager);
-        mViewPager.setCurrentItem(page < getTutorialsCount() ? page : 0, smoothScroll);
+        mViewPager.setCurrentItem(page >= 0 && page < getTutorialsCount()
+                ? page : 0, smoothScroll);
 
         // A hack to update the tutorials properly on lower API levels.
         mViewPager.post(mAdapterRunnable);

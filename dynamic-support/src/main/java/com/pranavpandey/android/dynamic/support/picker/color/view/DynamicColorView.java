@@ -68,19 +68,24 @@ import com.pranavpandey.android.dynamic.util.DynamicUnitUtils;
 public class DynamicColorView extends DynamicFrameLayout {
 
     /**
-     * Constant for color view icon divisor.
+     * Constant for the color view icon divisor.
      */
     private static final float ICON_DIVISOR = 2.2f;
 
     /**
-     * Alpha constant for color view state.
+     * Alpha constant for the color view state.
      */
     private static final int ALPHA_STATE = 60;
 
     /**
-     * Alpha constant for color view selector.
+     * Alpha constant for the color view selector.
      */
     private static final int ALPHA_SELECTOR = 100;
+
+    /**
+     * Size constant for the alpha pattern paint in DP.
+     */
+    private static final int ALPHA_PATTERN_SIZE = 4;
 
     /**
      * RectF to draw the color view.
@@ -175,7 +180,7 @@ public class DynamicColorView extends DynamicFrameLayout {
         }
 
         mAlphaPaint = DynamicPickerUtils.getAlphaPatternPaint(
-                DynamicUnitUtils.convertDpToPixels(4));
+                DynamicUnitUtils.convertDpToPixels(ALPHA_PATTERN_SIZE));
         mColorPaint = new DynamicPaint();
         mColorStrokePaint = new DynamicPaint();
         mSelectorPaint = new DynamicPaint();

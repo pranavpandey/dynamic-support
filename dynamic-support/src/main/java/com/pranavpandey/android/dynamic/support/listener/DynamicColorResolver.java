@@ -20,7 +20,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 
 /**
- * An interface to get the various callbacks related to the automatic color generation.
+ * An interface to get the various callbacks related to the auto color generation.
  */
 public interface DynamicColorResolver {
 

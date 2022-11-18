@@ -319,7 +319,7 @@ public class DynamicRadioButton extends MaterialRadioButton implements DynamicSt
         setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
     }
 
-    @SuppressLint({"RestrictedApi"})
+    @SuppressLint("RestrictedApi")
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void setColor() {

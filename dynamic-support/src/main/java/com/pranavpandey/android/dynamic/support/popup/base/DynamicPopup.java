@@ -40,7 +40,6 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
-import com.pranavpandey.android.dynamic.util.DynamicUnitUtils;
 import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 import com.pranavpandey.android.dynamic.util.DynamicWindowUtils;
 
@@ -237,6 +236,26 @@ public abstract class DynamicPopup {
     }
 
     /**
+     * The offset to adjust the location of the window on the x-axis.
+     *
+     * @return The offset to adjust the location of the window on the x-axis.
+     */
+    protected int getLocationOffsetX() {
+        return (int) getAnchor().getContext().getResources()
+                .getDimension(R.dimen.ads_popup_offset_x);
+    }
+
+    /**
+     * The offset to adjust the location of the window on the y-axis.
+     *
+     * @return The offset to adjust the location of the window on the y-axis.
+     */
+    protected int getLocationOffsetY() {
+        return (int) getAnchor().getContext().getResources()
+                .getDimension(R.dimen.ads_popup_offset_y);
+    }
+
+    /**
      * This method will be called just before showing this popup.
      *
      * @param popupWindow The popup window to be displayed by this popup.
@@ -354,8 +373,8 @@ public abstract class DynamicPopup {
         getAnchor().getLocationInWindow(screenPos);
 
         int viewCenterX = screenPos[0];
-        int OFFSET_X = DynamicUnitUtils.convertDpToPixels(36);
-        final int OFFSET_Y = DynamicUnitUtils.convertDpToPixels(20);
+        int OFFSET_X = getLocationOffsetX();
+        final int OFFSET_Y = getLocationOffsetY();
 
         // Check for RTL language.
         if (DynamicViewUtils.isLayoutRtl(getAnchor())) {
