@@ -91,7 +91,7 @@ public abstract class DynamicViewPager2Fragment extends DynamicFragment
     public void onAddActivityHeader(@Nullable View view) {
         super.onAddActivityHeader(view);
 
-        if (view == null) {
+        if (getContext() == null || view == null) {
             return;
         }
 
