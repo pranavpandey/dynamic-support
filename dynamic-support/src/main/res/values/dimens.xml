@@ -208,7 +208,7 @@
     <dimen name="ads_toolbar_margin_end_collapsing">@dimen/ads_page_horizontal_margin</dimen>
     <dimen name="ads_tab_inset_start">@dimen/ads_toolbar_inset_start_small</dimen>
     <dimen name="ads_tab_height">44dp</dimen>
-    <dimen name="ads_tab_min_width">48dp</dimen>
+    <dimen name="ads_tab_min_width">240dp</dimen>
     <dimen name="ads_tab_indicator_margin_vertical">0dp</dimen>
     <dimen name="ads_tab_indicator_margin_horizontal">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_tab_indicator_height">3dp</dimen>

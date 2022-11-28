@@ -76,7 +76,23 @@ public abstract class DynamicViewPager2Fragment extends DynamicFragment
 
         mViewPager.setOffscreenPageLimit(getItemCount());
         mViewPager.registerOnPageChangeCallback(
-                new DynamicOnPageChangeCallback(getChildFragmentManager()));
+                new DynamicOnPageChangeCallback(getChildFragmentManager()) {
+                    @Override
+                    public void onPageSelected(int position) {
+                        super.onPageSelected(position);
+
+                        Dynamic.setTextColor(getTabLayout());
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {
+                        super.onPageScrollStateChanged(state);
+
+                        if (state == ViewPager2.SCROLL_STATE_IDLE) {
+                            Dynamic.setTextColor(getTabLayout());
+                        }
+                    }
+                });
         mViewPager.setAdapter(new ViewPagerAdapter(this, this));
         Dynamic.addHeader(getActivity(), R.layout.ads_tabs,
                 true, getSavedInstanceState() == null);

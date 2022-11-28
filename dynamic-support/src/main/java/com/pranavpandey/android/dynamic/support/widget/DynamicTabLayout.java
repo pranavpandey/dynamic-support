@@ -38,6 +38,7 @@ import com.pranavpandey.android.dynamic.support.widget.base.DynamicBackgroundWid
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTextWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
  * A {@link TabLayout} to apply {@link DynamicTheme} according to the supplied parameters.
@@ -176,7 +177,6 @@ public class DynamicTabLayout extends TabLayout implements
                     R.styleable.DynamicTabLayout_adt_contrast,
                     Theme.Contrast.AUTO);
 
-
             if (a.getBoolean(R.styleable.DynamicTabLayout_adt_dynamicCornerSize,
                     Defaults.ADS_DYNAMIC_CORNER_SIZE)) {
                 setSelectedTabIndicator(DynamicShapeUtils.getTabIndicatorRes(
@@ -187,6 +187,11 @@ public class DynamicTabLayout extends TabLayout implements
         }
 
         initialize();
+
+        if (!DynamicSdkUtils.is19()) {
+            setTabGravity(GRAVITY_FILL);
+            setTabMode(MODE_FIXED);
+        }
     }
 
     @Override

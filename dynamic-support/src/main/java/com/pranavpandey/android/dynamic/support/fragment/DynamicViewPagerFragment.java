@@ -27,6 +27,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 import com.pranavpandey.android.dynamic.support.Dynamic;
@@ -75,7 +76,23 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment
 
         mViewPager.setOffscreenPageLimit(getItemCount());
         mViewPager.addOnPageChangeListener(
-                new DynamicOnPageChangeListener(getChildFragmentManager()));
+                new DynamicOnPageChangeListener(getChildFragmentManager()) {
+                    @Override
+                    public void onPageSelected(int position) {
+                        super.onPageSelected(position);
+
+                        Dynamic.setTextColor(getTabLayout());
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {
+                        super.onPageScrollStateChanged(state);
+
+                        if (state == ViewPager2.SCROLL_STATE_IDLE) {
+                            Dynamic.setTextColor(getTabLayout());
+                        }
+                    }
+                });
         mViewPager.setAdapter(new ViewPagerAdapter(
                 getChildFragmentManager(), this));
         Dynamic.addHeader(getActivity(), R.layout.ads_tabs,
@@ -94,8 +111,9 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment
         if (getContext() == null || view == null) {
             return;
         }
-
+        
         mTabLayout = view.findViewById(R.id.ads_tab_layout);
+
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
