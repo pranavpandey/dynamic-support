@@ -22,7 +22,7 @@
     <item name="ads_inset_icon_launcher_medium" type="dimen">17.26%</item>
     <item name="ads_inset_icon_launcher_large" type="dimen">20.26%</item>
     <item name="ads_inset_icon_launcher_extra_large" type="dimen">24.26%</item>
-    <item name="ads_inset_icon_launcher_huge" type="dimen">30.26%</item>
+    <item name="ads_inset_icon_launcher_huge" type="dimen">28.26%</item>
     <dimen name="ads_inset_icon_app_shortcut">16dp</dimen>
     <dimen name="ads_inset_icon_app_shortcut_background">2dp</dimen>
     <dimen name="ads_inset_icon_app_shortcut_medium">18dp</dimen>
