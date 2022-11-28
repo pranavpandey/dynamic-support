@@ -1370,7 +1370,8 @@ public class DynamicAppTheme extends AppTheme<DynamicAppTheme> implements Parcel
 
     @Override
     public int getCornerRadius(boolean resolve) {
-        if (resolve && getCornerRadius(false) == Theme.Corner.AUTO) {
+        if (resolve && (getCornerRadius(false) == Theme.Corner.AUTO
+                || getCornerRadius(false) == Theme.Corner.SYSTEM)) {
             return getThemeFallback(false).getCornerRadius();
         }
 
@@ -1391,7 +1392,8 @@ public class DynamicAppTheme extends AppTheme<DynamicAppTheme> implements Parcel
 
     @Override
     public int getCornerSize(boolean resolve) {
-        if (!resolve && getCornerRadius(false) == Theme.Corner.AUTO) {
+        if (!resolve && (getCornerRadius(false) == Theme.Corner.AUTO
+                || getCornerRadius(false) == Theme.Corner.SYSTEM)) {
             return Theme.Corner.AUTO;
         }
 
@@ -1405,8 +1407,8 @@ public class DynamicAppTheme extends AppTheme<DynamicAppTheme> implements Parcel
 
     @Override
     public @NonNull DynamicAppTheme setCornerSize(float cornerSize) {
-        return setCornerRadius(cornerSize == Theme.Corner.AUTO ? (int) cornerSize
-                : DynamicUnitUtils.convertDpToPixels(cornerSize));
+        return setCornerRadius(cornerSize == Theme.Corner.AUTO || cornerSize == Theme.Corner.SYSTEM
+                ? (int) cornerSize : DynamicUnitUtils.convertDpToPixels(cornerSize));
     }
 
     @Override

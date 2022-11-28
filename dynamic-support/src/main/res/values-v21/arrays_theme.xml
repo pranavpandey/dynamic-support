@@ -15,7 +15,8 @@
 	limitations under the License.
 -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Night theme entries for auto and batter saver. -->
     <string-array name="ads_theme_entries_night" tools:ignore="InconsistentArrays">

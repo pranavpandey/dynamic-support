@@ -54,87 +54,87 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
     /**
      * View to show the theme presets.
      */
-    private DynamicPresetsView<DynamicAppTheme> mPresetsView;
+    protected DynamicPresetsView<DynamicAppTheme> mPresetsView;
 
     /**
      * Dynamic color preference to control the background colors.
      */
-    private DynamicColorPreference mColorBackgroundPreference;
+    protected DynamicColorPreference mColorBackgroundPreference;
 
     /**
      * Dynamic color preference to control the surface color.
      */
-    private DynamicColorPreference mColorSurfacePreference;
+    protected DynamicColorPreference mColorSurfacePreference;
 
     /**
      * Dynamic color preference to control the primary colors.
      */
-    private DynamicColorPreference mColorPrimaryPreference;
+    protected DynamicColorPreference mColorPrimaryPreference;
 
     /**
      * Dynamic color preference to control the accent colors.
      */
-    private DynamicColorPreference mColorAccentPreference;
+    protected DynamicColorPreference mColorAccentPreference;
 
     /**
      * Dynamic color preference to control the dark primary colors.
      */
-    private DynamicColorPreference mColorPrimaryDarkPreference;
+    protected DynamicColorPreference mColorPrimaryDarkPreference;
 
     /**
      * Dynamic color preference to control the dark accent colors.
      */
-    private DynamicColorPreference mColorAccentDarkPreference;
+    protected DynamicColorPreference mColorAccentDarkPreference;
 
     /**
      * Dynamic color preference to control the error colors.
      */
-    private DynamicColorPreference mColorErrorPreference;
+    protected DynamicColorPreference mColorErrorPreference;
 
     /**
      * Dynamic color preference to control the primary text colors.
      */
-    private DynamicColorPreference mTextPrimaryPreference;
+    protected DynamicColorPreference mTextPrimaryPreference;
 
     /**
      * Dynamic color preference to control the secondary text colors.
      */
-    private DynamicColorPreference mTextSecondaryPreference;
+    protected DynamicColorPreference mTextSecondaryPreference;
 
     /**
      * Dynamic slider preference to control the font scale.
      */
-    private DynamicSliderPreference mFontScalePreference;
+    protected DynamicSliderPreference mFontScalePreference;
 
     /**
      * Dynamic slider preference to control the corner radius.
      */
-    private DynamicSliderPreference mCornerSizePreference;
+    protected DynamicSliderPreference mCornerSizePreference;
 
     /**
      * Dynamic spinner preference to control the background aware functionality.
      */
-    private DynamicSpinnerPreference mBackgroundAwarePreference;
+    protected DynamicSpinnerPreference mBackgroundAwarePreference;
 
     /**
      * Dynamic slider preference to control the contrast.
      */
-    private DynamicSliderPreference mContrastPreference;
+    protected DynamicSliderPreference mContrastPreference;
 
     /**
      * Dynamic slider preference to control the opacity.
      */
-    private DynamicSliderPreference mOpacityPreference;
+    protected DynamicSliderPreference mOpacityPreference;
 
     /**
      * Dynamic spinner preference to control the elevation functionality.
      */
-    private DynamicSpinnerPreference mElevationPreference;
+    protected DynamicSpinnerPreference mElevationPreference;
 
     /**
      * Dynamic spinner preference to control the style functionality.
      */
-    private DynamicSpinnerPreference mStylePreference;
+    protected DynamicSpinnerPreference mStylePreference;
 
     /**
      * Initialize the new instance of this fragment.
@@ -559,40 +559,41 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
         mTextSecondaryPreference.setColor(theme.getTextSecondaryColor(false, false));
         mTextSecondaryPreference.setAltColor(theme.getTextSecondaryColorInverse(false, false));
 
-        if (theme.getFontScale(false) != Theme.AUTO) {
-            mFontScalePreference.setPreferenceValue(Theme.ToString.CUSTOM);
+        if (theme.getFontScale(false) != Theme.Font.AUTO) {
+            mFontScalePreference.setPreferenceValue(Theme.Font.ToString.CUSTOM);
             mFontScalePreference.setValue(theme.getFontScale());
         } else {
-            mFontScalePreference.setPreferenceValue(Theme.ToString.AUTO);
+            mFontScalePreference.setPreferenceValue(Theme.Font.ToString.AUTO);
             mFontScalePreference.setValue(mDynamicThemeDefault.getFontScale());
         }
 
-        if (theme.getCornerRadius(false) != Theme.AUTO) {
-            mCornerSizePreference.setPreferenceValue(Theme.ToString.CUSTOM);
+        if (theme.getCornerRadius(false) != Theme.Corner.AUTO
+                && theme.getCornerRadius(false) != Theme.Corner.SYSTEM) {
+            mCornerSizePreference.setPreferenceValue(Theme.Corner.ToString.CUSTOM);
             mCornerSizePreference.setValue(theme.getCornerSize());
         } else {
-            mCornerSizePreference.setPreferenceValue(Theme.ToString.AUTO);
+            mCornerSizePreference.setPreferenceValue(Theme.Corner.ToString.AUTO);
             mCornerSizePreference.setValue(mDynamicThemeDefault.getCornerSize());
         }
 
         mBackgroundAwarePreference.setPreferenceValue(
-                String.valueOf(theme.getBackgroundAware(false)));
+                Integer.toString(theme.getBackgroundAware(false)));
         mElevationPreference.setPreferenceValue(String.valueOf(theme.getElevation(false)));
         mStylePreference.setPreferenceValue(String.valueOf(theme.getStyle()));
 
-        if (theme.getContrast(false) != Theme.AUTO) {
-            mContrastPreference.setPreferenceValue(Theme.ToString.CUSTOM);
+        if (theme.getContrast(false) != Theme.Contrast.AUTO) {
+            mContrastPreference.setPreferenceValue(Theme.Contrast.ToString.CUSTOM);
             mContrastPreference.setValue(theme.getContrast());
         } else {
-            mContrastPreference.setPreferenceValue(Theme.ToString.AUTO);
+            mContrastPreference.setPreferenceValue(Theme.Contrast.ToString.AUTO);
             mContrastPreference.setValue(mDynamicThemeDefault.getContrast());
         }
 
-        if (theme.getOpacity(false) != Theme.AUTO) {
-            mOpacityPreference.setPreferenceValue(Theme.ToString.CUSTOM);
+        if (theme.getOpacity(false) != Theme.Opacity.AUTO) {
+            mOpacityPreference.setPreferenceValue(Theme.Opacity.ToString.CUSTOM);
             mOpacityPreference.setValue(theme.getOpacity());
         } else {
-            mOpacityPreference.setPreferenceValue(Theme.ToString.AUTO);
+            mOpacityPreference.setPreferenceValue(Theme.Opacity.ToString.AUTO);
             mOpacityPreference.setValue(mDynamicThemeDefault.getOpacity());
         }
 
@@ -611,83 +612,40 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
                 ? R.drawable.adt_ic_app : R.drawable.ads_ic_style);
     }
 
-    /**
-     * Returns the resolved font scale from the preference.
-     *
-     * @return The resolved font scale from the preference.
-     */
-    private int getFontScale() {
-        return Theme.Font.ToString.AUTO.equals(mFontScalePreference.getPreferenceValue())
-                ? Theme.Font.AUTO : mFontScalePreference.getValueFromProgress();
+    @Override
+    public int getFontScale() {
+        return getPreferenceValue(mFontScalePreference, mDynamicTheme.getFontScale());
     }
 
-    /**
-     * Returns the resolved corner size from the preference.
-     *
-     * @return The resolved corner size from the preference.
-     */
-    private int getCornerSize() {
-        return Theme.Corner.ToString.AUTO.equals(mCornerSizePreference.getPreferenceValue())
-                ? Theme.Corner.AUTO : mCornerSizePreference.getValueFromProgress();
+    @Override
+    public int getCornerSize() {
+        return getPreferenceValue(mCornerSizePreference, mDynamicTheme.getCornerSize());
     }
 
-    /**
-     * Returns the resolved background aware from the preference.
-     *
-     * @return The resolved background aware from the preference.
-     */
-    private @Theme.BackgroundAware int getBackgroundAware() {
-        if (mBackgroundAwarePreference.getPreferenceValue() != null) {
-            return Integer.parseInt(mBackgroundAwarePreference.getPreferenceValue());
-        }
-
-        return mDynamicTheme.getBackgroundAware(false);
+    @Override
+    public @Theme.BackgroundAware int getBackgroundAware() {
+        return getPreferenceValue(mBackgroundAwarePreference,
+                mDynamicTheme.getBackgroundAware(false));
     }
 
-    /**
-     * Returns the resolved contrast from the preference.
-     *
-     * @return The resolved contrast from the preference.
-     */
-    private int getContrast() {
-        return Theme.Contrast.ToString.AUTO.equals(mContrastPreference.getPreferenceValue())
-                ? Theme.Contrast.AUTO : mContrastPreference.getValueFromProgress();
+    @Override
+    public int getContrast() {
+        return getPreferenceValue(mContrastPreference, mDynamicTheme.getContrast());
     }
 
-    /**
-     * Returns the resolved opacity from the preference.
-     *
-     * @return The resolved opacity from the preference.
-     */
-    private int getOpacity() {
-        return Theme.Opacity.ToString.AUTO.equals(mOpacityPreference.getPreferenceValue())
-                ? Theme.Opacity.AUTO : mOpacityPreference.getValueFromProgress();
+    @Override
+    public int getOpacity() {
+        return getPreferenceValue(mOpacityPreference, mDynamicTheme.getOpacity());
     }
 
-    /**
-     * Returns the resolved elevation from the preference.
-     *
-     * @return The resolved elevation from the preference.
-     */
-    private @Theme.Elevation int getElevation() {
-        if (mElevationPreference.getPreferenceValue() != null) {
-            return Integer.parseInt(mElevationPreference.getPreferenceValue());
-        }
-
-        return mDynamicTheme.getElevation(false);
+    @Override
+    public @Theme.Elevation int getElevation() {
+        return getPreferenceValue(mElevationPreference, mDynamicTheme.getElevation(false));
     }
 
-    /**
-     * Returns the resolved style from the preference.
-     *
-     * @return The resolved style from the preference.
-     */
-    private @Theme.Style int getStyle() {
-        if (mStylePreference.getPreferenceValue() != null) {
-            return Integer.parseInt(mStylePreference.getPreferenceValue());
-        }
-
-        return mDynamicTheme.getStyle();
+    @Override
+    public @Theme.Style int getStyle() {
+        return getPreferenceValue(mStylePreference, mDynamicTheme.getStyle());
     }
 
     /**
@@ -748,10 +706,16 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
         mStylePreference.update();
 
         mContrastPreference.setEnabled(mThemePreview.getDynamicTheme().isBackgroundAware());
-        mFontScalePreference.setSeekEnabled(getFontScale() != Theme.AUTO);
-        mCornerSizePreference.setSeekEnabled(getCornerSize() != Theme.AUTO);
-        mContrastPreference.setSeekEnabled(getContrast() != Theme.AUTO);
-        mOpacityPreference.setSeekEnabled(getOpacity() != Theme.AUTO);
+        mFontScalePreference.setSeekEnabled(mThemePreview.getDynamicTheme()
+                .getFontScale(false) != Theme.Font.AUTO);
+        mCornerSizePreference.setSeekEnabled(mThemePreview.getDynamicTheme()
+                .getCornerRadius(false) != Theme.Corner.AUTO
+                && (mThemePreview.getDynamicTheme()
+                .getCornerRadius(false) != Theme.Corner.SYSTEM));
+        mContrastPreference.setSeekEnabled(mThemePreview.getDynamicTheme()
+                .getContrast(false) != Theme.Contrast.AUTO);
+        mOpacityPreference.setSeekEnabled(mThemePreview.getDynamicTheme()
+                .getOpacity(false) != Theme.Opacity.AUTO);
     }
 
     @Override

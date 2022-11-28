@@ -39,6 +39,8 @@ import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment;
 import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.model.DynamicTaskViewModel;
+import com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference;
+import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog;
 import com.pranavpandey.android.dynamic.support.theme.listener.ThemeListener;
@@ -59,7 +61,7 @@ import com.pranavpandey.android.dynamic.util.concurrent.task.FileWriteTask;
  * <p>Extend this fragment to implement theme attributes according to the requirements.
  */
 public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFragment
-        implements ThemeListener.Import<T>, ThemeListener.Export<T> {
+        implements ThemeListener.Value, ThemeListener.Import<T>, ThemeListener.Export<T> {
 
     /**
      * Dynamic app theme used by this fragment.
@@ -103,7 +105,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
     @Override
     public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateMenu(menu, inflater);
-        
+
         inflater.inflate(R.menu.ads_menu_theme, menu);
     }
 
@@ -284,6 +286,75 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
             Dynamic.setAppBarProgressVisible(getActivity(), false);
             mProgressDialog = null;
         }
+    }
+
+    /**
+     * Try to resolve theme value from the slider preference.
+     *
+     * @param preference The slider preference to be used.
+     * @param fallback The fallback value to be used in case of any issues.
+     *
+     * @return The resolved theme value from the slider preference.
+     */
+    public int getPreferenceValue(@Nullable DynamicSliderPreference preference, int fallback) {
+        if (preference == null || preference.getPreferenceValue() == null) {
+            return fallback;
+        }
+
+        return Theme.ToString.CUSTOM.equals(preference.getPreferenceValue())
+                ? preference.getValueFromProgress()
+                : Integer.parseInt(preference.getPreferenceValue());
+    }
+
+    /**
+     * Try to resolve theme value from the spinner preference.
+     *
+     * @param preference The spinner preference to be used.
+     * @param fallback The fallback value to be used in case of any issues.
+     *
+     * @return The resolved theme value from the spinner preference.
+     */
+    public int getPreferenceValue(@Nullable DynamicSpinnerPreference preference, int fallback) {
+        if (preference == null || preference.getPreferenceValue() == null) {
+            return fallback;
+        }
+
+        return Integer.parseInt(preference.getPreferenceValue());
+    }
+
+    @Override
+    public int getFontScale() {
+        return mDynamicTheme.getFontScale();
+    }
+
+    @Override
+    public int getCornerSize() {
+        return mDynamicTheme.getCornerSize();
+    }
+
+    @Override
+    public @Theme.BackgroundAware int getBackgroundAware() {
+        return mDynamicTheme.getBackgroundAware(false);
+    }
+
+    @Override
+    public int getContrast() {
+        return mDynamicTheme.getContrast();
+    }
+
+    @Override
+    public int getOpacity() {
+        return mDynamicTheme.getOpacity();
+    }
+
+    @Override
+    public @Theme.Elevation int getElevation() {
+        return mDynamicTheme.getElevation(false);
+    }
+
+    @Override
+    public @Theme.Style int getStyle() {
+        return mDynamicTheme.getStyle();
     }
 
     @Override

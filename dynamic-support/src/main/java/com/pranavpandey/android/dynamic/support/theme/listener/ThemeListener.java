@@ -257,6 +257,61 @@ public interface ThemeListener<T extends DynamicAppTheme> {
             @Nullable ThemePreview<T> themePreview, @Nullable Exception e);
 
     /**
+     * Interface to load the theme values.
+     */
+    interface Value {
+
+        /**
+         * Returns the resolved font scale for the theme.
+         *
+         * @return The resolved font scale for the theme.
+         */
+        int getFontScale();
+
+        /**
+         * Returns the resolved corner size for the theme.
+         *
+         * @return The resolved corner size for the theme.
+         */
+        int getCornerSize();
+
+        /**
+         * Returns the resolved background aware for the theme.
+         *
+         * @return The resolved background aware for the theme.
+         */
+        @Theme.BackgroundAware int getBackgroundAware();
+
+        /**
+         * Returns the resolved contrast for the theme.
+         *
+         * @return The resolved contrast for the theme.
+         */
+        int getContrast();
+
+        /**
+         * Returns the resolved opacity for the theme.
+         *
+         * @return The resolved opacity for the theme.
+         */
+        int getOpacity();
+
+        /**
+         * Returns the resolved elevation for the theme.
+         *
+         * @return The resolved elevation for the theme.
+         */
+        @Theme.Elevation int getElevation();
+
+        /**
+         * Returns the resolved style for the theme.
+         *
+         * @return The resolved style for the theme.
+         */
+        @Theme.Style int getStyle();
+    }
+
+    /**
      * Interface to listen the theme import events.
      */
     interface Import<T extends DynamicAppTheme> {

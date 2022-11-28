@@ -37,6 +37,7 @@ import android.view.LayoutInflater;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.StyleRes;
 import androidx.core.app.ActivityCompat;
@@ -229,7 +230,8 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     /**
      * Default corner size for the theme.
      */
-    private static final int CORNER_SIZE_DEFAULT = DynamicUnitUtils.convertDpToPixels(2);
+    private static final int CORNER_SIZE_DEFAULT =
+            DynamicUnitUtils.convertDpToPixels(Theme.Corner.DEFAULT);
 
     /**
      * Singleton instance of {@link DynamicTheme}.
@@ -1193,6 +1195,16 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     }
 
     /**
+     * Returns the currently used context.
+     * <p>Generally, either application or an activity.
+     *
+     * @return The currently used context.
+     */
+    private @NonNull Context getResolvedContext() {
+        return getLocalContext() != null ? getLocalContext() : getContext();
+    }
+
+    /**
      * Get the power manager used by the application.
      *
      * @return The power manager used by the application.
@@ -1408,16 +1420,6 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     }
 
     /**
-     * Generates default theme according to the current settings.
-     *
-     * @return The generated default theme.
-     */
-    public @NonNull DynamicAppTheme generateDefaultTheme() {
-        return new DynamicAppTheme().setBackgroundColor(
-                getDefault().getBackgroundColor(), false);
-    }
-
-    /**
      * Generates default background color according to the application theme.
      *
      * @param night {@code true} if the night mode is enabled.
@@ -1427,6 +1429,43 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     public @ColorInt int getDefaultBackgroundColor(boolean night) {
         return ContextCompat.getColor(getContext(), night
                 ? R.color.ads_window_background : R.color.ads_window_background_light);
+    }
+
+    /**
+     * Try to get the corner radius for the widget background from the system.
+     *
+     * @param fallback The fallback radius to be used in case of any issues.
+     *
+     * @return The corner radius for the widget background from the system.
+     */
+    @TargetApi(Build.VERSION_CODES.S)
+    public @Px int getWidgetCornerRadius(int fallback) {
+        if (DynamicSdkUtils.is31()) {
+            return Math.min(getContext().getResources().getDimensionPixelOffset(
+                    android.R.dimen.system_app_widget_background_radius),
+                    DynamicUnitUtils.convertDpToPixels(Theme.Corner.MAX));
+        }
+
+        return fallback;
+    }
+
+    /**
+     * Returns the default contrast with color to tint the background aware views accordingly.
+     *
+     * @return The default contrast with color.
+     */
+    public @ColorInt int getDefaultContrastWith() {
+        return get().getBackgroundColor();
+    }
+
+    /**
+     * Generates default theme according to the current settings.
+     *
+     * @return The generated default theme.
+     */
+    public @NonNull DynamicAppTheme generateDefaultTheme() {
+        return new DynamicAppTheme().setBackgroundColor(
+                getDefault().getBackgroundColor(), false);
     }
 
     /**
@@ -1489,25 +1528,6 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
      */
     public @ColorInt int generateSystemSecondaryColor(@ColorInt int color) {
         return Dynamic.getTintColor(color);
-    }
-
-    /**
-     * Returns the currently used context.
-     * <p>Generally, either application or an activity.
-     *
-     * @return The currently used context.
-     */
-    private @NonNull Context getResolvedContext() {
-        return getLocalContext() != null ? getLocalContext() : getContext();
-    }
-
-    /**
-     * Returns the default contrast with color to tint the background aware views accordingly.
-     *
-     * @return The default contrast with color.
-     */
-    public @ColorInt int getDefaultContrastWith() {
-        return get().getBackgroundColor();
     }
 
     /**

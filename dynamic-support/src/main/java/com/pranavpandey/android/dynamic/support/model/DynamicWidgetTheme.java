@@ -34,6 +34,7 @@ import com.pranavpandey.android.dynamic.theme.annotation.Exclude;
 import com.pranavpandey.android.dynamic.theme.base.WidgetTheme;
 import com.pranavpandey.android.dynamic.theme.strategy.ExcludeStrategy;
 import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
  * An app widget theme to store various colors and attributes for app widget which can be
@@ -68,7 +69,8 @@ public class DynamicWidgetTheme extends DynamicAppTheme
      * @param widgetId The widget id to be used.
      */
     public DynamicWidgetTheme(int widgetId) {
-        this(widgetId, new DynamicAppTheme());
+        this(widgetId, new DynamicAppTheme().setCornerSize(DynamicSdkUtils.is31()
+                ? Theme.Corner.SYSTEM : Theme.Corner.AUTO));
     }
 
     /**
@@ -316,6 +318,25 @@ public class DynamicWidgetTheme extends DynamicAppTheme
         }
 
         return super.getTextSecondaryColorInverse(resolve, inverse);
+    }
+
+    @Override
+    public int getCornerRadius(boolean resolve) {
+        if (resolve && super.getCornerRadius(false) == Theme.Corner.SYSTEM) {
+            return DynamicTheme.getInstance().getWidgetCornerRadius(
+                    super.getCornerRadius(true));
+        }
+
+        return super.getCornerRadius(resolve);
+    }
+
+    @Override
+    public int getCornerSize(boolean resolve) {
+        if (!resolve && super.getCornerRadius(false) == Theme.Corner.SYSTEM) {
+            return Theme.Corner.SYSTEM;
+        }
+
+        return super.getCornerSize(resolve);
     }
 
     @Override

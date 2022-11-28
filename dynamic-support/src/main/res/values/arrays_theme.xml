@@ -15,7 +15,8 @@
 	limitations under the License.
 -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Entries for the dynamic theme styles version. -->
     <string-array name="ads_dynamic_theme_version_entries">
@@ -210,6 +211,34 @@
         <item>0</item>
         <!-- Show -->
         <item>1</item>
+    </string-array>
+
+    <!-- Corner radius entries. -->
+    <string-array name="ads_corner_entries">
+        <item>@string/ads_theme_entry_auto</item>
+        <item>@string/ads_theme_entry_custom</item>
+    </string-array>
+
+    <!-- Corner radius values. -->
+    <string-array name="ads_corner_values">
+        <!-- Auto -->
+        <item>-3</item>
+        <!-- Custom -->
+        <item>-2</item>
+    </string-array>
+
+    <!-- Corner radius entries for the app widget. -->
+    <string-array name="ads_corner_entries_widget">
+        <item>@string/ads_theme_entry_auto</item>
+        <item>@string/ads_theme_entry_custom</item>
+    </string-array>
+
+    <!-- Corner radius values for the app widget. -->
+    <string-array name="ads_corner_values_widget">
+        <!-- Auto -->
+        <item>-3</item>
+        <!-- Custom -->
+        <item>-2</item>
     </string-array>
 
     <!-- Background aware entries. -->
