@@ -28,6 +28,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.LayoutRes;
@@ -87,6 +88,17 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
      */
     private TextView mNavHeaderSubtitle;
 
+    /**
+     * On back pressed callback to close the drawers.
+     */
+    protected final OnBackPressedCallback mDrawerOnBackPressedCallback =
+            new OnBackPressedCallback(false) {
+        @Override
+        public void handleOnBackPressed() {
+            onBackPressed();
+        }
+    };
+
     @Override
     protected @LayoutRes int getLayoutRes() {
         return setCollapsingToolbarLayout() ? R.layout.ads_activity_drawer_collapsing
@@ -117,6 +129,13 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
         setupDrawer();
         setStatusBarColor(getStatusBarColor());
         setNavigationBarColor(getNavigationBarColor());
+    }
+
+    @Override
+    protected void onConfigureOnBackPressedDispatcher() {
+        super.onConfigureOnBackPressedDispatcher();
+
+        getOnBackPressedDispatcher().addCallback(mDrawerOnBackPressedCallback);
     }
 
     @Override
@@ -196,10 +215,14 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
             public void onDrawerSlide(@NonNull View drawerView, float slideOffset) { }
 
             @Override
-            public void onDrawerOpened(@NonNull View drawerView) { }
+            public void onDrawerOpened(@NonNull View drawerView) {
+                mDrawerOnBackPressedCallback.setEnabled(!isPersistentDrawer());
+            }
 
             @Override
-            public void onDrawerClosed(@NonNull View drawerView) { }
+            public void onDrawerClosed(@NonNull View drawerView) {
+                mDrawerOnBackPressedCallback.setEnabled(false);
+            }
 
             @Override
             public void onDrawerStateChanged(int newState) {
@@ -220,6 +243,8 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
         if (mDrawer == null) {
             return;
         }
+
+        mDrawerOnBackPressedCallback.setEnabled(!isPersistentDrawer() && isDrawerOpen());
 
         if (isPersistentDrawer()) {
             setNavigationShadowVisible(true);
@@ -262,10 +287,14 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
                 public void onDrawerSlide(@NonNull View drawerView, float slideOffset) { }
 
                 @Override
-                public void onDrawerOpened(@NonNull View drawerView) { }
+                public void onDrawerOpened(@NonNull View drawerView) {
+                    mDrawerOnBackPressedCallback.setEnabled(true);
+                }
 
                 @Override
                 public void onDrawerClosed(@NonNull View drawerView) {
+                    mDrawerOnBackPressedCallback.setEnabled(false);
+
                     if (mNavigationItemSelected) {
                         mNavigationItemSelected = false;
                         onNavigationItemSelected(mNavigationItemId, true);
@@ -273,7 +302,9 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
                 }
 
                 @Override
-                public void onDrawerStateChanged(int newState) { }
+                public void onDrawerStateChanged(int newState) {
+                    collapseSearchView();
+                }
             });
         }
     }

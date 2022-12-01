@@ -277,7 +277,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        onRegisterOnBackInvokedDispatcher();
+        onConfigureOnBackPressedDispatcher();
         updateThemeFromIntent(getIntent());
         setDynamicTheme();
         onSetSharedElementTransition();
@@ -315,10 +315,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     }
 
     /**
-     * This method will be called to register on back invoked dispatcher on API 33 and above.
+     * This method will be called to configure on back pressed callback to support
+     * API 33 and above.
      */
     @TargetApi(Build.VERSION_CODES.TIRAMISU)
-    protected void onRegisterOnBackInvokedDispatcher() { }
+    protected void onConfigureOnBackPressedDispatcher() { }
 
     /**
      * Setup content according to the intent.
@@ -1782,11 +1783,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        if (getOnBackPressedDispatcher().hasEnabledCallbacks()) {
-            getOnBackPressedDispatcher().onBackPressed();
-        } else {
-            finishActivity();
-        }
+        finishActivity();
     }
 
     @Override

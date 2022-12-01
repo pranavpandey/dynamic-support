@@ -16,7 +16,8 @@
 -->
 
 <manifest
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <queries>
         <intent>
@@ -32,7 +33,9 @@
         android:label="@string/app_name"
         android:theme="@style/Sample"
         android:supportsRtl="true"
-        android:allowBackup="false">
+        android:enableOnBackInvokedCallback="true"
+        tools:ignore="RtlEnabled"
+        tools:targetApi="TIRAMISU">
 
         <meta-data android:name="android.max_aspect" android:value="2.1" />
 

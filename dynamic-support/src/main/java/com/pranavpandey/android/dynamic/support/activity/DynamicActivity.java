@@ -34,6 +34,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ViewSwitcher;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
@@ -200,6 +201,44 @@ public abstract class DynamicActivity extends DynamicStateActivity
      */
     protected boolean mAppBarVisible;
 
+    /**
+     * On back pressed callback to collapse the search view.
+     */
+    protected final OnBackPressedCallback mSearchViewOnBackPressedCallback =
+            new OnBackPressedCallback(false) {
+        @Override
+        public void handleOnBackPressed() {
+            onBackPressed();
+        }
+    };
+
+    /**
+     * On back pressed callback to expand the bottom sheet.
+     */
+    protected final OnBackPressedCallback mBottomSheetOnBackPressedCallback =
+            new OnBackPressedCallback(false) {
+        @Override
+        public void handleOnBackPressed() {
+            onBackPressed();
+        }
+    };
+
+    /**
+     * The bottom sheet callback to enable on back pressed callback accordingly.
+     */
+    protected final BottomSheetBehavior.BottomSheetCallback mBottomSheetCallback =
+            new BottomSheetBehavior.BottomSheetCallback() {
+        @Override
+        public void onStateChanged(@NonNull View bottomSheet,
+                @BottomSheetBehavior.State int newState) {
+            mBottomSheetOnBackPressedCallback.setEnabled(
+                    newState == BottomSheetBehavior.STATE_COLLAPSED);
+        }
+
+        @Override
+        public void onSlide(@NonNull View bottomSheet, float slideOffset) { }
+    };
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -280,6 +319,14 @@ public abstract class DynamicActivity extends DynamicStateActivity
                 }
             });
         }
+    }
+
+    @Override
+    protected void onConfigureOnBackPressedDispatcher() {
+        super.onConfigureOnBackPressedDispatcher();
+
+        getOnBackPressedDispatcher().addCallback(mSearchViewOnBackPressedCallback);
+        getOnBackPressedDispatcher().addCallback(mBottomSheetOnBackPressedCallback);
     }
 
     @Override
@@ -950,6 +997,13 @@ public abstract class DynamicActivity extends DynamicStateActivity
      */
     public void addBottomSheet(@Nullable View view, boolean removePrevious) {
         addView(mBottomSheet, view, removePrevious);
+
+        if (isExpandBottomSheetOnExit() && getBottomSheetBehavior() != null) {
+            getBottomSheetBehavior().addBottomSheetCallback(mBottomSheetCallback);
+
+            mBottomSheetOnBackPressedCallback.setEnabled(getBottomSheetBehavior().getState()
+                    == BottomSheetBehavior.STATE_COLLAPSED);
+        }
     }
 
     /**
@@ -1319,6 +1373,8 @@ public abstract class DynamicActivity extends DynamicStateActivity
 
     @Override
     public void onSearchViewExpanded() {
+        mSearchViewOnBackPressedCallback.setEnabled(true);
+
         if (!(this instanceof DynamicDrawerActivity)) {
             setNavigationIcon(R.drawable.ads_ic_back);
         }
@@ -1330,6 +1386,8 @@ public abstract class DynamicActivity extends DynamicStateActivity
 
     @Override
     public void onSearchViewCollapsed() {
+        mSearchViewOnBackPressedCallback.setEnabled(false);
+
         if (!(this instanceof DynamicDrawerActivity)) {
             setNavigationIcon(getDefaultNavigationIcon());
         }
