@@ -27,6 +27,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -46,6 +49,7 @@ import com.pranavpandey.android.dynamic.support.permission.view.DynamicPermissio
 import com.pranavpandey.android.dynamic.support.util.DynamicPermissionUtils;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Base fragment class to show a list of required permissions in a recycler view. It will be used
@@ -105,6 +109,23 @@ public class DynamicPermissionsFragment extends DynamicFragment {
     private boolean mRequestingDangerousPermissions;
 
     /**
+     * Activity result launcher to request permissions.
+     */
+    private ActivityResultLauncher<String[]> mPermissionsResultLauncher;
+
+    /**
+     * Activity result callback to request permissions.
+     */
+    private final ActivityResultCallback<Map<String, Boolean>> mPermissionsResultCallback =
+            new ActivityResultCallback<Map<String, Boolean>>() {
+        @Override
+        public void onActivityResult(Map<String, Boolean> result) {
+            mRequestingDangerousPermissions = false;
+            resumePermissionsRequest();
+        }
+    };
+
+    /**
      * Initialize the new instance of this fragment.
      *
      * @param permissionsIntent The intent with all the requested permissions and action.
@@ -143,6 +164,10 @@ public class DynamicPermissionsFragment extends DynamicFragment {
         if (getActivity() == null) {
             return;
         }
+
+        mPermissionsResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestMultiplePermissions(),
+                mPermissionsResultCallback);
 
         getDynamicActivity().setExtendedFAB(R.drawable.ads_ic_done_all,
                 R.string.ads_perm_request, View.VISIBLE, new View.OnClickListener() {
@@ -365,8 +390,12 @@ public class DynamicPermissionsFragment extends DynamicFragment {
      * @see ActivityCompat#requestPermissions(Activity, String[], int)
      */
     private void requestDangerousPermissions(@NonNull String... permissions) {
+        if (getActivity() == null || mPermissionsResultLauncher == null) {
+            return;
+        }
+
         if (permissions.length != 0) {
-            requestPermissions(permissions, ADS_PERMISSIONS_REQUEST_CODE);
+            mPermissionsResultLauncher.launch(permissions);
             mRequestingDangerousPermissions = true;
         }
     }
@@ -396,17 +425,6 @@ public class DynamicPermissionsFragment extends DynamicFragment {
                     break;
             }
         }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-            @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (getActivity() != null) {
-            requireActivity().onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-
-        mRequestingDangerousPermissions = false;
-        resumePermissionsRequest();
     }
 
     /**
