@@ -22,7 +22,7 @@ buildscript {
             'buildTools'  : '33.0.0',
             'multidex'    : '2.0.1',
             'dynamic'     : '4.4.7',
-            'fragment'    : '1.5.4',
+            'fragment'    : '1.5.5',
             'flexbox'     : '3.0.0',
             'kotlin'      : '1.7.10',
             'locale'      : '2.3.0',
