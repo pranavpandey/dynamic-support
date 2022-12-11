@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":10,"i47":10,"i48":10,"i49":10,"i50":10,"i51":10,"i52":10,"i53":10,"i54":10,"i55":10,"i56":10,"i57":10,"i58":10,"i59":10,"i60":10,"i61":10,"i62":10,"i63":10,"i64":10,"i65":10,"i66":10,"i67":10,"i68":10,"i69":10,"i70":10,"i71":10,"i72":10,"i73":10,"i74":10,"i75":10,"i76":10,"i77":10,"i78":10,"i79":10,"i80":10,"i81":10,"i82":10,"i83":10,"i84":10,"i85":10,"i86":10,"i87":10,"i88":10,"i89":10,"i90":10,"i91":10,"i92":10,"i93":10,"i94":10,"i95":10,"i96":10,"i97":10,"i98":10,"i99":10,"i100":10,"i101":10,"i102":10,"i103":10,"i104":10,"i105":10,"i106":10,"i107":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":10,"i47":10,"i48":10,"i49":10,"i50":10,"i51":10,"i52":10,"i53":10,"i54":10,"i55":10,"i56":10,"i57":10,"i58":10,"i59":10,"i60":10,"i61":10,"i62":10,"i63":10,"i64":10,"i65":10,"i66":10,"i67":10,"i68":10,"i69":10,"i70":10,"i71":10,"i72":10,"i73":10,"i74":10,"i75":10,"i76":10,"i77":10,"i78":10,"i79":10,"i80":10,"i81":10,"i82":10,"i83":10,"i84":10,"i85":10,"i86":10,"i87":10,"i88":10,"i89":10,"i90":10,"i91":10,"i92":10,"i93":10,"i94":10,"i95":10,"i96":10,"i97":10,"i98":10,"i99":10,"i100":10,"i101":10,"i102":10,"i103":10,"i104":10,"i105":10,"i106":10,"i107":10,"i108":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -271,6 +271,20 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>protected com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#mBottomSheetCallback">mBottomSheetCallback</a></span></code></th>
+<td class="colLast">
+<div class="block">The bottom sheet callback to enable on back pressed callback accordingly.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected androidx.activity.OnBackPressedCallback</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#mBottomSheetOnBackPressedCallback">mBottomSheetOnBackPressedCallback</a></span></code></th>
+<td class="colLast">
+<div class="block">On back pressed callback to expand the bottom sheet.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>protected com.google.android.material.appbar.CollapsingToolbarLayout</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#mCollapsingToolbarLayout">mCollapsingToolbarLayout</a></span></code></th>
 <td class="colLast">
@@ -370,13 +384,20 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>protected androidx.activity.OnBackPressedCallback</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#mSearchViewOnBackPressedCallback">mSearchViewOnBackPressedCallback</a></span></code></th>
+<td class="colLast">
+<div class="block">On back pressed callback to collapse the search view.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>protected <a href="https://developer.android.com/reference/android/view/ViewGroup.html?is-external=true" title="class or interface in android.view" class="externalLink">ViewGroup</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#mSearchViewRoot">mSearchViewRoot</a></span></code></th>
 <td class="colLast">
 <div class="block">Root view of the toolbar search view.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected androidx.appcompat.widget.Toolbar</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#mToolbar">mToolbar</a></span></code></th>
 <td class="colLast">
@@ -849,62 +870,70 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
 </tr>
 <tr id="i53" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onConfigureOnBackPressedDispatcher()">onConfigureOnBackPressedDispatcher</a></span>()</code></th>
+<td class="colLast">
+<div class="block">This method will be called to configure on back pressed callback to support
+ API 33 and above.</div>
+</td>
+</tr>
+<tr id="i54" class="altColor">
+<td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onCreate(android.os.Bundle)">onCreate</a></span>&#8203;(<a href="https://developer.android.com/reference/android/os/Bundle.html?is-external=true" title="class or interface in android.os" class="externalLink">Bundle</a>&nbsp;savedInstanceState)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i54" class="altColor">
+<tr id="i55" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onCreateOptionsMenu(android.view.Menu)">onCreateOptionsMenu</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/Menu.html?is-external=true" title="class or interface in android.view" class="externalLink">Menu</a>&nbsp;menu)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i55" class="rowColor">
+<tr id="i56" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onSaveInstanceState(android.os.Bundle)">onSaveInstanceState</a></span>&#8203;(<a href="https://developer.android.com/reference/android/os/Bundle.html?is-external=true" title="class or interface in android.os" class="externalLink">Bundle</a>&nbsp;outState)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i56" class="altColor">
+<tr id="i57" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onSearchViewCollapsed()">onSearchViewCollapsed</a></span>()</code></th>
 <td class="colLast">
 <div class="block">This method will be called when the search view is collapsed.</div>
 </td>
 </tr>
-<tr id="i57" class="rowColor">
+<tr id="i58" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onSearchViewExpanded()">onSearchViewExpanded</a></span>()</code></th>
 <td class="colLast">
 <div class="block">This method will be called when the search view is expanded.</div>
 </td>
 </tr>
-<tr id="i58" class="altColor">
+<tr id="i59" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onSnackbarShow(com.google.android.material.snackbar.Snackbar)">onSnackbarShow</a></span>&#8203;(com.google.android.material.snackbar.Snackbar&nbsp;snackbar)</code></th>
 <td class="colLast">
 <div class="block">This method will be called to show the snackbar.</div>
 </td>
 </tr>
-<tr id="i59" class="rowColor">
+<tr id="i60" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeExtendedFAB()">removeExtendedFAB</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Remove the extended FAB associated with this activity.</div>
 </td>
 </tr>
-<tr id="i60" class="altColor">
+<tr id="i61" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeFAB()">removeFAB</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Remove the FAB associated with this activity.</div>
 </td>
 </tr>
-<tr id="i61" class="rowColor">
+<tr id="i62" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#restoreSearchViewState()">restoreSearchViewState</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Restore the search view state after the configuration change.</div>
 </td>
 </tr>
-<tr id="i62" class="altColor">
+<tr id="i63" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAppBarBackDrop(int)">setAppBarBackDrop</a></span>&#8203;(int&nbsp;drawableRes)</code></th>
 <td class="colLast">
@@ -912,7 +941,7 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
  shown when it is expanded and will be hidden on collapsing the toolbar.</div>
 </td>
 </tr>
-<tr id="i63" class="rowColor">
+<tr id="i64" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAppBarBackDrop(android.graphics.drawable.Drawable)">setAppBarBackDrop</a></span>&#8203;(<a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>&nbsp;drawable)</code></th>
 <td class="colLast">
@@ -920,7 +949,7 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
  shown when it is expanded and will be hidden on collapsing the toolbar.</div>
 </td>
 </tr>
-<tr id="i64" class="altColor">
+<tr id="i65" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAppBarBackDrop(android.view.View,int)">setAppBarBackDrop</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.html?is-external=true" title="class or interface in android.view" class="externalLink">View</a>&nbsp;view,
                  int&nbsp;expandedTitleColor)</code></th>
@@ -929,7 +958,7 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
  expanded and will be hidden on collapsing the toolbar.</div>
 </td>
 </tr>
-<tr id="i65" class="rowColor">
+<tr id="i66" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAppBarBackDropRes(int,int)">setAppBarBackDropRes</a></span>&#8203;(int&nbsp;layoutRes,
                     int&nbsp;expandedTitleColorRes)</code></th>
@@ -938,28 +967,28 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
  expanded and will be hidden on collapsing the toolbar.</div>
 </td>
 </tr>
-<tr id="i66" class="altColor">
+<tr id="i67" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAppBarProgressVisible(boolean)">setAppBarProgressVisible</a></span>&#8203;(boolean&nbsp;visible)</code></th>
 <td class="colLast">
 <div class="block">Set the visibility of app bar progress.</div>
 </td>
 </tr>
-<tr id="i67" class="rowColor">
+<tr id="i68" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAppBarShadowVisible(boolean)">setAppBarShadowVisible</a></span>&#8203;(boolean&nbsp;visible)</code></th>
 <td class="colLast">
 <div class="block">Set the visibility of app bar shadow.</div>
 </td>
 </tr>
-<tr id="i68" class="altColor">
+<tr id="i69" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAppBarTransparent(boolean)">setAppBarTransparent</a></span>&#8203;(boolean&nbsp;transparent)</code></th>
 <td class="colLast">
 <div class="block">Make the app bar transparent or translucent.</div>
 </td>
 </tr>
-<tr id="i69" class="rowColor">
+<tr id="i70" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAppBarVisible(boolean)">setAppBarVisible</a></span>&#8203;(boolean&nbsp;appBarVisible)</code></th>
 <td class="colLast">
@@ -967,33 +996,33 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
  if available.</div>
 </td>
 </tr>
-<tr id="i70" class="altColor">
+<tr id="i71" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setBottomBarShadowVisible(boolean)">setBottomBarShadowVisible</a></span>&#8203;(boolean&nbsp;visible)</code></th>
 <td class="colLast">
 <div class="block">Set the visibility of bottom bar shadow.</div>
 </td>
 </tr>
-<tr id="i71" class="rowColor">
+<tr id="i72" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setBottomSheetState(int)">setBottomSheetState</a></span>&#8203;(int&nbsp;bottomSheetState)</code></th>
 <td class="colLast">
 <div class="block">Sets the bottom sheet state if present.</div>
 </td>
 </tr>
-<tr id="i72" class="altColor">
+<tr id="i73" class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCollapsingToolbarLayout()">setCollapsingToolbarLayout</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i73" class="rowColor">
+<tr id="i74" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCollapsingToolbarLayoutFlags(int)">setCollapsingToolbarLayoutFlags</a></span>&#8203;(int&nbsp;flags)</code></th>
 <td class="colLast">
 <div class="block">Set layout scroll flags for the collapsing toolbar layout.</div>
 </td>
 </tr>
-<tr id="i74" class="altColor">
+<tr id="i75" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setExtendedFAB(int,int,int,android.view.View.OnClickListener)">setExtendedFAB</a></span>&#8203;(int&nbsp;drawableRes,
               int&nbsp;resId,
@@ -1004,7 +1033,7 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
  a text, current visibility and a click listener.</div>
 </td>
 </tr>
-<tr id="i75" class="rowColor">
+<tr id="i76" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setExtendedFAB(android.graphics.drawable.Drawable,java.lang.CharSequence,int,android.view.View.OnClickListener)">setExtendedFAB</a></span>&#8203;(<a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>&nbsp;icon,
               java.lang.CharSequence&nbsp;text,
@@ -1015,7 +1044,7 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
  a text, current visibility and a click listener.</div>
 </td>
 </tr>
-<tr id="i76" class="altColor">
+<tr id="i77" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setExtendedFABVisibility(int)">setExtendedFABVisibility</a></span>&#8203;(int&nbsp;visibility)</code></th>
 <td class="colLast">
@@ -1023,7 +1052,7 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
  or <a href="https://developer.android.com/reference/android/view/View.html?is-external=true#GONE" title="class or interface in android.view" class="externalLink"><code>View.GONE</code></a>.</div>
 </td>
 </tr>
-<tr id="i77" class="rowColor">
+<tr id="i78" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setFAB(int,int,android.view.View.OnClickListener)">setFAB</a></span>&#8203;(int&nbsp;drawableRes,
       int&nbsp;visibility,
@@ -1033,7 +1062,7 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
  current visibility and a click listener.</div>
 </td>
 </tr>
-<tr id="i78" class="altColor">
+<tr id="i79" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setFAB(android.graphics.drawable.Drawable,int,android.view.View.OnClickListener)">setFAB</a></span>&#8203;(<a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>&nbsp;drawable,
       int&nbsp;visibility,
@@ -1043,28 +1072,28 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
  current visibility and a click listener.</div>
 </td>
 </tr>
-<tr id="i79" class="rowColor">
+<tr id="i80" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setFABImageDrawable(int)">setFABImageDrawable</a></span>&#8203;(int&nbsp;drawableRes)</code></th>
 <td class="colLast">
 <div class="block">Set the FAB image drawable resource.</div>
 </td>
 </tr>
-<tr id="i80" class="altColor">
+<tr id="i81" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setFABImageDrawable(android.graphics.drawable.Drawable)">setFABImageDrawable</a></span>&#8203;(<a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>&nbsp;drawable)</code></th>
 <td class="colLast">
 <div class="block">Set the FAB image drawable resource.</div>
 </td>
 </tr>
-<tr id="i81" class="rowColor">
+<tr id="i82" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setFABVisibility(int)">setFABVisibility</a></span>&#8203;(int&nbsp;visibility)</code></th>
 <td class="colLast">
 <div class="block">Set the FAB visibility to <a href="https://developer.android.com/reference/android/view/View.html?is-external=true#VISIBLE" title="class or interface in android.view" class="externalLink"><code>View.VISIBLE</code></a>, <a href="https://developer.android.com/reference/android/view/View.html?is-external=true#INVISIBLE" title="class or interface in android.view" class="externalLink"><code>View.INVISIBLE</code></a> or <a href="https://developer.android.com/reference/android/view/View.html?is-external=true#GONE" title="class or interface in android.view" class="externalLink"><code>View.GONE</code></a>.</div>
 </td>
 </tr>
-<tr id="i82" class="altColor">
+<tr id="i83" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMenuItemIcon(int,int)">setMenuItemIcon</a></span>&#8203;(int&nbsp;id,
                int&nbsp;drawableRes)</code></th>
@@ -1072,7 +1101,7 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
 <div class="block">Set the icon for the app bar menu item by supplying its id.</div>
 </td>
 </tr>
-<tr id="i83" class="rowColor">
+<tr id="i84" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMenuItemIcon(int,android.graphics.drawable.Drawable)">setMenuItemIcon</a></span>&#8203;(int&nbsp;id,
                <a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>&nbsp;drawable)</code></th>
@@ -1080,7 +1109,7 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
 <div class="block">Set the icon for the app bar menu item by supplying its id.</div>
 </td>
 </tr>
-<tr id="i84" class="altColor">
+<tr id="i85" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMenuItemTitle(int,int)">setMenuItemTitle</a></span>&#8203;(int&nbsp;id,
                 int&nbsp;titleRes)</code></th>
@@ -1088,7 +1117,7 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
 <div class="block">Set the title for the app bar menu item by supplying its id.</div>
 </td>
 </tr>
-<tr id="i85" class="rowColor">
+<tr id="i86" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMenuItemTitle(int,java.lang.CharSequence)">setMenuItemTitle</a></span>&#8203;(int&nbsp;id,
                 java.lang.CharSequence&nbsp;title)</code></th>
@@ -1096,7 +1125,7 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
 <div class="block">Set the title for the app bar menu item by supplying its id.</div>
 </td>
 </tr>
-<tr id="i86" class="altColor">
+<tr id="i87" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMenuItemVisible(int,boolean)">setMenuItemVisible</a></span>&#8203;(int&nbsp;id,
                   boolean&nbsp;visible)</code></th>
@@ -1104,7 +1133,7 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
 <div class="block">Set the visibility of the app bar menu item by supplying its id.</div>
 </td>
 </tr>
-<tr id="i87" class="rowColor">
+<tr id="i88" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setNavigationClickListener(int,android.view.View.OnClickListener)">setNavigationClickListener</a></span>&#8203;(int&nbsp;iconRes,
                           <a href="https://developer.android.com/reference/android/view/View.OnClickListener.html?is-external=true" title="class or interface in android.view" class="externalLink">View.OnClickListener</a>&nbsp;onClickListener)</code></th>
@@ -1112,7 +1141,7 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
 <div class="block">Set the icon and on click listener for the back or up button in the app bar.</div>
 </td>
 </tr>
-<tr id="i88" class="altColor">
+<tr id="i89" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setNavigationClickListener(android.graphics.drawable.Drawable,android.view.View.OnClickListener)">setNavigationClickListener</a></span>&#8203;(<a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>&nbsp;icon,
                           <a href="https://developer.android.com/reference/android/view/View.OnClickListener.html?is-external=true" title="class or interface in android.view" class="externalLink">View.OnClickListener</a>&nbsp;onClickListener)</code></th>
@@ -1120,122 +1149,122 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
 <div class="block">Set the icon and on click listener for the back or up button in the app bar.</div>
 </td>
 </tr>
-<tr id="i89" class="rowColor">
+<tr id="i90" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setNavigationClickListener(android.view.View.OnClickListener)">setNavigationClickListener</a></span>&#8203;(<a href="https://developer.android.com/reference/android/view/View.OnClickListener.html?is-external=true" title="class or interface in android.view" class="externalLink">View.OnClickListener</a>&nbsp;onClickListener)</code></th>
 <td class="colLast">
 <div class="block">Sets the on click listener for the back or up button in the app bar.</div>
 </td>
 </tr>
-<tr id="i90" class="altColor">
+<tr id="i91" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setNavigationIcon(int)">setNavigationIcon</a></span>&#8203;(int&nbsp;iconRes)</code></th>
 <td class="colLast">
 <div class="block">Set the icon for the back or up button in the app bar.</div>
 </td>
 </tr>
-<tr id="i91" class="rowColor">
+<tr id="i92" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setNavigationIcon(android.graphics.drawable.Drawable)">setNavigationIcon</a></span>&#8203;(<a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>&nbsp;icon)</code></th>
 <td class="colLast">
 <div class="block">Set the icon for the back or up button in the app bar.</div>
 </td>
 </tr>
-<tr id="i92" class="altColor">
+<tr id="i93" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setNavigationShadowVisible(boolean)">setNavigationShadowVisible</a></span>&#8203;(boolean&nbsp;visible)</code></th>
 <td class="colLast">
 <div class="block">Set the visibility of navigation bar shadow.</div>
 </td>
 </tr>
-<tr id="i93" class="rowColor">
+<tr id="i94" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSearchView()">setSearchView</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Setup search view edit text and clear button listeners.</div>
 </td>
 </tr>
-<tr id="i94" class="altColor">
+<tr id="i95" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSearchViewListener(com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener)">setSearchViewListener</a></span>&#8203;(<a href="../listener/DynamicSearchListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicSearchListener</a>&nbsp;dynamicSearchListener)</code></th>
 <td class="colLast">
 <div class="block">Sets the listener to listen search view expand and collapse callbacks.</div>
 </td>
 </tr>
-<tr id="i95" class="rowColor">
+<tr id="i96" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setStatusBarColor(int)">setStatusBarColor</a></span>&#8203;(int&nbsp;color)</code></th>
 <td class="colLast">
 <div class="block">Set the status bar color.</div>
 </td>
 </tr>
-<tr id="i96" class="altColor">
+<tr id="i97" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSubtitle(int)">setSubtitle</a></span>&#8203;(int&nbsp;subtitleRes)</code></th>
 <td class="colLast">
 <div class="block">Set the subtitle resource for the support action bar.</div>
 </td>
 </tr>
-<tr id="i97" class="rowColor">
+<tr id="i98" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSubtitle(java.lang.CharSequence)">setSubtitle</a></span>&#8203;(java.lang.CharSequence&nbsp;subtitle)</code></th>
 <td class="colLast">
 <div class="block">Set the subtitle for the support action bar.</div>
 </td>
 </tr>
-<tr id="i98" class="altColor">
+<tr id="i99" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTitle(int)">setTitle</a></span>&#8203;(int&nbsp;titleRes)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i99" class="rowColor">
+<tr id="i100" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTitle(java.lang.CharSequence)">setTitle</a></span>&#8203;(java.lang.CharSequence&nbsp;title)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i100" class="altColor">
+<tr id="i101" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setToolbarLayoutFlags(int)">setToolbarLayoutFlags</a></span>&#8203;(int&nbsp;flagsOrMode)</code></th>
 <td class="colLast">
 <div class="block">Set layout scroll flags or collapse mode for the toolbar.</div>
 </td>
 </tr>
-<tr id="i101" class="rowColor">
+<tr id="i102" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setWindowBackground(int)">setWindowBackground</a></span>&#8203;(int&nbsp;color)</code></th>
 <td class="colLast">
 <div class="block">Sets the window background color.</div>
 </td>
 </tr>
-<tr id="i102" class="altColor">
+<tr id="i103" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showExtendedFAB()">showExtendedFAB</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Show the extended FAB by setting its visibility to <a href="https://developer.android.com/reference/android/view/View.html?is-external=true#VISIBLE" title="class or interface in android.view" class="externalLink"><code>View.VISIBLE</code></a>.</div>
 </td>
 </tr>
-<tr id="i103" class="rowColor">
+<tr id="i104" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showFAB()">showFAB</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Show the FAB by setting its visibility to <a href="https://developer.android.com/reference/android/view/View.html?is-external=true#VISIBLE" title="class or interface in android.view" class="externalLink"><code>View.VISIBLE</code></a>.</div>
 </td>
 </tr>
-<tr id="i104" class="altColor">
+<tr id="i105" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shrinkFAB()">shrinkFAB</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Shrink the extended FAB.</div>
 </td>
 </tr>
-<tr id="i105" class="rowColor">
+<tr id="i106" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shrinkFAB(boolean)">shrinkFAB</a></span>&#8203;(boolean&nbsp;allowExtended)</code></th>
 <td class="colLast">
 <div class="block">Shrink the extended FAB.</div>
 </td>
 </tr>
-<tr id="i106" class="altColor">
+<tr id="i107" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#updateExtendedFAB(int,int)">updateExtendedFAB</a></span>&#8203;(int&nbsp;drawableRes,
                  int&nbsp;resId)</code></th>
@@ -1243,7 +1272,7 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
 <div class="block">Set the extended FAB icon and text.</div>
 </td>
 </tr>
-<tr id="i107" class="rowColor">
+<tr id="i108" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#updateExtendedFAB(android.graphics.drawable.Drawable,java.lang.CharSequence)">updateExtendedFAB</a></span>&#8203;(<a href="https://developer.android.com/reference/android/graphics/drawable/Drawable.html?is-external=true" title="class or interface in android.graphics.drawable" class="externalLink">Drawable</a>&nbsp;icon,
                  java.lang.CharSequence&nbsp;text)</code></th>
@@ -1264,7 +1293,7 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.pranavpandey.android.dynamic.support.activity.<a href="DynamicSystemActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicSystemActivity</a></h3>
-<code><a href="DynamicSystemActivity.html#checkForThemeIntent(android.content.Intent)">checkForThemeIntent</a>, <a href="DynamicSystemActivity.html#commitFragmentTransaction(androidx.fragment.app.FragmentTransaction)">commitFragmentTransaction</a>, <a href="DynamicSystemActivity.html#createConfigurationContext(android.content.res.Configuration)">createConfigurationContext</a>, <a href="DynamicSystemActivity.html#finish()">finish</a>, <a href="DynamicSystemActivity.html#finishActivity()">finishActivity</a>, <a href="DynamicSystemActivity.html#getAppliedNavigationBarColor()">getAppliedNavigationBarColor</a>, <a href="DynamicSystemActivity.html#getBackgroundColor()">getBackgroundColor</a>, <a href="DynamicSystemActivity.html#getContext()">getContext</a>, <a href="DynamicSystemActivity.html#getCurrentLocale()">getCurrentLocale</a>, <a href="DynamicSystemActivity.html#getDefaultColor(int)">getDefaultColor</a>, <a href="DynamicSystemActivity.html#getDefaultLocale(android.content.Context)">getDefaultLocale</a>, <a href="DynamicSystemActivity.html#getDelegate()">getDelegate</a>, <a href="DynamicSystemActivity.html#getDynamicEnterTransition()">getDynamicEnterTransition</a>, <a href="DynamicSystemActivity.html#getDynamicExitTransition()">getDynamicExitTransition</a>, <a href="DynamicSystemActivity.html#getDynamicIntentTheme()">getDynamicIntentTheme</a>, <a href="DynamicSystemActivity.html#getDynamicLayoutInflater()">getDynamicLayoutInflater</a>, <a href="DynamicSystemActivity.html#getDynamicReenterTransition()">getDynamicReenterTransition</a>, <a href="DynamicSystemActivity.html#getDynamicReturnTransition()">getDynamicReturnTransition</a>, <a href="DynamicSystemActivity.html#getDynamicTheme()">getDynamicTheme</a>, <a href="DynamicSystemActivity.html#getDynamicTransitionListener()">getDynamicTransitionListener</a>, <a href="DynamicSystemActivity.html#getEdgeToEdgeViewBottom()">getEdgeToEdgeViewBottom</a>, <a href="DynamicSystemActivity.html#getFontScale()">getFontScale</a>, <a href="DynamicSystemActivity.html#getLocale()">getLocale</a>, <a href="DynamicSystemActivity.html#getNavigationBarColor()">getNavigationBarColor</a>, <a href="DynamicSystemActivity.html#getPostponeTransitionView()">getPostponeTransitionView</a>, <a href="DynamicSystemActivity.html#getRequiredThemeVersion()">getRequiredThemeVersion</a>, <a href="DynamicSystemActivity.html#getSavedInstanceState()">getSavedInstanceState</a>, <a href="DynamicSystemActivity.html#getSharedElementCallback()">getSharedElementCallback</a>, <a href="DynamicSystemActivity.html#getSharedElementTransition()">getSharedElementTransition</a>, <a href="DynamicSystemActivity.html#getStatusBarColor()">getStatusBarColor</a>, <a href="DynamicSystemActivity.html#getSupportedLocales()">getSupportedLocales</a>, <a href="DynamicSystemActivity.html#getThemeRes()">getThemeRes</a>, <a href="DynamicSystemActivity.html#getThemeRes(com.pranavpandey.android.dynamic.theme.AppTheme)">getThemeRes</a>, <a href="DynamicSystemActivity.html#getTransitionPosition()">getTransitionPosition</a>, <a href="DynamicSystemActivity.html#getTransitionResultCode()">getTransitionResultCode</a>, <a href="DynamicSystemActivity.html#isApplyFooterInsets()">isApplyFooterInsets</a>, <a href="DynamicSystemActivity.html#isDynamicColor()">isDynamicColor</a>, <a href="DynamicSystemActivity.html#isDynamicColors()">isDynamicColors</a>, <a href="DynamicSystemActivity.html#isEdgeToEdgeContent()">isEdgeToEdgeContent</a>, <a href="DynamicSystemActivity.html#isForceMenuIcons()">isForceMenuIcons</a>, <a href="DynamicSystemActivity.html#isLaunchedFromHistory()">isLaunchedFromHistory</a>, <a href="DynamicSystemActivity.html#isNavigationBarTheme()">isNavigationBarTheme</a>, <a href="DynamicSystemActivity.html#isNightMode(boolean)">isNightMode</a>, <a href="DynamicSystemActivity.html#isOnSharedPreferenceChangeListener()">isOnSharedPreferenceChangeListener</a>, <a href="DynamicSystemActivity.html#isPaused()">isPaused</a>, <a href="DynamicSystemActivity.html#isSupportFinishAfterTransition()">isSupportFinishAfterTransition</a>, <a href="DynamicSystemActivity.html#isSystemColor()">isSystemColor</a>, <a href="DynamicSystemActivity.html#isThemeActivity()">isThemeActivity</a>, <a href="DynamicSystemActivity.html#isWallpaperColor()">isWallpaperColor</a>, <a href="DynamicSystemActivity.html#navigationBarThemeChange()">navigationBarThemeChange</a>, <a href="DynamicSystemActivity.html#onAdjustEnterReturnTransition(java.lang.Object,boolean)">onAdjustEnterReturnTransition</a>, <a href="DynamicSystemActivity.html#onAdjustExitReenterTransition(java.lang.Object,boolean)">onAdjustExitReenterTransition</a>, <a href="DynamicSystemActivity.html#onAppThemeChange()">onAppThemeChange</a>, <a href="DynamicSystemActivity.html#onAutoThemeChanged(boolean)">onAutoThemeChanged</a>, <a href="DynamicSystemActivity.html#onCustomiseTheme()">onCustomiseTheme</a>, <a href="DynamicSystemActivity.html#onDestroy()">onDestroy</a>, <a href="DynamicSystemActivity.html#onDynamicChanged(boolean,boolean)">onDynamicChanged</a>, <a href="DynamicSystemActivity.html#onDynamicColorsChanged(com.pranavpandey.android.dynamic.theme.DynamicColors,boolean)">onDynamicColorsChanged</a>, <a href="DynamicSystemActivity.html#onDynamicConfigurationChanged(boolean,boolean,boolean,boolean,boolean)">onDynamicConfigurationChanged</a>, <a href="DynamicSystemActivity.html#onFindView(int,int,java.lang.String,int)">onFindView</a>, <a href="DynamicSystemActivity.html#onManageSharedElementTransition()">onManageSharedElementTransition</a>, <a href="DynamicSystemActivity.html#onNavigationBarThemeChanged()">onNavigationBarThemeChanged</a>, <a href="DynamicSystemActivity.html#onNewIntent(android.content.Intent)">onNewIntent</a>, <a href="DynamicSystemActivity.html#onNewIntent(android.content.Intent,boolean)">onNewIntent</a>, <a href="DynamicSystemActivity.html#onPause()">onPause</a>, <a href="DynamicSystemActivity.html#onPostCreate(android.os.Bundle)">onPostCreate</a>, <a href="DynamicSystemActivity.html#onPowerSaveModeChanged(boolean)">onPowerSaveModeChanged</a>, <a href="DynamicSystemActivity.html#onPrepareOptionsMenu(android.view.Menu)">onPrepareOptionsMenu</a>, <a href="DynamicSystemActivity.html#onRegisterOnBackInvokedDispatcher()">onRegisterOnBackInvokedDispatcher</a>, <a href="DynamicSystemActivity.html#onResume()">onResume</a>, <a href="DynamicSystemActivity.html#onSetFallbackActivityOptions()">onSetFallbackActivityOptions</a>, <a href="DynamicSystemActivity.html#onSetSharedElementTransition()">onSetSharedElementTransition</a>, <a href="DynamicSystemActivity.html#onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String)">onSharedPreferenceChanged</a>, <a href="DynamicSystemActivity.html#onStartActivityException(java.lang.Exception)">onStartActivityException</a>, <a href="DynamicSystemActivity.html#onThemeIntent(java.lang.String,java.lang.String)">onThemeIntent</a>, <a href="DynamicSystemActivity.html#onUpdateIntent(android.content.Intent,boolean)">onUpdateIntent</a>, <a href="DynamicSystemActivity.html#resetSharedElementTransition()">resetSharedElementTransition</a>, <a href="DynamicSystemActivity.html#setDynamicTransitionListener(com.pranavpandey.android.dynamic.support.listener.DynamicTransitionListener)">setDynamicTransitionListener</a>, <a href="DynamicSystemActivity.html#setLocale(android.content.Context)">setLocale</a>, <a href="DynamicSystemActivity.html#setNavigationBarColor(int)">setNavigationBarColor</a>, <a href="DynamicSystemActivity.html#setNavigationBarColorRes(int)">setNavigationBarColorRes</a>, <a href="DynamicSystemActivity.html#setNavigationBarTheme()">setNavigationBarTheme</a>, <a href="DynamicSystemActivity.html#setNavigationBarThemeInLandscape()">setNavigationBarThemeInLandscape</a>, <a href="DynamicSystemActivity.html#setRootBackground(int)">setRootBackground</a>, <a href="DynamicSystemActivity.html#setSharedElementCallback(android.app.SharedElementCallback)">setSharedElementCallback</a>, <a href="DynamicSystemActivity.html#setSharedElementTransition(android.transition.Transition)">setSharedElementTransition</a>, <a href="DynamicSystemActivity.html#setStatusBarColorRes(int)">setStatusBarColorRes</a>, <a href="DynamicSystemActivity.html#setTransitionPosition(int)">setTransitionPosition</a>, <a href="DynamicSystemActivity.html#setTransitionResultCode(int)">setTransitionResultCode</a>, <a href="DynamicSystemActivity.html#setTranslucentNavigationBar()">setTranslucentNavigationBar</a>, <a href="DynamicSystemActivity.html#setTranslucentStatusBar()">setTranslucentStatusBar</a>, <a href="DynamicSystemActivity.html#setWindowStatusBarColor(int)">setWindowStatusBarColor</a>, <a href="DynamicSystemActivity.html#startActivity(android.content.Intent)">startActivity</a>, <a href="DynamicSystemActivity.html#startActivity(android.content.Intent,android.os.Bundle)">startActivity</a>, <a href="DynamicSystemActivity.html#startActivityForResult(android.content.Intent,int)">startActivityForResult</a>, <a href="DynamicSystemActivity.html#startActivityForResult(android.content.Intent,int,android.os.Bundle)">startActivityForResult</a>, <a href="DynamicSystemActivity.html#startActivityFromFragment(androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle)">startActivityFromFragment</a>, <a href="DynamicSystemActivity.html#startMotionActivity(android.content.Intent,android.os.Bundle)">startMotionActivity</a>, <a href="DynamicSystemActivity.html#startMotionActivity(android.content.Intent,android.os.Bundle,boolean,boolean)">startMotionActivity</a>, <a href="DynamicSystemActivity.html#startMotionActivity(android.content.Intent,android.os.Bundle,boolean,boolean,boolean)">startMotionActivity</a>, <a href="DynamicSystemActivity.html#startMotionActivityForResult(android.content.Intent,int,android.os.Bundle)">startMotionActivityForResult</a>, <a href="DynamicSystemActivity.html#startMotionActivityForResult(android.content.Intent,int,android.os.Bundle,boolean,boolean)">startMotionActivityForResult</a>, <a href="DynamicSystemActivity.html#startMotionActivityForResult(android.content.Intent,int,android.os.Bundle,boolean,boolean,boolean)">startMotionActivityForResult</a>, <a href="DynamicSystemActivity.html#startMotionActivityFromFragment(androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle)">startMotionActivityFromFragment</a>, <a href="DynamicSystemActivity.html#startMotionActivityFromFragment(androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle,boolean,boolean)">startMotionActivityFromFragment</a>, <a href="DynamicSystemActivity.html#startMotionActivityFromFragment(androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle,boolean,boolean,boolean)">startMotionActivityFromFragment</a>, <a href="DynamicSystemActivity.html#supportFinishAfterTransition()">supportFinishAfterTransition</a>, <a href="DynamicSystemActivity.html#supportStartPostponedEnterTransition()">supportStartPostponedEnterTransition</a>, <a href="DynamicSystemActivity.html#updateNavigationBar()">updateNavigationBar</a>, <a href="DynamicSystemActivity.html#updateStatusBar()">updateStatusBar</a>, <a href="DynamicSystemActivity.html#updateTaskDescription(int)">updateTaskDescription</a></code></li>
+<code><a href="DynamicSystemActivity.html#checkForThemeIntent(android.content.Intent)">checkForThemeIntent</a>, <a href="DynamicSystemActivity.html#commitFragmentTransaction(androidx.fragment.app.FragmentTransaction)">commitFragmentTransaction</a>, <a href="DynamicSystemActivity.html#createConfigurationContext(android.content.res.Configuration)">createConfigurationContext</a>, <a href="DynamicSystemActivity.html#finish()">finish</a>, <a href="DynamicSystemActivity.html#finishActivity()">finishActivity</a>, <a href="DynamicSystemActivity.html#getAppliedNavigationBarColor()">getAppliedNavigationBarColor</a>, <a href="DynamicSystemActivity.html#getBackgroundColor()">getBackgroundColor</a>, <a href="DynamicSystemActivity.html#getContext()">getContext</a>, <a href="DynamicSystemActivity.html#getCurrentLocale()">getCurrentLocale</a>, <a href="DynamicSystemActivity.html#getDefaultColor(int)">getDefaultColor</a>, <a href="DynamicSystemActivity.html#getDefaultLocale(android.content.Context)">getDefaultLocale</a>, <a href="DynamicSystemActivity.html#getDelegate()">getDelegate</a>, <a href="DynamicSystemActivity.html#getDynamicEnterTransition()">getDynamicEnterTransition</a>, <a href="DynamicSystemActivity.html#getDynamicExitTransition()">getDynamicExitTransition</a>, <a href="DynamicSystemActivity.html#getDynamicIntentTheme()">getDynamicIntentTheme</a>, <a href="DynamicSystemActivity.html#getDynamicLayoutInflater()">getDynamicLayoutInflater</a>, <a href="DynamicSystemActivity.html#getDynamicReenterTransition()">getDynamicReenterTransition</a>, <a href="DynamicSystemActivity.html#getDynamicReturnTransition()">getDynamicReturnTransition</a>, <a href="DynamicSystemActivity.html#getDynamicTheme()">getDynamicTheme</a>, <a href="DynamicSystemActivity.html#getDynamicTransitionListener()">getDynamicTransitionListener</a>, <a href="DynamicSystemActivity.html#getEdgeToEdgeViewBottom()">getEdgeToEdgeViewBottom</a>, <a href="DynamicSystemActivity.html#getFontScale()">getFontScale</a>, <a href="DynamicSystemActivity.html#getLocale()">getLocale</a>, <a href="DynamicSystemActivity.html#getNavigationBarColor()">getNavigationBarColor</a>, <a href="DynamicSystemActivity.html#getPostponeTransitionView()">getPostponeTransitionView</a>, <a href="DynamicSystemActivity.html#getRequiredThemeVersion()">getRequiredThemeVersion</a>, <a href="DynamicSystemActivity.html#getSavedInstanceState()">getSavedInstanceState</a>, <a href="DynamicSystemActivity.html#getSharedElementCallback()">getSharedElementCallback</a>, <a href="DynamicSystemActivity.html#getSharedElementTransition()">getSharedElementTransition</a>, <a href="DynamicSystemActivity.html#getStatusBarColor()">getStatusBarColor</a>, <a href="DynamicSystemActivity.html#getSupportedLocales()">getSupportedLocales</a>, <a href="DynamicSystemActivity.html#getThemeRes()">getThemeRes</a>, <a href="DynamicSystemActivity.html#getThemeRes(com.pranavpandey.android.dynamic.theme.AppTheme)">getThemeRes</a>, <a href="DynamicSystemActivity.html#getTransitionPosition()">getTransitionPosition</a>, <a href="DynamicSystemActivity.html#getTransitionResultCode()">getTransitionResultCode</a>, <a href="DynamicSystemActivity.html#isApplyFooterInsets()">isApplyFooterInsets</a>, <a href="DynamicSystemActivity.html#isDynamicColor()">isDynamicColor</a>, <a href="DynamicSystemActivity.html#isDynamicColors()">isDynamicColors</a>, <a href="DynamicSystemActivity.html#isEdgeToEdgeContent()">isEdgeToEdgeContent</a>, <a href="DynamicSystemActivity.html#isForceMenuIcons()">isForceMenuIcons</a>, <a href="DynamicSystemActivity.html#isLaunchedFromHistory()">isLaunchedFromHistory</a>, <a href="DynamicSystemActivity.html#isNavigationBarTheme()">isNavigationBarTheme</a>, <a href="DynamicSystemActivity.html#isNightMode(boolean)">isNightMode</a>, <a href="DynamicSystemActivity.html#isOnSharedPreferenceChangeListener()">isOnSharedPreferenceChangeListener</a>, <a href="DynamicSystemActivity.html#isPaused()">isPaused</a>, <a href="DynamicSystemActivity.html#isSupportFinishAfterTransition()">isSupportFinishAfterTransition</a>, <a href="DynamicSystemActivity.html#isSystemColor()">isSystemColor</a>, <a href="DynamicSystemActivity.html#isThemeActivity()">isThemeActivity</a>, <a href="DynamicSystemActivity.html#isWallpaperColor()">isWallpaperColor</a>, <a href="DynamicSystemActivity.html#navigationBarThemeChange()">navigationBarThemeChange</a>, <a href="DynamicSystemActivity.html#onAdjustEnterReturnTransition(java.lang.Object,boolean)">onAdjustEnterReturnTransition</a>, <a href="DynamicSystemActivity.html#onAdjustExitReenterTransition(java.lang.Object,boolean)">onAdjustExitReenterTransition</a>, <a href="DynamicSystemActivity.html#onAppThemeChange()">onAppThemeChange</a>, <a href="DynamicSystemActivity.html#onAutoThemeChanged(boolean)">onAutoThemeChanged</a>, <a href="DynamicSystemActivity.html#onCustomiseTheme()">onCustomiseTheme</a>, <a href="DynamicSystemActivity.html#onDestroy()">onDestroy</a>, <a href="DynamicSystemActivity.html#onDynamicChanged(boolean,boolean)">onDynamicChanged</a>, <a href="DynamicSystemActivity.html#onDynamicColorsChanged(com.pranavpandey.android.dynamic.theme.DynamicColors,boolean)">onDynamicColorsChanged</a>, <a href="DynamicSystemActivity.html#onDynamicConfigurationChanged(boolean,boolean,boolean,boolean,boolean)">onDynamicConfigurationChanged</a>, <a href="DynamicSystemActivity.html#onFindView(int,int,java.lang.String,int)">onFindView</a>, <a href="DynamicSystemActivity.html#onManageSharedElementTransition()">onManageSharedElementTransition</a>, <a href="DynamicSystemActivity.html#onNavigationBarThemeChanged()">onNavigationBarThemeChanged</a>, <a href="DynamicSystemActivity.html#onNewIntent(android.content.Intent)">onNewIntent</a>, <a href="DynamicSystemActivity.html#onNewIntent(android.content.Intent,boolean)">onNewIntent</a>, <a href="DynamicSystemActivity.html#onPause()">onPause</a>, <a href="DynamicSystemActivity.html#onPostCreate(android.os.Bundle)">onPostCreate</a>, <a href="DynamicSystemActivity.html#onPowerSaveModeChanged(boolean)">onPowerSaveModeChanged</a>, <a href="DynamicSystemActivity.html#onPrepareOptionsMenu(android.view.Menu)">onPrepareOptionsMenu</a>, <a href="DynamicSystemActivity.html#onResume()">onResume</a>, <a href="DynamicSystemActivity.html#onSetFallbackActivityOptions()">onSetFallbackActivityOptions</a>, <a href="DynamicSystemActivity.html#onSetSharedElementTransition()">onSetSharedElementTransition</a>, <a href="DynamicSystemActivity.html#onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String)">onSharedPreferenceChanged</a>, <a href="DynamicSystemActivity.html#onStartActivityException(java.lang.Exception)">onStartActivityException</a>, <a href="DynamicSystemActivity.html#onThemeIntent(java.lang.String,java.lang.String)">onThemeIntent</a>, <a href="DynamicSystemActivity.html#onUpdateIntent(android.content.Intent,boolean)">onUpdateIntent</a>, <a href="DynamicSystemActivity.html#resetSharedElementTransition()">resetSharedElementTransition</a>, <a href="DynamicSystemActivity.html#setDynamicTransitionListener(com.pranavpandey.android.dynamic.support.listener.DynamicTransitionListener)">setDynamicTransitionListener</a>, <a href="DynamicSystemActivity.html#setLocale(android.content.Context)">setLocale</a>, <a href="DynamicSystemActivity.html#setNavigationBarColor(int)">setNavigationBarColor</a>, <a href="DynamicSystemActivity.html#setNavigationBarColorRes(int)">setNavigationBarColorRes</a>, <a href="DynamicSystemActivity.html#setNavigationBarTheme()">setNavigationBarTheme</a>, <a href="DynamicSystemActivity.html#setNavigationBarThemeInLandscape()">setNavigationBarThemeInLandscape</a>, <a href="DynamicSystemActivity.html#setRootBackground(int)">setRootBackground</a>, <a href="DynamicSystemActivity.html#setSharedElementCallback(android.app.SharedElementCallback)">setSharedElementCallback</a>, <a href="DynamicSystemActivity.html#setSharedElementTransition(android.transition.Transition)">setSharedElementTransition</a>, <a href="DynamicSystemActivity.html#setStatusBarColorRes(int)">setStatusBarColorRes</a>, <a href="DynamicSystemActivity.html#setTransitionPosition(int)">setTransitionPosition</a>, <a href="DynamicSystemActivity.html#setTransitionResultCode(int)">setTransitionResultCode</a>, <a href="DynamicSystemActivity.html#setTranslucentNavigationBar()">setTranslucentNavigationBar</a>, <a href="DynamicSystemActivity.html#setTranslucentStatusBar()">setTranslucentStatusBar</a>, <a href="DynamicSystemActivity.html#setWindowStatusBarColor(int)">setWindowStatusBarColor</a>, <a href="DynamicSystemActivity.html#startActivity(android.content.Intent)">startActivity</a>, <a href="DynamicSystemActivity.html#startActivity(android.content.Intent,android.os.Bundle)">startActivity</a>, <a href="DynamicSystemActivity.html#startActivityForResult(android.content.Intent,int)">startActivityForResult</a>, <a href="DynamicSystemActivity.html#startActivityForResult(android.content.Intent,int,android.os.Bundle)">startActivityForResult</a>, <a href="DynamicSystemActivity.html#startActivityFromFragment(androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle)">startActivityFromFragment</a>, <a href="DynamicSystemActivity.html#startMotionActivity(android.content.Intent,android.os.Bundle)">startMotionActivity</a>, <a href="DynamicSystemActivity.html#startMotionActivity(android.content.Intent,android.os.Bundle,boolean,boolean)">startMotionActivity</a>, <a href="DynamicSystemActivity.html#startMotionActivity(android.content.Intent,android.os.Bundle,boolean,boolean,boolean)">startMotionActivity</a>, <a href="DynamicSystemActivity.html#startMotionActivityForResult(android.content.Intent,int,android.os.Bundle)">startMotionActivityForResult</a>, <a href="DynamicSystemActivity.html#startMotionActivityForResult(android.content.Intent,int,android.os.Bundle,boolean,boolean)">startMotionActivityForResult</a>, <a href="DynamicSystemActivity.html#startMotionActivityForResult(android.content.Intent,int,android.os.Bundle,boolean,boolean,boolean)">startMotionActivityForResult</a>, <a href="DynamicSystemActivity.html#startMotionActivityFromFragment(androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle)">startMotionActivityFromFragment</a>, <a href="DynamicSystemActivity.html#startMotionActivityFromFragment(androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle,boolean,boolean)">startMotionActivityFromFragment</a>, <a href="DynamicSystemActivity.html#startMotionActivityFromFragment(androidx.fragment.app.Fragment,android.content.Intent,int,android.os.Bundle,boolean,boolean,boolean)">startMotionActivityFromFragment</a>, <a href="DynamicSystemActivity.html#supportFinishAfterTransition()">supportFinishAfterTransition</a>, <a href="DynamicSystemActivity.html#supportStartPostponedEnterTransition()">supportStartPostponedEnterTransition</a>, <a href="DynamicSystemActivity.html#updateNavigationBar()">updateNavigationBar</a>, <a href="DynamicSystemActivity.html#updateStatusBar()">updateStatusBar</a>, <a href="DynamicSystemActivity.html#updateTaskDescription(int)">updateTaskDescription</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.androidx.appcompat.app.AppCompatActivity">
@@ -1575,6 +1604,36 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
 <div class="block">Boolean to maintain the app bar state.</div>
 </li>
 </ul>
+<a id="mSearchViewOnBackPressedCallback">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>mSearchViewOnBackPressedCallback</h4>
+<pre>protected final&nbsp;androidx.activity.OnBackPressedCallback mSearchViewOnBackPressedCallback</pre>
+<div class="block">On back pressed callback to collapse the search view.</div>
+</li>
+</ul>
+<a id="mBottomSheetOnBackPressedCallback">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>mBottomSheetOnBackPressedCallback</h4>
+<pre>protected final&nbsp;androidx.activity.OnBackPressedCallback mBottomSheetOnBackPressedCallback</pre>
+<div class="block">On back pressed callback to expand the bottom sheet.</div>
+</li>
+</ul>
+<a id="mBottomSheetCallback">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>mBottomSheetCallback</h4>
+<pre>protected final&nbsp;com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback mBottomSheetCallback</pre>
+<div class="block">The bottom sheet callback to enable on back pressed callback accordingly.</div>
+</li>
+</ul>
 <a id="mSearchRunnable">
 <!--   -->
 </a>
@@ -1625,6 +1684,22 @@ implements <a href="../listener/DynamicSearchListener.html" title="interface in 
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="DynamicStateActivity.html#onCreate(android.os.Bundle)">onCreate</a></code>&nbsp;in class&nbsp;<code><a href="DynamicStateActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicStateActivity</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="onConfigureOnBackPressedDispatcher()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onConfigureOnBackPressedDispatcher</h4>
+<pre class="methodSignature">protected&nbsp;void&nbsp;onConfigureOnBackPressedDispatcher()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="DynamicSystemActivity.html#onConfigureOnBackPressedDispatcher()">DynamicSystemActivity</a></code></span></div>
+<div class="block">This method will be called to configure on back pressed callback to support
+ API 33 and above.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="DynamicSystemActivity.html#onConfigureOnBackPressedDispatcher()">onConfigureOnBackPressedDispatcher</a></code>&nbsp;in class&nbsp;<code><a href="DynamicSystemActivity.html" title="class in com.pranavpandey.android.dynamic.support.activity">DynamicSystemActivity</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -3434,7 +3509,7 @@ public&nbsp;com.google.android.material.snackbar.Snackbar&nbsp;getSnackbar&#8203
 <li><a href="../../../../../../index-all.html">Index</a></li>
 <li><a href="../../../../../../help-doc.html">Help</a></li>
 </ul>
-<div class="aboutLanguage"><h5>6.1.1</h5></div>
+<div class="aboutLanguage"><h5>6.2.0</h5></div>
 </div>
 <div class="subNav">
 <ul class="navList" id="allclasses_navbar_bottom">
