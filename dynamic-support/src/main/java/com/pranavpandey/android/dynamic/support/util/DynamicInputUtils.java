@@ -28,7 +28,6 @@ import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
-import androidx.annotation.RestrictTo;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 
@@ -42,15 +41,12 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Objects;
 
-import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
-
 /**
  * Helper class to tint the various input widgets like {@link EditText}, etc. dynamically
  * by using reflection. It will be used to match the color with the app's theme.
  */
-@RestrictTo(LIBRARY_GROUP)
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public final class DynamicInputUtils {
+public class DynamicInputUtils {
 
     /**
      * Set cursor color for the supplied {@link TextView}.
