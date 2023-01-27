@@ -367,18 +367,18 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
             return;
         }
 
-        switch (getIntent().getIntExtra(DynamicIntent.EXTRA_THEME_TYPE, Theme.APP)) {
+        switch (intent.getIntExtra(DynamicIntent.EXTRA_THEME_TYPE, Theme.APP)) {
             case Theme.REMOTE:
                 mDynamicIntentTheme = DynamicTheme.getInstance().getRemoteTheme(
-                        getIntent().getStringExtra(DynamicIntent.EXTRA_THEME));
+                        intent.getStringExtra(DynamicIntent.EXTRA_THEME));
                 break;
             case Theme.WIDGET:
                 mDynamicIntentTheme = DynamicTheme.getInstance().getWidgetTheme(
-                        getIntent().getStringExtra(DynamicIntent.EXTRA_THEME));
+                        intent.getStringExtra(DynamicIntent.EXTRA_THEME));
                 break;
             default:
                 mDynamicIntentTheme = DynamicTheme.getInstance().getTheme(
-                        getIntent().getStringExtra(DynamicIntent.EXTRA_THEME));
+                        intent.getStringExtra(DynamicIntent.EXTRA_THEME));
                 break;
         }
 
