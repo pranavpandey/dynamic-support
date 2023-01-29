@@ -143,7 +143,8 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
                         if (getContext() instanceof Activity) {
                             dynamicPermission.setAskAgain(
                                     ActivityCompat.shouldShowRequestPermissionRationale(
-                                            (Activity) getContext(), dynamicPermission.getPermission()));
+                                            (Activity) getContext(),
+                                            dynamicPermission.getPermission()));
                         }
 
                         if (dynamicPermission.isAskAgain()) {
