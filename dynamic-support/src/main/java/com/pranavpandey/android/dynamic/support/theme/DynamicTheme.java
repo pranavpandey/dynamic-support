@@ -411,7 +411,7 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
             this.mPowerSaveMode = false;
         }
         ContextCompat.registerReceiver(mListener.getContext(), mBroadcastReceiver,
-                intentFilter, ContextCompat.RECEIVER_NOT_EXPORTED);
+                intentFilter, ContextCompat.RECEIVER_EXPORTED);
 
         setRemoteTheme(null);
         addDynamicListener(listener);
