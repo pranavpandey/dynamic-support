@@ -200,11 +200,8 @@ public class DynamicPermissions {
     public @Nullable Intent requestPermissionsIntent(@NonNull Context context,
             @NonNull String[] permissions, boolean history,
             @Nullable Intent actionIntent, @DynamicAction int action) {
-        if (getPermissionsActivity() == null) {
-            return null;
-        }
-
         Intent intent = new Intent(context, getPermissionsActivity());
+        intent.setPackage(context.getPackageName());
         intent.setAction(DynamicIntent.ACTION_PERMISSIONS);
         intent.putExtra(DynamicIntent.EXTRA_PERMISSIONS, permissions);
         if (actionIntent != null) {

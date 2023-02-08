@@ -280,13 +280,12 @@ public class DynamicIntent {
     public static @NonNull Intent getThemeIntent(@NonNull Context context,
             @Nullable Class<?> clazz, @NonNull String action, @Nullable String theme,
             @Nullable String defaultTheme, @Nullable String text) {
-        Intent intent = DynamicIntentUtils.getActivityIntentForResult(context, clazz);
-        intent.setAction(action);
-        intent.putExtra(EXTRA_THEME, theme);
-        intent.putExtra(EXTRA_THEME_DEFAULT, defaultTheme);
-        intent.putExtra(EXTRA_TEXT, text);
-
-        return intent;
+        return DynamicIntentUtils.getActivityIntentForResult(context, clazz)
+                .setPackage(context.getPackageName())
+                .setAction(action)
+                .putExtra(EXTRA_THEME, theme)
+                .putExtra(EXTRA_THEME_DEFAULT, defaultTheme)
+                .putExtra(EXTRA_TEXT, text);
     }
 
     /**
@@ -330,15 +329,14 @@ public class DynamicIntent {
             @NonNull Class<?> clazz, @NonNull String action, @Nullable String theme,
             @Theme int themeType, @Nullable String themeUrl, @Nullable Uri bitmapUri,
             @Nullable String text) {
-        Intent intent = DynamicIntentUtils.getActivityIntent(context, clazz);
-        intent.setAction(action);
-        intent.putExtra(EXTRA_THEME, theme);
-        intent.putExtra(EXTRA_THEME_TYPE, themeType);
-        intent.putExtra(EXTRA_THEME_URL, themeUrl);
-        intent.putExtra(EXTRA_THEME_BITMAP_URI, bitmapUri);
-        intent.putExtra(EXTRA_PREVIEW, new ImagePreview(themeUrl, bitmapUri, text, null));
-
-        return intent;
+        return DynamicIntentUtils.getActivityIntent(context, clazz)
+                .setPackage(context.getPackageName())
+                .setAction(action)
+                .putExtra(EXTRA_THEME, theme)
+                .putExtra(EXTRA_THEME_TYPE, themeType)
+                .putExtra(EXTRA_THEME_URL, themeUrl)
+                .putExtra(EXTRA_THEME_BITMAP_URI, bitmapUri)
+                .putExtra(EXTRA_PREVIEW, new ImagePreview(themeUrl, bitmapUri, text, null));
     }
 
     /**
