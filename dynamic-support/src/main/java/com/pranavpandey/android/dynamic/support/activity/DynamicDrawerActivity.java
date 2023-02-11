@@ -438,45 +438,47 @@ public abstract class DynamicDrawerActivity extends DynamicActivity
      * @param endOffset The end offset.
      */
     public void animateDrawerToggle(final float startOffset, final float endOffset) {
-        if (endOffset == 0f && !isPersistentDrawer()) {
+        if (isPersistentDrawer()) {
+            showDrawerToggle(false);
+
+            return;
+        }
+
+        if (endOffset == 0f) {
             showDrawerToggle(true);
         }
 
-        if (!isPersistentDrawer()) {
-            ValueAnimator valueAnimator = ValueAnimator.ofFloat(startOffset, endOffset);
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(startOffset, endOffset);
 
-            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    float slideOffset = (Float) valueAnimator.getAnimatedValue();
-                    mDrawerToggle.onDrawerSlide(mDrawer, slideOffset);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                float slideOffset = (Float) valueAnimator.getAnimatedValue();
+                mDrawerToggle.onDrawerSlide(mDrawer, slideOffset);
+            }
+        });
+
+        valueAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) { }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                if (endOffset == 1f) {
+                    showDrawerToggle(false);
                 }
-            });
+            }
 
-            valueAnimator.addListener(new Animator.AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animator) { }
+            @Override
+            public void onAnimationCancel(Animator animator) { }
 
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    if (endOffset == 1f) {
-                        showDrawerToggle(false);
-                    }
-                }
+            @Override
+            public void onAnimationRepeat(Animator animator) { }
+        });
 
-                @Override
-                public void onAnimationCancel(Animator animator) { }
-
-                @Override
-                public void onAnimationRepeat(Animator animator) { }
-            });
-
-            valueAnimator.setInterpolator(new DecelerateInterpolator());
-            valueAnimator.setDuration(DynamicMotion.Duration.SHORT);
-            valueAnimator.start();
-        } else {
-            showDrawerToggle(false);
-        }
+        valueAnimator.setInterpolator(new DecelerateInterpolator());
+        valueAnimator.setDuration(DynamicMotion.Duration.SHORT);
+        valueAnimator.start();
     }
 
     /**
