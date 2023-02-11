@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.sample.fragment
 
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.AppBarLayout
 import com.pranavpandey.android.dynamic.support.fragment.DynamicViewPager2Fragment
@@ -38,7 +39,7 @@ class SettingsFragment : DynamicViewPager2Fragment() {
          *
          * @return The new instance of [SettingsFragment].
          */
-        fun newInstance(page: Int): androidx.fragment.app.Fragment {
+        fun newInstance(page: Int): Fragment {
             val fragment = SettingsFragment()
             val args = Bundle()
             args.putInt(DynamicViewPagerFragment.ADS_ARGS_VIEW_PAGER_PAGE, page)
@@ -48,7 +49,7 @@ class SettingsFragment : DynamicViewPager2Fragment() {
         }
     }
 
-    override fun getSubtitle(): CharSequence? {
+    override fun getSubtitle(): CharSequence {
         // Set subtitle for the app compat activity.
         return getString(R.string.ads_nav_settings)
     }
@@ -63,7 +64,7 @@ class SettingsFragment : DynamicViewPager2Fragment() {
         return R.id.nav_settings
     }
 
-    override fun getTitle(position: Int): String? {
+    override fun getTitle(position: Int): String {
         // TODO: Return tab titles.
         return when (position) {
             1 -> getString(R.string.ads_widgets)
@@ -84,12 +85,12 @@ class SettingsFragment : DynamicViewPager2Fragment() {
         return 2
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         // Scroll toolbar for this fragment.
         dynamicActivity.setToolbarLayoutFlags(
-                AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
-                        or AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS)
+            AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+                    or AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS)
     }
 }

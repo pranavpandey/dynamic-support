@@ -24,7 +24,7 @@ buildscript {
             'dynamic'     : '4.4.7',
             'fragment'    : '1.5.5',
             'flexbox'     : '3.0.0',
-            'kotlin'      : '1.7.10',
+            'kotlin'      : '1.8.0',
             'locale'      : '2.3.0',
             'material'    : '1.9.0-alpha01',
             'preferences' : '2.2.2',

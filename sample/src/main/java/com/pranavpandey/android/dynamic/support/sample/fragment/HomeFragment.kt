@@ -52,7 +52,7 @@ class HomeFragment : DynamicFragment() {
         }
     }
 
-    override fun getSubtitle(): CharSequence? {
+    override fun getSubtitle(): CharSequence {
         // Set subtitle for the app compat activity.
         return getString(R.string.ads_nav_home)
     }

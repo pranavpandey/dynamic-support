@@ -78,7 +78,7 @@ class AboutFragment : DynamicViewPager2Fragment() {
         return super.onMenuItemSelected(item)
     }
 
-    override fun getSubtitle(): CharSequence? {
+    override fun getSubtitle(): CharSequence {
         // Set subtitle for the app compat activity.
         return getString(R.string.ads_about);
     }
@@ -93,7 +93,7 @@ class AboutFragment : DynamicViewPager2Fragment() {
         return R.id.nav_about
     }
 
-    override fun getTitle(position: Int): String? {
+    override fun getTitle(position: Int): String {
         // TODO: Return tab titles.
         return when (position) {
             1 -> getString(R.string.ads_notices)
