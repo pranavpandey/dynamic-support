@@ -28,9 +28,8 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleObserver;
-import androidx.lifecycle.OnLifecycleEvent;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
@@ -57,7 +56,7 @@ import com.pranavpandey.android.dynamic.util.DynamicPackageUtils;
  * A recycler view frame layout to show the theme presets.
  */
 public class DynamicPresetsView<T extends DynamicAppTheme>
-        extends DynamicRecyclerViewNested implements LifecycleObserver {
+        extends DynamicRecyclerViewNested implements DefaultLifecycleObserver {
 
     /**
      * Listener to get the preset theme and click events.
@@ -124,6 +123,11 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
     private Fragment mLifecycleOwner;
 
     /**
+     * Loader used by this view.
+     */
+    private Loader<Cursor> mLoader;
+
+    /**
      * Listener to handle the preset events.
      */
     private DynamicPresetsView.DynamicPresetsListener<T> mDynamicPresetsListener;
@@ -172,6 +176,22 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
     }
 
     @Override
+    public void onStart(@NonNull LifecycleOwner owner) {
+        DefaultLifecycleObserver.super.onStart(owner);
+
+        loadPresets();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+
+        if (mLifecycleOwner != null) {
+            mLifecycleOwner.getLifecycle().removeObserver(this);
+        }
+    }
+
+    @Override
     protected @LayoutRes int getLayoutRes() {
         return R.layout.ads_theme_presets;
     }
@@ -211,14 +231,13 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
         mPresetsAdapter.setDynamicPresetsListener(dynamicPresetsListener);
         setAdapter(mPresetsAdapter);
 
-        if (owner != null) {
-            owner.getLifecycle().addObserver(this);
+        if (mLifecycleOwner != null) {
+            mLifecycleOwner.getLifecycle().addObserver(this);
         }
 
         loadPresets();
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void loadPresets() {
         if (isPackageExists()) {
             if (isPermissionGranted()) {
@@ -226,15 +245,26 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
             } else {
                 mInfo.setSubtitle(getContext().getString(
                         R.string.ads_permissions_subtitle_single));
-                setPresetsVisible(false);            }
+                setPresetsVisible(false);
+            }
         } else {
             mInfo.setSubtitle(getContext().getString(R.string.ads_theme_presets_desc));
             setPresetsVisible(false);
         }
 
-        if (mLifecycleOwner != null && isPermissionGranted()) {
-            LoaderManager.getInstance(mLifecycleOwner).initLoader(
-                    ADS_LOADER_PRESETS, null, mLoaderCallbacks).forceLoad();
+        if (mLifecycleOwner == null || !isPermissionGranted()) {
+            return;
+        }
+
+        if (mLoader == null) {
+            mLoader = LoaderManager.getInstance(mLifecycleOwner).initLoader(
+                    ADS_LOADER_PRESETS, null, mLoaderCallbacks);
+        }
+
+        if (mLoader.isStarted()) {
+            mLoader.forceLoad();
+        } else {
+            mLoader.startLoading();
         }
     }
 
@@ -328,7 +358,7 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
     private final LoaderManager.LoaderCallbacks<Cursor> mLoaderCallbacks =
             new LoaderManager.LoaderCallbacks<Cursor>() {
         @Override
-        public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+        public @NonNull Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
             if (id == ADS_LOADER_PRESETS) {
                 if (isPermissionGranted()) {
                     try {
