@@ -80,6 +80,8 @@ public class MenuInflaterRunnable implements Runnable {
             Dynamic.setColor(mMenu.findViewById(androidx.appcompat.R.id.icon), tintColor);
             Dynamic.setColor(mMenu.findViewById(androidx.appcompat.R.id.submenuarrow), tintColor);
             Dynamic.setColor(mMenu.findViewById(androidx.appcompat.R.id.group_divider), tintColor);
+            Dynamic.setBackgroundColor(mMenu.findViewById(androidx.appcompat.R.id.group_divider),
+                    tintColor);
             Dynamic.setAlpha(mMenu.findViewById(androidx.appcompat.R.id.group_divider),
                     Defaults.ADS_ALPHA_DIVIDER);
 

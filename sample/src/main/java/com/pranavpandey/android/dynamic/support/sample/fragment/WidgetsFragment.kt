@@ -19,8 +19,14 @@ package com.pranavpandey.android.dynamic.support.sample.fragment
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Spinner
+import androidx.core.view.MenuCompat
 import com.pranavpandey.android.dynamic.support.adapter.DynamicSpinnerImageAdapter
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment
 import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener
@@ -128,6 +134,8 @@ class WidgetsFragment : DynamicFragment(), DynamicSearchListener, TextWatcher {
 
         // Inflate menu for this fragment.
         inflater.inflate(R.menu.menu_widgets, menu)
+        // Force menu group divider.
+        MenuCompat.setGroupDividerEnabled(menu, true)
     }
 
     override fun onMenuItemSelected(item: MenuItem): Boolean {
