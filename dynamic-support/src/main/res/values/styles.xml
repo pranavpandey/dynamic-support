@@ -890,6 +890,16 @@
     <style name="Widget.Dynamic.Image.Info.Placeholder">
         <item name="android:layout_height">0dp</item>
     </style>
+    <style name="Widget.Dynamic.Image.Info.Backdrop"
+        parent="@style/Widget.Dynamic.Image.Card.Big">
+        <item name="android:layout_width">@dimen/ads_icon_card_permission</item>
+        <item name="android:layout_height">@dimen/ads_icon_card_permission</item>
+    </style>
+    <style name="Widget.Dynamic.Image.Info.Backdrop.Frame" parent="">
+        <item name="android:layout_width">@dimen/ads_icon_card_permission_frame</item>
+        <item name="android:layout_height">@dimen/ads_icon_card_permission_frame</item>
+        <item name="android:layout_gravity">right|end|bottom</item>
+    </style>
     <style name="Widget.Dynamic.Image.Info.Big">
         <item name="android:layout_width">@dimen/ads_icon_info_big</item>
         <item name="android:layout_height">@dimen/ads_icon_info_big</item>
@@ -898,6 +908,13 @@
     </style>
     <style name="Widget.Dynamic.Image.Info.Big.Placeholder">
         <item name="android:layout_height">0dp</item>
+    </style>
+    <style name="Widget.Dynamic.Image.Info.Big.Backdrop"
+        parent="@style/Widget.Dynamic.Image.Card.Big" />
+    <style name="Widget.Dynamic.Image.Info.Big.Backdrop.Frame" parent="">
+        <item name="android:layout_width">@dimen/ads_icon_card_big_frame</item>
+        <item name="android:layout_height">@dimen/ads_icon_card_big_frame</item>
+        <item name="android:layout_gravity">right|end|bottom</item>
     </style>
 
     <style name="Widget.Dynamic.Image.Preference">

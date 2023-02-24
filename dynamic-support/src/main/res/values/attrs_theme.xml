@@ -345,10 +345,18 @@
     <attr name="ads_widgetImageInfo" format="reference" />
     <!-- The info placeholder image style. -->
     <attr name="ads_widgetImageInfoPlaceholder" format="reference" />
+    <!-- The info backdrop image style. -->
+    <attr name="ads_widgetImageInfoBackdrop" format="reference" />
+    <!-- The info backdrop frame style. -->
+    <attr name="ads_widgetImageInfoBackdropFrame" format="reference" />
     <!-- The big info image style. -->
     <attr name="ads_widgetImageInfoBig" format="reference" />
     <!-- The big info placeholder image style. -->
     <attr name="ads_widgetImageInfoBigPlaceholder" format="reference" />
+    <!-- The big info backdrop image style. -->
+    <attr name="ads_widgetImageInfoBigBackdrop" format="reference" />
+    <!-- The big info backdrop frame style. -->
+    <attr name="ads_widgetImageInfoBigBackdropFrame" format="reference" />
     <!-- The preference image style. -->
     <attr name="ads_widgetImagePreference" format="reference" />
     <!-- The preference centered image style. -->

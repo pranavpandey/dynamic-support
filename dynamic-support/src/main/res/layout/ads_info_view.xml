@@ -57,16 +57,12 @@
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/ads_info_view_icon_frame"
-        android:layout_width="@dimen/ads_icon_card_permission_frame"
-        android:layout_height="@dimen/ads_icon_card_permission_frame"
-        android:layout_gravity="right|end|bottom">
+        style="?attr/ads_widgetImageInfoBackdropFrame"
+        android:id="@+id/ads_info_view_icon_frame">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-            style="?attr/ads_widgetImageCardBig"
-            android:id="@+id/ads_info_view_icon_big"
-            android:layout_width="@dimen/ads_icon_card_permission"
-            android:layout_height="@dimen/ads_icon_card_permission" />
+            style="?attr/ads_widgetImageInfoBackdrop"
+            android:id="@+id/ads_info_view_icon_big" />
 
     </FrameLayout>
 
