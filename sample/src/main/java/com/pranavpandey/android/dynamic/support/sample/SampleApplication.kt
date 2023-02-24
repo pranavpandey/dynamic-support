@@ -161,7 +161,7 @@ class SampleApplication : DynamicApplication() {
     private fun setShortcuts() {
         // Do not set for API 24 and below.
         if (!DynamicSdkUtils.is25()) {
-            return;
+            return
         }
 
         // Initialize ShortcutManager.

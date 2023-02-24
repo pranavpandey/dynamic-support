@@ -53,7 +53,7 @@ class CollapsingAppBarActivity : DynamicActivity() {
     }
 
     override fun onAddHeader(view: View?) {
-        super.onAddHeader(view);
+        super.onAddHeader(view)
 
         // Do header customisations.
         (findViewById<View>(R.id.ads_header_appbar_icon) as ImageView)

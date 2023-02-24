@@ -59,7 +59,7 @@ class AppInfoBinder(binderAdapter: AppInfoAdapter)
                     DynamicLayoutUtils.getGridLayoutManager(app.context,
                             DynamicLayoutUtils.getGridCount(app.context),
                         GridLayoutManager.VERTICAL)
-            DynamicLayoutUtils.setFullSpanForPosition(app.linksView);
+            DynamicLayoutUtils.setFullSpanForPosition(app.linksView)
 
             if (app.linksSubtitles != null) {
                 val subtitles = app.linksSubtitles

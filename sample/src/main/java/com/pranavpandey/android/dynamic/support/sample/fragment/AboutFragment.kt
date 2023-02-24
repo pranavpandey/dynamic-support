@@ -80,7 +80,7 @@ class AboutFragment : DynamicViewPager2Fragment() {
 
     override fun getSubtitle(): CharSequence {
         // Set subtitle for the app compat activity.
-        return getString(R.string.ads_about);
+        return getString(R.string.ads_about)
     }
 
     override fun getNavigationViewId(): Int {
