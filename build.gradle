@@ -19,7 +19,7 @@ buildscript {
             'compileSdk'  : 33,
             'minSdk'      : 14,
             'targetSdk'   : 33,
-            'buildTools'  : '33.0.1',
+            'buildTools'  : '33.0.2',
             'multidex'    : '2.0.1',
             'dynamic'     : '4.4.7',
             'fragment'    : '1.5.5',
@@ -40,7 +40,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.1'
+        classpath 'com.android.tools.build:gradle:7.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
     }
 }
