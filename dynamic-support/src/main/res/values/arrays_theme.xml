@@ -228,13 +228,15 @@
     </string-array>
 
     <!-- Corner radius entries for the app widget. -->
-    <string-array name="ads_corner_entries_widget">
+    <string-array name="ads_corner_entries_widget"
+        tools:ignore="InconsistentArrays">
         <item>@string/ads_theme_entry_auto</item>
         <item>@string/ads_theme_entry_custom</item>
     </string-array>
 
     <!-- Corner radius values for the app widget. -->
-    <string-array name="ads_corner_values_widget">
+    <string-array name="ads_corner_values_widget"
+        tools:ignore="InconsistentArrays">
         <!-- Auto -->
         <item>-3</item>
         <!-- Custom -->
