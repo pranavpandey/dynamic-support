@@ -171,6 +171,7 @@
     <string name="ads_theme_color_background">Couleur de fond</string>
     <string name="ads_theme_color_background_summary">Couleur de fond du thème.</string>
     <string name="ads_theme_color_background_summary_system">Couleur de fond du système.</string>
+    <string name="ads_theme_color_background_summary_system_alt">À des fins internes et doit être conservé plus près de l\'arrière-plan du tiroir de notification pour éviter les problèmes de visibilité.</string>
     <string name="ads_theme_color_stroke">Couleur du trait</string>
     <string name="ads_theme_color_primary">Couleur principale</string>
     <string name="ads_theme_color_primary_summary">Couleur utilisée par les éléments principaux</string>

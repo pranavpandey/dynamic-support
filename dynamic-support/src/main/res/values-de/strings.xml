@@ -171,6 +171,7 @@
     <string name="ads_theme_color_background">Hintergrundfarbe</string>
     <string name="ads_theme_color_background_summary">Hintergrundfarbe des Themas.</string>
     <string name="ads_theme_color_background_summary_system">Hintergrundfarbe des Systems.</string>
+    <string name="ads_theme_color_background_summary_system_alt">Für interne Zwecke und sollte näher am Hintergrund des Benachrichtigungsfachs gehalten werden, um Sichtbarkeitsprobleme zu vermeiden.</string>
     <string name="ads_theme_color_stroke">Strichfarbe</string>
     <string name="ads_theme_color_surface">Oberflächenfarbe</string>
     <string name="ads_theme_color_primary">Primärfarbe</string>

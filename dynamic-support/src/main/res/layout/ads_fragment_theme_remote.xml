@@ -57,7 +57,7 @@
                         app:ads_altKey="ads_pref_settings_theme_color_tint_background"
                         app:ads_icon="@drawable/ads_ic_android"
                         app:ads_title="@string/ads_theme_color_background"
-                        app:ads_summary="@string/ads_theme_color_background_summary_system"
+                        app:ads_summary="@string/ads_theme_color_background_summary_system_alt"
                         app:ads_description="@string/ads_theme_color_default_desc"
                         app:ads_action="@string/ads_theme_color_inverse"
                         app:ads_shape="square"

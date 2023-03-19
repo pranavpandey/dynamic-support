@@ -171,6 +171,7 @@
     <string name="ads_theme_color_background">Colore sfondo</string>
     <string name="ads_theme_color_background_summary">Colore di sfondo del motivo.</string>
     <string name="ads_theme_color_background_summary_system">Colore di sfondo del sistema.</string>
+    <string name="ads_theme_color_background_summary_system_alt">Per scopi interni e dovrebbe essere tenuto più vicino allo sfondo del cassetto delle notifiche per evitare problemi di visibilità.</string>
     <string name="ads_theme_color_stroke">Colore tratto</string>
     <string name="ads_theme_color_primary">Colore primario</string>
     <string name="ads_theme_color_primary_summary">Colore utilizzato dagli elementi primari.</string>

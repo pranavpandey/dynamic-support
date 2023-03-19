@@ -171,6 +171,7 @@
     <string name="ads_theme_color_background">背景色彩</string>
     <string name="ads_theme_color_background_summary">主題的背景色</string>
     <string name="ads_theme_color_background_summary_system">系統的背景色</string>
+    <string name="ads_theme_color_background_summary_system_alt">出於內部目的，應靠近通知抽屜背景以避免可見性問題。</string>
     <string name="ads_theme_color_stroke">筆劃顏色</string>
     <string name="ads_theme_color_primary">主題色</string>
     <string name="ads_theme_color_primary_summary">主要元素使用的色彩</string>

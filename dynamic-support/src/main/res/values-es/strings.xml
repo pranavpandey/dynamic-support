@@ -171,6 +171,7 @@
     <string name="ads_theme_color_background">Color de fondo</string>
     <string name="ads_theme_color_background_summary">Color de fondo del tema.</string>
     <string name="ads_theme_color_background_summary_system">Color de fondo del sistema.</string>
+    <string name="ads_theme_color_background_summary_system_alt">Para fines internos y debe mantenerse más cerca del fondo del cajón de notificaciones para evitar problemas de visibilidad.</string>
     <string name="ads_theme_color_stroke">Color del trazo</string>
     <string name="ads_theme_color_surface">Color de superficie</string>
     <string name="ads_theme_color_primary">Color principal</string>

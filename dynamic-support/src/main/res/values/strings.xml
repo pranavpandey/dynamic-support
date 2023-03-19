@@ -171,6 +171,7 @@
     <string name="ads_theme_color_background">Background color</string>
     <string name="ads_theme_color_background_summary">Background color of the theme.</string>
     <string name="ads_theme_color_background_summary_system">Background color of the system.</string>
+    <string name="ads_theme_color_background_summary_system_alt">For internal purposes and should be kept closer to the notification drawer background to avoid visibility issues.</string>
     <string name="ads_theme_color_stroke">Stroke color</string>
     <string name="ads_theme_color_primary">Primary color</string>
     <string name="ads_theme_color_primary_summary">Color used by the primary elements.</string>

@@ -171,6 +171,7 @@
     <string name="ads_theme_color_background">पीछे का रंग</string>
     <string name="ads_theme_color_background_summary">थीम के पीछे का रंग।</string>
     <string name="ads_theme_color_background_summary_system">सिस्टम के पीछे का रंग।</string>
+    <string name="ads_theme_color_background_summary_system_alt">आंतरिक उद्देश्यों के लिए और दृश्यता के मुद्दों से बचने के लिए अधिसूचना दराज पृष्ठभूमि के करीब रखा जाना चाहिए।</string>
     <string name="ads_theme_color_stroke">किनारे का रंग</string>
     <string name="ads_theme_color_surface">ऊपर का रंग</string>
     <string name="ads_theme_color_primary">मुख्य रंग</string>

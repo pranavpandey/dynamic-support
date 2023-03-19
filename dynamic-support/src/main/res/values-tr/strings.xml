@@ -171,6 +171,7 @@
     <string name="ads_theme_color_background">Arka plan rengi</string>
     <string name="ads_theme_color_background_summary">Temanın arka plan rengi.</string>
     <string name="ads_theme_color_background_summary_system">Sistemin arka plan rengi.</string>
+    <string name="ads_theme_color_background_summary_system_alt">Dahili amaçlar için ve görünürlük sorunlarını önlemek için bildirim çekmecesi arka planına daha yakın tutulmalıdır.</string>
     <string name="ads_theme_color_stroke">Fırça rengi</string>
     <string name="ads_theme_color_surface">Yüzey rengi</string>
     <string name="ads_theme_color_primary">Ana renk</string>
