@@ -208,6 +208,7 @@
 
     <style name="TextAppearance.Dynamic2.Overline"
         parent="TextAppearance.MaterialComponents.Overline">
+        <item name="android:textAllCaps">false</item>
         <item name="android:textSize">@dimen/ads_font_size_caption</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
