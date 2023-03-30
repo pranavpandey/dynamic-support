@@ -927,10 +927,6 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">?attr/ads_animationDialog</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowActionModeOverlay">true</item>
-        <item name="listPreferredItemPaddingLeft">24dip</item>
-        <item name="listPreferredItemPaddingRight">24dip</item>
         <item name="android:listDivider">@null</item>
         <item name="android:buttonBarStyle">@style/Widget.AppCompat.ButtonBar.AlertDialog</item>
         <item name="android:borderlessButtonStyle">@style/Widget.AppCompat.Button.Borderless</item>
@@ -939,6 +935,10 @@
         <item name="android:windowMinWidthMinor">@dimen/ads_dialog_min_width_minor</item>
         <item name="windowMinWidthMajor">@dimen/ads_dialog_min_width_major</item>
         <item name="windowMinWidthMinor">@dimen/ads_dialog_min_width_minor</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="listPreferredItemPaddingLeft">24dip</item>
+        <item name="listPreferredItemPaddingRight">24dip</item>
     </style>
 
     <style name="Base.Dynamic.Light.Dialog">
@@ -953,10 +953,6 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">?attr/ads_animationDialog</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowActionModeOverlay">true</item>
-        <item name="listPreferredItemPaddingLeft">24dip</item>
-        <item name="listPreferredItemPaddingRight">24dip</item>
         <item name="android:listDivider">@null</item>
         <item name="android:buttonBarStyle">@style/Widget.AppCompat.ButtonBar.AlertDialog</item>
         <item name="android:borderlessButtonStyle">@style/Widget.AppCompat.Button.Borderless</item>
@@ -965,6 +961,10 @@
         <item name="android:windowMinWidthMinor">@dimen/ads_dialog_min_width_minor</item>
         <item name="windowMinWidthMajor">@dimen/ads_dialog_min_width_major</item>
         <item name="windowMinWidthMinor">@dimen/ads_dialog_min_width_minor</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="listPreferredItemPaddingLeft">24dip</item>
+        <item name="listPreferredItemPaddingRight">24dip</item>
     </style>
 
     <style name="Base.Dynamic.DayNight.Dialog">
@@ -979,10 +979,6 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">?attr/ads_animationDialog</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowActionModeOverlay">true</item>
-        <item name="listPreferredItemPaddingLeft">24dip</item>
-        <item name="listPreferredItemPaddingRight">24dip</item>
         <item name="android:listDivider">@null</item>
         <item name="android:buttonBarStyle">@style/Widget.AppCompat.ButtonBar.AlertDialog</item>
         <item name="android:borderlessButtonStyle">@style/Widget.AppCompat.Button.Borderless</item>
@@ -991,6 +987,10 @@
         <item name="android:windowMinWidthMinor">@dimen/ads_dialog_min_width_minor</item>
         <item name="windowMinWidthMajor">@dimen/ads_dialog_min_width_major</item>
         <item name="windowMinWidthMinor">@dimen/ads_dialog_min_width_minor</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="listPreferredItemPaddingLeft">24dip</item>
+        <item name="listPreferredItemPaddingRight">24dip</item>
     </style>
 
     <style name="Theme.Dynamic.Dialog" parent="Base.Dynamic.Dialog">

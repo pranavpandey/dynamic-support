@@ -31,6 +31,7 @@ import android.widget.PopupWindow;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.PopupWindowCompat;
@@ -38,7 +39,9 @@ import androidx.transition.TransitionManager;
 
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 import com.pranavpandey.android.dynamic.util.DynamicWindowUtils;
@@ -216,6 +219,16 @@ public abstract class DynamicPopup {
     protected abstract @NonNull DynamicPopup build();
 
     /**
+     * Returns the window animation style for the popup.
+     *
+     * @return The window animation style for the popup.
+     */
+    protected @StyleRes int getWindowAnimationStyle() {
+        return DynamicMotion.getInstance().isMotion()
+                ? DynamicResourceUtils.getWindowPopupAnimation() : 0;
+    }
+
+    /**
      * Returns the maximum width for the popup.
      *
      * @return The maximum width for the popup.
@@ -355,7 +368,7 @@ public abstract class DynamicPopup {
         PopupWindowCompat.setOverlapAnchor(mPopupWindow, true);
         mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        mPopupWindow.setAnimationStyle(R.style.Animation_AppCompat_DropDownUp);
+        mPopupWindow.setAnimationStyle(getWindowAnimationStyle());
 
         if (getMaxWidth() + getSizeOffset()
                 < DynamicWindowUtils.getAppUsableScreenSize(getAnchor().getContext()).x) {

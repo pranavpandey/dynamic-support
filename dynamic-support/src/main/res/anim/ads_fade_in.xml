@@ -18,7 +18,7 @@
 
 <alpha
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="@integer/ads_config_anim_medium_duration"
     android:interpolator="@android:anim/decelerate_interpolator"
     android:fromAlpha="0.0" android:toAlpha="1.0"
-    android:startOffset="@integer/ads_config_anim_short_duration"
-    android:duration="@integer/ads_config_anim_medium_duration" />
+    android:startOffset="@integer/ads_config_anim_short_duration" />

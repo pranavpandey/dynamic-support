@@ -18,18 +18,17 @@
 
 <set
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shareInterpolator="false">
+    android:duration="@integer/ads_config_anim_short_duration"
+    android:interpolator="@android:anim/accelerate_interpolator"
+    android:shareInterpolator="true"
+    android:ordering="together">
 
     <scale
-        android:interpolator="@android:anim/decelerate_interpolator"
         android:fromXScale="1.0" android:toXScale="0.8"
         android:fromYScale="1.0" android:toYScale="0.8"
-        android:pivotX="50%" android:pivotY="50%"
-        android:duration="@integer/ads_config_anim_short_duration" />
+        android:pivotX="50%" android:pivotY="50%" />
 
     <alpha
-        android:interpolator="@android:anim/decelerate_interpolator"
-        android:fromAlpha="1.0" android:toAlpha="0.0"
-        android:duration="@integer/ads_config_anim_short_duration" />
+        android:fromAlpha="1.0" android:toAlpha="0.0" />
 
 </set>

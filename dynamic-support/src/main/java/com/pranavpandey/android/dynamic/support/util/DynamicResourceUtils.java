@@ -48,6 +48,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.pranavpandey.android.dynamic.support.Dynamic;
+import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
@@ -820,5 +821,25 @@ public class DynamicResourceUtils {
         }
 
         return colors;
+    }
+
+    /**
+     * Returns the animation for the dialog window according to the dynamic theme style.
+     *
+     * @return The animation for the dialog window according to the dynamic theme style.
+     */
+    public static @StyleRes int getWindowDialogAnimation() {
+        return Dynamic.isLegacyVersion() ? R.style.Animation_Dynamic_Dialog
+                : R.style.Animation_Dynamic2_Dialog;
+    }
+
+    /**
+     * Returns the animation for the popup window according to the dynamic theme style.
+     *
+     * @return The animation for the popup window according to the dynamic theme style.
+     */
+    public static @StyleRes int getWindowPopupAnimation() {
+        return Dynamic.isLegacyVersion() ? R.style.Animation_Dynamic_Popup
+                : R.style.Animation_Dynamic2_Popup;
     }
 }

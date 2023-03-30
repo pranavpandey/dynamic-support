@@ -18,16 +18,15 @@
 
 <set
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shareInterpolator="false">
+    android:duration="@integer/ads_config_anim_short_duration"
+    android:interpolator="@android:anim/accelerate_interpolator"
+    android:shareInterpolator="true"
+    android:ordering="together">
 
     <translate
-        android:interpolator="@android:anim/accelerate_interpolator"
-        android:fromXDelta="0" android:toXDelta="50%p"
-        android:duration="@integer/ads_config_anim_medium_duration" />
+        android:fromXDelta="0" android:toXDelta="50%p" />
 
     <alpha
-        android:interpolator="@android:anim/accelerate_interpolator"
-        android:fromAlpha="1.0" android:toAlpha="0.0"
-        android:duration="@integer/ads_config_anim_medium_duration" />
+        android:fromAlpha="1.0" android:toAlpha="0.0" />
 
 </set>

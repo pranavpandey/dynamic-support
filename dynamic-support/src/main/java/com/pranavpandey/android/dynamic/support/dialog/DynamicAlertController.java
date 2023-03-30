@@ -61,6 +61,7 @@ import androidx.core.widget.NestedScrollView;
 
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.DynamicListView;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
@@ -520,6 +521,10 @@ class DynamicAlertController {
 
         // Make default drawable transparent as we are using card view as background.
         mWindow.setBackgroundDrawableResource(android.R.color.transparent);
+
+        if (!DynamicMotion.getInstance().isMotion()) {
+            mWindow.getAttributes().windowAnimations = 0;
+        }
 
         if (card instanceof DynamicWidget
                 && DynamicTheme.getInstance().get().isBackgroundAware()) {
