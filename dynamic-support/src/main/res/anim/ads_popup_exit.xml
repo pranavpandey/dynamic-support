@@ -22,8 +22,8 @@
 
     <scale
         android:interpolator="@android:anim/decelerate_interpolator"
-        android:fromXScale="1.0" android:toXScale="0.9"
-        android:fromYScale="1.0" android:toYScale="0.9"
+        android:fromXScale="1.0" android:toXScale="0.8"
+        android:fromYScale="1.0" android:toYScale="0.8"
         android:pivotX="50%" android:pivotY="50%"
         android:duration="@integer/ads_config_anim_short_duration" />
 
