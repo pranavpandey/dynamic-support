@@ -20,6 +20,8 @@ import android.view.View;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 /**
  * An interface to implement the splash screen and to get various callbacks while showing the splash.
@@ -32,6 +34,15 @@ public interface DynamicSplashListener {
      * @return The splash layout resource.
      */
     @LayoutRes int getLayoutRes();
+
+    /**
+     * This method will be called to create the splash fragment instance.
+     *
+     * @param layoutRes The layout resource file for the fragment.
+     *
+     * @return The splash fragment instance.
+     */
+    @Nullable Fragment getContentFragment(@LayoutRes int layoutRes);
 
     /**
      * This method will be called just after creating the splash fragment with the supplied

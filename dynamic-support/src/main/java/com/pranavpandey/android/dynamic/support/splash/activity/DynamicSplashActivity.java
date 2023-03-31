@@ -23,6 +23,7 @@ import android.view.View;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
@@ -81,6 +82,7 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
 
         ADS_SPLASH_MAGIC = false;
         setContentView(R.layout.ads_layout_container);
+        setRootBackground(getBackgroundColor());
 
         mCoordinatorLayout = findViewById(R.id.ads_coordinator_layout);
 
@@ -90,16 +92,15 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
         }
 
         if (mContentFragment == null) {
-            mContentFragment = DynamicSplashFragment.newInstance(getLayoutRes());
+            mContentFragment = getContentFragment(getLayoutRes());
         }
-
         if (mContentFragment instanceof DynamicSplashFragment) {
             ((DynamicSplashFragment) mContentFragment).setOnSplashListener(this);
-            setRootBackground(((DynamicSplashFragment) mContentFragment).getBackgroundColor());
         }
-
-        commitFragmentTransaction(getSupportFragmentManager().beginTransaction()
-                .replace(R.id.ads_container, mContentFragment, ADS_STATE_SPLASH_FRAGMENT_TAG));
+        if (mContentFragment != null) {
+            commitFragmentTransaction(getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.ads_container, mContentFragment, ADS_STATE_SPLASH_FRAGMENT_TAG));
+        }
 
         if (DynamicTheme.getInstance().get().getPrimaryColorDark(
                 false, false) == Theme.AUTO) {
@@ -123,6 +124,11 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
         }
 
         ((DynamicSplashFragment) mContentFragment).show(getSavedInstanceState() != null);
+    }
+
+    @Override
+    public @Nullable Fragment getContentFragment(@StyleRes int layoutRes) {
+        return DynamicSplashFragment.newInstance(layoutRes);
     }
 
     @Override
