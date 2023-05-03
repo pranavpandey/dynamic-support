@@ -32,10 +32,10 @@
     <string name="ads_actions">動作</string>
     <string name="ads_text">文字</string>
     <string name="ads_icon">圖示</string>
-    <string name="ads_size">尺寸</string>
+    <string name="ads_size">大小</string>
     <string name="ads_value">值</string>
     <string name="ads_notification">通知</string>
-    <string name="ads_notification_tile">動態磚</string>
+    <string name="ads_notification_tile">圖塊</string>
     <string name="ads_widgets">小工具</string>
     <string name="ads_instructions">使用說明</string>
     <string name="ads_tutorial">教學課程</string>
@@ -50,7 +50,7 @@
     <!-- Labels -->
     <string name="ads_warning">警告</string>
     <string name="ads_error">發生錯誤。</string>
-    <string name="ads_i_got_it">我知道了</string>
+    <string name="ads_i_got_it">瞭解了</string>
     <string name="ads_not_now">現在不要</string>
     <string name="ads_later">之後</string>
     <string name="ads_yes_in">是的，我在</string>
@@ -67,7 +67,7 @@
     <string name="ads_clear">清除</string>
     <string name="ads_file">檔案</string>
     <string name="ads_data">資料</string>
-    <string name="ads_data_invalid">無效資料</string>
+    <string name="ads_data_invalid">無效的資料</string>
     <string name="ads_data_invalid_desc">請用適當的資料再試一次。</string>
     <string name="ads_create">建立</string>
     <string name="ads_configure">設定</string>
@@ -107,7 +107,7 @@
 
     <!-- Navigation and Menu -->
     <string name="ads_nav_category_features">選單</string>
-    <string name="ads_nav_category_support">支援開發</string>
+    <string name="ads_nav_category_support">支持開發</string>
     <string name="ads_nav_category_contribute">貢獻</string>
     <string name="ads_nav_home">首頁</string>
     <string name="ads_nav_settings">設定</string>
@@ -129,7 +129,7 @@
     <string name="ads_perm_info_grant_all">請允許所有權限以使應用程式正常運作</string>
     <string name="ads_perm_info_accept">此功能是可選的，請接受以繼續。</string>
     <string name="ads_perm_request">要求</string>
-    <string name="ads_perm_request_desc">未授予此權限。輕觸以要求</string>
+    <string name="ads_perm_request_desc">未授予此權限，輕觸以要求</string>
     <string name="ads_perm_granted">已授予</string>
     <string name="ads_perm_granted_desc">此權限已被授予</string>
     <string name="ads_perm_denied">遭拒</string>
@@ -153,13 +153,13 @@
     <!-- Theme -->
     <string name="ads_dynamic_theme">動態主題</string>
     <string name="ads_dynamic_theme_summary">接收者套用的主題</string>
-    <string name="ads_dynamic_color_summary">自動色彩的實現</string>
+    <string name="ads_dynamic_color_summary">自動色彩的實作</string>
     <string name="ads_dynamic">動態</string>
     <string name="ads_color">色彩</string>
     <string name="ads_theme">主題</string>
     <string name="ads_theme_preview_summary">顯示主題預覽。</string>
     <string name="ads_theme_preview_summary_unchecked">不顯示主題預覽。</string>
-    <string name="ads_theme_code">程式碼</string>
+    <string name="ads_theme_code">圖碼</string>
     <string name="ads_theme_code_desc">掃描或分享主題。</string>
     <string name="ads_theme_code_capture">擷取</string>
     <string name="ads_theme_customise_desc">在下面設定主題。</string>
@@ -167,30 +167,30 @@
     <string name="ads_theme_invalid">無效主題</string>
     <string name="ads_theme_invalid_desc">無法驗證此主題。請用適當的資料再試一次。</string>
     <string name="ads_theme_color_palette">色彩調色盤</string>
-    <string name="ads_theme_color_palette_summary">主題色和強調色預設</string>
+    <string name="ads_theme_color_palette_summary">主題色彩和強調色彩預設</string>
     <string name="ads_theme_color_background">背景色彩</string>
-    <string name="ads_theme_color_background_summary">主題的背景色</string>
-    <string name="ads_theme_color_background_summary_system">系統的背景色</string>
+    <string name="ads_theme_color_background_summary">主題的背景色彩</string>
+    <string name="ads_theme_color_background_summary_system">系統的背景色彩</string>
     <string name="ads_theme_color_background_summary_system_alt">出於內部目的，應靠近通知抽屜背景以避免可見性問題。</string>
-    <string name="ads_theme_color_stroke">筆劃顏色</string>
-    <string name="ads_theme_color_primary">主題色</string>
+    <string name="ads_theme_color_stroke">筆觸色彩</string>
+    <string name="ads_theme_color_primary">主要色彩</string>
     <string name="ads_theme_color_primary_summary">主要元素使用的色彩</string>
     <string name="ads_theme_color_primary_dark">系統色彩</string>
     <string name="ads_theme_color_primary_summary_dark">系統元素使用的色彩</string>
-    <string name="ads_theme_color_accent">強調色</string>
-    <string name="ads_theme_color_secondary">輔助色</string>
+    <string name="ads_theme_color_accent">強調色彩</string>
+    <string name="ads_theme_color_secondary">輔助色彩</string>
     <string name="ads_theme_color_accent_summary">輔助元素使用的色彩</string>
     <string name="ads_theme_color_error">錯誤色彩</string>
     <string name="ads_theme_color_error_summary">用於顯示錯誤的色彩</string>
-    <string name="ads_theme_color_surface">表面色</string>
-    <string name="ads_theme_color_tint">色彩</string>
-    <string name="ads_theme_color_inverse">反色</string>
+    <string name="ads_theme_color_surface">表面色彩</string>
+    <string name="ads_theme_color_tint">濃淡色彩</string>
+    <string name="ads_theme_color_inverse">反轉色彩</string>
     <string name="ads_theme_font_scale">字型縮放</string>
     <string name="ads_theme_font_scale_summary">調整縮放係數，縮小或放大文字</string>
     <string name="ads_theme_corner_size">邊角大小</string>
     <string name="ads_theme_corner_size_summary">應用程式的角半徑</string>
     <string name="ads_theme_background_aware">背景感知</string>
-    <string name="ads_theme_background_aware_desc">某些顏色會依據背景自動變更以提供最佳可見性。</string>
+    <string name="ads_theme_background_aware_desc">某些色彩會依背景自動調整以提供最佳可見性。</string>
     <string name="ads_theme_contrast">對比度</string>
     <string name="ads_theme_contrast_summary">可見對比度的最小比率</string>
     <string name="ads_theme_opacity">背景不透明度</string>
@@ -200,19 +200,19 @@
     <string name="ads_theme_elevation_summary">控制表面元素的陰影</string>
     <string name="ads_theme_style">樣式</string>
     <string name="ads_theme_style_summary">主題樣式</string>
-    <string name="ads_theme_app">應用主題</string>
-    <string name="ads_theme_app_summary">應用程式主題</string>
+    <string name="ads_theme_app">應用程式主題</string>
+    <string name="ads_theme_app_summary">應用程式的樣式</string>
     <string name="ads_theme_app_desc">選取自動使用日間和夜間主題。</string>
     <string name="ads_theme_app_day">日間主題</string>
-    <string name="ads_theme_app_day_summary">應用在日間的主題</string>
+    <string name="ads_theme_app_day_summary">應用程式在日間的主題</string>
     <string name="ads_theme_app_night">夜間主題</string>
-    <string name="ads_theme_app_night_summary">應用在夜間的主題</string>
-    <string name="ads_theme_app_day_night_desc">這僅在應用自動主題時有效。</string>
+    <string name="ads_theme_app_night_summary">應用程式在夜間的主題</string>
+    <string name="ads_theme_app_day_night_desc">這僅在套用自動主題時有效。</string>
     <string name="ads_theme_toast">快顯訊息主題</string>
-    <string name="ads_theme_toast_summary">依應用強調色顯示主題快顯訊息</string>
+    <string name="ads_theme_toast_summary">依應用程式強調色彩顯示主題快顯訊息</string>
     <string name="ads_theme_toast_summary_unchecked">顯示預設的系統快顯訊息</string>
     <string name="ads_theme_navigation_bar">導覽列主題</string>
-    <string name="ads_theme_navigation_bar_summary">依應用的強調色顯示主題導覽列</string>
+    <string name="ads_theme_navigation_bar_summary">依應用程式的強調色彩顯示主題導覽列</string>
     <string name="ads_theme_navigation_bar_summary_unchecked">顯示預設導覽列</string>
     <string name="ads_theme_navigation_bar_desc">在某些位置，導覽列主題將不可見以提供最好視覺體驗。</string>
     <string name="ads_theme_notification">通知主題</string>
@@ -223,11 +223,11 @@
     <string name="ads_theme_widget">小工具主題</string>
     <string name="ads_theme_widget_summary">小工具調色盤</string>
     <string name="ads_theme_app_shortcuts">應用程式捷徑主題</string>
-    <string name="ads_theme_app_shortcuts_summary">依應用強調色顯示主題應用程式捷徑</string>
-    <string name="ads_theme_app_shortcuts_summary_unchecked">依應用主題和品牌顏色顯示預設的應用程式捷徑</string>
+    <string name="ads_theme_app_shortcuts_summary">依應用程式強調色彩顯示主題應用程式捷徑</string>
+    <string name="ads_theme_app_shortcuts_summary_unchecked">依應用程式主題和品牌色彩顯示預設的應用程式捷徑</string>
     <string name="ads_theme_app_shortcuts_desc">長按啟動器圖示以顯示應用程式捷徑，需要支援的啟動器。</string>
     <string name="ads_theme_reset_desc">主題已重設為預設值。</string>
-    <string name="ads_theme_import_done">主題已成功導入。</string>
+    <string name="ads_theme_import_done">主題已成功匯入。</string>
     <string name="ads_theme_export_done">主題已成功匯出。</string>
     <string name="ads_theme_export_error">無法儲存主題。</string>
     <string name="ads_theme_share_error">無法分享主題。</string>
@@ -260,7 +260,7 @@
     <string name="ads_theme_entry_custom">自訂</string>
     <string name="ads_theme_entry_classic">經典</string>
     <string name="ads_theme_entry_battery">省電</string>
-    <string name="ads_theme_entry_always">始終</string>
+    <string name="ads_theme_entry_always">一律</string>
     <string name="ads_theme_entry_true_dark">真•黑</string>
     <string name="ads_theme_entry_light_indigo">淺靛藍</string>
     <string name="ads_theme_entry_light_red">淺紅</string>
@@ -290,9 +290,9 @@
     <string name="ads_picker_pick">挑選</string>
     <string name="ads_picker_more_colors">更多色彩</string>
     <string name="ads_picker_presets">預設值</string>
-    <string name="ads_picker_size_small">小的</string>
-    <string name="ads_picker_size_normal">一般的</string>
-    <string name="ads_picker_size_large">大的</string>
+    <string name="ads_picker_size_small">小</string>
+    <string name="ads_picker_size_normal">中</string>
+    <string name="ads_picker_size_large">大</string>
     <string name="ads_picker_size_info">寬度和高度的值。</string>
 
     <!-- Miscellaneous -->
@@ -313,10 +313,10 @@
     <string name="ads_notification_priority_summary">選取優先順序以確定其在通知導覽匣中的順序</string>
     <string name="ads_notification_priority_desc">選取低優先順序以從狀態列和鎖定畫面隱藏通知。</string>
     <string name="ads_notification_priority_high">高</string>
-    <string name="ads_notification_priority_normal">正常</string>
+    <string name="ads_notification_priority_normal">中</string>
     <string name="ads_notification_priority_low">低</string>
     <string name="ads_notification_category">通知類別</string>
-    <string name="ads_notification_category_summary">設定應用顯示的通知</string>
+    <string name="ads_notification_category_summary">設定應用程式顯示的通知</string>
     <string name="ads_notification_category_desc">設定較低的類別重要性，以從狀態列和鎖定畫面隱藏通知。</string>
     <string name="ads_notification_close_drawer">關閉導覽匣</string>
     <string name="ads_notification_close_drawer_summary">執行此動作後，關閉通知導覽匣</string>
@@ -331,7 +331,7 @@
     <string name="ads_widget_header_summary">小工具標頭可見性</string>
     <string name="ads_widget_header_desc">如果有足夠的可用空間，請選取自動以顯示標頭。</string>
     <string name="ads_widget_corner_size_bg_summary">小工具背景的邊角大小</string>
-    <string name="ads_widget_corner_size_bg_desc">選取自動以使用應用邊角大小。</string>
+    <string name="ads_widget_corner_size_bg_desc">選取自動以使用應用程式圓角大小。</string>
     <string name="ads_widget_reset_desc">小工具已重設為預設值。</string>
     <string name="ads_widget_not_added">尚未新增任何小工具。</string>
 
@@ -346,23 +346,23 @@
     <string name="ads_support_report">回報</string>
     <string name="ads_support_report_bug">提交錯誤回報</string>
     <string name="ads_support_report_bug_summary">透過電子郵件聯絡開發人員</string>
-    <string name="ads_support_report_bug_desc">如果您對此應用有任何疑問，請通過電子郵件聯絡。</string>
+    <string name="ads_support_report_bug_desc">如果您對此應用程式有任何疑問，請透過電子郵件聯絡。</string>
     <string name="ads_support_donate">捐贈</string>
     <string name="ads_support_donate_paypal">透過 PayPal 捐贈。</string>
-    <string name="ads_support_donate_desc">向開發人員付款，以表示感謝並支援其他項目的開發。捐贈不是必要的，您可以隨時購買付費版本以支援開發。</string>
+    <string name="ads_support_donate_desc">向開發人員付款，以表示感謝並支持其他專案的開發。捐贈不是必要的，您可以隨時購買付費版本以支持開發。</string>
     <string name="ads_support_reset_to_default">重設為預設值</string>
     <string name="ads_support_reset_to_default_alert">這會將所有使用者設定重設為預設值。你想繼續嗎?</string>
     <string name="ads_support_reset_to_default_summary">將所有設定重設為預設值</string>
     <string name="ads_support_reset_to_default_desc">這可以解決由於應用程式或系統更新而引起的一些常規問題。執行此動作後，所有使用者設定 (小工具除外) 將丟失。</string>
     <string name="ads_support_restart_app">重新啟動應用程式</string>
     <string name="ads_support_restart_app_summary">重新啟動應用程式和服務以重新整理應用程式狀態</string>
-    <string name="ads_support_restart_app_desc">如果服務未啟動或應用無法正常運作，請使用此選項。執行此動作後，所有設定將保持不變。</string>
+    <string name="ads_support_restart_app_desc">如果服務未啟動或應用程式無法正常運作，請使用此選項。執行此動作後，所有設定將保持不變。</string>
 
     <!-- Developer and Info -->
     <string name="ads_info_made_in">印度製造</string>
     <string name="ads_info_made_by">由設計和編寫</string>
     <string name="ads_info_made_by_alt">由開發</string>
-    <string name="ads_info_quote">沒有什麼東西是完美的，但是可以做的更好。開發更好的東西！</string>
+    <string name="ads_info_quote">沒有什麼東西是完美的，但是可以做得更好！</string>
     <string name="ads_info_privacy_policy">隱私權政策</string>
     <string name="ads_info_privacy_policy_desc">檢視此產品的完整隱私權政策</string>
     <string name="ads_info_terms_of_use">使用條款</string>
@@ -375,7 +375,7 @@
     <string name="ads_info_xda_desc">請關注 XDA 上的官方支援論壇。</string>
     <string name="ads_info_website">網站</string>
     <string name="ads_info_website_desc">造訪官方網站以取得更多資訊</string>
-    <string name="ads_info_website_me_desc">我在網路上的位置。</string>
+    <string name="ads_info_website_me_desc">我在網路上的位置</string>
     <string name="ads_info_twitter_me_desc">取得有關我生活和工作的最新推文。</string>
     <string name="ads_info_facebook_me_desc">成為朋友或跟隨以更多地瞭解我。</string>
     <string name="ads_info_gplus_me_desc">圈選或關注以發展社群。</string>
