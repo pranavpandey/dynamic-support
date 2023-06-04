@@ -549,19 +549,22 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
     protected final Runnable mStaggeredGridRunnable = new Runnable() {
         @Override
         public void run() {
-            if (mRecyclerView != null && mRecyclerViewLayoutManager != null
-                    && mRecyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
-                ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager).setGapStrategy(
-                        ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager)
-                                .getGapStrategy() | GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
-                ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager)
-                        .invalidateSpanAssignments();
+            if (mRecyclerView == null || mRecyclerViewLayoutManager == null
+                    || !(mRecyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager)
+                    || mRecyclerViewLayoutManager.getChildCount() <= 0) {
+                return;
+            }
 
-                if (((StaggeredGridLayoutManager)
-                        mRecyclerViewLayoutManager).getSpanCount() > 1) {
+            ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager).setGapStrategy(
                     ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager)
-                            .scrollToPositionWithOffset(0, 0);
-                }
+                            .getGapStrategy() | GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
+            ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager)
+                    .invalidateSpanAssignments();
+
+            if (((StaggeredGridLayoutManager)
+                    mRecyclerViewLayoutManager).getSpanCount() > 1) {
+                ((StaggeredGridLayoutManager) mRecyclerViewLayoutManager)
+                        .scrollToPositionWithOffset(0, 0);
             }
         }
     };
