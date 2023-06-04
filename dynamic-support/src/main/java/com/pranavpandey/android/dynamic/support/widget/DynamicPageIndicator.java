@@ -586,8 +586,9 @@ public class DynamicPageIndicator extends View implements ViewPager.OnPageChange
     }
 
     private void setSelectedPage(int now) {
-        // Check for null array
-        if (now == currentPage || dotCenterX == null || now >= dotCenterX.length) return;
+        // Check for null array and handle exceptions.
+        if (now < 0 || now == currentPage || dotCenterX == null
+                || now >= dotCenterX.length) return;
 
         pageChanging = true;
         previousPage = currentPage;
