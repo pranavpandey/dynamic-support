@@ -873,5 +873,6 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
     }
 
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { }
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+            @Nullable String key) { }
 }

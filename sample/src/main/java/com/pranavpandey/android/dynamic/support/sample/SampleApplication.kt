@@ -119,7 +119,7 @@ class SampleApplication : DynamicApplication() {
         return AppController.instance.isThemeNavigationBar
     }
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String?) {
         super.onSharedPreferenceChanged(sharedPreferences, key)
 
         // Update themes on shared preferences change.

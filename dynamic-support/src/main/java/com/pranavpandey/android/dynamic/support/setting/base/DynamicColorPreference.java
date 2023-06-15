@@ -857,7 +857,8 @@ public class DynamicColorPreference extends DynamicSimplePreference {
     }
 
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+            @Nullable String key) {
         super.onSharedPreferenceChanged(sharedPreferences, key);
 
         if (DynamicPreferences.isNullKey(key)) {

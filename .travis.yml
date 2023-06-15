@@ -1,5 +1,5 @@
 language: android
-jdk: oraclejdk11
+jdk: oraclejdk17
 
 before_install:
   - mkdir "$ANDROID_HOME/licenses" || true
@@ -10,8 +10,8 @@ android:
   components:
     - tools
     - platform-tools
-    - build-tools-33.0.2
-    - android-33
+    - build-tools-34.0.0
+    - android-34
     - extra-android-support
     - extra-android-m2repository
     - extra-google-m2repository

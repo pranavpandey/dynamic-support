@@ -733,5 +733,6 @@ public class DynamicDialogFragment extends AppCompatDialogFragment
     }
 
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { }
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+            @Nullable String key) { }
 }

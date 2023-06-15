@@ -1757,7 +1757,8 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     }
 
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { }
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+            @Nullable String key) { }
 
     /**
      * Update the task description on API 21 and above to match it with the theme color.
