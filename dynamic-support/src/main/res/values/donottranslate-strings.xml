@@ -36,6 +36,7 @@
     <string name="ads_cancel">@android:string/cancel</string>
     <string name="ads_unit_percent">%</string>
     <string name="ads_unit_pixel">px</string>
+    <string name="ads_unit_hash">#</string>
 
     <!-- Locales -->
     <string name="ads_locale_system">@string/ads_language_system</string>
