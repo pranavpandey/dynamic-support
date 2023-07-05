@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2023 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,6 +44,8 @@ android {
 }
 
 dependencies {
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:${versions.kotlin}"))
+
     api "com.pranavpandey.android:dynamic-utils:${versions.dynamic}"
     api "com.pranavpandey.android:dynamic-theme:${versions.theme}"
     api "com.pranavpandey.android:dynamic-locale:${versions.locale}"
