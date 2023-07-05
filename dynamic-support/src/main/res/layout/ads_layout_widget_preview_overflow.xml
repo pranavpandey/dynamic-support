@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2019-2022 Pranav Pandey
+
+	Proprietary code, should be used with proper permission.
+-->
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Dynamic2.Content.Row.Vertical.Center"
+    android:id="@+id/ads_widget_content_overflow"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+    tools:targetApi="m"
+    tools:ignore="UseAppTint">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/colorAccent"
+        android:alpha="@integer/ads_alpha_backdrop" />
+
+    <ImageView
+        style="@style/Widget.Dynamic2.Image.Empty.Overflow"
+        android:contentDescription="@null"
+        android:src="@drawable/ads_content_overflow_remote"
+        android:tint="?android:attr/colorAccent" />
+
+</FrameLayout>

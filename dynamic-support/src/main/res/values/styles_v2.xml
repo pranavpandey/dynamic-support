@@ -760,6 +760,12 @@
         <item name="android:layout_height">@dimen/ads_icon_empty</item>
         <item name="adt_colorType">tint_background</item>
     </style>
+    <style name="Widget.Dynamic2.Image.Empty.Overflow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
 
     <style name="Widget.Dynamic2.Image.Card">
         <item name="android:layout_width">@dimen/ads_icon_large</item>
@@ -1139,6 +1145,9 @@
     <style name="AppWidget.Dynamic2.Layout" parent="Widget.Dynamic2.Theme.Preview.Layout">
         <item name="android:layout_margin">@dimen/ads_widget_stroke_size</item>
     </style>
+    <style name="AppWidget.Dynamic2.Layout.Preview">
+        <item name="android:layout_margin">0dp</item>
+    </style>
     <style name="AppWidget.Dynamic2.Content">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -1151,6 +1160,19 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:background">@android:color/transparent</item>
+    </style>
+    <style name="AppWidget.Dynamic2.Content.Preview">
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:paddingLeft">@dimen/ads_margin_regular</item>
+        <item name="android:paddingStart">@dimen/ads_margin_regular</item>
+        <item name="android:paddingTop">@dimen/ads_margin_regular</item>
+        <item name="android:paddingRight">@dimen/ads_margin_regular</item>
+        <item name="android:paddingEnd">@dimen/ads_margin_regular</item>
+        <item name="android:paddingBottom">@dimen/ads_margin_regular</item>
+    </style>
+    <style name="AppWidget.Dynamic2.Content.Preview.Small">
+        <item name="android:paddingTop">@dimen/ads_margin_tiny</item>
+        <item name="android:paddingBottom">@dimen/ads_margin_tiny</item>
     </style>
 
     <style name="AppWidget.Dynamic2.Header" parent="Widget.Dynamic2.Theme.Preview.Header" />
@@ -1170,10 +1192,16 @@
     <style name="AppWidget.Dynamic2.Image" />
     <style name="AppWidget.Dynamic2.Image.Background"
         parent="Widget.Dynamic2.Theme.Background.Image" />
-    <style name="AppWidget.Dynamic2.Image.Header">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:scaleType">fitXY</item>
+    <style name="AppWidget.Dynamic2.Image.Background.Preview">
+        <item name="android:background">?android:attr/colorBackground</item>
+        <item name="android:src">@null</item>
+    </style>
+    <style name="AppWidget.Dynamic2.Image.Header"
+        parent="Widget.Dynamic2.Theme.Background.Image" />
+    <style name="AppWidget.Dynamic2.Image.Header.Preview">
+        <item name="android:minHeight">@dimen/ads_icon_normal</item>
+        <item name="android:background">?android:attr/colorBackground</item>
+        <item name="android:src">@null</item>
     </style>
     <style name="AppWidget.Dynamic2.Image.Logo">
         <item name="android:layout_width">@dimen/ads_widget_icon_size</item>
@@ -1181,6 +1209,10 @@
         <item name="android:layout_marginRight">@dimen/ads_margin_normal</item>
         <item name="android:layout_marginEnd">@dimen/ads_margin_normal</item>
         <item name="android:layout_gravity">center_vertical</item>
+    </style>
+    <style name="AppWidget.Dynamic2.Image.Logo.Top">
+        <item name="android:layout_gravity">top</item>
+        <item name="android:layout_marginTop">@dimen/ads_margin_extra_tiny</item>
     </style>
     <style name="AppWidget.Dynamic2.Image.Action" parent="Widget.Dynamic2.Theme.Action">
         <item name="android:layout_margin">@dimen/ads_button_padding_remote_small</item>

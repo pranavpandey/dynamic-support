@@ -75,5 +75,12 @@
     <integer name="ads_widget_update_millis_hour">3600000</integer>
     <integer name="ads_widget_update_millis_quarter">21600000</integer>
     <integer name="ads_widget_update_millis_day">86400000</integer>
+    <integer name="ads_widget_visibility_controls">2</integer>
+
+    <!-- Vibration -->
+    <integer name="ads_vibration">25</integer>
+    <integer name="ads_vibration_min">10</integer>
+    <integer name="ads_vibration_max">500</integer>
+    <integer name="ads_vibration_interval">5</integer>
 
 </resources>

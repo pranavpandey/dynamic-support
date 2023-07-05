@@ -335,6 +335,8 @@
     <attr name="ads_widgetImageDragIndicator" format="reference" />
     <!-- The empty image style. -->
     <attr name="ads_widgetImageEmpty" format="reference" />
+    <!-- The overflow image style. -->
+    <attr name="ads_widgetImageOverflow" format="reference" />
     <!-- The card image style. -->
     <attr name="ads_widgetImageCard" format="reference" />
     <!-- The card big image style. -->
@@ -493,8 +495,14 @@
     <attr name="ads_appWidgetBackground" format="reference" />
     <!-- The app widget layout style. -->
     <attr name="ads_appWidgetLayout" format="reference" />
+    <!-- The app widget layout preview style. -->
+    <attr name="ads_appWidgetLayoutPreview" format="reference" />
     <!-- The app widget content style. -->
     <attr name="ads_appWidgetContent" format="reference" />
+    <!-- The app widget preview content style. -->
+    <attr name="ads_appWidgetContentPreview" format="reference" />
+    <!-- The app widget preview small content style. -->
+    <attr name="ads_appWidgetContentPreviewSmall" format="reference" />
     <!-- The app widget header style. -->
     <attr name="ads_appWidgetHeader" format="reference" />
     <!-- The app widget preview header style. -->
@@ -507,8 +515,12 @@
     <attr name="ads_appWidgetImage" format="reference" />
     <!-- The app widget background image style. -->
     <attr name="ads_appWidgetImageBackground" format="reference" />
+    <!-- The app widget preview background image style. -->
+    <attr name="ads_appWidgetImageBackgroundPreview" format="reference" />
     <!-- The app widget header image style. -->
     <attr name="ads_appWidgetImageHeader" format="reference" />
+    <!-- The app widget preview header image style. -->
+    <attr name="ads_appWidgetImageHeaderPreview" format="reference" />
     <!-- The app widget logo image style. -->
     <attr name="ads_appWidgetImageLogo" format="reference" />
     <!-- The app widget action image style. -->
