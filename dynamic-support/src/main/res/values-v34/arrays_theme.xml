@@ -18,20 +18,23 @@
 <resources
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Night theme entries for auto and batter saver. -->
-    <string-array name="ads_theme_entries_night"
+    <!-- Contrast ratio entries. -->
+    <string-array name="ads_contrast_entries"
         tools:ignore="InconsistentArrays">
         <item>@string/ads_theme_entry_auto</item>
-        <item>@string/ads_theme_entry_battery</item>
+        <item>@string/ads_theme_entry_system</item>
+        <item>@string/ads_theme_entry_custom</item>
     </string-array>
 
-    <!-- Night theme values for auto and batter saver. -->
-    <string-array name="ads_theme_values_night"
+    <!-- Contrast ratio values. -->
+    <string-array name="ads_contrast_values"
         tools:ignore="InconsistentArrays">
         <!-- Auto -->
         <item>-3</item>
-        <!-- Battery -->
-        <item>2</item>
+        <!-- Auto (System) -->
+        <item>-5</item>
+        <!-- Custom -->
+        <item>-2</item>
     </string-array>
 
 </resources>

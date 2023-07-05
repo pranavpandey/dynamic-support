@@ -19,14 +19,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Night theme entries for auto, batter saver and system. -->
-    <string-array name="ads_theme_entries_night" tools:ignore="InconsistentArrays">
+    <string-array name="ads_theme_entries_night"
+        tools:ignore="InconsistentArrays">
         <item>@string/ads_theme_entry_auto</item>
         <item>@string/ads_theme_entry_battery</item>
         <item>@string/ads_locale_system</item>
     </string-array>
 
     <!-- Night theme values for auto, batter saver and system. -->
-    <string-array name="ads_theme_values_night" tools:ignore="InconsistentArrays">
+    <string-array name="ads_theme_values_night"
+        tools:ignore="InconsistentArrays">
         <!-- Auto -->
         <item>-3</item>
         <!-- Battery -->

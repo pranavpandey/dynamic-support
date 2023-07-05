@@ -47,6 +47,7 @@ import com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView;
 import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
  * Base theme fragment to provide theme editing functionality.
@@ -582,7 +583,12 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
             mCornerSizePreference.setPreferenceValue(Theme.Corner.ToString.CUSTOM);
             mCornerSizePreference.setValue(theme.getCornerSize());
         } else {
-            mCornerSizePreference.setPreferenceValue(Theme.Corner.ToString.AUTO);
+            if (DynamicSdkUtils.is31()
+                    && theme.getCornerRadius(false) == Theme.Corner.SYSTEM) {
+                mCornerSizePreference.setPreferenceValue(Theme.Corner.ToString.SYSTEM);
+            } else {
+                mCornerSizePreference.setPreferenceValue(Theme.Corner.ToString.AUTO);
+            }
             mCornerSizePreference.setValue(mDynamicThemeDefault.getCornerSize());
         }
 
@@ -591,11 +597,17 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         mElevationPreference.setPreferenceValue(String.valueOf(theme.getElevation(false)));
         mStylePreference.setPreferenceValue(String.valueOf(theme.getStyle()));
 
-        if (theme.getContrast(false) != Theme.Contrast.AUTO) {
+        if (theme.getContrast(false) != Theme.Contrast.AUTO
+                && theme.getContrast(false) != Theme.Contrast.SYSTEM) {
             mContrastPreference.setPreferenceValue(Theme.Contrast.ToString.CUSTOM);
             mContrastPreference.setValue(theme.getContrast());
         } else {
-            mContrastPreference.setPreferenceValue(Theme.Contrast.ToString.AUTO);
+            if (DynamicSdkUtils.is34()
+                    && theme.getContrast(false) == Theme.Contrast.SYSTEM) {
+                mContrastPreference.setPreferenceValue(Theme.Contrast.ToString.SYSTEM);
+            } else {
+                mContrastPreference.setPreferenceValue(Theme.Contrast.ToString.AUTO);
+            }
             mContrastPreference.setValue(mDynamicThemeDefault.getContrast());
         }
 
@@ -733,7 +745,9 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
                 && (mThemePreview.getDynamicTheme()
                 .getCornerRadius(false) != Theme.Corner.SYSTEM));
         mContrastPreference.setSeekEnabled(mThemePreview.getDynamicTheme()
-                .getContrast(false) != Theme.Contrast.AUTO);
+                .getContrast(false) != Theme.Contrast.AUTO
+                && (mThemePreview.getDynamicTheme()
+                .getContrast(false) != Theme.Contrast.SYSTEM));
         mOpacityPreference.setSeekEnabled(mThemePreview.getDynamicTheme()
                 .getOpacity(false) != Theme.Opacity.AUTO);
     }

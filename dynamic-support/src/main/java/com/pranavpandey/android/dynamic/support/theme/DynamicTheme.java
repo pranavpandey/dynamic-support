@@ -19,6 +19,7 @@ package com.pranavpandey.android.dynamic.support.theme;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.UiModeManager;
 import android.app.WallpaperColors;
 import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
@@ -270,6 +271,11 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     private BroadcastReceiver mBroadcastReceiver;
 
     /**
+     * UI mode manager to perform system related operations.
+     */
+    private UiModeManager mUiModeManager;
+
+    /**
      * Power manager to perform battery and screen related events.
      */
     private PowerManager mPowerManager;
@@ -369,6 +375,8 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
         DynamicPermissions.initializeInstance(listener.getContext());
         
         this.mListener = listener;
+        this.mUiModeManager = ContextCompat.getSystemService(
+                mListener.getContext(), UiModeManager.class);
         this.mPowerManager = ContextCompat.getSystemService(
                 mListener.getContext(), PowerManager.class);
         this.mDynamicResolver = dynamicResolver;
@@ -1205,6 +1213,15 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     }
 
     /**
+     * Get the UI mode manager used by the application.
+     *
+     * @return The UI mode manager used by the application.
+     */
+    public @NonNull UiModeManager getUiModeManager() {
+        return mUiModeManager;
+    }
+
+    /**
      * Get the power manager used by the application.
      *
      * @return The power manager used by the application.
@@ -1429,6 +1446,25 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     public @ColorInt int getDefaultBackgroundColor(boolean night) {
         return ContextCompat.getColor(getContext(), night
                 ? R.color.ads_window_background : R.color.ads_window_background_light);
+    }
+
+    /**
+     * Try to get the contrast from the system.
+     *
+     * @param fallback The fallback contrast to be used in case of any issues.
+     *
+     * @return The contrast from the system.
+     */
+    @TargetApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+    public int getSystemContrast(int fallback) {
+        if (DynamicSdkUtils.is34()) {
+            int contrast = (int) (mUiModeManager.getContrast() * Theme.Contrast.MAX) / 2;
+            contrast = getDefault().getContrast() + contrast;
+
+            return Math.min(Math.abs(contrast), Theme.Contrast.MAX);
+        }
+
+        return fallback;
     }
 
     /**

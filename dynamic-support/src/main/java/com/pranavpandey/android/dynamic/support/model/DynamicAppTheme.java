@@ -1440,11 +1440,16 @@ public class DynamicAppTheme extends AppTheme<DynamicAppTheme> implements Parcel
 
     @Override
     public int getContrast(boolean resolve) {
-        if (resolve && getContrast(false) == Theme.Contrast.AUTO) {
-            return getThemeFallback(false).getContrast();
+        if (resolve) {
+            if (getContrast(false) == Theme.Contrast.AUTO) {
+                return getThemeFallback(false).getContrast();
+            } else if (getContrast(false) == Theme.Contrast.SYSTEM) {
+                return DynamicTheme.getInstance().getSystemContrast(
+                        getThemeFallback(false).getContrast());
+            }
         }
 
-        return Math.min(Theme.Contrast.MAX, contrast);
+        return Math.min(contrast, Theme.Contrast.MAX);
     }
 
     @Override
@@ -1475,7 +1480,7 @@ public class DynamicAppTheme extends AppTheme<DynamicAppTheme> implements Parcel
             return getThemeFallback(false).getOpacity();
         }
 
-        return Math.min(Theme.Opacity.MAX, opacity);
+        return Math.min(opacity, Theme.Opacity.MAX);
     }
 
     @Override
