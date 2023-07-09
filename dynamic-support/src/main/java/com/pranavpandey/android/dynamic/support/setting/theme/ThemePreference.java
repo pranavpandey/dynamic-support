@@ -38,6 +38,8 @@ import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
 
 /**
  * A {@link DynamicSpinnerPreference} to display and edit the {@link DynamicAppTheme}.
+ *
+ * @param <T> The type of the dynamic app theme this preference will handle.
  */
 public abstract class ThemePreference<T extends DynamicAppTheme>
         extends DynamicSpinnerPreference implements DynamicThemeResolver<T> {

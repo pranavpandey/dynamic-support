@@ -10,6 +10,9 @@ import java.util.Map;
 
 /**
  * A {@link DynamicBinderAdapter} to display different type of {@link VB} inside a recycler view.
+ *
+ * @param <E> The type of the enum this adapter will receive.
+ * @param <VB> The type of the dynamic recycler view binder.
  */
 public abstract class DynamicTypeBinderAdapter<E extends Enum<E>,
         VB extends DynamicRecyclerViewBinder<?>> extends DynamicBinderAdapter<VB> {

@@ -27,6 +27,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * A {@link ListAdapter} to handle the generic data.
+ *
+ * @param <T> The type of the lists this adapter will receive.
+ * @param <VH> The type of the recycler view holder.
  */
 public abstract class DynamicListAdapter<T, VH extends RecyclerView.ViewHolder>
         extends ListAdapter<T, VH> {

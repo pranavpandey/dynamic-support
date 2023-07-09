@@ -67,6 +67,9 @@ import java.util.List;
 /**
  * Base activity with a view pager to show the supplied tutorials.
  * <p>Extend this activity and supply tutorials or dataSet by using the provided methods.
+ *
+ * @param <V> The type of the view or fragment this activity will handle.
+ * @param <T> The type of the tutorial this activity will handle.
  */
 public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tutorial<T, V>>
         extends DynamicSystemActivity implements DynamicTransitionListener, DynamicSnackbar {

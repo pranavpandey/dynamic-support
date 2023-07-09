@@ -28,6 +28,11 @@ import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyc
 /**
  * A {@link TypeDataBinderAdapter} to handle the generic data with query that can be used
  * with the {@link com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicQueryBinder}.
+ *
+ * @param <T> The type of the data this adapter will receive.
+ * @param <Q> The type of the query this adapter will receive.
+ * @param <E> The type of the enum this adapter will receive.
+ * @param <VB> The type of the dynamic recycler view binder.
  */
 public abstract class TypeQueryBinderAdapter<T, Q, E extends Enum<E>,
         VB extends DynamicRecyclerViewBinder<?>> extends TypeDataBinderAdapter<T, E, VB>

@@ -54,12 +54,16 @@ import com.pranavpandey.android.dynamic.util.DynamicPackageUtils;
 
 /**
  * A recycler view frame layout to show the theme presets.
+ *
+ * @param <T> The type of the dynamic app theme this view will handle.
  */
 public class DynamicPresetsView<T extends DynamicAppTheme>
         extends DynamicRecyclerViewNested implements DefaultLifecycleObserver {
 
     /**
      * Listener to get the preset theme and click events.
+     *
+     * @param <T> The type of the dynamic app theme.
      */
     public interface DynamicPresetsListener<T extends DynamicAppTheme> {
 

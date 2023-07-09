@@ -30,6 +30,8 @@ import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyc
  *
  * <p>Extend this adapter and use {@link DynamicRecyclerViewBinder} to create binding logic
  * for the each type of views.
+ *
+ * @param <VB> The type of the dynamic recycler view binder.
  */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public abstract class DynamicBinderAdapter<VB extends DynamicRecyclerViewBinder>

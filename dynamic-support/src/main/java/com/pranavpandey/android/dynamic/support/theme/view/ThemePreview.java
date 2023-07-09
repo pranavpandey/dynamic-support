@@ -34,6 +34,8 @@ import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A {@link DynamicView} to show the theme preview according to the {@link DynamicAppTheme}.
+ *
+ * @param <T> The type of the dynamic app theme this preview will handle.
  */
 public abstract class ThemePreview<T extends DynamicAppTheme> extends DynamicView {
 

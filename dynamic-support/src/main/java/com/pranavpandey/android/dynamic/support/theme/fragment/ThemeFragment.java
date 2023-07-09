@@ -59,6 +59,8 @@ import com.pranavpandey.android.dynamic.util.concurrent.task.FileWriteTask;
 /**
  * Base theme fragment to provide theme editing functionality.
  * <p>Extend this fragment to implement theme attributes according to the requirements.
+ *
+ * @param <T> The type of the dynamic app theme this fragment will handle.
  */
 public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFragment
         implements ThemeListener.Value, ThemeListener.Import<T>, ThemeListener.Export<T> {

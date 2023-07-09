@@ -23,6 +23,8 @@ import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 
 /**
  * An interface to get the various callbacks related to the dynamic theme.
+ *
+ * @param <T> The type of the dynamic app theme this resolver will resolve.
  */
 public interface DynamicThemeResolver<T extends DynamicAppTheme> {
 

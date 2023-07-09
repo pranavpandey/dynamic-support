@@ -32,6 +32,8 @@ import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView;
 /**
  * A {@link DynamicQueryBinder} to bind the {@link DynamicInfo} that can be used
  * with the {@link DynamicBinderAdapter}.
+ *
+ * @param <Query> The type of the query this binder will receive.
  */
 public class InfoBinder<Query> extends DynamicQueryBinder<
         DynamicInfo, Query, InfoBinder.ViewHolder> {

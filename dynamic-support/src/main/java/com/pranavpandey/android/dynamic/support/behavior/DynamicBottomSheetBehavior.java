@@ -34,6 +34,8 @@ import com.pranavpandey.android.dynamic.support.R;
  * the bottom sheet according to the scroll direction.
  *
  * <p>Scrolling in downwards direction will hide the bottom sheet.
+ *
+ * @param <V> The type of the view attached to this behavior.
  */
 public class DynamicBottomSheetBehavior<V extends View> extends BottomSheetBehavior<V> {
 

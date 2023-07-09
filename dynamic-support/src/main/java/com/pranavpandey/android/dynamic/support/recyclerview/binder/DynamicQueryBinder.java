@@ -28,6 +28,10 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 /**
  * A {@link DynamicDataBinder} to bind the generic data with query that can be used
  * with the {@link DynamicBinderAdapter}.
+ *
+ * @param <T> The type of the data this binder will receive.
+ * @param <Q> The type of the query this binder will receive.
+ * @param <VH> The type of the dynamic recycler view binder.
  */
 public abstract class DynamicQueryBinder<T, Q, VH extends RecyclerView.ViewHolder>
         extends DynamicDataBinder<T, VH> {

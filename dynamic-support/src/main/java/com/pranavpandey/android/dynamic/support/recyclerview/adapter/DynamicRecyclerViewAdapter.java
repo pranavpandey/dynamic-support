@@ -30,6 +30,8 @@ import java.lang.annotation.RetentionPolicy;
  *
  * <p>Extend this adapter and implement {@link DynamicRecyclerViewItem} interface
  * in the object class.
+ *
+ * @param <VH> The type of the recycler view holder.
  */
 public abstract class DynamicRecyclerViewAdapter<VH extends RecyclerView.ViewHolder>
         extends RecyclerView.Adapter<VH> {

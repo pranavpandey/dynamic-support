@@ -30,6 +30,8 @@ import com.pranavpandey.android.dynamic.util.concurrent.DynamicTask;
 
 /**
  * Interface to listen various theme events.
+ *
+ * @param <T> The type of the dynamic app theme.
  */
 public interface ThemeListener<T extends DynamicAppTheme> {
 
@@ -313,11 +315,15 @@ public interface ThemeListener<T extends DynamicAppTheme> {
 
     /**
      * Interface to listen the theme import events.
+     *
+     * @param <T> The type of the dynamic app theme.
      */
     interface Import<T extends DynamicAppTheme> {
 
         /**
          * Interface to listen the theme import (from file) events.
+         *
+         * @param <T> The type of the theme source.
          */
         interface File<T> {
 
@@ -370,6 +376,8 @@ public interface ThemeListener<T extends DynamicAppTheme> {
 
     /**
      * Interface to listen the theme export events.
+     *
+     * @param <T> The type of the dynamic app theme.
      */
     interface Export<T extends DynamicAppTheme> extends ThemeListener<T> {
 

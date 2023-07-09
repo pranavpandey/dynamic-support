@@ -33,6 +33,8 @@ import com.pranavpandey.android.dynamic.util.concurrent.task.ContextTask;
 
 /**
  * A {@link DynamicTask} to perform the theme import operations.
+ *
+ * @param <T> The type of the dynamic app theme.
  */
 public abstract class ThemeImportTask<T> extends ContextTask<Void, Void, String> {
 

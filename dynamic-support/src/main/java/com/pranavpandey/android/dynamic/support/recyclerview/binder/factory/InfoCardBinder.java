@@ -28,6 +28,8 @@ import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBind
 /**
  * An {@link InfoBinder} to bind the {@link DynamicInfo} inside a
  * {@link androidx.cardview.widget.CardView} that can be used with the {@link DynamicBinderAdapter}.
+ *
+ * @param <Query> The type of the query this binder will receive.
  */
 public class InfoCardBinder<Query> extends InfoBinder<Query> {
 

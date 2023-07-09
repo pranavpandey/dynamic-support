@@ -26,6 +26,10 @@ import java.util.Collection;
 /**
  * A {@link DynamicTypeBinderAdapter} to handle the generic data that can be used
  * with the {@link com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicDataBinder}.
+ *
+ * @param <T> The type of the data this adapter will receive.
+ * @param <E> The type of the enum this adapter will receive.
+ * @param <VB> The type of the dynamic recycler view binder.
  */
 public abstract class TypeDataBinderAdapter<T, E extends Enum<E>,
         VB extends DynamicRecyclerViewBinder<?>> extends DynamicTypeBinderAdapter<E, VB> {

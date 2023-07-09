@@ -27,6 +27,9 @@ import java.util.Collection;
 /**
  * A {@link DynamicRecyclerViewBinder} to bind the generic data that can be used
  * with the {@link DynamicBinderAdapter}.
+ *
+ * @param <T> The type of the data this binder will receive.
+ * @param <VH> The type of the dynamic recycler view binder.
  */
 public abstract class DynamicDataBinder<T, VH extends RecyclerView.ViewHolder>
         extends DynamicRecyclerViewBinder<VH> {

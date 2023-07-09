@@ -36,6 +36,10 @@ import java.util.List;
 
 /**
  * A {@link DynamicListAdapter} to handle the generic data with query.
+ *
+ * @param <T> The type of the lists this adapter will receive.
+ * @param <Q> The type of the query this adapter will receive.
+ * @param <VH> The type of the recycler view holder.
  */
 public abstract class DynamicListQueryAdapter<T, Q, VH extends RecyclerView.ViewHolder>
         extends DynamicListAdapter<T, VH> implements Filterable {

@@ -33,6 +33,9 @@ import java.util.List;
 
 /**
  * A {@link DynamicFragmentStateAdapter} to display the supplied {@link Tutorial}.
+ *
+ * @param <V> The type of the view or fragment this adapter will handle.
+ * @param <T> The type of the tutorial this adapter will handle.
  */
 public class DynamicTutorialsAdapter<V extends Fragment, T extends Tutorial<T, V>>
         extends DynamicFragmentStateAdapter {

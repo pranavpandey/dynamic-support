@@ -28,11 +28,17 @@ import com.pranavpandey.android.dynamic.support.tutorial.activity.DynamicTutoria
  *
  * <p>Any child view or fragment must implement this interface to support any color
  * transitions.
+ *
+ * @param <T> The type of the tutorial.
+ * @param <V> The type of the view or fragment.
  */
 public interface Tutorial<T, V> extends ViewPager.OnPageChangeListener {
 
     /**
      * A {@link Tutorial} to support animation(s) and shared element(s) transition.
+     *
+     * @param <T> The type of the tutorial.
+     * @param <V> The type of the view or fragment.
      */
     interface Motion<T, V> extends Tutorial<T, V> {
 

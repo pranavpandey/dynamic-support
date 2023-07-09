@@ -50,6 +50,8 @@ import java.util.Locale;
 /**
  * A customisable {@link AppWidgetProvider} to provide basic configuration functionality.
  * <p>Extend it and modify according to the requirements.
+ *
+ * @param <T> The type of the app theme attached to this provider.
  */
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public abstract class DynamicAppWidgetProvider<T extends AppTheme<?>>

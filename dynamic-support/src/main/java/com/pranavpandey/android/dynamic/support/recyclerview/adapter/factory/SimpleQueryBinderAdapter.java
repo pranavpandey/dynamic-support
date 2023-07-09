@@ -28,6 +28,10 @@ import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyc
 /**
  * A {@link SimpleDataBinderAdapter} to handle the generic data with query that can be used
  * with the {@link com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicQueryBinder}.
+ *
+ * @param <T> The type of the data this adapter will receive.
+ * @param <Q> The type of the query this adapter will receive.
+ * @param <VB> The type of the dynamic recycler view binder.
  */
 public abstract class SimpleQueryBinderAdapter<T, Q, VB extends DynamicRecyclerViewBinder<?>>
         extends SimpleDataBinderAdapter<T, VB> implements Filterable {

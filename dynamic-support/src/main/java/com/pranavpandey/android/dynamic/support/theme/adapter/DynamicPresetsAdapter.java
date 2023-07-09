@@ -44,6 +44,8 @@ import static com.pranavpandey.android.dynamic.support.theme.adapter.DynamicPres
 
 /**
  * A recycler view adapter to show the theme presets.
+ *
+ @param <T> The type of the dynamic app theme this adapter will receive.
  */
 public class DynamicPresetsAdapter<T extends DynamicAppTheme>
         extends DynamicRecyclerViewAdapter<DynamicPresetsAdapter.ViewHolder<T>> {
@@ -234,6 +236,8 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
 
     /**
      * View holder class to hold the preset view.
+     *
+     @param <T> The type of the dynamic app theme this view holder will handle.
      */
     public static class ViewHolder<T extends DynamicAppTheme> extends RecyclerView.ViewHolder {
 

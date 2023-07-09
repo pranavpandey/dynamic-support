@@ -61,6 +61,9 @@ import static com.pranavpandey.android.dynamic.theme.Theme.Action.SHARE_FILE;
 
 /**
  * A dialog fragment to import a dynamic theme.
+ *
+ * @param <T> The type of the dynamic app theme this dialog will handle.
+ * @param <V> The type of the theme source.
  */
 public class DynamicThemeDialog<T extends DynamicAppTheme, V> extends DynamicDialogFragment {
 

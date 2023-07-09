@@ -26,6 +26,9 @@ import java.util.Collection;
 /**
  * A {@link DynamicSimpleBinderAdapter} to handle the generic data that can be used
  * with the {@link com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicDataBinder}.
+ *
+ * @param <T> The type of the data this adapter will receive.
+ * @param <VB> The type of the dynamic recycler view binder.
  */
 public abstract class SimpleDataBinderAdapter<T, VB extends DynamicRecyclerViewBinder<?>>
         extends DynamicSimpleBinderAdapter<VB> {

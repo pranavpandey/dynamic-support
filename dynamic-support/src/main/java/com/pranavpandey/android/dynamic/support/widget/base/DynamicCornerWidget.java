@@ -23,6 +23,8 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 /**
  * Interface to create dynamic widgets with corner radius support which can be used to modify
  * it at runtime according to the {@link DynamicTheme}.
+ *
+ * @param <T> The type of the corner radius.
  */
 public interface DynamicCornerWidget<T> {
 
