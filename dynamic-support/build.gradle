@@ -69,7 +69,7 @@ task generateJavadoc() {
 project.afterEvaluate {
     android.libraryVariants.all { variant ->
         def task = project.tasks.create("generate${variant.name.capitalize()}Javadoc", Javadoc) {
-            title "${referenceTitle}"
+            title "${referenceTitle}<h4>${versionDesc}</h4><h5>${mavenVersion}</h5>"
             description "Generates Javadoc for $variant.name."
             destinationDir = new File(destinationDir, variant.baseName)
 
@@ -90,7 +90,6 @@ project.afterEvaluate {
             }
 
             options.windowTitle = "${referenceTitle}"
-            options.footer = "<h5>${mavenVersion}</h5>"
             options.links('http://docs.oracle.com/javase/8/docs/api')
             options.links('https://developer.android.com/reference')
             options.memberLevel = JavadocMemberLevel.PROTECTED
