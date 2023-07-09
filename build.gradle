@@ -21,16 +21,16 @@ buildscript {
             'targetSdk'   : 34,
             'buildTools'  : '34.0.0',
             'multidex'    : '2.0.1',
-            'dynamic'     : '4.5.0',
+            'dynamic'     : '4.5.1',
             'fragment'    : '1.6.0',
             'flexbox'     : '3.0.0',
             'kotlin'      : '1.8.22',
             'locale'      : '2.4.0',
             'material'    : '1.11.0-alpha01',
-            'preferences' : '2.3.0',
+            'preferences' : '2.3.1',
             'swiperefresh': '1.1.0',
-            'theme'       : '4.5.0',
-            'toasts'      : '4.1.3',
+            'theme'       : '4.5.1',
+            'toasts'      : '4.2.1',
             'work'        : '2.8.1'
     ]
 
@@ -77,13 +77,13 @@ ext {
     mavenDir = 'com/pranavpandey/android'
     mavenArtifactId = 'dynamic-support'
     mavenInceptionYear = 2018
-    mavenVersion = '6.2.1'
-    mavenVersionCode = 35
-    sampleVersionCode = 36
+    mavenVersion = '6.3.0'
+    mavenVersionCode = 36
+    sampleVersionCode = 37
 
     developerId = 'pranavpandey'
     developerName = 'Pranav Pandey'
-    developerEmail = 'pranavpande92@gmail.com'
+    developerEmail = 'dynamic@pranavpandey.com'
 
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
