@@ -211,10 +211,8 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
 
                 Dynamic.onPageScrolled(getTutorial(position), position,
                         positionOffset, positionOffsetPixels);
-                Dynamic.onSetPadding(getTutorial(currentPosition),
-                        0, 0, 0, mFooterHeight);
-                Dynamic.onSetPadding(getTutorial(finalPosition),
-                        0, 0, 0, mFooterHeight);
+                onSetPadding(getTutorial(currentPosition), 0, 0, 0, mFooterHeight);
+                onSetPadding(getTutorial(finalPosition), 0, 0, 0, mFooterHeight);
                 Dynamic.onColorChanged(getTutorial(currentPosition), color, tintColor);
                 Dynamic.onColorChanged(getTutorial(finalPosition), color, tintColor);
             }
@@ -235,8 +233,7 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
                         Dynamic.getTintColor(getTutorial(position), getTintColor()));
 
                 Dynamic.onPageSelected(getTutorial(position), position);
-                Dynamic.onSetPadding(getTutorial(position),
-                        0, 0, 0, mFooterHeight);
+                onSetPadding(getTutorial(position), 0, 0, 0, mFooterHeight);
                 Dynamic.onColorChanged(getTutorial(position),
                         Dynamic.getColor(getTutorial(position), getBackgroundColor()),
                         Dynamic.getTintColor(getTutorial(position), getTintColor()));
@@ -926,6 +923,21 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
 
         snackbar.show();
     }
+
+    /**
+     * Call {@link Tutorial#onSetPadding(int, int, int, int)} method for the
+     * {@link Tutorial}.
+     *
+     * @param tutorial The dynamic tutorial to be used.
+     * @param left The left padding supplied by the container.
+     * @param top The top padding supplied by the container.
+     * @param right The right padding supplied by the container.
+     * @param bottom The bottom padding supplied by the container.
+     * @param <T> The type of the tutorial.
+     * @param <V> The type of the tutorial fragment.
+     */
+    protected <T, V> void onSetPadding(@Nullable Tutorial<T, V> tutorial,
+            int left, int top, int right, int bottom) { }
 
     /**
      * Runnable to set the tutorials.

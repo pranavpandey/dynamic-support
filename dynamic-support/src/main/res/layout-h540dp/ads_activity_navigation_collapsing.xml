@@ -56,26 +56,7 @@
 
             </com.pranavpandey.android.dynamic.support.widget.DynamicCollapsingToolbarLayout>
 
-            <ViewSwitcher
-                android:id="@+id/ads_header_frame"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <FrameLayout
-                    android:id="@+id/ads_header_frame_view_one"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/ads_header_frame_view_two"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </FrameLayout>
-
-            </ViewSwitcher>
+            <include layout="@layout/ads_layout_header_frame" />
 
         </com.pranavpandey.android.dynamic.support.widget.DynamicAppBarLayout>
 

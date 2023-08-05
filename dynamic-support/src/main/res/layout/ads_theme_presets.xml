@@ -25,7 +25,7 @@
         android:id="@+id/ads_theme_presets_header_card"
         style="?attr/ads_widgetCardMargin">
 
-        <com.pranavpandey.android.dynamic.support.view.DynamicHeader
+        <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
             android:id="@+id/ads_theme_presets_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

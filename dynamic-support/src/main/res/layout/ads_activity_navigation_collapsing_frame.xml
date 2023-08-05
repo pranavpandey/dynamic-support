@@ -101,14 +101,7 @@
 
     </RelativeLayout>
 
-    <com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout
-        android:id="@+id/ads_footer_frame"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:adt_colorType="primary">
-
-    </com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout>
+    <include layout="@layout/ads_layout_footer_frame" />
 
     <include
         layout="@layout/ads_layout_bottom_bar_shadow"

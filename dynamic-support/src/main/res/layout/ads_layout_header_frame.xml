@@ -15,18 +15,24 @@
 	limitations under the License.
 -->
 
-<com.pranavpandey.android.dynamic.support.widget.DynamicRootLayout
+<ViewSwitcher
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ads_activity_root"
+    android:id="@+id/ads_header_frame"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-        style="?attr/ads_widgetImageCardBigTutorial"
-        android:id="@+id/ads_tutorial_backdrop"
-        app:srcCompat="@drawable/ads_ic_tutorial" />
+    <FrameLayout
+        android:id="@+id/ads_header_frame_view_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <include layout="@layout/ads_layout_activity_tutorial" />
+    </FrameLayout>
 
-</com.pranavpandey.android.dynamic.support.widget.DynamicRootLayout>
+    <FrameLayout
+        android:id="@+id/ads_header_frame_view_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
+
+</ViewSwitcher>
