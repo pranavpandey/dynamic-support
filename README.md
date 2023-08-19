@@ -13,6 +13,7 @@ compatibility.
 to AndroidX.
 <br/>Since v3.0.0, it is dependent on Java 8 due to the dependency on 
 [DrawerLayout][drawer-layout].
+<br/>Since v6.3.0, it is targeting Java 17 to provide maximum compatibility.
 
 <p align="left">
   <img src="./graphics/play/screenshots/phone-1.png" width="280" height="486" hspace="2">
