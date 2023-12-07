@@ -36,12 +36,12 @@ import java.util.Arrays;
  * A {@link DynamicThemePreference} to display the night theme settings.
  * <p>It will automatically set the theme type to night.
  *
- * @see Theme#NIGHT
- * @see com.pranavpandey.android.dynamic.theme.AppTheme#setType(int)
- *
  * <p>It will automatically adjust the values according to the available API.
  * <p>{@link Theme.Night#BATTERY} will be available for API 21 and above.
  * <p>{@link Theme.Night#SYSTEM} will be available for API 28 and above.
+ *
+ * @see Theme#NIGHT
+ * @see com.pranavpandey.android.dynamic.theme.AppTheme#setType(int)
  */
 public class DynamicNightThemePreference extends DynamicThemePreference {
 
