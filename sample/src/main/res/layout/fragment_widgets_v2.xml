@@ -342,11 +342,12 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:padding="@dimen/ads_margin_small"
                         android:orientation="horizontal">
 
-                        <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
-                            style="?android:attr/progressBarStyle"
+                        <com.pranavpandey.android.dynamic.support.widget.DynamicCircularProgressIndicator
+                            style="?attr/ads_widgetCircularProgressIndicator"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/ads_icon_normal"
                             android:layout_weight="1.0"
@@ -354,9 +355,9 @@
                             android:indeterminate="true"
                             app:adt_contrastWithColorType="surface" />
 
-                        <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
+                        <com.pranavpandey.android.dynamic.support.widget.DynamicCircularProgressIndicator
+                            style="?attr/ads_widgetCircularProgressIndicator"
                             android:id="@+id/seek_bar_disabled"
-                            style="?android:attr/progressBarStyle"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/ads_icon_normal"
                             android:layout_weight="1.0"
@@ -365,8 +366,8 @@
                             app:adt_colorType="background"
                             app:adt_contrastWithColorType="surface" />
 
-                        <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
-                            style="?android:attr/progressBarStyle"
+                        <com.pranavpandey.android.dynamic.support.widget.DynamicCircularProgressIndicator
+                            style="?attr/ads_widgetCircularProgressIndicator"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/ads_icon_normal"
                             android:layout_weight="1.0"
@@ -377,25 +378,27 @@
 
                     </LinearLayout>
 
-                    <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
-                        style="?android:attr/progressBarStyleHorizontal"
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicLinearProgressIndicator
+                        style="?attr/ads_widgetLinearProgressIndicator"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:indeterminate="true"
                         app:adt_contrastWithColorType="surface" />
 
-                    <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
-                        style="?android:attr/progressBarStyleHorizontal"
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicLinearProgressIndicator
+                        style="?attr/ads_widgetLinearProgressIndicator"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ads_margin_small"
                         android:progress="50"
                         app:adt_colorType="background"
                         app:adt_contrastWithColorType="surface" />
 
-                    <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
-                        style="?android:attr/progressBarStyleHorizontal"
+                    <com.pranavpandey.android.dynamic.support.widget.DynamicLinearProgressIndicator
+                        style="?attr/ads_widgetLinearProgressIndicator"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ads_margin_small"
                         android:indeterminate="true"
                         app:adt_colorType="primary"
                         app:adt_contrastWithColorType="surface" />

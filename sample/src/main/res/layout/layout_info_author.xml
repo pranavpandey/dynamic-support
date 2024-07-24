@@ -20,7 +20,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="?attr/ads_widgetCard">
 
-    <com.pranavpandey.android.dynamic.support.view.DynamicInfoViewBig
+    <com.pranavpandey.android.dynamic.support.view.DynamicInfoViewBigAuthor
         android:id="@+id/info_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
