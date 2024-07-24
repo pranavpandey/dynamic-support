@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -57,6 +58,11 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
     protected static final String ADS_STATE_SPLASH_FRAGMENT_TAG = "ads_state_splash_fragment_tag";
 
     /**
+     * Post splash key to maintain its state.
+     */
+    protected static final String ADS_STATE_SPLASH_POST = "ads_state_splash_post";
+
+    /**
      * Boolean to save the fragment state.
      */
     private static boolean ADS_SPLASH_MAGIC;
@@ -65,6 +71,11 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
      * Intent for the next activity
      */
     protected Intent mNextActivityIntent;
+
+    /**
+     * {@code true} if {@link #onPostSplash()} has been called at least once.
+     */
+    private boolean mPostSplash;
 
     /**
      * Content fragment used by this activity.
@@ -117,6 +128,10 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
     protected void onNewIntent(@Nullable Intent intent, boolean newIntent) {
         super.onNewIntent(intent, newIntent);
 
+        if (newIntent) {
+            mPostSplash = false;
+        }
+        
         onUpdateIntent(intent, newIntent);
 
         if (!(mContentFragment instanceof DynamicSplashFragment)) {
@@ -201,6 +216,13 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putBoolean(ADS_STATE_SPLASH_POST, mPostSplash);
+    }
+
+    @Override
     protected void onSetFallbackActivityOptions() {
         super.onSetFallbackActivityOptions();
 
@@ -212,6 +234,11 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
     @Override
     public void onPreSplash() {
         onUpdateIntent(getIntent(), false);
+    }
+
+    @Override
+    public void onPostSplash() {
+        mPostSplash = true;
     }
 
     /**
@@ -230,6 +257,15 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
      */
     public void setNextActivityIntent(@Nullable Intent intent) {
         this.mNextActivityIntent = intent;
+    }
+
+    /**
+     * Returns whether the {@link #onPostSplash()} has been called at least once.
+     *
+      * @return {@code true} if the {@link #onPostSplash()} has been called at least once.
+     */
+    public boolean isPostSplash() {
+        return mPostSplash;
     }
 
     /**
