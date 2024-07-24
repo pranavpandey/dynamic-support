@@ -43,6 +43,7 @@ import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewNested;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.adapter.DynamicPresetsAdapter;
 import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
@@ -177,8 +178,8 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
                         loadPresets();
                     }
                 } else {
-                    DynamicLinkUtils.viewInGooglePlay(getContext(),
-                            ThemeContract.Preset.AUTHORITY);
+                    DynamicLinkUtils.viewApp(getContext(), ThemeContract.Preset.AUTHORITY,
+                            DynamicTheme.getInstance().getProductFlavor());
                 }
             }
         });

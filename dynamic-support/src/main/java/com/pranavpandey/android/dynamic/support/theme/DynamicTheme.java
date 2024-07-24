@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,6 +54,7 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
+import com.pranavpandey.android.dynamic.util.product.DynamicProductFlavor;
 import com.pranavpandey.android.dynamic.support.listener.DynamicResolver;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.model.DynamicRemoteTheme;
@@ -74,6 +75,7 @@ import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.util.DynamicTaskUtils;
 import com.pranavpandey.android.dynamic.util.DynamicUnitUtils;
 import com.pranavpandey.android.dynamic.util.concurrent.DynamicResult;
+import com.pranavpandey.android.dynamic.util.product.DynamicFlavor;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -91,7 +93,7 @@ import java.util.concurrent.TimeUnit;
  * heavily dependent on this class to generate colors dynamically.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class DynamicTheme implements DynamicListener, DynamicResolver {
+public class DynamicTheme implements DynamicProductFlavor, DynamicListener, DynamicResolver {
 
     /**
      * Constant values for the theme styles version.
@@ -1633,6 +1635,11 @@ public class DynamicTheme implements DynamicListener, DynamicResolver {
     public void clearDynamicListeners() {
         getHandler().clearListeners();
         getDynamicThemes().clear();
+    }
+
+    @Override
+    public @DynamicFlavor String getProductFlavor() {
+        return getHandler().getProductFlavor();
     }
 
     @Override

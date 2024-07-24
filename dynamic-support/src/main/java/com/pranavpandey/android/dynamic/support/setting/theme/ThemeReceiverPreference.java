@@ -28,6 +28,7 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
 import com.pranavpandey.android.dynamic.util.DynamicLinkUtils;
 import com.pranavpandey.android.dynamic.util.DynamicPackageUtils;
@@ -55,6 +56,9 @@ public class ThemeReceiverPreference extends DynamicSpinnerPreference {
     protected void onInflate() {
         super.onInflate();
 
+        setDescription(String.format(getContext().getString(R.string.ads_theme_presets_desc_app),
+                getContext().getString(R.string.ads_theme_presets_app)), false);
+
         setActionButton(getContext().getString(R.string.ads_perm_info_required),
                 new View.OnClickListener() {
             @Override
@@ -64,8 +68,8 @@ public class ThemeReceiverPreference extends DynamicSpinnerPreference {
                     DynamicPermissions.getInstance().isGranted(
                             ThemeContract.Preset.RECEIVER_PERMISSIONS, true);
                 } else {
-                    DynamicLinkUtils.viewInGooglePlay(getContext(),
-                            ThemeContract.Preset.AUTHORITY);
+                    DynamicLinkUtils.viewApp(getContext(), ThemeContract.Preset.AUTHORITY,
+                            DynamicTheme.getInstance().getProductFlavor());
                 }
             }
         });
@@ -81,7 +85,7 @@ public class ThemeReceiverPreference extends DynamicSpinnerPreference {
             Dynamic.setVisibility(getActionView(), DynamicPermissions.getInstance().isGranted(
                     ThemeContract.Preset.RECEIVER_PERMISSIONS, false) ? GONE :VISIBLE);
         } else {
-            Dynamic.setText(getActionView(), R.string.ads_info_google_play);
+            Dynamic.setText(getActionView(), R.string.ads_download);
             Dynamic.setVisibility(getDescriptionView(), VISIBLE);
             Dynamic.setVisibility(getActionView(), VISIBLE);
         }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,8 +41,11 @@ import androidx.preference.PreferenceManager;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
 import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
+import com.pranavpandey.android.dynamic.util.product.DynamicProductFlavor;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.product.DynamicFlavor;
 
 /**
  * Base dialog fragment to provide all the functionality of {@link DynamicDialog} inside a
@@ -52,7 +55,7 @@ import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
  * @see #onCustomiseDialog(DynamicDialog, View, Bundle)
  */
 public class DynamicDialogFragment extends AppCompatDialogFragment
-        implements SharedPreferences.OnSharedPreferenceChangeListener {
+        implements DynamicProductFlavor, SharedPreferences.OnSharedPreferenceChangeListener {
 
     /**
      * Default button color. it will be used internally if there is no button color is applied.
@@ -232,6 +235,11 @@ public class DynamicDialogFragment extends AppCompatDialogFragment
      */
     protected void onCustomiseDialog(@NonNull DynamicDialog alertDialog,
             @Nullable View view, @Nullable Bundle savedInstanceState) { }
+
+    @Override
+    public @DynamicFlavor String getProductFlavor() {
+        return DynamicTheme.getInstance().getProductFlavor();
+    }
 
     /**
      * Returns whether to register a shared preferences listener for this fragment.

@@ -238,8 +238,8 @@ public class DynamicPreviewActivity extends DynamicActivity
             DynamicLinkUtils.viewUrl(DynamicPreviewActivity.this,
                     getPreview().getInfo());
         } else {
-            DynamicLinkUtils.share(DynamicPreviewActivity.this,
-                    (String) getTitle(), getPreview().getInfo(), null);
+            DynamicLinkUtils.share(DynamicPreviewActivity.this, (String) getTitle(),
+                    getPreview().getInfo(), null, getProductFlavor());
         }
     }
 

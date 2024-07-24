@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,12 +53,15 @@ import com.pranavpandey.android.dynamic.support.activity.DynamicDrawerActivity;
 import com.pranavpandey.android.dynamic.support.activity.DynamicStateActivity;
 import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
 import com.pranavpandey.android.dynamic.support.listener.DynamicLifecycle;
+import com.pranavpandey.android.dynamic.util.product.DynamicProductFlavor;
 import com.pranavpandey.android.dynamic.support.listener.DynamicSearchListener;
 import com.pranavpandey.android.dynamic.support.listener.DynamicTransitionListener;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
+import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.util.DynamicMenuUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.product.DynamicFlavor;
 
 /**
  * Base fragment class to provide basic functionality and to work with the {@link DynamicActivity}.
@@ -66,8 +69,8 @@ import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
  */
 @SuppressWarnings("deprecation")
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class DynamicFragment extends Fragment implements DynamicLifecycle,
-        DynamicTransitionListener, DynamicSearchListener, MenuProvider,
+public class DynamicFragment extends Fragment implements DynamicProductFlavor,
+        DynamicLifecycle, DynamicTransitionListener, DynamicSearchListener, MenuProvider,
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     /**
@@ -582,6 +585,11 @@ public class DynamicFragment extends Fragment implements DynamicLifecycle,
 
         outState.putBoolean(DynamicStateActivity.ADS_STATE_SEARCH_VIEW_VISIBLE,
                 mSearchViewExpanded);
+    }
+
+    @Override
+    public @DynamicFlavor String getProductFlavor() {
+        return DynamicTheme.getInstance().getProductFlavor();
     }
 
     /**

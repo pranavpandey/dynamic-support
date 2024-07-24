@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,6 +36,7 @@ import com.pranavpandey.android.dynamic.locale.DynamicLocale;
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
+import com.pranavpandey.android.dynamic.util.product.DynamicProductFlavor;
 import com.pranavpandey.android.dynamic.support.listener.DynamicResolver;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
@@ -44,6 +45,7 @@ import com.pranavpandey.android.dynamic.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.util.loader.DynamicLoader;
+import com.pranavpandey.android.dynamic.util.product.DynamicFlavor;
 
 import java.util.Locale;
 
@@ -52,7 +54,7 @@ import java.util.Locale;
  * and to perform theme change operations.
  */
 public abstract class DynamicApplication extends Application
-        implements androidx.work.Configuration.Provider, DynamicLocale,
+        implements androidx.work.Configuration.Provider, DynamicProductFlavor, DynamicLocale,
         DynamicListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     /**
@@ -194,6 +196,11 @@ public abstract class DynamicApplication extends Application
     public float getFontScale() {
         return getDynamicTheme() != null ? getDynamicTheme().getFontScaleRelative()
                 : DynamicTheme.getInstance().getDefault(false).getFontScaleRelative();
+    }
+
+    @Override
+    public @DynamicFlavor String getProductFlavor() {
+        return DynamicFlavor.DEFAULT;
     }
 
     @Override

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,12 +39,14 @@ import androidx.transition.TransitionManager;
 
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.util.product.DynamicProductFlavor;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 import com.pranavpandey.android.dynamic.util.DynamicWindowUtils;
+import com.pranavpandey.android.dynamic.util.product.DynamicFlavor;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -53,7 +55,7 @@ import java.lang.annotation.RetentionPolicy;
  * Base {@link PopupWindow} to provide the basic functionality to its descendants.
  * <p>Extend this class to create popup windows according to the requirements.
  */
-public abstract class DynamicPopup {
+public abstract class DynamicPopup implements DynamicProductFlavor {
 
     /**
      * Interface to hold the view types supported by the popup.
@@ -418,5 +420,10 @@ public abstract class DynamicPopup {
         if (getPopupWindow() != null) {
             getPopupWindow().dismiss();
         }
+    }
+
+    @Override
+    public @DynamicFlavor String getProductFlavor() {
+        return DynamicTheme.getInstance().getProductFlavor();
     }
 }

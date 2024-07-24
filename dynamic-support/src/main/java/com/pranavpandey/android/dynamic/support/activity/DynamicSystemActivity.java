@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,6 +66,7 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
+import com.pranavpandey.android.dynamic.util.product.DynamicProductFlavor;
 import com.pranavpandey.android.dynamic.support.listener.DynamicTransitionListener;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
@@ -84,6 +85,7 @@ import com.pranavpandey.android.dynamic.util.DynamicPackageUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 import com.pranavpandey.android.dynamic.util.DynamicWindowUtils;
+import com.pranavpandey.android.dynamic.util.product.DynamicFlavor;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -100,7 +102,7 @@ import java.util.Map;
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public abstract class DynamicSystemActivity extends AppCompatActivity
-        implements DynamicLocale, DynamicListener, DynamicTransitionListener,
+        implements DynamicProductFlavor, DynamicLocale, DynamicListener, DynamicTransitionListener,
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     /**
@@ -1646,6 +1648,11 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     }
 
     @Override
+    public @DynamicFlavor String getProductFlavor() {
+        return DynamicTheme.getInstance().getProductFlavor();
+    }
+
+    @Override
     public @NonNull Context getContext() {
         return mContext != null ? mContext : getBaseContext();
     }
@@ -1782,6 +1789,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
         }
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
         finishActivity();

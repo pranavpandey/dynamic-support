@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,8 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
 import com.pranavpandey.android.dynamic.theme.AppTheme;
 import com.pranavpandey.android.dynamic.theme.DynamicColors;
 import com.pranavpandey.android.dynamic.theme.Theme;
+import com.pranavpandey.android.dynamic.util.product.DynamicFlavor;
+import com.pranavpandey.android.dynamic.util.product.DynamicProductFlavor;
 
 import java.util.List;
 
@@ -38,7 +40,7 @@ import java.util.List;
  *
  * @see Looper#getMainLooper()
  */
-public class DynamicThemeHandler extends Handler implements DynamicListener {
+public class DynamicThemeHandler extends Handler implements DynamicProductFlavor, DynamicListener {
 
     /**
      * Message constant to post the dynamic theme changes.
@@ -261,6 +263,16 @@ public class DynamicThemeHandler extends Handler implements DynamicListener {
         if (getListeners() != null) {
             getListeners().clear();
         }
+    }
+
+    @Override
+    public @DynamicFlavor String getProductFlavor() {
+        DynamicListener listener;
+        if ((listener = resolveListener(false)) == null) {
+            return DynamicFlavor.DEFAULT;
+        }
+
+        return listener.getProductFlavor();
     }
 
     @Override
