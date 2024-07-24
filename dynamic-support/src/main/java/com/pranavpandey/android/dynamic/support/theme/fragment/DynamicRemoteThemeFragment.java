@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,6 +38,7 @@ import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
 import com.pranavpandey.android.dynamic.support.listener.DynamicColorResolver;
 import com.pranavpandey.android.dynamic.support.model.DynamicRemoteTheme;
 import com.pranavpandey.android.dynamic.support.model.DynamicWidgetTheme;
+import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference;
@@ -767,6 +768,11 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         }
 
         switch (key) {
+            case ADS_PREF_THEME_FONT_SCALE:
+            case ADS_PREF_THEME_FONT_SCALE_ALT:
+            case ADS_PREF_THEME_BACKGROUND_AWARE:
+            case ADS_PREF_THEME_STYLE:
+                DynamicMotion.getInstance().beginDelayedTransition(mThemePreview);
             case ADS_PREF_THEME_COLOR_BACKGROUND:
             case ADS_PREF_THEME_COLOR_TINT_BACKGROUND:
             case ADS_PREF_THEME_COLOR_SURFACE:
@@ -785,17 +791,13 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
             case ADS_PREF_THEME_TEXT_INVERSE_PRIMARY:
             case ADS_PREF_THEME_TEXT_SECONDARY:
             case ADS_PREF_THEME_TEXT_INVERSE_SECONDARY:
-            case ADS_PREF_THEME_FONT_SCALE:
-            case ADS_PREF_THEME_FONT_SCALE_ALT:
             case ADS_PREF_THEME_CORNER_SIZE:
             case ADS_PREF_THEME_CORNER_SIZE_ALT:
-            case ADS_PREF_THEME_BACKGROUND_AWARE:
             case ADS_PREF_THEME_CONTRAST:
             case ADS_PREF_THEME_CONTRAST_ALT:
             case ADS_PREF_THEME_OPACITY:
             case ADS_PREF_THEME_OPACITY_ALT:
             case ADS_PREF_THEME_ELEVATION:
-            case ADS_PREF_THEME_STYLE:
                 updatePreferences();
                 break;
         }
