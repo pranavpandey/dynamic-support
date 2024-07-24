@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -19,5 +19,7 @@
 
     <!-- App Widget -->
     <integer name="ads_widget_visibility_controls">0</integer>
+    <integer name="ads_widget_visibility_controls_alt">0</integer>
+    <integer name="ads_widget_visibility_controls_alt_inverse">2</integer>
 
 </resources>
