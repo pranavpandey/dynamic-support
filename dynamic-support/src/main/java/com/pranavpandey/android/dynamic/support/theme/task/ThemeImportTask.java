@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -74,23 +74,23 @@ public abstract class ThemeImportTask<T> extends ContextTask<Void, Void, String>
             return null;
         }
 
+        Uri uri;
         if (getThemeListener().getThemeSource() instanceof Intent) {
-            return DynamicThemeUtils.getThemeData(getContext(),
-                    (Intent) getThemeListener().getThemeSource());
+            uri = DynamicThemeUtils.getThemeUri((Intent) getThemeListener().getThemeSource());
         } else if (getThemeListener().getThemeSource() instanceof Uri) {
-            String data;
-            if ((data = DynamicThemeUtils.getThemeData(getContext(),
-                    (Uri) getThemeListener().getThemeSource())) != null) {
-                return data;
-            } else {
-                return DynamicThemeUtils.getThemeUrl(DynamicThemeUtils.mapTheme(
-                        new DynamicAppTheme(), DynamicThemeUtils.getBitmapColors(
-                                DynamicBitmapUtils.getBitmap(getContext(),
-                                        (Uri) getThemeListener().getThemeSource()))));
-            }
+            uri = (Uri) getThemeListener().getThemeSource();
+        } else {
+            uri = null;
         }
 
-        return null;
+        String data;
+        if ((data = DynamicThemeUtils.getThemeData(getContext(), uri)) != null) {
+            return data;
+        } else {
+            return DynamicThemeUtils.getThemeUrl(DynamicThemeUtils.mapTheme(
+                    new DynamicAppTheme(), DynamicThemeUtils.getBitmapColors(
+                            DynamicBitmapUtils.getBitmap(getContext(), uri))));
+        }
     }
 
     @Override
