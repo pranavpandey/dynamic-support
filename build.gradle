@@ -16,15 +16,15 @@
 
 buildscript {
     ext.versions = [
-            'compileSdk'  : 34,
-            'minSdk'      : 14,
-            'targetSdk'   : 34,
-            'buildTools'  : '34.0.0',
+            'compileSdk'  : 35,
+            'minSdk'      : 19,
+            'targetSdk'   : 35,
+            'buildTools'  : '35.0.0',
             'multidex'    : '2.0.1',
             'dynamic'     : '4.5.1',
             'fragment'    : '1.6.0',
             'flexbox'     : '3.0.0',
-            'kotlin'      : '1.8.22',
+            'kotlin'      : '1.9.24',
             'locale'      : '2.4.0',
             'material'    : '1.11.0-alpha01',
             'preferences' : '2.3.1',
