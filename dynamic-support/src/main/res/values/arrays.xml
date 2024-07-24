@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -55,19 +55,19 @@
     <!-- String array with with subtitles for author links. -->
     <string-array name="ads_about_author_links_subtitles">
         <item>@string/ads_info_website_me_desc</item>
-        <item>@string/ads_info_apps_desc</item>
+        <item>@string/ads_info_apps_desc_google_play</item>
     </string-array>
 
     <!-- String array with with urls for author links. -->
     <string-array name="ads_about_author_links_urls">
-        <item>https://pranavpandey.com</item>
-        <item>https://play.google.com/store/apps/dev?id=6608630615059087491</item>
+        <item>@string/adu_url_me_website</item>
+        <item>@string/adu_url_me_google_play</item>
     </string-array>
 
     <!-- Integer array with with drawables for author links. -->
     <integer-array name="ads_about_author_links_icons">
         <item>@drawable/ads_ic_public</item>
-        <item>@drawable/ads_ic_shop</item>
+        <item>@drawable/ads_ic_open_alt</item>
     </integer-array>
 
     <!-- Integer array with with colors for author links. -->
