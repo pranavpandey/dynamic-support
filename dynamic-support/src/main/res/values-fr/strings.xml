@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -61,6 +61,7 @@
     <string name="ads_copy">Copier</string>
     <string name="ads_save">Sauvegarder</string>
     <string name="ads_load">Charger</string>
+    <string name="ads_download">Télécharger</string>
     <string name="ads_import">Importer</string>
     <string name="ads_rename">Renommer</string>
     <string name="ads_delete">Supprimer</string>
@@ -237,7 +238,8 @@
     <string name="ads_theme_delete_done">Thème supprimé avec succès.</string>
     <string name="ads_theme_format_saved">Thème sauvegardé : %1$s</string>
     <string name="ads_theme_presets">Thèmes prédéfinis</string>
-    <string name="ads_theme_presets_desc">Télécharger via Google Play.</string>
+    <string name="ads_theme_presets_desc">Télécharger via %1$s.</string>
+    <string name="ads_theme_presets_desc_app">Téléchargez l\'application %1$s.</string>
     <string name="ads_theme_presets_options">Appuyez pour les options</string>
     <string name="ads_theme_presets_import">Appuyez pour importer</string>
     <string name="ads_theme_presets_empty">Aucun préréglage</string>
@@ -369,7 +371,8 @@
     <string name="ads_info_terms_of_use_desc">Afficher les conditions d\'utilisation de cette application.</string>
     <string name="ads_info_privacy_policy_terms_desc">Politique de confidentialité et conditions d\'utilisation.</string>
     <string name="ads_info_apps">Plus d\'applications.</string>
-    <string name="ads_info_apps_desc">Tester mes autres applications disponibles sur le Google Playstore</string>
+    <string name="ads_info_apps_desc">Tester mes autres applications disponibles sur le %1$s.</string>
+    <string name="ads_info_apps_desc_google_play">Tester mes autres applications disponibles sur le Google Play.</string>
     <string name="ads_info_gplus_desc">Rejoignez la communauté officielle pour essayer les versions de test.</string>
     <string name="ads_info_facebook_desc">Aimez la page officielle pour obtenir les dernières nouvelles et mises à jour.</string>
     <string name="ads_info_xda_desc">Notre forum officiel sur XDA.</string>

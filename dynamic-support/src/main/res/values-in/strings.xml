@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -61,6 +61,7 @@
     <string name="ads_copy">Salin</string>
     <string name="ads_save">Simpan</string>
     <string name="ads_load">Muat</string>
+    <string name="ads_download">Unduh</string>
     <string name="ads_import">Impor</string>
     <string name="ads_rename">Rubah nama</string>
     <string name="ads_delete">Hapus</string>
@@ -237,7 +238,8 @@
     <string name="ads_theme_delete_done">Tema berhasil di hapus.</string>
     <string name="ads_theme_format_saved">Tema disimpan: %1$s</string>
     <string name="ads_theme_presets">Preset tema</string>
-    <string name="ads_theme_presets_desc">Unduh melalui Google Play.</string>
+    <string name="ads_theme_presets_desc">Unduh melalui %1$s.</string>
+    <string name="ads_theme_presets_desc_app">Unduh aplikasi %1$s.</string>
     <string name="ads_theme_presets_options">Ketuk untuk opsi</string>
     <string name="ads_theme_presets_import">Ketuk untuk mengimpor</string>
     <string name="ads_theme_presets_empty">Tanpa preset</string>
@@ -369,7 +371,8 @@
     <string name="ads_info_terms_of_use_desc">Tampilkan syarat penggunaan produk ini secara lengkap.</string>
     <string name="ads_info_privacy_policy_terms_desc">Kebijakan pribadi dan syarat penggunaan.</string>
     <string name="ads_info_apps">Aplikasi lain</string>
-    <string name="ads_info_apps_desc">Coba aplikasi lain oleh saya melalui Google Play.</string>
+    <string name="ads_info_apps_desc">Coba aplikasi lain oleh saya melalui %1$s.</string>
+    <string name="ads_info_apps_desc_google_play">Coba aplikasi lain oleh saya melalui Google Play.</string>
     <string name="ads_info_gplus_desc">Gabung dengan komunitas resmi untuk mencoba versi tes.</string>
     <string name="ads_info_facebook_desc">Like laman resmi untuk mendapatkan berita dan pemberitahuan terbaru.</string>
     <string name="ads_info_xda_desc">ikuti forum dukungan resmi di XDA.</string>

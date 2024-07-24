@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -61,6 +61,7 @@
     <string name="ads_copy">複製</string>
     <string name="ads_save">儲存</string>
     <string name="ads_load">載入</string>
+    <string name="ads_download">下載</string>
     <string name="ads_import">匯入</string>
     <string name="ads_rename">重新命名</string>
     <string name="ads_delete">刪除</string>
@@ -237,7 +238,8 @@
     <string name="ads_theme_delete_done">主題已成功刪除。</string>
     <string name="ads_theme_format_saved">主題已儲存：%1$s</string>
     <string name="ads_theme_presets">主題預設。</string>
-    <string name="ads_theme_presets_desc">透過 Google Play 下載。</string>
+    <string name="ads_theme_presets_desc">通過 %1$s 下載。</string>
+    <string name="ads_theme_presets_desc_app">下載 %1$s 應用程序。</string>
     <string name="ads_theme_presets_options">輕觸選項</string>
     <string name="ads_theme_presets_import">輕觸以匯入</string>
     <string name="ads_theme_presets_empty">沒有預設</string>
@@ -369,7 +371,8 @@
     <string name="ads_info_terms_of_use_desc">檢視此產品的完整使用條款</string>
     <string name="ads_info_privacy_policy_terms_desc">隱私權政策和使用條款</string>
     <string name="ads_info_apps">更多應用程式</string>
-    <string name="ads_info_apps_desc">我可以透過 Google Play 嘗試其他應用程式</string>
+    <string name="ads_info_apps_desc">我可以透過 %1$s 嘗試其他應用程式</string>
+    <string name="ads_info_apps_desc_google_play">我可以透過 Google Play 嘗試其他應用程式</string>
     <string name="ads_info_gplus_desc">加入官方社群體驗測試版本。</string>
     <string name="ads_info_facebook_desc">向官方頁面一樣取得最新消息和更新。</string>
     <string name="ads_info_xda_desc">請關注 XDA 上的官方支援論壇。</string>

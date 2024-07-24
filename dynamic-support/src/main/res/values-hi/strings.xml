@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -61,6 +61,7 @@
     <string name="ads_copy">कौपी करें</string>
     <string name="ads_save">सेव करें</string>
     <string name="ads_load">लोड करें</string>
+    <string name="ads_download">डाउनलोड करें</string>
     <string name="ads_import">आयात करें</string>
     <string name="ads_rename">नाम बदलें</string>
     <string name="ads_delete">उड़ाएं</string>
@@ -237,7 +238,8 @@
     <string name="ads_theme_delete_done">रंग-रूप हटा दिए गए हैं।</string>
     <string name="ads_theme_format_saved">रंग-रूप सेव हो गया है: %1$s</string>
     <string name="ads_theme_presets">रंग-रूप प्रीसेट</string>
-    <string name="ads_theme_presets_desc">Google Play के माध्यम से डाउनलोड करें।</string>
+    <string name="ads_theme_presets_desc">%1$s के माध्यम से डाउनलोड करें।</string>
+    <string name="ads_theme_presets_desc_app">%1$s ऐप डाउनलोड करें.</string>
     <string name="ads_theme_presets_options">विकल्पों के लिए टैप करें</string>
     <string name="ads_theme_presets_import">आयात करने के लिए टैप करें</string>
     <string name="ads_theme_presets_empty">कोई प्रीसेट नहीं है</string>
@@ -370,7 +372,8 @@
     <string name="ads_info_terms_of_use_desc">इस ऐप की पूरी टर्म्स ऑफ यूज देखें।</string>
     <string name="ads_info_privacy_policy_terms_desc">प्राइवेसी पॉलिसी व टर्म्स ऑफ यूज।</string>
     <string name="ads_info_apps">और ऐप्स देखें</string>
-    <string name="ads_info_apps_desc">Google Play के माध्यम से मेरे द्वारा अन्य ऐप्स आज़माएं।</string>
+    <string name="ads_info_apps_desc">%1$s के माध्यम से मेरे द्वारा अन्य ऐप्स आज़माएं।</string>
+    <string name="ads_info_apps_desc_google_play">Google Play के माध्यम से मेरे द्वारा अन्य ऐप्स आज़माएं।</string>
     <string name="ads_info_gplus_desc">टेस्ट रिलीज़ का प्रयोग करने के लिए आधिकारिक समुदाय से जुड़ें।</string>
     <string name="ads_info_facebook_desc">नवीनतम समाचार और अपडेट प्राप्त करने के लिए आधिकारिक पृष्ठ को लाइक करें।</string>
     <string name="ads_info_xda_desc">XDA पर आधिकारिक सहायता मंच को फॉलो करें।</string>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -61,6 +61,7 @@
     <string name="ads_copy">Копировать</string>
     <string name="ads_save">Сохранить</string>
     <string name="ads_load">Загрузить</string>
+    <string name="ads_download">Скачать</string>
     <string name="ads_import">Импортировать</string>
     <string name="ads_rename">Переименовать</string>
     <string name="ads_delete">Удалить</string>
@@ -237,7 +238,8 @@
     <string name="ads_theme_delete_done">Тема успешно удалена.</string>
     <string name="ads_theme_format_saved">Тема сохранена: %1$s</string>
     <string name="ads_theme_presets">Пресеты тем</string>
-    <string name="ads_theme_presets_desc">Скачать из Google Play.</string>
+    <string name="ads_theme_presets_desc">Скачать через %1$s.</string>
+    <string name="ads_theme_presets_desc_app">Загрузите приложение %1$s.</string>
     <string name="ads_theme_presets_options">Нажмите для просмотра опций</string>
     <string name="ads_theme_presets_import">Нажмите для импорта</string>
     <string name="ads_theme_presets_empty">Без пресетов</string>
@@ -369,7 +371,8 @@
     <string name="ads_info_terms_of_use_desc">Ознакомиться с полной версией условий пользования этим продуктом.</string>
     <string name="ads_info_privacy_policy_terms_desc">Политика конфиденциальности и условия пользования.</string>
     <string name="ads_info_apps">Еще приложения</string>
-    <string name="ads_info_apps_desc">Попробуйте другие мои приложения в Google Play.</string>
+    <string name="ads_info_apps_desc">Попробуйте другие мои приложения в %1$s.</string>
+    <string name="ads_info_apps_desc_google_play">Попробуйте другие мои приложения в Google Play.</string>
     <string name="ads_info_gplus_desc">Присоединитесь к официальному сообществу, чтобы попробовать тестовые релизы.</string>
     <string name="ads_info_facebook_desc">Поставьте лайк на официальной странице, чтобы получать последние новости и обновления.</string>
     <string name="ads_info_xda_desc">Следите за официальным форумом поддержки на XDA.</string>

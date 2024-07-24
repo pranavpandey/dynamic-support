@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -61,6 +61,7 @@
     <string name="ads_copy">Copy</string>
     <string name="ads_save">Save</string>
     <string name="ads_load">Load</string>
+    <string name="ads_download">Download</string>
     <string name="ads_import">Import</string>
     <string name="ads_rename">Rename</string>
     <string name="ads_delete">Delete</string>
@@ -237,7 +238,8 @@
     <string name="ads_theme_delete_done">Theme deleted successfully.</string>
     <string name="ads_theme_format_saved">Theme saved: %1$s</string>
     <string name="ads_theme_presets">Theme presets</string>
-    <string name="ads_theme_presets_desc">Download via Google Play.</string>
+    <string name="ads_theme_presets_desc">Download via %1$s.</string>
+    <string name="ads_theme_presets_desc_app">Download the %1$s app.</string>
     <string name="ads_theme_presets_options">Tap for options</string>
     <string name="ads_theme_presets_import">Tap to import</string>
     <string name="ads_theme_presets_empty">No presets</string>
@@ -369,7 +371,8 @@
     <string name="ads_info_terms_of_use_desc">View complete terms of use of this product.</string>
     <string name="ads_info_privacy_policy_terms_desc">Privacy policy and terms of use.</string>
     <string name="ads_info_apps">More apps</string>
-    <string name="ads_info_apps_desc">Try other apps by me via Google Play.</string>
+    <string name="ads_info_apps_desc">Try other apps by me via %1$s.</string>
+    <string name="ads_info_apps_desc_google_play">Try other apps by me via Google Play.</string>
     <string name="ads_info_gplus_desc">Join the official community to try test releases.</string>
     <string name="ads_info_facebook_desc">Like the official page to get the latest news and updates.</string>
     <string name="ads_info_xda_desc">Follow the official support forum on XDA.</string>

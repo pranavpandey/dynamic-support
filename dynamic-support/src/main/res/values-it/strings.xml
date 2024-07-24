@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -61,6 +61,7 @@
     <string name="ads_copy">Copia</string>
     <string name="ads_save">Salva</string>
     <string name="ads_load">Carica</string>
+    <string name="ads_download">Scaricamento</string>
     <string name="ads_import">Importa</string>
     <string name="ads_rename">Rinomina</string>
     <string name="ads_delete">Cancella</string>
@@ -237,7 +238,8 @@
     <string name="ads_theme_delete_done">Il motivo è stato eliminato correttamente.</string>
     <string name="ads_theme_format_saved">Motivo salvato: %1$s</string>
     <string name="ads_theme_presets">Motivo predefiniti</string>
-    <string name="ads_theme_presets_desc">Scarica tramite Google Play.</string>
+    <string name="ads_theme_presets_desc">Scarica tramite %1$s.</string>
+    <string name="ads_theme_presets_desc_app">Scarica l\'app %1$s.</string>
     <string name="ads_theme_presets_options">Tocca per le opzioni</string>
     <string name="ads_theme_presets_import">Tocca per importare</string>
     <string name="ads_theme_presets_empty">Nessun preset</string>
@@ -369,7 +371,8 @@
     <string name="ads_info_terms_of_use_desc">Guarda le condizioni d\'uso complete per questo prodotto.</string>
     <string name="ads_info_privacy_policy_terms_desc">Politiche sulla privacy e condizioni d\'uso.</string>
     <string name="ads_info_apps">Altre app</string>
-    <string name="ads_info_apps_desc">Prova altre app da me tramite Google Play.</string>
+    <string name="ads_info_apps_desc">Prova altre app da me tramite %1$s.</string>
+    <string name="ads_info_apps_desc_google_play">Prova altre app da me tramite Google Play.</string>
     <string name="ads_info_gplus_desc">Unisciti alla comunità ufficiale per provare i rilasci di test.</string>
     <string name="ads_info_facebook_desc">Metti un like alla pagina ufficiale per ricevere notizie e aggiornamenti.</string>
     <string name="ads_info_xda_desc">Segui il forum di supporto ufficiale su XDA.</string>

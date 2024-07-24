@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -61,6 +61,7 @@
     <string name="ads_copy">Kopyala</string>
     <string name="ads_save">Kaydet</string>
     <string name="ads_load">Yükle</string>
+    <string name="ads_download">İndirmek</string>
     <string name="ads_import">İçe aktar</string>
     <string name="ads_rename">Yeniden adlandır</string>
     <string name="ads_delete">Sil</string>
@@ -237,7 +238,8 @@
     <string name="ads_theme_delete_done">Tema başarıyla silindi.</string>
     <string name="ads_theme_format_saved">Tema kaydedildi: %1$s</string>
     <string name="ads_theme_presets">Tema ön ayarları</string>
-    <string name="ads_theme_presets_desc">Google Play üzerinden indirin.</string>
+    <string name="ads_theme_presets_desc">%1$s aracılığıyla indirin.</string>
+    <string name="ads_theme_presets_desc_app">%1$s uygulamasını indirin.</string>
     <string name="ads_theme_presets_options">Seçenekler için dokunun</string>
     <string name="ads_theme_presets_import">İçe aktarmak için dokunun</string>
     <string name="ads_theme_presets_empty">Ön ayar yok</string>
@@ -369,7 +371,8 @@
     <string name="ads_info_terms_of_use_desc">Bu ürünün tüm kullanım şartlarını görüntüleyin.</string>
     <string name="ads_info_privacy_policy_terms_desc">Gizlilik politikası ve kullanım şartları.</string>
     <string name="ads_info_apps">Daha fazla uygulama</string>
-    <string name="ads_info_apps_desc">Diğer uygulamaları Google Play üzerinden bana göre deneyin.</string>
+    <string name="ads_info_apps_desc">Diğer uygulamaları %1$s üzerinden bana göre deneyin.</string>
+    <string name="ads_info_apps_desc_google_play">Diğer uygulamaları Google Play üzerinden bana göre deneyin.</string>
     <string name="ads_info_gplus_desc">Test sürümlerini denemek için resmi topluluğa katılın.</string>
     <string name="ads_info_facebook_desc">En son haberleri ve güncellemeleri almak için resmi sayfayı beğenin.</string>
     <string name="ads_info_xda_desc">XDA\'daki resmi destek forumunu takip edin.</string>
