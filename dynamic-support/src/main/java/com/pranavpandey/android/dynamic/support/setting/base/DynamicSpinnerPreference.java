@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -260,9 +260,9 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
     }
 
     /**
-     * Returns the default value of this preference.
+     * Returns the value of this preference.
      *
-     * @return The default value of this preference.
+     * @return The value of this preference.
      */
     public @Nullable String getPreferenceValue() {
         if (getPreferenceKey() == null || getValues() == null) {
