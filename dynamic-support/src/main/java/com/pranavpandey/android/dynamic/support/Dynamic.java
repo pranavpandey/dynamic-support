@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -104,6 +104,9 @@ import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  * Helper class to manipulate {@link DynamicActivity} and inflated views at runtime according
  * to their implemented types.
@@ -125,6 +128,45 @@ import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
  * @see DynamicItem
  */
 public class Dynamic {
+
+    /**
+     * Interface to hold the vibration values.
+     */
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface Vibration {
+
+        /**
+         * {@code true} to enable the vibration.
+         */
+        boolean DEFAULT = true;
+
+        /**
+         * Interface to hold the vibration intensity values.
+         */
+        @Retention(RetentionPolicy.SOURCE)
+        @interface Intensity {
+
+            /**
+             * The minimum vibration intensity.
+             */
+            int MIN = 10;
+
+            /**
+             * The maximum vibration intensity.
+             */
+            int MAX = 500;
+
+            /**
+             * The vibration intensity interval.
+             */
+            int INTERVAL = 5;
+
+            /**
+             * The default vibration intensity.
+             */
+            int DEFAULT = 25;
+        }
+    }
 
     /**
      * Load the theme styles version from the shared preferences.
