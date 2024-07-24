@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -25,9 +25,10 @@
     <com.pranavpandey.android.dynamic.support.widget.DynamicDrawerLayout
         android:id="@+id/ads_drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/ads_footer_frame">
 
-        <include layout="@layout/ads_activity_frame" />
+        <include layout="@layout/ads_activity_frame_no_footer" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicNavigationView
             style="?attr/ads_widgetNavigationView"
@@ -39,5 +40,12 @@
             app:headerLayout="@layout/ads_header_drawer" />
 
     </com.pranavpandey.android.dynamic.support.widget.DynamicDrawerLayout>
+
+    <include layout="@layout/ads_layout_footer_frame" />
+
+    <include
+        layout="@layout/ads_layout_navigation_shadow"
+        android:layout_width="@dimen/ads_navigation_bar_shadow_size"
+        android:layout_height="match_parent" />
 
 </com.pranavpandey.android.dynamic.support.widget.DynamicRootLayout>
