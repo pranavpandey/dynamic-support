@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,11 +40,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewNested;
 import com.pranavpandey.android.dynamic.support.theme.adapter.DynamicPresetsAdapter;
 import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
-import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
@@ -157,6 +157,14 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
         mViewInfo = findViewById(R.id.ads_theme_presets_info_card);
         mInfo = findViewById(R.id.ads_theme_presets_info);
 
+        Dynamic.setOnClickListener(findViewById(R.id.ads_theme_presets_header),
+                new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadPresets();
+            }
+        });
+
         Dynamic.setOnClickListener(findViewById(R.id.ads_theme_presets_info),
                 new OnClickListener() {
             @Override
@@ -175,7 +183,7 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
             }
         });
 
-        Dynamic.setColorType(((DynamicHeader) findViewById(
+        Dynamic.setColorType(((DynamicItemView) findViewById(
                 R.id.ads_theme_presets_header)).getIconView(), Theme.ColorType.NONE);
     }
 
@@ -204,6 +212,16 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
     public @Nullable RecyclerView.LayoutManager getRecyclerViewLayoutManager() {
         return DynamicLayoutUtils.getLinearLayoutManager(
                 getContext(), LinearLayoutManager.HORIZONTAL);
+    }
+
+    @Override
+    public void showProgress(boolean animate) {
+        super.showProgress(false);
+    }
+
+    @Override
+    public void hideProgress(boolean animate) {
+        super.hideProgress(false);
     }
 
     /**
@@ -242,34 +260,55 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
         loadPresets();
     }
 
-    public void loadPresets() {
-        if (isPackageExists()) {
-            if (isPermissionGranted()) {
-                setPresetsVisible(true);
+    /**
+     * Runnable to load the theme presets.
+     */
+    private final Runnable mLoadPresets = new Runnable() {
+        @Override
+        public void run() {
+            if (isPackageExists()) {
+                if (isPermissionGranted()) {
+                    setPresetsVisible(true);
+                } else {
+                    mInfo.setSubtitle(getContext().getString(
+                            R.string.ads_permissions_subtitle_single));
+                    setPresetsVisible(false);
+                }
             } else {
-                mInfo.setSubtitle(getContext().getString(
-                        R.string.ads_permissions_subtitle_single));
+                mInfo.setSubtitle(String.format(
+                        getContext().getString(R.string.ads_theme_presets_desc_app),
+                        getContext().getString(R.string.ads_theme_presets_app)));
                 setPresetsVisible(false);
             }
-        } else {
-            mInfo.setSubtitle(getContext().getString(R.string.ads_theme_presets_desc));
-            setPresetsVisible(false);
+
+            if (mLifecycleOwner == null || !isPermissionGranted()) {
+                return;
+            }
+
+            if (mLoader == null) {
+                mLoader = LoaderManager.getInstance(mLifecycleOwner).initLoader(
+                        ADS_LOADER_PRESETS, null, mLoaderCallbacks);
+            }
+
+            if (mLoader.isStarted()) {
+                mLoader.stopLoading();
+                mLoader.forceLoad();
+            } else {
+                mLoader.startLoading();
+            }
+        }
+    };
+
+    /**
+     * Try to load the theme presets.
+     */
+    public void loadPresets() {
+        if (DynamicMotion.getInstance().isMotion()) {
+            DynamicMotion.getInstance().beginDelayedTransition((ViewGroup) getParent());
         }
 
-        if (mLifecycleOwner == null || !isPermissionGranted()) {
-            return;
-        }
-
-        if (mLoader == null) {
-            mLoader = LoaderManager.getInstance(mLifecycleOwner).initLoader(
-                    ADS_LOADER_PRESETS, null, mLoaderCallbacks);
-        }
-
-        if (mLoader.isStarted()) {
-            mLoader.forceLoad();
-        } else {
-            mLoader.startLoading();
-        }
+        post(mLoadPresets);
+        postDelayed(mLoadPresets, DynamicMotion.Duration.SHORT);
     }
 
     /**
@@ -344,8 +383,14 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
      * Sets the visibility of the presets view.
      *
      * @param visible {@code true} to make the header and recycler view visible.
+     * @param data The presets data to be set.
      */
-    private void setPresetsVisible(boolean visible) {
+    private void setPresetsVisible(final boolean visible, @Nullable Cursor data) {
+        if (DynamicMotion.getInstance().isMotion()) {
+            DynamicMotion.getInstance().beginDelayedTransition(
+                    (ViewGroup) DynamicPresetsView.this.getParent());
+        }
+
         if (visible) {
             Dynamic.setVisibility(mHeader, VISIBLE);
             Dynamic.setVisibility(mViewInfo, GONE);
@@ -354,6 +399,19 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
             Dynamic.setVisibility(mHeader, GONE);
             Dynamic.setVisibility(getRecyclerView(), GONE);
         }
+
+        mPresetsAdapter.setPresets(data);
+    }
+
+    /**
+     * Sets the visibility of the presets view.
+     *
+     * @param visible {@code true} to make the header and recycler view visible.
+     *
+     * @see #setPresetsVisible(boolean, Cursor)
+     */
+    private void setPresetsVisible(boolean visible) {
+        setPresetsVisible(visible, null);
     }
 
     /**
@@ -363,43 +421,42 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
             new LoaderManager.LoaderCallbacks<Cursor>() {
         @Override
         public @NonNull Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-            if (id == ADS_LOADER_PRESETS) {
-                if (isPermissionGranted()) {
-                    try {
-                        showProgress();
-                        return new CursorLoader(getContext().getApplicationContext(),
-                                ThemeContract.Preset.CONTENT_URI,
-                                new String[] { ThemeContract.Preset.Column.THEME },
-                                null, null, null);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                return new Loader<>(getContext().getApplicationContext());
+            if (id != ADS_LOADER_PRESETS) {
+                throw new IllegalArgumentException();
             }
 
-            throw new IllegalArgumentException();
+            if (isPermissionGranted()) {
+                try {
+                    setPresetsVisible(false);
+
+                    return new CursorLoader(getContext().getApplicationContext(),
+                            ThemeContract.Preset.CONTENT_URI,
+                            new String[] { ThemeContract.Preset.Column.THEME },
+                            null, null, null);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return new Loader<>(getContext().getApplicationContext());
         }
 
         @Override
         public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-            if (loader.getId() == ADS_LOADER_PRESETS) {
-                if (data != null) {
-                    hideProgress();
-                    mPresetsAdapter.setPresets(data);
-                }
-
-                setPresetsVisible(data != null && data.getCount() > 0);
+            if (loader.getId() != ADS_LOADER_PRESETS) {
+                return;
             }
+
+            setPresetsVisible(data != null && data.getCount() > 0, data);
         }
 
         @Override
         public void onLoaderReset(@NonNull Loader<Cursor> loader) {
-            if (loader.getId() == ADS_LOADER_PRESETS) {
-                mPresetsAdapter.setPresets(null);
-                setPresetsVisible(false);
+            if (loader.getId() != ADS_LOADER_PRESETS) {
+                return;
             }
+
+            setPresetsVisible(false, null);
         }
     };
 }
