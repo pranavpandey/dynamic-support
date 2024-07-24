@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -398,24 +398,25 @@ public class DynamicIntent {
         }
 
         try {
+            Intent intent = getThemeIntent(context, clazz, action, theme, defaultTheme, text);
+            if (Theme.Intent.ACTION_CAPTURE.equals(action)) {
+                intent.setPackage(null);
+            }
+
             if (owner instanceof DynamicSystemActivity) {
-                ((DynamicActivity) owner).startMotionActivityForResult(getThemeIntent(context,
-                        clazz, action, theme, defaultTheme, text), requestCode, bundle);
+                ((DynamicActivity) owner).startMotionActivityForResult(
+                        intent, requestCode, bundle);
             } else if (owner instanceof DynamicFragment) {
-                ((DynamicFragment) owner).startMotionActivityForResult(getThemeIntent(context,
-                        clazz, action, theme, defaultTheme, text), requestCode, bundle);
+                ((DynamicFragment) owner).startMotionActivityForResult(
+                        intent, requestCode, bundle);
             } else if (owner instanceof Activity) {
-                ((Activity) owner).startActivityForResult(getThemeIntent(context,
-                        clazz, action, theme, defaultTheme, text), requestCode, bundle);
+                ((Activity) owner).startActivityForResult(intent, requestCode, bundle);
             } else if (owner instanceof Fragment) {
-                ((Fragment) owner).startActivityForResult(getThemeIntent(context,
-                        clazz, action, theme, defaultTheme, text), requestCode, bundle);
+                ((Fragment) owner).startActivityForResult(intent, requestCode, bundle);
             } else if (context instanceof Activity) {
-                ((Activity) context).startActivityForResult(getThemeIntent(context,
-                        clazz, action, theme, defaultTheme, text), requestCode, bundle);
+                ((Activity) context).startActivityForResult(intent, requestCode, bundle);
             } else {
-                context.startActivity(getThemeIntent(context,
-                        clazz, action, theme, defaultTheme, text));
+                context.startActivity(intent);
             }
         } catch (Exception e) {
             e.printStackTrace();
