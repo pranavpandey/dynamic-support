@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -225,8 +225,9 @@ public class Defaults {
      * to the theme background to provide the best visibility.
      * <p>{@code true} to make widgets background aware.
      *
-     * @deprecated
+     * @deprecated Use {@link #getBackgroundAware()} for updated compatibility.
      */
+    @Deprecated
     public static final boolean ADS_BACKGROUND_AWARE = true;
 
     /**
