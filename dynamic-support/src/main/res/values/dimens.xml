@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -331,6 +331,9 @@
     <dimen name="ads_widget_margin">0dp</dimen>
     <dimen name="ads_widget_corner_radius">0dp</dimen>
     <dimen name="ads_widget_preview_height">144dp</dimen>
+    <dimen name="ads_widget_preview_height_small">84dp</dimen>
+    <dimen name="ads_widget_preview_height_medium">196dp</dimen>
+    <dimen name="ads_widget_preview_height_large">208dp</dimen>
     <dimen name="ads_widget_font_size_tiny">10dp</dimen>
     <dimen name="ads_widget_font_size_extra_small">12dp</dimen>
     <dimen name="ads_widget_font_size_small">14dp</dimen>

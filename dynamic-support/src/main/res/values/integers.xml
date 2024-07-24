@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -75,7 +75,9 @@
     <integer name="ads_widget_update_millis_hour">3600000</integer>
     <integer name="ads_widget_update_millis_quarter">21600000</integer>
     <integer name="ads_widget_update_millis_day">86400000</integer>
-    <integer name="ads_widget_visibility_controls">2</integer>
+    <integer name="ads_widget_visibility_controls">8</integer>
+    <integer name="ads_widget_visibility_controls_alt">2</integer>
+    <integer name="ads_widget_visibility_controls_alt_inverse">0</integer>
 
     <!-- Vibration -->
     <integer name="ads_vibration">25</integer>
