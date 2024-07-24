@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 
 import com.pranavpandey.android.dynamic.support.util.DynamicPickerUtils;
+import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
@@ -84,6 +85,10 @@ public class DynamicHueSlider extends DynamicSlider {
 
     @Override
     public void setProgressBarColor() {
+        setTrackStopIndicatorSize(Theme.Corner.MIN);
+        setTrackInsideCornerSize(Theme.Corner.MIN);
+        setThumbTrackGapSize(Theme.Corner.MIN);
+
         setTrackActiveTintList(ColorStateList.valueOf(Color.TRANSPARENT));
         setTrackInactiveTintList(ColorStateList.valueOf(Color.TRANSPARENT));
         setTickActiveTintList(ColorStateList.valueOf(Color.TRANSPARENT));

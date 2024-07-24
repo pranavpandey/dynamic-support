@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -909,12 +909,27 @@
     </style>
 
     <style name="Widget.Dynamic2.Slider">
+        <item name="thumbHeight">@dimen/ads_margin_large_big</item>
         <item name="labelBehavior">gone</item>
     </style>
     <style name="Widget.Dynamic2.Slider.Compact">
+        <item name="trackHeight">@dimen/ads_margin_small</item>
+        <item name="thumbHeight">@dimen/ads_margin_normal</item>
+        <item name="thumbTrackGapSize">@dimen/ads_margin_tiny</item>
         <item name="thumbRadius">@dimen/ads_margin_small</item>
         <item name="thumbElevation">0dp</item>
     </style>
+
+    <style name="Widget.Dynamic2.CircularProgressIndicator"
+        parent="@style/Widget.Material3.CircularProgressIndicator" />
+    <style name="Widget.Dynamic2.CircularProgressIndicator.Medium"
+        parent="@style/Widget.Material3.CircularProgressIndicator.Medium" />
+    <style name="Widget.Dynamic2.CircularProgressIndicator.Small"
+        parent="@style/Widget.Material3.CircularProgressIndicator.Small" />
+    <style name="Widget.Dynamic2.CircularProgressIndicator.ExtraSmall"
+        parent="@style/Widget.Material3.CircularProgressIndicator.ExtraSmall" />
+    <style name="Widget.Dynamic2.LinearProgressIndicator"
+        parent="@style/Widget.Material3.LinearProgressIndicator" />
 
     <style name="Widget.Dynamic2.RatingBar" parent="Widget.AppCompat.RatingBar">
         <item name="android:progressDrawable">@drawable/ads_rating_bar</item>

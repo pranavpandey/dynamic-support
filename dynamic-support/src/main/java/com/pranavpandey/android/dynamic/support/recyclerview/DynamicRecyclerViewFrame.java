@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,13 +22,13 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.CallSuper;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -91,7 +91,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      * @see #showProgress()
      * @see #hideProgress()
      */
-    private ContentLoadingProgressBar mProgressBar;
+    private ProgressBar mProgressBar;
 
     public DynamicRecyclerViewFrame(@NonNull Context context) {
         this(context, null);
@@ -416,7 +416,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
      *
      * @return The progress bar that can be shown while the data is loading in the background.
      */
-    public @Nullable ContentLoadingProgressBar getProgressBar() {
+    public @Nullable ProgressBar getProgressBar() {
         return mProgressBar;
     }
 

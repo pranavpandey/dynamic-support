@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -381,6 +381,26 @@
 
     <!-- Attributes for the DynamicProgressBar. -->
     <declare-styleable name="DynamicProgressBar">
+        <attr name="adt_colorType" />
+        <attr name="adt_contrastWithColorType" />
+        <attr name="adt_color" />
+        <attr name="adt_contrastWithColor" />
+        <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicCircularProgressIndicator. -->
+    <declare-styleable name="DynamicCircularProgressIndicator">
+        <attr name="adt_colorType" />
+        <attr name="adt_contrastWithColorType" />
+        <attr name="adt_color" />
+        <attr name="adt_contrastWithColor" />
+        <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
+    </declare-styleable>
+
+    <!-- Attributes for the DynamicLinearProgressIndicator. -->
+    <declare-styleable name="DynamicLinearProgressIndicator">
         <attr name="adt_colorType" />
         <attr name="adt_contrastWithColorType" />
         <attr name="adt_color" />

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,6 +35,21 @@ import com.pranavpandey.android.dynamic.util.DynamicUnitUtils;
  * Helper class to perform shape operations.
  */
 public class DynamicShapeUtils {
+
+    /**
+     * Returns the corner size for the slider according to the supplied corner size.
+     *
+     * @param cornerSize The corner size to be considered in dips.
+     *
+     * @return The corner size for the slider according to the supplied corner size.
+     */
+    public static @DrawableRes int getSlideCornerSize(float cornerSize) {
+        if (cornerSize < Theme.Corner.MIN_ROUND) {
+            return 0;
+        } else {
+            return DynamicUnitUtils.convertDpToPixels(Theme.Corner.DEFAULT);
+        }
+    }
 
     /**
      * Returns the overlay resource according to the supplied corner size.

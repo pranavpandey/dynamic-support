@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -396,6 +396,17 @@
     <!-- The compact slider widget style. -->
     <attr name="ads_widgetSliderCompact" format="reference" />
 
+    <!-- The circular progress indicator style. -->
+    <attr name="ads_widgetCircularProgressIndicator" format="reference" />
+    <!-- The circular progress indicator (medium) style. -->
+    <attr name="ads_widgetCircularProgressIndicatorMedium" format="reference" />
+    <!-- The circular progress indicator (small) style. -->
+    <attr name="ads_widgetCircularProgressIndicatorSmall" format="reference" />
+    <!-- The circular progress indicator (extra small) style. -->
+    <attr name="ads_widgetCircularProgressIndicatorExtraSmall" format="reference" />
+    <!-- The circular progress indicator style. -->
+    <attr name="ads_widgetLinearProgressIndicator" format="reference" />
+
     <!-- The rating bar style. -->
     <attr name="ads_widgetRatingBar" format="reference" />
     <!-- The rating bar indicator style. -->
@@ -523,6 +534,8 @@
     <attr name="ads_appWidgetImageHeaderPreview" format="reference" />
     <!-- The app widget logo image style. -->
     <attr name="ads_appWidgetImageLogo" format="reference" />
+    <!-- The app widget top logo image style. -->
+    <attr name="ads_appWidgetImageLogoTop" format="reference" />
     <!-- The app widget action image style. -->
     <attr name="ads_appWidgetImageAction" format="reference" />
     <!-- The app widget preview action image style. -->

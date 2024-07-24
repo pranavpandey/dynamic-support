@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -253,6 +253,11 @@
         <item name="ads_widgetTextInputEditTextOutlinedSingleLine">@style/Widget.Dynamic2.TextInputEditText.Outlined.SingleLine</item>
         <item name="ads_widgetSlider">@style/Widget.Dynamic2.Slider</item>
         <item name="ads_widgetSliderCompact">@style/Widget.Dynamic2.Slider.Compact</item>
+        <item name="ads_widgetCircularProgressIndicator">@style/Widget.Dynamic2.CircularProgressIndicator</item>
+        <item name="ads_widgetCircularProgressIndicatorMedium">@style/Widget.Dynamic2.CircularProgressIndicator.Medium</item>
+        <item name="ads_widgetCircularProgressIndicatorSmall">@style/Widget.Dynamic2.CircularProgressIndicator.Small</item>
+        <item name="ads_widgetCircularProgressIndicatorExtraSmall">@style/Widget.Dynamic2.CircularProgressIndicator.ExtraSmall</item>
+        <item name="ads_widgetLinearProgressIndicator">@style/Widget.Dynamic2.LinearProgressIndicator</item>
         <item name="ads_widgetRatingBar">@style/Widget.Dynamic2.RatingBar</item>
         <item name="ads_widgetRatingBarIndicator">@style/Widget.Dynamic2.RatingBar.Indicator</item>
         <item name="ads_widgetRatingBarSmall">@style/Widget.Dynamic2.RatingBar.Small</item>
@@ -314,6 +319,7 @@
         <item name="ads_appWidgetImageHeader">@style/AppWidget.Dynamic2.Image.Header</item>
         <item name="ads_appWidgetImageHeaderPreview">@style/AppWidget.Dynamic2.Image.Header.Preview</item>
         <item name="ads_appWidgetImageLogo">@style/AppWidget.Dynamic2.Image.Logo</item>
+        <item name="ads_appWidgetImageLogoTop">@style/AppWidget.Dynamic2.Image.Logo.Top</item>
         <item name="ads_appWidgetImageAction">@style/AppWidget.Dynamic2.Image.Action</item>
         <item name="ads_appWidgetImageActionPreview">@style/AppWidget.Dynamic2.Image.Action.Preview</item>
     </style>
@@ -559,6 +565,11 @@
         <item name="ads_widgetTextInputEditTextOutlinedSingleLine">@style/Widget.Dynamic2.TextInputEditText.Outlined.SingleLine</item>
         <item name="ads_widgetSlider">@style/Widget.Dynamic2.Slider</item>
         <item name="ads_widgetSliderCompact">@style/Widget.Dynamic2.Slider.Compact</item>
+        <item name="ads_widgetCircularProgressIndicator">@style/Widget.Dynamic2.CircularProgressIndicator</item>
+        <item name="ads_widgetCircularProgressIndicatorMedium">@style/Widget.Dynamic2.CircularProgressIndicator.Medium</item>
+        <item name="ads_widgetCircularProgressIndicatorSmall">@style/Widget.Dynamic2.CircularProgressIndicator.Small</item>
+        <item name="ads_widgetCircularProgressIndicatorExtraSmall">@style/Widget.Dynamic2.CircularProgressIndicator.ExtraSmall</item>
+        <item name="ads_widgetLinearProgressIndicator">@style/Widget.Dynamic2.LinearProgressIndicator</item>
         <item name="ads_widgetRatingBar">@style/Widget.Dynamic2.RatingBar</item>
         <item name="ads_widgetRatingBarIndicator">@style/Widget.Dynamic2.RatingBar.Indicator</item>
         <item name="ads_widgetRatingBarSmall">@style/Widget.Dynamic2.RatingBar.Small</item>
@@ -620,6 +631,7 @@
         <item name="ads_appWidgetImageHeader">@style/AppWidget.Dynamic2.Image.Header</item>
         <item name="ads_appWidgetImageHeaderPreview">@style/AppWidget.Dynamic2.Image.Header.Preview</item>
         <item name="ads_appWidgetImageLogo">@style/AppWidget.Dynamic2.Image.Logo</item>
+        <item name="ads_appWidgetImageLogoTop">@style/AppWidget.Dynamic2.Image.Logo.Top</item>
         <item name="ads_appWidgetImageAction">@style/AppWidget.Dynamic2.Image.Action</item>
         <item name="ads_appWidgetImageActionPreview">@style/AppWidget.Dynamic2.Image.Action.Preview</item>
     </style>
@@ -859,6 +871,11 @@
         <item name="ads_widgetTextInputEditTextOutlinedSingleLine">@style/Widget.Dynamic2.TextInputEditText.Outlined.SingleLine</item>
         <item name="ads_widgetSlider">@style/Widget.Dynamic2.Slider</item>
         <item name="ads_widgetSliderCompact">@style/Widget.Dynamic2.Slider.Compact</item>
+        <item name="ads_widgetCircularProgressIndicator">@style/Widget.Dynamic2.CircularProgressIndicator</item>
+        <item name="ads_widgetCircularProgressIndicatorMedium">@style/Widget.Dynamic2.CircularProgressIndicator.Medium</item>
+        <item name="ads_widgetCircularProgressIndicatorSmall">@style/Widget.Dynamic2.CircularProgressIndicator.Small</item>
+        <item name="ads_widgetCircularProgressIndicatorExtraSmall">@style/Widget.Dynamic2.CircularProgressIndicator.ExtraSmall</item>
+        <item name="ads_widgetLinearProgressIndicator">@style/Widget.Dynamic2.LinearProgressIndicator</item>
         <item name="ads_widgetRatingBar">@style/Widget.Dynamic2.RatingBar</item>
         <item name="ads_widgetRatingBarIndicator">@style/Widget.Dynamic2.RatingBar.Indicator</item>
         <item name="ads_widgetRatingBarSmall">@style/Widget.Dynamic2.RatingBar.Small</item>
@@ -920,6 +937,7 @@
         <item name="ads_appWidgetImageHeader">@style/AppWidget.Dynamic2.Image.Header</item>
         <item name="ads_appWidgetImageHeaderPreview">@style/AppWidget.Dynamic2.Image.Header.Preview</item>
         <item name="ads_appWidgetImageLogo">@style/AppWidget.Dynamic2.Image.Logo</item>
+        <item name="ads_appWidgetImageLogoTop">@style/AppWidget.Dynamic2.Image.Logo.Top</item>
         <item name="ads_appWidgetImageAction">@style/AppWidget.Dynamic2.Image.Action</item>
         <item name="ads_appWidgetImageActionPreview">@style/AppWidget.Dynamic2.Image.Action.Preview</item>
     </style>

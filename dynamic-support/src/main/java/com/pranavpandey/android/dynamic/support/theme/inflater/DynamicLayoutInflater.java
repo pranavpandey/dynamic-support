@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2022 Pranav Pandey
+ * Copyright 2018-2024 Pranav Pandey
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +34,7 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicBottomNavigationVi
 import com.pranavpandey.android.dynamic.support.widget.DynamicButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCheckBox;
+import com.pranavpandey.android.dynamic.support.widget.DynamicCircularProgressIndicator;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCollapsingToolbarLayout;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCoordinatorLayout;
 import com.pranavpandey.android.dynamic.support.widget.DynamicDrawerLayout;
@@ -48,6 +49,7 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicImageButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicImageView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicLinearLayout;
 import com.pranavpandey.android.dynamic.support.widget.DynamicLinearLayoutCompat;
+import com.pranavpandey.android.dynamic.support.widget.DynamicLinearProgressIndicator;
 import com.pranavpandey.android.dynamic.support.widget.DynamicListView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicMaterialCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicMaterialSwitch;
@@ -198,6 +200,14 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
             case "androidx.core.widget.ContentLoadingProgressBar":
             case "com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar":
                 view = new DynamicProgressBar(context, attrs);
+                break;
+            case "com.google.android.material.progressindicator.CircularProgressIndicator":
+            case "com.pranavpandey.android.dynamic.support.widget.DynamicCircularProgressIndicator":
+                view = new DynamicCircularProgressIndicator(context, attrs);
+                break;
+            case "com.google.android.material.progressindicator.LinearProgressIndicator":
+            case "com.pranavpandey.android.dynamic.support.widget.DynamicLinearProgressIndicator":
+                view = new DynamicLinearProgressIndicator(context, attrs);
                 break;
             case "android.support.v4.widget.SwipeRefreshLayout":
             case "androidx.SwipeRefreshLayout.widget.SwipeRefreshLayout":

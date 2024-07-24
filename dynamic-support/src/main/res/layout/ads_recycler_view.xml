@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -57,11 +57,11 @@
 
     </com.pranavpandey.android.dynamic.support.widget.DynamicSwipeRefreshLayout>
 
-    <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
-        style="?android:attr/progressBarStyle"
+    <com.pranavpandey.android.dynamic.support.widget.DynamicCircularProgressIndicator
+        style="?attr/ads_widgetCircularProgressIndicator"
         android:id="@+id/ads_progress"
-        android:layout_width="@dimen/ads_circular_progress_size"
-        android:layout_height="@dimen/ads_circular_progress_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
         android:indeterminate="true"

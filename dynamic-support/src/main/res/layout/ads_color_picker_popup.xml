@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2024 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -61,8 +61,8 @@
 
         </LinearLayout>
 
-        <com.pranavpandey.android.dynamic.support.widget.DynamicProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
+        <com.pranavpandey.android.dynamic.support.widget.DynamicLinearProgressIndicator
+            style="?attr/ads_widgetLinearProgressIndicator"
             android:id="@+id/ads_color_picker_progress_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

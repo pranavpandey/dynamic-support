@@ -16,30 +16,32 @@
 
 package com.pranavpandey.android.dynamic.support.widget;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.util.AttributeSet;
 
-import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.android.material.slider.Slider;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicShapeUtils;
-import com.pranavpandey.android.dynamic.support.widget.base.DynamicProgressWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 
 /**
- * A {@link Slider} to apply {@link DynamicTheme} according to the supplied parameters.
+ * A {@link CircularProgressIndicator} to apply {@link DynamicTheme} according to the
+ * supplied parameters.
  */
-public class DynamicSlider extends Slider implements DynamicProgressWidget {
+public class DynamicCircularProgressIndicator extends CircularProgressIndicator 
+        implements DynamicWidget {
 
     /**
      * Color type applied to this view.
@@ -89,19 +91,12 @@ public class DynamicSlider extends Slider implements DynamicProgressWidget {
      */
     protected int mContrast;
 
-    public DynamicSlider(@NonNull Context context) {
+    public DynamicCircularProgressIndicator(@NonNull Context context) {
         this(context, null);
     }
 
-    public DynamicSlider(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicCircularProgressIndicator(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-
-        loadFromAttributes(attrs);
-    }
-
-    public DynamicSlider(@NonNull Context context,
-            @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
 
         loadFromAttributes(attrs);
     }
@@ -109,26 +104,26 @@ public class DynamicSlider extends Slider implements DynamicProgressWidget {
     @Override
     public void loadFromAttributes(@Nullable AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(attrs, 
-                R.styleable.DynamicSlider);
+                R.styleable.DynamicCircularProgressIndicator);
 
         try {
             mColorType = a.getInt(
-                    R.styleable.DynamicSlider_adt_colorType,
+                    R.styleable.DynamicCircularProgressIndicator_adt_colorType,
                     Theme.ColorType.ACCENT);
             mContrastWithColorType = a.getInt(
-                    R.styleable.DynamicSlider_adt_contrastWithColorType,
+                    R.styleable.DynamicCircularProgressIndicator_adt_contrastWithColorType,
                     Theme.ColorType.BACKGROUND);
             mColor = a.getColor(
-                    R.styleable.DynamicSlider_adt_color,
+                    R.styleable.DynamicCircularProgressIndicator_adt_color,
                     Theme.Color.UNKNOWN);
             mContrastWithColor = a.getColor(
-                    R.styleable.DynamicSlider_adt_contrastWithColor,
+                    R.styleable.DynamicCircularProgressIndicator_adt_contrastWithColor,
                     Defaults.getContrastWithColor(getContext()));
             mBackgroundAware = a.getInteger(
-                    R.styleable.DynamicSlider_adt_backgroundAware,
+                    R.styleable.DynamicCircularProgressIndicator_adt_backgroundAware,
                     Defaults.getBackgroundAware());
             mContrast = a.getInteger(
-                    R.styleable.DynamicSlider_adt_contrast,
+                    R.styleable.DynamicCircularProgressIndicator_adt_contrast,
                     Theme.Contrast.AUTO);
         } finally {
             a.recycle();
@@ -255,40 +250,24 @@ public class DynamicSlider extends Slider implements DynamicProgressWidget {
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
 
-        setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED_DIM);
+        setAlpha(enabled ? Defaults.ADS_ALPHA_ENABLED : Defaults.ADS_ALPHA_DISABLED);
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void setColor() {
+        setTrackCornerRadius(DynamicShapeUtils.getSlideCornerSize(
+                DynamicTheme.getInstance().get().getCornerSize()));
+
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
                 mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
             }
-
-            setProgressBarColor();
-            setThumbColor();
+            
+            setIndicatorColor(mAppliedColor);
+            setTrackColor(DynamicColorUtils.adjustAlpha(
+                    mAppliedColor, Defaults.ADS_ALPHA_PRESSED));
         }
-    }
-
-    @Override
-    public void setProgressBarColor() {
-        setTrackInsideCornerSize(DynamicShapeUtils.getSlideCornerSize(
-                DynamicTheme.getInstance().get().getCornerSize()));
-
-        setTrackActiveTintList(DynamicResourceUtils.getColorStateList(mAppliedColor));
-        setTrackInactiveTintList(DynamicResourceUtils.getColorStateList(
-                DynamicColorUtils.adjustAlpha(Dynamic.getTintColor(mContrastWithColor,
-                        this), Defaults.ADS_ALPHA_DISABLED)));
-        setTickActiveTintList(DynamicResourceUtils.getColorStateList(
-                Dynamic.getTintColor(mAppliedColor, this)));
-        setTickInactiveTintList(DynamicResourceUtils.getColorStateList(mContrastWithColor));
-    }
-
-    @Override
-    public void setThumbColor() {
-        setThumbTintList(DynamicResourceUtils.getColorStateList(mAppliedColor));
-        setHaloTintList(DynamicResourceUtils.getColorStateList(
-                DynamicColorUtils.adjustAlpha(mAppliedColor, Defaults.ADS_ALPHA_PRESSED)));
     }
 }
