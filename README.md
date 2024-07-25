@@ -14,6 +14,7 @@ to AndroidX.
 <br/>Since v3.0.0, it is dependent on Java 8 due to the dependency on 
 [DrawerLayout][drawer-layout].
 <br/>Since v6.3.0, it is targeting Java 17 to provide maximum compatibility.
+<br/>Since v6.4.0, the minimum SDK is Android 4.4 (API 19) to comply with the latest policies.
 
 <p align="left">
   <img src="./graphics/play/screenshots/phone-1.png" width="280" height="486" hspace="2">
@@ -48,7 +49,7 @@ It can be installed by adding the following dependency to your `build.gradle` fi
 ```groovy
 dependencies {
     // For AndroidX enabled projects.
-    implementation 'com.pranavpandey.android:dynamic-support:6.2.1'
+    implementation 'com.pranavpandey.android:dynamic-support:6.4.0'
 
     // For legacy projects.
     implementation 'com.pranavpandey.android:dynamic-support:1.3.0'
