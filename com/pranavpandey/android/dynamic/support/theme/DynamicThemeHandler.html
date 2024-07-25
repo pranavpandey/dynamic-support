@@ -79,12 +79,12 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code></dd>
+<dd><code><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code>, <code><a href="https://pranavpandey.org/dynamic-utils/com/pranavpandey/android/dynamic/util/product/DynamicProductFlavor.html" title="class or interface in com.pranavpandey.android.dynamic.util.product" class="external-link">DynamicProductFlavor</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">DynamicThemeHandler</span>
 <span class="extends-implements">extends <a href="https://developer.android.com/reference/android/os/Handler.html" title="class or interface in android.os" class="external-link">Handler</a>
-implements <a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></span></div>
+implements <a href="https://pranavpandey.org/dynamic-utils/com/pranavpandey/android/dynamic/util/product/DynamicProductFlavor.html" title="class or interface in com.pranavpandey.android.dynamic.util.product" class="external-link">DynamicProductFlavor</a>, <a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></span></div>
 <div class="block">A <a href="https://developer.android.com/reference/android/os/Handler.html" title="class or interface in android.os" class="external-link"><code>Handler</code></a> to handle theme updates on the main thread.</div>
 <dl class="notes">
 <dt>See Also:</dt>
@@ -250,110 +250,113 @@ implements <a href="../listener/DynamicListener.html" title="interface in com.pr
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the list of listeners handled by this handler.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRequiredThemeVersion()" class="member-name-link">getRequiredThemeVersion</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getProductFlavor()" class="member-name-link">getProductFlavor</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRequiredThemeVersion()" class="member-name-link">getRequiredThemeVersion</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">This method will be called to get the intended theme styles version for this listener.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getThemeRes()" class="member-name-link">getThemeRes</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">This method will be called to return the theme style resource for this listener.</div>
-</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getThemeRes(com.pranavpandey.android.dynamic.theme.AppTheme)" class="member-name-link">getThemeRes</a><wbr>(<a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/AppTheme.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">AppTheme</a>&lt;?&gt;&nbsp;theme)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getThemeRes()" class="member-name-link">getThemeRes</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">This method will be called to return the theme style resource for this listener.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleMessage(android.os.Message)" class="member-name-link">handleMessage</a><wbr>(<a href="https://developer.android.com/reference/android/os/Message.html" title="class or interface in android.os" class="external-link">Message</a>&nbsp;msg)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isDynamicColor()" class="member-name-link">isDynamicColor</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns whether to apply the dynamic colors for this listener.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isDynamicColors()" class="member-name-link">isDynamicColors</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getThemeRes(com.pranavpandey.android.dynamic.theme.AppTheme)" class="member-name-link">getThemeRes</a><wbr>(<a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/AppTheme.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">AppTheme</a>&lt;?&gt;&nbsp;theme)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns whether the dynamic colors are enabled for this listener.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isListener(com.pranavpandey.android.dynamic.support.listener.DynamicListener)" class="member-name-link">isListener</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Checks whether a dynamic listener is already registered.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isNightMode(boolean)" class="member-name-link">isNightMode</a><wbr>(boolean&nbsp;resolve)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Checks whether the night mode is enabled for this listener.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isOnSharedPreferenceChangeListener()" class="member-name-link">isOnSharedPreferenceChangeListener</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns whether to register a shared preferences listener for this listener.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isSystemColor()" class="member-name-link">isSystemColor</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns whether the dynamic colors should be extracted from the system for this listener.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isWallpaperColor()" class="member-name-link">isWallpaperColor</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns whether the dynamic colors should be extracted from the wallpaper for this listener.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onAutoThemeChanged(boolean)" class="member-name-link">onAutoThemeChanged</a><wbr>(boolean&nbsp;context)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">This method will be called when the auto theme change event occurs according to the time.</div>
+<div class="block">This method will be called to return the theme style resource for this listener.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDynamicChanged(boolean,boolean)" class="member-name-link">onDynamicChanged</a><wbr>(boolean&nbsp;context,
- boolean&nbsp;recreate)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleMessage(android.os.Message)" class="member-name-link">handleMessage</a><wbr>(<a href="https://developer.android.com/reference/android/os/Message.html" title="class or interface in android.os" class="external-link">Message</a>&nbsp;msg)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isDynamicColor()" class="member-name-link">isDynamicColor</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns whether to apply the dynamic colors for this listener.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isDynamicColors()" class="member-name-link">isDynamicColors</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">This method will be called when the dynamic change event occurs (like theme, locale, etc.).</div>
+<div class="block">Returns whether the dynamic colors are enabled for this listener.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isListener(com.pranavpandey.android.dynamic.support.listener.DynamicListener)" class="member-name-link">isListener</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks whether a dynamic listener is already registered.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isNightMode(boolean)" class="member-name-link">isNightMode</a><wbr>(boolean&nbsp;resolve)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks whether the night mode is enabled for this listener.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isOnSharedPreferenceChangeListener()" class="member-name-link">isOnSharedPreferenceChangeListener</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns whether to register a shared preferences listener for this listener.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isSystemColor()" class="member-name-link">isSystemColor</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns whether the dynamic colors should be extracted from the system for this listener.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isWallpaperColor()" class="member-name-link">isWallpaperColor</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns whether the dynamic colors should be extracted from the wallpaper for this listener.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onAutoThemeChanged(boolean)" class="member-name-link">onAutoThemeChanged</a><wbr>(boolean&nbsp;context)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">This method will be called when the auto theme change event occurs according to the time.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDynamicColorsChanged(com.pranavpandey.android.dynamic.theme.DynamicColors,boolean)" class="member-name-link">onDynamicColorsChanged</a><wbr>(<a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/DynamicColors.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">DynamicColors</a>&nbsp;colors,
- boolean&nbsp;context)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDynamicChanged(boolean,boolean)" class="member-name-link">onDynamicChanged</a><wbr>(boolean&nbsp;context,
+ boolean&nbsp;recreate)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">This method will be called when the dynamic change event occurs (like theme, locale, etc.).</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDynamicColorsChanged(com.pranavpandey.android.dynamic.theme.DynamicColors,boolean)" class="member-name-link">onDynamicColorsChanged</a><wbr>(<a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/DynamicColors.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">DynamicColors</a>&nbsp;colors,
+ boolean&nbsp;context)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">This method will be called when the dynamic color change event occurs according
  to the wallpaper.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDynamicConfigurationChanged(boolean,boolean,boolean,boolean,boolean)" class="member-name-link">onDynamicConfigurationChanged</a><wbr>(boolean&nbsp;locale,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDynamicConfigurationChanged(boolean,boolean,boolean,boolean,boolean)" class="member-name-link">onDynamicConfigurationChanged</a><wbr>(boolean&nbsp;locale,
  boolean&nbsp;fontScale,
  boolean&nbsp;orientation,
  boolean&nbsp;uiMode,
  boolean&nbsp;density)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">This method will be called when the dynamic configuration change event occurs
  (like locale, font scale, orientation, ui mode, etc.).</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onNavigationBarThemeChanged()" class="member-name-link">onNavigationBarThemeChanged</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onNavigationBarThemeChanged()" class="member-name-link">onNavigationBarThemeChanged</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">This method will be called when the navigation bar theme has been changed.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onPowerSaveModeChanged(boolean)" class="member-name-link">onPowerSaveModeChanged</a><wbr>(boolean&nbsp;powerSaveMode)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onPowerSaveModeChanged(boolean)" class="member-name-link">onPowerSaveModeChanged</a><wbr>(boolean&nbsp;powerSaveMode)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">This method will be called when the power save mode has been changed.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeListener(com.pranavpandey.android.dynamic.support.listener.DynamicListener)" class="member-name-link">removeListener</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeListener(com.pranavpandey.android.dynamic.support.listener.DynamicListener)" class="member-name-link">removeListener</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Remove a dynamic listener.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveListener(boolean)" class="member-name-link">resolveListener</a><wbr>(boolean&nbsp;latest)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveListener(boolean)" class="member-name-link">resolveListener</a><wbr>(boolean&nbsp;latest)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the latest listener added to the theme.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setNavigationBarTheme()" class="member-name-link">setNavigationBarTheme</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setNavigationBarTheme()" class="member-name-link">setNavigationBarTheme</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns whether the navigation bar theme should be applied for the activity.</div>
 </div>
 </div>
@@ -743,6 +746,16 @@ implements <a href="../listener/DynamicListener.html" title="interface in com.pr
 <li><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener"><code>DynamicListener</code></a></li>
 </ul>
 </dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getProductFlavor()">
+<h3>getProductFlavor</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getProductFlavor</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="https://pranavpandey.org/dynamic-utils/com/pranavpandey/android/dynamic/util/product/DynamicProductFlavor.html#getProductFlavor()" title="class or interface in com.pranavpandey.android.dynamic.util.product" class="external-link">getProductFlavor</a></code>&nbsp;in interface&nbsp;<code><a href="https://pranavpandey.org/dynamic-utils/com/pranavpandey/android/dynamic/util/product/DynamicProductFlavor.html" title="class or interface in com.pranavpandey.android.dynamic.util.product" class="external-link">DynamicProductFlavor</a></code></dd>
 </dl>
 </section>
 </li>

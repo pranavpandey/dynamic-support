@@ -83,7 +83,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="https://developer.android.com/reference/android/content/ComponentCallbacks.html" title="class or interface in android.content" class="external-link">ComponentCallbacks</a></code>, <code><a href="https://developer.android.com/reference/android/content/DialogInterface.OnCancelListener.html" title="class or interface in android.content" class="external-link">DialogInterface.OnCancelListener</a></code>, <code><a href="https://developer.android.com/reference/android/content/DialogInterface.OnDismissListener.html" title="class or interface in android.content" class="external-link">DialogInterface.OnDismissListener</a></code>, <code><a href="https://developer.android.com/reference/android/content/SharedPreferences.OnSharedPreferenceChangeListener.html" title="class or interface in android.content" class="external-link">SharedPreferences.OnSharedPreferenceChangeListener</a></code>, <code><a href="https://developer.android.com/reference/android/view/View.OnCreateContextMenuListener.html" title="class or interface in android.view" class="external-link">View.OnCreateContextMenuListener</a></code>, <code><a href="https://developer.android.com/reference/androidx/activity/result/ActivityResultCaller.html" title="class or interface in androidx.activity.result" class="external-link">ActivityResultCaller</a></code>, <code><a href="https://developer.android.com/reference/androidx/lifecycle/HasDefaultViewModelProviderFactory.html" title="class or interface in androidx.lifecycle" class="external-link">HasDefaultViewModelProviderFactory</a></code>, <code><a href="https://developer.android.com/reference/androidx/lifecycle/LifecycleOwner.html" title="class or interface in androidx.lifecycle" class="external-link">LifecycleOwner</a></code>, <code><a href="https://developer.android.com/reference/androidx/lifecycle/ViewModelStoreOwner.html" title="class or interface in androidx.lifecycle" class="external-link">ViewModelStoreOwner</a></code>, <code><a href="https://developer.android.com/reference/androidx/savedstate/SavedStateRegistryOwner.html" title="class or interface in androidx.savedstate" class="external-link">SavedStateRegistryOwner</a></code></dd>
+<dd><code><a href="https://developer.android.com/reference/android/content/ComponentCallbacks.html" title="class or interface in android.content" class="external-link">ComponentCallbacks</a></code>, <code><a href="https://developer.android.com/reference/android/content/DialogInterface.OnCancelListener.html" title="class or interface in android.content" class="external-link">DialogInterface.OnCancelListener</a></code>, <code><a href="https://developer.android.com/reference/android/content/DialogInterface.OnDismissListener.html" title="class or interface in android.content" class="external-link">DialogInterface.OnDismissListener</a></code>, <code><a href="https://developer.android.com/reference/android/content/SharedPreferences.OnSharedPreferenceChangeListener.html" title="class or interface in android.content" class="external-link">SharedPreferences.OnSharedPreferenceChangeListener</a></code>, <code><a href="https://developer.android.com/reference/android/view/View.OnCreateContextMenuListener.html" title="class or interface in android.view" class="external-link">View.OnCreateContextMenuListener</a></code>, <code><a href="https://developer.android.com/reference/androidx/activity/result/ActivityResultCaller.html" title="class or interface in androidx.activity.result" class="external-link">ActivityResultCaller</a></code>, <code><a href="https://developer.android.com/reference/androidx/lifecycle/HasDefaultViewModelProviderFactory.html" title="class or interface in androidx.lifecycle" class="external-link">HasDefaultViewModelProviderFactory</a></code>, <code><a href="https://developer.android.com/reference/androidx/lifecycle/LifecycleOwner.html" title="class or interface in androidx.lifecycle" class="external-link">LifecycleOwner</a></code>, <code><a href="https://developer.android.com/reference/androidx/lifecycle/ViewModelStoreOwner.html" title="class or interface in androidx.lifecycle" class="external-link">ViewModelStoreOwner</a></code>, <code><a href="https://developer.android.com/reference/androidx/savedstate/SavedStateRegistryOwner.html" title="class or interface in androidx.savedstate" class="external-link">SavedStateRegistryOwner</a></code>, <code><a href="https://pranavpandey.org/dynamic-utils/com/pranavpandey/android/dynamic/util/product/DynamicProductFlavor.html" title="class or interface in com.pranavpandey.android.dynamic.util.product" class="external-link">DynamicProductFlavor</a></code></dd>
 </dl>
 <dl class="notes">
 <dt>Direct Known Subclasses:</dt>
@@ -92,7 +92,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">DynamicDialogFragment</span>
 <span class="extends-implements">extends <a href="https://pranavpandey.org/dynamic-locale/androidx/appcompat/app/AppCompatDialogFragment.html" title="class or interface in androidx.appcompat.app" class="external-link">AppCompatDialogFragment</a>
-implements <a href="https://developer.android.com/reference/android/content/SharedPreferences.OnSharedPreferenceChangeListener.html" title="class or interface in android.content" class="external-link">SharedPreferences.OnSharedPreferenceChangeListener</a></span></div>
+implements <a href="https://pranavpandey.org/dynamic-utils/com/pranavpandey/android/dynamic/util/product/DynamicProductFlavor.html" title="class or interface in com.pranavpandey.android.dynamic.util.product" class="external-link">DynamicProductFlavor</a>, <a href="https://developer.android.com/reference/android/content/SharedPreferences.OnSharedPreferenceChangeListener.html" title="class or interface in android.content" class="external-link">SharedPreferences.OnSharedPreferenceChangeListener</a></span></div>
 <div class="block">Base dialog fragment to provide all the functionality of <a href="../DynamicDialog.html" title="class in com.pranavpandey.android.dynamic.support.dialog"><code>DynamicDialog</code></a> inside a
  fragment. It can be extended to customise it further by overriding the supported methods.</div>
 <dl class="notes">
@@ -235,157 +235,160 @@ implements <a href="https://developer.android.com/reference/android/content/Shar
 <div class="block">Get the positive button text set for the dialog.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStringFromArguments(java.lang.String)" class="member-name-link">getStringFromArguments</a><wbr>(<a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getProductFlavor()" class="member-name-link">getProductFlavor</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStringFromArguments(java.lang.String)" class="member-name-link">getStringFromArguments</a><wbr>(<a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Retrieves a string from the fragment arguments associated with the supplied key.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isAutoDismiss()" class="member-name-link">isAutoDismiss</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isAutoDismiss()" class="member-name-link">isAutoDismiss</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns whether the dialog is auto dismissible.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCancelable()" class="member-name-link">isCancelable</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isCancelable()" class="member-name-link">isCancelable</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns whether this dialog is cancelable.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isOnSharedPreferenceChangeListener()" class="member-name-link">isOnSharedPreferenceChangeListener</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isOnSharedPreferenceChangeListener()" class="member-name-link">isOnSharedPreferenceChangeListener</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns whether to register a shared preferences listener for this fragment.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#newInstance()" class="member-name-link">newInstance</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#newInstance()" class="member-name-link">newInstance</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Initialize the new instance of this fragment.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onCancel(android.content.DialogInterface)" class="member-name-link">onCancel</a><wbr>(<a href="https://developer.android.com/reference/android/content/DialogInterface.html" title="class or interface in android.content" class="external-link">DialogInterface</a>&nbsp;dialog)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onCreate(android.os.Bundle)" class="member-name-link">onCreate</a><wbr>(<a href="https://developer.android.com/reference/android/os/Bundle.html" title="class or interface in android.os" class="external-link">Bundle</a>&nbsp;savedInstanceState)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onCancel(android.content.DialogInterface)" class="member-name-link">onCancel</a><wbr>(<a href="https://developer.android.com/reference/android/content/DialogInterface.html" title="class or interface in android.content" class="external-link">DialogInterface</a>&nbsp;dialog)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://developer.android.com/reference/android/app/Dialog.html" title="class or interface in android.app" class="external-link">Dialog</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onCreateDialog(android.os.Bundle)" class="member-name-link">onCreateDialog</a><wbr>(<a href="https://developer.android.com/reference/android/os/Bundle.html" title="class or interface in android.os" class="external-link">Bundle</a>&nbsp;savedInstanceState)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onCreate(android.os.Bundle)" class="member-name-link">onCreate</a><wbr>(<a href="https://developer.android.com/reference/android/os/Bundle.html" title="class or interface in android.os" class="external-link">Bundle</a>&nbsp;savedInstanceState)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../DynamicDialog.Builder.html" title="class in com.pranavpandey.android.dynamic.support.dialog">DynamicDialog.Builder</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onCustomiseBuilder(com.pranavpandey.android.dynamic.support.dialog.DynamicDialog.Builder,android.os.Bundle)" class="member-name-link">onCustomiseBuilder</a><wbr>(<a href="../DynamicDialog.Builder.html" title="class in com.pranavpandey.android.dynamic.support.dialog">DynamicDialog.Builder</a>&nbsp;dialogBuilder,
- <a href="https://developer.android.com/reference/android/os/Bundle.html" title="class or interface in android.os" class="external-link">Bundle</a>&nbsp;savedInstanceState)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Override this method to customise the dynamic dialog builder before creating the dialog.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onCustomiseDialog(com.pranavpandey.android.dynamic.support.dialog.DynamicDialog,android.view.View,android.os.Bundle)" class="member-name-link">onCustomiseDialog</a><wbr>(<a href="../DynamicDialog.html" title="class in com.pranavpandey.android.dynamic.support.dialog">DynamicDialog</a>&nbsp;alertDialog,
- <a href="https://developer.android.com/reference/android/view/View.html" title="class or interface in android.view" class="external-link">View</a>&nbsp;view,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://developer.android.com/reference/android/app/Dialog.html" title="class or interface in android.app" class="external-link">Dialog</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onCreateDialog(android.os.Bundle)" class="member-name-link">onCreateDialog</a><wbr>(<a href="https://developer.android.com/reference/android/os/Bundle.html" title="class or interface in android.os" class="external-link">Bundle</a>&nbsp;savedInstanceState)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../DynamicDialog.Builder.html" title="class in com.pranavpandey.android.dynamic.support.dialog">DynamicDialog.Builder</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onCustomiseBuilder(com.pranavpandey.android.dynamic.support.dialog.DynamicDialog.Builder,android.os.Bundle)" class="member-name-link">onCustomiseBuilder</a><wbr>(<a href="../DynamicDialog.Builder.html" title="class in com.pranavpandey.android.dynamic.support.dialog">DynamicDialog.Builder</a>&nbsp;dialogBuilder,
  <a href="https://developer.android.com/reference/android/os/Bundle.html" title="class or interface in android.os" class="external-link">Bundle</a>&nbsp;savedInstanceState)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Override this method to customise the dynamic dialog builder before creating the dialog.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onCustomiseDialog(com.pranavpandey.android.dynamic.support.dialog.DynamicDialog,android.view.View,android.os.Bundle)" class="member-name-link">onCustomiseDialog</a><wbr>(<a href="../DynamicDialog.html" title="class in com.pranavpandey.android.dynamic.support.dialog">DynamicDialog</a>&nbsp;alertDialog,
+ <a href="https://developer.android.com/reference/android/view/View.html" title="class or interface in android.view" class="external-link">View</a>&nbsp;view,
+ <a href="https://developer.android.com/reference/android/os/Bundle.html" title="class or interface in android.os" class="external-link">Bundle</a>&nbsp;savedInstanceState)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Override this method to customise the dynamic dialog before attaching it with
  this fragment.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDestroyView()" class="member-name-link">onDestroyView</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDismiss(android.content.DialogInterface)" class="member-name-link">onDismiss</a><wbr>(<a href="https://developer.android.com/reference/android/content/DialogInterface.html" title="class or interface in android.content" class="external-link">DialogInterface</a>&nbsp;dialog)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDestroyView()" class="member-name-link">onDestroyView</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onPause()" class="member-name-link">onPause</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDismiss(android.content.DialogInterface)" class="member-name-link">onDismiss</a><wbr>(<a href="https://developer.android.com/reference/android/content/DialogInterface.html" title="class or interface in android.content" class="external-link">DialogInterface</a>&nbsp;dialog)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onResume()" class="member-name-link">onResume</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onPause()" class="member-name-link">onPause</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String)" class="member-name-link">onSharedPreferenceChanged</a><wbr>(<a href="https://developer.android.com/reference/android/content/SharedPreferences.html" title="class or interface in android.content" class="external-link">SharedPreferences</a>&nbsp;sharedPreferences,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onResume()" class="member-name-link">onResume</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onSharedPreferenceChanged(android.content.SharedPreferences,java.lang.String)" class="member-name-link">onSharedPreferenceChanged</a><wbr>(<a href="https://developer.android.com/reference/android/content/SharedPreferences.html" title="class or interface in android.content" class="external-link">SharedPreferences</a>&nbsp;sharedPreferences,
  <a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAutoDismiss(boolean)" class="member-name-link">setAutoDismiss</a><wbr>(boolean&nbsp;autoDismiss)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAutoDismiss(boolean)" class="member-name-link">setAutoDismiss</a><wbr>(boolean&nbsp;autoDismiss)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Control whether the dialog is auto dismissible.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setBuilder(com.pranavpandey.android.dynamic.support.dialog.DynamicDialog.Builder)" class="member-name-link">setBuilder</a><wbr>(<a href="../DynamicDialog.Builder.html" title="class in com.pranavpandey.android.dynamic.support.dialog">DynamicDialog.Builder</a>&nbsp;dynamicAlertDialogBuilder)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setBuilder(com.pranavpandey.android.dynamic.support.dialog.DynamicDialog.Builder)" class="member-name-link">setBuilder</a><wbr>(<a href="../DynamicDialog.Builder.html" title="class in com.pranavpandey.android.dynamic.support.dialog">DynamicDialog.Builder</a>&nbsp;dynamicAlertDialogBuilder)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets a dynamic dialog builder for this dialog fragment.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setButtonColor(int)" class="member-name-link">setButtonColor</a><wbr>(int&nbsp;buttonColor)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setButtonColor(int)" class="member-name-link">setButtonColor</a><wbr>(int&nbsp;buttonColor)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the button color for the dialog.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIsCancelable(boolean)" class="member-name-link">setIsCancelable</a><wbr>(boolean&nbsp;cancelable)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIsCancelable(boolean)" class="member-name-link">setIsCancelable</a><wbr>(boolean&nbsp;cancelable)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Control whether the dialog is cancelable.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setNegativeButtonText(java.lang.CharSequence)" class="member-name-link">setNegativeButtonText</a><wbr>(<a href="https://developer.android.com/reference/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;text)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setNegativeButtonText(java.lang.CharSequence)" class="member-name-link">setNegativeButtonText</a><wbr>(<a href="https://developer.android.com/reference/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;text)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the negative button text set for the dialog.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setNeutralButtonText(java.lang.CharSequence)" class="member-name-link">setNeutralButtonText</a><wbr>(<a href="https://developer.android.com/reference/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;text)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setNeutralButtonText(java.lang.CharSequence)" class="member-name-link">setNeutralButtonText</a><wbr>(<a href="https://developer.android.com/reference/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;text)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the neutral button text set for the dialog.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setOnCancelListener(android.content.DialogInterface.OnCancelListener)" class="member-name-link">setOnCancelListener</a><wbr>(<a href="https://developer.android.com/reference/android/content/DialogInterface.OnCancelListener.html" title="class or interface in android.content" class="external-link">DialogInterface.OnCancelListener</a>&nbsp;onCancelListener)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setOnCancelListener(android.content.DialogInterface.OnCancelListener)" class="member-name-link">setOnCancelListener</a><wbr>(<a href="https://developer.android.com/reference/android/content/DialogInterface.OnCancelListener.html" title="class or interface in android.content" class="external-link">DialogInterface.OnCancelListener</a>&nbsp;onCancelListener)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set an on cancel listener for the dialog.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setOnDismissListener(android.content.DialogInterface.OnDismissListener)" class="member-name-link">setOnDismissListener</a><wbr>(<a href="https://developer.android.com/reference/android/content/DialogInterface.OnDismissListener.html" title="class or interface in android.content" class="external-link">DialogInterface.OnDismissListener</a>&nbsp;onDismissListener)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setOnDismissListener(android.content.DialogInterface.OnDismissListener)" class="member-name-link">setOnDismissListener</a><wbr>(<a href="https://developer.android.com/reference/android/content/DialogInterface.OnDismissListener.html" title="class or interface in android.content" class="external-link">DialogInterface.OnDismissListener</a>&nbsp;onDismissListener)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set an on dismiss listener for the dialog.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setOnKeyListener(android.content.DialogInterface.OnKeyListener)" class="member-name-link">setOnKeyListener</a><wbr>(<a href="https://developer.android.com/reference/android/content/DialogInterface.OnKeyListener.html" title="class or interface in android.content" class="external-link">DialogInterface.OnKeyListener</a>&nbsp;onKeyListener)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setOnKeyListener(android.content.DialogInterface.OnKeyListener)" class="member-name-link">setOnKeyListener</a><wbr>(<a href="https://developer.android.com/reference/android/content/DialogInterface.OnKeyListener.html" title="class or interface in android.content" class="external-link">DialogInterface.OnKeyListener</a>&nbsp;onKeyListener)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set an on key listener for the dialog.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setOnShowListener(android.content.DialogInterface.OnShowListener)" class="member-name-link">setOnShowListener</a><wbr>(<a href="https://developer.android.com/reference/android/content/DialogInterface.OnShowListener.html" title="class or interface in android.content" class="external-link">DialogInterface.OnShowListener</a>&nbsp;onShowListener)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setOnShowListener(android.content.DialogInterface.OnShowListener)" class="member-name-link">setOnShowListener</a><wbr>(<a href="https://developer.android.com/reference/android/content/DialogInterface.OnShowListener.html" title="class or interface in android.content" class="external-link">DialogInterface.OnShowListener</a>&nbsp;onShowListener)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set an show listener for the dialog.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPositiveButtonText(java.lang.CharSequence)" class="member-name-link">setPositiveButtonText</a><wbr>(<a href="https://developer.android.com/reference/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;text)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicDialogFragment.html" title="class in com.pranavpandey.android.dynamic.support.dialog.fragment">DynamicDialogFragment</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPositiveButtonText(java.lang.CharSequence)" class="member-name-link">setPositiveButtonText</a><wbr>(<a href="https://developer.android.com/reference/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;text)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the positive button text set for the dialog.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setResult(int)" class="member-name-link">setResult</a><wbr>(int&nbsp;resultCode)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set result for the parent activity to notify the requester about the action.</div>
-</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setResult(int,boolean)" class="member-name-link">setResult</a><wbr>(int&nbsp;resultCode,
- boolean&nbsp;finish)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setResult(int)" class="member-name-link">setResult</a><wbr>(int&nbsp;resultCode)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set result for the parent activity to notify the requester about the action.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setResult(int,android.content.Intent)" class="member-name-link">setResult</a><wbr>(int&nbsp;resultCode,
- <a href="https://developer.android.com/reference/android/content/Intent.html" title="class or interface in android.content" class="external-link">Intent</a>&nbsp;intent)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setResult(int,boolean)" class="member-name-link">setResult</a><wbr>(int&nbsp;resultCode,
+ boolean&nbsp;finish)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set result for the parent activity to notify the requester about the action.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setResult(int,android.content.Intent,boolean)" class="member-name-link">setResult</a><wbr>(int&nbsp;resultCode,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setResult(int,android.content.Intent)" class="member-name-link">setResult</a><wbr>(int&nbsp;resultCode,
+ <a href="https://developer.android.com/reference/android/content/Intent.html" title="class or interface in android.content" class="external-link">Intent</a>&nbsp;intent)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set result for the parent activity to notify the requester about the action.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setResult(int,android.content.Intent,boolean)" class="member-name-link">setResult</a><wbr>(int&nbsp;resultCode,
  <a href="https://developer.android.com/reference/android/content/Intent.html" title="class or interface in android.content" class="external-link">Intent</a>&nbsp;intent,
  boolean&nbsp;finish)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set result for the parent activity to notify the requester about the action.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#showDialog(androidx.fragment.app.FragmentActivity)" class="member-name-link">showDialog</a><wbr>(<a href="https://developer.android.com/reference/androidx/fragment/app/FragmentActivity.html" title="class or interface in androidx.fragment.app" class="external-link">FragmentActivity</a>&nbsp;fragmentActivity)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#showDialog(androidx.fragment.app.FragmentActivity)" class="member-name-link">showDialog</a><wbr>(<a href="https://developer.android.com/reference/androidx/fragment/app/FragmentActivity.html" title="class or interface in androidx.fragment.app" class="external-link">FragmentActivity</a>&nbsp;fragmentActivity)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Show this dialog fragment and attach it to the supplied activity.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#showDialog(androidx.fragment.app.FragmentActivity,java.lang.String)" class="member-name-link">showDialog</a><wbr>(<a href="https://developer.android.com/reference/androidx/fragment/app/FragmentActivity.html" title="class or interface in androidx.fragment.app" class="external-link">FragmentActivity</a>&nbsp;fragmentActivity,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#showDialog(androidx.fragment.app.FragmentActivity,java.lang.String)" class="member-name-link">showDialog</a><wbr>(<a href="https://developer.android.com/reference/androidx/fragment/app/FragmentActivity.html" title="class or interface in androidx.fragment.app" class="external-link">FragmentActivity</a>&nbsp;fragmentActivity,
  <a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tag)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Show this dialog fragment and attach it to the supplied activity.</div>
 </div>
 </div>
@@ -532,6 +535,16 @@ implements <a href="https://developer.android.com/reference/android/content/Shar
 <dd><code>alertDialog</code> - The current dialog to be customised.</dd>
 <dd><code>view</code> - The view used by the dialog.</dd>
 <dd><code>savedInstanceState</code> - The saved state of the fragment to restore it later.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getProductFlavor()">
+<h3>getProductFlavor</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getProductFlavor</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="https://pranavpandey.org/dynamic-utils/com/pranavpandey/android/dynamic/util/product/DynamicProductFlavor.html#getProductFlavor()" title="class or interface in com.pranavpandey.android.dynamic.util.product" class="external-link">getProductFlavor</a></code>&nbsp;in interface&nbsp;<code><a href="https://pranavpandey.org/dynamic-utils/com/pranavpandey/android/dynamic/util/product/DynamicProductFlavor.html" title="class or interface in com.pranavpandey.android.dynamic.util.product" class="external-link">DynamicProductFlavor</a></code></dd>
 </dl>
 </section>
 </li>

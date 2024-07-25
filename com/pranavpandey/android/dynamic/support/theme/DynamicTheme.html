@@ -77,12 +77,12 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code>, <code><a href="../listener/DynamicResolver.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicResolver</a></code></dd>
+<dd><code><a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a></code>, <code><a href="../listener/DynamicResolver.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicResolver</a></code>, <code><a href="https://pranavpandey.org/dynamic-utils/com/pranavpandey/android/dynamic/util/product/DynamicProductFlavor.html" title="class or interface in com.pranavpandey.android.dynamic.util.product" class="external-link">DynamicProductFlavor</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">DynamicTheme</span>
 <span class="extends-implements">extends <a href="https://developer.android.com/reference/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
-implements <a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>, <a href="../listener/DynamicResolver.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicResolver</a></span></div>
+implements <a href="https://pranavpandey.org/dynamic-utils/com/pranavpandey/android/dynamic/util/product/DynamicProductFlavor.html" title="class or interface in com.pranavpandey.android.dynamic.util.product" class="external-link">DynamicProductFlavor</a>, <a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>, <a href="../listener/DynamicResolver.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicResolver</a></span></div>
 <div class="block">Helper class to manage theme for the whole application and its activities.
  <p>It must be initialized before using any activity or widget as they are
  heavily dependent on this class to generate colors dynamically.</div>
@@ -394,348 +394,351 @@ implements <a href="../listener/DynamicListener.html" title="interface in com.pr
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the preview activity used by this manager.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../model/DynamicRemoteTheme.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicRemoteTheme</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRemote()" class="member-name-link">getRemote</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getProductFlavor()" class="member-name-link">getProductFlavor</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../model/DynamicRemoteTheme.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicRemoteTheme</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRemote()" class="member-name-link">getRemote</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the theme used by the remote elements.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../model/DynamicRemoteTheme.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicRemoteTheme</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRemoteTheme(java.lang.String)" class="member-name-link">getRemoteTheme</a><wbr>(<a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;theme)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../model/DynamicRemoteTheme.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicRemoteTheme</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRemoteTheme(java.lang.String)" class="member-name-link">getRemoteTheme</a><wbr>(<a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;theme)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the dynamic remote theme from the JSON string.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRequiredThemeVersion()" class="member-name-link">getRequiredThemeVersion</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRequiredThemeVersion()" class="member-name-link">getRequiredThemeVersion</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">This method will be called to get the intended theme styles version for this listener.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSystemContrast(int)" class="member-name-link">getSystemContrast</a><wbr>(int&nbsp;fallback)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSystemContrast(int)" class="member-name-link">getSystemContrast</a><wbr>(int&nbsp;fallback)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Try to get the contrast from the system.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSystemThemeRes(com.pranavpandey.android.dynamic.support.listener.DynamicListener,com.pranavpandey.android.dynamic.theme.AppTheme)" class="member-name-link">getSystemThemeRes</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSystemThemeRes(com.pranavpandey.android.dynamic.support.listener.DynamicListener,com.pranavpandey.android.dynamic.theme.AppTheme)" class="member-name-link">getSystemThemeRes</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener,
  <a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/AppTheme.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">AppTheme</a>&lt;?&gt;&nbsp;theme)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the style resource used by the system.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTheme()" class="member-name-link">getTheme</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTheme()" class="member-name-link">getTheme</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the dynamic theme instance used by this resolver.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../model/DynamicAppTheme.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicAppTheme</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTheme(java.lang.String)" class="member-name-link">getTheme</a><wbr>(<a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;theme)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../model/DynamicAppTheme.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicAppTheme</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTheme(java.lang.String)" class="member-name-link">getTheme</a><wbr>(<a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;theme)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the dynamic app theme from the JSON string.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getThemeRes()" class="member-name-link">getThemeRes</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">This method will be called to return the theme style resource for this listener.</div>
-</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getThemeRes(com.pranavpandey.android.dynamic.theme.AppTheme)" class="member-name-link">getThemeRes</a><wbr>(<a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/AppTheme.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">AppTheme</a>&lt;?&gt;&nbsp;theme)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getThemeRes()" class="member-name-link">getThemeRes</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">This method will be called to return the theme style resource for this listener.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://developer.android.com/reference/android/app/UiModeManager.html" title="class or interface in android.app" class="external-link">UiModeManager</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getUiModeManager()" class="member-name-link">getUiModeManager</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getThemeRes(com.pranavpandey.android.dynamic.theme.AppTheme)" class="member-name-link">getThemeRes</a><wbr>(<a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/AppTheme.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">AppTheme</a>&lt;?&gt;&nbsp;theme)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">This method will be called to return the theme style resource for this listener.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://developer.android.com/reference/android/app/UiModeManager.html" title="class or interface in android.app" class="external-link">UiModeManager</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getUiModeManager()" class="member-name-link">getUiModeManager</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the UI mode manager used by the application.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVersion()" class="member-name-link">getVersion</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVersion()" class="member-name-link">getVersion</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the application theme styles version.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWidgetCornerRadius(int)" class="member-name-link">getWidgetCornerRadius</a><wbr>(int&nbsp;fallback)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWidgetCornerRadius(int)" class="member-name-link">getWidgetCornerRadius</a><wbr>(int&nbsp;fallback)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Try to get the corner radius for the widget background from the system.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../model/DynamicWidgetTheme.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicWidgetTheme</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWidgetTheme(java.lang.String)" class="member-name-link">getWidgetTheme</a><wbr>(<a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;theme)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../model/DynamicWidgetTheme.html" title="class in com.pranavpandey.android.dynamic.support.model">DynamicWidgetTheme</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWidgetTheme(java.lang.String)" class="member-name-link">getWidgetTheme</a><wbr>(<a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;theme)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the dynamic widget theme from the JSON string.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initialize(com.pranavpandey.android.dynamic.support.listener.DynamicListener,com.pranavpandey.android.dynamic.support.listener.DynamicResolver)" class="member-name-link">initialize</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initialize(com.pranavpandey.android.dynamic.support.listener.DynamicListener,com.pranavpandey.android.dynamic.support.listener.DynamicResolver)" class="member-name-link">initialize</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener,
  <a href="../listener/DynamicResolver.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicResolver</a>&nbsp;dynamicResolver)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Initialize this class with default values.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#initializeInstance(com.pranavpandey.android.dynamic.support.listener.DynamicListener,com.pranavpandey.android.dynamic.support.listener.DynamicResolver)" class="member-name-link">initializeInstance</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#initializeInstance(com.pranavpandey.android.dynamic.support.listener.DynamicListener,com.pranavpandey.android.dynamic.support.listener.DynamicResolver)" class="member-name-link">initializeInstance</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener,
  <a href="../listener/DynamicResolver.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicResolver</a>&nbsp;dynamicResolver)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Initialize theme when application starts.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initializeRemoteColors()" class="member-name-link">initializeRemoteColors</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initializeRemoteColors()" class="member-name-link">initializeRemoteColors</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Initialize remote colors according to the base colors.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#invalidTheme(android.content.Context)" class="member-name-link">invalidTheme</a><wbr>(<a href="https://developer.android.com/reference/android/content/Context.html" title="class or interface in android.content" class="external-link">Context</a>&nbsp;context)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#invalidTheme(android.content.Context)" class="member-name-link">invalidTheme</a><wbr>(<a href="https://developer.android.com/reference/android/content/Context.html" title="class or interface in android.content" class="external-link">Context</a>&nbsp;context)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Show a invalid theme <a href="https://developer.android.com/reference/com/google/android/material/snackbar/Snackbar.html" title="class or interface in com.google.android.material.snackbar" class="external-link"><code>Snackbar</code></a>.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isDynamicColor()" class="member-name-link">isDynamicColor</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isDynamicColor()" class="member-name-link">isDynamicColor</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns whether to apply the dynamic colors for this listener.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isDynamicColors()" class="member-name-link">isDynamicColors</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isDynamicColors()" class="member-name-link">isDynamicColors</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns whether the dynamic colors are enabled for this listener.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isDynamicListener(com.pranavpandey.android.dynamic.support.listener.DynamicListener)" class="member-name-link">isDynamicListener</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isDynamicListener(com.pranavpandey.android.dynamic.support.listener.DynamicListener)" class="member-name-link">isDynamicListener</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Checks whether a dynamic listener is already registered.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isNight()" class="member-name-link">isNight</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isNight()" class="member-name-link">isNight</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Checks for the night time.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isNight(int)" class="member-name-link">isNight</a><wbr>(int&nbsp;theme)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Checks for the night time according to the supplied value.</div>
-</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isNight(java.lang.String)" class="member-name-link">isNight</a><wbr>(<a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;theme)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isNight(int)" class="member-name-link">isNight</a><wbr>(int&nbsp;theme)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Checks for the night time according to the supplied value.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isNightMode(boolean)" class="member-name-link">isNightMode</a><wbr>(boolean&nbsp;resolve)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isNight(java.lang.String)" class="member-name-link">isNight</a><wbr>(<a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;theme)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks for the night time according to the supplied value.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isNightMode(boolean)" class="member-name-link">isNightMode</a><wbr>(boolean&nbsp;resolve)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Checks whether the night mode is enabled for this listener.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isOnSharedPreferenceChangeListener()" class="member-name-link">isOnSharedPreferenceChangeListener</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isOnSharedPreferenceChangeListener()" class="member-name-link">isOnSharedPreferenceChangeListener</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns whether to register a shared preferences listener for this listener.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isPowerSaveMode()" class="member-name-link">isPowerSaveMode</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isPowerSaveMode()" class="member-name-link">isPowerSaveMode</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns whether the power save mode is enabled.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isSystemColor()" class="member-name-link">isSystemColor</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isSystemColor()" class="member-name-link">isSystemColor</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns whether the dynamic colors should be extracted from the system for this listener.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isSystemNightMode()" class="member-name-link">isSystemNightMode</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isSystemNightMode()" class="member-name-link">isSystemNightMode</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Checks whether the system night mode is enabled.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isWallpaperColor()" class="member-name-link">isWallpaperColor</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isWallpaperColor()" class="member-name-link">isWallpaperColor</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns whether the dynamic colors should be extracted from the wallpaper for this listener.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onAutoThemeChanged(boolean)" class="member-name-link">onAutoThemeChanged</a><wbr>(boolean&nbsp;context)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onAutoThemeChanged(boolean)" class="member-name-link">onAutoThemeChanged</a><wbr>(boolean&nbsp;context)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">This method will be called when the auto theme change event occurs according to the time.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDestroy()" class="member-name-link">onDestroy</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDestroy()" class="member-name-link">onDestroy</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the initialized instance to <code>null</code> when app terminates for better theme
  results when theme is changed.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDynamicChanged(boolean,boolean)" class="member-name-link">onDynamicChanged</a><wbr>(boolean&nbsp;context,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDynamicChanged(boolean,boolean)" class="member-name-link">onDynamicChanged</a><wbr>(boolean&nbsp;context,
  boolean&nbsp;recreate)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">This method will be called when the dynamic change event occurs (like theme, locale, etc.).</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDynamicColorsChanged(com.pranavpandey.android.dynamic.theme.DynamicColors,boolean)" class="member-name-link">onDynamicColorsChanged</a><wbr>(<a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/DynamicColors.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">DynamicColors</a>&nbsp;colors,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDynamicColorsChanged(com.pranavpandey.android.dynamic.theme.DynamicColors,boolean)" class="member-name-link">onDynamicColorsChanged</a><wbr>(<a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/DynamicColors.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">DynamicColors</a>&nbsp;colors,
  boolean&nbsp;context)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">This method will be called when the dynamic color change event occurs according
  to the wallpaper.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDynamicConfigurationChanged(boolean,boolean,boolean,boolean,boolean)" class="member-name-link">onDynamicConfigurationChanged</a><wbr>(boolean&nbsp;locale,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onDynamicConfigurationChanged(boolean,boolean,boolean,boolean,boolean)" class="member-name-link">onDynamicConfigurationChanged</a><wbr>(boolean&nbsp;locale,
  boolean&nbsp;fontScale,
  boolean&nbsp;orientation,
  boolean&nbsp;uiMode,
  boolean&nbsp;density)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">This method will be called when the dynamic configuration change event occurs
  (like locale, font scale, orientation, ui mode, etc.).</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onLocalDestroy(com.pranavpandey.android.dynamic.support.listener.DynamicListener)" class="member-name-link">onLocalDestroy</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onLocalDestroy(com.pranavpandey.android.dynamic.support.listener.DynamicListener)" class="member-name-link">onLocalDestroy</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the initialized instance to <code>null</code> when local destroys for better theme
  results when theme is changed.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onNavigationBarThemeChanged()" class="member-name-link">onNavigationBarThemeChanged</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onNavigationBarThemeChanged()" class="member-name-link">onNavigationBarThemeChanged</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">This method will be called when the navigation bar theme has been changed.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onPowerSaveModeChanged(boolean)" class="member-name-link">onPowerSaveModeChanged</a><wbr>(boolean&nbsp;powerSaveMode)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onPowerSaveModeChanged(boolean)" class="member-name-link">onPowerSaveModeChanged</a><wbr>(boolean&nbsp;powerSaveMode)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">This method will be called when the power save mode has been changed.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recreateLocal()" class="member-name-link">recreateLocal</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#recreateLocal()" class="member-name-link">recreateLocal</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Recreate local activity to update all the views with new theme.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeDynamicListener(com.pranavpandey.android.dynamic.support.listener.DynamicListener)" class="member-name-link">removeDynamicListener</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeDynamicListener(com.pranavpandey.android.dynamic.support.listener.DynamicListener)" class="member-name-link">removeDynamicListener</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Remove a dynamic listener.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveAppTheme(int,int,boolean)" class="member-name-link">resolveAppTheme</a><wbr>(int&nbsp;theme,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveAppTheme(int,int,boolean)" class="member-name-link">resolveAppTheme</a><wbr>(int&nbsp;theme,
  int&nbsp;night,
  boolean&nbsp;data)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Resolves current theme according to the supplied implementation.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveAppTheme(java.lang.String,java.lang.String,boolean)" class="member-name-link">resolveAppTheme</a><wbr>(<a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;theme,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveAppTheme(java.lang.String,java.lang.String,boolean)" class="member-name-link">resolveAppTheme</a><wbr>(<a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;theme,
  <a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;night,
  boolean&nbsp;data)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Resolves current theme according to the supplied implementation.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveBackgroundAware(int)" class="member-name-link">resolveBackgroundAware</a><wbr>(int&nbsp;backgroundAware)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveBackgroundAware(int)" class="member-name-link">resolveBackgroundAware</a><wbr>(int&nbsp;backgroundAware)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Resolve background aware according to the constant value.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveColorType(int)" class="member-name-link">resolveColorType</a><wbr>(int&nbsp;colorType)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveColorType(int)" class="member-name-link">resolveColorType</a><wbr>(int&nbsp;colorType)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Resolve color according to the color type.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveNightTheme(int,int,boolean)" class="member-name-link">resolveNightTheme</a><wbr>(int&nbsp;theme,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveNightTheme(int,int,boolean)" class="member-name-link">resolveNightTheme</a><wbr>(int&nbsp;theme,
  int&nbsp;implementation,
  boolean&nbsp;data)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Resolves night theme according to the selected implementation.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveNightTheme(java.lang.String,java.lang.String,boolean)" class="member-name-link">resolveNightTheme</a><wbr>(<a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;theme,
- <a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;implementation,
- boolean&nbsp;data)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Resolves night theme according to the selected implementation.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveSystemColor(boolean)" class="member-name-link">resolveSystemColor</a><wbr>(boolean&nbsp;isNight)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Resolves system color according to the API level and night mode.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveVersion()" class="member-name-link">resolveVersion</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Resolves the theme version according to the attached local.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#saveLocalTheme()" class="member-name-link">saveLocalTheme</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Save the local context theme in shared preferences.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#saveTheme(android.content.Context)" class="member-name-link">saveTheme</a><wbr>(<a href="https://developer.android.com/reference/android/content/Context.html" title="class or interface in android.content" class="external-link">Context</a>&nbsp;context)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Show a theme saved <a href="https://developer.android.com/reference/com/google/android/material/snackbar/Snackbar.html" title="class or interface in com.google.android.material.snackbar" class="external-link"><code>Snackbar</code></a>.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDynamicResolver(com.pranavpandey.android.dynamic.support.listener.DynamicResolver)" class="member-name-link">setDynamicResolver</a><wbr>(<a href="../listener/DynamicResolver.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicResolver</a>&nbsp;resolver)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets the resolver used by the dynamic theme.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDynamicThemeWork(boolean)" class="member-name-link">setDynamicThemeWork</a><wbr>(boolean&nbsp;enqueue)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets the dynamic theme work to schedule auto theme event according to the time.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setListener(com.pranavpandey.android.dynamic.support.listener.DynamicListener)" class="member-name-link">setListener</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the application listener for this theme.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setLocalTheme(int,com.pranavpandey.android.dynamic.theme.AppTheme)" class="member-name-link">setLocalTheme</a><wbr>(int&nbsp;themeRes,
- <a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/AppTheme.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">AppTheme</a>&lt;?&gt;&nbsp;theme)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Initialize colors from the supplied local dynamic app theme.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setLocalThemeRes(int,com.pranavpandey.android.dynamic.theme.AppTheme)" class="member-name-link">setLocalThemeRes</a><wbr>(int&nbsp;themeRes,
- <a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/AppTheme.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">AppTheme</a>&lt;?&gt;&nbsp;theme)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Initialize colors from the supplied local theme resource.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setLocalVersion(int)" class="member-name-link">setLocalVersion</a><wbr>(int&nbsp;version)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the local theme styles version.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setNavigationBarTheme()" class="member-name-link">setNavigationBarTheme</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveNightTheme(java.lang.String,java.lang.String,boolean)" class="member-name-link">resolveNightTheme</a><wbr>(<a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;theme,
+ <a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;implementation,
+ boolean&nbsp;data)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns whether the navigation bar theme should be applied for the activity.</div>
+<div class="block">Resolves night theme according to the selected implementation.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveSystemColor(boolean)" class="member-name-link">resolveSystemColor</a><wbr>(boolean&nbsp;isNight)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Resolves system color according to the API level and night mode.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resolveVersion()" class="member-name-link">resolveVersion</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Resolves the theme version according to the attached local.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPreviewActivity(java.lang.Class)" class="member-name-link">setPreviewActivity</a><wbr>(<a href="https://developer.android.com/reference/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;?&gt;&nbsp;previewActivity)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#saveLocalTheme()" class="member-name-link">saveLocalTheme</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Sets the preview activity for this instance.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setRemoteTheme(com.pranavpandey.android.dynamic.theme.AppTheme)" class="member-name-link">setRemoteTheme</a><wbr>(<a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/AppTheme.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">AppTheme</a>&lt;?&gt;&nbsp;theme)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Initialize colors from the supplied remote dynamic app theme.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTheme(int,com.pranavpandey.android.dynamic.theme.AppTheme,boolean)" class="member-name-link">setTheme</a><wbr>(int&nbsp;themeRes,
- <a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/AppTheme.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">AppTheme</a>&lt;?&gt;&nbsp;theme,
- boolean&nbsp;initializeRemoteColors)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Initialize colors from the supplied dynamic app theme.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setThemeRes(int,com.pranavpandey.android.dynamic.theme.AppTheme,boolean)" class="member-name-link">setThemeRes</a><wbr>(int&nbsp;themeRes,
- <a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/AppTheme.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">AppTheme</a>&lt;?&gt;&nbsp;theme,
- boolean&nbsp;initializeRemoteColors)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Initialize colors from the supplied theme resource.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setVersion(int)" class="member-name-link">setVersion</a><wbr>(int&nbsp;version)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Set the application theme styles version.</div>
+<div class="block">Save the local context theme in shared preferences.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setWallpaperColors(boolean,boolean)" class="member-name-link">setWallpaperColors</a><wbr>(boolean&nbsp;enable,
- boolean&nbsp;context)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#saveTheme(android.content.Context)" class="member-name-link">saveTheme</a><wbr>(<a href="https://developer.android.com/reference/android/content/Context.html" title="class or interface in android.content" class="external-link">Context</a>&nbsp;context)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Show a theme saved <a href="https://developer.android.com/reference/com/google/android/material/snackbar/Snackbar.html" title="class or interface in com.google.android.material.snackbar" class="external-link"><code>Snackbar</code></a>.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDynamicResolver(com.pranavpandey.android.dynamic.support.listener.DynamicResolver)" class="member-name-link">setDynamicResolver</a><wbr>(<a href="../listener/DynamicResolver.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicResolver</a>&nbsp;resolver)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the resolver used by the dynamic theme.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDynamicThemeWork(boolean)" class="member-name-link">setDynamicThemeWork</a><wbr>(boolean&nbsp;enqueue)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the dynamic theme work to schedule auto theme event according to the time.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setListener(com.pranavpandey.android.dynamic.support.listener.DynamicListener)" class="member-name-link">setListener</a><wbr>(<a href="../listener/DynamicListener.html" title="interface in com.pranavpandey.android.dynamic.support.listener">DynamicListener</a>&nbsp;listener)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set the application listener for this theme.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setLocalTheme(int,com.pranavpandey.android.dynamic.theme.AppTheme)" class="member-name-link">setLocalTheme</a><wbr>(int&nbsp;themeRes,
+ <a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/AppTheme.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">AppTheme</a>&lt;?&gt;&nbsp;theme)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Initialize colors from the supplied local dynamic app theme.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setLocalThemeRes(int,com.pranavpandey.android.dynamic.theme.AppTheme)" class="member-name-link">setLocalThemeRes</a><wbr>(int&nbsp;themeRes,
+ <a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/AppTheme.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">AppTheme</a>&lt;?&gt;&nbsp;theme)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Initialize colors from the supplied local theme resource.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setLocalVersion(int)" class="member-name-link">setLocalVersion</a><wbr>(int&nbsp;version)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set the local theme styles version.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setNavigationBarTheme()" class="member-name-link">setNavigationBarTheme</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns whether the navigation bar theme should be applied for the activity.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPreviewActivity(java.lang.Class)" class="member-name-link">setPreviewActivity</a><wbr>(<a href="https://developer.android.com/reference/java/lang/Class.html" title="class or interface in java.lang" class="external-link">Class</a>&lt;?&gt;&nbsp;previewActivity)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the preview activity for this instance.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setRemoteTheme(com.pranavpandey.android.dynamic.theme.AppTheme)" class="member-name-link">setRemoteTheme</a><wbr>(<a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/AppTheme.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">AppTheme</a>&lt;?&gt;&nbsp;theme)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Initialize colors from the supplied remote dynamic app theme.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTheme(int,com.pranavpandey.android.dynamic.theme.AppTheme,boolean)" class="member-name-link">setTheme</a><wbr>(int&nbsp;themeRes,
+ <a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/AppTheme.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">AppTheme</a>&lt;?&gt;&nbsp;theme,
+ boolean&nbsp;initializeRemoteColors)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Initialize colors from the supplied dynamic app theme.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DynamicTheme.html" title="class in com.pranavpandey.android.dynamic.support.theme">DynamicTheme</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setThemeRes(int,com.pranavpandey.android.dynamic.theme.AppTheme,boolean)" class="member-name-link">setThemeRes</a><wbr>(int&nbsp;themeRes,
+ <a href="https://pranavpandey.org/dynamic-theme/com/pranavpandey/android/dynamic/theme/AppTheme.html" title="class or interface in com.pranavpandey.android.dynamic.theme" class="external-link">AppTheme</a>&lt;?&gt;&nbsp;theme,
+ boolean&nbsp;initializeRemoteColors)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Initialize colors from the supplied theme resource.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setVersion(int)" class="member-name-link">setVersion</a><wbr>(int&nbsp;version)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Set the application theme styles version.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setWallpaperColors(boolean,boolean)" class="member-name-link">setWallpaperColors</a><wbr>(boolean&nbsp;enable,
+ boolean&nbsp;context)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the <a href="https://developer.android.com/reference/android/app/WallpaperManager.OnColorsChangedListener.html" title="class or interface in android.app" class="external-link"><code>WallpaperManager.OnColorsChangedListener</code></a> to enable dynamic colors from
  the wallpaper on API 27 and above.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -1752,6 +1755,16 @@ implements <a href="../listener/DynamicListener.html" title="interface in com.pr
 <h3>clearDynamicListeners</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">clearDynamicListeners</span>()</div>
 <div class="block">Remove all the dynamic listeners and themes.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getProductFlavor()">
+<h3>getProductFlavor</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://developer.android.com/reference/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getProductFlavor</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="https://pranavpandey.org/dynamic-utils/com/pranavpandey/android/dynamic/util/product/DynamicProductFlavor.html#getProductFlavor()" title="class or interface in com.pranavpandey.android.dynamic.util.product" class="external-link">getProductFlavor</a></code>&nbsp;in interface&nbsp;<code><a href="https://pranavpandey.org/dynamic-utils/com/pranavpandey/android/dynamic/util/product/DynamicProductFlavor.html" title="class or interface in com.pranavpandey.android.dynamic.util.product" class="external-link">DynamicProductFlavor</a></code></dd>
+</dl>
 </section>
 </li>
 <li>
