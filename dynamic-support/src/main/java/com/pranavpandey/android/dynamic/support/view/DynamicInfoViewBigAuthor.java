@@ -61,17 +61,28 @@ public class DynamicInfoViewBigAuthor extends DynamicInfoView {
         super.onInflate();
 
         if (DynamicFlavor.EXTERNAL.equals(
-                DynamicTheme.getInstance().getProductFlavor())
-                && DynamicDeviceUtils.isSamsungOneUI()) {
-            setLinksSubtitles(new CharSequence[] {
-                    getContext().getString(R.string.ads_info_website_me_desc),
-                    String.format(getContext().getString(R.string.ads_info_apps_desc),
-                            getContext().getString(R.string.adu_store_samsung_galaxy_store))
-            });
-            setLinksUrls(new CharSequence[] {
-                    getContext().getString(R.string.adu_url_me_website),
-                    getContext().getString(R.string.adu_url_me_samsung_galaxy_store)
-            });
+                DynamicTheme.getInstance().getProductFlavor())) {
+            if (DynamicDeviceUtils.isSamsungOneUI()) {
+                setLinksSubtitles(new CharSequence[]{
+                        getContext().getString(R.string.ads_info_website_me_desc),
+                        String.format(getContext().getString(R.string.ads_info_apps_desc),
+                                getContext().getString(R.string.adu_store_samsung_galaxy_store))
+                });
+                setLinksUrls(new CharSequence[]{
+                        getContext().getString(R.string.adu_url_me_website),
+                        getContext().getString(R.string.adu_url_me_samsung_galaxy_store)
+                });
+            } else if (DynamicDeviceUtils.isHuaweiEMUI(getContext())) {
+                setLinksSubtitles(new CharSequence[]{
+                        getContext().getString(R.string.ads_info_website_me_desc),
+                        String.format(getContext().getString(R.string.ads_info_apps_desc),
+                                getContext().getString(R.string.adu_store_huawei_app_gallery))
+                });
+                setLinksUrls(new CharSequence[]{
+                        getContext().getString(R.string.adu_url_me_website),
+                        getContext().getString(R.string.adu_url_me_huawei_app_gallery)
+                });
+            }
         } else {
             setLinksSubtitles(new CharSequence[] {
                     getContext().getString(R.string.ads_info_website_me_desc),
