@@ -17,7 +17,7 @@
 buildscript {
     ext.versions = [
             'compileSdk'  : 35,
-            'minSdk'      : 19,
+            'minSdk'      : 21,
             'targetSdk'   : 35,
             'buildTools'  : '35.0.0',
             'multidex'    : '2.0.1',
