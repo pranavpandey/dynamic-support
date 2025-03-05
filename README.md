@@ -1,14 +1,15 @@
-<img src="./graphics/icon.png" width="160" height="160" align="right" hspace="20">
+<img src="./graphics/icon.png" height="160">
 
 # Dynamic Support
 
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![Release](https://img.shields.io/maven-central/v/com.pranavpandey.android/dynamic-support)](https://search.maven.org/artifact/com.pranavpandey.android/dynamic-support)
 
-A complete library to build apps for Android 4.0 (API 14) and above with a built-in theme engine. 
+**A complete library to build apps for Android 4.0 (API 14) and above with a built-in theme engine. 
 It is built on top of the latest [app compat library][android-support] to provide best 
-compatibility. 
+compatibility.** 
 
+> [!IMPORTANT]
 >Since v2.0.0, it uses [AndroidX][androidx] so, first [migrate][androidx-migrate] your project 
 to AndroidX.
 <br/>Since v3.0.0, it is dependent on Java 8 due to the dependency on 
