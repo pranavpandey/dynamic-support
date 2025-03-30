@@ -31,7 +31,8 @@
             android:layout_height="wrap_content"
             app:ads_icon="@drawable/adt_ic_presets"
             app:ads_title="@string/ads_picker_presets"
-            app:ads_subtitle="@string/ads_theme_presets_import" />
+            app:ads_subtitle="@string/ads_theme_presets_import"
+            app:ads_image="@drawable/ads_ic_refresh" />
 
     </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 

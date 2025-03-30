@@ -16,12 +16,15 @@
 
 package com.pranavpandey.android.dynamic.support.theme.view;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.LayoutRes;
@@ -52,6 +55,7 @@ import com.pranavpandey.android.dynamic.theme.ThemeContract;
 import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
 import com.pranavpandey.android.dynamic.util.DynamicLinkUtils;
 import com.pranavpandey.android.dynamic.util.DynamicPackageUtils;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
  * A recycler view frame layout to show the theme presets.
@@ -186,6 +190,22 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
 
         Dynamic.setColorType(((DynamicItemView) findViewById(
                 R.id.ads_theme_presets_header)).getIconView(), Theme.ColorType.NONE);
+
+        getViewTreeObserver().addOnGlobalLayoutListener(
+                new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @SuppressWarnings("deprecation")
+                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                    @Override
+                    public void onGlobalLayout() {
+                        if (DynamicSdkUtils.is16()) {
+                            getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        } else {
+                            getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                        }
+
+                        loadPresets();
+                    }
+                });
     }
 
     @Override
@@ -401,7 +421,9 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
             Dynamic.setVisibility(getRecyclerView(), GONE);
         }
 
-        mPresetsAdapter.setPresets(data);
+        if (getPresetsAdapter() != null) {
+            getPresetsAdapter().setPresets(data);
+        }
     }
 
     /**
