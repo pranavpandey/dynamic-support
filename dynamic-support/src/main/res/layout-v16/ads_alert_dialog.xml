@@ -26,7 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left|start|top"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:clipChildren="true">
 
         <include layout="@layout/ads_alert_dialog_title" />
 
