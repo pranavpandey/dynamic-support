@@ -444,7 +444,7 @@ public class DynamicNavigationRailView extends NavigationRailView
             @ColorInt int normalColor = DynamicColorUtils.adjustAlpha(
                     mContrastWithColor, Defaults.ADS_ALPHA_UNSELECTED);
             @ColorInt int activeColor = DynamicColorUtils.adjustAlpha(
-                    mAppliedTextColor, Defaults.ADS_ALPHA_PRESSED);
+                    mAppliedTextColor, Defaults.ADS_STATE_PRESSED);
             mAppliedTextColor = mTextColor;
             if (isBackgroundAware() && mContrastWithColor != Theme.Color.UNKNOWN) {
                 normalColor = Dynamic.withContrastRatio(normalColor, mContrastWithColor, this);
