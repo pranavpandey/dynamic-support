@@ -290,6 +290,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
             }
 
             getSeekBar().post(mUpdateRunnable);
+            updateSeekFunctions();
         }
     }
 

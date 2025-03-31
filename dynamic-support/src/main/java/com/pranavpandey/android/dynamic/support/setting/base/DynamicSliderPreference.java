@@ -303,6 +303,7 @@ public class DynamicSliderPreference extends DynamicSpinnerPreference {
             }
 
             getSlider().post(mUpdateRunnable);
+            updateSeekFunctions();
         }
     }
 

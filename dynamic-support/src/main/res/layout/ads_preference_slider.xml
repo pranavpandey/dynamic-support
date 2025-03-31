@@ -62,7 +62,7 @@
                 android:id="@+id/ads_preference_slider_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="@dimen/ads_icon_preference_big"
+                android:minWidth="@dimen/ads_icon_preference_text"
                 android:layout_marginLeft="@dimen/ads_margin_preference_value"
                 android:layout_marginStart="@dimen/ads_margin_preference_value"
                 android:layout_gravity="center_vertical"

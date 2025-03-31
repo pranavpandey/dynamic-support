@@ -195,6 +195,7 @@
     <dimen name="ads_icon_preference">@dimen/ads_icon_small</dimen>
     <dimen name="ads_icon_preference_compact">@dimen/ads_icon_tiny</dimen>
     <dimen name="ads_icon_preference_big">@dimen/ads_icon_medium</dimen>
+    <dimen name="ads_icon_preference_text">40dp</dimen>
     <dimen name="ads_icon_info">@dimen/ads_icon_preference</dimen>
     <dimen name="ads_icon_info_big">@dimen/ads_icon_large</dimen>
     <dimen name="ads_icon_popup_footer">@dimen/ads_icon_small</dimen>
