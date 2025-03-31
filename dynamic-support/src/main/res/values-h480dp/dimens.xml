@@ -20,5 +20,7 @@
     <!-- App Widget -->
     <dimen name="ads_widget_preview_height_medium">228dp</dimen>
     <dimen name="ads_widget_preview_height_large">260dp</dimen>
+    <dimen name="ads_widget_icon_size">@dimen/ads_icon_small</dimen>
+    <dimen name="ads_widget_icon_size_large">@dimen/ads_icon_large</dimen>
 
 </resources>

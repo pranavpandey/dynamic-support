@@ -340,7 +340,8 @@
     <dimen name="ads_widget_font_size">16dp</dimen>
     <dimen name="ads_widget_font_size_big">17dp</dimen>
     <dimen name="ads_widget_font_size_large">18dp</dimen>
-    <dimen name="ads_widget_icon_size">@dimen/ads_icon_small</dimen>
+    <dimen name="ads_widget_icon_size">@dimen/ads_icon_tiny</dimen>
+    <dimen name="ads_widget_icon_size_large">@dimen/ads_icon_normal</dimen>
     <dimen name="ads_widget_stroke_size">@dimen/ads_preview_stroke_size</dimen>
     <dimen name="ads_widget_size_cell_one">40dp</dimen>
     <dimen name="ads_widget_size_cell_two">110dp</dimen>
