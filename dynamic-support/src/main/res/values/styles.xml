@@ -452,6 +452,7 @@
 
     <style name="Widget.Dynamic.TabLayout" parent="Widget.MaterialComponents.TabLayout">
         <item name="android:minHeight">@dimen/ads_tab_height</item>
+        <item name="tabUnboundedRipple">true</item>
         <item name="tabMinWidth">@dimen/ads_tab_min_width</item>
         <item name="tabContentStart">@dimen/ads_tab_inset_start</item>
         <item name="tabGravity">start</item>
