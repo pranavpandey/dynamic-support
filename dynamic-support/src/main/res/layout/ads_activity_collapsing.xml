@@ -43,7 +43,9 @@
                 app:expandedTitleMarginStart="@dimen/ads_toolbar_margin_start_collapsing"
                 app:expandedTitleMarginEnd="@dimen/ads_toolbar_margin_end_collapsing"
                 app:collapsedTitleTextAppearance="?attr/ads_textAppearanceToolbarTitle"
+                app:collapsedSubtitleTextAppearance="?attr/ads_textAppearanceToolbarSubtitle"
                 app:expandedTitleTextAppearance="?attr/ads_textAppearanceToolbarTitleExpanded"
+                app:expandedSubtitleTextAppearance="?attr/ads_textAppearanceToolbarSubtitleExpanded"
                 app:layout_scrollFlags="scroll|enterAlways|snap">
 
                 <FrameLayout

@@ -138,6 +138,7 @@
         <item name="ads_textAppearanceToolbarTitle">@style/TextAppearance.Dynamic.Toolbar</item>
         <item name="ads_textAppearanceToolbarTitleExpanded">@style/TextAppearance.Dynamic.Toolbar.Expanded</item>
         <item name="ads_textAppearanceToolbarSubtitle">@style/TextAppearance.Dynamic.Toolbar.Subtitle</item>
+        <item name="ads_textAppearanceToolbarSubtitleExpanded">@style/TextAppearance.Dynamic.Toolbar.Subtitle.Expanded</item>
         <item name="ads_textAppearanceValue">@style/TextAppearance.Dynamic.Value</item>
         <item name="ads_widget">@style/Widget</item>
         <item name="ads_widgetApp">@style/Widget.Dynamic</item>
@@ -437,6 +438,7 @@
         <item name="ads_textAppearanceToolbarTitle">@style/TextAppearance.Dynamic.Toolbar</item>
         <item name="ads_textAppearanceToolbarTitleExpanded">@style/TextAppearance.Dynamic.Toolbar.Expanded</item>
         <item name="ads_textAppearanceToolbarSubtitle">@style/TextAppearance.Dynamic.Toolbar.Subtitle</item>
+        <item name="ads_textAppearanceToolbarSubtitleExpanded">@style/TextAppearance.Dynamic.Toolbar.Subtitle.Expanded</item>
         <item name="ads_textAppearanceValue">@style/TextAppearance.Dynamic.Value</item>
         <item name="ads_widget">@style/Widget</item>
         <item name="ads_widgetApp">@style/Widget.Dynamic</item>
@@ -730,6 +732,7 @@
         <item name="ads_textAppearanceToolbarTitle">@style/TextAppearance.Dynamic.Toolbar</item>
         <item name="ads_textAppearanceToolbarTitleExpanded">@style/TextAppearance.Dynamic.Toolbar.Expanded</item>
         <item name="ads_textAppearanceToolbarSubtitle">@style/TextAppearance.Dynamic.Toolbar.Subtitle</item>
+        <item name="ads_textAppearanceToolbarSubtitleExpanded">@style/TextAppearance.Dynamic.Toolbar.Subtitle.Expanded</item>
         <item name="ads_textAppearanceValue">@style/TextAppearance.Dynamic.Value</item>
         <item name="ads_widget">@style/Widget</item>
         <item name="ads_widgetApp">@style/Widget.Dynamic</item>

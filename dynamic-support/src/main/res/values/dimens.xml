@@ -165,6 +165,7 @@
     <dimen name="ads_font_size_headline6_splash">@dimen/ads_font_size_big</dimen>
     <dimen name="ads_font_size_subtitle1_splash">@dimen/ads_font_size_regular</dimen>
     <dimen name="ads_font_size_subtitle1_toolbar">@dimen/ads_font_size_medium</dimen>
+    <dimen name="ads_font_size_subtitle1_toolbar_expanded">@dimen/ads_font_size_regular</dimen>
     <dimen name="ads_font_size_subtitle1_tutorial">@dimen/ads_font_size_default</dimen>
     <dimen name="ads_font_size_body1_tutorial">@dimen/ads_font_size_default</dimen>
     <dimen name="ads_font_size_navigation_view">@dimen/ads_font_size_medium</dimen>

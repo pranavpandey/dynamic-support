@@ -151,6 +151,7 @@
         <item name="ads_textAppearanceToolbarTitle">@style/TextAppearance.Dynamic2.Toolbar</item>
         <item name="ads_textAppearanceToolbarTitleExpanded">@style/TextAppearance.Dynamic2.Toolbar.Expanded</item>
         <item name="ads_textAppearanceToolbarSubtitle">@style/TextAppearance.Dynamic2.Toolbar.Subtitle</item>
+        <item name="ads_textAppearanceToolbarSubtitleExpanded">@style/TextAppearance.Dynamic2.Toolbar.Subtitle.Expanded</item>
         <item name="ads_textAppearanceValue">@style/TextAppearance.Dynamic2.Value</item>
         <item name="ads_widget">@style/Widget</item>
         <item name="ads_widgetApp">@style/Widget.Dynamic2</item>
@@ -465,6 +466,7 @@
         <item name="ads_textAppearanceToolbarTitle">@style/TextAppearance.Dynamic2.Toolbar</item>
         <item name="ads_textAppearanceToolbarTitleExpanded">@style/TextAppearance.Dynamic2.Toolbar.Expanded</item>
         <item name="ads_textAppearanceToolbarSubtitle">@style/TextAppearance.Dynamic2.Toolbar.Subtitle</item>
+        <item name="ads_textAppearanceToolbarSubtitleExpanded">@style/TextAppearance.Dynamic2.Toolbar.Subtitle.Expanded</item>
         <item name="ads_textAppearanceValue">@style/TextAppearance.Dynamic2.Value</item>
         <item name="ads_widget">@style/Widget</item>
         <item name="ads_widgetApp">@style/Widget.Dynamic2</item>
@@ -773,6 +775,7 @@
         <item name="ads_textAppearanceToolbarTitle">@style/TextAppearance.Dynamic2.Toolbar</item>
         <item name="ads_textAppearanceToolbarTitleExpanded">@style/TextAppearance.Dynamic2.Toolbar.Expanded</item>
         <item name="ads_textAppearanceToolbarSubtitle">@style/TextAppearance.Dynamic2.Toolbar.Subtitle</item>
+        <item name="ads_textAppearanceToolbarSubtitleExpanded">@style/TextAppearance.Dynamic2.Toolbar.Subtitle.Expanded</item>
         <item name="ads_textAppearanceValue">@style/TextAppearance.Dynamic2.Value</item>
         <item name="ads_widget">@style/Widget</item>
         <item name="ads_widgetApp">@style/Widget.Dynamic2</item>

@@ -158,29 +158,31 @@
     <!-- The dialog accent text appearance. -->
     <attr name="ads_textAppearanceDialogAccent" format="reference" />
 
-    <!-- The splash tile text appearance. -->
+    <!-- The splash title text appearance. -->
     <attr name="ads_textAppearanceSplashTitle" format="reference" />
     <!-- The splash subtitle text appearance. -->
     <attr name="ads_textAppearanceSplashSubtitle" format="reference" />
 
-    <!-- The tutorial tile text appearance. -->
+    <!-- The tutorial title text appearance. -->
     <attr name="ads_textAppearanceTutorialTitle" format="reference" />
     <!-- The tutorial subtitle text appearance. -->
     <attr name="ads_textAppearanceTutorialSubtitle" format="reference" />
     <!-- The tutorial body text appearance. -->
     <attr name="ads_textAppearanceTutorialBody" format="reference" />
 
-    <!-- The drawer tile text appearance. -->
+    <!-- The drawer title text appearance. -->
     <attr name="ads_textAppearanceDrawerTitle" format="reference" />
     <!-- The drawer subtitle text appearance. -->
     <attr name="ads_textAppearanceDrawerSubtitle" format="reference" />
 
-    <!-- The toolbar tile text appearance. -->
+    <!-- The toolbar title text appearance. -->
     <attr name="ads_textAppearanceToolbarTitle" format="reference" />
-    <!-- The toolbar tile expanded text appearance. -->
+    <!-- The toolbar title expanded text appearance. -->
     <attr name="ads_textAppearanceToolbarTitleExpanded" format="reference" />
     <!-- The toolbar subtitle text appearance. -->
     <attr name="ads_textAppearanceToolbarSubtitle" format="reference" />
+    <!-- The toolbar subtitle expanded text appearance. -->
+    <attr name="ads_textAppearanceToolbarSubtitleExpanded" format="reference" />
 
     <!-- The value text appearance. -->
     <attr name="ads_textAppearanceValue" format="reference" />

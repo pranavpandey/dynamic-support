@@ -386,6 +386,10 @@
         parent="TextAppearance.Secondary.Dynamic.Subtitle1">
         <item name="android:textSize">@dimen/ads_font_size_subtitle1_toolbar</item>
     </style>
+    <style name="TextAppearance.Dynamic.Toolbar.Subtitle.Expanded"
+        parent="TextAppearance.Secondary.Dynamic.Subtitle1">
+        <item name="android:textSize">@dimen/ads_font_size_subtitle1_toolbar_expanded</item>
+    </style>
 
     <style name="TextAppearance.Dynamic.Value">
         <item name="android:textSize">@dimen/ads_font_size_preference_value</item>
