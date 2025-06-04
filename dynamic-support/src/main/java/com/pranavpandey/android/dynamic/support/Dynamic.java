@@ -249,6 +249,18 @@ public class Dynamic {
     }
 
     /**
+     * Checks whether the application theme styles version is expressive.
+     *
+     * @return {@code true} if the application theme styles version is expressive.
+     *
+     * @see #isExpressiveVersion(int)
+     * @see DynamicTheme#getVersion()
+     */
+    public static boolean isExpressiveVersionRemote() {
+        return isExpressiveVersion(DynamicTheme.getInstance().getVersion());
+    }
+
+    /**
      * Checks whether the theme styles version is legacy.
      *
      * @return {@code true} if the theme styles version is legacy.
