@@ -70,6 +70,7 @@
         <item name="ratingBarStyle">?attr/ads_widgetRatingBar</item>
         <item name="ratingBarStyleIndicator">?attr/ads_widgetRatingBarIndicator</item>
         <item name="ratingBarStyleSmall">?attr/ads_widgetRatingBarSmall</item>
+        <item name="snackbarButtonStyle">@style/Widget.Material3.Button.TextButton.Snackbar</item>
         <item name="adt_colorControlNormal">@color/ads_color_control</item>
         <item name="adt_contrastWithDefault">@color/ads_contrast_with</item>
         <item name="adt_strokeWidth">@dimen/ads_stroke_width</item>
@@ -385,6 +386,7 @@
         <item name="ratingBarStyle">?attr/ads_widgetRatingBar</item>
         <item name="ratingBarStyleIndicator">?attr/ads_widgetRatingBarIndicator</item>
         <item name="ratingBarStyleSmall">?attr/ads_widgetRatingBarSmall</item>
+        <item name="snackbarButtonStyle">@style/Widget.Material3.Button.TextButton.Snackbar</item>
         <item name="adt_colorControlNormal">@color/ads_color_control_light</item>
         <item name="adt_contrastWithDefault">@color/ads_contrast_with_light</item>
         <item name="adt_strokeWidth">@dimen/ads_stroke_width</item>
@@ -694,6 +696,7 @@
         <item name="ratingBarStyle">?attr/ads_widgetRatingBar</item>
         <item name="ratingBarStyleIndicator">?attr/ads_widgetRatingBarIndicator</item>
         <item name="ratingBarStyleSmall">?attr/ads_widgetRatingBarSmall</item>
+        <item name="snackbarButtonStyle">@style/Widget.Material3.Button.TextButton.Snackbar</item>
         <item name="adt_colorControlNormal">@color/ads_color_control_day_night</item>
         <item name="adt_contrastWithDefault">@color/ads_contrast_with_day_night</item>
         <item name="adt_strokeWidth">@dimen/ads_stroke_width</item>
