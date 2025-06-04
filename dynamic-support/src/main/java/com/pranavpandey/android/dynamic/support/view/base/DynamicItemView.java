@@ -53,6 +53,11 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
     private Drawable mIcon;
 
     /**
+     * Drawable for the image view.
+     */
+    private Drawable mImageDrawable;
+
+    /**
      * Title used by this view.
      */
     private CharSequence mTitle;
@@ -61,6 +66,11 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
      * Subtitle used by this view.
      */
     private CharSequence mSubtitle;
+
+    /**
+     * Secondary image view to show the drawable.
+     */
+    private ImageView mImageView;
 
     /**
      * {@code true} to show horizontal divider.
@@ -134,11 +144,29 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
     public DynamicItemView(@NonNull Context context, @Nullable Drawable icon,
             @Nullable CharSequence title, @Nullable CharSequence subtitle,
             @ColorInt int color, boolean showDivider) {
+        this(context, icon, title, subtitle, null, color, showDivider);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param context The context for this view.
+     * @param icon The icon for this view.
+     * @param title The title for this view.
+     * @param subtitle The subtitle for this view.
+     * @param imageDrawable The image drawable for this view.
+     * @param color The icon tint color for this view.
+     * @param showDivider {@code true} to show horizontal divider.
+     */
+    public DynamicItemView(@NonNull Context context, @Nullable Drawable icon,
+            @Nullable CharSequence title, @Nullable CharSequence subtitle,
+            @Nullable Drawable imageDrawable, @ColorInt int color, boolean showDivider) {
         super(context);
 
         this.mIcon = icon;
         this.mTitle = title;
         this.mSubtitle = subtitle;
+        this.mImageDrawable = imageDrawable;
         this.mColor = color;
         this.mShowDivider = showDivider;
 
@@ -179,6 +207,10 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
                     R.styleable.DynamicItemView_ads_title);
             mSubtitle = a.getString(
                     R.styleable.DynamicItemView_ads_subtitle);
+            mImageDrawable = DynamicResourceUtils.getDrawable(getContext(),
+                    a.getResourceId(
+                            R.styleable.DynamicItemView_ads_image,
+                            DynamicResourceUtils.ADS_DEFAULT_RESOURCE_VALUE));
             mShowDivider = a.getBoolean(
                     R.styleable.DynamicItemView_ads_showDivider,
                     Defaults.ADS_SHOW_DIVIDER);
@@ -206,6 +238,7 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
         mIconFooterView = findViewById(R.id.ads_item_view_icon_footer);
         mTitleView = findViewById(R.id.ads_item_view_title);
         mSubtitleView = findViewById(R.id.ads_item_view_subtitle);
+        mImageView = findViewById(R.id.ads_item_view_image);
         mDivider = findViewById(R.id.ads_item_view_divider);
 
         mVisibilityIconView = mIconView != null ? mIconView.getVisibility() : VISIBLE;
@@ -229,6 +262,8 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
                 getContrastWithColorType(), getContrastWithColor());
         Dynamic.setContrastWithColorTypeOrColor(getSubtitleView(),
                 getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setContrastWithColorTypeOrColor(getImageView(),
+                getContrastWithColorType(), getContrastWithColor());
         Dynamic.setContrastWithColorTypeOrColor(getDivider(),
                 getContrastWithColorType(), getContrastWithColor());
 
@@ -241,6 +276,8 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
         Dynamic.setBackgroundAwareSafe(getTitleView(),
                 getBackgroundAware(), getContrast(false));
         Dynamic.setBackgroundAwareSafe(getSubtitleView(),
+                getBackgroundAware(), getContrast(false));
+        Dynamic.setBackgroundAwareSafe(getImageView(),
                 getBackgroundAware(), getContrast(false));
         Dynamic.setBackgroundAwareSafe(getDivider(),
                 getBackgroundAware(), getContrast(false));
@@ -259,6 +296,7 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
         Dynamic.set(getIconView(), getIcon());
         Dynamic.set(getTitleView(), getTitle());
         Dynamic.set(getSubtitleView(), getSubtitle());
+        Dynamic.set(getImageView(), getImageDrawable());
 
         if (getIconView() != null) {
             Dynamic.setVisibility(getIconView(), isFillSpace() ? GONE : getVisibilityIconView());
@@ -284,6 +322,7 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
         Dynamic.setEnabled(getIconView(), enabled);
         Dynamic.setEnabled(getTitleView(), enabled);
         Dynamic.setEnabled(getSubtitleView(), enabled);
+        Dynamic.setEnabled(getImageView(), enabled);
     }
 
     @Override
@@ -349,6 +388,32 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
         this.mSubtitle = subtitle;
 
         onUpdate();
+    }
+
+    /**
+     * Get the drawable for the image view.
+     *
+     * @return The drawable for the image view.
+     */
+    public @Nullable Drawable getImageDrawable() {
+        return mImageDrawable;
+    }
+
+    /**
+     * Set the drawable for the image view.
+     *
+     * @param imageDrawable The image drawable to be set.
+     * @param update {@code true} to call {@link #update()} method after setting the
+     *               image drawable.
+     */
+    public void setImageDrawable(@Nullable Drawable imageDrawable, boolean update) {
+        this.mImageDrawable = imageDrawable;
+
+        if (update) {
+            update();
+        } else {
+            Dynamic.set(getImageView(), getImageDrawable());
+        }
     }
 
     /**
@@ -445,6 +510,15 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
      */
     public @Nullable TextView getSubtitleView() {
         return mSubtitleView;
+    }
+
+    /**
+     * Get the secondary image view to show the drawable.
+     *
+     * @return The secondary image view to show the drawable.
+     */
+    public @Nullable ImageView getImageView() {
+        return mImageView;
     }
 
     /**

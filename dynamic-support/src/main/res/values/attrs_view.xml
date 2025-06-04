@@ -105,6 +105,7 @@
         <attr name="ads_icon" />
         <attr name="ads_title" />
         <attr name="ads_subtitle" />
+        <attr name="ads_image" />
         <attr name="ads_showDivider" />
         <attr name="ads_fillSpace" />
     </declare-styleable>

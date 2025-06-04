@@ -363,12 +363,16 @@
     <attr name="ads_widgetImagePreference" format="reference" />
     <!-- The preference centered image style. -->
     <attr name="ads_widgetImagePreferenceCenter" format="reference" />
-    <!-- The preference compact image style. -->
-    <attr name="ads_widgetImagePreferenceCompact" format="reference" />
     <!-- The preference value image style. -->
     <attr name="ads_widgetImagePreferenceValue" format="reference" />
     <!-- The preference centered value image style. -->
     <attr name="ads_widgetImagePreferenceValueCenter" format="reference" />
+    <!-- The preference compact image style. -->
+    <attr name="ads_widgetImagePreferenceCompact" format="reference" />
+    <!-- The preference compact value image style. -->
+    <attr name="ads_widgetImagePreferenceCompactValue" format="reference" />
+    <!-- The preference compact centered value image style. -->
+    <attr name="ads_widgetImagePreferenceCompactValueCenter" format="reference" />
     <!-- The preference placeholder image style. -->
     <attr name="ads_widgetImagePreferencePlaceholder" format="reference" />
     <!-- The preference placeholder compact image style. -->

@@ -839,13 +839,6 @@
         <item name="android:layout_marginTop">0dp</item>
         <item name="android:layout_gravity">center_vertical</item>
     </style>
-    <style name="Widget.Dynamic2.Image.Preference.Compact">
-        <item name="android:layout_width">@dimen/ads_icon_preference_compact</item>
-        <item name="android:layout_height">@dimen/ads_icon_preference_compact</item>
-        <item name="android:layout_marginRight">@dimen/ads_margin_preference_icon_end_compact</item>
-        <item name="android:layout_marginEnd">@dimen/ads_margin_preference_icon_end_compact</item>
-    </style>
-
     <style name="Widget.Dynamic2.Image.Preference.Value">
         <item name="android:layout_width">@dimen/ads_icon_preference_big</item>
         <item name="android:layout_height">@dimen/ads_icon_preference_big</item>
@@ -856,6 +849,18 @@
         <item name="adt_colorType">accent</item>
     </style>
     <style name="Widget.Dynamic2.Image.Preference.Value.Center">
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="Widget.Dynamic2.Image.Preference.Compact">
+        <item name="android:layout_width">@dimen/ads_icon_preference_compact</item>
+        <item name="android:layout_height">@dimen/ads_icon_preference_compact</item>
+        <item name="android:layout_marginRight">@dimen/ads_margin_preference_icon_end_compact</item>
+        <item name="android:layout_marginEnd">@dimen/ads_margin_preference_icon_end_compact</item>
+    </style>
+    <style name="Widget.Dynamic2.Image.Preference.Compact.Value" />
+    <style name="Widget.Dynamic2.Image.Preference.Compact.Value.Center">
         <item name="android:layout_marginTop">0dp</item>
         <item name="android:layout_gravity">center_vertical</item>
     </style>
