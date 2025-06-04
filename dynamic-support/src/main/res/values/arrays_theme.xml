@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2022 Pranav Pandey
+	Copyright 2018-2025 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@
         <item>@string/ads_theme_entry_auto</item>
         <item>@string/ads_theme_version_original</item>
         <item>@string/ads_theme_version_latest</item>
+        <item>@string/ads_theme_version_expressive</item>
     </string-array>
 
     <!-- Values for the dynamic theme styles version. -->
@@ -33,6 +34,8 @@
         <item>@string/ads_version_1</item>
         <!-- 2 -->
         <item>@string/ads_version_2</item>
+        <!-- 3 -->
+        <item>@string/ads_version_3</item>
     </string-array>
 
     <!-- Icons to cancel or confirm an action. -->

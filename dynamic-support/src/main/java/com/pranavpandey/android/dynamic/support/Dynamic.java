@@ -227,6 +227,28 @@ public class Dynamic {
     }
 
     /**
+     * Checks whether the supplied theme styles version is expressive.
+     *
+     * @param version The version to be checked.
+     *
+     * @return {@code true} if the supplied theme styles version is expressive.
+     */
+    public static boolean isExpressiveVersion(@DynamicTheme.Version int version) {
+        return version >= DynamicTheme.Version.INT_3;
+    }
+
+    /**
+     * Checks whether the supplied theme styles version is expressive.
+     *
+     * @param version The version to be checked.
+     *
+     * @return {@code true} if the supplied theme styles version is expressive.
+     */
+    public static boolean isExpressiveVersion(@DynamicTheme.Version.ToString String version) {
+        return isExpressiveVersion(Integer.parseInt(version));
+    }
+
+    /**
      * Checks whether the theme styles version is legacy.
      *
      * @return {@code true} if the theme styles version is legacy.

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018-2025 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:targetApi="s">
+
+    <!-- Application -->
+    <style name="Theme.Dynamic3" parent="Base.Dynamic3.NoActionBar">
+        <item name="android:windowSplashScreenBackground">?android:attr/windowBackground</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/ads_status_color</item>
+    </style>
+
+    <style name="Theme.Dynamic3.Dark" parent="Base.Dynamic3.Dark.NoActionBar">
+        <item name="android:windowSplashScreenBackground">?android:attr/windowBackground</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/ads_status_color</item>
+    </style>
+
+    <style name="Theme.Dynamic3.Light" parent="Base.Dynamic3.Light.NoActionBar">
+        <item name="android:windowSplashScreenBackground">?android:attr/windowBackground</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/ads_status_color</item>
+    </style>
+
+    <style name="Theme.Dynamic3.DayNight" parent="Base.Dynamic3.DayNight.NoActionBar">
+        <item name="android:windowSplashScreenBackground">?android:attr/windowBackground</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/ads_status_color</item>
+    </style>
+
+    <style name="Theme.Dynamic3.Translucent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="Theme.Dynamic3.Dark.Translucent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="Theme.Dynamic3.Light.Translucent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="Theme.Dynamic3.DayNight.Translucent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+</resources>

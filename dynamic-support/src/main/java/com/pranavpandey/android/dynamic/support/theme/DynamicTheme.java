@@ -54,7 +54,6 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
-import com.pranavpandey.android.dynamic.util.product.DynamicProductFlavor;
 import com.pranavpandey.android.dynamic.support.listener.DynamicResolver;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.model.DynamicRemoteTheme;
@@ -76,6 +75,7 @@ import com.pranavpandey.android.dynamic.util.DynamicTaskUtils;
 import com.pranavpandey.android.dynamic.util.DynamicUnitUtils;
 import com.pranavpandey.android.dynamic.util.concurrent.DynamicResult;
 import com.pranavpandey.android.dynamic.util.product.DynamicFlavor;
+import com.pranavpandey.android.dynamic.util.product.DynamicProductFlavor;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -122,6 +122,11 @@ public class DynamicTheme implements DynamicProductFlavor, DynamicListener, Dyna
         int INT_2 = 2;
 
         /**
+         * Constant for the version 3.
+         */
+        int INT_3 = 3;
+
+        /**
          * Constant for the default version.
          */
         int DEFAULT = AUTO;
@@ -130,7 +135,7 @@ public class DynamicTheme implements DynamicProductFlavor, DynamicListener, Dyna
          * Constant for the default auto version.
          */
         int DEFAULT_AUTO = com.google.android.material.color.DynamicColors.isDynamicColorAvailable()
-                ? DynamicTheme.Version.INT_2 : DynamicTheme.Version.INT_1;
+                ? (DynamicSdkUtils.is36() ? Version.INT_3 : Version.INT_2) : Version.INT_1;
 
         /**
          * String constant values for the theme styles version.
@@ -152,6 +157,11 @@ public class DynamicTheme implements DynamicProductFlavor, DynamicListener, Dyna
              * String constant for the version 2.
              */
             String INT_2 = "2";
+
+            /**
+             * String constant for the version 3.
+             */
+            String INT_3 = "3";
 
             /**
              * String constant for the default version.
@@ -695,18 +705,33 @@ public class DynamicTheme implements DynamicProductFlavor, DynamicListener, Dyna
             }
 
             if (com.google.android.material.color.DynamicColors.isDynamicColorAvailable()) {
-                theme.setBackgroundColor(ContextCompat.getColor(listener.getContext(),
-                        android.R.color.system_neutral1_500), false)
-                        .setSurfaceColor(ContextCompat.getColor(listener.getContext(),
-                                android.R.color.system_neutral2_500), false)
-                        .setPrimaryColor(ContextCompat.getColor(listener.getContext(),
-                                android.R.color.system_accent2_500), false)
-                        .setPrimaryColorDark(ContextCompat.getColor(listener.getContext(),
-                                android.R.color.system_accent2_500), false)
-                        .setAccentColor(ContextCompat.getColor(listener.getContext(),
-                                android.R.color.system_accent1_500), false)
-                        .setErrorColor(ContextCompat.getColor(listener.getContext(),
-                                android.R.color.system_accent3_500), false);
+                if (Dynamic.isExpressiveVersion(Dynamic.loadThemeVersion())) {
+                    theme.setBackgroundColor(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_neutral2_600), false)
+                            .setSurfaceColor(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_neutral2_700), false)
+                            .setPrimaryColor(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_accent1_300), false)
+                            .setPrimaryColorDark(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_accent1_300), false)
+                            .setAccentColor(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_accent2_600), false)
+                            .setErrorColor(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_accent3_300), false);
+                } else {
+                    theme.setBackgroundColor(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_neutral1_500), false)
+                            .setSurfaceColor(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_neutral1_600), false)
+                            .setPrimaryColor(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_accent2_500), false)
+                            .setPrimaryColorDark(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_accent2_500), false)
+                            .setAccentColor(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_accent1_500), false)
+                            .setErrorColor(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_accent3_500), false);
+                }
             }
         }
 

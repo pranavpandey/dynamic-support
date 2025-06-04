@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-	Copyright 2018-2024 Pranav Pandey
+	Copyright 2018-2025 Pranav Pandey
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@
     <!-- Versions -->
     <string name="ads_version_1">1</string>
     <string name="ads_version_2">2</string>
+    <string name="ads_version_3">3</string>
 
     <!-- Formats -->
     <string name="ads_format_join">%1$s%2$s</string>
