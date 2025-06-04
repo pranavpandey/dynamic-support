@@ -247,6 +247,7 @@
     <!-- Theme -->
     <string name="ads_theme_version_original">Original</string>
     <string name="ads_theme_version_latest">Más reciente</string>
+    <string name="ads_theme_version_expressive">Expresivo</string>
     <string name="ads_theme_toast_default">Mensaje toast por defecto</string>
     <string name="ads_theme_toast_themed">Mensaje toast coloreado</string>
     <string name="ads_theme_entry_auto">Auto</string>

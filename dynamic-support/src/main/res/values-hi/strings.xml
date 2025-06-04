@@ -247,6 +247,7 @@
     <!-- Theme -->
     <string name="ads_theme_version_original">मूल</string>
     <string name="ads_theme_version_latest">नवीनतम</string>
+    <string name="ads_theme_version_expressive">अर्थपूर्ण</string>
     <string name="ads_theme_toast_default">डिफॉल्ट टोस्ट मेसेज</string>
     <string name="ads_theme_toast_themed">बदले रंग का टोस्ट मेसेज</string>
     <string name="ads_theme_entry_auto">ऑटो</string>

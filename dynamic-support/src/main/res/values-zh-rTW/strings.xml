@@ -247,6 +247,7 @@
     <!-- Theme -->
     <string name="ads_theme_version_original">原始</string>
     <string name="ads_theme_version_latest">最新</string>
+    <string name="ads_theme_version_expressive">富有表現力</string>
     <string name="ads_theme_toast_default">預設快顯訊息</string>
     <string name="ads_theme_toast_themed">主題快顯訊息</string>
     <string name="ads_theme_entry_auto">自動</string>
