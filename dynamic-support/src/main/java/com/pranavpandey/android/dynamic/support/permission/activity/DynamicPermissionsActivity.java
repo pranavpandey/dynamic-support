@@ -51,9 +51,9 @@ public class DynamicPermissionsActivity extends DynamicActivity
         implements DynamicPermissionsListener {
 
     /**
-     * No. of permission shown by this activity.
+     * Permission shown by this activity.
      */
-    private int mPermissionsCount;
+    private String[] mPermissions;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -97,25 +97,42 @@ public class DynamicPermissionsActivity extends DynamicActivity
         Dynamic.set(view.findViewById(R.id.ads_header_appbar_title),
                 DynamicPackageUtils.getAppLabel(this));
 
-        if (mPermissionsCount > 0) {
-            updateSubtitle(mPermissionsCount);
-        }
+        updateSubtitle(mPermissions);
+    }
+
+    /**
+     * Returns the permissions shown by this activity.
+     *
+     * @return The permissions shown by this activity.
+     */
+    public @Nullable String[] getPermissions() {
+        return mPermissions;
+    }
+
+    /**
+     * Sets the permissions for this activity.
+     *
+     * @param permissions The permissions to be set.
+     */
+    public void setPermissions(@Nullable String[] permissions) {
+        this.mPermissions = permissions;
+
+        updateSubtitle(getPermissions());
     }
 
     /**
      * Update subtitle according to the permissions count.
      *
-     * @param count The no. of permissions shown by this activity.
+     * @param permissions The permissions shown by this activity.
      */
-    public void updateSubtitle(int count) {
-        this.mPermissionsCount = count;
-
-        if (findViewById(R.id.ads_header_appbar_subtitle) == null) {
+    public void updateSubtitle(@Nullable String[] permissions) {
+        if (permissions == null) {
             return;
         }
 
-        Dynamic.set(findViewById(R.id.ads_header_appbar_subtitle), getString(count == 1
-                ? R.string.ads_permissions_subtitle_single : R.string.ads_permissions_subtitle));
+        Dynamic.set(findViewById(R.id.ads_header_appbar_subtitle),
+                getString(permissions.length == 1 ? R.string.ads_permissions_subtitle_single
+                        : R.string.ads_permissions_subtitle));
     }
 
     @Override
