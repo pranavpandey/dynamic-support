@@ -48,6 +48,7 @@ import com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView;
 import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
+import com.pranavpandey.android.dynamic.util.DynamicPackageUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
@@ -481,6 +482,26 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         if (getSavedInstanceState() == null) {
             Dynamic.setBottomSheetState(getActivity(), BottomSheetBehavior.STATE_EXPANDED);
         }
+
+        Dynamic.addHeader(getActivity(), R.layout.ads_header_appbar,
+                true, getSavedInstanceState() == null);
+    }
+
+    @Override
+    public void onAddActivityHeader(@Nullable View view) {
+        super.onAddActivityHeader(view);
+
+        if (getContext() == null || view == null) {
+            return;
+        }
+
+        Dynamic.set(view.findViewById(R.id.ads_header_appbar_icon),
+                DynamicPackageUtils.getAppIcon(getContext()));
+        Dynamic.set(view.findViewById(R.id.ads_header_appbar_title), getSubtitle());
+        Dynamic.set(view.findViewById(R.id.ads_header_appbar_subtitle),
+                getString(R.string.ads_theme_customise_desc));
+
+        setSubtitle(DynamicPackageUtils.getAppLabel(getContext()));
     }
 
     @Override
