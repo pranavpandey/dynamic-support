@@ -479,6 +479,10 @@ public abstract class DynamicActivity extends DynamicStateActivity
         if (mToolbar != null) {
             mToolbar.setSubtitle(subtitle);
         }
+
+        if (mCollapsingToolbarLayout != null) {
+            mCollapsingToolbarLayout.setSubtitle(subtitle);
+        }
     }
 
     /**
@@ -699,7 +703,9 @@ public abstract class DynamicActivity extends DynamicStateActivity
                 mFrameBackDrop.addView(view);
                 setAppBarTransparent(true);
                 mCollapsingToolbarLayout.setExpandedTitleColor(expandedTitleColor);
+                mCollapsingToolbarLayout.setExpandedSubtitleColor(expandedTitleColor);
                 mCollapsingToolbarLayout.setCollapsedTitleTextColor(expandedTitleColor);
+                mCollapsingToolbarLayout.setCollapsedSubtitleTextColor(expandedTitleColor);
             }
         }
     }

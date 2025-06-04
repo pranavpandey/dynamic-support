@@ -112,13 +112,7 @@ public class DynamicFragment extends Fragment implements DynamicProductFlavor,
 
         if (isSupportActionBar()) {
             requireActivity().setTitle(getTitle());
-
-            if (getActivity() instanceof DynamicActivity) {
-                ((DynamicActivity) requireActivity()).setSubtitle(getSubtitle());
-            } else {
-                ((AppCompatActivity) requireActivity())
-                        .getSupportActionBar().setSubtitle(getSubtitle());
-            }
+            setSubtitle(getSubtitle());
         }
 
         if (isHasMenuProvider() && setHasOptionsMenu()) {
@@ -626,6 +620,24 @@ public class DynamicFragment extends Fragment implements DynamicProductFlavor,
         }
 
         return null;
+    }
+
+    /**
+     * Try to set the subtitle for the associated activity.
+     *
+     * @param subtitle the subtitle to be set.
+     *
+     * @see DynamicActivity#setSubtitle(CharSequence)
+     * @see AppCompatActivity#getSupportActionBar()#setSubtitle(CharSequence)
+     */
+    protected void setSubtitle(@Nullable CharSequence subtitle) {
+        if (getActivity() instanceof DynamicActivity) {
+            ((DynamicActivity) requireActivity()).setSubtitle(subtitle);
+        } else if (getActivity() instanceof AppCompatActivity
+                && ((AppCompatActivity) getActivity()).getSupportActionBar() != null) {
+            ((AppCompatActivity) requireActivity())
+                    .getSupportActionBar().setSubtitle(subtitle);
+        }
     }
 
     /**
