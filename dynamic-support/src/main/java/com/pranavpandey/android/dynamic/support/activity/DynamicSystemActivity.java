@@ -66,7 +66,6 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
-import com.pranavpandey.android.dynamic.util.product.DynamicProductFlavor;
 import com.pranavpandey.android.dynamic.support.listener.DynamicTransitionListener;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
@@ -86,6 +85,7 @@ import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 import com.pranavpandey.android.dynamic.util.DynamicWindowUtils;
 import com.pranavpandey.android.dynamic.util.product.DynamicFlavor;
+import com.pranavpandey.android.dynamic.util.product.DynamicProductFlavor;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -775,10 +775,10 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     @TargetApi(Build.VERSION_CODES.R)
     protected void onCustomiseTheme() {
         DynamicWindowUtils.setShowWallpaper(getWindow(),
-                DynamicTheme.getInstance().get().isTranslucent());
+                DynamicTheme.getInstance().get().isTranslucentWindow());
 
         if (DynamicSdkUtils.is30()) {
-            setTranslucent(DynamicTheme.getInstance().get().isTranslucent());
+            setTranslucent(DynamicTheme.getInstance().get().isTranslucentWindow());
         }
     }
 

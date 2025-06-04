@@ -222,43 +222,11 @@ public class Dynamic {
      * @param version The version to be checked.
      *
      * @return {@code true} if the supplied theme styles version is legacy.
+     *
+     * @see #isLegacyVersion(int)
      */
     public static boolean isLegacyVersion(@DynamicTheme.Version.ToString String version) {
         return isLegacyVersion(Integer.parseInt(version));
-    }
-
-    /**
-     * Checks whether the supplied theme styles version is expressive.
-     *
-     * @param version The version to be checked.
-     *
-     * @return {@code true} if the supplied theme styles version is expressive.
-     */
-    public static boolean isExpressiveVersion(@DynamicTheme.Version int version) {
-        return version >= DynamicTheme.Version.INT_3;
-    }
-
-    /**
-     * Checks whether the supplied theme styles version is expressive.
-     *
-     * @param version The version to be checked.
-     *
-     * @return {@code true} if the supplied theme styles version is expressive.
-     */
-    public static boolean isExpressiveVersion(@DynamicTheme.Version.ToString String version) {
-        return isExpressiveVersion(Integer.parseInt(version));
-    }
-
-    /**
-     * Checks whether the application theme styles version is expressive.
-     *
-     * @return {@code true} if the application theme styles version is expressive.
-     *
-     * @see #isExpressiveVersion(int)
-     * @see DynamicTheme#getVersion()
-     */
-    public static boolean isExpressiveVersionRemote() {
-        return isExpressiveVersion(DynamicTheme.getInstance().getVersion());
     }
 
     /**
@@ -283,6 +251,54 @@ public class Dynamic {
      */
     public static boolean isLegacyVersionRemote() {
         return isLegacyVersion(DynamicTheme.getInstance().getVersion());
+    }
+
+    /**
+     * Checks whether the supplied theme styles version is expressive.
+     *
+     * @param version The version to be checked.
+     *
+     * @return {@code true} if the supplied theme styles version is expressive.
+     */
+    public static boolean isExpressiveVersion(@DynamicTheme.Version int version) {
+        return version >= DynamicTheme.Version.INT_3;
+    }
+
+    /**
+     * Checks whether the supplied theme styles version is expressive.
+     *
+     * @param version The version to be checked.
+     *
+     * @return {@code true} if the supplied theme styles version is expressive.
+     *
+     * @see #isExpressiveVersion(int)
+     */
+    public static boolean isExpressiveVersion(@DynamicTheme.Version.ToString String version) {
+        return isExpressiveVersion(Integer.parseInt(version));
+    }
+
+    /**
+     * Checks whether the supplied theme styles version is expressive.
+     *
+     * @return {@code true} if the supplied theme styles version is expressive.
+     *
+     * @see #isExpressiveVersion(String)
+     * @see #loadThemeVersion()
+     */
+    public static boolean isExpressiveVersion() {
+        return isExpressiveVersion(loadThemeVersion());
+    }
+
+    /**
+     * Checks whether the application theme styles version is expressive.
+     *
+     * @return {@code true} if the application theme styles version is expressive.
+     *
+     * @see #isExpressiveVersion(int)
+     * @see DynamicTheme#getVersion()
+     */
+    public static boolean isExpressiveVersionRemote() {
+        return isExpressiveVersion(DynamicTheme.getInstance().getVersion());
     }
 
     /**

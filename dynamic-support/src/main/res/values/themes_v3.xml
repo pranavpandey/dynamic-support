@@ -78,7 +78,7 @@
         <item name="adt_cardBackgroundColor">@color/ads_card_background</item>
         <item name="adt_cardCornerRadius">@dimen/ads_corner_radius</item>
         <item name="adt_cardElevation">@dimen/ads_card_view_elevation</item>
-        <item name="ads_theme_version">@integer/ads_version_2</item>
+        <item name="ads_theme_version">@integer/ads_version_3</item>
         <item name="ads_animation">@style/Animation</item>
         <item name="ads_animationApp">@style/Animation.Dynamic3</item>
         <item name="ads_animationAppWindow">@style/Animation.Dynamic3.Window</item>
@@ -396,7 +396,7 @@
         <item name="adt_cardBackgroundColor">@color/ads_card_background_light</item>
         <item name="adt_cardCornerRadius">@dimen/ads_corner_radius</item>
         <item name="adt_cardElevation">@dimen/ads_card_view_elevation</item>
-        <item name="ads_theme_version">@integer/ads_version_2</item>
+        <item name="ads_theme_version">@integer/ads_version_3</item>
         <item name="ads_animation">@style/Animation</item>
         <item name="ads_animationApp">@style/Animation.Dynamic3</item>
         <item name="ads_animationAppWindow">@style/Animation.Dynamic3.Window</item>
@@ -708,7 +708,7 @@
         <item name="adt_cardBackgroundColor">@color/ads_card_background_day_night</item>
         <item name="adt_cardCornerRadius">@dimen/ads_corner_radius</item>
         <item name="adt_cardElevation">@dimen/ads_card_view_elevation</item>
-        <item name="ads_theme_version">@integer/ads_version_2</item>
+        <item name="ads_theme_version">@integer/ads_version_3</item>
         <item name="ads_animation">@style/Animation</item>
         <item name="ads_animationApp">@style/Animation.Dynamic3</item>
         <item name="ads_animationAppWindow">@style/Animation.Dynamic3.Window</item>

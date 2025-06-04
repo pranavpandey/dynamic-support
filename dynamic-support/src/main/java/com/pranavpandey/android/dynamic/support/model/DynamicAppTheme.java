@@ -1506,6 +1506,11 @@ public class DynamicAppTheme extends AppTheme<DynamicAppTheme> implements Parcel
     }
 
     @Override
+    public boolean isTranslucentWindow() {
+        return getOpacity() < Theme.Opacity.WIDGET;
+    }
+
+    @Override
     public @Theme.Style int getStyle() {
         return style;
     }

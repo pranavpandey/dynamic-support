@@ -705,20 +705,7 @@ public class DynamicTheme implements DynamicProductFlavor, DynamicListener, Dyna
             }
 
             if (com.google.android.material.color.DynamicColors.isDynamicColorAvailable()) {
-                if (Dynamic.isExpressiveVersion(Dynamic.loadThemeVersion())) {
-                    theme.setBackgroundColor(ContextCompat.getColor(listener.getContext(),
-                                    android.R.color.system_neutral2_600), false)
-                            .setSurfaceColor(ContextCompat.getColor(listener.getContext(),
-                                    android.R.color.system_neutral2_700), false)
-                            .setPrimaryColor(ContextCompat.getColor(listener.getContext(),
-                                    android.R.color.system_accent1_300), false)
-                            .setPrimaryColorDark(ContextCompat.getColor(listener.getContext(),
-                                    android.R.color.system_accent1_300), false)
-                            .setAccentColor(ContextCompat.getColor(listener.getContext(),
-                                    android.R.color.system_accent2_600), false)
-                            .setErrorColor(ContextCompat.getColor(listener.getContext(),
-                                    android.R.color.system_accent3_300), false);
-                } else {
+                if (Dynamic.isExpressiveVersion()) {
                     theme.setBackgroundColor(ContextCompat.getColor(listener.getContext(),
                                     android.R.color.system_neutral1_500), false)
                             .setSurfaceColor(ContextCompat.getColor(listener.getContext(),
@@ -731,6 +718,19 @@ public class DynamicTheme implements DynamicProductFlavor, DynamicListener, Dyna
                                     android.R.color.system_accent1_500), false)
                             .setErrorColor(ContextCompat.getColor(listener.getContext(),
                                     android.R.color.system_accent3_500), false);
+                } else {
+                    theme.setBackgroundColor(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_neutral2_600), false)
+                            .setSurfaceColor(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_neutral2_700), false)
+                            .setPrimaryColor(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_accent1_300), false)
+                            .setPrimaryColorDark(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_accent1_300), false)
+                            .setAccentColor(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_accent2_600), false)
+                            .setErrorColor(ContextCompat.getColor(listener.getContext(),
+                                    android.R.color.system_accent3_300), false);
                 }
             }
         }

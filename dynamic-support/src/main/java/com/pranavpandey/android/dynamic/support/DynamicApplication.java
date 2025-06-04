@@ -36,7 +36,6 @@ import com.pranavpandey.android.dynamic.locale.DynamicLocale;
 import com.pranavpandey.android.dynamic.locale.DynamicLocaleUtils;
 import com.pranavpandey.android.dynamic.preferences.DynamicPreferences;
 import com.pranavpandey.android.dynamic.support.listener.DynamicListener;
-import com.pranavpandey.android.dynamic.util.product.DynamicProductFlavor;
 import com.pranavpandey.android.dynamic.support.listener.DynamicResolver;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
@@ -46,6 +45,7 @@ import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.util.loader.DynamicLoader;
 import com.pranavpandey.android.dynamic.util.product.DynamicFlavor;
+import com.pranavpandey.android.dynamic.util.product.DynamicProductFlavor;
 
 import java.util.Locale;
 
@@ -344,7 +344,7 @@ public abstract class DynamicApplication extends Application
         }
 
         if (DynamicTheme.Version.KEY.equals(key)) {
-            DynamicTheme.getInstance().onDynamicChanged(true, true);
+            DynamicTheme.getInstance().setWallpaperColors(true, true);
         }
     }
 }

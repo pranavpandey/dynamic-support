@@ -20,6 +20,7 @@
     <!-- Versions -->
     <integer name="ads_version_1">1</integer>
     <integer name="ads_version_2">2</integer>
+    <integer name="ads_version_3">3</integer>
 
     <!-- The duration (in milliseconds) of the activity open/close and fragment
          open/close animations. -->

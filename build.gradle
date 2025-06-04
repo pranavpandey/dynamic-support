@@ -29,7 +29,7 @@ buildscript {
             'material'    : '1.14.0-alpha01',
             'preferences' : '2.4.0',
             'swiperefresh': '1.1.0',
-            'theme'       : '4.6.0',
+            'theme'       : '4.6.1',
             'toasts'      : '4.3.0',
             'work'        : '2.10.1'
     ]
