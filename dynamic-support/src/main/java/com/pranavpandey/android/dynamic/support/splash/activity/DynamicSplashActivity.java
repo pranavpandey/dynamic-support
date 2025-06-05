@@ -157,7 +157,8 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
                 DynamicTheme.getInstance().get().getBackgroundColor(),
                 DynamicTheme.getInstance().get().getPrimaryColor(),
                 DynamicTheme.getInstance().get().getTintPrimaryColor(),
-                DynamicTheme.getInstance().get().isBackgroundAware());
+                DynamicTheme.getInstance().get().isBackgroundAware()
+                        && !Dynamic.isExpressiveVersion());
     }
 
     @Override
