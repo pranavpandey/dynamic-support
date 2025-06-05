@@ -344,7 +344,7 @@ public abstract class DynamicApplication extends Application
         }
 
         if (DynamicTheme.Version.KEY.equals(key)) {
-            DynamicTheme.getInstance().setWallpaperColors(true, true);
+            DynamicTheme.getInstance().setWallpaperColors(isDynamicColor(), true);
         }
     }
 }
