@@ -27,6 +27,7 @@
         android:state_focused="true"
         android:drawable="@drawable/ads_button_pressed_remote" />
 
-    <item android:drawable="@android:color/transparent" />
+    <item
+        android:drawable="@android:color/transparent" />
 
 </selector>
