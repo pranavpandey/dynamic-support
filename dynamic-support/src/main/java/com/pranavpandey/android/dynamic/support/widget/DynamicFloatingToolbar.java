@@ -305,7 +305,8 @@ public class DynamicFloatingToolbar extends FloatingToolbarLayout
                 mAppliedColor = Dynamic.withContrastRatio(mColor, mContrastWithColor, this);
             }
 
-            ViewCompat.setBackgroundTintList(this, ColorStateList.valueOf(mAppliedColor));
+            ViewCompat.setBackgroundTintList(this, ColorStateList.valueOf(
+                    Dynamic.withThemeOpacity(mAppliedColor, Theme.Opacity.FLOATING)));
         }
     }
 }
