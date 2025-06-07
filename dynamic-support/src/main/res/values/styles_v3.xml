@@ -920,7 +920,7 @@
 
     <style name="Widget.Dynamic3.Switch"
         parent="Widget.Material3.CompoundButton.MaterialSwitch">
-        <item name="thumbIcon">@drawable/ads_ic_check</item>
+        <item name="thumbIcon">@drawable/ads_ic_check_switch</item>
     </style>
 
     <style name="Widget.Dynamic3.Slider" parent="Widget.Material3.Slider">
