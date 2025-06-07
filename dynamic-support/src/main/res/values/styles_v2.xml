@@ -921,7 +921,7 @@
     <style name="Widget.Dynamic2.Switch"
         parent="Widget.Material3.CompoundButton.MaterialSwitch" />
 
-    <style name="Widget.Dynamic2.Slider">
+    <style name="Widget.Dynamic2.Slider" parent="Widget.Material3.Slider">
         <item name="thumbHeight">@dimen/ads_margin_large_big</item>
         <item name="labelBehavior">gone</item>
     </style>

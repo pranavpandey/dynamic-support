@@ -1020,7 +1020,7 @@
     <style name="Widget.Dynamic.Switch"
         parent="@style/Widget.MaterialComponents.CompoundButton.Switch" />
 
-    <style name="Widget.Dynamic.Slider">
+    <style name="Widget.Dynamic.Slider" parent="Widget.MaterialComponents.Slider">
         <item name="labelBehavior">gone</item>
     </style>
     <style name="Widget.Dynamic.Slider.Compact">
