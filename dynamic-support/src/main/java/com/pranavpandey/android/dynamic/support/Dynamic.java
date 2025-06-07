@@ -80,6 +80,7 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicBottomNavigationVi
 import com.pranavpandey.android.dynamic.support.widget.DynamicButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicFloatingActionButton;
+import com.pranavpandey.android.dynamic.support.widget.DynamicFloatingToolbar;
 import com.pranavpandey.android.dynamic.support.widget.DynamicMaterialCardView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicNavigationRailView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicNavigationView;
@@ -1688,6 +1689,8 @@ public class Dynamic {
             setCorner(view, Math.min(((DynamicBottomNavigationView) view).getCorner(), cornerMax));
         } else if (view instanceof DynamicFloatingActionButton) {
             setCorner(view, Math.min(((DynamicFloatingActionButton) view).getCorner(), cornerMax));
+        } else if (view instanceof DynamicFloatingToolbar) {
+            setCorner(view, Math.min(((DynamicFloatingToolbar) view).getCorner(), cornerMax));
         } else if (view instanceof DynamicCardView) {
             setCorner(view, Math.min(((DynamicCardView) view).getCorner(), cornerMax));
         } else if (view instanceof DynamicMaterialCardView) {

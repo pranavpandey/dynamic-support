@@ -41,6 +41,7 @@ import com.pranavpandey.android.dynamic.support.widget.DynamicDrawerLayout;
 import com.pranavpandey.android.dynamic.support.widget.DynamicEditText;
 import com.pranavpandey.android.dynamic.support.widget.DynamicExtendedFloatingActionButton;
 import com.pranavpandey.android.dynamic.support.widget.DynamicFloatingActionButton;
+import com.pranavpandey.android.dynamic.support.widget.DynamicFloatingToolbar;
 import com.pranavpandey.android.dynamic.support.widget.DynamicForegroundLinearLayout;
 import com.pranavpandey.android.dynamic.support.widget.DynamicFrameLayout;
 import com.pranavpandey.android.dynamic.support.widget.DynamicGridView;
@@ -116,6 +117,10 @@ public class DynamicLayoutInflater implements LayoutInflater.Factory2 {
             case "com.google.android.material.appbar.MaterialToolbar":
             case "com.pranavpandey.android.dynamic.support.widget.DynamicToolbar":
                 view = new DynamicToolbar(context, attrs);
+                break;
+            case "com.google.android.material.floatingtoolbar.FloatingToolbarLayout":
+            case "com.pranavpandey.android.dynamic.support.widget.DynamicFloatingToolbar":
+                view = new DynamicFloatingToolbar(context, attrs);
                 break;
             case "Button":
                 view = new Button(context, attrs);

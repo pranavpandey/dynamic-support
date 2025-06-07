@@ -614,6 +614,17 @@
         <attr name="adt_contrast" />
     </declare-styleable>
 
+    <!-- Attributes for the DynamicFloatingToolbar. -->
+    <declare-styleable name="DynamicFloatingToolbar">
+        <attr name="adt_colorType" />
+        <attr name="adt_contrastWithColorType" />
+        <attr name="adt_color" />
+        <attr name="adt_contrastWithColor" />
+        <attr name="adt_backgroundAware" />
+        <attr name="adt_contrast" />
+        <attr name="adt_dynamicCornerSize" />
+    </declare-styleable>
+
     <!-- Attributes for the DynamicViewPager. -->
     <declare-styleable name="DynamicViewPager">
         <attr name="adt_colorType" />
