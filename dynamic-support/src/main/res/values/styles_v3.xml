@@ -936,7 +936,7 @@
     </style>
 
     <style name="Widget.Dynamic3.CircularProgressIndicator"
-        parent="@style/Widget.Material3.CircularProgressIndicator" />
+        parent="@style/Widget.Material3Expressive.CircularProgressIndicator.Wavy" />
     <style name="Widget.Dynamic3.CircularProgressIndicator.Medium"
         parent="@style/Widget.Material3.CircularProgressIndicator.Medium" />
     <style name="Widget.Dynamic3.CircularProgressIndicator.Small"
@@ -944,7 +944,7 @@
     <style name="Widget.Dynamic3.CircularProgressIndicator.ExtraSmall"
         parent="@style/Widget.Material3.CircularProgressIndicator.ExtraSmall" />
     <style name="Widget.Dynamic3.LinearProgressIndicator"
-        parent="@style/Widget.Material3.LinearProgressIndicator" />
+        parent="@style/Widget.Material3Expressive.LinearProgressIndicator.Wavy" />
 
     <style name="Widget.Dynamic3.RatingBar" parent="Widget.AppCompat.RatingBar">
         <item name="android:progressDrawable">@drawable/ads_rating_bar</item>
