@@ -918,6 +918,9 @@
         <item name="android:maxLines">@integer/ads_text_single_line</item>
     </style>
 
+    <style name="Widget.Dynamic2.Switch"
+        parent="Widget.Material3.CompoundButton.MaterialSwitch" />
+
     <style name="Widget.Dynamic2.Slider">
         <item name="thumbHeight">@dimen/ads_margin_large_big</item>
         <item name="labelBehavior">gone</item>

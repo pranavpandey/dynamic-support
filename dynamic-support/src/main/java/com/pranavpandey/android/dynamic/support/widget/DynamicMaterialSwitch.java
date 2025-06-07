@@ -348,5 +348,6 @@ public class DynamicMaterialSwitch extends MaterialSwitch implements DynamicStat
         }
 
         setTextColor(getTrackTintList());
+        setThumbIconTintList(getTrackTintList());
     }
 }

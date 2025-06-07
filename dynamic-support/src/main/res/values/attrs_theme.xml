@@ -397,6 +397,9 @@
     <!-- The single line outlined text input edit text style. -->
     <attr name="ads_widgetTextInputEditTextOutlinedSingleLine" format="reference" />
 
+    <!-- The switch widget style. -->
+    <attr name="ads_widgetSwitch" format="reference" />
+
     <!-- The slider widget style. -->
     <attr name="ads_widgetSlider" format="reference" />
     <!-- The compact slider widget style. -->

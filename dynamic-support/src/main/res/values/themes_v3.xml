@@ -67,6 +67,7 @@
         <item name="buttonBarNeutralButtonStyle">?attr/ads_widgetButtonTextDialog</item>
         <item name="buttonBarPositiveButtonStyle">?attr/ads_widgetButtonTextDialog</item>
         <item name="buttonBarNegativeButtonStyle">?attr/ads_widgetButtonTextDialog</item>
+        <item name="materialSwitchStyle">?attr/ads_widgetSwitch</item>
         <item name="ratingBarStyle">?attr/ads_widgetRatingBar</item>
         <item name="ratingBarStyleIndicator">?attr/ads_widgetRatingBarIndicator</item>
         <item name="ratingBarStyleSmall">?attr/ads_widgetRatingBarSmall</item>
@@ -255,6 +256,7 @@
         <item name="ads_widgetTextInputEditTextSingleLine">@style/Widget.Dynamic3.TextInputEditText.SingleLine</item>
         <item name="ads_widgetTextInputEditTextOutlined">@style/Widget.Dynamic3.TextInputEditText.Outlined</item>
         <item name="ads_widgetTextInputEditTextOutlinedSingleLine">@style/Widget.Dynamic3.TextInputEditText.Outlined.SingleLine</item>
+        <item name="ads_widgetSwitch">@style/Widget.Dynamic3.Switch</item>
         <item name="ads_widgetSlider">@style/Widget.Dynamic3.Slider</item>
         <item name="ads_widgetSliderCompact">@style/Widget.Dynamic3.Slider.Compact</item>
         <item name="ads_widgetCircularProgressIndicator">@style/Widget.Dynamic3.CircularProgressIndicator</item>
@@ -383,6 +385,7 @@
         <item name="buttonBarNeutralButtonStyle">?attr/ads_widgetButtonTextDialog</item>
         <item name="buttonBarPositiveButtonStyle">?attr/ads_widgetButtonTextDialog</item>
         <item name="buttonBarNegativeButtonStyle">?attr/ads_widgetButtonTextDialog</item>
+        <item name="materialSwitchStyle">?attr/ads_widgetSwitch</item>
         <item name="ratingBarStyle">?attr/ads_widgetRatingBar</item>
         <item name="ratingBarStyleIndicator">?attr/ads_widgetRatingBarIndicator</item>
         <item name="ratingBarStyleSmall">?attr/ads_widgetRatingBarSmall</item>
@@ -571,6 +574,7 @@
         <item name="ads_widgetTextInputEditTextSingleLine">@style/Widget.Dynamic3.TextInputEditText.SingleLine</item>
         <item name="ads_widgetTextInputEditTextOutlined">@style/Widget.Dynamic3.TextInputEditText.Outlined</item>
         <item name="ads_widgetTextInputEditTextOutlinedSingleLine">@style/Widget.Dynamic3.TextInputEditText.Outlined.SingleLine</item>
+        <item name="ads_widgetSwitch">@style/Widget.Dynamic3.Switch</item>
         <item name="ads_widgetSlider">@style/Widget.Dynamic3.Slider</item>
         <item name="ads_widgetSliderCompact">@style/Widget.Dynamic3.Slider.Compact</item>
         <item name="ads_widgetCircularProgressIndicator">@style/Widget.Dynamic3.CircularProgressIndicator</item>
@@ -693,6 +697,7 @@
         <item name="buttonBarNeutralButtonStyle">?attr/ads_widgetButtonTextDialog</item>
         <item name="buttonBarPositiveButtonStyle">?attr/ads_widgetButtonTextDialog</item>
         <item name="buttonBarNegativeButtonStyle">?attr/ads_widgetButtonTextDialog</item>
+        <item name="materialSwitchStyle">?attr/ads_widgetSwitch</item>
         <item name="ratingBarStyle">?attr/ads_widgetRatingBar</item>
         <item name="ratingBarStyleIndicator">?attr/ads_widgetRatingBarIndicator</item>
         <item name="ratingBarStyleSmall">?attr/ads_widgetRatingBarSmall</item>
@@ -881,6 +886,7 @@
         <item name="ads_widgetTextInputEditTextSingleLine">@style/Widget.Dynamic3.TextInputEditText.SingleLine</item>
         <item name="ads_widgetTextInputEditTextOutlined">@style/Widget.Dynamic3.TextInputEditText.Outlined</item>
         <item name="ads_widgetTextInputEditTextOutlinedSingleLine">@style/Widget.Dynamic3.TextInputEditText.Outlined.SingleLine</item>
+        <item name="ads_widgetSwitch">@style/Widget.Dynamic3.Switch</item>
         <item name="ads_widgetSlider">@style/Widget.Dynamic3.Slider</item>
         <item name="ads_widgetSliderCompact">@style/Widget.Dynamic3.Slider.Compact</item>
         <item name="ads_widgetCircularProgressIndicator">@style/Widget.Dynamic3.CircularProgressIndicator</item>

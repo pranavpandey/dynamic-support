@@ -1017,6 +1017,9 @@
         <item name="android:maxLines">@integer/ads_text_single_line</item>
     </style>
 
+    <style name="Widget.Dynamic.Switch"
+        parent="@style/Widget.MaterialComponents.CompoundButton.Switch" />
+
     <style name="Widget.Dynamic.Slider">
         <item name="labelBehavior">gone</item>
     </style>
