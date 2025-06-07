@@ -201,6 +201,7 @@
     <string name="ads_theme_elevation_summary">控制表面元素的陰影</string>
     <string name="ads_theme_style">樣式</string>
     <string name="ads_theme_style_summary">主題樣式</string>
+    <string name="ads_theme_design">設計</string>
     <string name="ads_theme_app">應用程式主題</string>
     <string name="ads_theme_app_summary">應用程式的樣式</string>
     <string name="ads_theme_app_desc">選取自動使用日間和夜間主題。</string>

@@ -201,6 +201,7 @@
     <string name="ads_theme_elevation_summary">Control shadow for the surface elements.</string>
     <string name="ads_theme_style">Style</string>
     <string name="ads_theme_style_summary">Style of the theme.</string>
+    <string name="ads_theme_design">Design</string>
     <string name="ads_theme_app">App theme</string>
     <string name="ads_theme_app_summary">Style of the app.</string>
     <string name="ads_theme_app_desc">Select auto to use the day and night themes.</string>

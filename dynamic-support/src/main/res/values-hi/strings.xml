@@ -201,6 +201,7 @@
     <string name="ads_theme_elevation_summary">सतह के तत्वों के लिए छाया को नियंत्रित करें।</string>
     <string name="ads_theme_style">स्टाइल</string>
     <string name="ads_theme_style_summary">रंग-रूप का स्टाइल।</string>
+    <string name="ads_theme_design">डिज़ाइन</string>
     <string name="ads_theme_app">ऐप का रंग-रूप</string>
     <string name="ads_theme_app_summary">ऐप का स्टाइल।</string>
     <string name="ads_theme_app_desc">दिन और रात के रंग-रूप उपयोग लेने के लिए \"ऑटो\" चुनें।</string>

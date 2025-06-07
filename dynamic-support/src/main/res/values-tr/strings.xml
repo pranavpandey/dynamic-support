@@ -201,6 +201,7 @@
     <string name="ads_theme_elevation_summary">Yüzey elemanları için kontrol gölgesi.</string>
     <string name="ads_theme_style">Stil</string>
     <string name="ads_theme_style_summary">Tema stili.</string>
+    <string name="ads_theme_design">Tasarım</string>
     <string name="ads_theme_app">Uygulama teması</string>
     <string name="ads_theme_app_summary">Uygulamanın stili.</string>
     <string name="ads_theme_app_desc">Gündüz ve gece temalarını kullanmak için otomatiği seçin.</string>

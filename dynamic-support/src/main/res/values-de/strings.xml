@@ -201,6 +201,7 @@
     <string name="ads_theme_elevation_summary">Kontrollieren Sie den Schatten für die Oberflächenelemente.</string>
     <string name="ads_theme_style">Stil</string>
     <string name="ads_theme_style_summary">Stil des Themas.</string>
+    <string name="ads_theme_design">Design</string>
     <string name="ads_theme_app">App-Thema</string>
     <string name="ads_theme_app_summary">Stil der App.</string>
     <string name="ads_theme_app_desc">Wähle auto, um das Tages- und das Nachtthema zu benutzen.</string>

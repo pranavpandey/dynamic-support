@@ -201,6 +201,7 @@
     <string name="ads_theme_elevation_summary">Kontrol bayangan untuk elemen permukaan.</string>
     <string name="ads_theme_style">Gaya</string>
     <string name="ads_theme_style_summary">Gaya tema.</string>
+    <string name="ads_theme_design">Desain</string>
     <string name="ads_theme_app">Tema aplikasi</string>
     <string name="ads_theme_app_summary">Gaya aplikasi.</string>
     <string name="ads_theme_app_desc">Pilih otomatis untuk menggunakan tema siang dan malam.</string>

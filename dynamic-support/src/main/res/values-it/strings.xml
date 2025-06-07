@@ -201,6 +201,7 @@
     <string name="ads_theme_elevation_summary">Controlla l\'ombra per gli elementi di superficie.</string>
     <string name="ads_theme_style">Stile</string>
     <string name="ads_theme_style_summary">Stile dell\'motivo.</string>
+    <string name="ads_theme_design">Progetto</string>
     <string name="ads_theme_app">Motivo app</string>
     <string name="ads_theme_app_summary">Stile dell\'app.</string>
     <string name="ads_theme_app_desc">Scegli automatico per usare motivi diurno e notturno.</string>
