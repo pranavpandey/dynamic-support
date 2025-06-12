@@ -181,6 +181,11 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
     }
 
     @Override
+    public void onStop(@NonNull LifecycleOwner owner) {
+        DefaultLifecycleObserver.super.onStop(owner);
+    }
+
+    @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
 
@@ -242,8 +247,6 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
         if (mLifecycleOwner != null) {
             mLifecycleOwner.getLifecycle().addObserver(this);
         }
-
-        loadPresets();
     }
 
     /**
@@ -276,10 +279,6 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
      * Try to load the theme presets.
      */
     public void loadPresets() {
-        if (DynamicMotion.getInstance().isMotion()) {
-            DynamicMotion.getInstance().beginDelayedTransition((ViewGroup) getParent());
-        }
-
         post(mLoadPresets);
         postDelayed(mLoadPresets, DynamicMotion.Duration.SHORT);
     }
