@@ -49,8 +49,8 @@ import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerView
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.adapter.DynamicPresetsAdapter;
 import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
-import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
 import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
 import com.pranavpandey.android.dynamic.util.DynamicLinkUtils;
@@ -109,17 +109,12 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
     /**
      * View group to show the header.
      */
-    private ViewGroup mHeader;
-
-    /**
-     * View parent to show the info.
-     */
-    private View mViewInfo;
+    private ViewGroup mHeaderCard;
 
     /**
      * View to show the info.
      */
-    private DynamicItemView mInfo;
+    private DynamicItemView mHeader;
 
     /**
      * Recycler view adapter to show a list of theme previews.
@@ -158,38 +153,8 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
     protected void initialize() {
         super.initialize();
 
-        mHeader = findViewById(R.id.ads_theme_presets_header_card);
-        mViewInfo = findViewById(R.id.ads_theme_presets_info_card);
-        mInfo = findViewById(R.id.ads_theme_presets_info);
-
-        Dynamic.setOnClickListener(findViewById(R.id.ads_theme_presets_header),
-                new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadPresets();
-            }
-        });
-
-        Dynamic.setOnClickListener(findViewById(R.id.ads_theme_presets_info),
-                new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isPackageExists()) {
-                    if (mDynamicPresetsListener != null && !isPermissionGranted()) {
-                        mDynamicPresetsListener.onRequestPermissions(
-                                ThemeContract.Preset.READ_PERMISSIONS);
-                    } else {
-                        loadPresets();
-                    }
-                } else {
-                    DynamicLinkUtils.viewApp(getContext(), ThemeContract.Preset.AUTHORITY,
-                            DynamicTheme.getInstance().getProductFlavor());
-                }
-            }
-        });
-
-        Dynamic.setColorType(((DynamicItemView) findViewById(
-                R.id.ads_theme_presets_header)).getIconView(), Theme.ColorType.NONE);
+        mHeader = findViewById(R.id.ads_theme_presets_header);
+        mHeaderCard = findViewById(R.id.ads_theme_presets_header_card);
 
         getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -287,20 +252,7 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
     private final Runnable mLoadPresets = new Runnable() {
         @Override
         public void run() {
-            if (isPackageExists()) {
-                if (isPermissionGranted()) {
-                    setPresetsVisible(true);
-                } else {
-                    mInfo.setSubtitle(getContext().getString(
-                            R.string.ads_permissions_subtitle_single));
-                    setPresetsVisible(false);
-                }
-            } else {
-                mInfo.setSubtitle(String.format(
-                        getContext().getString(R.string.ads_theme_presets_desc_app),
-                        getContext().getString(R.string.ads_theme_presets_app)));
-                setPresetsVisible(false);
-            }
+            setPresetsVisible(isPackageExists() && isPermissionGranted());
 
             if (mLifecycleOwner == null || !isPermissionGranted()) {
                 return;
@@ -413,12 +365,52 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
         }
 
         if (visible) {
-            Dynamic.setVisibility(mHeader, VISIBLE);
-            Dynamic.setVisibility(mViewInfo, GONE);
             Dynamic.setVisibility(getRecyclerView(), VISIBLE);
+            mHeader.setTitle(getContext().getString(R.string.ads_picker_presets));
+            mHeader.setSubtitle(getContext().getString(R.string.ads_theme_presets_import));
+            mHeader.setImageDrawable(DynamicResourceUtils.getDrawable(
+                    getContext(), R.drawable.ads_ic_refresh), true);
+
+            Dynamic.setOnClickListener(mHeader, new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loadPresets();
+                }
+            });
         } else {
-            Dynamic.setVisibility(mHeader, GONE);
             Dynamic.setVisibility(getRecyclerView(), GONE);
+            mHeader.setTitle(getContext().getString(R.string.ads_theme_presets));
+            mHeader.setImageDrawable(null, true);
+
+            if (!isPackageExists()) {
+                mHeader.setSubtitle(String.format(
+                        getContext().getString(R.string.ads_theme_presets_desc_app),
+                        getContext().getString(R.string.ads_theme_presets_app)));
+                mHeader.setImageDrawable(DynamicResourceUtils.getDrawable(
+                        getContext(), R.drawable.ads_ic_download), true);
+            } else if (!isPermissionGranted()) {
+                mHeader.setSubtitle(getContext().getString(
+                        R.string.ads_permissions_subtitle_single));
+                mHeader.setImageDrawable(DynamicResourceUtils.getDrawable(
+                        getContext(), R.drawable.ads_ic_security), true);
+            }
+
+            Dynamic.setOnClickListener(mHeader, new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (isPackageExists()) {
+                        if (mDynamicPresetsListener != null && !isPermissionGranted()) {
+                            mDynamicPresetsListener.onRequestPermissions(
+                                    ThemeContract.Preset.READ_PERMISSIONS);
+                        } else {
+                            loadPresets();
+                        }
+                    } else {
+                        DynamicLinkUtils.viewApp(getContext(), ThemeContract.Preset.AUTHORITY,
+                                DynamicTheme.getInstance().getProductFlavor());
+                    }
+                }
+            });
         }
 
         if (getPresetsAdapter() != null) {

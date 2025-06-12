@@ -32,21 +32,7 @@
             app:ads_icon="@drawable/adt_ic_presets"
             app:ads_title="@string/ads_picker_presets"
             app:ads_subtitle="@string/ads_theme_presets_import"
-            app:ads_image="@drawable/ads_ic_refresh" />
-
-    </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
-
-    <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-        style="?attr/ads_widgetCardMargin"
-        android:id="@+id/ads_theme_presets_info_card"
-        android:layout_marginBottom="@dimen/ads_scroller_margin">
-
-        <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
-            android:id="@+id/ads_theme_presets_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:ads_icon="@drawable/adt_ic_presets"
-            app:ads_title="@string/ads_theme_presets"
+            app:ads_image="@drawable/ads_ic_refresh"
             app:adt_colorType="none" />
 
     </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
