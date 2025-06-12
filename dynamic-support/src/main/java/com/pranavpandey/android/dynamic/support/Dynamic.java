@@ -1771,7 +1771,8 @@ public class Dynamic {
         if (dynamic instanceof Window) {
             ((Window) dynamic).setBackgroundDrawable(withThemeOpacity(new ColorDrawable(color)));
         } else if (dynamic instanceof View) {
-            ((View) dynamic).setBackgroundDrawable(withThemeOpacity(new ColorDrawable(color)));
+            DynamicDrawableUtils.setBackground((View) dynamic,
+                    withThemeOpacity(new ColorDrawable(color)));
         }
     }
 
