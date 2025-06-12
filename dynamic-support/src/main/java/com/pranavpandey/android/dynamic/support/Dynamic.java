@@ -1895,10 +1895,15 @@ public class Dynamic {
      */
     public static <T> void setRootBackground(@Nullable T dynamic, @ColorInt int color) {
         if (dynamic instanceof Window) {
-            ((Window) dynamic).setBackgroundDrawable(withThemeOpacity(new ColorDrawable(color)));
+            ((Window) dynamic).setBackgroundDrawable(
+                    DynamicTheme.getInstance().get().isTranslucentWindow()
+                            ? withThemeOpacity(new ColorDrawable(color))
+                            : new ColorDrawable(color));
         } else if (dynamic instanceof View) {
             DynamicDrawableUtils.setBackground((View) dynamic,
-                    withThemeOpacity(new ColorDrawable(color)));
+                    DynamicTheme.getInstance().get().isTranslucentWindow()
+                            ? withThemeOpacity(new ColorDrawable(color))
+                            : new ColorDrawable(color));
         }
     }
 
