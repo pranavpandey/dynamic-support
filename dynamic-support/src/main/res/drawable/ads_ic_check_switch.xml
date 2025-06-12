@@ -23,6 +23,6 @@
         android:drawable="@drawable/ads_ic_check" />
 
     <item
-        android:drawable="@android:color/transparent" />
+        android:drawable="@drawable/ads_ic_close" />
 
 </selector>
