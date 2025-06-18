@@ -21,7 +21,7 @@ buildscript {
             'targetSdk'   : 35,
             'buildTools'  : '35.0.0',
             'multidex'    : '2.0.1',
-            'dynamic'     : '4.6.1',
+            'dynamic'     : '4.7.0',
             'fragment'    : '1.8.8',
             'flexbox'     : '3.0.0',
             'kotlin'      : '1.9.24',
