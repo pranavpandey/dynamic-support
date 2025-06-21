@@ -185,7 +185,9 @@ public abstract class DynamicSplashActivity extends DynamicSystemActivity
 
     @Override
     protected void onAppThemeChange() {
-        // Skip theme change event for splash.
+        if (isPostSplash()) {
+            super.onAppThemeChange();
+        }
     }
 
     @Override
