@@ -18,7 +18,7 @@
 <resources>
 
     <!-- Popup -->
-    <dimen name="ads_popup_max_width">320dp</dimen>
-    <dimen name="ads_popup_max_width_large">360dp</dimen>
+    <dimen name="ads_popup_max_width">360dp</dimen>
+    <dimen name="ads_popup_max_width_large">460dp</dimen>
 
 </resources>
