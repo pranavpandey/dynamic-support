@@ -19,10 +19,12 @@ package com.pranavpandey.android.dynamic.support.setting.base;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
 
+import androidx.annotation.ArrayRes;
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,6 +50,16 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
      * <p>Either {@link DynamicPopup.Type#LIST} or {@link DynamicPopup.Type#GRID}.
      */
     private @DynamicPopup.Type int mPopupType;
+
+    /**
+     * Array resource to store icons corresponding to the list entries.
+     */
+    private @ArrayRes int mIconsResId;
+
+    /**
+     * Array to store icons corresponding to the list entries.
+     */
+    private Drawable[] mIcons;
 
     /**
      * Array to store list entries.
@@ -85,6 +97,9 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
                 R.styleable.DynamicSpinnerPreference);
 
         try {
+            mIconsResId = a.getResourceId(
+                    R.styleable.DynamicSpinnerPreference_ads_icons,
+                    DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID);
             mEntries = a.getTextArray(
                     R.styleable.DynamicSpinnerPreference_ads_entries);
             mValues = a.getTextArray(
@@ -119,12 +134,16 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
             }
         }, false);
 
-        updateValueString(false);
+        updateValueString(true);
     }
 
     @Override
     protected void onUpdate() {
         super.onUpdate();
+
+        if (mIconsResId != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID && mIcons == null) {
+            mIcons = DynamicResourceUtils.convertToDrawableArray(getContext(), mIconsResId);
+        }
 
         Dynamic.setClickable(getPreferenceView(),
                 getOnPreferenceClickListener() != null && getEntries() != null);
@@ -140,7 +159,7 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
             return;
         }
 
-        DynamicMenuPopup popup = new DynamicMenuPopup(anchor, getEntries(),
+        DynamicMenuPopup popup = new DynamicMenuPopup(anchor, getIcons(), getEntries(),
                 new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -161,6 +180,46 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
         popup.setTitle(getTitle());
         popup.setViewType(getPopupType());
         popup.build().show();
+    }
+
+    /**
+     * Get the icon drawables resource id for this preference.
+     *
+     * @return The icon drawables resource id for this preference.
+     */
+    public @ArrayRes int getIconsResId() {
+        return mIconsResId;
+    }
+
+    /**
+     * Sets the icon drawables resource id for this preference.
+     *
+     * @param iconsResId The icon drawables resource id to be used.
+     */
+    public void setIconsResId(@ArrayRes int iconsResId) {
+        this.mIconsResId = iconsResId;
+
+        updateValueString(true);
+    }
+
+    /**
+     * Get the icon drawables for this preference.
+     *
+     * @return The icon drawables for this preference.
+     */
+    public @Nullable Drawable[] getIcons() {
+        return mIcons;
+    }
+
+    /**
+     * Sets the icon drawables for this preference.
+     *
+     * @param icons The icon drawables to be used.
+     */
+    public void setIcons(@Nullable Drawable[] icons) {
+        this.mIcons = icons;
+
+        updateValueString(true);
     }
 
     /**

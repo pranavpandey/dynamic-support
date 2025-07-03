@@ -270,6 +270,8 @@
     <declare-styleable name="DynamicSpinnerPreference">
         <!-- Selected index value for this preference. -->
         <attr name="ads_value" />
+        <!-- Entry icons that will be used by this preference. -->
+        <attr name="ads_icons" />
         <!-- Preference entries that will be used by this preference. -->
         <attr name="ads_entries" format="reference" />
         <!-- Preference values that will be used by this preference. -->
