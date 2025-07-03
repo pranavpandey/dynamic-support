@@ -126,7 +126,7 @@
     </string-array>
 
     <!-- Theme icons for auto, day, night and custom. -->
-    <string-array name="ads_theme_icons_all">
+    <integer-array name="ads_theme_icons_all">
         <!-- Auto -->
         <item>@drawable/ads_ic_background_aware</item>
         <!-- Day -->
@@ -135,7 +135,7 @@
         <item>@drawable/ads_ic_night</item>
         <!-- Custom -->
         <item>@drawable/ads_ic_style</item>
-    </string-array>
+    </integer-array>
 
     <!-- Theme entries for auto, day, night, custom and open. -->
     <string-array name="ads_theme_entries_all_open">
@@ -161,7 +161,7 @@
     </string-array>
 
     <!-- Theme icons for auto, day, night, custom and open. -->
-    <string-array name="ads_theme_icons_all_open">
+    <integer-array name="ads_theme_icons_all_open">
         <!-- Auto -->
         <item>@drawable/ads_ic_background_aware</item>
         <!-- Day -->
@@ -172,7 +172,7 @@
         <item>@drawable/ads_ic_style</item>
         <!-- Open -->
         <item>@drawable/ads_ic_open</item>
-    </string-array>
+    </integer-array>
 
     <!-- Night theme entries for auto. -->
     <string-array name="ads_theme_entries_night"
@@ -330,11 +330,11 @@
     </string-array>
 
     <!-- Theme icons for the share menu. -->
-    <string-array name="ads_theme_share_icons">
+    <integer-array name="ads_theme_share_icons">
         <item>@drawable/ads_ic_style</item>
         <item>@drawable/ads_ic_text</item>
         <item>@drawable/ads_ic_file</item>
-    </string-array>
+    </integer-array>
 
     <!-- App theme background colors. -->
     <integer-array name="ads_app_theme_colors">
