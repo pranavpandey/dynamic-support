@@ -64,6 +64,13 @@
         <item>0</item>
     </string-array>
 
+    <!-- Icons for the dynamic color. -->
+    <integer-array name="ads_dynamic_color_icons">
+        <item>@drawable/ads_ic_style</item>
+        <item>@drawable/ads_ic_android</item>
+        <item>@drawable/ads_ic_image</item>
+    </integer-array>
+
     <!-- Entries for the dynamic color. -->
     <string-array name="ads_dynamic_color_entries">
         <item>@string/ads_theme_entry_app</item>
