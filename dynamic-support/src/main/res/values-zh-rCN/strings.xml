@@ -253,7 +253,7 @@
     <string name="ads_theme_toast_themed">主题Toast消息</string>
     <string name="ads_theme_entry_auto">自动</string>
     <string name="ads_theme_entry_auto_desc">选择自动以使用应用程序设置。</string>
-    <string name="ads_theme_entry_auto_default_desc">选择“自动”以使用默认设置。</string>
+    <string name="ads_theme_entry_auto_default_desc">选择"自动"以使用默认设置。</string>
     <string name="ads_theme_entry_auto_background_aware_desc">选择自动使用应用程序调色板。根据背景调整颜色以提供最佳可见性。</string>
     <string name="ads_theme_color_auto_desc">选择自动使用应用程序调色板。</string>
     <string name="ads_theme_color_default_desc">选择自动使用默认的程序调色板。</string>
