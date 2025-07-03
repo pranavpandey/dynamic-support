@@ -1308,6 +1308,10 @@
         <item name="android:paddingTop">@dimen/ads_margin_regular</item>
         <item name="android:paddingBottom">@dimen/ads_margin_regular</item>
     </style>
+    <style name="AppWidget.Dynamic.Header.Preview.Small">
+        <item name="android:paddingTop">@dimen/ads_margin_small</item>
+        <item name="android:paddingBottom">@dimen/ads_margin_small</item>
+    </style>
 
     <style name="AppWidget.Dynamic.Button" />
     <style name="AppWidget.Dynamic.Button.Borderless"

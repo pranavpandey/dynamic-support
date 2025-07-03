@@ -292,14 +292,14 @@
     <dimen name="ads_preview_code_image_size">256dp</dimen>
 
     <!-- Toast -->
-    <dimen name="ads_font_toast">14sp</dimen>
-    <dimen name="ads_icon_toast">20dp</dimen>
+    <dimen name="ads_font_toast">@dimen/ads_font_size_medium</dimen>
+    <dimen name="ads_icon_toast">@dimen/ads_icon_header</dimen>
     <dimen name="ads_margin_toast_vertical">@dimen/ads_margin_regular</dimen>
-    <dimen name="ads_margin_toast_horizontal">20dp</dimen>
+    <dimen name="ads_margin_toast_horizontal">@dimen/ads_card_view_margin_floating</dimen>
     <dimen name="ads_margin_toast_small">@dimen/ads_margin_small</dimen>
 
     <!-- Hint -->
-    <dimen name="ads_font_hint">12sp</dimen>
+    <dimen name="ads_font_hint">@dimen/ads_font_size_extra_small</dimen>
     <dimen name="ads_icon_hint">16dp</dimen>
     <dimen name="ads_margin_hint_vertical">@dimen/ads_margin_small</dimen>
     <dimen name="ads_margin_hint_horizontal">@dimen/ads_margin_medium</dimen>
@@ -327,7 +327,7 @@
     <dimen name="ads_remote_footer_size">48dp</dimen>
     <dimen name="ads_remote_footer_margin">6dp</dimen>
     <dimen name="ads_remote_footer_margin_horizontal">10dp</dimen>
-    <dimen name="ads_remote_font_size">12sp</dimen>
+    <dimen name="ads_remote_font_size">@dimen/ads_font_size_extra_small</dimen>
 
     <!-- App Widget -->
     <dimen name="ads_widget_margin">0dp</dimen>
