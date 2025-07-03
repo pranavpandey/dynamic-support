@@ -187,6 +187,10 @@ public class DynamicBackgroundView extends View implements DynamicWidget, Dynami
                     || mBackgroundAttrRes == DynamicResourceUtils.getResourceId(
                     getContext(), androidx.appcompat.R.attr.dividerVertical)) {
                 mColorType = Defaults.ADS_COLOR_TYPE_DIVIDER;
+
+                if (!Dynamic.isLegacyVersion()) {
+                    setAlpha(Defaults.ADS_ALPHA_DIVIDER);
+                }
             }
         }
 
