@@ -16,6 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
@@ -300,6 +301,7 @@ public class DynamicNavigationView extends NavigationView
         setBackgroundColor(mBackgroundColor);
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void applyWindowInsets() {
         final NavigationMenuView menuView = DynamicScrollUtils.getNavigationMenuView(this);
@@ -606,10 +608,8 @@ public class DynamicNavigationView extends NavigationView
     public void setCorner(@NonNull Float cornerSize) {
         this.mCornerSize = cornerSize;
 
-        if (getBackground() instanceof MaterialShapeDrawable) {
-            MaterialShapeDrawable drawable = (MaterialShapeDrawable) getBackground();
+        if (getBackground() instanceof MaterialShapeDrawable drawable) {
             ShapeAppearanceModel.Builder builder = drawable.getShapeAppearanceModel().toBuilder();
-
             builder.setTopLeftCornerSize(Theme.Corner.MIN);
             builder.setTopRightCornerSize(Theme.Corner.MIN);
 
