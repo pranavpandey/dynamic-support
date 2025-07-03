@@ -424,7 +424,6 @@ public class DynamicResourceUtils {
     public static @NonNull ColorStateList convertColorStateListWithNormal(
             @NonNull ColorStateList colorStateList,
             @ColorInt int normalColor, @ColorInt int tintColor) {
-
         int[][] states = new int[][] {
                 new int[] { android.R.attr.state_checked },
                 new int[] { android.R.attr.state_enabled },
@@ -473,7 +472,6 @@ public class DynamicResourceUtils {
      */
     public static @NonNull ColorStateList convertColorStateList(
             @NonNull ColorStateList colorStateList, @ColorInt int color) {
-
         int[][] states = new int[][] {
                 new int[] { android.R.attr.state_checked },
                 new int[] { android.R.attr.state_enabled },
@@ -737,10 +735,10 @@ public class DynamicResourceUtils {
      * @return The drawable resource array from its resource id.
      */
     public static @Nullable int[] convertToDrawableResArray(
-            @NonNull Context context, @ArrayRes int arrayRes) {
+            @Nullable Context context, @ArrayRes int arrayRes) {
         int[] resources = null;
 
-        if (arrayRes != ADS_DEFAULT_RESOURCE_ID) {
+        if (context != null && arrayRes != ADS_DEFAULT_RESOURCE_ID) {
             TypedArray drawableArray = context.getResources().obtainTypedArray(arrayRes);
             resources = new int[drawableArray.length()];
 
@@ -767,10 +765,10 @@ public class DynamicResourceUtils {
      * @return The drawable array from its resource id.
      */
     public static @Nullable Drawable[] convertToDrawableArray(
-            @NonNull Context context, @ArrayRes int arrayRes) {
+            @Nullable Context context, @ArrayRes int arrayRes) {
         Drawable[] drawables = null;
 
-        if (arrayRes != ADS_DEFAULT_RESOURCE_ID) {
+        if (context != null && arrayRes != ADS_DEFAULT_RESOURCE_ID) {
             TypedArray drawableArray = context.getResources().obtainTypedArray(arrayRes);
             drawables = new Drawable[drawableArray.length()];
 
@@ -798,10 +796,10 @@ public class DynamicResourceUtils {
      * @return The color array from its resource id.
      */
     public static @Nullable Integer[] convertToColorArray(
-            @NonNull Context context, @ArrayRes int arrayRes) {
+            @Nullable Context context, @ArrayRes int arrayRes) {
         Integer[] colors = null;
 
-        if (arrayRes != ADS_DEFAULT_RESOURCE_ID) {
+        if (context != null && arrayRes != ADS_DEFAULT_RESOURCE_ID) {
             TypedArray colorArray = context.getResources().obtainTypedArray(arrayRes);
             colors = new Integer[colorArray.length()];
 
