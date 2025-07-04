@@ -696,7 +696,11 @@ public class DynamicResourceUtils {
      *
      * @return The value resource id of the supplied attribute.
      */
-    public static int getResourceId(@NonNull Context context, @AttrRes int attrRes) {
+    public static int getResourceId(@Nullable Context context, @AttrRes int attrRes) {
+        if (context == null) {
+            return ADS_DEFAULT_RESOURCE_VALUE;
+        }
+
         TypedArray a = context.getTheme().obtainStyledAttributes(new int[] { attrRes });
 
         try {
@@ -715,8 +719,12 @@ public class DynamicResourceUtils {
      *
      * @return The value resource id of the supplied attribute.
      */
-    public static int getResourceIdFromAttributes(@NonNull Context context,
+    public static int getResourceIdFromAttributes(@Nullable Context context,
             @NonNull AttributeSet attrs, @AttrRes int attrRes) {
+        if (context == null) {
+            return ADS_DEFAULT_RESOURCE_VALUE;
+        }
+
         TypedArray a = context.obtainStyledAttributes(attrs, new int[] { attrRes });
 
         try {

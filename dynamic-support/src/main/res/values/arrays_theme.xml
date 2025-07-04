@@ -112,6 +112,18 @@
         <item>3</item>
     </string-array>
 
+    <!-- Theme icons for auto, day, night and custom. -->
+    <integer-array name="ads_theme_icons_all">
+        <!-- Auto -->
+        <item>@drawable/ads_ic_day_night</item>
+        <!-- Day -->
+        <item>@drawable/ads_ic_day</item>
+        <!-- Night -->
+        <item>@drawable/ads_ic_night</item>
+        <!-- Custom -->
+        <item>@drawable/ads_ic_style</item>
+    </integer-array>
+
     <!-- Theme entries for auto, day, night and custom. -->
     <string-array name="ads_theme_entries_all">
         <item>@string/ads_theme_entry_auto</item>
@@ -131,18 +143,6 @@
         <!-- Custom -->
         <item>-2</item>
     </string-array>
-
-    <!-- Theme icons for auto, day, night and custom. -->
-    <integer-array name="ads_theme_icons_all">
-        <!-- Auto -->
-        <item>@drawable/ads_ic_background_aware</item>
-        <!-- Day -->
-        <item>@drawable/ads_ic_day</item>
-        <!-- Night -->
-        <item>@drawable/ads_ic_night</item>
-        <!-- Custom -->
-        <item>@drawable/ads_ic_style</item>
-    </integer-array>
 
     <!-- Theme entries for auto, day, night, custom and open. -->
     <string-array name="ads_theme_entries_all_open">
@@ -179,6 +179,13 @@
         <item>@drawable/ads_ic_style</item>
         <!-- Open -->
         <item>@drawable/ads_ic_open</item>
+    </integer-array>
+
+    <!-- Night theme icons for auto. -->
+    <integer-array name="ads_theme_icons_night"
+        tools:ignore="InconsistentArrays">
+        <!-- Auto -->
+        <item>@drawable/ads_ic_auto_alt</item>
     </integer-array>
 
     <!-- Night theme entries for auto. -->

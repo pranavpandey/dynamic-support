@@ -62,6 +62,7 @@ public class DynamicNightThemePreference extends DynamicThemePreference {
     protected void onInflate() {
         super.onInflate();
 
+        setIconsResId(R.array.ads_theme_icons_night);
         setEntries(getResources().getStringArray(R.array.ads_theme_entries_night));
         setValues(getResources().getStringArray(R.array.ads_theme_values_night));
 
