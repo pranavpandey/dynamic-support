@@ -33,34 +33,34 @@
         android:orderInCategory="2"
         app:showAsAction="never" />
 
-    <group
-        android:checkableBehavior="single"
-        android:orderInCategory="3">
+        <group
+            android:checkableBehavior="single"
+            android:orderInCategory="3">
 
-        <item
-            android:id="@+id/menu_radio_one"
-            android:title="@string/widget_radio"
-            android:checked="true"
-            app:showAsAction="never" />
+            <item
+                android:id="@+id/menu_radio_one"
+                android:title="@string/widget_radio"
+                android:checked="true"
+                app:showAsAction="never" />
 
-        <item
-            android:id="@+id/menu_radio_two"
-            android:title="@string/widget_radio"
-            app:showAsAction="never" />
+            <item
+                android:id="@+id/menu_radio_two"
+                android:title="@string/widget_radio"
+                app:showAsAction="never" />
 
-    </group>
+        </group>
 
-    <group
-        android:id="@+id/menu_group_check"
-        android:checkableBehavior="all"
-        android:orderInCategory="4">
+        <group
+            android:id="@+id/menu_group_check"
+            android:checkableBehavior="all"
+            android:orderInCategory="4">
 
-        <item
-            android:id="@+id/menu_check"
-            android:title="@string/widget_checkbox"
-            android:checked="true"
-            app:showAsAction="never" />
+            <item
+                android:id="@+id/menu_check"
+                android:title="@string/widget_checkbox"
+                android:checked="true"
+                app:showAsAction="never" />
 
-    </group>
+        </group>
 
 </menu>
