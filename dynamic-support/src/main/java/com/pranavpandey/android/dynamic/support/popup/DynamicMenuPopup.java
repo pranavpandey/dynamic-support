@@ -210,7 +210,7 @@ public class DynamicMenuPopup extends DynamicSimplePopup {
             @Nullable CharSequence[] subtitles, int selectedPosition,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
         this(anchor, iconsRes, titles, subtitles, selectedPosition,
-                onItemClickListener, Type.LIST);
+                onItemClickListener, Type.DEFAULT);
     }
 
     /**
@@ -227,7 +227,7 @@ public class DynamicMenuPopup extends DynamicSimplePopup {
             @Nullable Drawable[] icons, @Nullable CharSequence[] titles,
             @Nullable CharSequence[] subtitles, int selectedPosition,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
-        this(anchor, icons, titles, subtitles, selectedPosition, onItemClickListener, Type.LIST);
+        this(anchor, icons, titles, subtitles, selectedPosition, onItemClickListener, Type.DEFAULT);
     }
 
     /**
@@ -312,7 +312,7 @@ public class DynamicMenuPopup extends DynamicSimplePopup {
             @Nullable int[] iconsRes, @Nullable CharSequence[] titles,
             @Nullable CharSequence[] subtitles, @Nullable boolean[] hasSubmenus,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
-        this(anchor, iconsRes, titles, subtitles, hasSubmenus, onItemClickListener, Type.LIST);
+        this(anchor, iconsRes, titles, subtitles, hasSubmenus, onItemClickListener, Type.DEFAULT);
     }
 
     /**
@@ -329,7 +329,7 @@ public class DynamicMenuPopup extends DynamicSimplePopup {
             @Nullable Drawable[] icons, @Nullable CharSequence[] titles,
             @Nullable CharSequence[] subtitles, @Nullable boolean[] hasSubmenus,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
-        this(anchor, icons, titles, subtitles, hasSubmenus, onItemClickListener, Type.LIST);
+        this(anchor, icons, titles, subtitles, hasSubmenus, onItemClickListener, Type.DEFAULT);
     }
 
     /**
@@ -388,7 +388,7 @@ public class DynamicMenuPopup extends DynamicSimplePopup {
             @Nullable boolean[] hasSubmenus, int selectedPosition,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
         this(anchor, iconsRes, null, titles, subtitles, hasSubmenus,
-                selectedPosition, onItemClickListener, Type.LIST);
+                selectedPosition, onItemClickListener, Type.DEFAULT);
     }
 
     /**
@@ -407,7 +407,7 @@ public class DynamicMenuPopup extends DynamicSimplePopup {
             @Nullable boolean[] hasSubmenus, int selectedPosition,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
         this(anchor, null, icons, titles, subtitles, hasSubmenus,
-                selectedPosition, onItemClickListener, Type.LIST);
+                selectedPosition, onItemClickListener, Type.DEFAULT);
     }
 
     /**
