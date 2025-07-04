@@ -39,7 +39,6 @@ import androidx.transition.TransitionManager;
 
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.util.product.DynamicProductFlavor;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
@@ -47,6 +46,7 @@ import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 import com.pranavpandey.android.dynamic.util.DynamicWindowUtils;
 import com.pranavpandey.android.dynamic.util.product.DynamicFlavor;
+import com.pranavpandey.android.dynamic.util.product.DynamicProductFlavor;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -77,6 +77,11 @@ public abstract class DynamicPopup implements DynamicProductFlavor {
          * Constant for grid view type.
          */
         int GRID = 1;
+
+        /**
+         * Constant for the default view type.
+         */
+        int DEFAULT = GRID;
     }
 
     /**
