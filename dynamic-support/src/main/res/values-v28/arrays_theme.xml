@@ -18,11 +18,25 @@
 <resources
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Night theme icons for auto, batter saver and system. -->
+    <integer-array name="ads_theme_icons_night"
+        tools:ignore="InconsistentArrays">
+        <!-- Auto -->
+        <item>@drawable/ads_ic_auto_alt</item>
+        <!-- Battery -->
+        <item>@drawable/ads_ic_battery_saver</item>
+        <!-- System -->
+        <item>@drawable/ads_ic_android</item>
+    </integer-array>
+
     <!-- Night theme entries for auto, batter saver and system. -->
     <string-array name="ads_theme_entries_night"
         tools:ignore="InconsistentArrays">
+        <!-- Auto -->
         <item>@string/ads_theme_entry_auto</item>
+        <!-- Battery -->
         <item>@string/ads_theme_entry_battery</item>
+        <!-- System -->
         <item>@string/ads_locale_system</item>
     </string-array>
 
