@@ -28,72 +28,99 @@
 
         <menu>
 
-            <item
-                android:id="@+id/ads_menu_theme_data_copy"
-                android:title="@string/ads_copy"
-                android:icon="@drawable/ads_ic_copy"
-                android:orderInCategory="1" />
+            <group
+                android:id="@+id/ads_menu_theme_group_export">
 
-            <item
-                android:id="@+id/ads_menu_theme_share"
-                android:title="@string/ads_nav_share"
-                android:icon="@drawable/ads_ic_share"
-                android:orderInCategory="2" />
+                <item
+                    android:id="@+id/ads_menu_theme_data_copy"
+                    android:title="@string/ads_copy"
+                    android:icon="@drawable/ads_ic_copy"
+                    android:orderInCategory="1" />
 
-            <item
-                android:id="@+id/ads_menu_theme_code"
-                android:title="@string/ads_theme_code"
-                android:icon="@drawable/ads_ic_qr_code"
-                android:orderInCategory="3" />
+                <item
+                    android:id="@+id/ads_menu_theme_share"
+                    android:title="@string/ads_nav_share"
+                    android:icon="@drawable/ads_ic_share"
+                    android:orderInCategory="2" />
 
-            <item
-                android:id="@+id/ads_menu_theme_import"
-                android:title="@string/ads_import"
-                android:icon="@drawable/ads_ic_text_color"
-                android:orderInCategory="4" />
+                <item
+                    android:id="@+id/ads_menu_theme_code"
+                    android:title="@string/ads_theme_code"
+                    android:icon="@drawable/ads_ic_qr_code"
+                    android:orderInCategory="3" />
 
-            <item
-                android:id="@+id/ads_menu_theme_capture"
-                android:title="@string/ads_theme_code_capture"
-                android:icon="@drawable/ads_ic_capture"
-                android:orderInCategory="5"
-                android:visible="false" />
+            </group>
 
-            <item
-                android:id="@+id/ads_menu_theme_file"
-                android:title="@string/ads_file"
-                android:icon="@drawable/ads_ic_file"
-                android:orderInCategory="6">
+            <group
+                android:id="@+id/ads_menu_theme_group_import">
 
-                <menu>
+                <item
+                    android:id="@+id/ads_menu_theme_import"
+                    android:title="@string/ads_import"
+                    android:icon="@drawable/ads_ic_text_color"
+                    android:orderInCategory="4" />
 
-                    <item
-                        android:id="@+id/ads_menu_theme_file_save"
-                        android:title="@string/ads_save"
-                        android:icon="@drawable/ads_ic_save"
-                        android:orderInCategory="1" />
+                <item
+                    android:id="@+id/ads_menu_theme_file"
+                    android:title="@string/ads_file"
+                    android:icon="@drawable/ads_ic_file"
+                    android:orderInCategory="6">
 
-                    <item
-                        android:id="@+id/ads_menu_theme_file_code"
-                        android:title="@string/ads_theme_code"
-                        android:icon="@drawable/ads_ic_qr_code"
-                        android:orderInCategory="2" />
+                    <menu>
 
-                    <item
-                        android:id="@+id/ads_menu_theme_file_share"
-                        android:title="@string/ads_nav_share"
-                        android:icon="@drawable/ads_ic_share"
-                        android:orderInCategory="3" />
+                        <item
+                            android:id="@+id/ads_menu_theme_file_save"
+                            android:title="@string/ads_save"
+                            android:icon="@drawable/ads_ic_save"
+                            android:orderInCategory="1" />
 
-                    <item
-                        android:id="@+id/ads_menu_theme_file_import"
-                        android:title="@string/ads_import"
-                        android:icon="@drawable/ads_ic_import"
-                        android:orderInCategory="4" />
+                        <item
+                            android:id="@+id/ads_menu_theme_file_code"
+                            android:title="@string/ads_theme_code"
+                            android:icon="@drawable/ads_ic_qr_code"
+                            android:orderInCategory="2" />
 
-                </menu>
+                        <item
+                            android:id="@+id/ads_menu_theme_file_share"
+                            android:title="@string/ads_nav_share"
+                            android:icon="@drawable/ads_ic_share"
+                            android:orderInCategory="3" />
 
-            </item>
+                        <item
+                            android:id="@+id/ads_menu_theme_file_import"
+                            android:title="@string/ads_import"
+                            android:icon="@drawable/ads_ic_import"
+                            android:orderInCategory="4" />
+
+                    </menu>
+
+                </item>
+
+            </group>
+
+            <group
+                android:id="@+id/ads_menu_theme_group_shortcuts"
+                android:orderInCategory="-1">
+
+                <item
+                    android:id="@+id/ads_menu_theme_shortcuts"
+                    android:title="@string/ads_shortcuts"
+                    android:icon="@drawable/ads_ic_shortcut">
+
+                    <menu>
+
+                        <item
+                            android:id="@+id/ads_menu_theme_capture"
+                            android:title="@string/ads_theme_code_capture"
+                            android:icon="@drawable/ads_ic_capture"
+                            android:orderInCategory="0"
+                            android:visible="false" />
+
+                    </menu>
+
+                </item>
+
+            </group>
 
         </menu>
 

@@ -126,6 +126,10 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
 
         menu.findItem(R.id.ads_menu_theme_capture).setVisible(
                 DynamicIntentUtils.isMatrixCaptureResult(requireContext()));
+        menu.findItem(R.id.ads_menu_theme_shortcuts).setVisible(
+                menu.findItem(R.id.ads_menu_theme_capture).isVisible());
+        menu.setGroupVisible(R.id.ads_menu_theme_group_shortcuts,
+                menu.findItem(R.id.ads_menu_theme_capture).isVisible());
     }
 
     @Override
