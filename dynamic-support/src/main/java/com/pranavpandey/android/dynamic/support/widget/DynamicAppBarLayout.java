@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.widget;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
@@ -256,14 +257,16 @@ public class DynamicAppBarLayout extends AppBarLayout
 
     @Override
     public void setBackgroundColor(@ColorInt int color) {
-        super.setBackgroundColor(Dynamic.withThemeOpacity(color));
+        super.setBackgroundColor(Dynamic.withThemeOpacity(color, Theme.Opacity.WIDGET));
     }
 
     @Override
     public void setColor() {
         if (mColor != Theme.Color.UNKNOWN) {
             mAppliedColor = mColor;
-            setBackgroundColor(mAppliedColor);
+            setBackgroundTintList(ColorStateList.valueOf(
+                    Dynamic.withThemeOpacity(mAppliedColor, Theme.Opacity.WIDGET)));
+            setLiftOnScrollColor(getBackgroundTintList());
         }
     }
 }
