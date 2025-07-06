@@ -39,10 +39,10 @@
     </string-array>
 
     <!-- Icons to cancel or confirm an action. -->
-    <integer-array name="ads_confirm_icons">
+    <array name="ads_confirm_icons">
         <item>@drawable/ads_ic_close</item>
         <item>@drawable/ads_ic_check</item>
-    </integer-array>
+    </array>
 
     <!-- Entries for the dynamic theme. -->
     <string-array name="ads_dynamic_theme_entries">
@@ -65,11 +65,11 @@
     </string-array>
 
     <!-- Icons for the dynamic color. -->
-    <integer-array name="ads_dynamic_color_icons">
+    <array name="ads_dynamic_color_icons">
         <item>@drawable/ads_ic_style</item>
         <item>@drawable/ads_ic_android</item>
         <item>@drawable/ads_ic_image</item>
-    </integer-array>
+    </array>
 
     <!-- Entries for the dynamic color. -->
     <string-array name="ads_dynamic_color_entries">
@@ -113,7 +113,7 @@
     </string-array>
 
     <!-- Theme icons for auto, day, night and custom. -->
-    <integer-array name="ads_theme_icons_all">
+    <array name="ads_theme_icons_all">
         <!-- Auto -->
         <item>@drawable/ads_ic_day_night</item>
         <!-- Day -->
@@ -122,7 +122,7 @@
         <item>@drawable/ads_ic_night</item>
         <!-- Custom -->
         <item>@drawable/ads_ic_style</item>
-    </integer-array>
+    </array>
 
     <!-- Theme entries for auto, day, night and custom. -->
     <string-array name="ads_theme_entries_all">
@@ -168,7 +168,7 @@
     </string-array>
 
     <!-- Theme icons for auto, day, night, custom and open. -->
-    <integer-array name="ads_theme_icons_all_open">
+    <array name="ads_theme_icons_all_open">
         <!-- Auto -->
         <item>@drawable/ads_ic_background_aware</item>
         <!-- Day -->
@@ -179,14 +179,14 @@
         <item>@drawable/ads_ic_style</item>
         <!-- Open -->
         <item>@drawable/ads_ic_open</item>
-    </integer-array>
+    </array>
 
     <!-- Night theme icons for auto. -->
-    <integer-array name="ads_theme_icons_night"
+    <array name="ads_theme_icons_night"
         tools:ignore="InconsistentArrays">
         <!-- Auto -->
         <item>@drawable/ads_ic_auto_alt</item>
-    </integer-array>
+    </array>
 
     <!-- Night theme entries for auto. -->
     <string-array name="ads_theme_entries_night"
@@ -344,14 +344,14 @@
     </string-array>
 
     <!-- Theme icons for the share menu. -->
-    <integer-array name="ads_theme_share_icons">
+    <array name="ads_theme_share_icons">
         <item>@drawable/ads_ic_style</item>
         <item>@drawable/ads_ic_text</item>
         <item>@drawable/ads_ic_file</item>
-    </integer-array>
+    </array>
 
     <!-- App theme background colors. -->
-    <integer-array name="ads_app_theme_colors">
+    <array name="ads_app_theme_colors">
         <!-- Auto -->
         <item>-3</item>
         <item>@color/ads_window_background_red_light</item>
@@ -377,10 +377,10 @@
         <item>@color/ads_window_background_blue_gray</item>
         <item>@color/ads_window_background_black_light</item>
         <item>@color/ads_window_background_black</item>
-    </integer-array>
+    </array>
 
     <!-- App theme stroke colors. -->
-    <integer-array name="ads_app_theme_stroke_colors">
+    <array name="ads_app_theme_stroke_colors">
         <!-- Auto -->
         <item>-3</item>
         <item>@color/ads_window_background_red</item>
@@ -406,10 +406,10 @@
         <item>@color/ads_window_background_brown_light</item>
         <item>@color/ads_window_background_blue_gray_light</item>
         <item>@color/ads_window_background_white_light</item>
-    </integer-array>
+    </array>
 
     <!-- App theme surface colors. -->
-    <integer-array name="ads_app_theme_surface_colors">
+    <array name="ads_app_theme_surface_colors">
         <!-- Auto -->
         <item>-3</item>
         <item>@color/ads_window_background_red_light_surface</item>
@@ -435,10 +435,10 @@
         <item>@color/ads_window_background_blue_gray_surface</item>
         <item>@color/ads_window_background_black_light_surface</item>
         <item>@color/ads_window_background_black_surface</item>
-    </integer-array>
+    </array>
 
     <!-- App theme day colors. -->
-    <integer-array name="ads_app_theme_day_colors">
+    <array name="ads_app_theme_day_colors">
         <!-- Auto -->
         <item>-3</item>
         <item>@color/ads_window_background_red_light</item>
@@ -462,10 +462,10 @@
         <item>@color/ads_window_background_blue_gray_light</item>
         <item>@color/ads_window_background_white_light</item>
         <item>@color/ads_window_background_white</item>
-    </integer-array>
+    </array>
 
     <!-- App theme night colors. -->
-    <integer-array name="ads_app_theme_night_colors">
+    <array name="ads_app_theme_night_colors">
         <!-- Auto -->
         <item>-3</item>
         <item>@color/ads_window_background_red</item>
@@ -489,10 +489,10 @@
         <item>@color/ads_window_background_blue_gray</item>
         <item>@color/ads_window_background_black_light</item>
         <item>@color/ads_window_background_black</item>
-    </integer-array>
+    </array>
 
     <!-- App theme colors. -->
-    <integer-array name="ads_app_colors">
+    <array name="ads_app_colors">
         <!-- Auto -->
         <item>-3</item>
         <item>@color/ads_color_red</item>
@@ -516,10 +516,10 @@
         <item>@color/ads_color_blue_gray</item>
         <item>@color/ads_color_white</item>
         <item>@color/ads_color_black</item>
-    </integer-array>
+    </array>
 
     <!-- App theme dark colors. -->
-    <integer-array name="ads_app_colors_dark">
+    <array name="ads_app_colors_dark">
         <!-- Auto -->
         <item>-3</item>
         <item>@color/ads_color_red_dark</item>
@@ -543,10 +543,10 @@
         <item>@color/ads_color_blue_gray_dark</item>
         <item>@color/ads_color_white_dark</item>
         <item>@color/ads_color_black_dark</item>
-    </integer-array>
+    </array>
 
     <!-- App theme text colors. -->
-    <integer-array name="ads_app_colors_text">
+    <array name="ads_app_colors_text">
         <!-- Auto -->
         <item>-3</item>
         <item>@color/ads_color_red_text</item>
@@ -570,10 +570,10 @@
         <item>@color/ads_color_blue_gray_text</item>
         <item>@color/ads_color_white_text</item>
         <item>@color/ads_color_black_text</item>
-    </integer-array>
+    </array>
 
     <!-- App theme dark text colors. -->
-    <integer-array name="ads_app_colors_text_dark">
+    <array name="ads_app_colors_text_dark">
         <!-- Auto -->
         <item>-3</item>
         <item>@color/ads_color_red_text_dark</item>
@@ -597,6 +597,6 @@
         <item>@color/ads_color_blue_gray_text_dark</item>
         <item>@color/ads_color_white_text_dark</item>
         <item>@color/ads_color_black_text_dark</item>
-    </integer-array>
+    </array>
 
 </resources>

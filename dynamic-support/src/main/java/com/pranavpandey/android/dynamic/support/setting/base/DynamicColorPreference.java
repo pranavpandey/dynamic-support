@@ -389,8 +389,7 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      */
     public @NonNull Integer[] getColors() {
         if (mColorsResId != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
-            mColors = DynamicResourceUtils
-                    .convertToColorArray(getContext(), mColorsResId);
+            mColors = DynamicResourceUtils.convertToColorArray(getContext(), mColorsResId);
         }
 
         if (mColors == null) {
@@ -445,8 +444,8 @@ public class DynamicColorPreference extends DynamicSimplePreference {
      */
     public @NonNull Integer[] getAltPopupColors() {
         if (mAltPopupColorsResId != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID) {
-            mAltPopupColors = DynamicResourceUtils
-                    .convertToColorArray(getContext(), mAltPopupColorsResId);
+            mAltPopupColors = DynamicResourceUtils.convertToColorArray(
+                    getContext(), mAltPopupColorsResId);
         }
 
         if (mAltPopupColors == null) {
