@@ -61,6 +61,11 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
     private Drawable[] mIcons;
 
     /**
+     * Array of booleans to check whether tint the icons.
+     */
+    private boolean[] mTints;
+
+    /**
      * Array of titles used by this adapter.
      */
     private CharSequence[] mTitles;
@@ -284,8 +289,28 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
             @Nullable CharSequence[] titles, @Nullable CharSequence[] subtitles,
             @Nullable boolean[] hasSubmenus, int selectedPosition,
             @Nullable AdapterView.OnItemClickListener onItemClickListener) {
+        this(iconsRes, icons, null, titles, subtitles, hasSubmenus,
+                selectedPosition, onItemClickListener);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param iconsRes The icons for this adapter.
+     * @param icons The icons for this adapter.
+     * @param titles The titles for this adapter.
+     * @param subtitles The subtitles for this adapter.
+     * @param hasSubmenus The submenu states for this adapter.
+     * @param selectedPosition The selected menu position for this adapter.
+     * @param onItemClickListener The listener to get the callback when an item is clicked.
+     */
+    public DynamicSpinnerChoiceAdapter(@Nullable int[] iconsRes, @Nullable Drawable[] icons,
+            @Nullable boolean[] tints, @Nullable CharSequence[] titles,
+            @Nullable CharSequence[] subtitles, @Nullable boolean[] hasSubmenus,
+            int selectedPosition, @Nullable AdapterView.OnItemClickListener onItemClickListener) {
         this.mIconsRes = iconsRes;
         this.mIcons = icons;
+        this.mTints = tints;
         this.mTitles = titles;
         this.mSubtitles = subtitles;
         this.mHasSubmenus = hasSubmenus;
@@ -325,6 +350,13 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
         Dynamic.set(holder.getIcon(), getIcon(parent.getContext(), position));
         Dynamic.set(holder.getTitle(), getTitles() != null ? getTitles()[position] : null);
         Dynamic.set(holder.getSubtitle(), getSubtitles() != null ? getSubtitles()[position] : null);
+
+        if (getTints() != null) {
+            Dynamic.setColorType(holder.getIcon(), getTints()[position]
+                    ? Defaults.ADS_COLOR_TYPE_ICON_FLOATING : Theme.ColorType.NONE);
+        } else {
+            Dynamic.setColorType(holder.getIcon(), Defaults.ADS_COLOR_TYPE_ICON_FLOATING);
+        }
 
         if (getHasSubmenus() != null) {
             Dynamic.setColorType(holder.getSelector(),
@@ -399,6 +431,26 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
     public void setIcons(@Nullable Drawable[] icons) {
         this.mIconsRes = null;
         this.mIcons = icons;
+
+        notifyDataSetChanged();
+    }
+
+    /**
+     * Get the array of tints used by this adapter.
+     *
+     * @return The array of tints used by this adapter.
+     */
+    public @Nullable boolean[] getTints() {
+        return mTints;
+    }
+
+    /**
+     * Sets the array of tints for this adapter.
+     *
+     * @param tints The array of tint booleans to be set.
+     */
+    public void setIcons(@Nullable boolean[] tints) {
+        this.mTints = tints;
 
         notifyDataSetChanged();
     }

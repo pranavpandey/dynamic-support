@@ -272,6 +272,8 @@
         <attr name="ads_value" />
         <!-- Entry icons that will be used by this preference. -->
         <attr name="ads_icons" />
+        <!-- Entry icon tint booleans that will be used by this preference. -->
+        <attr name="ads_tints" format="reference" />
         <!-- Preference entries that will be used by this preference. -->
         <attr name="ads_entries" format="reference" />
         <!-- Preference values that will be used by this preference. -->
