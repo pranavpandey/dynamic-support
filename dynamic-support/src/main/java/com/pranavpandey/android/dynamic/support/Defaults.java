@@ -201,6 +201,11 @@ public class Defaults {
     public static final int ADS_COLOR_TYPE_ICON = Theme.ColorType.TINT_BACKGROUND;
 
     /**
+     * Default icon color type used by the floating image widgets.
+     */
+    public static final int ADS_COLOR_TYPE_ICON_FLOATING = Theme.ColorType.TINT_SURFACE;
+
+    /**
      * Default color type used by the tooltip background.
      */
     public static final int ADS_COLOR_TYPE_TOOLTIP_BACKGROUND = Theme.ColorType.ACCENT;

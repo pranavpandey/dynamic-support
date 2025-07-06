@@ -62,6 +62,11 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
     private Drawable[] mIcons;
 
     /**
+     * Array of booleans to check whether tint the icons.
+     */
+    private boolean[] mTints;
+
+    /**
      * Array to store list entries.
      */
     private CharSequence[] mEntries;
@@ -100,6 +105,9 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
             mIconsResId = a.getResourceId(
                     R.styleable.DynamicSpinnerPreference_ads_icons,
                     DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID);
+            mTints = DynamicResourceUtils.convertToBooleanArray(getContext(),
+                    a.getResourceId(R.styleable.DynamicSpinnerPreference_ads_tints,
+                            DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID));
             mEntries = a.getTextArray(
                     R.styleable.DynamicSpinnerPreference_ads_entries);
             mValues = a.getTextArray(
@@ -159,8 +167,8 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
             return;
         }
 
-        DynamicMenuPopup popup = new DynamicMenuPopup(anchor, getIcons(), getEntries(),
-                new AdapterView.OnItemClickListener() {
+        DynamicMenuPopup popup = new DynamicMenuPopup(anchor,
+                getIcons(), getTints(), getEntries(), new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (!getValues()[position].toString().equals(getPreferenceValue())) {
@@ -218,6 +226,26 @@ public class DynamicSpinnerPreference extends DynamicSimplePreference {
      */
     public void setIcons(@Nullable Drawable[] icons) {
         this.mIcons = icons;
+
+        updateValueString(true);
+    }
+
+    /**
+     * Get the icon drawable tints for this preference.
+     *
+     * @return The icon drawable tints for this preference.
+     */
+    public @Nullable boolean[] getTints() {
+        return mTints;
+    }
+
+    /**
+     * Sets the icon drawable tints for this preference.
+     *
+     * @param tints The icon drawable tints to be used.
+     */
+    public void setTints(@Nullable boolean[] tints) {
+        this.mTints = tints;
 
         updateValueString(true);
     }

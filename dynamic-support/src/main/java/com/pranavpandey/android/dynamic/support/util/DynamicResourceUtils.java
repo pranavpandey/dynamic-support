@@ -73,6 +73,11 @@ public class DynamicResourceUtils {
     public static final int ADS_DEFAULT_RESOURCE_VALUE = 0;
 
     /**
+     * Resource value constant for the default boolean value.
+     */
+    public static final boolean ADS_DEFAULT_BOOLEAN_VALUE = false;
+
+    /**
      * Extract the supplied attribute value resource id from the theme.
      *
      * @param context The context to be used.
@@ -735,7 +740,7 @@ public class DynamicResourceUtils {
     }
 
     /**
-     * Get drawable resource array from its resource id.
+     * Get the drawable resource array from its resource id.
      *
      * @param context The context to be used.
      * @param arrayRes The resource id of the drawable array.
@@ -765,7 +770,37 @@ public class DynamicResourceUtils {
     }
 
     /**
-     * Get drawable array from ts resource id.
+     * Get the boolean array from its resource id.
+     *
+     * @param context The context to be used.
+     * @param arrayRes The resource id of the boolean array.
+     *
+     * @return The boolean array from its resource id.
+     */
+    public static @Nullable boolean[] convertToBooleanArray(
+            @Nullable Context context, @ArrayRes int arrayRes) {
+        boolean[] booleans = null;
+
+        if (context != null && arrayRes != ADS_DEFAULT_RESOURCE_ID) {
+            TypedArray booleanArray = context.getResources().obtainTypedArray(arrayRes);
+            booleans = new boolean[booleanArray.length()];
+
+            for (int i = 0; i < booleanArray.length(); i++) {
+                try {
+                    booleans[i] = booleanArray.getBoolean(i, ADS_DEFAULT_BOOLEAN_VALUE);
+                } catch (Exception e) {
+                    booleans[i] = ADS_DEFAULT_BOOLEAN_VALUE;
+                }
+            }
+
+            booleanArray.recycle();
+        }
+
+        return booleans;
+    }
+
+    /**
+     * Get the drawable array from ts resource id.
      *
      * @param context The context to be used.
      * @param arrayRes The resource id of the drawable array.
@@ -782,8 +817,8 @@ public class DynamicResourceUtils {
 
             for (int i = 0; i < drawableArray.length(); i++) {
                 try {
-                    drawables[i] = getDrawable(context,
-                            drawableArray.getResourceId(i, ADS_DEFAULT_RESOURCE_VALUE));
+                    drawables[i] = getDrawable(context, drawableArray.getResourceId(
+                            i, ADS_DEFAULT_RESOURCE_VALUE));
                 } catch (Exception e) {
                     drawables[i] = null;
                 }
@@ -796,7 +831,7 @@ public class DynamicResourceUtils {
     }
 
     /**
-     * Get color array from its resource id.
+     * Get the color array from its resource id.
      *
      * @param context The context to be used.
      * @param arrayRes The resource id of the color array.
