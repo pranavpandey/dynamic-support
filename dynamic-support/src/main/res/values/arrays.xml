@@ -65,96 +65,96 @@
     </string-array>
 
     <!-- Integer array with with drawables for author links. -->
-    <integer-array name="ads_about_author_links_icons">
+    <array name="ads_about_author_links_icons">
         <item>@drawable/ads_ic_public</item>
         <item>@drawable/ads_ic_open_alt</item>
-    </integer-array>
+    </array>
 
     <!-- Integer array with with colors for author links. -->
-    <integer-array name="ads_about_author_links_colors">
+    <array name="ads_about_author_links_colors">
         <item>@color/ads_social_website</item>
         <item>@color/ads_link_apps</item>
-    </integer-array>
+    </array>
 
     <!-- Drawables array with license icon. -->
-    <integer-array name="ads_license_links_icons_license">
+    <array name="ads_license_links_icons_license">
         <item>@drawable/ads_ic_license</item>
-    </integer-array>
+    </array>
 
     <!-- Drawables array with license and website icons. -->
-    <integer-array name="ads_license_links_icons_website">
+    <array name="ads_license_links_icons_website">
         <item>@drawable/ads_ic_license</item>
         <item>@drawable/ads_ic_public</item>
-    </integer-array>
+    </array>
 
     <!-- Drawables array with license and github icons for dynamic support. -->
-    <integer-array name="ads_license_links_icons_ads">
+    <array name="ads_license_links_icons_ads">
         <item>@drawable/ads_ic_license</item>
         <item>@drawable/ads_ic_sources</item>
         <item>@drawable/ads_ic_sources</item>
-    </integer-array>
+    </array>
 
     <!-- Drawables array with license and github icons for dynamic support modules. -->
-    <integer-array name="ads_license_links_icons_ads_modules">
+    <array name="ads_license_links_icons_ads_modules">
         <item>@drawable/ads_ic_license</item>
         <item>@drawable/ads_ic_sources</item>
         <item>@drawable/ads_ic_sources</item>
         <item>@drawable/ads_ic_sources</item>
-    </integer-array>
+    </array>
 
     <!-- Drawables array for license, gson, plaid and zxing. -->
-    <integer-array name="ads_license_links_icons_google">
+    <array name="ads_license_links_icons_google">
         <item>@drawable/ads_ic_license</item>
         <item>@drawable/ads_ic_sources</item>
         <item>@drawable/ads_ic_sources</item>
         <item>@drawable/ads_ic_sources</item>
-    </integer-array>
+    </array>
 
     <!-- Drawables array with license and github icons. -->
-    <integer-array name="ads_license_links_icons">
+    <array name="ads_license_links_icons">
         <item>@drawable/ads_ic_license</item>
         <item>@drawable/ads_ic_sources</item>
-    </integer-array>
+    </array>
 
     <!-- Colors array with license color. -->
-    <integer-array name="ads_license_links_colors_license">
+    <array name="ads_license_links_colors_license">
         <item>@color/ads_link_license</item>
-    </integer-array>
+    </array>
 
     <!-- Colors array with license and website colors. -->
-    <integer-array name="ads_license_links_colors_website">
+    <array name="ads_license_links_colors_website">
         <item>@color/ads_link_license</item>
         <item>@color/ads_link_website</item>
-    </integer-array>
+    </array>
 
     <!-- Colors array with license and github colors. -->
-    <integer-array name="ads_license_links_colors">
+    <array name="ads_license_links_colors">
         <item>@color/ads_link_license</item>
         <item>@color/ads_social_github</item>
-    </integer-array>
+    </array>
 
     <!-- Colors array for license, gson, plaid and zxing. -->
-    <integer-array name="ads_license_links_colors_google">
+    <array name="ads_license_links_colors_google">
         <item>@color/ads_link_license</item>
         <item>@color/ads_social_github</item>
         <item>@color/ads_social_github</item>
         <item>@color/ads_social_github</item>
-    </integer-array>
+    </array>
 
     <!-- Colors array with license and github colors for dynamic support. -->
-    <integer-array name="ads_license_links_colors_ads">
+    <array name="ads_license_links_colors_ads">
         <item>@color/ads_link_license</item>
         <item>@color/ads_social_github</item>
         <item>@color/ads_social_github</item>
-    </integer-array>
+    </array>
 
     <!-- Colors array with license and github colors for dynamic support modules. -->
-    <integer-array name="ads_license_links_colors_ads_modules">
+    <array name="ads_license_links_colors_ads_modules">
         <item>@color/ads_link_license</item>
         <item>@color/ads_social_github</item>
         <item>@color/ads_social_github</item>
         <item>@color/ads_social_github</item>
-    </integer-array>
+    </array>
 
     <!-- String array with Apache 2.0 license titles. -->
     <string-array name="ads_license_links_apache_only">
