@@ -257,6 +257,8 @@
 
     <!-- The card style. -->
     <attr name="ads_widgetCard" format="reference" />
+    <!-- The background card style. -->
+    <attr name="ads_widgetCardBackground" format="reference" />
     <!-- The clickable card style. -->
     <attr name="ads_widgetCardClickable" format="reference" />
     <!-- The empty card style. -->
@@ -265,6 +267,8 @@
     <attr name="ads_widgetCardEmptyClickable" format="reference" />
     <!-- The card margin style. -->
     <attr name="ads_widgetCardMargin" format="reference" />
+    <!-- The background card margin style. -->
+    <attr name="ads_widgetCardMarginBackground" format="reference" />
     <!-- The clickable card margin style. -->
     <attr name="ads_widgetCardMarginClickable" format="reference" />
     <!-- The empty card margin style. -->

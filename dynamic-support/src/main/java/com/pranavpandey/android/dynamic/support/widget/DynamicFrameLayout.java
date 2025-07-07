@@ -193,13 +193,13 @@ public class DynamicFrameLayout extends FrameLayout implements DynamicWidget, Dy
     }
 
     @Override
-    public @ColorInt int getColor(boolean resolve) {
-        return resolve ? mAppliedColor : mColor;
+    public @ColorInt int getColor() {
+        return getColor(true);
     }
 
     @Override
-    public @ColorInt int getColor() {
-        return getColor(true);
+    public @ColorInt int getColor(boolean resolve) {
+        return resolve ? mAppliedColor : mColor;
     }
 
     @Override

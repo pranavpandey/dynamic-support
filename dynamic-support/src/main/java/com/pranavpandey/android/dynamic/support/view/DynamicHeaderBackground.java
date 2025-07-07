@@ -24,38 +24,36 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
- * A {@link DynamicItemView} to provide the header view with an icon, title and subtitle.
- * <p>It will be used at various locations like for settings category header, popup title, etc.
+ * A {@link DynamicHeader} to provide the background header.
  */
-public class DynamicHeader extends DynamicItemView {
+public class DynamicHeaderBackground extends DynamicHeader {
 
-    public DynamicHeader(@NonNull Context context) {
+    public DynamicHeaderBackground(@NonNull Context context) {
         super(context);
     }
 
-    public DynamicHeader(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicHeaderBackground(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicHeader(@NonNull Context context,
+    public DynamicHeaderBackground(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
     protected @LayoutRes int getLayoutRes() {
-        return R.layout.ads_header;
+        return R.layout.ads_header_background;
     }
 
     @Override
-    public void setColor() {
-        super.setColor();
+    protected void onInflate() {
+        super.onInflate();
 
-        Dynamic.setColorTypeOrColor(getTitleView(), getColorType(), getColor());
+        setContrastWithColorType(Theme.ColorType.BACKGROUND);
     }
 }

@@ -24,38 +24,29 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
 
 /**
- * A {@link DynamicItemView} to provide the header view with an icon, title and subtitle.
- * <p>It will be used at various locations like for settings category header, popup title, etc.
+ * A {@link DynamicItemViewBackground} to provide the background header view with card margins.
+ * <p>It will be used at various locations to show the banners.
  */
-public class DynamicHeader extends DynamicItemView {
+public class DynamicItemViewMarginBackground extends DynamicItemViewBackground {
 
-    public DynamicHeader(@NonNull Context context) {
+    public DynamicItemViewMarginBackground(@NonNull Context context) {
         super(context);
     }
 
-    public DynamicHeader(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicItemViewMarginBackground(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicHeader(@NonNull Context context,
+    public DynamicItemViewMarginBackground(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
     protected @LayoutRes int getLayoutRes() {
-        return R.layout.ads_header;
-    }
-
-    @Override
-    public void setColor() {
-        super.setColor();
-
-        Dynamic.setColorTypeOrColor(getTitleView(), getColorType(), getColor());
+        return R.layout.ads_item_view_margin_background;
     }
 }
