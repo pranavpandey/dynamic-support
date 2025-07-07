@@ -19,6 +19,7 @@ package com.pranavpandey.android.dynamic.support.widget;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
@@ -34,6 +35,8 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
@@ -333,21 +336,29 @@ public class DynamicNavigationMenuItemView extends NavigationMenuItemView
 
         if (getBackground() != null) {
             getBackground().clearColorFilter();
+        }
 
-            if (isTintBackground()) {
-                Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
-            }
+        if (getDividerDrawable() != null) {
+            getDividerDrawable().clearColorFilter();
         }
 
         if (getForeground() != null) {
             getForeground().clearColorFilter();
+        }
 
-            if (isTintBackground()) {
-                if (DynamicSdkUtils.is21()) {
-                    Dynamic.tintForeground(this, mContrastWithColor, isStyleBorderless());
-                } else {
-                    setForeground(null);
-                }
+        if (isTintBackground()) {
+            if (!(getBackground() instanceof ColorDrawable)) {
+                Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
+            }
+
+            setDividerDrawable(DynamicDrawableUtils.colorizeDrawable(getDividerDrawable(),
+                    DynamicColorUtils.getContrastColor(DynamicTheme.getInstance().resolveColorType(
+                            Defaults.ADS_COLOR_TYPE_DIVIDER), mContrastWithColor)));
+
+            if (DynamicSdkUtils.is21()) {
+                Dynamic.tintForeground(this, mContrastWithColor, isStyleBorderless());
+            } else {
+                setForeground(null);
             }
         }
     }

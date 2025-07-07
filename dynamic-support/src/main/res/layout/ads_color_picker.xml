@@ -59,7 +59,8 @@
                     android:visibility="gone">
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
-                        style="?attr/ads_widgetDividerLarge" />
+                        style="?attr/ads_widgetDividerLarge"
+                        app:adt_dynamicCornerSize="true" />
 
                     <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
                         style="?attr/ads_widgetScrollerNestedGridView"

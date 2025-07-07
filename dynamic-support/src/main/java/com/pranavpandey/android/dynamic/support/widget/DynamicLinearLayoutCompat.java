@@ -35,6 +35,8 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
+import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
+import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
 
 /**
  * A {@link LinearLayoutCompat} to apply {@link DynamicTheme} according to the
@@ -342,10 +344,20 @@ public class DynamicLinearLayoutCompat extends LinearLayoutCompat
 
         if (getBackground() != null) {
             getBackground().clearColorFilter();
+        }
 
-            if (isTintBackground() && !(getBackground() instanceof ColorDrawable)) {
+        if (getDividerDrawable() != null) {
+            getDividerDrawable().clearColorFilter();
+        }
+
+        if (isTintBackground()) {
+            if (!(getBackground() instanceof ColorDrawable)) {
                 Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
             }
+
+            setDividerDrawable(DynamicDrawableUtils.colorizeDrawable(getDividerDrawable(),
+                    DynamicColorUtils.getContrastColor(DynamicTheme.getInstance().resolveColorType(
+                            Defaults.ADS_COLOR_TYPE_DIVIDER), mContrastWithColor)));
         }
     }
 }

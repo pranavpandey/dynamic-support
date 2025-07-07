@@ -1036,9 +1036,11 @@
 
     <style name="Widget.Dynamic3.Content.Row.Vertical">
         <item name="android:orientation">vertical</item>
+        <item name="android:divider">@drawable/ads_divider_horizontal_large</item>
     </style>
     <style name="Widget.Dynamic3.Content.Row.Vertical.Center">
         <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:divider">@drawable/ads_divider_horizontal_large</item>
     </style>
     <style name="Widget.Dynamic3.Content.Row.Vertical.Weight"
         parent="Widget.Dynamic3.Content.Row.Vertical.Center">
