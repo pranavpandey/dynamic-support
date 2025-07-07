@@ -44,6 +44,14 @@
         <item>@drawable/ads_ic_check</item>
     </array>
 
+    <!-- Icons for the dynamic theme. -->
+    <array name="ads_dynamic_theme_icons">
+        <item>@drawable/ads_ic_auto_alt</item>
+        <item>@drawable/ads_ic_style</item>
+        <item>@drawable/ads_ic_day_night</item>
+        <item>@drawable/ads_ic_block</item>
+    </array>
+
     <!-- Entries for the dynamic theme. -->
     <string-array name="ads_dynamic_theme_entries">
         <item>@string/ads_theme_entry_auto</item>
