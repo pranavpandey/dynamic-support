@@ -38,16 +38,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <com.pranavpandey.android.dynamic.support.view.DynamicHeaderBackground
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ads_title="@string/ads_general" />
+
             <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
                 style="?attr/ads_widgetCard">
 
                 <LinearLayout
                     style="?attr/ads_widgetContentRowVertical">
-
-                    <com.pranavpandey.android.dynamic.support.view.DynamicHeader
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:ads_title="@string/ads_general" />
 
                     <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
                         android:id="@+id/ads_pref_theme_color_background"
@@ -178,17 +178,18 @@
 
             </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
+            <com.pranavpandey.android.dynamic.support.view.DynamicHeaderBackground
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:ads_title="@string/ads_text" />
+
             <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
                 style="?attr/ads_widgetCard"
                 android:visibility="gone">
 
                 <LinearLayout
                     style="?attr/ads_widgetContentRowVertical">
-
-                    <com.pranavpandey.android.dynamic.support.view.DynamicHeader
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:ads_title="@string/ads_text" />
 
                     <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
                         android:id="@+id/ads_pref_theme_text_primary"
@@ -224,16 +225,16 @@
 
             </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 
+            <com.pranavpandey.android.dynamic.support.view.DynamicHeaderBackground
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ads_title="@string/ads_advanced" />
+
             <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
                 style="?attr/ads_widgetCard">
 
                 <LinearLayout
                     style="?attr/ads_widgetContentRowVertical">
-
-                    <com.pranavpandey.android.dynamic.support.view.DynamicHeader
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:ads_title="@string/ads_advanced" />
 
                     <com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference
                         android:id="@+id/ads_pref_theme_style"

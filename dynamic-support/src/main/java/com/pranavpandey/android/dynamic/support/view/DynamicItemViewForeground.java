@@ -18,6 +18,7 @@ package com.pranavpandey.android.dynamic.support.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.ViewGroup;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.LayoutRes;
@@ -27,35 +28,43 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
- * A {@link DynamicItemView} to provide the header view with an icon, title and subtitle.
- * <p>It will be used at various locations like for settings category header, popup title, etc.
+ * A {@link DynamicItemView} to provide the foreground header view with an icon,
+ * title and subtitle.
+ * <p>It will be used at various locations to show the banners.
  */
-public class DynamicHeader extends DynamicItemView {
+public class DynamicItemViewForeground extends DynamicItemView {
 
-    public DynamicHeader(@NonNull Context context) {
+    public DynamicItemViewForeground(@NonNull Context context) {
         super(context);
     }
 
-    public DynamicHeader(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicItemViewForeground(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicHeader(@NonNull Context context,
+    public DynamicItemViewForeground(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
     protected @LayoutRes int getLayoutRes() {
-        return R.layout.ads_header;
+        return R.layout.ads_item_view_foreground;
     }
 
     @Override
     public void setColor() {
         super.setColor();
 
-        Dynamic.setColorTypeOrColor(getTitleView(), getColorType(), getColor());
+        final ViewGroup cardView = findViewById(R.id.ads_item_view_card);
+        Dynamic.setColorTypeOrColor(cardView, getContrastWithColorType(), getContrastWithColor());
+        Dynamic.setBackgroundAware(findViewById(R.id.ads_item_view_card), getBackgroundAware());
+
+        if (getContrastWithColor() != Dynamic.getColor(cardView, getContrastWithColor())) {
+            setContrastWithColor(Dynamic.getColor(cardView, getContrastWithColor()));
+        }
     }
 }

@@ -377,14 +377,14 @@
     </style>
 
     <style name="Widget.Dynamic3.NavigationRailView" parent="Widget.Material3.NavigationRailView">
-        <item name="elevation">0dp</item>
+        <item name="cardElevation">0dp</item>
         <item name="menuGravity">center</item>
         <item name="labelVisibilityMode">unlabeled</item>
     </style>
 
     <style name="Widget.Dynamic3.BottomNavigationView"
         parent="Widget.Material3.BottomNavigationView">
-        <item name="elevation">0dp</item>
+        <item name="cardElevation">0dp</item>
         <item name="labelVisibilityMode">selected</item>
     </style>
 
@@ -510,6 +510,12 @@
         <item name="cardElevation">?attr/adt_cardElevation</item>
         <item name="strokeWidth">?attr/adt_strokeWidth</item>
     </style>
+    <style name="Widget.Dynamic3.Card.Background">
+        <item name="android:background">@null</item>
+        <item name="cardBackgroundColor">@android:color/transparent</item>
+        <item name="cardElevation">0dp</item>
+        <item name="adt_colorType">none</item>
+    </style>
     <style name="Widget.Dynamic3.Card.Clickable">
         <item name="android:foreground">?attr/selectableItemBackground</item>
     </style>
@@ -529,6 +535,10 @@
         <item name="android:layout_marginRight">@dimen/ads_card_view_margin_layout</item>
         <item name="android:layout_marginEnd">@dimen/ads_card_view_margin_layout</item>
         <item name="android:layout_marginBottom">@dimen/ads_card_view_margin_layout</item>
+    </style>
+    <style name="Widget.Dynamic3.Card.Margin.Background">
+        <item name="cardElevation">0dp</item>
+        <item name="adt_colorType">background</item>
     </style>
     <style name="Widget.Dynamic3.Card.Margin.Clickable">
         <item name="android:foreground">?attr/selectableItemBackground</item>

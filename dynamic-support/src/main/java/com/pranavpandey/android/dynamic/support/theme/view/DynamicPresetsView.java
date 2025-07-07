@@ -107,11 +107,6 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
     private static final int ADS_LOADER_PRESETS = 1;
 
     /**
-     * View group to show the header.
-     */
-    private ViewGroup mHeaderCard;
-
-    /**
      * View to show the info.
      */
     private DynamicItemView mHeader;
@@ -154,7 +149,6 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
         super.initialize();
 
         mHeader = findViewById(R.id.ads_theme_presets_header);
-        mHeaderCard = findViewById(R.id.ads_theme_presets_header_card);
 
         getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {

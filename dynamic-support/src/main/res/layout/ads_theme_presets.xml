@@ -21,21 +21,16 @@
     style="?attr/ads_widgetContentRowVertical"
     android:id="@+id/ads_theme_presets_root">
 
-    <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
-        android:id="@+id/ads_theme_presets_header_card"
-        style="?attr/ads_widgetCardMargin">
-
-        <com.pranavpandey.android.dynamic.support.view.base.DynamicItemView
-            android:id="@+id/ads_theme_presets_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:ads_icon="@drawable/adt_ic_presets"
-            app:ads_title="@string/ads_picker_presets"
-            app:ads_subtitle="@string/ads_theme_presets_import"
-            app:ads_image="@drawable/ads_ic_refresh"
-            app:adt_colorType="none" />
-
-    </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+    <com.pranavpandey.android.dynamic.support.view.DynamicItemViewMarginBackground
+        android:id="@+id/ads_theme_presets_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ads_icon="@drawable/adt_ic_presets"
+        app:ads_title="@string/ads_picker_presets"
+        app:ads_subtitle="@string/ads_theme_presets_import"
+        app:ads_image="@drawable/ads_ic_refresh"
+        app:adt_colorType="none"
+        app:adt_contrastWithColorType="background" />
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
         style="?attr/ads_widgetScrollerNestedPaddingHorizontal"
