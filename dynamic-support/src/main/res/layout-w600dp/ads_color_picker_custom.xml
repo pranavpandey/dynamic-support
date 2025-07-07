@@ -157,7 +157,8 @@
             </com.pranavpandey.android.dynamic.support.widget.DynamicHorizontalScrollView>
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
-                style="?attr/ads_widgetDividerLarge" />
+                style="?attr/ads_widgetDividerLarge"
+                app:adt_dynamicCornerSize="true" />
 
             <LinearLayout
                 style="?attr/ads_widgetContentRowVertical"

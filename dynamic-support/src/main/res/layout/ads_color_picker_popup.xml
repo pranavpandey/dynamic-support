@@ -45,7 +45,8 @@
                 android:id="@+id/ads_color_picker_divider"
                 android:layout_marginLeft="@dimen/ads_margin_regular"
                 android:layout_marginRight="@dimen/ads_margin_regular"
-                app:adt_contrastWithColorType="surface" />
+                app:adt_contrastWithColorType="surface"
+                app:adt_dynamicCornerSize="true" />
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicNestedGridView
                 style="?attr/ads_widgetScrollerNestedGridView"

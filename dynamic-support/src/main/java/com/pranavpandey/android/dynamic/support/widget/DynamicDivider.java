@@ -58,9 +58,11 @@ public class DynamicDivider extends DynamicBackgroundView {
 
         try {
             if (a.getBoolean(R.styleable.DynamicDivider_adt_dynamicCornerSize,
-                    Defaults.ADS_DYNAMIC_CORNER_SIZE)) {
+                    Defaults.ADS_DYNAMIC_CORNER_SIZE_DIVIDER)) {
                 Dynamic.setBackground(this, DynamicShapeUtils.getOverlayDimRes(
                         DynamicTheme.getInstance().get().getCornerSize()));
+            } else {
+                Dynamic.setBackground(this, R.drawable.ads_overlay_dim);
             }
         } finally {
             a.recycle();

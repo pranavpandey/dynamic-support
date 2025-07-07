@@ -223,7 +223,7 @@ public class Defaults {
     /**
      * Default color type for the divider.
      */
-    public static final int ADS_COLOR_TYPE_DIVIDER = Theme.ColorType.TINT_BACKGROUND;
+    public static final int ADS_COLOR_TYPE_DIVIDER = ADS_COLOR_TYPE_SYSTEM_SECONDARY;
 
     /**
      * Default value to make widgets background aware so that they can change color according
@@ -240,6 +240,12 @@ public class Defaults {
      * <p>{@code true} to provide widget corner radius according to the dynamic theme.
      */
     public static final boolean ADS_DYNAMIC_CORNER_SIZE = true;
+
+    /**
+     * Default value to provide widget corner radius for divider according to the dynamic theme.
+     * <p>{@code true} to provide widget corner radius according to the dynamic theme.
+     */
+    public static final boolean ADS_DYNAMIC_CORNER_SIZE_DIVIDER = false;
 
     /**
      * Default value to force widget elevation.

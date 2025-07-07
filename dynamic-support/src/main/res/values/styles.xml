@@ -1128,6 +1128,7 @@
 
     <style name="Widget.Dynamic.Content.Row.Vertical">
         <item name="android:orientation">vertical</item>
+        <item name="android:divider">@drawable/ads_divider_horizontal</item>
     </style>
     <style name="Widget.Dynamic.Content.Row.Vertical.Center">
         <item name="android:layout_gravity">center_vertical</item>
@@ -1140,6 +1141,7 @@
 
     <style name="Widget.Dynamic.Content.Row.Horizontal">
         <item name="android:orientation">horizontal</item>
+        <item name="android:divider">@drawable/ads_divider_vertical</item>
     </style>
     <style name="Widget.Dynamic.Content.Row.Horizontal.Center">
         <item name="android:layout_gravity">center_vertical</item>
