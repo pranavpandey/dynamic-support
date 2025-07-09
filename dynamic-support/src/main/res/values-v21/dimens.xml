@@ -23,7 +23,7 @@
     <!-- Card -->
     <dimen name="ads_card_view_margin">@dimen/ads_margin_tiny</dimen>
     <dimen name="ads_card_view_margin_layout">@dimen/ads_margin_small</dimen>
-    <dimen name="ads_card_view_margin_dialog">@dimen/ads_margin_regular</dimen>
+    <dimen name="ads_card_view_margin_dialog">@dimen/ads_margin_small</dimen>
     <dimen name="ads_card_view_elevation">2.6dp</dimen>
     <dimen name="ads_card_view_elevation_dialog">5dp</dimen>
 

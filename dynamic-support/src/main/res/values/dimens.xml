@@ -242,7 +242,7 @@
     <dimen name="ads_card_view_margin_layout">5dp</dimen>
     <dimen name="ads_card_view_margin_floating">20dp</dimen>
     <dimen name="ads_card_view_margin_floating_popup">24dp</dimen>
-    <dimen name="ads_card_view_margin_dialog">@dimen/ads_dialog_margin_regular</dimen>
+    <dimen name="ads_card_view_margin_dialog">@dimen/ads_dialog_margin_small</dimen>
     <dimen name="ads_card_view_margin_bottom_sheet">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_card_view_content_margin">@dimen/ads_margin_regular</dimen>
     <dimen name="ads_card_view_content_margin_small">@dimen/ads_margin_tiny</dimen>
