@@ -40,6 +40,11 @@ import com.pranavpandey.android.dynamic.support.view.DynamicEmptyView;
 public class EmptyBinder extends DynamicQueryBinder<String, String, EmptyBinder.ViewHolder> {
 
     /**
+     * {@code true} to set the full span.
+     */
+    private boolean mIsFullSpanForStaggeredGrid;
+
+    /**
      * Drawable used by this binder.
      */
     private Drawable mDrawable;
@@ -83,7 +88,22 @@ public class EmptyBinder extends DynamicQueryBinder<String, String, EmptyBinder.
      * @return {@code true} to set the full span.
      */
     public boolean isFullSpanForStaggeredGrid() {
-        return true;
+        return mIsFullSpanForStaggeredGrid;
+    }
+
+    /**
+     * Sets whether to set the full span for
+     * {@link androidx.recyclerview.widget.StaggeredGridLayoutManager}.
+     *
+     * @param fullSpanForStaggeredGrid  {@code true} to set the full span.
+     *
+     * @return The {@link EmptyBinder} object to allow for chaining of calls to set methods.
+     */
+    public @NonNull EmptyBinder setFullSpanForStaggeredGrid(boolean fullSpanForStaggeredGrid) {
+        this.mIsFullSpanForStaggeredGrid = fullSpanForStaggeredGrid;
+
+        notifyBinderDataSetChanged();
+        return this;
     }
 
     /**
@@ -99,11 +119,14 @@ public class EmptyBinder extends DynamicQueryBinder<String, String, EmptyBinder.
      * Set the drawable for this binder.
      *
      * @param drawable The drawable to be set.
+     *
+     * @return The {@link EmptyBinder} object to allow for chaining of calls to set methods.
      */
-    public void setDrawable(@Nullable Drawable drawable) {
+    public @NonNull EmptyBinder setDrawable(@Nullable Drawable drawable) {
         this.mDrawable = drawable;
 
         notifyBinderDataSetChanged();
+        return this;
     }
 
     /**
