@@ -33,12 +33,19 @@ import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
 public class HeaderBinder extends ItemBinder {
 
     /**
+     * {@code true} to set the full span.
+     */
+    private boolean mIsFullSpanForStaggeredGrid;
+
+    /**
      * Constructor to initialize an object of this class.
      *
      * @param binderAdapter The dynamic binder adapter for the recycler view.
      */
     public HeaderBinder(@NonNull DynamicBinderAdapter<?> binderAdapter) {
         super(binderAdapter);
+
+        this.mIsFullSpanForStaggeredGrid = true;
     }
 
     @Override
@@ -57,12 +64,27 @@ public class HeaderBinder extends ItemBinder {
     }
 
     /**
-     * Returns whether to set the for span for
+     * Returns whether to set the full span for
      * {@link androidx.recyclerview.widget.StaggeredGridLayoutManager}.
      *
      * @return {@code true} to set the full span.
      */
     public boolean isFullSpanForStaggeredGrid() {
-        return true;
+        return mIsFullSpanForStaggeredGrid;
+    }
+
+    /**
+     * Sets whether to set the full span for
+     * {@link androidx.recyclerview.widget.StaggeredGridLayoutManager}.
+     *
+     * @param fullSpanForStaggeredGrid  {@code true} to set the full span.
+     *
+     * @return The {@link HeaderBinder} object to allow for chaining of calls to set methods.
+     */
+    public @NonNull HeaderBinder setFullSpanForStaggeredGrid(boolean fullSpanForStaggeredGrid) {
+        this.mIsFullSpanForStaggeredGrid = fullSpanForStaggeredGrid;
+
+        notifyBinderDataSetChanged();
+        return this;
     }
 }
