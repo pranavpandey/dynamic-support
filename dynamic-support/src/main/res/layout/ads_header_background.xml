@@ -20,6 +20,6 @@
     android:id="@+id/ads_header_card"
     style="?attr/ads_widgetCardBackground">
 
-    <include layout="@layout/ads_header" />
+    <include layout="@layout/ads_header_small" />
 
 </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
