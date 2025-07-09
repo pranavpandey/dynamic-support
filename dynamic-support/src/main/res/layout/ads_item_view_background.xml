@@ -22,7 +22,7 @@
         android:id="@+id/ads_item_view_card"
         style="?attr/ads_widgetCardBackground">
 
-        <include layout="@layout/ads_item_view" />
+        <include layout="@layout/ads_item_view_small" />
 
     </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
 

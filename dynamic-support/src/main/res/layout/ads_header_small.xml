@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018-2022 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?attr/ads_widgetContentCardSmallClickable"
+    android:id="@+id/ads_item_view"
+    android:orientation="horizontal">
+
+    <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+        style="?attr/ads_widgetImageHeader"
+        android:id="@+id/ads_item_view_icon" />
+
+    <LinearLayout
+        style="?attr/ads_widgetContentRowVerticalCenter">
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+            style="?attr/ads_textAppearanceSubtitle2"
+            android:id="@+id/ads_item_view_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+            style="?attr/ads_textAppearanceBody1"
+            android:id="@+id/ads_item_view_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>
