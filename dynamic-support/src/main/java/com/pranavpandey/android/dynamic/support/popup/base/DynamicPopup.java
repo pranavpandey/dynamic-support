@@ -411,7 +411,7 @@ public abstract class DynamicPopup implements DynamicProductFlavor {
                     OFFSET_X, -OFFSET_Y, Gravity.NO_GRAVITY | Gravity.START);
         } else {
             mPopupWindow.showAtLocation(getAnchor(), Gravity.NO_GRAVITY,
-                    viewCenterX  + OFFSET_X, screenPos[1] - OFFSET_Y);
+                    viewCenterX + OFFSET_X, screenPos[1] - OFFSET_Y);
         }
     }
 

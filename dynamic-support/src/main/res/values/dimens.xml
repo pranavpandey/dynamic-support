@@ -115,7 +115,7 @@
     <dimen name="ads_popup_max_width_large">420dp</dimen>
     <dimen name="ads_popup_offset">@dimen/ads_margin_large</dimen>
     <dimen name="ads_popup_offset_x">@dimen/ads_margin_large_big</dimen>
-    <dimen name="ads_popup_offset_y">@dimen/ads_card_view_margin_floating</dimen>
+    <dimen name="ads_popup_offset_y">@dimen/ads_card_view_margin_floating_popup</dimen>
     <dimen name="ads_popup_selector_icon_size">24dp</dimen>
 
     <!-- Bottom Sheet -->
@@ -241,6 +241,7 @@
     <dimen name="ads_card_view_margin_horizontal">@dimen/ads_card_view_margin</dimen>
     <dimen name="ads_card_view_margin_layout">5dp</dimen>
     <dimen name="ads_card_view_margin_floating">20dp</dimen>
+    <dimen name="ads_card_view_margin_floating_popup">24dp</dimen>
     <dimen name="ads_card_view_margin_dialog">@dimen/ads_dialog_margin_regular</dimen>
     <dimen name="ads_card_view_margin_bottom_sheet">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_card_view_content_margin">@dimen/ads_margin_regular</dimen>
