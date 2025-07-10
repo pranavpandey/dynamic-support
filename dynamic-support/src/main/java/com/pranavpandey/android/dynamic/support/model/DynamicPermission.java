@@ -27,6 +27,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
+import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicRecyclerViewAdapter;
 import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
@@ -34,7 +35,8 @@ import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
  * A model class to hold the permission details that will be used by the app.
  * <p>It will be used internally by the {@link DynamicPermissions}.
  */
-public class DynamicPermission implements Parcelable {
+public class DynamicPermission implements Parcelable,
+        DynamicRecyclerViewAdapter.DynamicRecyclerViewItem {
 
     /**
      * The permission string.
@@ -85,6 +87,11 @@ public class DynamicPermission implements Parcelable {
     private boolean unknown;
 
     /**
+     * Recycler view item type for this permission.
+     */
+    private @DynamicRecyclerViewAdapter.ItemType int itemType;
+
+    /**
      * Default constructor to initialize the dynamic permission.
      */
     public DynamicPermission() { }
@@ -102,12 +109,36 @@ public class DynamicPermission implements Parcelable {
      * Constructor to initialize an object of this class.
      *
      * @param permission The permission string.
+     * @param itemType The recycler view item type for this permission.
+     */
+    public DynamicPermission(@NonNull String permission,
+            @DynamicRecyclerViewAdapter.ItemType int itemType) {
+        this(permission, null, null, itemType);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param permission The permission string.
      * @param icon The icon used for this permission.
      * @param title The title for this permission.
      */
     public DynamicPermission(@NonNull String permission,
             @Nullable Drawable icon, @Nullable String title) {
         this(permission, icon, title, null);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param permission The permission string.
+     * @param icon The icon used for this permission.
+     * @param title The title for this permission.
+     * @param itemType The recycler view item type for this permission.
+     */
+    public DynamicPermission(@NonNull String permission, @Nullable Drawable icon,
+            @Nullable String title, @DynamicRecyclerViewAdapter.ItemType int itemType) {
+        this(permission, icon, title, null, null, itemType);
     }
 
     /**
@@ -130,15 +161,47 @@ public class DynamicPermission implements Parcelable {
      * @param icon The icon used for this permission.
      * @param title The title for this permission.
      * @param subtitle The subtitle for this permission.
+     * @param itemType The recycler view item type for this permission.
+     */
+    public DynamicPermission(@NonNull String permission,
+            @Nullable Drawable icon, @Nullable String title, @Nullable String subtitle,
+            @DynamicRecyclerViewAdapter.ItemType int itemType) {
+        this(permission, icon, title, subtitle, null, itemType);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param permission The permission string.
+     * @param icon The icon used for this permission.
+     * @param title The title for this permission.
+     * @param subtitle The subtitle for this permission.
      * @param description The description for this permission.
      */
     public DynamicPermission(@NonNull String permission, @Nullable Drawable icon,
             @Nullable String title, @Nullable String subtitle, @Nullable String description) {
+        this(permission, icon, title, subtitle, description, DynamicRecyclerViewAdapter.TYPE_ITEM);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param permission The permission string.
+     * @param icon The icon used for this permission.
+     * @param title The title for this permission.
+     * @param subtitle The subtitle for this permission.
+     * @param description The description for this permission.
+     * @param itemType The recycler view item type for this permission.
+     */
+    public DynamicPermission(@NonNull String permission, @Nullable Drawable icon,
+            @Nullable String title, @Nullable String subtitle, @Nullable String description,
+            @DynamicRecyclerViewAdapter.ItemType int itemType) {
         this.permission = permission;
         this.icon = icon;
         this.title = title;
         this.subtitle = subtitle;
         this.description = description;
+        this.itemType = itemType;
     }
 
     /**
@@ -157,6 +220,7 @@ public class DynamicPermission implements Parcelable {
         this.unknown = in.readByte() != 0;
         this.icon = new BitmapDrawable(Resources.getSystem(),
                 (Bitmap) in.readParcelable(getClass().getClassLoader()));
+        this.itemType = in.readInt();
     }
 
     /**
@@ -191,6 +255,7 @@ public class DynamicPermission implements Parcelable {
         dest.writeByte((byte) (askAgain ? 1 : 0));
         dest.writeByte((byte) (unknown ? 1 : 0));
         dest.writeParcelable(DynamicBitmapUtils.getBitmap(icon), flags);
+        dest.writeInt(itemType);
     }
 
     /**
@@ -356,11 +421,39 @@ public class DynamicPermission implements Parcelable {
     }
 
     /**
+     * Return the recycler view item type for this permission.
+     *
+     * @return The recycler view item type for this permission.
+     */
+    public @DynamicRecyclerViewAdapter.ItemType int getItemType() {
+        return itemType;
+    }
+
+    /**
+     * Sets the recycler view item type for this permission.
+     *
+     * @param itemType The recycler view item type to be set.
+     */
+    public void setItemType(@DynamicRecyclerViewAdapter.ItemType int itemType) {
+        this.itemType = itemType;
+    }
+
+    /**
      * Checks whether this permission must be granted after reinstalling the app.
      *
      * @return {@code true} if this permission must be granted after reinstalling the app.
      */
     public boolean isReinstall() {
         return isDangerous() && !isAskAgain() && !DynamicSdkUtils.is23();
+    }
+
+    @Override
+    public @DynamicRecyclerViewAdapter.ItemType int getItemViewType() {
+        return getItemType();
+    }
+
+    @Override
+    public @Nullable String getSectionTitle() {
+        return getTitle();
     }
 }

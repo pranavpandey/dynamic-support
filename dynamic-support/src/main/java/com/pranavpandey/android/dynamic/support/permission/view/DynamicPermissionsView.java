@@ -28,9 +28,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicPermission;
 import com.pranavpandey.android.dynamic.support.permission.adapter.DynamicPermissionsAdapter;
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewFrame;
+import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicRecyclerViewAdapter;
 import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
 
 import java.util.ArrayList;
@@ -158,8 +160,51 @@ public class DynamicPermissionsView extends DynamicRecyclerViewFrame {
             }
         }
 
-        mAdapter = new DynamicPermissionsAdapter(permissions, permissionListener);
+        final List<DynamicPermission> permissionsList = new ArrayList<>();
+        final List<DynamicPermission> dangerousPermissions = new ArrayList<>();
+        final List<DynamicPermission> unknownPermissions = new ArrayList<>();
+        final List<DynamicPermission> specialPermissions = new ArrayList<>();
+
+        for (DynamicPermission dynamicPermission : mPermissions) {
+            if (dynamicPermission.isDangerous()) {
+                dangerousPermissions.add(dynamicPermission);
+            } else if(dynamicPermission.isReinstall() || dynamicPermission.isUnknown()) {
+                unknownPermissions.add(dynamicPermission);
+            } else {
+                specialPermissions.add(dynamicPermission);
+            }
+        }
+
+        addPermissionsList(permissionsList, getContext().getString(
+                R.string.ads_general), dangerousPermissions);
+        addPermissionsList(permissionsList, getContext().getString(
+                R.string.ads_advanced), specialPermissions);
+        addPermissionsList(permissionsList, getContext().getString(
+                R.string.ads_perm_unknown), unknownPermissions);
+
+        mAdapter = new DynamicPermissionsAdapter(permissionsList, permissionListener);
         getRecyclerView().setAdapter(mAdapter);
+    }
+
+    /**
+     * Add section header and permissions to the supplied list.
+     *
+     * @param permissions The source permissions list.
+     * @param sectionHeader The section header to be inserted.
+     * @param subPermissions The sub permissions to be inserted.
+     */
+    private void addPermissionsList(@NonNull List<DynamicPermission> permissions,
+            @Nullable String sectionHeader, @NonNull List<DynamicPermission> subPermissions) {
+        if (!subPermissions.isEmpty()) {
+            if (sectionHeader != null) {
+                DynamicPermission headerItem = new DynamicPermission();
+                headerItem.setItemType(DynamicRecyclerViewAdapter.TYPE_SECTION_HEADER);
+                headerItem.setTitle(sectionHeader);
+                subPermissions.add(0, headerItem);
+            }
+
+            permissions.addAll(subPermissions);
+        }
     }
 
     /**
