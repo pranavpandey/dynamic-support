@@ -16,37 +16,29 @@
 
 package com.pranavpandey.android.dynamic.support.permission.adapter;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.pranavpandey.android.dynamic.support.Defaults;
-import com.pranavpandey.android.dynamic.support.Dynamic;
-import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.model.DynamicItem;
 import com.pranavpandey.android.dynamic.support.model.DynamicPermission;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
+import com.pranavpandey.android.dynamic.support.permission.binder.DynamicPermissionBinder;
 import com.pranavpandey.android.dynamic.support.permission.view.DynamicPermissionsView;
-import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
-import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView;
-import com.pranavpandey.android.dynamic.util.DynamicTextUtils;
+import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicRecyclerViewAdapter;
+import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicTypeBinderAdapter;
+import com.pranavpandey.android.dynamic.support.recyclerview.adapter.factory.TypeDataBinderAdapter;
+import com.pranavpandey.android.dynamic.support.recyclerview.binder.DynamicRecyclerViewBinder;
+import com.pranavpandey.android.dynamic.support.recyclerview.binder.factory.HeaderBackgroundBinder;
+import com.pranavpandey.android.dynamic.support.recyclerview.binder.factory.HeaderBinder;
 
 import java.util.List;
-import java.util.Locale;
 
 /**
- * A {@link RecyclerView.Adapter} to show the {@link DynamicPermissions}.
+ * A {@link TypeDataBinderAdapter} to show the {@link DynamicPermissions}.
  */
-public class DynamicPermissionsAdapter extends
-        RecyclerView.Adapter<DynamicPermissionsAdapter.ViewHolder> {
-
-    /**
-     * List of permissions shown by this adapter.
-     */
-    private final List<DynamicPermission> mData;
+public class DynamicPermissionsAdapter extends TypeDataBinderAdapter<List<DynamicPermission>,
+        DynamicTypeBinderAdapter.ItemViewType, DynamicRecyclerViewBinder<?>> {
 
     /**
      * Callback when a permission is selected.
@@ -61,147 +53,56 @@ public class DynamicPermissionsAdapter extends
      */
     public DynamicPermissionsAdapter(@Nullable List<DynamicPermission> data,
             @Nullable DynamicPermissionsView.PermissionListener permissionListener) {
-        mData = data;
         mPermissionListener = permissionListener;
+
+        putDataBinder(ItemViewType.HEADER, new HeaderBackgroundBinder(this));
+        putDataBinder(ItemViewType.ITEM, new DynamicPermissionBinder(this));
+
+        setData(data);
     }
 
     @Override
-    public @NonNull ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        return new ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(
-                R.layout.ads_layout_info_card, viewGroup, false));
-    }
-
-    @Override
-    public void onBindViewHolder(final @NonNull ViewHolder holder, int position) {
-        final DynamicPermission dynamicPermission;
-        if ((dynamicPermission = getItem(position)) == null) {
-            return;
-        }
-
-        if (mPermissionListener != null) {
-            Dynamic.setOnClickListener(holder.getInfoView(), new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mPermissionListener.onPermissionSelected(v,
-                            holder.getAdapterPosition(), dynamicPermission);
-                }
-            });
-        } else {
-            Dynamic.setClickable(holder.getInfoView(), false);
-        }
-
-        holder.getInfoView().setIconBig(dynamicPermission.getIcon());
-        holder.getInfoView().setTitle(DynamicTextUtils.capitalize(
-                dynamicPermission.getTitle(), Locale.getDefault()));
-        holder.getInfoView().setSubtitle(dynamicPermission.getSubtitle());
-        holder.getInfoView().setDescription(dynamicPermission.getDescription());
-
-        if (dynamicPermission.isAllowed()) {
-            holder.getInfoView().setIcon(DynamicResourceUtils.getDrawable(
-                    holder.getInfoView().getContext(), R.drawable.ads_ic_check));
-            holder.getInfoView().setDescription(holder.getInfoView()
-                    .getContext().getString(R.string.ads_perm_granted_desc));
-            holder.getInfoView().setStatus(holder.getInfoView()
-                    .getContext().getString(R.string.ads_perm_granted));
-            Dynamic.setClickable(holder.getRoot(), false);
-        } else {
-            holder.getInfoView().setIcon(DynamicResourceUtils.getDrawable(
-                    holder.getInfoView().getContext(), R.drawable.ads_ic_close));
-            holder.getInfoView().setDescription(holder.getInfoView()
-                    .getContext().getString(R.string.ads_perm_request_desc));
-            holder.getInfoView().setStatus(holder.getInfoView()
-                    .getContext().getString(R.string.ads_perm_request));
-
-            if (!dynamicPermission.isAskAgain()) {
-                holder.getInfoView().setIcon(DynamicResourceUtils.getDrawable(
-                        holder.getInfoView().getContext(), R.drawable.ads_ic_error_outline));
-                holder.getInfoView().setDescription(holder.getInfoView()
-                        .getContext().getString(R.string.ads_perm_denied_desc));
-                holder.getInfoView().setStatus(holder.getInfoView()
-                        .getContext().getString(R.string.ads_perm_denied));
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        if (getData() != null) {
+            switch (holder.getItemViewType()) {
+                case DynamicRecyclerViewAdapter.TYPE_SECTION_HEADER:
+                    ((HeaderBinder) getDataBinder(DynamicRecyclerViewAdapter.TYPE_SECTION_HEADER))
+                            .setData(new DynamicItem().setTitle(
+                                    getData().get(position).getSectionTitle()));
+                    break;
+                case DynamicRecyclerViewAdapter.TYPE_ITEM:
+                    ((DynamicPermissionBinder) getDataBinder(DynamicRecyclerViewAdapter.TYPE_ITEM))
+                            .setData(getData().get(position));
+                    break;
             }
-
-            Dynamic.setClickable(holder.getRoot(), true);
         }
-
-        if (dynamicPermission.isReinstall()) {
-            holder.getInfoView().setDescription(holder.getInfoView()
-                    .getContext().getString(R.string.ads_perm_reinstall_desc));
-            holder.getInfoView().setStatus(holder.getInfoView()
-                    .getContext().getString(R.string.ads_perm_reinstall));
-            Dynamic.setClickable(holder.getRoot(), true);
-        }
-
-        if (dynamicPermission.isUnknown()) {
-            holder.getInfoView().setDescription(holder.getInfoView()
-                    .getContext().getString(R.string.ads_perm_unknown_desc));
-            holder.getInfoView().setStatus(holder.getInfoView()
-                    .getContext().getString(R.string.ads_perm_unknown));
-            Dynamic.setClickable(holder.getRoot(), false);
-        }
+        super.onBindViewHolder(holder, position);
     }
 
     @Override
-    public int getItemCount() {
-        return mData == null ? 0 : mData.size();
+    public int getItemViewType(int position) {
+        return getData() != null ? getData().get(position).getItemViewType()
+                : DynamicRecyclerViewAdapter.TYPE_UNKNOWN;
+    }
+
+    @Override
+    public @NonNull ItemViewType getEnumFromOrdinal(int viewType) {
+        switch (viewType) {
+            case DynamicRecyclerViewAdapter.TYPE_SECTION_HEADER:
+                return ItemViewType.HEADER;
+            case DynamicRecyclerViewAdapter.TYPE_ITEM:
+                return ItemViewType.ITEM;
+            default:
+                return ItemViewType.UNKNOWN;
+        }
     }
 
     /**
-     * Get the dynamic permission for a given position.
+     * Returns the callback when a permission is selected.
      *
-     * @param position The position of the adapter.
-     *
-     * @return The dynamic permission according to the supplied position.
+     * @return The callback when a permission is selected.
      */
-    public @Nullable DynamicPermission getItem(int position) {
-        return mData != null ? mData.get(position) : null;
-    }
-
-    /**
-     * View holder to hold the permission root.
-     */
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        /**
-         * Root view used by this view holder.
-         */
-        private final ViewGroup root;
-
-        /**
-         * Dynamic info view used by this view holder.
-         */
-        private final DynamicInfoView dynamicInfo;
-
-        /**
-         * Constructor to initialize views from the supplied root.
-         *
-         * @param view The view for this view holder.
-         */
-        public ViewHolder(@NonNull View view) {
-            super(view);
-
-            root = view.findViewById(R.id.ads_info_card);
-            dynamicInfo = view.findViewById(R.id.ads_dynamic_info_view);
-
-            Dynamic.setColorType(dynamicInfo.getIconView(), Defaults.ADS_COLOR_TYPE_ICON);
-        }
-
-        /**
-         * Get the root view used by this view holder.
-         *
-         * @return The root view used by this view holder.
-         */
-        public @NonNull ViewGroup getRoot() {
-            return root;
-        }
-
-        /**
-         * Get the dynamic info view used by this view holder.
-         *
-         * @return The dynamic info view used by this view holder.
-         */
-        public @NonNull DynamicInfoView getInfoView() {
-            return dynamicInfo;
-        }
+    public @Nullable DynamicPermissionsView.PermissionListener getPermissionListener() {
+        return mPermissionListener;
     }
 }
