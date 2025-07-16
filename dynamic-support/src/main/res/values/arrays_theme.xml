@@ -223,6 +223,16 @@
         <item>-2</item>
     </string-array>
 
+    <!-- Visibility icons for the settings like widget header, etc. -->
+    <array name="ads_visibility_icons">
+        <!-- Auto -->
+        <item>@drawable/ads_ic_visibility_auto</item>
+        <!-- Hide -->
+        <item>@drawable/ads_ic_hide</item>
+        <!-- Show -->
+        <item>@drawable/ads_ic_visibility</item>
+    </array>
+
     <!-- Visibility entries for the settings like widget header, etc. -->
     <string-array name="ads_visibility_entries">
         <item>@string/ads_theme_entry_auto</item>
