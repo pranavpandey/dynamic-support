@@ -34,7 +34,6 @@
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
         style="?attr/ads_widgetScrollerNestedPaddingHorizontal"
-        android:id="@+id/ads_recycler_view"
-        android:paddingTop="0dp" />
+        android:id="@+id/ads_recycler_view" />
 
 </LinearLayout>
