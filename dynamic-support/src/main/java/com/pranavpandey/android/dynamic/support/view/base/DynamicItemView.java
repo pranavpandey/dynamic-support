@@ -417,6 +417,15 @@ public class DynamicItemView extends DynamicView implements DynamicWidget {
     }
 
     /**
+     * Set the drawable for the image view.
+     *
+     * @param imageDrawable The image drawable to be set.
+     */
+    public void setImageDrawable(@Nullable Drawable imageDrawable) {
+        setImageDrawable(imageDrawable, true);
+    }
+
+    /**
      * Returns whether to show the horizontal divider.
      * <p>Useful to display in a list view.
      *

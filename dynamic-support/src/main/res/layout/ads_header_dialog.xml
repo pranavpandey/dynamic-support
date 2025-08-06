@@ -30,7 +30,7 @@
         android:id="@+id/ads_item_view_icon" />
 
     <LinearLayout
-        style="?attr/ads_widgetContentRowVerticalCenter">
+        style="?attr/ads_widgetContentRowVerticalWeight">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
             style="?attr/ads_textAppearanceSubtitle2"
@@ -45,5 +45,9 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+    <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+        style="?attr/ads_widgetImagePreferenceCompactValueCenter"
+        android:id="@+id/ads_item_view_image" />
 
 </LinearLayout>
