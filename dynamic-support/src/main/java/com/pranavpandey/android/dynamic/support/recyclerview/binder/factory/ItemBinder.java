@@ -69,6 +69,7 @@ public class ItemBinder extends DynamicDataBinder<DynamicItem, ItemBinder.ViewHo
         holder.getDynamicItemView().setIcon(getData().getIcon());
         holder.getDynamicItemView().setTitle(getData().getTitle());
         holder.getDynamicItemView().setSubtitle(getData().getSubtitle());
+        holder.getDynamicItemView().setImageDrawable(getData().getImageDrawable());
         holder.getDynamicItemView().setShowDivider(getData().isShowDivider());
 
         if (getData().getOnClickListener() != null) {

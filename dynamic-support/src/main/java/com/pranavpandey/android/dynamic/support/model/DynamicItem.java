@@ -87,6 +87,11 @@ public class DynamicItem implements Parcelable {
     private Drawable icon;
 
     /**
+     * Drawable for the image view.
+     */
+    private Drawable imageDrawable;
+
+    /**
      * Title used by this item.
      */
     private CharSequence title;
@@ -128,7 +133,25 @@ public class DynamicItem implements Parcelable {
     public DynamicItem(@Nullable Drawable icon, @Nullable CharSequence title,
             @Nullable CharSequence subtitle, int color,
             @Theme.ColorType int colorType, boolean showDivider) {
+        this(icon, null, title, subtitle, color, colorType, showDivider);
+    }
+
+    /**
+     * Constructor to initialize an object of this class.
+     *
+     * @param icon The icon for this item.
+     * @param imageDrawable The drawable for the image view.
+     * @param title The title for this item.
+     * @param subtitle The subtitle for this item.
+     * @param color The icon tint color for this item.
+     * @param colorType The icon tint color type for this item.
+     * @param showDivider {@code true} to show horizontal divider.
+     */
+    public DynamicItem(@Nullable Drawable icon, @Nullable Drawable imageDrawable,
+            @Nullable CharSequence title, @Nullable CharSequence subtitle, int color,
+            @Theme.ColorType int colorType, boolean showDivider) {
         this.icon = icon;
+        this.imageDrawable = imageDrawable;
         this.title = title;
         this.subtitle = subtitle;
         this.color = color;
@@ -154,6 +177,8 @@ public class DynamicItem implements Parcelable {
         this.backgroundAware = in.readInt();
         this.contrast = in.readInt();
         this.icon = new BitmapDrawable(Resources.getSystem(),
+                (Bitmap) in.readParcelable(getClass().getClassLoader()));
+        this.imageDrawable = new BitmapDrawable(Resources.getSystem(),
                 (Bitmap) in.readParcelable(getClass().getClassLoader()));
         this.title = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
         this.subtitle = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
@@ -190,6 +215,7 @@ public class DynamicItem implements Parcelable {
         dest.writeInt(backgroundAware);
         dest.writeInt(contrast);
         dest.writeParcelable(DynamicBitmapUtils.getBitmap(icon), flags);
+        dest.writeParcelable(DynamicBitmapUtils.getBitmap(imageDrawable), flags);
         TextUtils.writeToParcel(title, dest, flags);
         TextUtils.writeToParcel(subtitle, dest, flags);
         dest.writeByte((byte) (showDivider ? 1 : 0));
@@ -389,6 +415,28 @@ public class DynamicItem implements Parcelable {
      */
     public @NonNull DynamicItem setIcon(@Nullable Drawable icon) {
         this.icon = icon;
+
+        return this;
+    }
+
+    /**
+     * Get the image drawable used by this item.
+     *
+     * @return The image drawable used by this item.
+     */
+    public @Nullable Drawable getImageDrawable() {
+        return imageDrawable;
+    }
+
+    /**
+     * Set the image drawable used by this item.
+     *
+     * @param imageDrawable The image drawable to be set.
+     *
+     * @return The {@link DynamicItem} object to allow for chaining of calls to set methods.
+     */
+    public @NonNull DynamicItem setImageDrawable(@Nullable Drawable imageDrawable) {
+        this.imageDrawable = imageDrawable;
 
         return this;
     }
