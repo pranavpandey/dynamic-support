@@ -31,7 +31,7 @@ import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicBind
  *
  * @param <Query> The type of the query this binder will receive.
  */
-public class InfoCardBinder<Query> extends InfoBinder<Query> {
+public abstract class InfoCardBinder<Query> extends InfoBinder<Query> {
 
     /**
      * Constructor to initialize an object of this class.

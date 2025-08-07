@@ -73,12 +73,18 @@ public class EmptyBinder extends DynamicQueryBinder<String, String, EmptyBinder.
         holder.getEmptyView().setIcon(getDrawable() != null ? getDrawable() : holder.getIcon());
         holder.getEmptyView().setTitle(getData());
 
-        DynamicResourceUtils.highlightQueryTextColor(getQuery(),
-                holder.getEmptyView().getTitleView(), getHighlightColor());
-
         if (isFullSpanForStaggeredGrid()) {
             DynamicLayoutUtils.setFullSpanForView(holder.itemView);
         }
+
+        super.onBindViewHolder(holder, position);
+    }
+
+    @Override
+    public void onHighlightQuery(@NonNull ViewHolder holder,
+            int position, @Nullable String query) {
+        DynamicResourceUtils.highlightQueryTextColor(query,
+                holder.getEmptyView().getTitleView(), getHighlightColor());
     }
 
     /**
