@@ -35,7 +35,7 @@ import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView;
  *
  * @param <Query> The type of the query this binder will receive.
  */
-public class InfoBinder<Query> extends DynamicQueryBinder<
+public abstract class InfoBinder<Query> extends DynamicQueryBinder<
         DynamicInfo, Query, InfoBinder.ViewHolder> {
 
     /**
@@ -73,6 +73,8 @@ public class InfoBinder<Query> extends DynamicQueryBinder<
         holder.getDynamicInfo().setLinksColorsId(getData().getLinksColorsResId());
         holder.getDynamicInfo().setLinksColors(getData().getLinksColors());
         holder.getDynamicInfo().onUpdate();
+
+        super.onBindViewHolder(holder, position);
     }
 
     /**
