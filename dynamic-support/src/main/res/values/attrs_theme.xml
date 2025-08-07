@@ -438,6 +438,8 @@
     <attr name="ads_widgetContentClickable" format="reference" />
     <!-- The background clickable content style. -->
     <attr name="ads_widgetContentClickableBackground" format="reference" />
+    <!-- The background clickable vertical content style. -->
+    <attr name="ads_widgetContentClickableBackgroundVertical" format="reference" />
     <!-- The card content style. -->
     <attr name="ads_widgetContentCard" format="reference" />
     <!-- The clickable card content style. -->
