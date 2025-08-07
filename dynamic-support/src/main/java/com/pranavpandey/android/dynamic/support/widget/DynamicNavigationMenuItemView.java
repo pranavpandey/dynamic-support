@@ -35,8 +35,6 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
-import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
@@ -351,9 +349,7 @@ public class DynamicNavigationMenuItemView extends NavigationMenuItemView
                 Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
             }
 
-            setDividerDrawable(DynamicDrawableUtils.colorizeDrawable(getDividerDrawable(),
-                    DynamicColorUtils.getContrastColor(DynamicTheme.getInstance().resolveColorType(
-                            Defaults.ADS_COLOR_TYPE_DIVIDER), mContrastWithColor)));
+            Dynamic.tintDivider(this, mContrastWithColor);
 
             if (DynamicSdkUtils.is21()) {
                 Dynamic.tintForeground(this, mContrastWithColor, isStyleBorderless());
