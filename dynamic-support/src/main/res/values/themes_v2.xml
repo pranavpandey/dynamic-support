@@ -273,6 +273,7 @@
         <item name="ads_widgetContent">@style/Widget.Dynamic2.Content</item>
         <item name="ads_widgetContentClickable">@style/Widget.Dynamic2.Content.Clickable</item>
         <item name="ads_widgetContentClickableBackground">@style/Widget.Dynamic2.Content.Clickable.Background</item>
+        <item name="ads_widgetContentClickableBackgroundVertical">@style/Widget.Dynamic2.Content.Clickable.Background.Vertical</item>
         <item name="ads_widgetContentCard">@style/Widget.Dynamic2.Content.Card</item>
         <item name="ads_widgetContentCardClickable">@style/Widget.Dynamic2.Content.Card.Clickable</item>
         <item name="ads_widgetContentCardClickableBackground">@style/Widget.Dynamic2.Content.Card.Clickable.Background</item>
@@ -592,6 +593,7 @@
         <item name="ads_widgetContent">@style/Widget.Dynamic2.Content</item>
         <item name="ads_widgetContentClickable">@style/Widget.Dynamic2.Content.Clickable</item>
         <item name="ads_widgetContentClickableBackground">@style/Widget.Dynamic2.Content.Clickable.Background</item>
+        <item name="ads_widgetContentClickableBackgroundVertical">@style/Widget.Dynamic2.Content.Clickable.Background.Vertical</item>
         <item name="ads_widgetContentCard">@style/Widget.Dynamic2.Content.Card</item>
         <item name="ads_widgetContentCardClickable">@style/Widget.Dynamic2.Content.Card.Clickable</item>
         <item name="ads_widgetContentCardClickableBackground">@style/Widget.Dynamic2.Content.Card.Clickable.Background</item>
@@ -905,6 +907,7 @@
         <item name="ads_widgetContent">@style/Widget.Dynamic2.Content</item>
         <item name="ads_widgetContentClickable">@style/Widget.Dynamic2.Content.Clickable</item>
         <item name="ads_widgetContentClickableBackground">@style/Widget.Dynamic2.Content.Clickable.Background</item>
+        <item name="ads_widgetContentClickableBackgroundVertical">@style/Widget.Dynamic2.Content.Clickable.Background.Vertical</item>
         <item name="ads_widgetContentCard">@style/Widget.Dynamic2.Content.Card</item>
         <item name="ads_widgetContentCardClickable">@style/Widget.Dynamic2.Content.Card.Clickable</item>
         <item name="ads_widgetContentCardClickableBackground">@style/Widget.Dynamic2.Content.Card.Clickable.Background</item>

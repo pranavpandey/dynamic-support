@@ -1082,6 +1082,10 @@
         parent="Widget.Dynamic.Content">
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
+    <style name="Widget.Dynamic.Content.Clickable.Background.Vertical">
+        <item name="android:orientation">vertical</item>
+        <item name="android:divider">@drawable/ads_divider_horizontal</item>
+    </style>
 
     <style name="Widget.Dynamic.Content.Card">
         <item name="android:layout_width">match_parent</item>
