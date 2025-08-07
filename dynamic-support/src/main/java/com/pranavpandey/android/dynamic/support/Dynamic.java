@@ -1612,6 +1612,31 @@ public class Dynamic {
      * @see LinearLayout#setShowDividers(int)
      * @see LinearLayoutCompat#setShowDividers(int)
      */
+    public static <T> void setShowDividersNoInspection(@Nullable T view, int showDividers) {
+        if (view == null || !Dynamic.isExpressiveVersion()) {
+            return;
+        }
+
+        if (view instanceof View) {
+            if (view instanceof LinearLayout) {
+                ((LinearLayout) view).setShowDividers(showDividers);
+            } else if (view instanceof LinearLayoutCompat) {
+                ((LinearLayoutCompat) view).setShowDividers(showDividers);
+            }
+        } else if (view instanceof Menu) {
+            ((Menu) view).setGroupDividerEnabled(true);
+        }
+    }
+
+    /**
+     * Show dividers according to the supplied view.
+     *
+     * @param view The view object to show dividers.
+     * @param showDividers The flag to show dividers.
+     * @param <T> The type of the view object.
+     *
+     * @see #setShowDividersNoInspection(Object, int)
+     */
     public static <T> void setShowDividers(@Nullable T view, int showDividers) {
         if (view == null || !Dynamic.isExpressiveVersion()) {
             return;
@@ -1622,13 +1647,9 @@ public class Dynamic {
                 || ((View) view).getParent() instanceof DynamicInfoView
                 || ((View) view).getParent() instanceof DynamicInfoViewBig
                 || ((View) view).getParent() instanceof DynamicInfoViewBigAuthor)) {
-            if (view instanceof LinearLayout) {
-                ((LinearLayout) view).setShowDividers(showDividers);
-            } else if (view instanceof LinearLayoutCompat) {
-                ((LinearLayoutCompat) view).setShowDividers(showDividers);
-            }
+            setShowDividersNoInspection(view, showDividers);
         } else if (view instanceof Menu) {
-            ((Menu) view).setGroupDividerEnabled(true);
+            setShowDividersNoInspection(view, showDividers);
         }
     }
 

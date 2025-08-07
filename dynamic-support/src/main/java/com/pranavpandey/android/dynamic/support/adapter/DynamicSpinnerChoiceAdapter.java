@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -79,6 +80,11 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
      * Array of submenu states used by this adapter.
      */
     private boolean[] mHasSubmenus;
+
+    /**
+     * Array of divider states used by this adapter.
+     */
+    private boolean[] mDividers;
 
     /**
      * The selected position used by this adapter.
@@ -333,7 +339,7 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
         }
 
         if (mOnItemClickListener != null) {
-            Dynamic.setOnClickListener(holder.getRoot(), new View.OnClickListener() {
+            Dynamic.setOnClickListener(holder.getItem(), new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mOnItemClickListener.onItemClick((AdapterView<?>) parent,
@@ -344,7 +350,7 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
                 }
             });
         } else {
-            Dynamic.setClickable(holder.getRoot(), false);
+            Dynamic.setClickable(holder.getItem(), false);
         }
 
         Dynamic.set(holder.getIcon(), getIcon(parent.getContext(), position));
@@ -369,6 +375,11 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
             Dynamic.setResource(holder.getSelector(), R.drawable.ads_ic_check);
             Dynamic.setVisibility(holder.getSelector(),
                     mSelectedPosition == position ? View.VISIBLE : View.INVISIBLE);
+        }
+
+        if (getDividers() != null) {
+            Dynamic.setShowDividersNoInspection(holder.getRoot(), getDividers()[position]
+                    ? LinearLayout.SHOW_DIVIDER_BEGINNING : LinearLayout.SHOW_DIVIDER_NONE);
         }
 
 	    return convertView;
@@ -534,6 +545,26 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
     }
 
     /**
+     * Get the divider states used by this popup.
+     *
+     * @return The divider states used by this popup.
+     */
+    public @Nullable boolean[] getDividers() {
+        return mDividers;
+    }
+
+    /**
+     * Set the divider states for this popup.
+     *
+     * @param dividers The divider states to be set.
+     */
+    public void setDividers(@Nullable boolean[] dividers) {
+        this.mDividers = dividers;
+
+        notifyDataSetChanged();
+    }
+
+    /**
      * Get the item click listener.
      *
      * @return The listener to get the callback when an item is clicked.
@@ -585,6 +616,11 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
         private final ViewGroup root;
 
         /**
+         * Item view layout.
+         */
+        private final ViewGroup item;
+
+        /**
          * Image view to show the icon.
          */
         private final ImageView icon;
@@ -610,7 +646,8 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
          * @param view The view for this view holder.
          */
     	ViewHolder(@NonNull View view) {
-    	    root = view.findViewById(R.id.ads_array_item);
+    	    root = view.findViewById(R.id.ads_array_item_root);
+    	    item = view.findViewById(R.id.ads_array_item);
     	    icon = view.findViewById(R.id.ads_array_item_icon);
     	    title = view.findViewById(R.id.ads_array_item_title);
     	    subtitle = view.findViewById(R.id.ads_array_item_subtitle);
@@ -624,6 +661,15 @@ public class DynamicSpinnerChoiceAdapter extends BaseAdapter {
          */
         @NonNull ViewGroup getRoot() {
             return root;
+        }
+
+        /**
+         * Get the item view layout.
+         *
+         * @return The item view layout.
+         */
+        @NonNull ViewGroup getItem() {
+            return item;
         }
 
         /**

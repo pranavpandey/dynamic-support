@@ -80,6 +80,11 @@ public class DynamicMenuPopup extends DynamicSimplePopup {
     private boolean[] mHasSubmenus;
 
     /**
+     * Divider states used by this popup.
+     */
+    private boolean[] mDividers;
+
+    /**
      * The selected position.
      */
     private int mSelectedPosition;
@@ -641,21 +646,33 @@ public class DynamicMenuPopup extends DynamicSimplePopup {
         }
 
         if (mOnItemClickListener != null) {
-            listView.setAdapter(new DynamicSpinnerChoiceAdapter(mIconsRes, mIcons,
-                    mTints, mTitles, mSubtitles, mHasSubmenus, mSelectedPosition,
-                    new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView,
-                        View view, int position, long id) {
-                    mOnItemClickListener.onItemClick(adapterView, view, position, id);
-
-                    dismiss();
-                }
-            }));
+            listView.setAdapter(getDynamicSpinnerChoiceAdapter());
         }
 
         setViewRoot(listView);
         return this;
+    }
+
+    /**
+     * Returns the adapter for the list view.
+     *
+     * @return The adapter for the list view.
+     */
+    protected @NonNull DynamicSpinnerChoiceAdapter getDynamicSpinnerChoiceAdapter() {
+        DynamicSpinnerChoiceAdapter adapter = new DynamicSpinnerChoiceAdapter(mIconsRes,
+                mIcons, mTints, mTitles, mSubtitles, mHasSubmenus, mSelectedPosition,
+                new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView,
+                    View view, int position, long id) {
+                mOnItemClickListener.onItemClick(adapterView, view, position, id);
+
+                dismiss();
+            }
+        });
+
+        adapter.setDividers(getDividers());
+        return adapter;
     }
 
     @Override
@@ -771,6 +788,24 @@ public class DynamicMenuPopup extends DynamicSimplePopup {
      */
     public void setHasSubmenus(@Nullable boolean[] hasSubmenus) {
         this.mHasSubmenus = hasSubmenus;
+    }
+
+    /**
+     * Get the divider states used by this popup.
+     *
+     * @return The divider states used by this popup.
+     */
+    public @Nullable boolean[] getDividers() {
+        return mDividers;
+    }
+
+    /**
+     * Set the divider states for this popup.
+     *
+     * @param dividers The divider states to be set.
+     */
+    public void setDividers(@Nullable boolean[] dividers) {
+        this.mDividers = dividers;
     }
 
     /**
