@@ -36,9 +36,19 @@ public class Defaults {
     public static final int ADS_NO_POSITION = RecyclerView.NO_POSITION;
 
     /**
-     * Default alpha for the toast.
+     * Default alpha for the divider.
      */
-    public static final float ADS_ALPHA_DIVIDER = 0.5f;
+    public static final float ADS_ALPHA_DIVIDER = 0.4f;
+
+    /**
+     * Default alpha for the menu group divider.
+     */
+    public static final float ADS_ALPHA_DIVIDER_MENU = 0.2f;
+
+    /**
+     * Default alpha for the divider in integer.
+     */
+    public static final int ADS_ALPHA_DIVIDER_INTEGER = 100;
 
     /**
      * Default alpha for the toast.

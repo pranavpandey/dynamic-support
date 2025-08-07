@@ -35,6 +35,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -48,6 +49,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.StringRes;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.drawable.IconCompat;
 import androidx.core.text.HtmlCompat;
@@ -1553,6 +1555,48 @@ public class Dynamic {
      */
     public static <T> void tintScrollable(@Nullable T dynamic) {
         tintScrollable(dynamic, DynamicTheme.getInstance().getDefaultContrastWith());
+    }
+
+    /**
+     * Tint divider according to the supplied contrast with color.
+     *
+     * @param view The view object to be tinted.
+     * @param contrastWithColor The contrast with color to be considered.
+     * @param <T> The type of the view object.
+     *
+     * @see LinearLayout#setDividerDrawable(Drawable)
+     * @see LinearLayoutCompat#setDividerDrawable(Drawable)
+     * @see DynamicDrawableUtils#colorizeDrawable(Drawable, int)
+     */
+    public static <T extends View> void tintDivider(@Nullable T view,
+            @ColorInt int contrastWithColor) {
+        if (view == null || contrastWithColor == Theme.Color.UNKNOWN) {
+            return;
+        }
+
+        @ColorInt int color = DynamicColorUtils.setAlpha(DynamicColorUtils.getContrastColor(
+                DynamicTheme.getInstance().resolveColorType(Defaults.ADS_COLOR_TYPE_DIVIDER),
+                contrastWithColor), Defaults.ADS_ALPHA_DIVIDER_INTEGER);
+
+        if (view instanceof LinearLayout) {
+            ((LinearLayout) view).setDividerDrawable(DynamicDrawableUtils.colorizeDrawable(
+                    ((LinearLayout) view).getDividerDrawable(), color));
+        } else if (view instanceof LinearLayoutCompat) {
+            ((LinearLayoutCompat) view).setDividerDrawable(DynamicDrawableUtils.colorizeDrawable(
+                    ((LinearLayoutCompat) view).getDividerDrawable(), color));
+        }
+    }
+
+    /**
+     * Tint divider according to the default contrast with color.
+     *
+     * @param view The view object to be tinted.
+     * @param <T> The type of the view object.
+     *
+     * @see #tintDivider(View, int)
+     */
+    public static <T extends View> void tintDivider(@Nullable T view) {
+        tintDivider(view, DynamicTheme.getInstance().getDefaultContrastWith());
     }
 
     /**
