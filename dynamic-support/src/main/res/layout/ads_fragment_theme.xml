@@ -49,33 +49,38 @@
                 <LinearLayout
                     style="?attr/ads_widgetContentRowVertical">
 
-                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
-                        android:id="@+id/ads_pref_theme_color_background"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:ads_key="ads_pref_settings_theme_color_background"
-                        app:ads_altKey="ads_pref_settings_theme_color_tint_background"
-                        app:ads_icon="@drawable/ads_ic_paint_bucket"
-                        app:ads_title="@string/ads_theme_color_background"
-                        app:ads_summary="@string/ads_theme_color_background_summary"
-                        app:ads_description="@string/ads_theme_color_default_desc"
-                        app:ads_action="@string/ads_theme_color_tint"
-                        app:ads_shape="square"
-                        app:ads_popup="true"
-                        app:ads_popupColors="@array/ads_app_theme_colors" />
+                    <LinearLayout
+                        style="?attr/ads_widgetContentRowVertical">
 
-                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
-                        android:id="@+id/ads_pref_theme_color_surface"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:ads_key="ads_pref_settings_theme_color_surface"
-                        app:ads_altKey="ads_pref_settings_theme_color_tint_surface"
-                        app:ads_title="@string/ads_theme_color_surface"
-                        app:ads_description="@string/ads_theme_color_default_desc"
-                        app:ads_action="@string/ads_theme_color_tint"
-                        app:ads_alphaEnabled="true"
-                        app:ads_popup="true"
-                        app:ads_popupColors="@array/ads_app_theme_surface_colors" />
+                        <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
+                            android:id="@+id/ads_pref_theme_color_background"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:ads_key="ads_pref_settings_theme_color_background"
+                            app:ads_altKey="ads_pref_settings_theme_color_tint_background"
+                            app:ads_icon="@drawable/ads_ic_paint_bucket"
+                            app:ads_title="@string/ads_theme_color_background"
+                            app:ads_summary="@string/ads_theme_color_background_summary"
+                            app:ads_description="@string/ads_theme_color_default_desc"
+                            app:ads_action="@string/ads_theme_color_tint"
+                            app:ads_shape="square"
+                            app:ads_popup="true"
+                            app:ads_popupColors="@array/ads_app_theme_colors" />
+
+                        <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
+                            android:id="@+id/ads_pref_theme_color_surface"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:ads_key="ads_pref_settings_theme_color_surface"
+                            app:ads_altKey="ads_pref_settings_theme_color_tint_surface"
+                            app:ads_title="@string/ads_theme_color_surface"
+                            app:ads_description="@string/ads_theme_color_default_desc"
+                            app:ads_action="@string/ads_theme_color_tint"
+                            app:ads_alphaEnabled="true"
+                            app:ads_popup="true"
+                            app:ads_popupColors="@array/ads_app_theme_surface_colors" />
+
+                    </LinearLayout>
 
                     <com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference
                         android:id="@+id/ads_pref_theme_opacity"
@@ -94,35 +99,40 @@
                         app:ads_interval="@integer/adt_opacity_interval"
                         app:ads_progress="@integer/adt_opacity" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
-                        android:id="@+id/ads_pref_theme_color_primary_dark"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:ads_key="ads_pref_settings_theme_color_primary_dark"
-                        app:ads_altKey="ads_pref_settings_theme_color_tint_primary_dark"
-                        app:ads_icon="@drawable/ads_ic_android"
-                        app:ads_title="@string/ads_theme_color_primary_dark"
-                        app:ads_summary="@string/ads_theme_color_primary_summary_dark"
-                        app:ads_description="@string/ads_theme_color_default_desc"
-                        app:ads_action="@string/ads_theme_color_tint"
-                        app:ads_alphaEnabled="true"
-                        app:ads_popup="true"
-                        app:ads_popupColors="@array/ads_app_colors_dark"
-                        app:ads_altPopupColors="@array/ads_app_theme_colors" />
+                    <LinearLayout
+                        style="?attr/ads_widgetContentRowVertical">
 
-                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
-                        android:id="@+id/ads_pref_theme_color_accent_dark"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:ads_key="ads_pref_settings_theme_color_accent_dark"
-                        app:ads_altKey="ads_pref_settings_theme_color_tint_accent_dark"
-                        app:ads_title="@string/ads_theme_color_secondary"
-                        app:ads_description="@string/ads_theme_color_default_desc"
-                        app:ads_action="@string/ads_theme_color_tint"
-                        app:ads_alphaEnabled="true"
-                        app:ads_popup="true"
-                        app:ads_popupColors="@array/ads_app_colors_dark"
-                        app:ads_altPopupColors="@array/ads_app_theme_colors" />
+                        <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
+                            android:id="@+id/ads_pref_theme_color_primary_dark"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:ads_key="ads_pref_settings_theme_color_primary_dark"
+                            app:ads_altKey="ads_pref_settings_theme_color_tint_primary_dark"
+                            app:ads_icon="@drawable/ads_ic_android"
+                            app:ads_title="@string/ads_theme_color_primary_dark"
+                            app:ads_summary="@string/ads_theme_color_primary_summary_dark"
+                            app:ads_description="@string/ads_theme_color_default_desc"
+                            app:ads_action="@string/ads_theme_color_tint"
+                            app:ads_alphaEnabled="true"
+                            app:ads_popup="true"
+                            app:ads_popupColors="@array/ads_app_colors_dark"
+                            app:ads_altPopupColors="@array/ads_app_theme_colors" />
+
+                        <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
+                            android:id="@+id/ads_pref_theme_color_accent_dark"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:ads_key="ads_pref_settings_theme_color_accent_dark"
+                            app:ads_altKey="ads_pref_settings_theme_color_tint_accent_dark"
+                            app:ads_title="@string/ads_theme_color_secondary"
+                            app:ads_description="@string/ads_theme_color_default_desc"
+                            app:ads_action="@string/ads_theme_color_tint"
+                            app:ads_alphaEnabled="true"
+                            app:ads_popup="true"
+                            app:ads_popupColors="@array/ads_app_colors_dark"
+                            app:ads_altPopupColors="@array/ads_app_theme_colors" />
+
+                    </LinearLayout>
 
                     <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
                         android:id="@+id/ads_pref_theme_color_primary"
