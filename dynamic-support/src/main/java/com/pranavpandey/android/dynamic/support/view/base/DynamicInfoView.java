@@ -132,6 +132,11 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
     private ViewGroup mInfoView;
 
     /**
+     * Footer element of this view.
+     */
+    private ViewGroup mFooterView;
+
+    /**
      * Image view to show the icon.
      */
     private ImageView mIconView;
@@ -170,6 +175,11 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
      * Recycler view to show the links associated with this view.
      */
     private RecyclerView mLinksView;
+
+    /**
+     * Recycler view root to show the links associated with this view.
+     */
+    private ViewGroup mLinksViewRoot;
 
     /**
      * A list to hold the dynamic items used by this view.
@@ -258,6 +268,7 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
         inflate(getContext(), getLayoutRes(), this);
 
         mInfoView = findViewById(R.id.ads_info_view);
+        mFooterView = findViewById(R.id.ads_info_view_footer);
         mIconView = findViewById(R.id.ads_info_view_icon);
         mIconFooterView = findViewById(R.id.ads_info_view_icon_footer);
         mTitleView = findViewById(R.id.ads_info_view_title);
@@ -266,6 +277,7 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
         mStatusView = findViewById(R.id.ads_info_view_status);
         mIconBigView = findViewById(R.id.ads_info_view_icon_big);
         mLinksView = findViewById(R.id.ads_recycler_view);
+        mLinksViewRoot = findViewById(R.id.ads_recycler_view_frame);
 
         mVisibilityIconView = mIconView.getVisibility();
         mDynamicItems = new ArrayList<>();
@@ -320,11 +332,21 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
             Dynamic.setVisibility(getIconView(), getVisibilityIconView());
         }
         Dynamic.setVisibility(getIconFooterView(), getIconView());
+        Dynamic.setVisibility(getIconFooterView(), getIconView());
+
+        if ((getDescriptionView() != null && getDescriptionView().getVisibility() == VISIBLE)
+                || (getStatusView() != null && getStatusView().getVisibility() == VISIBLE)) {
+            Dynamic.setVisibility(getFooterView(), VISIBLE);
+        } else {
+            Dynamic.setVisibility(getFooterView(), GONE);
+        }
 
         setColor();
 
         mDynamicItems.clear();
         if (mLinks != null) {
+            Dynamic.setVisibility(getLinksViewRoot(), VISIBLE);
+
             if (mLinksIconsResId != DynamicResourceUtils.ADS_DEFAULT_RESOURCE_ID
                     && mLinksDrawables == null) {
                 mLinksDrawables = DynamicResourceUtils.convertToDrawableArray(
@@ -402,6 +424,8 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
 
                 mLinksView.setAdapter(new DynamicItemsAdapter(mDynamicItems));
             }
+        } else {
+            Dynamic.setVisibility(getLinksViewRoot(), GONE);
         }
     }
 
@@ -708,6 +732,15 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
     }
 
     /**
+     * Get the footer element of this view.
+     *
+     * @return The footer element of this view
+     */
+    public @NonNull ViewGroup getFooterView() {
+        return mFooterView;
+    }
+
+    /**
      * Get the image view to show the icon used by this view.
      *
      * @return The image view to show the icon used by this view.
@@ -777,5 +810,14 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
      */
     public @Nullable RecyclerView getLinksView() {
         return mLinksView;
+    }
+
+    /**
+     * Get the recycler view root to show the links associated with this view.
+     *
+     * @return The recycler view root to show the links associated with this view.
+     */
+    public @Nullable ViewGroup getLinksViewRoot() {
+        return mLinksViewRoot;
     }
 }

@@ -30,6 +30,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -76,6 +77,8 @@ import com.pranavpandey.android.dynamic.support.tutorial.Tutorial;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicScrollUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicTintUtils;
+import com.pranavpandey.android.dynamic.support.view.DynamicInfoViewBig;
+import com.pranavpandey.android.dynamic.support.view.DynamicInfoViewBigAuthor;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
 import com.pranavpandey.android.dynamic.support.widget.DynamicBottomNavigationView;
@@ -1597,6 +1600,36 @@ public class Dynamic {
      */
     public static <T extends View> void tintDivider(@Nullable T view) {
         tintDivider(view, DynamicTheme.getInstance().getDefaultContrastWith());
+    }
+
+    /**
+     * Show dividers according to the supplied view.
+     *
+     * @param view The view object to show dividers.
+     * @param showDividers The flag to show dividers.
+     * @param <T> The type of the view object.
+     *
+     * @see LinearLayout#setShowDividers(int)
+     * @see LinearLayoutCompat#setShowDividers(int)
+     */
+    public static <T> void setShowDividers(@Nullable T view, int showDividers) {
+        if (view == null || !Dynamic.isExpressiveVersion()) {
+            return;
+        }
+
+        if (view instanceof View && ((((View) view).getParent() instanceof DynamicSurfaceWidget
+                && !((DynamicSurfaceWidget) ((View) view).getParent()).isForceElevation())
+                || ((View) view).getParent() instanceof DynamicInfoView
+                || ((View) view).getParent() instanceof DynamicInfoViewBig
+                || ((View) view).getParent() instanceof DynamicInfoViewBigAuthor)) {
+            if (view instanceof LinearLayout) {
+                ((LinearLayout) view).setShowDividers(showDividers);
+            } else if (view instanceof LinearLayoutCompat) {
+                ((LinearLayoutCompat) view).setShowDividers(showDividers);
+            }
+        } else if (view instanceof Menu) {
+            ((Menu) view).setGroupDividerEnabled(true);
+        }
     }
 
     /**

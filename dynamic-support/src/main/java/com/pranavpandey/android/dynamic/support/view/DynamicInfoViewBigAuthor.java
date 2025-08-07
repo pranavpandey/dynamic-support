@@ -24,6 +24,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView;
@@ -94,5 +95,12 @@ public class DynamicInfoViewBigAuthor extends DynamicInfoView {
                     getContext().getString(R.string.adu_url_me_google_play)
             });
         }
+    }
+
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+
+        Dynamic.setVisibility(getFooterView(), getStatusView());
     }
 }

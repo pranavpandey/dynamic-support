@@ -24,6 +24,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView;
 
@@ -49,5 +50,12 @@ public class DynamicInfoViewBig extends DynamicInfoView {
     @Override
     protected @LayoutRes int getLayoutRes() {
         return R.layout.ads_info_view_big;
+    }
+
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+
+        Dynamic.setVisibility(getFooterView(), getStatusView());
     }
 }

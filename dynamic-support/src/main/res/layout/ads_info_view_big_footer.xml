@@ -21,6 +21,7 @@
 
     <LinearLayout
         style="?attr/ads_widgetContentCardFooter"
+        android:id="@+id/ads_info_view_footer"
         android:orientation="horizontal">
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicImageView

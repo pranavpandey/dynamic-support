@@ -30,6 +30,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
@@ -43,6 +44,7 @@ import androidx.core.widget.TextViewCompat;
 import com.google.android.material.navigation.NavigationBarItemView;
 import com.google.android.material.navigation.NavigationBarMenuView;
 import com.google.android.material.tabs.TabLayout;
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicPreference;
 import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
 import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
@@ -80,6 +82,8 @@ public class DynamicMenuUtils {
             setOptionalIconsVisible.invoke(menu, true);
         } catch (Exception ignored) {
         }
+
+        Dynamic.setShowDividers(menu, LinearLayout.SHOW_DIVIDER_MIDDLE);
     }
 
     /**

@@ -173,6 +173,13 @@ public class DynamicLinearLayoutCompat extends LinearLayoutCompat
     }
 
     @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+
+        Dynamic.setShowDividers(this, LinearLayoutCompat.SHOW_DIVIDER_MIDDLE);
+    }
+
+    @Override
     public @Theme.ColorType int getColorType() {
         return mColorType;
     }

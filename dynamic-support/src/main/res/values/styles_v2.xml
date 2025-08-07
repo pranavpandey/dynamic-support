@@ -1023,9 +1023,7 @@
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
-    <style name="Widget.Dynamic2.Content.Card.Header">
-        <item name="android:paddingBottom">0dp</item>
-    </style>
+    <style name="Widget.Dynamic2.Content.Card.Header" />
     <style name="Widget.Dynamic2.Content.Card.Header.Clickable">
         <item name="android:foreground">?attr/selectableItemBackground</item>
     </style>

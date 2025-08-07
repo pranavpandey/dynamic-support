@@ -169,6 +169,13 @@ public class DynamicLinearLayout extends LinearLayout implements DynamicWidget, 
     }
 
     @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+
+        Dynamic.setShowDividers(this, LinearLayout.SHOW_DIVIDER_MIDDLE);
+    }
+
+    @Override
     public @Theme.ColorType int getColorType() {
         return mColorType;
     }

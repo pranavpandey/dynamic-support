@@ -62,6 +62,11 @@ public class DynamicInfo implements Parcelable {
     private CharSequence description;
 
     /**
+     * Status used by this info.
+     */
+    private CharSequence status;
+
+    /**
      * Title for the links used by this info.
      */
     private CharSequence[] links;
@@ -114,6 +119,7 @@ public class DynamicInfo implements Parcelable {
         this.title = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
         this.subtitle = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
         this.description = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
+        this.status = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
         this.linksIconsResId = in.readInt();
         this.linksColorsResId = in.readInt();
     }
@@ -145,6 +151,7 @@ public class DynamicInfo implements Parcelable {
         TextUtils.writeToParcel(title, dest, flags);
         TextUtils.writeToParcel(subtitle, dest, flags);
         TextUtils.writeToParcel(description, dest, flags);
+        TextUtils.writeToParcel(status, dest, flags);
         dest.writeInt(linksIconsResId);
         dest.writeInt(linksColorsResId);
     }
@@ -255,6 +262,28 @@ public class DynamicInfo implements Parcelable {
      */
     public @NonNull DynamicInfo setDescription(@Nullable CharSequence description) {
         this.description = description;
+
+        return this;
+    }
+
+    /**
+     * Get the status used by this info.
+     *
+     * @return The status used by this info.
+     */
+    public @Nullable CharSequence getStatus() {
+        return status;
+    }
+
+    /**
+     * Set the status for this info.
+     *
+     * @param status The status to be set.
+     *
+     * @return The {@link DynamicInfo} object to allow for chaining of calls to set methods.
+     */
+    public @NonNull DynamicInfo setStatus(@Nullable CharSequence status) {
+        this.status = status;
 
         return this;
     }
