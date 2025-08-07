@@ -18,48 +18,55 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="?attr/ads_widgetContentCardClickableBackground"
-    android:id="@+id/ads_array_item"
-    android:orientation="horizontal">
-
-    <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-        android:id="@+id/ads_array_item_icon"
-        android:layout_width="@dimen/ads_popup_selector_icon_size"
-        android:layout_height="@dimen/ads_popup_selector_icon_size"
-        android:layout_marginRight="@dimen/ads_page_horizontal_margin"
-        android:layout_marginEnd="@dimen/ads_page_horizontal_margin"
-        android:layout_gravity="center_vertical"
-        app:adt_colorType="tint_surface"
-        app:adt_contrastWithColorType="surface" />
+    style="?attr/ads_widgetContentRowVertical"
+    android:id="@+id/ads_array_item_root"
+    android:divider="@drawable/ads_divider_horizontal">
 
     <LinearLayout
-        style="?attr/ads_widgetContentRowVerticalWeight">
+        style="?attr/ads_widgetContentCardClickableBackground"
+        android:id="@+id/ads_array_item"
+        android:orientation="horizontal">
 
-        <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            android:id="@+id/ads_array_item_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/ads_textAppearanceSubtitle1"
+        <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+            android:id="@+id/ads_array_item_icon"
+            android:layout_width="@dimen/ads_popup_selector_icon_size"
+            android:layout_height="@dimen/ads_popup_selector_icon_size"
+            android:layout_marginRight="@dimen/ads_page_horizontal_margin"
+            android:layout_marginEnd="@dimen/ads_page_horizontal_margin"
+            android:layout_gravity="center_vertical"
+            app:adt_colorType="tint_surface"
             app:adt_contrastWithColorType="surface" />
 
-        <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
-            android:id="@+id/ads_array_item_subtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/ads_textAppearanceBody1"
+        <LinearLayout
+            style="?attr/ads_widgetContentRowVerticalWeight">
+
+            <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                android:id="@+id/ads_array_item_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/ads_textAppearanceSubtitle1"
+                app:adt_contrastWithColorType="surface" />
+
+            <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
+                android:id="@+id/ads_array_item_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/ads_textAppearanceBody1"
+                app:adt_contrastWithColorType="surface" />
+
+        </LinearLayout>
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+            android:id="@+id/ads_array_item_selector"
+            android:layout_width="@dimen/ads_popup_selector_icon_size"
+            android:layout_height="@dimen/ads_popup_selector_icon_size"
+            android:layout_marginLeft="@dimen/ads_page_horizontal_margin"
+            android:layout_marginStart="@dimen/ads_page_horizontal_margin"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/ads_ic_check"
+            app:adt_colorType="accent"
             app:adt_contrastWithColorType="surface" />
 
     </LinearLayout>
-
-    <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-        android:id="@+id/ads_array_item_selector"
-        android:layout_width="@dimen/ads_popup_selector_icon_size"
-        android:layout_height="@dimen/ads_popup_selector_icon_size"
-        android:layout_marginLeft="@dimen/ads_page_horizontal_margin"
-        android:layout_marginStart="@dimen/ads_page_horizontal_margin"
-        android:layout_gravity="center_vertical"
-        app:srcCompat="@drawable/ads_ic_check"
-        app:adt_colorType="accent"
-        app:adt_contrastWithColorType="surface" />
 
 </LinearLayout>
