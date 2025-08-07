@@ -83,6 +83,20 @@ public abstract class DynamicListQueryAdapter<T, Q, VH extends RecyclerView.View
         initHighlightColor();
     }
 
+    @Override
+    public void onBindViewHolder(@NonNull VH holder, int position) {
+        onHighlightQuery(holder, position, getQuery());
+    }
+
+    /**
+     * This method will be called to highlight the query text.
+     *
+     * @param holder The view holder for the recycler view.
+     * @param position The position to bind the view holder.
+     * @param query The string to be highlighted.
+     */
+    public abstract void onHighlightQuery(@NonNull VH holder, int position, @Nullable Q query);
+
     /**
      * Get the raw data used by this list adapter.
      *
