@@ -62,6 +62,7 @@ public class InfoBigBinder extends DynamicDataBinder<DynamicInfo, InfoBigBinder.
         holder.getDynamicInfo().setTitle(getData().getTitle());
         holder.getDynamicInfo().setSubtitle(getData().getSubtitle());
         holder.getDynamicInfo().setDescription(getData().getDescription());
+        holder.getDynamicInfo().setStatus(getData().getStatus());
         holder.getDynamicInfo().setLinks(getData().getLinks());
         holder.getDynamicInfo().setLinksSubtitles(getData().getLinksSubtitles());
         holder.getDynamicInfo().setLinksUrls(getData().getLinksUrls());

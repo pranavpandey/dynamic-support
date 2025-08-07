@@ -38,17 +38,17 @@ public class Defaults {
     /**
      * Default alpha for the divider.
      */
-    public static final float ADS_ALPHA_DIVIDER = 0.4f;
+    public static final float ADS_ALPHA_DIVIDER = 0.26f;
 
     /**
      * Default alpha for the menu group divider.
      */
-    public static final float ADS_ALPHA_DIVIDER_MENU = 0.2f;
+    public static final float ADS_ALPHA_DIVIDER_MENU = 0.16f;
 
     /**
      * Default alpha for the divider in integer.
      */
-    public static final int ADS_ALPHA_DIVIDER_INTEGER = 100;
+    public static final int ADS_ALPHA_DIVIDER_INTEGER = 66;
 
     /**
      * Default alpha for the toast.
