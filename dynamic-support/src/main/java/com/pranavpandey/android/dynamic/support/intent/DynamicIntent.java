@@ -182,6 +182,12 @@ public class DynamicIntent {
             "com.pranavpandey.android.dynamic.support.intent.extra.URI";
 
     /**
+     * Intent extra constant for the shared preferences.
+     */
+    public static final String EXTRA_PREFS =
+            "com.pranavpandey.android.dynamic.support.intent.extra.PREFS";
+
+    /**
      * Intent extra constant for the text.
      */
     public static final String EXTRA_TEXT =
