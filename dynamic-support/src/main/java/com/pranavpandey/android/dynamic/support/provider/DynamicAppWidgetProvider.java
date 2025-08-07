@@ -17,6 +17,7 @@
 package com.pranavpandey.android.dynamic.support.provider;
 
 import android.annotation.TargetApi;
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
@@ -484,5 +485,20 @@ public abstract class DynamicAppWidgetProvider<T extends AppTheme<?>>
             int height, float cornerRadius, @ColorInt int color) {
         return DynamicBitmapUtils.getBitmap(DynamicCodeUtils
                 .getCornerDrawable(width, height, cornerRadius, color, true));
+    }
+
+    /**
+     * Checks whether the pin app widget is supported.
+     *
+     * @param context The context to get the app widget manager.
+     *
+     * @return {@code true} if the default launcher supports pin app widget.
+     *
+     * @see DynamicSdkUtils#is26()
+     * @see AppWidgetManager#requestPinAppWidget(ComponentName, Bundle, PendingIntent)
+     */
+    public static boolean isRequestPinAppWidgetSupported(@NonNull Context context) {
+        return DynamicSdkUtils.is26() && AppWidgetManager.getInstance(context)
+                .isRequestPinAppWidgetSupported();
     }
 }
