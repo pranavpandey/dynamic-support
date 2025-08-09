@@ -633,6 +633,10 @@ public class DynamicMenuPopup extends DynamicSimplePopup {
 
     @Override
     public @NonNull DynamicPopup build() {
+        if (getDividers() != null) {
+            setViewType(Type.LIST);
+        }
+
         mView = LayoutInflater.from(getAnchor().getContext()).inflate(
                 mViewType == Type.GRID
                         ? R.layout.ads_preference_spinner_grid
