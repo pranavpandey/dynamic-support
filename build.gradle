@@ -31,7 +31,7 @@ buildscript {
             'swiperefresh': '1.1.0',
             'theme'       : '4.6.1',
             'toasts'      : '4.3.0',
-            'work'        : '2.10.1'
+            'work'        : '2.10.3'
     ]
 
     repositories {
