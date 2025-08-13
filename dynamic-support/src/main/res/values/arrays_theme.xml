@@ -209,6 +209,24 @@
         <item>-3</item>
     </string-array>
 
+    <!-- Theme icons for auto and custom. -->
+    <array name="ads_theme_icons_auto">
+        <item>@drawable/ads_ic_auto_alt</item>
+        <item>@drawable/ads_ic_tune</item>
+    </array>
+
+    <!-- Theme icons for auto and custom. -->
+    <array name="ads_theme_icons_auto_alt">
+        <item>@drawable/ads_ic_settings</item>
+        <item>@drawable/ads_ic_tune</item>
+    </array>
+
+    <!-- Widget theme icons for auto and custom. -->
+    <array name="ads_theme_icons_auto_theme">
+        <item>@drawable/ads_ic_style</item>
+        <item>@drawable/ads_ic_tune</item>
+    </array>
+
     <!-- Theme entries for auto and custom. -->
     <string-array name="ads_theme_entries_auto">
         <item>@string/ads_theme_entry_auto</item>
@@ -250,6 +268,24 @@
         <item>1</item>
     </string-array>
 
+    <!-- Corner radius icons. -->
+    <array name="ads_corner_icons">
+        <item>@drawable/ads_ic_auto_alt</item>
+        <item>@drawable/ads_ic_tune</item>
+    </array>
+
+    <!-- Corner radius icons. -->
+    <array name="ads_corner_icons_alt">
+        <item>@drawable/ads_ic_settings</item>
+        <item>@drawable/ads_ic_tune</item>
+    </array>
+
+    <!-- Theme corner radius icons. -->
+    <array name="ads_corner_icons_theme">
+        <item>@drawable/ads_ic_style</item>
+        <item>@drawable/ads_ic_tune</item>
+    </array>
+
     <!-- Corner radius entries. -->
     <string-array name="ads_corner_entries">
         <item>@string/ads_theme_entry_auto</item>
@@ -263,6 +299,13 @@
         <!-- Custom -->
         <item>-2</item>
     </string-array>
+
+    <!-- Corner radius icons for the app widget. -->
+    <array name="ads_corner_icons_widget"
+        tools:ignore="InconsistentArrays">
+        <item>@drawable/ads_ic_style</item>
+        <item>@drawable/ads_ic_tune</item>
+    </array>
 
     <!-- Corner radius entries for the app widget. -->
     <string-array name="ads_corner_entries_widget"
@@ -279,6 +322,27 @@
         <!-- Custom -->
         <item>-2</item>
     </string-array>
+
+    <!-- Background aware icons. -->
+    <array name="ads_background_aware_icons">
+        <item>@drawable/ads_ic_auto_alt</item>
+        <item>@drawable/ads_ic_block</item>
+        <item>@drawable/ads_ic_dynamic</item>
+    </array>
+
+    <!-- Background aware icons. -->
+    <array name="ads_background_aware_icons_alt">
+        <item>@drawable/ads_ic_settings</item>
+        <item>@drawable/ads_ic_block</item>
+        <item>@drawable/ads_ic_dynamic</item>
+    </array>
+
+    <!-- Theme background aware icons. -->
+    <array name="ads_background_aware_icons_theme">
+        <item>@drawable/ads_ic_style</item>
+        <item>@drawable/ads_ic_block</item>
+        <item>@drawable/ads_ic_dynamic</item>
+    </array>
 
     <!-- Background aware entries. -->
     <string-array name="ads_background_aware_entries">
@@ -297,6 +361,27 @@
         <item>1</item>
     </string-array>
 
+    <!-- Contrast ratio icons. -->
+    <array name="ads_contrast_icons"
+        tools:ignore="InconsistentArrays">
+        <item>@drawable/ads_ic_auto_alt</item>
+        <item>@drawable/ads_ic_tune</item>
+    </array>
+
+    <!-- Contrast ratio icons. -->
+    <array name="ads_contrast_icons_alt"
+        tools:ignore="InconsistentArrays">
+        <item>@drawable/ads_ic_settings</item>
+        <item>@drawable/ads_ic_tune</item>
+    </array>
+
+    <!-- Theme contrast ratio icons. -->
+    <array name="ads_contrast_icons_theme"
+        tools:ignore="InconsistentArrays">
+        <item>@drawable/ads_ic_style</item>
+        <item>@drawable/ads_ic_tune</item>
+    </array>
+
     <!-- Contrast ratio entries. -->
     <string-array name="ads_contrast_entries"
         tools:ignore="InconsistentArrays">
@@ -313,14 +398,35 @@
         <item>-2</item>
     </string-array>
 
-    <!-- Theme elevation entries. -->
+    <!-- Shadow elevation icons. -->
+    <array name="ads_elevation_icons">
+        <item>@drawable/ads_ic_auto_alt</item>
+        <item>@drawable/ads_ic_block</item>
+        <item>@drawable/ads_ic_dynamic</item>
+    </array>
+
+    <!-- Shadow elevation icons. -->
+    <array name="ads_elevation_icons_alt">
+        <item>@drawable/ads_ic_settings</item>
+        <item>@drawable/ads_ic_block</item>
+        <item>@drawable/ads_ic_dynamic</item>
+    </array>
+
+    <!-- Theme shadow elevation icons. -->
+    <array name="ads_elevation_icons_theme">
+        <item>@drawable/ads_ic_style</item>
+        <item>@drawable/ads_ic_block</item>
+        <item>@drawable/ads_ic_dynamic</item>
+    </array>
+
+    <!-- Shadow elevation entries. -->
     <string-array name="ads_elevation_entries">
         <item>@string/ads_theme_entry_auto</item>
         <item>@string/ads_disable</item>
         <item>@string/ads_enable</item>
     </string-array>
 
-    <!-- Theme elevation values. -->
+    <!-- Shadow elevation values. -->
     <string-array name="ads_elevation_values">
         <!-- Auto -->
         <item>-3</item>
@@ -329,6 +435,12 @@
         <!-- Enable -->
         <item>1</item>
     </string-array>
+
+    <!-- Theme style icons. -->
+    <array name="ads_style_icons">
+        <item>@drawable/ads_ic_android</item>
+        <item>@drawable/ads_ic_style</item>
+    </array>
 
     <!-- Theme style entries. -->
     <string-array name="ads_style_entries">

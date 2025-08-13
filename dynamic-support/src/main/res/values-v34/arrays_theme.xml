@@ -18,6 +18,30 @@
 <resources
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Contrast ratio icons. -->
+    <array name="ads_contrast_icons"
+        tools:ignore="InconsistentArrays">
+        <item>@drawable/ads_ic_auto_alt</item>
+        <item>@drawable/ads_ic_android</item>
+        <item>@drawable/ads_ic_tune</item>
+    </array>
+
+    <!-- Contrast ratio icons. -->
+    <array name="ads_contrast_icons_alt"
+        tools:ignore="InconsistentArrays">
+        <item>@drawable/ads_ic_settings</item>
+        <item>@drawable/ads_ic_android</item>
+        <item>@drawable/ads_ic_tune</item>
+    </array>
+
+    <!-- Theme contrast ratio icons. -->
+    <array name="ads_contrast_icons_theme"
+        tools:ignore="InconsistentArrays">
+        <item>@drawable/ads_ic_style</item>
+        <item>@drawable/ads_ic_android</item>
+        <item>@drawable/ads_ic_tune</item>
+    </array>
+
     <!-- Contrast ratio entries. -->
     <string-array name="ads_contrast_entries"
         tools:ignore="InconsistentArrays">
