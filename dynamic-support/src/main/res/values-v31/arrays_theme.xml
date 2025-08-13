@@ -18,6 +18,14 @@
 <resources
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Corner radius icons for the app widget. -->
+    <array name="ads_corner_icons_widget"
+        tools:ignore="InconsistentArrays">
+        <item>@drawable/ads_ic_style</item>
+        <item>@drawable/ads_ic_android</item>
+        <item>@drawable/ads_ic_tune</item>
+    </array>
+
     <!-- Corner radius entries for the app widget. -->
     <string-array name="ads_corner_entries_widget"
         tools:ignore="InconsistentArrays">
