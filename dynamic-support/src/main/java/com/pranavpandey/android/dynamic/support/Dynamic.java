@@ -55,6 +55,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.drawable.IconCompat;
 import androidx.core.text.HtmlCompat;
+import androidx.core.view.MenuCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -1635,7 +1636,7 @@ public class Dynamic {
                 ((LinearLayoutCompat) view).setShowDividers(showDividers);
             }
         } else if (view instanceof Menu) {
-            ((Menu) view).setGroupDividerEnabled(true);
+            MenuCompat.setGroupDividerEnabled((Menu) view, true);
         }
     }
 
