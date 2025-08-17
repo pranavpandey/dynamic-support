@@ -109,6 +109,7 @@ import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
 import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
+import com.pranavpandey.android.dynamic.util.product.DynamicFlavor;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -172,6 +173,15 @@ public class Dynamic {
              */
             int DEFAULT = 25;
         }
+    }
+
+    /**
+     * Checks whether the product flavor is {@link DynamicFlavor#GOOGLE}.
+     *
+     * @return {@code true} if the product flavor is {@link DynamicFlavor#GOOGLE}.
+     */
+    public static boolean isGoogleFlavor() {
+        return DynamicFlavor.GOOGLE.equals(DynamicTheme.getInstance().getProductFlavor());
     }
 
     /**
