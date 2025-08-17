@@ -30,6 +30,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.MovementMethod;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -2035,8 +2036,10 @@ public class Dynamic {
      *
      * @param textView The text view to set the text.
      * @param text The text to be set.
+     * @param movement The optional movement method to be set.
      */
-    public static void setHtml(@Nullable TextView textView, @Nullable CharSequence text) {
+    public static void setHtml(@Nullable TextView textView,
+            @Nullable CharSequence text, @Nullable MovementMethod movement) {
         if (textView == null) {
             return;
         }
@@ -2044,10 +2047,25 @@ public class Dynamic {
         if (text != null && !TextUtils.isEmpty(text)) {
             textView.setText(HtmlCompat.fromHtml(text.toString(),
                     HtmlCompat.FROM_HTML_MODE_COMPACT));
+            if (movement != null) {
+                textView.setMovementMethod(movement);
+            }
             textView.setVisibility(View.VISIBLE);
         } else {
             textView.setVisibility(View.GONE);
         }
+    }
+
+    /**
+     * Set {@code HTML} text for the text view and manage its visibility according to the data.
+     *
+     * @param textView The text view to set the text.
+     * @param text The text to be set.
+     *
+     * @see #setHtml(TextView, CharSequence, MovementMethod)
+     */
+    public static void setHtml(@Nullable TextView textView, @Nullable CharSequence text) {
+        setHtml(textView, text, null);
     }
 
     /**
