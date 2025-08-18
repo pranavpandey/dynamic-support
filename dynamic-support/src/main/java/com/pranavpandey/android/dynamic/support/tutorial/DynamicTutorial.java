@@ -18,6 +18,7 @@ package com.pranavpandey.android.dynamic.support.tutorial;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
@@ -52,17 +53,17 @@ public class DynamicTutorial implements Parcelable,
     /**
      * Title used by this tutorial.
      */
-    private String title;
+    private CharSequence title;
 
     /**
      * Subtitle used by this tutorial.
      */
-    private String subtitle;
+    private CharSequence subtitle;
 
     /**
      * Description used by this tutorial.
      */
-    private String description;
+    private CharSequence description;
 
     /**
      * Image resource used by this tutorial.
@@ -100,7 +101,7 @@ public class DynamicTutorial implements Parcelable,
      * @param imageRes The image resource for this tutorial.
      */
     public DynamicTutorial(int id, @ColorInt int color, @ColorInt int tintColor,
-            @Nullable String title, @Nullable String description, @DrawableRes int imageRes) {
+            @Nullable CharSequence title, @Nullable CharSequence description, @DrawableRes int imageRes) {
         this(id, color, tintColor, title, null, description, imageRes);
     }
 
@@ -116,8 +117,8 @@ public class DynamicTutorial implements Parcelable,
      * @param imageRes The image resource for this tutorial.
      */
     public DynamicTutorial(int id, @ColorInt int color,
-            @ColorInt int tintColor, @Nullable String title, @Nullable String subtitle,
-            @Nullable String description, @DrawableRes int imageRes) {
+            @ColorInt int tintColor, @Nullable CharSequence title, @Nullable CharSequence subtitle,
+            @Nullable CharSequence description, @DrawableRes int imageRes) {
         this(id, color, tintColor, title, subtitle, description,
                 imageRes, false);
     }
@@ -135,7 +136,7 @@ public class DynamicTutorial implements Parcelable,
      * @param tintImage {@code true} to tint the image according to the tint color.
      */
     public DynamicTutorial(int id, @ColorInt int color, @ColorInt int tintColor,
-            @Nullable String title, @Nullable String subtitle, @Nullable String description,
+            @Nullable CharSequence title, @Nullable CharSequence subtitle, @Nullable CharSequence description,
             @DrawableRes int imageRes, boolean tintImage) {
         this(id, color, tintColor, title, subtitle, description,
                 imageRes, tintImage, false);
@@ -155,7 +156,7 @@ public class DynamicTutorial implements Parcelable,
      * @param sharedElement {@code true} to set the shared element.
      */
     public DynamicTutorial(int id, @ColorInt int color, @ColorInt int tintColor,
-            @Nullable String title, @Nullable String subtitle, @Nullable String description,
+            @Nullable CharSequence title, @Nullable CharSequence subtitle, @Nullable CharSequence description,
             @DrawableRes int imageRes, boolean tintImage, boolean sharedElement) {
         this(id, color, tintColor, title, subtitle, description, imageRes,
                 tintImage, id == ADS_TUTORIAL_WELCOME, sharedElement);
@@ -176,7 +177,7 @@ public class DynamicTutorial implements Parcelable,
      * @param sharedElement {@code true} to set the shared element.
      */
     public DynamicTutorial(int id, @ColorInt int color, @ColorInt int tintColor,
-            @Nullable String title, @Nullable String subtitle, @Nullable String description,
+            @Nullable CharSequence title, @Nullable CharSequence subtitle, @Nullable CharSequence description,
             @DrawableRes int imageRes, boolean tintImage, boolean backgroundAnimation,
             boolean sharedElement) {
         this.id = id;
@@ -200,9 +201,9 @@ public class DynamicTutorial implements Parcelable,
         this.id = in.readInt();
         this.color = in.readInt();
         this.tintColor = in.readInt();
-        this.title = in.readString();
-        this.subtitle = in.readString();
-        this.description = in.readString();
+        this.title = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
+        this.subtitle = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
+        this.description = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
         this.imageRes = in.readInt();
         this.tintImage = in.readByte() != 0;
         this.backgroundAnimation = in.readByte() != 0;
@@ -235,9 +236,9 @@ public class DynamicTutorial implements Parcelable,
         dest.writeInt(id);
         dest.writeInt(color);
         dest.writeInt(tintColor);
-        dest.writeString(title);
-        dest.writeString(subtitle);
-        dest.writeString(description);
+        TextUtils.writeToParcel(title, dest, flags);
+        TextUtils.writeToParcel(subtitle, dest, flags);
+        TextUtils.writeToParcel(description, dest, flags);
         dest.writeInt(imageRes);
         dest.writeByte((byte) (tintImage ? 1 : 0));
         dest.writeByte((byte) (backgroundAnimation ? 1 : 0));
@@ -365,7 +366,7 @@ public class DynamicTutorial implements Parcelable,
      *
      * @return The title used by this tutorial.
      */
-    public @Nullable String getTitle() {
+    public @Nullable CharSequence getTitle() {
         return title;
     }
 
@@ -377,7 +378,7 @@ public class DynamicTutorial implements Parcelable,
      * @return The {@link DynamicTutorial} object to allow for chaining of calls to
      *         set methods.
      */
-    public @NonNull DynamicTutorial setTitle(@Nullable String title) {
+    public @NonNull DynamicTutorial setTitle(@Nullable CharSequence title) {
         this.title = title;
 
         return this;
@@ -388,7 +389,7 @@ public class DynamicTutorial implements Parcelable,
      *
      * @return The subtitle used by this tutorial.
      */
-    public @Nullable String getSubtitle() {
+    public @Nullable CharSequence getSubtitle() {
         return subtitle;
     }
 
@@ -400,7 +401,7 @@ public class DynamicTutorial implements Parcelable,
      * @return The {@link DynamicTutorial} object to allow for chaining of calls to
      *         set methods.
      */
-    public @NonNull DynamicTutorial setSubtitle(@Nullable String subtitle) {
+    public @NonNull DynamicTutorial setSubtitle(@Nullable CharSequence subtitle) {
         this.subtitle = subtitle;
 
         return this;
@@ -411,7 +412,7 @@ public class DynamicTutorial implements Parcelable,
      *
      * @return The description used by this tutorial.
      */
-    public @Nullable String getDescription() {
+    public @Nullable CharSequence getDescription() {
         return description;
     }
 
@@ -423,7 +424,7 @@ public class DynamicTutorial implements Parcelable,
      * @return The {@link DynamicTutorial} object to allow for chaining of calls to
      *         set methods.
      */
-    public @NonNull DynamicTutorial setDescription(@Nullable String description) {
+    public @NonNull DynamicTutorial setDescription(@Nullable CharSequence description) {
         this.description = description;
 
         return this;
