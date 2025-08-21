@@ -130,9 +130,8 @@ public class DynamicPermissionsActivity extends DynamicActivity
             return;
         }
 
-        Dynamic.set(findViewById(R.id.ads_header_appbar_subtitle),
-                getString(permissions.length == 1 ? R.string.ads_permissions_subtitle_single
-                        : R.string.ads_permissions_subtitle));
+        setHeaderSubtitle(getString(permissions.length == 1
+                ? R.string.ads_permissions_subtitle_single : R.string.ads_permissions_subtitle));
     }
 
     @Override

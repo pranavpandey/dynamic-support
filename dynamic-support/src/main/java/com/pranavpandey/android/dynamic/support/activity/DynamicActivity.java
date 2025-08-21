@@ -957,6 +957,16 @@ public abstract class DynamicActivity extends DynamicStateActivity
     }
 
     /**
+     * Try to set header subtitle if added.
+     *
+     * @param subtitle The subtitle to be set.
+     */
+    public void setHeaderSubtitle(@Nullable CharSequence subtitle) {
+        DynamicMotion.getInstance().beginDelayedTransition(getFrameHeader());
+        Dynamic.set(findViewById(R.id.ads_header_appbar_subtitle), subtitle);
+    }
+
+    /**
      * Set the visibility of app bar progress.
      *
      * @param visible {@code true} to show the progress bar below the app bar.
