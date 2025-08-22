@@ -60,8 +60,8 @@ public class ItemBinder extends DynamicDataBinder<DynamicItem, ItemBinder.ViewHo
             return;
         }
 
-        Dynamic.setColorType(holder.getDynamicItemView(), getData().getColorType());
-        Dynamic.setColor(holder.getDynamicItemView(), getData().getColor());
+        Dynamic.setColorTypeOrColor(holder.getDynamicItemView(),
+                getData().getColorType(), getData().getColor());
         Dynamic.setContrastWithColorTypeOrColor(holder.getDynamicItemView(),
                 getData().getContrastWithColorType(), getData().getContrastWithColor());
         Dynamic.setBackgroundAwareSafe(holder.getDynamicItemView(),
