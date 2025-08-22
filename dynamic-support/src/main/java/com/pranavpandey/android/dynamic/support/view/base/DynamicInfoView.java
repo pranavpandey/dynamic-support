@@ -398,7 +398,8 @@ public class DynamicInfoView extends DynamicView implements DynamicWidget {
                 }
 
                 DynamicItem dynamicItem = new DynamicItem(icon, title, subtitle,
-                        color, Theme.ColorType.CUSTOM, false);
+                        color, color == Theme.Color.UNKNOWN ? Theme.ColorType.NONE
+                        : Theme.ColorType.CUSTOM, false);
                 Dynamic.setContrastWithColorTypeOrColor(dynamicItem,
                         getContrastWithColorType(), getContrastWithColor());
                 Dynamic.setBackgroundAwareSafe(dynamicItem,

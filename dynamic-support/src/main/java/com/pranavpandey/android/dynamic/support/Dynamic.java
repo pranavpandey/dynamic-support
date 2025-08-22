@@ -1277,6 +1277,8 @@ public class Dynamic {
             setColorType(dynamic, colorType);
         } else if (colorType == Theme.ColorType.CUSTOM && color != Theme.Color.UNKNOWN) {
             setColor(dynamic, color);
+        } else {
+            setColor(dynamic, Theme.Color.UNKNOWN);
         }
     }
 
