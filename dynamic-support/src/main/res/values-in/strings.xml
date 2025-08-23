@@ -92,6 +92,7 @@
     <string name="ads_normal">Normal</string>
     <string name="ads_minimum">Minimum</string>
     <string name="ads_experimental">Eksperimental</string>
+    <string name="ads_title">Judul</string>
     <string name="ads_sort">Sortir</string>
     <string name="ads_sort_category">Kategori</string>
     <string name="ads_sort_name">Nama</string>

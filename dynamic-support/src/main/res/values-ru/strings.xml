@@ -92,6 +92,7 @@
     <string name="ads_normal">Обычный</string>
     <string name="ads_minimum">Минимум</string>
     <string name="ads_experimental">Экспериментальный</string>
+    <string name="ads_title">Заголовок</string>
     <string name="ads_sort">Сортировать</string>
     <string name="ads_sort_category">Категория</string>
     <string name="ads_sort_name">Название</string>

@@ -92,6 +92,7 @@
     <string name="ads_normal">साधारण</string>
     <string name="ads_minimum">न्यूनतम</string>
     <string name="ads_experimental">प्रयोगात्मक</string>
+    <string name="ads_title">शीर्षक</string>
     <string name="ads_sort">क्रम चुनें</string>
     <string name="ads_sort_category">श्रेणी</string>
     <string name="ads_sort_name">नाम</string>

@@ -92,6 +92,7 @@
     <string name="ads_normal">正常</string>
     <string name="ads_minimum">最低要求</string>
     <string name="ads_experimental">实验性</string>
+    <string name="ads_title">标题</string>
     <string name="ads_sort">分类</string>
     <string name="ads_sort_category">类别</string>
     <string name="ads_sort_name">名称</string>

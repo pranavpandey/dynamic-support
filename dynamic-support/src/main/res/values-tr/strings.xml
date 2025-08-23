@@ -92,6 +92,7 @@
     <string name="ads_normal">Normal</string>
     <string name="ads_minimum">Minimum</string>
     <string name="ads_experimental">Deneysel</string>
+    <string name="ads_title">Başlık</string>
     <string name="ads_sort">Sırala</string>
     <string name="ads_sort_category">Kategori</string>
     <string name="ads_sort_name">Ad</string>

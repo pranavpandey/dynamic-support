@@ -92,6 +92,7 @@
     <string name="ads_normal">一般</string>
     <string name="ads_minimum">最低要求</string>
     <string name="ads_experimental">實驗性</string>
+    <string name="ads_title">標題</string>
     <string name="ads_sort">排序</string>
     <string name="ads_sort_category">類別</string>
     <string name="ads_sort_name">名稱</string>

@@ -92,6 +92,7 @@
     <string name="ads_normal">Normal</string>
     <string name="ads_minimum">Mínima</string>
     <string name="ads_experimental">Experimental</string>
+    <string name="ads_title">Título</string>
     <string name="ads_sort">Organizar</string>
     <string name="ads_sort_category">Categoría</string>
     <string name="ads_sort_name">Nombre</string>
