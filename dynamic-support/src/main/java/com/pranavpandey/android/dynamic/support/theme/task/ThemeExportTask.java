@@ -31,6 +31,7 @@ import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
 import com.pranavpandey.android.dynamic.util.DynamicFileUtils;
 import com.pranavpandey.android.dynamic.util.concurrent.DynamicResult;
 import com.pranavpandey.android.dynamic.util.concurrent.DynamicTask;
+import com.pranavpandey.android.dynamic.util.concurrent.task.ContextTask;
 
 /**
  * A {@link DynamicTask} to perform the theme related operations.
@@ -38,7 +39,7 @@ import com.pranavpandey.android.dynamic.util.concurrent.DynamicTask;
  * @param <V> The type of the dynamic app theme.
  */
 public abstract class ThemeExportTask<V extends DynamicAppTheme>
-        extends DynamicTask<Void, Void, Uri> {
+        extends ContextTask<Void, Void, Uri> {
 
     /**
      * Theme action to perform the operation accordingly.
@@ -56,6 +57,11 @@ public abstract class ThemeExportTask<V extends DynamicAppTheme>
     private final ThemeListener<V> mThemeListener;
 
     /**
+     * The dynamic theme returned by the listener.
+     */
+    private final V mDynamicTheme;
+
+    /**
      * Constructor to initialize an object of this class.
      *
      * @param themeAction The task type to perform the operation accordingly.
@@ -63,8 +69,14 @@ public abstract class ThemeExportTask<V extends DynamicAppTheme>
      */
     public ThemeExportTask(@Theme.Action int themeAction,
             @Nullable ThemeListener<V> themeListener) {
+        super(themeListener != null && themeListener.getThemePreview() != null
+                ? themeListener.getThemePreview().getContext() : null);
+
         this.mThemeAction = themeAction;
         this.mThemeListener = themeListener;
+        this.mDynamicTheme = getThemeListener() != null
+                || getThemeListener().getThemePreview() != null
+                ? themeListener.getThemePreview().getDynamicTheme() : null;
     }
 
     @Override
@@ -85,35 +97,24 @@ public abstract class ThemeExportTask<V extends DynamicAppTheme>
 
     @Override
     protected @Nullable Uri doInBackground(@Nullable Void params) {
-        if (getThemeListener() == null) {
-            return null;
-        }
-
-        if (getThemeListener().getThemePreview() == null) {
+        if (getContext() == null || getThemeListener() == null || getDynamicTheme() == null) {
             return null;
         }
 
         if (getThemeAction() == Theme.Action.SHARE_CODE
                 || getThemeAction() == Theme.Action.SAVE_CODE) {
-            mThemeBitmap = DynamicCodeUtils.generateThemeCode(
-                    getThemeListener().getThemePreview().getDynamicTheme(),
-                    DynamicResourceUtils.getDrawable(
-                            getThemeListener().getThemePreview().getContext(),
-                            getThemeListener().getThemePreview().getDynamicTheme().isDynamicColor()
-                                    ? R.drawable.adt_ic_app : R.drawable.ads_ic_style));
+            mThemeBitmap = DynamicCodeUtils.generateThemeCode(getDynamicTheme(),
+                    DynamicResourceUtils.getDrawable(getContext(), getDynamicTheme()
+                            .isDynamicColor() ? R.drawable.adt_ic_app : R.drawable.ads_ic_style));
         }
 
         if (getThemeAction() == Theme.Action.SHARE_FILE
                 || getThemeAction() == Theme.Action.SAVE_FILE) {
-            return DynamicFileUtils.getUriFromFile(
-                    getThemeListener().getThemePreview().getContext(),
-                    DynamicThemeUtils.requestThemeFile(
-                            getThemeListener().getThemePreview().getContext(), Theme.NAME,
-                            getThemeListener().getThemePreview()
-                                    .getDynamicTheme().toDynamicString()));
+            return DynamicFileUtils.getUriFromFile(getContext(),
+                    DynamicThemeUtils.requestThemeFile(getContext(), Theme.NAME,
+                            getDynamicTheme().toDynamicString()));
         } else {
-            return DynamicFileUtils.getBitmapUri(
-                    getThemeListener().getThemePreview().getContext(),
+            return DynamicFileUtils.getBitmapUri(getContext(),
                     getThemeBitmap(), Theme.Key.SHARE, Theme.EXTENSION_IMAGE);
         }
     }
@@ -154,6 +155,15 @@ public abstract class ThemeExportTask<V extends DynamicAppTheme>
      */
     public @Nullable ThemeListener<V> getThemeListener() {
         return mThemeListener;
+    }
+
+    /**
+     * Get the dynamic theme returned by the listener.
+     *
+     * @return The dynamic theme returned by the listener.
+     */
+    public @Nullable V getDynamicTheme() {
+        return mDynamicTheme;
     }
 
     /**
