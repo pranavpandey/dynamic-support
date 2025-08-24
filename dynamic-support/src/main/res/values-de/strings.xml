@@ -91,6 +91,7 @@
     <string name="ads_default">Standard</string>
     <string name="ads_normal">Normal</string>
     <string name="ads_minimum">Minimum</string>
+    <string name="ads_extension">Erweiterung</string>
     <string name="ads_experimental">Experimental</string>
     <string name="ads_title">Titel</string>
     <string name="ads_sort">Sortierung</string>

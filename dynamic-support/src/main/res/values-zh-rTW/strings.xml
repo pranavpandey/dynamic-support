@@ -91,6 +91,7 @@
     <string name="ads_default">預設</string>
     <string name="ads_normal">一般</string>
     <string name="ads_minimum">最低要求</string>
+    <string name="ads_extension">擴充功能</string>
     <string name="ads_experimental">實驗性</string>
     <string name="ads_title">標題</string>
     <string name="ads_sort">排序</string>

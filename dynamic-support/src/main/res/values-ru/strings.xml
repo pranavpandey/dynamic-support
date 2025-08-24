@@ -91,6 +91,7 @@
     <string name="ads_default">По умолчанию</string>
     <string name="ads_normal">Обычный</string>
     <string name="ads_minimum">Минимум</string>
+    <string name="ads_extension">Расширение</string>
     <string name="ads_experimental">Экспериментальный</string>
     <string name="ads_title">Заголовок</string>
     <string name="ads_sort">Сортировать</string>
