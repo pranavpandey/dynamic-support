@@ -88,6 +88,11 @@ public class DynamicThemeDialog<T extends DynamicAppTheme, V> extends DynamicDia
     private @Theme.Action int mThemeAction;
 
     /**
+     * Custom title for the dialog.
+     */
+    private CharSequence mTitle;
+
+    /**
      * Optional message for the dialog.
      */
     private CharSequence mMessage;
@@ -394,7 +399,11 @@ public class DynamicThemeDialog<T extends DynamicAppTheme, V> extends DynamicDia
                 break;
         }
 
+        if (mTitle != null) {
+            dialogBuilder.setTitle(mTitle);
+        }
         Dynamic.set(mMessageView, mMessage);
+
         return dialogBuilder.setView(view);
     }
 
@@ -480,16 +489,39 @@ public class DynamicThemeDialog<T extends DynamicAppTheme, V> extends DynamicDia
     }
 
     /**
-     * Get the message used by this dialog.
+     * Get the custom title used by this dialog.
      *
-     * @return The message used by this dialog.
+     * @return The custom title used by this dialog.
+     */
+    public @Nullable CharSequence getTitle() {
+        return mTitle;
+    }
+
+    /**
+     * Set the custom title for this dialog.
+     *
+     * @param title The title to be set.
+     *
+     * @return The {@link DynamicThemeDialog} object to allow for chaining of calls to
+     *         set methods.
+     */
+    public @NonNull DynamicThemeDialog<T, V> setTitle(@Nullable CharSequence title) {
+        this.mTitle = title;
+
+        return this;
+    }
+
+    /**
+     * Get the optional message used by this dialog.
+     *
+     * @return The optional message used by this dialog.
      */
     public @Nullable CharSequence getMessage() {
         return mMessage;
     }
 
     /**
-     * Get the optional message for this dialog.
+     * Set the optional message for this dialog.
      *
      * @param message The message to be set.
      *
