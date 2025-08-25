@@ -237,8 +237,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
         int itemId = item.getItemId();
 
         if (itemId == R.id.ads_menu_theme_data_copy) {
-            DynamicTheme.getInstance().copyThemeString(getDynamicActivity(),
-                    mThemePreview.getDynamicTheme().toDynamicString());
+            onCopyTheme(mThemePreview);
         } else if (itemId == R.id.ads_menu_theme_share) {
             DynamicThemeDialog.<T>newThemeInstance()
                     .setThemeAction(Theme.Action.SHARE)
@@ -515,6 +514,16 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
     }
 
     @Override
+    public void onCopyTheme(@Nullable ThemePreview<T> themePreview) {
+        if (themePreview == null) {
+            return;
+        }
+
+        DynamicTheme.getInstance().copyThemeString(getDynamicActivity(),
+                themePreview.getDynamicTheme().toDynamicString());
+    }
+
+    @Override
     public @NonNull DynamicTask<?, ?, ?> getThemeExportTask(
             @Nullable DialogInterface dialog, @Theme.Action int themeAction,
             @Nullable ThemePreview<T> themePreview) {
@@ -554,10 +563,9 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
                     mThemeExported = result.getData();
 
                     final Uri file;
-                    if ((file = DynamicPickerUtils.saveToFile(
-                            requireContext(), mFileResultLauncher, mThemeExported, Theme.MIME,
-                            true, DynamicThemeUtils.getFileName(
-                                    null, Theme.EXTENSION))) != null) {
+                    if ((file = DynamicPickerUtils.saveToFile(requireContext(),
+                            mFileResultLauncher, mThemeExported, Theme.MIME, true,
+                            DynamicThemeUtils.getFileName(null, Theme.EXTENSION))) != null) {
                         saveTheme(ThemeListener.REQUEST_THEME_LOCATION, file);
                     } else if (!DynamicIntentUtils.isFilePicker(requireContext(), Theme.MIME)) {
                         onThemeError(Theme.Action.SAVE_FILE,

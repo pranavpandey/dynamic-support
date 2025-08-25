@@ -393,6 +393,13 @@ public interface ThemeListener<T extends DynamicAppTheme> {
                 @Theme.Action int themeAction);
 
         /**
+         * This method will be called to copy the theme string or data.
+         *
+         * @param themePreview The theme preview associated with this listener.
+         */
+        void onCopyTheme(@Nullable ThemePreview<T> themePreview);
+
+        /**
          * This method will be called to get the theme export task.
          *
          * @param dialog The dialog interface if applicable.
