@@ -21,10 +21,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
@@ -94,6 +99,101 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
      * Dialog fragment to show the progress.
      */
     protected DynamicDialogFragment mProgressDialog;
+
+    /**
+     * Activity result launcher to request theme file.
+     */
+    protected ActivityResultLauncher<Intent> mFileResultLauncher;
+
+    /**
+     * Activity result launcher to request theme code file.
+     */
+    protected ActivityResultLauncher<Intent> mFileCodeResultLauncher;
+
+    /**
+     * Activity result launcher to import theme file.
+     */
+    protected ActivityResultLauncher<Intent> mFileImportResultLauncher;
+
+    /**
+     * Activity result launcher to capture theme file.
+     */
+    protected ActivityResultLauncher<Intent> mFileCaptureResultLauncher;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mFileResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() != Activity.RESULT_OK
+                                || result.getData() == null) {
+                            return;
+                        }
+
+                        saveTheme(REQUEST_THEME_LOCATION, result.getData().getData());
+                    }
+                });
+
+        mFileCodeResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() != Activity.RESULT_OK
+                                || result.getData() == null) {
+                            return;
+                        }
+
+                        saveTheme(REQUEST_THEME_CODE_LOCATION, result.getData().getData());
+                    }
+                });
+
+        mFileImportResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() != Activity.RESULT_OK
+                                || result.getData() == null) {
+                            return;
+                        }
+
+                        DynamicThemeDialog.newImportUriInstance()
+                                .setThemeAction(Theme.Action.IMPORT_FILE)
+                                .setThemeImportFileListener(new File<Uri>() {
+                                    @Override
+                                    public @Nullable Uri getThemeSource() {
+                                        return result.getData().getData();
+                                    }
+
+                                    @Override
+                                    public void onImportTheme(@Nullable String theme) {
+                                        importTheme(theme, Theme.Action.IMPORT_FILE);
+                                    }
+                                })
+                                .setMessage(getShareTitle())
+                                .showDialog(requireActivity());
+                    }
+                });
+
+        mFileCaptureResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() != Activity.RESULT_OK) {
+                            return;
+                        }
+
+                        importTheme(result.getData() != null ? result.getData().getStringExtra(
+                                Theme.Intent.EXTRA_DATA_CAPTURE) : null, Theme.Action.CAPTURE);
+                    }
+                });
+    }
 
     /**
      * This method will be called to get the share title.
@@ -199,7 +299,7 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
      * @param requestCode The request code to be used.
      * @param file The file URI to be used.
      */
-    protected void saveTheme(int requestCode, @Nullable Uri file) {
+    protected void saveTheme(final int requestCode, final @Nullable Uri file) {
         new ViewModelProvider(this).get(DynamicTaskViewModel.class).execute(
                 new FileWriteTask(requireContext(), mThemeExported, file) {
                     @Override
@@ -224,44 +324,6 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
                         }
                     }
                 });
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode != Activity.RESULT_OK) {
-            return;
-        }
-
-        final Uri uri = data != null ? data.getData() : null;
-
-        switch (requestCode) {
-            case REQUEST_THEME_LOCATION:
-            case REQUEST_THEME_CODE_LOCATION:
-                saveTheme(requestCode, uri);
-                break;
-            case REQUEST_THEME_IMPORT:
-                DynamicThemeDialog.newImportUriInstance()
-                        .setThemeAction(Theme.Action.IMPORT_FILE)
-                        .setThemeImportFileListener(new File<Uri>() {
-                            @Override
-                            public @Nullable Uri getThemeSource() {
-                                return uri;
-                            }
-
-                            @Override
-                            public void onImportTheme(@Nullable String theme) {
-                                importTheme(theme, Theme.Action.IMPORT_FILE);
-                            }
-                        })
-                        .setMessage(getShareTitle())
-                        .showDialog(requireActivity());
-                break;
-            case REQUEST_THEME_CAPTURE:
-                importTheme(data != null ? data.getStringExtra(Theme.Intent.EXTRA_DATA_CAPTURE)
-                        : null, Theme.Action.CAPTURE);
-        }
     }
 
     /**
@@ -405,12 +467,12 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
     public void importTheme(@Theme.Action int themeAction) {
         switch (themeAction) {
             case Theme.Action.CAPTURE:
-                DynamicIntent.captureTheme(requireContext(), this, REQUEST_THEME_CAPTURE,
+                DynamicIntent.captureTheme(requireContext(), mFileCaptureResultLauncher,
                         DynamicTheme.getInstance().get().toJsonString(true, true));
                 break;
             case Theme.Action.IMPORT_FILE:
-                DynamicPickerUtils.selectFile(requireContext(), this,
-                        Theme.MIME_PICK, REQUEST_THEME_IMPORT);
+                DynamicPickerUtils.selectFile(requireContext(),
+                        mFileImportResultLauncher, Theme.MIME_PICK);
                 break;
             default:
                 DynamicThemeDialog.<T>newThemeInstance()
@@ -493,9 +555,9 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
 
                     final Uri file;
                     if ((file = DynamicPickerUtils.saveToFile(
-                            requireContext(), ThemeFragment.this, mThemeExported,
-                            Theme.MIME, REQUEST_THEME_LOCATION, true,
-                            DynamicThemeUtils.getFileName(null, Theme.EXTENSION))) != null) {
+                            requireContext(), mFileResultLauncher, mThemeExported, Theme.MIME,
+                            true, DynamicThemeUtils.getFileName(
+                                    null, Theme.EXTENSION))) != null) {
                         saveTheme(ThemeListener.REQUEST_THEME_LOCATION, file);
                     } else if (!DynamicIntentUtils.isFilePicker(requireContext(), Theme.MIME)) {
                         onThemeError(Theme.Action.SAVE_FILE,
@@ -506,9 +568,9 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
 
                     final Uri file;
                     if ((file = DynamicPickerUtils.saveToFile(
-                            requireContext(), ThemeFragment.this, mThemeExported,
-                            Theme.MIME_IMAGE, REQUEST_THEME_CODE_LOCATION, true,
-                            DynamicThemeUtils.getFileName(Theme.EXTENSION_IMAGE))) != null) {
+                            requireContext(), mFileCodeResultLauncher, mThemeExported,
+                            Theme.MIME_IMAGE, true, DynamicThemeUtils.getFileName(
+                                    Theme.EXTENSION_IMAGE))) != null) {
                         saveTheme(ThemeListener.REQUEST_THEME_CODE_LOCATION, file);
                     } else if (!DynamicIntentUtils.isFilePicker(
                             requireContext(), Theme.MIME_IMAGE)) {

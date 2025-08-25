@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
@@ -539,7 +540,7 @@ public class DynamicIntent {
     }
 
     /**
-     * Returns an intent to edit or show the dynamic theme.
+     * Try to launch the theme capture intent.
      *
      * @param context The context to create the intent.
      * @param owner The requesting owner for the intent.
@@ -553,5 +554,29 @@ public class DynamicIntent {
     public static boolean captureTheme(@Nullable Context context,
             @Nullable LifecycleOwner owner, int requestCode, @Nullable String theme) {
         return editTheme(context, owner, Theme.Intent.ACTION_CAPTURE, requestCode, theme);
+    }
+
+    /**
+     * Try to launch the theme capture intent.
+     *
+     * @param context The context to create the intent.
+     * @param launcher The activity result launcher to launch the intent.
+     * @param theme The dynamic app theme extra for the intent.
+     *
+     * @return {@code true} on successful operation.
+     *
+     * @see #getThemeIntent(Context, String, String)
+     * @see ActivityResultLauncher#launch(Object)
+     */
+    public static boolean captureTheme(@Nullable Context context,
+            @Nullable ActivityResultLauncher<Intent> launcher, @Nullable String theme) {
+        if (context != null && launcher != null) {
+            launcher.launch(getThemeIntent(context,
+                    Theme.Intent.ACTION_CAPTURE, theme).setPackage(null));
+
+            return true;
+        }
+
+        return false;
     }
 }

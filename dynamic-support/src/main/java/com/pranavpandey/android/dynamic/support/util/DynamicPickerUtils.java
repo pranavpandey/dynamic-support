@@ -34,6 +34,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.widget.SeekBar;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -227,7 +228,8 @@ public class DynamicPickerUtils {
         }
 
         return downloads ? DynamicFileUtils.getUriFromFile(context,
-                DynamicFileUtils.getPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName)) : null;
+                DynamicFileUtils.getPublicDir(Environment.DIRECTORY_DOWNLOADS,
+                        fileName)) : null;
     }
 
     /**
@@ -248,6 +250,60 @@ public class DynamicPickerUtils {
             @Nullable LifecycleOwner owner, @Nullable Uri file,
             @NonNull String mimeType, int requestCode) {
         return saveToFile(context, owner, file, mimeType, requestCode, true, null);
+    }
+
+    /**
+     * Try to request a storage location for the supplied file.
+     *
+     * @param context The context to get the file URI.
+     * @param launcher The activity result launcher to launch the intent.
+     * @param file The file URI to request the storage location.
+     * @param mimeType The mime type of the file.
+     * @param downloads {@code true} to return the download location on unsupported API levels.
+     * @param fileName The default file name.
+     *
+     * @return {@code null} if the request for storage location for the supplied file was
+     *         successful. Otherwise, the {@code downloads} location URI based on the
+     *         supplied parameter.
+     *
+     * @see DynamicFileUtils#getSaveToFileIntent(Context, Uri, String)
+     * @see ActivityResultLauncher#launch(Object)
+     */
+    public static @Nullable Uri saveToFile(@Nullable Context context,
+            @Nullable ActivityResultLauncher<Intent> launcher, @Nullable Uri file,
+            @NonNull String mimeType, boolean downloads, @Nullable String fileName) {
+        if (context == null) {
+            return null;
+        }
+
+        if (launcher != null && DynamicIntentUtils.isFilePicker(context, mimeType)) {
+            launcher.launch(DynamicFileUtils.getSaveToFileIntent(context, file, mimeType));
+
+            return null;
+        }
+
+        return downloads ? DynamicFileUtils.getUriFromFile(context,
+                DynamicFileUtils.getPublicDir(Environment.DIRECTORY_DOWNLOADS,
+                        fileName)) : null;
+    }
+
+    /**
+     * Try to request a storage location for the supplied file.
+     *
+     * @param context The context to get the file URI.
+     * @param launcher The activity result launcher to launch the intent.
+     * @param file The file URI to request the storage location.
+     * @param mimeType The mime type of the file.
+     *
+     * @return {@code null} if the request for storage location for the supplied file was
+     *         successful. Otherwise, the {@code downloads} location URI.
+     *
+     * @see #saveToFile(Context, ActivityResultLauncher, Uri, String, boolean, String)
+     */
+    public static @Nullable Uri saveToFile(@Nullable Context context,
+            @Nullable ActivityResultLauncher<Intent> launcher, @Nullable Uri file,
+            @NonNull String mimeType) {
+        return saveToFile(context, launcher, file, mimeType, true, null);
     }
 
     /**
@@ -315,6 +371,59 @@ public class DynamicPickerUtils {
     }
 
     /**
+     * Try to request a storage location for the supplied file.
+     *
+     * @param context The context to get the file URI.
+     * @param launcher The activity result launcher to launch the intent.
+     * @param file The file to request the storage location.
+     * @param mimeType The mime type of the file.
+     * @param downloads {@code true} to return the download location on unsupported API levels.
+     * @param fileName The default file name.
+     *
+     * @return {@code null} if the request for storage location for the supplied file was
+     *         successful. Otherwise, the {@code downloads} location URI based on the
+     *         supplied parameter.
+     *
+     * @see DynamicFileUtils#getSaveToFileIntent(Context, File, String)
+     * @see ActivityResultLauncher#launch(Object)
+     */
+    public static @Nullable File saveToFile(@Nullable Context context,
+            @Nullable ActivityResultLauncher<Intent> launcher, @Nullable File file,
+            @NonNull String mimeType, boolean downloads, @Nullable String fileName) {
+        if (context == null) {
+            return null;
+        }
+
+        if (launcher != null && DynamicIntentUtils.isFilePicker(context, mimeType)) {
+            launcher.launch(DynamicFileUtils.getSaveToFileIntent(context, file, mimeType));
+
+            return null;
+        }
+
+        return downloads ? DynamicFileUtils.getPublicDir(
+                Environment.DIRECTORY_DOWNLOADS, fileName) : null;
+    }
+
+    /**
+     * Try to request a storage location for the supplied file.
+     *
+     * @param context The context to get the file URI.
+     * @param launcher The activity result launcher to launch the intent.
+     * @param file The file to request the storage location.
+     * @param mimeType The mime type of the file.
+     *
+     * @return {@code null} if the request for storage location for the supplied file was
+     *         successful. Otherwise, the {@code downloads} location URI.
+     *
+     * @see #saveToFile(Context, ActivityResultLauncher, File, String, boolean, String)
+     */
+    public static @Nullable File saveToFile(@Nullable Context context,
+            @Nullable ActivityResultLauncher<Intent> launcher, @Nullable File file,
+            @NonNull String mimeType) {
+        return saveToFile(context, launcher, file, mimeType, true, null);
+    }
+
+    /**
      * Try to request an intent to select a file according to the supplied mime type.
      *
      * @param context The context to get the file URI.
@@ -342,6 +451,30 @@ public class DynamicPickerUtils {
 
                 return true;
             }
+        }
+
+        return false;
+    }
+
+    /**
+     * Try to request an intent to select a file according to the supplied mime type.
+     *
+     * @param context The context to get the file URI.
+     * @param launcher The activity result launcher to launch the intent.
+     * @param mimeType The mime type of the file.
+     *
+     * @return {@code null} if the request for storage location for the supplied file was
+     *         successful. Otherwise, the {@code downloads} location URI.
+     *
+     * @see DynamicFileUtils#getFileSelectIntent(String)
+     * @see ActivityResultLauncher#launch(Object)
+     */
+    public static boolean selectFile(@Nullable Context context,
+            @Nullable ActivityResultLauncher<Intent> launcher, @NonNull String mimeType) {
+        if (launcher != null && DynamicIntentUtils.isFilePicker(context, mimeType)) {
+            launcher.launch(DynamicFileUtils.getFileSelectIntent(mimeType));
+
+            return true;
         }
 
         return false;
