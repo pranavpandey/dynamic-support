@@ -224,6 +224,13 @@ public interface ThemeListener<T extends DynamicAppTheme> {
     String ADS_PREF_THEME_STYLE = "ads_pref_settings_theme_style";
 
     /**
+     * Returns whether to provide theme menu for default operations.
+     *
+     * @return {@code true} to provide theme menu for default operations.
+     */
+    boolean isThemeMenu();
+
+    /**
      * This method will called to load settings from the supplied theme.
      *
      * @param theme The dynamic app theme to be loaded.

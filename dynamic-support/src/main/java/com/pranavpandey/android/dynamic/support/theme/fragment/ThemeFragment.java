@@ -208,12 +208,18 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
     public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateMenu(menu, inflater);
 
-        inflater.inflate(R.menu.ads_menu_theme, menu);
+        if (isThemeMenu()) {
+            inflater.inflate(R.menu.ads_menu_theme, menu);
+        }
     }
 
     @Override
     public void onPrepareMenu(@NonNull Menu menu) {
         super.onPrepareMenu(menu);
+
+        if (!isThemeMenu()) {
+            return;
+        }
 
         if (DynamicFileUtils.getTempDir(requireContext()) == null) {
             menu.findItem(R.id.ads_menu_theme_file).setVisible(false);
@@ -422,6 +428,11 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
     @Override
     public @Theme.Style int getStyle() {
         return mDynamicTheme.getStyle();
+    }
+
+    @Override
+    public boolean isThemeMenu() {
+        return true;
     }
 
     @Override
