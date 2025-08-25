@@ -114,18 +114,6 @@ public class DynamicPermissionsFragment extends DynamicFragment {
     private ActivityResultLauncher<String[]> mPermissionsResultLauncher;
 
     /**
-     * Activity result callback to request permissions.
-     */
-    private final ActivityResultCallback<Map<String, Boolean>> mPermissionsResultCallback =
-            new ActivityResultCallback<Map<String, Boolean>>() {
-        @Override
-        public void onActivityResult(Map<String, Boolean> result) {
-            mRequestingDangerousPermissions = false;
-            resumePermissionsRequest();
-        }
-    };
-
-    /**
      * Initialize the new instance of this fragment.
      *
      * @param permissionsIntent The intent with all the requested permissions and action.
@@ -150,7 +138,13 @@ public class DynamicPermissionsFragment extends DynamicFragment {
 
         mPermissionsResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.RequestMultiplePermissions(),
-                mPermissionsResultCallback);
+                new ActivityResultCallback<Map<String, Boolean>>() {
+                    @Override
+                    public void onActivityResult(Map<String, Boolean> result) {
+                        mRequestingDangerousPermissions = false;
+                        resumePermissionsRequest();
+                    }
+                });
     }
 
     @Override
