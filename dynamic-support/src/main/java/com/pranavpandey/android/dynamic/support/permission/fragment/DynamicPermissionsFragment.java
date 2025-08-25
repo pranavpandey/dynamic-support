@@ -147,6 +147,10 @@ public class DynamicPermissionsFragment extends DynamicFragment {
         super.onCreate(savedInstanceState);
 
         setResult(Activity.RESULT_CANCELED, null, false);
+
+        mPermissionsResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestMultiplePermissions(),
+                mPermissionsResultCallback);
     }
 
     @Override
@@ -164,10 +168,6 @@ public class DynamicPermissionsFragment extends DynamicFragment {
         if (getActivity() == null) {
             return;
         }
-
-        mPermissionsResultLauncher = registerForActivityResult(
-                new ActivityResultContracts.RequestMultiplePermissions(),
-                mPermissionsResultCallback);
 
         getDynamicActivity().setExtendedFAB(R.drawable.ads_ic_done_all,
                 R.string.ads_perm_request, View.VISIBLE, new View.OnClickListener() {
