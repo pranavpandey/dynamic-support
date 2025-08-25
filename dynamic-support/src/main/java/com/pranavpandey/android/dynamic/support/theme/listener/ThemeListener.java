@@ -371,7 +371,7 @@ public interface ThemeListener<T extends DynamicAppTheme> {
          *
          * @return The imported theme.
          */
-        T onImportTheme(@NonNull String theme);
+        @NonNull T onImportTheme(@NonNull String theme);
     }
 
     /**
