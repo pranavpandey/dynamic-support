@@ -456,11 +456,34 @@
         <item>-2</item>
     </string-array>
 
+    <!-- Theme icons for the share menu. -->
+    <array name="ads_theme_share_icons">
+        <item>@drawable/ads_ic_style</item>
+        <item>@drawable/ads_ic_text</item>
+        <item>@drawable/ads_ic_file</item>
+    </array>
+
+    <!-- Theme icons for the share with extension menu. -->
+    <array name="ads_theme_share_icons_extension">
+        <item>@drawable/ads_ic_style</item>
+        <item>@drawable/ads_ic_text</item>
+        <item>@drawable/ads_ic_file</item>
+        <item>@drawable/ads_ic_extension</item>
+    </array>
+
     <!-- Theme entries for the share menu. -->
     <string-array name="ads_theme_share_entries">
         <item>@string/ads_theme</item>
         <item>@string/ads_data</item>
         <item>@string/ads_file</item>
+    </string-array>
+
+    <!-- Theme entries for the share with extension menu. -->
+    <string-array name="ads_theme_share_entries_extension">
+        <item>@string/ads_theme</item>
+        <item>@string/ads_data</item>
+        <item>@string/ads_file</item>
+        <item>@string/ads_extension</item>
     </string-array>
 
     <!-- Theme values for the share menu. -->
@@ -472,13 +495,6 @@
         <!-- File -->
         <item>5</item>
     </string-array>
-
-    <!-- Theme icons for the share menu. -->
-    <array name="ads_theme_share_icons">
-        <item>@drawable/ads_ic_style</item>
-        <item>@drawable/ads_ic_text</item>
-        <item>@drawable/ads_ic_file</item>
-    </array>
 
     <!-- App theme background colors. -->
     <array name="ads_app_theme_colors">
