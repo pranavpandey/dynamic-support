@@ -99,6 +99,7 @@ import com.pranavpandey.android.dynamic.support.widget.base.DynamicStateSelected
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicStateWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicSurfaceWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTextWidget;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.support.widget.tooltip.DynamicTooltip;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -1591,9 +1592,14 @@ public class Dynamic {
             return;
         }
 
-        @ColorInt int color = DynamicColorUtils.setAlpha(DynamicColorUtils.getContrastColor(
-                DynamicTheme.getInstance().resolveColorType(Defaults.ADS_COLOR_TYPE_DIVIDER),
-                contrastWithColor), Defaults.ADS_ALPHA_DIVIDER_INTEGER);
+        @ColorInt int color = DynamicTheme.getInstance().resolveColorType(
+                Defaults.ADS_COLOR_TYPE_DIVIDER);
+
+        if ((view instanceof DynamicTintWidget && ((DynamicTintWidget) view).isTintBackground())
+                || (view instanceof DynamicWidget && ((DynamicWidget) view).isBackgroundAware())) {
+            color = DynamicColorUtils.getContrastColor(color, contrastWithColor);
+        }
+        color = DynamicColorUtils.setAlpha(color, Defaults.ADS_ALPHA_DIVIDER_INTEGER);
 
         if (view instanceof LinearLayout) {
             ((LinearLayout) view).setDividerDrawable(DynamicDrawableUtils.colorizeDrawable(

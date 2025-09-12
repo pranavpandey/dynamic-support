@@ -31,6 +31,7 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicSurfaceWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -173,6 +174,13 @@ public class DynamicLinearLayout extends LinearLayout implements DynamicWidget, 
         super.onAttachedToWindow();
 
         Dynamic.setShowDividers(this, LinearLayout.SHOW_DIVIDER_MIDDLE);
+
+        if (getParent() instanceof DynamicWidget
+                && getParent() instanceof DynamicSurfaceWidget) {
+            Dynamic.setContrastWithColorTypeOrColor(this,
+                    ((DynamicWidget) getParent()).getColorType(),
+                    ((DynamicWidget) getParent()).getColor());
+        }
     }
 
     @Override
@@ -355,8 +363,8 @@ public class DynamicLinearLayout extends LinearLayout implements DynamicWidget, 
             if (!(getBackground() instanceof ColorDrawable)) {
                 Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
             }
-
-            Dynamic.tintDivider(this, mContrastWithColor);
         }
+
+        Dynamic.tintDivider(this, mContrastWithColor);
     }
 }

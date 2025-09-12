@@ -32,6 +32,7 @@ import com.pranavpandey.android.dynamic.support.Defaults;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.widget.base.DynamicSurfaceWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicTintWidget;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -171,6 +172,18 @@ public class DynamicNavigationMenuItemView extends NavigationMenuItemView
         }
 
         setColor();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+
+        if (getParent() instanceof DynamicWidget
+                && getParent() instanceof DynamicSurfaceWidget) {
+            Dynamic.setContrastWithColorTypeOrColor(this,
+                    ((DynamicWidget) getParent()).getColorType(),
+                    ((DynamicWidget) getParent()).getColor());
+        }
     }
 
     @Override
@@ -349,13 +362,13 @@ public class DynamicNavigationMenuItemView extends NavigationMenuItemView
                 Dynamic.tintBackground(this, mContrastWithColor, isStyleBorderless());
             }
 
-            Dynamic.tintDivider(this, mContrastWithColor);
-
             if (DynamicSdkUtils.is21()) {
                 Dynamic.tintForeground(this, mContrastWithColor, isStyleBorderless());
             } else {
                 setForeground(null);
             }
         }
+
+        Dynamic.tintDivider(this, mContrastWithColor);
     }
 }
