@@ -26,6 +26,7 @@ import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
  * A {@link DynamicItemView} for the dialog.
@@ -43,6 +44,13 @@ public class DynamicItemViewDialog extends DynamicItemView {
     public DynamicItemViewDialog(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+    @Override
+    protected void onInflate() {
+        super.onInflate();
+
+        setContrastWithColorType(Theme.ColorType.BACKGROUND);
     }
 
     @Override
