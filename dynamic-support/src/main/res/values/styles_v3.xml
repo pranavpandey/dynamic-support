@@ -743,6 +743,23 @@
         <item name="adt_colorType">none</item>
     </style>
 
+    <style name="Widget.Dynamic3.Image.Popup" parent="Widget.Dynamic3.Image.Preference">
+        <item name="android:layout_width">@dimen/ads_popup_selector_icon_size</item>
+        <item name="android:layout_height">@dimen/ads_popup_selector_icon_size</item>
+        <item name="adt_colorType">tint_surface</item>
+        <item name="adt_contrastWithColorType">surface</item>
+    </style>
+    <style name="Widget.Dynamic3.Image.Popup.Value">
+        <item name="android:layout_width">@dimen/ads_popup_selector_icon_size</item>
+        <item name="android:layout_height">@dimen/ads_popup_selector_icon_size</item>
+        <item name="android:layout_marginLeft">@dimen/ads_margin_preference_icon_end</item>
+        <item name="android:layout_marginStart">@dimen/ads_margin_preference_icon_end</item>
+        <item name="android:layout_marginRight">0dp</item>
+        <item name="android:layout_marginEnd">0dp</item>
+        <item name="adt_colorType">accent_dark</item>
+        <item name="adt_contrastWithColorType">surface</item>
+    </style>
+
     <style name="Widget.Dynamic3.Image.Preview">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

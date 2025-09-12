@@ -29,7 +29,7 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.popup.base.DynamicPopup;
 import com.pranavpandey.android.dynamic.support.view.DynamicHeader;
-import com.pranavpandey.android.dynamic.theme.Theme;
+import com.pranavpandey.android.dynamic.support.view.DynamicHeaderPopup;
 
 /**
  * A {@link DynamicPopup} to show message with a title and footer action.
@@ -177,11 +177,8 @@ public class DynamicSimplePopup extends DynamicPopup {
             return super.getHeaderView();
         }
 
-        DynamicHeader headerView = new DynamicHeader(getAnchor().getContext());
-        headerView.setColorType(Theme.ColorType.PRIMARY);
-        headerView.setContrastWithColorType(Theme.ColorType.SURFACE);
+        DynamicHeader headerView = new DynamicHeaderPopup(getAnchor().getContext());
         headerView.setTitle(getTitle());
-        headerView.setFillSpace(true);
 
         return headerView;
     }

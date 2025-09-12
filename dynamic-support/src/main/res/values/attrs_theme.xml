@@ -333,6 +333,10 @@
     <attr name="ads_widgetImageHeader" format="reference" />
     <!-- The app bar header image style. -->
     <attr name="ads_widgetImageHeaderAppBar" format="reference" />
+    <!-- The popup image style. -->
+    <attr name="ads_widgetImagePopup" format="reference" />
+    <!-- The popup value image style. -->
+    <attr name="ads_widgetImagePopupValue" format="reference" />
     <!-- The preview image style. -->
     <attr name="ads_widgetImagePreview" format="reference" />
     <!-- The preview image style for landscape mode. -->

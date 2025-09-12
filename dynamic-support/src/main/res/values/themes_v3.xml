@@ -225,6 +225,8 @@
         <item name="ads_widgetImageBackdrop">@style/Widget.Dynamic3.Image.Backdrop</item>
         <item name="ads_widgetImageHeader">@style/Widget.Dynamic3.Image.Header</item>
         <item name="ads_widgetImageHeaderAppBar">@style/Widget.Dynamic3.Image.Header.AppBar</item>
+        <item name="ads_widgetImagePopup">@style/Widget.Dynamic3.Image.Popup</item>
+        <item name="ads_widgetImagePopupValue">@style/Widget.Dynamic3.Image.Popup.Value</item>
         <item name="ads_widgetImagePreview">@style/Widget.Dynamic3.Image.Preview</item>
         <item name="ads_widgetImagePreviewLand">@style/Widget.Dynamic3.Image.Preview.Land</item>
         <item name="ads_widgetImageDragIndicator">@style/Widget.Dynamic3.Image.DragIndicator</item>
@@ -546,6 +548,8 @@
         <item name="ads_widgetImageBackdrop">@style/Widget.Dynamic3.Image.Backdrop</item>
         <item name="ads_widgetImageHeader">@style/Widget.Dynamic3.Image.Header</item>
         <item name="ads_widgetImageHeaderAppBar">@style/Widget.Dynamic3.Image.Header.AppBar</item>
+        <item name="ads_widgetImagePopup">@style/Widget.Dynamic3.Image.Popup</item>
+        <item name="ads_widgetImagePopupValue">@style/Widget.Dynamic3.Image.Popup.Value</item>
         <item name="ads_widgetImagePreview">@style/Widget.Dynamic3.Image.Preview</item>
         <item name="ads_widgetImagePreviewLand">@style/Widget.Dynamic3.Image.Preview.Land</item>
         <item name="ads_widgetImageDragIndicator">@style/Widget.Dynamic3.Image.DragIndicator</item>
@@ -861,6 +865,8 @@
         <item name="ads_widgetImageBackdrop">@style/Widget.Dynamic3.Image.Backdrop</item>
         <item name="ads_widgetImageHeader">@style/Widget.Dynamic3.Image.Header</item>
         <item name="ads_widgetImageHeaderAppBar">@style/Widget.Dynamic3.Image.Header.AppBar</item>
+        <item name="ads_widgetImagePopup">@style/Widget.Dynamic3.Image.Popup</item>
+        <item name="ads_widgetImagePopupValue">@style/Widget.Dynamic3.Image.Popup.Value</item>
         <item name="ads_widgetImagePreview">@style/Widget.Dynamic3.Image.Preview</item>
         <item name="ads_widgetImagePreviewLand">@style/Widget.Dynamic3.Image.Preview.Land</item>
         <item name="ads_widgetImageDragIndicator">@style/Widget.Dynamic3.Image.DragIndicator</item>

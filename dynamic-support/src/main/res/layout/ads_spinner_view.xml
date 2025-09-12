@@ -51,14 +51,9 @@
             </LinearLayout>
 
             <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
+                style="?attr/ads_widgetImagePopupValue"
                 android:id="@+id/ads_item_view_selector"
-                android:layout_width="@dimen/ads_popup_selector_icon_size"
-                android:layout_height="@dimen/ads_popup_selector_icon_size"
-                android:layout_marginLeft="@dimen/ads_page_horizontal_margin"
-                android:layout_marginStart="@dimen/ads_page_horizontal_margin"
-                android:layout_gravity="center_vertical"
-                app:srcCompat="@drawable/ads_ic_arrow_down"
-                app:adt_colorType="accent_dark" />
+                app:srcCompat="@drawable/ads_ic_arrow_down" />
 
         </LinearLayout>
 

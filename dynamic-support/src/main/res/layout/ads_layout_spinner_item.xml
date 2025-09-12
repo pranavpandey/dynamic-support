@@ -22,10 +22,8 @@
     android:orientation="horizontal">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
-        style="?attr/ads_widgetImagePreference"
-        android:id="@+id/ads_spinner_item_icon"
-        android:layout_width="@dimen/ads_popup_selector_icon_size"
-        android:layout_height="@dimen/ads_popup_selector_icon_size" />
+        style="?attr/ads_widgetImagePopup"
+        android:id="@+id/ads_spinner_item_icon" />
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
         android:id="@+id/ads_spinner_item_text"
