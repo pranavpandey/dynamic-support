@@ -412,9 +412,11 @@ public class DynamicTabLayout extends TabLayout implements
 
             setTabTextColors(DynamicColorUtils.adjustAlpha(mAppliedTextColor,
                     Defaults.ADS_ALPHA_UNCHECKED), mAppliedTextColor);
+            setTabIconTint(getTabTextColors());
             setTabRippleColor(DynamicResourceUtils.getColorStateList(
                     Color.TRANSPARENT, DynamicColorUtils.adjustAlpha(
                             mAppliedTextColor, Defaults.ADS_ALPHA_PRESSED), false));
+
             DynamicMenuUtils.setViewItemsTint(this,
                     mAppliedTextColor, mContrastWithColor, false);
         }
