@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.listener.DynamicLifecycle;
 
 /**
@@ -60,6 +61,16 @@ public class DynamicOnPageChangeCallback extends ViewPager2.OnPageChangeCallback
                     ((DynamicLifecycle) fragment).onDynamicResume(true);
                 }
             }
+        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(@ViewPager2.ScrollState int state) {
+        super.onPageScrollStateChanged(state);
+
+        if (state != ViewPager2.SCROLL_STATE_IDLE && getFragmentManager() != null
+                && !getFragmentManager().getFragments().isEmpty()) {
+            Dynamic.collapseSearchView(getFragmentManager().getFragments().get(0).getActivity());
         }
     }
 

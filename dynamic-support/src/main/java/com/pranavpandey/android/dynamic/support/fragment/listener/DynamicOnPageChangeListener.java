@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
+import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.listener.DynamicLifecycle;
 
 /**
@@ -72,7 +73,12 @@ public class DynamicOnPageChangeListener implements ViewPager.OnPageChangeListen
     }
 
     @Override
-    public void onPageScrollStateChanged(int state) { }
+    public void onPageScrollStateChanged(int state) {
+        if (state != ViewPager.SCROLL_STATE_IDLE && getFragmentManager() != null
+                && !getFragmentManager().getFragments().isEmpty()) {
+            Dynamic.collapseSearchView(getFragmentManager().getFragments().get(0).getActivity());
+        }
+    }
 
     /**
      * Returns the fragment manager used by this listener.
