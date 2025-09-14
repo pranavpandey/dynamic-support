@@ -845,14 +845,16 @@
     <style name="Widget.Dynamic.Image.Popup" parent="Widget.Dynamic.Image.Preference">
         <item name="android:layout_width">@dimen/ads_popup_selector_icon_size</item>
         <item name="android:layout_height">@dimen/ads_popup_selector_icon_size</item>
+        <item name="android:layout_marginRight">@dimen/ads_margin_icon_popup</item>
+        <item name="android:layout_marginEnd">@dimen/ads_margin_icon_popup</item>
         <item name="adt_colorType">tint_surface</item>
         <item name="adt_contrastWithColorType">surface</item>
     </style>
     <style name="Widget.Dynamic.Image.Popup.Value">
         <item name="android:layout_width">@dimen/ads_popup_selector_icon_size</item>
         <item name="android:layout_height">@dimen/ads_popup_selector_icon_size</item>
-        <item name="android:layout_marginLeft">@dimen/ads_margin_preference_icon_end</item>
-        <item name="android:layout_marginStart">@dimen/ads_margin_preference_icon_end</item>
+        <item name="android:layout_marginLeft">@dimen/ads_margin_icon_popup</item>
+        <item name="android:layout_marginStart">@dimen/ads_margin_icon_popup</item>
         <item name="android:layout_marginRight">0dp</item>
         <item name="android:layout_marginEnd">0dp</item>
         <item name="adt_colorType">accent_dark</item>

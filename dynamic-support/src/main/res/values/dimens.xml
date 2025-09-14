@@ -67,6 +67,7 @@
     <dimen name="ads_margin_info_icon_end_big">@dimen/ads_margin_info_icon_end</dimen>
     <dimen name="ads_margin_icon_top">0dp</dimen>
     <dimen name="ads_margin_icon_header_end">28dp</dimen>
+    <dimen name="ads_margin_icon_popup">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_padding_icon_small">3dp</dimen>
     <dimen name="ads_padding_popup">@dimen/ads_margin_small</dimen>
 
