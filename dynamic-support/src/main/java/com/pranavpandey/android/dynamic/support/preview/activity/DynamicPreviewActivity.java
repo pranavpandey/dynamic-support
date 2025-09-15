@@ -96,15 +96,6 @@ public class DynamicPreviewActivity extends DynamicActivity
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-
-        if (intent != null && DynamicIntent.ACTION_THEME_SHARE.equals(intent.getAction())) {
-            onAppThemeChange();
-        }
-    }
-
-    @Override
     public @Nullable AppTheme<?> getDynamicTheme() {
         return getDynamicIntentTheme();
     }

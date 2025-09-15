@@ -941,7 +941,7 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
     /**
      * Set the dynamic app theme and style resource for this activity.
      */
-    private void setDynamicTheme() {
+    protected void setDynamicTheme() {
         DynamicTheme.getInstance().attach(this, getDynamicLayoutInflater())
                 .setLocalTheme(getThemeRes(), getDynamicTheme());
         setWindowBackground(getBackgroundColor());
@@ -1786,6 +1786,15 @@ public abstract class DynamicSystemActivity extends AppCompatActivity
                     DynamicBitmapUtils.getBitmap(DynamicPackageUtils.getActivityIcon(
                             getContext(), getComponentName())),
                     DynamicColorUtils.removeAlpha(color)));
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (getDynamicIntentTheme() != null) {
+            setDynamicTheme();
         }
     }
 
