@@ -25,6 +25,11 @@
     <string name="ads_format_version">Sürüm %1$s</string>
     <string name="ads_search_empty">\"%1$s\" için eşleşme bulunamadı.</string>
 
+    <!-- Quantity -->
+    <string name="ads_count_files_zero">Dosya bulunamadı.</string>
+    <string name="ads_count_files_one">%1$d dosya</string>
+    <string name="ads_count_files_other">%1$d dosya</string>
+
     <!-- Headings -->
     <string name="ads_app">Uygulama</string>
     <string name="ads_game">Oyun</string>

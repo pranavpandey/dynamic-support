@@ -25,6 +25,11 @@
     <string name="ads_format_version">版本 %1$s</string>
     <string name="ads_search_empty">找不到與「%1$s」相符的內容</string>
 
+    <!-- Quantity -->
+    <string name="ads_count_files_zero">未找到檔案。</string>
+    <string name="ads_count_files_one">%1$d 個檔案</string>
+    <string name="ads_count_files_other">%1$d 個檔案</string>
+
     <!-- Headings -->
     <string name="ads_app">應用程式</string>
     <string name="ads_game">遊戲</string>

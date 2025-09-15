@@ -25,6 +25,11 @@
     <string name="ads_format_version">संस्करण %1$s</string>
     <string name="ads_search_empty">\"%1$s\" के समान कुछ नहीं मिला</string>
 
+    <!-- Quantity -->
+    <string name="ads_count_files_zero">कोई फ़ाइल नहीं मिली।</string>
+    <string name="ads_count_files_one">%1$d फ़ाइल</string>
+    <string name="ads_count_files_other">%1$d फ़ाइलें</string>
+
     <!-- Headings -->
     <string name="ads_app">ऐप</string>
     <string name="ads_game">खेल</string>

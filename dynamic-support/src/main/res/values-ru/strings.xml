@@ -25,6 +25,11 @@
     <string name="ads_format_version">Версия %1$s</string>
     <string name="ads_search_empty">Не найдено совпадений для \"%1$s\".</string>
 
+    <!-- Quantity -->
+    <string name="ads_count_files_zero">Файлов не найдено.</string>
+    <string name="ads_count_files_one">%1$d файл</string>
+    <string name="ads_count_files_other">%1$d файлов</string>
+
     <!-- Headings -->
     <string name="ads_app">Приложение</string>
     <string name="ads_game">Игра</string>

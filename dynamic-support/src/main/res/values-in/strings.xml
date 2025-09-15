@@ -25,6 +25,11 @@
     <string name="ads_format_version">Versi %1$s</string>
     <string name="ads_search_empty">Tidak ada yang cocok dengan \"%1$s\".</string>
 
+    <!-- Quantity -->
+    <string name="ads_count_files_zero">Tidak ada file yang ditemukan.</string>
+    <string name="ads_count_files_one">%1$d file</string>
+    <string name="ads_count_files_other">%1$d file</string>
+
     <!-- Headings -->
     <string name="ads_app">Aplikasi</string>
     <string name="ads_game">Permainan</string>

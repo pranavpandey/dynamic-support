@@ -25,6 +25,11 @@
     <string name="ads_format_version">Versão %1$s</string>
     <string name="ads_search_empty">Sem resultados para \"%1$s\".</string>
 
+    <!-- Quantity -->
+    <string name="ads_count_files_zero">Nenhum arquivo encontrado.</string>
+    <string name="ads_count_files_one">%1$d arquivo</string>
+    <string name="ads_count_files_other">%1$d arquivos</string>
+
     <!-- Headings -->
     <string name="ads_app">App</string>
     <string name="ads_game">Jogo</string>
