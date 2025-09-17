@@ -181,6 +181,8 @@
     <string name="ads_theme_color_background_summary_system">Background color of the system.</string>
     <string name="ads_theme_color_background_summary_system_alt">For internal purposes and should be kept closer to the notification drawer background to avoid visibility issues.</string>
     <string name="ads_theme_color_stroke">Stroke color</string>
+    <string name="ads_theme_color_surface">Surface color</string>
+    <string name="ads_theme_color_tertiary">Tertiary color</string>
     <string name="ads_theme_color_primary">Primary color</string>
     <string name="ads_theme_color_primary_summary">Color used by the primary elements.</string>
     <string name="ads_theme_color_primary_dark">System color</string>
@@ -190,7 +192,6 @@
     <string name="ads_theme_color_accent_summary">Color used by the secondary elements.</string>
     <string name="ads_theme_color_error">Error color</string>
     <string name="ads_theme_color_error_summary">Color used to show the errors.</string>
-    <string name="ads_theme_color_surface">Surface color</string>
     <string name="ads_theme_color_tint">Tint color</string>
     <string name="ads_theme_color_inverse">Inverse color</string>
     <string name="ads_theme_font_scale">Font scale</string>
@@ -217,6 +218,9 @@
     <string name="ads_theme_app_night">Night theme</string>
     <string name="ads_theme_app_night_summary">Style of the app at night.</string>
     <string name="ads_theme_app_day_night_desc">This will only work when the auto theme is applied.</string>
+    <string name="ads_theme_wallpaper">Wallpaper theme</string>
+    <string name="ads_theme_wallpaper_summary">Style of the wallpaper.</string>
+    <string name="ads_theme_color_auto_wallpaper_desc">Select auto to use the wallpaper color palette.</string>
     <string name="ads_theme_toast">Toast messages theme</string>
     <string name="ads_theme_toast_summary">Show themed toast messages according to the app accent color.</string>
     <string name="ads_theme_toast_summary_unchecked">Show default system toast messages.</string>

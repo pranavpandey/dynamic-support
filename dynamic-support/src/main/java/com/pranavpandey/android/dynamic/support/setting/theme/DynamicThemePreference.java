@@ -32,6 +32,7 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
  * A {@link ThemePreference} to display and edit the {@link DynamicAppTheme}.
  */
 public class DynamicThemePreference extends ThemePreference<DynamicAppTheme> {
+
     public DynamicThemePreference(@NonNull Context context) {
         super(context);
     }

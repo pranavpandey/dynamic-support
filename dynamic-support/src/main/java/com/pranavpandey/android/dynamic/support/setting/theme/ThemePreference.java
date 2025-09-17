@@ -122,7 +122,7 @@ public abstract class ThemePreference<T extends DynamicAppTheme>
         mThemePreviewIcon = findViewById(R.id.ads_theme_preview_icon);
         mThemePreviewDescription = findViewById(R.id.ads_theme_preview_description);
 
-        mThemePreviewDescription.setText(R.string.ads_theme_background_aware_desc);
+        Dynamic.setText(mThemePreviewDescription, R.string.ads_theme_background_aware_desc);
     }
 
     @Override

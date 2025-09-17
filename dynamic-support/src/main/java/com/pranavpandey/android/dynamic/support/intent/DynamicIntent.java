@@ -99,6 +99,11 @@ public class DynamicIntent {
     public static final int REQUEST_THEME_REMOTE = 4;
 
     /**
+     * Constant for dynamic wallpaper theme request.
+     */
+    public static final int REQUEST_THEME_WALLPAPER = 5;
+
+    /**
      * Constant to edit the dynamic theme.
      */
     public static final int REQUEST_THEME_EDIT = 100;

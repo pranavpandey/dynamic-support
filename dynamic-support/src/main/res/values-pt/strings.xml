@@ -181,6 +181,8 @@
     <string name="ads_theme_color_background_summary_system">Cor do sistema de tema.</string>
     <string name="ads_theme_color_background_summary_system_alt">Para fins internos e deve ser mantido mais próximo do fundo da gaveta de notificação para evitar problemas de visibilidade.</string>
     <string name="ads_theme_color_stroke">Cor do traço</string>
+    <string name="ads_theme_color_surface">Cor superficial</string>
+    <string name="ads_theme_color_tertiary">Cor terciária</string>
     <string name="ads_theme_color_primary">Cor primária</string>
     <string name="ads_theme_color_primary_summary">Cor usada pelos elementos primários.</string>
     <string name="ads_theme_color_primary_dark">Cor do sistema</string>
@@ -190,7 +192,6 @@
     <string name="ads_theme_color_accent_summary">Cor usada por elementos secundários.</string>
     <string name="ads_theme_color_error">Cor errada</string>
     <string name="ads_theme_color_error_summary">Cor usada para mostrar os erros.</string>
-    <string name="ads_theme_color_surface">Cor superficial</string>
     <string name="ads_theme_color_tint">Cor da tonalidade</string>
     <string name="ads_theme_color_inverse">Cor inversa</string>
     <string name="ads_theme_font_scale">Escala da fonte</string>
@@ -217,6 +218,8 @@
     <string name="ads_theme_app_night">Tema noite</string>
     <string name="ads_theme_app_night_summary">Estilo do app à noite.</string>
     <string name="ads_theme_app_day_night_desc">Isso vai funcionar somente quando o tema automático está aplicado.</string>
+    <string name="ads_theme_wallpaper">Tema do papel de parede</string>
+    <string name="ads_theme_wallpaper_summary">Estilo do papel de parede.</string>
     <string name="ads_theme_toast">Tema das mensagens toast</string>
     <string name="ads_theme_toast_summary">Mostrar mensagens toast temáticas de acordo com a cor primária do app.</string>
     <string name="ads_theme_toast_summary_unchecked">Mostrar mensagens toast padrão do sistema.</string>
@@ -264,6 +267,7 @@
     <string name="ads_theme_entry_auto_background_aware_desc">Selecione automático para usar a paleta de cores do app. Ajuste as cores de acordo com o plano de fundo para providenciar melhor visibilidade.</string>
     <string name="ads_theme_color_auto_desc">Selecione automático para usar a paleta de cores do app.</string>
     <string name="ads_theme_color_default_desc">Selecione automático para usar a paleta de cores padrão.</string>
+    <string name="ads_theme_color_auto_wallpaper_desc">Selecione automático para usar a paleta de cores do papel de parede.</string>
     <string name="ads_theme_entry_day">Dia</string>
     <string name="ads_theme_entry_night">Noite</string>
     <string name="ads_theme_entry_light">Claro</string>

@@ -181,6 +181,8 @@
     <string name="ads_theme_color_background_summary_system">系統的背景色彩</string>
     <string name="ads_theme_color_background_summary_system_alt">出於內部目的，應靠近通知抽屜背景以避免可見性問題。</string>
     <string name="ads_theme_color_stroke">筆觸色彩</string>
+    <string name="ads_theme_color_surface">表面色彩</string>
+    <string name="ads_theme_color_tertiary">三次色</string>
     <string name="ads_theme_color_primary">主要色彩</string>
     <string name="ads_theme_color_primary_summary">主要元素使用的色彩</string>
     <string name="ads_theme_color_primary_dark">系統色彩</string>
@@ -190,7 +192,6 @@
     <string name="ads_theme_color_accent_summary">輔助元素使用的色彩</string>
     <string name="ads_theme_color_error">錯誤色彩</string>
     <string name="ads_theme_color_error_summary">用於顯示錯誤的色彩</string>
-    <string name="ads_theme_color_surface">表面色彩</string>
     <string name="ads_theme_color_tint">濃淡色彩</string>
     <string name="ads_theme_color_inverse">反轉色彩</string>
     <string name="ads_theme_font_scale">字型縮放</string>
@@ -217,6 +218,8 @@
     <string name="ads_theme_app_night">夜間主題</string>
     <string name="ads_theme_app_night_summary">應用程式在夜間的主題</string>
     <string name="ads_theme_app_day_night_desc">這僅在套用自動主題時有效。</string>
+    <string name="ads_theme_wallpaper">桌布主題</string>
+    <string name="ads_theme_wallpaper_summary">桌布的樣式。</string>
     <string name="ads_theme_toast">快顯訊息主題</string>
     <string name="ads_theme_toast_summary">依應用程式強調色彩顯示主題快顯訊息</string>
     <string name="ads_theme_toast_summary_unchecked">顯示預設的系統快顯訊息</string>
@@ -264,6 +267,7 @@
     <string name="ads_theme_entry_auto_background_aware_desc">選擇以自動使用應用程式調色盤。依據背景調整色彩以提供最佳可見性。</string>
     <string name="ads_theme_color_auto_desc">選取以自動使用應用程式調色盤。</string>
     <string name="ads_theme_color_default_desc">選取以自動使用預設調色盤。</string>
+    <string name="ads_theme_color_auto_wallpaper_desc">選擇自動以使用桌布調色盤。</string>
     <string name="ads_theme_entry_day">日間</string>
     <string name="ads_theme_entry_night">夜間</string>
     <string name="ads_theme_entry_light">淺色</string>

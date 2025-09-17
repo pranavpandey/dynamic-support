@@ -241,6 +241,43 @@
         <item>-2</item>
     </string-array>
 
+    <!-- Theme icons for auto, app, day, night and custom. -->
+    <array name="ads_theme_icons_wallpaper">
+        <!-- Auto -->
+        <item>@drawable/ads_ic_day_night</item>
+        <!-- App -->
+        <item>@drawable/ads_ic_android</item>
+        <!-- Day -->
+        <item>@drawable/ads_ic_day</item>
+        <!-- Night -->
+        <item>@drawable/ads_ic_night</item>
+        <!-- Custom -->
+        <item>@drawable/ads_ic_style</item>
+    </array>
+
+    <!-- Theme entries for auto, app, day, night and custom. -->
+    <string-array name="ads_theme_entries_wallpaper">
+        <item>@string/ads_theme_entry_auto</item>
+        <item>@string/ads_theme_entry_app</item>
+        <item>@string/ads_theme_entry_day</item>
+        <item>@string/ads_theme_entry_night</item>
+        <item>@string/ads_theme_entry_custom</item>
+    </string-array>
+
+    <!-- Theme values for auto, day, night and custom. -->
+    <string-array name="ads_theme_values_wallpaper">
+        <!-- Auto -->
+        <item>-3</item>
+        <!-- App -->
+        <item>-4</item>
+        <!-- Day -->
+        <item>2</item>
+        <!-- Night -->
+        <item>3</item>
+        <!-- Custom -->
+        <item>-2</item>
+    </string-array>
+
     <!-- Visibility icons for the settings like widget header, etc. -->
     <array name="ads_visibility_icons">
         <!-- Auto -->

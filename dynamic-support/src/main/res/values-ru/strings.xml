@@ -181,6 +181,8 @@
     <string name="ads_theme_color_background_summary_system">Фоновый цвет системными.</string>
     <string name="ads_theme_color_background_summary_system_alt">Для внутренних целей и должен быть ближе к фону ящика уведомлений, чтобы избежать проблем с видимостью.</string>
     <string name="ads_theme_color_stroke">Цвет обводки</string>
+    <string name="ads_theme_color_surface">Внешний цвет</string>
+    <string name="ads_theme_color_tertiary">Третичный цвет</string>
     <string name="ads_theme_color_primary">Основной цвет</string>
     <string name="ads_theme_color_primary_summary">Цвет, используемый основными элементами.</string>
     <string name="ads_theme_color_primary_dark">Системный цвет</string>
@@ -190,7 +192,6 @@
     <string name="ads_theme_color_accent_summary">Цвет, используемый вторичными элементами.</string>
     <string name="ads_theme_color_error">Цвет ошибки</string>
     <string name="ads_theme_color_error_summary">Цвет, используемый для отображения ошибок.</string>
-    <string name="ads_theme_color_surface">Внешний цвет</string>
     <string name="ads_theme_color_tint">Цвет оттенка</string>
     <string name="ads_theme_color_inverse">Обратный цвет</string>
     <string name="ads_theme_font_scale">Масштаб шрифта</string>
@@ -217,6 +218,8 @@
     <string name="ads_theme_app_night">Ночная тема</string>
     <string name="ads_theme_app_night_summary">Стиль приложения ночью.</string>
     <string name="ads_theme_app_day_night_desc">Это будет работать только если применена автоматическая тема.</string>
+    <string name="ads_theme_wallpaper">Тема обоев</string>
+    <string name="ads_theme_wallpaper_summary">Стиль обоев.</string>
     <string name="ads_theme_toast">Тема всплывающих сообщений</string>
     <string name="ads_theme_toast_summary">Применять тему к всплывающим сообщениям в соответствии с цветом акцента приложения.</string>
     <string name="ads_theme_toast_summary_unchecked">Показывать всплывающие сообщения по умолчанию системы.</string>
@@ -264,6 +267,7 @@
     <string name="ads_theme_entry_auto_background_aware_desc">Выберите авто, чтобы использовать цветовую палитру приложения. Отрегулируйте цвета в соответствии с фоном, чтобы обеспечить лучшую видимость.</string>
     <string name="ads_theme_color_auto_desc">Выберите авто, чтобы использовать цветовую палитру приложения.</string>
     <string name="ads_theme_color_default_desc">Выберите авто, чтобы использовать цветовую палитру по умолчанию.</string>
+    <string name="ads_theme_color_auto_wallpaper_desc">Выберите «Авто», чтобы использовать цветовую палитру обоев.</string>
     <string name="ads_theme_entry_day">День</string>
     <string name="ads_theme_entry_night">Ночь</string>
     <string name="ads_theme_entry_light">Светлая</string>

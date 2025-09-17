@@ -32,6 +32,7 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
  * A {@link ThemePreference} to display and edit the {@link DynamicRemoteTheme}.
  */
 public class DynamicRemoteThemePreference extends ThemePreference<DynamicRemoteTheme> {
+
     public DynamicRemoteThemePreference(@NonNull Context context) {
         super(context);
     }

@@ -181,6 +181,8 @@
     <string name="ads_theme_color_background_summary_system">系统的背景色。</string>
     <string name="ads_theme_color_background_summary_system_alt">出于内部目的，应靠近通知抽屉背景以避免可见性问题。</string>
     <string name="ads_theme_color_stroke">笔触颜色</string>
+    <string name="ads_theme_color_surface">表面</string>
+    <string name="ads_theme_color_tertiary">三次色</string>
     <string name="ads_theme_color_primary">主题色</string>
     <string name="ads_theme_color_primary_summary">主要元素使用的颜色。</string>
     <string name="ads_theme_color_primary_dark">系统颜色</string>
@@ -190,7 +192,6 @@
     <string name="ads_theme_color_accent_summary">辅助元素使用的颜色。</string>
     <string name="ads_theme_color_error">错误颜色</string>
     <string name="ads_theme_color_error_summary">用于显示错误的颜色。</string>
-    <string name="ads_theme_color_surface">表面</string>
     <string name="ads_theme_color_tint">色彩</string>
     <string name="ads_theme_color_inverse">反色</string>
     <string name="ads_theme_font_scale">字体比例</string>
@@ -217,6 +218,8 @@
     <string name="ads_theme_app_night">夜间主题</string>
     <string name="ads_theme_app_night_summary">应用在夜间的主题。</string>
     <string name="ads_theme_app_day_night_desc">这只适用于自动主题被应用。</string>
+    <string name="ads_theme_wallpaper">壁纸主题</string>
+    <string name="ads_theme_wallpaper_summary">壁纸的样式。</string>
     <string name="ads_theme_toast">Toast消息主题</string>
     <string name="ads_theme_toast_summary">根据应用强调色显示主题Toast消息。</string>
     <string name="ads_theme_toast_summary_unchecked">显示默认的系统Toast消息。</string>
@@ -264,6 +267,7 @@
     <string name="ads_theme_entry_auto_background_aware_desc">选择自动使用应用程序调色板。根据背景调整颜色以提供最佳可见性。</string>
     <string name="ads_theme_color_auto_desc">选择自动使用应用程序调色板。</string>
     <string name="ads_theme_color_default_desc">选择自动使用默认的程序调色板。</string>
+    <string name="ads_theme_color_auto_wallpaper_desc">选择自动以使用壁纸调色板。</string>
     <string name="ads_theme_entry_day">日间</string>
     <string name="ads_theme_entry_night">夜间</string>
     <string name="ads_theme_entry_light">亮色</string>

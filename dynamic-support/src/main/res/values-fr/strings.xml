@@ -181,6 +181,8 @@
     <string name="ads_theme_color_background_summary_system">Couleur de fond du système.</string>
     <string name="ads_theme_color_background_summary_system_alt">À des fins internes et doit être conservé plus près de l\'arrière-plan du tiroir de notification pour éviter les problèmes de visibilité.</string>
     <string name="ads_theme_color_stroke">Couleur du trait</string>
+    <string name="ads_theme_color_surface">Couleur de surface</string>
+    <string name="ads_theme_color_tertiary">Couleur tertiaire</string>
     <string name="ads_theme_color_primary">Couleur principale</string>
     <string name="ads_theme_color_primary_summary">Couleur utilisée par les éléments principaux</string>
     <string name="ads_theme_color_primary_dark">Couleur du système</string>
@@ -190,7 +192,6 @@
     <string name="ads_theme_color_accent_summary">Couleur utilisée par les éléments secondaires.</string>
     <string name="ads_theme_color_error">Couleur d\'erreur</string>
     <string name="ads_theme_color_error_summary">Couleur utilisée pour montrer les erreurs.</string>
-    <string name="ads_theme_color_surface">Couleur de surface</string>
     <string name="ads_theme_color_tint">Teinte couleur</string>
     <string name="ads_theme_color_inverse">Inverser la couleur</string>
     <string name="ads_theme_font_scale">Échelle de la police</string>
@@ -217,6 +218,8 @@
     <string name="ads_theme_app_night">Thème sombre</string>
     <string name="ads_theme_app_night_summary">Style de l\'application la nuit.</string>
     <string name="ads_theme_app_day_night_desc">Cela ne fonctionnera que lorsque le thème automatique est choisi.</string>
+    <string name="ads_theme_wallpaper">Thème du fond d\'écran</string>
+    <string name="ads_theme_wallpaper_summary">Style du fond d\'écran.</string>
     <string name="ads_theme_toast">Thème des messages Toast</string>
     <string name="ads_theme_toast_summary">Affichez les toasts thématiques en fonction de la couleur d\'accentuation de l\'application.</string>
     <string name="ads_theme_toast_summary_unchecked">Affiche les messages Toast par défaut.</string>
@@ -264,6 +267,7 @@
     <string name="ads_theme_entry_auto_background_aware_desc">Sélectionner auto pour utiliser la palette de couleurs de l\'application. Ajuste les couleurs en fonction de l\'arrière plan pour une meilleure visibilité.</string>
     <string name="ads_theme_color_auto_desc">Sélectionnez auto pour utiliser la palette de couleurs de l\'application.</string>
     <string name="ads_theme_color_default_desc">Sélectionnez auto pour utiliser la palette de couleurs par défaut.</string>
+    <string name="ads_theme_color_auto_wallpaper_desc">Sélectionnez auto pour utiliser la palette de couleurs du fond d\'écran.</string>
     <string name="ads_theme_entry_day">Jour</string>
     <string name="ads_theme_entry_night">Nuit</string>
     <string name="ads_theme_entry_light">Clair</string>

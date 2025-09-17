@@ -182,6 +182,7 @@
     <string name="ads_theme_color_background_summary_system_alt">Dahili amaçlar için ve görünürlük sorunlarını önlemek için bildirim çekmecesi arka planına daha yakın tutulmalıdır.</string>
     <string name="ads_theme_color_stroke">Fırça rengi</string>
     <string name="ads_theme_color_surface">Yüzey rengi</string>
+    <string name="ads_theme_color_tertiary">Третичный цвет</string>
     <string name="ads_theme_color_primary">Ana renk</string>
     <string name="ads_theme_color_primary_summary">Ana öğeler tarafından kullanılan renk.</string>
     <string name="ads_theme_color_primary_dark">Sistem rengi</string>
@@ -217,6 +218,8 @@
     <string name="ads_theme_app_night">Gece teması</string>
     <string name="ads_theme_app_night_summary">Geceleri uygulamanın stili.</string>
     <string name="ads_theme_app_day_night_desc">Bu sadece otomatik tema uygulandığında çalışır.</string>
+    <string name="ads_theme_wallpaper">Duvar kağıdı teması</string>
+    <string name="ads_theme_wallpaper_summary">Duvar kağıdının stili.</string>
     <string name="ads_theme_toast">Bildirim mesajları teması</string>
     <string name="ads_theme_toast_summary">Uygulama vurgu rengine göre temalı bildirim mesajlarını göster.</string>
     <string name="ads_theme_toast_summary_unchecked">Varsayılan sistem bildirim mesajlarını göster.</string>
@@ -264,6 +267,7 @@
     <string name="ads_theme_entry_auto_background_aware_desc">Uygulama renk paletini kullanmak için otomatiği seçin. En iyi görünürlüğü sağlamak için renkleri arka plana göre ayarlayın.</string>
     <string name="ads_theme_color_auto_desc">Uygulama renk paletini kullanmak için otomatiği seçin.</string>
     <string name="ads_theme_color_default_desc">Varsayılan renk paletini kullanmak için otomatiği seçin.</string>
+    <string name="ads_theme_color_auto_wallpaper_desc">Duvar kağıdı renk paletini kullanmak için otomatik seçin.</string>
     <string name="ads_theme_entry_day">Gündüz</string>
     <string name="ads_theme_entry_night">Gece</string>
     <string name="ads_theme_entry_light">Açık</string>
