@@ -285,14 +285,24 @@ public abstract class DynamicActivity extends DynamicStateActivity
                 mAppBarLayout.setExpanded(!isAppBarCollapsed());
             }
 
-            if (mFAB != null && getSavedInstanceState().getInt(
-                    ADS_STATE_FAB_VISIBLE) != View.INVISIBLE) {
-                DynamicFABUtils.show(mFAB);
+            if (mFAB != null) {
+                if (getSavedInstanceState().getInt(ADS_STATE_FAB_VISIBLE) != View.INVISIBLE
+                        && getSavedInstanceState().getInt(ADS_STATE_FAB_VISIBLE) != View.GONE) {
+                    DynamicFABUtils.show(mFAB);
+                } else {
+                    DynamicFABUtils.hide(mFAB);
+                }
             }
 
-            if (mExtendedFAB != null && getSavedInstanceState().getInt(
-                    ADS_STATE_EXTENDED_FAB_VISIBLE) != View.INVISIBLE) {
-                DynamicFABUtils.show(mExtendedFAB, false);
+            if (mExtendedFAB != null) {
+                if (getSavedInstanceState().getInt(ADS_STATE_EXTENDED_FAB_VISIBLE)
+                        != View.INVISIBLE && getSavedInstanceState().getInt(
+                                ADS_STATE_EXTENDED_FAB_VISIBLE) != View.GONE) {
+                    DynamicFABUtils.show(mExtendedFAB, getSavedInstanceState().getBoolean(
+                            ADS_STATE_EXTENDED_FAB_STATE));
+                } else {
+                    DynamicFABUtils.hide(mExtendedFAB, false);
+                }
             }
 
             if (getSavedInstanceState().getBoolean(ADS_STATE_SEARCH_VIEW_VISIBLE)) {
@@ -413,7 +423,7 @@ public abstract class DynamicActivity extends DynamicStateActivity
             outState.putInt(ADS_STATE_FAB_VISIBLE, mFAB.getVisibility());
         }
 
-        if ((mExtendedFAB != null)) {
+        if (mExtendedFAB != null) {
             outState.putInt(ADS_STATE_EXTENDED_FAB_VISIBLE, mExtendedFAB.getVisibility());
             if (mExtendedFAB instanceof DynamicExtendedFloatingActionButton) {
                 outState.putBoolean(ADS_STATE_EXTENDED_FAB_STATE,
