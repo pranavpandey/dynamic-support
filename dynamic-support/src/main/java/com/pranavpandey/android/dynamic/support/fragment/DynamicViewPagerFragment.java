@@ -41,7 +41,7 @@ import com.pranavpandey.android.dynamic.support.listener.DynamicViewPagerCallbac
  * <p>Extend this fragment and implement the necessary methods to use it inside an activity.
  */
 public abstract class DynamicViewPagerFragment extends DynamicFragment
-        implements DynamicViewPagerCallback {
+        implements DynamicViewPagerCallback, ViewPager.OnPageChangeListener {
 
     /**
      * Fragment argument key to set the initial view pager page.
@@ -78,8 +78,17 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment
         mViewPager.addOnPageChangeListener(
                 new DynamicOnPageChangeListener(getChildFragmentManager()) {
                     @Override
+                    public void onPageScrolled(int position,
+                            float positionOffset, int positionOffsetPixels) {
+                        super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+                        DynamicViewPagerFragment.this.onPageScrolled(position,
+                                positionOffset, positionOffsetPixels);
+                    }
+
+                    @Override
                     public void onPageSelected(int position) {
                         super.onPageSelected(position);
+                        DynamicViewPagerFragment.this.onPageSelected(position);
 
                         Dynamic.setTextColor(getTabLayout());
                     }
@@ -87,6 +96,7 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment
                     @Override
                     public void onPageScrollStateChanged(int state) {
                         super.onPageScrollStateChanged(state);
+                        DynamicViewPagerFragment.this.onPageScrollStateChanged(state);
 
                         if (state == ViewPager2.SCROLL_STATE_IDLE) {
                             Dynamic.setTextColor(getTabLayout());
@@ -154,12 +164,21 @@ public abstract class DynamicViewPagerFragment extends DynamicFragment
      * @param page The current position for the view pager.
      */
     public void setPage(final int page) {
-        if (mViewPager == null) {
+        if (mViewPager == null || page >= getItemCount()) {
             return;
         }
 
         mViewPager.setCurrentItem(page);
     }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
+
+    @Override
+    public void onPageSelected(int position) { }
+
+    @Override
+    public void onPageScrollStateChanged(int state) { }
 
     /**
      * View pager adapter to display the supplied fragments with tab titles.
