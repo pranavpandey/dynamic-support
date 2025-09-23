@@ -87,8 +87,10 @@
     <string name="ads_resume">Lanjut</string>
     <string name="ads_exit">Keluar</string>
     <string name="ads_finish">Selesai</string>
+    <string name="ads_done">Selesai</string>
     <string name="ads_recents">Baru-baru ini</string>
     <string name="ads_wallpaper">Wallpaper</string>
+    <string name="ads_media">Media</string>
     <string name="ads_custom">Kustom</string>
     <string name="ads_edit">Ubah</string>
     <string name="ads_refresh">Segarkan</string>
@@ -220,6 +222,7 @@
     <string name="ads_theme_app_day_night_desc">Ini hanya akan bekerja ketika tema otomatis diberlakukan.</string>
     <string name="ads_theme_wallpaper">Tema wallpaper</string>
     <string name="ads_theme_wallpaper_summary">Gaya wallpaper.</string>
+    <string name="ads_theme_wallpaper_customise_desc">Konfigurasikan wallpaper di bawah ini.</string>
     <string name="ads_theme_toast">Tema pesan toast</string>
     <string name="ads_theme_toast_summary">Tampilkan pesan toast bertema berdasarkan warna aksen aplikasi.</string>
     <string name="ads_theme_toast_summary_unchecked">Tampilkan pesan toast default oleh sistem.</string>

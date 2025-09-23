@@ -87,8 +87,10 @@
     <string name="ads_resume">Fortsetzen</string>
     <string name="ads_exit">Verlassen</string>
     <string name="ads_finish">Fertig</string>
+    <string name="ads_done">Erledigt</string>
     <string name="ads_recents">Letzte</string>
     <string name="ads_wallpaper">Hintergrund</string>
+    <string name="ads_media">Medien</string>
     <string name="ads_custom">Eigene</string>
     <string name="ads_refresh">Aktualisieren</string>
     <string name="ads_edit">Bearbeiten</string>
@@ -220,6 +222,7 @@
     <string name="ads_theme_app_day_night_desc">Dies wird nur funktionieren, wenn das automatische Thema ausgewählt ist.</string>
     <string name="ads_theme_wallpaper">Hintergrund-Design</string>
     <string name="ads_theme_wallpaper_summary">Stil des Hintergrundbildes.</string>
+    <string name="ads_theme_wallpaper_customise_desc">Konfigurieren Sie unten das Hintergrundbild.</string>
     <string name="ads_theme_toast">Toast-Nachricht Thema</string>
     <string name="ads_theme_toast_summary">Zeige Toast-Nachrichten entsprechend der Akzentfarbe.</string>
     <string name="ads_theme_toast_summary_unchecked">Zeige standard System-Toast-Nachrichten.</string>

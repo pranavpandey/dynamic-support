@@ -87,8 +87,10 @@
     <string name="ads_resume">जारी रखें</string>
     <string name="ads_exit">बाहर जाएं</string>
     <string name="ads_finish">ख़त्म करें</string>
+    <string name="ads_done">हो गया</string>
     <string name="ads_recents">इन दिनों प्रयोग लिए गए</string>
     <string name="ads_wallpaper">वॉलपेपर</string>
+    <string name="ads_media">मिडिया</string>
     <string name="ads_custom">स्वयं चुनें</string>
     <string name="ads_edit">बदलें</string>
     <string name="ads_refresh">रिफ्रेश करें</string>
@@ -220,6 +222,7 @@
     <string name="ads_theme_app_day_night_desc">ये \"ऑटो\" थीम शुरू करने के बाद ही काम करेगा।</string>
     <string name="ads_theme_wallpaper">वॉलपेपर थीम</string>
     <string name="ads_theme_wallpaper_summary">वॉलपेपर की शैली।</string>
+    <string name="ads_theme_wallpaper_customise_desc">नीचे वॉलपेपर कॉन्फ़िगर करें.</string>
     <string name="ads_theme_toast">टोस्ट मेसेज थीम</string>
     <string name="ads_theme_toast_summary">मेसेज का रंग-रूप ऐप के रंग के अनुसार बदलकर दिखाएं।</string>
     <string name="ads_theme_toast_summary_unchecked">डिफॉल्ट मेसेज दिखाएं।</string>

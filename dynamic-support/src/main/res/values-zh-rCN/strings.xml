@@ -87,8 +87,10 @@
     <string name="ads_resume">恢复</string>
     <string name="ads_exit">出口</string>
     <string name="ads_finish">完成</string>
+    <string name="ads_done">完毕</string>
     <string name="ads_recents">最近活动</string>
     <string name="ads_wallpaper">壁纸</string>
+    <string name="ads_media">媒体</string>
     <string name="ads_custom">自定义</string>
     <string name="ads_edit">编辑</string>
     <string name="ads_refresh">刷新</string>
@@ -220,6 +222,7 @@
     <string name="ads_theme_app_day_night_desc">这只适用于自动主题被应用。</string>
     <string name="ads_theme_wallpaper">壁纸主题</string>
     <string name="ads_theme_wallpaper_summary">壁纸的样式。</string>
+    <string name="ads_theme_wallpaper_customise_desc">配置下面的壁纸。</string>
     <string name="ads_theme_toast">Toast消息主题</string>
     <string name="ads_theme_toast_summary">根据应用强调色显示主题Toast消息。</string>
     <string name="ads_theme_toast_summary_unchecked">显示默认的系统Toast消息。</string>

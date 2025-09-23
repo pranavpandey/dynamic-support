@@ -252,7 +252,9 @@
         <!-- Night -->
         <item>@drawable/ads_ic_night</item>
         <!-- Custom -->
-        <item>@drawable/ads_ic_style</item>
+        <item>@drawable/ads_ic_palette</item>
+        <!-- Wallpaper -->
+        <item>@drawable/ads_ic_image</item>
     </array>
 
     <!-- Theme entries for auto, app, day, night and custom. -->
@@ -262,6 +264,7 @@
         <item>@string/ads_theme_entry_day</item>
         <item>@string/ads_theme_entry_night</item>
         <item>@string/ads_theme_entry_custom</item>
+        <item>@string/ads_theme_entry_media</item>
     </string-array>
 
     <!-- Theme values for auto, day, night and custom. -->
@@ -276,6 +279,8 @@
         <item>3</item>
         <!-- Custom -->
         <item>-2</item>
+        <!-- Wallpaper -->
+        <item>6</item>
     </string-array>
 
     <!-- Visibility icons for the settings like widget header, etc. -->

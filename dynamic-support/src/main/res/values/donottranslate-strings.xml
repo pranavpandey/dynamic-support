@@ -76,6 +76,7 @@
     <string name="ads_theme_presets_app">Palettes</string>
     <string name="ads_theme_entry_system">@string/ads_locale_system</string>
     <string name="ads_theme_entry_wallpaper">@string/ads_wallpaper</string>
+    <string name="ads_theme_entry_media">@string/ads_media</string>
     <string name="ads_theme_entry_app">@string/ads_app</string>
     <string name="ads_theme_entry_game">@string/ads_game</string>
     <string name="ads_theme_entry_value">@string/ads_app</string>

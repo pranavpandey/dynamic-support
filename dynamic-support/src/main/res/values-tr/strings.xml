@@ -87,8 +87,10 @@
     <string name="ads_resume">Devam et</string>
     <string name="ads_exit">Çıkışı</string>
     <string name="ads_finish">Bitir</string>
+    <string name="ads_done">Tamamlamak</string>
     <string name="ads_recents">Son</string>
     <string name="ads_wallpaper">Duvar Kağıdı</string>
+    <string name="ads_media">Medya</string>
     <string name="ads_custom">Özel</string>
     <string name="ads_edit">Düzenle</string>
     <string name="ads_refresh">Yenile</string>
@@ -220,6 +222,7 @@
     <string name="ads_theme_app_day_night_desc">Bu sadece otomatik tema uygulandığında çalışır.</string>
     <string name="ads_theme_wallpaper">Duvar kağıdı teması</string>
     <string name="ads_theme_wallpaper_summary">Duvar kağıdının stili.</string>
+    <string name="ads_theme_wallpaper_customise_desc">Aşağıdaki duvar kağıdını yapılandırın.</string>
     <string name="ads_theme_toast">Bildirim mesajları teması</string>
     <string name="ads_theme_toast_summary">Uygulama vurgu rengine göre temalı bildirim mesajlarını göster.</string>
     <string name="ads_theme_toast_summary_unchecked">Varsayılan sistem bildirim mesajlarını göster.</string>

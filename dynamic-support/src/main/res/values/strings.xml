@@ -87,8 +87,10 @@
     <string name="ads_resume">Resume</string>
     <string name="ads_exit">Exit</string>
     <string name="ads_finish">Finish</string>
+    <string name="ads_done">Done</string>
     <string name="ads_recents">Recents</string>
     <string name="ads_wallpaper">Wallpaper</string>
+    <string name="ads_media">Media</string>
     <string name="ads_custom">Custom</string>
     <string name="ads_edit">Edit</string>
     <string name="ads_refresh">Refresh</string>
@@ -220,6 +222,7 @@
     <string name="ads_theme_app_day_night_desc">This will only work when the auto theme is applied.</string>
     <string name="ads_theme_wallpaper">Wallpaper theme</string>
     <string name="ads_theme_wallpaper_summary">Style of the wallpaper.</string>
+    <string name="ads_theme_wallpaper_customise_desc">Configure the wallpaper below.</string>
     <string name="ads_theme_color_auto_wallpaper_desc">Select auto to use the wallpaper color palette.</string>
     <string name="ads_theme_toast">Toast messages theme</string>
     <string name="ads_theme_toast_summary">Show themed toast messages according to the app accent color.</string>

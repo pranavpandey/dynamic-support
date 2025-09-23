@@ -87,8 +87,10 @@
     <string name="ads_resume">Продолжить</string>
     <string name="ads_exit">Выход</string>
     <string name="ads_finish">Завершить</string>
+    <string name="ads_done">Сделанный</string>
     <string name="ads_recents">Недавние</string>
     <string name="ads_wallpaper">Фоновый рисунок</string>
+    <string name="ads_media">СМИ</string>
     <string name="ads_custom">Пользовательский</string>
     <string name="ads_edit">Редактировать</string>
     <string name="ads_refresh">Обновить</string>
@@ -220,6 +222,7 @@
     <string name="ads_theme_app_day_night_desc">Это будет работать только если применена автоматическая тема.</string>
     <string name="ads_theme_wallpaper">Тема обоев</string>
     <string name="ads_theme_wallpaper_summary">Стиль обоев.</string>
+    <string name="ads_theme_wallpaper_customise_desc">Настройте обои ниже.</string>
     <string name="ads_theme_toast">Тема всплывающих сообщений</string>
     <string name="ads_theme_toast_summary">Применять тему к всплывающим сообщениям в соответствии с цветом акцента приложения.</string>
     <string name="ads_theme_toast_summary_unchecked">Показывать всплывающие сообщения по умолчанию системы.</string>

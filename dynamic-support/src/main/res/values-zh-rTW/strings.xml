@@ -87,8 +87,10 @@
     <string name="ads_resume">繼續</string>
     <string name="ads_exit">離開</string>
     <string name="ads_finish">完成</string>
+    <string name="ads_done">完畢</string>
     <string name="ads_recents">最近的</string>
     <string name="ads_wallpaper">桌布</string>
+    <string name="ads_media">媒體</string>
     <string name="ads_custom">自訂</string>
     <string name="ads_edit">編輯</string>
     <string name="ads_refresh">重新整理</string>
@@ -220,6 +222,7 @@
     <string name="ads_theme_app_day_night_desc">這僅在套用自動主題時有效。</string>
     <string name="ads_theme_wallpaper">桌布主題</string>
     <string name="ads_theme_wallpaper_summary">桌布的樣式。</string>
+    <string name="ads_theme_wallpaper_customise_desc">配置下面的壁紙。</string>
     <string name="ads_theme_toast">快顯訊息主題</string>
     <string name="ads_theme_toast_summary">依應用程式強調色彩顯示主題快顯訊息</string>
     <string name="ads_theme_toast_summary_unchecked">顯示預設的系統快顯訊息</string>

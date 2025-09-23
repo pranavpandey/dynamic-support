@@ -87,8 +87,10 @@
     <string name="ads_resume">Riprendere</string>
     <string name="ads_exit">Uscita</string>
     <string name="ads_finish">Fine</string>
+    <string name="ads_done">Fatto</string>
     <string name="ads_recents">Recenti</string>
     <string name="ads_wallpaper">Sfondo</string>
+    <string name="ads_media">Media</string>
     <string name="ads_custom">Personalizzati</string>
     <string name="ads_edit">Modifica</string>
     <string name="ads_refresh">Ricaricare</string>
@@ -220,6 +222,7 @@
     <string name="ads_theme_app_day_night_desc">Questo funziona solo quando il motivo automatico viene applicato.</string>
     <string name="ads_theme_wallpaper">Tema sfondo</string>
     <string name="ads_theme_wallpaper_summary">Stile dello sfondo.</string>
+    <string name="ads_theme_wallpaper_customise_desc">Configura lo sfondo qui sotto.</string>
     <string name="ads_theme_toast">Motivo messaggi toast</string>
     <string name="ads_theme_toast_summary">Mostra messaggi toast a seconda colore dell\'accento dell\'app.</string>
     <string name="ads_theme_toast_summary_unchecked">Mostra i messaggi toast predefiniti di sistema.</string>
