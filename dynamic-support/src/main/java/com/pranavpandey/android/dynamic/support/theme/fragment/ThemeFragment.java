@@ -17,11 +17,11 @@
 package com.pranavpandey.android.dynamic.support.theme.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -121,8 +121,8 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
     protected ActivityResultLauncher<Intent> mFileCaptureResultLauncher;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
 
         mFileResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),

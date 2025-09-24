@@ -18,6 +18,7 @@ package com.pranavpandey.android.dynamic.support.permission.fragment;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -135,6 +136,11 @@ public class DynamicPermissionsFragment extends DynamicFragment {
         super.onCreate(savedInstanceState);
 
         setResult(Activity.RESULT_CANCELED, null, false);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
 
         mPermissionsResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.RequestMultiplePermissions(),
