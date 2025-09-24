@@ -402,6 +402,8 @@
     <string name="ads_info_github_me_desc">Retribuindo à comunidade por meio de fornecer abertamente alguns dos meus projetos.</string>
 
     <!-- Contributors and Translators -->
+    <string name="ads_author">Autor</string>
+    <string name="ads_developer">Desenvolvedor</string>
     <string name="ads_contributors">Contribuidores</string>
     <string name="ads_contributors_desc">Muito obrigado pelo seu grande apoio.</string>
     <string name="ads_translations">Traduções</string>

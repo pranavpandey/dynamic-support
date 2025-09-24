@@ -402,6 +402,8 @@
     <string name="ads_info_github_me_desc">Ich revanchiere mich bei der Community, indem ich die Quellcodes mancher meiner Projekte veröffentliche.</string>
 
     <!-- Contributors and Translators -->
+    <string name="ads_author">Autor</string>
+    <string name="ads_developer">Entwickler</string>
     <string name="ads_contributors">Mitwirkende</string>
     <string name="ads_contributors_desc">Riesigen Dank für ihre großartige Unterstützung.</string>
     <string name="ads_translations">Übersetzungen</string>

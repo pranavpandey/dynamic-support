@@ -402,6 +402,8 @@
     <string name="ads_info_github_me_desc">Memberikan kembali kepada komunitas dengan membuat proyekku open source.</string>
 
     <!-- Contributors and Translators -->
+    <string name="ads_author">Penulis</string>
+    <string name="ads_developer">Pengembang</string>
     <string name="ads_contributors">Kontributor</string>
     <string name="ads_contributors_desc">Terima kasih banyak untuk dukungan mereka.</string>
     <string name="ads_translations">Terjemahan</string>

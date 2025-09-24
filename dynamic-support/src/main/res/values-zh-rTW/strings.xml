@@ -402,6 +402,8 @@
     <string name="ads_info_github_me_desc">透過開源一些我的項目回饋社群。</string>
 
     <!-- Contributors and Translators -->
+    <string name="ads_author">作者</string>
+    <string name="ads_developer">開發人員</string>
     <string name="ads_contributors">貢獻者</string>
     <string name="ads_contributors_desc">非常感謝他們的大力支持。</string>
     <string name="ads_translations">翻譯</string>

@@ -402,6 +402,8 @@
     <string name="ads_info_github_me_desc">Отдача сообществу с помощью открытого доступа к некоторым моих проектам.</string>
 
     <!-- Contributors and Translators -->
+    <string name="ads_author">Автор</string>
+    <string name="ads_developer">Разработчик</string>
     <string name="ads_contributors">Соучастники</string>
     <string name="ads_contributors_desc">Огромное спасибо за их большую поддержку.</string>
     <string name="ads_translations">Переводы</string>

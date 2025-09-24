@@ -402,6 +402,8 @@
     <string name="ads_info_github_me_desc">Restituire alla comunità rendendo open source alcuni dei miei progetti.</string>
 
     <!-- Contributors and Translators -->
+    <string name="ads_author">Autore</string>
+    <string name="ads_developer">Sviluppatore</string>
     <string name="ads_contributors">Collaboratori</string>
     <string name="ads_contributors_desc">Un grande grazie per il loro supporto.</string>
     <string name="ads_translations">Traduzioni</string>

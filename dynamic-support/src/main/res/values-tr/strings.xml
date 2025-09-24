@@ -402,6 +402,8 @@
     <string name="ads_info_github_me_desc">Bazı projelerimi açık kaynak olarak topluma geri vermek.</string>
 
     <!-- Contributors and Translators -->
+    <string name="ads_author">Yazar</string>
+    <string name="ads_developer">Geliştirici</string>
     <string name="ads_contributors">Katkıda bulunanlar</string>
     <string name="ads_contributors_desc">Büyük destekleri için çok teşekkürler.</string>
     <string name="ads_translations">Çeviriler</string>

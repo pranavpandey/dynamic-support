@@ -403,6 +403,8 @@
     <string name="ads_info_github_me_desc">मेरे कुछ कार्यों को ओपन सोर्स करके समुदाय को कुछ वापस दें।</string>
 
     <!-- Contributors and Translators -->
+    <string name="ads_author">निर्माता</string>
+    <string name="ads_developer">डेवलपर</string>
     <string name="ads_contributors">योगदानकर्ताओं</string>
     <string name="ads_contributors_desc">सहारा बनने के लिए धन्यवाद।</string>
     <string name="ads_translations">अनुवाद</string>

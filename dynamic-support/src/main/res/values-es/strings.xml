@@ -402,6 +402,8 @@
     <string name="ads_info_github_me_desc">Devolviendo un poco a la comunidad convirtiendo algunos de mis proyectos a código abierto.</string>
 
     <!-- Contributors and Translators -->
+    <string name="ads_author">Autor</string>
+    <string name="ads_developer">Desarrollador</string>
     <string name="ads_contributors">Contribuyentes</string>
     <string name="ads_contributors_desc">Muchas gracias por su gran apoyo.</string>
     <string name="ads_translations">Traducciones</string>

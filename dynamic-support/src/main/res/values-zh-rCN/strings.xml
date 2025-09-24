@@ -402,6 +402,8 @@
     <string name="ads_info_github_me_desc">通过开源我的一些项目回馈社区。</string>
 
     <!-- Contributors and Translators -->
+    <string name="ads_author">作者</string>
+    <string name="ads_developer">开发者</string>
     <string name="ads_contributors">贡献者</string>
     <string name="ads_contributors_desc">非常感谢他们的大力支持。</string>
     <string name="ads_translations">翻译</string>
