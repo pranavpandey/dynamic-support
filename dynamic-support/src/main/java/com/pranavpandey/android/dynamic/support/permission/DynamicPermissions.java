@@ -31,6 +31,7 @@ import android.os.PowerManager;
 import android.provider.Settings;
 import android.view.accessibility.AccessibilityManager;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
@@ -158,34 +159,6 @@ public class DynamicPermissions {
     }
 
     /**
-     * Request the supplied permissions if not granted.
-     *
-     * @param context The context to start the activity.
-     * @param permissions The array of permissions to be requested.
-     * @param history {@code false} to exclude the system settings activity from the recents.
-     * @param actionIntent The intent which should be called after all the permissions have been
-     *                     granted.
-     * @param action The intent action, either start an activity or a service.
-     * @param requestCode The request code for the result.
-     */
-    public void requestPermissions(@NonNull Context context,
-            @NonNull String[] permissions, boolean history, @Nullable Intent actionIntent,
-            @DynamicAction int action, int requestCode) {
-        Intent intent = requestPermissionsIntent(
-                context, permissions, history, actionIntent, action);
-
-        if (intent == null) {
-            return;
-        }
-
-        if (context instanceof Activity) {
-            ((Activity) context).startActivityForResult(intent, requestCode);
-        } else {
-            context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-        }
-    }
-
-    /**
      * Request the permissions activity intent for the supplied permissions.
      *
      * @param context The context to build the intent.
@@ -219,7 +192,7 @@ public class DynamicPermissions {
     /**
      * Request the supplied permissions if not granted.
      *
-     * @param fragment The fragment to start the activity.
+     * @param context The context to start the activity.
      * @param permissions The array of permissions to be requested.
      * @param history {@code false} to exclude the system settings activity from the recents.
      * @param actionIntent The intent which should be called after all the permissions have been
@@ -227,11 +200,89 @@ public class DynamicPermissions {
      * @param action The intent action, either start an activity or a service.
      * @param requestCode The request code for the result.
      */
+    public void requestPermissions(@NonNull Context context,
+            @NonNull String[] permissions, boolean history, @Nullable Intent actionIntent,
+            @DynamicAction int action, int requestCode) {
+        Intent intent;
+        if ((intent = requestPermissionsIntent(context,
+                permissions, history, actionIntent, action)) == null) {
+            return;
+        }
+
+        if (context instanceof Activity) {
+            ((Activity) context).startActivityForResult(intent, requestCode);
+        } else {
+            context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        }
+    }
+
+    /**
+     * Request the supplied permissions if not granted.
+     *
+     * @param context The context to start the activity.
+     * @param permissions The array of permissions to be requested.
+     * @param history {@code false} to exclude the system settings activity from the recents.
+     * @param actionIntent The intent which should be called after all the permissions have been
+     *                     granted.
+     * @param action The intent action, either start an activity or a service.
+     * @param launcher The activity result launcher to launch the intent.
+     *
+     * @see ActivityResultLauncher#launch(Object)
+     */
+    public void requestPermissions(@NonNull Context context,
+            @NonNull String[] permissions, boolean history, @Nullable Intent actionIntent,
+            @DynamicAction int action, @Nullable ActivityResultLauncher<Intent> launcher) {
+        Intent intent;
+        if (launcher == null || (intent = requestPermissionsIntent(context,
+                permissions, history, actionIntent, action)) == null) {
+            return;
+        }
+
+        if (context instanceof Activity) {
+            launcher.launch(intent);
+        } else {
+            launcher.launch(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        }
+    }
+
+    /**
+     * Request the supplied permissions if not granted.
+     *
+     * @param fragment The fragment to start the activity.
+     * @param permissions The array of permissions to be requested.
+     * @param history {@code false} to exclude the system settings activity from the recents.
+     * @param actionIntent The intent which should be called after all the permissions have been
+     *                     granted.
+     * @param action The intent action, either start an activity or a service.
+     * @param requestCode The request code for the result.
+     *
+     * @see #requestPermissions(Fragment, String[], boolean, Intent, int, ActivityResultLauncher)
+     */
     public void requestPermissions(@NonNull Fragment fragment,
             @NonNull String[] permissions, boolean history, @Nullable Intent actionIntent,
             @DynamicAction int action, int requestCode) {
         fragment.startActivityForResult(requestPermissionsIntent(fragment.requireContext(),
                 permissions, history, actionIntent, action), requestCode);
+    }
+
+    /**
+     * Request the supplied permissions if not granted.
+     *
+     * @param fragment The fragment to start the activity.
+     * @param permissions The array of permissions to be requested.
+     * @param history {@code false} to exclude the system settings activity from the recents.
+     * @param actionIntent The intent which should be called after all the permissions have been
+     *                     granted.
+     * @param action The intent action, either start an activity or a service.
+     * @param launcher The activity result launcher to launch the intent.
+     *
+     * @see ActivityResultLauncher#launch(Object)
+     */
+    public void requestPermissions(@NonNull Fragment fragment,
+            @NonNull String[] permissions, boolean history, @Nullable Intent actionIntent,
+            @DynamicAction int action, @Nullable ActivityResultLauncher<Intent> launcher) {
+        launcher.launch(requestPermissionsIntent(fragment.requireContext(),
+                permissions, history, actionIntent, action));
     }
 
     /**
@@ -300,7 +351,8 @@ public class DynamicPermissions {
             @DynamicAction int action, int requestCode) {
         String[] permissionsNotGranted = isGranted(permissions);
         if (request && permissionsNotGranted.length != 0) {
-            requestPermissions(context, permissions, true, actionIntent, action, requestCode);
+            requestPermissions(context, permissions, true,
+                    actionIntent, action, requestCode);
         }
 
         return permissionsNotGranted.length == 0;
@@ -326,7 +378,35 @@ public class DynamicPermissions {
             @DynamicAction int action, int requestCode) {
         String[] permissionsNotGranted = isGranted(permissions);
         if (request && permissionsNotGranted.length != 0) {
-            requestPermissions(fragment, permissions, true, actionIntent, action, requestCode);
+            requestPermissions(fragment, permissions, true,
+                    actionIntent, action, requestCode);
+        }
+
+        return permissionsNotGranted.length == 0;
+    }
+
+    /**
+     * Checks whether the supplied permissions have been granted. It can also be used to
+     * automatically request the permissions those are denied or not requested yet by using the
+     * permission activity.
+     *
+     * @param fragment The fragment to start the activity.
+     * @param permissions The array of permissions to be requested.
+     * @param request {@code true} to automatically request the permissions if not granted.
+     * @param actionIntent The intent which should be called after all the permissions have been
+     *                     granted.
+     * @param action The intent action, either start an activity or a service.
+     * @param launcher The activity result launcher to launch the intent.
+     *
+     * @return {@code true} if all the supplied permissions have been granted.
+     */
+    public boolean isGranted(@NonNull Fragment fragment,
+            @NonNull String[] permissions, boolean request, @Nullable Intent actionIntent,
+            @DynamicAction int action, @Nullable ActivityResultLauncher<Intent> launcher) {
+        String[] permissionsNotGranted = isGranted(permissions);
+        if (request && permissionsNotGranted.length != 0) {
+            requestPermissions(fragment, permissions, true,
+                    actionIntent, action, launcher);
         }
 
         return permissionsNotGranted.length == 0;
@@ -385,6 +465,24 @@ public class DynamicPermissions {
             @NonNull String[] permissions, boolean request, int requestCode) {
         return isGranted(fragment, permissions, request,
                 null, DynamicAction.NONE, requestCode);
+    }
+
+    /**
+     * Checks whether the supplied permissions have been granted. It can also be used to
+     * automatically request the permissions those are denied or not requested yet by using the
+     * permission activity.
+     *
+     * @param fragment The fragment to start the activity.
+     * @param permissions The array of permissions to be requested.
+     * @param request {@code true} to automatically request the permissions if not granted.
+     * @param launcher The activity result launcher to launch the intent.
+     *
+     * @return {@code true} if all the supplied permissions have been granted.
+     */
+    public boolean isGranted(@NonNull Fragment fragment, @NonNull String[] permissions,
+            boolean request, @Nullable ActivityResultLauncher<Intent> launcher) {
+        return isGranted(fragment, permissions, request,
+                null, DynamicAction.NONE, launcher);
     }
 
     /**
