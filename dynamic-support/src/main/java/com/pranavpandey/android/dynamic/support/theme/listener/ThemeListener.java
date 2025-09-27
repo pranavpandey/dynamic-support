@@ -23,8 +23,8 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
-import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
+import com.pranavpandey.android.dynamic.support.theme.view.base.ThemePreview;
+import com.pranavpandey.android.dynamic.theme.AppTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.concurrent.DynamicTask;
 
@@ -33,7 +33,7 @@ import com.pranavpandey.android.dynamic.util.concurrent.DynamicTask;
  *
  * @param <T> The type of the dynamic app theme.
  */
-public interface ThemeListener<T extends DynamicAppTheme> {
+public interface ThemeListener<T extends AppTheme<?>> {
 
     /**
      *  Activity scene transition name for the theme preview.
@@ -325,7 +325,7 @@ public interface ThemeListener<T extends DynamicAppTheme> {
      *
      * @param <T> The type of the dynamic app theme.
      */
-    interface Import<T extends DynamicAppTheme> {
+    interface Import<T extends AppTheme<?>> {
 
         /**
          * Interface to listen the theme import (from file) events.
@@ -386,7 +386,7 @@ public interface ThemeListener<T extends DynamicAppTheme> {
      *
      * @param <T> The type of the dynamic app theme.
      */
-    interface Export<T extends DynamicAppTheme> extends ThemeListener<T> {
+    interface Export<T extends AppTheme<?>> extends ThemeListener<T> {
 
         /**
          * This method will be called to return a bitmap.

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.setting.theme;
+package com.pranavpandey.android.dynamic.support.setting.theme.base;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -25,43 +25,43 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.support.model.DynamicRemoteTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 
 /**
- * A {@link ThemePreference} to display and edit the {@link DynamicAppTheme}.
+ * A {@link ThemePreference} to display and edit the {@link DynamicRemoteTheme}.
  */
-public class DynamicThemePreference extends ThemePreference<DynamicAppTheme> {
+public class DynamicRemoteThemePreference extends ThemePreference<DynamicRemoteTheme> {
 
-    public DynamicThemePreference(@NonNull Context context) {
+    public DynamicRemoteThemePreference(@NonNull Context context) {
         super(context);
     }
 
-    public DynamicThemePreference(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicRemoteThemePreference(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicThemePreference(@NonNull Context context,
+    public DynamicRemoteThemePreference(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
     protected @LayoutRes int getLayoutRes() {
-        return R.layout.ads_preference_theme;
+        return R.layout.ads_preference_theme_remote;
     }
 
     @Override
     public @NonNull String getDefaultTheme(@Nullable String theme) {
         if (theme == null) {
-            return DynamicTheme.getInstance().get().toJsonString();
+            return DynamicTheme.getInstance().getRemote().toJsonString();
         }
 
         return theme;
     }
 
     @Override
-    public @Nullable DynamicAppTheme getDynamicTheme(@Nullable String theme) {
-        return DynamicTheme.getInstance().getTheme(theme);
+    public @Nullable DynamicRemoteTheme getDynamicTheme(@Nullable String theme) {
+        return DynamicTheme.getInstance().getRemoteTheme(mTheme);
     }
 }

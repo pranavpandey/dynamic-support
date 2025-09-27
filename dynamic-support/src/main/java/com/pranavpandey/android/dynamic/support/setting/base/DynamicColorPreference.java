@@ -822,10 +822,12 @@ public class DynamicColorPreference extends DynamicSimplePreference {
     /**
      * Returns the combined title string according to the alternate color.
      *
+     * @param alt {@code true} to include the alternate color.
+     *
      * @return The combined color string according to the alternate color.
      */
-    private @NonNull String getColorString() {
-        if (getAltPreferenceKey() == null) {
+    public @NonNull String getColorString(boolean alt) {
+        if (!alt || getAltPreferenceKey() == null) {
             return DynamicColorView.getColorString(getContext(),
                     getColor(false), isColorViewAlpha());
         }
@@ -835,6 +837,17 @@ public class DynamicColorPreference extends DynamicSimplePreference {
                         getColor(false), isColorViewAlpha()),
                 DynamicColorView.getColorString(getContext(),
                         getAltColor(false), isColorViewAlpha()));
+    }
+
+    /**
+     * Returns the combined title string according to the alternate color.
+     *
+     * @return The combined color string according to the alternate color.
+     *
+     * @see #getColorString();
+     */
+    public @NonNull String getColorString() {
+        return getColorString(true);
     }
 
     /**

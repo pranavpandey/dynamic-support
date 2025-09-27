@@ -22,9 +22,9 @@ import android.net.Uri;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.listener.ThemeListener;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
+import com.pranavpandey.android.dynamic.theme.AppTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.util.DynamicCodeUtils;
 import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
@@ -38,7 +38,7 @@ import com.pranavpandey.android.dynamic.util.concurrent.task.ContextTask;
  *
  * @param <V> The type of the dynamic app theme.
  */
-public abstract class ThemeExportTask<V extends DynamicAppTheme>
+public abstract class ThemeExportTask<V extends AppTheme<?>>
         extends ContextTask<Void, Void, Uri> {
 
     /**

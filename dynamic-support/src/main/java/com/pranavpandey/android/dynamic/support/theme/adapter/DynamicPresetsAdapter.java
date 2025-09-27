@@ -30,10 +30,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicRecyclerViewAdapter;
 import com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView;
-import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
+import com.pranavpandey.android.dynamic.support.theme.view.base.ThemePreview;
+import com.pranavpandey.android.dynamic.theme.AppTheme;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
 import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
 
@@ -47,7 +47,7 @@ import static com.pranavpandey.android.dynamic.support.theme.adapter.DynamicPres
  *
  @param <T> The type of the dynamic app theme this adapter will receive.
  */
-public class DynamicPresetsAdapter<T extends DynamicAppTheme>
+public class DynamicPresetsAdapter<T extends AppTheme<?>>
         extends DynamicRecyclerViewAdapter<DynamicPresetsAdapter.ViewHolder<T>> {
 
     /**
@@ -239,7 +239,7 @@ public class DynamicPresetsAdapter<T extends DynamicAppTheme>
      *
      @param <T> The type of the dynamic app theme this view holder will handle.
      */
-    public static class ViewHolder<T extends DynamicAppTheme> extends RecyclerView.ViewHolder {
+    public static class ViewHolder<T extends AppTheme<?>> extends RecyclerView.ViewHolder {
 
         /**
          * Item view root.

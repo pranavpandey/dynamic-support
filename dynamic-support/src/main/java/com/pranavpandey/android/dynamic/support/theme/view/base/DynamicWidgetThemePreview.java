@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.theme.view;
+package com.pranavpandey.android.dynamic.support.theme.view.base;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -34,27 +34,22 @@ import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.ShapeAppearanceModel;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.support.model.DynamicWidgetTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.util.DynamicShapeUtils;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 /**
- * A {@link ThemePreview} to show the {@link DynamicAppTheme} preview according to the
+ * A {@link ThemePreview} to show the {@link DynamicWidgetTheme} preview according to the
  * selected values.
  */
-public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
+public class DynamicWidgetThemePreview extends ThemePreview<DynamicWidgetTheme> {
 
     /**
      * Background used by this preview.
      */
     private ImageView mBackground;
-
-    /**
-     * Status bar used by this preview.
-     */
-    private ImageView mStatusBar;
 
     /**
      * Header background used by this preview.
@@ -146,27 +141,27 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      */
     private FloatingActionButton mFAB;
 
-    public DynamicThemePreview(@NonNull Context context) {
+    public DynamicWidgetThemePreview(@NonNull Context context) {
         this(context, null);
     }
 
-    public DynamicThemePreview(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicWidgetThemePreview(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicThemePreview(@NonNull Context context,
+    public DynamicWidgetThemePreview(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
     protected @LayoutRes int getLayoutRes() {
-        return R.layout.ads_theme_preview;
+        return R.layout.ads_theme_preview_widget;
     }
 
     @Override
-    public @NonNull DynamicAppTheme getDefaultTheme() {
-        return DynamicTheme.getInstance().get();
+    public @NonNull DynamicWidgetTheme getDefaultTheme() {
+        return new DynamicWidgetTheme(DynamicTheme.getInstance().get());
     }
 
     @Override
@@ -174,7 +169,6 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
         inflate(getContext(), getLayoutRes(), this);
 
         mBackground = findViewById(R.id.ads_theme_background);
-        mStatusBar = findViewById(R.id.ads_theme_status_bar);
         mHeader = findViewById(R.id.ads_theme_header);
         mHeaderIcon = findViewById(R.id.ads_theme_header_icon);
         mHeaderShadow = findViewById(R.id.ads_theme_header_shadow);
@@ -229,12 +223,10 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
         }
 
         Dynamic.set(mBackground, Dynamic.withThemeOpacity(background, getDynamicTheme()));
-        Dynamic.setBackground(mStatusBar, Dynamic.withThemeOpacity(
+        Dynamic.setBackground(mHeader, Dynamic.withThemeOpacity(
                 DynamicShapeUtils.getCornerDrawable(getDynamicTheme().getCornerSize(),
-                        getDynamicTheme().getPrimaryColorDark(),
+                        getDynamicTheme().getPrimaryColor(),
                         true, false), getDynamicTheme()));
-        mHeader.setBackgroundColor(Dynamic.withThemeOpacity(
-                getDynamicTheme().getPrimaryColor(), getDynamicTheme()));
         Dynamic.setBackground(mSurface, Dynamic.withThemeOpacity(drawable, getDynamicTheme()));
         Dynamic.setCorner(mFAB, getDynamicTheme().getCornerRadius());
 
@@ -313,20 +305,11 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
     }
 
     /**
-     * Get the status bar used by this preview.
-     *
-     * @return The status bar used by this preview.
-     */
-    public ImageView getStatusBar() {
-        return mStatusBar;
-    }
-
-    /**
      * Get the background image view used by this preview.
      *
      * @return The background image view used by this preview.
      */
-    public ImageView getBackgroundCard() {
+    public @Nullable ImageView getBackgroundCard() {
         return mBackground;
     }
 
@@ -335,7 +318,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The header background used by this preview.
      */
-    public ViewGroup getHeader() {
+    public @Nullable ViewGroup getHeader() {
         return mHeader;
     }
 
@@ -344,7 +327,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The header title used by this preview.
      */
-    public ImageView getHeaderIcon() {
+    public @Nullable ImageView getHeaderIcon() {
         return mHeaderIcon;
     }
 
@@ -353,7 +336,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The header title used by this preview.
      */
-    public ImageView getHeaderTitle() {
+    public @Nullable ImageView getHeaderTitle() {
         return mHeaderTitle;
     }
 
@@ -362,7 +345,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The header menu used by this preview.
      */
-    public ImageView getHeaderMenu() {
+    public @Nullable ImageView getHeaderMenu() {
         return mHeaderMenu;
     }
 
@@ -371,7 +354,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The header shadow used by this preview.
      */
-    public ImageView getHeaderShadow() {
+    public @Nullable ImageView getHeaderShadow() {
         return mHeaderShadow;
     }
 
@@ -380,7 +363,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The icon used by this preview.
      */
-    public ImageView getIcon() {
+    public @Nullable ImageView getIcon() {
         return mIcon;
     }
 
@@ -389,7 +372,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The primary text used by this preview.
      */
-    public ImageView getTextPrimary() {
+    public @Nullable ImageView getTextPrimary() {
         return mTextPrimaryStart;
     }
 
@@ -398,7 +381,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The secondary text used by this preview.
      */
-    public ImageView getTextSecondary() {
+    public @Nullable ImageView getTextSecondary() {
         return mTextSecondaryStart;
     }
 
@@ -407,7 +390,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The background tint text used by this preview.
      */
-    public ImageView getTextTintBackground() {
+    public @Nullable ImageView getTextTintBackground() {
         return mTextDescriptionStart;
     }
 
@@ -416,7 +399,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
      *
      * @return The FAB used by this preview.
      */
-    public FloatingActionButton getFAB() {
+    public @Nullable FloatingActionButton getFAB() {
         return mFAB;
     }
 }

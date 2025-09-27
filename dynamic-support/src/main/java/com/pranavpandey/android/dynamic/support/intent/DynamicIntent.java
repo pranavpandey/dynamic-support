@@ -62,10 +62,22 @@ public class DynamicIntent {
             "com.pranavpandey.android.dynamic.support.intent.action.THEME";
 
     /**
+     * Constant for the dynamic app widget theme action.
+     */
+    public static final String ACTION_THEME_WIDGET =
+            "com.pranavpandey.android.dynamic.support.intent.action.THEME_WIDGET";
+
+    /**
      * Constant for the dynamic remote theme action.
      */
     public static final String ACTION_THEME_REMOTE =
             "com.pranavpandey.android.dynamic.support.intent.action.THEME_REMOTE";
+
+    /**
+     * Constant for the dynamic wallpaper theme action.
+     */
+    public static final String ACTION_THEME_WALLPAPER =
+            "com.pranavpandey.android.dynamic.support.intent.action.THEME_WALLPAPER";
 
     /**
      * Constant for the dynamic theme share action.
@@ -522,6 +534,29 @@ public class DynamicIntent {
     }
 
     /**
+     * Try to launch an intent to edit or show the dynamic app widget theme.
+     *
+     * @param context The context to create the intent.
+     * @param clazz The theme activity class to create the intent.
+     * @param requestCode The request code for the intent.
+     * @param theme The dynamic app theme extra for the intent.
+     * @param defaultTheme The optional dynamic app theme default extra for the intent.
+     * @param text The optional text extra for the intent.
+     * @param sharedElement The optional view for the shared element transition.
+     *
+     * @return {@code true} on successful operation.
+     *
+     * @see #ACTION_THEME
+     * @see #editTheme(Context, Class, String, int, String, String, String, View)
+     */
+    public static boolean editWidgetTheme(@Nullable Context context, @NonNull Class<?> clazz,
+            int requestCode, @Nullable String theme, @Nullable String defaultTheme,
+            @Nullable String text, @Nullable View sharedElement) {
+        return editTheme(context, clazz, ACTION_THEME_WIDGET,
+                requestCode, theme, defaultTheme, text, sharedElement);
+    }
+
+    /**
      * Try to launch an intent to edit or show the dynamic remote theme.
      *
      * @param context The context to create the intent.
@@ -541,6 +576,29 @@ public class DynamicIntent {
             int requestCode, @Nullable String theme, @Nullable String defaultTheme,
             @Nullable String text, @Nullable View sharedElement) {
         return editTheme(context, clazz, ACTION_THEME_REMOTE,
+                requestCode, theme, defaultTheme, text, sharedElement);
+    }
+
+    /**
+     * Try to launch an intent to edit or show the dynamic wallpaper theme.
+     *
+     * @param context The context to create the intent.
+     * @param clazz The theme activity class to create the intent.
+     * @param requestCode The request code for the intent.
+     * @param theme The dynamic app theme extra for the intent.
+     * @param defaultTheme The optional dynamic app theme default extra for the intent.
+     * @param text The optional text extra for the intent.
+     * @param sharedElement The optional view for the shared element transition.
+     *
+     * @return {@code true} on successful operation.
+     *
+     * @see #ACTION_THEME
+     * @see #editTheme(Context, Class, String, int, String, String, String, View)
+     */
+    public static boolean editWallpaperTheme(@Nullable Context context, @NonNull Class<?> clazz,
+            int requestCode, @Nullable String theme, @Nullable String defaultTheme,
+            @Nullable String text, @Nullable View sharedElement) {
+        return editTheme(context, clazz, ACTION_THEME_WALLPAPER,
                 requestCode, theme, defaultTheme, text, sharedElement);
     }
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.theme.view;
+package com.pranavpandey.android.dynamic.support.theme.view.base;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

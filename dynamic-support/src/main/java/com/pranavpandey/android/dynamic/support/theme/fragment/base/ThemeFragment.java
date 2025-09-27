@@ -14,22 +14,29 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.theme.fragment;
+package com.pranavpandey.android.dynamic.support.theme.fragment.base;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
@@ -42,7 +49,6 @@ import com.pranavpandey.android.dynamic.support.dialog.fragment.DynamicDialogFra
 import com.pranavpandey.android.dynamic.support.dialog.fragment.DynamicProgressDialog;
 import com.pranavpandey.android.dynamic.support.fragment.DynamicFragment;
 import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
-import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.model.DynamicTaskViewModel;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
@@ -50,8 +56,9 @@ import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.dialog.DynamicThemeDialog;
 import com.pranavpandey.android.dynamic.support.theme.listener.ThemeListener;
 import com.pranavpandey.android.dynamic.support.theme.task.ThemeExportTask;
-import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
+import com.pranavpandey.android.dynamic.support.theme.view.base.ThemePreview;
 import com.pranavpandey.android.dynamic.support.util.DynamicPickerUtils;
+import com.pranavpandey.android.dynamic.theme.AppTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
 import com.pranavpandey.android.dynamic.util.DynamicFileUtils;
@@ -67,7 +74,7 @@ import com.pranavpandey.android.dynamic.util.concurrent.task.FileWriteTask;
  *
  * @param <T> The type of the dynamic app theme this fragment will handle.
  */
-public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFragment
+public abstract class ThemeFragment<T extends AppTheme<?>> extends DynamicFragment
         implements ThemeListener.Value, ThemeListener.Import<T>, ThemeListener.Export<T> {
 
     /**
@@ -193,6 +200,59 @@ public abstract class ThemeFragment<T extends DynamicAppTheme> extends DynamicFr
                                 Theme.Intent.EXTRA_DATA_CAPTURE) : null, Theme.Action.CAPTURE);
                     }
                 });
+    }
+
+    @Override
+    public @Nullable View onCreateView(@NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        onAddThemePreview();
+        return inflater.inflate(getLayoutRes(), container, false);
+    }
+
+    /**
+     * This method will be called to get the layout resource for this fragment.
+     *
+     * @return The layout resource for this fragment.
+     */
+    public abstract @LayoutRes int getLayoutRes();
+
+    /**
+     * This method will be called to get the theme preview layout resource for this fragment.
+     *
+     * @return The theme preview layout resource for this fragment.
+     */
+    public @LayoutRes int getPreviewLayoutRes() {
+        return R.layout.ads_theme_preview_bottom_sheet;
+    }
+
+    /**
+     * This method will be called to get the theme preset layout resource for this fragment.
+     *
+     * @return The theme preset layout resource for this fragment.
+     */
+    public @LayoutRes int getPresetLayoutRes() {
+        return R.layout.ads_layout_item_preset_horizontal;
+    }
+
+    /**
+     * This method will be called to add the theme preview, like in a bottom sheet.
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public void onAddThemePreview() {
+        if (getActivity() == null) {
+            return;
+        }
+
+        Dynamic.addBottomSheet(getActivity(), getPreviewLayoutRes(), true);
+        mThemePreview = requireActivity().findViewById(R.id.ads_theme_preview);
+        Dynamic.setTransitionName(mThemePreview.getActionView(), ADS_NAME_THEME_PREVIEW_ACTION);
+
+        mThemePreview.setOnActionClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveThemeSettings();
+            }
+        });
     }
 
     /**

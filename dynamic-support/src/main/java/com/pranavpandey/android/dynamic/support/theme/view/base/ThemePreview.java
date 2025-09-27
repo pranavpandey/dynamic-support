@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.theme.view;
+package com.pranavpandey.android.dynamic.support.theme.view.base;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -30,6 +30,7 @@ import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.model.DynamicRemoteTheme;
 import com.pranavpandey.android.dynamic.support.model.DynamicWidgetTheme;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicView;
+import com.pranavpandey.android.dynamic.theme.AppTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
@@ -37,7 +38,7 @@ import com.pranavpandey.android.dynamic.theme.Theme;
  *
  * @param <T> The type of the dynamic app theme this preview will handle.
  */
-public abstract class ThemePreview<T extends DynamicAppTheme> extends DynamicView {
+public abstract class ThemePreview<T extends AppTheme<?>> extends DynamicView {
 
     /**
      * Dynamic app theme used by this preview.

@@ -26,6 +26,7 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.support.setting.theme.base.DynamicThemePreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
@@ -43,17 +44,17 @@ import java.util.Arrays;
  * <p>{@link Theme.Night#BATTERY} will be available for API 21 and above.
  * <p>{@link Theme.Night#SYSTEM} will be available for API 28 and above.
  */
-public class DynamicNightThemePreference extends DynamicThemePreference {
+public class NightThemePreference extends DynamicThemePreference {
 
-    public DynamicNightThemePreference(@NonNull Context context) {
+    public NightThemePreference(@NonNull Context context) {
         super(context);
     }
 
-    public DynamicNightThemePreference(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public NightThemePreference(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicNightThemePreference(@NonNull Context context,
+    public NightThemePreference(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }

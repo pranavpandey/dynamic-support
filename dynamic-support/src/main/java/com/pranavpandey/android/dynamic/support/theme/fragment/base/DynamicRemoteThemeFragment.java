@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.theme.fragment;
+package com.pranavpandey.android.dynamic.support.theme.fragment.base;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -22,11 +22,10 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -45,15 +44,14 @@ import com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPrefer
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView;
-import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
+import com.pranavpandey.android.dynamic.support.theme.view.base.ThemePreview;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
 import com.pranavpandey.android.dynamic.util.DynamicPackageUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
- * Base theme fragment to provide theme editing functionality.
- * <p>Extend this fragment to implement theme attributes according to the requirements.
+ * A {@link ThemeFragment} to provide {@link DynamicRemoteTheme} editing functionality.
  */
 public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme> {
 
@@ -205,10 +203,18 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
     }
 
     @Override
-    public @Nullable View onCreateView(@NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        addThemePreview();
-        return inflater.inflate(R.layout.ads_fragment_theme_remote, container, false);
+    public @LayoutRes int getLayoutRes() {
+        return R.layout.ads_fragment_theme_remote;
+    }
+
+    @Override
+    public @LayoutRes int getPreviewLayoutRes() {
+        return R.layout.ads_theme_preview_remote_bottom_sheet;
+    }
+
+    @Override
+    public @LayoutRes int getPresetLayoutRes() {
+        return R.layout.ads_layout_item_preset_remote_horizontal;
     }
 
     @Override
@@ -237,8 +243,7 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
                 DynamicIntent.EXTRA_THEME_SHOW_PRESETS_DEFAULT)) {
             Dynamic.setVisibility(mPresetsView, View.VISIBLE);
 
-            mPresetsView.setPresetsAdapter(this,
-                    R.layout.ads_layout_item_preset_horizontal_remote,
+            mPresetsView.setPresetsAdapter(this, getPresetLayoutRes(),
                     new DynamicPresetsView.DynamicPresetsListener<DynamicRemoteTheme>() {
                 @Override
                 public void onRequestPermissions(@NonNull String[] permissions) {
@@ -504,6 +509,20 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         setSubtitle(DynamicPackageUtils.getAppLabel(getContext()));
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void onAddThemePreview() {
+        super.onAddThemePreview();
+
+        requireActivity().findViewById(R.id.ads_theme_preview_bottom_sheet)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        saveThemeSettings();
+                    }
+                });
+    }
+
     @Override
     public boolean setHasOptionsMenu() {
         return true;
@@ -514,36 +533,6 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         super.onResume();
 
         updatePreferences();
-    }
-
-    /**
-     * Add the theme preview and set the shared element transition listener.
-     */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void addThemePreview() {
-        if (getActivity() == null) {
-            return;
-        }
-
-        Dynamic.addBottomSheet(getActivity(),
-                R.layout.ads_theme_preview_remote_bottom_sheet, true);
-        mThemePreview = requireActivity().findViewById(R.id.ads_theme_preview);
-        Dynamic.setTransitionName(mThemePreview.getActionView(), ADS_NAME_THEME_PREVIEW_ACTION);
-
-        mThemePreview.setOnActionClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveThemeSettings();
-            }
-        });
-
-        requireActivity().findViewById(R.id.ads_theme_preview_bottom_sheet)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        saveThemeSettings();
-                    }
-                });
     }
 
     /**
@@ -739,7 +728,7 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
     /**
      * Update all the preferences.
      */
-    private void updatePreferences() {
+    public void updatePreferences() {
         updateThemePreview();
 
         mColorBackgroundPreference.update();

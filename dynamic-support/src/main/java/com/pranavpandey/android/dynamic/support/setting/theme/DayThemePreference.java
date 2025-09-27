@@ -20,48 +20,39 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import androidx.annotation.AttrRes;
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.model.DynamicRemoteTheme;
+import com.pranavpandey.android.dynamic.support.Dynamic;
+import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.support.setting.theme.base.DynamicThemePreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
- * A {@link ThemePreference} to display and edit the {@link DynamicRemoteTheme}.
+ * A {@link DynamicThemePreference} to display the day theme setting.
+ * <p>It will automatically set the theme type to day.
+ *
+ * @see Theme#DAY
+ * @see com.pranavpandey.android.dynamic.theme.AppTheme#setType(int)
  */
-public class DynamicRemoteThemePreference extends ThemePreference<DynamicRemoteTheme> {
+public class DayThemePreference extends DynamicThemePreference {
 
-    public DynamicRemoteThemePreference(@NonNull Context context) {
+    public DayThemePreference(@NonNull Context context) {
         super(context);
     }
 
-    public DynamicRemoteThemePreference(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DayThemePreference(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicRemoteThemePreference(@NonNull Context context,
+    public DayThemePreference(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
-    protected @LayoutRes int getLayoutRes() {
-        return R.layout.ads_preference_theme_remote;
-    }
-
-    @Override
-    public @NonNull String getDefaultTheme(@Nullable String theme) {
-        if (theme == null) {
-            return DynamicTheme.getInstance().getRemote().toJsonString();
-        }
-
-        return theme;
-    }
-
-    @Override
-    public @Nullable DynamicRemoteTheme getDynamicTheme(@Nullable String theme) {
-        return DynamicTheme.getInstance().getRemoteTheme(mTheme);
+    public @Nullable DynamicAppTheme getDynamicTheme(@Nullable String theme) {
+        return Dynamic.setThemeType(DynamicTheme.getInstance().getTheme(theme), Theme.DAY);
     }
 }

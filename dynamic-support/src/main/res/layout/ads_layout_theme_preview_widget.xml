@@ -30,10 +30,10 @@
     <LinearLayout
         style="?attr/ads_widgetContentRowVertical">
 
-        <com.pranavpandey.android.dynamic.support.theme.view.base.DynamicThemePreview
+        <com.pranavpandey.android.dynamic.support.theme.view.base.DynamicWidgetThemePreview
             android:id="@+id/ads_theme_preview"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ads_preview_height" />
+            android:layout_height="@dimen/ads_preview_height_medium" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicTextView
             style="?attr/ads_textAppearanceBody1"
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ads_margin_tiny"
-            android:text="@string/ads_theme_adjust_desc"
+            android:text="@string/ads_widget_preview_desc"
             app:adt_contrastWithColorType="surface" />
 
     </LinearLayout>

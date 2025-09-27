@@ -32,7 +32,7 @@
         style="?attr/ads_widgetContentRowVertical"
         android:layout_width="@dimen/ads_preview_width">
 
-        <com.pranavpandey.android.dynamic.support.theme.view.DynamicRemoteThemePreview
+        <com.pranavpandey.android.dynamic.support.theme.view.base.DynamicRemoteThemePreview
             android:id="@+id/ads_theme_preview"
             android:layout_width="match_parent"
             android:layout_height="@dimen/ads_preview_height_small" />

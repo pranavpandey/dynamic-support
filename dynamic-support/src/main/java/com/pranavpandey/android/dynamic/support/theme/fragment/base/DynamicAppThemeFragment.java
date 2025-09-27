@@ -14,18 +14,15 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.theme.fragment;
+package com.pranavpandey.android.dynamic.support.theme.fragment.base;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -43,16 +40,15 @@ import com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPrefer
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView;
-import com.pranavpandey.android.dynamic.support.theme.view.ThemePreview;
+import com.pranavpandey.android.dynamic.support.theme.view.base.ThemePreview;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicPackageUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
- * Base theme fragment to provide theme editing functionality.
- * <p>Extend this fragment to implement theme attributes according to the requirements.
+ * A {@link ThemeFragment} to provide {@link DynamicAppTheme} editing functionality.
  */
-public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
+public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
 
     /**
      * View to show the theme presets.
@@ -145,11 +141,11 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
      * @param dynamicAppTheme The dynamic app theme.
      * @param dynamicAppThemeDefault The default dynamic app theme.
      *
-     * @return An instance of {@link DynamicThemeFragment}.
+     * @return An instance of {@link DynamicAppThemeFragment}.
      *
      * @see #newInstance(String, String, boolean)
      */
-    public static @NonNull DynamicThemeFragment newInstance(@Nullable String dynamicAppTheme,
+    public static @NonNull DynamicAppThemeFragment newInstance(@Nullable String dynamicAppTheme,
             @Nullable String dynamicAppThemeDefault) {
         return newInstance(dynamicAppTheme, dynamicAppThemeDefault,
                 DynamicIntent.EXTRA_THEME_SHOW_PRESETS_DEFAULT);
@@ -162,11 +158,11 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
      * @param dynamicAppThemeDefault The default dynamic app theme.
      * @param showPresets {@code true} to show the presets.
      *
-     * @return An instance of {@link DynamicThemeFragment}.
+     * @return An instance of {@link DynamicAppThemeFragment}.
      */
-    public static @NonNull DynamicThemeFragment newInstance(@Nullable String dynamicAppTheme,
+    public static @NonNull DynamicAppThemeFragment newInstance(@Nullable String dynamicAppTheme,
             @Nullable String dynamicAppThemeDefault, boolean showPresets) {
-        DynamicThemeFragment fragment = new DynamicThemeFragment();
+        DynamicAppThemeFragment fragment = new DynamicAppThemeFragment();
         Bundle args = new Bundle();
         args.putString(DynamicIntent.EXTRA_THEME, dynamicAppTheme);
         args.putString(DynamicIntent.EXTRA_THEME_DEFAULT, dynamicAppThemeDefault);
@@ -201,10 +197,8 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
     }
 
     @Override
-    public @Nullable View onCreateView(@NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        addThemePreview();
-        return inflater.inflate(R.layout.ads_fragment_theme, container, false);
+    public @LayoutRes int getLayoutRes() {
+        return R.layout.ads_fragment_theme;
     }
 
     @Override
@@ -233,7 +227,7 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
                 DynamicIntent.EXTRA_THEME_SHOW_PRESETS_DEFAULT)) {
             Dynamic.setVisibility(mPresetsView, View.VISIBLE);
 
-            mPresetsView.setPresetsAdapter(this,
+            mPresetsView.setPresetsAdapter(this, getPresetLayoutRes(),
                     new DynamicPresetsView.DynamicPresetsListener<DynamicAppTheme>() {
                 @Override
                 public void onRequestPermissions(@NonNull String[] permissions) {
@@ -515,28 +509,6 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
     }
 
     /**
-     * Add the theme preview and set the shared element transition listener.
-     */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void addThemePreview() {
-        if (getActivity() == null) {
-            return;
-        }
-
-        Dynamic.addBottomSheet(getActivity(),
-                R.layout.ads_theme_preview_bottom_sheet, true);
-        mThemePreview = requireActivity().findViewById(R.id.ads_theme_preview);
-        Dynamic.setTransitionName(mThemePreview.getActionView(), ADS_NAME_THEME_PREVIEW_ACTION);
-
-        mThemePreview.setOnActionClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveThemeSettings();
-            }
-        });
-    }
-
-    /**
      * Retrieves the theme from the supplies arguments
      *
      * @param key The key to be retrieved.
@@ -719,7 +691,7 @@ public class DynamicThemeFragment extends ThemeFragment<DynamicAppTheme> {
     /**
      * Update all the preferences.
      */
-    private void updatePreferences() {
+    public void updatePreferences() {
         updateThemePreview();
 
         mColorBackgroundPreference.update();

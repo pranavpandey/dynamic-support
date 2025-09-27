@@ -1532,6 +1532,24 @@ public class DynamicTheme implements DynamicProductFlavor, DynamicListener, Dyna
     }
 
     /**
+     * Generates default widget theme according to the current settings.
+     *
+     * @return The generated default widget theme.
+     */
+    public @NonNull DynamicWidgetTheme generateDefaultWidgetTheme() {
+        return new DynamicWidgetTheme();
+    }
+
+    /**
+     * Generates default remote theme according to the current settings.
+     *
+     * @return The generated default remote theme.
+     */
+    public @NonNull DynamicWidgetTheme generateDefaultRemoteTheme() {
+        return new DynamicRemoteTheme();
+    }
+
+    /**
      * Generates stroke color according to the supplied color.
      *
      * @param color The color to generate the stroke color.

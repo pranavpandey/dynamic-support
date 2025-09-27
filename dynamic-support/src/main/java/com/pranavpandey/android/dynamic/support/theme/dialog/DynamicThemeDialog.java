@@ -42,6 +42,7 @@ import com.pranavpandey.android.dynamic.support.model.DynamicTaskViewModel;
 import com.pranavpandey.android.dynamic.support.theme.listener.ThemeListener;
 import com.pranavpandey.android.dynamic.support.theme.task.ThemeImportTask;
 import com.pranavpandey.android.dynamic.support.util.DynamicInputUtils;
+import com.pranavpandey.android.dynamic.theme.AppTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
 import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
@@ -65,7 +66,7 @@ import static com.pranavpandey.android.dynamic.theme.Theme.Action.SHARE_FILE;
  * @param <T> The type of the dynamic app theme this dialog will handle.
  * @param <V> The type of the theme source.
  */
-public class DynamicThemeDialog<T extends DynamicAppTheme, V> extends DynamicDialogFragment {
+public class DynamicThemeDialog<T extends AppTheme<?>, V> extends DynamicDialogFragment {
 
     /**
      * Tag for this dialog fragment.
@@ -143,7 +144,7 @@ public class DynamicThemeDialog<T extends DynamicAppTheme, V> extends DynamicDia
      *
      * @return An instance of {@link DynamicThemeDialog}.
      */
-    public static @NonNull <T extends DynamicAppTheme>
+    public static @NonNull <T extends AppTheme<?>>
     DynamicThemeDialog<T, Void> newThemeInstance() {
         return new DynamicThemeDialog<>();
     }
@@ -155,7 +156,7 @@ public class DynamicThemeDialog<T extends DynamicAppTheme, V> extends DynamicDia
      *
      * @return An instance of {@link DynamicThemeDialog}.
      */
-    public static @NonNull <T extends DynamicAppTheme>
+    public static @NonNull <T extends AppTheme<?>>
     DynamicThemeDialog<T, Intent> newImportIntentInstance() {
         return new DynamicThemeDialog<>();
     }
@@ -167,7 +168,7 @@ public class DynamicThemeDialog<T extends DynamicAppTheme, V> extends DynamicDia
      *
      * @return An instance of {@link DynamicThemeDialog}.
      */
-    public static @NonNull <T extends DynamicAppTheme>
+    public static @NonNull <T extends AppTheme<?>>
     DynamicThemeDialog<T, Uri> newImportUriInstance() {
         return new DynamicThemeDialog<>();
     }
@@ -551,9 +552,10 @@ public class DynamicThemeDialog<T extends DynamicAppTheme, V> extends DynamicDia
      * @return The {@link DynamicThemeDialog} object to allow for chaining of calls to
      *         set methods.
      */
+    @SuppressWarnings("unchecked")
     public @NonNull DynamicThemeDialog<T, V> setThemeListener(
-            @Nullable ThemeListener<T> themeListener) {
-        this.mThemeListener = themeListener;
+            @Nullable ThemeListener<? extends AppTheme<?>> themeListener) {
+        this.mThemeListener = (ThemeListener<T>) themeListener;
 
         return this;
     }

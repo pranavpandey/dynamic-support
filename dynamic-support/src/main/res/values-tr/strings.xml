@@ -167,6 +167,7 @@
     <string name="ads_dynamic">Dinamik</string>
     <string name="ads_color">Renk</string>
     <string name="ads_theme">Tema</string>
+    <string name="ads_gradient">Gradyan</string>
     <string name="ads_theme_preview_summary">Tema önizlemesini göster.</string>
     <string name="ads_theme_preview_summary_unchecked">Tema önizlemesini gösterme.</string>
     <string name="ads_theme_code">Kod</string>

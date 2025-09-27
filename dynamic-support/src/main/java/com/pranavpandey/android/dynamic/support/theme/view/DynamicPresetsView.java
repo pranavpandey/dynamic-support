@@ -42,15 +42,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
-import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.recyclerview.DynamicRecyclerViewNested;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.adapter.DynamicPresetsAdapter;
+import com.pranavpandey.android.dynamic.support.theme.view.base.ThemePreview;
 import com.pranavpandey.android.dynamic.support.util.DynamicLayoutUtils;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
+import com.pranavpandey.android.dynamic.theme.AppTheme;
 import com.pranavpandey.android.dynamic.theme.ThemeContract;
 import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
 import com.pranavpandey.android.dynamic.util.DynamicLinkUtils;
@@ -62,7 +63,7 @@ import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
  *
  * @param <T> The type of the dynamic app theme this view will handle.
  */
-public class DynamicPresetsView<T extends DynamicAppTheme>
+public class DynamicPresetsView<T extends AppTheme<?>>
         extends DynamicRecyclerViewNested implements DefaultLifecycleObserver {
 
     /**
@@ -70,7 +71,7 @@ public class DynamicPresetsView<T extends DynamicAppTheme>
      *
      * @param <T> The type of the dynamic app theme.
      */
-    public interface DynamicPresetsListener<T extends DynamicAppTheme> {
+    public interface DynamicPresetsListener<T extends AppTheme<?>> {
 
         /**
          * This method will be called to request the required permissions.

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.setting.theme;
+package com.pranavpandey.android.dynamic.support.setting.theme.base;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -23,35 +23,36 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.Dynamic;
-import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.support.R;
+import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
-import com.pranavpandey.android.dynamic.theme.Theme;
 
 /**
- * A {@link DynamicThemePreference} to display the app theme setting.
- * <p>It will automatically set the theme type to custom.
+ * A {@link DynamicSpinnerPreference} to display the theme styles version.
  *
- * @see Theme#CUSTOM
- * @see com.pranavpandey.android.dynamic.theme.AppTheme#setType(int)
+ * @see DynamicTheme.Version
  */
-public class DynamicAppThemePreference extends DynamicThemePreference {
+public class DynamicThemeVersionPreference extends DynamicSpinnerPreference {
 
-    public DynamicAppThemePreference(@NonNull Context context) {
+    public DynamicThemeVersionPreference(@NonNull Context context) {
         super(context);
     }
 
-    public DynamicAppThemePreference(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicThemeVersionPreference(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicAppThemePreference(@NonNull Context context,
+    public DynamicThemeVersionPreference(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
-    public @Nullable DynamicAppTheme getDynamicTheme(@Nullable String theme) {
-        return Dynamic.setThemeType(DynamicTheme.getInstance().getTheme(theme), Theme.APP);
+    protected void onInflate() {
+        super.onInflate();
+
+        setPreferenceKey(DynamicTheme.Version.KEY);
+        setEntries(getResources().getStringArray(R.array.ads_dynamic_theme_version_entries));
+        setValues(getResources().getStringArray(R.array.ads_dynamic_theme_version_values));
     }
 }

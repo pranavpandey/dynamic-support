@@ -279,8 +279,10 @@
 
     <!-- Theme -->
     <dimen name="ads_preview_width">300dp</dimen>
+    <dimen name="ads_preview_width_medium">200dp</dimen>
     <dimen name="ads_preview_width_small">160dp</dimen>
     <dimen name="ads_preview_height">160dp</dimen>
+    <dimen name="ads_preview_height_medium">140dp</dimen>
     <dimen name="ads_preview_height_small">120dp</dimen>
     <dimen name="ads_preview_header_margin_top">@dimen/ads_margin_medium</dimen>
     <dimen name="ads_preview_header_margin_bottom">20dp</dimen>

@@ -19,14 +19,14 @@ package com.pranavpandey.android.dynamic.support.listener;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.theme.AppTheme;
 
 /**
  * An interface to get the various callbacks related to the dynamic theme.
  *
  * @param <T> The type of the dynamic app theme this resolver will resolve.
  */
-public interface DynamicThemeResolver<T extends DynamicAppTheme> {
+public interface DynamicThemeResolver<T extends AppTheme<?>> {
 
     /**
      * Returns the default theme string.

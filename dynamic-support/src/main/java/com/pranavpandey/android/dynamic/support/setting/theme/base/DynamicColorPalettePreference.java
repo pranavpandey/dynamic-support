@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.setting.theme;
+package com.pranavpandey.android.dynamic.support.setting.theme.base;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -23,35 +23,46 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.pranavpandey.android.dynamic.support.Dynamic;
-import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.google.android.material.color.DynamicColors;
+import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
-/**
- * A {@link DynamicThemePreference} to display the day theme setting.
- * <p>It will automatically set the theme type to day.
- *
- * @see Theme#DAY
- * @see com.pranavpandey.android.dynamic.theme.AppTheme#setType(int)
- */
-public class DynamicDayThemePreference extends DynamicThemePreference {
+import java.util.Arrays;
 
-    public DynamicDayThemePreference(@NonNull Context context) {
+/**
+ * A {@link DynamicSpinnerPreference} to display and edit the settings for the dynamic
+ * color palette.
+ */
+public class DynamicColorPalettePreference extends DynamicSpinnerPreference {
+
+    public DynamicColorPalettePreference(@NonNull Context context) {
         super(context);
     }
 
-    public DynamicDayThemePreference(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicColorPalettePreference(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicDayThemePreference(@NonNull Context context,
+    public DynamicColorPalettePreference(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
-    public @Nullable DynamicAppTheme getDynamicTheme(@Nullable String theme) {
-        return Dynamic.setThemeType(DynamicTheme.getInstance().getTheme(theme), Theme.DAY);
+    protected void onInflate() {
+        super.onInflate();
+
+        if (getValues() != null && DynamicColors.isDynamicColorAvailable()) {
+            setDefaultValue(Arrays.asList(getValues()).indexOf(Theme.Color.ToString.SYSTEM));
+            updateValueString(false);
+        }
+    }
+
+    @Override
+    protected void onUpdate() {
+        super.onUpdate();
+
+        setVisibility(DynamicTheme.getInstance().getListener().isDynamicColors() ? VISIBLE : GONE);
     }
 }

@@ -15,8 +15,26 @@
 	limitations under the License.
 -->
 
-<com.pranavpandey.android.dynamic.support.setting.theme.base.DynamicThemePreference
+<com.pranavpandey.android.dynamic.support.widget.DynamicCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ads_dynamic_preference"
+    style="?attr/ads_widgetCardFloatingBottomSheet"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        style="?attr/ads_widgetContentRowVertical">
+
+        <com.pranavpandey.android.dynamic.support.widget.DynamicDragIndicator
+            style="?attr/ads_widgetImageDragIndicator" />
+
+        <FrameLayout
+            style="?attr/ads_widgetContentCard"
+            android:id="@+id/ads_theme_preview_bottom_sheet">
+
+            <include layout="@layout/ads_layout_theme_preview_widget" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</com.pranavpandey.android.dynamic.support.widget.DynamicCardView>

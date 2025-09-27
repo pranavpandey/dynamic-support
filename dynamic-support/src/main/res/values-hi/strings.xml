@@ -167,6 +167,7 @@
     <string name="ads_dynamic">गत्यात्मक</string>
     <string name="ads_color">रंग</string>
     <string name="ads_theme">रंग-रूप</string>
+    <string name="ads_gradient">ढाल</string>
     <string name="ads_theme_preview_summary">रंग-रूप पूर्वावलोकन दिखाएं।</string>
     <string name="ads_theme_preview_summary_unchecked">रंग-रूप पूर्वावलोकन न दिखाएं।</string>
     <string name="ads_theme_code">कोड</string>

@@ -167,6 +167,7 @@
     <string name="ads_dynamic">Dynamique</string>
     <string name="ads_color">Couleur</string>
     <string name="ads_theme">Thème</string>
+    <string name="ads_gradient">Pente</string>
     <string name="ads_theme_preview_summary">Afficher l\'aperçu du thème.</string>
     <string name="ads_theme_preview_summary_unchecked">Ne pas afficher l\'aperçu du thème.</string>
     <string name="ads_theme_code">Code</string>

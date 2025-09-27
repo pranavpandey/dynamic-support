@@ -167,6 +167,7 @@
     <string name="ads_dynamic">動態</string>
     <string name="ads_color">色彩</string>
     <string name="ads_theme">主題</string>
+    <string name="ads_gradient">坡度</string>
     <string name="ads_theme_preview_summary">顯示主題預覽。</string>
     <string name="ads_theme_preview_summary_unchecked">不顯示主題預覽。</string>
     <string name="ads_theme_code">圖碼</string>

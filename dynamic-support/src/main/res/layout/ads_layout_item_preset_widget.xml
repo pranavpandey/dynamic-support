@@ -20,9 +20,9 @@
     style="?attr/ads_widgetCard"
     android:id="@+id/ads_preset_root"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/ads_preview_height">
+    android:layout_height="@dimen/ads_preview_height_medium">
 
-    <com.pranavpandey.android.dynamic.support.theme.view.base.DynamicThemePreview
+    <com.pranavpandey.android.dynamic.support.theme.view.base.DynamicWidgetThemePreview
         style="?attr/ads_widgetContent"
         android:id="@+id/ads_preset_theme_preview"
         android:layout_width="match_parent"

@@ -23,46 +23,36 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.android.material.color.DynamicColors;
-import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
+import com.pranavpandey.android.dynamic.support.Dynamic;
+import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.support.setting.theme.base.DynamicThemePreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.theme.Theme;
 
-import java.util.Arrays;
-
 /**
- * A {@link DynamicSpinnerPreference} to display and edit the settings for the dynamic
- * color palette.
+ * A {@link DynamicThemePreference} to display the app theme setting.
+ * <p>It will automatically set the theme type to custom.
+ *
+ * @see Theme#CUSTOM
+ * @see com.pranavpandey.android.dynamic.theme.AppTheme#setType(int)
  */
-public class ColorPalettePreference extends DynamicSpinnerPreference {
+public class AppThemePreference extends DynamicThemePreference {
 
-    public ColorPalettePreference(@NonNull Context context) {
+    public AppThemePreference(@NonNull Context context) {
         super(context);
     }
 
-    public ColorPalettePreference(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public AppThemePreference(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ColorPalettePreference(@NonNull Context context,
+    public AppThemePreference(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
-    protected void onInflate() {
-        super.onInflate();
-
-        if (getValues() != null && DynamicColors.isDynamicColorAvailable()) {
-            setDefaultValue(Arrays.asList(getValues()).indexOf(Theme.Color.ToString.SYSTEM));
-            updateValueString(false);
-        }
-    }
-
-    @Override
-    protected void onUpdate() {
-        super.onUpdate();
-
-        setVisibility(DynamicTheme.getInstance().getListener().isDynamicColors() ? VISIBLE : GONE);
+    public @Nullable DynamicAppTheme getDynamicTheme(@Nullable String theme) {
+        return Dynamic.setThemeType(DynamicTheme.getInstance().getTheme(theme), Theme.APP);
     }
 }
