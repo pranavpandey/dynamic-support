@@ -16,9 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.model;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -28,6 +26,7 @@ import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.recyclerview.adapter.DynamicRecyclerViewAdapter;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
@@ -218,7 +217,7 @@ public class DynamicPermission implements Parcelable,
         this.allowed = in.readByte() != 0;
         this.askAgain = in.readByte() != 0;
         this.unknown = in.readByte() != 0;
-        this.icon = new BitmapDrawable(Resources.getSystem(),
+        this.icon = DynamicResourceUtils.getDrawable(null,
                 (Bitmap) in.readParcelable(getClass().getClassLoader()));
         this.itemType = in.readInt();
     }

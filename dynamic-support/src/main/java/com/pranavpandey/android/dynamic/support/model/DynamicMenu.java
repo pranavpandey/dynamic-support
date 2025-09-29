@@ -16,9 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.model;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -27,6 +25,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
 
 /**
@@ -142,7 +141,7 @@ public class DynamicMenu implements Parcelable {
      * @param in The parcel to read the values.
      */
     public DynamicMenu(@NonNull Parcel in) {
-        this.icon = new BitmapDrawable(Resources.getSystem(),
+        this.icon = DynamicResourceUtils.getDrawable(null,
                 (Bitmap) in.readParcelable(getClass().getClassLoader()));
         this.tint = in.readByte() != 0;
         this.title = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);

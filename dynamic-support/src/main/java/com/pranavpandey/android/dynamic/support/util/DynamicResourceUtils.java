@@ -18,11 +18,13 @@ package com.pranavpandey.android.dynamic.support.util;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
@@ -224,6 +226,24 @@ public class DynamicResourceUtils {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    /**
+     * Get the drawable from the supplied bitmap.
+     *
+     * @param context The context to be used.
+     * @param bitmap The bitmap to create the drawable.
+     *
+     * @return The drawable created from the bitmap.
+     */
+    public static @Nullable BitmapDrawable getDrawable(
+            @Nullable Context context, @Nullable Bitmap bitmap) {
+        if (bitmap == null) {
+            return null;
+        }
+
+        return new BitmapDrawable(context != null ? context.getResources()
+                : Resources.getSystem(), bitmap);
     }
 
     /**

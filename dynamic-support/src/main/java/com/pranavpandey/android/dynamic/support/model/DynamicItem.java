@@ -16,9 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.model;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -30,6 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.pranavpandey.android.dynamic.support.Dynamic;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicItemView;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
@@ -176,9 +175,9 @@ public class DynamicItem implements Parcelable {
         this.contrastWithColor = in.readInt();
         this.backgroundAware = in.readInt();
         this.contrast = in.readInt();
-        this.icon = new BitmapDrawable(Resources.getSystem(),
+        this.icon = DynamicResourceUtils.getDrawable(null,
                 (Bitmap) in.readParcelable(getClass().getClassLoader()));
-        this.imageDrawable = new BitmapDrawable(Resources.getSystem(),
+        this.imageDrawable = DynamicResourceUtils.getDrawable(null,
                 (Bitmap) in.readParcelable(getClass().getClassLoader()));
         this.title = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
         this.subtitle = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);

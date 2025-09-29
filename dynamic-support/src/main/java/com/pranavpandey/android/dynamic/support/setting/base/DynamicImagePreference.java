@@ -20,7 +20,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -203,8 +202,9 @@ public class DynamicImagePreference extends DynamicSpinnerPreference {
      */
     public void setImageBitmap(@Nullable Bitmap imageBitmap, boolean update) {
         try {
-            setImageDrawable(new BitmapDrawable(DynamicBitmapUtils.resizeBitmap(
-                    imageBitmap, Theme.Size.SMALL, Theme.Size.SMALL)), update);
+            setImageDrawable(DynamicResourceUtils.getDrawable(getContext(),
+                    DynamicBitmapUtils.resizeBitmap(imageBitmap, Theme.Size.SMALL,
+                            Theme.Size.SMALL)), update);
         } catch (Exception e) {
             e.getStackTrace();
 

@@ -28,7 +28,6 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.RadialGradient;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
@@ -357,7 +356,7 @@ public class DynamicColorView extends DynamicFrameLayout {
 
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[] {android.R.attr.state_pressed},
-                new BitmapDrawable(getResources(), bitmap));
+                DynamicResourceUtils.getDrawable(getContext(), bitmap));
         stateListDrawable.setAlpha(ALPHA_STATE);
 
         return stateListDrawable;

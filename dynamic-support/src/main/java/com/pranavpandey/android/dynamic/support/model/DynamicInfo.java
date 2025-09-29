@@ -16,9 +16,7 @@
 
 package com.pranavpandey.android.dynamic.support.model;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -28,6 +26,7 @@ import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.support.view.base.DynamicInfoView;
 import com.pranavpandey.android.dynamic.util.DynamicBitmapUtils;
 
@@ -112,9 +111,9 @@ public class DynamicInfo implements Parcelable {
      * @param in The parcel to read the values.
      */
     public DynamicInfo(@NonNull Parcel in) {
-        this.icon = new BitmapDrawable(Resources.getSystem(),
+        this.icon = DynamicResourceUtils.getDrawable(null,
                 (Bitmap) in.readParcelable(getClass().getClassLoader()));
-        this.iconBig = new BitmapDrawable(Resources.getSystem(),
+        this.iconBig = DynamicResourceUtils.getDrawable(null,
                 (Bitmap) in.readParcelable(getClass().getClassLoader()));
         this.title = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
         this.subtitle = TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(in);
