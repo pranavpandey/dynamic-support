@@ -297,6 +297,8 @@ public class DynamicWidgetThemePreview extends ThemePreview<DynamicWidgetTheme> 
 
         Dynamic.setVisibility(mHeaderShadow,
                 getDynamicTheme().isElevation() ? VISIBLE : INVISIBLE);
+        Dynamic.setVisibility(mHeaderTitle, getDynamicTheme().getHeader()
+                != Theme.Visibility.HIDE ? VISIBLE : GONE);
     }
 
     @Override

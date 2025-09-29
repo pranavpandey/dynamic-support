@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018-2022 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="?attr/ads_widgetScrollerVertical"
+    android:id="@+id/ads_theme_root">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/ads_bottom_sheet_peek_height"
+        android:orientation="vertical">
+
+        <com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView
+            android:id="@+id/ads_theme_presets_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            style="?attr/ads_widgetScrollerPadding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.pranavpandey.android.dynamic.support.view.DynamicHeaderBackground
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ads_title="@string/ads_general" />
+
+            <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+                style="?attr/ads_widgetCard">
+
+                <LinearLayout
+                    style="?attr/ads_widgetContentRowVertical">
+
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference
+                        android:id="@+id/ads_pref_theme_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ads_key="ads_pref_settings_theme_header"
+                        app:ads_icon="@drawable/ads_ic_header"
+                        app:ads_title="@string/ads_widget_header"
+                        app:ads_summary="@string/ads_widget_header_summary"
+                        app:ads_description="@string/ads_widget_header_desc"
+                        app:ads_icons="@array/ads_visibility_icons"
+                        app:ads_entries="@array/ads_visibility_entries"
+                        app:ads_values="@array/ads_visibility_values" />
+
+                    <LinearLayout
+                        style="?attr/ads_widgetContentRowVertical">
+
+                        <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
+                            android:id="@+id/ads_pref_theme_color_background"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:ads_key="ads_pref_settings_theme_color_background"
+                            app:ads_altKey="ads_pref_settings_theme_color_tint_background"
+                            app:ads_icon="@drawable/ads_ic_paint_bucket"
+                            app:ads_title="@string/ads_theme_color_background"
+                            app:ads_summary="@string/ads_theme_color_background_summary"
+                            app:ads_description="@string/ads_theme_color_default_desc"
+                            app:ads_action="@string/ads_theme_color_tint"
+                            app:ads_shape="square"
+                            app:ads_popup="true"
+                            app:ads_popupColors="@array/ads_app_theme_colors" />
+
+                        <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
+                            android:id="@+id/ads_pref_theme_color_surface"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:ads_key="ads_pref_settings_theme_color_surface"
+                            app:ads_altKey="ads_pref_settings_theme_color_tint_surface"
+                            app:ads_title="@string/ads_theme_color_surface"
+                            app:ads_description="@string/ads_theme_color_default_desc"
+                            app:ads_action="@string/ads_theme_color_tint"
+                            app:ads_alphaEnabled="true"
+                            app:ads_popup="true"
+                            app:ads_popupColors="@array/ads_app_theme_surface_colors" />
+
+                    </LinearLayout>
+
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference
+                        android:id="@+id/ads_pref_theme_opacity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ads_key="ads_pref_settings_theme_opacity"
+                        app:ads_altKey="ads_pref_settings_theme_opacity_alt"
+                        app:ads_icon="@drawable/ads_ic_opacity"
+                        app:ads_title="@string/ads_theme_opacity"
+                        app:ads_summary="@string/ads_theme_opacity_summary"
+                        app:ads_description="@string/ads_theme_entry_auto_default_desc"
+                        app:ads_icons="@array/ads_theme_icons_auto"
+                        app:ads_entries="@array/ads_theme_entries_auto"
+                        app:ads_values="@array/ads_theme_values_auto"
+                        app:ads_min="@integer/adt_opacity_min"
+                        app:ads_max="@integer/adt_opacity_max"
+                        app:ads_interval="@integer/adt_opacity_interval"
+                        app:ads_progress="@integer/adt_opacity" />
+
+                    <LinearLayout
+                        style="?attr/ads_widgetContentRowVertical">
+
+                        <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
+                            android:id="@+id/ads_pref_theme_color_primary_dark"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:ads_key="ads_pref_settings_theme_color_primary_dark"
+                            app:ads_altKey="ads_pref_settings_theme_color_tint_primary_dark"
+                            app:ads_icon="@drawable/ads_ic_android"
+                            app:ads_title="@string/ads_theme_color_primary_dark"
+                            app:ads_summary="@string/ads_theme_color_primary_summary_dark"
+                            app:ads_description="@string/ads_theme_color_default_desc"
+                            app:ads_action="@string/ads_theme_color_tint"
+                            app:ads_alphaEnabled="true"
+                            app:ads_popup="true"
+                            app:ads_popupColors="@array/ads_app_colors_dark"
+                            app:ads_altPopupColors="@array/ads_app_theme_colors" />
+
+                        <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
+                            android:id="@+id/ads_pref_theme_color_accent_dark"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:ads_key="ads_pref_settings_theme_color_accent_dark"
+                            app:ads_altKey="ads_pref_settings_theme_color_tint_accent_dark"
+                            app:ads_title="@string/ads_theme_color_secondary"
+                            app:ads_description="@string/ads_theme_color_default_desc"
+                            app:ads_action="@string/ads_theme_color_tint"
+                            app:ads_alphaEnabled="true"
+                            app:ads_popup="true"
+                            app:ads_popupColors="@array/ads_app_colors_dark"
+                            app:ads_altPopupColors="@array/ads_app_theme_colors" />
+
+                    </LinearLayout>
+
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
+                        android:id="@+id/ads_pref_theme_color_primary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ads_key="ads_pref_settings_theme_color_primary"
+                        app:ads_altKey="ads_pref_settings_theme_color_tint_primary"
+                        app:ads_icon="@drawable/ads_ic_brush"
+                        app:ads_title="@string/ads_theme_color_primary"
+                        app:ads_summary="@string/ads_theme_color_primary_summary"
+                        app:ads_description="@string/ads_theme_color_default_desc"
+                        app:ads_action="@string/ads_theme_color_tint"
+                        app:ads_alphaEnabled="true"
+                        app:ads_popup="true"
+                        app:ads_popupColors="@array/ads_app_colors" />
+
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
+                        android:id="@+id/ads_pref_theme_color_accent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ads_key="ads_pref_settings_theme_color_accent"
+                        app:ads_altKey="ads_pref_settings_theme_color_tint_accent"
+                        app:ads_icon="@drawable/ads_ic_brush"
+                        app:ads_title="@string/ads_theme_color_accent"
+                        app:ads_summary="@string/ads_theme_color_accent_summary"
+                        app:ads_description="@string/ads_theme_color_default_desc"
+                        app:ads_action="@string/ads_theme_color_tint"
+                        app:ads_alphaEnabled="true"
+                        app:ads_popup="true"
+                        app:ads_popupColors="@array/ads_app_colors" />
+
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
+                        android:id="@+id/ads_pref_theme_color_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ads_key="ads_pref_settings_theme_color_error"
+                        app:ads_altKey="ads_pref_settings_theme_color_tint_error"
+                        app:ads_icon="@drawable/ads_ic_error"
+                        app:ads_title="@string/ads_theme_color_error"
+                        app:ads_summary="@string/ads_theme_color_error_summary"
+                        app:ads_description="@string/ads_theme_color_default_desc"
+                        app:ads_action="@string/ads_theme_color_tint"
+                        app:ads_alphaEnabled="true"
+                        app:ads_popup="true"
+                        app:ads_popupColors="@array/ads_app_colors" />
+
+                </LinearLayout>
+
+            </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
+            <com.pranavpandey.android.dynamic.support.view.DynamicHeaderBackground
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ads_title="@string/ads_text" />
+
+            <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+                style="?attr/ads_widgetCard">
+
+                <LinearLayout
+                    style="?attr/ads_widgetContentRowVertical">
+
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
+                        android:id="@+id/ads_pref_theme_text_primary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ads_key="ads_pref_settings_theme_text_primary"
+                        app:ads_altKey="ads_pref_settings_theme_text_inverse_primary"
+                        app:ads_icon="@drawable/ads_ic_text_color"
+                        app:ads_title="@string/ads_theme_color_primary"
+                        app:ads_summary="@string/ads_theme_color_primary_summary"
+                        app:ads_description="@string/ads_theme_color_default_desc"
+                        app:ads_action="@string/ads_theme_color_inverse"
+                        app:ads_alphaEnabled="true"
+                        app:ads_popup="true"
+                        app:ads_popupColors="@array/ads_app_colors_text_dark" />
+
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference
+                        android:id="@+id/ads_pref_theme_text_secondary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ads_key="ads_pref_settings_theme_text_secondary"
+                        app:ads_altKey="ads_pref_settings_theme_text_inverse_secondary"
+                        app:ads_icon="@drawable/ads_ic_text_color"
+                        app:ads_title="@string/ads_theme_color_secondary"
+                        app:ads_summary="@string/ads_theme_color_accent_summary"
+                        app:ads_description="@string/ads_theme_color_default_desc"
+                        app:ads_action="@string/ads_theme_color_inverse"
+                        app:ads_alphaEnabled="true"
+                        app:ads_popup="true"
+                        app:ads_popupColors="@array/ads_app_colors_text" />
+
+                </LinearLayout>
+
+            </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
+            <com.pranavpandey.android.dynamic.support.view.DynamicHeaderBackground
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ads_title="@string/ads_advanced" />
+
+            <com.pranavpandey.android.dynamic.support.widget.DynamicCardView
+                style="?attr/ads_widgetCard">
+
+                <LinearLayout
+                    style="?attr/ads_widgetContentRowVertical">
+
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference
+                        android:id="@+id/ads_pref_theme_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:ads_key="ads_pref_settings_theme_style"
+                        app:ads_icon="@drawable/ads_ic_layout"
+                        app:ads_title="@string/ads_theme_style"
+                        app:ads_summary="@string/ads_theme_style_summary"
+                        app:ads_description="@string/ads_theme_entry_auto_default_desc"
+                        app:ads_icons="@array/ads_style_icons"
+                        app:ads_entries="@array/ads_style_entries"
+                        app:ads_values="@array/ads_style_values" />
+
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference
+                        android:id="@+id/ads_pref_theme_font_scale"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ads_key="ads_pref_settings_theme_font_scale"
+                        app:ads_altKey="ads_pref_settings_theme_font_scale_alt"
+                        app:ads_icon="@drawable/ads_ic_font_scale"
+                        app:ads_title="@string/ads_theme_font_scale"
+                        app:ads_summary="@string/ads_theme_font_scale_summary"
+                        app:ads_description="@string/ads_theme_entry_auto_default_desc"
+                        app:ads_icons="@array/ads_theme_icons_auto"
+                        app:ads_entries="@array/ads_theme_entries_auto"
+                        app:ads_values="@array/ads_theme_values_auto"
+                        app:ads_min="@integer/adt_font_scale_min"
+                        app:ads_max="@integer/adt_font_scale_max"
+                        app:ads_interval="@integer/adt_font_scale_interval"
+                        app:ads_progress="@integer/adt_font_scale"
+                        app:ads_unit="@string/ads_unit_percent" />
+
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference
+                        android:id="@+id/ads_pref_theme_corner_size"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ads_key="ads_pref_settings_theme_corner_size"
+                        app:ads_altKey="ads_pref_settings_theme_corner_size_alt"
+                        app:ads_icon="@drawable/ads_ic_corner"
+                        app:ads_title="@string/ads_theme_corner_size"
+                        app:ads_summary="@string/ads_theme_corner_size_summary"
+                        app:ads_description="@string/ads_theme_entry_auto_default_desc"
+                        app:ads_icons="@array/ads_corner_icons"
+                        app:ads_entries="@array/ads_corner_entries"
+                        app:ads_values="@array/ads_corner_values"
+                        app:ads_min="@integer/adt_corner_size_min"
+                        app:ads_max="@integer/adt_corner_size_max"
+                        app:ads_interval="@integer/adt_corner_size_interval"
+                        app:ads_progress="@integer/adt_corner_size" />
+
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference
+                        android:id="@+id/ads_pref_theme_background_aware"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ads_key="ads_pref_settings_theme_background_aware"
+                        app:ads_icon="@drawable/ads_ic_background_aware"
+                        app:ads_title="@string/ads_theme_background_aware"
+                        app:ads_summary="@string/ads_theme_background_aware_desc"
+                        app:ads_description="@string/ads_theme_entry_auto_default_desc"
+                        app:ads_icons="@array/ads_background_aware_icons"
+                        app:ads_entries="@array/ads_background_aware_entries"
+                        app:ads_values="@array/ads_background_aware_values" />
+
+                    <com.pranavpandey.android.dynamic.support.setting.DynamicSliderFloat
+                        android:id="@+id/ads_pref_theme_contrast"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ads_key="ads_pref_settings_theme_contrast"
+                        app:ads_altKey="ads_pref_settings_theme_contrast_alt"
+                        app:ads_icon="@drawable/ads_ic_contrast"
+                        app:ads_title="@string/ads_theme_contrast"
+                        app:ads_summary="@string/ads_theme_contrast_summary"
+                        app:ads_description="@string/ads_theme_entry_auto_default_desc"
+                        app:ads_icons="@array/ads_contrast_icons"
+                        app:ads_entries="@array/ads_contrast_entries"
+                        app:ads_values="@array/ads_contrast_values"
+                        app:ads_min="@integer/adt_contrast_min"
+                        app:ads_max="@integer/adt_contrast_max"
+                        app:ads_interval="@integer/adt_contrast_interval"
+                        app:ads_progress="@integer/adt_contrast" />
+
+                    <com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference
+                        android:id="@+id/ads_pref_theme_elevation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ads_key="ads_pref_settings_theme_elevation"
+                        app:ads_icon="@drawable/ads_ic_elevation"
+                        app:ads_title="@string/ads_theme_elevation"
+                        app:ads_summary="@string/ads_theme_elevation_summary"
+                        app:ads_description="@string/ads_theme_entry_auto_default_desc"
+                        app:ads_icons="@array/ads_elevation_icons"
+                        app:ads_entries="@array/ads_elevation_entries"
+                        app:ads_values="@array/ads_elevation_values" />
+
+                </LinearLayout>
+
+            </com.pranavpandey.android.dynamic.support.widget.DynamicCardView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.pranavpandey.android.dynamic.support.widget.DynamicNestedScrollView>

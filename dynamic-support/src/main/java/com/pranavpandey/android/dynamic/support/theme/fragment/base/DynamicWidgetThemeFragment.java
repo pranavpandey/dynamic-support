@@ -137,6 +137,11 @@ public class DynamicWidgetThemeFragment extends ThemeFragment<DynamicWidgetTheme
     protected DynamicSpinnerPreference mStylePreference;
 
     /**
+     * Dynamic spinner preference to control the widget header.
+     */
+    protected DynamicSpinnerPreference mWidgetHeaderPreference;
+
+    /**
      * Initialize the new instance of this fragment.
      *
      * @param dynamicAppTheme The dynamic app theme.
@@ -199,7 +204,7 @@ public class DynamicWidgetThemeFragment extends ThemeFragment<DynamicWidgetTheme
 
     @Override
     public @LayoutRes int getLayoutRes() {
-        return R.layout.ads_fragment_theme;
+        return R.layout.ads_fragment_theme_widget;
     }
 
     @Override
@@ -233,6 +238,7 @@ public class DynamicWidgetThemeFragment extends ThemeFragment<DynamicWidgetTheme
         mOpacityPreference = view.findViewById(R.id.ads_pref_theme_opacity);
         mElevationPreference = view.findViewById(R.id.ads_pref_theme_elevation);
         mStylePreference = view.findViewById(R.id.ads_pref_theme_style);
+        mWidgetHeaderPreference = view.findViewById(R.id.ads_pref_theme_header);
 
         if (getBooleanFromArguments(DynamicIntent.EXTRA_THEME_SHOW_PRESETS,
                 DynamicIntent.EXTRA_THEME_SHOW_PRESETS_DEFAULT)) {
@@ -566,6 +572,7 @@ public class DynamicWidgetThemeFragment extends ThemeFragment<DynamicWidgetTheme
         mTextPrimaryPreference.setAltColor(theme.getTextPrimaryColorInverse(false, false));
         mTextSecondaryPreference.setColor(theme.getTextSecondaryColor(false, false));
         mTextSecondaryPreference.setAltColor(theme.getTextSecondaryColorInverse(false, false));
+        mWidgetHeaderPreference.setPreferenceValue(theme.getHeaderString());
 
         if (theme.getFontScale(false) != Theme.Font.AUTO) {
             mFontScalePreference.setPreferenceValue(Theme.Font.ToString.CUSTOM);
@@ -696,7 +703,8 @@ public class DynamicWidgetThemeFragment extends ThemeFragment<DynamicWidgetTheme
                 .setContrast(getContrast())
                 .setOpacity(getOpacity())
                 .setElevation(getElevation())
-                .setStyle(getStyle())));
+                .setStyle(getStyle()))
+                .setHeaderString(mWidgetHeaderPreference.getPreferenceValue()));
 
         mSettingsChanged = true;
     }
@@ -723,6 +731,7 @@ public class DynamicWidgetThemeFragment extends ThemeFragment<DynamicWidgetTheme
         mOpacityPreference.update();
         mElevationPreference.update();
         mStylePreference.update();
+        mWidgetHeaderPreference.update();
 
         mContrastPreference.setEnabled(mThemePreview.getDynamicTheme().isBackgroundAware());
         mFontScalePreference.setSeekEnabled(mThemePreview.getDynamicTheme()
@@ -758,6 +767,7 @@ public class DynamicWidgetThemeFragment extends ThemeFragment<DynamicWidgetTheme
             case ADS_PREF_THEME_FONT_SCALE_ALT:
             case ADS_PREF_THEME_BACKGROUND_AWARE:
             case ADS_PREF_THEME_STYLE:
+            case ADS_PREF_THEME_HEADER:
                 DynamicMotion.getInstance().beginDelayedTransition(mThemePreview);
             case ADS_PREF_THEME_COLOR_BACKGROUND:
             case ADS_PREF_THEME_COLOR_TINT_BACKGROUND:

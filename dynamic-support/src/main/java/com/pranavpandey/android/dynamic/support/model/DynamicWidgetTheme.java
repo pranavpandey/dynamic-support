@@ -21,6 +21,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
@@ -402,8 +403,8 @@ public class DynamicWidgetTheme extends DynamicAppTheme
 
     @Override
     public @NonNull DynamicWidgetTheme setHeaderString(
-            @NonNull @Theme.Visibility.ToString String header) {
-        setHeader(Integer.parseInt(header));
+            @Nullable @Theme.Visibility.ToString String header) {
+        setHeader(header != null ? Integer.parseInt(header) : Theme.AUTO);
 
         return this;
     }

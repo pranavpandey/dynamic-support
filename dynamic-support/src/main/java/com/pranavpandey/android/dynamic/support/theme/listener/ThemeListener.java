@@ -224,6 +224,11 @@ public interface ThemeListener<T extends AppTheme<?>> {
     String ADS_PREF_THEME_STYLE = "ads_pref_settings_theme_style";
 
     /**
+     * Key for the header preference.
+     */
+    String ADS_PREF_THEME_HEADER = "ads_pref_settings_theme_header";
+
+    /**
      * Returns whether to provide theme menu for default operations.
      *
      * @return {@code true} to provide theme menu for default operations.
