@@ -56,6 +56,8 @@
     <string name="ads_locale_in_value">in</string>
     <string name="ads_locale_it">Italiano</string>
     <string name="ads_locale_it_value">it</string>
+    <string name="ads_locale_jp">日本語</string>
+    <string name="ads_locale_jp_value">jp</string>
     <string name="ads_locale_pt">Português</string>
     <string name="ads_locale_pt_value">pt</string>
     <string name="ads_locale_ru">Русский</string>

@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018-2024 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<resources>
+
+    <!-- Activity -->
+    <string name="ads_navigation_drawer_open">ナビゲーションドロワーを開く</string>
+    <string name="ads_navigation_drawer_close">ナビゲーションドロワーを閉じる</string>
+
+    <!-- Formats -->
+    <string name="ads_format_version">バージョン %1$s</string>
+    <string name="ads_search_empty">「%1$s」に一致するものが見つかりませんでした。</string>
+
+    <!-- Quantity -->
+    <string name="ads_count_files_zero">ファイルが見つかりません。</string>
+    <string name="ads_count_files_one">%1$d ファイル</string>
+    <string name="ads_count_files_other">%1$d 個のファイル</string>
+
+    <!-- Headings -->
+    <string name="ads_app">アプリ</string>
+    <string name="ads_game">ゲーム</string>
+    <string name="ads_version">バージョン</string>
+    <string name="ads_actions">アクション</string>
+    <string name="ads_text">テキスト</string>
+    <string name="ads_icon">アイコン</string>
+    <string name="ads_size">サイズ</string>
+    <string name="ads_value">値</string>
+    <string name="ads_notification">通知</string>
+    <string name="ads_notification_tile">タイル</string>
+    <string name="ads_widgets">ウィジェット</string>
+    <string name="ads_instructions">手順</string>
+    <string name="ads_tutorial">チュートリアル</string>
+    <string name="ads_product_tour">製品ツアー</string>
+    <string name="ads_troubleshoot">トラブルシューティング</string>
+    <string name="ads_about">について</string>
+    <string name="ads_overview">概要</string>
+    <string name="ads_general">一般</string>
+    <string name="ads_advanced">詳細設定</string>
+    <string name="ads_fixes">修正</string>
+
+    <!-- Labels -->
+    <string name="ads_warning">警告</string>
+    <string name="ads_error">エラーが発生しました。</string>
+    <string name="ads_i_got_it">了解</string>
+    <string name="ads_not_now">今はしない</string>
+    <string name="ads_later">後で</string>
+    <string name="ads_yes_in">はい、参加します</string>
+    <string name="ads_accept">同意する</string>
+    <string name="ads_more">その他</string>
+    <string name="ads_more_info">詳細情報</string>
+    <string name="ads_select">選択</string>
+    <string name="ads_copy">コピー</string>
+    <string name="ads_save">保存</string>
+    <string name="ads_load">読み込み</string>
+    <string name="ads_download">ダウンロード</string>
+    <string name="ads_import">インポート</string>
+    <string name="ads_rename">名前変更</string>
+    <string name="ads_delete">削除</string>
+    <string name="ads_clear">クリア</string>
+    <string name="ads_file">ファイル</string>
+    <string name="ads_data">データ</string>
+    <string name="ads_data_invalid">無効なデータ</string>
+    <string name="ads_data_invalid_desc">適切なデータを使って再試行してください。</string>
+    <string name="ads_create">作成</string>
+    <string name="ads_configure">設定</string>
+    <string name="ads_open">開く</string>
+    <string name="ads_previous">前へ</string>
+    <string name="ads_next">次へ</string>
+    <string name="ads_skip">スキップ</string>
+    <string name="ads_loading">読み込み中&#8230;</string>
+    <string name="ads_play">再生</string>
+    <string name="ads_pause">一時停止</string>
+    <string name="ads_resume">再開</string>
+    <string name="ads_exit">終了</string>
+    <string name="ads_finish">完了</string>
+    <string name="ads_done">完了</string>
+    <string name="ads_recents">最近</string>
+    <string name="ads_wallpaper">壁紙</string>
+    <string name="ads_media">メディア</string>
+    <string name="ads_custom">カスタム</string>
+    <string name="ads_edit">編集</string>
+    <string name="ads_refresh">更新</string>
+    <string name="ads_reset">リセット</string>
+    <string name="ads_default">デフォルト</string>
+    <string name="ads_normal">標準</string>
+    <string name="ads_minimum">最小</string>
+    <string name="ads_extension">拡張機能</string>
+    <string name="ads_experimental">試験運用</string>
+    <string name="ads_title">タイトル</string>
+    <string name="ads_sort">ソート</string>
+    <string name="ads_sort_category">カテゴリ</string>
+    <string name="ads_sort_name">名前</string>
+    <string name="ads_search">検索</string>
+    <string name="ads_enable">有効にする</string>
+    <string name="ads_enabled">有効</string>
+    <string name="ads_disable">無効にする</string>
+    <string name="ads_disabled">無効</string>
+    <string name="ads_toggle">切り替え</string>
+    <string name="ads_shortcut">ショートカット</string>
+    <string name="ads_shortcuts">ショートカット</string>
+    <string name="ads_shortcut_created">ショートカットを作成しました</string>
+    <string name="ads_shortcuts_desc">ホーム画面に追加するショートカットを選択してください。</string>
+
+    <!-- Navigation and Menu -->
+    <string name="ads_nav_category_features">メニュー</string>
+    <string name="ads_nav_category_support">開発を支援</string>
+    <string name="ads_nav_category_contribute">貢献</string>
+    <string name="ads_nav_home">ホーム</string>
+    <string name="ads_nav_settings">設定</string>
+    <string name="ads_nav_help">ヘルプ</string>
+    <string name="ads_nav_support">サポート</string>
+    <string name="ads_nav_about">について</string>
+    <string name="ads_nav_buy">購入</string>
+    <string name="ads_nav_rate">評価</string>
+    <string name="ads_nav_share">共有</string>
+    <string name="ads_nav_uninstall">アンインストール</string>
+    <string name="ads_menu_info">情報</string>
+    <string name="ads_menu_app_info">アプリ情報</string>
+
+    <!-- Permissions -->
+    <string name="ads_permissions">権限</string>
+    <string name="ads_permissions_subtitle">必要な権限を許可してください。</string>
+    <string name="ads_permissions_subtitle_single">必要な権限を許可してください。</string>
+    <string name="ads_perm_info_required">必要な権限</string>
+    <string name="ads_perm_info_grant_all">アプリを正しく動作させるために、すべての権限を許可してください。</string>
+    <string name="ads_perm_info_accept">この機能はオプションです。続行するには同意してください。</string>
+    <string name="ads_perm_request">リクエスト</string>
+    <string name="ads_perm_request_desc">この権限は許可されていません。タップしてリクエストします。</string>
+    <string name="ads_perm_granted">許可済み</string>
+    <string name="ads_perm_granted_desc">この権限は許可されています。</string>
+    <string name="ads_perm_denied">拒否済み</string>
+    <string name="ads_perm_denied_desc">この権限を許可するには、アプリ情報 &gt; 権限 に移動してください。タップしてアプリ情報に移動します。</string>
+    <string name="ads_perm_reinstall">再インストール</string>
+    <string name="ads_perm_reinstall_desc">この権限を許可するには、アプリを再インストールしてください。タップしてアプリ情報に移動します。</string>
+    <string name="ads_perm_unknown">不明</string>
+    <string name="ads_perm_unknown_desc">この権限はシステムに存在しません。</string>
+    <string name="ads_perm_default">権限</string>
+    <string name="ads_perm_default_desc">この権限は一部のアクションを実行するために必要です。</string>
+    <string name="ads_perm_default_explain">説明。</string>
+    <string name="ads_perm_write_system_settings">システム設定の書き込み</string>
+    <string name="ads_perm_write_system_settings_desc">システム設定の書き込みを許可します。</string>
+    <string name="ads_perm_overlay">他のアプリの上に描画</string>
+    <string name="ads_perm_overlay_desc">他のアプリの上に描画することを許可します。</string>
+    <string name="ads_perm_usage_access">使用状況へのアクセス</string>
+    <string name="ads_perm_usage_access_desc">使用状況へのアクセスを許可します。</string>
+    <string name="ads_perm_accessibility">ユーザー補助</string>
+    <string name="ads_perm_accessibility_desc">システム設定から管理する必要があります。</string>
+
+    <!-- Theme -->
+    <string name="ads_dynamic_theme">ダイナミックテーマ</string>
+    <string name="ads_dynamic_theme_summary">レシーバーによって適用されるテーマ。</string>
+    <string name="ads_dynamic_color_summary">自動色の実装。</string>
+    <string name="ads_dynamic">ダイナミック</string>
+    <string name="ads_color">色</string>
+    <string name="ads_theme">テーマ</string>
+    <string name="ads_gradient">グラデーション</string>
+    <string name="ads_theme_preview_summary">テーマのプレビューを表示します。</string>
+    <string name="ads_theme_preview_summary_unchecked">テーマのプレビューを表示しません。</string>
+    <string name="ads_theme_code">コード</string>
+    <string name="ads_theme_code_desc">テーマをスキャンまたは共有します。</string>
+    <string name="ads_theme_code_capture">キャプチャ</string>
+    <string name="ads_theme_customise_desc">以下でテーマを設定してください。</string>
+    <string name="ads_theme_adjust_desc">テーマは現在のAndroidバージョンに応じて自動的に調整されます。</string>
+    <string name="ads_theme_invalid">無効なテーマ</string>
+    <string name="ads_theme_invalid_desc">このテーマを検証できません。適切なデータを使って再試行してください。</string>
+    <string name="ads_theme_color_palette">カラーパレット</string>
+    <string name="ads_theme_color_palette_summary">プライマリとアクセントのカラープリセット。</string>
+    <string name="ads_theme_color_background">背景色</string>
+    <string name="ads_theme_color_background_summary">テーマの背景色。</string>
+    <string name="ads_theme_color_background_summary_system">システムの背景色。</string>
+    <string name="ads_theme_color_background_summary_system_alt">内部目的用であり、視認性の問題を避けるために通知ドロワーの背景に近づけておく必要があります。</string>
+    <string name="ads_theme_color_stroke">ストローク色</string>
+    <string name="ads_theme_color_surface">サーフェス色</string>
+    <string name="ads_theme_color_tertiary">第3の色</string>
+    <string name="ads_theme_color_primary">プライマリカラー</string>
+    <string name="ads_theme_color_primary_summary">主要な要素に使用される色。</string>
+    <string name="ads_theme_color_primary_dark">システムカラー</string>
+    <string name="ads_theme_color_primary_summary_dark">システム要素に使用される色。</string>
+    <string name="ads_theme_color_accent">アクセントカラー</string>
+    <string name="ads_theme_color_secondary">セカンダリカラー</string>
+    <string name="ads_theme_color_accent_summary">二次的な要素に使用される色。</string>
+    <string name="ads_theme_color_error">エラー色</string>
+    <string name="ads_theme_color_error_summary">エラー表示に使用される色。</string>
+    <string name="ads_theme_color_tint">ティント色</string>
+    <string name="ads_theme_color_inverse">反転色</string>
+    <string name="ads_theme_font_scale">フォントスケール</string>
+    <string name="ads_theme_font_scale_summary">テキストを小さくまたは大きくするための拡大縮小率。</string>
+    <string name="ads_theme_corner_size">角のサイズ</string>
+    <string name="ads_theme_corner_size_summary">サポートされている要素の角の半径。</string>
+    <string name="ads_theme_background_aware">背景認識</string>
+    <string name="ads_theme_background_aware_desc">最高の視認性を提供するために、背景に応じて色を調整します。</string>
+    <string name="ads_theme_contrast">コントラスト比</string>
+    <string name="ads_theme_contrast_summary">可視コントラストの最小比率。</string>
+    <string name="ads_theme_opacity">背景の不透明度</string>
+    <string name="ads_theme_opacity_summary">アプリの背景の不透明度。</string>
+    <string name="ads_theme_opacity_summary_widget">ウィジェットの背景の不透明度。</string>
+    <string name="ads_theme_elevation">隆起</string>
+    <string name="ads_theme_elevation_summary">サーフェス要素の影を制御します。</string>
+    <string name="ads_theme_style">スタイル</string>
+    <string name="ads_theme_style_summary">テーマのスタイル。</string>
+    <string name="ads_theme_design">デザイン</string>
+    <string name="ads_theme_app">アプリのテーマ</string>
+    <string name="ads_theme_app_summary">アプリのスタイル。</string>
+    <string name="ads_theme_app_desc">「自動」を選択して、昼と夜のテーマを使用します。</string>
+    <string name="ads_theme_app_day">昼のテーマ</string>
+    <string name="ads_theme_app_day_summary">昼間のアプリのスタイル。</string>
+    <string name="ads_theme_app_night">夜のテーマ</string>
+    <string name="ads_theme_app_night_summary">夜間のアプリのスタイル。</string>
+    <string name="ads_theme_app_day_night_desc">これは「自動」テーマが適用されている場合にのみ機能します。</string>
+    <string name="ads_theme_wallpaper">壁紙のテーマ</string>
+    <string name="ads_theme_wallpaper_summary">壁紙のスタイル。</string>
+    <string name="ads_theme_wallpaper_customise_desc">以下で壁紙を設定してください。</string>
+    <string name="ads_theme_color_auto_wallpaper_desc">「自動」を選択して壁紙のカラーパレットを使用します。</string>
+    <string name="ads_theme_toast">トーストメッセージのテーマ</string>
+    <string name="ads_theme_toast_summary">アプリのアクセントカラーに応じてテーマ付きのトーストメッセージを表示します。</string>
+    <string name="ads_theme_toast_summary_unchecked">デフォルトのシステムトーストメッセージを表示します。</string>
+    <string name="ads_theme_navigation_bar">ナビゲーションバーのテーマ</string>
+    <string name="ads_theme_navigation_bar_summary">アプリのテーマに応じてナビゲーションバーを表示します。</string>
+    <string name="ads_theme_navigation_bar_summary_unchecked">デフォルトのナビゲーションバーを表示します。</string>
+    <string name="ads_theme_navigation_bar_desc">最高の視覚体験を提供するために、ナビゲーションバーのテーマは一部の場所では表示されません。</string>
+    <string name="ads_theme_notification">通知のテーマ</string>
+    <string name="ads_theme_notification_summary">通知のカラーパレット。</string>
+    <string name="ads_theme_notification_style">通知のスタイル</string>
+    <string name="ads_theme_notification_style_summary">通知のスタイル。</string>
+    <string name="ads_theme_style_classic_desc">「クラシック」を選択してカラーパレットを背景として使用します。</string>
+    <string name="ads_theme_widget">ウィジェットのテーマ</string>
+    <string name="ads_theme_widget_summary">ウィジェットのカラーパレット。</string>
+    <string name="ads_theme_app_shortcuts">アプリのショートカットのテーマ</string>
+    <string name="ads_theme_app_shortcuts_summary">アプリのプライマリカラーに応じてテーマ付きのアプリのショートカットを表示します。</string>
+    <string name="ads_theme_app_shortcuts_summary_unchecked">アプリのテーマとブランドカラーに応じてデフォルトのアプリのショートカットを表示します。</string>
+    <string name="ads_theme_app_shortcuts_desc">ランチャーアイコンを長押ししてアプリのショートカットを表示します。対応するランチャーが必要です。</string>
+    <string name="ads_theme_reset_desc">テーマがデフォルトにリセットされました。</string>
+    <string name="ads_theme_import_done">テーマが正常にインポートされました。</string>
+    <string name="ads_theme_export_done">テーマが正常にエクスポートされました。</string>
+    <string name="ads_theme_export_error">テーマを保存できません。</string>
+    <string name="ads_theme_share_error">テーマを共有できません。</string>
+    <string name="ads_theme_copy_done">テーマを正常にコピーしました。</string>
+    <string name="ads_theme_edit_done">テーマが正常に編集されました。</string>
+    <string name="ads_theme_save_done">テーマを正常に保存しました。</string>
+    <string name="ads_theme_delete_done">テーマが正常に削除されました。</string>
+    <string name="ads_theme_format_saved">テーマを保存しました: %1$s</string>
+    <string name="ads_theme_presets">テーマプリセット</string>
+    <string name="ads_theme_presets_desc">%1$sからダウンロードします。</string>
+    <string name="ads_theme_presets_desc_app">%1$sアプリをダウンロードします。</string>
+    <string name="ads_theme_presets_options">オプションをタップ</string>
+    <string name="ads_theme_presets_import">タップしてインポート</string>
+    <string name="ads_theme_presets_empty">プリセットがありません</string>
+
+    <!-- Theme -->
+    <string name="ads_theme_version_original">オリジナル</string>
+    <string name="ads_theme_version_latest">最新</string>
+    <string name="ads_theme_version_expressive">表現豊か</string>
+    <string name="ads_theme_toast_default">デフォルトのトーストメッセージ</string>
+    <string name="ads_theme_toast_themed">テーマ付きのトーストメッセージ</string>
+    <string name="ads_theme_entry_auto">自動</string>
+    <string name="ads_theme_entry_auto_desc">「自動」を選択してアプリ設定を使用します。</string>
+    <string name="ads_theme_entry_auto_default_desc">「自動」を選択してデフォルト設定を使用します。</string>
+    <string name="ads_theme_entry_auto_background_aware_desc">「自動」を選択してアプリのカラーパレットを使用します。最高の視認性を提供するために、背景に応じて色を調整します。</string>
+    <string name="ads_theme_color_auto_desc">「自動」を選択してアプリのカラーパレットを使用します。</string>
+    <string name="ads_theme_color_default_desc">「自動」を選択してデフォルトのカラーパレットを使用します。</string>
+    <string name="ads_theme_entry_day">昼</string>
+    <string name="ads_theme_entry_night">夜</string>
+    <string name="ads_theme_entry_light">ライト</string>
+    <string name="ads_theme_entry_dark">ダーク</string>
+    <string name="ads_theme_entry_custom">カスタム</string>
+    <string name="ads_theme_entry_classic">クラシック</string>
+    <string name="ads_theme_entry_battery">バッテリーセーバー</string>
+    <string name="ads_theme_entry_always">常に</string>
+    <string name="ads_theme_entry_true_dark">真のダーク</string>
+    <string name="ads_theme_entry_light_indigo">ライトインディゴ</string>
+    <string name="ads_theme_entry_light_red">ライトレッド</string>
+    <string name="ads_theme_entry_light_blue">ライトブルー</string>
+    <string name="ads_theme_entry_light_green">ライトグリーン</string>
+    <string name="ads_theme_entry_light_yellow">ライトイエロー</string>
+    <string name="ads_theme_entry_light_purple">ライトパープル</string>
+    <string name="ads_theme_entry_light_orange">ライトオレンジ</string>
+    <string name="ads_theme_entry_light_brown">ライトブラウン</string>
+    <string name="ads_theme_entry_light_gray">ライトグレー</string>
+    <string name="ads_theme_entry_dark_indigo">ダークインディゴ</string>
+    <string name="ads_theme_entry_dark_red">ダークレッド</string>
+    <string name="ads_theme_entry_dark_blue">ダークブルー</string>
+    <string name="ads_theme_entry_dark_green">ダークグリーン</string>
+    <string name="ads_theme_entry_dark_teal">ダークティール</string>
+    <string name="ads_theme_entry_dark_purple">ダークパープル</string>
+    <string name="ads_theme_entry_dark_orange">ダークオレンジ</string>
+    <string name="ads_theme_entry_dark_brown">ダークブラウン</string>
+    <string name="ads_theme_entry_dark_gray">ダークグレー</string>
+
+    <!-- Visibility -->
+    <string name="ads_visibility_show">表示</string>
+    <string name="ads_visibility_hide">非表示</string>
+
+    <!-- Picker -->
+    <string name="ads_picker_all">すべて</string>
+    <string name="ads_picker_pick">選択</string>
+    <string name="ads_picker_more_colors">その他の色</string>
+    <string name="ads_picker_presets">プリセット</string>
+    <string name="ads_picker_size_small">小</string>
+    <string name="ads_picker_size_normal">標準</string>
+    <string name="ads_picker_size_large">大</string>
+    <string name="ads_picker_size_info">幅と高さの値。</string>
+
+    <!-- Miscellaneous -->
+    <string name="ads_language">言語</string>
+    <string name="ads_language_summary">アプリで使用される言語。</string>
+    <string name="ads_language_system">システム</string>
+    <string name="ads_dynamic_vibration">振動</string>
+    <string name="ads_dynamic_vibration_intensity">振動の強さ</string>
+    <string name="ads_dynamic_vibration_intensity_summary">振動の持続時間（ミリ秒）。</string>
+    <string name="ads_dynamic_vibration_intensity_unit">ミリ秒</string>
+    <string name="ads_dynamic_motion">モーション</string>
+    <string name="ads_dynamic_motion_summary">すべてのアニメーションを再生することによるダイナミックモーション。</string>
+    <string name="ads_dynamic_motion_summary_unchecked">一部のアニメーションをスキップすることによるモーションの削減。</string>
+    <string name="ads_dynamic_motion_desc">バッテリーセーバーがオンの場合、常にモーションを削減します。一部のアニメーションはスキップできません。</string>
+
+    <!-- Notification and Channel -->
+    <string name="ads_notification_priority">通知の優先度</string>
+    <string name="ads_notification_priority_summary">優先度を選択して、通知ドロワーでの順序を決定します。</string>
+    <string name="ads_notification_priority_desc">通知をステータスバーとロック画面から非表示にするには、低い優先度を選択します。</string>
+    <string name="ads_notification_priority_high">高</string>
+    <string name="ads_notification_priority_normal">標準</string>
+    <string name="ads_notification_priority_low">低</string>
+    <string name="ads_notification_category">通知カテゴリ</string>
+    <string name="ads_notification_category_summary">アプリによって表示される通知を設定します。</string>
+    <string name="ads_notification_category_desc">通知をステータスバーとロック画面から非表示にするには、低いカテゴリ重要度を設定します。</string>
+    <string name="ads_notification_close_drawer">ドロワーを閉じる</string>
+    <string name="ads_notification_close_drawer_summary">アクション実行後に通知ドロワーを閉じます。</string>
+    <string name="ads_notification_close_drawer_summary_unchecked">アクション実行後も通知ドロワーの状態を変更しません。</string>
+
+    <!-- App Widget -->
+    <string name="ads_widget_customise">カスタマイズ</string>
+    <string name="ads_widget_customise_desc">以下でウィジェットを設定してください。</string>
+    <string name="ads_widget_preview">プレビュー</string>
+    <string name="ads_widget_preview_desc">最高の体験を提供するために、ウィジェットのレイアウトは使用中の実際のサイズに応じて自動的に変更される場合があります。</string>
+    <string name="ads_widget_header">ヘッダー</string>
+    <string name="ads_widget_header_summary">ウィジェットヘッダーの表示設定。</string>
+    <string name="ads_widget_header_desc">十分なスペースがある場合にヘッダーを表示するには「自動」を選択します。</string>
+    <string name="ads_widget_corner_size_bg_summary">ウィジェットの背景の角の半径。</string>
+    <string name="ads_widget_corner_size_bg_desc">アプリの角のサイズを使用するには「自動」を選択します。</string>
+    <string name="ads_widget_reset_desc">ウィジェットがデフォルトにリセットされました。</string>
+    <string name="ads_widget_not_added">ウィジェットは追加されていません。</string>
+
+    <!-- Setup -->
+    <string name="ads_setup">セットアップ</string>
+    <string name="ads_setup_desc">以下で重要な機能を設定してください。</string>
+
+    <!-- About and Support -->
+    <string name="ads_rate">評価</string>
+    <string name="ads_support_contact">連絡先</string>
+    <string name="ads_support_feedback">フィードバック</string>
+    <string name="ads_support_report">報告</string>
+    <string name="ads_support_report_bug">バグ報告を送信</string>
+    <string name="ads_support_report_bug_summary">メールで開発者に連絡します。</string>
+    <string name="ads_support_report_bug_desc">このアプリに関する問題や質問がある場合は、メールで連絡してください。</string>
+    <string name="ads_support_donate">寄付</string>
+    <string name="ads_support_donate_paypal">PayPal経由で寄付します。</string>
+    <string name="ads_support_donate_desc">感謝の印として、また他のプロジェクトの開発を支援するために、開発者に送金します。寄付は必須ではありません。開発を支援するために有料版を購入することもできます。</string>
+    <string name="ads_support_reset_to_default">デフォルトにリセット</string>
+    <string name="ads_support_reset_to_default_alert">これにより、すべてのユーザー設定がデフォルトにリセットされます。続行しますか？</string>
+    <string name="ads_support_reset_to_default_summary">すべての設定をデフォルトにリセットします。</string>
+    <string name="ads_support_reset_to_default_desc">アプリまたはシステムアップデートによって引き起こされた一般的な問題を修正できます。この操作を実行すると、すべてのユーザー設定（ウィジェットを除く）が失われます。</string>
+    <string name="ads_support_restart_app">アプリケーションを再起動</string>
+    <string name="ads_support_restart_app_summary">アプリケーションとサービスを再起動して、アプリの状態を更新します。</string>
+    <string name="ads_support_restart_app_desc">サービスが起動しない、またはアプリが正しく動作しない場合に使用します。この操作を実行しても、すべての設定は変更されません。</string>
+
+    <!-- Developer and Info -->
+    <string name="ads_info_made_in">インド製</string>
+    <string name="ads_info_made_by">作成およびデザイン</string>
+    <string name="ads_info_made_by_alt">開発者</string>
+    <string name="ads_info_quote">完璧なものはないが、より良いものは作れる。そんなより良いものを開発中！</string>
+    <string name="ads_info_privacy_policy">プライバシーポリシー</string>
+    <string name="ads_info_privacy_policy_desc">この製品の完全なプライバシーポリシーを表示します。</string>
+    <string name="ads_info_terms_of_use">利用規約</string>
+    <string name="ads_info_terms_of_use_desc">この製品の完全な利用規約を表示します。</string>
+    <string name="ads_info_privacy_policy_terms_desc">プライバシーポリシーと利用規約。</string>
+    <string name="ads_info_apps">その他のアプリ</string>
+    <string name="ads_info_apps_desc">%1$s経由で他のアプリを試してください。</string>
+    <string name="ads_info_apps_desc_google_play">Google Play経由で他のアプリを試してください。</string>
+    <string name="ads_info_gplus_desc">公式コミュニティに参加してテストリリースを試してください。</string>
+    <string name="ads_info_facebook_desc">公式ページに「いいね！」して最新のニュースとアップデートを入手してください。</string>
+    <string name="ads_info_xda_desc">XDAの公式サポートフォーラムをフォローしてください。</string>
+    <string name="ads_info_website">ウェブサイト</string>
+    <string name="ads_info_website_desc">詳細については、公式ウェブサイトをご覧ください。</string>
+    <string name="ads_info_website_me_desc">ウェブ上の私の場所。</string>
+    <string name="ads_info_twitter_me_desc">私の人生と仕事に関する最新のツイートを入手してください。</string>
+    <string name="ads_info_facebook_me_desc">友人になるかフォローして、私についてもっと知ってください。</string>
+    <string name="ads_info_gplus_me_desc">サークルに追加するかフォローしてコミュニティを成長させてください。</string>
+    <string name="ads_info_linkedin_me_desc">私にとって良いことはありますか？LinkedIn経由で私に連絡してください。</string>
+    <string name="ads_info_github_me_desc">プロジェクトの一部をオープンソース化してコミュニティに貢献しています。</string>
+
+    <!-- Contributors and Translators -->
+    <string name="ads_author">作者</string>
+    <string name="ads_developer">開発者</string>
+    <string name="ads_contributors">貢献者</string>
+    <string name="ads_contributors_desc">彼らの多大なサポートに感謝します。</string>
+    <string name="ads_translations">翻訳</string>
+    <string name="ads_translators">翻訳者</string>
+    <string name="ads_translators_translate">翻訳する</string>
+    <string name="ads_translators_translate_summary">翻訳者になる。</string>
+    <string name="ads_translators_translate_desc">このアプリをより多くの言語で利用できるようにするために貢献してください。</string>
+    <string name="ads_translators_contact">翻訳したい場合はメールで連絡してください。</string>
+
+    <!-- Licenses -->
+    <string name="ads_notice">通知</string>
+    <string name="ads_notices">通知</string>
+    <string name="ads_license">ライセンス</string>
+    <string name="ads_licenses">ライセンス</string>
+    <string name="ads_license_desc">完全なライセンスを表示します。</string>
+    <string name="ads_license_sources">ソース</string>
+    <string name="ads_license_sources_desc">GitHubでソースを表示します。</string>
+
+</resources>
