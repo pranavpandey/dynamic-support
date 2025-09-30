@@ -81,7 +81,7 @@
     <string name="ads_previous">पिछला</string>
     <string name="ads_next">अगला</string>
     <string name="ads_skip">आगे बढ़ें</string>
-    <string name="ads_loading">लोड हो रहा है</string>
+    <string name="ads_loading">लोड हो रहा है&#8230;</string>
     <string name="ads_play">Play</string>
     <string name="ads_pause">विराम</string>
     <string name="ads_resume">जारी रखें</string>
