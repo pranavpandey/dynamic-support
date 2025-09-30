@@ -21,7 +21,7 @@
     <string name="ads_navigation_drawer_open">Open navigation drawer</string>
     <string name="ads_navigation_drawer_close">Close navigation drawer</string>
 
-    <!-- Formats -->
+    <!-- Format -->
     <string name="ads_format_version">Version %1$s</string>
     <string name="ads_search_empty">No matches found for \"%1$s\".</string>
 
@@ -115,7 +115,7 @@
     <string name="ads_shortcut_created">Shortcut created</string>
     <string name="ads_shortcuts_desc">Pick a shortcut to add it on the home screen.</string>
 
-    <!-- Navigation and Menu -->
+    <!-- Navigation -->
     <string name="ads_nav_category_features">Menu</string>
     <string name="ads_nav_category_support">Support development</string>
     <string name="ads_nav_category_contribute">Contribute</string>
@@ -327,7 +327,7 @@
     <string name="ads_dynamic_motion_summary_unchecked">Reduce motion by skipping some animations.</string>
     <string name="ads_dynamic_motion_desc">Always reduce motion when the battery saver is turned on. Some animations cannot be skipped.</string>
 
-    <!-- Notification and Channel -->
+    <!-- Notification -->
     <string name="ads_notification_priority">Notification priority</string>
     <string name="ads_notification_priority_summary">Select priority to determine its order in the notification drawer.</string>
     <string name="ads_notification_priority_desc">Select low priority to hide notification from the status bar and lock screen.</string>
@@ -358,7 +358,7 @@
     <string name="ads_setup">Setup</string>
     <string name="ads_setup_desc">Configure the important features below.</string>
 
-    <!-- About and Support -->
+    <!-- Support -->
     <string name="ads_rate">Rate</string>
     <string name="ads_support_contact">Contact</string>
     <string name="ads_support_feedback">Feedback</string>
@@ -377,7 +377,7 @@
     <string name="ads_support_restart_app_summary">Restart application and service to refresh the app state.</string>
     <string name="ads_support_restart_app_desc">Use if service is not starting or app is not behaving properly. All settings will remain unchanged after performing this operation.</string>
 
-    <!-- Developer and Info -->
+    <!-- Developer -->
     <string name="ads_info_made_in">Made in India</string>
     <string name="ads_info_made_by">Written and designed by</string>
     <string name="ads_info_made_by_alt">Developed by</string>
@@ -402,7 +402,7 @@
     <string name="ads_info_linkedin_me_desc">Anything good for me? Reach me via LinkedIn.</string>
     <string name="ads_info_github_me_desc">Giving back to the community by open sourcing some of my projects.</string>
 
-    <!-- Contributors and Translators -->
+    <!-- Contributors -->
     <string name="ads_author">Author</string>
     <string name="ads_developer">Developer</string>
     <string name="ads_contributors">Contributors</string>
@@ -414,7 +414,7 @@
     <string name="ads_translators_translate_desc">Contribute to make this app available in more languages.</string>
     <string name="ads_translators_contact">Contact via email if you want to translate.</string>
 
-    <!-- Licenses -->
+    <!-- License -->
     <string name="ads_notice">Notice</string>
     <string name="ads_notices">Notices</string>
     <string name="ads_license">License</string>

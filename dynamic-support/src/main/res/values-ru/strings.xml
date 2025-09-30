@@ -21,7 +21,7 @@
     <string name="ads_navigation_drawer_open">Открыть навигационную панель</string>
     <string name="ads_navigation_drawer_close">Закрыть навигационную панель</string>
 
-    <!-- Formats -->
+    <!-- Format -->
     <string name="ads_format_version">Версия %1$s</string>
     <string name="ads_search_empty">Не найдено совпадений для \"%1$s\".</string>
 
@@ -115,7 +115,7 @@
     <string name="ads_shortcut_created">Ярлык создан</string>
     <string name="ads_shortcuts_desc">Выберите ярлык, чтобы добавить его на главный экран.</string>
 
-    <!-- Navigation and Menu -->
+    <!-- Navigation -->
     <string name="ads_nav_category_features">Меню</string>
     <string name="ads_nav_category_support">Поддержать разработку</string>
     <string name="ads_nav_category_contribute">Принять участие</string>
@@ -327,7 +327,7 @@
     <string name="ads_dynamic_motion_summary_unchecked">Уменьшите движение, пропустив некоторые анимации.</string>
     <string name="ads_dynamic_motion_desc">Всегда уменьшайте количество движений, когда включена функция энергосбережения. Некоторые анимации нельзя пропустить.</string>
 
-    <!-- Notification and Channel -->
+    <!-- Notification -->
     <string name="ads_notification_priority">Приоритет уведомлений</string>
     <string name="ads_notification_priority_summary">Выберите приоритет, чтобы определить его порядок в шторке уведомлений.</string>
     <string name="ads_notification_priority_desc">Выберите низкий приоритет, чтобы скрыть уведомление из строки состояния и экрана блокировки.</string>
@@ -358,7 +358,7 @@
     <string name="ads_setup">Установка</string>
     <string name="ads_setup_desc">Настройте важные функции ниже.</string>
 
-    <!-- About and Support -->
+    <!-- Support -->
     <string name="ads_rate">Оценить</string>
     <string name="ads_support_contact">Контакты</string>
     <string name="ads_support_feedback">Обратная связь</string>
@@ -377,7 +377,7 @@
     <string name="ads_support_restart_app_summary">Перезапустить приложение и службу, чтобы обновить состояние приложения.</string>
     <string name="ads_support_restart_app_desc">Используйте, если служба не запускается или приложение не работает должным образом. Все настройки останутся неизменными после выполнения этой операции.</string>
 
-    <!-- Developer and Info -->
+    <!-- Developer -->
     <string name="ads_info_made_in">Сделано в Индии</string>
     <string name="ads_info_made_by">Написано и разработано</string>
     <string name="ads_info_made_by_alt">Разработано</string>
@@ -402,7 +402,7 @@
     <string name="ads_info_linkedin_me_desc">Есть что-нибудь хорошее для меня? Связаться со мной через LinkedIn.</string>
     <string name="ads_info_github_me_desc">Отдача сообществу с помощью открытого доступа к некоторым моих проектам.</string>
 
-    <!-- Contributors and Translators -->
+    <!-- Contributors -->
     <string name="ads_author">Автор</string>
     <string name="ads_developer">Разработчик</string>
     <string name="ads_contributors">Соучастники</string>
@@ -414,7 +414,7 @@
     <string name="ads_translators_translate_desc">Принять участие, чтобы сделать это приложение доступным на нескольких языках.</string>
     <string name="ads_translators_contact">Свяжитесь по электронной почте, если вы хотите перевести.</string>
 
-    <!-- Licenses -->
+    <!-- License -->
     <string name="ads_notice">Извещение</string>
     <string name="ads_notices">Извещения</string>
     <string name="ads_license">Лицензия</string>

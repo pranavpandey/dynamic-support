@@ -25,12 +25,12 @@
 
     <path
         android:fillColor="#FFF"
-        android:pathData="M-40,0h720v480h-720z"
-        android:fillType="evenOdd" />
+        android:fillType="evenOdd"
+        android:pathData="M-40,0h720v480h-720z" />
 
     <path
         android:fillColor="#BC002D"
-        android:pathData="M469.26,240.02A149.2,149.2 0,0 1,320.05 389.23a149.2,149.2 0,0 1,-149.2 -149.2,149.2 149.2,0 0,1 149.2,-149.2 149.2,149.2 0,0 1,149.2 149.2z"
-        android:fillType="evenOdd" />
+        android:fillType="evenOdd"
+        android:pathData="M469.26,240.02A149.2,149.2 0,0 1,320.05 389.23a149.2,149.2 0,0 1,-149.2 -149.2,149.2 149.2,0 0,1 149.2,-149.2 149.2,149.2 0,0 1,149.2 149.2z" />
 
 </vector>

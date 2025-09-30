@@ -21,7 +21,7 @@
     <string name="ads_navigation_drawer_open">Abrir gaveta de navegação</string>
     <string name="ads_navigation_drawer_close">Fechar gaveta de notificação</string>
 
-    <!-- Formats -->
+    <!-- Format -->
     <string name="ads_format_version">Versão %1$s</string>
     <string name="ads_search_empty">Sem resultados para \"%1$s\".</string>
 
@@ -115,7 +115,7 @@
     <string name="ads_shortcut_created">Atalho criado</string>
     <string name="ads_shortcuts_desc">Escolha um atalho para adicionar à tela inicial</string>
 
-    <!-- Navigation and Menu -->
+    <!-- Navigation -->
     <string name="ads_nav_category_features">Menu</string>
     <string name="ads_nav_category_support">Apoiar o desenvolvimento</string>
     <string name="ads_nav_category_contribute">Contribuir</string>
@@ -327,7 +327,7 @@
     <string name="ads_dynamic_motion_summary_unchecked">Reduza o movimento pulando algumas animações.</string>
     <string name="ads_dynamic_motion_desc">Sempre reduza o movimento quando a economia de bateria estiver ativada. Algumas animações não podem ser puladas.</string>
 
-    <!-- Notification and Channel -->
+    <!-- Notification -->
     <string name="ads_notification_priority">Prioridade da notificação</string>
     <string name="ads_notification_priority_summary">Selecionar prioridade para determinar sua ordem na gaveta de notificação.</string>
     <string name="ads_notification_priority_desc">Selecionar prioridade baixa para esconder a notificação da barra de status e tela de bloqueio.</string>
@@ -358,7 +358,7 @@
     <string name="ads_setup">Configuração</string>
     <string name="ads_setup_desc">Configure recursos importantes abaixo.</string>
 
-    <!-- About and Support -->
+    <!-- Support -->
     <string name="ads_rate">Classificar</string>
     <string name="ads_support_contact">Contato</string>
     <string name="ads_support_feedback">Feedback</string>
@@ -377,7 +377,7 @@
     <string name="ads_support_restart_app_summary">Reiniciar aplicação e serviço para atualizar o estado do app.</string>
     <string name="ads_support_restart_app_desc">Use se o serviço não está iniciando ou o app não está se comportando apropriadamente. Todas as configurações permanecerão inalteradas após realizar essa operação.</string>
 
-    <!-- Developer and Info -->
+    <!-- Developer -->
     <string name="ads_info_made_in">Feito na India</string>
     <string name="ads_info_made_by">Escrito e projetado por</string>
     <string name="ads_info_made_by_alt">Desenvolvido por</string>
@@ -402,7 +402,7 @@
     <string name="ads_info_linkedin_me_desc">Alguma coisa boa para mim? Me chame pelo LinkedIn.</string>
     <string name="ads_info_github_me_desc">Retribuindo à comunidade por meio de fornecer abertamente alguns dos meus projetos.</string>
 
-    <!-- Contributors and Translators -->
+    <!-- Contributors -->
     <string name="ads_author">Autor</string>
     <string name="ads_developer">Desenvolvedor</string>
     <string name="ads_contributors">Contribuidores</string>
@@ -414,7 +414,7 @@
     <string name="ads_translators_translate_desc">Contribua para disponibilizar este aplicativo em mais idiomas.</string>
     <string name="ads_translators_contact">Entre em contato via e-mail se você quiser traduzir.</string>
 
-    <!-- Licenses -->
+    <!-- License -->
     <string name="ads_notice">Aviso</string>
     <string name="ads_notices">Avisos</string>
     <string name="ads_license">Licença</string>

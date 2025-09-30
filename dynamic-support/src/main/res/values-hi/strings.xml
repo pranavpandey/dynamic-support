@@ -21,7 +21,7 @@
     <string name="ads_navigation_drawer_open">नैवाहन मेनू खोलें</string>
     <string name="ads_navigation_drawer_close">नैवाहान मेनू बंद करें</string>
 
-    <!-- Formats -->
+    <!-- Format -->
     <string name="ads_format_version">संस्करण %1$s</string>
     <string name="ads_search_empty">\"%1$s\" के समान कुछ नहीं मिला</string>
 
@@ -115,7 +115,7 @@
     <string name="ads_shortcut_created">शॉर्टकट बना दिया गया है</string>
     <string name="ads_shortcuts_desc">शॉर्टकट को होम स्क्रीन पर लाने के लिए चुनें।</string>
 
-    <!-- Navigation and Menu -->
+    <!-- Navigation -->
     <string name="ads_nav_category_features">मेनू</string>
     <string name="ads_nav_category_support">विकास का सहारा बनें</string>
     <string name="ads_nav_category_contribute">योगदान करें</string>
@@ -328,7 +328,7 @@
     <string name="ads_dynamic_motion_summary_unchecked">कुछ एनिमेशन प्रदर्शित न करके चाल को कम करें।</string>
     <string name="ads_dynamic_motion_desc">बैटरी सेवर चालू होने पर हमेशा चाल कम करें। कुछ एनिमेशन को छोड़ा नहीं जा सकता है।</string>
 
-    <!-- Notification and Channel -->
+    <!-- Notification -->
     <string name="ads_notification_priority">नोटिफिकेशन की प्राथमिकता</string>
     <string name="ads_notification_priority_summary">नोटिफिकेशन ड्रावर का क्रम बदलने के लिए प्राथमिकता चुनें।</string>
     <string name="ads_notification_priority_desc">नोटिफिकेशन को स्टेटस बार व लॉक स्क्रीन से हटाने के लिए \"न्यूनतम प्राथमिकता\" चुनें।</string>
@@ -359,7 +359,7 @@
     <string name="ads_setup">सेटअप</string>
     <string name="ads_setup_desc">नीचे दी गई महत्वपूर्ण विशेषताओं को कॉन्फ़िगर करें।</string>
 
-    <!-- About and Support -->
+    <!-- Support -->
     <string name="ads_rate">रेट</string>
     <string name="ads_support_contact">संपर्क करें</string>
     <string name="ads_support_feedback">प्रतिपुष्टि</string>
@@ -378,7 +378,7 @@
     <string name="ads_support_restart_app_summary">ऐप व सर्विस को रीस्टार्ट करें।</string>
     <string name="ads_support_restart_app_desc">ऐप या सर्विस के शुरू ना होने की स्थिति में इसका प्रयोग करें। इसके बाद सैटिंग्स पर कोई प्रभाव नहीं पड़ेगा।</string>
 
-    <!-- Developer and Info -->
+    <!-- Developer -->
     <string name="ads_info_made_in">भारत में निर्मित</string>
     <string name="ads_info_made_by">लिखित और डिजाइन द्वारा</string>
     <string name="ads_info_made_by_alt">विकसित द्वारा</string>
@@ -403,7 +403,7 @@
     <string name="ads_info_linkedin_me_desc">LinkedIn द्वारा मुझ तक पहुंचें।</string>
     <string name="ads_info_github_me_desc">मेरे कुछ कार्यों को ओपन सोर्स करके समुदाय को कुछ वापस दें।</string>
 
-    <!-- Contributors and Translators -->
+    <!-- Contributors -->
     <string name="ads_author">निर्माता</string>
     <string name="ads_developer">डेवलपर</string>
     <string name="ads_contributors">योगदानकर्ताओं</string>
@@ -415,7 +415,7 @@
     <string name="ads_translators_translate_desc">ऐप को विभिन्न भाषाओं में पेश करने में अपना योगदान दें।</string>
     <string name="ads_translators_contact">अनुवाद करने के लिए ईमेल द्वारा संपर्क करें।</string>
 
-    <!-- Licenses -->
+    <!-- License -->
     <string name="ads_notice">सूचना</string>
     <string name="ads_notices">सूचना</string>
     <string name="ads_license">लाइसेंस</string>

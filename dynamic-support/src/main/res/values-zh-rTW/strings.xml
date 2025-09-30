@@ -21,7 +21,7 @@
     <string name="ads_navigation_drawer_open">開啟導覽匣</string>
     <string name="ads_navigation_drawer_close">關閉導覽匣</string>
 
-    <!-- Formats -->
+    <!-- Format -->
     <string name="ads_format_version">版本 %1$s</string>
     <string name="ads_search_empty">找不到與「%1$s」相符的內容</string>
 
@@ -115,7 +115,7 @@
     <string name="ads_shortcut_created">捷徑已建立</string>
     <string name="ads_shortcuts_desc">選擇一個捷徑以將其新增至主畫面。</string>
 
-    <!-- Navigation and Menu -->
+    <!-- Navigation -->
     <string name="ads_nav_category_features">選單</string>
     <string name="ads_nav_category_support">支持開發</string>
     <string name="ads_nav_category_contribute">貢獻</string>
@@ -327,7 +327,7 @@
     <string name="ads_dynamic_motion_summary_unchecked">通過跳過一些動畫來减少動作</string>
     <string name="ads_dynamic_motion_desc">開啟省電模式時，務必减少動作。某些動畫無法跳過。</string>
 
-    <!-- Notification and Channel -->
+    <!-- Notification -->
     <string name="ads_notification_priority">通知優先順序</string>
     <string name="ads_notification_priority_summary">選取優先順序以確定其在通知導覽匣中的順序</string>
     <string name="ads_notification_priority_desc">選取低優先順序以從狀態列和鎖定畫面隱藏通知。</string>
@@ -358,7 +358,7 @@
     <string name="ads_setup">安裝</string>
     <string name="ads_setup_desc">設定以下重要功能。</string>
 
-    <!-- About and Support -->
+    <!-- Support -->
     <string name="ads_rate">評價</string>
     <string name="ads_support_contact">聯絡</string>
     <string name="ads_support_feedback">回饋</string>
@@ -377,7 +377,7 @@
     <string name="ads_support_restart_app_summary">重新啟動應用程式和服務以重新整理應用程式狀態</string>
     <string name="ads_support_restart_app_desc">如果服務未啟動或應用程式無法正常運作，請使用此選項。執行此動作後，所有設定將保持不變。</string>
 
-    <!-- Developer and Info -->
+    <!-- Developer -->
     <string name="ads_info_made_in">印度製造</string>
     <string name="ads_info_made_by">由設計和編寫</string>
     <string name="ads_info_made_by_alt">由開發</string>
@@ -402,7 +402,7 @@
     <string name="ads_info_linkedin_me_desc">對我有何好處？通過 LinkedIn 傳達我。</string>
     <string name="ads_info_github_me_desc">透過開源一些我的項目回饋社群。</string>
 
-    <!-- Contributors and Translators -->
+    <!-- Contributors -->
     <string name="ads_author">作者</string>
     <string name="ads_developer">開發人員</string>
     <string name="ads_contributors">貢獻者</string>
@@ -414,7 +414,7 @@
     <string name="ads_translators_translate_desc">致力於此應用程式支援更多語言。</string>
     <string name="ads_translators_contact">如果你想翻譯，請透過電子郵件聯絡。</string>
 
-    <!-- Licenses -->
+    <!-- License -->
     <string name="ads_notice">注意</string>
     <string name="ads_notices">通知</string>
     <string name="ads_license">授權</string>

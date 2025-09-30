@@ -21,7 +21,7 @@
     <string name="ads_navigation_drawer_open">Buka drawer navigasi</string>
     <string name="ads_navigation_drawer_close">Tutup drawer navigasi</string>
 
-    <!-- Formats -->
+    <!-- Format -->
     <string name="ads_format_version">Versi %1$s</string>
     <string name="ads_search_empty">Tidak ada yang cocok dengan \"%1$s\".</string>
 
@@ -115,7 +115,7 @@
     <string name="ads_shortcut_created">Pintasan dibuat</string>
     <string name="ads_shortcuts_desc">Pilih pintasan untuk ditambahkan ke layar utama</string>
 
-    <!-- Navigation and Menu -->
+    <!-- Navigation -->
     <string name="ads_nav_category_features">Menu</string>
     <string name="ads_nav_category_support">Dukungan pengembangan</string>
     <string name="ads_nav_category_contribute">Berkontribusi</string>
@@ -327,7 +327,7 @@
     <string name="ads_dynamic_motion_summary_unchecked">Kurangi gerakan dengan melewatkan beberapa animasi.</string>
     <string name="ads_dynamic_motion_desc">Selalu kurangi gerakan saat penghemat baterai dihidupkan. Beberapa animasi tidak dapat dilewati.</string>
 
-    <!-- Notification and Channel -->
+    <!-- Notification -->
     <string name="ads_notification_priority">Prioritas notifikasi</string>
     <string name="ads_notification_priority_summary">Pilih prioritas untuk menentukan urutannya pada drawer notifikasi.</string>
     <string name="ads_notification_priority_desc">Pilih prioritas rendah untuk menyembunyikan notifikasi dari status bar dan layar kunci.</string>
@@ -358,7 +358,7 @@
     <string name="ads_setup">Pengaturan</string>
     <string name="ads_setup_desc">Atur fitur penting di bawah.</string>
 
-    <!-- About and Support -->
+    <!-- Support -->
     <string name="ads_rate">Beri rating</string>
     <string name="ads_support_contact">Kontak</string>
     <string name="ads_support_feedback">Umpan balik</string>
@@ -377,7 +377,7 @@
     <string name="ads_support_restart_app_summary">Mulai ulang aplikasi dan service untuk menyegarkan keadaan aplikasi.</string>
     <string name="ads_support_restart_app_desc">Gunakan bila service tidak kunjung mulai atau aplikasi tidak berjalan sebagaimana mestinya. Seluruh pengaturan tidak akan berubah setelah melakukan tindakan ini.</string>
 
-    <!-- Developer and Info -->
+    <!-- Developer -->
     <string name="ads_info_made_in">Dibuat di India</string>
     <string name="ads_info_made_by">Ditulis dan didesain oleh</string>
     <string name="ads_info_made_by_alt">Dikembangkan oleh</string>
@@ -402,7 +402,7 @@
     <string name="ads_info_linkedin_me_desc">Ada yang bagus buatku? Sampaikan via LinkedIn.</string>
     <string name="ads_info_github_me_desc">Memberikan kembali kepada komunitas dengan membuat proyekku open source.</string>
 
-    <!-- Contributors and Translators -->
+    <!-- Contributors -->
     <string name="ads_author">Penulis</string>
     <string name="ads_developer">Pengembang</string>
     <string name="ads_contributors">Kontributor</string>
@@ -414,7 +414,7 @@
     <string name="ads_translators_translate_desc">Berikan kontribusi untuk membuat aplikasi ini tersedia di lebih banyak bahasa.</string>
     <string name="ads_translators_contact">Hubungi via email bila anda ingin menerjemahkan.</string>
 
-    <!-- Licenses -->
+    <!-- License -->
     <string name="ads_notice">Melihat</string>
     <string name="ads_notices">Pemberitahuan</string>
     <string name="ads_license">Lisensi</string>

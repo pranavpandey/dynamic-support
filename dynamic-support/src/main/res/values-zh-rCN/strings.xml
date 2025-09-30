@@ -21,7 +21,7 @@
     <string name="ads_navigation_drawer_open">打开导航抽屉</string>
     <string name="ads_navigation_drawer_close">关闭导航抽屉</string>
 
-    <!-- Formats -->
+    <!-- Format -->
     <string name="ads_format_version">版本%1$s</string>
     <string name="ads_search_empty">没有找到\"%1$s\"匹配项</string>
 
@@ -115,7 +115,7 @@
     <string name="ads_shortcut_created">快捷方式已创建</string>
     <string name="ads_shortcuts_desc">选择一个快捷方式将其添加到主屏幕上。</string>
 
-    <!-- Navigation and Menu -->
+    <!-- Navigation -->
     <string name="ads_nav_category_features">菜单</string>
     <string name="ads_nav_category_support">支持开发</string>
     <string name="ads_nav_category_contribute">贡献</string>
@@ -327,7 +327,7 @@
     <string name="ads_dynamic_motion_summary_unchecked">通过跳过一些动画来减少运动。</string>
     <string name="ads_dynamic_motion_desc">打开节电开关时，请务必减少动作。 某些动画无法跳过。</string>
 
-    <!-- Notification and Channel -->
+    <!-- Notification -->
     <string name="ads_notification_priority">通知优先权</string>
     <string name="ads_notification_priority_summary">选择优先级来确定通知抽屉中的顺序。</string>
     <string name="ads_notification_priority_desc">选择低优先级隐藏状态栏和锁定屏幕通知。</string>
@@ -358,7 +358,7 @@
     <string name="ads_setup">安装</string>
     <string name="ads_setup_desc">配置下面的重要功能</string>
 
-    <!-- About and Support -->
+    <!-- Support -->
     <string name="ads_rate">评价</string>
     <string name="ads_support_contact">联系</string>
     <string name="ads_support_feedback">反馈</string>
@@ -377,7 +377,7 @@
     <string name="ads_support_restart_app_summary">重新启动应用程序和服务以刷新应用程序状态。</string>
     <string name="ads_support_restart_app_desc">如果服务未启动或应用程序运行不正常，请使用此选项。执行此操作后，所有设置将保持不变。</string>
 
-    <!-- Developer and Info -->
+    <!-- Developer -->
     <string name="ads_info_made_in">印度制造</string>
     <string name="ads_info_made_by">书面和设计</string>
     <string name="ads_info_made_by_alt">由开发</string>
@@ -402,7 +402,7 @@
     <string name="ads_info_linkedin_me_desc">对我有好处吗？通过LinkedIn联系我。</string>
     <string name="ads_info_github_me_desc">通过开源我的一些项目回馈社区。</string>
 
-    <!-- Contributors and Translators -->
+    <!-- Contributors -->
     <string name="ads_author">作者</string>
     <string name="ads_developer">开发者</string>
     <string name="ads_contributors">贡献者</string>
@@ -414,7 +414,7 @@
     <string name="ads_translators_translate_desc">有助于使这个应用程序以更多语言提供。</string>
     <string name="ads_translators_contact">如果您想翻译，请通过电子邮件联系。</string>
 
-    <!-- Licenses -->
+    <!-- License -->
     <string name="ads_notice">注意</string>
     <string name="ads_notices">告示</string>
     <string name="ads_license">许可证</string>

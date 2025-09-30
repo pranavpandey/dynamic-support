@@ -21,7 +21,7 @@
     <string name="ads_navigation_drawer_open">Ouvrir le tiroir de navigation</string>
     <string name="ads_navigation_drawer_close">Ferme le tiroir d\'applications</string>
 
-    <!-- Formats -->
+    <!-- Format -->
     <string name="ads_format_version">Version %1$s</string>
     <string name="ads_search_empty">Aucun résultat trouvé pour \"%1$s\".</string>
 
@@ -115,7 +115,7 @@
     <string name="ads_shortcut_created">Raccourci crée</string>
     <string name="ads_shortcuts_desc">Sélectionner un raccourci pour l\'ajouter sur l\'écran d\'accueil</string>
 
-    <!-- Navigation and Menu -->
+    <!-- Navigation -->
     <string name="ads_nav_category_features">Menu</string>
     <string name="ads_nav_category_support">Soutenir le développement</string>
     <string name="ads_nav_category_contribute">Soutenir</string>
@@ -327,7 +327,7 @@
     <string name="ads_dynamic_motion_summary_unchecked">Réduisez le mouvement en sautant certaines animations.</string>
     <string name="ads_dynamic_motion_desc">Réduisez toujours le mouvement lorsque l\'économiseur de batterie est activé. Certaines animations ne peuvent pas être ignorées.</string>
 
-    <!-- Notification and Channel -->
+    <!-- Notification -->
     <string name="ads_notification_priority">Priorité de notification</string>
     <string name="ads_notification_priority_summary">Sélectionnez une priorité pour déterminer son ordre dans le tiroir de notification.</string>
     <string name="ads_notification_priority_desc">Sélectionnez priorité faible pour masquer la notification dans la barre d’état et sur le verrouillage de l’écran.</string>
@@ -358,7 +358,7 @@
     <string name="ads_setup">Installation</string>
     <string name="ads_setup_desc">Configurer les fonctionnalités ci-dessous</string>
 
-    <!-- About and Support -->
+    <!-- Support -->
     <string name="ads_rate">Évaluez</string>
     <string name="ads_support_contact">Contact</string>
     <string name="ads_support_feedback">Retour d\'expèrience</string>
@@ -377,7 +377,7 @@
     <string name="ads_support_restart_app_summary">Redémarrer l\'application et le service afin actualiser l\'état de l\'application.</string>
     <string name="ads_support_restart_app_desc">A utiliser si le service ne démarre pas ou si l\'application ne se comporte pas correctement. Tous les paramètres resteront inchangés après cette opération.</string>
 
-    <!-- Developer and Info -->
+    <!-- Developer -->
     <string name="ads_info_made_in">Made in India</string>
     <string name="ads_info_made_by">Développé et designé par</string>
     <string name="ads_info_made_by_alt">Développé par</string>
@@ -402,7 +402,7 @@
     <string name="ads_info_linkedin_me_desc">Quelque chose de bon pour moi ? Contactez-moi via LinkedIn.</string>
     <string name="ads_info_github_me_desc">Redonner à la communauté en open source certains de mes projets.</string>
 
-    <!-- Contributors and Translators -->
+    <!-- Contributors -->
     <string name="ads_author">Auteur</string>
     <string name="ads_developer">Développeur</string>
     <string name="ads_contributors">Contributeurs</string>
@@ -414,7 +414,7 @@
     <string name="ads_translators_translate_desc">Contribuer à rendre cette application disponible dans d\'autres langues.</string>
     <string name="ads_translators_contact">Si vous souhaitez devenir traducteur contactez moi par mail.</string>
 
-    <!-- Licenses -->
+    <!-- License -->
     <string name="ads_notice">Remarquer</string>
     <string name="ads_notices">Avis</string>
     <string name="ads_license">Licence</string>

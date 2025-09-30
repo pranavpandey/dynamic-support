@@ -21,7 +21,7 @@
     <string name="ads_navigation_drawer_open">Gezinti çekmecesini aç</string>
     <string name="ads_navigation_drawer_close">Gezinti çekmecesini kapat</string>
 
-    <!-- Formats -->
+    <!-- Format -->
     <string name="ads_format_version">Sürüm %1$s</string>
     <string name="ads_search_empty">\"%1$s\" için eşleşme bulunamadı.</string>
 
@@ -115,7 +115,7 @@
     <string name="ads_shortcut_created">Kısayol oluşturuldu</string>
     <string name="ads_shortcuts_desc">Ana ekrana eklemek için bir kısayol seçin.</string>
 
-    <!-- Navigation and Menu -->
+    <!-- Navigation -->
     <string name="ads_nav_category_features">Menü</string>
     <string name="ads_nav_category_support">Geliştirmeyi destekle</string>
     <string name="ads_nav_category_contribute">Katkıda bulun</string>
@@ -327,7 +327,7 @@
     <string name="ads_dynamic_motion_summary_unchecked">Bazı animasyonları atlayarak hareketi azaltın.</string>
     <string name="ads_dynamic_motion_desc">Pil tasarrufu açıkken daima hareketi azaltın. Bazı animasyonlar atlanamaz.</string>
 
-    <!-- Notification and Channel -->
+    <!-- Notification -->
     <string name="ads_notification_priority">Bildirim önceliği</string>
     <string name="ads_notification_priority_summary">Bildirim çekmecesindeki sırasını belirlemek için öncelik seçin.</string>
     <string name="ads_notification_priority_desc">Bildirimi durum çubuğundan ve kilit ekranından gizlemek için düşük önceliği seçin.</string>
@@ -358,7 +358,7 @@
     <string name="ads_setup">Kurulum</string>
     <string name="ads_setup_desc">Aşağıdaki önemli özellikleri yapılandırın.</string>
 
-    <!-- About and Support -->
+    <!-- Support -->
     <string name="ads_rate">Oyla</string>
     <string name="ads_support_contact">İletişim</string>
     <string name="ads_support_feedback">Geri bildirim</string>
@@ -377,7 +377,7 @@
     <string name="ads_support_restart_app_summary">Uygulama durumunu yenilemek için uygulamayı ve hizmeti yeniden başlatın.</string>
     <string name="ads_support_restart_app_desc">Hizmet başlamadığında veya uygulama düzgün çalışmıyorsa kullanın. Bu işlem gerçekleştirildikten sonra tüm ayarlar değişmeden kalacaktır.</string>
 
-    <!-- Developer and Info -->
+    <!-- Developer -->
     <string name="ads_info_made_in">Hindistan Malı</string>
     <string name="ads_info_made_by">Yazan ve tasarlayan:</string>
     <string name="ads_info_made_by_alt">Tarafından geliştirilmiş</string>
@@ -402,7 +402,7 @@
     <string name="ads_info_linkedin_me_desc">Benim için iyi bir şey mi var? LinkedIn aracılığıyla bana ulaşın.</string>
     <string name="ads_info_github_me_desc">Bazı projelerimi açık kaynak olarak topluma geri vermek.</string>
 
-    <!-- Contributors and Translators -->
+    <!-- Contributors -->
     <string name="ads_author">Yazar</string>
     <string name="ads_developer">Geliştirici</string>
     <string name="ads_contributors">Katkıda bulunanlar</string>
@@ -414,7 +414,7 @@
     <string name="ads_translators_translate_desc">Bu uygulamayı daha fazla dilde kullanıma sunmak için katkıda bulunun.</string>
     <string name="ads_translators_contact">Çevirmek isterseniz e-posta ile ulaşın.</string>
 
-    <!-- Licenses -->
+    <!-- License -->
     <string name="ads_notice">Uyarı</string>
     <string name="ads_notices">Uyarılar</string>
     <string name="ads_license">Lisans</string>

@@ -21,7 +21,7 @@
     <string name="ads_navigation_drawer_open">ナビゲーションドロワーを開く</string>
     <string name="ads_navigation_drawer_close">ナビゲーションドロワーを閉じる</string>
 
-    <!-- Formats -->
+    <!-- Format -->
     <string name="ads_format_version">バージョン %1$s</string>
     <string name="ads_search_empty">「%1$s」に一致するものが見つかりませんでした。</string>
 
@@ -115,7 +115,7 @@
     <string name="ads_shortcut_created">ショートカットを作成しました</string>
     <string name="ads_shortcuts_desc">ホーム画面に追加するショートカットを選択してください。</string>
 
-    <!-- Navigation and Menu -->
+    <!-- Navigation -->
     <string name="ads_nav_category_features">メニュー</string>
     <string name="ads_nav_category_support">開発を支援</string>
     <string name="ads_nav_category_contribute">貢献</string>
@@ -327,7 +327,7 @@
     <string name="ads_dynamic_motion_summary_unchecked">一部のアニメーションをスキップすることによるモーションの削減。</string>
     <string name="ads_dynamic_motion_desc">バッテリーセーバーがオンの場合、常にモーションを削減します。一部のアニメーションはスキップできません。</string>
 
-    <!-- Notification and Channel -->
+    <!-- Notification -->
     <string name="ads_notification_priority">通知の優先度</string>
     <string name="ads_notification_priority_summary">優先度を選択して、通知ドロワーでの順序を決定します。</string>
     <string name="ads_notification_priority_desc">通知をステータスバーとロック画面から非表示にするには、低い優先度を選択します。</string>
@@ -358,7 +358,7 @@
     <string name="ads_setup">セットアップ</string>
     <string name="ads_setup_desc">以下で重要な機能を設定してください。</string>
 
-    <!-- About and Support -->
+    <!-- Support -->
     <string name="ads_rate">評価</string>
     <string name="ads_support_contact">連絡先</string>
     <string name="ads_support_feedback">フィードバック</string>
@@ -377,7 +377,7 @@
     <string name="ads_support_restart_app_summary">アプリケーションとサービスを再起動して、アプリの状態を更新します。</string>
     <string name="ads_support_restart_app_desc">サービスが起動しない、またはアプリが正しく動作しない場合に使用します。この操作を実行しても、すべての設定は変更されません。</string>
 
-    <!-- Developer and Info -->
+    <!-- Developer -->
     <string name="ads_info_made_in">インド製</string>
     <string name="ads_info_made_by">作成およびデザイン</string>
     <string name="ads_info_made_by_alt">開発者</string>
@@ -402,7 +402,7 @@
     <string name="ads_info_linkedin_me_desc">私にとって良いことはありますか？LinkedIn経由で私に連絡してください。</string>
     <string name="ads_info_github_me_desc">プロジェクトの一部をオープンソース化してコミュニティに貢献しています。</string>
 
-    <!-- Contributors and Translators -->
+    <!-- Contributors -->
     <string name="ads_author">作者</string>
     <string name="ads_developer">開発者</string>
     <string name="ads_contributors">貢献者</string>
@@ -414,7 +414,7 @@
     <string name="ads_translators_translate_desc">このアプリをより多くの言語で利用できるようにするために貢献してください。</string>
     <string name="ads_translators_contact">翻訳したい場合はメールで連絡してください。</string>
 
-    <!-- Licenses -->
+    <!-- License -->
     <string name="ads_notice">通知</string>
     <string name="ads_notices">通知</string>
     <string name="ads_license">ライセンス</string>
