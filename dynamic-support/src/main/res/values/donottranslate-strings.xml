@@ -22,7 +22,7 @@
     <string name="ads_version_2">2</string>
     <string name="ads_version_3">3</string>
 
-    <!-- Formats -->
+    <!-- Format -->
     <string name="ads_format_join">%1$s%2$s</string>
     <string name="ads_format_blank_space">%1$s %2$s</string>
     <string name="ads_format_separator">%1$s | %2$s</string>
@@ -56,14 +56,16 @@
     <string name="ads_locale_in_value">in</string>
     <string name="ads_locale_it">Italiano</string>
     <string name="ads_locale_it_value">it</string>
-    <string name="ads_locale_jp">日本語</string>
-    <string name="ads_locale_jp_value">jp</string>
     <string name="ads_locale_pt">Português</string>
     <string name="ads_locale_pt_value">pt</string>
     <string name="ads_locale_ru">Русский</string>
     <string name="ads_locale_ru_value">ru</string>
     <string name="ads_locale_tr">Türkçe</string>
     <string name="ads_locale_tr_value">tr</string>
+    <string name="ads_locale_jp">日本語</string>
+    <string name="ads_locale_jp_value">jp</string>
+    <string name="ads_locale_ko">한국인</string>
+    <string name="ads_locale_ko_value">ko</string>
     <string name="ads_locale_zh_rCN">中文 (简体)</string>
     <string name="ads_locale_zh_rCN_value">zh,CN</string>
     <string name="ads_locale_zh_rTW">中文 (繁體)</string>
@@ -93,7 +95,7 @@
     <string name="ads_picker_size_200">200%</string>
     <string name="ads_picker_size_300">300%</string>
 
-    <!-- Developer and Info -->
+    <!-- Developer -->
     <string name="ads_info_me">&#169; Pranav Pandey</string>
     <string name="ads_info_google_play">Google Play</string>
     <string name="ads_info_gplus">Google+</string>
@@ -104,7 +106,7 @@
     <string name="ads_info_twitter">Twitter</string>
     <string name="ads_info_discord">Discord</string>
 
-    <!-- Licenses -->
+    <!-- License -->
     <string name="ads_license_android">Android Compat Support Library
         \nAndroid Compatibility Library v4
         \nAndroid Compatibility Library v7

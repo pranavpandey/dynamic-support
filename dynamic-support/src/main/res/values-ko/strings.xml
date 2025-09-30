@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Copyright 2018-2024 Pranav Pandey
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	   http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<resources>
+
+    <!-- Activity -->
+    <string name="ads_navigation_drawer_open">탐색 창 열기</string>
+    <string name="ads_navigation_drawer_close">탐색 창 닫기</string>
+
+    <!-- Format -->
+    <string name="ads_format_version">버전 %1$s</string>
+    <string name="ads_search_empty">\'%1$s\'에 대한 검색 결과가 없습니다.</string>
+
+    <!-- Quantity -->
+    <string name="ads_count_files_zero">파일을 찾을 수 없습니다.</string>
+    <string name="ads_count_files_one">파일 %1$d개</string>
+    <string name="ads_count_files_other">파일 %1$d개</string>
+
+    <!-- Headings -->
+    <string name="ads_app">앱</string>
+    <string name="ads_game">게임</string>
+    <string name="ads_version">버전</string>
+    <string name="ads_actions">작업</string>
+    <string name="ads_text">텍스트</string>
+    <string name="ads_icon">아이콘</string>
+    <string name="ads_size">크기</string>
+    <string name="ads_value">값</string>
+    <string name="ads_notification">알림</string>
+    <string name="ads_notification_tile">타일</string>
+    <string name="ads_widgets">위젯</string>
+    <string name="ads_instructions">지침</string>
+    <string name="ads_tutorial">튜토리얼</string>
+    <string name="ads_product_tour">제품 둘러보기</string>
+    <string name="ads_troubleshoot">문제 해결</string>
+    <string name="ads_about">정보</string>
+    <string name="ads_overview">개요</string>
+    <string name="ads_general">일반</string>
+    <string name="ads_advanced">고급</string>
+    <string name="ads_fixes">수정 사항</string>
+
+    <!-- Labels -->
+    <string name="ads_warning">경고</string>
+    <string name="ads_error">오류가 발생했습니다.</string>
+    <string name="ads_i_got_it">확인</string>
+    <string name="ads_not_now">나중에</string>
+    <string name="ads_later">나중에</string>
+    <string name="ads_yes_in">예, 참여하겠습니다</string>
+    <string name="ads_accept">수락</string>
+    <string name="ads_more">더보기</string>
+    <string name="ads_more_info">더 많은 정보</string>
+    <string name="ads_select">선택</string>
+    <string name="ads_copy">복사</string>
+    <string name="ads_save">저장</string>
+    <string name="ads_load">불러오기</string>
+    <string name="ads_download">다운로드</string>
+    <string name="ads_import">가져오기</string>
+    <string name="ads_rename">이름 변경</string>
+    <string name="ads_delete">삭제</string>
+    <string name="ads_clear">지우기</string>
+    <string name="ads_file">파일</string>
+    <string name="ads_data">데이터</string>
+    <string name="ads_data_invalid">잘못된 데이터</string>
+    <string name="ads_data_invalid_desc">적절한 데이터로 다시 시도해 주세요.</string>
+    <string name="ads_create">만들기</string>
+    <string name="ads_configure">설정</string>
+    <string name="ads_open">열기</string>
+    <string name="ads_previous">이전</string>
+    <string name="ads_next">다음</string>
+    <string name="ads_skip">건너뛰기</string>
+    <string name="ads_loading">로딩 중&#8230;</string>
+    <string name="ads_play">재생</string>
+    <string name="ads_pause">일시정지</string>
+    <string name="ads_resume">재개</string>
+    <string name="ads_exit">나가기</string>
+    <string name="ads_finish">마침</string>
+    <string name="ads_done">완료</string>
+    <string name="ads_recents">최근 항목</string>
+    <string name="ads_wallpaper">배경화면</string>
+    <string name="ads_media">미디어</string>
+    <string name="ads_custom">맞춤 설정</string>
+    <string name="ads_edit">편집</string>
+    <string name="ads_refresh">새로고침</string>
+    <string name="ads_reset">초기화</string>
+    <string name="ads_default">기본값</string>
+    <string name="ads_normal">표준</string>
+    <string name="ads_minimum">최소</string>
+    <string name="ads_extension">확장</string>
+    <string name="ads_experimental">실험적 기능</string>
+    <string name="ads_title">제목</string>
+    <string name="ads_sort">정렬</string>
+    <string name="ads_sort_category">카테고리</string>
+    <string name="ads_sort_name">이름</string>
+    <string name="ads_search">검색</string>
+    <string name="ads_enable">사용</string>
+    <string name="ads_enabled">사용</string>
+    <string name="ads_disable">사용 안함</string>
+    <string name="ads_disabled">사용 안함</string>
+    <string name="ads_toggle">토글</string>
+    <string name="ads_shortcut">바로가기</string>
+    <string name="ads_shortcuts">바로가기</string>
+    <string name="ads_shortcut_created">바로가기 생성됨</string>
+    <string name="ads_shortcuts_desc">홈 화면에 추가할 바로가기를 선택하세요.</string>
+
+    <!-- Navigation -->
+    <string name="ads_nav_category_features">메뉴</string>
+    <string name="ads_nav_category_support">개발 지원</string>
+    <string name="ads_nav_category_contribute">기여</string>
+    <string name="ads_nav_home">홈</string>
+    <string name="ads_nav_settings">설정</string>
+    <string name="ads_nav_help">도움말</string>
+    <string name="ads_nav_support">지원</string>
+    <string name="ads_nav_about">정보</string>
+    <string name="ads_nav_buy">구매</string>
+    <string name="ads_nav_rate">평가</string>
+    <string name="ads_nav_share">공유</string>
+    <string name="ads_nav_uninstall">제거</string>
+    <string name="ads_menu_info">정보</string>
+    <string name="ads_menu_app_info">앱 정보</string>
+
+    <!-- Permissions -->
+    <string name="ads_permissions">권한</string>
+    <string name="ads_permissions_subtitle">필요한 권한을 허용해 주세요.</string>
+    <string name="ads_permissions_subtitle_single">필요한 권한을 허용해 주세요.</string>
+    <string name="ads_perm_info_required">필수 권한</string>
+    <string name="ads_perm_info_grant_all">앱이 제대로 작동하도록 모든 권한을 허용해 주세요.</string>
+    <string name="ads_perm_info_accept">이 기능은 선택 사항입니다. 계속하려면 수락해 주세요.</string>
+    <string name="ads_perm_request">요청</string>
+    <string name="ads_perm_request_desc">이 권한이 허용되지 않았습니다. 탭하여 요청합니다.</string>
+    <string name="ads_perm_granted">허용됨</string>
+    <string name="ads_perm_granted_desc">이 권한은 허용되었습니다.</string>
+    <string name="ads_perm_denied">거부됨</string>
+    <string name="ads_perm_denied_desc">이 권한을 허용하려면 \'앱 정보 &gt; 권한\'으로 이동하세요. 탭하여 앱 정보로 이동합니다.</string>
+    <string name="ads_perm_reinstall">다시 설치</string>
+    <string name="ads_perm_reinstall_desc">이 권한을 허용하려면 앱을 다시 설치해 주세요. 탭하여 앱 정보로 이동합니다.</string>
+    <string name="ads_perm_unknown">알 수 없음</string>
+    <string name="ads_perm_unknown_desc">이 권한은 시스템에 존재하지 않습니다.</string>
+    <string name="ads_perm_default">권한</string>
+    <string name="ads_perm_default_desc">이 권한은 일부 작업을 수행하는 데 필요합니다.</string>
+    <string name="ads_perm_default_explain">설명.</string>
+    <string name="ads_perm_write_system_settings">시스템 설정 쓰기</string>
+    <string name="ads_perm_write_system_settings_desc">시스템 설정을 쓸 수 있도록 허용합니다.</string>
+    <string name="ads_perm_overlay">다른 앱 위에 그리기</string>
+    <string name="ads_perm_overlay_desc">다른 앱 위에 그리는 것을 허용합니다.</string>
+    <string name="ads_perm_usage_access">사용 정보 접근</string>
+    <string name="ads_perm_usage_access_desc">사용 정보 접근을 허용합니다.</string>
+    <string name="ads_perm_accessibility">접근성</string>
+    <string name="ads_perm_accessibility_desc">시스템 설정을 통해 관리해야 합니다.</string>
+
+    <!-- Theme -->
+    <string name="ads_dynamic_theme">동적 테마</string>
+    <string name="ads_dynamic_theme_summary">수신자에 의해 적용되는 테마입니다.</string>
+    <string name="ads_dynamic_color_summary">자동 색상 구현.</string>
+    <string name="ads_dynamic">동적</string>
+    <string name="ads_color">색상</string>
+    <string name="ads_theme">테마</string>
+    <string name="ads_gradient">그라데이션</string>
+    <string name="ads_theme_preview_summary">테마 미리보기를 표시합니다.</string>
+    <string name="ads_theme_preview_summary_unchecked">테마 미리보기를 표시하지 않습니다.</string>
+    <string name="ads_theme_code">코드</string>
+    <string name="ads_theme_code_desc">테마를 스캔하거나 공유합니다.</string>
+    <string name="ads_theme_code_capture">캡처</string>
+    <string name="ads_theme_customise_desc">아래에서 테마를 설정하세요.</string>
+    <string name="ads_theme_adjust_desc">현재 Android 버전에 따라 테마가 자동으로 조정됩니다.</string>
+    <string name="ads_theme_invalid">잘못된 테마</string>
+    <string name="ads_theme_invalid_desc">이 테마를 확인할 수 없습니다. 적절한 데이터로 다시 시도해 주세요.</string>
+    <string name="ads_theme_color_palette">색상 팔레트</string>
+    <string name="ads_theme_color_palette_summary">기본 및 강조 색상 프리셋.</string>
+    <string name="ads_theme_color_background">배경 색상</string>
+    <string name="ads_theme_color_background_summary">테마의 배경 색상입니다.</string>
+    <string name="ads_theme_color_background_summary_system">시스템의 배경 색상입니다.</string>
+    <string name="ads_theme_color_background_summary_system_alt">내부 목적을 위한 것이며 시인성 문제를 피하기 위해 알림 창 배경에 가깝게 유지해야 합니다.</string>
+    <string name="ads_theme_color_stroke">선 색상</string>
+    <string name="ads_theme_color_surface">표면 색상</string>
+    <string name="ads_theme_color_tertiary">세 번째 색상</string>
+    <string name="ads_theme_color_primary">기본 색상</string>
+    <string name="ads_theme_color_primary_summary">기본 요소에 사용되는 색상입니다.</string>
+    <string name="ads_theme_color_primary_dark">시스템 색상</string>
+    <string name="ads_theme_color_primary_summary_dark">시스템 요소에 사용되는 색상입니다.</string>
+    <string name="ads_theme_color_accent">강조 색상</string>
+    <string name="ads_theme_color_secondary">보조 색상</string>
+    <string name="ads_theme_color_accent_summary">보조 요소에 사용되는 색상입니다.</string>
+    <string name="ads_theme_color_error">오류 색상</string>
+    <string name="ads_theme_color_error_summary">오류를 표시하는 데 사용되는 색상입니다.</string>
+    <string name="ads_theme_color_tint">색조 색상</string>
+    <string name="ads_theme_color_inverse">반전 색상</string>
+    <string name="ads_theme_font_scale">글꼴 크기</string>
+    <string name="ads_theme_font_scale_summary">텍스트를 작게 또는 크게 만드는 배율입니다.</string>
+    <string name="ads_theme_corner_size">모서리 크기</string>
+    <string name="ads_theme_corner_size_summary">지원되는 요소의 모서리 반경입니다.</string>
+    <string name="ads_theme_background_aware">배경 인식</string>
+    <string name="ads_theme_background_aware_desc">최상의 시인성을 제공하기 위해 배경에 따라 색상을 조정합니다.</string>
+    <string name="ads_theme_contrast">대비율</string>
+    <string name="ads_theme_contrast_summary">가시적 대비의 최소 비율.</string>
+    <string name="ads_theme_opacity">배경 불투명도</string>
+    <string name="ads_theme_opacity_summary">앱 배경의 불투명도입니다.</string>
+    <string name="ads_theme_opacity_summary_widget">위젯 배경의 불투명도입니다.</string>
+    <string name="ads_theme_elevation">입체감</string>
+    <string name="ads_theme_elevation_summary">표면 요소의 그림자를 제어합니다.</string>
+    <string name="ads_theme_style">스타일</string>
+    <string name="ads_theme_style_summary">테마의 스타일입니다.</string>
+    <string name="ads_theme_design">디자인</string>
+    <string name="ads_theme_app">앱 테마</string>
+    <string name="ads_theme_app_summary">앱의 스타일입니다.</string>
+    <string name="ads_theme_app_desc">자동을 선택하여 주간 및 야간 테마를 사용합니다.</string>
+    <string name="ads_theme_app_day">주간 테마</string>
+    <string name="ads_theme_app_day_summary">주간 앱의 스타일입니다.</string>
+    <string name="ads_theme_app_night">야간 테마</string>
+    <string name="ads_theme_app_night_summary">야간 앱의 스타일입니다.</string>
+    <string name="ads_theme_app_day_night_desc">이는 자동 테마가 적용된 경우에만 작동합니다.</string>
+    <string name="ads_theme_wallpaper">배경화면 테마</string>
+    <string name="ads_theme_wallpaper_summary">배경화면의 스타일입니다.</string>
+    <string name="ads_theme_wallpaper_customise_desc">아래에서 배경화면을 설정하세요.</string>
+    <string name="ads_theme_color_auto_wallpaper_desc">자동을 선택하여 배경화면 색상 팔레트를 사용합니다.</string>
+    <string name="ads_theme_toast">토스트 메시지 테마</string>
+    <string name="ads_theme_toast_summary">앱 강조 색상에 따라 테마가 적용된 토스트 메시지를 표시합니다.</string>
+    <string name="ads_theme_toast_summary_unchecked">기본 시스템 토스트 메시지를 표시합니다.</string>
+    <string name="ads_theme_navigation_bar">탐색 바 테마</string>
+    <string name="ads_theme_navigation_bar_summary">앱 테마에 따라 탐색 바를 표시합니다.</string>
+    <string name="ads_theme_navigation_bar_summary_unchecked">기본 탐색 바를 표시합니다.</string>
+    <string name="ads_theme_navigation_bar_desc">최상의 시각적 경험을 제공하기 위해 일부 위치에서는 탐색 바 테마가 표시되지 않습니다.</string>
+    <string name="ads_theme_notification">알림 테마</string>
+    <string name="ads_theme_notification_summary">알림의 색상 팔레트입니다.</string>
+    <string name="ads_theme_notification_style">알림 스타일</string>
+    <string name="ads_theme_notification_style_summary">알림의 스타일입니다.</string>
+    <string name="ads_theme_style_classic_desc">클래식을 선택하여 색상 팔레트를 배경으로 사용합니다.</string>
+    <string name="ads_theme_widget">위젯 테마</string>
+    <string name="ads_theme_widget_summary">위젯의 색상 팔레트입니다.</string>
+    <string name="ads_theme_app_shortcuts">앱 바로가기 테마</string>
+    <string name="ads_theme_app_shortcuts_summary">앱 기본 색상에 따라 테마가 적용된 앱 바로가기를 표시합니다.</string>
+    <string name="ads_theme_app_shortcuts_summary_unchecked">앱 테마 및 브랜드 색상에 따라 기본 앱 바로가기를 표시합니다.</string>
+    <string name="ads_theme_app_shortcuts_desc">앱 바로가기를 표시하려면 런처 아이콘을 길게 누르세요. 지원되는 런처가 필요합니다.</string>
+    <string name="ads_theme_reset_desc">테마가 기본값으로 초기화되었습니다.</string>
+    <string name="ads_theme_import_done">테마를 성공적으로 가져왔습니다.</string>
+    <string name="ads_theme_export_done">테마를 성공적으로 내보냈습니다.</string>
+    <string name="ads_theme_export_error">테마를 저장할 수 없습니다.</string>
+    <string name="ads_theme_share_error">테마를 공유할 수 없습니다.</string>
+    <string name="ads_theme_copy_done">테마를 성공적으로 복사했습니다.</string>
+    <string name="ads_theme_edit_done">테마를 성공적으로 편집했습니다.</string>
+    <string name="ads_theme_save_done">테마를 성공적으로 저장했습니다.</string>
+    <string name="ads_theme_delete_done">테마를 성공적으로 삭제했습니다.</string>
+    <string name="ads_theme_format_saved">테마 저장됨: %1$s</string>
+    <string name="ads_theme_presets">테마 프리셋</string>
+    <string name="ads_theme_presets_desc">%1$s를 통해 다운로드.</string>
+    <string name="ads_theme_presets_desc_app">%1$s 앱 다운로드.</string>
+    <string name="ads_theme_presets_options">옵션을 보려면 탭</string>
+    <string name="ads_theme_presets_import">가져오려면 탭</string>
+    <string name="ads_theme_presets_empty">프리셋 없음</string>
+
+    <!-- Theme -->
+    <string name="ads_theme_version_original">원본</string>
+    <string name="ads_theme_version_latest">최신</string>
+    <string name="ads_theme_version_expressive">표현적</string>
+    <string name="ads_theme_toast_default">기본 토스트 메시지</string>
+    <string name="ads_theme_toast_themed">테마가 적용된 토스트 메시지</string>
+    <string name="ads_theme_entry_auto">자동</string>
+    <string name="ads_theme_entry_auto_desc">자동을 선택하여 앱 설정을 사용합니다.</string>
+    <string name="ads_theme_entry_auto_default_desc">자동을 선택하여 기본 설정을 사용합니다.</string>
+    <string name="ads_theme_entry_auto_background_aware_desc">자동을 선택하여 앱 색상 팔레트를 사용합니다. 최상의 시인성을 제공하기 위해 배경에 따라 색상을 조정합니다.</string>
+    <string name="ads_theme_color_auto_desc">자동을 선택하여 앱 색상 팔레트를 사용합니다.</string>
+    <string name="ads_theme_color_default_desc">자동을 선택하여 기본 색상 팔레트를 사용합니다.</string>
+    <string name="ads_theme_entry_day">주간</string>
+    <string name="ads_theme_entry_night">야간</string>
+    <string name="ads_theme_entry_light">밝게</string>
+    <string name="ads_theme_entry_dark">어둡게</string>
+    <string name="ads_theme_entry_custom">맞춤</string>
+    <string name="ads_theme_entry_classic">클래식</string>
+    <string name="ads_theme_entry_battery">배터리 절약 모드</string>
+    <string name="ads_theme_entry_always">항상</string>
+    <string name="ads_theme_entry_true_dark">트루 다크</string>
+    <string name="ads_theme_entry_light_indigo">밝은 인디고</string>
+    <string name="ads_theme_entry_light_red">밝은 빨간색</string>
+    <string name="ads_theme_entry_light_blue">밝은 파란색</string>
+    <string name="ads_theme_entry_light_green">밝은 녹색</string>
+    <string name="ads_theme_entry_light_yellow">밝은 노란색</string>
+    <string name="ads_theme_entry_light_purple">밝은 보라색</string>
+    <string name="ads_theme_entry_light_orange">밝은 주황색</string>
+    <string name="ads_theme_entry_light_brown">밝은 갈색</string>
+    <string name="ads_theme_entry_light_gray">밝은 회색</string>
+    <string name="ads_theme_entry_dark_indigo">어두운 인디고</string>
+    <string name="ads_theme_entry_dark_red">어두운 빨간색</string>
+    <string name="ads_theme_entry_dark_blue">어두운 파란색</string>
+    <string name="ads_theme_entry_dark_green">어두운 녹색</string>
+    <string name="ads_theme_entry_dark_teal">어두운 청록색</string>
+    <string name="ads_theme_entry_dark_purple">어두운 보라색</string>
+    <string name="ads_theme_entry_dark_orange">어두운 주황색</string>
+    <string name="ads_theme_entry_dark_brown">어두운 갈색</string>
+    <string name="ads_theme_entry_dark_gray">어두운 회색</string>
+
+    <!-- Visibility -->
+    <string name="ads_visibility_show">표시</string>
+    <string name="ads_visibility_hide">숨기기</string>
+
+    <!-- Picker -->
+    <string name="ads_picker_all">모두</string>
+    <string name="ads_picker_pick">선택</string>
+    <string name="ads_picker_more_colors">더 많은 색상</string>
+    <string name="ads_picker_presets">프리셋</string>
+    <string name="ads_picker_size_small">작게</string>
+    <string name="ads_picker_size_normal">보통</string>
+    <string name="ads_picker_size_large">크게</string>
+    <string name="ads_picker_size_info">너비 및 높이 값.</string>
+
+    <!-- Miscellaneous -->
+    <string name="ads_language">언어</string>
+    <string name="ads_language_summary">앱에서 사용되는 언어입니다.</string>
+    <string name="ads_language_system">시스템</string>
+    <string name="ads_dynamic_vibration">진동</string>
+    <string name="ads_dynamic_vibration_intensity">진동 강도</string>
+    <string name="ads_dynamic_vibration_intensity_summary">밀리초 단위의 진동 시간 지속 시간입니다.</string>
+    <string name="ads_dynamic_vibration_intensity_unit">ms</string>
+    <string name="ads_dynamic_motion">모션</string>
+    <string name="ads_dynamic_motion_summary">모든 애니메이션을 재생하는 동적 모션.</string>
+    <string name="ads_dynamic_motion_summary_unchecked">일부 애니메이션을 건너뛰는 모션 감소.</string>
+    <string name="ads_dynamic_motion_desc">배터리 절약 모드가 켜져 있을 때 항상 모션을 줄입니다. 일부 애니메이션은 건너뛸 수 없습니다.</string>
+
+    <!-- Notification -->
+    <string name="ads_notification_priority">알림 우선순위</string>
+    <string name="ads_notification_priority_summary">알림 창에서 순서를 결정할 우선순위를 선택하세요.</string>
+    <string name="ads_notification_priority_desc">상태 표시줄 및 잠금 화면에서 알림을 숨기려면 낮은 우선순위를 선택하세요.</string>
+    <string name="ads_notification_priority_high">높음</string>
+    <string name="ads_notification_priority_normal">보통</string>
+    <string name="ads_notification_priority_low">낮음</string>
+    <string name="ads_notification_category">알림 카테고리</string>
+    <string name="ads_notification_category_summary">앱에서 표시되는 알림을 설정합니다.</string>
+    <string name="ads_notification_category_desc">상태 표시줄 및 잠금 화면에서 알림을 숨기려면 낮은 카테고리 중요도를 설정하세요.</string>
+    <string name="ads_notification_close_drawer">창 닫기</string>
+    <string name="ads_notification_close_drawer_summary">작업 수행 후 알림 창을 닫습니다.</string>
+    <string name="ads_notification_close_drawer_summary_unchecked">작업 수행 후 알림 창 상태를 변경하지 않습니다.</string>
+
+    <!-- App Widget -->
+    <string name="ads_widget_customise">맞춤 설정</string>
+    <string name="ads_widget_customise_desc">아래에서 위젯을 설정하세요.</string>
+    <string name="ads_widget_preview">미리보기</string>
+    <string name="ads_widget_preview_desc">최상의 경험을 제공하기 위해 사용 중인 실제 크기에 따라 위젯 레이아웃이 자동으로 변경될 수 있습니다.</string>
+    <string name="ads_widget_header">헤더</string>
+    <string name="ads_widget_header_summary">위젯 헤더 표시 여부.</string>
+    <string name="ads_widget_header_desc">충분한 공간이 있는 경우 헤더를 표시하려면 자동을 선택하세요.</string>
+    <string name="ads_widget_corner_size_bg_summary">위젯 배경의 모서리 반경입니다.</string>
+    <string name="ads_widget_corner_size_bg_desc">앱 모서리 크기를 사용하려면 자동을 선택하세요.</string>
+    <string name="ads_widget_reset_desc">위젯이 기본값으로 초기화되었습니다.</string>
+    <string name="ads_widget_not_added">추가된 위젯이 없습니다.</string>
+
+    <!-- Setup -->
+    <string name="ads_setup">설정</string>
+    <string name="ads_setup_desc">아래에서 중요 기능을 설정하세요.</string>
+
+    <!-- Support -->
+    <string name="ads_rate">평가</string>
+    <string name="ads_support_contact">연락처</string>
+    <string name="ads_support_feedback">피드백</string>
+    <string name="ads_support_report">보고</string>
+    <string name="ads_support_report_bug">버그 보고서 제출</string>
+    <string name="ads_support_report_bug_summary">이메일을 통해 개발자에게 연락합니다.</string>
+    <string name="ads_support_report_bug_desc">이 앱에 대한 문제나 질문이 있으면 이메일로 연락해 주세요.</string>
+    <string name="ads_support_donate">기부</string>
+    <string name="ads_support_donate_paypal">PayPal을 통해 기부합니다.</string>
+    <string name="ads_support_donate_desc">감사의 표시로 개발자에게 송금하고 다른 프로젝트 개발을 지원합니다. 기부는 필수는 아니며, 개발을 지원하기 위해 유료 버전을 구매할 수도 있습니다.</string>
+    <string name="ads_support_reset_to_default">기본값으로 초기화</string>
+    <string name="ads_support_reset_to_default_alert">모든 사용자 설정이 기본값으로 초기화됩니다. 계속하시겠습니까?</string>
+    <string name="ads_support_reset_to_default_summary">모든 설정을 기본값으로 초기화합니다.</string>
+    <string name="ads_support_reset_to_default_desc">앱 또는 시스템 업데이트로 인해 발생하는 일반적인 문제를 해결할 수 있습니다. 이 작업을 수행한 후에는 모든 사용자 설정(위젯 제외)이 손실됩니다.</string>
+    <string name="ads_support_restart_app">응용 프로그램 다시 시작</string>
+    <string name="ads_support_restart_app_summary">응용 프로그램 및 서비스를 다시 시작하여 앱 상태를 새로 고칩니다.</string>
+    <string name="ads_support_restart_app_desc">서비스가 시작되지 않거나 앱이 제대로 작동하지 않을 때 사용합니다. 이 작업을 수행해도 모든 설정은 변경되지 않습니다.</string>
+
+    <!-- Developer -->
+    <string name="ads_info_made_in">인도에서 제작</string>
+    <string name="ads_info_made_by">작성 및 디자인</string>
+    <string name="ads_info_made_by_alt">개발</string>
+    <string name="ads_info_quote">완벽한 것은 없지만 더 나아질 수는 있습니다. 그런 더 나은 것을 개발하고 있습니다!</string>
+    <string name="ads_info_privacy_policy">개인정보 보호정책</string>
+    <string name="ads_info_privacy_policy_desc">이 제품의 전체 개인정보 보호정책을 확인하세요.</string>
+    <string name="ads_info_terms_of_use">이용약관</string>
+    <string name="ads_info_terms_of_use_desc">이 제품의 전체 이용약관을 확인하세요.</string>
+    <string name="ads_info_privacy_policy_terms_desc">개인정보 보호정책 및 이용약관.</string>
+    <string name="ads_info_apps">더 많은 앱</string>
+    <string name="ads_info_apps_desc">%1$s를 통해 다른 앱을 사용해 보세요.</string>
+    <string name="ads_info_apps_desc_google_play">Google Play를 통해 다른 앱을 사용해 보세요.</string>
+    <string name="ads_info_gplus_desc">공식 커뮤니티에 가입하여 테스트 버전을 사용해 보세요.</string>
+    <string name="ads_info_facebook_desc">공식 페이지를 \'좋아요\'하여 최신 뉴스 및 업데이트를 받아보세요.</string>
+    <string name="ads_info_xda_desc">XDA의 공식 지원 포럼을 팔로우하세요.</string>
+    <string name="ads_info_website">웹사이트</string>
+    <string name="ads_info_website_desc">더 많은 정보를 위해 공식 웹사이트를 방문하세요.</string>
+    <string name="ads_info_website_me_desc">웹상의 저의 공간입니다.</string>
+    <string name="ads_info_twitter_me_desc">저의 생활과 작업에 대한 최신 트윗을 받아보세요.</string>
+    <string name="ads_info_facebook_me_desc">친구를 맺거나 팔로우하여 저에 대해 더 알아보세요.</string>
+    <string name="ads_info_gplus_me_desc">커뮤니티 성장을 위해 서클에 추가하거나 팔로우하세요.</string>
+    <string name="ads_info_linkedin_me_desc">저에게 좋은 일이 있나요? LinkedIn을 통해 연락하세요.</string>
+    <string name="ads_info_github_me_desc">저의 일부 프로젝트를 오픈소스로 공개하여 커뮤니티에 기여하고 있습니다.</string>
+
+    <!-- Contributors -->
+    <string name="ads_author">저자</string>
+    <string name="ads_developer">개발자</string>
+    <string name="ads_contributors">기여자</string>
+    <string name="ads_contributors_desc">훌륭한 지원에 깊이 감사드립니다.</string>
+    <string name="ads_translations">번역</string>
+    <string name="ads_translators">번역가</string>
+    <string name="ads_translators_translate">번역하기</string>
+    <string name="ads_translators_translate_summary">번역가가 되어 보세요.</string>
+    <string name="ads_translators_translate_desc">이 앱을 더 많은 언어로 사용할 수 있도록 기여해 주세요.</string>
+    <string name="ads_translators_contact">번역을 원하시면 이메일로 연락주세요.</string>
+
+    <!-- License -->
+    <string name="ads_notice">공지</string>
+    <string name="ads_notices">공지 사항</string>
+    <string name="ads_license">라이선스</string>
+    <string name="ads_licenses">라이선스</string>
+    <string name="ads_license_desc">전체 라이선스 보기.</string>
+    <string name="ads_license_sources">소스</string>
+    <string name="ads_license_sources_desc">GitHub에서 소스 보기.</string>
+
+</resources>
