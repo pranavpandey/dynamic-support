@@ -40,6 +40,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 import java.util.Arrays;
 
@@ -171,7 +172,7 @@ public class DynamicPageIndicator2 extends View implements View.OnAttachStateCha
         this.viewPager = viewPager;
 
         if (DynamicSdkUtils.is17()) {
-            ViewCompat.setLayoutDirection(this, viewPager.getLayoutDirection());
+            setLayoutDirection(viewPager.getLayoutDirection());
         }
 
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -643,7 +644,7 @@ public class DynamicPageIndicator2 extends View implements View.OnAttachStateCha
     }
 
     private boolean isRTL() {
-        return ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL;
+        return DynamicViewUtils.isLayoutRtl(this);
     }
 
     private ValueAnimator createMoveSelectedAnimator(

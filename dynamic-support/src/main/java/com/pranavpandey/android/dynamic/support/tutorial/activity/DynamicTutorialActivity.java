@@ -34,7 +34,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.SharedElementCallback;
-import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -151,7 +150,7 @@ public abstract class DynamicTutorialActivity<V extends Fragment, T extends Tuto
         mArgbEvaluator = new ArgbEvaluator();
 
         if (DynamicViewUtils.isLayoutRtl(getContentView())) {
-            ViewCompat.setLayoutDirection(mViewPager, ViewCompat.LAYOUT_DIRECTION_RTL);
+            mViewPager.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
 
         mFooter.getViewTreeObserver().addOnGlobalLayoutListener(

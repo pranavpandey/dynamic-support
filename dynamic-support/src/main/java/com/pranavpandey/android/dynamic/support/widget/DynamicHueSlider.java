@@ -27,11 +27,11 @@ import android.util.AttributeSet;
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
 
 import com.pranavpandey.android.dynamic.support.util.DynamicPickerUtils;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
+import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 /**
  * A {@link DynamicSlider} to provide a hue bar for the color picker.
@@ -59,9 +59,11 @@ public class DynamicHueSlider extends DynamicSlider {
 
         final Rect bounds = new Rect(getTrackSidePadding(), 0,
                 getTrackWidth() + getTrackSidePadding(), h);
-        mHueDrawable = new GradientDrawable(ViewCompat.getLayoutDirection(this)
-                == ViewCompat.LAYOUT_DIRECTION_RTL ? GradientDrawable.Orientation.RIGHT_LEFT
-                : GradientDrawable.Orientation.LEFT_RIGHT, DynamicPickerUtils.getHueColors());
+        mHueDrawable = new GradientDrawable(
+                DynamicViewUtils.isLayoutRtl(this)
+                        ? GradientDrawable.Orientation.RIGHT_LEFT
+                        : GradientDrawable.Orientation.LEFT_RIGHT,
+                DynamicPickerUtils.getHueColors());
 
         if (DynamicSdkUtils.is18()) {
             bounds.inset((int) -(getTrackSidePadding() / 8f),
