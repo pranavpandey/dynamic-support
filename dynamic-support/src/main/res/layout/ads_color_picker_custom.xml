@@ -137,12 +137,10 @@
 
     </com.pranavpandey.android.dynamic.support.widget.DynamicHorizontalScrollView>
 
-    <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
+    <com.pranavpandey.android.dynamic.support.widget.DynamicDividerExpressive
         style="?attr/ads_widgetDividerLarge"
-        android:layout_marginLeft="@dimen/ads_dialog_margin_horizontal"
-        android:layout_marginStart="@dimen/ads_dialog_margin_horizontal"
-        android:layout_marginRight="@dimen/ads_dialog_margin_horizontal"
-        android:layout_marginEnd="@dimen/ads_dialog_margin_horizontal"
+        android:layout_marginTop="@dimen/ads_margin_extra_tiny"
+        android:layout_marginBottom="0dp"
         app:adt_dynamicCornerSize="true" />
 
     <LinearLayout

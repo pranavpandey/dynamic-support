@@ -25,7 +25,7 @@
             style="?attr/ads_widgetImagePreferencePlaceholderBig"
             android:id="@+id/ads_item_view_icon_footer" />
 
-        <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
+        <com.pranavpandey.android.dynamic.support.widget.DynamicDividerExpressive
             style="?attr/ads_widgetDivider"
             android:id="@+id/ads_item_view_divider" />
 

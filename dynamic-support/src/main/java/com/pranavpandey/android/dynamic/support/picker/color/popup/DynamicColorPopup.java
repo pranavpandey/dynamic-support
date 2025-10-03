@@ -41,6 +41,7 @@ import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPrefere
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.theme.task.WallpaperColorsTask;
 import com.pranavpandey.android.dynamic.support.util.DynamicPickerUtils;
+import com.pranavpandey.android.dynamic.support.widget.DynamicDividerExpressive;
 import com.pranavpandey.android.dynamic.theme.DynamicPalette;
 import com.pranavpandey.android.dynamic.theme.Theme;
 import com.pranavpandey.android.dynamic.util.DynamicColorUtils;
@@ -282,7 +283,10 @@ public class DynamicColorPopup extends DynamicSimplePopup {
      */
     protected void setDynamics(@Nullable GridView gridView, @Nullable View divider) {
         if (gridView != null && mDynamics != null && mDynamics.length > 0) {
-            Dynamic.setVisibility(divider, View.VISIBLE);
+            Dynamic.setVisibility(divider,
+                    divider instanceof DynamicDividerExpressive
+                            ? Dynamic.isExpressiveVersion() ? View.VISIBLE
+                            : View.INVISIBLE : View.VISIBLE);
             Dynamic.setVisibility(gridView, View.VISIBLE);
 
             gridView.setAdapter(new DynamicColorsAdapter(mDynamics, mSelectedColor,

@@ -35,12 +35,9 @@
             android:paddingRight="@dimen/ads_dialog_margin"
             android:paddingEnd="@dimen/ads_dialog_margin" />
 
-        <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
+        <com.pranavpandey.android.dynamic.support.widget.DynamicDividerExpressive
             style="?attr/ads_widgetDividerLarge"
-            android:layout_marginLeft="@dimen/ads_dialog_margin_horizontal"
-            android:layout_marginStart="@dimen/ads_dialog_margin_horizontal"
-            android:layout_marginRight="@dimen/ads_dialog_margin_horizontal"
-            android:layout_marginEnd="@dimen/ads_dialog_margin_horizontal"
+            android:layout_marginTop="0dp"
             app:adt_dynamicCornerSize="true" />
 
         <com.pranavpandey.android.dynamic.support.widget.DynamicHorizontalScrollView

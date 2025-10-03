@@ -93,7 +93,7 @@
                 android:orientation="horizontal"
                 android:visibility="gone">
 
-                <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
+                <com.pranavpandey.android.dynamic.support.widget.DynamicDividerExpressive
                     style="?attr/ads_widgetDividerVerticalLarge"
                     android:id="@+id/ads_color_picker_popup_footer_divider"
                     app:adt_contrastWithColorType="surface" />

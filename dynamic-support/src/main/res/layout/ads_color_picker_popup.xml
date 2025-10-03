@@ -40,11 +40,9 @@
                 android:verticalSpacing="@dimen/ads_picker_colors_spacing"
                 app:adt_contrastWithColorType="surface" />
 
-            <com.pranavpandey.android.dynamic.support.widget.DynamicDivider
+            <com.pranavpandey.android.dynamic.support.widget.DynamicDividerExpressive
                 style="?attr/ads_widgetDividerLarge"
                 android:id="@+id/ads_color_picker_divider"
-                android:layout_marginLeft="@dimen/ads_margin_regular"
-                android:layout_marginRight="@dimen/ads_margin_regular"
                 app:adt_contrastWithColorType="surface"
                 app:adt_dynamicCornerSize="true" />
 
