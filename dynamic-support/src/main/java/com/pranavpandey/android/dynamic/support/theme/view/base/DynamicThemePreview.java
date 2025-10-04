@@ -38,6 +38,7 @@ import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.util.DynamicShapeUtils;
 import com.pranavpandey.android.dynamic.theme.Theme;
+import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.util.DynamicViewUtils;
 
 /**
@@ -232,7 +233,7 @@ public class DynamicThemePreview extends ThemePreview<DynamicAppTheme> {
         Dynamic.setBackground(mStatusBar, Dynamic.withThemeOpacity(
                 DynamicShapeUtils.getCornerDrawable(getDynamicTheme().getCornerSize(),
                         getDynamicTheme().getPrimaryColorDark(),
-                        true, false), getDynamicTheme()));
+                        true, DynamicSdkUtils.is21()), getDynamicTheme()));
         mHeader.setBackgroundColor(Dynamic.withThemeOpacity(
                 getDynamicTheme().getPrimaryColor(), getDynamicTheme()));
         Dynamic.setBackground(mSurface, Dynamic.withThemeOpacity(drawable, getDynamicTheme()));
