@@ -68,23 +68,28 @@
 
                     <menu>
 
-                        <item
-                            android:id="@+id/ads_menu_theme_file_save"
-                            android:title="@string/ads_save"
-                            android:icon="@drawable/ads_ic_save"
-                            android:orderInCategory="1" />
+                        <group
+                            android:id="@+id/ads_menu_theme_file_group">
 
-                        <item
-                            android:id="@+id/ads_menu_theme_file_code"
-                            android:title="@string/ads_theme_code"
-                            android:icon="@drawable/ads_ic_qr_code"
-                            android:orderInCategory="2" />
+                            <item
+                                android:id="@+id/ads_menu_theme_file_save"
+                                android:title="@string/ads_save"
+                                android:icon="@drawable/ads_ic_save"
+                                android:orderInCategory="1" />
 
-                        <item
-                            android:id="@+id/ads_menu_theme_file_share"
-                            android:title="@string/ads_nav_share"
-                            android:icon="@drawable/ads_ic_share"
-                            android:orderInCategory="3" />
+                            <item
+                                android:id="@+id/ads_menu_theme_file_code"
+                                android:title="@string/ads_theme_code"
+                                android:icon="@drawable/ads_ic_qr_code"
+                                android:orderInCategory="2" />
+
+                            <item
+                                android:id="@+id/ads_menu_theme_file_share"
+                                android:title="@string/ads_nav_share"
+                                android:icon="@drawable/ads_ic_share"
+                                android:orderInCategory="3" />
+
+                        </group>
 
                         <item
                             android:id="@+id/ads_menu_theme_file_import"
