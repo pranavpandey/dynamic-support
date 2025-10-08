@@ -972,7 +972,6 @@ public abstract class DynamicActivity extends DynamicStateActivity
      * @param subtitle The subtitle to be set.
      */
     public void setHeaderSubtitle(@Nullable CharSequence subtitle) {
-        DynamicMotion.getInstance().beginDelayedTransition(getFrameHeader());
         Dynamic.set(findViewById(R.id.ads_header_appbar_subtitle), subtitle);
     }
 
