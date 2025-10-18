@@ -32,6 +32,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.widget.base.DynamicWidget;
 import com.pranavpandey.android.dynamic.util.DynamicDrawableUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
@@ -244,18 +245,16 @@ public class DynamicInputUtils {
 
         editText.requestFocus();
 
-        editText.post(new Runnable() {
+        editText.postDelayed(new Runnable() {
             @Override
             public void run() {
                 InputMethodManager inputMethodManager;
                 if ((inputMethodManager = ContextCompat.getSystemService(
                         editText.getContext(), InputMethodManager.class)) != null) {
                     inputMethodManager.showSoftInput(editText, 0);
-                    editText.clearFocus();
-                    editText.requestFocus();
                 }
             }
-        });
+        }, DynamicMotion.Duration.DEFAULT);
     }
 
     /**
