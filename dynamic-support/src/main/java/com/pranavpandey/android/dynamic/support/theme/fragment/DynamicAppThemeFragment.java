@@ -14,13 +14,10 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.theme.fragment.base;
+package com.pranavpandey.android.dynamic.support.theme.fragment;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -35,30 +32,29 @@ import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
 import com.pranavpandey.android.dynamic.support.listener.DynamicColorResolver;
-import com.pranavpandey.android.dynamic.support.model.DynamicRemoteTheme;
-import com.pranavpandey.android.dynamic.support.model.DynamicWidgetTheme;
+import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.theme.fragment.base.ThemeFragment;
 import com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView;
 import com.pranavpandey.android.dynamic.support.theme.view.base.ThemePreview;
 import com.pranavpandey.android.dynamic.theme.Theme;
-import com.pranavpandey.android.dynamic.theme.util.DynamicThemeUtils;
 import com.pranavpandey.android.dynamic.util.DynamicPackageUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
- * A {@link ThemeFragment} to provide {@link DynamicRemoteTheme} editing functionality.
+ * A {@link ThemeFragment} to provide {@link DynamicAppTheme} editing functionality.
  */
-public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme> {
+public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
 
     /**
      * View to show the theme presets.
      */
-    protected DynamicPresetsView<DynamicRemoteTheme> mPresetsView;
+    protected DynamicPresetsView<DynamicAppTheme> mPresetsView;
 
     /**
      * Dynamic color preference to control the background colors.
@@ -66,7 +62,7 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
     protected DynamicColorPreference mColorBackgroundPreference;
 
     /**
-     * Dynamic color preference to control the surface colors.
+     * Dynamic color preference to control the surface color.
      */
     protected DynamicColorPreference mColorSurfacePreference;
 
@@ -143,35 +139,34 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
     /**
      * Initialize the new instance of this fragment.
      *
-     * @param DynamicRemoteTheme The dynamic app theme.
-     * @param DynamicRemoteThemeDefault The default dynamic app theme.
+     * @param dynamicAppTheme The dynamic app theme.
+     * @param dynamicAppThemeDefault The default dynamic app theme.
      *
-     * @return An instance of {@link DynamicRemoteThemeFragment}.
+     * @return An instance of {@link DynamicAppThemeFragment}.
      *
      * @see #newInstance(String, String, boolean)
      */
-    public static @NonNull DynamicRemoteThemeFragment newInstance(
-            @Nullable String DynamicRemoteTheme, @Nullable String DynamicRemoteThemeDefault) {
-        return newInstance(DynamicRemoteTheme, DynamicRemoteThemeDefault,
+    public static @NonNull DynamicAppThemeFragment newInstance(@Nullable String dynamicAppTheme,
+            @Nullable String dynamicAppThemeDefault) {
+        return newInstance(dynamicAppTheme, dynamicAppThemeDefault,
                 DynamicIntent.EXTRA_THEME_SHOW_PRESETS_DEFAULT);
     }
 
     /**
      * Initialize the new instance of this fragment.
      *
-     * @param DynamicRemoteTheme The dynamic app theme.
-     * @param DynamicRemoteThemeDefault The default dynamic app theme.
+     * @param dynamicAppTheme The dynamic app theme.
+     * @param dynamicAppThemeDefault The default dynamic app theme.
      * @param showPresets {@code true} to show the presets.
      *
-     * @return An instance of {@link DynamicRemoteThemeFragment}.
+     * @return An instance of {@link DynamicAppThemeFragment}.
      */
-    public static @NonNull DynamicRemoteThemeFragment newInstance(
-            @Nullable String DynamicRemoteTheme, @Nullable String DynamicRemoteThemeDefault,
-            boolean showPresets) {
-        DynamicRemoteThemeFragment fragment = new DynamicRemoteThemeFragment();
+    public static @NonNull DynamicAppThemeFragment newInstance(@Nullable String dynamicAppTheme,
+            @Nullable String dynamicAppThemeDefault, boolean showPresets) {
+        DynamicAppThemeFragment fragment = new DynamicAppThemeFragment();
         Bundle args = new Bundle();
-        args.putString(DynamicIntent.EXTRA_THEME, DynamicRemoteTheme);
-        args.putString(DynamicIntent.EXTRA_THEME_DEFAULT, DynamicRemoteThemeDefault);
+        args.putString(DynamicIntent.EXTRA_THEME, dynamicAppTheme);
+        args.putString(DynamicIntent.EXTRA_THEME_DEFAULT, dynamicAppThemeDefault);
         args.putBoolean(DynamicIntent.EXTRA_THEME_SHOW_PRESETS, showPresets);
         fragment.setArguments(args);
 
@@ -192,11 +187,11 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         mDynamicThemeDefault = getThemeFromArguments(DynamicIntent.EXTRA_THEME_DEFAULT);
 
         if (mDynamicTheme == null) {
-            mDynamicTheme = DynamicTheme.getInstance().getRemote();
+            mDynamicTheme = DynamicTheme.getInstance().generateDefaultTheme();
         }
 
         if (mDynamicThemeDefault == null) {
-            mDynamicThemeDefault = new DynamicRemoteTheme(mDynamicTheme);
+            mDynamicThemeDefault = new DynamicAppTheme(mDynamicTheme);
         }
 
         mDynamicTheme.setType(mDynamicThemeDefault.getType());
@@ -204,17 +199,7 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
 
     @Override
     public @LayoutRes int getLayoutRes() {
-        return R.layout.ads_fragment_theme_remote;
-    }
-
-    @Override
-    public @LayoutRes int getPreviewLayoutRes() {
-        return R.layout.ads_theme_preview_remote_bottom_sheet;
-    }
-
-    @Override
-    public @LayoutRes int getPresetLayoutRes() {
-        return R.layout.ads_layout_item_preset_remote_horizontal;
+        return R.layout.ads_fragment_theme;
     }
 
     @Override
@@ -244,20 +229,17 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
             Dynamic.setVisibility(mPresetsView, View.VISIBLE);
 
             mPresetsView.setPresetsAdapter(this, getPresetLayoutRes(),
-                    new DynamicPresetsView.DynamicPresetsListener<DynamicRemoteTheme>() {
+                    new DynamicPresetsView.DynamicPresetsListener<DynamicAppTheme>() {
                 @Override
                 public void onRequestPermissions(@NonNull String[] permissions) {
                     DynamicPermissions.getInstance().isGranted(permissions, true);
                 }
 
                 @Override
-                public @Nullable DynamicRemoteTheme getDynamicTheme(@NonNull String theme) {
+                public @Nullable DynamicAppTheme getDynamicTheme(@NonNull String theme) {
                     try {
-                        return new DynamicRemoteTheme(new DynamicWidgetTheme(theme)
-                                .setBackgroundColor(Theme.AUTO, false)
-                                .setTintBackgroundColor(Theme.AUTO)
-                                .setStyle(mDynamicTheme.getStyle())
-                                .setType(mDynamicTheme.getType(false)));
+                        return new DynamicAppTheme(theme).setStyle(mDynamicTheme.getStyle())
+                                .setType(mDynamicTheme.getType(false));
                     } catch (Exception ignored) {
                         return null;
                     }
@@ -265,7 +247,7 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
 
                 @Override
                 public void onPresetClick(@NonNull View anchor, @NonNull String theme,
-                        @NonNull ThemePreview<DynamicRemoteTheme> themePreview) {
+                        @NonNull ThemePreview<DynamicAppTheme> themePreview) {
                     importTheme(themePreview.getDynamicTheme().toDynamicString(),
                             Theme.Action.IMPORT);
                 }
@@ -443,18 +425,21 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
 
             @Override
             public @ColorInt int getAutoColor(@Nullable String tag) {
-                return mThemePreview.getDynamicTheme().getTextPrimaryColor();
+                return mThemePreview.getDynamicTheme()
+                        .getTextPrimaryColor(true, false);
             }
         });
         mTextPrimaryPreference.setAltDynamicColorResolver(new DynamicColorResolver() {
             @Override
             public int getDefaultColor(@Nullable String tag) {
-                return mDynamicThemeDefault.getTextPrimaryColorInverse(false, false);
+                return Dynamic.getTintColor(mThemePreview.getDynamicTheme()
+                        .getTextPrimaryColor(), mThemePreview.getDynamicTheme());
             }
 
             @Override
             public @ColorInt int getAutoColor(@Nullable String tag) {
-                return mThemePreview.getDynamicTheme().getTextPrimaryColorInverse();
+                return mThemePreview.getDynamicTheme()
+                        .getTextPrimaryColorInverse(true, false);
             }
         });
 
@@ -466,18 +451,21 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
 
             @Override
             public @ColorInt int getAutoColor(@Nullable String tag) {
-                return mThemePreview.getDynamicTheme().getTextSecondaryColor();
+                return mThemePreview.getDynamicTheme()
+                        .getTextSecondaryColor(true, false);
             }
         });
         mTextSecondaryPreference.setAltDynamicColorResolver(new DynamicColorResolver() {
             @Override
             public int getDefaultColor(@Nullable String tag) {
-                return mDynamicThemeDefault.getTextSecondaryColorInverse(false, false);
+                return Dynamic.getTintColor(mThemePreview.getDynamicTheme()
+                        .getTextSecondaryColor(), mThemePreview.getDynamicTheme());
             }
 
             @Override
             public @ColorInt int getAutoColor(@Nullable String tag) {
-                return mThemePreview.getDynamicTheme().getTextSecondaryColorInverse();
+                return mThemePreview.getDynamicTheme()
+                        .getTextSecondaryColorInverse(true, false);
             }
         });
 
@@ -509,20 +497,6 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
         setSubtitle(DynamicPackageUtils.getAppLabel(getContext()));
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    @Override
-    public void onAddThemePreview() {
-        super.onAddThemePreview();
-
-        requireActivity().findViewById(R.id.ads_theme_preview_bottom_sheet)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        saveThemeSettings();
-                    }
-                });
-    }
-
     @Override
     public boolean setHasOptionsMenu() {
         return true;
@@ -542,14 +516,14 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
      *
      * @return The dynamic theme from the supplied arguments.
      */
-    public @Nullable DynamicRemoteTheme getThemeFromArguments(@NonNull String key) {
-        return DynamicTheme.getInstance().getRemoteTheme(getStringFromArguments(key));
+    public @Nullable DynamicAppTheme getThemeFromArguments(@NonNull String key) {
+        return DynamicTheme.getInstance().getTheme(getStringFromArguments(key));
     }
 
     @Override
-    public @NonNull DynamicRemoteTheme onImportTheme(@NonNull String theme) {
+    public @NonNull DynamicAppTheme onImportTheme(@NonNull String theme) {
         try {
-            return new DynamicRemoteTheme(new DynamicWidgetTheme(theme));
+            return new DynamicAppTheme(theme);
         } catch (Exception ignored) {
         }
 
@@ -557,7 +531,7 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
     }
 
     @Override
-    public void onLoadTheme(@NonNull DynamicRemoteTheme theme) {
+    public void onLoadTheme(@NonNull DynamicAppTheme theme) {
         if (mSettingsChanged) {
             return;
         }
@@ -635,24 +609,14 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
 
     @Override
     public void onSetAction(@Theme.Action int themeAction,
-            @Nullable ThemePreview<DynamicRemoteTheme> themePreview, boolean enable) {
+            @Nullable ThemePreview<DynamicAppTheme> themePreview, boolean enable) {
         if (themePreview == null) {
             return;
         }
 
         Dynamic.setResource(themePreview.getActionView(), enable
                 ? R.drawable.ads_ic_save : themePreview.getDynamicTheme().isDynamicColor()
-                ? R.drawable.adt_ic_app : R.drawable.ads_ic_customise);
-    }
-
-    @Override
-    public @Nullable Bitmap getThemeBitmap(
-            @Nullable ThemePreview<DynamicRemoteTheme> themePreview, int themeAction) {
-        if (themePreview == null) {
-            return null;
-        }
-
-        return DynamicThemeUtils.createRemoteThemeBitmap(themePreview);
+                ? R.drawable.adt_ic_app : R.drawable.ads_ic_style);
     }
 
     @Override
@@ -695,7 +659,7 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
      * Update the theme preview.
      */
     private void updateThemePreview() {
-        mThemePreview.setDynamicTheme(new DynamicRemoteTheme(new DynamicWidgetTheme(mDynamicTheme)
+        mThemePreview.setDynamicTheme(new DynamicAppTheme(mDynamicTheme)
                 .setBackgroundColor(mColorBackgroundPreference.getColor(false), false)
                 .setTintBackgroundColor(mColorBackgroundPreference.getAltColor(false))
                 .setSurfaceColor(mColorSurfacePreference.getColor(false), false)
@@ -720,7 +684,7 @@ public class DynamicRemoteThemeFragment extends ThemeFragment<DynamicRemoteTheme
                 .setContrast(getContrast())
                 .setOpacity(getOpacity())
                 .setElevation(getElevation())
-                .setStyle(getStyle())));
+                .setStyle(getStyle()));
 
         mSettingsChanged = true;
     }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pranavpandey.android.dynamic.support.theme.fragment.base;
+package com.pranavpandey.android.dynamic.support.theme.fragment;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -33,12 +33,14 @@ import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
 import com.pranavpandey.android.dynamic.support.listener.DynamicColorResolver;
 import com.pranavpandey.android.dynamic.support.model.DynamicAppTheme;
+import com.pranavpandey.android.dynamic.support.model.DynamicWidgetTheme;
 import com.pranavpandey.android.dynamic.support.motion.DynamicMotion;
 import com.pranavpandey.android.dynamic.support.permission.DynamicPermissions;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicColorPreference;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSliderPreference;
 import com.pranavpandey.android.dynamic.support.setting.base.DynamicSpinnerPreference;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
+import com.pranavpandey.android.dynamic.support.theme.fragment.base.ThemeFragment;
 import com.pranavpandey.android.dynamic.support.theme.view.DynamicPresetsView;
 import com.pranavpandey.android.dynamic.support.theme.view.base.ThemePreview;
 import com.pranavpandey.android.dynamic.theme.Theme;
@@ -46,14 +48,14 @@ import com.pranavpandey.android.dynamic.util.DynamicPackageUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 
 /**
- * A {@link ThemeFragment} to provide {@link DynamicAppTheme} editing functionality.
+ * A {@link ThemeFragment} to provide {@link DynamicWidgetTheme} editing functionality.
  */
-public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
+public class DynamicWidgetThemeFragment extends ThemeFragment<DynamicWidgetTheme> {
 
     /**
      * View to show the theme presets.
      */
-    protected DynamicPresetsView<DynamicAppTheme> mPresetsView;
+    protected DynamicPresetsView<DynamicWidgetTheme> mPresetsView;
 
     /**
      * Dynamic color preference to control the background colors.
@@ -136,16 +138,21 @@ public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
     protected DynamicSpinnerPreference mStylePreference;
 
     /**
+     * Dynamic spinner preference to control the widget header.
+     */
+    protected DynamicSpinnerPreference mWidgetHeaderPreference;
+
+    /**
      * Initialize the new instance of this fragment.
      *
      * @param dynamicAppTheme The dynamic app theme.
      * @param dynamicAppThemeDefault The default dynamic app theme.
      *
-     * @return An instance of {@link DynamicAppThemeFragment}.
+     * @return An instance of {@link DynamicWidgetThemeFragment}.
      *
      * @see #newInstance(String, String, boolean)
      */
-    public static @NonNull DynamicAppThemeFragment newInstance(@Nullable String dynamicAppTheme,
+    public static @NonNull DynamicWidgetThemeFragment newInstance(@Nullable String dynamicAppTheme,
             @Nullable String dynamicAppThemeDefault) {
         return newInstance(dynamicAppTheme, dynamicAppThemeDefault,
                 DynamicIntent.EXTRA_THEME_SHOW_PRESETS_DEFAULT);
@@ -158,11 +165,11 @@ public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
      * @param dynamicAppThemeDefault The default dynamic app theme.
      * @param showPresets {@code true} to show the presets.
      *
-     * @return An instance of {@link DynamicAppThemeFragment}.
+     * @return An instance of {@link DynamicWidgetThemeFragment}.
      */
-    public static @NonNull DynamicAppThemeFragment newInstance(@Nullable String dynamicAppTheme,
+    public static @NonNull DynamicWidgetThemeFragment newInstance(@Nullable String dynamicAppTheme,
             @Nullable String dynamicAppThemeDefault, boolean showPresets) {
-        DynamicAppThemeFragment fragment = new DynamicAppThemeFragment();
+        DynamicWidgetThemeFragment fragment = new DynamicWidgetThemeFragment();
         Bundle args = new Bundle();
         args.putString(DynamicIntent.EXTRA_THEME, dynamicAppTheme);
         args.putString(DynamicIntent.EXTRA_THEME_DEFAULT, dynamicAppThemeDefault);
@@ -186,11 +193,11 @@ public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
         mDynamicThemeDefault = getThemeFromArguments(DynamicIntent.EXTRA_THEME_DEFAULT);
 
         if (mDynamicTheme == null) {
-            mDynamicTheme = DynamicTheme.getInstance().generateDefaultTheme();
+            mDynamicTheme = DynamicTheme.getInstance().generateDefaultWidgetTheme();
         }
 
         if (mDynamicThemeDefault == null) {
-            mDynamicThemeDefault = new DynamicAppTheme(mDynamicTheme);
+            mDynamicThemeDefault = new DynamicWidgetTheme(mDynamicTheme);
         }
 
         mDynamicTheme.setType(mDynamicThemeDefault.getType());
@@ -198,7 +205,17 @@ public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
 
     @Override
     public @LayoutRes int getLayoutRes() {
-        return R.layout.ads_fragment_theme;
+        return R.layout.ads_fragment_theme_widget;
+    }
+
+    @Override
+    public @LayoutRes int getPreviewLayoutRes() {
+        return R.layout.ads_theme_preview_widget_bottom_sheet;
+    }
+
+    @Override
+    public @LayoutRes int getPresetLayoutRes() {
+        return R.layout.ads_layout_item_preset_widget_horizontal;
     }
 
     @Override
@@ -222,23 +239,25 @@ public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
         mOpacityPreference = view.findViewById(R.id.ads_pref_theme_opacity);
         mElevationPreference = view.findViewById(R.id.ads_pref_theme_elevation);
         mStylePreference = view.findViewById(R.id.ads_pref_theme_style);
+        mWidgetHeaderPreference = view.findViewById(R.id.ads_pref_theme_header);
 
         if (getBooleanFromArguments(DynamicIntent.EXTRA_THEME_SHOW_PRESETS,
                 DynamicIntent.EXTRA_THEME_SHOW_PRESETS_DEFAULT)) {
             Dynamic.setVisibility(mPresetsView, View.VISIBLE);
 
             mPresetsView.setPresetsAdapter(this, getPresetLayoutRes(),
-                    new DynamicPresetsView.DynamicPresetsListener<DynamicAppTheme>() {
+                    new DynamicPresetsView.DynamicPresetsListener<DynamicWidgetTheme>() {
                 @Override
                 public void onRequestPermissions(@NonNull String[] permissions) {
                     DynamicPermissions.getInstance().isGranted(permissions, true);
                 }
 
                 @Override
-                public @Nullable DynamicAppTheme getDynamicTheme(@NonNull String theme) {
+                public @Nullable DynamicWidgetTheme getDynamicTheme(@NonNull String theme) {
                     try {
-                        return new DynamicAppTheme(theme).setStyle(mDynamicTheme.getStyle())
-                                .setType(mDynamicTheme.getType(false));
+                        return new DynamicWidgetTheme(new DynamicWidgetTheme(theme)
+                                .setStyle(mDynamicTheme.getStyle()).setType(
+                                        mDynamicTheme.getType(false)));
                     } catch (Exception ignored) {
                         return null;
                     }
@@ -246,7 +265,7 @@ public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
 
                 @Override
                 public void onPresetClick(@NonNull View anchor, @NonNull String theme,
-                        @NonNull ThemePreview<DynamicAppTheme> themePreview) {
+                        @NonNull ThemePreview<DynamicWidgetTheme> themePreview) {
                     importTheme(themePreview.getDynamicTheme().toDynamicString(),
                             Theme.Action.IMPORT);
                 }
@@ -392,6 +411,7 @@ public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
                 return mThemePreview.getDynamicTheme().getTintAccentColorDark();
             }
         });
+        Dynamic.setVisibility(mColorAccentDarkPreference.getActionView(), View.GONE);
 
         mColorErrorPreference.setDynamicColorResolver(new DynamicColorResolver() {
             @Override
@@ -515,14 +535,14 @@ public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
      *
      * @return The dynamic theme from the supplied arguments.
      */
-    public @Nullable DynamicAppTheme getThemeFromArguments(@NonNull String key) {
-        return DynamicTheme.getInstance().getTheme(getStringFromArguments(key));
+    public @Nullable DynamicWidgetTheme getThemeFromArguments(@NonNull String key) {
+        return DynamicTheme.getInstance().getWidgetTheme(getStringFromArguments(key));
     }
 
     @Override
-    public @NonNull DynamicAppTheme onImportTheme(@NonNull String theme) {
+    public @NonNull DynamicWidgetTheme onImportTheme(@NonNull String theme) {
         try {
-            return new DynamicAppTheme(theme);
+            return new DynamicWidgetTheme(theme);
         } catch (Exception ignored) {
         }
 
@@ -530,7 +550,7 @@ public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
     }
 
     @Override
-    public void onLoadTheme(@NonNull DynamicAppTheme theme) {
+    public void onLoadTheme(@NonNull DynamicWidgetTheme theme) {
         if (mSettingsChanged) {
             return;
         }
@@ -553,6 +573,7 @@ public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
         mTextPrimaryPreference.setAltColor(theme.getTextPrimaryColorInverse(false, false));
         mTextSecondaryPreference.setColor(theme.getTextSecondaryColor(false, false));
         mTextSecondaryPreference.setAltColor(theme.getTextSecondaryColorInverse(false, false));
+        mWidgetHeaderPreference.setPreferenceValue(theme.getHeaderString());
 
         if (theme.getFontScale(false) != Theme.Font.AUTO) {
             mFontScalePreference.setPreferenceValue(Theme.Font.ToString.CUSTOM);
@@ -608,7 +629,7 @@ public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
 
     @Override
     public void onSetAction(@Theme.Action int themeAction,
-            @Nullable ThemePreview<DynamicAppTheme> themePreview, boolean enable) {
+            @Nullable ThemePreview<DynamicWidgetTheme> themePreview, boolean enable) {
         if (themePreview == null) {
             return;
         }
@@ -658,7 +679,7 @@ public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
      * Update the theme preview.
      */
     private void updateThemePreview() {
-        mThemePreview.setDynamicTheme(new DynamicAppTheme(mDynamicTheme)
+        mThemePreview.setDynamicTheme(new DynamicWidgetTheme(new DynamicAppTheme(mDynamicTheme)
                 .setBackgroundColor(mColorBackgroundPreference.getColor(false), false)
                 .setTintBackgroundColor(mColorBackgroundPreference.getAltColor(false))
                 .setSurfaceColor(mColorSurfacePreference.getColor(false), false)
@@ -683,7 +704,8 @@ public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
                 .setContrast(getContrast())
                 .setOpacity(getOpacity())
                 .setElevation(getElevation())
-                .setStyle(getStyle()));
+                .setStyle(getStyle()))
+                .setHeaderString(mWidgetHeaderPreference.getPreferenceValue()));
 
         mSettingsChanged = true;
     }
@@ -710,6 +732,7 @@ public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
         mOpacityPreference.update();
         mElevationPreference.update();
         mStylePreference.update();
+        mWidgetHeaderPreference.update();
 
         mContrastPreference.setEnabled(mThemePreview.getDynamicTheme().isBackgroundAware());
         mFontScalePreference.setSeekEnabled(mThemePreview.getDynamicTheme()
@@ -745,6 +768,7 @@ public class DynamicAppThemeFragment extends ThemeFragment<DynamicAppTheme> {
             case ADS_PREF_THEME_FONT_SCALE_ALT:
             case ADS_PREF_THEME_BACKGROUND_AWARE:
             case ADS_PREF_THEME_STYLE:
+            case ADS_PREF_THEME_HEADER:
                 DynamicMotion.getInstance().beginDelayedTransition(mThemePreview);
             case ADS_PREF_THEME_COLOR_BACKGROUND:
             case ADS_PREF_THEME_COLOR_TINT_BACKGROUND:
