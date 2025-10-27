@@ -27,10 +27,8 @@
         android:id="@+id/ads_preview_image_root">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+            style="?attr/ads_widgetContentRowVertical"
+            android:gravity="center">
 
             <FrameLayout
                 android:id="@+id/ads_preview_header_frame"
@@ -40,10 +38,8 @@
             </FrameLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                style="?attr/ads_widgetContentRowHorizontal"
+                android:gravity="center_vertical">
 
                 <com.pranavpandey.android.dynamic.support.widget.DynamicImageView
                     style="?attr/ads_widgetImagePreviewLand"

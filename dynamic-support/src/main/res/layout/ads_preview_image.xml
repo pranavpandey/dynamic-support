@@ -27,10 +27,7 @@
         android:id="@+id/ads_preview_image_root">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            style="?attr/ads_widgetContentRowVertical">
 
             <FrameLayout
                 android:id="@+id/ads_preview_header_frame"
