@@ -1018,24 +1018,72 @@
     <style name="Theme.Dynamic3.DayNight.Translucent" />
 
     <!-- Dialog -->
-    <style name="Base.Dynamic3.AlertDialog" parent="Base.Dynamic2.AlertDialog" />
+    <style name="Base.Dynamic3.AlertDialog" parent="Base.Dynamic.AlertDialog" />
 
-    <style name="Base.Dynamic3.Dialog" parent="Base.Dynamic2.Dialog">
+    <style name="Base.Dynamic3.Dialog">
+        <item name="android:colorBackground">?attr/colorBackgroundFloating</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item>
         <item name="android:windowTitleStyle">@style/MaterialAlertDialog.Material3Expressive.Title.Text</item>
+        <item name="android:windowTitleBackgroundStyle">@style/Base.DialogWindowTitleBackground.AppCompat</item>
+        <item name="android:windowBackground">@drawable/abc_dialog_material_background</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">?attr/ads_animationDialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:listDivider">@null</item>
         <item name="android:buttonBarStyle">@style/Widget.Material3Expressive.Button.TextButton.Dialog</item>
         <item name="android:borderlessButtonStyle">@style/Widget.Material3Expressive.Button.TextButton.Dialog</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="listPreferredItemPaddingLeft">24dip</item>
+        <item name="listPreferredItemPaddingRight">24dip</item>
     </style>
 
-    <style name="Base.Dynamic3.Light.Dialog" parent="Base.Dynamic2.Light.Dialog">
+    <style name="Base.Dynamic3.Light.Dialog">
+        <item name="android:colorBackground">?attr/colorBackgroundFloating</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item>
         <item name="android:windowTitleStyle">@style/MaterialAlertDialog.Material3Expressive.Title.Text</item>
+        <item name="android:windowTitleBackgroundStyle">@style/Base.DialogWindowTitleBackground.AppCompat</item>
+        <item name="android:windowBackground">@drawable/abc_dialog_material_background</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">?attr/ads_animationDialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:listDivider">@null</item>
         <item name="android:buttonBarStyle">@style/Widget.Material3Expressive.Button.TextButton.Dialog</item>
         <item name="android:borderlessButtonStyle">@style/Widget.Material3Expressive.Button.TextButton.Dialog</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="listPreferredItemPaddingLeft">24dip</item>
+        <item name="listPreferredItemPaddingRight">24dip</item>
     </style>
 
-    <style name="Base.Dynamic3.DayNight.Dialog" parent="Base.Dynamic2.DayNight.Dialog">
+    <style name="Base.Dynamic3.DayNight.Dialog">
+        <item name="android:colorBackground">?attr/colorBackgroundFloating</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item>
         <item name="android:windowTitleStyle">@style/MaterialAlertDialog.Material3Expressive.Title.Text</item>
+        <item name="android:windowTitleBackgroundStyle">@style/Base.DialogWindowTitleBackground.AppCompat</item>
+        <item name="android:windowBackground">@drawable/abc_dialog_material_background</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">?attr/ads_animationDialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:listDivider">@null</item>
         <item name="android:buttonBarStyle">@style/Widget.Material3Expressive.Button.TextButton.Dialog</item>
         <item name="android:borderlessButtonStyle">@style/Widget.Material3Expressive.Button.TextButton.Dialog</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="listPreferredItemPaddingLeft">24dip</item>
+        <item name="listPreferredItemPaddingRight">24dip</item>
     </style>
 
     <style name="Theme.Dynamic3.Dialog" parent="Base.Dynamic3.Dialog">

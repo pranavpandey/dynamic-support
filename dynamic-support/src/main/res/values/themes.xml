@@ -997,10 +997,6 @@
         <item name="android:buttonBarStyle">@style/Widget.AppCompat.ButtonBar.AlertDialog</item>
         <item name="android:borderlessButtonStyle">@style/Widget.AppCompat.Button.Borderless</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
-        <item name="android:windowMinWidthMajor">@dimen/ads_dialog_min_width_major</item>
-        <item name="android:windowMinWidthMinor">@dimen/ads_dialog_min_width_minor</item>
-        <item name="windowMinWidthMajor">@dimen/ads_dialog_min_width_major</item>
-        <item name="windowMinWidthMinor">@dimen/ads_dialog_min_width_minor</item>
         <item name="windowActionBar">false</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="listPreferredItemPaddingLeft">24dip</item>
@@ -1023,10 +1019,6 @@
         <item name="android:buttonBarStyle">@style/Widget.AppCompat.ButtonBar.AlertDialog</item>
         <item name="android:borderlessButtonStyle">@style/Widget.AppCompat.Button.Borderless</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
-        <item name="android:windowMinWidthMajor">@dimen/ads_dialog_min_width_major</item>
-        <item name="android:windowMinWidthMinor">@dimen/ads_dialog_min_width_minor</item>
-        <item name="windowMinWidthMajor">@dimen/ads_dialog_min_width_major</item>
-        <item name="windowMinWidthMinor">@dimen/ads_dialog_min_width_minor</item>
         <item name="windowActionBar">false</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="listPreferredItemPaddingLeft">24dip</item>
@@ -1049,10 +1041,6 @@
         <item name="android:buttonBarStyle">@style/Widget.AppCompat.ButtonBar.AlertDialog</item>
         <item name="android:borderlessButtonStyle">@style/Widget.AppCompat.Button.Borderless</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
-        <item name="android:windowMinWidthMajor">@dimen/ads_dialog_min_width_major</item>
-        <item name="android:windowMinWidthMinor">@dimen/ads_dialog_min_width_minor</item>
-        <item name="windowMinWidthMajor">@dimen/ads_dialog_min_width_major</item>
-        <item name="windowMinWidthMinor">@dimen/ads_dialog_min_width_minor</item>
         <item name="windowActionBar">false</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="listPreferredItemPaddingLeft">24dip</item>

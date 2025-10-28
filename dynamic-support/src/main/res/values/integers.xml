@@ -30,10 +30,6 @@
     <integer name="ads_config_anim_medium_duration">@android:integer/config_mediumAnimTime</integer>
     <integer name="ads_config_anim_long_duration">@android:integer/config_longAnimTime</integer>
 
-    <!-- Dialog -->
-    <item name="ads_dialog_min_width_major" type="dimen">65%</item>
-    <item name="ads_dialog_min_width_minor" type="dimen">95%</item>
-
     <!-- Alpha -->
     <item name="ads_alpha_shadow" type="integer" format="float">1.0</item>
     <item name="ads_alpha_pressed" type="integer" format="float">0.5</item>

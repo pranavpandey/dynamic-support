@@ -90,6 +90,8 @@
     <dimen name="ads_margin_splash_small">@dimen/ads_margin_regular</dimen>
 
     <!-- Dialog -->
+    <dimen name="ads_dialog_min_width">420dp</dimen>
+    <dimen name="ads_dialog_min_height">48dp</dimen>
     <dimen name="ads_dialog_margin">@dimen/ads_margin_regular</dimen>
     <dimen name="ads_dialog_margin_horizontal">24dp</dimen>
     <dimen name="ads_dialog_margin_horizontal_edit_text">@dimen/ads_dialog_margin_horizontal</dimen>

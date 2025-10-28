@@ -17,6 +17,9 @@
 
 <resources>
 
+    <!-- Dialog -->
+    <dimen name="ads_dialog_min_width">500dp</dimen>
+
     <!-- Popup -->
     <dimen name="ads_popup_max_width">400dp</dimen>
     <dimen name="ads_popup_max_width_large">500dp</dimen>

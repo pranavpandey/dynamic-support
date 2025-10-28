@@ -20,6 +20,9 @@
     <!-- Activity -->
     <dimen name="ads_margin_content_start">@dimen/ads_drawer_size</dimen>
 
+    <!-- Dialog -->
+    <dimen name="ads_dialog_min_width">600dp</dimen>
+
     <!-- Popup -->
     <dimen name="ads_popup_max_width">500dp</dimen>
     <dimen name="ads_popup_max_width_large">600dp</dimen>

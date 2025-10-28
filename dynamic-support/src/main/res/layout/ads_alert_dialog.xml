@@ -35,7 +35,8 @@
             android:id="@+id/contentPanel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="48dp">
+            android:minWidth="@dimen/ads_dialog_min_width"
+            android:minHeight="@dimen/ads_dialog_min_height">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -78,7 +79,8 @@
                     android:id="@+id/customPanel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="48dp">
+                    android:minWidth="@dimen/ads_dialog_min_width"
+                    android:minHeight="@dimen/ads_dialog_min_height">
 
                     <FrameLayout
                         android:id="@+id/custom"
