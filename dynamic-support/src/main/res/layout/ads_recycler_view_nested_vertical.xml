@@ -17,10 +17,7 @@
 
 <merge
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ads_recycler_view_root"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.pranavpandey.android.dynamic.support.widget.DynamicRecyclerView
         style="?attr/ads_widgetScrollerVertical"
