@@ -122,11 +122,11 @@ public class DynamicBottomSheet extends FrameLayout implements
                  * Fix extra peek height when using top inset for coordinator layout and
                  * dynamic bottom sheet behavior.
                  */
-                getBottomSheetBehavior().setPeekHeight(peek + (
-                        !DynamicWindowUtils.isNavigationBarPresent(getContext())
-                                && getBottomSheetBehavior() instanceof DynamicBottomSheetBehavior
-                                ? -insets.getInsets(WindowInsetsCompat.Type.systemBars()).top
-                                : insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom));
+                getBottomSheetBehavior().setPeekHeight(Math.max(peek, peek
+                        + (!DynamicWindowUtils.isNavigationBarPresent(getContext())
+                        && getBottomSheetBehavior() instanceof DynamicBottomSheetBehavior
+                        ? -insets.getInsets(WindowInsetsCompat.Type.systemBars()).top
+                        : insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom)));
 
                 return insets;
             }
