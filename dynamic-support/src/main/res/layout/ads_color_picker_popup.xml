@@ -43,6 +43,8 @@
             <com.pranavpandey.android.dynamic.support.widget.DynamicDividerExpressive
                 style="?attr/ads_widgetDividerLarge"
                 android:id="@+id/ads_color_picker_divider"
+                android:layout_marginTop="@dimen/ads_margin_tiny"
+                android:layout_marginBottom="@dimen/ads_margin_tiny"
                 app:adt_contrastWithColorType="surface"
                 app:adt_dynamicCornerSize="true" />
 
