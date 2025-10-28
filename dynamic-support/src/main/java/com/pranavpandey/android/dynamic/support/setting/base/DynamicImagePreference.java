@@ -203,7 +203,7 @@ public class DynamicImagePreference extends DynamicSpinnerPreference {
     public void setImageBitmap(@Nullable Bitmap imageBitmap, boolean update) {
         try {
             setImageDrawable(DynamicResourceUtils.getDrawable(getContext(),
-                    DynamicBitmapUtils.resizeBitmap(imageBitmap, Theme.Size.SMALL,
+                    DynamicBitmapUtils.resizeBitmapMax(imageBitmap, Theme.Size.SMALL,
                             Theme.Size.SMALL)), update);
         } catch (Exception e) {
             e.getStackTrace();
