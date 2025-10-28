@@ -116,8 +116,25 @@ public class DynamicLayoutUtils {
     @TargetApi(Build.VERSION_CODES.N)
     public static boolean isInMultiWindowMode(@NonNull Context context) {
         try {
-            return (DynamicSdkUtils.is24()
-                    && ((Activity) context).isInMultiWindowMode());
+            return DynamicSdkUtils.is24() && context instanceof Activity
+                    && ((Activity) context).isInMultiWindowMode();
+        } catch (Exception ignored) {
+            return false;
+        }
+    }
+
+    /**
+     * Checks whether the app is in picture-in-picture mode.
+     *
+     * @param context The context to get configuration.
+     *
+     * @return {@code true} if the app is in picture-in-picture mode.
+     */
+    @TargetApi(Build.VERSION_CODES.O)
+    public static boolean isInPictureInPictureMode(@NonNull Context context) {
+        try {
+            return DynamicSdkUtils.is26() && context instanceof Activity
+                    && ((Activity) context).isInPictureInPictureMode();
         } catch (Exception ignored) {
             return false;
         }
