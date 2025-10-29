@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
@@ -360,7 +361,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
             public void run() {
                 if (animate && DynamicMotion.getInstance().isMotion()) {
                     DynamicMotion.getInstance().beginDelayedTransition(
-                            DynamicRecyclerViewFrame.this);
+                            (ViewGroup) getViewParent());
                 }
 
                 Dynamic.setVisibility(mRecyclerView, GONE);
@@ -393,7 +394,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
             public void run() {
                 if (animate && DynamicMotion.getInstance().isMotion()) {
                     DynamicMotion.getInstance().beginDelayedTransition(
-                            DynamicRecyclerViewFrame.this);
+                            (ViewGroup) getViewParent());
                 }
 
                 Dynamic.setVisibility(mRecyclerView, VISIBLE);
@@ -446,7 +447,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
             public void run() {
                 if (animate && DynamicMotion.getInstance().isMotion()) {
                     DynamicMotion.getInstance().beginDelayedTransition(
-                            DynamicRecyclerViewFrame.this);
+                            (ViewGroup) getViewParent());
                 }
 
                 Dynamic.setVisibility(mProgressBar, VISIBLE);
@@ -479,7 +480,7 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
             public void run() {
                 if (animate && DynamicMotion.getInstance().isMotion()) {
                     DynamicMotion.getInstance().beginDelayedTransition(
-                            DynamicRecyclerViewFrame.this);
+                            (ViewGroup) getViewParent());
                 }
 
                 Dynamic.setVisibility(mProgressBar, GONE);
@@ -497,6 +498,17 @@ public abstract class DynamicRecyclerViewFrame extends FrameLayout {
         hideProgress(true);
     }
 
+    /**
+     * Returns the parent view for the root view.
+     *
+     * @return The parent for the root view.
+     *
+     * @see #getViewRoot()
+     */
+    public @Nullable View getViewParent() {
+        return getViewRoot() != null ? (View) getViewRoot().getParent() : null;
+    }
+    
     /**
      * Returns the root scrollable view for this frame layout.
      *
