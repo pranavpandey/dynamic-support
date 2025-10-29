@@ -131,7 +131,8 @@ public abstract class ThemeFragment<T extends AppTheme<?>> extends DynamicFragme
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        mFileResultLauncher = registerForActivityResult(
+        mFileResultLauncher = registerActivityResult(
+                REQUEST_THEME_LOCATION,
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
@@ -145,7 +146,8 @@ public abstract class ThemeFragment<T extends AppTheme<?>> extends DynamicFragme
                     }
                 });
 
-        mFileCodeResultLauncher = registerForActivityResult(
+        mFileCodeResultLauncher = registerActivityResult(
+                REQUEST_THEME_CODE_LOCATION,
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
@@ -159,7 +161,8 @@ public abstract class ThemeFragment<T extends AppTheme<?>> extends DynamicFragme
                     }
                 });
 
-        mFileImportResultLauncher = registerForActivityResult(
+        mFileImportResultLauncher = registerActivityResult(
+                REQUEST_THEME_IMPORT,
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
@@ -187,7 +190,8 @@ public abstract class ThemeFragment<T extends AppTheme<?>> extends DynamicFragme
                     }
                 });
 
-        mFileCaptureResultLauncher = registerForActivityResult(
+        mFileCaptureResultLauncher = registerActivityResult(
+                REQUEST_THEME_CAPTURE,
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
                     @Override

@@ -32,6 +32,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
 import androidx.annotation.CallSuper;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -329,6 +332,30 @@ public class DynamicFragment extends Fragment implements DynamicProductFlavor,
     @Override
     public @Nullable TextWatcher getTextWatcher() {
         return null;
+    }
+
+    /**
+     * Registers an {@link ActivityResultContract} using the activity's registry for stability
+     * and the fragment's stable lifecycle (this) for correct scoping.
+     *
+     * @param uniqueId A unique, static final integer used to generate the stable key
+     *                 for the launcher. This value {@code MUST} be a constant within the
+     *                 calling fragment for state restoration to work after configuration changes.
+     * @param contract The ActivityResultContract defining input and output types.
+     * @param callback The callback to execute when the result is returned.
+     *
+     * @return The configured {@link ActivityResultLauncher} instance.
+     */
+    public final @Nullable <I, O> ActivityResultLauncher<I> registerActivityResult(
+            int uniqueId, @NonNull final ActivityResultContract<I, O> contract,
+            @NonNull final ActivityResultCallback<O> callback) {
+        if (getActivity() == null) {
+            return null;
+        }
+
+        return requireActivity().getActivityResultRegistry().register(
+                getClass().getSimpleName() + "_" + Integer.toString(uniqueId),
+                this, contract, callback);
     }
 
     /**

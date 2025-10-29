@@ -142,7 +142,8 @@ public class DynamicPermissionsFragment extends DynamicFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        mPermissionsResultLauncher = registerForActivityResult(
+        mPermissionsResultLauncher = registerActivityResult(
+                ADS_PERMISSIONS_REQUEST_CODE,
                 new ActivityResultContracts.RequestMultiplePermissions(),
                 new ActivityResultCallback<Map<String, Boolean>>() {
                     @Override

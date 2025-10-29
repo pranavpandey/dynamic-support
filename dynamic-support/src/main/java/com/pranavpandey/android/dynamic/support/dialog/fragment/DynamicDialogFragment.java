@@ -28,6 +28,9 @@ import android.os.Parcelable;
 import android.view.KeyEvent;
 import android.view.View;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
 import androidx.annotation.ColorInt;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -41,11 +44,11 @@ import androidx.preference.PreferenceManager;
 import com.pranavpandey.android.dynamic.support.Dynamic;
 import com.pranavpandey.android.dynamic.support.activity.DynamicSystemActivity;
 import com.pranavpandey.android.dynamic.support.dialog.DynamicDialog;
-import com.pranavpandey.android.dynamic.util.product.DynamicProductFlavor;
 import com.pranavpandey.android.dynamic.support.theme.DynamicTheme;
 import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 import com.pranavpandey.android.dynamic.util.DynamicSdkUtils;
 import com.pranavpandey.android.dynamic.util.product.DynamicFlavor;
+import com.pranavpandey.android.dynamic.util.product.DynamicProductFlavor;
 
 /**
  * Base dialog fragment to provide all the functionality of {@link DynamicDialog} inside a
@@ -239,6 +242,30 @@ public class DynamicDialogFragment extends AppCompatDialogFragment
     @Override
     public @DynamicFlavor String getProductFlavor() {
         return DynamicTheme.getInstance().getProductFlavor();
+    }
+
+    /**
+     * Registers an {@link ActivityResultContract} using the activity's registry for stability
+     * and the fragment's stable lifecycle (this) for correct scoping.
+     *
+     * @param uniqueId A unique, static final integer used to generate the stable key
+     *                 for the launcher. This value {@code MUST} be a constant within the
+     *                 calling fragment for state restoration to work after configuration changes.
+     * @param contract The ActivityResultContract defining input and output types.
+     * @param callback The callback to execute when the result is returned.
+     *
+     * @return The configured {@link ActivityResultLauncher} instance.
+     */
+    public final @Nullable <I, O> ActivityResultLauncher<I> registerActivityResult(
+            int uniqueId, @NonNull final ActivityResultContract<I, O> contract,
+            @NonNull final ActivityResultCallback<O> callback) {
+        if (getActivity() == null) {
+            return null;
+        }
+
+        return requireActivity().getActivityResultRegistry().register(
+                getClass().getSimpleName() + "_" + Integer.toString(uniqueId),
+                this, contract, callback);
     }
 
     /**
