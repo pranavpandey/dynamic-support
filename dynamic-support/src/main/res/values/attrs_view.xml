@@ -202,6 +202,8 @@
 
     <!-- Attributes for the DynamicCheckPreference. -->
     <declare-styleable name="DynamicCheckPreference">
+        <!-- true to use switch instead of check box. -->
+        <attr name="ads_switch" format="boolean" />
         <!-- true to make this preference checked by default. -->
         <attr name="ads_checked" format="boolean|reference" />
         <!-- Optional summary to show if the preference is in the unchecked state. -->

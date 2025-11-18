@@ -508,8 +508,10 @@
     <!-- The theme preview header status bar style. -->
     <attr name="ads_widgetThemePreviewHeaderStatusBar" format="reference" />
 
-    <!-- The switch layout resource for check preference. -->
+    <!-- The check box layout resource for check preference. -->
     <attr name="ads_layoutPreferenceCheck" format="reference" />
+    <!-- The switch layout resource for check preference. -->
+    <attr name="ads_layoutPreferenceSwitch" format="reference" />
 
     <!-- The app widget style. -->
     <attr name="ads_appWidget" format="reference" />

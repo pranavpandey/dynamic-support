@@ -39,9 +39,19 @@ import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 public class DynamicCheckPreference extends DynamicSimplePreference {
 
     /**
+     * Default value for the check box layout.
+     */
+    public static final boolean DEFAULT_SWITCH = true;
+
+    /**
      * Default value for the checked state.
      */
     public static final boolean DEFAULT_CHECK_STATE = false;
+
+    /**
+     * {@code true} to use switch instead of check box.
+     */
+    private boolean mSwitch;
 
     /**
      * {@code true} if this preference is checked.
@@ -84,6 +94,9 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
                 R.styleable.DynamicCheckPreference);
 
         try {
+            mSwitch = a.getBoolean(
+                    R.styleable.DynamicCheckPreference_ads_switch,
+                    DEFAULT_SWITCH);
             mChecked = a.getBoolean(
                     R.styleable.DynamicCheckPreference_ads_checked,
                     DEFAULT_CHECK_STATE);
@@ -98,10 +111,17 @@ public class DynamicCheckPreference extends DynamicSimplePreference {
     protected void onInflate() {
         super.onInflate();
 
-        mCompoundButton = LayoutInflater.from(getContext()).inflate(
-                DynamicResourceUtils.getResourceId(getContext(),
-                        R.attr.ads_layoutPreferenceCheck), getViewFrame(), true)
-                .findViewById(R.id.ads_preference_check_switch);
+        if (mSwitch) {
+            mCompoundButton = LayoutInflater.from(getContext()).inflate(
+                    DynamicResourceUtils.getResourceId(getContext(),
+                            R.attr.ads_layoutPreferenceSwitch), getViewFrame(), true)
+                    .findViewById(R.id.ads_preference_check_switch);
+        } else {
+            mCompoundButton = LayoutInflater.from(getContext()).inflate(
+                    DynamicResourceUtils.getResourceId(getContext(),
+                            R.attr.ads_layoutPreferenceCheck), getViewFrame(), true)
+                    .findViewById(R.id.ads_preference_check_box);
+        }
         setViewFrame(mCompoundButton, true);
 
         setOnPreferenceClickListener(new OnClickListener() {

@@ -295,6 +295,7 @@
         <item name="ads_widgetThemePreviewHeaderRemote">@style/Widget.Dynamic.Theme.Preview.Header.Remote</item>
         <item name="ads_widgetThemePreviewHeaderStatusBar">@style/Widget.Dynamic.Theme.Preview.Header.StatusBar</item>
         <item name="ads_layoutPreferenceCheck">@layout/ads_preference_check</item>
+        <item name="ads_layoutPreferenceSwitch">@layout/ads_preference_switch</item>
         <item name="ads_appWidget">@style/AppWidget.Dynamic</item>
         <item name="ads_appWidgetTextAppearance">@style/AppWidget.Dynamic.TextAppearance</item>
         <item name="ads_appWidgetTextAppearanceTitle">@style/AppWidget.Dynamic.TextAppearance.Title</item>
@@ -602,6 +603,7 @@
         <item name="ads_widgetThemePreviewHeaderRemote">@style/Widget.Dynamic.Theme.Preview.Header.Remote</item>
         <item name="ads_widgetThemePreviewHeaderStatusBar">@style/Widget.Dynamic.Theme.Preview.Header.StatusBar</item>
         <item name="ads_layoutPreferenceCheck">@layout/ads_preference_check</item>
+        <item name="ads_layoutPreferenceSwitch">@layout/ads_preference_switch</item>
         <item name="ads_appWidget">@style/AppWidget.Dynamic</item>
         <item name="ads_appWidgetTextAppearance">@style/AppWidget.Dynamic.TextAppearance</item>
         <item name="ads_appWidgetTextAppearanceTitle">@style/AppWidget.Dynamic.TextAppearance.Title</item>
@@ -903,6 +905,7 @@
         <item name="ads_widgetThemePreviewHeaderRemote">@style/Widget.Dynamic.Theme.Preview.Header.Remote</item>
         <item name="ads_widgetThemePreviewHeaderStatusBar">@style/Widget.Dynamic.Theme.Preview.Header.StatusBar</item>
         <item name="ads_layoutPreferenceCheck">@layout/ads_preference_check</item>
+        <item name="ads_layoutPreferenceSwitch">@layout/ads_preference_switch</item>
         <item name="ads_appWidget">@style/AppWidget.Dynamic</item>
         <item name="ads_appWidgetTextAppearance">@style/AppWidget.Dynamic.TextAppearance</item>
         <item name="ads_appWidgetTextAppearanceTitle">@style/AppWidget.Dynamic.TextAppearance.Title</item>
