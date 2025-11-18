@@ -677,7 +677,7 @@ public class DynamicSeekBarPreference extends DynamicSpinnerPreference {
         if (getPreferenceValueView() != null) {
             if (getUnit() != null) {
                 setTextView(getPreferenceValueView(), String.format(
-                        getContext().getString(R.string.ads_format_blank_space),
+                        getContext().getString(R.string.ads_format_join),
                         String.valueOf(actualValue), getUnit()));
             } else {
                 setTextView(getPreferenceValueView(), String.valueOf(actualValue));
