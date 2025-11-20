@@ -60,6 +60,14 @@
         <item>@string/ads_theme_entry_disable</item>
     </string-array>
 
+    <!-- Entries for the dynamic theme suitable for game. -->
+    <string-array name="ads_dynamic_theme_entries_alt">
+        <item>@string/ads_theme_entry_auto</item>
+        <item>@string/ads_theme_entry_value_alt</item>
+        <item>@string/ads_theme_entry_data</item>
+        <item>@string/ads_theme_entry_disable</item>
+    </string-array>
+
     <!-- Values for the dynamic theme. -->
     <string-array name="ads_dynamic_theme_values">
         <!-- Auto -->

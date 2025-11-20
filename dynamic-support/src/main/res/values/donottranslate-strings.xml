@@ -84,6 +84,7 @@
     <string name="ads_theme_entry_app">@string/ads_app</string>
     <string name="ads_theme_entry_game">@string/ads_game</string>
     <string name="ads_theme_entry_value">@string/ads_app</string>
+    <string name="ads_theme_entry_value_alt">@string/ads_game</string>
     <string name="ads_theme_entry_data">@string/ads_data</string>
     <string name="ads_theme_entry_disable">@string/ads_disable</string>
 
