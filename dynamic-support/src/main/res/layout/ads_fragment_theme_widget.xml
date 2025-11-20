@@ -317,7 +317,7 @@
                         app:ads_entries="@array/ads_background_aware_entries"
                         app:ads_values="@array/ads_background_aware_values" />
 
-                    <com.pranavpandey.android.dynamic.support.setting.DynamicSliderFloat
+                    <com.pranavpandey.android.dynamic.support.setting.DynamicSliderRatio
                         android:id="@+id/ads_pref_theme_contrast"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

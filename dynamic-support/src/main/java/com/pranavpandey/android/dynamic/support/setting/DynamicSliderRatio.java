@@ -26,19 +26,19 @@ import androidx.annotation.Nullable;
 import com.pranavpandey.android.dynamic.support.R;
 
 /**
- * A {@link DynamicSliderValue} to display value as {@code float} up to two decimal places.
+ * A {@link DynamicSliderValue} to display value as {@code ratio} against 1.
  */
-public class DynamicSliderFloat extends DynamicSliderValue {
+public class DynamicSliderRatio extends DynamicSliderValue {
 
-    public DynamicSliderFloat(@NonNull Context context) {
+    public DynamicSliderRatio(@NonNull Context context) {
         super(context);
     }
 
-    public DynamicSliderFloat(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DynamicSliderRatio(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DynamicSliderFloat(@NonNull Context context,
+    public DynamicSliderRatio(@NonNull Context context,
             @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
@@ -46,7 +46,28 @@ public class DynamicSliderFloat extends DynamicSliderValue {
     @Override
     protected @Nullable CharSequence onCustomizeValueString(@Nullable CharSequence valueString,
             int progress, float value, @Nullable CharSequence unit) {
-        return getContext() == null ? valueString : String.format(getContext().getString(
-                R.string.ads_format_float_two), value / getMaxValue());
+        return getContext() == null ? valueString : String.format(
+                getContext().getString(R.string.ads_format_ratio), String.format(
+                        getValueFormat(), (value / getMaxValue()) * getValueMultiplier()));
+    }
+
+    /**
+     * Returns the format for the value.
+     *
+     * @return The format for the value.
+     *
+     * @see R.string#ads_format_float
+     */
+    public @NonNull String getValueFormat() {
+        return getContext().getString(R.string.ads_format_float);
+    }
+
+    /**
+     * Returns the value multiple to reduce decimal places.
+     *
+     * @return The value multiple to reduce decimal places.
+     */
+    public double getValueMultiplier() {
+        return 10;
     }
 }
