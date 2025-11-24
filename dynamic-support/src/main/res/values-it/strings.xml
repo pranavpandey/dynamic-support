@@ -215,6 +215,8 @@
     <string name="ads_theme_design">Progetto</string>
     <string name="ads_theme_app">Motivo app</string>
     <string name="ads_theme_app_summary">Stile dell\'app.</string>
+    <string name="ads_theme_app_alt">Tema del gioco</string>
+    <string name="ads_theme_app_summary_alt">Stile del gioco.</string>
     <string name="ads_theme_app_desc">Scegli automatico per usare motivi diurno e notturno.</string>
     <string name="ads_theme_app_day">Motivo diurno</string>
     <string name="ads_theme_app_day_summary">Stile dell\'app durante il giorno.</string>

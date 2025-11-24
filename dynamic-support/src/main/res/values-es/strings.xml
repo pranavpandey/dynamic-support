@@ -215,6 +215,8 @@
     <string name="ads_theme_design">Diseño</string>
     <string name="ads_theme_app">Tema de la aplicación</string>
     <string name="ads_theme_app_summary">Estilo de la aplicación.</string>
+    <string name="ads_theme_app_alt">Tema del juego</string>
+    <string name="ads_theme_app_summary_alt">Estilo del juego.</string>
     <string name="ads_theme_app_desc">Selecciona auto para usar los temas diurno y nocturno.</string>
     <string name="ads_theme_app_day">Tema diurno</string>
     <string name="ads_theme_app_day_summary">Estilo de la aplicación durante el día.</string>

@@ -215,6 +215,8 @@
     <string name="ads_theme_design">डिज़ाइन</string>
     <string name="ads_theme_app">ऐप का रंग-रूप</string>
     <string name="ads_theme_app_summary">ऐप का स्टाइल।</string>
+    <string name="ads_theme_app_alt">गेम थीम</string>
+    <string name="ads_theme_app_summary_alt">गेम का स्टाइल।</string>
     <string name="ads_theme_app_desc">दिन और रात के रंग-रूप उपयोग लेने के लिए \"ऑटो\" चुनें।</string>
     <string name="ads_theme_app_day">दिन के रंग-रूप</string>
     <string name="ads_theme_app_day_summary">दिन में आप का स्टाइल।</string>

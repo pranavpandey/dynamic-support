@@ -215,6 +215,8 @@
     <string name="ads_theme_design">Projeto</string>
     <string name="ads_theme_app">Tema do app</string>
     <string name="ads_theme_app_summary">Estilo do app.</string>
+    <string name="ads_theme_app_alt">Tema do jogo</string>
+    <string name="ads_theme_app_summary_alt">Estilo do jogo.</string>
     <string name="ads_theme_app_desc">Selecione automático para usar os temas dia e noite.</string>
     <string name="ads_theme_app_day">Tema dia</string>
     <string name="ads_theme_app_day_summary">Estilo do app durante o dia.</string>

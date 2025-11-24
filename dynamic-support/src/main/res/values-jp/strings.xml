@@ -215,6 +215,8 @@
     <string name="ads_theme_design">デザイン</string>
     <string name="ads_theme_app">アプリのテーマ</string>
     <string name="ads_theme_app_summary">アプリのスタイル。</string>
+    <string name="ads_theme_app_alt">ゲームのテーマ</string>
+    <string name="ads_theme_app_summary_alt">ゲームのスタイル。</string>
     <string name="ads_theme_app_desc">「自動」を選択して、昼と夜のテーマを使用します。</string>
     <string name="ads_theme_app_day">昼のテーマ</string>
     <string name="ads_theme_app_day_summary">昼間のアプリのスタイル。</string>

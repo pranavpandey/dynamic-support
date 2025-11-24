@@ -215,6 +215,8 @@
     <string name="ads_theme_design">디자인</string>
     <string name="ads_theme_app">앱 테마</string>
     <string name="ads_theme_app_summary">앱의 스타일입니다.</string>
+    <string name="ads_theme_app_alt">게임 테마</string>
+    <string name="ads_theme_app_summary_alt">게임 스타일.</string>
     <string name="ads_theme_app_desc">자동을 선택하여 주간 및 야간 테마를 사용합니다.</string>
     <string name="ads_theme_app_day">주간 테마</string>
     <string name="ads_theme_app_day_summary">주간 앱의 스타일입니다.</string>

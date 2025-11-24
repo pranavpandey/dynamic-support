@@ -215,6 +215,8 @@
     <string name="ads_theme_design">設計</string>
     <string name="ads_theme_app">應用程式主題</string>
     <string name="ads_theme_app_summary">應用程式的樣式</string>
+    <string name="ads_theme_app_alt">遊戲主題</string>
+    <string name="ads_theme_app_summary_alt">遊戲風格</string>
     <string name="ads_theme_app_desc">選取自動使用日間和夜間主題。</string>
     <string name="ads_theme_app_day">日間主題</string>
     <string name="ads_theme_app_day_summary">應用程式在日間的主題</string>

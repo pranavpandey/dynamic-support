@@ -215,6 +215,8 @@
     <string name="ads_theme_design">Desain</string>
     <string name="ads_theme_app">Tema aplikasi</string>
     <string name="ads_theme_app_summary">Gaya aplikasi.</string>
+    <string name="ads_theme_app_alt">Tema permainan</string>
+    <string name="ads_theme_app_summary_alt">Gaya permainan.</string>
     <string name="ads_theme_app_desc">Pilih otomatis untuk menggunakan tema siang dan malam.</string>
     <string name="ads_theme_app_day">Tema siang</string>
     <string name="ads_theme_app_day_summary">Gaya aplikasi ketika siang.</string>

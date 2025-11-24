@@ -215,6 +215,8 @@
     <string name="ads_theme_design">Дизайн</string>
     <string name="ads_theme_app">Тема приложения</string>
     <string name="ads_theme_app_summary">Стиль приложения.</string>
+    <string name="ads_theme_app_alt">Тема игры</string>
+    <string name="ads_theme_app_summary_alt">Стиль игры.</string>
     <string name="ads_theme_app_desc">Выберите авто, чтобы использовать дневную и ночную темы.</string>
     <string name="ads_theme_app_day">Дневная тема</string>
     <string name="ads_theme_app_day_summary">Стиль приложения в течение дня.</string>
