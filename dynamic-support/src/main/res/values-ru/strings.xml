@@ -65,6 +65,7 @@
     <string name="ads_select">Выбрать</string>
     <string name="ads_copy">Копировать</string>
     <string name="ads_save">Сохранить</string>
+    <string name="ads_print">Печать</string>
     <string name="ads_load">Загрузить</string>
     <string name="ads_download">Скачать</string>
     <string name="ads_import">Импортировать</string>

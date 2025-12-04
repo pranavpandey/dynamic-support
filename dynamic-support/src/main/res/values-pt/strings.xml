@@ -65,6 +65,7 @@
     <string name="ads_select">Selecionar</string>
     <string name="ads_copy">Copiar</string>
     <string name="ads_save">Salvar</string>
+    <string name="ads_print">Imprimir</string>
     <string name="ads_load">Carregar</string>
     <string name="ads_download">Download</string>
     <string name="ads_import">Importar</string>

@@ -65,6 +65,7 @@
     <string name="ads_select">选择</string>
     <string name="ads_copy">复制</string>
     <string name="ads_save">保存</string>
+    <string name="ads_print">打印</string>
     <string name="ads_load">加载</string>
     <string name="ads_download">下载</string>
     <string name="ads_import">入口</string>

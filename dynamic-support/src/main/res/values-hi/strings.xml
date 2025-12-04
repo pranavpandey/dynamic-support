@@ -65,6 +65,7 @@
     <string name="ads_select">चुनें</string>
     <string name="ads_copy">कौपी करें</string>
     <string name="ads_save">सेव करें</string>
+    <string name="ads_print">छाप</string>
     <string name="ads_load">लोड करें</string>
     <string name="ads_download">डाउनलोड करें</string>
     <string name="ads_import">आयात करें</string>

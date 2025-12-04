@@ -65,6 +65,7 @@
     <string name="ads_select">선택</string>
     <string name="ads_copy">복사</string>
     <string name="ads_save">저장</string>
+    <string name="ads_print">인쇄</string>
     <string name="ads_load">불러오기</string>
     <string name="ads_download">다운로드</string>
     <string name="ads_import">가져오기</string>

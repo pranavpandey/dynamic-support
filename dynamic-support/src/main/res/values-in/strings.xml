@@ -65,6 +65,7 @@
     <string name="ads_select">Pilih</string>
     <string name="ads_copy">Salin</string>
     <string name="ads_save">Simpan</string>
+    <string name="ads_print">Mencetak</string>
     <string name="ads_load">Muat</string>
     <string name="ads_download">Unduh</string>
     <string name="ads_import">Impor</string>
