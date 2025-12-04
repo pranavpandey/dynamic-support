@@ -317,6 +317,13 @@
     <string name="ads_picker_size_large">Большой</string>
     <string name="ads_picker_size_info">Значение ширины и высоты.</string>
 
+    <!-- Preview -->
+    <string name="ads_preview_hint">Сохраните или поделитесь предпросмотром.</string>
+    <string name="ads_preview_format_saved">Предпросмотр сохранен: %1$s</string>
+    <string name="ads_preview_data_copy_done">Данные успешно скопированы.</string>
+    <string name="ads_preview_export_error">Не удалось сохранить предпросмотр.</string>
+    <string name="ads_preview_share_error">Не удалось поделиться предпросмотром.</string>
+
     <!-- Miscellaneous -->
     <string name="ads_language">Язык</string>
     <string name="ads_language_summary">Язык, используемый приложением.</string>

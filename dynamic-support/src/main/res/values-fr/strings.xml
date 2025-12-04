@@ -317,6 +317,13 @@
     <string name="ads_picker_size_large">Grand</string>
     <string name="ads_picker_size_info">Valeur pour la largeur et la hauteur.</string>
 
+    <!-- Preview -->
+    <string name="ads_preview_hint">Enregistrez ou partagez l\'aperçu.</string>
+    <string name="ads_preview_format_saved">Aperçu enregistré : %1$s</string>
+    <string name="ads_preview_data_copy_done">Données copiées avec succès.</string>
+    <string name="ads_preview_export_error">Impossible d\'enregistrer l\'aperçu.</string>
+    <string name="ads_preview_share_error">Impossible de partager l\'aperçu.</string>
+
     <!-- Miscellaneous -->
     <string name="ads_language">Langue</string>
     <string name="ads_language_summary">Langue utilisée par l\'application.</string>

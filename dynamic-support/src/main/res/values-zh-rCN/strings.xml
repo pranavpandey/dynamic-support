@@ -317,6 +317,13 @@
     <string name="ads_picker_size_large">大的</string>
     <string name="ads_picker_size_info">宽度和高度的值。</string>
 
+    <!-- Preview -->
+    <string name="ads_preview_hint">保存或分享预览。</string>
+    <string name="ads_preview_format_saved">预览已保存：%1$s</string>
+    <string name="ads_preview_data_copy_done">数据已成功复制。</string>
+    <string name="ads_preview_export_error">无法保存预览。</string>
+    <string name="ads_preview_share_error">无法分享预览。</string>
+
     <!-- Miscellaneous -->
     <string name="ads_language">语言</string>
     <string name="ads_language_summary">应用程序使用的语言。</string>

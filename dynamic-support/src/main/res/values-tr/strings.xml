@@ -317,6 +317,13 @@
     <string name="ads_picker_size_large">Büyük</string>
     <string name="ads_picker_size_info">Genişlik ve yükseklik için değer.</string>
 
+    <!-- Preview -->
+    <string name="ads_preview_hint">Önizlemeyi kaydedin veya paylaşın.</string>
+    <string name="ads_preview_format_saved">Önizleme kaydedildi: %1$s</string>
+    <string name="ads_preview_data_copy_done">Veri başarıyla kopyalandı.</string>
+    <string name="ads_preview_export_error">Önizleme kaydedilemedi.</string>
+    <string name="ads_preview_share_error">Önizleme paylaşılamadı.</string>
+
     <!-- Miscellaneous -->
     <string name="ads_language">Dil</string>
     <string name="ads_language_summary">Uygulama tarafından kullanılan dil.</string>

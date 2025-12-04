@@ -317,6 +317,12 @@
     <string name="ads_picker_size_large">बड़ा</string>
     <string name="ads_picker_size_info">चौड़ाई और लंबाई के लिए मान।</string>
 
+    <!-- Preview -->
+    <string name="ads_preview_hint">पूर्वावलोकन को सहेजें या साझा करें।</string>
+    <string name="ads_preview_format_saved">पूर्वावलोकन सहेजा गया: %1$s</string>
+    <string name="ads_preview_data_copy_done">डेटा सफलतापूर्वक कॉपी किया गया।</string>
+    <string name="ads_preview_export_error">पूर्वावलोकन को सहेजने में असमर्थ।</string>
+    <string name="ads_preview_share_error">पूर्वावलोकन को साझा करने में असमर्थ।</string>
 
     <!-- Miscellaneous -->
     <string name="ads_language">भाषा</string>

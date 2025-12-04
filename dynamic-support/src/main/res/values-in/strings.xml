@@ -317,6 +317,13 @@
     <string name="ads_picker_size_large">Besar</string>
     <string name="ads_picker_size_info">Nilai untuk lebar dan tinggi.</string>
 
+    <!-- Preview -->
+    <string name="ads_preview_hint">Simpan atau bagikan pratinjau.</string>
+    <string name="ads_preview_format_saved">Pratinjau tersimpan: %1$s</string>
+    <string name="ads_preview_data_copy_done">Data berhasil disalin.</string>
+    <string name="ads_preview_export_error">Tidak dapat menyimpan pratinjau.</string>
+    <string name="ads_preview_share_error">Tidak dapat membagikan pratinjau.</string>
+
     <!-- Miscellaneous -->
     <string name="ads_language">Bahasa</string>
     <string name="ads_language_summary">Bahasa yang digunakan aplikasi.</string>

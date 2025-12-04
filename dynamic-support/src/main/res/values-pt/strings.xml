@@ -317,6 +317,13 @@
     <string name="ads_picker_size_large">Grande</string>
     <string name="ads_picker_size_info">Valor para largura e altura.</string>
 
+    <!-- Preview -->
+    <string name="ads_preview_hint">Salve ou compartilhe a prévia.</string>
+    <string name="ads_preview_format_saved">Prévia salva: %1$s</string>
+    <string name="ads_preview_data_copy_done">Dados copiados com sucesso.</string>
+    <string name="ads_preview_export_error">Não foi possível salvar a prévia.</string>
+    <string name="ads_preview_share_error">Não foi possível compartilhar a prévia.</string>
+
     <!-- Miscellaneous -->
     <string name="ads_language">Idioma</string>
     <string name="ads_language_summary">Idioma usado pelo app.</string>

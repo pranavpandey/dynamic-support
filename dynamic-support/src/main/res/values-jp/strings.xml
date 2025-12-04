@@ -317,6 +317,13 @@
     <string name="ads_picker_size_large">大</string>
     <string name="ads_picker_size_info">幅と高さの値。</string>
 
+    <!-- Preview -->
+    <string name="ads_preview_hint">プレビューを保存または共有します。</string>
+    <string name="ads_preview_format_saved">プレビューを保存しました: %1$s</string>
+    <string name="ads_preview_data_copy_done">データが正常にコピーされました。</string>
+    <string name="ads_preview_export_error">プレビューを保存できません。</string>
+    <string name="ads_preview_share_error">プレビューを共有できません。</string>
+
     <!-- Miscellaneous -->
     <string name="ads_language">言語</string>
     <string name="ads_language_summary">アプリで使用される言語。</string>

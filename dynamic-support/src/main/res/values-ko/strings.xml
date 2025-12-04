@@ -317,6 +317,13 @@
     <string name="ads_picker_size_large">크게</string>
     <string name="ads_picker_size_info">너비 및 높이 값.</string>
 
+    <!-- Preview -->
+    <string name="ads_preview_hint">미리보기를 저장하거나 공유하세요.</string>
+    <string name="ads_preview_format_saved">미리보기 저장됨: %1$s</string>
+    <string name="ads_preview_data_copy_done">데이터를 성공적으로 복사했습니다.</string>
+    <string name="ads_preview_export_error">미리보기를 저장할 수 없습니다.</string>
+    <string name="ads_preview_share_error">미리보기를 공유할 수 없습니다.</string>
+
     <!-- Miscellaneous -->
     <string name="ads_language">언어</string>
     <string name="ads_language_summary">앱에서 사용되는 언어입니다.</string>

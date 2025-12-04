@@ -317,6 +317,13 @@
     <string name="ads_picker_size_large">Groß</string>
     <string name="ads_picker_size_info">Wert für Breite und Höhe.</string>
 
+    <!-- Preview -->
+    <string name="ads_preview_hint">Speichere oder teile die Vorschau.</string>
+    <string name="ads_preview_format_saved">Vorschau gespeichert: %1$s</string>
+    <string name="ads_preview_data_copy_done">Daten erfolgreich kopiert.</string>
+    <string name="ads_preview_export_error">Vorschau konnte nicht gespeichert werden.</string>
+    <string name="ads_preview_share_error">Vorschau konnte nicht geteilt werden.</string>
+
     <!-- Miscellaneous -->
     <string name="ads_language">Sprache</string>
     <string name="ads_language_summary">In dieser App genutzte Sprache.</string>

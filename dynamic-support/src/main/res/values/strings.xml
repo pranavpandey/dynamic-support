@@ -317,6 +317,13 @@
     <string name="ads_picker_size_large">Large</string>
     <string name="ads_picker_size_info">Value for the width and height.</string>
 
+    <!-- Preview -->
+    <string name="ads_preview_hint">Save or share the preview.</string>
+    <string name="ads_preview_format_saved">Preview saved: %1$s</string>
+    <string name="ads_preview_data_copy_done">Data copied successfully.</string>
+    <string name="ads_preview_export_error">Unable to save preview.</string>
+    <string name="ads_preview_share_error">Unable to share preview.</string>
+
     <!-- Miscellaneous -->
     <string name="ads_language">Language</string>
     <string name="ads_language_summary">Language used by the app.</string>
