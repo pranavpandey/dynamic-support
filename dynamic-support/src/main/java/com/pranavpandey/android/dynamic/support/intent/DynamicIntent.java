@@ -86,6 +86,12 @@ public class DynamicIntent {
             "com.pranavpandey.android.dynamic.support.intent.action.THEME_SHARE";
 
     /**
+     * Constant for the dynamic preview action.
+     */
+    public static final String ACTION_PREVIEW =
+            "com.pranavpandey.android.dynamic.support.intent.action.THEME_PREVIEW";
+
+    /**
      * Constant for dynamic permission request.
      */
     public static final int REQUEST_PERMISSIONS = -1;

@@ -626,6 +626,14 @@ public abstract class ThemeFragment<T extends AppTheme<?>> extends DynamicFragme
                             getShareTitle() != null ? getShareTitle() : null,
                             DynamicThemeUtils.getThemeUrl(getThemeListener().getThemePreview()
                                     .getDynamicTheme()), result.getData(), Theme.MIME);
+                } else if (getThemeAction() == Theme.Action.SHARE) {
+                    startActivity(DynamicIntent.getThemeShareIntent(requireActivity(),
+                            DynamicTheme.getInstance().getPreviewActivity(),
+                            DynamicIntent.ACTION_PREVIEW,
+                            getThemeListener().getThemePreview().getDynamicTheme().toJsonString(),
+                            getThemeListener().getThemePreview().getDynamicThemeType(),
+                            getThemeListener().getThemePreview().getDynamicTheme().getThemeData(),
+                            result.getData()));
                 } else if (getThemeAction() == Theme.Action.SHARE_CODE) {
                     startActivity(DynamicIntent.getThemeShareIntent(requireActivity(),
                             DynamicTheme.getInstance().getPreviewActivity(),
