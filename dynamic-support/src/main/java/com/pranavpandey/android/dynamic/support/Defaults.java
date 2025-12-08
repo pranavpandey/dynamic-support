@@ -108,7 +108,7 @@ public class Defaults {
     /**
      * Default alpha for the backdrop view.
      */
-    public static final float ADS_ALPHA_BACKDROP = 0.4f;
+    public static final float ADS_ALPHA_BACKDROP = 0.3f;
 
     /**
      * Default alpha for the disabled state.
