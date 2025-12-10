@@ -19,11 +19,14 @@ package com.pranavpandey.android.dynamic.support.activity;
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import com.pranavpandey.android.dynamic.support.R;
 import com.pranavpandey.android.dynamic.support.intent.DynamicIntent;
+import com.pranavpandey.android.dynamic.support.util.DynamicResourceUtils;
 
 /**
  * A {@link DynamicActivity} to configure widgets having basic configuration methods.
@@ -45,24 +48,26 @@ public abstract class DynamicWidgetActivity extends DynamicActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Set the result to CANCELED. This will cause the widget host to cancel
-        // out of the widget placement if they press the back button.
         setResult(RESULT_CANCELED);
 
-        // Find the widget id from the intent.
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        if (extras != null) {
+        Bundle extras;
+        if ((extras = getIntent().getExtras()) != null) {
             mAppWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID,
                     AppWidgetManager.INVALID_APPWIDGET_ID);
-            mUpdateWidget = extras.getBoolean(
-                    DynamicIntent.EXTRA_WIDGET_UPDATE, false);
+            mUpdateWidget = extras.getBoolean(DynamicIntent.EXTRA_WIDGET_UPDATE);
+
+            setNavigationIcon(getDefaultNavigationIcon());
         }
 
-        // If they gave us an intent without the widget id, just bail.
         if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
             finishActivity();
         }
+    }
+
+    @Override
+    protected @Nullable Drawable getDefaultNavigationIcon() {
+        return mUpdateWidget ? super.getDefaultNavigationIcon()
+                : DynamicResourceUtils.getDrawable(getContext(), R.drawable.ads_ic_close);
     }
 
     /**
@@ -72,7 +77,6 @@ public abstract class DynamicWidgetActivity extends DynamicActivity {
      */
     public void addWidget(boolean finishActivity) {
         if (!mUpdateWidget) {
-            // Make sure we pass back the original appWidgetId.
             Intent resultValue = new Intent();
             resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
 
