@@ -16,16 +16,21 @@
 
 package com.pranavpandey.android.dynamic.support.factory;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
+import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 /**
  * A customisable {@link RemoteViewsService.RemoteViewsFactory} to provide basic functionality.
  * <p>Extend it and implement necessary methods according to the requirements.
  */
+@TargetApi(Build.VERSION_CODES.S)
 public abstract class DynamicRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
     /**
@@ -184,5 +189,28 @@ public abstract class DynamicRemoteViewsFactory implements RemoteViewsService.Re
     @Override
     public void onDataSetChanged() {
         onInitialize();
+    }
+
+    /**
+     * Try to build {@link RemoteViews.RemoteCollectionItems} from this
+     * {@link RemoteViewsService.RemoteViewsFactory} factory.
+     *
+     * @return A collection of {@link RemoteViews.RemoteCollectionItems}.
+     *
+     * @see #getCount()
+     * @see #getItemId(int)
+     * @see #getViewAt(int)
+     */
+    @RequiresApi(Build.VERSION_CODES.S)
+    public @NonNull RemoteViews.RemoteCollectionItems buildRemoteCollectionItems() {
+        onDataSetChanged();
+
+        RemoteViews.RemoteCollectionItems.Builder itemsBuilder
+                = new RemoteViews.RemoteCollectionItems.Builder();
+        for (int i = 0; i < getCount(); i++) {
+            itemsBuilder.addItem(getItemId(i), getViewAt(i));
+        }
+
+        return itemsBuilder.build();
     }
 }
