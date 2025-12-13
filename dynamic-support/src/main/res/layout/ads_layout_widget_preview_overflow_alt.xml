@@ -19,8 +19,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="?attr/ads_widgetImageOverflow"
     android:id="@+id/ads_widget_image_overflow"
-    android:layout_height="0dp"
-    android:layout_weight="1.0"
+    android:layout_height="@dimen/ads_widget_size_cell_one"
     android:layout_margin="@dimen/ads_margin_tiny"
     android:contentDescription="@null"
-    android:src="@drawable/ads_content_overflow_remote" />
+    android:src="@drawable/ads_content_overflow_remote"
+    android:visibility="@integer/ads_widget_visibility_controls_alt" />

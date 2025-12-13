@@ -355,6 +355,8 @@
     <dimen name="ads_widget_size_cell_two">110dp</dimen>
     <dimen name="ads_widget_size_cell_three">180dp</dimen>
     <dimen name="ads_widget_size_cell_four">250dp</dimen>
+    <dimen name="ads_widget_size_cell_five">300dp</dimen>
+    <dimen name="ads_widget_size_cell_six">350dp</dimen>
     <dimen name="ads_widget_button_padding_borderless">@dimen/ads_button_padding</dimen>
     <dimen name="ads_widget_text_input_edit_text_padding">@dimen/ads_margin_regular</dimen>
     <dimen name="ads_widget_text_input_edit_text_padding_outlined">@dimen/ads_margin_medium</dimen>

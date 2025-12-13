@@ -18,9 +18,9 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Widget.Dynamic2.Content.Row.Vertical.Center"
+    style="@style/Widget.Dynamic3.Content.Row.Vertical.Center"
     android:id="@+id/ads_widget_content_overflow"
-    android:layout_height="match_parent"
+    android:layout_height="@dimen/ads_widget_size_cell_one"
     android:theme="@style/Theme.Material3.DynamicColors.DayNight"
     tools:targetApi="m"
     tools:ignore="UseAppTint">
@@ -29,10 +29,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?android:attr/colorAccent"
-        android:alpha="@integer/ads_alpha_backdrop" />
+        android:alpha="@integer/ads_alpha_overflow" />
 
     <ImageView
-        style="@style/Widget.Dynamic2.Image.Empty.Overflow"
+        style="@style/Widget.Dynamic3.Image.Empty.Overflow"
         android:contentDescription="@null"
         android:src="@drawable/ads_content_overflow_remote"
         android:tint="?android:attr/colorAccent" />
